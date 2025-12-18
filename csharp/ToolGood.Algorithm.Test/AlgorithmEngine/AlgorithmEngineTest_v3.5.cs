@@ -79,19 +79,19 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             engine.UseExcelIndex = true;
-            int num = engine.TryEvaluate("{1,2,3,4,}[2]", 0);
+            int num = engine.TryEvaluate("[1,2,3,4,][2]", 0);
             Assert.AreEqual(num, 2);
 
-            String str = engine.TryEvaluate("{1,2,3,4,'555'}[5]", "");
+            String str = engine.TryEvaluate("[1,2,3,4,'555'][5]", "");
             Assert.AreEqual(str, "555");
 
             // 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY' 指向同一函数
             // 'HASVALUE' | 'CONTAINSVALUE' 指向同一函数 与上面的逻辑相同
-            bool b = engine.TryEvaluate("{1,2,3,4,}.has('1')", false);
+            bool b = engine.TryEvaluate("[1,2,3,4,].has('1')", false);
             Assert.AreEqual(b, true);
-            b = engine.TryEvaluate("{'abc','age'}.hasKey('age')", false);
+            b = engine.TryEvaluate("['abc','age'].hasKey('age')", false);
             Assert.AreEqual(b, true);
-            b = engine.TryEvaluate("{'abc','age'}.hasValue('age')", false);
+            b = engine.TryEvaluate("['abc','age'].hasValue('age')", false);
             Assert.AreEqual(b, true);
 
             b = engine.TryEvaluate("json(\"['abc','age']\").has('age')", false);

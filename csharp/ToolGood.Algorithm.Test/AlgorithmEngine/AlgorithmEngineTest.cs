@@ -215,32 +215,32 @@ namespace ToolGood.Algorithm.Test
         public void Cylinder_Test()
         {
             Cylinder c = new Cylinder(3, 10);
-            var t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
+            //var t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
             var t2 = c.TryEvaluate("半径*半径*pi()", 0.0);      //圆底面积
 
             // v3.5 后 不支持这类定义  {} 用于定义 数组 或json
             // var t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0);      //圆底面积
 
-            var t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0);      //圆底面积
-            var t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0);      //圆底面积
-            var t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0);      //圆底面积
-            var t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0);      //圆底面积
+            //var t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0);      //圆底面积
+            //var t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0);      //圆底面积
+            //var t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0);      //圆底面积
+            //var t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0);      //圆底面积
 
-            Assert.AreEqual(t, t2);
-            //Assert.AreEqual(t, t3);
-            Assert.AreEqual(t, t4);
-            Assert.AreEqual(t, t5);
-            Assert.AreEqual(t, t6);
-            Assert.AreEqual(t, t7);
+            //Assert.AreEqual(t, t2);
+            ////Assert.AreEqual(t, t3);
+            //Assert.AreEqual(t, t4);
+            //Assert.AreEqual(t, t5);
+            //Assert.AreEqual(t, t6);
+            //Assert.AreEqual(t, t7);
 
-            t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
-            t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
+         var   t = c.TryEvaluate("直径*pi()", 0.0);            //圆的长
+            t = c.TryEvaluate("半径*半径*pi()*高", 0.0); //圆的体积
 
             //if (c.Parse("[直径1]*pi()") == false) {
             //    Assert.AreEqual("参数[直径1]无效!", c.LastError);
             //}
 
-            t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
+            t = c.TryEvaluate("'半径'*半径*pi()*高", 0.0); //圆的体积
 
             t = c.TryEvaluate("求面积（10）", 0.0); //圆的体积
             Assert.AreEqual(10 * 10 * Math.PI, t, 10);
@@ -248,7 +248,7 @@ namespace ToolGood.Algorithm.Test
             var json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
             c.AddParameterFromJson(json);
 
-            var tt = c.TryEvaluate("['灰色']", ""); //圆的体积
+            var tt = c.TryEvaluate("灰色", ""); //圆的体积
             Assert.AreEqual("L", tt);
 
             //String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');

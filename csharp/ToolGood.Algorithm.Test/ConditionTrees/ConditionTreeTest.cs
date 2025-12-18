@@ -107,7 +107,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
         [Test]
         public void Test8()
         {
-            string txt = "AA.IsText()==bb && (dd=ss || {tt}=22)";
+            string txt = "AA.IsText()==bb && (dd=ss || [tt]=22)";
             var tree = ConditionTree.Parse(txt);
 
             Assert.AreEqual(tree.Type, ConditionTreeType.And);
@@ -119,7 +119,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
 
             Assert.AreEqual("AA.IsText()==bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
             Assert.AreEqual("dd=ss", txt.Substring(t3.Start, t3.End - t3.Start + 1));
-            Assert.AreEqual("{tt}=22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
+            Assert.AreEqual("[tt]=22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
         }
 
         [Test]

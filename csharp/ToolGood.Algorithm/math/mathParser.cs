@@ -198,7 +198,7 @@ namespace ToolGood.Algorithm.math
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(mathParser.Eof, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(mathParser.Eof, 0); }
 			public ProgContext(ParserRuleContext parent, int invokingState)
 				: base(parent, invokingState)
 			{
@@ -208,8 +208,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitProg(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitProg(this);
+				
 			}
 		}
 
@@ -252,7 +252,7 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class CEILING_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -268,13 +268,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCEILING_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCEILING_fun(this);
+				
 			}
 		}
 		public partial class FACT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -285,13 +285,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFACT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFACT_fun(this);
+				
 			}
 		}
 		public partial class REGEXREPALCE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -307,13 +307,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitREGEXREPALCE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitREGEXREPALCE_fun(this);
+				
 			}
 		}
 		public partial class HASVALUE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HASVALUE() { return GetToken(mathParser.HASVALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HASVALUE() { return GetToken(mathParser.HASVALUE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -329,8 +329,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHASVALUE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHASVALUE_fun(this);
+				
 			}
 		}
 		public partial class AddSub_funContext : ExprContext
@@ -346,19 +346,19 @@ namespace ToolGood.Algorithm.math
 			{
 				return GetRuleContext<ExprContext>(i);
 			}
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
 			public AddSub_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitAddSub_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitAddSub_fun(this);
+				
 			}
 		}
 		public partial class AVERAGEIF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -374,13 +374,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitAVERAGEIF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitAVERAGEIF_fun(this);
+				
 			}
 		}
 		public partial class PARAM_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAM() { return GetToken(mathParser.PARAM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAM() { return GetToken(mathParser.PARAM, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -396,13 +396,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPARAM_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPARAM_fun(this);
+				
 			}
 		}
 		public partial class ISNULLORERROR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -418,13 +418,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISNULLORERROR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISNULLORERROR_fun(this);
+				
 			}
 		}
 		public partial class RIGHT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -440,13 +440,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitRIGHT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitRIGHT_fun(this);
+				
 			}
 		}
 		public partial class OCT2BIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -462,13 +462,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitOCT2BIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitOCT2BIN_fun(this);
+				
 			}
 		}
 		public partial class QUARTILE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -484,13 +484,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitQUARTILE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitQUARTILE_fun(this);
+				
 			}
 		}
 		public partial class FINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -506,8 +506,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFINV_fun(this);
+				
 			}
 		}
 		public partial class NOT_funContext : ExprContext
@@ -517,19 +517,19 @@ namespace ToolGood.Algorithm.math
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
 			public NOT_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNOT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNOT_fun(this);
+				
 			}
 		}
 		public partial class DAYS360_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -545,13 +545,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDAYS360_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDAYS360_fun(this);
+				
 			}
 		}
 		public partial class WEEKNUM_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -567,13 +567,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitWEEKNUM_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitWEEKNUM_fun(this);
+				
 			}
 		}
 		public partial class POISSON_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -589,13 +589,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPOISSON_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPOISSON_fun(this);
+				
 			}
 		}
 		public partial class ISREGEX_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -611,13 +611,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISREGEX_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISREGEX_fun(this);
+				
 			}
 		}
 		public partial class COVARIANCES_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVARIANCES() { return GetToken(mathParser.COVARIANCES, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVARIANCES() { return GetToken(mathParser.COVARIANCES, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -633,13 +633,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOVARIANCES_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOVARIANCES_fun(this);
+				
 			}
 		}
 		public partial class PERCENTILE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -655,8 +655,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPERCENTILE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPERCENTILE_fun(this);
+				
 			}
 		}
 		public partial class DiyFunction_funContext : ExprContext
@@ -677,13 +677,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDiyFunction_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDiyFunction_fun(this);
+				
 			}
 		}
 		public partial class SHA256_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -699,13 +699,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSHA256_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSHA256_fun(this);
+				
 			}
 		}
 		public partial class HAS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HAS() { return GetToken(mathParser.HAS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HAS() { return GetToken(mathParser.HAS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -721,13 +721,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHAS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHAS_fun(this);
+				
 			}
 		}
 		public partial class HYPGEOMDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -743,13 +743,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHYPGEOMDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHYPGEOMDIST_fun(this);
+				
 			}
 		}
 		public partial class PERMUT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -765,13 +765,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPERMUT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPERMUT_fun(this);
+				
 			}
 		}
 		public partial class TRIMSTART_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -787,13 +787,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTRIMSTART_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTRIMSTART_fun(this);
+				
 			}
 		}
 		public partial class RMB_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -804,13 +804,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitRMB_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitRMB_fun(this);
+				
 			}
 		}
 		public partial class DEC2HEX_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -826,13 +826,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDEC2HEX_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDEC2HEX_fun(this);
+				
 			}
 		}
 		public partial class CLEAN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -843,13 +843,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCLEAN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCLEAN_fun(this);
+				
 			}
 		}
 		public partial class LOWER_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -860,13 +860,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLOWER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLOWER_fun(this);
+				
 			}
 		}
 		public partial class OR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -882,13 +882,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitOR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitOR_fun(this);
+				
 			}
 		}
 		public partial class ADDMONTHS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -904,13 +904,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitADDMONTHS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitADDMONTHS_fun(this);
+				
 			}
 		}
 		public partial class NORMSINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -921,13 +921,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNORMSINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNORMSINV_fun(this);
+				
 			}
 		}
 		public partial class LEFT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -943,13 +943,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLEFT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLEFT_fun(this);
+				
 			}
 		}
 		public partial class ISEVEN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -960,13 +960,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISEVEN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISEVEN_fun(this);
+				
 			}
 		}
 		public partial class LOGINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -982,13 +982,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLOGINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLOGINV_fun(this);
+				
 			}
 		}
 		public partial class WORKDAY_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1004,13 +1004,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitWORKDAY_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitWORKDAY_fun(this);
+				
 			}
 		}
 		public partial class ISERROR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1026,13 +1026,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISERROR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISERROR_fun(this);
+				
 			}
 		}
 		public partial class BIN2DEC_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1043,13 +1043,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBIN2DEC_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBIN2DEC_fun(this);
+				
 			}
 		}
 		public partial class JIS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1060,13 +1060,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitJIS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitJIS_fun(this);
+				
 			}
 		}
 		public partial class CRC32_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1082,13 +1082,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCRC32_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCRC32_fun(this);
+				
 			}
 		}
 		public partial class LCM_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1104,13 +1104,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLCM_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLCM_fun(this);
+				
 			}
 		}
 		public partial class HARMEAN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1126,13 +1126,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHARMEAN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHARMEAN_fun(this);
+				
 			}
 		}
 		public partial class NORMINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1148,13 +1148,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNORMINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNORMINV_fun(this);
+				
 			}
 		}
 		public partial class GAMMAINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1170,13 +1170,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGAMMAINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGAMMAINV_fun(this);
+				
 			}
 		}
 		public partial class SQRT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1187,13 +1187,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSQRT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSQRT_fun(this);
+				
 			}
 		}
 		public partial class DEGREES_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1204,13 +1204,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDEGREES_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDEGREES_fun(this);
+				
 			}
 		}
 		public partial class MROUND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1226,13 +1226,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMROUND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMROUND_fun(this);
+				
 			}
 		}
 		public partial class DATEDIF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1248,13 +1248,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDATEDIF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDATEDIF_fun(this);
+				
 			}
 		}
 		public partial class TRIMEND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1270,13 +1270,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTRIMEND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTRIMEND_fun(this);
+				
 			}
 		}
 		public partial class ISLOGICAL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1287,13 +1287,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISLOGICAL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISLOGICAL_fun(this);
+				
 			}
 		}
 		public partial class INT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1304,13 +1304,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitINT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitINT_fun(this);
+				
 			}
 		}
 		public partial class SUMIF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1326,13 +1326,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSUMIF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSUMIF_fun(this);
+				
 			}
 		}
 		public partial class HEX2OCT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1348,25 +1348,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHEX2OCT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHEX2OCT_fun(this);
+				
 			}
 		}
 		public partial class PI_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
 			public PI_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPI_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPI_fun(this);
+				
 			}
 		}
 		public partial class YEAR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1377,13 +1377,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitYEAR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitYEAR_fun(this);
+				
 			}
 		}
 		public partial class SQRTPI_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1394,13 +1394,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSQRTPI_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSQRTPI_fun(this);
+				
 			}
 		}
 		public partial class CONCATENATE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1416,13 +1416,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCONCATENATE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCONCATENATE_fun(this);
+				
 			}
 		}
 		public partial class COUNT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1438,25 +1438,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOUNT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOUNT_fun(this);
+				
 			}
 		}
 		public partial class FALSE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
 			public FALSE_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFALSE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFALSE_fun(this);
+				
 			}
 		}
 		public partial class HTMLENCODE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1467,13 +1467,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHTMLENCODE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHTMLENCODE_fun(this);
+				
 			}
 		}
 		public partial class BASE64URLTOTEXT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1489,13 +1489,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
+				
 			}
 		}
 		public partial class LOG10_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1506,13 +1506,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLOG10_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLOG10_fun(this);
+				
 			}
 		}
 		public partial class ISTEXT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1523,13 +1523,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISTEXT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISTEXT_fun(this);
+				
 			}
 		}
 		public partial class NEGBINOMDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1545,13 +1545,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNEGBINOMDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNEGBINOMDIST_fun(this);
+				
 			}
 		}
 		public partial class NETWORKDAYS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1567,13 +1567,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNETWORKDAYS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNETWORKDAYS_fun(this);
+				
 			}
 		}
 		public partial class FACTDOUBLE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1584,13 +1584,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFACTDOUBLE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFACTDOUBLE_fun(this);
+				
 			}
 		}
 		public partial class TIMEVALUE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1601,13 +1601,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTIMEVALUE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTIMEVALUE_fun(this);
+				
 			}
 		}
 		public partial class AVEDEV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1623,25 +1623,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitAVEDEV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitAVEDEV_fun(this);
+				
 			}
 		}
 		public partial class GUID_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
 			public GUID_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGUID_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGUID_fun(this);
+				
 			}
 		}
 		public partial class JSON_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1652,13 +1652,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitJSON_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitJSON_fun(this);
+				
 			}
 		}
 		public partial class FIXED_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1674,8 +1674,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFIXED_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFIXED_fun(this);
+				
 			}
 		}
 		public partial class GetJsonValue_funContext : ExprContext
@@ -1700,13 +1700,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGetJsonValue_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGetJsonValue_fun(this);
+				
 			}
 		}
 		public partial class TINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1722,13 +1722,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTINV_fun(this);
+				
 			}
 		}
 		public partial class EDATE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1744,13 +1744,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitEDATE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitEDATE_fun(this);
+				
 			}
 		}
 		public partial class GEOMEAN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1766,13 +1766,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGEOMEAN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGEOMEAN_fun(this);
+				
 			}
 		}
 		public partial class VAR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1788,13 +1788,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitVAR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitVAR_fun(this);
+				
 			}
 		}
 		public partial class SIGN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1805,13 +1805,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSIGN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSIGN_fun(this);
+				
 			}
 		}
 		public partial class EOMONTH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1827,13 +1827,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitEOMONTH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitEOMONTH_fun(this);
+				
 			}
 		}
 		public partial class FLOOR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1849,13 +1849,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFLOOR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFLOOR_fun(this);
+				
 			}
 		}
 		public partial class HOUR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1866,13 +1866,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHOUR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHOUR_fun(this);
+				
 			}
 		}
 		public partial class LEN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1883,13 +1883,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLEN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLEN_fun(this);
+				
 			}
 		}
 		public partial class ACOS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1900,13 +1900,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitACOS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitACOS_fun(this);
+				
 			}
 		}
 		public partial class ISNULLORWHITESPACE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1917,8 +1917,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
+				
 			}
 		}
 		public partial class NUM_funContext : ExprContext
@@ -1938,13 +1938,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNUM_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNUM_fun(this);
+				
 			}
 		}
 		public partial class COSH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1955,13 +1955,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOSH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOSH_fun(this);
+				
 			}
 		}
 		public partial class QUOTIENT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -1977,13 +1977,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitQUOTIENT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitQUOTIENT_fun(this);
+				
 			}
 		}
 		public partial class OCT2DEC_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -1994,13 +1994,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitOCT2DEC_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitOCT2DEC_fun(this);
+				
 			}
 		}
 		public partial class SEARCH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2016,13 +2016,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSEARCH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSEARCH_fun(this);
+				
 			}
 		}
 		public partial class ROUNDUP_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2038,13 +2038,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitROUNDUP_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitROUNDUP_fun(this);
+				
 			}
 		}
 		public partial class COMBIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2060,13 +2060,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOMBIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOMBIN_fun(this);
+				
 			}
 		}
 		public partial class CODE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2077,13 +2077,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCODE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCODE_fun(this);
+				
 			}
 		}
 		public partial class ASINH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2094,13 +2094,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitASINH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitASINH_fun(this);
+				
 			}
 		}
 		public partial class SIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2111,13 +2111,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSIN_fun(this);
+				
 			}
 		}
 		public partial class SUBSTRING_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2133,13 +2133,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSUBSTRING_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSUBSTRING_fun(this);
+				
 			}
 		}
 		public partial class RANDBETWEEN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2155,13 +2155,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitRANDBETWEEN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitRANDBETWEEN_fun(this);
+				
 			}
 		}
 		public partial class AVERAGE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2177,13 +2177,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitAVERAGE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitAVERAGE_fun(this);
+				
 			}
 		}
 		public partial class LOG_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2199,13 +2199,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLOG_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLOG_fun(this);
+				
 			}
 		}
 		public partial class HMACSHA512_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2221,8 +2221,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHMACSHA512_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHMACSHA512_fun(this);
+				
 			}
 		}
 		public partial class AndOr_funContext : ExprContext
@@ -2238,20 +2238,20 @@ namespace ToolGood.Algorithm.math
 			{
 				return GetRuleContext<ExprContext>(i);
 			}
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
 			public AndOr_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitAndOr_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitAndOr_fun(this);
+				
 			}
 		}
 		public partial class STDEVP_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2267,13 +2267,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSTDEVP_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSTDEVP_fun(this);
+				
 			}
 		}
 		public partial class ADDYEARS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2289,13 +2289,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitADDYEARS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitADDYEARS_fun(this);
+				
 			}
 		}
 		public partial class ADDSECONDS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2311,13 +2311,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitADDSECONDS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitADDSECONDS_fun(this);
+				
 			}
 		}
 		public partial class Array_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ARRAY() { return GetToken(mathParser.ARRAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ARRAY() { return GetToken(mathParser.ARRAY, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2333,13 +2333,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitArray_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitArray_fun(this);
+				
 			}
 		}
 		public partial class ROUND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2355,13 +2355,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitROUND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitROUND_fun(this);
+				
 			}
 		}
 		public partial class EXP_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2372,13 +2372,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitEXP_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitEXP_fun(this);
+				
 			}
 		}
 		public partial class COUNTIF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2394,13 +2394,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOUNTIF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOUNTIF_fun(this);
+				
 			}
 		}
 		public partial class VARP_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2416,13 +2416,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitVARP_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitVARP_fun(this);
+				
 			}
 		}
 		public partial class REMOVEEND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2438,13 +2438,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitREMOVEEND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitREMOVEEND_fun(this);
+				
 			}
 		}
 		public partial class DATE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2460,8 +2460,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDATE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDATE_fun(this);
+				
 			}
 		}
 		public partial class PARAMETER_funContext : ExprContext
@@ -2472,13 +2472,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPARAMETER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPARAMETER_fun(this);
+				
 			}
 		}
 		public partial class SPLIT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2494,13 +2494,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSPLIT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSPLIT_fun(this);
+				
 			}
 		}
 		public partial class COVAR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVAR() { return GetToken(mathParser.COVAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVAR() { return GetToken(mathParser.COVAR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2516,13 +2516,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOVAR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOVAR_fun(this);
+				
 			}
 		}
 		public partial class URLDECODE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2533,13 +2533,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitURLDECODE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitURLDECODE_fun(this);
+				
 			}
 		}
 		public partial class LARGE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2555,13 +2555,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLARGE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLARGE_fun(this);
+				
 			}
 		}
 		public partial class TIMESTAMP_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2577,13 +2577,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTIMESTAMP_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTIMESTAMP_fun(this);
+				
 			}
 		}
 		public partial class VALUE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2594,13 +2594,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitVALUE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitVALUE_fun(this);
+				
 			}
 		}
 		public partial class DAY_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2611,13 +2611,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDAY_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDAY_fun(this);
+				
 			}
 		}
 		public partial class WEIBULL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2633,13 +2633,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitWEIBULL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitWEIBULL_fun(this);
+				
 			}
 		}
 		public partial class HMACSHA256_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2655,13 +2655,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHMACSHA256_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHMACSHA256_fun(this);
+				
 			}
 		}
 		public partial class BINOMDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2677,8 +2677,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBINOMDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBINOMDIST_fun(this);
+				
 			}
 		}
 		public partial class Judge_funContext : ExprContext
@@ -2699,13 +2699,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitJudge_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitJudge_fun(this);
+				
 			}
 		}
 		public partial class DEVSQ_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2721,13 +2721,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDEVSQ_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDEVSQ_fun(this);
+				
 			}
 		}
 		public partial class MODE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2743,13 +2743,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMODE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMODE_fun(this);
+				
 			}
 		}
 		public partial class BETAINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2765,13 +2765,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBETAINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBETAINV_fun(this);
+				
 			}
 		}
 		public partial class MAX_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2787,13 +2787,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMAX_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMAX_fun(this);
+				
 			}
 		}
 		public partial class MINUTE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2804,13 +2804,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMINUTE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMINUTE_fun(this);
+				
 			}
 		}
 		public partial class TAN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2821,13 +2821,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTAN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTAN_fun(this);
+				
 			}
 		}
 		public partial class IFERROR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2843,13 +2843,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitIFERROR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitIFERROR_fun(this);
+				
 			}
 		}
 		public partial class FDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2865,13 +2865,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFDIST_fun(this);
+				
 			}
 		}
 		public partial class INDEXOF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2887,13 +2887,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitINDEXOF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitINDEXOF_fun(this);
+				
 			}
 		}
 		public partial class UPPER_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2904,13 +2904,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitUPPER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitUPPER_fun(this);
+				
 			}
 		}
 		public partial class HTMLDECODE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -2921,13 +2921,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHTMLDECODE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHTMLDECODE_fun(this);
+				
 			}
 		}
 		public partial class EXPONDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2943,13 +2943,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitEXPONDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitEXPONDIST_fun(this);
+				
 			}
 		}
 		public partial class VLOOKUP_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2965,13 +2965,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitVLOOKUP_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitVLOOKUP_fun(this);
+				
 			}
 		}
 		public partial class DEC2BIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -2987,13 +2987,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDEC2BIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDEC2BIN_fun(this);
+				
 			}
 		}
 		public partial class HEX2DEC_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3004,13 +3004,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHEX2DEC_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHEX2DEC_fun(this);
+				
 			}
 		}
 		public partial class SMALL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3026,13 +3026,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSMALL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSMALL_fun(this);
+				
 			}
 		}
 		public partial class ODD_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3043,13 +3043,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitODD_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitODD_fun(this);
+				
 			}
 		}
 		public partial class TEXTTOBASE64_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3065,13 +3065,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTEXTTOBASE64_fun(this);
+				
 			}
 		}
 		public partial class MID_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3087,13 +3087,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMID_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMID_fun(this);
+				
 			}
 		}
 		public partial class PERCENTRANK_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3109,13 +3109,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPERCENTRANK_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPERCENTRANK_fun(this);
+				
 			}
 		}
 		public partial class STDEV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3131,13 +3131,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSTDEV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSTDEV_fun(this);
+				
 			}
 		}
 		public partial class NORMSDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3148,13 +3148,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNORMSDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNORMSDIST_fun(this);
+				
 			}
 		}
 		public partial class ISNUMBER_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3165,13 +3165,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISNUMBER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISNUMBER_fun(this);
+				
 			}
 		}
 		public partial class LASTINDEXOF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3187,13 +3187,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLASTINDEXOF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLASTINDEXOF_fun(this);
+				
 			}
 		}
 		public partial class MOD_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3209,13 +3209,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMOD_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMOD_fun(this);
+				
 			}
 		}
 		public partial class CHAR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3226,13 +3226,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCHAR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCHAR_fun(this);
+				
 			}
 		}
 		public partial class REGEX_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3248,13 +3248,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitREGEX_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitREGEX_fun(this);
+				
 			}
 		}
 		public partial class TEXTTOBASE64URL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3270,13 +3270,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
+				
 			}
 		}
 		public partial class MD5_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3292,13 +3292,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMD5_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMD5_fun(this);
+				
 			}
 		}
 		public partial class REPLACE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3314,13 +3314,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitREPLACE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitREPLACE_fun(this);
+				
 			}
 		}
 		public partial class ACOSH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3331,13 +3331,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitACOSH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitACOSH_fun(this);
+				
 			}
 		}
 		public partial class ISODD_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3348,13 +3348,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISODD_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISODD_fun(this);
+				
 			}
 		}
 		public partial class ASC_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3365,13 +3365,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitASC_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitASC_fun(this);
+				
 			}
 		}
 		public partial class COS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3382,13 +3382,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitCOS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitCOS_fun(this);
+				
 			}
 		}
 		public partial class LN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3399,25 +3399,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLN_fun(this);
+				
 			}
 		}
 		public partial class STRING_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
 			public STRING_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSTRING_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSTRING_fun(this);
+				
 			}
 		}
 		public partial class HMACMD5_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3433,13 +3433,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHMACMD5_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHMACMD5_fun(this);
+				
 			}
 		}
 		public partial class PRODUCT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3455,13 +3455,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPRODUCT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPRODUCT_fun(this);
+				
 			}
 		}
 		public partial class EXACT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3477,13 +3477,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitEXACT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitEXACT_fun(this);
+				
 			}
 		}
 		public partial class ADDMINUTES_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3499,13 +3499,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitADDMINUTES_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitADDMINUTES_fun(this);
+				
 			}
 		}
 		public partial class SUMSQ_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3521,13 +3521,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSUMSQ_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSUMSQ_fun(this);
+				
 			}
 		}
 		public partial class SUM_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3543,13 +3543,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSUM_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSUM_fun(this);
+				
 			}
 		}
 		public partial class SECOND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3560,13 +3560,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSECOND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSECOND_fun(this);
+				
 			}
 		}
 		public partial class GAMMADIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3582,13 +3582,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGAMMADIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGAMMADIST_fun(this);
+				
 			}
 		}
 		public partial class OCT2HEX_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3604,25 +3604,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitOCT2HEX_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitOCT2HEX_fun(this);
+				
 			}
 		}
 		public partial class TODAY_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
 			public TODAY_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTODAY_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTODAY_fun(this);
+				
 			}
 		}
 		public partial class ERROR_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ERROR() { return GetToken(mathParser.ERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ERROR() { return GetToken(mathParser.ERROR, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3633,13 +3633,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitERROR_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitERROR_fun(this);
+				
 			}
 		}
 		public partial class ATAN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3650,25 +3650,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitATAN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitATAN_fun(this);
+				
 			}
 		}
 		public partial class E_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
 			public E_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitE_fun(this);
+				
 			}
 		}
 		public partial class TRIM_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3679,13 +3679,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTRIM_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTRIM_fun(this);
+				
 			}
 		}
 		public partial class RADIANS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3696,13 +3696,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitRADIANS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitRADIANS_fun(this);
+				
 			}
 		}
 		public partial class GAMMALN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3713,13 +3713,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGAMMALN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGAMMALN_fun(this);
+				
 			}
 		}
 		public partial class TEXT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3735,13 +3735,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTEXT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTEXT_fun(this);
+				
 			}
 		}
 		public partial class FISHER_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3752,13 +3752,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFISHER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFISHER_fun(this);
+				
 			}
 		}
 		public partial class AND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3774,8 +3774,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitAND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitAND_fun(this);
+				
 			}
 		}
 		public partial class ArrayJson_funContext : ExprContext
@@ -3795,13 +3795,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitArrayJson_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitArrayJson_fun(this);
+				
 			}
 		}
 		public partial class BIN2HEX_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3817,13 +3817,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBIN2HEX_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBIN2HEX_fun(this);
+				
 			}
 		}
 		public partial class MULTINOMIAL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3839,13 +3839,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMULTINOMIAL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMULTINOMIAL_fun(this);
+				
 			}
 		}
 		public partial class MONTH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3856,13 +3856,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMONTH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMONTH_fun(this);
+				
 			}
 		}
 		public partial class URLENCODE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3873,13 +3873,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitURLENCODE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitURLENCODE_fun(this);
+				
 			}
 		}
 		public partial class NORMDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3895,13 +3895,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNORMDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNORMDIST_fun(this);
+				
 			}
 		}
 		public partial class HMACSHA1_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3917,13 +3917,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHMACSHA1_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHMACSHA1_fun(this);
+				
 			}
 		}
 		public partial class ENDSWITH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3939,8 +3939,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitENDSWITH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitENDSWITH_fun(this);
+				
 			}
 		}
 		public partial class Bracket_funContext : ExprContext
@@ -3955,13 +3955,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBracket_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBracket_fun(this);
+				
 			}
 		}
 		public partial class BETADIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -3977,13 +3977,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBETADIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBETADIST_fun(this);
+				
 			}
 		}
 		public partial class ATANH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -3994,25 +3994,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitATANH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitATANH_fun(this);
+				
 			}
 		}
 		public partial class NOW_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
 			public NOW_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNOW_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNOW_fun(this);
+				
 			}
 		}
 		public partial class MEDIAN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4028,13 +4028,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMEDIAN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMEDIAN_fun(this);
+				
 			}
 		}
 		public partial class POWER_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4050,13 +4050,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPOWER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPOWER_fun(this);
+				
 			}
 		}
 		public partial class DEC2OCT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4072,13 +4072,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDEC2OCT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDEC2OCT_fun(this);
+				
 			}
 		}
 		public partial class PROPER_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4089,13 +4089,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPROPER_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPROPER_fun(this);
+				
 			}
 		}
 		public partial class TRUNC_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4106,13 +4106,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTRUNC_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTRUNC_fun(this);
+				
 			}
 		}
 		public partial class GCD_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4128,13 +4128,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitGCD_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitGCD_fun(this);
+				
 			}
 		}
 		public partial class TANH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4145,13 +4145,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTANH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTANH_fun(this);
+				
 			}
 		}
 		public partial class HEX2BIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4167,13 +4167,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitHEX2BIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitHEX2BIN_fun(this);
+				
 			}
 		}
 		public partial class SINH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4184,13 +4184,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSINH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSINH_fun(this);
+				
 			}
 		}
 		public partial class SHA512_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4206,13 +4206,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSHA512_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSHA512_fun(this);
+				
 			}
 		}
 		public partial class MIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4228,13 +4228,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMIN_fun(this);
+				
 			}
 		}
 		public partial class ADDDAYS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4250,13 +4250,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitADDDAYS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitADDDAYS_fun(this);
+				
 			}
 		}
 		public partial class ISNONTEXT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4267,13 +4267,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISNONTEXT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISNONTEXT_fun(this);
+				
 			}
 		}
 		public partial class ABS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4284,13 +4284,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitABS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitABS_fun(this);
+				
 			}
 		}
 		public partial class ROUNDDOWN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4306,13 +4306,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitROUNDDOWN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitROUNDDOWN_fun(this);
+				
 			}
 		}
 		public partial class IF_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4328,13 +4328,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitIF_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitIF_fun(this);
+				
 			}
 		}
 		public partial class JOIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4350,13 +4350,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitJOIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitJOIN_fun(this);
+				
 			}
 		}
 		public partial class FIND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4372,13 +4372,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFIND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFIND_fun(this);
+				
 			}
 		}
 		public partial class SUBSTITUTE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4394,8 +4394,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSUBSTITUTE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSUBSTITUTE_fun(this);
+				
 			}
 		}
 		public partial class Percentage_funContext : ExprContext
@@ -4410,13 +4410,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitPercentage_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitPercentage_fun(this);
+				
 			}
 		}
 		public partial class REPT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4432,13 +4432,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitREPT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitREPT_fun(this);
+				
 			}
 		}
 		public partial class ISNULL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4454,13 +4454,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISNULL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISNULL_fun(this);
+				
 			}
 		}
 		public partial class ASIN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4471,8 +4471,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitASIN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitASIN_fun(this);
+				
 			}
 		}
 		public partial class MulDiv_funContext : ExprContext
@@ -4493,13 +4493,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitMulDiv_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitMulDiv_fun(this);
+				
 			}
 		}
 		public partial class REMOVESTART_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4515,13 +4515,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitREMOVESTART_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitREMOVESTART_fun(this);
+				
 			}
 		}
 		public partial class T_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4532,13 +4532,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitT_fun(this);
+				
 			}
 		}
 		public partial class WEEKDAY_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4554,13 +4554,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitWEEKDAY_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitWEEKDAY_fun(this);
+				
 			}
 		}
 		public partial class BIN2OCT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4576,25 +4576,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBIN2OCT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBIN2OCT_fun(this);
+				
 			}
 		}
 		public partial class NULL_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
 			public NULL_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNULL_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNULL_fun(this);
+				
 			}
 		}
 		public partial class BASE64TOTEXT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4610,13 +4610,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitBASE64TOTEXT_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitBASE64TOTEXT_fun(this);
+				
 			}
 		}
 		public partial class TDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4632,13 +4632,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTDIST_fun(this);
+				
 			}
 		}
 		public partial class DATEVALUE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4654,13 +4654,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitDATEVALUE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitDATEVALUE_fun(this);
+				
 			}
 		}
 		public partial class STARTSWITH_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4676,13 +4676,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSTARTSWITH_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSTARTSWITH_fun(this);
+				
 			}
 		}
 		public partial class EVEN_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4693,13 +4693,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitEVEN_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitEVEN_fun(this);
+				
 			}
 		}
 		public partial class LOGNORMDIST_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4715,13 +4715,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitLOGNORMDIST_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitLOGNORMDIST_fun(this);
+				
 			}
 		}
 		public partial class ISNULLOREMPTY_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4732,25 +4732,25 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitISNULLOREMPTY_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitISNULLOREMPTY_fun(this);
+				
 			}
 		}
 		public partial class TRUE_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
 			public TRUE_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTRUE_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTRUE_fun(this);
+				
 			}
 		}
 		public partial class FISHERINV_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext expr()
 			{
@@ -4761,13 +4761,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitFISHERINV_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitFISHERINV_fun(this);
+				
 			}
 		}
 		public partial class SHA1_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4783,13 +4783,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitSHA1_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitSHA1_fun(this);
+				
 			}
 		}
 		public partial class TIME_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4805,13 +4805,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitTIME_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitTIME_fun(this);
+				
 			}
 		}
 		public partial class ATAN2_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4827,13 +4827,13 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitATAN2_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitATAN2_fun(this);
+				
 			}
 		}
 		public partial class ADDHOURS_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public ExprContext[] expr()
 			{
@@ -4849,32 +4849,32 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitADDHOURS_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitADDHOURS_fun(this);
+				
 			}
 		}
 		public partial class Version_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALGORITHMVERSION() { return GetToken(mathParser.ALGORITHMVERSION, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALGORITHMVERSION() { return GetToken(mathParser.ALGORITHMVERSION, 0); }
 			public Version_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitVersion_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitVersion_fun(this);
+				
 			}
 		}
 		public partial class RAND_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
 			public RAND_funContext(ExprContext context) { CopyFrom(context); }
 			[System.Diagnostics.DebuggerNonUserCode]
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitRAND_fun(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitRAND_fun(this);
+				
 			}
 		}
 
@@ -12236,8 +12236,8 @@ namespace ToolGood.Algorithm.math
 
 		public partial class NumContext : ParserRuleContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
 			public NumContext(ParserRuleContext parent, int invokingState)
 				: base(parent, invokingState)
 			{
@@ -12247,8 +12247,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitNum(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitNum(this);
+				
 			}
 		}
 
@@ -12286,8 +12286,8 @@ namespace ToolGood.Algorithm.math
 
 		public partial class UnitContext : ParserRuleContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNIT() { return GetToken(mathParser.UNIT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNIT() { return GetToken(mathParser.UNIT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
 			public UnitContext(ParserRuleContext parent, int invokingState)
 				: base(parent, invokingState)
 			{
@@ -12297,8 +12297,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitUnit(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitUnit(this);
+				
 			}
 		}
 
@@ -12353,8 +12353,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitArrayJson(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitArrayJson(this);
+				
 			}
 		}
 
@@ -12624,227 +12624,227 @@ namespace ToolGood.Algorithm.math
 
 		public partial class Parameter2Context : ParserRuleContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVAR() { return GetToken(mathParser.COVAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVARIANCES() { return GetToken(mathParser.COVARIANCES, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ERROR() { return GetToken(mathParser.ERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNIT() { return GetToken(mathParser.UNIT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HAS() { return GetToken(mathParser.HAS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HASVALUE() { return GetToken(mathParser.HASVALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALGORITHMVERSION() { return GetToken(mathParser.ALGORITHMVERSION, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAM() { return GetToken(mathParser.PARAM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVAR() { return GetToken(mathParser.COVAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVARIANCES() { return GetToken(mathParser.COVARIANCES, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ERROR() { return GetToken(mathParser.ERROR, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNIT() { return GetToken(mathParser.UNIT, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HAS() { return GetToken(mathParser.HAS, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HASVALUE() { return GetToken(mathParser.HASVALUE, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALGORITHMVERSION() { return GetToken(mathParser.ALGORITHMVERSION, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAM() { return GetToken(mathParser.PARAM, 0); }
+			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
 			public Parameter2Context(ParserRuleContext parent, int invokingState)
 				: base(parent, invokingState)
 			{
@@ -12854,8 +12854,8 @@ namespace ToolGood.Algorithm.math
 			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-				if (typedVisitor != null) return typedVisitor.VisitParameter2(this);
-				else return visitor.VisitChildren(this);
+				return typedVisitor.VisitParameter2(this);
+				
 			}
 		}
 
@@ -12889,125 +12889,7 @@ namespace ToolGood.Algorithm.math
 
 		public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex)
 		{
-			switch (ruleIndex) {
-				case 1: return expr_sempred((ExprContext)_localctx, predIndex);
-			}
-			return true;
-		}
-		private bool expr_sempred(ExprContext _localctx, int predIndex)
-		{
-			switch (predIndex) {
-				case 0: return Precpred(Context, 233);
-				case 1: return Precpred(Context, 232);
-				case 2: return Precpred(Context, 231);
-				case 3: return Precpred(Context, 230);
-				case 4: return Precpred(Context, 229);
-				case 5: return Precpred(Context, 228);
-				case 6: return Precpred(Context, 227);
-				case 7: return Precpred(Context, 338);
-				case 8: return Precpred(Context, 337);
-				case 9: return Precpred(Context, 336);
-				case 10: return Precpred(Context, 335);
-				case 11: return Precpred(Context, 334);
-				case 12: return Precpred(Context, 333);
-				case 13: return Precpred(Context, 332);
-				case 14: return Precpred(Context, 331);
-				case 15: return Precpred(Context, 330);
-				case 16: return Precpred(Context, 329);
-				case 17: return Precpred(Context, 328);
-				case 18: return Precpred(Context, 327);
-				case 19: return Precpred(Context, 326);
-				case 20: return Precpred(Context, 325);
-				case 21: return Precpred(Context, 324);
-				case 22: return Precpred(Context, 323);
-				case 23: return Precpred(Context, 322);
-				case 24: return Precpred(Context, 321);
-				case 25: return Precpred(Context, 320);
-				case 26: return Precpred(Context, 319);
-				case 27: return Precpred(Context, 318);
-				case 28: return Precpred(Context, 317);
-				case 29: return Precpred(Context, 316);
-				case 30: return Precpred(Context, 315);
-				case 31: return Precpred(Context, 314);
-				case 32: return Precpred(Context, 313);
-				case 33: return Precpred(Context, 312);
-				case 34: return Precpred(Context, 311);
-				case 35: return Precpred(Context, 310);
-				case 36: return Precpred(Context, 309);
-				case 37: return Precpred(Context, 308);
-				case 38: return Precpred(Context, 307);
-				case 39: return Precpred(Context, 306);
-				case 40: return Precpred(Context, 305);
-				case 41: return Precpred(Context, 304);
-				case 42: return Precpred(Context, 303);
-				case 43: return Precpred(Context, 302);
-				case 44: return Precpred(Context, 301);
-				case 45: return Precpred(Context, 300);
-				case 46: return Precpred(Context, 299);
-				case 47: return Precpred(Context, 298);
-				case 48: return Precpred(Context, 297);
-				case 49: return Precpred(Context, 296);
-				case 50: return Precpred(Context, 295);
-				case 51: return Precpred(Context, 294);
-				case 52: return Precpred(Context, 293);
-				case 53: return Precpred(Context, 292);
-				case 54: return Precpred(Context, 291);
-				case 55: return Precpred(Context, 290);
-				case 56: return Precpred(Context, 289);
-				case 57: return Precpred(Context, 288);
-				case 58: return Precpred(Context, 287);
-				case 59: return Precpred(Context, 286);
-				case 60: return Precpred(Context, 285);
-				case 61: return Precpred(Context, 284);
-				case 62: return Precpred(Context, 283);
-				case 63: return Precpred(Context, 282);
-				case 64: return Precpred(Context, 281);
-				case 65: return Precpred(Context, 280);
-				case 66: return Precpred(Context, 279);
-				case 67: return Precpred(Context, 278);
-				case 68: return Precpred(Context, 277);
-				case 69: return Precpred(Context, 276);
-				case 70: return Precpred(Context, 275);
-				case 71: return Precpred(Context, 274);
-				case 72: return Precpred(Context, 273);
-				case 73: return Precpred(Context, 272);
-				case 74: return Precpred(Context, 271);
-				case 75: return Precpred(Context, 270);
-				case 76: return Precpred(Context, 269);
-				case 77: return Precpred(Context, 268);
-				case 78: return Precpred(Context, 267);
-				case 79: return Precpred(Context, 266);
-				case 80: return Precpred(Context, 265);
-				case 81: return Precpred(Context, 264);
-				case 82: return Precpred(Context, 263);
-				case 83: return Precpred(Context, 262);
-				case 84: return Precpred(Context, 261);
-				case 85: return Precpred(Context, 260);
-				case 86: return Precpred(Context, 259);
-				case 87: return Precpred(Context, 258);
-				case 88: return Precpred(Context, 257);
-				case 89: return Precpred(Context, 256);
-				case 90: return Precpred(Context, 255);
-				case 91: return Precpred(Context, 254);
-				case 92: return Precpred(Context, 253);
-				case 93: return Precpred(Context, 252);
-				case 94: return Precpred(Context, 251);
-				case 95: return Precpred(Context, 250);
-				case 96: return Precpred(Context, 249);
-				case 97: return Precpred(Context, 248);
-				case 98: return Precpred(Context, 247);
-				case 99: return Precpred(Context, 246);
-				case 100: return Precpred(Context, 245);
-				case 101: return Precpred(Context, 244);
-				case 102: return Precpred(Context, 243);
-				case 103: return Precpred(Context, 242);
-				case 104: return Precpred(Context, 241);
-				case 105: return Precpred(Context, 240);
-				case 106: return Precpred(Context, 239);
-				case 107: return Precpred(Context, 238);
-				case 108: return Precpred(Context, 237);
-				case 109: return Precpred(Context, 234);
-			}
+		 
 			return true;
 		}
 

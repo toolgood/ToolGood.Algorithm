@@ -295,8 +295,8 @@ namespace ToolGood.Algorithm.Test
             var dt3 = engine.TryEvaluate("{\"w11\":false}", "");
             Assert.AreEqual(dt3.ToString(), "{\"w11\":false}");
 
-			  dt3 = engine.TryEvaluate("[1,2,3,4]", "");
-			Assert.AreEqual(dt3.ToString(), "{\"w11\":false}");
+			dt3 = engine.TryEvaluate("[1,2,3,4]", "");
+			Assert.AreEqual(dt3.ToString(), "[1,2,3,4]");
 
 
 		}
