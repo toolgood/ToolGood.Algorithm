@@ -105,7 +105,9 @@ Parameter Definition: parameter name
 
 Note: Versions below 5.9 do not support `[parameter name]`, `【parameter name】`, `#parameter name#`, or `@parameterName`.
 
-Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction`+= to customize functions. 
+Note: `AlgorithmEngineEx` allows the use of `AddParameter` and `AddParameterFromJson` to add parameters.
+
+Note: You can override the `GetParameter` and `ExecuteDiyFunction` methods to customize parameters and define custom methods.
 
 Note: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
 

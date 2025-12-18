@@ -101,7 +101,9 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 注：不支持5.9版本以下 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
 
-注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
+注：`AlgorithmEngineEx` 可以使用`AddParameter`、`AddParameterFromJson`添加参数。
+
+注：可以重写`GetParameter`、`ExecuteDiyFunction`方法，来自定义参数和自定义方法。
 
 注：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
  
