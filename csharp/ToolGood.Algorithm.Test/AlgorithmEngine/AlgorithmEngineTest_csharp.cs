@@ -288,6 +288,17 @@ namespace ToolGood.Algorithm.Test
 
             dt = engine.TryEvaluate("json('22[1,2,3,4,5,6]')[1].Trim()", null);
             Assert.AreEqual(dt, null);
-        }
-    }
+
+			var dt2 = engine.TryEvaluate("json('{\"w11\":true}')['w11']", false);
+			Assert.AreEqual(dt2, true);
+
+            var dt3 = engine.TryEvaluate("{\"w11\":false}", "");
+            Assert.AreEqual(dt3.ToString(), "{\"w11\":false}");
+
+			  dt3 = engine.TryEvaluate("[1,2,3,4]", "");
+			Assert.AreEqual(dt3.ToString(), "{\"w11\":false}");
+
+
+		}
+	}
 }
