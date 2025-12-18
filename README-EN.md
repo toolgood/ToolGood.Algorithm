@@ -13,10 +13,6 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 
 3）Algorithms in financial data and statistical data (Note: Some formulas use the `double` type, and it is recommended to use `fen` as the unit); 
 
-4）The report is exported, the data source uses the stored procedure, and the algorithm is set in the Word document. Example https://github.com/toolgood/ToolGood.WordTemplate 
-
-5）Rule engines, such as: https://github.com/toolgood/ToolGood.FlowVision
-
 
 ## Quick start
 ``` csharp

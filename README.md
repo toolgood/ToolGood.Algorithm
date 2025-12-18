@@ -14,9 +14,6 @@ WebAssembly版本，请看csharp文件夹下`ToolGood.Algorithm.WebAssembly`,`To
 
 3）财务数据、统计数据之中的算法，(注:部分公式会使用`double`类型，建议使用`分`为单位)；
 
-4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
-
-5）`可视化`规则引擎，如：https://github.com/toolgood/ToolGood.FlowVision
 
 ## 快速上手
 ``` csharp
@@ -1049,11 +1046,4 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(文本)<br>动态获取参数</td> <td></td>
     </tr>
 </table>
- 
-## 比特币私钥碰撞机
-比特币私钥碰撞机，利用电脑空闲性能(3G内存)，搏25万枚比特币。
-
-[比特币私钥碰撞机](https://mbd.pub/o/bread/ZZmal5Zw)（收费50元）
-
-[比特币私钥碰撞机源码](https://mbd.pub/o/bread/ZZmal5dt)（收费500元）
 
