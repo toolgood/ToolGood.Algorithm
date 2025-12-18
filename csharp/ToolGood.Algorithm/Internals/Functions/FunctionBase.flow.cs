@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotBoolean) { args1 = args1.ToBoolean("Function '{0}' parameter {1} is error!", "If", 1); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue) return func2.Evaluate(work, tempParameter);
@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsError) { return func2.Evaluate(work, tempParameter); }
@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNumber) { return Operand.True; }
@@ -70,7 +70,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsText) { return Operand.True; }
@@ -88,7 +88,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (func2 != null) {
@@ -110,7 +110,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (func2 != null) {
@@ -134,7 +134,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (func2 != null) {
@@ -158,7 +158,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNumber) {
@@ -178,7 +178,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNumber) {
@@ -198,7 +198,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsBoolean) { return Operand.True; }
@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotText) { return Operand.True; }
@@ -236,7 +236,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNull) { return Operand.True; }
@@ -255,7 +255,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNull) { return Operand.True; }
@@ -276,7 +276,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotBoolean) { args1 = args1.ToBoolean("Function '{0}' parameter is error!", "Not"); if (args1.IsError) { return args1; } }

@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="work"></param>
         /// <param name="tempParameter">临时参数，未找到返回null</param>
         /// <returns></returns>
-        public abstract Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter = null);
+        public abstract Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter = null);
 
         #region TryEvaluate
 
@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public ushort TryEvaluate(AlgorithmEngine work, ushort def, Func<string, Operand> tempParameter = null)
+        public ushort TryEvaluate(AlgorithmEngine work, ushort def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -54,7 +54,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public uint TryEvaluate(AlgorithmEngine work, uint def, Func<string, Operand> tempParameter = null)
+        public uint TryEvaluate(AlgorithmEngine work, uint def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -79,7 +79,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public ulong TryEvaluate(AlgorithmEngine work, ulong def, Func<string, Operand> tempParameter = null)
+        public ulong TryEvaluate(AlgorithmEngine work, ulong def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -104,7 +104,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public short TryEvaluate(AlgorithmEngine work, short def, Func<string, Operand> tempParameter = null)
+        public short TryEvaluate(AlgorithmEngine work, short def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -129,7 +129,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public int TryEvaluate(AlgorithmEngine work, int def, Func<string, Operand> tempParameter = null)
+        public int TryEvaluate(AlgorithmEngine work, int def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -154,7 +154,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public long TryEvaluate(AlgorithmEngine work, long def, Func<string, Operand> tempParameter = null)
+        public long TryEvaluate(AlgorithmEngine work, long def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -179,7 +179,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public float TryEvaluate(AlgorithmEngine work, float def, Func<string, Operand> tempParameter = null)
+        public float TryEvaluate(AlgorithmEngine work, float def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -204,7 +204,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public double TryEvaluate(AlgorithmEngine work, double def, Func<string, Operand> tempParameter = null)
+        public double TryEvaluate(AlgorithmEngine work, double def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -229,7 +229,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public decimal TryEvaluate(AlgorithmEngine work, decimal def, Func<string, Operand> tempParameter = null)
+        public decimal TryEvaluate(AlgorithmEngine work, decimal def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -254,7 +254,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public string TryEvaluate(AlgorithmEngine work, string def, Func<string, Operand> tempParameter = null)
+        public string TryEvaluate(AlgorithmEngine work, string def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -279,7 +279,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public bool TryEvaluate(AlgorithmEngine work, bool def, Func<string, Operand> tempParameter = null)
+        public bool TryEvaluate(AlgorithmEngine work, bool def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -304,7 +304,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public DateTime TryEvaluate(AlgorithmEngine work, DateTime def, Func<string, Operand> tempParameter = null)
+        public DateTime TryEvaluate(AlgorithmEngine work, DateTime def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -332,7 +332,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public TimeSpan TryEvaluate(AlgorithmEngine work, TimeSpan def, Func<string, Operand> tempParameter = null)
+        public TimeSpan TryEvaluate(AlgorithmEngine work, TimeSpan def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -358,7 +358,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="def"></param>
         /// <param name="tempParameter"></param>
         /// <returns></returns>
-        public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Func<string, Operand> tempParameter = null)
+        public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
         {
             try {
                 var obj = this.Evaluate(work, tempParameter);
@@ -535,7 +535,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -608,7 +608,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -669,7 +669,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -728,7 +728,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -799,7 +799,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -867,7 +867,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -903,7 +903,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -965,7 +965,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -1027,7 +1027,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -1092,7 +1092,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -1158,7 +1158,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -1223,7 +1223,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
@@ -1296,7 +1296,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
             // 在excel内 AND(x,y) OR(x,y) 先报错，
@@ -1322,7 +1322,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
             // 在excel内 AND(x,y) OR(x,y) 先报错，
@@ -1349,7 +1349,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var index = 1;
             bool b = true;
@@ -1373,7 +1373,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var index = 1;
             bool b = false;
@@ -1401,7 +1401,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             //  这个跟excel的vlookup有区别，excel是按列查找，这里是按array查找，参数位置不一样 用json代替吧
             var args1 = func1.Evaluate(work, tempParameter);

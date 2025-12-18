@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -74,7 +74,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args0 = func1.Evaluate(work, tempParameter); if (args0.IsError) { return args0; }
 
@@ -110,7 +110,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "TimeValue"); if (args1.IsError) { return args1; } }
 
@@ -131,7 +131,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = funcs[0].Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Date", 1); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Date", 2); if (args2.IsError) { return args2; } }
@@ -168,7 +168,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2); if (args2.IsError) { return args2; } }
@@ -264,7 +264,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Time", 2); if (args2.IsError) { return args2; } }
@@ -286,7 +286,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     internal class Function_NOW : FunctionBase
     {
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             if (work.UseLocalTime) {
                 return Operand.Create(DateTime.Now);
@@ -302,7 +302,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     internal class Function_TODAY : FunctionBase
     {
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             DateTime now;
             if (work.UseLocalTime) {
@@ -326,7 +326,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Second"); if (args1.IsError) { return args1; } }
@@ -344,7 +344,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Minute"); if (args1.IsError) { return args1; } }
@@ -362,7 +362,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Hour"); if (args1.IsError) { return args1; } }
@@ -380,7 +380,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Month"); if (args1.IsError) { return args1; } }
@@ -401,7 +401,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Year"); if (args1.IsError) { return args1; } }
@@ -422,7 +422,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Day"); if (args1.IsError) { return args1; } }
@@ -444,7 +444,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1); if (args1.IsError) { return args1; } }
 
@@ -478,7 +478,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 2); if (args2.IsError) { return args2; } }
@@ -547,7 +547,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EDate", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EDate", 2); if (args2.IsError) { return args2; } }
@@ -565,7 +565,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EoMonth", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EoMonth", 2); if (args2.IsError) { return args2; } }
@@ -585,7 +585,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = funcs[0].Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2); if (args2.IsError) { return args2; } }
@@ -621,7 +621,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = funcs[0].Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", 1); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Workday", 2); if (args2.IsError) { return args2; } }
@@ -654,7 +654,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1); if (args1.IsError) { return args1; } }
             var startMyDate = (DateTime)args1.DateValue;
@@ -684,7 +684,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddMonths", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddMonths", 2); if (args2.IsError) { return args2; } }
@@ -702,7 +702,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddYears", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddYears", 2); if (args2.IsError) { return args2; } }
@@ -720,7 +720,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddSeconds", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddSeconds", 2); if (args2.IsError) { return args2; } }
@@ -739,7 +739,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddMinutes", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddMinutes", 2); if (args2.IsError) { return args2; } }
@@ -758,7 +758,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddHours", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddHours", 2); if (args2.IsError) { return args2; } }
@@ -777,7 +777,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddDays", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddDays", 2); if (args2.IsError) { return args2; } }
