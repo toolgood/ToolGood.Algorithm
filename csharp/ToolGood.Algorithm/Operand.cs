@@ -1035,11 +1035,11 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToText(string errorMessage = null)
 		{
-			return Create(_value.ToString());
+			return Create(this.ToString());
 		}
 		public override Operand ToText(string errorMessage, params object[] args)
 		{
-			return Create(_value.ToString());
+			return Create(this.ToString());
 		}
 
 		public override Operand ToArray(string errorMessage) { return this; }
