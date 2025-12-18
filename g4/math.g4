@@ -340,12 +340,9 @@ expr:
 	| HAS '('expr ',' expr ')'									# HAS_fun
 	| HASVALUE '(' expr ','expr ')'								# HASVALUE_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
-	| '{' expr (',' expr)* ','* '}'								# Array_fun
+	| '[' expr (',' expr)* ','* ']'								# Array_fun
 	| ALGORITHMVERSION											# Version_fun
-	| '[' PARAMETER ']'											# PARAMETER_fun
-	| '[' expr ']'												# PARAMETER_fun
 	| PARAMETER													# PARAMETER_fun
-	| PARAMETER2												# PARAMETER_fun
 	| num unit?													# NUM_fun
 	| STRING													# STRING_fun
 	| NULL														# NULL_fun;
@@ -840,13 +837,6 @@ HASVALUE: 'HASVALUE' | 'CONTAINSVALUE';
 PARAM: 'PARAM' | 'PARAMETER' | 'GETPARAMETER';
 
 PARAMETER: ([A-Z_] | FullWidthLetter) (
-		[A-Z0-9_]
-		| FullWidthLetter
-	)*;
-PARAMETER2:
-	'【' (~('【' | '】'))+ '】'
-	| '#' (~('#'))+ '#'
-	| '@' ([A-Z_] | FullWidthLetter) (
 		[A-Z0-9_]
 		| FullWidthLetter
 	)*;

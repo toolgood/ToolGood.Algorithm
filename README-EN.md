@@ -38,8 +38,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null); ;//Return "ill"  返回"ill"
     var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
-    var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
-
+    var m = engine.TryEvaluate("[1,2,3,4,5,6].has(13)", true);//Return false 返回false
 ```
 Constants`pi`, `e`, `true`, `false`are supported.
 
@@ -60,6 +59,8 @@ Note: Use `&` for string concatenation.
 
 
 Note: `find` is an Excel formula , find (the string to be searched, the string to be searched [, start position]) 
+
+Note: Starting from version 6.0, the `[X,X]` array code replaces `{X,X}`.
 
 ## Custom parameters
 ``` csharp
@@ -93,18 +94,20 @@ Note: `find` is an Excel formula , find (the string to be searched, the string t
     }
     //Call method  调用方法
     Cylinder c = new Cylinder(3, 10);
-    c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //Round bottom area  圆底面积
-    c.TryEvaluate("[直径]*pi()", 0.0);            //The length of the circle  圆的长
-    c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
-    c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
-    c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
+    c.TryEvaluate("半径*半径*pi()", 0.0);      //Round bottom area  圆底面积
+    c.TryEvaluate("直径*pi()", 0.0);            //The length of the circle  圆的长
+    c.TryEvaluate("半径*半径*pi()*高", 0.0); //Volume of circle 圆的体积
+    c.EvaluateFormula("'圆'-半径-高", '-'); // Return: 圆-3-10
     c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
 ```
-Parameter definitions, such as`[parameter name]`, `【parameter name】` , `#parameter name#` , `@parameterName`.
+
+Parameter Definition: parameter name
+
+Note: Versions below 5.9 do not support `[parameter name]`, `【parameter name】`, `#parameter name#`, or `@parameterName`.
 
 Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction`+= to customize functions. 
 
-Note 2: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
+Note: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
 
 
 ## Custom parameters

@@ -38,7 +38,7 @@ WebAssembly版本，请看csharp文件夹下`ToolGood.Algorithm.WebAssembly`,`To
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null);//Return "ill"  返回"ill"
     var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
-    var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
+    var m = engine.TryEvaluate("[1,2,3,4,5,6].has(13)", true);//Return false 返回false
 ```
 
 支持常量`pi`, `e`, `true`, `false`。
@@ -54,6 +54,8 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 注：字符串拼接使用`&`。
 
 注：`find`为Excel公式，find(要查找的字符串, 被查找的字符串[, 开始位置])
+
+注：6.0版本开始,`[X,X]`数组代码替换`{X,X}`。
 
 ## 自定义参数
 ``` csharp
@@ -87,20 +89,21 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     }
     //Call method  调用方法
     Cylinder c = new Cylinder(3, 10);
-    c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //Round bottom area  圆底面积
-    c.TryEvaluate("[直径]*pi()", 0.0);            //The length of the circle  圆的长
-    c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
-    c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
-    c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
+    c.TryEvaluate("半径*半径*pi()", 0.0);      //Round bottom area  圆底面积
+    c.TryEvaluate("直径*pi()", 0.0);            //The length of the circle  圆的长
+    c.TryEvaluate("半径*半径*pi()*高", 0.0); //Volume of circle 圆的体积
+    c.EvaluateFormula("'圆'-半径-高", '-'); // Return: 圆-3-10
     c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
 
 ```
 
-参数定义，如 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
+参数定义`参数名`，
+
+注：不支持5.9版本以下 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
 
-注2：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
+注：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
  
 
 ## 自定义参数
