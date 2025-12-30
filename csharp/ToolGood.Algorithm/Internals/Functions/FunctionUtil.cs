@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
-using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
     internal class FunctionUtil
     {
-        public static bool F_base_GetList(List<Operand> args, List<decimal> list)
+        public static readonly DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+		public static bool F_base_GetList(List<Operand> args, List<decimal> list)
         {
             foreach (var item in args) {
                 if (item.IsNumber) {

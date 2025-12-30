@@ -33,12 +33,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return args1.ToMyDate();
                 }
                 if (args1.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L，
-                    var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
+                    var time = FunctionUtil.StartDateUtc.AddSeconds(args1.LongValue);
                     if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                     return Operand.Create(time);
                 }
                 // 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
-                var time2 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
+                var time2 = FunctionUtil.StartDateUtc.AddMilliseconds(args1.LongValue);
                 if (work.UseLocalTime) { return Operand.Create(time2.ToLocalTime()); }
                 return Operand.Create(time2);
             } else if (type == 1) {
@@ -51,12 +51,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return args[0].ToNumber("Function '{0}' parameter is error!", "DateValue").ToMyDate();
             } else if (type == 3) {
                 var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
-                var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
+                var time = FunctionUtil.StartDateUtc.AddMilliseconds(args1.LongValue);
                 if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                 return Operand.Create(time);
             } else if (type == 4) {
                 var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
-                var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
+                var time = FunctionUtil.StartDateUtc.AddSeconds(args1.LongValue);
                 if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                 return Operand.Create(time);
             }
@@ -90,10 +90,10 @@ namespace ToolGood.Algorithm.Internals.Functions
                 args1 = args0.ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1).DateValue.ToDateTime(DateTimeKind.Utc);
             }
             if (type == 0) {
-                var ms = (args1 - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+				var ms = (args1 - FunctionUtil.StartDateUtc).TotalMilliseconds;
                 return Operand.Create(ms);
             } else if (type == 1) {
-                var s = (args1 - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+                var s = (args1 - FunctionUtil.StartDateUtc).TotalSeconds;
                 return Operand.Create(s);
             }
             return Operand.Error("Function '{0}' parameter is error!", "TimeStamp");
