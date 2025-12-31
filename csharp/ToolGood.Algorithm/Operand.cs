@@ -4,8 +4,6 @@ using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 using System.Text;
-using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
 using ToolGood.Algorithm.Internals.Functions;
 
 
@@ -803,16 +801,16 @@ namespace ToolGood.Algorithm
 		public override OperandType Type => OperandType.BOOLEAN;
 		public override bool BooleanValue => _value;
 
-		public override Operand ToNumber(string errorMessage) { return BooleanValue ? One : Zero; }
-		public override Operand ToNumber(string errorMessage, params object[] args) { return BooleanValue ? One : Zero; }
+		public override Operand ToNumber(string errorMessage) { return _value ? One : Zero; }
+		public override Operand ToNumber(string errorMessage, params object[] args) { return _value ? One : Zero; }
 
 		public override Operand ToBoolean(string errorMessage) { return this; }
 		public override Operand ToBoolean(string errorMessage, params object[] args) { return this; }
 
-		public override Operand ToText(string errorMessage) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
-		public override Operand ToText(string errorMessage, params object[] args) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
+		public override Operand ToText(string errorMessage) { return Create(_value ? "TRUE" : "FALSE"); }
+		public override Operand ToText(string errorMessage, params object[] args) { return Create(_value ? "TRUE" : "FALSE"); }
 
-		public override string ToString() { return BooleanValue ? "true" : "false"; }
+		public override string ToString() { return _value ? "true" : "false"; }
 	}
 
 	internal sealed class OperandString : Operand

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm
