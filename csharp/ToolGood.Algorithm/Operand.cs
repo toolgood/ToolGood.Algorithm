@@ -6,6 +6,8 @@ using ToolGood.Algorithm.LitJson;
 using System.Text;
 using System.Reflection;
 using static System.Net.Mime.MediaTypeNames;
+using ToolGood.Algorithm.Internals.Functions;
+
 
 
 
@@ -291,7 +293,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(string obj)
 		{
-			if (object.Equals(null, obj)) {
+			if(object.Equals(null, obj)) {
 				return Operand.CreateNull();
 			}
 			return new OperandString(obj);
@@ -304,11 +306,11 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand CreateJson(string txt)
 		{
-			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+			if((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch (Exception) { }
+				} catch(Exception) { }
 			}
 			return Operand.Error("string to json is error!");
 		}
@@ -371,7 +373,7 @@ namespace ToolGood.Algorithm
 		public static Operand Create(ICollection<string> obj)
 		{
 			var array = new List<Operand>();
-			foreach (var item in obj) {
+			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
 			return new OperandArray(array);
@@ -385,7 +387,7 @@ namespace ToolGood.Algorithm
 		public static Operand Create(ICollection<double> obj)
 		{
 			var array = new List<Operand>();
-			foreach (var item in obj) {
+			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
 			return new OperandArray(array);
@@ -399,7 +401,7 @@ namespace ToolGood.Algorithm
 		public static Operand Create(ICollection<int> obj)
 		{
 			var array = new List<Operand>();
-			foreach (var item in obj) {
+			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
 			return new OperandArray(array);
@@ -413,7 +415,7 @@ namespace ToolGood.Algorithm
 		public static Operand Create(ICollection<bool> obj)
 		{
 			var array = new List<Operand>();
-			foreach (var item in obj) {
+			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
 			return new OperandArray(array);
@@ -828,20 +830,26 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToNumber(string errorMessage)
 		{
-			if (decimal.TryParse(TextValue, out decimal d)) {
+			if(TextValue.Contains('.') == false && int.TryParse(TextValue, out int num)) {
+				return Operand.Create(num);
+			}
+			if(decimal.TryParse(TextValue, out decimal d)) {
 				return Operand.Create(d);
 			}
-			if (errorMessage == null) {
+			if(errorMessage == null) {
 				return Error("Convert to number error!");
 			}
 			return Error(errorMessage);
 		}
 		public override Operand ToNumber(string errorMessage, params object[] args)
 		{
-			if (decimal.TryParse(TextValue, out decimal d)) {
+			if(TextValue.Contains('.') == false && int.TryParse(TextValue, out int num)) {
+				return Operand.Create(num);
+			}
+			if(decimal.TryParse(TextValue, out decimal d)) {
 				return Operand.Create(d);
 			}
-			if (errorMessage == null) {
+			if(errorMessage == null) {
 				return Error("Convert to number error!");
 			}
 			return Error(string.Format(errorMessage, args));
@@ -853,26 +861,20 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToBoolean(string errorMessage)
 		{
-			if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
-			if (TextValue.Equals("yes", StringComparison.OrdinalIgnoreCase)) { return True; }
-			if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
-			if (TextValue.Equals("no", StringComparison.OrdinalIgnoreCase)) { return False; }
-			if (TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) { return True; }
-			if (TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) { return False; }
-			if (errorMessage == null) {
+			if(FunctionUtil.IsBoolean(TextValue, out bool b)) {
+				return b ? Operand.True : Operand.False;
+			}
+			if(errorMessage == null) {
 				return Error("Convert to bool error!");
 			}
 			return Error(errorMessage);
 		}
 		public override Operand ToBoolean(string errorMessage, params object[] args)
 		{
-			if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
-			if (TextValue.Equals("yes", StringComparison.OrdinalIgnoreCase)) { return True; }
-			if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
-			if (TextValue.Equals("no", StringComparison.OrdinalIgnoreCase)) { return False; }
-			if (TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) { return True; }
-			if (TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) { return False; }
-			if (errorMessage == null) {
+			if(FunctionUtil.IsBoolean(TextValue, out bool b)) {
+				return b ? Operand.True : Operand.False;
+			}
+			if(errorMessage == null) {
 				return Error("Convert to bool error!");
 			}
 			return Error(string.Format(errorMessage, args));
@@ -881,18 +883,18 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToMyDate(string errorMessage)
 		{
-			if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
-			if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
-			if (errorMessage == null) {
+			if(TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
+			if(DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
+			if(errorMessage == null) {
 				return Error("Convert to date error!");
 			}
 			return Error(errorMessage);
 		}
 		public override Operand ToMyDate(string errorMessage, params object[] args)
 		{
-			if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
-			if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
-			if (errorMessage == null) {
+			if(TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
+			if(DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
+			if(errorMessage == null) {
 				return Error("Convert to date error!");
 			}
 			return Error(string.Format(errorMessage, args));
@@ -905,11 +907,11 @@ namespace ToolGood.Algorithm
 		public override Operand ToJson(string errorMessage = null)
 		{
 			var txt = this.TextValue.Trim();
-			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+			if((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch (Exception) { }
+				} catch(Exception) { }
 			}
 			return Error(errorMessage ?? "Convert to json error!");
 		}
@@ -973,16 +975,16 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToArray(string errorMessage)
 		{
-			if (JsonValue.IsArray) {
+			if(JsonValue.IsArray) {
 				var list = new List<Operand>();
-				foreach (JsonData v in JsonValue) {
-					if (v.IsString)
+				foreach(JsonData v in JsonValue) {
+					if(v.IsString)
 						list.Add(Operand.Create(v.StringValue));
-					else if (v.IsBoolean)
+					else if(v.IsBoolean)
 						list.Add(Operand.Create(v.BooleanValue));
-					else if (v.IsDouble)
+					else if(v.IsDouble)
 						list.Add(Operand.Create(v.NumberValue));
-					else if (v.IsNull)
+					else if(v.IsNull)
 						list.Add(Operand.CreateNull());
 					else
 						list.Add(Operand.Create(v));
@@ -993,16 +995,16 @@ namespace ToolGood.Algorithm
 		}
 		public override Operand ToArray(string errorMessage, params object[] args)
 		{
-			if (JsonValue.IsArray) {
+			if(JsonValue.IsArray) {
 				var list = new List<Operand>();
-				foreach (JsonData v in JsonValue) {
-					if (v.IsString)
+				foreach(JsonData v in JsonValue) {
+					if(v.IsString)
 						list.Add(Operand.Create(v.StringValue));
-					else if (v.IsBoolean)
+					else if(v.IsBoolean)
 						list.Add(Operand.Create(v.BooleanValue));
-					else if (v.IsDouble)
+					else if(v.IsDouble)
 						list.Add(Operand.Create(v.NumberValue));
-					else if (v.IsNull)
+					else if(v.IsNull)
 						list.Add(Operand.CreateNull());
 					else
 						list.Add(Operand.Create(v));
@@ -1051,7 +1053,7 @@ namespace ToolGood.Algorithm
 			try {
 				var json = JsonMapper.ToObject(txt);
 				return Operand.Create(json);
-			} catch (Exception) { }
+			} catch(Exception) { }
 			return Error(errorMessage ?? "Convert to json error!");
 		}
 
@@ -1059,8 +1061,8 @@ namespace ToolGood.Algorithm
 		{
 			var stringBuilder = new StringBuilder();
 			stringBuilder.Append('[');
-			for (int i = 0; i < ArrayValue.Count; i++) {
-				if (i > 0) stringBuilder.Append(',');
+			for(int i = 0; i < ArrayValue.Count; i++) {
+				if(i > 0) stringBuilder.Append(',');
 				stringBuilder.Append(ArrayValue[i].ToString());
 			}
 			stringBuilder.Append(']');
@@ -1147,7 +1149,7 @@ namespace ToolGood.Algorithm
 			try {
 				var json = JsonMapper.ToObject(txt);
 				return Operand.Create(json);
-			} catch (Exception) { }
+			} catch(Exception) { }
 			return Error(errorMessage ?? "Convert to json error!");
 		}
 
@@ -1158,8 +1160,8 @@ namespace ToolGood.Algorithm
 
 		public bool TryGetValue(string key, out Operand value)
 		{
-			foreach (var item in TextList) {
-				if (item.Key == key.ToString()) {
+			foreach(var item in TextList) {
+				if(item.Key == key.ToString()) {
 					value = item.Value;
 					return true;
 				}
@@ -1170,8 +1172,8 @@ namespace ToolGood.Algorithm
 
 		public bool ContainsKey(Operand value)
 		{
-			foreach (var item in TextList) {
-				if (value.TextValue == item.Key) {
+			foreach(var item in TextList) {
+				if(value.TextValue == item.Key) {
 					return true;
 				}
 			}
@@ -1180,11 +1182,11 @@ namespace ToolGood.Algorithm
 
 		public bool ContainsValue(Operand value)
 		{
-			foreach (var item in TextList) {
+			foreach(var item in TextList) {
 				var op = item.Value;
-				if (value.Type != op.Type) { continue; }
-				if (value.IsText) {
-					if (value.TextValue == op.TextValue) {
+				if(value.Type != op.Type) { continue; }
+				if(value.IsText) {
+					if(value.TextValue == op.TextValue) {
 						return true;
 					}
 				}
@@ -1196,8 +1198,8 @@ namespace ToolGood.Algorithm
 		{
 			var stringBuilder = new StringBuilder();
 			stringBuilder.Append('{');
-			for (int i = 0; i < TextList.Count; i++) {
-				if (i > 0) stringBuilder.Append(',');
+			for(int i = 0; i < TextList.Count; i++) {
+				if(i > 0) stringBuilder.Append(',');
 				stringBuilder.Append('"');
 				stringBuilder.Append(TextList[i].Key);
 				stringBuilder.Append('"');
