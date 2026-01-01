@@ -54,7 +54,6 @@ partial class mathLexer : Lexer {
 	private static readonly string[] _SymbolicNames = {	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
-	[NotNull]
 	public override IVocabulary Vocabulary
 	{
 		get

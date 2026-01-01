@@ -71,7 +71,6 @@ namespace ToolGood.Algorithm.Internals
         /// </summary>
         /// <param name="interval"></param>
         /// <returns></returns>
-        [return: NotNull]
         public string GetText(Interval interval)
         {
             return stream.GetText(interval);

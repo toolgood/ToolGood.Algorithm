@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals
 				Nodes = new List<ConditionTree>()
 			};
 			var t = context.op.Text;
-			if (CharUtil.Equals(t, "&&", "and")) {
+			if(CharUtil.Equals(t, "&&", "and")) {
 				tree.Type = ConditionTreeType.And;
 			} else {
 				tree.Type = ConditionTreeType.Or;
@@ -1213,7 +1213,7 @@ namespace ToolGood.Algorithm.Internals
 			return Visit_fun(context);
 		}
 
-		public ConditionTree VisitVersion_fun([NotNull] mathParser.Version_funContext context)
+		public ConditionTree VisitVersion_fun(mathParser.Version_funContext context)
 		{
 			return Visit_fun(context);
 		}
