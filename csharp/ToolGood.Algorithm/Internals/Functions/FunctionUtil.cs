@@ -304,7 +304,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return -1;
 		}
 
-		public static bool IsBoolean(string TextValue, out bool boolValue)
+		public static bool TryParseBoolean(string TextValue, out bool boolValue)
 		{
 			if(TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) {
 				boolValue = true;

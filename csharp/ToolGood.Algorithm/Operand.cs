@@ -859,7 +859,7 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToBoolean(string errorMessage)
 		{
-			if(FunctionUtil.IsBoolean(TextValue, out bool b)) {
+			if(FunctionUtil.TryParseBoolean(TextValue, out bool b)) {
 				return b ? Operand.True : Operand.False;
 			}
 			if(errorMessage == null) {
@@ -869,7 +869,7 @@ namespace ToolGood.Algorithm
 		}
 		public override Operand ToBoolean(string errorMessage, params object[] args)
 		{
-			if(FunctionUtil.IsBoolean(TextValue, out bool b)) {
+			if(FunctionUtil.TryParseBoolean(TextValue, out bool b)) {
 				return b ? Operand.True : Operand.False;
 			}
 			if(errorMessage == null) {
