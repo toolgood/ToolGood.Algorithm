@@ -39,7 +39,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 Constants`pi`, `e`, `true`, `false`are supported.
 
 The value is converted to bool, non-zero is true and zero is false.
-String to bool, ` 0`and`FALSE` is false, `1`and`TRUE` is true. Case insensitive.
+String to bool, `0` `FALSE` `NO` `无` `没有` `不是` `否` is false, `1` `TRUE` `YES` `是` `有` is true. Case insensitive.
 
 Bool to value, false is`0`, true is`1`.
 Bool to string, false to`FALSE`, true to`TRUE`.

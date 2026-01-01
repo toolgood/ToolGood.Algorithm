@@ -625,8 +625,8 @@ ISNULLORERROR: 'ISNULLORERROR';
 AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
-TRUE: 'TRUE';
-FALSE: 'FALSE';
+TRUE: 'TRUE' | 'YES';
+FALSE: 'FALSE' | 'NO';
 // 数学与三角函数
 E: 'E';
 PI: 'PI';
@@ -836,10 +836,7 @@ HAS: 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY';
 HASVALUE: 'HASVALUE' | 'CONTAINSVALUE';
 PARAM: 'PARAM' | 'PARAMETER' | 'GETPARAMETER';
 
-PARAMETER: ([A-Z_] | FullWidthLetter) (
-		[A-Z0-9_]
-		| FullWidthLetter
-	)*;
+PARAMETER: ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter	)*;
 
 fragment FullWidthLetter:
 	'\u00c0' ..'\u00d6'

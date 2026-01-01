@@ -40,7 +40,7 @@ WebAssembly版本，请看csharp文件夹下`ToolGood.Algorithm.WebAssembly`,`To
 
 支持常量`pi`, `e`, `true`, `false`。
 
-数值转bool，非零为真, 零为假。字符串转bool, `0`、`FALSE`为假，`1`、`TRUE`为真。不区分大小写。
+数值转bool，非零为真, 零为假。字符串转bool, `0`、`FALSE`、`NO`、`无`、`没有`、`不是`、`否`为假，`1`、`TRUE`、`YES`、`是`、`有`为真。不区分大小写。
 
 bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真为`TRUE`。
 

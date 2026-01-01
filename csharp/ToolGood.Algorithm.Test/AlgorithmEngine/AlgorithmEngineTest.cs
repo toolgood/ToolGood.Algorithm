@@ -97,7 +97,13 @@ namespace ToolGood.Algorithm.Test
             var value3 = engine.TryEvaluate("-7 < -2", false);
             Assert.AreEqual(value3, true);
 
-            var t1 = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
+			value3 = engine.TryEvaluate("-7*Yes < -2", false);
+			Assert.AreEqual(value3, true);
+
+			value3 = engine.TryEvaluate("-7*No > -2", false);
+			Assert.AreEqual(value3, true);
+
+			var t1 = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
             Assert.AreEqual(t1, 1);
             t1 = engine.TryEvaluate("-7 < -2 ?1 ： 2", 0);
             Assert.AreEqual(t1, 1);
@@ -120,7 +126,7 @@ namespace ToolGood.Algorithm.Test
             t1 = engine.TryEvaluate("1！=2？1：2", 0);
             Assert.AreEqual(t1, 1);
 
-            var t2 = engine.TryEvaluate("Ａsc('ａｂｃＡＢＣ１２３')", "");
+			var t2 = engine.TryEvaluate("Ａsc('ａｂｃＡＢＣ１２３')", "");
             Assert.AreEqual(t2, "abcABC123");
         }
 
