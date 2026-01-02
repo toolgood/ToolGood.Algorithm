@@ -913,7 +913,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 					return Operand.Create(args1.NumberValue == args2.NumberValue);
 				} else if(args1.IsText) {
 					return Operand.Create(args1.TextValue == args2.TextValue);
-				} else if(args1.IsDate || args1.IsBoolean) {
+				} else if (args1.IsBoolean) {
+					return Operand.Create(args1.BooleanValue == args2.BooleanValue);
+				} else if(args1.IsDate ) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
 					return Operand.Create(args1.NumberValue == args2.NumberValue);
@@ -975,7 +977,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 					return Operand.Create(args1.NumberValue != args2.NumberValue);
 				} else if(args1.IsText) {
 					return Operand.Create(args1.TextValue != args2.TextValue);
-				} else if(args1.IsDate || args1.IsBoolean) {
+				} else if (args1.IsBoolean) {
+					return Operand.Create(args1.BooleanValue != args2.BooleanValue);
+				} else if(args1.IsDate) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
 					return Operand.Create(args1.NumberValue != args2.NumberValue);
