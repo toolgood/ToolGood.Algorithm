@@ -37,5 +37,18 @@ namespace ToolGood.Algorithm.Test
             var dt = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", DateTime.Now);
             Assert.AreEqual(dt, DateTime.Parse("2024-08-01 8:0"));
         }
-    }
+
+
+
+		[Test]
+		public void issues_0()
+		{
+			AlgorithmEngineEx engine = new AlgorithmEngineEx();
+			engine.AddParameter("瓦楞", "BC");
+			var dt = engine.TryEvaluate(@"{""A"": 0.6,""B"": 0.4,""C"": 0.6,""E"": 0.33,""F"": 0.29,""Z"": 0.15
+,""EB"": 0.7,""EE"": 0.65,""EA"": 0.85,""AB"": 1.0,""BC"": 1.0,""AA"":1.0
+,""EBC"": 1.15,""BAB"": 1.25,""BCB"": 1.25,""BBC"": 1.25,""CBB"": 1.25,""EBA"": 1.2,""AAA"": 1.4}[瓦楞]", 0);
+			Assert.AreEqual(dt, 1.0);
+		}
+	}
 }

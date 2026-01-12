@@ -102,7 +102,7 @@ expr:
 	| expr '.' TIMESTAMP '(' expr? ')'							# TIMESTAMP_fun
 	| expr '.' HAS '(' expr ')'									# HAS_fun
 	| expr '.' HASVALUE '(' expr ')'							# HASVALUE_fun
-	| expr '[' parameter2 ']'									# GetJsonValue_fun
+	| expr '[' PARAMETER ']'									# GetJsonValue_fun
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
 

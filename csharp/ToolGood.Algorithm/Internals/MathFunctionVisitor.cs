@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using System.Xml.Linq;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 
@@ -1963,6 +1964,10 @@ namespace ToolGood.Algorithm.Internals
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
+			if (context.PARAMETER()!=null) {
+				var op = new Function_PARAMETER(context.PARAMETER().GetText());
+				return new Function_GetJsonValue(args1, op);
+			}
 			if (context.parameter2() != null) {
 				var op = context.parameter2().Accept(this);
 				return new Function_GetJsonValue(args1, op);

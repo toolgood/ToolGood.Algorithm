@@ -265,13 +265,13 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
             Assert.AreEqual(dt.ToString(), "51");
-            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Birthday]", null);
+            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Birthday']", null);
             Assert.AreEqual(dt, "04/26/1564 00:00:00");
 
             dt = engine.TryEvaluate("json('[1,2,3]')[1]", null);
             Assert.AreEqual(dt, "1");
 
-            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);
+            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);
             Assert.AreEqual(dt, "William Shakespeare");
 
             dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
