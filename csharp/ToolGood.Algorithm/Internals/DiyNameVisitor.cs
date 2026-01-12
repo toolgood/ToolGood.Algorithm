@@ -15,23 +15,16 @@ namespace ToolGood.Algorithm.Internals
 			if(node != null) {
 				diy.Parameters.Add(new ParameterInfo(node.GetText(), node.Symbol.StartIndex, node.Symbol.StopIndex));
 			}
-			//node = context.PARAMETER2();
-			//if (node != null) {
-			//    string str = node.GetText();
-			//    if (str.StartsWith('@')) {
-			//        diy.Parameters.Add(new ParameterInfo(str.AsSpan(1).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
-			//    } else if ((str.StartsWith('【') && str.EndsWith('】'))
-			//        || (str.StartsWith('[') && str.EndsWith(']'))
-			//        || (str.StartsWith('#') && str.EndsWith('#'))) {
-			//        diy.Parameters.Add(new ParameterInfo(str.AsSpan(1, str.Length - 2).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
-			//    } else {
-			//        diy.Parameters.Add(new ParameterInfo(str, node.Symbol.StartIndex, node.Symbol.StopIndex));
-			//    }
-			//}
-
 			return VisitChildren(context);
 		}
-
+		public object VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
+		{
+			ITerminalNode node = context.PARAMETER();
+			if (node != null) {
+				diy.Parameters.Add(new ParameterInfo(node.GetText(), node.Symbol.StartIndex, node.Symbol.StopIndex));
+			}
+			return VisitChildren(context);
+		}
 		public object VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
 		{
 			diy.Functions.Add(context.PARAMETER().GetText());
@@ -383,10 +376,7 @@ namespace ToolGood.Algorithm.Internals
 			return VisitChildren(context);
 		}
 
-		public object VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
-		{
-			return VisitChildren(context);
-		}
+	
 
 		public object VisitGUID_fun(mathParser.GUID_funContext context)
 		{

@@ -27,9 +27,15 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
             DiyNameInfo p7 = AlgorithmEngineHelper.GetDiyNames("ddd+2");
             Assert.AreEqual("ddd", p7.Parameters[0].ToString());
-        }
 
-        [Test]
+ 
+			DiyNameInfo p8 = AlgorithmEngineHelper.GetDiyNames(@"{""A"": 0.6,""B"": 0.4,""C"": 0.6,""E"": 0.33,""F"": 0.29,""Z"": 0.15
+,""EB"": 0.7,""EE"": 0.65,""EA"": 0.85,""AB"": 1.0,""BC"": 1.0,""AA"":1.0
+,""EBC"": 1.15,""BAB"": 1.25,""BCB"": 1.25,""BBC"": 1.25,""CBB"": 1.25,""EBA"": 1.2,""AAA"": 1.4}[瓦楞]");
+			Assert.AreEqual("瓦楞", p8.Parameters[0].ToString());
+		}
+
+		[Test]
         public void Test2()
         {
             var b = AlgorithmEngineHelper.IsKeywords("false");
