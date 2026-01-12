@@ -149,13 +149,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			stringBuilder.Append('[');
 			if (string.IsNullOrEmpty(name)) {
 				func1.ToString(stringBuilder, false);
 			} else {
 				stringBuilder.Append(name);
 			}
-			stringBuilder.Append(']');
 		}
 	}
 
