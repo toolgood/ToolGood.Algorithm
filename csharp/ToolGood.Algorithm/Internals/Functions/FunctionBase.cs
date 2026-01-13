@@ -546,6 +546,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(args1.NumberValue == 0m || args2.NumberValue == 0m) { return Operand.Zero; }
 				return Operand.Create(args1.NumberValue * args2.NumberValue);
 			}
+			if(args1.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "*", 1); }
+			if(args2.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "*", 2); }
 
 			if(args1.IsText) {
 				if(decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
@@ -618,6 +620,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(args2.NumberValue == 0m) { return Operand.Error("Div 0 is error!"); }
 				return Operand.Create(args1.NumberValue / args2.NumberValue);
 			}
+			if(args1.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "/", 1); }
+			if(args2.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "/", 2); }
 
 			if(args1.IsText) {
 				if(decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
@@ -678,6 +682,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(args2.NumberValue == 0m) { return Operand.Error("Div 0 is error!"); }
 				return Operand.Create(args1.NumberValue % args2.NumberValue);
 			}
+			if(args1.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "%", 1); }
+			if(args2.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "%", 2); }
 
 			if(args1.IsText) {
 				if(decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
@@ -738,6 +744,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(args2.NumberValue == 0m) { return args1; }
 				return Operand.Create(args1.NumberValue + args2.NumberValue);
 			}
+			if(args1.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "+", 1); }
+			if(args2.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "+", 2); }
 
 			if(args1.IsText) {
 				if(decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
@@ -808,6 +816,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(args2.NumberValue == 0m) { return args1; }
 				return Operand.Create(args1.NumberValue - args2.NumberValue);
 			}
+			if(args1.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "-", 1); }
+			if(args2.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "-", 2); }
 
 			if(args1.IsText) {
 				if(decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
