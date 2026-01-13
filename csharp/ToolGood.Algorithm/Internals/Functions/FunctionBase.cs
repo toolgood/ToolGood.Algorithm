@@ -928,6 +928,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				} else {
 					return Operand.Error("Function '==' compare is error.");
 				}
+			} else if(args1.IsNull || args2.IsNull) {
+				return Operand.False;
 			} else if(args2.IsText) {
 				if(args1.IsBoolean) {
 					var a = args2.ToBoolean();
@@ -992,6 +994,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				} else {
 					return Operand.Error("Function '!=' compare is error.");
 				}
+			} else if(args1.IsNull || args2.IsNull) {
+				return Operand.True;
 			} else if(args2.IsText) {
 				if(args1.IsBoolean) {
 					var a = args2.ToBoolean();
@@ -1056,6 +1060,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				} else {
 					return Operand.Error("Function '>=' compare is error.");
 				}
+			} else if(args1.IsNull || args2.IsNull) {
+				return Operand.False;
 			} else if(args2.IsText) {
 				if(args1.IsBoolean) {
 					var a = args2.ToBoolean();
@@ -1121,6 +1127,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				} else {
 					return Operand.Error("Function '<=' compare is error.");
 				}
+			} else if(args1.IsNull || args2.IsNull) {
+				return Operand.False;
 			} else if(args2.IsText) {
 				if(args1.IsBoolean) {
 					var a = args2.ToBoolean();
@@ -1187,6 +1195,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				} else {
 					return Operand.Error("Function '>' compare is error.");
 				}
+			} else if(args1.IsNull || args2.IsNull) {
+				return Operand.False;
 			} else if(args2.IsText) {
 				if(args1.IsBoolean) {
 					var a = args2.ToBoolean();
@@ -1252,6 +1262,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 				} else {
 					return Operand.Error("Function '<' compare is error.");
 				}
+			} else if(args1.IsNull || args2.IsNull) {
+				return Operand.False;
 			} else if(args2.IsText) {
 				if(args1.IsBoolean) {
 					var a = args2.ToBoolean();
