@@ -913,9 +913,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 					return Operand.Create(args1.NumberValue == args2.NumberValue);
 				} else if(args1.IsText) {
 					return Operand.Create(args1.TextValue == args2.TextValue);
-				} else if (args1.IsBoolean) {
+				} else if(args1.IsBoolean) {
 					return Operand.Create(args1.BooleanValue == args2.BooleanValue);
-				} else if(args1.IsDate ) {
+				} else if(args1.IsDate) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
 					return Operand.Create(args1.NumberValue == args2.NumberValue);
@@ -977,7 +977,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 					return Operand.Create(args1.NumberValue != args2.NumberValue);
 				} else if(args1.IsText) {
 					return Operand.Create(args1.TextValue != args2.TextValue);
-				} else if (args1.IsBoolean) {
+				} else if(args1.IsBoolean) {
 					return Operand.Create(args1.BooleanValue != args2.BooleanValue);
 				} else if(args1.IsDate) {
 					args1 = args1.ToNumber();
@@ -1307,7 +1307,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
 			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
 			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotBoolean) { args1 = args1.ToBoolean(); if(args1.IsError) { return args1; } }
-			if(args1.BooleanValue == false) return Operand.False;
+			if(args1.BooleanValue == false) {
+				var args2 = func2.Evaluate(work, tempParameter).ToBoolean();
+				if(args2.IsError) { return args2; }
+				return Operand.False;
+			}
 			return func2.Evaluate(work, tempParameter).ToBoolean();
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1333,7 +1337,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
 			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
 			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotBoolean) { args1 = args1.ToBoolean(); if(args1.IsError) { return args1; } }
-			if(args1.BooleanValue) return Operand.True;
+			if(args1.BooleanValue) {
+				var args2 = func2.Evaluate(work, tempParameter).ToBoolean();
+				if(args2.IsError) { return args2; }
+				return Operand.True;
+			}
 			return func2.Evaluate(work, tempParameter).ToBoolean();
 		}
 
