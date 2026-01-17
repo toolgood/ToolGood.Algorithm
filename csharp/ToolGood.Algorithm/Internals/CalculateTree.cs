@@ -6,15 +6,14 @@ using ToolGood.Algorithm.Enums;
 namespace ToolGood.Algorithm.Internals
 {
 	/// <summary>
-	/// 条件树
+	/// 计算树
 	/// </summary>
-	public sealed class ConditionTree
+	public sealed class CalculateTree
 	{
 		/// <summary>
 		/// 子节点
 		/// </summary>
-		public List<ConditionTree> Nodes { get; internal set; }
-
+		public List<CalculateTree> Nodes { get; internal set; }
 		/// <summary>
 		/// 开始位置
 		/// </summary>
@@ -28,7 +27,7 @@ namespace ToolGood.Algorithm.Internals
 		/// <summary>
 		/// 类型
 		/// </summary>
-		public ConditionTreeType Type { get; internal set; }
+		public CalculateTreeType Type { get; internal set; }
 
 		/// <summary>
 		/// 条件
@@ -40,25 +39,25 @@ namespace ToolGood.Algorithm.Internals
 		/// </summary>
 		public string ErrorMessage { get; internal set; }
 
-		internal ConditionTree()
+		internal CalculateTree()
 		{
 		}
 
 		/// <summary>
 		/// 解析
 		/// </summary>
-		/// <param name="condition"></param>
+		/// <param name="exp"></param>
 		/// <returns></returns>
-		public static ConditionTree Parse(string condition)
+		public static CalculateTree Parse(string exp)
 		{
-			var tree = new ConditionTree();
-			if(string.IsNullOrWhiteSpace(condition)) {
-				tree.Type = ConditionTreeType.Error;
-				tree.ErrorMessage = "condition is null";
+			var tree = new CalculateTree();
+			if(string.IsNullOrWhiteSpace(exp)) {
+				tree.Type = CalculateTreeType.Error;
+				tree.ErrorMessage = "exp is null";
 				return tree;
 			}
 			try {
-				var stream = new AntlrCharStream(new AntlrInputStream(condition));
+				var stream = new AntlrCharStream(new AntlrInputStream(exp));
 				var lexer = new math.mathLexer(stream);
 				var tokens = new CommonTokenStream(lexer);
 				var parser = new math.mathParser(tokens);
@@ -68,14 +67,14 @@ namespace ToolGood.Algorithm.Internals
 
 				var context = parser.prog();
 				if(antlrErrorListener.IsError) {
-					tree.Type = ConditionTreeType.Error;
+					tree.Type = CalculateTreeType.Error;
 					tree.ErrorMessage = antlrErrorListener.ErrorMsg;
 					return tree;
 				}
-				var visitor = new MathSplitVisitor();
+				var visitor = new MathSplitVisitor2();
 				return visitor.Visit(context);
 			} catch(Exception ex) {
-				tree.Type = ConditionTreeType.Error;
+				tree.Type = CalculateTreeType.Error;
 				tree.ErrorMessage = ex.Message;
 			}
 			return tree;
