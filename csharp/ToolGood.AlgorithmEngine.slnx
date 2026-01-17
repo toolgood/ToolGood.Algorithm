@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="WebAssembly" />
+  </Configurations>
+  <Project Path="ToolGood.Algorithm.Test/ToolGood.Algorithm.Test.csproj">
+    <BuildType Solution="WebAssembly|*" Project="Debug" />
+  </Project>
+  <Project Path="ToolGood.Algorithm/ToolGood.Algorithm.csproj" />
+</Solution>
