@@ -28,9 +28,6 @@ using Antlr4.Runtime.Misc;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 namespace ToolGood.Algorithm.math
 {
-
-	[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
-	[System.CLSCompliant(false)]
 	partial class mathLexer : Lexer
 	{
 		protected static DFA[] decisionToDFA;
@@ -56,7 +53,7 @@ namespace ToolGood.Algorithm.math
 		private static readonly string[] _SymbolicNames = { };
 		public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
-		[NotNull]
+		
 		public override IVocabulary Vocabulary {
 			get {
 				return DefaultVocabulary;

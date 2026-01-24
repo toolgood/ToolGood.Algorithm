@@ -4,6 +4,11 @@
     <BuildType Name="Release" />
     <BuildType Name="WebAssembly" />
   </Configurations>
+  <Folder Name="/tool/">
+    <Project Path="Antlr4Helper.CSharpHelper/Antlr4Helper.CSharpHelper.csproj">
+      <BuildType Solution="WebAssembly|*" Project="Debug" />
+    </Project>
+  </Folder>
   <Project Path="ToolGood.Algorithm.Test/ToolGood.Algorithm.Test.csproj">
     <BuildType Solution="WebAssembly|*" Project="Debug" />
   </Project>
