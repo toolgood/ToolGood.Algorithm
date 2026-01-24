@@ -6,11 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace Antlr4Helper.CSharpHelper
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var str = @"T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			var str = @"T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
 			T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, T__14 = 15, T__15 = 16, T__16 = 17,
 			T__17 = 18, T__18 = 19, T__19 = 20, T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24,
 			T__24 = 25, T__25 = 26, T__26 = 27, T__27 = 28, SUB = 29, NUM = 30, STRING = 31, NULL = 32,
@@ -54,72 +54,97 @@ namespace Antlr4Helper.CSharpHelper
 RULE_prog = 0, RULE_expr = 1, RULE_num = 2, RULE_unit = 3, RULE_arrayJson = 4,
 			RULE_parameter2 = 5;
 ";
-            var array = str.Split(",\r\n\t;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict["Eof"] = "-1";
-            foreach (var item in array) {
-                var sp = item.Split('=');
-                dict[sp[0].Trim()] = sp[1].Trim();
-            }
+			var array = str.Split(",\r\n\t;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+			Dictionary<string, string> dict = new Dictionary<string, string>();
+			dict["Eof"] = "-1";
+			foreach(var item in array) {
+				var sp = item.Split('=');
+				dict[sp[0].Trim()] = sp[1].Trim();
+			}
 
-            var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathParser.cs");
-            var csText = File.ReadAllText(filePath);
+			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathParser.cs");
+			var csText = File.ReadAllText(filePath);
 
 
 
-            csText = csText.Replace("[System.CLSCompliant(false)]", "");
-            csText = csText.Replace("[System.CodeDom.Compiler.GeneratedCode(\"ANTLR\", \"4.13.2\")]", "");
-            csText = csText.Replace("[RuleVersion(0)]", "");
-            csText = csText.Replace("[NotNull]", "");
-            csText = csText.Replace("[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode", "//[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode");
-            csText = csText.Replace("else return visitor.VisitChildren(this);", "");
-            csText = csText.Replace("if (typedVisitor != null) ", "");
+			csText = csText.Replace("[System.CLSCompliant(false)]", "");
+			csText = csText.Replace("[System.CodeDom.Compiler.GeneratedCode(\"ANTLR\", \"4.13.2\")]", "");
+			csText = csText.Replace("[RuleVersion(0)]", "");
+			csText = csText.Replace("[NotNull]", "");
+			csText = csText.Replace("[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode", "//[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode");
+			csText = csText.Replace("else return visitor.VisitChildren(this);", "");
+			csText = csText.Replace("if (typedVisitor != null) ", "");
 
-            csText = Regex.Replace(csText, "if \\(!\\(Precpred.*\\r\\n\\t*", "");
-            csText = Regex.Replace(csText, "State = \\d+;\\r\\n[ \\t]+State =", "State =");
-            csText = Regex.Replace(csText, "return GetRuleContext<ExprContext>\\(i\\);\\r\\n", "return GetRuleContext<ExprContext>(i);");
-            csText = Regex.Replace(csText, @"\[System.Diagnostics.DebuggerNonUserCode\] public ExprContext expr\(int i\) \{\r\n", "// [System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {");
+			csText = Regex.Replace(csText, "if \\(!\\(Precpred.*\\r\\n\\t*", "");
+			csText = Regex.Replace(csText, "State = \\d+;\\r\\n[ \\t]+State =", "State =");
+			csText = Regex.Replace(csText, "return GetRuleContext<ExprContext>\\(i\\);\\r\\n", "return GetRuleContext<ExprContext>(i);");
+			csText = Regex.Replace(csText, @"\[System.Diagnostics.DebuggerNonUserCode\] public ExprContext expr\(int i\) \{\r\n", "// [System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {");
 
-            csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*Match\(", "Match(");
-            csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*ErrorHandler", "ErrorHandler");
-            csText = Regex.Replace(csText, @"public partial class mathParser", "partial class mathParser");
+			csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*Match\(", "Match(");
+			csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*ErrorHandler", "ErrorHandler");
+			csText = Regex.Replace(csText, @"public partial class mathParser", "partial class mathParser");
 			csText = Regex.Replace(csText, @"public partial class", "internal partial class");
 
 
 
 			var list = dict.Keys.ToList().OrderByDescending(q => q.Length).ToList();
 
-            foreach (var item in list) {
-                var value = dict[item];
-                csText = Regex.Replace(csText, $"case {item}:", $"case {value}:");
-                csText = Regex.Replace(csText, @$"Match\({item}\);", $"Match({value});");
-                csText = Regex.Replace(csText, @$"\(1L << {item}\)", $"(1L << {value})");
-                csText = Regex.Replace(csText, @$"\(1L << \({item} ", $"(1L << ({value} "); //(1L << (MULTINOMIAL
-                csText = csText.Replace(@$"_la=={item}", $"_la=={value}"); //(1L << (MULTINOMIAL
-                csText = csText.Replace(@$"_la == {item}", $"_la == {value}"); //(1L << (MULTINOMIAL
-                csText = csText.Replace(@$"mathParser.{item}", $"{value}"); //(1L << (MULTINOMIAL
+			foreach(var item in list) {
+				var value = dict[item];
+				csText = Regex.Replace(csText, $"case {item}:", $"case {value}:");
+				csText = Regex.Replace(csText, @$"Match\({item}\);", $"Match({value});");
+				csText = Regex.Replace(csText, @$"\(1L << {item}\)", $"(1L << {value})");
+				csText = Regex.Replace(csText, @$"\(1L << \({item} ", $"(1L << ({value} "); //(1L << (MULTINOMIAL
+				csText = csText.Replace(@$"_la=={item}", $"_la=={value}"); //(1L << (MULTINOMIAL
+				csText = csText.Replace(@$"_la == {item}", $"_la == {value}"); //(1L << (MULTINOMIAL
+				csText = csText.Replace(@$"mathParser.{item}", $"{value}"); //(1L << (MULTINOMIAL
 
-                csText = csText.Replace($"PushNewRecursionContext(_localctx, _startState, {item})", $"PushNewRecursionContext(_localctx, _startState, {value})"); //(1L << (MULTINOMIAL
-                csText = csText.Replace($"public override int RuleIndex {{ get {{ return {item}; }} }}", $"public override int RuleIndex {{ get {{ return {value}; }} }}"); //(1L << (MULTINOMIAL
-                csText = Regex.Replace(csText, @$"EnterRule\(_localctx, (\d+), {item}\);", $"EnterRule(_localctx, $1, {value});"); //(1L << (MULTINOMIAL
-                csText = Regex.Replace(csText, @$"EnterRecursionRule\(_localctx, (\d+), {item}, _p\);", $"EnterRecursionRule(_localctx, $1, {value}, _p);"); //(1L << (MULTINOMIAL
-
-
-                //EnterRule(_localctx, 4, RULE_parameter);
-                //public override int RuleIndex { get { return RULE_expr; } }
-                //EnterRecursionRule(_localctx, 2, RULE_expr, _p);
-                //PushNewRecursionContext(_localctx, _startState, RULE_expr);
+				csText = csText.Replace($"PushNewRecursionContext(_localctx, _startState, {item})", $"PushNewRecursionContext(_localctx, _startState, {value})"); //(1L << (MULTINOMIAL
+				csText = csText.Replace($"public override int RuleIndex {{ get {{ return {item}; }} }}", $"public override int RuleIndex {{ get {{ return {value}; }} }}"); //(1L << (MULTINOMIAL
+				csText = Regex.Replace(csText, @$"EnterRule\(_localctx, (\d+), {item}\);", $"EnterRule(_localctx, $1, {value});"); //(1L << (MULTINOMIAL
+				csText = Regex.Replace(csText, @$"EnterRecursionRule\(_localctx, (\d+), {item}, _p\);", $"EnterRecursionRule(_localctx, $1, {value}, _p);"); //(1L << (MULTINOMIAL
 
 
-                //mathParser.STRING
-                //_la==T__16
-            }
+				//EnterRule(_localctx, 4, RULE_parameter);
+				//public override int RuleIndex { get { return RULE_expr; } }
+				//EnterRecursionRule(_localctx, 2, RULE_expr, _p);
+				//PushNewRecursionContext(_localctx, _startState, RULE_expr);
+
+
+				//mathParser.STRING
+				//_la==T__16
+			}
 
 			csText = csText.Replace("//[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER()", "[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER()");
 
-			csText = "namespace ToolGood.Algorithm.math\r\n{"+csText+"\r\n}";
+			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
 			File.WriteAllText("mathParser.cs", csText);
-        }
-    }
+
+
+			filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathLexer.cs");
+			csText = File.ReadAllText(filePath);
+
+			csText = csText.Replace("[System.CLSCompliant(false)]", "");
+			csText = csText.Replace("[System.CodeDom.Compiler.GeneratedCode(\"ANTLR\", \"4.13.2\")]", "");
+			csText = csText.Replace("public partial class mathLexer", "partial class mathLexer");
+
+			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
+			File.WriteAllText("mathLexer.cs", csText);
+
+
+
+			filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathVisitor.cs");
+			csText = File.ReadAllText(filePath);
+
+			csText = csText.Replace("[System.CLSCompliant(false)]", "");
+			csText = csText.Replace("[System.CodeDom.Compiler.GeneratedCode(\"ANTLR\", \"4.13.2\")]", "");
+			csText = csText.Replace("public interface ImathVisitor<Result>", "interface ImathVisitor<Result>");
+			csText = csText.Replace("[NotNull] ", "");
+
+			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
+			File.WriteAllText("mathVisitor.cs", csText);
+
+		}
+	}
 
 }
