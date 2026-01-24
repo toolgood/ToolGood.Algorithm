@@ -85,17 +85,15 @@ namespace ToolGood.Algorithm
                 LastError = "Parameter exp invalid !";
                 throw new Exception(LastError);
             }
-            var stream = new AntlrCharStream(new AntlrInputStream(exp));
-            var lexer = new mathLexer(stream);
-            var tokens = new CommonTokenStream(lexer);
-            var parser = new mathParser(tokens);
-            var antlrErrorListener = new AntlrErrorListener();
-            parser.RemoveErrorListeners();
-            parser.AddErrorListener(antlrErrorListener);
+			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
+			var stream = new AntlrCharStream(new AntlrInputStream(exp));
+			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
+			var tokens = new CommonTokenStream(lexer);
+			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
-            var context = parser.prog();
-            if (antlrErrorListener.IsError) {
-                LastError = antlrErrorListener.ErrorMsg;
+			var context = parser.prog();
+            if (antlrErrorTextWriter.IsError) {
+                LastError = antlrErrorTextWriter.ErrorMsg;
                 throw new Exception(LastError);
             }
             var visitor = new MathFunctionVisitor();

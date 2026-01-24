@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -311,17 +312,15 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
+			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream);
+			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens);
-			var antlrErrorListener = new AntlrErrorListener();
-			parser.RemoveErrorListeners();
-			parser.AddErrorListener(antlrErrorListener);
+			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
 			var context = parser.prog();
-			if(antlrErrorListener.IsError) {
-				throw new Exception(antlrErrorListener.ErrorMsg);
+			if(antlrErrorTextWriter.IsError) {
+				throw new Exception(antlrErrorTextWriter.ErrorMsg);
 			}
 			var visitor = new DiyNameVisitor();
 			visitor.Visit(context);
@@ -378,17 +377,15 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
+			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream);
+			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens);
-			var antlrErrorListener = new AntlrErrorListener();
-			parser.RemoveErrorListeners();
-			parser.AddErrorListener(antlrErrorListener);
+			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
 			var context = parser.prog();
-			if(antlrErrorListener.IsError) {
-				throw new Exception(antlrErrorListener.ErrorMsg);
+			if(antlrErrorTextWriter.IsError) {
+				throw new Exception(antlrErrorTextWriter.ErrorMsg);
 			}
 			var visitor = new MathFunctionVisitor();
 			return visitor.Visit(context);
@@ -402,16 +399,14 @@ namespace ToolGood.Algorithm
 		public static bool CheckFormula(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
+			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream);
+			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens);
-			var antlrErrorListener = new AntlrErrorListener();
-			parser.RemoveErrorListeners();
-			parser.AddErrorListener(antlrErrorListener);
+			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
 			var context = parser.prog();
-			if(antlrErrorListener.IsError) {
+			if(antlrErrorTextWriter.IsError) {
 				return false;
 			}
 			return true;
@@ -431,18 +426,16 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
+				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 				var stream = new AntlrCharStream(new AntlrInputStream(condition));
-				var lexer = new math.mathLexer(stream);
+				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
 				var tokens = new CommonTokenStream(lexer);
-				var parser = new math.mathParser(tokens);
-				var antlrErrorListener = new AntlrErrorListener();
-				parser.RemoveErrorListeners();
-				parser.AddErrorListener(antlrErrorListener);
+				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
 				var context = parser.prog();
-				if(antlrErrorListener.IsError) {
+				if(antlrErrorTextWriter.IsError) {
 					tree.Type = ConditionTreeType.Error;
-					tree.ErrorMessage = antlrErrorListener.ErrorMsg;
+					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor();
@@ -488,18 +481,16 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
+				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 				var stream = new AntlrCharStream(new AntlrInputStream(exp));
-				var lexer = new math.mathLexer(stream);
+				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
 				var tokens = new CommonTokenStream(lexer);
-				var parser = new math.mathParser(tokens);
-				var antlrErrorListener = new AntlrErrorListener();
-				parser.RemoveErrorListeners();
-				parser.AddErrorListener(antlrErrorListener);
+				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
 				var context = parser.prog();
-				if(antlrErrorListener.IsError) {
+				if(antlrErrorTextWriter.IsError) {
 					tree.Type = CalculateTreeType.Error;
-					tree.ErrorMessage = antlrErrorListener.ErrorMsg;
+					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor2();

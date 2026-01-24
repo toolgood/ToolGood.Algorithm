@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {
@@ -57,18 +58,16 @@ namespace ToolGood.Algorithm.Internals
 				return tree;
 			}
 			try {
+				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 				var stream = new AntlrCharStream(new AntlrInputStream(exp));
-				var lexer = new math.mathLexer(stream);
+				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
 				var tokens = new CommonTokenStream(lexer);
-				var parser = new math.mathParser(tokens);
-				var antlrErrorListener = new AntlrErrorListener();
-				parser.RemoveErrorListeners();
-				parser.AddErrorListener(antlrErrorListener);
+				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
 
 				var context = parser.prog();
-				if(antlrErrorListener.IsError) {
+				if(antlrErrorTextWriter.IsError) {
 					tree.Type = CalculateTreeType.Error;
-					tree.ErrorMessage = antlrErrorListener.ErrorMsg;
+					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor2();
