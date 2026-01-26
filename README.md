@@ -918,10 +918,10 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>LookFloor</td><td>LookFloor(值, 数组)<br>查找下限值。数组会被排序，高于最大，取最大值，低于最小，取最小值</td> <td></td>
+        <td>LookFloor</td><td>LookFloor(值, 数组)<br>查找下限值。数组会被排序，高于最大值，取最大值，低于最小值，取最小值</td> <td></td>
     </tr>
     <tr>
-        <td>LookCeiling</td><td>LookCeiling(值, 数组)<br>查找上限值。数组会被排序，高于最大，取最大值，低于最小，取最小值</td> <td></td>
+        <td>LookCeiling</td><td>LookCeiling(值, 数组)<br>查找上限值。数组会被排序，高于最大值，取最大值，低于最小值，取最小值</td> <td></td>
     </tr>
 </table>
 
