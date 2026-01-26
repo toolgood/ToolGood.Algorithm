@@ -91,7 +91,6 @@ expr:
 	| expr '.' REMOVESTART '(' expr (',' expr)? ')'				# REMOVESTART_fun
 	| expr '.' REMOVEEND '(' expr (',' expr)? ')'				# REMOVEEND_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
-	| expr '.' VLOOKUP '(' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
 	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
 	| expr '.' ADDYEARS '(' expr ')'							# ADDYEARS_fun
 	| expr '.' ADDMONTHS '(' expr ')'							# ADDMONTHS_fun
@@ -326,7 +325,8 @@ expr:
 	| REMOVESTART '(' expr (',' expr (',' expr)?)? ')'			# REMOVESTART_fun
 	| REMOVEEND '(' expr (',' expr (',' expr)?)? ')'			# REMOVEEND_fun
 	| JSON '(' expr ')'											# JSON_fun
-	| VLOOKUP '(' expr ',' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
+	| LOOKCEILING '(' expr ',' expr ')'							# LOOKCEILING_fun
+	| LOOKFLOOR '(' expr ',' expr ')'							# LOOKFLOOR_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
 	| ADDYEARS '(' expr ',' expr ')'							# ADDYEARS_fun
 	| ADDMONTHS '(' expr ',' expr ')'							# ADDMONTHS_fun
@@ -559,7 +559,8 @@ parameter2:
 	| REMOVESTART
 	| REMOVEEND
 	| JSON
-	| VLOOKUP
+	| LOOKCEILING
+	| LOOKFLOOR
 	| ADDYEARS
 	| ADDMONTHS
 	| ADDDAYS
@@ -821,7 +822,8 @@ ISNULLORWHITESPACE: 'ISNULLORWHITESPACE';
 REMOVESTART: 'REMOVESTART';
 REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';
-VLOOKUP: 'VLOOKUP';
+LOOKCEILING: 'LOOKCEILING';
+LOOKFLOOR: 'LOOKFLOOR';
 ARRAY: 'ARRAY';
 ALGORITHMVERSION:'ALGORITHMVERSION'|'ENGINEVERSION';
 
