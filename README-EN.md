@@ -924,10 +924,10 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 <table>
     <tr><td>function name</td><td>description</td><td>Example</td></tr>
     <tr>
-        <td>VLookUp ★ ▲</td><td>VLookUp({array, ...}, value, {colIndex}[, fuzzy:0/1])<br>Vertical search function. Fuzzy matching default 1</td> <td></td>
+        <td>LookFloor</td><td>LookFloor(value, array)<br>Find the lower bound value. The array will be sorted; if higher than the maximum, take the maximum value; if lower than the minimum, take the minimum value.</td> <td></td>
     </tr>
     <tr>
-        <td>VLookUp ★ ▲</td><td>VLookUp({Json, ...}, formula, name)<br>JSON array lookup function.</td> <td></td>
+        <td>LookCeiling</td><td>LookCeiling(value, array)<br>Find the upper bound value. The array will be sorted; if higher than the maximum, take the maximum value; if lower than the minimum, take the minimum value.</td> <td></td>
     </tr>
 </table>
 
