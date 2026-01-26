@@ -469,7 +469,10 @@ namespace ToolGood.Algorithm.Internals.Functions
 			int index = args4.IntValue;
 
 			int index2 = 0;
-			var sb = new StringBuilder(text.Length + newtext.Length);
+			int estimatedCapacity = text.Length + (newtext.Length - oldtext.Length);
+			if(estimatedCapacity < text.Length) { estimatedCapacity = text.Length; }
+
+			var sb = new StringBuilder(estimatedCapacity);
 			for (int i = 0; i < text.Length; i++) {
 				bool b = true;
 				for (int j = 0; j < oldtext.Length; j++) {
