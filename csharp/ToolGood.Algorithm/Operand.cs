@@ -917,9 +917,24 @@ namespace ToolGood.Algorithm
 
 		public override string ToString()
 		{
-			return "\"" + TextValue.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r")
-						.Replace("\t", "\\t").Replace("\0", "\\0").Replace("\v", "\\v")
-						.Replace("\a", "\\a").Replace("\b", "\\b").Replace("\f", "\\f") + "\"";
+			var sb = new StringBuilder();
+			sb.Append('"');
+			foreach(char c in _value) {
+				switch(c) {
+					case '"': sb.Append("\\\""); break;
+					case '\n': sb.Append("\\n"); break;
+					case '\r': sb.Append("\\r"); break;
+					case '\t': sb.Append("\\t"); break;
+					case '\0': sb.Append("\\0"); break;
+					case '\v': sb.Append("\\v"); break;
+					case '\a': sb.Append("\\a"); break;
+					case '\b': sb.Append("\\b"); break;
+					case '\f': sb.Append("\\f"); break;
+					default: sb.Append(c); break;
+				}
+			}
+			sb.Append('"');
+			return sb.ToString();
 		}
 	}
 
