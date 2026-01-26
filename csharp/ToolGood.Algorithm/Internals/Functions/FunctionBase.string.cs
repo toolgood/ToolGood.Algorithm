@@ -20,17 +20,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static string F_base_ToDBC(string input)
 		{
-			var sb = new StringBuilder(input);
-			for (int i = 0; i < input.Length; i++) {
-				var c = input[i];
+			char[] chars = input.ToCharArray();
+			Span<char> span = chars;
+			for (int i = 0; i < span.Length; i++) {
+				var c = span[i];
 				if (c == 12288) {
-					sb[i] = (char)32;
-					continue;
+					span[i] = (char)32;
 				} else if (c > 65280 && c < 65375) {
-					sb[i] = (char)(c - 65248);
+					span[i] = (char)(c - 65248);
 				}
 			}
-			return sb.ToString();
+			return new string(chars);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -52,16 +52,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static string F_base_ToSBC(string input)
 		{
-			var sb = new StringBuilder(input);
-			for (int i = 0; i < input.Length; i++) {
-				var c = input[i];
+			char[] chars = input.ToCharArray();
+			Span<char> span = chars;
+			for (int i = 0; i < span.Length; i++) {
+				var c = span[i];
 				if (c == ' ') {
-					sb[i] = (char)12288;
+					span[i] = (char)12288;
 				} else if (c < 127) {
-					sb[i] = (char)(c + 65248);
+					span[i] = (char)(c + 65248);
 				}
 			}
-			return sb.ToString();
+			return new string(chars);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -79,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Char"); if (args1.IsError) { return args1; } }
 			char c = (char)args1.IntValue;
-			return Operand.Create(c.ToString());
+			return Operand.Create(new string(c, 1));
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -141,10 +142,16 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var sb = new StringBuilder();
+			int totalLength = 0;
+			string[] texts = new string[funcs.Length];
 			for (int i = 0; i < funcs.Length; i++) {
 				var a = funcs[i].Evaluate(work, tempParameter); if (a.IsNotText) { a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", i + 1); if (a.IsError) { return a; } }
-				sb.Append(a.TextValue);
+				texts[i] = a.TextValue;
+				totalLength += a.TextValue.Length;
+			}
+			var sb = new StringBuilder(totalLength);
+			for (int i = 0; i < funcs.Length; i++) {
+				sb.Append(texts[i]);
 			}
 			return Operand.Create(sb.ToString());
 		}
@@ -206,7 +213,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Left", 1); if (args1.IsError) { return args1; } }
 			if (func2 == null) {
-				return Operand.Create(args1.TextValue[0].ToString());
+				return Operand.Create(new string(args1.TextValue[0], 1));
 			}
 			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Left", 2); if (args2.IsError) { return args2; } }
 			return Operand.Create(args1.TextValue.AsSpan(0, args2.IntValue).ToString());
@@ -281,18 +288,19 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Proper"); if (args1.IsError) { return args1; } }
 
 			var text = args1.TextValue;
-			var sb = new StringBuilder(text);
+			char[] chars = text.ToCharArray();
+			Span<char> span = chars;
 			bool isFirst = true;
-			for (int i = 0; i < text.Length; i++) {
-				var t = text[i];
+			for (int i = 0; i < span.Length; i++) {
+				var t = span[i];
 				if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
 					isFirst = true;
 				} else if (isFirst) {
-					sb[i] = char.ToUpper(t);
+					span[i] = char.ToUpper(t);
 					isFirst = false;
 				}
 			}
-			return Operand.Create(sb.ToString());
+			return Operand.Create(new string(chars));
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -327,7 +335,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var length = args3.IntValue;
 			var newtext = args4.TextValue;
 
-			var sb = new StringBuilder(oldtext.Length + newtext.Length);
+			var sb = new StringBuilder(oldtext.Length - length + newtext.Length);
 			for (int i = 0; i < oldtext.Length; i++) {
 				if (i < start) {
 					sb.Append(oldtext[i]);
@@ -388,7 +396,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Right", 1); if (args1.IsError) { return args1; } }
 
 			if (func2 == null) {
-				return Operand.Create(args1.TextValue[args1.TextValue.Length - 1].ToString());
+				return Operand.Create(new string(args1.TextValue[args1.TextValue.Length - 1], 1));
 			}
 			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Right", 2); if (args2.IsError) { return args2; } }
 			return Operand.Create(args1.TextValue.AsSpan(args1.TextValue.Length - args2.IntValue, args2.IntValue).ToString());
@@ -411,11 +419,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return Operand.Create(F_base_ToChineseRMB(args1.NumberValue));
 		}
 
+		private static readonly Regex Regex1 = new Regex(@"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", RegexOptions.Compiled);
+		private static readonly Regex Regex2 = new Regex(".", RegexOptions.Compiled);
+
 		private static string F_base_ToChineseRMB(decimal x)
 		{
 			string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", CultureInfo.InvariantCulture);
-			string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}",RegexOptions.Compiled);
-			return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
+			string d = Regex1.Replace(s, "${b}${z}");
+			return Regex2.Replace(d, m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
