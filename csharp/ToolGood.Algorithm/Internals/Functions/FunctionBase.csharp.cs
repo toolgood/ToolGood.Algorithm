@@ -978,10 +978,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 			list = list.OrderBy(n => n).ToList();
 			var value = args1.NumberValue;
 			var result = list[0];
+			if(result == value) { return args1; }
 			for(int i = 1; i < list.Count; i++) {
 				var val = list[i];
-				if(val <= value && val > result) {
+				if(val < value) {
 					result = val;
+				} else if(val == value) {
+					return args1;
+				} else /*if(val > value)*/ {
+					break;
 				}
 			}
 			return Operand.Create(result);
@@ -1009,10 +1014,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 			list = list.OrderByDescending(n => n).ToList();
 			var value = args1.NumberValue;
 			var result = list[0];
+			if(result == value) { return args1; }
 			for(int i = 1; i < list.Count; i++) {
 				var val = list[i];
-				if(val >= value && val < result) {
+				if(val > value) {
 					result = val;
+				} else if(val == value) {
+					return args1;
+				} else /*if(val < value)*/ {
+					break;
 				}
 			}
 			return Operand.Create(result);
