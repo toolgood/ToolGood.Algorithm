@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,6 +20,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static string F_base_ToDBC(string input)
 		{
+			bool needModify = false;
+			for (int i = 0; i < input.Length; i++) {
+				var c = input[i];
+				if (c == 12288 || (c > 65280 && c < 65375)) {
+					needModify = true;
+					break;
+				}
+			}
+			if (!needModify) {
+				return input;
+			}
 			char[] chars = input.ToCharArray();
 			Span<char> span = chars;
 			for (int i = 0; i < span.Length; i++) {
@@ -52,6 +63,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static string F_base_ToSBC(string input)
 		{
+			bool needModify = false;
+			for (int i = 0; i < input.Length; i++) {
+				var c = input[i];
+				if (c == ' ' || c < 127) {
+					needModify = true;
+					break;
+				}
+			}
+			if (!needModify) {
+				return input;
+			}
 			char[] chars = input.ToCharArray();
 			Span<char> span = chars;
 			for (int i = 0; i < span.Length; i++) {
@@ -98,6 +120,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Clean"); if (args1.IsError) { return args1; } }
 			var t = args1.TextValue;
+			bool needClean = false;
+			for (int i = 0; i < t.Length; i++) {
+				var c = t[i];
+				if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v') {
+					needClean = true;
+					break;
+				}
+			}
+			if (!needClean) {
+				return args1; // no change
+			}
 			var sb = new StringBuilder(t.Length);
 			for (int i = 0; i < t.Length; i++) {
 				var c = t[i];
@@ -142,16 +175,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			int totalLength = 0;
-			string[] texts = new string[funcs.Length];
+			if (funcs.Length == 0) {
+				return Operand.Create("");
+			}
+			if (funcs.Length == 1) {
+				var a = funcs[0].Evaluate(work, tempParameter); if (a.IsNotText) { a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", 1); if (a.IsError) { return a; } }
+				return a; // 只有一个
+			}
+			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {
 				var a = funcs[i].Evaluate(work, tempParameter); if (a.IsNotText) { a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", i + 1); if (a.IsError) { return a; } }
-				texts[i] = a.TextValue;
-				totalLength += a.TextValue.Length;
-			}
-			var sb = new StringBuilder(totalLength);
-			for (int i = 0; i < funcs.Length; i++) {
-				sb.Append(texts[i]);
+				sb.Append(a.TextValue);
 			}
 			return Operand.Create(sb.ToString());
 		}
@@ -212,11 +246,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Left", 1); if (args1.IsError) { return args1; } }
+			if (args1.TextValue.Length == 0) {
+				return Operand.Create("");
+			}
 			if (func2 == null) {
-				return Operand.Create(new string(args1.TextValue[0], 1));
+				return Operand.Create(args1.TextValue.AsSpan(0, 1).ToString());
 			}
 			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Left", 2); if (args2.IsError) { return args2; } }
-			return Operand.Create(args1.TextValue.AsSpan(0, args2.IntValue).ToString());
+			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
+			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -288,9 +326,29 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Proper"); if (args1.IsError) { return args1; } }
 
 			var text = args1.TextValue;
+			if (string.IsNullOrEmpty(text)) {
+				return Operand.Create(text);
+			}
+			bool needModify = false;
+			bool isFirst = true;
+			for (int i = 0; i < text.Length; i++) {
+				var t = text[i];
+				if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
+					isFirst = true;
+				} else if (isFirst) {
+					if (char.IsLower(t)) {
+						needModify = true;
+						break;
+					}
+					isFirst = false;
+				}
+			}
+			if (!needModify) {
+				return args1; // no change
+			}
 			char[] chars = text.ToCharArray();
 			Span<char> span = chars;
-			bool isFirst = true;
+			isFirst = true;
 			for (int i = 0; i < span.Length; i++) {
 				var t = span[i];
 				if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
@@ -369,6 +427,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 			if (length < 0) {
 				return Operand.Error("Function '{0}' parameter {1} is error!", "Rept", 2);
 			}
+			if (length == 0) {
+				return Operand.Create("");
+			}
 			var sb = new StringBuilder(newtext.Length * length);
 			for (int i = 0; i < length; i++) {
 				sb.Append(newtext);
@@ -395,11 +456,16 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Right", 1); if (args1.IsError) { return args1; } }
 
+			if (args1.TextValue.Length == 0) {
+				return Operand.Create("");
+			}
 			if (func2 == null) {
-				return Operand.Create(new string(args1.TextValue[args1.TextValue.Length - 1], 1));
+				return Operand.Create(args1.TextValue.AsSpan(args1.TextValue.Length - 1, 1).ToString());
 			}
 			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Right", 2); if (args2.IsError) { return args2; } }
-			return Operand.Create(args1.TextValue.AsSpan(args1.TextValue.Length - args2.IntValue, args2.IntValue).ToString());
+			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
+			int start = args1.TextValue.Length - length;
+			return Operand.Create(args1.TextValue.AsSpan(start, length).ToString());
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -480,9 +546,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			int index = args4.IntValue;
 
 			int index2 = 0;
-			int estimatedCapacity = text.Length + (newtext.Length - oldtext.Length);
-			if(estimatedCapacity < text.Length) { estimatedCapacity = text.Length; }
-
+			int estimatedCapacity = Math.Max(text.Length, text.Length + (newtext.Length - oldtext.Length));
 			var sb = new StringBuilder(estimatedCapacity);
 			for (int i = 0; i < text.Length; i++) {
 				bool b = true;
