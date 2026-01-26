@@ -310,7 +310,7 @@ namespace ToolGood.Algorithm
 					return Operand.Create(json);
 				} catch(Exception) { }
 			}
-			return Operand.Error("string to json is error!");
+			return Operand.Error("Convert to json error!");
 		}
 
 		/// <summary>
