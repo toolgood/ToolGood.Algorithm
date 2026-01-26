@@ -1206,11 +1206,6 @@ namespace ToolGood.Algorithm.Internals
 			return Visit_fun(context);
 		}
 
-		public CalculateTree VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
-		{
-			return Visit_fun(context);
-		}
-
 		public CalculateTree VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
 		{
 			return Visit_fun(context);
@@ -1232,6 +1227,16 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 		public CalculateTree VisitYEAR_fun(mathParser.YEAR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
 		{
 			return Visit_fun(context);
 		}

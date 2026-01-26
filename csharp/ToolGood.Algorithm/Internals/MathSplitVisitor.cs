@@ -1101,11 +1101,6 @@ namespace ToolGood.Algorithm.Internals
 			return Visit_fun(context);
 		}
 
-		public ConditionTree VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
-		{
-			return Visit_fun(context);
-		}
-
 		public ConditionTree VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
 		{
 			return Visit_fun(context);
@@ -1217,6 +1212,16 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 		public ConditionTree VisitVersion_fun(mathParser.Version_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
 		{
 			return Visit_fun(context);
 		}

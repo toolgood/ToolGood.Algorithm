@@ -230,8 +230,10 @@ namespace ToolGood.Algorithm
 					"REMOVESTART",
 					"REMOVEEND",
 					"JSON",
-					"VLOOKUP",
 					"ARRAY",
+					"LOOKFLOOR",
+					"LOOKCEILING",
+
 
 					"ADDYEARS",
 					"ADDMONTHS",

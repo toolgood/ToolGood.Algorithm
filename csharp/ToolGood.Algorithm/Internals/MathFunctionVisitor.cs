@@ -2,7 +2,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-using System.Xml.Linq;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 
@@ -1868,20 +1867,23 @@ namespace ToolGood.Algorithm.Internals
 
 		#endregion csharp
 
-		#region Lookup
-
-		public FunctionBase VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
+		#region LOOKFLOOR LOOKCEILING
+		public FunctionBase VisitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			if (exprs.Length == 3) return new Function_VLOOKUP(args1, args2, args3, null);
-			var args4 = exprs[3].Accept(this);
-			return new Function_VLOOKUP(args1, args2, args3, args4);
+			return new Function_LOOKFLOOR(args1, args2);
 		}
 
-		#endregion Lookup
+		public FunctionBase VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
+		{
+			var exprs = context.expr();
+			var args1 = exprs[0].Accept(this);
+			var args2 = exprs[1].Accept(this);
+			return new Function_LOOKCEILING(args1, args2);
+		} 
+		#endregion
 
 		#region getValue
 
@@ -2076,6 +2078,8 @@ namespace ToolGood.Algorithm.Internals
 		{
 			return new Function_Value(Operand.Version);
 		}
+
+
 
 		#endregion getValue
 	}

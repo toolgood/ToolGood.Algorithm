@@ -1083,10 +1083,6 @@ namespace ToolGood.Algorithm.Internals
 			return VisitChildren(context);
 		}
 
-		public object VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
-		{
-			return VisitChildren(context);
-		}
 
 		public object VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
 		{
@@ -1199,6 +1195,16 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 		public object VisitVersion_fun(mathParser.Version_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
 		{
 			return VisitChildren(context);
 		}
