@@ -5,12 +5,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	#region has hasvalue
-
-	#endregion
-
-	#region LOOKFLOOR
-
 	class Function_LOOKFLOOR : Function_2
 	{
 		public Function_LOOKFLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -46,7 +40,5 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			AddFunction(stringBuilder, "LookFloor");
 		}
 	}
-	#endregion
-
 
 }

@@ -1,5 +1,4 @@
-﻿using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Tree;
 using System;
 using ToolGood.Algorithm.math;
 
@@ -13,7 +12,7 @@ namespace ToolGood.Algorithm.Internals
 		{
 			ITerminalNode node = context.PARAMETER();
 			if(node != null) {
-				diy.Parameters.Add(new ParameterInfo(node.GetText(), node.Symbol.StartIndex, node.Symbol.StopIndex));
+				diy.Parameters.Add( node.GetText() );
 			}
 			return VisitChildren(context);
 		}
@@ -21,7 +20,7 @@ namespace ToolGood.Algorithm.Internals
 		{
 			ITerminalNode node = context.PARAMETER();
 			if (node != null) {
-				diy.Parameters.Add(new ParameterInfo(node.GetText(), node.Symbol.StartIndex, node.Symbol.StopIndex));
+				diy.Parameters.Add(node.GetText());
 			}
 			return VisitChildren(context);
 		}
