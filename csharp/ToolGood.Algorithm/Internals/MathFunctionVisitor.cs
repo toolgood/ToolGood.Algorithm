@@ -3,6 +3,15 @@ using System;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.Internals.Functions.Csharp;
+using ToolGood.Algorithm.Internals.Functions.DataTimes;
+using ToolGood.Algorithm.Internals.Functions.Flow;
+using ToolGood.Algorithm.Internals.Functions.MathBase;
+using ToolGood.Algorithm.Internals.Functions.MathSum;
+using ToolGood.Algorithm.Internals.Functions.MathTransformation;
+using ToolGood.Algorithm.Internals.Functions.MathTrigonometric;
+using ToolGood.Algorithm.Internals.Functions.String;
+using ToolGood.Algorithm.Internals.Functions.Value;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
@@ -716,7 +725,7 @@ namespace ToolGood.Algorithm.Internals
 			return new Function_SUMSQ(args);
 		}
 
-		#endregion power logarithm factorial
+		#endregion
 
 		#endregion math
 
