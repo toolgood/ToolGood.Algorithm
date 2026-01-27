@@ -1,0 +1,27 @@
+﻿using System;
+using System.Text;
+
+namespace ToolGood.Algorithm.Internals.Functions.Flow
+{
+	#region isXXXX
+
+	internal class Function_ISNONTEXT : Function_1
+    {
+        public Function_ISNONTEXT(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = func1.Evaluate(work, tempParameter);
+            if (args1.IsNotText) { return Operand.True; }
+            return Operand.False;
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "IsNontext");
+        }
+    }
+
+    #endregion
+}

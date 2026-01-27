@@ -1,0 +1,41 @@
+﻿using System;
+using System.Globalization;
+using System.Text;
+
+namespace ToolGood.Algorithm.Internals.Functions.MathBase
+{
+	internal class Function_FIXED : Function_3
+    {
+        public Function_FIXED(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var num = 2;
+            if (func2 != null) {
+                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 2); if (args2.IsError) { return args2; } }
+                num = args2.IntValue;
+            }
+            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 1); if (args1.IsError) { return args1; } }
+
+            var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
+            var no = false;
+            if (func3 != null) {
+                var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Fixed", 3); if (args3.IsError) { return args3; } }
+                no = args3.BooleanValue;
+            }
+            if (no == false) {
+                return Operand.Create(s.ToString('N' + num.ToString(), CultureInfo.InvariantCulture));
+            }
+            return Operand.Create(s.ToString(CultureInfo.InvariantCulture));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "Fixed");
+        }
+    }
+
+    
+
+}

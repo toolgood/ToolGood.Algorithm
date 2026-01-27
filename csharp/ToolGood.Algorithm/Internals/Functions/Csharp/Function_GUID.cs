@@ -1,0 +1,24 @@
+﻿using System;
+using System.Text;
+
+namespace ToolGood.Algorithm.Internals.Functions.Csharp
+{
+
+	internal class Function_GUID : FunctionBase
+	{
+		public Function_GUID()
+		{
+		}
+
+		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			return Operand.Create(System.Guid.NewGuid().ToString());
+		}
+		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		{
+			stringBuilder.Append("GUID()");
+		}
+	}
+
+
+}
