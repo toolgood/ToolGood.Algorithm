@@ -3,7 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	#region AND OR
 
 	internal class Function_OR_N : Function_N
 	{
@@ -28,6 +27,5 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 	}
 
-	#endregion AND OR
 
 }

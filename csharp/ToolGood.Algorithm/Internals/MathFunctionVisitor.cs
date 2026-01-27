@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.Internals.Functions.Compare;
 using ToolGood.Algorithm.Internals.Functions.Csharp;
 using ToolGood.Algorithm.Internals.Functions.DateTimes;
 using ToolGood.Algorithm.Internals.Functions.Flow;

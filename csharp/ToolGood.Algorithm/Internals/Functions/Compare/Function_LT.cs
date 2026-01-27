@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions
+namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
-	#region == != >= <= > <
-
-	internal class Function_GE : Function_2
+	internal class Function_LT : Function_2
 	{
-		public Function_GE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_LT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}
 
@@ -18,23 +16,23 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 			if(args1.Type == args2.Type) {
 				if(args1.IsNumber) {
-					return Operand.Create(args1.NumberValue >= args2.NumberValue);
+					return Operand.Create(args1.NumberValue < args2.NumberValue);
 				} else if(args1.IsText) {
 					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-					return r >= 0 ? Operand.True : Operand.False;
+					return r < 0 ? Operand.True : Operand.False;
 				} else if(args1.IsDate || args1.IsBoolean) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
-					return Operand.Create(args1.NumberValue >= args2.NumberValue);
+					return Operand.Create(args1.NumberValue < args2.NumberValue);
 				} else if(args1.IsJson) {
 					args1 = args1.ToText();
 					args2 = args2.ToText();
 					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-					return r >= 0 ? Operand.True : Operand.False;
+					return r < 0 ? Operand.True : Operand.False;
 				} else if(args1.IsNull) {
 					return Operand.True;
 				} else {
-					return Operand.Error("Function '>=' compare is error.");
+					return Operand.Error("Function '<' compare is error.");
 				}
 			} else if(args1.IsNull || args2.IsNull) {
 				return Operand.False;
@@ -46,33 +44,34 @@ namespace ToolGood.Algorithm.Internals.Functions
 					}
 					args1 = args1.ToText();
 					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-					return r >= 0 ? Operand.True : Operand.False;
+					return r < 0 ? Operand.True : Operand.False;
 				} else if(args1.IsDate || args1.IsNumber || args1.IsJson) {
 					args1 = args1.ToText();
 					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-					return r >= 0 ? Operand.True : Operand.False;
+					return r < 0 ? Operand.True : Operand.False;
 				} else {
-					return Operand.Error("Function '>=' compare is error.");
+					return Operand.Error("Function '<' compare is error.");
 				}
-			} else if(args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
-				return Operand.Error("Function '>=' compare is error.");
+			} else if(args1.IsJson || args2.IsJson
+				  || args1.IsArray || args2.IsArray
+				  || args1.IsArrayJson || args2.IsArrayJson
+				  ) {
+				return Operand.Error("Function '<' compare is error.");
 			}
-			if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">=", 1); if(args1.IsError) { return args1; } }
-			if(args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", ">=", 2); if(args2.IsError) { return args2; } }
+			if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<", 1); if(args1.IsError) { return args1; } }
+			if(args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "<", 2); if(args2.IsError) { return args2; } }
 
-			return Operand.Create(args1.NumberValue >= args2.NumberValue);
+			return Operand.Create(args1.NumberValue < args2.NumberValue);
 		}
+
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			if(addBrackets) stringBuilder.Append('(');
 			func1.ToString(stringBuilder, false);
-			stringBuilder.Append(" >= ");
+			stringBuilder.Append(" < ");
 			func2.ToString(stringBuilder, false);
 			if(addBrackets) stringBuilder.Append(')');
 		}
 	}
-
-	#endregion == != >= <= > <
- 
 
 }

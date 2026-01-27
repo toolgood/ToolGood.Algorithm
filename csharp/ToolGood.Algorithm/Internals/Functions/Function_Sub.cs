@@ -4,8 +4,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	#region * / % + - &
-
 	internal class Function_Sub : Function_2
 	{
 		public Function_Sub(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -75,9 +73,4 @@ namespace ToolGood.Algorithm.Internals.Functions
 			if(addBrackets) stringBuilder.Append(')');
 		}
 	}
-
-	#endregion * / % + - &
- 
- 
-
 }

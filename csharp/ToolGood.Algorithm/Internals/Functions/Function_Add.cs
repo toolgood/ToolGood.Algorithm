@@ -4,7 +4,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	#region * / % + - &
 
 	internal class Function_Add : Function_2
 	{
@@ -78,9 +77,5 @@ namespace ToolGood.Algorithm.Internals.Functions
 			if(addBrackets) stringBuilder.Append(')');
 		}
 	}
-
-	#endregion * / % + - &
- 
- 
 
 }

@@ -3,8 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	#region * / % + - &
-
 	internal class Function_Connect : Function_2
 	{
 		public Function_Connect(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -36,9 +34,5 @@ namespace ToolGood.Algorithm.Internals.Functions
 			if(addBrackets) stringBuilder.Append(')');
 		}
 	}
-
-	#endregion * / % + - &
- 
- 
 
 }

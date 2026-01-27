@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions
+namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
-	#region == != >= <= > <
-
 	internal class Function_LE : Function_2
 	{
 		public Function_LE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -72,8 +70,4 @@ namespace ToolGood.Algorithm.Internals.Functions
 			if(addBrackets) stringBuilder.Append(')');
 		}
 	}
-
-	#endregion == != >= <= > <
- 
-
 }
