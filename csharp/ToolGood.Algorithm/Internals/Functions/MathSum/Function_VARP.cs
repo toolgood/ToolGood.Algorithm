@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ToolGood.Algorithm.Internals.Functions.MathSum
+{
+	internal class Function_VARP : Function_N
+    {
+        public Function_VARP(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            if (args.Count == 1) { return Operand.Error("Function '{0}}' parameter only one error!", "VarP"); }
+            var list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "VarP"); }
+            if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "VarP"); }
+            if (list.Count == 1) { return Operand.Zero; }
+
+            decimal sum = 0;
+            decimal avg = list.Average();
+            for (int i = 0; i < list.Count; i++) {
+                sum += (avg - list[i]) * (avg - list[i]);
+            }
+            return Operand.Create(sum / list.Count);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "VarP");
+        }
+    }
+
+}
