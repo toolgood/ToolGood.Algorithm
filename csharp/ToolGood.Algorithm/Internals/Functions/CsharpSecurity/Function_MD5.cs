@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
@@ -20,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 					var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "MD5", 2); if(args2.IsError) return args2; }
 					encoding = Encoding.GetEncoding(args2.TextValue);
 				}
-				var t = Hash.GetMd5String(encoding.GetBytes(args1.TextValue));
+				var t = GetMd5String(encoding.GetBytes(args1.TextValue));
 				return Operand.Create(t);
 			} catch(Exception ex) {
 				return Operand.Error("Function 'MD5' is error!" + ex.Message);
@@ -29,6 +30,23 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			AddFunction(stringBuilder, "MD5");
+		}
+
+		private string GetMd5String(byte[] buffer)
+		{
+#if WebAssembly
+            return MD5.MDString(buffer);
+#else
+#if NETSTANDARD2_1
+			System.Security.Cryptography.MD5 md5 = MD5.Create();
+			byte[] retVal = md5.ComputeHash(buffer);
+			md5.Dispose();
+			return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            var retVal = MD5.HashData(buffer);
+            return Convert.ToHexString(retVal);
+#endif
+#endif
 		}
 	}
 

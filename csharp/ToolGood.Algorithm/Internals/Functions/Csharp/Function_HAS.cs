@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
+namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	#region string
-
-	#endregion
 
 	internal class Function_HAS : Function_2
 	{

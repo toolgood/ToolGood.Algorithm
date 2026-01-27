@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
@@ -21,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 					var args3 = func3.Evaluate(work, tempParameter); if(args3.IsNotText) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "HmacSHA1", 3); if(args3.IsError) return args3; }
 					encoding = Encoding.GetEncoding(args3.TextValue);
 				}
-				var t = Hash.GetHmacSha1String(encoding.GetBytes(args1.TextValue), args2.TextValue);
+				var t = GetHmacSha1String(encoding.GetBytes(args1.TextValue), args2.TextValue);
 				return Operand.Create(t);
 			} catch(Exception ex) {
 				return Operand.Error("Function 'HmacSHA1' is error!" + ex.Message);
@@ -30,6 +31,18 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			AddFunction(stringBuilder, "HmacSHA1");
+		}
+		private string GetHmacSha1String(byte[] buffer, string secret)
+		{
+			byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
+			using(var hmacsha256 = new HMACSHA1(keyByte)) {
+				byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+#if NETSTANDARD2_1
+				return BitConverter.ToString(hashmessage).Replace("-", "");
+#else
+                return Convert.ToHexString(hashmessage);
+#endif
+			}
 		}
 	}
 

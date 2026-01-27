@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
@@ -20,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 					var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA512", 2); if(args2.IsError) return args2; }
 					encoding = Encoding.GetEncoding(args2.TextValue);
 				}
-				var t = Hash.GetSha512String(encoding.GetBytes(args1.TextValue));
+				var t = GetSha512String(encoding.GetBytes(args1.TextValue));
 				return Operand.Create(t);
 			} catch(Exception ex) {
 				return Operand.Error("Function 'SHA512' is error!" + ex.Message);
@@ -29,6 +30,19 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			AddFunction(stringBuilder, "SHA512");
+		}
+
+		private string GetSha512String(byte[] buffer)
+		{
+#if NETSTANDARD2_1
+			SHA512 sha512 = SHA512.Create();
+			byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
+			sha512.Dispose();
+			return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            var retVal = SHA512.HashData(buffer);
+            return Convert.ToHexString(retVal);
+#endif
 		}
 	}
 

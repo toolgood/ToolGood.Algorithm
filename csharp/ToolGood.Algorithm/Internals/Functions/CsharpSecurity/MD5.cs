@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
     using System;
     using System.Collections;
