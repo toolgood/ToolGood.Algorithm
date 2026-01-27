@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Internals
 {
     /// <summary>
     /// 自定义类型
@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 自定义类型
         /// </summary>
-        public DiyNameInfo()
+        internal DiyNameInfo()
         {
             Parameters = new List<string>();
             Functions = new List<string>();

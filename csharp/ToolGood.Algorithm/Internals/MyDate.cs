@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
-using ToolGood.Algorithm.Internals;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Internals
 {
     /// <summary>
     /// MyDate

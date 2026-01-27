@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
     /// <summary>
     /// Modified Base64 for URL applications ('base64url' encoding)

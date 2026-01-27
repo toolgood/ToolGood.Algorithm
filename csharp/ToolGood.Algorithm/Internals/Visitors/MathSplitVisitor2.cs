@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
 
-namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal class MathSplitVisitor2 : AbstractParseTreeVisitor<CalculateTree>, ImathVisitor<CalculateTree>
 	{

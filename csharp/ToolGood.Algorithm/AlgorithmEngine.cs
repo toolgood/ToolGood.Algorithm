@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.Internals.Visitors;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm

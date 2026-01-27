@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ToolGood.Algorithm.Internals.Visitors;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {

@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
 using static Antlr4.Runtime.Atn.SemanticContext;
 
-namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
 	{

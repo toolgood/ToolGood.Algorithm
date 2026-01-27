@@ -6,6 +6,7 @@ using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Functions.Operator;
+using ToolGood.Algorithm.Internals.Visitors;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.UnitConversion;
 

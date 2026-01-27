@@ -1,5 +1,6 @@
 ﻿using PetaTest;
 using ToolGood.Algorithm;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 {

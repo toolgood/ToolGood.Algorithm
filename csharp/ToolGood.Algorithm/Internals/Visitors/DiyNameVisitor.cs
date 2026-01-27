@@ -2,7 +2,7 @@
 using System;
 using ToolGood.Algorithm.math;
 
-namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class DiyNameVisitor : AbstractParseTreeVisitor<Object>, ImathVisitor<Object>
 	{

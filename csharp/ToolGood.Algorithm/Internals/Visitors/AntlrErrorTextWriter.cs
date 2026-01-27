@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal class AntlrErrorTextWriter : TextWriter
 	{

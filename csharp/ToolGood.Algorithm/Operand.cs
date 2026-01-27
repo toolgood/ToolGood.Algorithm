@@ -5,6 +5,8 @@ using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.Internals;
+
 
 #if WebAssembly
 using System.Linq2;
@@ -22,7 +24,7 @@ namespace ToolGood.Algorithm
 		/// <summary>
 		/// 版本号
 		/// </summary>
-		public static readonly Operand Version = new OperandString("ToolGood.Algorithm 6.0");
+		public static readonly Operand Version = new OperandString("ToolGood.Algorithm 6.1");
 
 		/// <summary>
 		/// True

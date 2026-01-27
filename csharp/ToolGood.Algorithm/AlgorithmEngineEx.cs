@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
