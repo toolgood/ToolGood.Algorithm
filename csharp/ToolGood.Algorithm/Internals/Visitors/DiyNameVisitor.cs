@@ -12,21 +12,22 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			ITerminalNode node = context.PARAMETER();
 			if(node != null) {
-				diy.Parameters.Add( node.GetText() );
+				diy.Parameters.Add(new DiyNameInfo.KeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			}
 			return VisitChildren(context);
 		}
 		public object VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
 		{
 			ITerminalNode node = context.PARAMETER();
-			if (node != null) {
-				diy.Parameters.Add(node.GetText());
+			if(node != null) {
+				diy.Parameters.Add(new DiyNameInfo.KeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			}
 			return VisitChildren(context);
 		}
 		public object VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
 		{
-			diy.Functions.Add(context.PARAMETER().GetText());
+			ITerminalNode node = context.PARAMETER();
+			diy.Functions.Add(new DiyNameInfo.KeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			return VisitChildren(context);
 		}
 
@@ -375,7 +376,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
-	
+
 
 		public object VisitGUID_fun(mathParser.GUID_funContext context)
 		{

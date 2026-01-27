@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
 
 			DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1,22)");
-			Assert.AreEqual("ddd", p5.Functions[0]);
+			Assert.AreEqual("ddd", p5.Functions[0].Name);
 			Assert.AreEqual("d1", p5.Parameters[0].ToString());
 
 			DiyNameInfo p6 = AlgorithmEngineHelper.GetDiyNames("长");
