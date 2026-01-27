@@ -387,13 +387,13 @@ ace_keywords = [{
     "text": "logNormDist(数值, 算法平均数, 标准偏差)",
     "meta": "反对数正态分布"
 }, {
-    "caption": "lookUp",
-    "text": "lookUp(JSON数组, 公式字符串, 属性名)",
-    "meta": "纵向查找函数"
+    "caption": "lookCeiling",
+    "text": "lookCeiling(数值, 数组)",
+    "meta": "获取上限值"
 }, {
-    "caption": "lookUp",
-    "text": "lookUp(JSON数组, 数组, 可选是否区间)",
-    "meta": "纵向查找函数"
+    "caption": "lookFloor",
+    "text": "lookFloor(数值, 数组)",
+    "meta": "获取下限值"
 }, {
     "caption": "lower",
     "text": "lower(字符串)",
