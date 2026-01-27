@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.DataTimes
+namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_WORKDAY : Function_N
     {

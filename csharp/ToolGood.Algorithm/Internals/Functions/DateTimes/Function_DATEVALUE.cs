@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.DataTimes
+namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_DATEVALUE : Function_N
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.DataTimes
+namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_TIMESTAMP : Function_2
     {

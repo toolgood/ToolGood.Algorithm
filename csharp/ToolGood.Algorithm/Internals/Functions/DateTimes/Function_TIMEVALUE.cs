@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.DataTimes
+namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_TIMEVALUE : Function_1
     {

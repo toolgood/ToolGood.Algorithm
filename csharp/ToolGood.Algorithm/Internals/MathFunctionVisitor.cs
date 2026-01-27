@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Functions.Csharp;
-using ToolGood.Algorithm.Internals.Functions.DataTimes;
+using ToolGood.Algorithm.Internals.Functions.DateTimes;
 using ToolGood.Algorithm.Internals.Functions.Flow;
 using ToolGood.Algorithm.Internals.Functions.MathBase;
 using ToolGood.Algorithm.Internals.Functions.MathSum;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.DataTimes
+namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	#region second minute hour month year day
 
