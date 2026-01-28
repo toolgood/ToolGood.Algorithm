@@ -3,7 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	#region isXXXX
 
 	internal class Function_ISNONTEXT : Function_1
     {
@@ -22,6 +21,4 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             AddFunction(stringBuilder, "IsNontext");
         }
     }
-
-    #endregion
 }

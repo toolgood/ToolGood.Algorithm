@@ -3,8 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	#region isXXXX
-
 	internal class Function_ISNULL : Function_2
     {
         public Function_ISNULL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -28,6 +26,4 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             AddFunction(stringBuilder, "IsNull");
         }
     }
-
-    #endregion
 }

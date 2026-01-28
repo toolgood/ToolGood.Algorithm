@@ -3,12 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	#region if iferror
-
-	#endregion
-
-	#region isXXXX
-
 	internal class Function_ISNUMBER : Function_1
     {
         public Function_ISNUMBER(FunctionBase func1) : base(func1)
@@ -27,5 +21,4 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         }
     }
 
-    #endregion
 }

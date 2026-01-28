@@ -3,8 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	#region isXXXX
-
 	internal class Function_ISNULLORERROR : Function_2
     {
         public Function_ISNULLORERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -29,5 +27,4 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         }
     }
 
-    #endregion
 }

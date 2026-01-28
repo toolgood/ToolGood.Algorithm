@@ -3,8 +3,6 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	#region isXXXX
-
 	internal class Function_ISTEXT : Function_1
     {
         public Function_ISTEXT(FunctionBase func1) : base(func1)
@@ -23,5 +21,4 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         }
     }
 
-    #endregion
 }
