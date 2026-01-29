@@ -1,7 +1,6 @@
 export const ConditionTreeType = {
-  None: 0,
-  Boolean: 1,
-  Error: 2,
-  And: 3,
-  Or: 4
+  String: 0,
+  And: 1,
+  Or: 2,
+  Error: 3
 };

@@ -1,12 +1,7 @@
 export const DistanceUnitType = {
-  M: 0,
-  KM: 1,
+  MM: 1,
   CM: 2,
-  MM: 3,
-  UM: 4,
-  NM: 5,
-  INCH: 6,
-  FT: 7,
-  YD: 8,
-  MI: 9
+  DM: 3,
+  M: 4,
+  KM: 5
 };

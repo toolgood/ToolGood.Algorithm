@@ -1,10 +1,7 @@
 export const VolumeUnitType = {
-  M3: 0,
-  CM3: 1,
-  MM3: 2,
-  INCH3: 3,
-  FT3: 4,
-  YD3: 5,
-  L: 6,
-  ML: 7
+  MM3: 21,
+  CM3: 22,
+  DM3: 23,
+  M3: 24,
+  KM3: 25
 };

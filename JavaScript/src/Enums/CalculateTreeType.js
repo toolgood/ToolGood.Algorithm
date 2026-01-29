@@ -1,11 +1,10 @@
 export const CalculateTreeType = {
-  None: 0,
-  Number: 1,
-  Text: 2,
-  Boolean: 3,
-  Date: 4,
-  Array: 5,
-  Json: 6,
-  ArrayJson: 7,
-  Error: 8
+  String: 0,
+  Add: 1,
+  Sub: 2,
+  Mul: 3,
+  Div: 4,
+  Mod: 5,
+  Connect: 6,
+  Error: 7
 };
