@@ -12,7 +12,7 @@ class Function_DiyFunction extends Function_N {
             let aa = item.Evaluate(engine, tempParameter);
             args.push(aa);
         }
-        return engine.executeDiyFunction(this.funName, args);
+        return engine.ExecuteDiyFunction(this.funName, args);
     }
 
     toString(stringBuilder, addBrackets) {

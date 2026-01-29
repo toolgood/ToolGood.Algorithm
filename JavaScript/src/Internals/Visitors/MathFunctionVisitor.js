@@ -3063,7 +3063,15 @@ class MathFunctionVisitor extends mathVisitor  {
         }
         return new Function_Value(Operand.Create(sb.join('')));
     }
-
+    visitDiyFunction_fun(context) {
+        let funName = context.PARAMETER().getText();
+        let exprs = context.expr();
+        let args = [];
+        for (let i = 0; i < exprs.length; i++) {
+            args.push(exprs[i].accept(this));
+        }
+        return new Function_DiyFunction(funName, args);
+    }
 }
 
 export { MathFunctionVisitor };

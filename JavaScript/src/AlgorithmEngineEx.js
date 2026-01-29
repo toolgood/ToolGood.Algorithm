@@ -56,9 +56,10 @@ export class AlgorithmEngineEx extends AlgorithmEngine {
         if (json.startsWith('{') && json.endsWith('}')) {
             const jo = JsonMapper.ToObject(json);
             if (jo.IsObject) {
-                for (const key in jo) {
-                    if (jo.hasOwnProperty(key)) {
-                        const v = jo[key];
+                const obj = jo.EnsureDictionary();
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        const v = obj[key];
                         const paramKey = this.IgnoreCase ? key.toLowerCase() : key;
                         if (v.IsString) {
                             this._tempdict[paramKey] = Operand.Create(v.StringValue);

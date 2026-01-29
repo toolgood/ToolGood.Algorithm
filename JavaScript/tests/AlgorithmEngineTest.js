@@ -1,6 +1,7 @@
 import assert from 'assert';
 import { AlgorithmEngine } from '../src/AlgorithmEngine.js';
 import { AlgorithmEngineEx } from '../src/AlgorithmEngineEx.js';
+import { Operand } from '../src/Operand.js';
 
 // 扩展 AlgorithmEngine 类以添加 TryEvaluate 方法
 class AlgorithmEngineWithTryEvaluate extends AlgorithmEngine {
@@ -53,29 +54,29 @@ class Cylinder extends AlgorithmEngineExWithTryEvaluate {
   }
 
   GetParameter(parameter) {
-    switch (parameter.toLowerCase()) {
-      case '半径':
-      case 'radius':
-        return super.TryEvaluate(this.radius, 0);
-      case '高':
-      case 'height':
-        return super.TryEvaluate(this.height, 0);
-      case '直径':
-      case 'diameter':
-        return super.TryEvaluate(this.radius * 2, 0);
-      default:
-        return super.GetParameter(parameter);
+    if (parameter === "半径") {
+      return Operand.Create(this.radius);
     }
+    if (parameter === "直径") {
+      return Operand.Create(this.radius * 2);
+    }
+    if (parameter === "高") {
+      return Operand.Create(this.height);
+    }
+    return super.GetParameter(parameter);
   }
 
-  ExecuteDiyFunction(parameter, args) {
-    if (parameter === '求面积') {
-      const r = args[0].ToNumber('');
-      if (!r.IsError) {
-        return super.TryEvaluate(r * r * Math.PI, 0);
+  ExecuteDiyFunction(funcName, operands) {
+    if (funcName === "求面积") {
+      if (operands.length === 1) {
+        const r = operands[0].ToNumber('');
+        if (!r.IsError) {
+          const area = r.NumberValue * r.NumberValue * Math.PI;
+          return Operand.Create(area);
+        }
       }
     }
-    return super.ExecuteDiyFunction(parameter, args);
+    return super.ExecuteDiyFunction(funcName, operands);
   }
 }
 
@@ -266,8 +267,8 @@ function testCylinder() {
   t = c.TryEvaluate_Double("'半径'*半径*pi()*高", 0.0);
   assert.strictEqual(t, 0, "'半径'*半径*pi()*高 应该等于 0");
   
-  t = c.TryEvaluate_Double('求面积（10）', 0.0);
-  assert.strictEqual(t, 10 * 10 * Math.PI, '求面积（10） 应该等于 10*10*Math.PI');
+  t = c.TryEvaluate_Double('求面积(10)', 0.0);
+  assert.strictEqual(t, 10 * 10 * Math.PI, '求面积(10) 应该等于 10*10*Math.PI');
   
   const json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
   c.AddParameterFromJson(json);
