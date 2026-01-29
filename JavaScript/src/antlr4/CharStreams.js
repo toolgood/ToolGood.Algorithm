@@ -4,7 +4,6 @@
  */
 
 import CharStream from "./CharStream.js";
-import FileStream from "./FileStream.js";
 
 /**
  * Utility functions to create InputStreams from various sources.
@@ -53,7 +52,7 @@ export default {
    * Invokes callback(error, result) on completion.
    */
   fromPath: function(path, encoding, callback) {
-    FileStream.fromPath(path, encoding, callback);
+    throw new Error("fromPath is not available in browser environment!");
   },
 
   /**
@@ -62,6 +61,6 @@ export default {
    * 'utf8' if encoding is null).
    */
   fromPathSync: function(path, encoding) {
-    return new FileStream(path, encoding);
+    throw new Error("fromPathSync is not available in browser environment!");
   }
 };
