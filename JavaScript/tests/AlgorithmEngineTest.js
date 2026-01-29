@@ -107,13 +107,13 @@ function testAlgorithmEngine() {
   c = engine.TryEvaluate('2.1e+3 + 10', 0);
   assert.strictEqual(c, 2110, '2.1e+3 + 10 应该等于 2110');
   
-  let d = engine.TryEvaluate('2.1e-3 + 10', 0.0);
+  let d = engine.TryEvaluate_Double('2.1e-3 + 10', 0.0);
   assert.strictEqual(d, 10.0021, '2.1e-3 + 10 应该等于 10.0021');
   
-  let e = engine.TryEvaluate('e', 0.0);
+  let e = engine.TryEvaluate_Double('e', 0.0);
   assert.strictEqual(e, Math.E, 'e 应该等于 Math.E');
   
-  e = engine.TryEvaluate('pi', 0.0);
+  e = engine.TryEvaluate_Double('pi', 0.0);
   assert.strictEqual(e, Math.PI, 'pi 应该等于 Math.PI');
   
   let b = engine.TryEvaluate('true', false);
@@ -128,10 +128,10 @@ function testAlgorithmEngine() {
   b1 = engine.TryEvaluate('if(false,1,2)', 0);
   assert.strictEqual(b1, 2, 'if(false,1,2) 应该等于 2');
   
-  let b2 = engine.TryEvaluate('pi*4', 0.0);
+  let b2 = engine.TryEvaluate_Double('pi*4', 0.0);
   assert.strictEqual(b2, Math.PI * 4, 'pi*4 应该等于 Math.PI * 4');
   
-  b2 = engine.TryEvaluate('e*4', 0.0);
+  b2 = engine.TryEvaluate_Double('e*4', 0.0);
   assert.strictEqual(b2, Math.E * 4, 'e*4 应该等于 Math.E * 4');
   
   let s = engine.TryEvaluate("'aa'&'bb'", "");
@@ -295,6 +295,7 @@ function runAllTests() {
 if (import.meta.url === import.meta.resolve('./')) {
   runAllTests();
 }
+runAllTests();
 
 export {
   testAlgorithmEngine,
