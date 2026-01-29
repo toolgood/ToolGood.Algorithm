@@ -1,0 +1,40 @@
+import { Function_3 } from '../Function_3';
+import { MyDate } from '../../MyDate';
+
+class Function_TIME extends Function_3 {
+    constructor(func1, func2, func3) {
+        super(func1, func2, func3);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this._arg1.evaluate(engine, tempParameter);
+        if (args1.IsNotNumber) {
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1);
+            if (args1.IsError) { return args1; }
+        }
+        let args2 = this._arg2.evaluate(engine, tempParameter);
+        if (args2.IsNotNumber) {
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Time", 2);
+            if (args2.IsError) { return args2; }
+        }
+
+        let d;
+        if (this._arg3 !== null) {
+            let args3 = this._arg3.evaluate(engine, tempParameter);
+            if (args3.IsNotNumber) {
+                args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Time", 3);
+                if (args3.IsError) { return args3; }
+            }
+            d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, args3.IntValue);
+        } else {
+            d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, 0);
+        }
+        return engine.createOperand(d);
+    }
+
+    toString(stringBuilder, addBrackets) {
+        this.AddFunction(stringBuilder, "Time");
+    }
+}
+
+export { Function_TIME };

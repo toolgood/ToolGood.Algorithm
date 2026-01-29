@@ -1,0 +1,57 @@
+import { Function_3 } from '../Function_3';
+import { Operand } from '../../Operand';
+
+class Function_EXPONDIST extends Function_3 {
+    constructor(func1, func2, func3) {
+        super(func1, func2, func3);
+    }
+
+    evaluate(engine, tempParameter) {
+        const args1 = this.func1.evaluate(engine, tempParameter);
+        if (args1.isNotNumber) {
+            args1.toNumber('Function {0} parameter {1} is error!', 'ExponDist', 1);
+            if (args1.isError) {
+                return args1;
+            }
+        }
+        const args2 = this.func2.evaluate(engine, tempParameter);
+        if (args2.isNotNumber) {
+            args2.toNumber('Function {0} parameter {1} is error!', 'ExponDist', 2);
+            if (args2.isError) {
+                return args2;
+            }
+        }
+        const args3 = this.func3.evaluate(engine, tempParameter);
+        if (args3.isNotBoolean) {
+            args3.toBoolean('Function {0} parameter {1} is error!', 'ExponDist', 3);
+            if (args3.isError) {
+                return args3;
+            }
+        }
+
+        const n1 = args1.doubleValue;
+        if (n1 < 0.0) {
+            return Operand.error('Function {0} parameter is error!', 'ExponDist');
+        }
+        return Operand.create(this.ExponDist(n1, args2.doubleValue, args3.booleanValue));
+    }
+
+    ExponDist(x, lambda, cumulative) {
+        if (x < 0 || lambda <= 0) {
+            return 0;
+        }
+        if (cumulative) {
+            // 累积分布函数
+            return 1 - Math.exp(-lambda * x);
+        } else {
+            // 概率密度函数
+            return lambda * Math.exp(-lambda * x);
+        }
+    }
+
+    toString(stringBuilder, addBrackets) {
+        this.addFunction(stringBuilder, 'ExponDist');
+    }
+}
+
+export { Function_EXPONDIST };

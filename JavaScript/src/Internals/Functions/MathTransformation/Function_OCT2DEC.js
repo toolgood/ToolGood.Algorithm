@@ -1,0 +1,34 @@
+import { Function_1 } from '../Function_1.js';
+import { Operand } from '../../../Operand.js';
+
+class Function_OCT2DEC extends Function_1 {
+    constructor(func1) {
+        super(func1);
+    }
+
+    evaluate(work, tempParameter) {
+        const args1 = this.func1.evaluate(work, tempParameter);
+        if (args1.isNotText) {
+            args1.toText('Function \'{0}\' parameter is error!', 'OCT2DEC');
+            if (args1.isError) {
+                return args1;
+            }
+        }
+
+        if (!RegexHelper.OctRegex.test(args1.textValue)) {
+            return Operand.error('Function \'{0}\' parameter is error!', 'OCT2DEC');
+        }
+        const num = parseInt(args1.textValue, 8);
+        return Operand.create(num);
+    }
+
+    toString(stringBuilder, addBrackets) {
+        this.addFunction(stringBuilder, 'OCT2DEC');
+    }
+}
+
+const RegexHelper = {
+    OctRegex: /^[0-7]+$/
+};
+
+export { Function_OCT2DEC };

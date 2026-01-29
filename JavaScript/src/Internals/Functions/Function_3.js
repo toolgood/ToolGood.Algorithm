@@ -1,0 +1,38 @@
+import { FunctionBase } from './FunctionBase.js';
+
+/**
+ * Represents the base class for functions with three parameters
+ */
+export class Function_3 extends FunctionBase {
+    /**
+     * @param {FunctionBase} func1
+     * @param {FunctionBase} func2
+     * @param {FunctionBase} func3
+     */
+    constructor(func1, func2, func3) {
+        super();
+        this.func1 = func1;
+        this.func2 = func2;
+        this.func3 = func3;
+    }
+
+    /**
+     * Adds function to string builder
+     * @param {string[]} stringBuilder
+     * @param {string} functionName
+     */
+    AddFunction(stringBuilder, functionName) {
+        stringBuilder.push(functionName);
+        stringBuilder.push('(');
+        this.func1.ToString(stringBuilder, false);
+        if(this.func2 != null) {
+            stringBuilder.push(', ');
+            this.func2.ToString(stringBuilder, false);
+            if(this.func3 != null) {
+                stringBuilder.push(', ');
+                this.func3.ToString(stringBuilder, false);
+            }
+        }
+        stringBuilder.push(')');
+    }
+}

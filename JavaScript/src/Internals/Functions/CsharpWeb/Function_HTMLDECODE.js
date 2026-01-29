@@ -1,0 +1,32 @@
+import { Function_1 } from '../Function_1';
+
+class Function_HTMLDECODE extends Function_1 {
+    constructor(func1) {
+        super(func1);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this._arg1.evaluate(engine, tempParameter);
+        if (args1.IsNotText) {
+            args1 = args1.ToText("Function '{0}' parameter is error!", "HtmlDecode");
+            if (args1.IsError) {
+                return args1;
+            }
+        }
+        const s = args1.TextValue;
+        const r = Function_HTMLDECODE.HtmlDecode(s);
+        return engine.createOperand(r);
+    }
+
+    toString(stringBuilder, addBrackets) {
+        this.AddFunction(stringBuilder, "HtmlDecode");
+    }
+
+    static HtmlDecode(input) {
+        const temp = document.createElement('div');
+        temp.innerHTML = input;
+        return temp.textContent || temp.innerText || '';
+    }
+}
+
+export { Function_HTMLDECODE };

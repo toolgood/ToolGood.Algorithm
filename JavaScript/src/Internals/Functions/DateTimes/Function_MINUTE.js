@@ -1,0 +1,27 @@
+import { Function_1 } from '../Function_1';
+import { MyDate } from '../../MyDate';
+
+class Function_MINUTE extends Function_1 {
+    constructor(func1) {
+        super(func1);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this._arg1.evaluate(engine, tempParameter);
+        if (args1.IsNotDate) {
+            args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Minute");
+            if (args1.IsError) { return args1; }
+        }
+        try {
+            return engine.createOperand(args1.DateValue.getMinutes());
+        } catch (e) {
+            return engine.createErrorOperand("Function 'Minute' is error!");
+        }
+    }
+
+    toString(stringBuilder, addBrackets) {
+        this.AddFunction(stringBuilder, "Minute");
+    }
+}
+
+export { Function_MINUTE };

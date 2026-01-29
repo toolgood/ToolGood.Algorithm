@@ -1,0 +1,37 @@
+import { Function_1 } from '../Function_1';
+import { Operand } from '../../Operand';
+
+class Function_VALUE extends Function_1 {
+    constructor(func1) {
+        super(func1);
+    }
+
+    evaluate(engine, tempParameter) {
+        const args1 = this.func1.evaluate(engine, tempParameter);
+        if (args1.isNumber) {
+            return args1;
+        }
+        if (args1.isBoolean) {
+            return args1.booleanValue ? Operand.one : Operand.zero;
+        }
+        if (args1.isNotText) {
+            args1.toText('Function {0} parameter is error!', 'Value');
+            if (args1.isError) {
+                return args1;
+            }
+        }
+
+        const textValue = args1.textValue;
+        const parsedValue = parseFloat(textValue);
+        if (!isNaN(parsedValue)) {
+            return Operand.create(parsedValue);
+        }
+        return Operand.error('Function {0} parameter is error!', 'Value');
+    }
+
+    toString(stringBuilder, addBrackets) {
+        this.addFunction(stringBuilder, 'Value');
+    }
+}
+
+export { Function_VALUE };

@@ -1,0 +1,63 @@
+import { JsonData } from './JsonData.js';
+import { JsonReader } from './JsonReader.js';
+import { JsonType } from './JsonType.js';
+import { JsonToken } from './ParserToken.js';
+
+class JsonMapper {
+    static ReadValue(reader) {
+        reader.Read();
+
+        if (reader.Token === JsonToken.ArrayEnd) return null;
+
+        const instance = new JsonData();
+
+        if (reader.Token === JsonToken.String) {
+            instance.SetString(reader.Value);
+            return instance;
+        }
+
+        if (reader.Token === JsonToken.Double) {
+            instance.SetDouble(reader.Value);
+            return instance;
+        }
+
+        if (reader.Token === JsonToken.Boolean) {
+            instance.SetBoolean(reader.Value);
+            return instance;
+        }
+        if (reader.Token === JsonToken.Null) {
+            instance.SetNull();
+            return instance;
+        }
+
+        if (reader.Token === JsonToken.ArrayStart) {
+            instance.SetJsonType(JsonType.Array);
+
+            while (true) {
+                const item = JsonMapper.ReadValue(reader);
+                if (item === null && reader.Token === JsonToken.ArrayEnd) break;
+                instance.Add(item);
+            }
+        } else if (reader.Token === JsonToken.ObjectStart) {
+            instance.SetJsonType(JsonType.Object);
+
+            while (true) {
+                reader.Read();
+
+                if (reader.Token === JsonToken.ObjectEnd) break;
+
+                const property = reader.Value;
+                instance.Set(property, JsonMapper.ReadValue(reader));
+            }
+        }
+
+        return instance;
+    }
+
+    static ToObject(json) {
+        const reader = new JsonReader(json);
+        return JsonMapper.ReadValue(reader);
+    }
+}
+
+export { JsonMapper };
