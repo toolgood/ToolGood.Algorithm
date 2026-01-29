@@ -1,0 +1,304 @@
+import assert from 'assert';
+import { AlgorithmEngine } from '../src/AlgorithmEngine.js';
+import { AlgorithmEngineEx } from '../src/AlgorithmEngineEx.js';
+
+// 扩展 AlgorithmEngine 类以添加 TryEvaluate 方法
+class AlgorithmEngineWithTryEvaluate extends AlgorithmEngine {
+  TryEvaluate(exp, def) {
+    const type = typeof def;
+    switch (type) {
+      case 'number':
+        if (Number.isInteger(def)) {
+          return this.TryEvaluate_Int32(exp, def);
+        } else {
+          return this.TryEvaluate_Double(exp, def);
+        }
+      case 'string':
+        return this.TryEvaluate_String(exp, def);
+      case 'boolean':
+        return this.TryEvaluate_Boolean(exp, def);
+      default:
+        return def;
+    }
+  }
+}
+
+// 扩展 AlgorithmEngineEx 类以添加 TryEvaluate 方法
+class AlgorithmEngineExWithTryEvaluate extends AlgorithmEngineEx {
+  TryEvaluate(exp, def) {
+    const type = typeof def;
+    switch (type) {
+      case 'number':
+        if (Number.isInteger(def)) {
+          return this.TryEvaluate_Int32(exp, def);
+        } else {
+          return this.TryEvaluate_Double(exp, def);
+        }
+      case 'string':
+        return this.TryEvaluate_String(exp, def);
+      case 'boolean':
+        return this.TryEvaluate_Boolean(exp, def);
+      default:
+        return def;
+    }
+  }
+}
+
+// Cylinder 类
+class Cylinder extends AlgorithmEngineExWithTryEvaluate {
+  constructor(radius, height) {
+    super();
+    this.radius = radius;
+    this.height = height;
+  }
+
+  GetParameter(parameter) {
+    switch (parameter.toLowerCase()) {
+      case '半径':
+      case 'radius':
+        return super.TryEvaluate(this.radius, 0);
+      case '高':
+      case 'height':
+        return super.TryEvaluate(this.height, 0);
+      case '直径':
+      case 'diameter':
+        return super.TryEvaluate(this.radius * 2, 0);
+      default:
+        return super.GetParameter(parameter);
+    }
+  }
+
+  ExecuteDiyFunction(parameter, args) {
+    if (parameter === '求面积') {
+      const r = args[0].ToNumber('');
+      if (!r.IsError) {
+        return super.TryEvaluate(r * r * Math.PI, 0);
+      }
+    }
+    return super.ExecuteDiyFunction(parameter, args);
+  }
+}
+
+// 测试用例
+function testAlgorithmEngine() {
+  console.log('开始测试 AlgorithmEngine...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  // Test 方法
+  let c = engine.TryEvaluate('2+3', 0);
+  assert.strictEqual(c, 5, '2+3 应该等于 5');
+  
+  c = engine.TryEvaluate('(2)+3', 0);
+  assert.strictEqual(c, 5, '(2)+3 应该等于 5');
+  
+  c = engine.TryEvaluate('2+3*2+10/2*4', 0);
+  assert.strictEqual(c, 28, '2+3*2+10/2*4 应该等于 28');
+  
+  c = engine.TryEvaluate('if(2+3*2+10/2*4,1', 0);
+  assert.strictEqual(c, 0, 'if(2+3*2+10/2*4,1 应该等于 0');
+  
+  c = engine.TryEvaluate('2.1e3 + 10', 0);
+  assert.strictEqual(c, 2110, '2.1e3 + 10 应该等于 2110');
+  
+  c = engine.TryEvaluate('2.1e+03 + 10', 0);
+  assert.strictEqual(c, 2110, '2.1e+03 + 10 应该等于 2110');
+  
+  c = engine.TryEvaluate('2.1e+3 + 10', 0);
+  assert.strictEqual(c, 2110, '2.1e+3 + 10 应该等于 2110');
+  
+  let d = engine.TryEvaluate('2.1e-3 + 10', 0.0);
+  assert.strictEqual(d, 10.0021, '2.1e-3 + 10 应该等于 10.0021');
+  
+  let e = engine.TryEvaluate('e', 0.0);
+  assert.strictEqual(e, Math.E, 'e 应该等于 Math.E');
+  
+  e = engine.TryEvaluate('pi', 0.0);
+  assert.strictEqual(e, Math.PI, 'pi 应该等于 Math.PI');
+  
+  let b = engine.TryEvaluate('true', false);
+  assert.strictEqual(b, true, 'true 应该等于 true');
+  
+  b = engine.TryEvaluate('false', true);
+  assert.strictEqual(b, false, 'false 应该等于 false');
+  
+  let b1 = engine.TryEvaluate('if(true,1,2)', 0);
+  assert.strictEqual(b1, 1, 'if(true,1,2) 应该等于 1');
+  
+  b1 = engine.TryEvaluate('if(false,1,2)', 0);
+  assert.strictEqual(b1, 2, 'if(false,1,2) 应该等于 2');
+  
+  let b2 = engine.TryEvaluate('pi*4', 0.0);
+  assert.strictEqual(b2, Math.PI * 4, 'pi*4 应该等于 Math.PI * 4');
+  
+  b2 = engine.TryEvaluate('e*4', 0.0);
+  assert.strictEqual(b2, Math.E * 4, 'e*4 应该等于 Math.E * 4');
+  
+  let s = engine.TryEvaluate("'aa'&'bb'", "");
+  assert.strictEqual(s, "aabb", "'aa'&'bb' 应该等于 'aabb'");
+  
+  s = engine.TryEvaluate("'3'+2", "");
+  assert.strictEqual(s, "5", "'3'+2 应该等于 '5'");
+  
+  let r = engine.TryEvaluate('count(Array(1,2,3,4))', 0);
+  assert.strictEqual(r, 4, 'count(Array(1,2,3,4)) 应该等于 4');
+  
+  r = engine.TryEvaluate('(1=1)*9+2', 0);
+  assert.strictEqual(r, 11, '(1=1)*9+2 应该等于 11');
+  
+  r = engine.TryEvaluate('(1=2)*9+2', 0);
+  assert.strictEqual(r, 2, '(1=2)*9+2 应该等于 2');
+  
+  let value = engine.TryEvaluate('1 > (-2)', false);
+  assert.strictEqual(value, true, '1 > (-2) 应该等于 true');
+  
+  value = engine.TryEvaluate('(-1) > (-2）', false);
+  assert.strictEqual(value, true, '(-1) > (-2） 应该等于 true');
+  
+  value = engine.TryEvaluate('-1 > (-2)', false);
+  assert.strictEqual(value, true, '-1 > (-2) 应该等于 true');
+  
+  value = engine.TryEvaluate('-1 > -2', false);
+  assert.strictEqual(value, true, '-1 > -2 应该等于 true');
+  
+  let value2 = engine.TryEvaluate('-1 > -2', false);
+  assert.strictEqual(value2, true, '-1 > -2 应该等于 true');
+  
+  let value3 = engine.TryEvaluate('-7 < -2', false);
+  assert.strictEqual(value3, true, '-7 < -2 应该等于 true');
+  
+  // 测试版本
+  let t25 = engine.TryEvaluate('Engineversion', '');
+  console.log('Engineversion:', t25);
+  
+  let t26 = engine.TryEvaluate('Algorithmversion', '');
+  console.log('Algorithmversion:', t26);
+  
+  console.log('AlgorithmEngine 测试通过！');
+}
+
+function testBase() {
+  console.log('开始测试基础功能...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  // base_test 方法
+  let t = engine.TryEvaluate('1+(3*2+2)/2', 0);
+  assert.strictEqual(t, 5, '1+(3*2+2)/2 应该等于 5');
+  
+  t = engine.TryEvaluate('(8-3)*(3+2)', 0);
+  assert.strictEqual(t, 25, '(8-3)*(3+2) 应该等于 25');
+  
+  t = engine.TryEvaluate('(8-3)*(3+2) % 7', 0);
+  assert.strictEqual(t, 4, '(8-3)*(3+2) % 7 应该等于 4');
+  
+  let b = engine.TryEvaluate('1=1', false);
+  assert.strictEqual(b, true, '1=1 应该等于 true');
+  
+  b = engine.TryEvaluate('1=2', true);
+  assert.strictEqual(b, false, '1=2 应该等于 false');
+  
+  b = engine.TryEvaluate('1<>2', false);
+  assert.strictEqual(b, true, '1<>2 应该等于 true');
+  
+  b = engine.TryEvaluate('1!=2', false);
+  assert.strictEqual(b, true, '1!=2 应该等于 true');
+  
+  b = engine.TryEvaluate('1>2', true);
+  assert.strictEqual(b, false, '1>2 应该等于 false');
+  
+  b = engine.TryEvaluate('1<2', false);
+  assert.strictEqual(b, true, '1<2 应该等于 true');
+  
+  b = engine.TryEvaluate('1<=2', false);
+  assert.strictEqual(b, true, '1<=2 应该等于 true');
+  
+  b = engine.TryEvaluate('1>=2', true);
+  assert.strictEqual(b, false, '1>=2 应该等于 false');
+  
+  b = engine.TryEvaluate("'1'='1'", false);
+  assert.strictEqual(b, true, "'1'='1' 应该等于 true");
+  
+  b = engine.TryEvaluate("'e'='e'", false);
+  assert.strictEqual(b, true, "'e'='e' 应该等于 true");
+  
+  b = engine.TryEvaluate("'1'='2'", true);
+  assert.strictEqual(b, false, "'1'='2' 应该等于 false");
+  
+  b = engine.TryEvaluate("'1'!='2'", false);
+  assert.strictEqual(b, true, "'1'!='2' 应该等于 true");
+  
+  // base_test3 方法
+  let c = engine.TryEvaluate('(2)+/*123456*/3', 0);
+  assert.strictEqual(c, 5, '(2)+/*123456*/3 应该等于 5');
+  
+  c = engine.TryEvaluate('2+3//eee', 0);
+  assert.strictEqual(c, 5, '2+3//eee 应该等于 5');
+  
+  c = engine.TryEvaluate('(2)+/*123456*/3 ee22+22', 0);
+  assert.strictEqual(c, 0, '(2)+/*123456*/3 ee22+22 应该等于 0');
+  
+  // base_test4 方法
+  let str = engine.TryEvaluate("'4dd'&'55' rr", "");
+  assert.strictEqual(str, "", "'4dd'&'55' rr 应该等于 ''");
+  
+  // base_test5 方法
+  str = engine.TryEvaluate("'4dd'&'55'.left(1)", "");
+  assert.strictEqual(str, "4dd5", "'4dd'&'55'.left(1) 应该等于 '4dd5'");
+  
+  console.log('基础功能测试通过！');
+}
+
+function testCylinder() {
+  console.log('开始测试 Cylinder 类...');
+  
+  const c = new Cylinder(3, 10);
+  
+  let t2 = c.TryEvaluate('半径*半径*pi()', 0.0);
+  assert.strictEqual(t2, 3 * 3 * Math.PI, '半径*半径*pi() 应该等于 3*3*Math.PI');
+  
+  let t = c.TryEvaluate('直径*pi()', 0.0);
+  assert.strictEqual(t, 6 * Math.PI, '直径*pi() 应该等于 6*Math.PI');
+  
+  t = c.TryEvaluate('半径*半径*pi()*高', 0.0);
+  assert.strictEqual(t, 3 * 3 * Math.PI * 10, '半径*半径*pi()*高 应该等于 3*3*Math.PI*10');
+  
+  t = c.TryEvaluate("'半径'*半径*pi()*高", 0.0);
+  assert.strictEqual(t, 0, "'半径'*半径*pi()*高 应该等于 0");
+  
+  t = c.TryEvaluate('求面积（10）', 0.0);
+  assert.strictEqual(t, 10 * 10 * Math.PI, '求面积（10） 应该等于 10*10*Math.PI');
+  
+  const json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
+  c.AddParameterFromJson(json);
+  
+  let tt = c.TryEvaluate('灰色', "");
+  assert.strictEqual(tt, "L", '灰色 应该等于 "L"');
+  
+  console.log('Cylinder 类测试通过！');
+}
+
+// 运行所有测试
+function runAllTests() {
+  try {
+    testAlgorithmEngine();
+    testBase();
+    testCylinder();
+    console.log('所有测试通过！');
+  } catch (error) {
+    console.error('测试失败:', error.message);
+    process.exit(1);
+  }
+}
+
+// 执行测试
+if (import.meta.url === import.meta.resolve('./')) {
+  runAllTests();
+}
+
+export {
+  testAlgorithmEngine,
+  testBase,
+  testCylinder,
+  runAllTests
+};
