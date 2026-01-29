@@ -7,10 +7,10 @@ class Function_Mod extends Function_2 {
     super(func1, func2);
   }
 
-  Evaluate(engine) {
-    const args1 = this.func1.Evaluate(engine);
+  Evaluate(engine, tempParameter) {
+    const args1 = this.func1.Evaluate(engine, tempParameter);
     if (args1.IsError) { return args1; }
-    const args2 = this.func2.Evaluate(engine);
+    const args2 = this.func2.Evaluate(engine, tempParameter);
     if (args2.IsError) { return args2; }
 
     if (args1.IsNumber && args2.IsNumber) { //  优化性能

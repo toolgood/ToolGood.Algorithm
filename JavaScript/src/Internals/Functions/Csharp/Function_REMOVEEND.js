@@ -18,15 +18,15 @@ export class Function_REMOVEEND extends Function_3 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine) {
-        const args1 = this.func1.Evaluate(engine);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'RemoveEnd', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'RemoveEnd', 2);
             if (args2.isError) {
@@ -36,7 +36,7 @@ export class Function_REMOVEEND extends Function_3 {
         
         let ignoreCase = false;
         if (this.func3 !== null) {
-            const args3 = this.func3.Evaluate(engine);
+            const args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.isNotBoolean) {
                 args3.toBoolean('Function \'{0}\' parameter {1} is error!', 'RemoveEnd', 3);
                 if (args3.isError) {

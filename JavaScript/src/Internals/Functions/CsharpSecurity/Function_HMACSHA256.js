@@ -18,15 +18,15 @@ export class Function_HMACSHA256 extends Function_3 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    async Evaluate(engine) {
-        const args1 = this.func1.Evaluate(engine);
+    async Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'HmacSHA256', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'HmacSHA256', 2);
             if (args2.isError) {
@@ -37,7 +37,7 @@ export class Function_HMACSHA256 extends Function_3 {
         try {
             let encoding = 'utf-8';
             if (this.func3 !== null) {
-                const args3 = this.func3.Evaluate(engine);
+                const args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.isNotText) {
                     args3.toText('Function \'{0}\' parameter {1} is error!', 'HmacSHA256', 3);
                     if (args3.isError) {

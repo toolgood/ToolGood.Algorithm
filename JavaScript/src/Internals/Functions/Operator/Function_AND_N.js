@@ -6,11 +6,11 @@ class Function_AND_N extends Function_N {
     super(funcs);
   }
 
-  Evaluate(engine) {
+  Evaluate(engine, tempParameter)  {
     let index = 1;
     let b = true;
     for (let item of this._args) {
-      let a = item.Evaluate(engine);
+      let a = item.Evaluate(engine, tempParameter);
       if (a.IsNotBoolean) { a = a.ToBoolean('Function \'{0}\' parameter {1} is error!', 'AND', index++); if (a.IsError) { return a; } }
       if (a.BooleanValue === false) b = false;
     }

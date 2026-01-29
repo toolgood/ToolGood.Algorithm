@@ -18,15 +18,15 @@ export class Function_LOOKCEILING extends Function_2 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine) {
-        const args1 = this.func1.Evaluate(engine);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
             args1.toNumber('Function \'{0}\' parameter {1} is error!', 'LookCeiling', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotArray) {
             args2.toArray('Function \'{0}\' parameter {1} is error!', 'LookCeiling', 2);
             if (args2.isError) {

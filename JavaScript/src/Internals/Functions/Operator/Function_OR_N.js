@@ -6,11 +6,11 @@ class Function_OR_N extends Function_N {
     super(funcs);
   }
 
-  Evaluate(engine) {
+  Evaluate(engine, tempParameter) {
     let index = 1;
     let b = false;
     for (let item of this._args) {
-      let a = item.Evaluate(engine);
+      let a = item.Evaluate(engine, tempParameter);
       if (a.IsError) { return a; }
       if (a.IsNotBoolean) { a = a.ToBoolean(`Function '{0}' parameter '{1}' is error!`, 'OR', index++); if (a.IsError) { return a; } }
       if (a.BooleanValue) { b = true; }
