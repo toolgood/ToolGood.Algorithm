@@ -17,7 +17,7 @@ class Function_GetJsonValue extends Function_2 {
         }
 
         if (obj.isArray) {
-            op = op.toNumber('ARRARY index is error!');
+            op = op.ToNumber('ARRARY index is error!');
             if (op.isError) {
                 return op;
             }
@@ -47,7 +47,7 @@ class Function_GetJsonValue extends Function_2 {
         if (obj.isJson) {
             const json = obj.jsonValue;
             if (Array.isArray(json)) {
-                op = op.toNumber('JSON parameter index is error!');
+                op = op.ToNumber('JSON parameter index is error!');
                 if (op.isError) {
                     return op;
                 }

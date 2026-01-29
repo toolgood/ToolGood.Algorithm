@@ -33,7 +33,7 @@ class Function_SUBSTITUTE extends Function_4 {
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotNumber) {
-            args4.toNumber('Function {0} parameter {1} is error!', 'Substitute', 4);
+            args4.ToNumber('Function {0} parameter {1} is error!', 'Substitute', 4);
             if (args4.isError) {
                 return args4;
             }

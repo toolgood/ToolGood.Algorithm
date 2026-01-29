@@ -9,7 +9,7 @@ class Function_RADIANS extends Function_1 {
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber) {
-            args1.toNumber('Function \'{0}\' parameter is error!', 'Radians');
+            args1.ToNumber('Function \'{0}\' parameter is error!', 'Radians');
             if (args1.isError) {
                 return args1;
             }

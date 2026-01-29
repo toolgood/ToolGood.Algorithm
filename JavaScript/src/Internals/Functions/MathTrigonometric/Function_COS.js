@@ -9,7 +9,7 @@ class Function_COS extends Function_1 {
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber) {
-            args1.toNumber('Function \'{0}\' parameter is error!', 'Cos');
+            args1.ToNumber('Function \'{0}\' parameter is error!', 'Cos');
             if (args1.isError) {
                 return args1;
             }

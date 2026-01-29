@@ -16,7 +16,7 @@ class Function_PERCENTILE extends Function_2 {
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
-            const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Percentile", 2);
+            const converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Percentile", 2);
             if (converted2.isError) return converted2;
             args2 = converted2;
         }

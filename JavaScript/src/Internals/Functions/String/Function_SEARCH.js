@@ -28,7 +28,7 @@ class Function_SEARCH extends Function_3 {
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
-            args3.toNumber('Function {0} parameter {1} is error!', 'Search', 3);
+            args3.ToNumber('Function {0} parameter {1} is error!', 'Search', 3);
             if (args3.isError) {
                 return args3;
             }

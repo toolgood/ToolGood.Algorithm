@@ -9,17 +9,17 @@ class Function_BETAINV extends Function_3 {
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber) {
-            args1.toNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 1);
+            args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 1);
             if (args1.isError) return args1;
         }
         const args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber) {
-            args2.toNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 2);
+            args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 2);
             if (args2.isError) return args2;
         }
         const args3 = this.func3.Evaluate(work, tempParameter);
         if (args3.isNotNumber) {
-            args3.toNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 3);
+            args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 3);
             if (args3.isError) return args3;
         }
         const p = args1.doubleValue;

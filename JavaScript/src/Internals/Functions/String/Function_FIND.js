@@ -27,7 +27,7 @@ class Function_FIND extends Function_3 {
         }
         const count = this.func3.Evaluate(work, tempParameter);
         if (count.isNotNumber) {
-            count.toNumber('Function \'{0}\' parameter {1} is error!', 'Find', 3);
+            count.ToNumber('Function \'{0}\' parameter {1} is error!', 'Find', 3);
             if (count.isError) {
                 return count;
             }

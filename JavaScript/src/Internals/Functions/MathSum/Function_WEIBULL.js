@@ -9,19 +9,19 @@ class Function_WEIBULL extends Function_4 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
-            const converted1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 1);
+            const converted1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Weibull", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
-            const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 2);
+            const converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Weibull", 2);
             if (converted2.isError) return converted2;
             args2 = converted2;
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
-            const converted3 = args3.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 3);
+            const converted3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Weibull", 3);
             if (converted3.isError) return converted3;
             args3 = converted3;
         }

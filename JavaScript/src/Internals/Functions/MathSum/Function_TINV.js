@@ -9,13 +9,13 @@ class Function_TINV extends Function_2 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
-            const converted1 = args1.toNumber("Function '{0}' parameter {1} is error!", "TInv", 1);
+            const converted1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "TInv", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
-            const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "TInv", 2);
+            const converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TInv", 2);
             if (converted2.isError) return converted2;
             args2 = converted2;
         }

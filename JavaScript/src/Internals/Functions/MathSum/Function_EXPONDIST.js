@@ -9,14 +9,14 @@ class Function_EXPONDIST extends Function_3 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
-            args1.toNumber('Function {0} parameter {1} is error!', 'ExponDist', 1);
+            args1.ToNumber('Function {0} parameter {1} is error!', 'ExponDist', 1);
             if (args1.isError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
-            args2.toNumber('Function {0} parameter {1} is error!', 'ExponDist', 2);
+            args2.ToNumber('Function {0} parameter {1} is error!', 'ExponDist', 2);
             if (args2.isError) {
                 return args2;
             }

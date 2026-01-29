@@ -9,7 +9,7 @@ class Function_NORMSDIST extends Function_1 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
-            const converted1 = args1.toNumber("Function '{0}' parameter is error!", "NormSDist");
+            const converted1 = args1.ToNumber("Function '{0}' parameter is error!", "NormSDist");
             if (converted1.isError) return converted1;
             args1 = converted1;
         }

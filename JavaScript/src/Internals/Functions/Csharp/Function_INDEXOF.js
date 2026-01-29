@@ -41,7 +41,7 @@ export class Function_INDEXOF extends Function_4 {
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
-            args3.toNumber('Function \'{0}\' parameter {1} is error!', 'IndexOf', 3);
+            args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'IndexOf', 3);
             if (args3.isError) {
                 return args3;
             }
@@ -53,7 +53,7 @@ export class Function_INDEXOF extends Function_4 {
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotNumber) {
-            args4.toNumber('Function \'{0}\' parameter {1} is error!', 'IndexOf', 4);
+            args4.ToNumber('Function \'{0}\' parameter {1} is error!', 'IndexOf', 4);
             if (args4.isError) {
                 return args4;
             }

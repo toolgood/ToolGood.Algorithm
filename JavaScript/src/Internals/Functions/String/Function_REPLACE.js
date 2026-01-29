@@ -38,14 +38,14 @@ class Function_REPLACE extends Function_4 {
 
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
-            args2.toNumber('Function {0} parameter {1} is error!', 'Replace', 2);
+            args2.ToNumber('Function {0} parameter {1} is error!', 'Replace', 2);
             if (args2.isError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
-            args3.toNumber('Function {0} parameter {1} is error!', 'Replace', 3);
+            args3.ToNumber('Function {0} parameter {1} is error!', 'Replace', 3);
             if (args3.isError) {
                 return args3;
             }

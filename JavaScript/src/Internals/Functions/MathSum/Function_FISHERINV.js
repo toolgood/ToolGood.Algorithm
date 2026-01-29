@@ -9,7 +9,7 @@ class Function_FISHERINV extends Function_1 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
-            args1.toNumber('Function {0} parameter is error!', 'FisherInv');
+            args1.ToNumber('Function {0} parameter is error!', 'FisherInv');
             if (args1.isError) {
                 return args1;
             }

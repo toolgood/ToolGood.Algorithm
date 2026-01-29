@@ -75,7 +75,7 @@ const FunctionUtil = {
                 }
             }
         } else {
-            const o = args.toNumber(null);
+            const o = args.ToNumber(null);
             if (o.isError) {
                 return false;
             }

@@ -16,7 +16,7 @@ class Function_PERCENTRANK extends Function_3 {
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
-            const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2);
+            const converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2);
             if (converted2.isError) return converted2;
             args2 = converted2;
         }
@@ -33,7 +33,7 @@ class Function_PERCENTRANK extends Function_3 {
         if (this.func3 != null) {
             const args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.isNotNumber) {
-                const converted3 = args3.toNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3);
+                const converted3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3);
                 if (converted3.isError) return converted3;
                 args3 = converted3;
             }

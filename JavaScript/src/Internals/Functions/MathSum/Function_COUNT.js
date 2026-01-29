@@ -49,7 +49,7 @@ const FunctionUtil = {
                     return false;
                 }
             } else {
-                const o = item.toNumber(null);
+                const o = item.ToNumber(null);
                 if (o.isError) {
                     return false;
                 }

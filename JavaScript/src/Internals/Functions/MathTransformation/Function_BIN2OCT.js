@@ -22,7 +22,7 @@ class Function_BIN2OCT extends Function_2 {
         if (this.func2 !== null) {
             const args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.isNotNumber) {
-                args2.toNumber('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
+                args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
                 if (args2.isError) {
                     return args2;
                 }
