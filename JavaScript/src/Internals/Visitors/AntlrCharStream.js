@@ -79,6 +79,14 @@ export class AntlrCharStream {
     }
 
     /**
+     * Marks the current position in the stream (lowercase version for ANTLR compatibility).
+     * @returns {number}
+     */
+    mark() {
+        return this.stream.mark();
+    }
+
+    /**
      * Releases the specified marker.
      * @param {number} marker
      */
@@ -87,10 +95,72 @@ export class AntlrCharStream {
     }
 
     /**
+     * Releases the specified marker (lowercase version for ANTLR compatibility).
+     * @param {number} marker
+     */
+    release(marker) {
+        this.stream.release(marker);
+    }
+
+    /**
      * Seeks to the specified position in the stream.
      * @param {number} index
      */
     Seek(index) {
         this.stream.Seek(index);
+    }
+
+    /**
+     * Seeks to the specified position in the stream (lowercase version for ANTLR compatibility).
+     * @param {number} index
+     */
+    seek(index) {
+        this.stream.seek(index);
+    }
+
+    /**
+     * Consumes the current character (lowercase version for ANTLR compatibility).
+     */
+    consume() {
+        this.stream.consume();
+    }
+
+    /**
+     * Gets the text from the specified interval (lowercase version for ANTLR compatibility).
+     * @param {Object} interval
+     * @returns {string}
+     */
+    getText(interval) {
+        return this.stream.getText(interval);
+    }
+
+    /**
+     * Gets the character at the specified offset (lowercase version for ANTLR compatibility).
+     * @param {number} i
+     * @returns {number}
+     */
+    la(i) {
+        return this.LA(i);
+    }
+
+    /**
+     * Gets the current index (lowercase version for ANTLR compatibility).
+     */
+    get index() {
+        return this.Index;
+    }
+
+    /**
+     * Gets the size (lowercase version for ANTLR compatibility).
+     */
+    get size() {
+        return this.Size;
+    }
+
+    /**
+     * Gets the source name (lowercase version for ANTLR compatibility).
+     */
+    get sourceName() {
+        return this.SourceName;
     }
 }

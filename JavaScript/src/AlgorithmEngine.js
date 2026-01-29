@@ -50,7 +50,7 @@ class AlgorithmEngine {
       throw new Error(this.LastError);
     }
     const visitor = new MathFunctionVisitor();
-    return visitor.Visit(context);
+    return visitor.visit(context);
   }
 
   Evaluate(functionObj) {
@@ -131,19 +131,32 @@ class AlgorithmEngine {
 
   TryEvaluate_Int32(exp, def) {
     try {
+      console.log('Parsing expression:', exp);
       const functionObj = this.Parse(exp);
+      console.log('Parsed functionObj:', functionObj);
       const obj = functionObj.Evaluate(this);
+      console.log('Evaluated obj:', obj);
+      console.log('obj.IsNotNumber:', obj.IsNotNumber);
       if (obj.IsNotNumber) {
+        console.log('Converting to number...');
         const converted = obj.ToNumber("It can't be converted to number!");
+        console.log('Converted obj:', converted);
         if (converted.IsError) {
+          console.log('Conversion error:', converted.ErrorMsg);
           this.LastError = converted.ErrorMsg;
           return def;
         }
+        console.log('Returning converted.IntValue:', converted.IntValue);
+        return converted.IntValue;
       }
+      console.log('Returning obj.IntValue:', obj.IntValue);
       return obj.IntValue;
     } catch (ex) {
+      console.log('Exception:', ex.message);
+      console.log('Stack:', ex.stack);
       this.LastError = ex.message + '\n' + ex.stack;
     }
+    console.log('Returning default value:', def);
     return def;
   }
 
