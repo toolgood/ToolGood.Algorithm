@@ -17,7 +17,7 @@
     "formula"
   ],
   "author": "ToolGood",
-  "license": "MIT",
+  "license": "ToolGood Noncommercial License 1.0.0",
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/node": "^7.28.6",
