@@ -14,7 +14,7 @@ class Function_TRIM extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(args1.textValue.trim());
+        return Operand.Create(args1.textValue.trim());
     }
 
     toString(stringBuilder, addBrackets) {

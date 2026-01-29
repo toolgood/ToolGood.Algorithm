@@ -18,7 +18,7 @@ class Function_ACOSH extends Function_1 {
         if (z < 1) {
             return Operand.error('Function \'{0}\' parameter is error!', 'Acosh');
         }
-        return Operand.create(Math.acosh(z));
+        return Operand.Create(Math.acosh(z));
     }
 
     toString(stringBuilder, addBrackets) {

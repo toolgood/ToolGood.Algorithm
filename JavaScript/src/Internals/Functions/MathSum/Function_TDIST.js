@@ -31,7 +31,7 @@ class Function_TDIST extends Function_3 {
         if (degreesFreedom <= 0.0 || tails < 1 || tails > 2) {
             return Operand.Error("Function '{0}' parameter is error!", "TDist");
         }
-        return Operand.create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+        return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
     }
 
     toString(stringBuilder, addBrackets) {

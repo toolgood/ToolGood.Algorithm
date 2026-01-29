@@ -14,7 +14,7 @@ class Function_COS extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(Math.cos(args1.doubleValue));
+        return Operand.Create(Math.cos(args1.doubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

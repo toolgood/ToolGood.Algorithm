@@ -22,7 +22,7 @@ class Function_SUM extends Function_N {
         if (o == false) {
             return Operand.Error("Function '{0}' parameter is error!", "Sum");
         }
-        return Operand.create(list.reduce((sum, val) => sum + val, 0));
+        return Operand.Create(list.reduce((sum, val) => sum + val, 0));
     }
 
     toString(stringBuilder, addBrackets) {

@@ -28,7 +28,7 @@ class Function_MEDIAN extends Function_N {
         }
 
         list.sort((a, b) => a - b); // 升序排序
-        return Operand.create(list[Math.floor(list.length / 2)]);
+        return Operand.Create(list[Math.floor(list.length / 2)]);
     }
 
     toString(stringBuilder, addBrackets) {

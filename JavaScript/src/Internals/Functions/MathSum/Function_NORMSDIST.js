@@ -14,7 +14,7 @@ class Function_NORMSDIST extends Function_1 {
             args1 = converted1;
         }
         const num = args1.doubleValue;
-        return Operand.create(ExcelFunctions.NormSDist(num));
+        return Operand.Create(ExcelFunctions.NormSDist(num));
     }
 
     toString(stringBuilder, addBrackets) {

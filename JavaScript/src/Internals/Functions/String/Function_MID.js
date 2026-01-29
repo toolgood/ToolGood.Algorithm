@@ -30,7 +30,7 @@ class Function_MID extends Function_3 {
         }
         const startIndex = args2.intValue - engine.excelIndex;
         const length = args3.intValue;
-        return Operand.create(args1.textValue.substring(startIndex, startIndex + length));
+        return Operand.Create(args1.textValue.substring(startIndex, startIndex + length));
     }
 
     toString(stringBuilder, addBrackets) {

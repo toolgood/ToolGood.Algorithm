@@ -26,7 +26,7 @@ class Function_PERCENTILE extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1);
         }
         const k = args2.doubleValue;
-        return Operand.create(ExcelFunctions.Percentile(list.map(q => q), k));
+        return Operand.Create(ExcelFunctions.Percentile(list.map(q => q), k));
     }
 
     toString(stringBuilder, addBrackets) {

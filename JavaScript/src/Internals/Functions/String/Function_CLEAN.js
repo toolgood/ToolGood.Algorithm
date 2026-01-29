@@ -33,7 +33,7 @@ class Function_CLEAN extends Function_1 {
                 result += c;
             }
         }
-        return Operand.create(result);
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

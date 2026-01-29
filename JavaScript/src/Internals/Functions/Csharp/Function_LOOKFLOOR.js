@@ -55,7 +55,7 @@ export class Function_LOOKFLOOR extends Function_2 {
                 break;
             }
         }
-        return Operand.create(result);
+        return Operand.Create(result);
     }
     
     /**

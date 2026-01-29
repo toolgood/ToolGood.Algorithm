@@ -50,7 +50,7 @@ export class Function_HMACSHA256 extends Function_3 {
             const encoder = new TextEncoder(encoding);
             const buffer = encoder.encode(args1.textValue);
             const t = await this.getHmacSha256String(buffer, args2.textValue);
-            return Operand.create(t);
+            return Operand.Create(t);
         } catch (ex) {
             return Operand.error('Function \'HmacSHA256\'is error!' + ex.message);
         }

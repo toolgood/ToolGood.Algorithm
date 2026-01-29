@@ -21,7 +21,7 @@ class Function_COUNT extends Function_N {
         if (o === false) {
             return Operand.error('Function \'{0}\' parameter is error!', 'Count');
         }
-        return Operand.create(list.length);
+        return Operand.Create(list.length);
     }
 
     toString(stringBuilder, addBrackets) {

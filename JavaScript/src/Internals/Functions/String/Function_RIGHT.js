@@ -16,10 +16,10 @@ class Function_RIGHT extends Function_2 {
         }
 
         if (args1.textValue.length === 0) {
-            return Operand.create('');
+            return Operand.Create('');
         }
         if (this.func2 === null) {
-            return Operand.create(args1.textValue.substring(args1.textValue.length - 1, args1.textValue.length));
+            return Operand.Create(args1.textValue.substring(args1.textValue.length - 1, args1.textValue.length));
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
@@ -30,7 +30,7 @@ class Function_RIGHT extends Function_2 {
         }
         const length = Math.min(args2.intValue, args1.textValue.length);
         const start = args1.textValue.length - length;
-        return Operand.create(args1.textValue.substring(start, start + length));
+        return Operand.Create(args1.textValue.substring(start, start + length));
     }
 
     toString(stringBuilder, addBrackets) {

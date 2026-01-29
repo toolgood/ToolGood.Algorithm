@@ -14,7 +14,7 @@ class Function_TANH extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(Math.tanh(args1.doubleValue));
+        return Operand.Create(Math.tanh(args1.doubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

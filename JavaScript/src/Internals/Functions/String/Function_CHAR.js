@@ -15,7 +15,7 @@ class Function_CHAR extends Function_1 {
             }
         }
         const c = String.fromCharCode(args1.intValue);
-        return Operand.create(c);
+        return Operand.Create(c);
     }
 
     toString(stringBuilder, addBrackets) {

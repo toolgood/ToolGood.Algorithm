@@ -55,21 +55,21 @@ class Function_GetJsonValue extends Function_2 {
                 if (index < json.length) {
                     const v = json[index];
                     if (typeof v === 'string') {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (typeof v === 'boolean') {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (typeof v === 'number') {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (typeof v === 'object' && v !== null) {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (v === null) {
                         return Operand.createNull();
                     }
-                    return Operand.create(v);
+                    return Operand.Create(v);
                 }
                 return Operand.error('JSON index {0} greater than maximum length!', index);
             } else {
@@ -80,21 +80,21 @@ class Function_GetJsonValue extends Function_2 {
                 const v = json[op.textValue];
                 if (v !== undefined) {
                     if (typeof v === 'string') {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (typeof v === 'boolean') {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (typeof v === 'number') {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (typeof v === 'object' && v !== null) {
-                        return Operand.create(v);
+                        return Operand.Create(v);
                     }
                     if (v === null) {
                         return Operand.createNull();
                     }
-                    return Operand.create(v);
+                    return Operand.Create(v);
                 }
             }
         }

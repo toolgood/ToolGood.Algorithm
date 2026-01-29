@@ -40,7 +40,7 @@ class Function_COVAR extends Function_2 {
             sum += (list1[i] - avg1) * (list2[i] - avg2);
         }
         const val = sum / list1.length;
-        return Operand.create(val);
+        return Operand.Create(val);
     }
 
     toString(stringBuilder, addBrackets) {

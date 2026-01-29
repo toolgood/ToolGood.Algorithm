@@ -39,7 +39,7 @@ class Function_WEIBULL extends Function_4 {
             return Operand.Error("Function '{0}' parameter is error!", "Weibull");
         }
 
-        return Operand.create(ExcelFunctions.Weibull(x, shape, scale, state));
+        return Operand.Create(ExcelFunctions.Weibull(x, shape, scale, state));
     }
 
     toString(stringBuilder, addBrackets) {

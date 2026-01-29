@@ -35,7 +35,7 @@ class Function_FDIST extends Function_3 {
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
             return Operand.error('Function {0} parameter is error!', 'FDist');
         }
-        return Operand.create(this.FDist(x, degreesFreedom, degreesFreedom2));
+        return Operand.Create(this.FDist(x, degreesFreedom, degreesFreedom2));
     }
 
     FDist(x, degreesFreedom1, degreesFreedom2) {

@@ -41,7 +41,7 @@ class Function_COUNTIF extends Function_2 {
                 }
             }
         }
-        return Operand.create(count);
+        return Operand.Create(count);
     }
 
     toString(stringBuilder, addBrackets) {

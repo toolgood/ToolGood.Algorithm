@@ -38,7 +38,7 @@ export class Function_STARTSWITH extends Function_3 {
         const prefix = args2.textValue;
         
         if (this.func3 === null) {
-            return Operand.create(text.startsWith(prefix));
+            return Operand.Create(text.startsWith(prefix));
         }
         
         const args3 = this.func3.Evaluate(engine, tempParameter);
@@ -51,9 +51,9 @@ export class Function_STARTSWITH extends Function_3 {
         
         const ignoreCase = args3.booleanValue;
         if (ignoreCase) {
-            return Operand.create(text.toLowerCase().startsWith(prefix.toLowerCase()));
+            return Operand.Create(text.toLowerCase().startsWith(prefix.toLowerCase()));
         } else {
-            return Operand.create(text.startsWith(prefix));
+            return Operand.Create(text.startsWith(prefix));
         }
     }
     

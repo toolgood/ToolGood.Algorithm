@@ -44,7 +44,7 @@ export class Function_REGEXREPALCE extends Function_3 {
         try {
             const regex = new RegExp(args2.textValue, 'g');
             const b = args1.textValue.replace(regex, args3.textValue);
-            return Operand.create(b);
+            return Operand.Create(b);
         } catch (e) {
             return Operand.error('Function \'RegexReplace\' is error!');
         }

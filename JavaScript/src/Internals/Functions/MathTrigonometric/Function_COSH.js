@@ -14,7 +14,7 @@ class Function_COSH extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(Math.cosh(args1.doubleValue));
+        return Operand.Create(Math.cosh(args1.doubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

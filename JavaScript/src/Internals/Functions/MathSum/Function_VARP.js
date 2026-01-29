@@ -37,7 +37,7 @@ class Function_VARP extends Function_N {
         for (let i = 0; i < list.length; i++) {
             sum += (avg - list[i]) * (avg - list[i]);
         }
-        return Operand.create(sum / list.length);
+        return Operand.Create(sum / list.length);
     }
 
     toString(stringBuilder, addBrackets) {

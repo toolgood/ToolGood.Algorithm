@@ -28,7 +28,7 @@ class Function_NORMINV extends Function_3 {
         const p = args1.doubleValue;
         const avg = args2.doubleValue;
         const STDEV = args3.doubleValue;
-        return Operand.create(ExcelFunctions.NormInv(p, avg, STDEV));
+        return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
     }
 
     toString(stringBuilder, addBrackets) {

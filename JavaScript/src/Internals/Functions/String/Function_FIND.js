@@ -23,7 +23,7 @@ class Function_FIND extends Function_3 {
         }
         if (this.func3 === null) {
             const p = args2.textValue.indexOf(args1.textValue) + work.excelIndex;
-            return Operand.create(p);
+            return Operand.Create(p);
         }
         const count = this.func3.Evaluate(work, tempParameter);
         if (count.isNotNumber) {
@@ -33,7 +33,7 @@ class Function_FIND extends Function_3 {
             }
         }
         const p2 = args2.textValue.indexOf(args1.textValue, count.intValue) + count.intValue + work.excelIndex;
-        return Operand.create(p2);
+        return Operand.Create(p2);
     }
 
     toString(stringBuilder, addBrackets) {

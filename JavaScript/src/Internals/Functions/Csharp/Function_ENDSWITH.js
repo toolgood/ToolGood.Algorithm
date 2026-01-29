@@ -35,7 +35,7 @@ export class Function_ENDSWITH extends Function_3 {
         }
         const text = args1.textValue;
         if (this.func3 === null) {
-            return Operand.create(text.endsWith(args2.textValue));
+            return Operand.Create(text.endsWith(args2.textValue));
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotBoolean) {
@@ -46,9 +46,9 @@ export class Function_ENDSWITH extends Function_3 {
         }
         const ignoreCase = args3.booleanValue;
         if (ignoreCase) {
-            return Operand.create(text.toLowerCase().endsWith(args2.textValue.toLowerCase()));
+            return Operand.Create(text.toLowerCase().endsWith(args2.textValue.toLowerCase()));
         } else {
-            return Operand.create(text.endsWith(args2.textValue));
+            return Operand.Create(text.endsWith(args2.textValue));
         }
     }
     

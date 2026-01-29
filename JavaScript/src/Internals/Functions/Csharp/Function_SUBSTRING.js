@@ -38,7 +38,7 @@ export class Function_SUBSTRING extends Function_3 {
         const startIndex = args2.intValue - engine.excelIndex;
         
         if (this.func3 === null) {
-            return Operand.create(text.substring(startIndex));
+            return Operand.Create(text.substring(startIndex));
         }
         
         const args3 = this.func3.Evaluate(engine, tempParameter);
@@ -51,7 +51,7 @@ export class Function_SUBSTRING extends Function_3 {
         
         const length = args3.intValue;
         const endIndex = startIndex + length;
-        return Operand.create(text.substring(startIndex, endIndex));
+        return Operand.Create(text.substring(startIndex, endIndex));
     }
     
     /**

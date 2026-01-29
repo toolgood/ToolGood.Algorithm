@@ -27,7 +27,7 @@ export class Function_TRIMSTART extends Function_2 {
         }
         
         if (this.func2 === null) {
-            return Operand.create(args1.textValue.trimStart());
+            return Operand.Create(args1.textValue.trimStart());
         }
         
         const args2 = this.func2.Evaluate(engine, tempParameter);
@@ -46,7 +46,7 @@ export class Function_TRIMSTART extends Function_2 {
             index++;
         }
         
-        return Operand.create(text.substring(index));
+        return Operand.Create(text.substring(index));
     }
     
     /**

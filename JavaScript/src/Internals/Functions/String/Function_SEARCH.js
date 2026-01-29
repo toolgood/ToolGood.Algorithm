@@ -24,7 +24,7 @@ class Function_SEARCH extends Function_3 {
 
         if (this.func3 === null) {
             const p = args2.textValue.toLowerCase().indexOf(args1.textValue.toLowerCase()) + engine.excelIndex;
-            return Operand.create(p);
+            return Operand.Create(p);
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
@@ -35,7 +35,7 @@ class Function_SEARCH extends Function_3 {
         }
         const startIndex = args3.intValue - engine.excelIndex;
         const p2 = args2.textValue.toLowerCase().indexOf(args1.textValue.toLowerCase(), startIndex) + engine.excelIndex;
-        return Operand.create(p2);
+        return Operand.Create(p2);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -24,7 +24,7 @@ class Function_JSON extends Function_1 {
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
                 const json = JSON.parse(txt);
-                return Operand.create(json);
+                return Operand.Create(json);
             } catch (e) {
             }
         }

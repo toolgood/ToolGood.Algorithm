@@ -38,7 +38,7 @@ class Function_MODE extends Function_N {
 
         // 按出现次数降序排序，返回出现次数最多的数字
         const sorted = Object.entries(dict).sort((a, b) => b[1] - a[1]);
-        return Operand.create(parseFloat(sorted[0][0]));
+        return Operand.Create(parseFloat(sorted[0][0]));
     }
 
     toString(stringBuilder, addBrackets) {

@@ -21,7 +21,7 @@ class Function_EXACT extends Function_2 {
                 return args2;
             }
         }
-        return Operand.create(args1.textValue === args2.textValue);
+        return Operand.Create(args1.textValue === args2.textValue);
     }
 
     toString(stringBuilder, addBrackets) {

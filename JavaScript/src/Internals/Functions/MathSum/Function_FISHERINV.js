@@ -16,7 +16,7 @@ class Function_FISHERINV extends Function_1 {
         }
         const x = args1.doubleValue;
         const n = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
-        return Operand.create(n);
+        return Operand.Create(n);
     }
 
     toString(stringBuilder, addBrackets) {

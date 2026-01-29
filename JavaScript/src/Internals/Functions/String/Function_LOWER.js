@@ -14,7 +14,7 @@ class Function_LOWER extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(args1.textValue.toLowerCase());
+        return Operand.Create(args1.textValue.toLowerCase());
     }
 
     toString(stringBuilder, addBrackets) {

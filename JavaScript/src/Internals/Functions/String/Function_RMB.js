@@ -14,7 +14,7 @@ class Function_RMB extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(this.F_base_ToChineseRMB(args1.numberValue));
+        return Operand.Create(this.F_base_ToChineseRMB(args1.numberValue));
     }
 
     F_base_ToChineseRMB(x) {

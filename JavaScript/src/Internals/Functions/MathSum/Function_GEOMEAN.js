@@ -33,7 +33,7 @@ class Function_GEOMEAN extends Function_N {
             product *= num;
         }
         const geoMean = Math.pow(product, 1.0 / list.length);
-        return Operand.create(geoMean);
+        return Operand.Create(geoMean);
     }
 
     toString(stringBuilder, addBrackets) {

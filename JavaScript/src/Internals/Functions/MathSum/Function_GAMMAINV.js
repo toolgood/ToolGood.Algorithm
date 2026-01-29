@@ -34,7 +34,7 @@ class Function_GAMMAINV extends Function_3 {
         if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
             return Operand.error('Function {0} parameter is error!', 'GammaInv');
         }
-        return Operand.create(this.GammaInv(probability, alpha, beta));
+        return Operand.Create(this.GammaInv(probability, alpha, beta));
     }
 
     GammaInv(probability, alpha, beta) {

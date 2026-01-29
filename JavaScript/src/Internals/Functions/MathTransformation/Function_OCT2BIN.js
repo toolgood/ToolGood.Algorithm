@@ -28,11 +28,11 @@ class Function_OCT2BIN extends Function_2 {
                 }
             }
             if (num.length > args2.intValue) {
-                return Operand.create(num.padLeft(args2.intValue, '0'));
+                return Operand.Create(num.padLeft(args2.intValue, '0'));
             }
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'OCT2BIN', 2);
         }
-        return Operand.create(num);
+        return Operand.Create(num);
     }
 
     toString(stringBuilder, addBrackets) {

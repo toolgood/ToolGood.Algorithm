@@ -27,7 +27,7 @@ class Function_MAX extends Function_N {
             return Operand.error('Function {0} parameter is error!', 'Max');
         }
 
-        return Operand.create(Math.max(...list));
+        return Operand.Create(Math.max(...list));
     }
 
     toString(stringBuilder, addBrackets) {

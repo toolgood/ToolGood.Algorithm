@@ -40,7 +40,7 @@ class Function_NORMDIST extends Function_4 {
         const avg = args2.doubleValue;
         const STDEV = args3.doubleValue;
         const b = args4.booleanValue;
-        return Operand.create(this.NormDist(num, avg, STDEV, b));
+        return Operand.Create(this.NormDist(num, avg, STDEV, b));
     }
 
     NormDist(x, mean, standardDev, cumulative) {

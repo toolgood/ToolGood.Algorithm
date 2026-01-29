@@ -27,7 +27,7 @@ export class Function_TRIMEND extends Function_2 {
         }
         
         if (this.func2 === null) {
-            return Operand.create(args1.textValue.trimEnd());
+            return Operand.Create(args1.textValue.trimEnd());
         }
         
         const args2 = this.func2.Evaluate(engine, tempParameter);
@@ -46,7 +46,7 @@ export class Function_TRIMEND extends Function_2 {
             index--;
         }
         
-        return Operand.create(text.substring(0, index + 1));
+        return Operand.Create(text.substring(0, index + 1));
     }
     
     /**

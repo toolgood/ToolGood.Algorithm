@@ -14,7 +14,7 @@ class Function_NORMSINV extends Function_1 {
             args1 = converted1;
         }
         const p = args1.doubleValue;
-        return Operand.create(ExcelFunctions.NormSInv(p));
+        return Operand.Create(ExcelFunctions.NormSInv(p));
     }
 
     toString(stringBuilder, addBrackets) {

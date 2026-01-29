@@ -14,7 +14,7 @@ class Function_JIS extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(this.F_base_ToSBC(args1.textValue));
+        return Operand.Create(this.F_base_ToSBC(args1.textValue));
     }
 
     F_base_ToSBC(input) {

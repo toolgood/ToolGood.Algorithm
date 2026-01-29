@@ -14,7 +14,7 @@ class Function_LEN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(args1.textValue.length);
+        return Operand.Create(args1.textValue.length);
     }
 
     toString(stringBuilder, addBrackets) {

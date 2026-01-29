@@ -17,7 +17,7 @@ class Function_PROPER extends Function_1 {
 
         const text = args1.textValue;
         if (text.length === 0) {
-            return Operand.create(text);
+            return Operand.Create(text);
         }
         let needModify = false;
         let isFirst = true;
@@ -47,7 +47,7 @@ class Function_PROPER extends Function_1 {
                 isFirst = false;
             }
         }
-        return Operand.create(chars.join(''));
+        return Operand.Create(chars.join(''));
     }
 
     toString(stringBuilder, addBrackets) {

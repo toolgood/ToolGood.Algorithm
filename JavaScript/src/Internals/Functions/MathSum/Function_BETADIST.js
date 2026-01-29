@@ -29,7 +29,7 @@ class Function_BETADIST extends Function_3 {
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BetaDist');
         }
-        return Operand.create(ExcelFunctions.BetaDist(x, alpha, beta));
+        return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
     }
 
     toString(stringBuilder, addBrackets) {

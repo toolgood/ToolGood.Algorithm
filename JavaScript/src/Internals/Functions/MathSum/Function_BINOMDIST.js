@@ -33,7 +33,7 @@ class Function_BINOMDIST extends Function_4 {
         if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BinomDist');
         }
-        return Operand.create(ExcelFunctions.BinomDist(args1.intValue, n2, n3, args4.booleanValue));
+        return Operand.Create(ExcelFunctions.BinomDist(args1.intValue, n2, n3, args4.booleanValue));
     }
 
     toString(stringBuilder, addBrackets) {

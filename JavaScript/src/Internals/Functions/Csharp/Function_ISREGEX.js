@@ -35,9 +35,9 @@ export class Function_ISREGEX extends Function_2 {
         try {
             const regex = new RegExp(args2.textValue);
             const b = regex.test(args1.textValue);
-            return Operand.create(b);
+            return Operand.Create(b);
         } catch (e) {
-            return Operand.create(false);
+            return Operand.Create(false);
         }
     }
     

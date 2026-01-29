@@ -37,7 +37,7 @@ export class Function_INDEXOF extends Function_4 {
         const text = args1.textValue;
         if (this.func3 === null) {
             const index = text.indexOf(args2.textValue);
-            return Operand.create(index + engine.excelIndex);
+            return Operand.Create(index + engine.excelIndex);
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
@@ -49,7 +49,7 @@ export class Function_INDEXOF extends Function_4 {
         const startIndex = args3.intValue;
         if (this.func4 === null) {
             const index = text.indexOf(args2.textValue, startIndex);
-            return Operand.create(index + engine.excelIndex);
+            return Operand.Create(index + engine.excelIndex);
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotNumber) {
@@ -63,9 +63,9 @@ export class Function_INDEXOF extends Function_4 {
         const substring = text.substring(startIndex, endIndex);
         const index = substring.indexOf(args2.textValue);
         if (index === -1) {
-            return Operand.create(-1 + engine.excelIndex);
+            return Operand.Create(-1 + engine.excelIndex);
         }
-        return Operand.create(index + startIndex + engine.excelIndex);
+        return Operand.Create(index + startIndex + engine.excelIndex);
     }
     
     /**

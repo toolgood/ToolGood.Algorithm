@@ -47,7 +47,7 @@ export class Function_JOIN extends Function_N {
                 return args2;
             }
             
-            return Operand.create(list.join(args2.textValue));
+            return Operand.Create(list.join(args2.textValue));
         } else {
             args1 = args1.toText('Function \'{0}\' parameter {1} is error!', 'Join', 1);
             if (args1.isError) {
@@ -62,7 +62,7 @@ export class Function_JOIN extends Function_N {
                 }
             }
             
-            return Operand.create(list.join(args1.textValue));
+            return Operand.Create(list.join(args1.textValue));
         }
     }
     

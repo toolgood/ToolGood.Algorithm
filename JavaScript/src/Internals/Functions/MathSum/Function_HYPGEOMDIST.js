@@ -42,7 +42,7 @@ class Function_HYPGEOMDIST extends Function_4 {
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
             return Operand.error('Function {0} parameter is error!', 'HypgeomDist');
         }
-        return Operand.create(this.HypgeomDist(k, draws, success, population));
+        return Operand.Create(this.HypgeomDist(k, draws, success, population));
     }
 
     HypgeomDist(k, draws, success, population) {

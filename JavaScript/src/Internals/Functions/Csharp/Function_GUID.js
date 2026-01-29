@@ -17,7 +17,7 @@ export class Function_GUID extends FunctionBase {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        return Operand.create(this.generateGuid());
+        return Operand.Create(this.generateGuid());
     }
     
     /**

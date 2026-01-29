@@ -27,7 +27,7 @@ class Function_MIN extends Function_N {
             return Operand.error('Function {0} parameter is error!', 'Min');
         }
 
-        return Operand.create(Math.min(...list));
+        return Operand.Create(Math.min(...list));
     }
 
     toString(stringBuilder, addBrackets) {

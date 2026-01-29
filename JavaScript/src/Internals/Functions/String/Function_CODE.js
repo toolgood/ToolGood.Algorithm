@@ -18,7 +18,7 @@ class Function_CODE extends Function_1 {
             return Operand.error('Function \'{0}\' parameter is error!', 'CODE');
         }
         const c = args1.textValue[0];
-        return Operand.create(c.charCodeAt(0));
+        return Operand.Create(c.charCodeAt(0));
     }
 
     toString(stringBuilder, addBrackets) {

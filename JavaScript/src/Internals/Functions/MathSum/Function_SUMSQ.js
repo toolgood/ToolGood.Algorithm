@@ -28,7 +28,7 @@ class Function_SUMSQ extends Function_N {
             const a = list[i];
             d += a * a;
         }
-        return Operand.create(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

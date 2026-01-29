@@ -16,7 +16,7 @@ class Function_DEGREES extends Function_1 {
         }
         const z = args1.doubleValue;
         const r = (z / Math.PI * 180);
-        return Operand.create(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -33,7 +33,7 @@ class Function_LOGINV extends Function_3 {
         if (n3 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'LogInv');
         }
-        return Operand.create(this.LogInv(args1.doubleValue, args2.doubleValue, n3));
+        return Operand.Create(this.LogInv(args1.doubleValue, args2.doubleValue, n3));
     }
 
     LogInv(p, mean, stdDev) {

@@ -39,7 +39,7 @@ export class Function_REGEX extends Function_2 {
             if (!b) {
                 return Operand.error('Function \'Regex\'is error!');
             }
-            return Operand.create(b[0]);
+            return Operand.Create(b[0]);
         } catch (e) {
             return Operand.error('Function \'Regex\'is error!');
         }

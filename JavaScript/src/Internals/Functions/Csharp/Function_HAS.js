@@ -31,7 +31,7 @@ export class Function_HAS extends Function_2 {
         }
         
         if (args1.isArrayJson) {
-            return Operand.create(args1.containsKey(args2));
+            return Operand.Create(args1.containsKey(args2));
         } else if (args1.isJson) {
             const json = args1.jsonValue;
             if (Array.isArray(json)) {

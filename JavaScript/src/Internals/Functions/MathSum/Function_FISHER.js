@@ -19,7 +19,7 @@ class Function_FISHER extends Function_1 {
             return Operand.error('Function {0} parameter is error!', 'Fisher');
         }
         const n = 0.5 * Math.log((1 + x) / (1 - x));
-        return Operand.create(n);
+        return Operand.Create(n);
     }
 
     toString(stringBuilder, addBrackets) {

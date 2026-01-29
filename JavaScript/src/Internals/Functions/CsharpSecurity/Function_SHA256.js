@@ -42,7 +42,7 @@ export class Function_SHA256 extends Function_2 {
             const encoder = new TextEncoder(encoding);
             const buffer = encoder.encode(args1.textValue);
             const t = await this.getSha256String(buffer);
-            return Operand.create(t);
+            return Operand.Create(t);
         } catch (ex) {
             return Operand.error('Function \'SHA256\'is error!' + ex.message);
         }

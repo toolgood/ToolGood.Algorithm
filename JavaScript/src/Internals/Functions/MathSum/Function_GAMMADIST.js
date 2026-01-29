@@ -42,7 +42,7 @@ class Function_GAMMADIST extends Function_4 {
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'GammaDist');
         }
-        return Operand.create(this.GammaDist(x, alpha, beta, cumulative));
+        return Operand.Create(this.GammaDist(x, alpha, beta, cumulative));
     }
 
     GammaDist(x, alpha, beta, cumulative) {

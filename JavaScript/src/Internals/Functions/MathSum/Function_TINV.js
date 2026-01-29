@@ -24,7 +24,7 @@ class Function_TINV extends Function_2 {
         if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
             return Operand.Error("Function '{0}' parameter is error!", "TInv");
         }
-        return Operand.create(ExcelFunctions.TInv(p, degreesFreedom));
+        return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
     }
 
     toString(stringBuilder, addBrackets) {

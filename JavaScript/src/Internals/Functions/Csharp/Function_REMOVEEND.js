@@ -57,7 +57,7 @@ export class Function_REMOVEEND extends Function_3 {
         }
         
         if (endsWith) {
-            return Operand.create(text.substring(0, text.length - suffix.length));
+            return Operand.Create(text.substring(0, text.length - suffix.length));
         }
         return args1;
     }

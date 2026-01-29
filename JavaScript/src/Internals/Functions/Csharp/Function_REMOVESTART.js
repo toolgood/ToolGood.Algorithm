@@ -57,7 +57,7 @@ export class Function_REMOVESTART extends Function_3 {
         }
         
         if (startsWith) {
-            return Operand.create(text.substring(prefix.length));
+            return Operand.Create(text.substring(prefix.length));
         }
         return args1;
     }

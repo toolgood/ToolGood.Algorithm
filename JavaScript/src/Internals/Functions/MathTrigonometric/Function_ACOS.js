@@ -18,7 +18,7 @@ class Function_ACOS extends Function_1 {
         if (x < -1 || x > 1) {
             return Operand.error('Function \'{0}\' parameter is error!', 'Acos');
         }
-        return Operand.create(Math.acos(x));
+        return Operand.Create(Math.acos(x));
     }
 
     toString(stringBuilder, addBrackets) {

@@ -33,7 +33,7 @@ class Function_REPLACE extends Function_4 {
 
             const oldStr = args22.textValue;
             const newstr = args32.textValue;
-            return Operand.create(oldtext.replace(new RegExp(oldStr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newstr));
+            return Operand.Create(oldtext.replace(new RegExp(oldStr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newstr));
         }
 
         const args2 = this.func2.Evaluate(engine, tempParameter);
@@ -72,7 +72,7 @@ class Function_REPLACE extends Function_4 {
                 result += oldtext[i];
             }
         }
-        return Operand.create(result);
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

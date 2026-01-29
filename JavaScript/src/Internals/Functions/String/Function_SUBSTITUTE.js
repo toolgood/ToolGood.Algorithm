@@ -29,7 +29,7 @@ class Function_SUBSTITUTE extends Function_4 {
             }
         }
         if (this.func4 === null) {
-            return Operand.create(args1.textValue.replace(new RegExp(args2.textValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.textValue));
+            return Operand.Create(args1.textValue.replace(new RegExp(args2.textValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.textValue));
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotNumber) {
@@ -69,7 +69,7 @@ class Function_SUBSTITUTE extends Function_4 {
                 result += text[i];
             }
         }
-        return Operand.create(result);
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

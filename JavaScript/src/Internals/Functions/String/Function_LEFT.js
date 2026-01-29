@@ -15,10 +15,10 @@ class Function_LEFT extends Function_2 {
             }
         }
         if (args1.textValue.length === 0) {
-            return Operand.create('');
+            return Operand.Create('');
         }
         if (this.func2 === null) {
-            return Operand.create(args1.textValue.substring(0, 1));
+            return Operand.Create(args1.textValue.substring(0, 1));
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
@@ -28,7 +28,7 @@ class Function_LEFT extends Function_2 {
             }
         }
         const length = Math.min(args2.intValue, args1.textValue.length);
-        return Operand.create(args1.textValue.substring(0, length));
+        return Operand.Create(args1.textValue.substring(0, length));
     }
 
     toString(stringBuilder, addBrackets) {

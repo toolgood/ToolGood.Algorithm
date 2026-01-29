@@ -18,7 +18,7 @@ class Function_COT extends Function_1 {
         if (d === 0) {
             return Operand.error('Function \'{0}\') div 0 error!', 'Cot');
         }
-        return Operand.create(1.0 / d);
+        return Operand.Create(1.0 / d);
     }
 
     toString(stringBuilder, addBrackets) {

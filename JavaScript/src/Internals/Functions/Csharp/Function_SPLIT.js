@@ -36,7 +36,7 @@ export class Function_SPLIT extends Function_2 {
         const text = args1.textValue;
         const separator = args2.textValue;
         const result = text.split(separator);
-        return Operand.create(result);
+        return Operand.Create(result);
     }
     
     /**

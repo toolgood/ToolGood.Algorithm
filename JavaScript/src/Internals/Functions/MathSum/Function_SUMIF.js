@@ -56,7 +56,7 @@ class Function_SUMIF extends Function_3 {
                 }
             }
         }
-        return Operand.create(sum);
+        return Operand.Create(sum);
     }
 
     toString(stringBuilder, addBrackets) {

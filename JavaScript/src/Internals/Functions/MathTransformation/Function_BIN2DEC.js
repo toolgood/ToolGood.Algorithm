@@ -19,7 +19,7 @@ class Function_BIN2DEC extends Function_1 {
             return Operand.error('Function \'{0}\' parameter is error!', 'BIN2DEC');
         }
         const num = parseInt(args1.textValue, 2);
-        return Operand.create(num);
+        return Operand.Create(num);
     }
 
     toString(stringBuilder, addBrackets) {

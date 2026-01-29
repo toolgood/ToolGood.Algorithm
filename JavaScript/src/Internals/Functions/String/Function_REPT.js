@@ -29,13 +29,13 @@ class Function_REPT extends Function_2 {
             return Operand.error('Function {0} parameter {1} is error!', 'Rept', 2);
         }
         if (length === 0) {
-            return Operand.create('');
+            return Operand.Create('');
         }
         let result = '';
         for (let i = 0; i < length; i++) {
             result += newtext;
         }
-        return Operand.create(result);
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -35,7 +35,7 @@ class Function_NEGBINOMDIST extends Function_3 {
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
             return Operand.error('Function {0} parameter is error!', 'NegbinomDist');
         }
-        return Operand.create(this.NegbinomDist(k, r, p));
+        return Operand.Create(this.NegbinomDist(k, r, p));
     }
 
     NegbinomDist(k, r, p) {

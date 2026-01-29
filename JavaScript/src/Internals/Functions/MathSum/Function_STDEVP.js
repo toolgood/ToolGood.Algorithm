@@ -31,7 +31,7 @@ class Function_STDEVP extends Function_N {
         for (let i = 0; i < list.length; i++) {
             sum += (list[i] - avg) * (list[i] - avg);
         }
-        return Operand.create(Math.sqrt(sum / list.length));
+        return Operand.Create(Math.sqrt(sum / list.length));
     }
 
     toString(stringBuilder, addBrackets) {

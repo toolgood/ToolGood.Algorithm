@@ -37,7 +37,7 @@ class Function_HARMEAN extends Function_N {
         if (sum === 0) {
             return Operand.error('Function {0} parameter is error!', 'HarMean');
         }
-        return Operand.create(list.length / sum);
+        return Operand.Create(list.length / sum);
     }
 
     toString(stringBuilder, addBrackets) {

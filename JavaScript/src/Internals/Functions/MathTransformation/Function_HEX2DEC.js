@@ -19,7 +19,7 @@ class Function_HEX2DEC extends Function_1 {
             return Operand.error('Function \'{0}\' parameter is error!', 'HEX2DEC');
         }
         const num = parseInt(args1.textValue, 16);
-        return Operand.create(num);
+        return Operand.Create(num);
     }
 
     toString(stringBuilder, addBrackets) {

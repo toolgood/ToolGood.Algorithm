@@ -18,7 +18,7 @@ class Function_ASIN extends Function_1 {
         if (x < -1 || x > 1) {
             return Operand.error('Function \'{0}\' parameter is error!', 'Asin');
         }
-        return Operand.create(Math.asin(x));
+        return Operand.Create(Math.asin(x));
     }
 
     toString(stringBuilder, addBrackets) {

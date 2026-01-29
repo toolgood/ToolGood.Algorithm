@@ -33,7 +33,7 @@ class Function_LARGE extends Function_2 {
         if (k < 1 - engine.excelIndex || k > list.length - engine.excelIndex) {
             return Operand.error('Function {0} parameter {1} is error!', 'Large', 2);
         }
-        return Operand.create(list[k - engine.excelIndex]);
+        return Operand.Create(list[k - engine.excelIndex]);
     }
 
     toString(stringBuilder, addBrackets) {

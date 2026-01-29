@@ -15,7 +15,7 @@ class Function_Array extends Function_N {
             }
             args.push(aa);
         }
-        return Operand.create(args);
+        return Operand.Create(args);
     }
 
     toString(stringBuilder, addBrackets) {

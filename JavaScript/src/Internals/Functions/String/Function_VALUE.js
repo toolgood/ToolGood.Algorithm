@@ -24,7 +24,7 @@ class Function_VALUE extends Function_1 {
         const textValue = args1.textValue;
         const parsedValue = parseFloat(textValue);
         if (!isNaN(parsedValue)) {
-            return Operand.create(parsedValue);
+            return Operand.Create(parsedValue);
         }
         return Operand.error('Function {0} parameter is error!', 'Value');
     }

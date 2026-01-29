@@ -11,7 +11,7 @@ class Function_T extends Function_1 {
         if (args1.isText) {
             return args1;
         }
-        return Operand.create('');
+        return Operand.Create('');
     }
 
     toString(stringBuilder, addBrackets) {

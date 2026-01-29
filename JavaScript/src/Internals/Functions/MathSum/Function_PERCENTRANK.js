@@ -39,7 +39,7 @@ class Function_PERCENTRANK extends Function_3 {
             }
             d = args3.intValue;
         }
-        return Operand.create(Math.round(v * Math.pow(10, d)) / Math.pow(10, d));
+        return Operand.Create(Math.round(v * Math.pow(10, d)) / Math.pow(10, d));
     }
 
     toString(stringBuilder, addBrackets) {

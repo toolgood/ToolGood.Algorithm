@@ -18,7 +18,7 @@ class Function_ATANH extends Function_1 {
         if (x >= 1 || x <= -1) {
             return Operand.error('Function \'{0}\' parameter is error!', 'Atanh');
         }
-        return Operand.create(Math.atanh(x));
+        return Operand.Create(Math.atanh(x));
     }
 
     toString(stringBuilder, addBrackets) {

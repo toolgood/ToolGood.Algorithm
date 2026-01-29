@@ -31,7 +31,7 @@ class Function_DEVSQ extends Function_N {
             const diff = list[i] - avg;
             sum += diff * diff;
         }
-        return Operand.create(sum);
+        return Operand.Create(sum);
     }
 
     toString(stringBuilder, addBrackets) {

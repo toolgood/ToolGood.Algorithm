@@ -14,7 +14,7 @@ class Function_TAN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(Math.tan(args1.doubleValue));
+        return Operand.Create(Math.tan(args1.doubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

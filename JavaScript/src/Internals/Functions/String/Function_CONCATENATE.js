@@ -8,7 +8,7 @@ class Function_CONCATENATE extends Function_N {
 
     Evaluate(work, tempParameter) {
         if (this.funcs.length === 0) {
-            return Operand.create('');
+            return Operand.Create('');
         }
         if (this.funcs.length === 1) {
             const a = this.funcs[0].Evaluate(work, tempParameter);
@@ -31,7 +31,7 @@ class Function_CONCATENATE extends Function_N {
             }
             result += a.textValue;
         }
-        return Operand.create(result);
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

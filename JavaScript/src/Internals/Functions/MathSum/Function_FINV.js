@@ -34,7 +34,7 @@ class Function_FINV extends Function_3 {
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
             return Operand.error('Function {0} parameter is error!', 'FInv');
         }
-        return Operand.create(this.FInv(p, degreesFreedom, degreesFreedom2));
+        return Operand.Create(this.FInv(p, degreesFreedom, degreesFreedom2));
     }
 
     FInv(p, degreesFreedom1, degreesFreedom2) {

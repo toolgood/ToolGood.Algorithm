@@ -35,7 +35,7 @@ class Function_VAR extends Function_N {
             sum += list[i] * list[i];
             sum2 += list[i];
         }
-        return Operand.create((list.length * sum - sum2 * sum2) / list.length / (list.length - 1));
+        return Operand.Create((list.length * sum - sum2 * sum2) / list.length / (list.length - 1));
     }
 
     toString(stringBuilder, addBrackets) {

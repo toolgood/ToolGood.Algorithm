@@ -33,7 +33,7 @@ class Function_EXPONDIST extends Function_3 {
         if (n1 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'ExponDist');
         }
-        return Operand.create(this.ExponDist(n1, args2.doubleValue, args3.booleanValue));
+        return Operand.Create(this.ExponDist(n1, args2.doubleValue, args3.booleanValue));
     }
 
     ExponDist(x, lambda, cumulative) {

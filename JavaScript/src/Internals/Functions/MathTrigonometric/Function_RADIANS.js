@@ -15,7 +15,7 @@ class Function_RADIANS extends Function_1 {
             }
         }
         const r = args1.doubleValue / 180 * Math.PI;
-        return Operand.create(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

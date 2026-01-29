@@ -31,7 +31,7 @@ class Function_POISSON extends Function_3 {
         if (!(lambda > 0.0)) {
             return Operand.Error("Function '{0}' parameter is error!", "Poisson");
         }
-        return Operand.create(ExcelFunctions.Poisson(k, lambda, state));
+        return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
     }
 
     toString(stringBuilder, addBrackets) {

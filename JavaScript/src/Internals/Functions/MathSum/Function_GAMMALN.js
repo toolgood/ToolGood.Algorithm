@@ -14,7 +14,7 @@ class Function_GAMMALN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.create(this.GAMMALN(args1.doubleValue));
+        return Operand.Create(this.GAMMALN(args1.doubleValue));
     }
 
     GAMMALN(x) {

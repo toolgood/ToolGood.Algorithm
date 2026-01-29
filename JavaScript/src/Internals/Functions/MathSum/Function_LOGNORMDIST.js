@@ -33,7 +33,7 @@ class Function_LOGNORMDIST extends Function_3 {
         if (n3 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'LognormDist');
         }
-        return Operand.create(this.LognormDist(args1.doubleValue, args2.doubleValue, n3));
+        return Operand.Create(this.LognormDist(args1.doubleValue, args2.doubleValue, n3));
     }
 
     LognormDist(x, mean, stdDev) {
