@@ -6,7 +6,7 @@ class Function_NOW extends FunctionBase {
         if (engine.UseLocalTime) {
             return engine.createOperand(new MyDate(new Date()));
         } else {
-            return engine.createOperand(new MyDate(new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours(), new Date().getMinutes(), new Date().getSeconds())));
+            return engine.createOperand(new MyDate(new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours(), new Date().getMinutes(), new Date().getSeconds()))));
         }
     }
 
