@@ -1,5 +1,5 @@
 import { FunctionBase } from '../FunctionBase';
-import { Operand } from '../../../../Operand';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_GUID

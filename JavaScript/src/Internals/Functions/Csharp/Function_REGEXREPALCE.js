@@ -1,5 +1,5 @@
 import { Function_3 } from '../Function_3';
-import { Operand } from '../../../../Operand';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_REGEXREPALCE
@@ -46,7 +46,7 @@ export class Function_REGEXREPALCE extends Function_3 {
             const b = args1.textValue.replace(regex, args3.textValue);
             return Operand.create(b);
         } catch (e) {
-            return Operand.error('Function \'RegexReplace\'' is error!');
+            return Operand.error('Function \'RegexReplace\' is error!');
         }
     }
     

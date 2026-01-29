@@ -1,5 +1,5 @@
 import { Function_3 } from '../Function_3';
-import { Operand } from '../../Operand';
+import { Operand } from '../../../Operand.js';
 
 class Function_GAMMAINV extends Function_3 {
     constructor(func1, func2, func3) {

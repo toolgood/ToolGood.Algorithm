@@ -44,7 +44,7 @@ export class Function_SHA512 extends Function_2 {
             const t = await this.getSha512String(buffer);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'SHA512\'' is error!' + ex.message);
+            return Operand.error('Function \'SHA512\'is error!' + ex.message);
         }
     }
     

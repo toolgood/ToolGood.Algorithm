@@ -44,7 +44,7 @@ export class Function_CRC32 extends Function_2 {
             const t = this.getCrc32String(buffer);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'CRC32\'' is error!' + ex.message);
+            return Operand.error('Function \'CRC32\'is error!' + ex.message);
         }
     }
     

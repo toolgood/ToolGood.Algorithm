@@ -52,7 +52,7 @@ export class Function_HMACSHA256 extends Function_3 {
             const t = await this.getHmacSha256String(buffer, args2.textValue);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'HmacSHA256\'' is error!' + ex.message);
+            return Operand.error('Function \'HmacSHA256\'is error!' + ex.message);
         }
     }
     

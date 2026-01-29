@@ -1,6 +1,6 @@
 import { Function_N } from '../Function_N';
 import { FunctionUtil } from '../FunctionUtil';
-import { Operand } from '../../../../Operand';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_JOIN

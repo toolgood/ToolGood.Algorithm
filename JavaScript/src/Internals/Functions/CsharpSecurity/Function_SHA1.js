@@ -44,7 +44,7 @@ export class Function_SHA1 extends Function_2 {
             const t = await this.getSha1String(buffer);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'SHA1\'' is error!' + ex.message);
+            return Operand.error('Function \'SHA1\'is error!' + ex.message);
         }
     }
     

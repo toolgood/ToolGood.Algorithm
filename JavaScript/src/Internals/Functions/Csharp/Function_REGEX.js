@@ -1,5 +1,5 @@
 import { Function_2 } from '../Function_2';
-import { Operand } from '../../../../Operand';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_REGEX
@@ -37,11 +37,11 @@ export class Function_REGEX extends Function_2 {
             const regex = new RegExp(args2.textValue);
             const b = regex.exec(args1.textValue);
             if (!b) {
-                return Operand.error('Function \'Regex\'' is error!');
+                return Operand.error('Function \'Regex\'is error!');
             }
             return Operand.create(b[0]);
         } catch (e) {
-            return Operand.error('Function \'Regex\'' is error!');
+            return Operand.error('Function \'Regex\'is error!');
         }
     }
     

@@ -11,7 +11,7 @@ class Function_AND_N extends Function_N {
     let b = true;
     for (let item of this._args) {
       let a = item.Evaluate(engine);
-      if (a.IsNotBoolean) { a = a.ToBoolean('Function \'{0}\'' + ' parameter ' + '{1}' + ' is error!', 'AND', index++); if (a.IsError) { return a; } }
+      if (a.IsNotBoolean) { a = a.ToBoolean('Function \'{0}\' parameter {1} is error!', 'AND', index++); if (a.IsError) { return a; } }
       if (a.BooleanValue === false) b = false;
     }
     return b ? Operand.True : Operand.False;

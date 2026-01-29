@@ -44,7 +44,7 @@ export class Function_SHA256 extends Function_2 {
             const t = await this.getSha256String(buffer);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'SHA256\'' is error!' + ex.message);
+            return Operand.error('Function \'SHA256\'is error!' + ex.message);
         }
     }
     

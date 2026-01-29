@@ -52,7 +52,7 @@ export class Function_HMACSHA1 extends Function_3 {
             const t = await this.getHmacSha1String(buffer, args2.textValue);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'HmacSHA1\'' is error!' + ex.message);
+            return Operand.error('Function \'HmacSHA1\'is error!' + ex.message);
         }
     }
     

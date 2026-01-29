@@ -52,7 +52,7 @@ export class Function_HMACMD5 extends Function_3 {
             const t = await this.getHmacMd5String(buffer, args2.textValue);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'HmacMD5\'' is error!' + ex.message);
+            return Operand.error('Function \'HmacMD5\'is error!' + ex.message);
         }
     }
     

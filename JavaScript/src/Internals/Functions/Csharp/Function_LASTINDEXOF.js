@@ -1,5 +1,5 @@
 import { Function_4 } from '../Function_4';
-import { Operand } from '../../../../Operand';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_LASTINDEXOF

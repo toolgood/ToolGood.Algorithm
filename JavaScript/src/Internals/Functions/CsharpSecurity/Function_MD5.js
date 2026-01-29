@@ -44,7 +44,7 @@ export class Function_MD5 extends Function_2 {
             const t = await this.getMd5String(buffer);
             return Operand.create(t);
         } catch (ex) {
-            return Operand.error('Function \'MD5\'' is error!' + ex.message);
+            return Operand.error('Function \'MD5\'is error!' + ex.message);
         }
     }
     

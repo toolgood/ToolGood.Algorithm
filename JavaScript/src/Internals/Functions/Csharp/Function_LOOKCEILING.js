@@ -1,6 +1,6 @@
 import { Function_2 } from '../Function_2';
 import { FunctionUtil } from '../FunctionUtil';
-import { Operand } from '../../../../Operand';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_LOOKCEILING

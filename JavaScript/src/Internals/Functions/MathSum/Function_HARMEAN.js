@@ -1,5 +1,5 @@
 import { Function_N } from '../Function_N';
-import { Operand } from '../../Operand';
+import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil';
 
 class Function_HARMEAN extends Function_N {
