@@ -22,13 +22,13 @@ class Function_PARAMETER extends FunctionBase {
             }
             txt = args1.TextValue;
         }
-        if (tempParameter !== null) {
+        if (tempParameter &&tempParameter !== null) {
             let r = tempParameter(engine, txt);
             if (r !== null) {
                 return r;
             }
         }
-        return engine.getParameter(txt);
+        return engine.GetParameter(txt);
     }
 
     toString(stringBuilder, addBrackets) {

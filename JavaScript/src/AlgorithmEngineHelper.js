@@ -257,7 +257,7 @@ export class AlgorithmEngineHelper {
                 "HAS", "HASKEY",
                 "CONTAINS", "CONTAINSKEY",
                 "HASVALUE", "CONTAINSVALUE",
-                "PARAM", "PARAMETER", "GETPARAMETER",
+                "PARAM", "PARAMETER", "GetParameter",
                 "ERROR"
             ]);
         }

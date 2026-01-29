@@ -20,7 +20,7 @@ class Function_PARAM extends Function_2 {
                 return r;
             }
         }
-        let result = engine.getParameter(args1.TextValue);
+        let result = engine.GetParameter(args1.TextValue);
         if (result.IsError) {
             if (this.func2 !== null) {
                 return this.func2.Evaluate(engine, tempParameter);

@@ -2236,8 +2236,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPARAMETER_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_PARAMETER(args1);
+        let node = context.PARAMETER();
+		return new Function_PARAMETER(node.getText());
     }
 
     /**
