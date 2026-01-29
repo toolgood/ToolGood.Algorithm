@@ -1918,6 +1918,348 @@ class MathFunctionVisitor extends mathVisitor  {
     }
 
     /**
+     * 访问HMACSHA1函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitHMACSHA1_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_HMACSHA1(args1, args2);
+    }
+
+    /**
+     * 访问HMACSHA256函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitHMACSHA256_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_HMACSHA256(args1, args2);
+    }
+
+    /**
+     * 访问HMACSHA512函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitHMACSHA512_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_HMACSHA512(args1, args2);
+    }
+
+    /**
+     * 访问STARTSWITH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSTARTSWITH_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_STARTSWITH(args1, args2);
+    }
+
+    /**
+     * 访问ENDSWITH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitENDSWITH_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_ENDSWITH(args1, args2);
+    }
+
+    /**
+     * 访问INDEXOF函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitINDEXOF_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_INDEXOF(args1, args2);
+    }
+
+    /**
+     * 访问LASTINDEXOF函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitLASTINDEXOF_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_LASTINDEXOF(args1, args2);
+    }
+
+    /**
+     * 访问SPLIT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSPLIT_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_SPLIT(args1, args2);
+    }
+
+    /**
+     * 访问SUBSTRING函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSUBSTRING_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        if (exprs.length === 2) return new Function_SUBSTRING(args1, args2, null);
+        const args3 = exprs[2].accept(this);
+        return new Function_SUBSTRING(args1, args2, args3);
+    }
+
+    /**
+     * 访问TRIMSTART函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitTRIMSTART_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_TRIMSTART(args1);
+    }
+
+    /**
+     * 访问TRIMEND函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitTRIMEND_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_TRIMEND(args1);
+    }
+
+    /**
+     * 访问REMOVESTART函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitREMOVESTART_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_REMOVESTART(args1, args2);
+    }
+
+    /**
+     * 访问REMOVEEND函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitREMOVEEND_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_REMOVEEND(args1, args2);
+    }
+
+    /**
+     * 访问JOIN函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitJOIN_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_JOIN(args1, args2);
+    }
+
+    /**
+     * 访问LOOKCEILING函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitLOOKCEILING_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_LOOKCEILING(args1, args2);
+    }
+
+    /**
+     * 访问LOOKFLOOR函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitLOOKFLOOR_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_LOOKFLOOR(args1, args2);
+    }
+
+    /**
+     * 访问HAS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitHAS_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_HAS(args1, args2);
+    }
+
+    /**
+     * 访问HASVALUE函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitHASVALUE_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_HASVALUE(args1);
+    }
+
+    /**
+     * 访问ISNULLOREMPTY函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitISNULLOREMPTY_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_ISNULLOREMPTY(args1);
+    }
+
+    /**
+     * 访问ISNULLORWHITESPACE函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitISNULLORWHITESPACE_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_ISNULLORWHITESPACE(args1);
+    }
+
+    /**
+     * 访问Array函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitArray_fun(context) {
+        const exprs = context.expr();
+        const args = new Array(exprs.length);
+        for (let i = 0; i < exprs.length; i++) {
+            args[i] = exprs[i].accept(this);
+        }
+        return new Function_Array(args);
+    }
+
+    /**
+     * 访问JSON函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitJSON_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_JSON(args1);
+    }
+
+    /**
+     * 访问ArrayJson函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitArrayJson_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_ArrayJson(args1);
+    }
+
+    /**
+     * 访问ArrayJsonItem函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitArrayJsonItem_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_ArrayJsonItem(args1, args2);
+    }
+
+    /**
+     * 访问GetJsonValue函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitGetJsonValue_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_GetJsonValue(args1, args2);
+    }
+
+    /**
+     * 访问NUM函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitNUM_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_NUM(args1);
+    }
+
+    /**
+     * 访问PARAM函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitPARAM_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_PARAM(args1);
+    }
+
+    /**
+     * 访问PARAMETER函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitPARAMETER_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_PARAMETER(args1);
+    }
+
+    /**
+     * 访问DiyFunction函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDiyFunction_fun(context) {
+        const exprs = context.expr();
+        const args1 = exprs[0].accept(this);
+        const args2 = exprs[1].accept(this);
+        return new Function_DiyFunction(args1, args2);
+    }
+
+    /**
+     * 访问ERROR函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitERROR_fun(context) {
+        const args1 = context.expr().accept(this);
+        return new Function_ERROR(args1);
+    }
+
+    /**
      * 访问QUARTILE函数节点
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
@@ -2690,25 +3032,6 @@ class MathFunctionVisitor extends mathVisitor  {
         if (exprs.length === 2) return new Function_HMACMD5(args1, args2, null);
         const args3 = exprs[2].accept(this);
         return new Function_HMACMD5(args1, args2, args3);
-    }
-
-    /**
-     * 访问方法
-     * @param {Object} ctx - 上下文
-     * @returns {FunctionBase}
-     */
-    visit(ctx) {
-        return ctx.accept(this);
-    }
-
-    /**
-     * 访问数字字面量节点
-     * @param {Object} ctx - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNum(ctx) {
-        const value = parseFloat(ctx.getText());
-        return new Function_Value(Operand.Create(value));
     }
 }
 
