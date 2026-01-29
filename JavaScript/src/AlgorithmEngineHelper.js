@@ -280,12 +280,14 @@ export class AlgorithmEngineHelper {
             throw new Error("Parameter exp invalid !");
         }
         const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream = new AntlrCharStream(new InputStream(exp));
-        const lexer = new mathLexer(stream);
+        const stream =new AntlrCharStream(exp);
+        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
+        lexer.addErrorListener(antlrErrorTextWriter);
         const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens);
+        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
+        parser.addErrorListener(antlrErrorTextWriter);
 
         const context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
@@ -337,12 +339,14 @@ export class AlgorithmEngineHelper {
             throw new Error("Parameter exp invalid !");
         }
         const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream = new AntlrCharStream(new InputStream(exp));
-        const lexer = new mathLexer(stream);
+        const stream =new AntlrCharStream(exp);
+        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
+        lexer.addErrorListener(antlrErrorTextWriter);
         const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens);
+        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
+        parser.addErrorListener(antlrErrorTextWriter);
 
         const context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
@@ -358,12 +362,14 @@ export class AlgorithmEngineHelper {
     static CheckFormula(exp) {
         if (!exp || exp.trim() === '') { return false; }
         const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream = new AntlrCharStream(new InputStream(exp));
-        const lexer = new mathLexer(stream);
+        const stream =new AntlrCharStream(exp);
+        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
+        lexer.addErrorListener(antlrErrorTextWriter);
         const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens);
+        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
+        parser.addErrorListener(antlrErrorTextWriter);
 
         const context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
@@ -387,12 +393,14 @@ export class AlgorithmEngineHelper {
         }
         try {
             const antlrErrorTextWriter = new AntlrErrorTextWriter();
-            const stream = new AntlrCharStream(new InputStream(condition));
-            const lexer = new mathLexer(stream);
+            const stream =new AntlrCharStream(condition);
+            const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
+            lexer.addErrorListener(antlrErrorTextWriter);
             const tokens = new CommonTokenStream(lexer);
-            const parser = new mathParser(tokens);
+            const parser = new mathParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
+            parser.addErrorListener(antlrErrorTextWriter);
 
             const context = parser.prog();
             if (antlrErrorTextWriter.IsError) {
@@ -438,12 +446,14 @@ export class AlgorithmEngineHelper {
         }
         try {
             const antlrErrorTextWriter = new AntlrErrorTextWriter();
-            const stream = new AntlrCharStream(new InputStream(exp));
-            const lexer = new mathLexer(stream);
+            const stream =new AntlrCharStream(exp);
+            const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
+            lexer.addErrorListener(antlrErrorTextWriter);
             const tokens = new CommonTokenStream(lexer);
-            const parser = new mathParser(tokens);
+            const parser = new mathParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
+            parser.addErrorListener(antlrErrorTextWriter);
 
             const context = parser.prog();
             if (antlrErrorTextWriter.IsError) {
