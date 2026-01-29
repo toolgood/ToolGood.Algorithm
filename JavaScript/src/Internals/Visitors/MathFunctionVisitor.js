@@ -1,7 +1,7 @@
 /**
- * MathFunctionVisitor - 数学函数访问者
+ * MathFunctionvisitor - 数学函数访问者
  */
-
+import mathVisitor from '../../math/mathVisitor.js';
 import { Function_Mul } from '../Functions/Operator/Function_Mul.js';
 import { Function_Div } from '../Functions/Operator/Function_Div.js';
 import { Function_Mod } from '../Functions/Operator/Function_Mod.js';
@@ -239,13 +239,13 @@ import { Function_ERROR } from '../Functions/Value/Function_ERROR.js';
 import { CharUtil } from './CharUtil.js';
 import { Operand } from '../../Operand.js';
 
-class MathFunctionVisitor {
+class MathFunctionVisitor extends mathVisitor  {
     /**
      * 访问程序节点
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitProg(context) {
+    visitProg(context) {
         return context.expr().accept(this);
     }
 
@@ -254,7 +254,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMulDiv_fun(context) {
+    visitMulDiv_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -272,7 +272,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitAddSub_fun(context) {
+    visitAddSub_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -290,7 +290,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitJudge_fun(context) {
+    visitJudge_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -315,7 +315,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitAndOr_fun(context) {
+    visitAndOr_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -331,7 +331,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitIF_fun(context) {
+    visitIF_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -347,7 +347,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitIFERROR_fun(context) {
+    visitIFERROR_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -360,7 +360,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISNUMBER_fun(context) {
+    visitISNUMBER_fun(context) {
         const args1 = this.visit(context.expr());
         return new Function_ISNUMBER(args1);
     }
@@ -370,7 +370,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISTEXT_fun(context) {
+    visitISTEXT_fun(context) {
         const args1 = this.visit(context.expr());
         return new Function_ISTEXT(args1);
     }
@@ -380,7 +380,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISERROR_fun(context) {
+    visitISERROR_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 2) {
@@ -395,7 +395,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISNULL_fun(context) {
+    visitISNULL_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 2) {
@@ -410,7 +410,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISNULLORERROR_fun(context) {
+    visitISNULLORERROR_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 2) {
@@ -425,7 +425,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISEVEN_fun(context) {
+    visitISEVEN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ISEVEN(args1);
     }
@@ -435,7 +435,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISLOGICAL_fun(context) {
+    visitISLOGICAL_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ISLOGICAL(args1);
     }
@@ -445,7 +445,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISODD_fun(context) {
+    visitISODD_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ISODD(args1);
     }
@@ -455,7 +455,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISNONTEXT_fun(context) {
+    visitISNONTEXT_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ISNONTEXT(args1);
     }
@@ -465,7 +465,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitAND_fun(context) {
+    visitAND_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -479,7 +479,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitOR_fun(context) {
+    visitOR_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -493,7 +493,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNOT_fun(context) {
+    visitNOT_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_NOT(args1);
     }
@@ -503,7 +503,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTRUE_fun(context) {
+    visitTRUE_fun(context) {
         return new Function_Value(Operand.True);
     }
 
@@ -512,7 +512,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFALSE_fun(context) {
+    visitFALSE_fun(context) {
         return new Function_Value(Operand.False);
     }
 
@@ -521,7 +521,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitE_fun(context) {
+    visitE_fun(context) {
         return new Function_Value(Operand.Create(Math.E), "E");
     }
 
@@ -530,7 +530,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPI_fun(context) {
+    visitPI_fun(context) {
         return new Function_Value(Operand.Create(Math.PI), "PI");
     }
 
@@ -539,7 +539,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitABS_fun(context) {
+    visitABS_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ABS(args1);
     }
@@ -549,7 +549,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitQUOTIENT_fun(context) {
+    visitQUOTIENT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -561,7 +561,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMOD_fun(context) {
+    visitMOD_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -573,7 +573,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSIGN_fun(context) {
+    visitSIGN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_SIGN(args1);
     }
@@ -583,7 +583,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSQRT_fun(context) {
+    visitSQRT_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_SQRT(args1);
     }
@@ -593,7 +593,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTRUNC_fun(context) {
+    visitTRUNC_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_TRUNC(args1);
     }
@@ -603,7 +603,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitINT_fun(context) {
+    visitINT_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_TRUNC(args1);
     }
@@ -613,7 +613,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitGCD_fun(context) {
+    visitGCD_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -627,7 +627,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLCM_fun(context) {
+    visitLCM_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -641,7 +641,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOMBIN_fun(context) {
+    visitCOMBIN_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -653,7 +653,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPERMUT_fun(context) {
+    visitPERMUT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -665,7 +665,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPercentage_fun(context) {
+    visitPercentage_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_Percentage(args1);
     }
@@ -675,7 +675,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDEGREES_fun(context) {
+    visitDEGREES_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_DEGREES(args1);
     }
@@ -685,7 +685,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitRADIANS_fun(context) {
+    visitRADIANS_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_RADIANS(args1);
     }
@@ -695,7 +695,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOS_fun(context) {
+    visitCOS_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_COS(args1);
     }
@@ -705,7 +705,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOSH_fun(context) {
+    visitCOSH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_COSH(args1);
     }
@@ -715,7 +715,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSIN_fun(context) {
+    visitSIN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_SIN(args1);
     }
@@ -725,7 +725,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSINH_fun(context) {
+    visitSINH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_SINH(args1);
     }
@@ -735,7 +735,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTAN_fun(context) {
+    visitTAN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_TAN(args1);
     }
@@ -745,7 +745,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTANH_fun(context) {
+    visitTANH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_TANH(args1);
     }
@@ -755,7 +755,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitACOS_fun(context) {
+    visitACOS_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ACOS(args1);
     }
@@ -765,7 +765,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitACOSH_fun(context) {
+    visitACOSH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ACOSH(args1);
     }
@@ -775,7 +775,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitASIN_fun(context) {
+    visitASIN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ASIN(args1);
     }
@@ -785,7 +785,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitASINH_fun(context) {
+    visitASINH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ASINH(args1);
     }
@@ -795,7 +795,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitATAN_fun(context) {
+    visitATAN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ATAN(args1);
     }
@@ -805,7 +805,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitATANH_fun(context) {
+    visitATANH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ATANH(args1);
     }
@@ -815,7 +815,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitATAN2_fun(context) {
+    visitATAN2_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -827,7 +827,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFIXED_fun(context) {
+    visitFIXED_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_FIXED(args1, null, null);
@@ -842,7 +842,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBIN2OCT_fun(context) {
+    visitBIN2OCT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BIN2OCT(args1, null);
@@ -855,7 +855,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBIN2DEC_fun(context) {
+    visitBIN2DEC_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_BIN2DEC(args1);
     }
@@ -865,7 +865,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBIN2HEX_fun(context) {
+    visitBIN2HEX_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BIN2HEX(args1, null);
@@ -878,7 +878,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitOCT2BIN_fun(context) {
+    visitOCT2BIN_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_OCT2BIN(args1, null);
@@ -891,7 +891,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitOCT2DEC_fun(context) {
+    visitOCT2DEC_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_OCT2DEC(args1);
     }
@@ -901,7 +901,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitOCT2HEX_fun(context) {
+    visitOCT2HEX_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_OCT2HEX(args1, null);
@@ -914,7 +914,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDEC2BIN_fun(context) {
+    visitDEC2BIN_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_DEC2BIN(args1, null);
@@ -927,7 +927,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDEC2OCT_fun(context) {
+    visitDEC2OCT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_DEC2OCT(args1, null);
@@ -940,7 +940,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDEC2HEX_fun(context) {
+    visitDEC2HEX_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_DEC2HEX(args1, null);
@@ -953,7 +953,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHEX2BIN_fun(context) {
+    visitHEX2BIN_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_HEX2BIN(args1, null);
@@ -966,7 +966,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHEX2OCT_fun(context) {
+    visitHEX2OCT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_HEX2OCT(args1, null);
@@ -979,7 +979,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHEX2DEC_fun(context) {
+    visitHEX2DEC_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_HEX2DEC(args1);
     }
@@ -989,7 +989,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitROUND_fun(context) {
+    visitROUND_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) {
@@ -1004,7 +1004,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitROUNDDOWN_fun(context) {
+    visitROUNDDOWN_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1016,7 +1016,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitROUNDUP_fun(context) {
+    visitROUNDUP_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1028,7 +1028,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCEILING_fun(context) {
+    visitCEILING_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1)
@@ -1042,7 +1042,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFLOOR_fun(context) {
+    visitFLOOR_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1)
@@ -1057,7 +1057,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitEVEN_fun(context) {
+    visitEVEN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_EVEN(args1);
     }
@@ -1067,7 +1067,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitODD_fun(context) {
+    visitODD_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ODD(args1);
     }
@@ -1077,7 +1077,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMROUND_fun(context) {
+    visitMROUND_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1089,7 +1089,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitRAND_fun(context) {
+    visitRAND_fun(context) {
         return new Function_RAND();
     }
 
@@ -1098,7 +1098,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitRANDBETWEEN_fun(context) {
+    visitRANDBETWEEN_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1110,7 +1110,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOVARIANCES_fun(context) {
+    visitCOVARIANCES_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1122,7 +1122,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOVAR_fun(context) {
+    visitCOVAR_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1134,7 +1134,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFACT_fun(context) {
+    visitFACT_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_FACT(args1);
     }
@@ -1144,7 +1144,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFACTDOUBLE_fun(context) {
+    visitFACTDOUBLE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_FACTDOUBLE(args1);
     }
@@ -1154,7 +1154,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPOWER_fun(context) {
+    visitPOWER_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1166,7 +1166,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitEXP_fun(context) {
+    visitEXP_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_EXP(args1);
     }
@@ -1176,7 +1176,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLN_fun(context) {
+    visitLN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_LN(args1);
     }
@@ -1186,7 +1186,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLOG_fun(context) {
+    visitLOG_fun(context) {
         const exprs = context.expr();
 
         const args1 = exprs[0].accept(this);
@@ -1202,7 +1202,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLOG10_fun(context) {
+    visitLOG10_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_LOG(args1, null);
     }
@@ -1212,7 +1212,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMULTINOMIAL_fun(context) {
+    visitMULTINOMIAL_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1226,7 +1226,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPRODUCT_fun(context) {
+    visitPRODUCT_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1240,7 +1240,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSQRTPI_fun(context) {
+    visitSQRTPI_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_SQRTPI(args1);
     }
@@ -1250,7 +1250,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSUMSQ_fun(context) {
+    visitSUMSQ_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1264,7 +1264,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitASC_fun(context) {
+    visitASC_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_ASC(args1);
     }
@@ -1274,7 +1274,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitJIS_fun(context) {
+    visitJIS_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_JIS(args1);
     }
@@ -1284,7 +1284,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCHAR_fun(context) {
+    visitCHAR_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_CHAR(args1);
     }
@@ -1294,7 +1294,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCLEAN_fun(context) {
+    visitCLEAN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_CLEAN(args1);
     }
@@ -1304,7 +1304,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCODE_fun(context) {
+    visitCODE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_CODE(args1);
     }
@@ -1314,7 +1314,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCONCATENATE_fun(context) {
+    visitCONCATENATE_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1328,7 +1328,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitEXACT_fun(context) {
+    visitEXACT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1340,7 +1340,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFIND_fun(context) {
+    visitFIND_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1357,7 +1357,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLEFT_fun(context) {
+    visitLEFT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) {
@@ -1371,7 +1371,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLEN_fun(context) {
+    visitLEN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_LEN(args1);
     }
@@ -1381,7 +1381,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLOWER_fun(context) {
+    visitLOWER_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_LOWER(args1);
     }
@@ -1391,7 +1391,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMID_fun(context) {
+    visitMID_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1404,7 +1404,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPROPER_fun(context) {
+    visitPROPER_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_PROPER(args1);
     }
@@ -1414,7 +1414,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitREPLACE_fun(context) {
+    visitREPLACE_fun(context) {
         const exprs = context.expr();
 
         const args1 = exprs[0].accept(this);
@@ -1434,7 +1434,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitREPT_fun(context) {
+    visitREPT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1446,7 +1446,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitRIGHT_fun(context) {
+    visitRIGHT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
 
@@ -1462,7 +1462,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitRMB_fun(context) {
+    visitRMB_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_RMB(args1);
     }
@@ -1472,7 +1472,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSEARCH_fun(context) {
+    visitSEARCH_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1489,7 +1489,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSUBSTITUTE_fun(context) {
+    visitSUBSTITUTE_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1506,7 +1506,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitT_fun(context) {
+    visitT_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_T(args1);
     }
@@ -1516,7 +1516,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTEXT_fun(context) {
+    visitTEXT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1528,7 +1528,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTRIM_fun(context) {
+    visitTRIM_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_TRIM(args1);
     }
@@ -1538,7 +1538,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitUPPER_fun(context) {
+    visitUPPER_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_UPPER(args1);
     }
@@ -1548,7 +1548,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitVALUE_fun(context) {
+    visitVALUE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_VALUE(args1);
     }
@@ -1558,7 +1558,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDATEVALUE_fun(context) {
+    visitDATEVALUE_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1572,7 +1572,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTIMESTAMP_fun(context) {
+    visitTIMESTAMP_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_TIMESTAMP(args1, null);
@@ -1585,7 +1585,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTIMEVALUE_fun(context) {
+    visitTIMEVALUE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_TIMEVALUE(args1);
     }
@@ -1595,7 +1595,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDATE_fun(context) {
+    visitDATE_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1609,7 +1609,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTIME_fun(context) {
+    visitTIME_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1623,7 +1623,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNOW_fun(context) {
+    visitNOW_fun(context) {
         return new Function_NOW();
     }
 
@@ -1632,7 +1632,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTODAY_fun(context) {
+    visitTODAY_fun(context) {
         return new Function_TODAY();
     }
 
@@ -1641,7 +1641,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitYEAR_fun(context) {
+    visitYEAR_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_YEAR(args1);
     }
@@ -1651,7 +1651,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMONTH_fun(context) {
+    visitMONTH_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_MONTH(args1);
     }
@@ -1661,7 +1661,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDAY_fun(context) {
+    visitDAY_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_DAY(args1);
     }
@@ -1671,7 +1671,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHOUR_fun(context) {
+    visitHOUR_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_HOUR(args1);
     }
@@ -1681,7 +1681,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMINUTE_fun(context) {
+    visitMINUTE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_MINUTE(args1);
     }
@@ -1691,7 +1691,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSECOND_fun(context) {
+    visitSECOND_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_SECOND(args1);
     }
@@ -1701,7 +1701,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitWEEKDAY_fun(context) {
+    visitWEEKDAY_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_WEEKDAY(args1, null);
@@ -1714,7 +1714,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDATEDIF_fun(context) {
+    visitDATEDIF_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1727,7 +1727,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDAYS360_fun(context) {
+    visitDAYS360_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1743,7 +1743,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitEDATE_fun(context) {
+    visitEDATE_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1755,7 +1755,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitEOMONTH_fun(context) {
+    visitEOMONTH_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1767,7 +1767,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNETWORKDAYS_fun(context) {
+    visitNETWORKDAYS_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1781,7 +1781,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitWORKDAY_fun(context) {
+    visitWORKDAY_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1795,7 +1795,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitWEEKNUM_fun(context) {
+    visitWEEKNUM_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_WEEKNUM(args1, null);
@@ -1808,7 +1808,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitADDMONTHS_fun(context) {
+    visitADDMONTHS_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1820,7 +1820,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitADDYEARS_fun(context) {
+    visitADDYEARS_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1832,7 +1832,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitADDSECONDS_fun(context) {
+    visitADDSECONDS_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1844,7 +1844,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitADDMINUTES_fun(context) {
+    visitADDMINUTES_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1856,7 +1856,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitADDDAYS_fun(context) {
+    visitADDDAYS_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1868,7 +1868,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitADDHOURS_fun(context) {
+    visitADDHOURS_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1880,7 +1880,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMAX_fun(context) {
+    visitMAX_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1894,7 +1894,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMEDIAN_fun(context) {
+    visitMEDIAN_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1908,7 +1908,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMIN_fun(context) {
+    visitMIN_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1922,7 +1922,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitQUARTILE_fun(context) {
+    visitQUARTILE_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1934,7 +1934,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMODE_fun(context) {
+    visitMODE_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -1948,7 +1948,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLARGE_fun(context) {
+    visitLARGE_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1960,7 +1960,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSMALL_fun(context) {
+    visitSMALL_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1972,7 +1972,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPERCENTILE_fun(context) {
+    visitPERCENTILE_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1984,7 +1984,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPERCENTRANK_fun(context) {
+    visitPERCENTRANK_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -1998,7 +1998,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitAVERAGE_fun(context) {
+    visitAVERAGE_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2012,7 +2012,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitAVERAGEIF_fun(context) {
+    visitAVERAGEIF_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2026,7 +2026,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitGEOMEAN_fun(context) {
+    visitGEOMEAN_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2040,7 +2040,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHARMEAN_fun(context) {
+    visitHARMEAN_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2054,7 +2054,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOUNT_fun(context) {
+    visitCOUNT_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2068,7 +2068,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCOUNTIF_fun(context) {
+    visitCOUNTIF_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2080,7 +2080,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSUM_fun(context) {
+    visitSUM_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2094,7 +2094,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSUMIF_fun(context) {
+    visitSUMIF_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2108,7 +2108,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitAVEDEV_fun(context) {
+    visitAVEDEV_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2122,7 +2122,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSTDEV_fun(context) {
+    visitSTDEV_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2136,7 +2136,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSTDEVP_fun(context) {
+    visitSTDEVP_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2150,7 +2150,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitDEVSQ_fun(context) {
+    visitDEVSQ_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2164,7 +2164,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitVAR_fun(context) {
+    visitVAR_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2178,7 +2178,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitVARP_fun(context) {
+    visitVARP_fun(context) {
         const exprs = context.expr();
         const args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -2192,7 +2192,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNORMDIST_fun(context) {
+    visitNORMDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2206,7 +2206,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNORMINV_fun(context) {
+    visitNORMINV_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2219,7 +2219,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNORMSDIST_fun(context) {
+    visitNORMSDIST_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_NORMSDIST(args1);
     }
@@ -2229,7 +2229,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNORMSINV_fun(context) {
+    visitNORMSINV_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_NORMSINV(args1);
     }
@@ -2239,7 +2239,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBETADIST_fun(context) {
+    visitBETADIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2252,7 +2252,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBETAINV_fun(context) {
+    visitBETAINV_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2265,7 +2265,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBINOMDIST_fun(context) {
+    visitBINOMDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2279,7 +2279,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitEXPONDIST_fun(context) {
+    visitEXPONDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2292,7 +2292,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFDIST_fun(context) {
+    visitFDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2305,7 +2305,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFINV_fun(context) {
+    visitFINV_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2318,7 +2318,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFISHER_fun(context) {
+    visitFISHER_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_FISHER(args1);
     }
@@ -2328,7 +2328,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitFISHERINV_fun(context) {
+    visitFISHERINV_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_FISHERINV(args1);
     }
@@ -2338,7 +2338,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitGAMMADIST_fun(context) {
+    visitGAMMADIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2352,7 +2352,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitGAMMAINV_fun(context) {
+    visitGAMMAINV_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2365,7 +2365,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitGAMMALN_fun(context) {
+    visitGAMMALN_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_GAMMALN(args1);
     }
@@ -2375,7 +2375,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHYPGEOMDIST_fun(context) {
+    visitHYPGEOMDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2389,7 +2389,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLOGINV_fun(context) {
+    visitLOGINV_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2402,7 +2402,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitLOGNORMDIST_fun(context) {
+    visitLOGNORMDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2415,7 +2415,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitNEGBINOMDIST_fun(context) {
+    visitNEGBINOMDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2428,7 +2428,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitPOISSON_fun(context) {
+    visitPOISSON_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2441,7 +2441,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTDIST_fun(context) {
+    visitTDIST_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2454,7 +2454,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTINV_fun(context) {
+    visitTINV_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2466,7 +2466,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitWEIBULL_fun(context) {
+    visitWEIBULL_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2480,7 +2480,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitURLENCODE_fun(context) {
+    visitURLENCODE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_URLENCODE(args1);
     }
@@ -2490,7 +2490,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitURLDECODE_fun(context) {
+    visitURLDECODE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_URLDECODE(args1);
     }
@@ -2500,7 +2500,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHTMLENCODE_fun(context) {
+    visitHTMLENCODE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_HTMLENCODE(args1);
     }
@@ -2510,7 +2510,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHTMLDECODE_fun(context) {
+    visitHTMLDECODE_fun(context) {
         const args1 = context.expr().accept(this);
         return new Function_HTMLDECODE(args1);
     }
@@ -2520,7 +2520,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBASE64TOTEXT_fun(context) {
+    visitBASE64TOTEXT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BASE64TOTEXT(args1, null);
@@ -2533,7 +2533,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitBASE64URLTOTEXT_fun(context) {
+    visitBASE64URLTOTEXT_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BASE64URLTOTEXT(args1, null);
@@ -2546,7 +2546,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTEXTTOBASE64_fun(context) {
+    visitTEXTTOBASE64_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_TEXTTOBASE64(args1, null);
@@ -2559,7 +2559,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitTEXTTOBASE64URL_fun(context) {
+    visitTEXTTOBASE64URL_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_TEXTTOBASE64URL(args1, null);
@@ -2572,7 +2572,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitREGEX_fun(context) {
+    visitREGEX_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2584,7 +2584,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitREGEXREPALCE_fun(context) {
+    visitREGEXREPALCE_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2597,7 +2597,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitISREGEX_fun(context) {
+    visitISREGEX_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2609,7 +2609,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitGUID_fun(context) {
+    visitGUID_fun(context) {
         return new Function_GUID();
     }
 
@@ -2618,7 +2618,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitMD5_fun(context) {
+    visitMD5_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_MD5(args1, null);
@@ -2631,7 +2631,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSHA1_fun(context) {
+    visitSHA1_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_SHA1(args1, null);
@@ -2644,7 +2644,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSHA256_fun(context) {
+    visitSHA256_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_SHA256(args1, null);
@@ -2657,7 +2657,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitSHA512_fun(context) {
+    visitSHA512_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_SHA512(args1, null);
@@ -2670,7 +2670,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitCRC32_fun(context) {
+    visitCRC32_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_CRC32(args1, null);
@@ -2683,7 +2683,7 @@ class MathFunctionVisitor {
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
      */
-    VisitHMACMD5_fun(context) {
+    visitHMACMD5_fun(context) {
         const exprs = context.expr();
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
@@ -2699,6 +2699,16 @@ class MathFunctionVisitor {
      */
     visit(ctx) {
         return ctx.accept(this);
+    }
+
+    /**
+     * 访问数字字面量节点
+     * @param {Object} ctx - 上下文
+     * @returns {FunctionBase}
+     */
+    visitNum(ctx) {
+        const value = parseFloat(ctx.getText());
+        return new Function_Value(Operand.Create(value));
     }
 }
 

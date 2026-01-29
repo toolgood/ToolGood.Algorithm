@@ -8,9 +8,9 @@ class Function_Add extends Function_2 {
   }
 
   Evaluate(engine) {
-    const args1 = this.func1.Evaluate(engine);
+    let args1 = this.func1.Evaluate(engine);
     if (args1.IsError) { return args1; }
-    const args2 = this.func2.Evaluate(engine);
+    let args2 = this.func2.Evaluate(engine);
     if (args2.IsError) { return args2; }
 
     if (args1.IsNumber && args2.IsNumber) {

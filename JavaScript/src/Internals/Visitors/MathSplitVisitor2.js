@@ -1,21 +1,21 @@
 /**
- * MathSplitVisitor2.js
+ * MathSplitvisitor2.js
  * 访问者类，用于解析数学表达式并构建计算树
  */
-
+import mathVisitor from '../../math/mathVisitor.js';
 import { CharUtil } from './CharUtil.js';
 import { CalculateTreeType } from '../../Enums/CalculateTreeType.js';
 
-export class MathSplitVisitor2 {
-    VisitProg(context) {
+export class MathSplitVisitor2 extends mathVisitor  {
+    visitProg(context) {
         return context.expr().accept(this);
     }
 
-    VisitBracket_fun(context) {
+    visitBracket_fun(context) {
         return context.expr().accept(this);
     }
 
-    VisitMulDiv_fun(context) {
+    visitMulDiv_fun(context) {
         const tree = {
             nodes: []
         };
@@ -36,7 +36,7 @@ export class MathSplitVisitor2 {
         return tree;
     }
 
-    VisitAddSub_fun(context) {
+    visitAddSub_fun(context) {
         const tree = {
             nodes: []
         };
@@ -57,7 +57,7 @@ export class MathSplitVisitor2 {
         return tree;
     }
 
-    Visit_fun(context) {
+    visit_fun(context) {
         const tree = {
             start: context.start.startIndex,
             end: context.stop.stopIndex,
@@ -66,939 +66,939 @@ export class MathSplitVisitor2 {
         return tree;
     }
 
-    VisitABS_fun(context) {
-        return this.Visit_fun(context);
+    visitABS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitACOSH_fun(context) {
-        return this.Visit_fun(context);
+    visitACOSH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitACOS_fun(context) {
-        return this.Visit_fun(context);
+    visitACOS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitADDDAYS_fun(context) {
-        return this.Visit_fun(context);
+    visitADDDAYS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitADDHOURS_fun(context) {
-        return this.Visit_fun(context);
+    visitADDHOURS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitADDMINUTES_fun(context) {
-        return this.Visit_fun(context);
+    visitADDMINUTES_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitADDMONTHS_fun(context) {
-        return this.Visit_fun(context);
+    visitADDMONTHS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitADDSECONDS_fun(context) {
-        return this.Visit_fun(context);
+    visitADDSECONDS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitADDYEARS_fun(context) {
-        return this.Visit_fun(context);
+    visitADDYEARS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitAndOr_fun(context) {
-        return this.Visit_fun(context);
+    visitAndOr_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitAND_fun(context) {
-        return this.Visit_fun(context);
+    visitAND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitArrayJson(context) {
-        return this.Visit_fun(context);
+    visitArrayJson(context) {
+        return this.visit_fun(context);
     }
 
-    VisitArrayJson_fun(context) {
-        return this.Visit_fun(context);
+    visitArrayJson_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitArray_fun(context) {
-        return this.Visit_fun(context);
+    visitArray_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitASC_fun(context) {
-        return this.Visit_fun(context);
+    visitASC_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitASINH_fun(context) {
-        return this.Visit_fun(context);
+    visitASINH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitASIN_fun(context) {
-        return this.Visit_fun(context);
+    visitASIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitATAN2_fun(context) {
-        return this.Visit_fun(context);
+    visitATAN2_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitATANH_fun(context) {
-        return this.Visit_fun(context);
+    visitATANH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitATAN_fun(context) {
-        return this.Visit_fun(context);
+    visitATAN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitAVEDEV_fun(context) {
-        return this.Visit_fun(context);
+    visitAVEDEV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitAVERAGEIF_fun(context) {
-        return this.Visit_fun(context);
+    visitAVERAGEIF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitAVERAGE_fun(context) {
-        return this.Visit_fun(context);
+    visitAVERAGE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBASE64TOTEXT_fun(context) {
-        return this.Visit_fun(context);
+    visitBASE64TOTEXT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBASE64URLTOTEXT_fun(context) {
-        return this.Visit_fun(context);
+    visitBASE64URLTOTEXT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBETADIST_fun(context) {
-        return this.Visit_fun(context);
+    visitBETADIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBETAINV_fun(context) {
-        return this.Visit_fun(context);
+    visitBETAINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBIN2DEC_fun(context) {
-        return this.Visit_fun(context);
+    visitBIN2DEC_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBIN2HEX_fun(context) {
-        return this.Visit_fun(context);
+    visitBIN2HEX_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBIN2OCT_fun(context) {
-        return this.Visit_fun(context);
+    visitBIN2OCT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitBINOMDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitBINOMDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCEILING_fun(context) {
-        return this.Visit_fun(context);
+    visitCEILING_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCHAR_fun(context) {
-        return this.Visit_fun(context);
+    visitCHAR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCLEAN_fun(context) {
-        return this.Visit_fun(context);
+    visitCLEAN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCODE_fun(context) {
-        return this.Visit_fun(context);
+    visitCODE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOMBIN_fun(context) {
-        return this.Visit_fun(context);
+    visitCOMBIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCONCATENATE_fun(context) {
-        return this.Visit_fun(context);
+    visitCONCATENATE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOSH_fun(context) {
-        return this.Visit_fun(context);
+    visitCOSH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOS_fun(context) {
-        return this.Visit_fun(context);
+    visitCOS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOUNTIF_fun(context) {
-        return this.Visit_fun(context);
+    visitCOUNTIF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOUNT_fun(context) {
-        return this.Visit_fun(context);
+    visitCOUNT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOVARIANCES_fun(context) {
-        return this.Visit_fun(context);
+    visitCOVARIANCES_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCOVAR_fun(context) {
-        return this.Visit_fun(context);
+    visitCOVAR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitCRC32_fun(context) {
-        return this.Visit_fun(context);
+    visitCRC32_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDATEDIF_fun(context) {
-        return this.Visit_fun(context);
+    visitDATEDIF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDATEVALUE_fun(context) {
-        return this.Visit_fun(context);
+    visitDATEVALUE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDATE_fun(context) {
-        return this.Visit_fun(context);
+    visitDATE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDAYS360_fun(context) {
-        return this.Visit_fun(context);
+    visitDAYS360_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDAY_fun(context) {
-        return this.Visit_fun(context);
+    visitDAY_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDEC2BIN_fun(context) {
-        return this.Visit_fun(context);
+    visitDEC2BIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDEC2HEX_fun(context) {
-        return this.Visit_fun(context);
+    visitDEC2HEX_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDEC2OCT_fun(context) {
-        return this.Visit_fun(context);
+    visitDEC2OCT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDEGREES_fun(context) {
-        return this.Visit_fun(context);
+    visitDEGREES_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDEVSQ_fun(context) {
-        return this.Visit_fun(context);
+    visitDEVSQ_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitDiyFunction_fun(context) {
-        return this.Visit_fun(context);
+    visitDiyFunction_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitEDATE_fun(context) {
-        return this.Visit_fun(context);
+    visitEDATE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitENDSWITH_fun(context) {
-        return this.Visit_fun(context);
+    visitENDSWITH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitEOMONTH_fun(context) {
-        return this.Visit_fun(context);
+    visitEOMONTH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitERROR_fun(context) {
-        return this.Visit_fun(context);
+    visitERROR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitEVEN_fun(context) {
-        return this.Visit_fun(context);
+    visitEVEN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitEXACT_fun(context) {
-        return this.Visit_fun(context);
+    visitEXACT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitEXPONDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitEXPONDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitEXP_fun(context) {
-        return this.Visit_fun(context);
+    visitEXP_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitE_fun(context) {
-        return this.Visit_fun(context);
+    visitE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFACTDOUBLE_fun(context) {
-        return this.Visit_fun(context);
+    visitFACTDOUBLE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFACT_fun(context) {
-        return this.Visit_fun(context);
+    visitFACT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFALSE_fun(context) {
-        return this.Visit_fun(context);
+    visitFALSE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitFDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFIND_fun(context) {
-        return this.Visit_fun(context);
+    visitFIND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFINV_fun(context) {
-        return this.Visit_fun(context);
+    visitFINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFISHERINV_fun(context) {
-        return this.Visit_fun(context);
+    visitFISHERINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFISHER_fun(context) {
-        return this.Visit_fun(context);
+    visitFISHER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFIXED_fun(context) {
-        return this.Visit_fun(context);
+    visitFIXED_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitFLOOR_fun(context) {
-        return this.Visit_fun(context);
+    visitFLOOR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGAMMADIST_fun(context) {
-        return this.Visit_fun(context);
+    visitGAMMADIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGAMMAINV_fun(context) {
-        return this.Visit_fun(context);
+    visitGAMMAINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGAMMALN_fun(context) {
-        return this.Visit_fun(context);
+    visitGAMMALN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGCD_fun(context) {
-        return this.Visit_fun(context);
+    visitGCD_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGEOMEAN_fun(context) {
-        return this.Visit_fun(context);
+    visitGEOMEAN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGetJsonValue_fun(context) {
-        return this.Visit_fun(context);
+    visitGetJsonValue_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitGUID_fun(context) {
-        return this.Visit_fun(context);
+    visitGUID_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHARMEAN_fun(context) {
-        return this.Visit_fun(context);
+    visitHARMEAN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHASVALUE_fun(context) {
-        return this.Visit_fun(context);
+    visitHASVALUE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHAS_fun(context) {
-        return this.Visit_fun(context);
+    visitHAS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHEX2BIN_fun(context) {
-        return this.Visit_fun(context);
+    visitHEX2BIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHEX2DEC_fun(context) {
-        return this.Visit_fun(context);
+    visitHEX2DEC_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHEX2OCT_fun(context) {
-        return this.Visit_fun(context);
+    visitHEX2OCT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHMACMD5_fun(context) {
-        return this.Visit_fun(context);
+    visitHMACMD5_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHMACSHA1_fun(context) {
-        return this.Visit_fun(context);
+    visitHMACSHA1_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHMACSHA256_fun(context) {
-        return this.Visit_fun(context);
+    visitHMACSHA256_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHMACSHA512_fun(context) {
-        return this.Visit_fun(context);
+    visitHMACSHA512_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHOUR_fun(context) {
-        return this.Visit_fun(context);
+    visitHOUR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHTMLDECODE_fun(context) {
-        return this.Visit_fun(context);
+    visitHTMLDECODE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHTMLENCODE_fun(context) {
-        return this.Visit_fun(context);
+    visitHTMLENCODE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitHYPGEOMDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitHYPGEOMDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitIFERROR_fun(context) {
-        return this.Visit_fun(context);
+    visitIFERROR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitIF_fun(context) {
-        return this.Visit_fun(context);
+    visitIF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitINDEXOF_fun(context) {
-        return this.Visit_fun(context);
+    visitINDEXOF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitINT_fun(context) {
-        return this.Visit_fun(context);
+    visitINT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISERROR_fun(context) {
-        return this.Visit_fun(context);
+    visitISERROR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISEVEN_fun(context) {
-        return this.Visit_fun(context);
+    visitISEVEN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISLOGICAL_fun(context) {
-        return this.Visit_fun(context);
+    visitISLOGICAL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISNONTEXT_fun(context) {
-        return this.Visit_fun(context);
+    visitISNONTEXT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISNULLOREMPTY_fun(context) {
-        return this.Visit_fun(context);
+    visitISNULLOREMPTY_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISNULLORERROR_fun(context) {
-        return this.Visit_fun(context);
+    visitISNULLORERROR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISNULLORWHITESPACE_fun(context) {
-        return this.Visit_fun(context);
+    visitISNULLORWHITESPACE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISNULL_fun(context) {
-        return this.Visit_fun(context);
+    visitISNULL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISNUMBER_fun(context) {
-        return this.Visit_fun(context);
+    visitISNUMBER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISODD_fun(context) {
-        return this.Visit_fun(context);
+    visitISODD_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISREGEX_fun(context) {
-        return this.Visit_fun(context);
+    visitISREGEX_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitISTEXT_fun(context) {
-        return this.Visit_fun(context);
+    visitISTEXT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitJIS_fun(context) {
-        return this.Visit_fun(context);
+    visitJIS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitJOIN_fun(context) {
-        return this.Visit_fun(context);
+    visitJOIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitJSON_fun(context) {
-        return this.Visit_fun(context);
+    visitJSON_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitJudge_fun(context) {
-        return this.Visit_fun(context);
+    visitJudge_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLARGE_fun(context) {
-        return this.Visit_fun(context);
+    visitLARGE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLASTINDEXOF_fun(context) {
-        return this.Visit_fun(context);
+    visitLASTINDEXOF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLCM_fun(context) {
-        return this.Visit_fun(context);
+    visitLCM_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLEFT_fun(context) {
-        return this.Visit_fun(context);
+    visitLEFT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLEN_fun(context) {
-        return this.Visit_fun(context);
+    visitLEN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLN_fun(context) {
-        return this.Visit_fun(context);
+    visitLN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOG10_fun(context) {
-        return this.Visit_fun(context);
+    visitLOG10_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOGINV_fun(context) {
-        return this.Visit_fun(context);
+    visitLOGINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOGNORMDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitLOGNORMDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOG_fun(context) {
-        return this.Visit_fun(context);
+    visitLOG_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOWER_fun(context) {
-        return this.Visit_fun(context);
+    visitLOWER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMAX_fun(context) {
-        return this.Visit_fun(context);
+    visitMAX_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMD5_fun(context) {
-        return this.Visit_fun(context);
+    visitMD5_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMEDIAN_fun(context) {
-        return this.Visit_fun(context);
+    visitMEDIAN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMID_fun(context) {
-        return this.Visit_fun(context);
+    visitMID_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMINUTE_fun(context) {
-        return this.Visit_fun(context);
+    visitMINUTE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMIN_fun(context) {
-        return this.Visit_fun(context);
+    visitMIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMODE_fun(context) {
-        return this.Visit_fun(context);
+    visitMODE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMOD_fun(context) {
-        return this.Visit_fun(context);
+    visitMOD_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMONTH_fun(context) {
-        return this.Visit_fun(context);
+    visitMONTH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMROUND_fun(context) {
-        return this.Visit_fun(context);
+    visitMROUND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitMULTINOMIAL_fun(context) {
-        return this.Visit_fun(context);
+    visitMULTINOMIAL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNEGBINOMDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitNEGBINOMDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNETWORKDAYS_fun(context) {
-        return this.Visit_fun(context);
+    visitNETWORKDAYS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNORMDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitNORMDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNORMINV_fun(context) {
-        return this.Visit_fun(context);
+    visitNORMINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNORMSDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitNORMSDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNORMSINV_fun(context) {
-        return this.Visit_fun(context);
+    visitNORMSINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNOT_fun(context) {
-        return this.Visit_fun(context);
+    visitNOT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNOW_fun(context) {
-        return this.Visit_fun(context);
+    visitNOW_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNULL_fun(context) {
-        return this.Visit_fun(context);
+    visitNULL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNum(context) {
-        return this.Visit_fun(context);
+    visitNum(context) {
+        return this.visit_fun(context);
     }
 
-    VisitNUM_fun(context) {
-        return this.Visit_fun(context);
+    visitNUM_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitOCT2BIN_fun(context) {
-        return this.Visit_fun(context);
+    visitOCT2BIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitOCT2DEC_fun(context) {
-        return this.Visit_fun(context);
+    visitOCT2DEC_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitOCT2HEX_fun(context) {
-        return this.Visit_fun(context);
+    visitOCT2HEX_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitODD_fun(context) {
-        return this.Visit_fun(context);
+    visitODD_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitOR_fun(context) {
-        return this.Visit_fun(context);
+    visitOR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitParameter2(context) {
-        return this.Visit_fun(context);
+    visitParameter2(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPARAMETER_fun(context) {
-        return this.Visit_fun(context);
+    visitPARAMETER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPARAM_fun(context) {
-        return this.Visit_fun(context);
+    visitPARAM_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPercentage_fun(context) {
-        return this.Visit_fun(context);
+    visitPercentage_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPERCENTILE_fun(context) {
-        return this.Visit_fun(context);
+    visitPERCENTILE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPERCENTRANK_fun(context) {
-        return this.Visit_fun(context);
+    visitPERCENTRANK_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPERMUT_fun(context) {
-        return this.Visit_fun(context);
+    visitPERMUT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPI_fun(context) {
-        return this.Visit_fun(context);
+    visitPI_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPOISSON_fun(context) {
-        return this.Visit_fun(context);
+    visitPOISSON_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPOWER_fun(context) {
-        return this.Visit_fun(context);
+    visitPOWER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPRODUCT_fun(context) {
-        return this.Visit_fun(context);
+    visitPRODUCT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitPROPER_fun(context) {
-        return this.Visit_fun(context);
+    visitPROPER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitQUARTILE_fun(context) {
-        return this.Visit_fun(context);
+    visitQUARTILE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitQUOTIENT_fun(context) {
-        return this.Visit_fun(context);
+    visitQUOTIENT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitRADIANS_fun(context) {
-        return this.Visit_fun(context);
+    visitRADIANS_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitRANDBETWEEN_fun(context) {
-        return this.Visit_fun(context);
+    visitRANDBETWEEN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitRAND_fun(context) {
-        return this.Visit_fun(context);
+    visitRAND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitREGEXREPALCE_fun(context) {
-        return this.Visit_fun(context);
+    visitREGEXREPALCE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitREGEX_fun(context) {
-        return this.Visit_fun(context);
+    visitREGEX_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitREMOVEEND_fun(context) {
-        return this.Visit_fun(context);
+    visitREMOVEEND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitREMOVESTART_fun(context) {
-        return this.Visit_fun(context);
+    visitREMOVESTART_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitREPLACE_fun(context) {
-        return this.Visit_fun(context);
+    visitREPLACE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitREPT_fun(context) {
-        return this.Visit_fun(context);
+    visitREPT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitRIGHT_fun(context) {
-        return this.Visit_fun(context);
+    visitRIGHT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitRMB_fun(context) {
-        return this.Visit_fun(context);
+    visitRMB_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitROUNDDOWN_fun(context) {
-        return this.Visit_fun(context);
+    visitROUNDDOWN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitROUNDUP_fun(context) {
-        return this.Visit_fun(context);
+    visitROUNDUP_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitROUND_fun(context) {
-        return this.Visit_fun(context);
+    visitROUND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSEARCH_fun(context) {
-        return this.Visit_fun(context);
+    visitSEARCH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSECOND_fun(context) {
-        return this.Visit_fun(context);
+    visitSECOND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSHA1_fun(context) {
-        return this.Visit_fun(context);
+    visitSHA1_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSHA256_fun(context) {
-        return this.Visit_fun(context);
+    visitSHA256_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSHA512_fun(context) {
-        return this.Visit_fun(context);
+    visitSHA512_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSIGN_fun(context) {
-        return this.Visit_fun(context);
+    visitSIGN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSINH_fun(context) {
-        return this.Visit_fun(context);
+    visitSINH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSIN_fun(context) {
-        return this.Visit_fun(context);
+    visitSIN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSMALL_fun(context) {
-        return this.Visit_fun(context);
+    visitSMALL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSPLIT_fun(context) {
-        return this.Visit_fun(context);
+    visitSPLIT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSQRTPI_fun(context) {
-        return this.Visit_fun(context);
+    visitSQRTPI_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSQRT_fun(context) {
-        return this.Visit_fun(context);
+    visitSQRT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSTARTSWITH_fun(context) {
-        return this.Visit_fun(context);
+    visitSTARTSWITH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSTDEVP_fun(context) {
-        return this.Visit_fun(context);
+    visitSTDEVP_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSTDEV_fun(context) {
-        return this.Visit_fun(context);
+    visitSTDEV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSTRING_fun(context) {
-        return this.Visit_fun(context);
+    visitSTRING_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSUBSTITUTE_fun(context) {
-        return this.Visit_fun(context);
+    visitSUBSTITUTE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSUBSTRING_fun(context) {
-        return this.Visit_fun(context);
+    visitSUBSTRING_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSUMIF_fun(context) {
-        return this.Visit_fun(context);
+    visitSUMIF_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSUMSQ_fun(context) {
-        return this.Visit_fun(context);
+    visitSUMSQ_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitSUM_fun(context) {
-        return this.Visit_fun(context);
+    visitSUM_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTANH_fun(context) {
-        return this.Visit_fun(context);
+    visitTANH_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTAN_fun(context) {
-        return this.Visit_fun(context);
+    visitTAN_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTDIST_fun(context) {
-        return this.Visit_fun(context);
+    visitTDIST_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTEXTTOBASE64URL_fun(context) {
-        return this.Visit_fun(context);
+    visitTEXTTOBASE64URL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTEXTTOBASE64_fun(context) {
-        return this.Visit_fun(context);
+    visitTEXTTOBASE64_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTEXT_fun(context) {
-        return this.Visit_fun(context);
+    visitTEXT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTIMESTAMP_fun(context) {
-        return this.Visit_fun(context);
+    visitTIMESTAMP_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTIMEVALUE_fun(context) {
-        return this.Visit_fun(context);
+    visitTIMEVALUE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTIME_fun(context) {
-        return this.Visit_fun(context);
+    visitTIME_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTINV_fun(context) {
-        return this.Visit_fun(context);
+    visitTINV_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTODAY_fun(context) {
-        return this.Visit_fun(context);
+    visitTODAY_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTRIMEND_fun(context) {
-        return this.Visit_fun(context);
+    visitTRIMEND_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTRIMSTART_fun(context) {
-        return this.Visit_fun(context);
+    visitTRIMSTART_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTRIM_fun(context) {
-        return this.Visit_fun(context);
+    visitTRIM_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTRUE_fun(context) {
-        return this.Visit_fun(context);
+    visitTRUE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitTRUNC_fun(context) {
-        return this.Visit_fun(context);
+    visitTRUNC_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitT_fun(context) {
-        return this.Visit_fun(context);
+    visitT_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitUnit(context) {
-        return this.Visit_fun(context);
+    visitUnit(context) {
+        return this.visit_fun(context);
     }
 
-    VisitUPPER_fun(context) {
-        return this.Visit_fun(context);
+    visitUPPER_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitURLDECODE_fun(context) {
-        return this.Visit_fun(context);
+    visitURLDECODE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitURLENCODE_fun(context) {
-        return this.Visit_fun(context);
+    visitURLENCODE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitVALUE_fun(context) {
-        return this.Visit_fun(context);
+    visitVALUE_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitVARP_fun(context) {
-        return this.Visit_fun(context);
+    visitVARP_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitVAR_fun(context) {
-        return this.Visit_fun(context);
+    visitVAR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitVersion_fun(context) {
-        return this.Visit_fun(context);
+    visitVersion_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitWEEKDAY_fun(context) {
-        return this.Visit_fun(context);
+    visitWEEKDAY_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitWEEKNUM_fun(context) {
-        return this.Visit_fun(context);
+    visitWEEKNUM_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitWEIBULL_fun(context) {
-        return this.Visit_fun(context);
+    visitWEIBULL_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitWORKDAY_fun(context) {
-        return this.Visit_fun(context);
+    visitWORKDAY_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitYEAR_fun(context) {
-        return this.Visit_fun(context);
+    visitYEAR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOOKFLOOR_fun(context) {
-        return this.Visit_fun(context);
+    visitLOOKFLOOR_fun(context) {
+        return this.visit_fun(context);
     }
 
-    VisitLOOKCEILING_fun(context) {
-        return this.Visit_fun(context);
+    visitLOOKCEILING_fun(context) {
+        return this.visit_fun(context);
     }
 }

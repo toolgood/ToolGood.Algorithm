@@ -1,9 +1,10 @@
 import { DiyNameInfo, KeyInfo } from '../DiyNameInfo.js';
+import mathVisitor from '../../math/mathVisitor.js';
 
 /**
- * DiyNameVisitor
+ * DiyNamevisitor
  */
-export class DiyNameVisitor {
+export class DiyNameVisitor extends mathVisitor  {
     /**
      * @constructor
      */
@@ -15,7 +16,7 @@ export class DiyNameVisitor {
      * @param {Object} context
      * @returns {Object}
      */
-    VisitPARAMETER_fun(context) {
+    visitPARAMETER_fun(context) {
         var node = context.PARAMETER();
         if(node != null) {
             var keyInfo = new KeyInfo();
@@ -24,14 +25,14 @@ export class DiyNameVisitor {
             keyInfo.End = node.Symbol.StopIndex;
             this.diy.Parameters.push(keyInfo);
         }
-        return this.VisitChildren(context);
+        return this.visitChildren(context);
     }
 
     /**
      * @param {Object} context
      * @returns {Object}
      */
-    VisitGetJsonValue_fun(context) {
+    visitGetJsonValue_fun(context) {
         var node = context.PARAMETER();
         if(node != null) {
             var keyInfo = new KeyInfo();
@@ -40,29 +41,29 @@ export class DiyNameVisitor {
             keyInfo.End = node.Symbol.StopIndex;
             this.diy.Parameters.push(keyInfo);
         }
-        return this.VisitChildren(context);
+        return this.visitChildren(context);
     }
 
     /**
      * @param {Object} context
      * @returns {Object}
      */
-    VisitDiyFunction_fun(context) {
+    visitDiyFunction_fun(context) {
         var node = context.PARAMETER();
         var keyInfo = new KeyInfo();
         keyInfo.Name = node.GetText();
         keyInfo.Start = node.Symbol.StartIndex;
         keyInfo.End = node.Symbol.StopIndex;
         this.diy.Functions.push(keyInfo);
-        return this.VisitChildren(context);
+        return this.visitChildren(context);
     }
 
     /**
-     * Visits the children of the specified context.
+     * visits the children of the specified context.
      * @param {Object} context
      * @returns {Object}
      */
-    VisitChildren(context) {
+    visitChildren(context) {
         // Implementation depends on the ANTLR4 JavaScript runtime
         // For simplicity, we'll just return null here
         return null;
