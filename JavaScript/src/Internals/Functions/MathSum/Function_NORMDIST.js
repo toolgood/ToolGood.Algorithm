@@ -1,5 +1,5 @@
 import { Function_4 } from '../Function_4';
-import { Operand } from '../../Operand';
+import { Operand } from '../../../Operand.js';
 
 class Function_NORMDIST extends Function_4 {
     constructor(func1, func2, func3, func4) {
