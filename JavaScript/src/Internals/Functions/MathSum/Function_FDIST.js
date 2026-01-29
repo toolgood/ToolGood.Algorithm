@@ -102,7 +102,7 @@ class Function_FDIST extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'FDist');
+        this.AddFunction(stringBuilder, 'FDist');
     }
 }
 

@@ -53,7 +53,7 @@ export class Function_MD5 extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'MD5');
+        this.AddFunction(stringBuilder, 'MD5');
     }
     
     /**

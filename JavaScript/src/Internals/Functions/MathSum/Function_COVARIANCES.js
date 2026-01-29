@@ -46,7 +46,7 @@ class Function_COVARIANCES extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'CovarIanceS');
+        this.AddFunction(stringBuilder, 'CovarIanceS');
     }
 }
 

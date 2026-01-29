@@ -34,7 +34,7 @@ class Function_SMALL extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Small");
+        this.AddFunction(stringBuilder, "Small");
     }
 }
 

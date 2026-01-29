@@ -19,7 +19,7 @@ class Function_RADIANS extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Radians');
+        this.AddFunction(stringBuilder, 'Radians');
     }
 }
 

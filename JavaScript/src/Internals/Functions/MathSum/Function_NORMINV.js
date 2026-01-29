@@ -32,7 +32,7 @@ class Function_NORMINV extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "NormInv");
+        this.AddFunction(stringBuilder, "NormInv");
     }
 }
 

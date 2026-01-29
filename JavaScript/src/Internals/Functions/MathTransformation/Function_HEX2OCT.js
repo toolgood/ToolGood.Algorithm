@@ -36,7 +36,7 @@ class Function_HEX2OCT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HEX2OCT');
+        this.AddFunction(stringBuilder, 'HEX2OCT');
     }
 }
 

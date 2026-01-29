@@ -18,7 +18,7 @@ class Function_UPPER extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Upper');
+        this.AddFunction(stringBuilder, 'Upper');
     }
 }
 

@@ -57,6 +57,6 @@ export class Function_ENDSWITH extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'EndsWith');
+        this.AddFunction(stringBuilder, 'EndsWith');
     }
 }

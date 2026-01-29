@@ -18,7 +18,7 @@ class Function_ASINH extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Asinh');
+        this.AddFunction(stringBuilder, 'Asinh');
     }
 }
 

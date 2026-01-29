@@ -18,7 +18,7 @@ class Function_TAN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Tan');
+        this.AddFunction(stringBuilder, 'Tan');
     }
 }
 

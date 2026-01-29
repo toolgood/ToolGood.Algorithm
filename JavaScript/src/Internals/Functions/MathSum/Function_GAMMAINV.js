@@ -139,7 +139,7 @@ class Function_GAMMAINV extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'GammaInv');
+        this.AddFunction(stringBuilder, 'GammaInv');
     }
 }
 

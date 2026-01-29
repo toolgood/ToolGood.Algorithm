@@ -50,7 +50,7 @@ class Function_EXPONDIST extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'ExponDist');
+        this.AddFunction(stringBuilder, 'ExponDist');
     }
 }
 

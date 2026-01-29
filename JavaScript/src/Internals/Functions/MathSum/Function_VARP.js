@@ -41,7 +41,7 @@ class Function_VARP extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "VarP");
+        this.AddFunction(stringBuilder, "VarP");
     }
 }
 

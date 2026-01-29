@@ -71,7 +71,7 @@ class Function_NEGBINOMDIST extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'NegbinomDist');
+        this.AddFunction(stringBuilder, 'NegbinomDist');
     }
 }
 

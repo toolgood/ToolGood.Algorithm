@@ -20,7 +20,7 @@ class Function_DEGREES extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Degrees');
+        this.AddFunction(stringBuilder, 'Degrees');
     }
 }
 

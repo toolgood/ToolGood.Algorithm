@@ -44,7 +44,7 @@ class Function_ASC extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'ASC');
+        this.AddFunction(stringBuilder, 'ASC');
     }
 }
 

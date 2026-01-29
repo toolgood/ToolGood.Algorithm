@@ -18,7 +18,7 @@ class Function_LOWER extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Lower');
+        this.AddFunction(stringBuilder, 'Lower');
     }
 }
 

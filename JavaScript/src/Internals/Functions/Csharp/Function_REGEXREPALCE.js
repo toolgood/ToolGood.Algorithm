@@ -55,6 +55,6 @@ export class Function_REGEXREPALCE extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'RegexReplace');
+        this.AddFunction(stringBuilder, 'RegexReplace');
     }
 }

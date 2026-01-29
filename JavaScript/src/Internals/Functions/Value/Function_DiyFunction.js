@@ -16,7 +16,7 @@ class Function_DiyFunction extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, this.funName);
+        this.AddFunction(stringBuilder, this.funName);
     }
 }
 

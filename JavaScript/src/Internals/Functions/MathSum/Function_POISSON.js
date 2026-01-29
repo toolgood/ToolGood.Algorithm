@@ -35,7 +35,7 @@ class Function_POISSON extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Poisson");
+        this.AddFunction(stringBuilder, "Poisson");
     }
 }
 

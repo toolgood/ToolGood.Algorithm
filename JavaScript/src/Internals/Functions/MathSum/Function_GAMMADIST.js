@@ -136,7 +136,7 @@ class Function_GAMMADIST extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'GammaDist');
+        this.AddFunction(stringBuilder, 'GammaDist');
     }
 }
 

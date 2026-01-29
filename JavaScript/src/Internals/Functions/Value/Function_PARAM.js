@@ -30,7 +30,7 @@ class Function_PARAM extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Param');
+        this.AddFunction(stringBuilder, 'Param');
     }
 }
 

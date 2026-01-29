@@ -25,7 +25,7 @@ class Function_COUNT extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Count');
+        this.AddFunction(stringBuilder, 'Count');
     }
 }
 

@@ -22,7 +22,7 @@ class Function_ASIN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Asin');
+        this.AddFunction(stringBuilder, 'Asin');
     }
 }
 

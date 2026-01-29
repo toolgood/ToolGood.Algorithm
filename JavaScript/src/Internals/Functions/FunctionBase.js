@@ -179,4 +179,13 @@ export class FunctionBase {
         }
         return def;
     }
+
+    toString(){
+        stringBuilder=[];
+        toString(stringBuilder,false);
+        return stringBuilder.join("");
+    }
+
+    toString(stringBuilder, addBrackets) {
+    }
 }

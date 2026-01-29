@@ -44,7 +44,7 @@ class Function_COVAR extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Covar');
+        this.AddFunction(stringBuilder, 'Covar');
     }
 }
 

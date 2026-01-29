@@ -38,7 +38,7 @@ class Function_TEXT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Text');
+        this.AddFunction(stringBuilder, 'Text');
     }
 }
 

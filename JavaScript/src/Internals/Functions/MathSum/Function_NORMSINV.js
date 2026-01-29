@@ -18,7 +18,7 @@ class Function_NORMSINV extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "NormSInv");
+        this.AddFunction(stringBuilder, "NormSInv");
     }
 }
 

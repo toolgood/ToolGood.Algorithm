@@ -18,7 +18,7 @@ class Function_COSH extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Cosh');
+        this.AddFunction(stringBuilder, 'Cosh');
     }
 }
 

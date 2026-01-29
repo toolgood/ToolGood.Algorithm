@@ -124,7 +124,7 @@ class Function_FINV extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'FInv');
+        this.AddFunction(stringBuilder, 'FInv');
     }
 }
 

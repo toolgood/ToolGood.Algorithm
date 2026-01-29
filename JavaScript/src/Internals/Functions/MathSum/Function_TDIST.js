@@ -35,7 +35,7 @@ class Function_TDIST extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "TDist");
+        this.AddFunction(stringBuilder, "TDist");
     }
 }
 

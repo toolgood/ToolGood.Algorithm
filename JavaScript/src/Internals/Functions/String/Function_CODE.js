@@ -22,7 +22,7 @@ class Function_CODE extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'CODE');
+        this.AddFunction(stringBuilder, 'CODE');
     }
 }
 

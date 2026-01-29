@@ -26,7 +26,7 @@ class Function_SUM extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Sum");
+        this.AddFunction(stringBuilder, "Sum");
     }
 }
 

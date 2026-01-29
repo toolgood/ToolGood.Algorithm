@@ -25,7 +25,7 @@ class Function_EXACT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Exact');
+        this.AddFunction(stringBuilder, 'Exact');
     }
 }
 

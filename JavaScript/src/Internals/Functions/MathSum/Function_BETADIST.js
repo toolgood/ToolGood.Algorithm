@@ -33,7 +33,7 @@ class Function_BETADIST extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'BetaDist');
+        this.AddFunction(stringBuilder, 'BetaDist');
     }
 }
 

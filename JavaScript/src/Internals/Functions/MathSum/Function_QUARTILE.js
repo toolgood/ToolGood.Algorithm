@@ -35,7 +35,7 @@ class Function_QUARTILE extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Quartile");
+        this.AddFunction(stringBuilder, "Quartile");
     }
 }
 

@@ -18,7 +18,7 @@ class Function_SIN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Sin');
+        this.AddFunction(stringBuilder, 'Sin');
     }
 }
 

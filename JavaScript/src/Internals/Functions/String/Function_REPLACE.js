@@ -76,7 +76,7 @@ class Function_REPLACE extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Replace');
+        this.AddFunction(stringBuilder, 'Replace');
     }
 }
 

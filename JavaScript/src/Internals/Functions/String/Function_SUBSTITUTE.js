@@ -73,7 +73,7 @@ class Function_SUBSTITUTE extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Substitute');
+        this.AddFunction(stringBuilder, 'Substitute');
     }
 }
 

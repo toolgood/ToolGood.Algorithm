@@ -73,6 +73,6 @@ export class Function_INDEXOF extends Function_4 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'IndexOf');
+        this.AddFunction(stringBuilder, 'IndexOf');
     }
 }

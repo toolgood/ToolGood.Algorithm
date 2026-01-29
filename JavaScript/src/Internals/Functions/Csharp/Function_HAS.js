@@ -78,6 +78,6 @@ export class Function_HAS extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Has');
+        this.AddFunction(stringBuilder, 'Has');
     }
 }

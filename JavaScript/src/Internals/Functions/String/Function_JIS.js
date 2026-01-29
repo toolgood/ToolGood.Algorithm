@@ -44,7 +44,7 @@ class Function_JIS extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'JIS');
+        this.AddFunction(stringBuilder, 'JIS');
     }
 }
 

@@ -63,6 +63,6 @@ export class Function_LOOKCEILING extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'LookCeiling');
+        this.AddFunction(stringBuilder, 'LookCeiling');
     }
 }

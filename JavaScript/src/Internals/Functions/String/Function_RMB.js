@@ -34,7 +34,7 @@ class Function_RMB extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'RMB');
+        this.AddFunction(stringBuilder, 'RMB');
     }
 }
 

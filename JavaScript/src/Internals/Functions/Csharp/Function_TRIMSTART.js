@@ -54,6 +54,6 @@ export class Function_TRIMSTART extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'TrimStart');
+        this.AddFunction(stringBuilder, 'TrimStart');
     }
 }

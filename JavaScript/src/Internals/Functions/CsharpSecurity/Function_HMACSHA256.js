@@ -61,7 +61,7 @@ export class Function_HMACSHA256 extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HmacSHA256');
+        this.AddFunction(stringBuilder, 'HmacSHA256');
     }
     
     /**

@@ -31,7 +31,7 @@ class Function_MAX extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Max');
+        this.AddFunction(stringBuilder, 'Max');
     }
 }
 

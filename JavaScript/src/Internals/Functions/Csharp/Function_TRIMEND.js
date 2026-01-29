@@ -54,6 +54,6 @@ export class Function_TRIMEND extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'TrimEnd');
+        this.AddFunction(stringBuilder, 'TrimEnd');
     }
 }

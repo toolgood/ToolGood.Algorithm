@@ -75,7 +75,7 @@ class Function_NORMDIST extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'NormDist');
+        this.AddFunction(stringBuilder, 'NormDist');
     }
 }
 

@@ -60,7 +60,7 @@ class Function_SUMIF extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "SumIf");
+        this.AddFunction(stringBuilder, "SumIf");
     }
 }
 

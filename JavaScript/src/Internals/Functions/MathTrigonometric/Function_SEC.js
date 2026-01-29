@@ -22,7 +22,7 @@ class Function_SEC extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Sec');
+        this.AddFunction(stringBuilder, 'Sec');
     }
 }
 

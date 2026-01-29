@@ -32,7 +32,7 @@ class Function_LEFT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Left');
+        this.AddFunction(stringBuilder, 'Left');
     }
 }
 

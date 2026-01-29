@@ -62,6 +62,6 @@ export class Function_STARTSWITH extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'StartsWith');
+        this.AddFunction(stringBuilder, 'StartsWith');
     }
 }

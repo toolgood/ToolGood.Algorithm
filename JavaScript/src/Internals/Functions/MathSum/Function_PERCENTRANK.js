@@ -43,7 +43,7 @@ class Function_PERCENTRANK extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "PercentRank");
+        this.AddFunction(stringBuilder, "PercentRank");
     }
 }
 

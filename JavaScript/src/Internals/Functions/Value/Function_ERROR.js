@@ -18,7 +18,7 @@ class Function_ERROR extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Error');
+        this.AddFunction(stringBuilder, 'Error');
     }
 }
 

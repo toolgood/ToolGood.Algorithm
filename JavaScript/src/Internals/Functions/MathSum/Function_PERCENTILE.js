@@ -30,7 +30,7 @@ class Function_PERCENTILE extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Percentile");
+        this.AddFunction(stringBuilder, "Percentile");
     }
 }
 

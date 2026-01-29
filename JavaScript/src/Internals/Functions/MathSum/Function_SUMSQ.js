@@ -32,7 +32,7 @@ class Function_SUMSQ extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "SumSQ");
+        this.AddFunction(stringBuilder, "SumSQ");
     }
 }
 

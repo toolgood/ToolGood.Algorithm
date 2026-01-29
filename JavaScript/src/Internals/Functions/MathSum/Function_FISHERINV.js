@@ -20,7 +20,7 @@ class Function_FISHERINV extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'FisherInv');
+        this.AddFunction(stringBuilder, 'FisherInv');
     }
 }
 

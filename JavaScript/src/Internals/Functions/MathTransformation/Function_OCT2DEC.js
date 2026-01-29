@@ -23,7 +23,7 @@ class Function_OCT2DEC extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'OCT2DEC');
+        this.AddFunction(stringBuilder, 'OCT2DEC');
     }
 }
 

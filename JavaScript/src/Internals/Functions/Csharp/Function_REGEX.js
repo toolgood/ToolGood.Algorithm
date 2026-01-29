@@ -50,6 +50,6 @@ export class Function_REGEX extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Regex');
+        this.AddFunction(stringBuilder, 'Regex');
     }
 }

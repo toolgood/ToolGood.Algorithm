@@ -18,7 +18,7 @@ class Function_TRIM extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Trim');
+        this.AddFunction(stringBuilder, 'Trim');
     }
 }
 

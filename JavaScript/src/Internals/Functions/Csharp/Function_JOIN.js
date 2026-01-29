@@ -71,6 +71,6 @@ export class Function_JOIN extends Function_N {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Join');
+        this.AddFunction(stringBuilder, 'Join');
     }
 }

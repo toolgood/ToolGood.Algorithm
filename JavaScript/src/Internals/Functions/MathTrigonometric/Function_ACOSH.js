@@ -22,7 +22,7 @@ class Function_ACOSH extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Acosh');
+        this.AddFunction(stringBuilder, 'Acosh');
     }
 }
 

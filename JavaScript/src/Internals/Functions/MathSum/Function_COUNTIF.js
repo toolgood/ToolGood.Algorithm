@@ -45,7 +45,7 @@ class Function_COUNTIF extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'CountIf');
+        this.AddFunction(stringBuilder, 'CountIf');
     }
 }
 

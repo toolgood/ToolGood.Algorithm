@@ -40,7 +40,7 @@ class Function_GAMMALN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'GammaLn');
+        this.AddFunction(stringBuilder, 'GammaLn');
     }
 }
 

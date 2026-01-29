@@ -69,7 +69,7 @@ class Function_LOGINV extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'LogInv');
+        this.AddFunction(stringBuilder, 'LogInv');
     }
 }
 

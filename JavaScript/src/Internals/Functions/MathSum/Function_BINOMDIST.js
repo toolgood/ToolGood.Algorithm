@@ -37,7 +37,7 @@ class Function_BINOMDIST extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'BinomDist');
+        this.AddFunction(stringBuilder, 'BinomDist');
     }
 }
 

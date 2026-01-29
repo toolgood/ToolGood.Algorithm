@@ -32,7 +32,7 @@ class Function_MEDIAN extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Median');
+        this.AddFunction(stringBuilder, 'Median');
     }
 }
 

@@ -23,7 +23,7 @@ class Function_HEX2DEC extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HEX2DEC');
+        this.AddFunction(stringBuilder, 'HEX2DEC');
     }
 }
 

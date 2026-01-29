@@ -32,7 +32,7 @@ class Function_DEC2BIN extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'DEC2BIN');
+        this.AddFunction(stringBuilder, 'DEC2BIN');
     }
 }
 

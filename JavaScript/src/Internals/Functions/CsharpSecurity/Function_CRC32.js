@@ -53,7 +53,7 @@ export class Function_CRC32 extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'CRC32');
+        this.AddFunction(stringBuilder, 'CRC32');
     }
     
     /**

@@ -39,7 +39,7 @@ class Function_SEARCH extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Search');
+        this.AddFunction(stringBuilder, 'Search');
     }
 }
 

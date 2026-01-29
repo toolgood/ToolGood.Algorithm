@@ -59,6 +59,6 @@ export class Function_SUBSTRING extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Substring');
+        this.AddFunction(stringBuilder, 'Substring');
     }
 }

@@ -59,7 +59,7 @@ class Function_LOGNORMDIST extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'LognormDist');
+        this.AddFunction(stringBuilder, 'LognormDist');
     }
 }
 

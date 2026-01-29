@@ -51,7 +51,7 @@ class Function_PROPER extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Proper');
+        this.AddFunction(stringBuilder, 'Proper');
     }
 }
 

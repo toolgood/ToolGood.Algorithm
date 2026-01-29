@@ -67,6 +67,6 @@ export class Function_REMOVEEND extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'RemoveEnd');
+        this.AddFunction(stringBuilder, 'RemoveEnd');
     }
 }

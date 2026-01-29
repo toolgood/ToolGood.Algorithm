@@ -30,7 +30,7 @@ class Function_VALUE extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Value');
+        this.AddFunction(stringBuilder, 'Value');
     }
 }
 

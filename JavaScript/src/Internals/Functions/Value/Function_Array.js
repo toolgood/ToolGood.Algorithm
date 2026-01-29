@@ -19,7 +19,7 @@ class Function_Array extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Array');
+        this.AddFunction(stringBuilder, 'Array');
     }
 }
 

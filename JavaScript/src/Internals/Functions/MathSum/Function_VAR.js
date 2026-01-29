@@ -39,7 +39,7 @@ class Function_VAR extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Var");
+        this.AddFunction(stringBuilder, "Var");
     }
 }
 

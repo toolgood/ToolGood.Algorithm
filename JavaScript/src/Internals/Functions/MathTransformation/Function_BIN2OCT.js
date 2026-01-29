@@ -36,7 +36,7 @@ class Function_BIN2OCT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'BIN2OCT');
+        this.AddFunction(stringBuilder, 'BIN2OCT');
     }
 }
 

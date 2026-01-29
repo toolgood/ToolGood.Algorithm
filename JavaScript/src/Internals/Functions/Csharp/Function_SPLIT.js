@@ -44,6 +44,6 @@ export class Function_SPLIT extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Split');
+        this.AddFunction(stringBuilder, 'Split');
     }
 }

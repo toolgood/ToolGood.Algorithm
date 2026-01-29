@@ -76,7 +76,7 @@ class Function_HYPGEOMDIST extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HypgeomDist');
+        this.AddFunction(stringBuilder, 'HypgeomDist');
     }
 }
 

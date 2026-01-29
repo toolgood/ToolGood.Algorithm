@@ -31,7 +31,7 @@ class Function_MIN extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Min');
+        this.AddFunction(stringBuilder, 'Min');
     }
 }
 

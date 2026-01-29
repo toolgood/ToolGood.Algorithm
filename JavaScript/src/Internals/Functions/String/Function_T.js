@@ -15,7 +15,7 @@ class Function_T extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'T');
+        this.AddFunction(stringBuilder, 'T');
     }
 }
 

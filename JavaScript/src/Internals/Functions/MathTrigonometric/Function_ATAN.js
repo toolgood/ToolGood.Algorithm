@@ -18,7 +18,7 @@ class Function_ATAN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Atan');
+        this.AddFunction(stringBuilder, 'Atan');
     }
 }
 

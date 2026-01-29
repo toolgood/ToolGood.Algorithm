@@ -37,7 +37,7 @@ class Function_GEOMEAN extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'GeoMean');
+        this.AddFunction(stringBuilder, 'GeoMean');
     }
 }
 

@@ -41,7 +41,7 @@ class Function_HARMEAN extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HarMean');
+        this.AddFunction(stringBuilder, 'HarMean');
     }
 }
 

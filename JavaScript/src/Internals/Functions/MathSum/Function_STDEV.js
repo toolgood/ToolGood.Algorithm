@@ -35,7 +35,7 @@ class Function_STDEV extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Stdev");
+        this.AddFunction(stringBuilder, "Stdev");
     }
 }
 

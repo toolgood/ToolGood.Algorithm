@@ -37,7 +37,7 @@ class Function_FIND extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Find');
+        this.AddFunction(stringBuilder, 'Find');
     }
 }
 

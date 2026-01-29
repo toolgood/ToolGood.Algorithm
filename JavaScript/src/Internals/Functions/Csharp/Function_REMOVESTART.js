@@ -67,6 +67,6 @@ export class Function_REMOVESTART extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'RemoveStart');
+        this.AddFunction(stringBuilder, 'RemoveStart');
     }
 }

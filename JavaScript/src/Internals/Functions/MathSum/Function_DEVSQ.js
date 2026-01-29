@@ -35,7 +35,7 @@ class Function_DEVSQ extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'DevSQ');
+        this.AddFunction(stringBuilder, 'DevSQ');
     }
 }
 

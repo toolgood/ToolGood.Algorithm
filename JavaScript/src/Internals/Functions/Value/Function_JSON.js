@@ -32,7 +32,7 @@ class Function_JSON extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Json');
+        this.AddFunction(stringBuilder, 'Json');
     }
 }
 

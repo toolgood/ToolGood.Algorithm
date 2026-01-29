@@ -32,7 +32,7 @@ class Function_BETAINV extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'BetaInv');
+        this.AddFunction(stringBuilder, 'BetaInv');
     }
 }
 

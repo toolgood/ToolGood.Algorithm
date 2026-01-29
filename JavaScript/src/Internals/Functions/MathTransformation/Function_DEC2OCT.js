@@ -32,7 +32,7 @@ class Function_DEC2OCT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'DEC2OCT');
+        this.AddFunction(stringBuilder, 'DEC2OCT');
     }
 }
 

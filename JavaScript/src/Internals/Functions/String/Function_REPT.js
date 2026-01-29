@@ -39,7 +39,7 @@ class Function_REPT extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Rept');
+        this.AddFunction(stringBuilder, 'Rept');
     }
 }
 

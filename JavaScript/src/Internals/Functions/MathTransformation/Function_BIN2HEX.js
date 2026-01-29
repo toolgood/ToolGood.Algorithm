@@ -36,7 +36,7 @@ class Function_BIN2HEX extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'BIN2HEX');
+        this.AddFunction(stringBuilder, 'BIN2HEX');
     }
 }
 

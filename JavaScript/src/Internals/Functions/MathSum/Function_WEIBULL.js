@@ -43,7 +43,7 @@ class Function_WEIBULL extends Function_4 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "Weibull");
+        this.AddFunction(stringBuilder, "Weibull");
     }
 }
 

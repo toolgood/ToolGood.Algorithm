@@ -42,7 +42,7 @@ class Function_MODE extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Mode');
+        this.AddFunction(stringBuilder, 'Mode');
     }
 }
 

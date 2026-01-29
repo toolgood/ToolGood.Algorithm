@@ -28,7 +28,7 @@ class Function_TINV extends Function_2 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, "TInv");
+        this.AddFunction(stringBuilder, "TInv");
     }
 }
 

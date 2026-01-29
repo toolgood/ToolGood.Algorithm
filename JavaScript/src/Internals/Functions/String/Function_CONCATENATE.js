@@ -35,7 +35,7 @@ class Function_CONCATENATE extends Function_N {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Concatenate');
+        this.AddFunction(stringBuilder, 'Concatenate');
     }
 }
 

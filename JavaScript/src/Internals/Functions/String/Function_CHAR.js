@@ -19,7 +19,7 @@ class Function_CHAR extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Char');
+        this.AddFunction(stringBuilder, 'Char');
     }
 }
 

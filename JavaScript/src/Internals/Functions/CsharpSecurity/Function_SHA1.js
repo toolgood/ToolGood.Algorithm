@@ -53,7 +53,7 @@ export class Function_SHA1 extends Function_2 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'SHA1');
+        this.AddFunction(stringBuilder, 'SHA1');
     }
     
     /**

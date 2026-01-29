@@ -18,7 +18,7 @@ class Function_LEN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Len');
+        this.AddFunction(stringBuilder, 'Len');
     }
 }
 

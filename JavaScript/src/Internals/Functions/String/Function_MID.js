@@ -34,7 +34,7 @@ class Function_MID extends Function_3 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Mid');
+        this.AddFunction(stringBuilder, 'Mid');
     }
 }
 

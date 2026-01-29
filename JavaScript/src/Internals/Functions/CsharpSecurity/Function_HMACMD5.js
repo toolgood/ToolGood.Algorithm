@@ -61,7 +61,7 @@ export class Function_HMACMD5 extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HmacMD5');
+        this.AddFunction(stringBuilder, 'HmacMD5');
     }
     
     /**

@@ -23,7 +23,7 @@ class Function_FISHER extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Fisher');
+        this.AddFunction(stringBuilder, 'Fisher');
     }
 }
 

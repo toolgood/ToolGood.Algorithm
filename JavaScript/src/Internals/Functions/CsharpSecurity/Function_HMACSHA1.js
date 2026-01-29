@@ -61,7 +61,7 @@ export class Function_HMACSHA1 extends Function_3 {
      * @param {boolean} addBrackets
      */
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'HmacSHA1');
+        this.AddFunction(stringBuilder, 'HmacSHA1');
     }
     
     /**

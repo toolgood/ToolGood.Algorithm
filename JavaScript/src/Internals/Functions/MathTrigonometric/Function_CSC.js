@@ -22,7 +22,7 @@ class Function_CSC extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Csc');
+        this.AddFunction(stringBuilder, 'Csc');
     }
 }
 

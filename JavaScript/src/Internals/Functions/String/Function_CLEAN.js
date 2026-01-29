@@ -37,7 +37,7 @@ class Function_CLEAN extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this.addFunction(stringBuilder, 'Clean');
+        this.AddFunction(stringBuilder, 'Clean');
     }
 }
 
