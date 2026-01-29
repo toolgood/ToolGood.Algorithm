@@ -8,13 +8,13 @@ class Function_QUARTILE extends Function_2 {
     }
 
     evaluate(engine, tempParameter) {
-        const args1 = this._arg1.evaluate(engine, tempParameter);
+        const args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.isNotArray) {
             const converted1 = args1.toArray("Function '{0}' parameter {1} is error!", "Quartile", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
-        const args2 = this._arg2.evaluate(engine, tempParameter);
+        const args2 = this.func2.evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Quartile", 2);
             if (converted2.isError) return converted2;

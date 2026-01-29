@@ -7,7 +7,7 @@ class Function_NORMSINV extends Function_1 {
     }
 
     evaluate(engine, tempParameter) {
-        const args1 = this._arg1.evaluate(engine, tempParameter);
+        const args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
             const converted1 = args1.toNumber("Function '{0}' parameter is error!", "NormSInv");
             if (converted1.isError) return converted1;

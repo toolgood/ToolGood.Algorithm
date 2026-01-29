@@ -18,14 +18,14 @@ export class Function_ISREGEX extends Function_2 {
      * @returns {Operand}
      */
     evaluate(engine) {
-        const args1 = this._arg1.evaluate(engine);
+        const args1 = this.func1.evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'IsRegex', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this._arg2.evaluate(engine);
+        const args2 = this.func2.evaluate(engine);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'IsRegex', 2);
             if (args2.isError) {

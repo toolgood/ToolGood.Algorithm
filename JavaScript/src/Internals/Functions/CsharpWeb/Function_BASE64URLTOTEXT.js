@@ -7,17 +7,17 @@ class Function_BASE64URLTOTEXT extends Function_2 {
     }
 
     evaluate(engine, tempParameter) {
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Base64urlToText", 1);
             if (args1.IsError) return args1;
         }
         try {
             let encoding;
-            if (this._arg2 === null) {
+            if (this.func2 === null) {
                 encoding = 'utf-8';
             } else {
-                let args2 = this._arg2.evaluate(engine, tempParameter);
+                let args2 = this.func2.evaluate(engine, tempParameter);
                 if (args2.IsNotText) {
                     args2 = args2.ToText("Function '{0}' parameter {1} is error!", "Base64urlToText", 2);
                     if (args2.IsError) return args2;

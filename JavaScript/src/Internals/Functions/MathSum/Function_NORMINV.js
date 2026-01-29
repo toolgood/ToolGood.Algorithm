@@ -7,19 +7,19 @@ class Function_NORMINV extends Function_3 {
     }
 
     evaluate(engine, tempParameter) {
-        const args1 = this._arg1.evaluate(engine, tempParameter);
+        const args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
             const converted1 = args1.toNumber("Function '{0}' parameter {1} is error!", "NormInv", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
-        const args2 = this._arg2.evaluate(engine, tempParameter);
+        const args2 = this.func2.evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "NormInv", 2);
             if (converted2.isError) return converted2;
             args2 = converted2;
         }
-        const args3 = this._arg3.evaluate(engine, tempParameter);
+        const args3 = this.func3.evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
             const converted3 = args3.toNumber("Function '{0}' parameter {1} is error!", "NormInv", 3);
             if (converted3.isError) return converted3;

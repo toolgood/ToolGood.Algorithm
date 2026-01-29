@@ -7,12 +7,12 @@ class Function_DAYS360 extends Function_3 {
     }
 
     evaluate(engine, tempParameter) {
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this._arg2.evaluate(engine, tempParameter);
+        let args2 = this.func2.evaluate(engine, tempParameter);
         if (args2.IsNotDate) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 2);
             if (args2.IsError) { return args2; }
@@ -22,8 +22,8 @@ class Function_DAYS360 extends Function_3 {
         const endMyDate = args2.DateValue;
 
         let method = false;
-        if (this._arg3 !== null) {
-            let args3 = this._arg3.evaluate(engine, tempParameter);
+        if (this.func3 !== null) {
+            let args3 = this.func3.evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
                 args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Days360", 3);
                 if (args3.IsError) { return args3; }

@@ -7,9 +7,9 @@ class Function_NE extends Function_2 {
   }
 
   Evaluate(engine) {
-    const args1 = this._arg1.Evaluate(engine);
+    const args1 = this.func1.Evaluate(engine);
     if (args1.IsError) { return args1; }
-    const args2 = this._arg2.Evaluate(engine);
+    const args2 = this.func2.Evaluate(engine);
     if (args2.IsError) { return args2; }
 
     if (args1.Type === args2.Type) {
@@ -67,9 +67,9 @@ class Function_NE extends Function_2 {
 
   ToString(stringBuilder, addBrackets) {
     if (addBrackets) stringBuilder.push('(');
-    this._arg1.ToString(stringBuilder, false);
+    this.func1.ToString(stringBuilder, false);
     stringBuilder.push(" != ");
-    this._arg2.ToString(stringBuilder, false);
+    this.func2.ToString(stringBuilder, false);
     if (addBrackets) stringBuilder.push(')');
   }
 }

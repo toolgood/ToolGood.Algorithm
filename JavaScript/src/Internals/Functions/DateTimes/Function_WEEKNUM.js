@@ -7,7 +7,7 @@ class Function_WEEKNUM extends Function_2 {
     }
 
     evaluate(engine, tempParameter) {
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1);
             if (args1.IsError) { return args1; }
@@ -22,8 +22,8 @@ class Function_WEEKNUM extends Function_2 {
         const dayOfYear = Math.ceil((startMyDate - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
         
         let days = dayOfYear + firstDayWeekday;
-        if (this._arg2 !== null) {
-            let args2 = this._arg2.evaluate(engine, tempParameter);
+        if (this.func2 !== null) {
+            let args2 = this.func2.evaluate(engine, tempParameter);
             if (args2.IsNotNumber) {
                 args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekNum", 2);
                 if (args2.IsError) { return args2; }

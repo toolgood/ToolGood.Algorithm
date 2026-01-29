@@ -18,7 +18,7 @@ export class Function_TRIMSTART extends Function_2 {
      * @returns {Operand}
      */
     evaluate(engine) {
-        const args1 = this._arg1.evaluate(engine);
+        const args1 = this.func1.evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'TrimStart', 1);
             if (args1.isError) {
@@ -26,11 +26,11 @@ export class Function_TRIMSTART extends Function_2 {
             }
         }
         
-        if (this._arg2 === null) {
+        if (this.func2 === null) {
             return Operand.create(args1.textValue.trimStart());
         }
         
-        const args2 = this._arg2.evaluate(engine);
+        const args2 = this.func2.evaluate(engine);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'TrimStart', 2);
             if (args2.isError) {

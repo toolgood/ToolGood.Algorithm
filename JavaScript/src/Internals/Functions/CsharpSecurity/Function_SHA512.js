@@ -18,7 +18,7 @@ export class Function_SHA512 extends Function_2 {
      * @returns {Operand}
      */
     async evaluate(engine) {
-        const args1 = this._arg1.evaluate(engine);
+        const args1 = this.func1.evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'SHA512', 1);
             if (args1.isError) {
@@ -28,8 +28,8 @@ export class Function_SHA512 extends Function_2 {
         
         try {
             let encoding = 'utf-8';
-            if (this._arg2 !== null) {
-                const args2 = this._arg2.evaluate(engine);
+            if (this.func2 !== null) {
+                const args2 = this.func2.evaluate(engine);
                 if (args2.isNotText) {
                     args2.toText('Function \'{0}\' parameter {1} is error!', 'SHA512', 2);
                     if (args2.isError) {

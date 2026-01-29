@@ -6,13 +6,13 @@ class Function_ISNULL extends Function_2 {
     }
 
     evaluate(engine, tempParameter) {
-        const args1 = this._arg1.evaluate(engine, tempParameter);
-        if (this._arg2 !== null) {
+        const args1 = this.func1.evaluate(engine, tempParameter);
+        if (this.func2 !== null) {
             if (args1.IsNull) {
-                return this._arg2.evaluate(engine, tempParameter);
+                return this.func2.evaluate(engine, tempParameter);
             }
             if (args1.IsText && args1.TextValue === null) {
-                return this._arg2.evaluate(engine, tempParameter);
+                return this.func2.evaluate(engine, tempParameter);
             }
             return args1;
         }

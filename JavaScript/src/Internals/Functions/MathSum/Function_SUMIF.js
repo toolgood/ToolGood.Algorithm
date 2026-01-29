@@ -8,11 +8,11 @@ class Function_SUMIF extends Function_3 {
     }
 
     evaluate(engine, tempParameter) {
-        const args1 = this._arg1.evaluate(engine, tempParameter);
+        const args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.isError) {
             return args1;
         }
-        const args2 = this._arg2.evaluate(engine, tempParameter);
+        const args2 = this.func2.evaluate(engine, tempParameter);
         if (args2.isError) {
             return args2;
         }
@@ -24,8 +24,8 @@ class Function_SUMIF extends Function_3 {
         }
 
         let sumdbs;
-        if (this._arg3 != null) {
-            const args3 = this._arg3.evaluate(engine, tempParameter);
+        if (this.func3 != null) {
+            const args3 = this.func3.evaluate(engine, tempParameter);
             if (args3.isError) {
                 return args3;
             }

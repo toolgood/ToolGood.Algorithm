@@ -6,7 +6,7 @@ class Function_URLENCODE extends Function_1 {
     }
 
     evaluate(engine, tempParameter) {
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText("Function '{0}' parameter is error!", "UrlEncode");
             if (args1.IsError) {

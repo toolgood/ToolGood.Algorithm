@@ -19,21 +19,21 @@ export class Function_REGEXREPALCE extends Function_3 {
      * @returns {Operand}
      */
     evaluate(engine) {
-        const args1 = this._arg1.evaluate(engine);
+        const args1 = this.func1.evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'RegexReplace', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this._arg2.evaluate(engine);
+        const args2 = this.func2.evaluate(engine);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'RegexReplace', 2);
             if (args2.isError) {
                 return args2;
             }
         }
-        const args3 = this._arg3.evaluate(engine);
+        const args3 = this.func3.evaluate(engine);
         if (args3.isNotText) {
             args3.toText('Function \'{0}\' parameter {1} is error!', 'RegexReplace', 3);
             if (args3.isError) {

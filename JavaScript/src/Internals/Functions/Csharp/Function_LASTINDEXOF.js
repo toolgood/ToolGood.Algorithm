@@ -20,14 +20,14 @@ export class Function_LASTINDEXOF extends Function_4 {
      * @returns {Operand}
      */
     evaluate(engine) {
-        const args1 = this._arg1.evaluate(engine);
+        const args1 = this.func1.evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'LastIndexOf', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this._arg2.evaluate(engine);
+        const args2 = this.func2.evaluate(engine);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'LastIndexOf', 2);
             if (args2.isError) {
@@ -35,11 +35,11 @@ export class Function_LASTINDEXOF extends Function_4 {
             }
         }
         const text = args1.textValue;
-        if (this._arg3 === null) {
+        if (this.func3 === null) {
             const index = text.lastIndexOf(args2.textValue);
             return Operand.create(index + engine.excelIndex);
         }
-        const args3 = this._arg3.evaluate(engine);
+        const args3 = this.func3.evaluate(engine);
         if (args3.isNotNumber) {
             args3.toNumber('Function \'{0}\' parameter {1} is error!', 'LastIndexOf', 3);
             if (args3.isError) {
@@ -47,12 +47,12 @@ export class Function_LASTINDEXOF extends Function_4 {
             }
         }
         const startIndex = args3.intValue;
-        if (this._arg4 === null) {
+        if (this.func4 === null) {
             const substring = text.substring(0, startIndex);
             const index = substring.lastIndexOf(args2.textValue);
             return Operand.create(index + engine.excelIndex);
         }
-        const args4 = this._arg4.evaluate(engine);
+        const args4 = this.func4.evaluate(engine);
         if (args4.isNotNumber) {
             args4.toNumber('Function \'{0}\' parameter {1} is error!', 'LastIndexOf', 4);
             if (args4.isError) {

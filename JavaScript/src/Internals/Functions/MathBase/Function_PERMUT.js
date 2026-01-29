@@ -6,12 +6,12 @@ class Function_PERMUT extends Function_2 {
     }
 
     evaluate(engine, tempParameter) {
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this._arg2.evaluate(engine, tempParameter);
+        let args2 = this.func2.evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 2);
             if (args2.IsError) { return args2; }

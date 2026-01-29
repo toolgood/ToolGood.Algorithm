@@ -6,7 +6,7 @@ class Function_Percentage extends Function_1 {
     }
 
     evaluate(engine, tempParameter) {
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "Percentage");
             if (args1.IsError) { return args1; }
@@ -15,7 +15,7 @@ class Function_Percentage extends Function_1 {
     }
 
     toString(stringBuilder, addBrackets) {
-        this._arg1.toString(stringBuilder, false);
+        this.func1.toString(stringBuilder, false);
         stringBuilder.append('%');
     }
 }

@@ -19,14 +19,14 @@ export class Function_STARTSWITH extends Function_3 {
      * @returns {Operand}
      */
     evaluate(engine) {
-        const args1 = this._arg1.evaluate(engine);
+        const args1 = this.func1.evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'StartsWith', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this._arg2.evaluate(engine);
+        const args2 = this.func2.evaluate(engine);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'StartsWith', 2);
             if (args2.isError) {
@@ -37,11 +37,11 @@ export class Function_STARTSWITH extends Function_3 {
         const text = args1.textValue;
         const prefix = args2.textValue;
         
-        if (this._arg3 === null) {
+        if (this.func3 === null) {
             return Operand.create(text.startsWith(prefix));
         }
         
-        const args3 = this._arg3.evaluate(engine);
+        const args3 = this.func3.evaluate(engine);
         if (args3.isNotBoolean) {
             args3.toBoolean('Function \'{0}\' parameter {1} is error!', 'StartsWith', 3);
             if (args3.isError) {

@@ -6,7 +6,7 @@ class Function_ISNULLOREMPTY extends Function_1 {
     }
 
     evaluate(engine, tempParameter) {
-        const args1 = this._arg1.evaluate(engine, tempParameter);
+        const args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNull) {
             return engine.createBooleanOperand(true);
         }

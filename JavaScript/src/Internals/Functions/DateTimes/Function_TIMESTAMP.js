@@ -7,12 +7,12 @@ class Function_TIMESTAMP extends Function_2 {
     }
 
     evaluate(engine, tempParameter) {
-        let args0 = this._arg1.evaluate(engine, tempParameter);
+        let args0 = this.func1.evaluate(engine, tempParameter);
         if (args0.IsError) { return args0; }
 
         let type = 0; // 毫秒
-        if (this._arg2 !== null) {
-            let args2 = this._arg2.evaluate(engine, tempParameter);
+        if (this.func2 !== null) {
+            let args2 = this.func2.evaluate(engine, tempParameter);
             if (args2.IsNotNumber) {
                 args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2);
                 if (args2.IsError) { return args2; }

@@ -7,15 +7,15 @@ class Function_FIXED extends Function_3 {
 
     evaluate(engine, tempParameter) {
         let num = 2;
-        if (this._arg2 !== null) {
-            let args2 = this._arg2.evaluate(engine, tempParameter);
+        if (this.func2 !== null) {
+            let args2 = this.func2.evaluate(engine, tempParameter);
             if (args2.IsNotNumber) {
                 args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 2);
                 if (args2.IsError) { return args2; }
             }
             num = args2.IntValue;
         }
-        let args1 = this._arg1.evaluate(engine, tempParameter);
+        let args1 = this.func1.evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 1);
             if (args1.IsError) { return args1; }
@@ -24,8 +24,8 @@ class Function_FIXED extends Function_3 {
         // 四舍五入到指定小数位数
         const s = Math.round(args1.NumberValue * Math.pow(10, num)) / Math.pow(10, num);
         let no = false;
-        if (this._arg3 !== null) {
-            let args3 = this._arg3.evaluate(engine, tempParameter);
+        if (this.func3 !== null) {
+            let args3 = this.func3.evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
                 args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Fixed", 3);
                 if (args3.IsError) { return args3; }
