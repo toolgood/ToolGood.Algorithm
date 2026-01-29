@@ -6,6 +6,8 @@ import mathLexer from './math/mathLexer.js';
 import mathParser from './math/mathParser.js';
 import { AntlrErrorTextWriter } from './Internals/Visitors/AntlrErrorTextWriter.js';
 import { MathFunctionVisitor } from './Internals/Visitors/MathFunctionVisitor.js';
+import { AntlrCharStream } from './Internals/Visitors/AntlrCharStream.js';
+
 
 class AlgorithmEngine {
   constructor() {
@@ -37,7 +39,7 @@ class AlgorithmEngine {
       throw new Error(this.LastError);
     }
     const antlrErrorTextWriter = new AntlrErrorTextWriter();
-    const stream = new InputStream(exp);
+    const stream =new AntlrCharStream(new InputStream(exp));
     const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
     const tokens = new CommonTokenStream(lexer);
     const parser = new mathParser(tokens, null, antlrErrorTextWriter);
