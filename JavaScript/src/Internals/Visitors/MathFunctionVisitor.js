@@ -226,17 +226,17 @@ import { Function_ISNULLOREMPTY } from '../Functions/Flow/Function_ISNULLOREMPTY
 import { Function_ISNULLORWHITESPACE } from '../Functions/Flow/Function_ISNULLORWHITESPACE.js';
 import { Function_ISNUMBER } from '../Functions/Flow/Function_ISNUMBER.js';
 import { Function_ISTEXT } from '../Functions/Flow/Function_ISTEXT.js';
-import { Function_ARRAY } from '../Functions/Value/Function_Array.js';
+import { Function_Array } from '../Functions/Value/Function_Array.js';
 import { Function_JSON } from '../Functions/Value/Function_JSON.js';
-import { Function_ARRAYJSON } from '../Functions/Value/Function_ArrayJson.js';
-import { Function_ARRAYJSONITEM } from '../Functions/Value/Function_ArrayJsonItem.js';
-import { Function_GETJSONVALUE } from '../Functions/Value/Function_GetJsonValue.js';
+import { Function_ArrayJson } from '../Functions/Value/Function_ArrayJson.js';
+import { Function_ArrayJsonItem } from '../Functions/Value/Function_ArrayJsonItem.js';
+import { Function_GetJsonValue } from '../Functions/Value/Function_GetJsonValue.js';
 import { Function_NUM } from '../Functions/Value/Function_NUM.js';
 import { Function_PARAM } from '../Functions/Value/Function_PARAM.js';
 import { Function_PARAMETER } from '../Functions/Value/Function_PARAMETER.js';
-import { Function_DIYFUNCTION } from '../Functions/Value/Function_DiyFunction.js';
+import { Function_DiyFunction } from '../Functions/Value/Function_DiyFunction.js';
 import { Function_ERROR } from '../Functions/Value/Function_ERROR.js';
-import { CharUtil } from './CharUtil';
+import { CharUtil } from './CharUtil.js';
 import { Operand } from '../../Operand.js';
 
 class MathFunctionVisitor {

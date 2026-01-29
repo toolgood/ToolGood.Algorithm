@@ -10,27 +10,27 @@ export class Operand {
     /**
      * 版本号
      */
-    static Version = new OperandString("ToolGood.Algorithm 6.1");
+    static Version;
 
     /**
      * True
      */
-    static True = new OperandBoolean(true);
+    static True;
 
     /**
      * False
      */
-    static False = new OperandBoolean(false);
+    static False;
 
     /**
      * One
      */
-    static One = Operand.Create(1);
+    static One;
 
     /**
      * Zero
      */
-    static Zero = Operand.Create(0);
+    static Zero;
 
     /**
      * 是否为空值
@@ -777,6 +777,13 @@ class OperandKeyValue extends Operand {
 
 // 导出所有类
 export { OperandInt, OperandDouble, OperandDecimal, OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
+
+// 初始化静态属性
+Operand.Version = new OperandString("ToolGood.Algorithm 6.1");
+Operand.True = new OperandBoolean(true);
+Operand.False = new OperandBoolean(false);
+Operand.One = Operand.Create(1);
+Operand.Zero = Operand.Create(0);
 
 // 浏览器支持
 if (typeof window !== 'undefined') {
