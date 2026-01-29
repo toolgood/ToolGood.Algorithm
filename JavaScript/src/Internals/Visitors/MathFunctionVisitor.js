@@ -3036,6 +3036,9 @@ class MathFunctionVisitor extends mathVisitor  {
         const args3 = exprs[2].accept(this);
         return new Function_HMACMD5(args1, args2, args3);
     }
+    visitBracket_fun(context) {
+        return context.expr().accept(this);
+    }
 }
 
 export { MathFunctionVisitor };
