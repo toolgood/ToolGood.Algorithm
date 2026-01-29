@@ -20,30 +20,30 @@ export class Function_REGEXREPALCE extends Function_3 {
      */
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'RegexReplace', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotText) {
+        if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'RegexReplace', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotText) {
+        if (args3.IsNotText) {
             args3.ToText('Function \'{0}\' parameter {1} is error!', 'RegexReplace', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
         
         try {
-            const regex = new RegExp(args2.textValue, 'g');
-            const b = args1.textValue.replace(regex, args3.textValue);
+            const regex = new RegExp(args2.TextValue, 'g');
+            const b = args1.TextValue.replace(regex, args3.TextValue);
             return Operand.Create(b);
         } catch (e) {
             return Operand.error('Function \'RegexReplace\' is error!');

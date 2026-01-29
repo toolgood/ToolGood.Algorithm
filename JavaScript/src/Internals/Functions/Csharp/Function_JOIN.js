@@ -21,21 +21,21 @@ export class Function_JOIN extends Function_N {
         const args = [];
         for (let item of this._args) {
             const aa = item.Evaluate(engine, tempParameter);
-            if (aa.isError) {
+            if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
         
         let args1 = args[0];
-        if (args1.isJson) {
+        if (args1.IsJson) {
             const o = args1.ToArray(null);
-            if (!o.isError) {
+            if (!o.IsError) {
                 args1 = o;
             }
         }
         
-        if (args1.isArray) {
+        if (args1.IsArray) {
             const list = [];
             const o = FunctionUtil.f_base_GetList(args1, list);
             if (!o) {
@@ -43,14 +43,14 @@ export class Function_JOIN extends Function_N {
             }
             
             const args2 = args[1].ToText('Function \'{0}\' parameter {1} is error!', 'Join', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
             
-            return Operand.Create(list.join(args2.textValue));
+            return Operand.Create(list.join(args2.TextValue));
         } else {
             args1 = args1.ToText('Function \'{0}\' parameter {1} is error!', 'Join', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
             
@@ -62,7 +62,7 @@ export class Function_JOIN extends Function_N {
                 }
             }
             
-            return Operand.Create(list.join(args1.textValue));
+            return Operand.Create(list.join(args1.TextValue));
         }
     }
     

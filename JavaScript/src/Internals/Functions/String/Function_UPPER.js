@@ -8,13 +8,13 @@ class Function_UPPER extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function {0} parameter is error!', 'Upper');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        return Operand.Create(args1.textValue.toUpperCase());
+        return Operand.Create(args1.TextValue.toUpperCase());
     }
 
     toString(stringBuilder, addBrackets) {

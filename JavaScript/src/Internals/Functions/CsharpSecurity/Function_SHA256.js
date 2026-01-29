@@ -19,9 +19,9 @@ export class Function_SHA256 extends Function_2 {
      */
     async Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'SHA256', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
@@ -30,17 +30,17 @@ export class Function_SHA256 extends Function_2 {
             let encoding = 'utf-8';
             if (this.func2 !== null) {
                 const args2 = this.func2.Evaluate(engine, tempParameter);
-                if (args2.isNotText) {
+                if (args2.IsNotText) {
                     args2.ToText('Function \'{0}\' parameter {1} is error!', 'SHA256', 2);
-                    if (args2.isError) {
+                    if (args2.IsError) {
                         return args2;
                     }
                 }
-                encoding = args2.textValue;
+                encoding = args2.TextValue;
             }
             
             const encoder = new TextEncoder(encoding);
-            const buffer = encoder.encode(args1.textValue);
+            const buffer = encoder.encode(args1.TextValue);
             const t = await this.getSha256String(buffer);
             return Operand.Create(t);
         } catch (ex) {

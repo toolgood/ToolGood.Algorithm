@@ -8,17 +8,17 @@ class Function_BIN2DEC extends Function_1 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'BIN2DEC');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
 
-        if (!RegexHelper.BinRegex.test(args1.textValue)) {
+        if (!RegexHelper.BinRegex.test(args1.TextValue)) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BIN2DEC');
         }
-        const num = parseInt(args1.textValue, 2);
+        const num = parseInt(args1.TextValue, 2);
         return Operand.Create(num);
     }
 

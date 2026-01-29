@@ -8,32 +8,32 @@ class Function_BINOMDIST extends Function_4 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'BinomDist', 1);
-            if (args1.isError) return args1;
+            if (args1.IsError) return args1;
         }
         const args2 = this.func2.Evaluate(work, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BinomDist', 2);
-            if (args2.isError) return args2;
+            if (args2.IsError) return args2;
         }
         const args3 = this.func3.Evaluate(work, tempParameter);
-        if (args3.isNotNumber) {
+        if (args3.IsNotNumber) {
             args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'BinomDist', 3);
-            if (args3.isError) return args3;
+            if (args3.IsError) return args3;
         }
         const args4 = this.func4.Evaluate(work, tempParameter);
-        if (args4.isNotBoolean) {
+        if (args4.IsNotBoolean) {
             args4.ToBoolean('Function \'{0}\' parameter {1} is error!', 'BinomDist', 4);
-            if (args4.isError) return args4;
+            if (args4.IsError) return args4;
         }
 
-        const n2 = args2.intValue;
-        const n3 = args3.doubleValue;
+        const n2 = args2.IntValue;
+        const n3 = args3.DoubleValue;
         if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BinomDist');
         }
-        return Operand.Create(ExcelFunctions.BinomDist(args1.intValue, n2, n3, args4.booleanValue));
+        return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
     }
 
     toString(stringBuilder, addBrackets) {

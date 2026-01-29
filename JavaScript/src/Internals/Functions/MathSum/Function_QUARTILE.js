@@ -9,15 +9,15 @@ class Function_QUARTILE extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotArray) {
+        if (args1.IsNotArray) {
             const converted1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Quartile", 1);
-            if (converted1.isError) return converted1;
+            if (converted1.IsError) return converted1;
             args1 = converted1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             const converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Quartile", 2);
-            if (converted2.isError) return converted2;
+            if (converted2.IsError) return converted2;
             args2 = converted2;
         }
 
@@ -27,7 +27,7 @@ class Function_QUARTILE extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 1);
         }
 
-        const quant = args2.intValue;
+        const quant = args2.IntValue;
         if (quant < 0 || quant > 4) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 2);
         }

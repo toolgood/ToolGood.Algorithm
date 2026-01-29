@@ -8,13 +8,13 @@ class Function_ERROR extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText();
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        return Operand.error(args1.textValue);
+        return Operand.error(args1.TextValue);
     }
 
     toString(stringBuilder, addBrackets) {

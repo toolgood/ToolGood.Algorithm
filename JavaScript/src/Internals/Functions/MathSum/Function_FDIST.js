@@ -8,30 +8,30 @@ class Function_FDIST extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'FDist', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'FDist', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotNumber) {
+        if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'FDist', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
 
-        const x = args1.doubleValue;
-        const degreesFreedom = Math.round(args2.doubleValue);
-        const degreesFreedom2 = Math.round(args3.doubleValue);
+        const x = args1.DoubleValue;
+        const degreesFreedom = Math.round(args2.DoubleValue);
+        const degreesFreedom2 = Math.round(args3.DoubleValue);
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
             return Operand.error('Function {0} parameter is error!', 'FDist');
         }

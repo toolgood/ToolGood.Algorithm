@@ -11,7 +11,7 @@ class Function_SUMSQ extends Function_N {
         const args = [];
         for (let i = 0; i < this._args.length; i++) {
             const aa = this._args[i].Evaluate(engine, tempParameter);
-            if (aa.isError) {
+            if (aa.IsError) {
                 return aa;
             }
             args.push(aa);

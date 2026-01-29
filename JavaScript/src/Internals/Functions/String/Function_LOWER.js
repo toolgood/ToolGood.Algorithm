@@ -8,13 +8,13 @@ class Function_LOWER extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function {0} parameter is error!', 'Lower');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        return Operand.Create(args1.textValue.toLowerCase());
+        return Operand.Create(args1.TextValue.toLowerCase());
     }
 
     toString(stringBuilder, addBrackets) {

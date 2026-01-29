@@ -9,11 +9,11 @@ class Function_COVARIANCES extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber && args1.isError) {
+        if (args1.IsNotNumber && args1.IsError) {
             return args1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber && args2.isError) {
+        if (args2.IsNotNumber && args2.IsError) {
             return args2;
         }
 

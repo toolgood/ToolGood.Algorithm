@@ -52,14 +52,14 @@ class Function_AVERAGEIF extends Function_3 {
             sum = count * args2.NumberValue;
         } else {
             if (args2.IsText) {
-                const textValue = args2.TextValue.trim();
-                const parsedValue = parseFloat(textValue);
+                const TextValue = args2.TextValue.trim();
+                const parsedValue = parseFloat(TextValue);
                 if (!isNaN(parsedValue)) {
                     count = Function_AVERAGEIF.countif(list, parsedValue);
                     sum = Function_AVERAGEIF.sumif(list, parsedValue, sumdbs);
                 } else {
                     // 处理匹配模式
-                    const matchResult = Function_AVERAGEIF.sumifMatch(textValue);
+                    const matchResult = Function_AVERAGEIF.sumifMatch(TextValue);
                     if (matchResult) {
                         count = Function_AVERAGEIF.countif(list, matchResult[0], matchResult[1]);
                         sum = Function_AVERAGEIF.sumif(list, matchResult[0], matchResult[1], sumdbs);

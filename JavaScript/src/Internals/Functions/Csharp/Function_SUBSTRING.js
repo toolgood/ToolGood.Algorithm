@@ -20,36 +20,36 @@ export class Function_SUBSTRING extends Function_3 {
      */
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'Substring', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'Substring', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         
-        const text = args1.textValue;
-        const startIndex = args2.intValue - engine.excelIndex;
+        const text = args1.TextValue;
+        const startIndex = args2.IntValue - engine.excelIndex;
         
         if (this.func3 === null) {
             return Operand.Create(text.substring(startIndex));
         }
         
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotNumber) {
+        if (args3.IsNotNumber) {
             args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'Substring', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
         
-        const length = args3.intValue;
+        const length = args3.IntValue;
         const endIndex = startIndex + length;
         return Operand.Create(text.substring(startIndex, endIndex));
     }

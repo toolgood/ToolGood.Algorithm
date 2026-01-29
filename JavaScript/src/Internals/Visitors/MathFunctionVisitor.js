@@ -295,16 +295,16 @@ class MathFunctionVisitor extends mathVisitor  {
         const args1 = exprs[0].accept(this);
         const args2 = exprs[1].accept(this);
 
-        const type = context.op.text;
-        if (CharUtil.Equals(type, "=", "==", "===")) {
+        const Type = context.op.text;
+        if (CharUtil.Equals(Type, "=", "==", "===")) {
             return new Function_EQ(args1, args2);
-        } else if (CharUtil.Equals(type, "<")) {
+        } else if (CharUtil.Equals(Type, "<")) {
             return new Function_LT(args1, args2);
-        } else if (CharUtil.Equals(type, "<=")) {
+        } else if (CharUtil.Equals(Type, "<=")) {
             return new Function_LE(args1, args2);
-        } else if (CharUtil.Equals(type, ">")) {
+        } else if (CharUtil.Equals(Type, ">")) {
             return new Function_GT(args1, args2);
-        } else if (CharUtil.Equals(type, ">=")) {
+        } else if (CharUtil.Equals(Type, ">=")) {
             return new Function_GE(args1, args2);
         }
         return new Function_NE(args1, args2);

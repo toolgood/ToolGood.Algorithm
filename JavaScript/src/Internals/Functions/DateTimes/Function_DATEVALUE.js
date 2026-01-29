@@ -14,13 +14,13 @@ class Function_DATEVALUE extends Function_N {
             args.push(aa);
         }
         if (args[0].IsDate) { return args[0]; }
-        let type = 0;
+        let Type = 0;
         if (args.length == 2) {
             const args2 = args[1].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 2);
             if (args2.IsError) { return args2; }
-            type = args2.IntValue;
+            Type = args2.IntValue;
         }
-        if (type == 0) {
+        if (Type == 0) {
             if (args[0].IsText) {
                 const parsedDate = new Date(args[0].TextValue);
                 if (!isNaN(parsedDate.getTime())) {
@@ -40,21 +40,21 @@ class Function_DATEVALUE extends Function_N {
             const time2 = new Date(Date.UTC(1970, 0, 1, 0, 0, 0) + args1.LongValue);
             if (engine.UseLocalTime) { return engine.createOperand(new MyDate(new Date(time2.getTime() + time2.getTimezoneOffset() * 60000))); }
             return engine.createOperand(new MyDate(time2));
-        } else if (type == 1) {
+        } else if (Type == 1) {
             const args1 = args[0].ToText("Function '{0}' parameter {1} is error!", "DateValue", 1);
             if (args1.IsError) { return args1; }
             const parsedDate = new Date(args1.TextValue);
             if (!isNaN(parsedDate.getTime())) {
                 return engine.createOperand(new MyDate(parsedDate));
             }
-        } else if (type == 2) {
+        } else if (Type == 2) {
             return args[0].ToNumber("Function '{0}' parameter is error!", "DateValue").ToMyDate();
-        } else if (type == 3) {
+        } else if (Type == 3) {
             const args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             const time = new Date(Date.UTC(1970, 0, 1, 0, 0, 0) + args1.LongValue);
             if (engine.UseLocalTime) { return engine.createOperand(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }
             return engine.createOperand(new MyDate(time));
-        } else if (type == 4) {
+        } else if (Type == 4) {
             const args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             const time = new Date(Date.UTC(1970, 0, 1, 0, 0, 0) + args1.LongValue * 1000);
             if (engine.UseLocalTime) { return engine.createOperand(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }

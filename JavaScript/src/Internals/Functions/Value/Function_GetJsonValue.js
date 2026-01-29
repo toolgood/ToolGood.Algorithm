@@ -8,50 +8,50 @@ class Function_GetJsonValue extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         const obj = this.func1.Evaluate(engine, tempParameter);
-        if (obj.isError) {
+        if (obj.IsError) {
             return obj;
         }
         const op = this.func2.Evaluate(engine, tempParameter);
-        if (op.isError) {
+        if (op.IsError) {
             return op;
         }
 
-        if (obj.isArray) {
+        if (obj.IsArray) {
             op = op.ToNumber('ARRARY index is error!');
-            if (op.isError) {
+            if (op.IsError) {
                 return op;
             }
-            const index = op.intValue - engine.excelIndex;
-            if (index < obj.arrayValue.length) {
-                return obj.arrayValue[index];
+            const index = op.IntValue - engine.excelIndex;
+            if (index < obj.ArrayValue.length) {
+                return obj.ArrayValue[index];
             }
             return Operand.error('ARRARY index {0} greater than maximum length!', index);
         }
-        if (obj.isArrayJson) {
-                if (op.isNumber) {
-                    const operand = obj.tryGetValue(op.numberValue.toString());
+        if (obj.IsArrayJson) {
+                if (op.IsNumber) {
+                    const operand = obj.tryGetValue(op.NumberValue.toString());
                     if (operand !== undefined) {
                         return operand;
                     }
-                    return Operand.error('Parameter name {0} is missing!', op.textValue);
+                    return Operand.error('Parameter name {0} is missing!', op.TextValue);
                 } else if (op.isText) {
-                    const operand = obj.tryGetValue(op.textValue);
+                    const operand = obj.tryGetValue(op.TextValue);
                     if (operand !== undefined) {
                         return operand;
                     }
-                    return Operand.error('Parameter name {0} is missing!', op.textValue);
+                    return Operand.error('Parameter name {0} is missing!', op.TextValue);
                 }
                 return Operand.error('Parameter name is missing!');
             }
 
-        if (obj.isJson) {
-            const json = obj.jsonValue;
-            if (Array.isArray(json)) {
+        if (obj.IsJson) {
+            const json = obj.JsonValue;
+            if (Array.IsArray(json)) {
                 op = op.ToNumber('JSON parameter index is error!');
-                if (op.isError) {
+                if (op.IsError) {
                     return op;
                 }
-                const index = op.intValue - engine.excelIndex;
+                const index = op.IntValue - engine.excelIndex;
                 if (index < json.length) {
                     const v = json[index];
                     if (typeof v === 'string') {
@@ -74,10 +74,10 @@ class Function_GetJsonValue extends Function_2 {
                 return Operand.error('JSON index {0} greater than maximum length!', index);
             } else {
                 op = op.ToText('JSON parameter name is error!');
-                if (op.isError) {
+                if (op.IsError) {
                     return op;
                 }
-                const v = json[op.textValue];
+                const v = json[op.TextValue];
                 if (v !== undefined) {
                     if (typeof v === 'string') {
                         return Operand.Create(v);

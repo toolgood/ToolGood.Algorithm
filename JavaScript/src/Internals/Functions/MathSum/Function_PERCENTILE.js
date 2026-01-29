@@ -9,15 +9,15 @@ class Function_PERCENTILE extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotArray) {
+        if (args1.IsNotArray) {
             const converted1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Percentile", 1);
-            if (converted1.isError) return converted1;
+            if (converted1.IsError) return converted1;
             args1 = converted1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             const converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Percentile", 2);
-            if (converted2.isError) return converted2;
+            if (converted2.IsError) return converted2;
             args2 = converted2;
         }
         const list = [];
@@ -25,7 +25,7 @@ class Function_PERCENTILE extends Function_2 {
         if (o == false) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1);
         }
-        const k = args2.doubleValue;
+        const k = args2.DoubleValue;
         return Operand.Create(ExcelFunctions.Percentile(list.map(q => q), k));
     }
 

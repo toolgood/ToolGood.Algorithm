@@ -20,16 +20,16 @@ export class Function_LOOKFLOOR extends Function_2 {
      */
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'LookFloor', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotArray) {
+        if (args2.IsNotArray) {
             args2.ToArray('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
@@ -40,7 +40,7 @@ export class Function_LOOKFLOOR extends Function_2 {
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
         }
         list.sort((a, b) => a - b);
-        const value = args1.numberValue;
+        const value = args1.NumberValue;
         let result = list[0];
         if (result === value) {
             return args1;

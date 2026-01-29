@@ -11,7 +11,7 @@ class Function_SUM extends Function_N {
         const args = [];
         for (const item of this._args) {
             const aa = item.Evaluate(engine, tempParameter);
-            if (aa.isError) {
+            if (aa.IsError) {
                 return aa;
             }
             args.push(aa);

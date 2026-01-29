@@ -10,7 +10,7 @@ class Function_COUNT extends Function_N {
         const args = [];
         for (const item of this.funcs) {
             const aa = item.Evaluate(work, tempParameter);
-            if (aa.isError) {
+            if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
@@ -32,28 +32,28 @@ class Function_COUNT extends Function_N {
 const FunctionUtil = {
     F_base_GetList(args, list) {
         for (const item of args) {
-            if (item.isNumber) {
-                list.push(item.numberValue);
-            } else if (item.isArray) {
-                const o = this.F_base_GetList(item.arrayValue, list);
+            if (item.IsNumber) {
+                list.push(item.NumberValue);
+            } else if (item.IsArray) {
+                const o = this.F_base_GetList(item.ArrayValue, list);
                 if (o === false) {
                     return false;
                 }
-            } else if (item.isJson) {
+            } else if (item.IsJson) {
                 const i = item.ToArray(null);
-                if (i.isError) {
+                if (i.IsError) {
                     return false;
                 }
-                const o = this.F_base_GetList(i.arrayValue, list);
+                const o = this.F_base_GetList(i.ArrayValue, list);
                 if (o === false) {
                     return false;
                 }
             } else {
                 const o = item.ToNumber(null);
-                if (o.isError) {
+                if (o.IsError) {
                     return false;
                 }
-                list.push(o.numberValue);
+                list.push(o.NumberValue);
             }
         }
         return true;

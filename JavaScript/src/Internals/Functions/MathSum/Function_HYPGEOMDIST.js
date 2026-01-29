@@ -8,37 +8,37 @@ class Function_HYPGEOMDIST extends Function_4 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotNumber) {
+        if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
-        if (args4.isNotNumber) {
+        if (args4.IsNotNumber) {
             args4.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 4);
-            if (args4.isError) {
+            if (args4.IsError) {
                 return args4;
             }
         }
-        const k = Math.round(args1.doubleValue);
-        const draws = Math.round(args2.doubleValue);
-        const success = Math.round(args3.doubleValue);
-        const population = Math.round(args4.doubleValue);
+        const k = Math.round(args1.DoubleValue);
+        const draws = Math.round(args2.DoubleValue);
+        const success = Math.round(args3.DoubleValue);
+        const population = Math.round(args4.DoubleValue);
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
             return Operand.error('Function {0} parameter is error!', 'HypgeomDist');
         }

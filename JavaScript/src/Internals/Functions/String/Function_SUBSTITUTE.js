@@ -8,40 +8,40 @@ class Function_SUBSTITUTE extends Function_4 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function {0} parameter {1} is error!', 'Substitute', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotText) {
+        if (args2.IsNotText) {
             args2.ToText('Function {0} parameter {1} is error!', 'Substitute', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotText) {
+        if (args3.IsNotText) {
             args3.ToText('Function {0} parameter {1} is error!', 'Substitute', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
         if (this.func4 === null) {
-            return Operand.Create(args1.textValue.replace(new RegExp(args2.textValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.textValue));
+            return Operand.Create(args1.TextValue.replace(new RegExp(args2.TextValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.TextValue));
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
-        if (args4.isNotNumber) {
+        if (args4.IsNotNumber) {
             args4.ToNumber('Function {0} parameter {1} is error!', 'Substitute', 4);
-            if (args4.isError) {
+            if (args4.IsError) {
                 return args4;
             }
         }
-        const text = args1.textValue;
-        const oldtext = args2.textValue;
-        const newtext = args3.textValue;
-        const index = args4.intValue;
+        const text = args1.TextValue;
+        const oldtext = args2.TextValue;
+        const newtext = args3.TextValue;
+        const index = args4.IntValue;
 
         let index2 = 0;
         let result = '';

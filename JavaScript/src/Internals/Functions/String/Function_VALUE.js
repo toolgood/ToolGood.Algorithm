@@ -8,21 +8,21 @@ class Function_VALUE extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNumber) {
+        if (args1.IsNumber) {
             return args1;
         }
         if (args1.isBoolean) {
-            return args1.booleanValue ? Operand.one : Operand.zero;
+            return args1.BooleanValue ? Operand.one : Operand.zero;
         }
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function {0} parameter is error!', 'Value');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
 
-        const textValue = args1.textValue;
-        const parsedValue = parseFloat(textValue);
+        const TextValue = args1.TextValue;
+        const parsedValue = parseFloat(TextValue);
         if (!isNaN(parsedValue)) {
             return Operand.Create(parsedValue);
         }

@@ -8,23 +8,23 @@ class Function_REPT extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function {0} parameter {1} is error!', 'Rept', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
 
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'Rept', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
 
-        const newtext = args1.textValue;
-        const length = args2.intValue;
+        const newtext = args1.TextValue;
+        const length = args2.IntValue;
         if (length < 0) {
             return Operand.error('Function {0} parameter {1} is error!', 'Rept', 2);
         }

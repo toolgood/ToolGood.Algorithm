@@ -20,16 +20,16 @@ export class Function_HMACMD5 extends Function_3 {
      */
     async Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotText) {
+        if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
@@ -38,18 +38,18 @@ export class Function_HMACMD5 extends Function_3 {
             let encoding = 'utf-8';
             if (this.func3 !== null) {
                 const args3 = this.func3.Evaluate(engine, tempParameter);
-                if (args3.isNotText) {
+                if (args3.IsNotText) {
                     args3.ToText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 3);
-                    if (args3.isError) {
+                    if (args3.IsError) {
                         return args3;
                     }
                 }
-                encoding = args3.textValue;
+                encoding = args3.TextValue;
             }
             
             const encoder = new TextEncoder(encoding);
-            const buffer = encoder.encode(args1.textValue);
-            const t = await this.getHmacMd5String(buffer, args2.textValue);
+            const buffer = encoder.encode(args1.TextValue);
+            const t = await this.getHmacMd5String(buffer, args2.TextValue);
             return Operand.Create(t);
         } catch (ex) {
             return Operand.error('Function \'HmacMD5\'is error!' + ex.message);

@@ -8,13 +8,13 @@ class Function_RMB extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter is error!', 'RMB');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        return Operand.Create(this.F_base_ToChineseRMB(args1.numberValue));
+        return Operand.Create(this.F_base_ToChineseRMB(args1.NumberValue));
     }
 
     F_base_ToChineseRMB(x) {

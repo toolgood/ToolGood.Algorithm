@@ -14,13 +14,13 @@ class Function_PARAMETER extends FunctionBase {
         let txt = this.name;
         if (txt === undefined || txt === null) {
             const args1 = this.func1.Evaluate(engine, tempParameter);
-            if (args1.isNotText) {
+            if (args1.IsNotText) {
                 args1.ToText();
-                if (args1.isError) {
+                if (args1.IsError) {
                     return args1;
                 }
             }
-            txt = args1.textValue;
+            txt = args1.TextValue;
         }
         if (tempParameter !== null) {
             const r = tempParameter(engine, txt);

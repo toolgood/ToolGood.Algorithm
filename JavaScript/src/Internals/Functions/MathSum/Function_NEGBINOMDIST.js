@@ -8,29 +8,29 @@ class Function_NEGBINOMDIST extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'NegbinomDist', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'NegbinomDist', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotNumber) {
+        if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'NegbinomDist', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
-        const k = Math.round(args1.doubleValue);
-        const r = args2.doubleValue;
-        const p = args3.doubleValue;
+        const k = Math.round(args1.DoubleValue);
+        const r = args2.DoubleValue;
+        const p = args3.DoubleValue;
 
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
             return Operand.error('Function {0} parameter is error!', 'NegbinomDist');

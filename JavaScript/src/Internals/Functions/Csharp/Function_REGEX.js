@@ -19,23 +19,23 @@ export class Function_REGEX extends Function_2 {
      */
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'Regex', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotText) {
+        if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'Regex', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         
         try {
-            const regex = new RegExp(args2.textValue);
-            const b = regex.exec(args1.textValue);
+            const regex = new RegExp(args2.TextValue);
+            const b = regex.exec(args1.TextValue);
             if (!b) {
                 return Operand.error('Function \'Regex\'is error!');
             }

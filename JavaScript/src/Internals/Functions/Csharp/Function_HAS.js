@@ -19,52 +19,52 @@ export class Function_HAS extends Function_2 {
      */
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isError) {
+        if (args1.IsError) {
             return args1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotText) {
+        if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'Has', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         
-        if (args1.isArrayJson) {
+        if (args1.IsArrayJson) {
             return Operand.Create(args1.containsKey(args2));
-        } else if (args1.isJson) {
-            const json = args1.jsonValue;
-            if (Array.isArray(json)) {
+        } else if (args1.IsJson) {
+            const json = args1.JsonValue;
+            if (Array.IsArray(json)) {
                 for (let i = 0; i < json.length; i++) {
                     const v = json[i];
                     if (typeof v === 'string') {
-                        if (v === args2.textValue) {
+                        if (v === args2.TextValue) {
                             return Operand.True;
                         }
                     } else if (typeof v === 'number') {
-                        if (v.toString() === args2.textValue) {
+                        if (v.toString() === args2.TextValue) {
                             return Operand.True;
                         }
                     } else if (typeof v === 'boolean') {
-                        if (v.toString().toLowerCase() === args2.textValue.toLowerCase()) {
+                        if (v.toString().toLowerCase() === args2.TextValue.toLowerCase()) {
                             return Operand.True;
                         }
                     }
                 }
             } else {
-                if (json[args2.textValue] !== undefined) {
+                if (json[args2.TextValue] !== undefined) {
                     return Operand.True;
                 }
             }
             return Operand.False;
-        } else if (args1.isArray) {
-            const ar = args1.arrayValue;
+        } else if (args1.IsArray) {
+            const ar = args1.ArrayValue;
             for (let item of ar) {
                 const t = item.ToText();
-                if (t.isError) {
+                if (t.IsError) {
                     continue;
                 }
-                if (t.textValue === args2.textValue) {
+                if (t.TextValue === args2.TextValue) {
                     return Operand.True;
                 }
             }

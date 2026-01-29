@@ -8,16 +8,16 @@ class Function_CODE extends Function_1 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'CODE');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        if (!args1.textValue) {
+        if (!args1.TextValue) {
             return Operand.error('Function \'{0}\' parameter is error!', 'CODE');
         }
-        const c = args1.textValue[0];
+        const c = args1.TextValue[0];
         return Operand.Create(c.charCodeAt(0));
     }
 

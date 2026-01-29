@@ -12,9 +12,9 @@ class Function_CONCATENATE extends Function_N {
         }
         if (this.funcs.length === 1) {
             const a = this.funcs[0].Evaluate(work, tempParameter);
-            if (a.isNotText) {
+            if (a.IsNotText) {
                 a.ToText('Function \'{0}\' parameter {1} is error!', 'Concatenate', 1);
-                if (a.isError) {
+                if (a.IsError) {
                     return a;
                 }
             }
@@ -23,13 +23,13 @@ class Function_CONCATENATE extends Function_N {
         let result = '';
         for (let i = 0; i < this.funcs.length; i++) {
             const a = this.funcs[i].Evaluate(work, tempParameter);
-            if (a.isNotText) {
+            if (a.IsNotText) {
                 a.ToText('Function \'{0}\' parameter {1} is error!', 'Concatenate', i + 1);
-                if (a.isError) {
+                if (a.IsError) {
                     return a;
                 }
             }
-            result += a.textValue;
+            result += a.TextValue;
         }
         return Operand.Create(result);
     }

@@ -8,12 +8,12 @@ class Function_NORMSDIST extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             const converted1 = args1.ToNumber("Function '{0}' parameter is error!", "NormSDist");
-            if (converted1.isError) return converted1;
+            if (converted1.IsError) return converted1;
             args1 = converted1;
         }
-        const num = args1.doubleValue;
+        const num = args1.DoubleValue;
         return Operand.Create(ExcelFunctions.NormSDist(num));
     }
 

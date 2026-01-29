@@ -8,12 +8,12 @@ class Function_NORMSINV extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             const converted1 = args1.ToNumber("Function '{0}' parameter is error!", "NormSInv");
-            if (converted1.isError) return converted1;
+            if (converted1.IsError) return converted1;
             args1 = converted1;
         }
-        const p = args1.doubleValue;
+        const p = args1.DoubleValue;
         return Operand.Create(ExcelFunctions.NormSInv(p));
     }
 

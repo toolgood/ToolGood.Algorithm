@@ -20,35 +20,35 @@ export class Function_ENDSWITH extends Function_3 {
      */
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'EndsWith', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotText) {
+        if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'EndsWith', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
-        const text = args1.textValue;
+        const text = args1.TextValue;
         if (this.func3 === null) {
-            return Operand.Create(text.endsWith(args2.textValue));
+            return Operand.Create(text.endsWith(args2.TextValue));
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotBoolean) {
+        if (args3.IsNotBoolean) {
             args3.ToBoolean('Function \'{0}\' parameter {1} is error!', 'EndsWith', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
-        const ignoreCase = args3.booleanValue;
+        const ignoreCase = args3.BooleanValue;
         if (ignoreCase) {
-            return Operand.Create(text.toLowerCase().endsWith(args2.textValue.toLowerCase()));
+            return Operand.Create(text.toLowerCase().endsWith(args2.TextValue.toLowerCase()));
         } else {
-            return Operand.Create(text.endsWith(args2.textValue));
+            return Operand.Create(text.endsWith(args2.TextValue));
         }
     }
     

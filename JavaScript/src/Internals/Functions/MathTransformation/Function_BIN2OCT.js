@@ -8,27 +8,27 @@ class Function_BIN2OCT extends Function_2 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
 
-        if (!RegexHelper.BinRegex.test(args1.textValue)) {
+        if (!RegexHelper.BinRegex.test(args1.TextValue)) {
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 1);
         }
-        const num = parseInt(args1.textValue, 2).toString(8);
+        const num = parseInt(args1.TextValue, 2).toString(8);
         if (this.func2 !== null) {
             const args2 = this.func2.Evaluate(work, tempParameter);
-            if (args2.isNotNumber) {
+            if (args2.IsNotNumber) {
                 args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
-                if (args2.isError) {
+                if (args2.IsError) {
                     return args2;
                 }
             }
-            if (num.length > args2.intValue) {
-                return Operand.Create(num.padLeft(args2.intValue, '0'));
+            if (num.length > args2.IntValue) {
+                return Operand.Create(num.padLeft(args2.IntValue, '0'));
             }
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
         }

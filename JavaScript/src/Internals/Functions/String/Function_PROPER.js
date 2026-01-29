@@ -8,14 +8,14 @@ class Function_PROPER extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function {0} parameter is error!', 'Proper');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
 
-        const text = args1.textValue;
+        const text = args1.TextValue;
         if (text.length === 0) {
             return Operand.Create(text);
         }

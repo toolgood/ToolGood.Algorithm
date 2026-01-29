@@ -17,9 +17,9 @@ class MathSplitVisitor extends mathVisitor  {
         };
         const t = context.op.text;
         if (CharUtil.equals(t, "&&", "and")) {
-            tree.type = ConditionTreeType.And;
+            tree.Type = ConditionTreeType.And;
         } else {
-            tree.type = ConditionTreeType.Or;
+            tree.Type = ConditionTreeType.Or;
         }
         const exprs = context.expr();
 

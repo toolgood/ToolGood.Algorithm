@@ -18,7 +18,7 @@ class Function_Value extends FunctionBase {
         }
         if (this._value.isText) {
             stringBuilder.append('"');
-            let stringValue = this._value.textValue;
+            let stringValue = this._value.TextValue;
             stringValue = stringValue.replace(/\\/g, '\\\\');
             stringValue = stringValue.replace(/\r/g, '\\r');
             stringValue = stringValue.replace(/\n/g, '\\n');
@@ -31,12 +31,12 @@ class Function_Value extends FunctionBase {
             stringValue = stringValue.replace(/"/g, '\\"');
             stringBuilder.append(stringValue);
             stringBuilder.append('"');
-        } else if (this._value.isDate) {
+        } else if (this._value.IsDate) {
             stringBuilder.append('"');
-            stringBuilder.append(this._value.dateValue.toString());
+            stringBuilder.append(this._value.DateValue.toString());
             stringBuilder.append('"');
         } else if (this._value.isBoolean) {
-            stringBuilder.append(this._value.booleanValue ? 'true' : 'false');
+            stringBuilder.append(this._value.BooleanValue ? 'true' : 'false');
         } else {
             stringBuilder.append(this._value.toString());
         }

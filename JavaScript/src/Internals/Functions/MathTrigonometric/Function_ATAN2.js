@@ -8,20 +8,20 @@ class Function_ATAN2 extends Function_2 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'Atan2', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(work, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'Atan2', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
-        return Operand.Create(Math.atan2(args2.doubleValue, args1.doubleValue));
+        return Operand.Create(Math.atan2(args2.DoubleValue, args1.DoubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

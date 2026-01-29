@@ -22,11 +22,11 @@ export class MathSplitVisitor2 extends mathVisitor  {
         const exprs = context.expr();
         const t = context.op.text;
         if (CharUtil.EqualsStrings(t, '*')) {
-            tree.type = CalculateTreeType.Mul;
+            tree.Type = CalculateTreeType.Mul;
         } else if (CharUtil.EqualsStrings(t, '/')) {
-            tree.type = CalculateTreeType.Div;
+            tree.Type = CalculateTreeType.Div;
         } else {
-            tree.type = CalculateTreeType.Mod;
+            tree.Type = CalculateTreeType.Mod;
         }
         tree.nodes.push(exprs[0].accept(this));
         tree.nodes.push(exprs[1].accept(this));
@@ -43,11 +43,11 @@ export class MathSplitVisitor2 extends mathVisitor  {
         const exprs = context.expr();
         const t = context.op.text;
         if (CharUtil.EqualsStrings(t, '+')) {
-            tree.type = CalculateTreeType.Add;
+            tree.Type = CalculateTreeType.Add;
         } else if (CharUtil.EqualsStrings(t, '-')) {
-            tree.type = CalculateTreeType.Sub;
+            tree.Type = CalculateTreeType.Sub;
         } else {
-            tree.type = CalculateTreeType.Connect;
+            tree.Type = CalculateTreeType.Connect;
         }
         tree.nodes.push(exprs[0].accept(this));
         tree.nodes.push(exprs[1].accept(this));

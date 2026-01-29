@@ -8,14 +8,14 @@ class Function_COUNTIF extends Function_2 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotArray) {
+        if (args1.IsNotArray) {
             args1.ToArray('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(work, tempParameter);
-        if (args2.isError) {
+        if (args2.IsError) {
             return args2;
         }
         const list = [];
@@ -24,10 +24,10 @@ class Function_COUNTIF extends Function_2 {
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
         }
         let count;
-        if (args2.isNumber) {
-            count = FunctionUtil.F_base_countif(list, args2.numberValue);
+        if (args2.IsNumber) {
+            count = FunctionUtil.F_base_countif(list, args2.NumberValue);
         } else {
-            const trimmedText = args2.textValue.trim();
+            const trimmedText = args2.TextValue.trim();
             const parsedValue = parseFloat(trimmedText);
             if (!isNaN(parsedValue)) {
                 count = FunctionUtil.F_base_countif(list, parsedValue);
@@ -51,24 +51,24 @@ class Function_COUNTIF extends Function_2 {
 
 const FunctionUtil = {
     F_base_GetList(args, list) {
-        if (args.isError) {
+        if (args.IsError) {
             return false;
         }
-        if (args.isNumber) {
-            list.push(args.numberValue);
-        } else if (args.isArray) {
-            for (const item of args.arrayValue) {
+        if (args.IsNumber) {
+            list.push(args.NumberValue);
+        } else if (args.IsArray) {
+            for (const item of args.ArrayValue) {
                 const o = this.F_base_GetList(item, list);
                 if (o === false) {
                     return false;
                 }
             }
-        } else if (args.isJson) {
+        } else if (args.IsJson) {
             const i = args.ToArray(null);
-            if (i.isError) {
+            if (i.IsError) {
                 return false;
             }
-            for (const item of i.arrayValue) {
+            for (const item of i.ArrayValue) {
                 const o = this.F_base_GetList(item, list);
                 if (o === false) {
                     return false;
@@ -76,10 +76,10 @@ const FunctionUtil = {
             }
         } else {
             const o = args.ToNumber(null);
-            if (o.isError) {
+            if (o.IsError) {
                 return false;
             }
-            list.push(o.numberValue);
+            list.push(o.NumberValue);
         }
         return true;
     },

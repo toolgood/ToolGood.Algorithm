@@ -179,8 +179,7 @@ export class Operand {
         } else if (obj instanceof JsonData) {
             return new OperandJson(obj);
         } else if (Array.isArray(obj)) {
-            const array = obj.map(item => Operand.Create(item));
-            return new OperandArray(array);
+            return new OperandArray(obj);
         }
         return Operand.CreateNull();
     }

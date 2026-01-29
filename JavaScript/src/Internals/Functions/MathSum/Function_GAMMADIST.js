@@ -8,37 +8,37 @@ class Function_GAMMADIST extends Function_4 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'GammaDist', 1);
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isNotNumber) {
+        if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'GammaDist', 2);
-            if (args2.isError) {
+            if (args2.IsError) {
                 return args2;
             }
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.isNotNumber) {
+        if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'GammaDist', 3);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
-        if (args4.isNotBoolean) {
+        if (args4.IsNotBoolean) {
             args4.ToBoolean('Function {0} parameter {1} is error!', 'GammaDist', 4);
-            if (args4.isError) {
+            if (args4.IsError) {
                 return args4;
             }
         }
-        const x = args1.doubleValue;
-        const alpha = args2.doubleValue;
-        const beta = args3.doubleValue;
-        const cumulative = args4.booleanValue;
+        const x = args1.DoubleValue;
+        const alpha = args2.DoubleValue;
+        const beta = args3.DoubleValue;
+        const cumulative = args4.BooleanValue;
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'GammaDist');
         }

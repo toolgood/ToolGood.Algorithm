@@ -9,11 +9,11 @@ class Function_SUMIF extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isError) {
+        if (args1.IsError) {
             return args1;
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.isError) {
+        if (args2.IsError) {
             return args2;
         }
 
@@ -26,7 +26,7 @@ class Function_SUMIF extends Function_3 {
         let sumdbs;
         if (this.func3 != null) {
             const args3 = this.func3.Evaluate(engine, tempParameter);
-            if (args3.isError) {
+            if (args3.IsError) {
                 return args3;
             }
             sumdbs = [];
@@ -39,10 +39,10 @@ class Function_SUMIF extends Function_3 {
         }
 
         let sum;
-        if (args2.isNumber) {
-            sum = FunctionUtil.F_base_countif(list, args2.numberValue) * args2.numberValue;
+        if (args2.IsNumber) {
+            sum = FunctionUtil.F_base_countif(list, args2.NumberValue) * args2.NumberValue;
         } else {
-            const trimmedText = args2.textValue.trim();
+            const trimmedText = args2.TextValue.trim();
             const parsed = parseFloat(trimmedText);
             if (!isNaN(parsed)) {
                 sum = FunctionUtil.F_base_sumif(list, parsed, sumdbs);

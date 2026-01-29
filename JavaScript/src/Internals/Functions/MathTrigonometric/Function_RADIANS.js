@@ -8,13 +8,13 @@ class Function_RADIANS extends Function_1 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotNumber) {
+        if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter is error!', 'Radians');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        const r = args1.doubleValue / 180 * Math.PI;
+        const r = args1.DoubleValue / 180 * Math.PI;
         return Operand.Create(r);
     }
 

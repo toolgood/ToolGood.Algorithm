@@ -8,13 +8,13 @@ class Function_CLEAN extends Function_1 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'Clean');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        const t = args1.textValue;
+        const t = args1.TextValue;
         let needClean = false;
         for (let i = 0; i < t.length; i++) {
             const c = t[i];

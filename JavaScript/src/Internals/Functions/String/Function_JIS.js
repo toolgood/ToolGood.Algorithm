@@ -8,13 +8,13 @@ class Function_JIS extends Function_1 {
 
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.isNotText) {
+        if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'JIS');
-            if (args1.isError) {
+            if (args1.IsError) {
                 return args1;
             }
         }
-        return Operand.Create(this.F_base_ToSBC(args1.textValue));
+        return Operand.Create(this.F_base_ToSBC(args1.TextValue));
     }
 
     F_base_ToSBC(input) {
