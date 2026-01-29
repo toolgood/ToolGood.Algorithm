@@ -1,5 +1,5 @@
-import { Function_2 } from '../Function_2';
-import { Operand } from '../../../Operand';
+import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_LE extends Function_2 {
   constructor(func1, func2) {

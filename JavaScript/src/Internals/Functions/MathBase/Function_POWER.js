@@ -1,4 +1,4 @@
-import { Function_2 } from '../Function_2';
+import { Function_2 } from '../Function_2.js';
 
 class Function_POWER extends Function_2 {
     constructor(func1, func2) {

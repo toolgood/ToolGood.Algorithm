@@ -1,4 +1,4 @@
-import { FunctionBase } from '../FunctionBase';
+import { FunctionBase } from '../FunctionBase.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_NUM extends FunctionBase {

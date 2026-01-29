@@ -1,5 +1,5 @@
-import { Function_N } from '../Function_N';
-import { FunctionUtil } from '../FunctionUtil';
+import { Function_N } from '../Function_N.js';
+import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
 
 /**

@@ -1,5 +1,5 @@
-import { Function_1 } from '../Function_1';
-import { MyDate } from '../../MyDate';
+import { Function_1 } from '../Function_1.js';
+import { MyDate } from '../../MyDate.js';
 
 class Function_SECOND extends Function_1 {
     constructor(func1) {

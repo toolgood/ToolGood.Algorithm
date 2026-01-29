@@ -1,4 +1,4 @@
-import { Function_3 } from '../Function_3';
+import { Function_3 } from '../Function_3.js';
 
 class Function_IFERROR extends Function_3 {
     constructor(func1, func2, func3) {

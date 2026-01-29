@@ -1,4 +1,4 @@
-import { Function_2 } from '../Function_2';
+import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_LEFT extends Function_2 {

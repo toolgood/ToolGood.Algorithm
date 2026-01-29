@@ -1,5 +1,5 @@
-import { FunctionBase } from '../FunctionBase';
-import { MyDate } from '../../MyDate';
+import { FunctionBase } from '../FunctionBase.js';
+import { MyDate } from '../../MyDate.js';
 
 class Function_NOW extends FunctionBase {
     evaluate(engine, tempParameter) {

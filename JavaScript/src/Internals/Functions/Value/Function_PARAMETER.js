@@ -1,4 +1,4 @@
-import { FunctionBase } from '../FunctionBase';
+import { FunctionBase } from '../FunctionBase.js';
 
 class Function_PARAMETER extends FunctionBase {
     constructor(name, func1) {

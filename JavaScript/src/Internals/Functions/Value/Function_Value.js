@@ -1,4 +1,4 @@
-import { FunctionBase } from '../FunctionBase';
+import { FunctionBase } from '../FunctionBase.js';
 
 class Function_Value extends FunctionBase {
     constructor(value, showName) {

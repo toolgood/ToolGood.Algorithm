@@ -1,4 +1,4 @@
-import { Function_1 } from '../Function_1';
+import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_FISHERINV extends Function_1 {

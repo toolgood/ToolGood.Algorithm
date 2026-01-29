@@ -1,4 +1,4 @@
-import { Function_N } from '../Function_N';
+import { Function_N } from '../Function_N.js';
 
 class Function_AVEDEV extends Function_N {
     constructor(funcs) {

@@ -1,5 +1,5 @@
-import { Function_2 } from '../Function_2';
-import { Base64 } from './Base64';
+import { Function_2 } from '../Function_2.js';
+import { Base64 } from './Base64.js';
 
 class Function_BASE64TOTEXT extends Function_2 {
     constructor(func1, func2) {

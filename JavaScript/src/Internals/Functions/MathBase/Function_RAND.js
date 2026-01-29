@@ -1,4 +1,4 @@
-import { FunctionBase } from '../FunctionBase';
+import { FunctionBase } from '../FunctionBase.js';
 
 class Function_RAND extends FunctionBase {
     constructor() {

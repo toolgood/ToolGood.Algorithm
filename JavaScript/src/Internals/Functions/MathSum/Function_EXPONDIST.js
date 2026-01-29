@@ -1,4 +1,4 @@
-import { Function_3 } from '../Function_3';
+import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_EXPONDIST extends Function_3 {

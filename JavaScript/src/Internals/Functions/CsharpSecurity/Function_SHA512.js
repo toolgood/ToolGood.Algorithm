@@ -1,5 +1,5 @@
-import { Function_2 } from '../Function_2';
-import { Operand } from '../../../Operand';
+import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 /**
  * Function_SHA512

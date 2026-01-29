@@ -1,4 +1,4 @@
-import { Function_N } from '../Function_N';
+import { Function_N } from '../Function_N.js';
 import { OperandKeyValueList } from '../../../Operand.js';
 
 class Function_ArrayJson extends Function_N {

@@ -1,6 +1,6 @@
-import { Function_2 } from '../Function_2';
+import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { FunctionUtil } from '../FunctionUtil';
+import { FunctionUtil } from '../FunctionUtil.js';
 
 class Function_LARGE extends Function_2 {
     constructor(func1, func2) {

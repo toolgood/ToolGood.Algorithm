@@ -1,4 +1,4 @@
-import { Function_1 } from '../Function_1';
+import { Function_1 } from '../Function_1.js';
 
 class Function_ISNULLORWHITESPACE extends Function_1 {
     constructor(func1) {

@@ -1,5 +1,5 @@
-import { Function_3 } from '../Function_3';
-import { MyDate } from '../../MyDate';
+import { Function_3 } from '../Function_3.js';
+import { MyDate } from '../../MyDate.js';
 
 class Function_DATEDIF extends Function_3 {
     constructor(func1, func2, func3) {

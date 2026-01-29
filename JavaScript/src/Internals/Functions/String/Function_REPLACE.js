@@ -1,4 +1,4 @@
-import { Function_4 } from '../Function_4';
+import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_REPLACE extends Function_4 {
