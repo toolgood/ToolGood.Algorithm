@@ -41,8 +41,12 @@ class AlgorithmEngine {
     const antlrErrorTextWriter = new AntlrErrorTextWriter();
     const stream =new AntlrCharStream(exp);
     const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(antlrErrorTextWriter);
     const tokens = new CommonTokenStream(lexer);
     const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+    parser.removeErrorListeners();
+    parser.addErrorListener(antlrErrorTextWriter);
 
     const context = parser.prog();
     if (antlrErrorTextWriter.IsError) {

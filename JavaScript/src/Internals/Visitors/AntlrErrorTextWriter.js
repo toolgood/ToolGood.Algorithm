@@ -26,4 +26,9 @@ export class AntlrErrorTextWriter {
         this.IsError = true;
         this.ErrorMsg = value;
     }
+    syntaxError(recognizer, offendingSymbol, line, column, msg, e) {
+        this.IsError = true;
+        this.ErrorMsg = value;
+    }
+
 }

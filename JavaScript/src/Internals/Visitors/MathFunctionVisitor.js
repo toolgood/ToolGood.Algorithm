@@ -3039,6 +3039,31 @@ class MathFunctionVisitor extends mathVisitor  {
     visitBracket_fun(context) {
         return context.expr().accept(this);
     }
+
+    visitSTRING_fun(context) {
+        var opd = context.getText();
+        var sb = [];
+        let index = 1;
+        while (index < opd.length - 1) {
+            var c = opd[index++];
+            if (c == '\\') {
+                var c2 = opd[index++];
+                if (c2 == 'n') sb.push('\n');
+                else if (c2 == 'r') sb.push('\r');
+                else if (c2 == 't') sb.push('\t');
+                else if (c2 == '0') sb.push('\0');
+                else if (c2 == 'v') sb.push('\v');
+                else if (c2 == 'a') sb.push('\a');
+                else if (c2 == 'b') sb.push('\b');
+                else if (c2 == 'f') sb.push('\f');
+                else sb.push(opd[index++]);
+            } else {
+                sb.push(c);
+            }
+        }
+        return new Function_Value(Operand.Create(sb.join('')));
+    }
+
 }
 
 export { MathFunctionVisitor };
