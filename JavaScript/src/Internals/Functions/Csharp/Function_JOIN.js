@@ -29,7 +29,7 @@ export class Function_JOIN extends Function_N {
         
         let args1 = args[0];
         if (args1.isJson) {
-            const o = args1.toArray(null);
+            const o = args1.ToArray(null);
             if (!o.isError) {
                 args1 = o;
             }
@@ -42,14 +42,14 @@ export class Function_JOIN extends Function_N {
                 return Operand.error('Function \'{0}\' parameter {1} is error!', 'Join', 1);
             }
             
-            const args2 = args[1].toText('Function \'{0}\' parameter {1} is error!', 'Join', 2);
+            const args2 = args[1].ToText('Function \'{0}\' parameter {1} is error!', 'Join', 2);
             if (args2.isError) {
                 return args2;
             }
             
             return Operand.Create(list.join(args2.textValue));
         } else {
-            args1 = args1.toText('Function \'{0}\' parameter {1} is error!', 'Join', 1);
+            args1 = args1.ToText('Function \'{0}\' parameter {1} is error!', 'Join', 1);
             if (args1.isError) {
                 return args1;
             }

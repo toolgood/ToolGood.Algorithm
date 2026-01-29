@@ -9,7 +9,7 @@ class Function_PARAM extends Function_2 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
-            args1.toText();
+            args1.ToText();
             if (args1.isError) {
                 return args1;
             }

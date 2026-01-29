@@ -9,7 +9,7 @@ class Function_COUNTIF extends Function_2 {
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotArray) {
-            args1.toArray('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
+            args1.ToArray('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
             if (args1.isError) {
                 return args1;
             }
@@ -64,7 +64,7 @@ const FunctionUtil = {
                 }
             }
         } else if (args.isJson) {
-            const i = args.toArray(null);
+            const i = args.ToArray(null);
             if (i.isError) {
                 return false;
             }

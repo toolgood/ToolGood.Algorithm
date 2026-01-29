@@ -24,7 +24,7 @@ export class Function_HAS extends Function_2 {
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotText) {
-            args2.toText('Function \'{0}\' parameter {1} is error!', 'Has', 2);
+            args2.ToText('Function \'{0}\' parameter {1} is error!', 'Has', 2);
             if (args2.isError) {
                 return args2;
             }
@@ -60,7 +60,7 @@ export class Function_HAS extends Function_2 {
         } else if (args1.isArray) {
             const ar = args1.arrayValue;
             for (let item of ar) {
-                const t = item.toText();
+                const t = item.ToText();
                 if (t.isError) {
                     continue;
                 }

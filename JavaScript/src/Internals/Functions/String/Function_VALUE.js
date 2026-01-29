@@ -15,7 +15,7 @@ class Function_VALUE extends Function_1 {
             return args1.booleanValue ? Operand.one : Operand.zero;
         }
         if (args1.isNotText) {
-            args1.toText('Function {0} parameter is error!', 'Value');
+            args1.ToText('Function {0} parameter is error!', 'Value');
             if (args1.isError) {
                 return args1;
             }

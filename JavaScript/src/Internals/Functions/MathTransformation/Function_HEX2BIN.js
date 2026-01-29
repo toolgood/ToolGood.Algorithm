@@ -9,7 +9,7 @@ class Function_HEX2BIN extends Function_2 {
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function \'{0}\' parameter {1} is error!', 'HEX2BIN', 1);
+            args1.ToText('Function \'{0}\' parameter {1} is error!', 'HEX2BIN', 1);
             if (args1.isError) {
                 return args1;
             }

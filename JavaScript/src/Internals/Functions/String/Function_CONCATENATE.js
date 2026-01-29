@@ -13,7 +13,7 @@ class Function_CONCATENATE extends Function_N {
         if (this.funcs.length === 1) {
             const a = this.funcs[0].Evaluate(work, tempParameter);
             if (a.isNotText) {
-                a.toText('Function \'{0}\' parameter {1} is error!', 'Concatenate', 1);
+                a.ToText('Function \'{0}\' parameter {1} is error!', 'Concatenate', 1);
                 if (a.isError) {
                     return a;
                 }
@@ -24,7 +24,7 @@ class Function_CONCATENATE extends Function_N {
         for (let i = 0; i < this.funcs.length; i++) {
             const a = this.funcs[i].Evaluate(work, tempParameter);
             if (a.isNotText) {
-                a.toText('Function \'{0}\' parameter {1} is error!', 'Concatenate', i + 1);
+                a.ToText('Function \'{0}\' parameter {1} is error!', 'Concatenate', i + 1);
                 if (a.isError) {
                     return a;
                 }

@@ -10,7 +10,7 @@ class Function_PERCENTILE extends Function_2 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotArray) {
-            const converted1 = args1.toArray("Function '{0}' parameter {1} is error!", "Percentile", 1);
+            const converted1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Percentile", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }

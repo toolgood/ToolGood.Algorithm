@@ -73,7 +73,7 @@ class Function_GetJsonValue extends Function_2 {
                 }
                 return Operand.error('JSON index {0} greater than maximum length!', index);
             } else {
-                op = op.toText('JSON parameter name is error!');
+                op = op.ToText('JSON parameter name is error!');
                 if (op.isError) {
                     return op;
                 }

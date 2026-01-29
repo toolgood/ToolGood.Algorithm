@@ -40,7 +40,7 @@ const FunctionUtil = {
                     return false;
                 }
             } else if (item.isJson) {
-                const i = item.toArray(null);
+                const i = item.ToArray(null);
                 if (i.isError) {
                     return false;
                 }

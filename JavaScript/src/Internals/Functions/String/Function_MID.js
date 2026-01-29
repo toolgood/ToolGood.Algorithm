@@ -9,7 +9,7 @@ class Function_MID extends Function_3 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function {0} parameter {1} is error!', 'Mid', 1);
+            args1.ToText('Function {0} parameter {1} is error!', 'Mid', 1);
             if (args1.isError) {
                 return args1;
             }

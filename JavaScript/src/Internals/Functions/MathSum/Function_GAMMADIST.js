@@ -30,7 +30,7 @@ class Function_GAMMADIST extends Function_4 {
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotBoolean) {
-            args4.toBoolean('Function {0} parameter {1} is error!', 'GammaDist', 4);
+            args4.ToBoolean('Function {0} parameter {1} is error!', 'GammaDist', 4);
             if (args4.isError) {
                 return args4;
             }

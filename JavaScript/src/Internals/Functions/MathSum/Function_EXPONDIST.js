@@ -23,7 +23,7 @@ class Function_EXPONDIST extends Function_3 {
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotBoolean) {
-            args3.toBoolean('Function {0} parameter {1} is error!', 'ExponDist', 3);
+            args3.ToBoolean('Function {0} parameter {1} is error!', 'ExponDist', 3);
             if (args3.isError) {
                 return args3;
             }

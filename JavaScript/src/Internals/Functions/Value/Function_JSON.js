@@ -15,7 +15,7 @@ class Function_JSON extends Function_1 {
             return args1;
         }
         if (args1.isArrayJson) {
-            args1 = args1.toText();
+            args1 = args1.ToText();
         }
         if (args1.isNotText) {
             return Operand.error('Function {0} parameter is error!', 'Json');

@@ -21,14 +21,14 @@ export class Function_HMACMD5 extends Function_3 {
     async Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 1);
+            args1.ToText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 1);
             if (args1.isError) {
                 return args1;
             }
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotText) {
-            args2.toText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 2);
+            args2.ToText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 2);
             if (args2.isError) {
                 return args2;
             }
@@ -39,7 +39,7 @@ export class Function_HMACMD5 extends Function_3 {
             if (this.func3 !== null) {
                 const args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.isNotText) {
-                    args3.toText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 3);
+                    args3.ToText('Function \'{0}\' parameter {1} is error!', 'HmacMD5', 3);
                     if (args3.isError) {
                         return args3;
                     }

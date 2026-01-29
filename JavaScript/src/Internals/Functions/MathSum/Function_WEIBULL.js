@@ -27,7 +27,7 @@ class Function_WEIBULL extends Function_4 {
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotBoolean) {
-            const converted4 = args4.toBoolean("Function '{0}' parameter {1} is error!", "Weibull", 4);
+            const converted4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "Weibull", 4);
             if (converted4.isError) return converted4;
             args4 = converted4;
         }

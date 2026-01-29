@@ -20,7 +20,7 @@ export class Function_MD5 extends Function_2 {
     async Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function \'{0}\' parameter {1} is error!', 'MD5', 1);
+            args1.ToText('Function \'{0}\' parameter {1} is error!', 'MD5', 1);
             if (args1.isError) {
                 return args1;
             }
@@ -31,7 +31,7 @@ export class Function_MD5 extends Function_2 {
             if (this.func2 !== null) {
                 const args2 = this.func2.Evaluate(engine, tempParameter);
                 if (args2.isNotText) {
-                    args2.toText('Function \'{0}\' parameter {1} is error!', 'MD5', 2);
+                    args2.ToText('Function \'{0}\' parameter {1} is error!', 'MD5', 2);
                     if (args2.isError) {
                         return args2;
                     }

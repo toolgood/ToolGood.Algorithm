@@ -28,7 +28,7 @@ export class Function_LOOKFLOOR extends Function_2 {
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotArray) {
-            args2.toArray('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
+            args2.ToArray('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
             if (args2.isError) {
                 return args2;
             }

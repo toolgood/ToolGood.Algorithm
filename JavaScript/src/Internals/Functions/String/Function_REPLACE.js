@@ -9,7 +9,7 @@ class Function_REPLACE extends Function_4 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function {0} parameter {1} is error!', 'Replace', 1);
+            args1.ToText('Function {0} parameter {1} is error!', 'Replace', 1);
             if (args1.isError) {
                 return args1;
             }
@@ -18,14 +18,14 @@ class Function_REPLACE extends Function_4 {
         if (this.func4 === null) {
             const args22 = this.func2.Evaluate(engine, tempParameter);
             if (args22.isNotText) {
-                args22.toText('Function {0} parameter {1} is error!', 'Replace', 2);
+                args22.ToText('Function {0} parameter {1} is error!', 'Replace', 2);
                 if (args22.isError) {
                     return args22;
                 }
             }
             const args32 = this.func3.Evaluate(engine, tempParameter);
             if (args32.isNotText) {
-                args32.toText('Function {0} parameter {1} is error!', 'Replace', 3);
+                args32.ToText('Function {0} parameter {1} is error!', 'Replace', 3);
                 if (args32.isError) {
                     return args32;
                 }
@@ -52,7 +52,7 @@ class Function_REPLACE extends Function_4 {
         }
         const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotText) {
-            args4.toText('Function {0} parameter {1} is error!', 'Replace', 4);
+            args4.ToText('Function {0} parameter {1} is error!', 'Replace', 4);
             if (args4.isError) {
                 return args4;
             }

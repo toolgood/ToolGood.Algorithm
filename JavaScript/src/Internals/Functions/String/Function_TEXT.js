@@ -13,7 +13,7 @@ class Function_TEXT extends Function_2 {
         }
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotText) {
-            args2.toText('Function {0} parameter {1} is error!', 'Text', 2);
+            args2.ToText('Function {0} parameter {1} is error!', 'Text', 2);
             if (args2.isError) {
                 return args2;
             }
@@ -30,7 +30,7 @@ class Function_TEXT extends Function_2 {
             // 同样，日期格式化可能需要更复杂的处理
             return Operand.Create(args1.dateValue.toString());
         }
-        const args1Text = args1.toText('Function {0} parameter {1} is error!', 'Text', 1);
+        const args1Text = args1.ToText('Function {0} parameter {1} is error!', 'Text', 1);
         if (args1Text.isError) {
             return args1Text;
         }

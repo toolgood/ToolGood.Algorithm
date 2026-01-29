@@ -21,7 +21,7 @@ class Function_POISSON extends Function_3 {
         }
         const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotBoolean) {
-            const converted3 = args3.toBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3);
+            const converted3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3);
             if (converted3.isError) return converted3;
             args3 = converted3;
         }

@@ -20,7 +20,7 @@ export class Function_TRIMSTART extends Function_2 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function \'{0}\' parameter {1} is error!', 'TrimStart', 1);
+            args1.ToText('Function \'{0}\' parameter {1} is error!', 'TrimStart', 1);
             if (args1.isError) {
                 return args1;
             }
@@ -32,7 +32,7 @@ export class Function_TRIMSTART extends Function_2 {
         
         const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotText) {
-            args2.toText('Function \'{0}\' parameter {1} is error!', 'TrimStart', 2);
+            args2.ToText('Function \'{0}\' parameter {1} is error!', 'TrimStart', 2);
             if (args2.isError) {
                 return args2;
             }

@@ -9,7 +9,7 @@ class Function_CODE extends Function_1 {
     Evaluate(work, tempParameter) {
         const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotText) {
-            args1.toText('Function \'{0}\' parameter is error!', 'CODE');
+            args1.ToText('Function \'{0}\' parameter is error!', 'CODE');
             if (args1.isError) {
                 return args1;
             }

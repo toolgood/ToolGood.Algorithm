@@ -10,7 +10,7 @@ class Function_LARGE extends Function_2 {
     Evaluate(engine, tempParameter) {
         const args1 = this.func1.Evaluate(engine, tempParameter);
         if (!args1.isArray) {
-            args1.toArray('Function {0} parameter {1} is error!', 'Large', 1);
+            args1.ToArray('Function {0} parameter {1} is error!', 'Large', 1);
             if (args1.isError) {
                 return args1;
             }
