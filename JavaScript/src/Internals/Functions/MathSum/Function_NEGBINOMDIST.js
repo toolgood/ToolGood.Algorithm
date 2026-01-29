@@ -6,22 +6,22 @@ class Function_NEGBINOMDIST extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
             args1.toNumber('Function {0} parameter {1} is error!', 'NegbinomDist', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             args2.toNumber('Function {0} parameter {1} is error!', 'NegbinomDist', 2);
             if (args2.isError) {
                 return args2;
             }
         }
-        const args3 = this.func3.evaluate(engine, tempParameter);
+        const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
             args3.toNumber('Function {0} parameter {1} is error!', 'NegbinomDist', 3);
             if (args3.isError) {

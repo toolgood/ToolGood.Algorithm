@@ -7,7 +7,7 @@ class Function_Value extends FunctionBase {
         this._showName = showName;
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         return this._value;
     }
 

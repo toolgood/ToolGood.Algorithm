@@ -8,23 +8,25 @@ export class CharUtil {
      * @returns {string} The standardized character.
      */
     static StandardChar(o) {
-        if(o <= 'Z') return o;
-        if(o.charCodeAt(0) <= 127) return o.toUpperCase();
-        if(o.charCodeAt(0) <= 65280) {
-            if(o == '×') return '*';//215
-            if(o == '÷') return '/';//247
-            if(o == '‘') return '\'';//8216
-            if(o == '’') return '\'';//8217
-            if(o == '“') return '"';//8220
-            if(o == '”') return '"';//8221
-            if(o.charCodeAt(0) == 12288) return String.fromCharCode(32);
-            if(o == '【') return '[';//12304
-            if(o == '】') return ']';//12305
-            if(o == '〔') return '(';//12308
-            if(o == '〕') return ')';//12309
+        if (typeof o !== 'string' || o.length !== 1) return o;
+        const charCode = o.charCodeAt(0);
+        if (charCode >= 65 && charCode <= 90) return o;
+        if (charCode <= 127) return o.toUpperCase();
+        if (charCode <= 65280) {
+            if (o == '×') return '*';//215
+            if (o == '÷') return '/';//247
+            if (o == '‘') return '\'';//8216
+            if (o == '’') return '\'';//8217
+            if (o == '"') return '"';//8220
+            if (o == '"') return '"';//8221
+            if (charCode == 12288) return String.fromCharCode(32);
+            if (o == '【') return '[';//12304
+            if (o == '】') return ']';//12305
+            if (o == '〔') return '(';//12308
+            if (o == '〕') return ')';//12309
             return o;
-        } else if(o.charCodeAt(0) < 65375) {
-            o = String.fromCharCode(o.charCodeAt(0) - 65248);
+        } else if (charCode < 65375) {
+            o = String.fromCharCode(charCode - 65248);
         }
         return o.toUpperCase();
     }

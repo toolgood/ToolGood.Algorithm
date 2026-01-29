@@ -5,19 +5,19 @@ class Function_IF extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotBoolean) {
             args1 = args1.ToBoolean("Function '{0}' parameter {1} is error!", "If", 1);
             if (args1.IsError) { return args1; }
         }
         if (args1.BooleanValue) {
-            return this.func2.evaluate(engine, tempParameter);
+            return this.func2.Evaluate(engine, tempParameter);
         }
         if (this.func3 === null) {
             return engine.createBooleanOperand(false);
         }
-        return this.func3.evaluate(engine, tempParameter);
+        return this.func3.Evaluate(engine, tempParameter);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -6,12 +6,12 @@ class Function_CONCATENATE extends Function_N {
         super(funcs);
     }
 
-    evaluate(work, tempParameter) {
+    Evaluate(work, tempParameter) {
         if (this.funcs.length === 0) {
             return Operand.create('');
         }
         if (this.funcs.length === 1) {
-            const a = this.funcs[0].evaluate(work, tempParameter);
+            const a = this.funcs[0].Evaluate(work, tempParameter);
             if (a.isNotText) {
                 a.toText('Function \'{0}\' parameter {1} is error!', 'Concatenate', 1);
                 if (a.isError) {
@@ -22,7 +22,7 @@ class Function_CONCATENATE extends Function_N {
         }
         let result = '';
         for (let i = 0; i < this.funcs.length; i++) {
-            const a = this.funcs[i].evaluate(work, tempParameter);
+            const a = this.funcs[i].Evaluate(work, tempParameter);
             if (a.isNotText) {
                 a.toText('Function \'{0}\' parameter {1} is error!', 'Concatenate', i + 1);
                 if (a.isError) {

@@ -6,18 +6,18 @@ class Function_DATEDIF extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this.func2.evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotDate) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2);
             if (args2.IsError) { return args2; }
         }
-        let args3 = this.func3.evaluate(engine, tempParameter);
+        let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotText) {
             args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3);
             if (args3.IsError) { return args3; }

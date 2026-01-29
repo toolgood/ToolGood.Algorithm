@@ -2,7 +2,7 @@ import { FunctionBase } from '../FunctionBase.js';
 import { MyDate } from '../../MyDate.js';
 
 class Function_TODAY extends FunctionBase {
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         let now;
         if (engine.UseLocalTime) {
             now = new Date();

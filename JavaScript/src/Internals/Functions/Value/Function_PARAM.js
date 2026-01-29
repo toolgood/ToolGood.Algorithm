@@ -6,8 +6,8 @@ class Function_PARAM extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
             args1.toText();
             if (args1.isError) {
@@ -23,7 +23,7 @@ class Function_PARAM extends Function_2 {
         const result = engine.getParameter(args1.textValue);
         if (result.isError) {
             if (this.func2 !== null) {
-                return this.func2.evaluate(engine, tempParameter);
+                return this.func2.Evaluate(engine, tempParameter);
             }
         }
         return result;

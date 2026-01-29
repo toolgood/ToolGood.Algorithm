@@ -7,14 +7,14 @@ class Function_PERCENTRANK extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotArray) {
             const converted1 = args1.toArray("Function '{0}' parameter {1} is error!", "PercentRank", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2);
             if (converted2.isError) return converted2;
@@ -31,7 +31,7 @@ class Function_PERCENTRANK extends Function_3 {
         const v = ExcelFunctions.PercentRank(list.map(q => q), k);
         let d = 3;
         if (this.func3 != null) {
-            const args3 = this.func3.evaluate(engine, tempParameter);
+            const args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.isNotNumber) {
                 const converted3 = args3.toNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3);
                 if (converted3.isError) return converted3;

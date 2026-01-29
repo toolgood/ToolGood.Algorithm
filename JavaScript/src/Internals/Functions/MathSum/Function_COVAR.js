@@ -7,12 +7,12 @@ class Function_COVAR extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber && args1.isError) {
             return args1;
         }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber && args2.isError) {
             return args2;
         }

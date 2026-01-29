@@ -6,8 +6,8 @@ class Function_T extends Function_1 {
         super(func1);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isText) {
             return args1;
         }

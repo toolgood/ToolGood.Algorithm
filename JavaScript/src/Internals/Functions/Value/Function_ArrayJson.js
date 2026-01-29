@@ -6,10 +6,10 @@ class Function_ArrayJson extends Function_N {
         super(funcs);
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         const result = new OperandKeyValueList();
         for (const item of this.funcs) {
-            const o = item.evaluate(engine, tempParameter);
+            const o = item.Evaluate(engine, tempParameter);
             result.addValue(o.value);
         }
         return result;

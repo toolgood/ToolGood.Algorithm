@@ -6,8 +6,8 @@ class Function_REPLACE extends Function_4 {
         super(func1, func2, func3, func4);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function {0} parameter {1} is error!', 'Replace', 1);
             if (args1.isError) {
@@ -16,14 +16,14 @@ class Function_REPLACE extends Function_4 {
         }
         const oldtext = args1.textValue;
         if (this.func4 === null) {
-            const args22 = this.func2.evaluate(engine, tempParameter);
+            const args22 = this.func2.Evaluate(engine, tempParameter);
             if (args22.isNotText) {
                 args22.toText('Function {0} parameter {1} is error!', 'Replace', 2);
                 if (args22.isError) {
                     return args22;
                 }
             }
-            const args32 = this.func3.evaluate(engine, tempParameter);
+            const args32 = this.func3.Evaluate(engine, tempParameter);
             if (args32.isNotText) {
                 args32.toText('Function {0} parameter {1} is error!', 'Replace', 3);
                 if (args32.isError) {
@@ -36,21 +36,21 @@ class Function_REPLACE extends Function_4 {
             return Operand.create(oldtext.replace(new RegExp(oldStr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newstr));
         }
 
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             args2.toNumber('Function {0} parameter {1} is error!', 'Replace', 2);
             if (args2.isError) {
                 return args2;
             }
         }
-        const args3 = this.func3.evaluate(engine, tempParameter);
+        const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
             args3.toNumber('Function {0} parameter {1} is error!', 'Replace', 3);
             if (args3.isError) {
                 return args3;
             }
         }
-        const args4 = this.func4.evaluate(engine, tempParameter);
+        const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotText) {
             args4.toText('Function {0} parameter {1} is error!', 'Replace', 4);
             if (args4.isError) {

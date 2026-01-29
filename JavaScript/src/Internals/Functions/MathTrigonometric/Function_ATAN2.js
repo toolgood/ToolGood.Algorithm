@@ -6,15 +6,15 @@ class Function_ATAN2 extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(work, tempParameter) {
-        const args1 = this.func1.evaluate(work, tempParameter);
+    Evaluate(work, tempParameter) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber) {
             args1.toNumber('Function \'{0}\' parameter {1} is error!', 'Atan2', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.evaluate(work, tempParameter);
+        const args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber) {
             args2.toNumber('Function \'{0}\' parameter {1} is error!', 'Atan2', 2);
             if (args2.isError) {

@@ -7,10 +7,10 @@ class Function_ArrayJsonItem extends Function_1 {
         this.key = key;
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         const keyValue = {
             key: this.key,
-            value: this.func1.evaluate(engine, tempParameter)
+            value: this.func1.Evaluate(engine, tempParameter)
         };
         return new OperandKeyValue(keyValue);
     }

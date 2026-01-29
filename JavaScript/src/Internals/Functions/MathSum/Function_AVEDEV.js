@@ -5,10 +5,10 @@ class Function_AVEDEV extends Function_N {
         super(funcs);
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         const args = [];
         for (const item of this._args) {
-            const aa = item.evaluate(engine, tempParameter);
+            const aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }

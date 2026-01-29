@@ -6,15 +6,15 @@ class Function_COUNTIF extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(work, tempParameter) {
-        const args1 = this.func1.evaluate(work, tempParameter);
+    Evaluate(work, tempParameter) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotArray) {
             args1.toArray('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.evaluate(work, tempParameter);
+        const args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.isError) {
             return args2;
         }

@@ -7,14 +7,14 @@ class Function_SMALL extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotArray) {
             const converted1 = args1.toArray("Function '{0}' parameter {1} is error!", "Small", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Small", 2);
             if (converted2.isError) return converted2;

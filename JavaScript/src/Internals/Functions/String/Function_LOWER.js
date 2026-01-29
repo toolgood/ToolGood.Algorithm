@@ -6,8 +6,8 @@ class Function_LOWER extends Function_1 {
         super(func1);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function {0} parameter is error!', 'Lower');
             if (args1.isError) {

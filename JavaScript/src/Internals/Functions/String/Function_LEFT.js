@@ -6,8 +6,8 @@ class Function_LEFT extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function {0} parameter {1} is error!', 'Left', 1);
             if (args1.isError) {
@@ -20,7 +20,7 @@ class Function_LEFT extends Function_2 {
         if (this.func2 === null) {
             return Operand.create(args1.textValue.substring(0, 1));
         }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             args2.toNumber('Function {0} parameter {1} is error!', 'Left', 2);
             if (args2.isError) {

@@ -6,8 +6,8 @@ class Function_OCT2BIN extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(work, tempParameter) {
-        const args1 = this.func1.evaluate(work, tempParameter);
+    Evaluate(work, tempParameter) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'OCT2BIN', 1);
             if (args1.isError) {
@@ -20,7 +20,7 @@ class Function_OCT2BIN extends Function_2 {
         }
         const num = parseInt(args1.textValue, 8).toString(2);
         if (this.func2 !== null) {
-            const args2 = this.func2.evaluate(work, tempParameter);
+            const args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.isNotNumber) {
                 args2.toNumber('Function \'{0}\' parameter {1} is error!', 'OCT2BIN', 2);
                 if (args2.isError) {

@@ -18,15 +18,15 @@ export class Function_SUBSTRING extends Function_3 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    evaluate(engine) {
-        const args1 = this.func1.evaluate(engine);
+    Evaluate(engine) {
+        const args1 = this.func1.Evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'Substring', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.evaluate(engine);
+        const args2 = this.func2.Evaluate(engine);
         if (args2.isNotNumber) {
             args2.toNumber('Function \'{0}\' parameter {1} is error!', 'Substring', 2);
             if (args2.isError) {
@@ -41,7 +41,7 @@ export class Function_SUBSTRING extends Function_3 {
             return Operand.create(text.substring(startIndex));
         }
         
-        const args3 = this.func3.evaluate(engine);
+        const args3 = this.func3.Evaluate(engine);
         if (args3.isNotNumber) {
             args3.toNumber('Function \'{0}\' parameter {1} is error!', 'Substring', 3);
             if (args3.isError) {

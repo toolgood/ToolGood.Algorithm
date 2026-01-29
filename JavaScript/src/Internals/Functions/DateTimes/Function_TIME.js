@@ -6,13 +6,13 @@ class Function_TIME extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this.func2.evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Time", 2);
             if (args2.IsError) { return args2; }
@@ -20,7 +20,7 @@ class Function_TIME extends Function_3 {
 
         let d;
         if (this.func3 !== null) {
-            let args3 = this.func3.evaluate(engine, tempParameter);
+            let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsNotNumber) {
                 args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Time", 3);
                 if (args3.IsError) { return args3; }

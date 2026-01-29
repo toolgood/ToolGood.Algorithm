@@ -6,8 +6,8 @@ class Function_COSH extends Function_1 {
         super(func1);
     }
 
-    evaluate(work, tempParameter) {
-        const args1 = this.func1.evaluate(work, tempParameter);
+    Evaluate(work, tempParameter) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber) {
             args1.toNumber('Function \'{0}\' parameter is error!', 'Cosh');
             if (args1.isError) {

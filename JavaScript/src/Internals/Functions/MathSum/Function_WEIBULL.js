@@ -6,26 +6,26 @@ class Function_WEIBULL extends Function_4 {
         super(func1, func2, func3, func4);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.isNotNumber) {
             const converted1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 1);
             if (converted1.isError) return converted1;
             args1 = converted1;
         }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.isNotNumber) {
             const converted2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 2);
             if (converted2.isError) return converted2;
             args2 = converted2;
         }
-        const args3 = this.func3.evaluate(engine, tempParameter);
+        const args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.isNotNumber) {
             const converted3 = args3.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 3);
             if (converted3.isError) return converted3;
             args3 = converted3;
         }
-        const args4 = this.func4.evaluate(engine, tempParameter);
+        const args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.isNotBoolean) {
             const converted4 = args4.toBoolean("Function '{0}' parameter {1} is error!", "Weibull", 4);
             if (converted4.isError) return converted4;

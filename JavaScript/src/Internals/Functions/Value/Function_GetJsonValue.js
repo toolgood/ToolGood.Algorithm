@@ -6,12 +6,12 @@ class Function_GetJsonValue extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(engine, tempParameter) {
-        const obj = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const obj = this.func1.Evaluate(engine, tempParameter);
         if (obj.isError) {
             return obj;
         }
-        const op = this.func2.evaluate(engine, tempParameter);
+        const op = this.func2.Evaluate(engine, tempParameter);
         if (op.isError) {
             return op;
         }

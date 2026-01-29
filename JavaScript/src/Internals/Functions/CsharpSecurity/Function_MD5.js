@@ -17,8 +17,8 @@ export class Function_MD5 extends Function_2 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    async evaluate(engine) {
-        const args1 = this.func1.evaluate(engine);
+    async Evaluate(engine) {
+        const args1 = this.func1.Evaluate(engine);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'MD5', 1);
             if (args1.isError) {
@@ -29,7 +29,7 @@ export class Function_MD5 extends Function_2 {
         try {
             let encoding = 'utf-8';
             if (this.func2 !== null) {
-                const args2 = this.func2.evaluate(engine);
+                const args2 = this.func2.Evaluate(engine);
                 if (args2.isNotText) {
                     args2.toText('Function \'{0}\' parameter {1} is error!', 'MD5', 2);
                     if (args2.isError) {

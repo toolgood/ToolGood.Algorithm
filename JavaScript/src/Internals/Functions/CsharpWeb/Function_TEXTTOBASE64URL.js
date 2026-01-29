@@ -6,8 +6,8 @@ class Function_TEXTTOBASE64URL extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 1);
             if (args1.IsError) return args1;
@@ -17,7 +17,7 @@ class Function_TEXTTOBASE64URL extends Function_2 {
             if (this.func2 === null) {
                 encoding = 'utf-8';
             } else {
-                let args2 = this.func2.evaluate(engine, tempParameter);
+                let args2 = this.func2.Evaluate(engine, tempParameter);
                 if (args2.IsNotText) {
                     args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 2);
                     if (args2.IsError) return args2;

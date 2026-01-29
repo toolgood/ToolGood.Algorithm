@@ -5,10 +5,10 @@ class Function_AVERAGEIF extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) { return args1; }
-        const args2 = this.func2.evaluate(engine, tempParameter);
+        const args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
         const list = [];
@@ -26,7 +26,7 @@ class Function_AVERAGEIF extends Function_3 {
 
         let sumdbs;
         if (this.func3 !== null) {
-            const args3 = this.func3.evaluate(engine, tempParameter);
+            const args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsError) { return args3; }
             sumdbs = [];
             if (args3.IsArray) {

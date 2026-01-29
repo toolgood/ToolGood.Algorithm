@@ -6,13 +6,13 @@ class Function_NETWORKDAYS extends Function_N {
         super(funcs);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this._args[0].evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this._args[0].Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this._args[1].evaluate(engine, tempParameter);
+        let args2 = this._args[1].Evaluate(engine, tempParameter);
         if (args2.IsNotDate) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
             if (args2.IsError) { return args2; }
@@ -23,7 +23,7 @@ class Function_NETWORKDAYS extends Function_N {
 
         const list = new Set();
         for (let i = 2; i < this._args.length; i++) {
-            const ar = this._args[i].evaluate(engine, tempParameter);
+            const ar = this._args[i].Evaluate(engine, tempParameter);
             if (ar.IsNotDate) {
                 const arDate = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (arDate.IsError) { return arDate; }

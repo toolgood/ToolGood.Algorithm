@@ -6,23 +6,23 @@ class Function_BINOMDIST extends Function_4 {
         super(func1, func2, func3, func4);
     }
 
-    evaluate(work, tempParameter) {
-        const args1 = this.func1.evaluate(work, tempParameter);
+    Evaluate(work, tempParameter) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber) {
             args1.toNumber('Function \'{0}\' parameter {1} is error!', 'BinomDist', 1);
             if (args1.isError) return args1;
         }
-        const args2 = this.func2.evaluate(work, tempParameter);
+        const args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber) {
             args2.toNumber('Function \'{0}\' parameter {1} is error!', 'BinomDist', 2);
             if (args2.isError) return args2;
         }
-        const args3 = this.func3.evaluate(work, tempParameter);
+        const args3 = this.func3.Evaluate(work, tempParameter);
         if (args3.isNotNumber) {
             args3.toNumber('Function \'{0}\' parameter {1} is error!', 'BinomDist', 3);
             if (args3.isError) return args3;
         }
-        const args4 = this.func4.evaluate(work, tempParameter);
+        const args4 = this.func4.Evaluate(work, tempParameter);
         if (args4.isNotBoolean) {
             args4.toBoolean('Function \'{0}\' parameter {1} is error!', 'BinomDist', 4);
             if (args4.isError) return args4;

@@ -6,18 +6,18 @@ class Function_DATE extends Function_N {
         super(funcs);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this._args[0].evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this._args[0].Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Date", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this._args[1].evaluate(engine, tempParameter);
+        let args2 = this._args[1].Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Date", 2);
             if (args2.IsError) { return args2; }
         }
-        let args3 = this._args[2].evaluate(engine, tempParameter);
+        let args3 = this._args[2].Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
             args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Date", 3);
             if (args3.IsError) { return args3; }
@@ -27,36 +27,36 @@ class Function_DATE extends Function_N {
         if (this._args.length == 3) {
             d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, 0, 0, 0);
         } else if (this._args.length == 4) {
-            let args4 = this._args[3].evaluate(engine, tempParameter);
+            let args4 = this._args[3].Evaluate(engine, tempParameter);
             if (args4.IsNotNumber) {
                 args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4);
                 if (args4.IsError) { return args4; }
             }
             d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, 0, 0);
         } else if (this._args.length == 5) {
-            let args4 = this._args[3].evaluate(engine, tempParameter);
+            let args4 = this._args[3].Evaluate(engine, tempParameter);
             if (args4.IsNotNumber) {
                 args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4);
                 if (args4.IsError) { return args4; }
             }
-            let args5 = this._args[4].evaluate(engine, tempParameter);
+            let args5 = this._args[4].Evaluate(engine, tempParameter);
             if (args5.IsNotNumber) {
                 args5 = args5.ToNumber("Function '{0}' parameter {1} is error!", "Date", 5);
                 if (args5.IsError) { return args5; }
             }
             d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, 0);
         } else {
-            let args4 = this._args[3].evaluate(engine, tempParameter);
+            let args4 = this._args[3].Evaluate(engine, tempParameter);
             if (args4.IsNotNumber) {
                 args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4);
                 if (args4.IsError) { return args4; }
             }
-            let args5 = this._args[4].evaluate(engine, tempParameter);
+            let args5 = this._args[4].Evaluate(engine, tempParameter);
             if (args5.IsNotNumber) {
                 args5 = args5.ToNumber("Function '{0}' parameter {1} is error!", "Date", 5);
                 if (args5.IsError) { return args5; }
             }
-            let args6 = this._args[5].evaluate(engine, tempParameter);
+            let args6 = this._args[5].Evaluate(engine, tempParameter);
             if (args6.IsNotNumber) {
                 args6 = args6.ToNumber("Function '{0}' parameter {1} is error!", "Date", 6);
                 if (args6.IsError) { return args6; }

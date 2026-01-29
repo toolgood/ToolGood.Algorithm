@@ -11,7 +11,9 @@ export class Function_1 extends FunctionBase {
         super();
         this.func1 = func1;
     }
-
+    Evaluate(work, tempParameter = null) {
+        throw new Error('Not implemented');
+    }
     /**
      * Adds function to string builder
      * @param {string[]} stringBuilder

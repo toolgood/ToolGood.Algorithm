@@ -6,10 +6,10 @@ class Function_COUNT extends Function_N {
         super(funcs);
     }
 
-    evaluate(work, tempParameter) {
+    Evaluate(work, tempParameter) {
         const args = [];
         for (const item of this.funcs) {
-            const aa = item.evaluate(work, tempParameter);
+            const aa = item.Evaluate(work, tempParameter);
             if (aa.isError) {
                 return aa;
             }

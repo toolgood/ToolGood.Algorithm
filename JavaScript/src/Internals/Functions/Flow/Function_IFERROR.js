@@ -5,12 +5,12 @@ class Function_IFERROR extends Function_3 {
         super(func1, func2, func3);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) {
-            return this.func2.evaluate(engine, tempParameter);
+            return this.func2.Evaluate(engine, tempParameter);
         }
-        return this.func3.evaluate(engine, tempParameter);
+        return this.func3.Evaluate(engine, tempParameter);
     }
 
     toString(stringBuilder, addBrackets) {

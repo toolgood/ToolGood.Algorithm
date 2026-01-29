@@ -2213,8 +2213,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNUM_fun(context) {
-        const args1 = context.expr().accept(this);
-        return new Function_NUM(args1);
+        const numText = context.num().getText ? context.num().getText() : context.num().text;
+        const d = parseFloat(numText);
+		if (!context.unit()) { return new Function_Value(Operand.Create(d), numText); }
+		const unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
+		return new Function_NUM(d, unitText);
     }
 
     /**

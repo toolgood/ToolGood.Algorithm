@@ -6,15 +6,15 @@ class Function_EXACT extends Function_2 {
         super(func1, func2);
     }
 
-    evaluate(work, tempParameter) {
-        const args1 = this.func1.evaluate(work, tempParameter);
+    Evaluate(work, tempParameter) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.isNotText) {
             args1.toText('Function \'{0}\' parameter {1} is error!', 'EXACT', 1);
             if (args1.isError) {
                 return args1;
             }
         }
-        const args2 = this.func2.evaluate(work, tempParameter);
+        const args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.isNotText) {
             args2.toText('Function \'{0}\' parameter {1} is error!', 'EXACT', 2);
             if (args2.isError) {

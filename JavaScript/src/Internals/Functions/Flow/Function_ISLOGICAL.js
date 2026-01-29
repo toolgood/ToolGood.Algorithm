@@ -5,8 +5,8 @@ class Function_ISLOGICAL extends Function_1 {
         super(func1);
     }
 
-    evaluate(engine, tempParameter) {
-        const args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        const args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsBoolean) {
             return engine.createBooleanOperand(true);
         }

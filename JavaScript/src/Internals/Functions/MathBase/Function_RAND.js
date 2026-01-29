@@ -5,7 +5,7 @@ class Function_RAND extends FunctionBase {
         super();
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         return engine.createOperand(Math.random());
     }
 

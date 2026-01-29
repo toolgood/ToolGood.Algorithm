@@ -10,10 +10,10 @@ class Function_PARAMETER extends FunctionBase {
         }
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         let txt = this.name;
         if (txt === undefined || txt === null) {
-            const args1 = this.func1.evaluate(engine, tempParameter);
+            const args1 = this.func1.Evaluate(engine, tempParameter);
             if (args1.isNotText) {
                 args1.toText();
                 if (args1.isError) {

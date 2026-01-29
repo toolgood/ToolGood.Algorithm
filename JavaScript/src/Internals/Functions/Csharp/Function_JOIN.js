@@ -17,10 +17,10 @@ export class Function_JOIN extends Function_N {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    evaluate(engine) {
+    Evaluate(engine) {
         const args = [];
         for (let item of this._args) {
-            const aa = item.evaluate(engine);
+            const aa = item.Evaluate(engine);
             if (aa.isError) {
                 return aa;
             }

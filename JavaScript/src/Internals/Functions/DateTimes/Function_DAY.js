@@ -6,8 +6,8 @@ class Function_DAY extends Function_1 {
         super(func1);
     }
 
-    evaluate(engine, tempParameter) {
-        let args1 = this.func1.evaluate(engine, tempParameter);
+    Evaluate(engine, tempParameter) {
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Day");
             if (args1.IsError) { return args1; }

@@ -16,7 +16,7 @@ export class Function_GUID extends FunctionBase {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    evaluate(engine) {
+    Evaluate(engine) {
         return Operand.create(this.generateGuid());
     }
     

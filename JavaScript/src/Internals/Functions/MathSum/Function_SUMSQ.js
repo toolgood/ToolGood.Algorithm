@@ -7,10 +7,10 @@ class Function_SUMSQ extends Function_N {
         super(funcs);
     }
 
-    evaluate(engine, tempParameter) {
+    Evaluate(engine, tempParameter) {
         const args = [];
         for (let i = 0; i < this._args.length; i++) {
-            const aa = this._args[i].evaluate(engine, tempParameter);
+            const aa = this._args[i].Evaluate(engine, tempParameter);
             if (aa.isError) {
                 return aa;
             }
