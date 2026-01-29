@@ -1,9 +1,22 @@
 /**
+ * 键信息
+ */
+export class KeyInfo {
+    constructor() {
+        this.Name = '';
+        this.Start = 0;
+        this.End = 0;
+    }
+}
+
+/**
  * 自定义名称信息
  */
 export class DiyNameInfo {
     constructor() {
         this.Names = new Set();
+        this.Parameters = [];
+        this.Functions = [];
     }
 
     /**
@@ -31,4 +44,5 @@ export class DiyNameInfo {
 // 浏览器支持
 if (typeof window !== 'undefined') {
     window.DiyNameInfo = DiyNameInfo;
+    window.KeyInfo = KeyInfo;
 }

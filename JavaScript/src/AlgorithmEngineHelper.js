@@ -21,10 +21,10 @@ import { ConditionTreeType } from './Enums/ConditionTreeType.js';
 import { CalculateTreeType } from './Enums/CalculateTreeType.js';
 
 // 导入ANTLR生成的文件
-import { mathLexer } from './math/mathLexer.js';
-import { mathParser } from './math/mathParser.js';
-import { CommonTokenStream } from './antlr4/CommonTokenStream.js';
-import { InputStream } from './antlr4/InputStream.js';
+import InputStream from './antlr4/InputStream.js';
+import mathLexer from './math/mathLexer.js';
+import CommonTokenStream from './antlr4/CommonTokenStream.js';
+import mathParser from './math/mathParser.js';
 
 /**
  * 算法引擎助手
