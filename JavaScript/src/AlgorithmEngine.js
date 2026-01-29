@@ -1,5 +1,11 @@
-import { Operand } from './Operand';
-import { DistanceUnitType, AreaUnitType, VolumeUnitType, MassUnitType } from './Enums';
+import { Operand } from './Operand.js';
+import { DistanceUnitType, AreaUnitType, VolumeUnitType, MassUnitType } from './Enums/index.js';
+import InputStream from './antlr4/InputStream.js';
+import CommonTokenStream from './antlr4/CommonTokenStream.js';
+import mathLexer from './math/mathLexer.js';
+import mathParser from './math/mathParser.js';
+import { AntlrErrorTextWriter } from './Internals/Visitors/AntlrErrorTextWriter.js';
+import { MathFunctionVisitor } from './Internals/Visitors/MathFunctionVisitor.js';
 
 class AlgorithmEngine {
   constructor() {
@@ -30,16 +36,19 @@ class AlgorithmEngine {
       this.LastError = 'Parameter exp invalid !';
       throw new Error(this.LastError);
     }
-    return {
-      Evaluate: (engine) => {
-        try {
-          const result = eval(exp);
-          return Operand.Create(result);
-        } catch (e) {
-          return Operand.Error(e.message);
-        }
-      }
-    };
+    const antlrErrorTextWriter = new AntlrErrorTextWriter();
+    const stream = new InputStream(exp);
+    const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+    const tokens = new CommonTokenStream(lexer);
+    const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+
+    const context = parser.prog();
+    if (antlrErrorTextWriter.IsError) {
+      this.LastError = antlrErrorTextWriter.ErrorMsg;
+      throw new Error(this.LastError);
+    }
+    const visitor = new MathFunctionVisitor();
+    return visitor.Visit(context);
   }
 
   Evaluate(functionObj) {

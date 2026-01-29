@@ -2,12 +2,25 @@
  * MathFunctionVisitor - 数学函数访问者
  */
 
-import { Function_Mul, Function_Div, Function_Mod } from '../Functions/Operator/Function_Mul.js';
-import { Function_Add, Function_Sub, Function_Connect } from '../Functions/Operator/Function_Add.js';
-import { Function_EQ, Function_LT, Function_LE, Function_GT, Function_GE, Function_NE } from '../Functions/Compare/Function_EQ.js';
-import { Function_AND, Function_OR, Function_AND_N, Function_OR_N } from '../Functions/Operator/Function_AND.js';
+import { Function_Mul } from '../Functions/Operator/Function_Mul.js';
+import { Function_Div } from '../Functions/Operator/Function_Div.js';
+import { Function_Mod } from '../Functions/Operator/Function_Mod.js';
+import { Function_Add } from '../Functions/Operator/Function_Add.js';
+import { Function_Sub } from '../Functions/Operator/Function_Sub.js';
+import { Function_Connect } from '../Functions/Operator/Function_Connect.js';
+import { Function_EQ } from '../Functions/Compare/Function_EQ.js';
+import { Function_LT } from '../Functions/Compare/Function_LT.js';
+import { Function_LE } from '../Functions/Compare/Function_LE.js';
+import { Function_GT } from '../Functions/Compare/Function_GT.js';
+import { Function_GE } from '../Functions/Compare/Function_GE.js';
+import { Function_NE } from '../Functions/Compare/Function_NE.js';
+import { Function_AND } from '../Functions/Operator/Function_AND.js';
+import { Function_OR } from '../Functions/Operator/Function_OR.js';
+import { Function_AND_N } from '../Functions/Operator/Function_AND_N.js';
+import { Function_OR_N } from '../Functions/Operator/Function_OR_N.js';
 import { Function_NOT } from '../Functions/Flow/Function_NOT.js';
-import { Function_VALUE } from '../Functions/Value/Function_Value.js';
+import { Function_Value } from '../Functions/Value/Function_Value.js';
+import { Function_VALUE } from '../Functions/String/Function_VALUE.js';
 import { Function_ABS } from '../Functions/MathBase/Function_ABS.js';
 import { Function_QUOTIENT } from '../Functions/MathBase/Function_QUOTIENT.js';
 import { Function_SIGN } from '../Functions/MathBase/Function_SIGN.js';
@@ -2689,4 +2702,4 @@ class MathFunctionVisitor {
     }
 }
 
-module.exports = { MathFunctionVisitor };
+export { MathFunctionVisitor };
