@@ -8,17 +8,17 @@ class Function_MAX extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this.funcs) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this.funcs) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
             return Operand.error('Function {0} parameter is error!', 'Max');
         }

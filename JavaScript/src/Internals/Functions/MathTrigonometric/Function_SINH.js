@@ -7,7 +7,7 @@ class Function_SINH extends Function_1 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter is error!', 'Sinh');
             if (args1.IsError) {

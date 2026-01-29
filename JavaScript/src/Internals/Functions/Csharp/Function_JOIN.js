@@ -18,9 +18,9 @@ export class Function_JOIN extends Function_N {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        const args = [];
+        let args = [];
         for (let item of this._args) {
-            const aa = item.Evaluate(engine, tempParameter);
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -29,20 +29,20 @@ export class Function_JOIN extends Function_N {
         
         let args1 = args[0];
         if (args1.IsJson) {
-            const o = args1.ToArray(null);
+            let o = args1.ToArray(null);
             if (!o.IsError) {
                 args1 = o;
             }
         }
         
         if (args1.IsArray) {
-            const list = [];
-            const o = FunctionUtil.f_base_GetList(args1, list);
+            let list = [];
+            let o = FunctionUtil.f_base_GetList(args1, list);
             if (!o) {
                 return Operand.error('Function \'{0}\' parameter {1} is error!', 'Join', 1);
             }
             
-            const args2 = args[1].ToText('Function \'{0}\' parameter {1} is error!', 'Join', 2);
+            let args2 = args[1].ToText('Function \'{0}\' parameter {1} is error!', 'Join', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -54,9 +54,9 @@ export class Function_JOIN extends Function_N {
                 return args1;
             }
             
-            const list = [];
+            let list = [];
             for (let i = 1; i < args.length; i++) {
-                const o = FunctionUtil.f_base_GetList(args[i], list);
+                let o = FunctionUtil.f_base_GetList(args[i], list);
                 if (!o) {
                     return Operand.error('Function \'{0}\' parameter {1} is error!', 'Join', i + 1);
                 }

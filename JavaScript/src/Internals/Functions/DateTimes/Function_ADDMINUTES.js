@@ -21,7 +21,7 @@ class Function_ADDMINUTES extends Function_2 {
                 return args2;
             }
         }
-        const date = new Date(args1.DateValue.getTime());
+        let date = new Date(args1.DateValue.getTime());
         date.setMinutes(date.getMinutes() + args2.IntValue);
         return engine.createOperand(new MyDate(date));
     }

@@ -24,9 +24,9 @@ class Function_TEXTTOBASE64URL extends Function_2 {
                 }
                 encoding = args2.TextValue;
             }
-            const encoder = new TextEncoder(encoding);
-            const bytes = encoder.encode(args1.TextValue);
-            const t = Base64.ToBase64ForUrlString(bytes);
+            let encoder = new TextEncoder(encoding);
+            let bytes = encoder.encode(args1.TextValue);
+            let t = Base64.ToBase64ForUrlString(bytes);
             return engine.createOperand(t);
         } catch (e) {
             // Ignore errors

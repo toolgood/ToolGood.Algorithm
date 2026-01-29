@@ -8,24 +8,24 @@ class Function_SUMSQ extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
+        let args = [];
         for (let i = 0; i < this._args.length; i++) {
-            const aa = this._args[i].Evaluate(engine, tempParameter);
+            let aa = this._args[i].Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function '{0}' parameter is error!", "SumSQ");
         }
 
         let d = 0;
         for (let i = 0; i < list.length; i++) {
-            const a = list[i];
+            let a = list[i];
             d += a * a;
         }
         return Operand.Create(d);

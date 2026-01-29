@@ -7,7 +7,7 @@ class Function_ASC extends Function_1 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'ASC');
             if (args1.IsError) {
@@ -20,7 +20,7 @@ class Function_ASC extends Function_1 {
     F_base_ToDBC(input) {
         let needModify = false;
         for (let i = 0; i < input.length; i++) {
-            const c = input.charCodeAt(i);
+            let c = input.charCodeAt(i);
             if (c === 12288 || (c > 65280 && c < 65375)) {
                 needModify = true;
                 break;
@@ -29,9 +29,9 @@ class Function_ASC extends Function_1 {
         if (!needModify) {
             return input;
         }
-        const chars = [];
+        let chars = [];
         for (let i = 0; i < input.length; i++) {
-            const c = input.charCodeAt(i);
+            let c = input.charCodeAt(i);
             if (c === 12288) {
                 chars.push(String.fromCharCode(32));
             } else if (c > 65280 && c < 65375) {

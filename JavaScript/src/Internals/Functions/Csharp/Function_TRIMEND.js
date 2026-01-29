@@ -18,7 +18,7 @@ export class Function_TRIMEND extends Function_2 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'TrimEnd', 1);
             if (args1.IsError) {
@@ -30,7 +30,7 @@ export class Function_TRIMEND extends Function_2 {
             return Operand.Create(args1.TextValue.trimEnd());
         }
         
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'TrimEnd', 2);
             if (args2.IsError) {
@@ -38,7 +38,7 @@ export class Function_TRIMEND extends Function_2 {
             }
         }
         
-        const trimChars = args2.TextValue.split('');
+        let trimChars = args2.TextValue.split('');
         let text = args1.TextValue;
         let index = text.length - 1;
         

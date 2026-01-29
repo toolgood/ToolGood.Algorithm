@@ -6,14 +6,14 @@ class Function_AVERAGEIF extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) { return args1; }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
-        const list = [];
+        let list = [];
         if (args1.IsArray) {
-            for (const item of args1.ArrayValue) {
+            for (let item of args1.ArrayValue) {
                 if (item.IsNumber) {
                     list.push(item.NumberValue);
                 }
@@ -26,11 +26,11 @@ class Function_AVERAGEIF extends Function_3 {
 
         let sumdbs;
         if (this.func3 !== null) {
-            const args3 = this.func3.Evaluate(engine, tempParameter);
+            let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsError) { return args3; }
             sumdbs = [];
             if (args3.IsArray) {
-                for (const item of args3.ArrayValue) {
+                for (let item of args3.ArrayValue) {
                     if (item.IsNumber) {
                         sumdbs.push(item.NumberValue);
                     }
@@ -52,14 +52,14 @@ class Function_AVERAGEIF extends Function_3 {
             sum = count * args2.NumberValue;
         } else {
             if (args2.IsText) {
-                const TextValue = args2.TextValue.trim();
-                const parsedValue = parseFloat(TextValue);
+                let TextValue = args2.TextValue.trim();
+                let parsedValue = parseFloat(TextValue);
                 if (!isNaN(parsedValue)) {
                     count = Function_AVERAGEIF.countif(list, parsedValue);
                     sum = Function_AVERAGEIF.sumif(list, parsedValue, sumdbs);
                 } else {
                     // 处理匹配模式
-                    const matchResult = Function_AVERAGEIF.sumifMatch(TextValue);
+                    let matchResult = Function_AVERAGEIF.sumifMatch(TextValue);
                     if (matchResult) {
                         count = Function_AVERAGEIF.countif(list, matchResult[0], matchResult[1]);
                         sum = Function_AVERAGEIF.sumif(list, matchResult[0], matchResult[1], sumdbs);
@@ -86,7 +86,7 @@ class Function_AVERAGEIF extends Function_3 {
     // 辅助函数：countif
     static countif(list, value, operator = '=') {
         let count = 0;
-        for (const item of list) {
+        for (let item of list) {
             if (Function_AVERAGEIF.compareValues(item, value, operator)) {
                 count++;
             }
@@ -127,10 +127,10 @@ class Function_AVERAGEIF extends Function_3 {
 
     // 辅助函数：sumifMatch
     static sumifMatch(pattern) {
-        const operators = ['=', '>', '<', '>=', '<=', '<>'];
-        for (const op of operators) {
+        let operators = ['=', '>', '<', '>=', '<=', '<>'];
+        for (let op of operators) {
             if (pattern.startsWith(op)) {
-                const value = parseFloat(pattern.substring(op.length).trim());
+                let value = parseFloat(pattern.substring(op.length).trim());
                 if (!isNaN(value)) {
                     return [value, op];
                 }

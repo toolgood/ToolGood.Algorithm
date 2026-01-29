@@ -7,9 +7,9 @@ class Function_EQ extends Function_2 {
   }
 
   Evaluate(engine, tempParameter) {
-    const args1 = this.func1.Evaluate(engine, tempParameter);
+    let args1 = this.func1.Evaluate(engine, tempParameter);
     if (args1.IsError) { return args1; }
-    const args2 = this.func2.Evaluate(engine, tempParameter);
+    let args2 = this.func2.Evaluate(engine, tempParameter);
     if (args2.IsError) { return args2; }
 
     if (args1.Type === args2.Type) {
@@ -20,12 +20,12 @@ class Function_EQ extends Function_2 {
       } else if (args1.IsBoolean) {
         return Operand.Create(args1.BooleanValue === args2.BooleanValue);
       } else if (args1.IsDate) {
-        const a1 = args1.ToNumber();
-        const a2 = args2.ToNumber();
+        let a1 = args1.ToNumber();
+        let a2 = args2.ToNumber();
         return Operand.Create(a1.NumberValue === a2.NumberValue);
       } else if (args1.IsJson) {
-        const a1 = args1.ToText();
-        const a2 = args2.ToText();
+        let a1 = args1.ToText();
+        let a2 = args2.ToText();
         return Operand.Create(a1.TextValue === a2.TextValue);
       } else if (args1.IsNull) {
         return Operand.True;
@@ -36,14 +36,14 @@ class Function_EQ extends Function_2 {
       return Operand.False;
     } else if (args2.IsText) {
       if (args1.IsBoolean) {
-        const a = args2.ToBoolean();
+        let a = args2.ToBoolean();
         if (!a.IsError) {
           return a.BooleanValue === args1.BooleanValue ? Operand.True : Operand.False;
         }
-        const a1 = args1.ToText();
+        let a1 = args1.ToText();
         return Operand.Create(a1.TextValue === args2.TextValue);
       } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
-        const a1 = args1.ToText();
+        let a1 = args1.ToText();
         return Operand.Create(a1.TextValue === args2.TextValue);
       } else {
         return Operand.Error("Function '==' compare is error.");
@@ -52,12 +52,12 @@ class Function_EQ extends Function_2 {
       return Operand.Error("Function '==' compare is error.");
     }
     if (args1.IsNotNumber) {
-      const a1 = args1.ToNumber(`Function '{"=="}' parameter {1} is error!`);
+      let a1 = args1.ToNumber(`Function '{"=="}' parameter {1} is error!`);
       if (a1.IsError) { return a1; }
       args1 = a1;
     }
     if (args2.IsNotNumber) {
-      const a2 = args2.ToNumber(`Function '{"=="}' parameter {2} is error!`);
+      let a2 = args2.ToNumber(`Function '{"=="}' parameter {2} is error!`);
       if (a2.IsError) { return a2; }
       args2 = a2;
     }

@@ -8,17 +8,17 @@ class Function_GEOMEAN extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this.funcs) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this.funcs) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
             return Operand.error('Function {0} parameter is error!', 'GeoMean');
         }
@@ -26,13 +26,13 @@ class Function_GEOMEAN extends Function_N {
             return Operand.error('Function {0} parameter is error!', 'GeoMean');
         }
         let product = 1.0;
-        for (const num of list) {
+        for (let num of list) {
             if (num <= 0) {
                 return Operand.error('Function {0} parameter is error!', 'GeoMean');
             }
             product *= num;
         }
-        const geoMean = Math.pow(product, 1.0 / list.length);
+        let geoMean = Math.pow(product, 1.0 / list.length);
         return Operand.Create(geoMean);
     }
 

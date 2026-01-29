@@ -13,7 +13,7 @@ class Function_PARAMETER extends FunctionBase {
     Evaluate(engine, tempParameter) {
         let txt = this.name;
         if (txt === undefined || txt === null) {
-            const args1 = this.func1.Evaluate(engine, tempParameter);
+            let args1 = this.func1.Evaluate(engine, tempParameter);
             if (args1.IsNotText) {
                 args1.ToText();
                 if (args1.IsError) {
@@ -23,7 +23,7 @@ class Function_PARAMETER extends FunctionBase {
             txt = args1.TextValue;
         }
         if (tempParameter !== null) {
-            const r = tempParameter(engine, txt);
+            let r = tempParameter(engine, txt);
             if (r !== null) {
                 return r;
             }

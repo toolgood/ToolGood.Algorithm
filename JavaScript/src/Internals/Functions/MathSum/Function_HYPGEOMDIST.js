@@ -7,38 +7,38 @@ class Function_HYPGEOMDIST extends Function_4 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        const args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 3);
             if (args3.IsError) {
                 return args3;
             }
         }
-        const args4 = this.func4.Evaluate(engine, tempParameter);
+        let args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.IsNotNumber) {
             args4.ToNumber('Function {0} parameter {1} is error!', 'HypgeomDist', 4);
             if (args4.IsError) {
                 return args4;
             }
         }
-        const k = Math.round(args1.DoubleValue);
-        const draws = Math.round(args2.DoubleValue);
-        const success = Math.round(args3.DoubleValue);
-        const population = Math.round(args4.DoubleValue);
+        let k = Math.round(args1.DoubleValue);
+        let draws = Math.round(args2.DoubleValue);
+        let success = Math.round(args3.DoubleValue);
+        let population = Math.round(args4.DoubleValue);
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
             return Operand.error('Function {0} parameter is error!', 'HypgeomDist');
         }
@@ -51,8 +51,8 @@ class Function_HYPGEOMDIST extends Function_4 {
         if (k < 0 || k > success || k > draws || draws - k > population - success) {
             return 0;
         }
-        const numerator = this.Combination(success, k) * this.Combination(population - success, draws - k);
-        const denominator = this.Combination(population, draws);
+        let numerator = this.Combination(success, k) * this.Combination(population - success, draws - k);
+        let denominator = this.Combination(population, draws);
         if (denominator === 0) {
             return 0;
         }

@@ -16,11 +16,11 @@ export class MathSplitVisitor2 extends mathVisitor  {
     }
 
     visitMulDiv_fun(context) {
-        const tree = {
+        let tree = {
             nodes: []
         };
-        const exprs = context.expr();
-        const t = context.op.text;
+        let exprs = context.expr();
+        let t = context.op.text;
         if (CharUtil.EqualsStrings(t, '*')) {
             tree.Type = CalculateTreeType.Mul;
         } else if (CharUtil.EqualsStrings(t, '/')) {
@@ -37,11 +37,11 @@ export class MathSplitVisitor2 extends mathVisitor  {
     }
 
     visitAddSub_fun(context) {
-        const tree = {
+        let tree = {
             nodes: []
         };
-        const exprs = context.expr();
-        const t = context.op.text;
+        let exprs = context.expr();
+        let t = context.op.text;
         if (CharUtil.EqualsStrings(t, '+')) {
             tree.Type = CalculateTreeType.Add;
         } else if (CharUtil.EqualsStrings(t, '-')) {
@@ -58,7 +58,7 @@ export class MathSplitVisitor2 extends mathVisitor  {
     }
 
     visit_fun(context) {
-        const tree = {
+        let tree = {
             start: context.start.startIndex,
             end: context.stop.stopIndex,
             conditionString: context.getText()

@@ -8,7 +8,7 @@ export class MyDate {
         } else if (value instanceof Date) {
             this._value = value.getTime() / 86400000;
         } else if (typeof value === 'string') {
-            const date = new Date(value);
+            let date = new Date(value);
             this._value = date.getTime() / 86400000;
         } else {
             this._value = 0;
@@ -34,7 +34,7 @@ export class MyDate {
      * 转换为字符串
      */
     toString() {
-        const date = this.ToDateTime();
+        let date = this.ToDateTime();
         return date.toISOString();
     }
 
@@ -98,10 +98,10 @@ export class MyDate {
      * 获取一年中的第几天
      */
     get DayOfYear() {
-        const date = this.ToDateTime();
-        const start = new Date(date.getFullYear(), 0, 0);
-        const diff = date - start;
-        const oneDay = 1000 * 60 * 60 * 24;
+        let date = this.ToDateTime();
+        let start = new Date(date.getFullYear(), 0, 0);
+        let diff = date - start;
+        let oneDay = 1000 * 60 * 60 * 24;
         return Math.floor(diff / oneDay);
     }
 
@@ -139,7 +139,7 @@ export class MyDate {
      * 今天
      */
     static get Today() {
-        const date = new Date();
+        let date = new Date();
         date.setHours(0, 0, 0, 0);
         return new MyDate(date);
     }

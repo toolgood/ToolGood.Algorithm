@@ -7,7 +7,7 @@ class Function_HEX2OCT extends Function_2 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'HEX2OCT', 1);
             if (args1.IsError) {
@@ -18,9 +18,9 @@ class Function_HEX2OCT extends Function_2 {
         if (!RegexHelper.HexRegex.test(args1.TextValue)) {
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'HEX2OCT', 1);
         }
-        const num = parseInt(args1.TextValue, 16).toString(8);
+        let num = parseInt(args1.TextValue, 16).toString(8);
         if (this.func2 !== null) {
-            const args2 = this.func2.Evaluate(work, tempParameter);
+            let args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber) {
                 args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'HEX2OCT', 2);
                 if (args2.IsError) {
@@ -40,7 +40,7 @@ class Function_HEX2OCT extends Function_2 {
     }
 }
 
-const RegexHelper = {
+let RegexHelper = {
     HexRegex: /^[0-9A-Fa-f]+$/
 };
 

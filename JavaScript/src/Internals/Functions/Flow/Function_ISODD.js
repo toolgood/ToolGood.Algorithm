@@ -6,7 +6,7 @@ class Function_ISODD extends Function_1 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNumber) {
             if (args1.IntValue % 2 == 1) {
                 return engine.createBooleanOperand(true);

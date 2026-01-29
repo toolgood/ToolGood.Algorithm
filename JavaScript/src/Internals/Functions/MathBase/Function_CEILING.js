@@ -21,7 +21,7 @@ class Function_CEILING extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 2);
             if (args2.IsError) { return args2; }
         }
-        const b = args2.NumberValue;
+        let b = args2.NumberValue;
         if (b == 0) {
             return engine.createOperand(0);
         }
@@ -29,8 +29,8 @@ class Function_CEILING extends Function_2 {
             return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "Ceiling", 2);
         }
 
-        const a = args1.NumberValue;
-        const d = Math.ceil(a / b) * b;
+        let a = args1.NumberValue;
+        let d = Math.ceil(a / b) * b;
         return engine.createOperand(d);
     }
 

@@ -23,7 +23,7 @@ class Function_WEEKDAY extends Function_2 {
             Type = args2.IntValue;
         }
 
-        const t = args1.DateValue.getDay(); // JavaScript中，0表示星期日，6表示星期六
+        let t = args1.DateValue.getDay(); // JavaScript中，0表示星期日，6表示星期六
         if (Type == 1) {
             // 类型1：返回1-7，1表示星期日，7表示星期六
             return engine.createOperand(t + 1);

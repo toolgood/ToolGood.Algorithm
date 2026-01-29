@@ -6,15 +6,15 @@ class Function_PRODUCT extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
+        let args = [];
         for (let i = 0; i < this._args.length; i++) {
-            const aa = this._args[i].Evaluate(engine, tempParameter);
+            let aa = this._args[i].Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
-        const list = [];
-        for (const arg of args) {
+        let list = [];
+        for (let arg of args) {
             if (arg.IsNotNumber) {
                 return engine.createErrorOperand("Function '{0}' parameter is error!", "Product");
             }
@@ -26,7 +26,7 @@ class Function_PRODUCT extends Function_N {
         }
 
         let d = 1;
-        for (const a of list) {
+        for (let a of list) {
             d *= a;
         }
         return engine.createOperand(d);

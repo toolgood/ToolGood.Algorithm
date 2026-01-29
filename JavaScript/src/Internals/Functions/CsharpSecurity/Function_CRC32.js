@@ -18,7 +18,7 @@ export class Function_CRC32 extends Function_2 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'CRC32', 1);
             if (args1.IsError) {
@@ -29,7 +29,7 @@ export class Function_CRC32 extends Function_2 {
         try {
             let encoding = 'utf-8';
             if (this.func2 !== null) {
-                const args2 = this.func2.Evaluate(engine, tempParameter);
+                let args2 = this.func2.Evaluate(engine, tempParameter);
                 if (args2.IsNotText) {
                     args2.ToText('Function \'{0}\' parameter {1} is error!', 'CRC32', 2);
                     if (args2.IsError) {
@@ -39,9 +39,9 @@ export class Function_CRC32 extends Function_2 {
                 encoding = args2.TextValue;
             }
             
-            const encoder = new TextEncoder(encoding);
-            const buffer = encoder.encode(args1.TextValue);
-            const t = this.getCrc32String(buffer);
+            let encoder = new TextEncoder(encoding);
+            let buffer = encoder.encode(args1.TextValue);
+            let t = this.getCrc32String(buffer);
             return Operand.Create(t);
         } catch (ex) {
             return Operand.error('Function \'CRC32\'is error!' + ex.message);
@@ -61,9 +61,9 @@ export class Function_CRC32 extends Function_2 {
      * @returns {string}
      */
     getCrc32String(buffer) {
-        const crc32 = new Crc32Hash();
+        let crc32 = new Crc32Hash();
         crc32.append(buffer);
-        const retVal = crc32.finish();
+        let retVal = crc32.finish();
         return Array.from(retVal).map(byte => byte.toString(16).padStart(2, '0')).join('');
     }
 }
@@ -146,7 +146,7 @@ class Crc32Hash {
      * @returns {Uint8Array}
      */
     finish() {
-        const result = new Uint8Array(4);
+        let result = new Uint8Array(4);
         result[0] = (this.crc >> 24) & 0xFF;
         result[1] = (this.crc >> 16) & 0xFF;
         result[2] = (this.crc >> 8) & 0xFF;

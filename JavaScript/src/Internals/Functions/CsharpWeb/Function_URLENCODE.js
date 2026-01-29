@@ -13,8 +13,8 @@ class Function_URLENCODE extends Function_1 {
                 return args1;
             }
         }
-        const s = args1.TextValue;
-        const r = encodeURIComponent(s);
+        let s = args1.TextValue;
+        let r = encodeURIComponent(s);
         return engine.createOperand(r);
     }
 

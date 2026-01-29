@@ -8,29 +8,29 @@ class Function_SUMIF extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return args1;
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsError) {
             return args2;
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args1, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 1);
         }
 
         let sumdbs;
         if (this.func3 != null) {
-            const args3 = this.func3.Evaluate(engine, tempParameter);
+            let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsError) {
                 return args3;
             }
             sumdbs = [];
-            const o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
+            let o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
             if (o2 == false) {
                 return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 3);
             }
@@ -42,13 +42,13 @@ class Function_SUMIF extends Function_3 {
         if (args2.IsNumber) {
             sum = FunctionUtil.F_base_countif(list, args2.NumberValue) * args2.NumberValue;
         } else {
-            const trimmedText = args2.TextValue.trim();
-            const parsed = parseFloat(trimmedText);
+            let trimmedText = args2.TextValue.trim();
+            let parsed = parseFloat(trimmedText);
             if (!isNaN(parsed)) {
                 sum = FunctionUtil.F_base_sumif(list, parsed, sumdbs);
             } else {
-                const sunif = trimmedText;
-                const m2 = FunctionUtil.sumifMatch(sunif);
+                let sunif = trimmedText;
+                let m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 != null) {
                     sum = FunctionUtil.F_base_sumif(list, m2[0], m2[1], sumdbs);
                 } else {

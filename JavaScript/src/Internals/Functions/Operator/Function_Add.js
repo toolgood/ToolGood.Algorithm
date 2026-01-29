@@ -22,15 +22,15 @@ class Function_Add extends Function_2 {
     if (args2.IsNull) { return Operand.Error(`Function '{"+"}' parameter {2} is NULL!`); }
 
     if (args1.IsText) {
-      const d = parseFloat(args1.TextValue);
+      let d = parseFloat(args1.TextValue);
       if (!isNaN(d)) {
         args1 = Operand.Create(d);
       } else {
-        const boolValue = [false];
+        let boolValue = [false];
         if (FunctionUtil.TryParseBoolean(args1.TextValue, boolValue)) {
           args1 = boolValue[0] ? Operand.One : Operand.Zero;
         } else {
-          const date = new Date(args1.TextValue);
+          let date = new Date(args1.TextValue);
           if (!isNaN(date.getTime())) {
             args1 = Operand.Create(new Date(date));
           } else {
@@ -40,15 +40,15 @@ class Function_Add extends Function_2 {
       }
     }
     if (args2.IsText) {
-      const d = parseFloat(args2.TextValue);
+      let d = parseFloat(args2.TextValue);
       if (!isNaN(d)) {
         args2 = Operand.Create(d);
       } else {
-        const boolValue = [false];
+        let boolValue = [false];
         if (FunctionUtil.TryParseBoolean(args2.TextValue, boolValue)) {
           args2 = boolValue[0] ? Operand.One : Operand.Zero;
         } else {
-          const date = new Date(args2.TextValue);
+          let date = new Date(args2.TextValue);
           if (!isNaN(date.getTime())) {
             args2 = Operand.Create(new Date(date));
           } else {
@@ -62,7 +62,7 @@ class Function_Add extends Function_2 {
         return Operand.Create(args1.DateValue.ToNumber() + args2.DateValue.ToNumber());
       }
       if (args2.IsNotNumber) {
-        const a2 = args2.ToNumber(`Function '{"+"}' parameter {2} is error!`);
+        let a2 = args2.ToNumber(`Function '{"+"}' parameter {2} is error!`);
         if (a2.IsError) { return a2; }
         args2 = a2;
       }
@@ -70,7 +70,7 @@ class Function_Add extends Function_2 {
       return Operand.Create(args1.DateValue.ToNumber() + args2.NumberValue);
     } else if (args2.IsDate) {
       if (args1.IsNotNumber) {
-        const a1 = args1.ToNumber(`Function '{"+"}' parameter {1} is error!`);
+        let a1 = args1.ToNumber(`Function '{"+"}' parameter {1} is error!`);
         if (a1.IsError) { return a1; }
         args1 = a1;
       }
@@ -78,12 +78,12 @@ class Function_Add extends Function_2 {
       return Operand.Create(args2.DateValue.ToNumber() + args1.NumberValue);
     }
     if (args1.IsNotNumber) {
-      const a1 = args1.ToNumber(`Function '{"+"}' parameter {1} is error!`);
+      let a1 = args1.ToNumber(`Function '{"+"}' parameter {1} is error!`);
       if (a1.IsError) { return a1; }
       args1 = a1;
     }
     if (args2.IsNotNumber) {
-      const a2 = args2.ToNumber(`Function '{"+"}' parameter {2} is error!`);
+      let a2 = args2.ToNumber(`Function '{"+"}' parameter {2} is error!`);
       if (a2.IsError) { return a2; }
       args2 = a2;
     }

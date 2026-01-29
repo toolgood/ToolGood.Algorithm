@@ -21,7 +21,7 @@ class Function_ADDHOURS extends Function_2 {
                 return args2;
             }
         }
-        const date = new Date(args1.DateValue.getTime());
+        let date = new Date(args1.DateValue.getTime());
         date.setHours(date.getHours() + args2.IntValue);
         return engine.createOperand(new MyDate(date));
     }

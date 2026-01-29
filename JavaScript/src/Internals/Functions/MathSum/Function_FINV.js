@@ -7,30 +7,30 @@ class Function_FINV extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'FInv', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'FInv', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        const args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'FInv', 3);
             if (args3.IsError) {
                 return args3;
             }
         }
-        const p = args1.DoubleValue;
-        const degreesFreedom = Math.round(args2.DoubleValue);
-        const degreesFreedom2 = Math.round(args3.DoubleValue);
+        let p = args1.DoubleValue;
+        let degreesFreedom = Math.round(args2.DoubleValue);
+        let degreesFreedom2 = Math.round(args3.DoubleValue);
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
             return Operand.error('Function {0} parameter is error!', 'FInv');
         }
@@ -72,7 +72,7 @@ class Function_FINV extends Function_3 {
             return 0;
         }
         // F分布的累积分布函数可以用贝塔分布来计算
-        const betaArg = (degreesFreedom1 * x) / (degreesFreedom1 * x + degreesFreedom2);
+        let betaArg = (degreesFreedom1 * x) / (degreesFreedom1 * x + degreesFreedom2);
         return this.BetaCDF(betaArg, degreesFreedom1 / 2, degreesFreedom2 / 2);
     }
 
@@ -85,10 +85,10 @@ class Function_FINV extends Function_3 {
             return 1;
         }
         // 这里使用伽马函数的近似计算
-        const gammaAlpha = this.Gamma(alpha);
-        const gammaBeta = this.Gamma(beta);
-        const gammaAlphaBeta = this.Gamma(alpha + beta);
-        const betaFunction = gammaAlphaBeta / (gammaAlpha * gammaBeta);
+        let gammaAlpha = this.Gamma(alpha);
+        let gammaBeta = this.Gamma(beta);
+        let gammaAlphaBeta = this.Gamma(alpha + beta);
+        let betaFunction = gammaAlphaBeta / (gammaAlpha * gammaBeta);
         // 简化的积分近似
         let sum = 0;
         let term = Math.pow(x, alpha) * Math.pow(1 - x, beta - 1);

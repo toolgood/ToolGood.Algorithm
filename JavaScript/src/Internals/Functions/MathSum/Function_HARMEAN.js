@@ -8,9 +8,9 @@ class Function_HARMEAN extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this.funcs) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this.funcs) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -21,14 +21,14 @@ class Function_HARMEAN extends Function_N {
             return args[0];
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
             return Operand.error('Function {0} parameter is error!', 'HarMean');
         }
 
         let sum = 0;
-        for (const db of list) {
+        for (let db of list) {
             if (db === 0) {
                 return Operand.error('Function {0} parameter is error!', 'HarMean');
             }

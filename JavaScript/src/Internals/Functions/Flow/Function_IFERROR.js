@@ -6,7 +6,7 @@ class Function_IFERROR extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return this.func2.Evaluate(engine, tempParameter);
         }

@@ -19,14 +19,14 @@ export class Function_REMOVESTART extends Function_3 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 2);
             if (args2.IsError) {
@@ -36,7 +36,7 @@ export class Function_REMOVESTART extends Function_3 {
         
         let ignoreCase = false;
         if (this.func3 !== null) {
-            const args3 = this.func3.Evaluate(engine, tempParameter);
+            let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
                 args3.ToBoolean('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 3);
                 if (args3.IsError) {
@@ -46,8 +46,8 @@ export class Function_REMOVESTART extends Function_3 {
             ignoreCase = args3.BooleanValue;
         }
         
-        const text = args1.TextValue;
-        const prefix = args2.TextValue;
+        let text = args1.TextValue;
+        let prefix = args2.TextValue;
         let startsWith = false;
         
         if (ignoreCase) {

@@ -6,15 +6,15 @@ class Function_MULTINOMIAL extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this._args) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this._args) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
-        const list = [];
-        for (const arg of args) {
+        let list = [];
+        for (let arg of args) {
             if (arg.IsNotNumber) {
                 return engine.createErrorOperand("Function '{0}' parameter is error!", "Multinomial");
             }
@@ -23,13 +23,13 @@ class Function_MULTINOMIAL extends Function_N {
 
         let sum = 0;
         let n = 1;
-        for (const value of list) {
-            const a = Math.max(0, Math.floor(value)); // 小于等于0时按0处理
+        for (let value of list) {
+            let a = Math.max(0, Math.floor(value)); // 小于等于0时按0处理
             n *= Function_MULTINOMIAL.factorial(a);
             sum += a;
         }
 
-        const r = Function_MULTINOMIAL.factorial(sum) / n;
+        let r = Function_MULTINOMIAL.factorial(sum) / n;
         return engine.createOperand(r);
     }
 

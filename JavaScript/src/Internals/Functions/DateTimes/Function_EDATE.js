@@ -17,7 +17,7 @@ class Function_EDATE extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EDate", 2);
             if (args2.IsError) { return args2; }
         }
-        const date = new Date(args1.DateValue.getTime());
+        let date = new Date(args1.DateValue.getTime());
         date.setMonth(date.getMonth() + args2.IntValue);
         return engine.createOperand(new MyDate(date));
     }

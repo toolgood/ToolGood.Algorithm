@@ -18,11 +18,11 @@ export class Function_HASVALUE extends Function_2 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return args1;
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'HasValue', 2);
             if (args2.IsError) {
@@ -33,10 +33,10 @@ export class Function_HASVALUE extends Function_2 {
         if (args1.IsArrayJson) {
             return Operand.Create(args1.containsValue(args2));
         } else if (args1.IsJson) {
-            const json = args1.JsonValue;
+            let json = args1.JsonValue;
             if (Array.IsArray(json)) {
                 for (let i = 0; i < json.length; i++) {
-                    const v = json[i];
+                    let v = json[i];
                     if (typeof v === 'string') {
                         if (v === args2.TextValue) {
                             return Operand.True;
@@ -53,7 +53,7 @@ export class Function_HASVALUE extends Function_2 {
                 }
             } else {
                 for (let key in json) {
-                    const v = json[key];
+                    let v = json[key];
                     if (typeof v === 'string') {
                         if (v === args2.TextValue) {
                             return Operand.True;
@@ -71,9 +71,9 @@ export class Function_HASVALUE extends Function_2 {
             }
             return Operand.False;
         } else if (args1.IsArray) {
-            const ar = args1.ArrayValue;
+            let ar = args1.ArrayValue;
             for (let item of ar) {
-                const t = item.ToText();
+                let t = item.ToText();
                 if (t.IsError) {
                     continue;
                 }

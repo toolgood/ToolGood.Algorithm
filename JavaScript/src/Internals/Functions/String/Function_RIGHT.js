@@ -7,7 +7,7 @@ class Function_RIGHT extends Function_2 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function {0} parameter {1} is error!', 'Right', 1);
             if (args1.IsError) {
@@ -21,15 +21,15 @@ class Function_RIGHT extends Function_2 {
         if (this.func2 === null) {
             return Operand.Create(args1.TextValue.substring(args1.TextValue.length - 1, args1.TextValue.length));
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'Right', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        const length = Math.min(args2.IntValue, args1.TextValue.length);
-        const start = args1.TextValue.length - length;
+        let length = Math.min(args2.IntValue, args1.TextValue.length);
+        let start = args1.TextValue.length - length;
         return Operand.Create(args1.TextValue.substring(start, start + length));
     }
 

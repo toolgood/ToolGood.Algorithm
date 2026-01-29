@@ -255,10 +255,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMulDiv_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const t = context.op.text;
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let t = context.op.text;
         if (CharUtil.Equals(t, '*')) {
             return new Function_Mul(args1, args2);
         } else if (CharUtil.Equals(t, '/')) {
@@ -273,10 +273,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAddSub_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const t = context.op.text;
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let t = context.op.text;
         if (CharUtil.Equals(t, '&')) {
             return new Function_Connect(args1, args2);
         } else if (CharUtil.Equals(t, '+')) {
@@ -291,11 +291,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitJudge_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
 
-        const Type = context.op.text;
+        let Type = context.op.text;
         if (CharUtil.Equals(Type, "=", "==", "===")) {
             return new Function_EQ(args1, args2);
         } else if (CharUtil.Equals(Type, "<")) {
@@ -316,10 +316,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAndOr_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const t = context.op.text;
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let t = context.op.text;
         if (CharUtil.Equals(t, "&&", "AND")) {
             return new Function_AND(args1, args2);
         }
@@ -332,11 +332,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitIF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 3) {
-            const args3 = exprs[2].accept(this);
+            let args3 = exprs[2].accept(this);
             return new Function_IF(args1, args2, args3);
         }
         return new Function_IF(args1, args2, null);
@@ -348,10 +348,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitIFERROR_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_IFERROR(args1, args2, args3);
     }
 
@@ -361,7 +361,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISNUMBER_fun(context) {
-        const args1 = this.visit(context.expr());
+        let args1 = this.visit(context.expr());
         return new Function_ISNUMBER(args1);
     }
 
@@ -371,7 +371,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISTEXT_fun(context) {
-        const args1 = this.visit(context.expr());
+        let args1 = this.visit(context.expr());
         return new Function_ISTEXT(args1);
     }
 
@@ -381,10 +381,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISERROR_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 2) {
-            const args2 = exprs[1].accept(this);
+            let args2 = exprs[1].accept(this);
             return new Function_ISERROR(args1, args2);
         }
         return new Function_ISERROR(args1, null);
@@ -396,10 +396,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISNULL_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 2) {
-            const args2 = exprs[1].accept(this);
+            let args2 = exprs[1].accept(this);
             return new Function_ISNULL(args1, args2);
         }
         return new Function_ISNULL(args1, null);
@@ -411,10 +411,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISNULLORERROR_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 2) {
-            const args2 = exprs[1].accept(this);
+            let args2 = exprs[1].accept(this);
             return new Function_ISNULLORERROR(args1, args2);
         }
         return new Function_ISNULLORERROR(args1, null);
@@ -426,7 +426,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISEVEN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ISEVEN(args1);
     }
 
@@ -436,7 +436,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISLOGICAL_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ISLOGICAL(args1);
     }
 
@@ -446,7 +446,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISODD_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ISODD(args1);
     }
 
@@ -456,7 +456,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISNONTEXT_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ISNONTEXT(args1);
     }
 
@@ -466,8 +466,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAND_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -480,8 +480,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitOR_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -494,7 +494,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNOT_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_NOT(args1);
     }
 
@@ -540,7 +540,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitABS_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ABS(args1);
     }
 
@@ -550,9 +550,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitQUOTIENT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_QUOTIENT(args1, args2);
     }
 
@@ -562,9 +562,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMOD_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_Mod(args1, args2);
     }
 
@@ -574,7 +574,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSIGN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_SIGN(args1);
     }
 
@@ -584,7 +584,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSQRT_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_SQRT(args1);
     }
 
@@ -594,7 +594,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRUNC_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TRUNC(args1);
     }
 
@@ -604,7 +604,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitINT_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TRUNC(args1);
     }
 
@@ -614,8 +614,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGCD_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -628,8 +628,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLCM_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -642,9 +642,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOMBIN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_COMBIN(args1, args2);
     }
 
@@ -654,9 +654,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPERMUT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_PERMUT(args1, args2);
     }
 
@@ -666,7 +666,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPercentage_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_Percentage(args1);
     }
 
@@ -676,7 +676,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDEGREES_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_DEGREES(args1);
     }
 
@@ -686,7 +686,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitRADIANS_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_RADIANS(args1);
     }
 
@@ -696,7 +696,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOS_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_COS(args1);
     }
 
@@ -706,7 +706,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOSH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_COSH(args1);
     }
 
@@ -716,7 +716,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSIN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_SIN(args1);
     }
 
@@ -726,7 +726,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSINH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_SINH(args1);
     }
 
@@ -736,7 +736,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTAN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TAN(args1);
     }
 
@@ -746,7 +746,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTANH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TANH(args1);
     }
 
@@ -756,7 +756,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitACOS_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ACOS(args1);
     }
 
@@ -766,7 +766,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitACOSH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ACOSH(args1);
     }
 
@@ -776,7 +776,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitASIN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ASIN(args1);
     }
 
@@ -786,7 +786,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitASINH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ASINH(args1);
     }
 
@@ -796,7 +796,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitATAN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ATAN(args1);
     }
 
@@ -806,7 +806,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitATANH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ATANH(args1);
     }
 
@@ -816,9 +816,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitATAN2_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ATAN2(args1, args2);
     }
 
@@ -828,12 +828,12 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFIXED_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_FIXED(args1, null, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_FIXED(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_FIXED(args1, args2, args3);
     }
 
@@ -843,10 +843,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBIN2OCT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BIN2OCT(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_BIN2OCT(args1, args2);
     }
 
@@ -856,7 +856,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBIN2DEC_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_BIN2DEC(args1);
     }
 
@@ -866,10 +866,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBIN2HEX_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BIN2HEX(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_BIN2HEX(args1, args2);
     }
 
@@ -879,10 +879,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitOCT2BIN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_OCT2BIN(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_OCT2BIN(args1, args2);
     }
 
@@ -892,7 +892,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitOCT2DEC_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_OCT2DEC(args1);
     }
 
@@ -902,10 +902,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitOCT2HEX_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_OCT2HEX(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_OCT2HEX(args1, args2);
     }
 
@@ -915,10 +915,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDEC2BIN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_DEC2BIN(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_DEC2BIN(args1, args2);
     }
 
@@ -928,10 +928,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDEC2OCT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_DEC2OCT(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_DEC2OCT(args1, args2);
     }
 
@@ -941,10 +941,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDEC2HEX_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_DEC2HEX(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_DEC2HEX(args1, args2);
     }
 
@@ -954,10 +954,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHEX2BIN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_HEX2BIN(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_HEX2BIN(args1, args2);
     }
 
@@ -967,10 +967,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHEX2OCT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_HEX2OCT(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_HEX2OCT(args1, args2);
     }
 
@@ -980,7 +980,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHEX2DEC_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_HEX2DEC(args1);
     }
 
@@ -990,12 +990,12 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitROUND_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) {
             return new Function_ROUND(args1, null);
         }
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ROUND(args1, args2);
     }
 
@@ -1005,9 +1005,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitROUNDDOWN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ROUNDDOWN(args1, args2);
     }
 
@@ -1017,9 +1017,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitROUNDUP_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ROUNDUP(args1, args2);
     }
 
@@ -1029,11 +1029,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCEILING_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1)
             return new Function_CEILING(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_CEILING(args1, args2);
     }
 
@@ -1043,12 +1043,12 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFLOOR_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1)
             return new Function_FLOOR(args1, null);
 
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_FLOOR(args1, args2);
     }
 
@@ -1058,7 +1058,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitEVEN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_EVEN(args1);
     }
 
@@ -1068,7 +1068,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitODD_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ODD(args1);
     }
 
@@ -1078,9 +1078,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMROUND_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_MROUND(args1, args2);
     }
 
@@ -1099,9 +1099,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitRANDBETWEEN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_RANDBETWEEN(args1, args2);
     }
 
@@ -1111,9 +1111,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOVARIANCES_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_COVARIANCES(args1, args2);
     }
 
@@ -1123,9 +1123,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOVAR_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_COVAR(args1, args2);
     }
 
@@ -1135,7 +1135,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFACT_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_FACT(args1);
     }
 
@@ -1145,7 +1145,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFACTDOUBLE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_FACTDOUBLE(args1);
     }
 
@@ -1155,9 +1155,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPOWER_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_POWER(args1, args2);
     }
 
@@ -1167,7 +1167,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitEXP_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_EXP(args1);
     }
 
@@ -1177,7 +1177,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_LN(args1);
     }
 
@@ -1187,11 +1187,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOG_fun(context) {
-        const exprs = context.expr();
+        let exprs = context.expr();
 
-        const args1 = exprs[0].accept(this);
+        let args1 = exprs[0].accept(this);
         if (exprs.length > 1) {
-            const args2 = exprs[1].accept(this);
+            let args2 = exprs[1].accept(this);
             return new Function_LOG(args1, args2);
         }
         return new Function_LOG(args1, null);
@@ -1203,7 +1203,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOG10_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_LOG(args1, null);
     }
 
@@ -1213,8 +1213,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMULTINOMIAL_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1227,8 +1227,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPRODUCT_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1241,7 +1241,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSQRTPI_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_SQRTPI(args1);
     }
 
@@ -1251,8 +1251,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUMSQ_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1265,7 +1265,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitASC_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ASC(args1);
     }
 
@@ -1275,7 +1275,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitJIS_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_JIS(args1);
     }
 
@@ -1285,7 +1285,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCHAR_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_CHAR(args1);
     }
 
@@ -1295,7 +1295,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCLEAN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_CLEAN(args1);
     }
 
@@ -1305,7 +1305,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCODE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_CODE(args1);
     }
 
@@ -1315,8 +1315,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCONCATENATE_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1329,9 +1329,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitEXACT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_EXACT(args1, args2);
     }
 
@@ -1341,14 +1341,14 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFIND_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
 
         if (exprs.length === 2) {
             return new Function_FIND(args1, args2, null);
         }
-        const count = exprs[2].accept(this);
+        let count = exprs[2].accept(this);
         return new Function_FIND(args1, args2, count);
     }
 
@@ -1358,8 +1358,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLEFT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) {
             return new Function_LEFT(args1, null);
         }
@@ -1372,7 +1372,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLEN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_LEN(args1);
     }
 
@@ -1382,7 +1382,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOWER_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_LOWER(args1);
     }
 
@@ -1392,10 +1392,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMID_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_MID(args1, args2, args3);
     }
 
@@ -1405,7 +1405,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPROPER_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_PROPER(args1);
     }
 
@@ -1415,17 +1415,17 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitREPLACE_fun(context) {
-        const exprs = context.expr();
+        let exprs = context.expr();
 
-        const args1 = exprs[0].accept(this);
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 3) {
-            const args22 = exprs[1].accept(this);
-            const args32 = exprs[2].accept(this);
+            let args22 = exprs[1].accept(this);
+            let args32 = exprs[2].accept(this);
             return new Function_REPLACE(args1, args22, args32, null);
         }
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
-        const args4 = exprs[3].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_REPLACE(args1, args2, args3, args4);
     }
 
@@ -1435,9 +1435,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitREPT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_REPT(args1, args2);
     }
 
@@ -1447,13 +1447,13 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitRIGHT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
 
         if (exprs.length === 1) {
             return new Function_RIGHT(args1);
         }
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_RIGHT(args1, args2);
     }
 
@@ -1463,7 +1463,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitRMB_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_RMB(args1);
     }
 
@@ -1473,14 +1473,14 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSEARCH_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
 
         if (exprs.length === 2) {
             return new Function_SEARCH(args1, args2, null);
         }
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_SEARCH(args1, args2, args3);
     }
 
@@ -1490,14 +1490,14 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUBSTITUTE_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         if (exprs.length === 3) {
             return new Function_SUBSTITUTE(args1, args2, args3, null);
         }
-        const args4 = exprs[3].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_SUBSTITUTE(args1, args2, args3, args4);
     }
 
@@ -1507,7 +1507,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitT_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_T(args1);
     }
 
@@ -1517,9 +1517,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTEXT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_TEXT(args1, args2);
     }
 
@@ -1529,7 +1529,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRIM_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TRIM(args1);
     }
 
@@ -1539,7 +1539,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitUPPER_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_UPPER(args1);
     }
 
@@ -1549,7 +1549,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitVALUE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_VALUE(args1);
     }
 
@@ -1559,8 +1559,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDATEVALUE_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1573,10 +1573,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTIMESTAMP_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_TIMESTAMP(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_TIMESTAMP(args1, args2);
     }
 
@@ -1586,7 +1586,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTIMEVALUE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TIMEVALUE(args1);
     }
 
@@ -1596,8 +1596,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDATE_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1610,11 +1610,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTIME_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_TIME(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_TIME(args1, args2, args3);
     }
 
@@ -1642,7 +1642,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitYEAR_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_YEAR(args1);
     }
 
@@ -1652,7 +1652,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMONTH_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_MONTH(args1);
     }
 
@@ -1662,7 +1662,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDAY_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_DAY(args1);
     }
 
@@ -1672,7 +1672,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHOUR_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_HOUR(args1);
     }
 
@@ -1682,7 +1682,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMINUTE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_MINUTE(args1);
     }
 
@@ -1692,7 +1692,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSECOND_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_SECOND(args1);
     }
 
@@ -1702,10 +1702,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitWEEKDAY_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_WEEKDAY(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_WEEKDAY(args1, args2);
     }
 
@@ -1715,10 +1715,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDATEDIF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_DATEDIF(args1, args2, args3);
     }
 
@@ -1728,11 +1728,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDAYS360_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 3) {
-            const args3 = exprs[2].accept(this);
+            let args3 = exprs[2].accept(this);
             return new Function_DAYS360(args1, args2, args3);
         }
         return new Function_DAYS360(args1, args2, null);
@@ -1744,9 +1744,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitEDATE_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_EDATE(args1, args2);
     }
 
@@ -1756,9 +1756,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitEOMONTH_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_EOMONTH(args1, args2);
     }
 
@@ -1768,8 +1768,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNETWORKDAYS_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1782,8 +1782,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitWORKDAY_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1796,10 +1796,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitWEEKNUM_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_WEEKNUM(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_WEEKNUM(args1, args2);
     }
 
@@ -1809,9 +1809,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitADDMONTHS_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ADDMONTHS(args1, args2);
     }
 
@@ -1821,9 +1821,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitADDYEARS_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ADDYEARS(args1, args2);
     }
 
@@ -1833,9 +1833,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitADDSECONDS_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ADDSECONDS(args1, args2);
     }
 
@@ -1845,9 +1845,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitADDMINUTES_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ADDMINUTES(args1, args2);
     }
 
@@ -1857,9 +1857,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitADDDAYS_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ADDDAYS(args1, args2);
     }
 
@@ -1869,9 +1869,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitADDHOURS_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ADDHOURS(args1, args2);
     }
 
@@ -1881,8 +1881,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMAX_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1895,8 +1895,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMEDIAN_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1909,8 +1909,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMIN_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -1923,9 +1923,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHMACSHA1_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_HMACSHA1(args1, args2);
     }
 
@@ -1935,9 +1935,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHMACSHA256_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_HMACSHA256(args1, args2);
     }
 
@@ -1947,9 +1947,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHMACSHA512_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_HMACSHA512(args1, args2);
     }
 
@@ -1959,9 +1959,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSTARTSWITH_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_STARTSWITH(args1, args2);
     }
 
@@ -1971,9 +1971,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitENDSWITH_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ENDSWITH(args1, args2);
     }
 
@@ -1983,9 +1983,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitINDEXOF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_INDEXOF(args1, args2);
     }
 
@@ -1995,9 +1995,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLASTINDEXOF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_LASTINDEXOF(args1, args2);
     }
 
@@ -2007,9 +2007,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSPLIT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_SPLIT(args1, args2);
     }
 
@@ -2019,11 +2019,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUBSTRING_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_SUBSTRING(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_SUBSTRING(args1, args2, args3);
     }
 
@@ -2033,7 +2033,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRIMSTART_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TRIMSTART(args1);
     }
 
@@ -2043,7 +2043,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRIMEND_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_TRIMEND(args1);
     }
 
@@ -2053,9 +2053,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitREMOVESTART_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_REMOVESTART(args1, args2);
     }
 
@@ -2065,9 +2065,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitREMOVEEND_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_REMOVEEND(args1, args2);
     }
 
@@ -2077,9 +2077,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitJOIN_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_JOIN(args1, args2);
     }
 
@@ -2089,9 +2089,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOOKCEILING_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_LOOKCEILING(args1, args2);
     }
 
@@ -2101,9 +2101,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOOKFLOOR_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_LOOKFLOOR(args1, args2);
     }
 
@@ -2113,9 +2113,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHAS_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_HAS(args1, args2);
     }
 
@@ -2125,7 +2125,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHASVALUE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_HASVALUE(args1);
     }
 
@@ -2135,7 +2135,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISNULLOREMPTY_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ISNULLOREMPTY(args1);
     }
 
@@ -2145,7 +2145,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISNULLORWHITESPACE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ISNULLORWHITESPACE(args1);
     }
 
@@ -2155,8 +2155,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitArray_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2169,7 +2169,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitJSON_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_JSON(args1);
     }
 
@@ -2179,7 +2179,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitArrayJson_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ArrayJson(args1);
     }
 
@@ -2189,9 +2189,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitArrayJsonItem_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ArrayJsonItem(args1, args2);
     }
 
@@ -2201,9 +2201,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGetJsonValue_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_GetJsonValue(args1, args2);
     }
 
@@ -2213,10 +2213,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNUM_fun(context) {
-        const numText = context.num().getText ? context.num().getText() : context.num().text;
-        const d = parseFloat(numText);
+        let numText = context.num().getText ? context.num().getText() : context.num().text;
+        let d = parseFloat(numText);
 		if (!context.unit()) { return new Function_Value(Operand.Create(d), numText); }
-		const unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
+		let unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
 		return new Function_NUM(d, unitText);
     }
 
@@ -2226,7 +2226,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPARAM_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_PARAM(args1);
     }
 
@@ -2236,7 +2236,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPARAMETER_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_PARAMETER(args1);
     }
 
@@ -2246,9 +2246,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDiyFunction_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_DiyFunction(args1, args2);
     }
 
@@ -2258,7 +2258,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitERROR_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_ERROR(args1);
     }
 
@@ -2268,9 +2268,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitQUARTILE_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_QUARTILE(args1, args2);
     }
 
@@ -2280,8 +2280,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMODE_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2294,9 +2294,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLARGE_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_LARGE(args1, args2);
     }
 
@@ -2306,9 +2306,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSMALL_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_SMALL(args1, args2);
     }
 
@@ -2318,9 +2318,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPERCENTILE_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_PERCENTILE(args1, args2);
     }
 
@@ -2330,11 +2330,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPERCENTRANK_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_PERCENTRANK(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_PERCENTRANK(args1, args2, args3);
     }
 
@@ -2344,8 +2344,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAVERAGE_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2358,11 +2358,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAVERAGEIF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_AVERAGEIF(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_AVERAGEIF(args1, args2, args3);
     }
 
@@ -2372,8 +2372,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGEOMEAN_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2386,8 +2386,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHARMEAN_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2400,8 +2400,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOUNT_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2414,9 +2414,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOUNTIF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_COUNTIF(args1, args2);
     }
 
@@ -2426,8 +2426,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUM_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2440,11 +2440,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUMIF_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_SUMIF(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_SUMIF(args1, args2, args3);
     }
 
@@ -2454,8 +2454,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAVEDEV_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2468,8 +2468,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSTDEV_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2482,8 +2482,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSTDEVP_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2496,8 +2496,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDEVSQ_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2510,8 +2510,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitVAR_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2524,8 +2524,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitVARP_fun(context) {
-        const exprs = context.expr();
-        const args = new Array(exprs.length);
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
             args[i] = exprs[i].accept(this);
         }
@@ -2538,11 +2538,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNORMDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
-        const args4 = exprs[3].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_NORMDIST(args1, args2, args3, args4);
     }
 
@@ -2552,10 +2552,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNORMINV_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_NORMINV(args1, args2, args3);
     }
 
@@ -2565,7 +2565,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNORMSDIST_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_NORMSDIST(args1);
     }
 
@@ -2575,7 +2575,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNORMSINV_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_NORMSINV(args1);
     }
 
@@ -2585,10 +2585,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBETADIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_BETADIST(args1, args2, args3);
     }
 
@@ -2598,10 +2598,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBETAINV_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_BETAINV(args1, args2, args3);
     }
 
@@ -2611,11 +2611,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBINOMDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
-        const args4 = exprs[3].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_BINOMDIST(args1, args2, args3, args4);
     }
 
@@ -2625,10 +2625,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitEXPONDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_EXPONDIST(args1, args2, args3);
     }
 
@@ -2638,10 +2638,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_FDIST(args1, args2, args3);
     }
 
@@ -2651,10 +2651,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFINV_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_FINV(args1, args2, args3);
     }
 
@@ -2664,7 +2664,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFISHER_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_FISHER(args1);
     }
 
@@ -2674,7 +2674,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitFISHERINV_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_FISHERINV(args1);
     }
 
@@ -2684,11 +2684,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGAMMADIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
-        const args4 = exprs[3].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_GAMMADIST(args1, args2, args3, args4);
     }
 
@@ -2698,10 +2698,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGAMMAINV_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_GAMMAINV(args1, args2, args3);
     }
 
@@ -2711,7 +2711,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGAMMALN_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_GAMMALN(args1);
     }
 
@@ -2721,11 +2721,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHYPGEOMDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
-        const args4 = exprs[3].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_HYPGEOMDIST(args1, args2, args3, args4);
     }
 
@@ -2735,10 +2735,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOGINV_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_LOGINV(args1, args2, args3);
     }
 
@@ -2748,10 +2748,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOGNORMDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_LOGNORMDIST(args1, args2, args3);
     }
 
@@ -2761,10 +2761,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNEGBINOMDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_NEGBINOMDIST(args1, args2, args3);
     }
 
@@ -2774,10 +2774,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPOISSON_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_POISSON(args1, args2, args3);
     }
 
@@ -2787,10 +2787,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTDIST_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_TDIST(args1, args2, args3);
     }
 
@@ -2800,9 +2800,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTINV_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_TINV(args1, args2);
     }
 
@@ -2812,11 +2812,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitWEIBULL_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
-        const args4 = exprs[3].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
+        let args4 = exprs[3].accept(this);
         return new Function_WEIBULL(args1, args2, args3, args4);
     }
 
@@ -2826,7 +2826,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitURLENCODE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_URLENCODE(args1);
     }
 
@@ -2836,7 +2836,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitURLDECODE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_URLDECODE(args1);
     }
 
@@ -2846,7 +2846,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHTMLENCODE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_HTMLENCODE(args1);
     }
 
@@ -2856,7 +2856,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHTMLDECODE_fun(context) {
-        const args1 = context.expr().accept(this);
+        let args1 = context.expr().accept(this);
         return new Function_HTMLDECODE(args1);
     }
 
@@ -2866,10 +2866,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBASE64TOTEXT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BASE64TOTEXT(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_BASE64TOTEXT(args1, args2);
     }
 
@@ -2879,10 +2879,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBASE64URLTOTEXT_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_BASE64URLTOTEXT(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_BASE64URLTOTEXT(args1, args2);
     }
 
@@ -2892,10 +2892,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTEXTTOBASE64_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_TEXTTOBASE64(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_TEXTTOBASE64(args1, args2);
     }
 
@@ -2905,10 +2905,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTEXTTOBASE64URL_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_TEXTTOBASE64URL(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_TEXTTOBASE64URL(args1, args2);
     }
 
@@ -2918,9 +2918,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitREGEX_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_REGEX(args1, args2);
     }
 
@@ -2930,10 +2930,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitREGEXREPALCE_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
-        const args3 = exprs[2].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_REGEXREPALCE(args1, args2, args3);
     }
 
@@ -2943,9 +2943,9 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitISREGEX_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_ISREGEX(args1, args2);
     }
 
@@ -2964,10 +2964,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMD5_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_MD5(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_MD5(args1, args2);
     }
 
@@ -2977,10 +2977,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSHA1_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_SHA1(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_SHA1(args1, args2);
     }
 
@@ -2990,10 +2990,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSHA256_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_SHA256(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_SHA256(args1, args2);
     }
 
@@ -3003,10 +3003,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSHA512_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_SHA512(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_SHA512(args1, args2);
     }
 
@@ -3016,10 +3016,10 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCRC32_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
         if (exprs.length === 1) return new Function_CRC32(args1, null);
-        const args2 = exprs[1].accept(this);
+        let args2 = exprs[1].accept(this);
         return new Function_CRC32(args1, args2);
     }
 
@@ -3029,11 +3029,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHMACMD5_fun(context) {
-        const exprs = context.expr();
-        const args1 = exprs[0].accept(this);
-        const args2 = exprs[1].accept(this);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        let args2 = exprs[1].accept(this);
         if (exprs.length === 2) return new Function_HMACMD5(args1, args2, null);
-        const args3 = exprs[2].accept(this);
+        let args3 = exprs[2].accept(this);
         return new Function_HMACMD5(args1, args2, args3);
     }
     visitBracket_fun(context) {

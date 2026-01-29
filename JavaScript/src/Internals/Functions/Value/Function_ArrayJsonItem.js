@@ -8,7 +8,7 @@ class Function_ArrayJsonItem extends Function_1 {
     }
 
     Evaluate(engine, tempParameter) {
-        const keyValue = {
+        let keyValue = {
             key: this.key,
             value: this.func1.Evaluate(engine, tempParameter)
         };

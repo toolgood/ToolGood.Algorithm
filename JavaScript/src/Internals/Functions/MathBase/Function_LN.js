@@ -11,7 +11,7 @@ class Function_LN extends Function_1 {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "Ln");
             if (args1.IsError) { return args1; }
         }
-        const z = args1.DoubleValue;
+        let z = args1.DoubleValue;
         if (z <= 0) {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "Ln");
         }

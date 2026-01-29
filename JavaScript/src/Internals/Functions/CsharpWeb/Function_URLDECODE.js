@@ -13,8 +13,8 @@ class Function_URLDECODE extends Function_1 {
                 return args1;
             }
         }
-        const s = args1.TextValue;
-        const r = decodeURIComponent(s);
+        let s = args1.TextValue;
+        let r = decodeURIComponent(s);
         return engine.createOperand(r);
     }
 

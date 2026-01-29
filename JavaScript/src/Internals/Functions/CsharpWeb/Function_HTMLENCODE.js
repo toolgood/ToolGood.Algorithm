@@ -13,8 +13,8 @@ class Function_HTMLENCODE extends Function_1 {
                 return args1;
             }
         }
-        const s = args1.TextValue;
-        const r = Function_HTMLENCODE.HtmlEncode(s);
+        let s = args1.TextValue;
+        let r = Function_HTMLENCODE.HtmlEncode(s);
         return engine.createOperand(r);
     }
 
@@ -23,7 +23,7 @@ class Function_HTMLENCODE extends Function_1 {
     }
 
     static HtmlEncode(input) {
-        const temp = document.createElement('div');
+        let temp = document.createElement('div');
         temp.textContent = input;
         return temp.innerHTML;
     }

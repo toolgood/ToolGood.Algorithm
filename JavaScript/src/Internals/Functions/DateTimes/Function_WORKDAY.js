@@ -20,29 +20,29 @@ class Function_WORKDAY extends Function_N {
 
         let startMyDate = new Date(args1.DateValue.getTime());
         let days = args2.IntValue;
-        const list = new Set();
+        let list = new Set();
         for (let i = 2; i < this._args.length; i++) {
-            const ar = this._args[i].Evaluate(engine, tempParameter);
+            let ar = this._args[i].Evaluate(engine, tempParameter);
             if (ar.IsNotDate) {
-                const arDate = ar.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
+                let arDate = ar.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
                 if (arDate.IsError) { return arDate; }
                 // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-                const dateStr = arDate.DateValue.toISOString().split('T')[0];
+                let dateStr = arDate.DateValue.toISOString().split('T')[0];
                 list.add(dateStr);
             } else {
                 // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-                const dateStr = ar.DateValue.toISOString().split('T')[0];
+                let dateStr = ar.DateValue.toISOString().split('T')[0];
                 list.add(dateStr);
             }
         }
 
         while (days > 0) {
             startMyDate.setDate(startMyDate.getDate() + 1);
-            const dayOfWeek = startMyDate.getDay();
+            let dayOfWeek = startMyDate.getDay();
             if (dayOfWeek === 6) continue; // 星期六
             if (dayOfWeek === 0) continue; // 星期日
             // 将当前日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-            const currentDateStr = startMyDate.toISOString().split('T')[0];
+            let currentDateStr = startMyDate.toISOString().split('T')[0];
             if (list.has(currentDateStr)) continue;
             days--;
         }

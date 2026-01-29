@@ -24,9 +24,9 @@ class Function_BASE64TOTEXT extends Function_2 {
                 }
                 encoding = args2.TextValue;
             }
-            const bytes = Base64.FromBase64String(args1.TextValue);
-            const decoder = new TextDecoder(encoding);
-            const t = decoder.decode(bytes);
+            let bytes = Base64.FromBase64String(args1.TextValue);
+            let decoder = new TextDecoder(encoding);
+            let t = decoder.decode(bytes);
             return engine.createOperand(t);
         } catch (e) {
             // Ignore errors

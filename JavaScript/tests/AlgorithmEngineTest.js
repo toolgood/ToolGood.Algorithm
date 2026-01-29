@@ -137,16 +137,16 @@ function testAlgorithmEngine() {
   let s = engine.TryEvaluate("'aa'&'bb'", "");
   assert.strictEqual(s, "aabb", "'aa'&'bb' 应该等于 'aabb'");
   
-  s = engine.TryEvaluate("'3'+2", "");
-  assert.strictEqual(s, "5", "'3'+2 应该等于 '5'");
+  s = engine.TryEvaluate_Double("'3'+2", "");
+  assert.strictEqual(s, 5, "'3'+2 应该等于 '5'");
   
-  let r = engine.TryEvaluate('count(Array(1,2,3,4))', 0);
+  let r = engine.TryEvaluate_Double('count(Array(1,2,3,4))', 0);
   assert.strictEqual(r, 4, 'count(Array(1,2,3,4)) 应该等于 4');
   
-  r = engine.TryEvaluate('(1=1)*9+2', 0);
+  r = engine.TryEvaluate_Double('(1=1)*9+2', 0);
   assert.strictEqual(r, 11, '(1=1)*9+2 应该等于 11');
   
-  r = engine.TryEvaluate('(1=2)*9+2', 0);
+  r = engine.TryEvaluate_Double('(1=2)*9+2', 0);
   assert.strictEqual(r, 2, '(1=2)*9+2 应该等于 2');
   
   let value = engine.TryEvaluate('1 > (-2)', false);
@@ -183,13 +183,13 @@ function testBase() {
   const engine = new AlgorithmEngineWithTryEvaluate();
   
   // base_test 方法
-  let t = engine.TryEvaluate('1+(3*2+2)/2', 0);
+  let t = engine.TryEvaluate_Double('1+(3*2+2)/2', 0);
   assert.strictEqual(t, 5, '1+(3*2+2)/2 应该等于 5');
   
-  t = engine.TryEvaluate('(8-3)*(3+2)', 0);
+  t = engine.TryEvaluate_Double('(8-3)*(3+2)', 0);
   assert.strictEqual(t, 25, '(8-3)*(3+2) 应该等于 25');
   
-  t = engine.TryEvaluate('(8-3)*(3+2) % 7', 0);
+  t = engine.TryEvaluate_Double('(8-3)*(3+2) % 7', 0);
   assert.strictEqual(t, 4, '(8-3)*(3+2) % 7 应该等于 4');
   
   let b = engine.TryEvaluate('1=1', false);
@@ -229,13 +229,13 @@ function testBase() {
   assert.strictEqual(b, true, "'1'!='2' 应该等于 true");
   
   // base_test3 方法
-  let c = engine.TryEvaluate('(2)+/*123456*/3', 0);
+  let c = engine.TryEvaluate_Double('(2)+/*123456*/3', 0);
   assert.strictEqual(c, 5, '(2)+/*123456*/3 应该等于 5');
   
-  c = engine.TryEvaluate('2+3//eee', 0);
+  c = engine.TryEvaluate_Double('2+3//eee', 0);
   assert.strictEqual(c, 5, '2+3//eee 应该等于 5');
   
-  c = engine.TryEvaluate('(2)+/*123456*/3 ee22+22', 0);
+  c = engine.TryEvaluate_Double('(2)+/*123456*/3 ee22+22', 0);
   assert.strictEqual(c, 0, '(2)+/*123456*/3 ee22+22 应该等于 0');
   
   // base_test4 方法
@@ -254,19 +254,19 @@ function testCylinder() {
   
   const c = new Cylinder(3, 10);
   
-  let t2 = c.TryEvaluate('半径*半径*pi()', 0.0);
+  let t2 = c.TryEvaluate_Double('半径*半径*pi()', 0.0);
   assert.strictEqual(t2, 3 * 3 * Math.PI, '半径*半径*pi() 应该等于 3*3*Math.PI');
   
-  let t = c.TryEvaluate('直径*pi()', 0.0);
+  let t = c.TryEvaluate_Double('直径*pi()', 0.0);
   assert.strictEqual(t, 6 * Math.PI, '直径*pi() 应该等于 6*Math.PI');
   
-  t = c.TryEvaluate('半径*半径*pi()*高', 0.0);
+  t = c.TryEvaluate_Double('半径*半径*pi()*高', 0.0);
   assert.strictEqual(t, 3 * 3 * Math.PI * 10, '半径*半径*pi()*高 应该等于 3*3*Math.PI*10');
   
-  t = c.TryEvaluate("'半径'*半径*pi()*高", 0.0);
+  t = c.TryEvaluate_Double("'半径'*半径*pi()*高", 0.0);
   assert.strictEqual(t, 0, "'半径'*半径*pi()*高 应该等于 0");
   
-  t = c.TryEvaluate('求面积（10）', 0.0);
+  t = c.TryEvaluate_Double('求面积（10）', 0.0);
   assert.strictEqual(t, 10 * 10 * Math.PI, '求面积（10） 应该等于 10*10*Math.PI');
   
   const json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";

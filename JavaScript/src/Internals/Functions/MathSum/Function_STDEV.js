@@ -8,17 +8,17 @@ class Function_STDEV extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this._args) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this._args) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function '{0}' parameter is error!", "Stdev");
         }
@@ -26,7 +26,7 @@ class Function_STDEV extends Function_N {
             return Operand.Error("Function '{0}' parameter is error!", "Stdev");
         }
 
-        const avg = list.reduce((sum, val) => sum + val, 0) / list.length;
+        let avg = list.reduce((sum, val) => sum + val, 0) / list.length;
         let sum = 0;
         for (let i = 0; i < list.length; i++) {
             sum += (list[i] - avg) * (list[i] - avg);

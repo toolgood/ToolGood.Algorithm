@@ -11,7 +11,7 @@ class Function_FACTDOUBLE extends Function_1 {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "FactDouble");
             if (args1.IsError) { return args1; }
         }
-        const z = args1.IntValue;
+        let z = args1.IntValue;
         if (z < 0) {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "FactDouble");
         }

@@ -7,24 +7,24 @@ class Function_BETADIST extends Function_3 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaDist', 1);
             if (args1.IsError) return args1;
         }
-        const args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaDist', 2);
             if (args2.IsError) return args2;
         }
-        const args3 = this.func3.Evaluate(work, tempParameter);
+        let args3 = this.func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber) {
             args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaDist', 3);
             if (args3.IsError) return args3;
         }
-        const x = args1.DoubleValue;
-        const alpha = args2.DoubleValue;
-        const beta = args3.DoubleValue;
+        let x = args1.DoubleValue;
+        let alpha = args2.DoubleValue;
+        let beta = args3.DoubleValue;
 
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BetaDist');
@@ -37,13 +37,13 @@ class Function_BETADIST extends Function_3 {
     }
 }
 
-const ExcelFunctions = {
+let ExcelFunctions = {
     BetaDist(x, alpha, beta) {
         return Beta.CDF(alpha, beta, x);
     }
 };
 
-const Beta = {
+let Beta = {
     CDF(a, b, x) {
         if (x < 0.0) {
             return 0.0;
@@ -88,14 +88,14 @@ const Beta = {
     }
 };
 
-const SpecialFunctions = {
+let SpecialFunctions = {
     BetaRegularized(a, b, x) {
-        const bt = (x === 0.0 || x === 1.0) ? 0.0 : Math.exp(SpecialFunctions.GammaLn(a + b) - SpecialFunctions.GammaLn(a) - SpecialFunctions.GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1.0 - x)));
+        let bt = (x === 0.0 || x === 1.0) ? 0.0 : Math.exp(SpecialFunctions.GammaLn(a + b) - SpecialFunctions.GammaLn(a) - SpecialFunctions.GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1.0 - x)));
 
-        const symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
+        let symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
 
-        const eps = 2.220446049250313e-16; // Double precision epsilon
-        const fpmin = Number.MIN_VALUE / eps;
+        let eps = 2.220446049250313e-16; // Double precision epsilon
+        let fpmin = Number.MIN_VALUE / eps;
 
         let transformedX = x;
         let transformedA = a;
@@ -107,9 +107,9 @@ const SpecialFunctions = {
             transformedB = a;
         }
 
-        const qab = transformedA + transformedB;
-        const qap = transformedA + 1.0;
-        const qam = transformedA - 1.0;
+        let qab = transformedA + transformedB;
+        let qap = transformedA + 1.0;
+        let qam = transformedA - 1.0;
         let c = 1.0;
         let d = 1.0 - (qab * transformedX / qap);
 
@@ -121,7 +121,7 @@ const SpecialFunctions = {
         let h = d;
 
         for (let m = 1, m2 = 2; m <= 140; m++, m2 += 2) {
-            const aa = m * (transformedB - m) * transformedX / ((qam + m2) * (transformedA + m2));
+            let aa = m * (transformedB - m) * transformedX / ((qam + m2) * (transformedA + m2));
             d = 1.0 + (aa * d);
 
             if (Math.abs(d) < fpmin) {
@@ -135,7 +135,7 @@ const SpecialFunctions = {
 
             d = 1.0 / d;
             h *= d * c;
-            const aa2 = -(transformedA + m) * (qab + m) * transformedX / ((transformedA + m2) * (qap + m2));
+            let aa2 = -(transformedA + m) * (qab + m) * transformedX / ((transformedA + m2) * (qap + m2));
             d = 1.0 + (aa2 * d);
 
             if (Math.abs(d) < fpmin) {
@@ -148,7 +148,7 @@ const SpecialFunctions = {
             }
 
             d = 1.0 / d;
-            const del = d * c;
+            let del = d * c;
             h *= del;
 
             if (Math.abs(del - 1.0) <= eps) {
@@ -160,9 +160,9 @@ const SpecialFunctions = {
     },
 
     GammaLn(z) {
-        const GammaN = 10;
-        const GammaR = 10.900511;
-        const GammaDk = [
+        let GammaN = 10;
+        let GammaR = 10.900511;
+        let GammaDk = [
             2.48574089138753565546e-5,
             1.05142378581721974210,
             -3.45687097222016235469,
@@ -175,7 +175,7 @@ const SpecialFunctions = {
             4.63399473359905636708e-6,
             -2.7413595497501340645e-8
         ];
-        const Constants = {
+        let Constants = {
             LnPi: Math.log(Math.PI),
             LogTwoSqrtEOverPi: Math.log(2 * Math.sqrt(Math.E / Math.PI))
         };

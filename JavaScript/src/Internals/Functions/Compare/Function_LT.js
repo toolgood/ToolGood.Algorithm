@@ -7,25 +7,25 @@ class Function_LT extends Function_2 {
   }
 
   Evaluate(engine, tempParameter) {
-    const args1 = this.func1.Evaluate(engine, tempParameter);
+    let args1 = this.func1.Evaluate(engine, tempParameter);
     if (args1.IsError) { return args1; }
-    const args2 = this.func2.Evaluate(engine, tempParameter);
+    let args2 = this.func2.Evaluate(engine, tempParameter);
     if (args2.IsError) { return args2; }
 
     if (args1.Type === args2.Type) {
       if (args1.IsNumber) {
         return Operand.Create(args1.NumberValue < args2.NumberValue);
       } else if (args1.IsText) {
-        const r = args1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
+        let r = args1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
         return r < 0 ? Operand.True : Operand.False;
       } else if (args1.IsDate || args1.IsBoolean) {
-        const a1 = args1.ToNumber();
-        const a2 = args2.ToNumber();
+        let a1 = args1.ToNumber();
+        let a2 = args2.ToNumber();
         return Operand.Create(a1.NumberValue < a2.NumberValue);
       } else if (args1.IsJson) {
-        const a1 = args1.ToText();
-        const a2 = args2.ToText();
-        const r = a1.TextValue.localeCompare(a2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
+        let a1 = args1.ToText();
+        let a2 = args2.ToText();
+        let r = a1.TextValue.localeCompare(a2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
         return r < 0 ? Operand.True : Operand.False;
       } else if (args1.IsNull) {
         return Operand.True;
@@ -36,16 +36,16 @@ class Function_LT extends Function_2 {
       return Operand.False;
     } else if (args2.IsText) {
       if (args1.IsBoolean) {
-        const a = args2.ToBoolean();
+        let a = args2.ToBoolean();
         if (!a.IsError) {
           return a.BooleanValue !== args1.BooleanValue ? Operand.True : Operand.False;
         }
-        const a1 = args1.ToText();
-        const r = a1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
+        let a1 = args1.ToText();
+        let r = a1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
         return r < 0 ? Operand.True : Operand.False;
       } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
-        const a1 = args1.ToText();
-        const r = a1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
+        let a1 = args1.ToText();
+        let r = a1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
         return r < 0 ? Operand.True : Operand.False;
       } else {
         return Operand.Error("Function '<' compare is error.");
@@ -54,12 +54,12 @@ class Function_LT extends Function_2 {
       return Operand.Error("Function '<' compare is error.");
     }
     if (args1.IsNotNumber) {
-      const a1 = args1.ToNumber(`Function '{"<"}' parameter {1} is error!`);
+      let a1 = args1.ToNumber(`Function '{"<"}' parameter {1} is error!`);
       if (a1.IsError) { return a1; }
       args1 = a1;
     }
     if (args2.IsNotNumber) {
-      const a2 = args2.ToNumber(`Function '{"<"}' parameter {2} is error!`);
+      let a2 = args2.ToNumber(`Function '{"<"}' parameter {2} is error!`);
       if (a2.IsError) { return a2; }
       args2 = a2;
     }

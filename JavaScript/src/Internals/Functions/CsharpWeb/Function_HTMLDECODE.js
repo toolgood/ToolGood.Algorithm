@@ -13,8 +13,8 @@ class Function_HTMLDECODE extends Function_1 {
                 return args1;
             }
         }
-        const s = args1.TextValue;
-        const r = Function_HTMLDECODE.HtmlDecode(s);
+        let s = args1.TextValue;
+        let r = Function_HTMLDECODE.HtmlDecode(s);
         return engine.createOperand(r);
     }
 
@@ -23,7 +23,7 @@ class Function_HTMLDECODE extends Function_1 {
     }
 
     static HtmlDecode(input) {
-        const temp = document.createElement('div');
+        let temp = document.createElement('div');
         temp.innerHTML = input;
         return temp.textContent || temp.innerText || '';
     }

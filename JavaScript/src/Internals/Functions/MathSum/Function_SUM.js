@@ -8,17 +8,17 @@ class Function_SUM extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this._args) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this._args) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function '{0}' parameter is error!", "Sum");
         }

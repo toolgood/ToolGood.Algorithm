@@ -21,7 +21,7 @@ class Function_ADDDAYS extends Function_2 {
                 return args2;
             }
         }
-        const date = new Date(args1.DateValue.getTime());
+        let date = new Date(args1.DateValue.getTime());
         date.setDate(date.getDate() + args2.DoubleValue);
         return engine.createOperand(new MyDate(date));
     }

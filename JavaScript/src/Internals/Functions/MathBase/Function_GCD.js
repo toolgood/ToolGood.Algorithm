@@ -6,15 +6,15 @@ class Function_GCD extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
+        let args = [];
         for (let i = 0; i < this._args.length; i++) {
-            const aa = this._args[i].Evaluate(engine, tempParameter);
+            let aa = this._args[i].Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
-        const list = [];
-        for (const arg of args) {
+        let list = [];
+        for (let arg of args) {
             if (arg.IsNotNumber) {
                 return engine.createErrorOperand("Function '{0}' parameter is error!", "Gcd");
             }
@@ -35,11 +35,11 @@ class Function_GCD extends Function_N {
     // 计算多个数字的最大公约数
     static calculateGCD(numbers) {
         // 计算两个数的GCD
-        const gcdTwo = (a, b) => {
+        let gcdTwo = (a, b) => {
             a = Math.abs(a);
             b = Math.abs(b);
             while (b !== 0) {
-                const temp = b;
+                let temp = b;
                 b = a % b;
                 a = temp;
             }

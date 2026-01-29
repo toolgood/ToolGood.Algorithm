@@ -7,30 +7,30 @@ class Function_GAMMAINV extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'GammaInv', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'GammaInv', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        const args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'GammaInv', 3);
             if (args3.IsError) {
                 return args3;
             }
         }
-        const probability = args1.DoubleValue;
-        const alpha = args2.DoubleValue;
-        const beta = args3.DoubleValue;
+        let probability = args1.DoubleValue;
+        let alpha = args2.DoubleValue;
+        let beta = args3.DoubleValue;
         if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
             return Operand.error('Function {0} parameter is error!', 'GammaInv');
         }
@@ -97,7 +97,7 @@ class Function_GAMMAINV extends Function_3 {
             let d = 1 / b;
             let h = d;
             for (let n = 1; n < 100; n++) {
-                const an = -n * (n - alpha);
+                let an = -n * (n - alpha);
                 b += 2;
                 d = an * d + b;
                 if (Math.abs(d) < 1e-20) {
@@ -108,7 +108,7 @@ class Function_GAMMAINV extends Function_3 {
                     c = 1e-20;
                 }
                 d = 1 / d;
-                const delta = d * c;
+                let delta = d * c;
                 h *= delta;
                 if (Math.abs(delta - 1) < 1e-10) {
                     break;

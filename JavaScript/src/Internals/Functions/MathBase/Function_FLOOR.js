@@ -20,7 +20,7 @@ class Function_FLOOR extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 2);
             if (args2.IsError) { return args2; }
         }
-        const b = args2.NumberValue;
+        let b = args2.NumberValue;
         if (b >= 1) {
             return engine.createOperand(args1.IntValue);
         }
@@ -28,8 +28,8 @@ class Function_FLOOR extends Function_2 {
             return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "Floor", 2);
         }
 
-        const a = args1.NumberValue;
-        const d = Math.floor(a / b) * b;
+        let a = args1.NumberValue;
+        let d = Math.floor(a / b) * b;
         return engine.createOperand(d);
     }
 

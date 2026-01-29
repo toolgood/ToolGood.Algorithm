@@ -17,7 +17,7 @@ class Function_EOMONTH extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EoMonth", 2);
             if (args2.IsError) { return args2; }
         }
-        const dt = new Date(args1.DateValue.getTime());
+        let dt = new Date(args1.DateValue.getTime());
         dt.setMonth(dt.getMonth() + args2.IntValue + 1);
         dt.setDate(0); // 设置为当月的最后一天
         return engine.createOperand(new MyDate(dt));

@@ -15,8 +15,8 @@ class Function_TIMEVALUE extends Function_1 {
 
         try {
             // 尝试解析时间字符串
-            const timeStr = args1.TextValue;
-            const parts = timeStr.split(':');
+            let timeStr = args1.TextValue;
+            let parts = timeStr.split(':');
             
             if (parts.length >= 2) {
                 let hours = parseInt(parts[0], 10);
@@ -28,7 +28,7 @@ class Function_TIMEVALUE extends Function_1 {
                 }
                 
                 // 创建一个时间对象（日期部分设为0）
-                const timeDate = new MyDate(0, 0, 0, hours, minutes, seconds);
+                let timeDate = new MyDate(0, 0, 0, hours, minutes, seconds);
                 return engine.createOperand(timeDate);
             }
         } catch (e) {

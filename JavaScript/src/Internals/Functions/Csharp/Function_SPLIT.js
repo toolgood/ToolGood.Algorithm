@@ -18,14 +18,14 @@ export class Function_SPLIT extends Function_2 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'Split', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'Split', 2);
             if (args2.IsError) {
@@ -33,9 +33,9 @@ export class Function_SPLIT extends Function_2 {
             }
         }
         
-        const text = args1.TextValue;
-        const separator = args2.TextValue;
-        const result = text.split(separator);
+        let text = args1.TextValue;
+        let separator = args2.TextValue;
+        let result = text.split(separator);
         return Operand.Create(result);
     }
     

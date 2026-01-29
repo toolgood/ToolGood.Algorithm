@@ -24,17 +24,17 @@ class Function_TIMESTAMP extends Function_2 {
         if (args1.IsError) { return args1; }
 
         // 转换为UTC时间戳
-        const utcDate = new Date(args1.DateValue.getUTCFullYear(), args1.DateValue.getUTCMonth(), args1.DateValue.getUTCDate(), 
+        let utcDate = new Date(args1.DateValue.getUTCFullYear(), args1.DateValue.getUTCMonth(), args1.DateValue.getUTCDate(), 
                                 args1.DateValue.getUTCHours(), args1.DateValue.getUTCMinutes(), args1.DateValue.getUTCSeconds(), 
                                 args1.DateValue.getUTCMilliseconds());
 
         if (Type == 0) {
             // 毫秒时间戳
-            const ms = utcDate.getTime();
+            let ms = utcDate.getTime();
             return engine.createOperand(ms);
         } else if (Type == 1) {
             // 秒时间戳
-            const s = utcDate.getTime() / 1000;
+            let s = utcDate.getTime() / 1000;
             return engine.createOperand(s);
         }
         return engine.createErrorOperand("Function '{0}' parameter is error!", "TimeStamp");

@@ -19,10 +19,10 @@ class Function_ROUNDDOWN extends Function_2 {
         if (args1.NumberValue == 0.0) {
             return args1;
         }
-        const a = Math.pow(10, args2.IntValue);
-        const b = args1.NumberValue;
+        let a = Math.pow(10, args2.IntValue);
+        let b = args1.NumberValue;
 
-        const result = Math.floor(b * a) / a;
+        let result = Math.floor(b * a) / a;
         return engine.createOperand(result);
     }
 

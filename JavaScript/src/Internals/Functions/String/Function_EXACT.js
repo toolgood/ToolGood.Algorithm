@@ -7,14 +7,14 @@ class Function_EXACT extends Function_2 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'EXACT', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'EXACT', 2);
             if (args2.IsError) {

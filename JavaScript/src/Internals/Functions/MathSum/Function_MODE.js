@@ -8,17 +8,17 @@ class Function_MODE extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this.funcs) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this.funcs) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
 
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
             return Operand.error('Function {0} parameter is error!', 'Mode');
         }
@@ -27,8 +27,8 @@ class Function_MODE extends Function_N {
             return Operand.error('Function {0} parameter is error!', 'Mode');
         }
 
-        const dict = {};
-        for (const item of list) {
+        let dict = {};
+        for (let item of list) {
             if (dict[item] !== undefined) {
                 dict[item] += 1;
             } else {
@@ -37,7 +37,7 @@ class Function_MODE extends Function_N {
         }
 
         // 按出现次数降序排序，返回出现次数最多的数字
-        const sorted = Object.entries(dict).sort((a, b) => b[1] - a[1]);
+        let sorted = Object.entries(dict).sort((a, b) => b[1] - a[1]);
         return Operand.Create(parseFloat(sorted[0][0]));
     }
 

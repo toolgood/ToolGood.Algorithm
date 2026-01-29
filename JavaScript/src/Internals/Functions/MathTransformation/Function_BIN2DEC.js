@@ -7,7 +7,7 @@ class Function_BIN2DEC extends Function_1 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'BIN2DEC');
             if (args1.IsError) {
@@ -18,7 +18,7 @@ class Function_BIN2DEC extends Function_1 {
         if (!RegexHelper.BinRegex.test(args1.TextValue)) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BIN2DEC');
         }
-        const num = parseInt(args1.TextValue, 2);
+        let num = parseInt(args1.TextValue, 2);
         return Operand.Create(num);
     }
 
@@ -27,7 +27,7 @@ class Function_BIN2DEC extends Function_1 {
     }
 }
 
-const RegexHelper = {
+let RegexHelper = {
     BinRegex: /^[01]+$/
 };
 

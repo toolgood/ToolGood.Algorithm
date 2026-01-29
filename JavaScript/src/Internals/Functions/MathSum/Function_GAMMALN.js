@@ -7,7 +7,7 @@ class Function_GAMMALN extends Function_1 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter is error!', 'GammaLn');
             if (args1.IsError) {
@@ -26,8 +26,8 @@ class Function_GAMMALN extends Function_1 {
             return Math.log(Math.PI) - Math.log(Math.sin(Math.PI * x)) - this.GAMMALN(1 - x);
         }
         x -= 1;
-        const t = x + 5.5;
-        const s = 1 + 1/(t) * (0.99999999999980993 + 
+        let t = x + 5.5;
+        let s = 1 + 1/(t) * (0.99999999999980993 + 
             676.5203681218851/(t+1) - 
             1259.1392167224028/(t+2) + 
             771.32342877765313/(t+3) - 

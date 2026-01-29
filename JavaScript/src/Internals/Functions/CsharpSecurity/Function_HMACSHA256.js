@@ -19,14 +19,14 @@ export class Function_HMACSHA256 extends Function_3 {
      * @returns {Operand}
      */
     async Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'HmacSHA256', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'HmacSHA256', 2);
             if (args2.IsError) {
@@ -37,7 +37,7 @@ export class Function_HMACSHA256 extends Function_3 {
         try {
             let encoding = 'utf-8';
             if (this.func3 !== null) {
-                const args3 = this.func3.Evaluate(engine, tempParameter);
+                let args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.IsNotText) {
                     args3.ToText('Function \'{0}\' parameter {1} is error!', 'HmacSHA256', 3);
                     if (args3.IsError) {
@@ -47,9 +47,9 @@ export class Function_HMACSHA256 extends Function_3 {
                 encoding = args3.TextValue;
             }
             
-            const encoder = new TextEncoder(encoding);
-            const buffer = encoder.encode(args1.TextValue);
-            const t = await this.getHmacSha256String(buffer, args2.TextValue);
+            let encoder = new TextEncoder(encoding);
+            let buffer = encoder.encode(args1.TextValue);
+            let t = await this.getHmacSha256String(buffer, args2.TextValue);
             return Operand.Create(t);
         } catch (ex) {
             return Operand.error('Function \'HmacSHA256\'is error!' + ex.message);
@@ -70,10 +70,10 @@ export class Function_HMACSHA256 extends Function_3 {
      * @returns {Promise<string>}
      */
     async getHmacSha256String(buffer, secret) {
-        const encoder = new TextEncoder('utf-8');
-        const keyByte = encoder.encode(secret || '');
+        let encoder = new TextEncoder('utf-8');
+        let keyByte = encoder.encode(secret || '');
         
-        const key = await crypto.subtle.importKey(
+        let key = await crypto.subtle.importKey(
             'raw',
             keyByte,
             { name: 'HMAC', hash: 'SHA-256' },
@@ -81,8 +81,8 @@ export class Function_HMACSHA256 extends Function_3 {
             ['sign', 'verify']
         );
         
-        const hashmessage = await crypto.subtle.sign('HMAC', key, buffer);
-        const hashArray = Array.from(new Uint8Array(hashmessage));
+        let hashmessage = await crypto.subtle.sign('HMAC', key, buffer);
+        let hashArray = Array.from(new Uint8Array(hashmessage));
         return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
     }
 }

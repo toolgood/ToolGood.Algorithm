@@ -20,8 +20,8 @@ class Function_ROUND extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Round", 2);
             if (args2.IsError) { return args2; }
         }
-        const decimalPlaces = args2.IntValue;
-        const factor = Math.pow(10, decimalPlaces);
+        let decimalPlaces = args2.IntValue;
+        let factor = Math.pow(10, decimalPlaces);
         return engine.createOperand(Math.round(args1.NumberValue * factor) / factor);
     }
 

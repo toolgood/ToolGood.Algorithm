@@ -6,7 +6,7 @@ class Function_ISERROR extends Function_2 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (this.func2 !== null) {
             if (args1.IsError) {
                 return this.func2.Evaluate(engine, tempParameter);

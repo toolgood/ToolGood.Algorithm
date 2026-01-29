@@ -17,8 +17,8 @@ class Function_COMBIN extends Function_2 {
             if (args2.IsError) { return args2; }
         }
 
-        const total = args1.IntValue;
-        const count = args2.IntValue;
+        let total = args1.IntValue;
+        let count = args2.IntValue;
         if (total < 0 || count < 0 || total < count) {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "Combin");
         }

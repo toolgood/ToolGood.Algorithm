@@ -166,8 +166,8 @@ export class MD5 {
         let zeros = 0;
         let ones = 1;
         let size = 0;
-        const n = input.length;
-        const m = n % 64;
+        let n = input.length;
+        let m = n % 64;
         
         if (m < 56) {
             zeros = 55 - m;
@@ -181,7 +181,7 @@ export class MD5 {
             size = n + 64 - m + 64;
         }
         
-        const bs = [...input];
+        let bs = [...input];
         if (ones === 1) {
             bs.push(0x80); // 0x80 = $10000000
         }
@@ -189,7 +189,7 @@ export class MD5 {
             bs.push(0);
         }
         
-        const N = n * 8;
+        let N = n * 8;
         bs.push(N & 0xFF);
         bs.push((N >> 8) & 0xFF);
         bs.push((N >> 16) & 0xFF);
@@ -200,7 +200,7 @@ export class MD5 {
         bs.push(N >> 56);
         
         // Decodes input (byte[]) into output (UInt32[]). Assumes len is a multiple of 4.
-        const output = [];
+        let output = [];
         for (let i = 0, j = 0; i < size; j++, i += 4) {
             output[j] = bs[i] | (bs[i + 1] << 8) | (bs[i + 2] << 16) | (bs[i + 3] << 24);
         }
@@ -308,11 +308,11 @@ export class MD5 {
      */
     MD5Array(input) {
         this.MD5_Init();
-        const block = this.MD5_Append(input);
-        const bits = this.MD5_Trasform(block);
+        let block = this.MD5_Append(input);
+        let bits = this.MD5_Trasform(block);
         
         // Encodes bits (UInt32[]) into output (byte[]). Assumes len is a multiple of 4.
-        const output = new Uint8Array(bits.length * 4);
+        let output = new Uint8Array(bits.length * 4);
         for (let i = 0, j = 0; i < bits.length; i++, j += 4) {
             output[j] = bits[i] & 0xff;
             output[j + 1] = (bits[i] >> 8) & 0xff;
@@ -330,7 +330,7 @@ export class MD5 {
      */
     static ArrayToHexString(array, uppercase) {
         let hexString = '';
-        const format = uppercase ? 'X2' : 'x2';
+        let format = uppercase ? 'X2' : 'x2';
         for (let b of array) {
             hexString += b.toString(16).padStart(2, '0')[format === 'X2' ? 'toUpperCase' : 'toLowerCase']();
         }
@@ -343,8 +343,8 @@ export class MD5 {
      * @returns {string}
      */
     static MDString(c) {
-        const md5 = new MD5();
-        const digest = md5.MD5Array(c);
+        let md5 = new MD5();
+        let digest = md5.MD5Array(c);
         return MD5.ArrayToHexString(digest, true);
     }
     
@@ -354,7 +354,7 @@ export class MD5 {
      * @returns {Uint8Array}
      */
     static ComputeHash(c) {
-        const md5 = new MD5();
+        let md5 = new MD5();
         return md5.MD5Array(c);
     }
     
@@ -367,9 +367,9 @@ export class MD5 {
     static hmac_md5(b_tmp1, source) {
         let b_tmp;
         
-        const digest = new Uint8Array(512);
-        const k_ipad = new Uint8Array(64);
-        const k_opad = new Uint8Array(64);
+        let digest = new Uint8Array(512);
+        let k_ipad = new Uint8Array(64);
+        let k_opad = new Uint8Array(64);
         
         for (let i = 0; i < 64; i++) {
             k_ipad[i] = 0 ^ 0x36;
@@ -400,7 +400,7 @@ export class MD5 {
      * @returns {Uint8Array}
      */
     static adding(a, b) {
-        const c = new Uint8Array(a.length + b.length);
+        let c = new Uint8Array(a.length + b.length);
         c.set(a, 0);
         c.set(b, a.length);
         return c;

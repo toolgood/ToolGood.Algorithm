@@ -7,16 +7,16 @@ class Function_DEC2HEX extends Function_2 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'DEC2HEX', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const num = parseInt(args1.IntValue).toString(16).toUpperCase();
+        let num = parseInt(args1.IntValue).toString(16).toUpperCase();
         if (this.func2 !== null) {
-            const args2 = this.func2.Evaluate(work, tempParameter);
+            let args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber) {
                 args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'DEC2HEX', 2);
                 if (args2.IsError) {

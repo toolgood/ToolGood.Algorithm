@@ -7,21 +7,21 @@ class Function_LOGINV extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'LogInv', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'LogInv', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        const args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
             args3.ToNumber('Function {0} parameter {1} is error!', 'LogInv', 3);
             if (args3.IsError) {
@@ -29,7 +29,7 @@ class Function_LOGINV extends Function_3 {
             }
         }
 
-        const n3 = args3.DoubleValue;
+        let n3 = args3.DoubleValue;
         if (n3 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'LogInv');
         }
@@ -42,7 +42,7 @@ class Function_LOGINV extends Function_3 {
         }
         // 对数正态分布的逆函数
         // LOGINV(p, mean, stdDev) = exp(mean + stdDev * NORMINV(p))
-        const normInvValue = this.NORMINV(p);
+        let normInvValue = this.NORMINV(p);
         return Math.exp(mean + stdDev * normInvValue);
     }
 
@@ -58,11 +58,11 @@ class Function_LOGINV extends Function_3 {
             return 0;
         }
         // 使用Beasley-Springer-Moro算法近似计算
-        const q = p - 0.5;
+        let q = p - 0.5;
         let r = q * q;
         let x = q * (((((-39689.01 * r + 220946.0) * r - 275928.6) * r + 138357.7) * r - 30664.52 * r + 2.506628) / (((((-54476.09 * r + 161585.8) * r - 155698.9) * r + 668013.1) * r - 13285.21) * r + 1.0));
         // 改进近似
-        const e = 0.5 * Math.pow(x, 2) - Math.log(p);
+        let e = 0.5 * Math.pow(x, 2) - Math.log(p);
         let u = e / (1.0 + 0.5 * Math.pow(x, 2));
         x = x - u * (1.0 + 0.5 * x * u) / (1.0 + u * (1.0 + (2.0 / 3.0) * u));
         return x;

@@ -7,7 +7,7 @@ class Function_JSON extends Function_1 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return args1;
         }
@@ -20,10 +20,10 @@ class Function_JSON extends Function_1 {
         if (args1.IsNotText) {
             return Operand.error('Function {0} parameter is error!', 'Json');
         }
-        const txt = args1.TextValue;
+        let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                const json = JSON.parse(txt);
+                let json = JSON.parse(txt);
                 return Operand.Create(json);
             } catch (e) {
             }

@@ -7,11 +7,11 @@ class Function_GetJsonValue extends Function_2 {
     }
 
     Evaluate(engine, tempParameter) {
-        const obj = this.func1.Evaluate(engine, tempParameter);
+        let obj = this.func1.Evaluate(engine, tempParameter);
         if (obj.IsError) {
             return obj;
         }
-        const op = this.func2.Evaluate(engine, tempParameter);
+        let op = this.func2.Evaluate(engine, tempParameter);
         if (op.IsError) {
             return op;
         }
@@ -21,7 +21,7 @@ class Function_GetJsonValue extends Function_2 {
             if (op.IsError) {
                 return op;
             }
-            const index = op.IntValue - engine.excelIndex;
+            let index = op.IntValue - engine.excelIndex;
             if (index < obj.ArrayValue.length) {
                 return obj.ArrayValue[index];
             }
@@ -29,13 +29,13 @@ class Function_GetJsonValue extends Function_2 {
         }
         if (obj.IsArrayJson) {
                 if (op.IsNumber) {
-                    const operand = obj.tryGetValue(op.NumberValue.toString());
+                    let operand = obj.tryGetValue(op.NumberValue.toString());
                     if (operand !== undefined) {
                         return operand;
                     }
                     return Operand.error('Parameter name {0} is missing!', op.TextValue);
                 } else if (op.isText) {
-                    const operand = obj.tryGetValue(op.TextValue);
+                    let operand = obj.tryGetValue(op.TextValue);
                     if (operand !== undefined) {
                         return operand;
                     }
@@ -45,15 +45,15 @@ class Function_GetJsonValue extends Function_2 {
             }
 
         if (obj.IsJson) {
-            const json = obj.JsonValue;
+            let json = obj.JsonValue;
             if (Array.IsArray(json)) {
                 op = op.ToNumber('JSON parameter index is error!');
                 if (op.IsError) {
                     return op;
                 }
-                const index = op.IntValue - engine.excelIndex;
+                let index = op.IntValue - engine.excelIndex;
                 if (index < json.length) {
-                    const v = json[index];
+                    let v = json[index];
                     if (typeof v === 'string') {
                         return Operand.Create(v);
                     }
@@ -77,7 +77,7 @@ class Function_GetJsonValue extends Function_2 {
                 if (op.IsError) {
                     return op;
                 }
-                const v = json[op.TextValue];
+                let v = json[op.TextValue];
                 if (v !== undefined) {
                     if (typeof v === 'string') {
                         return Operand.Create(v);

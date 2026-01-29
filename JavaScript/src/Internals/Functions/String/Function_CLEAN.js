@@ -7,17 +7,17 @@ class Function_CLEAN extends Function_1 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter is error!', 'Clean');
             if (args1.IsError) {
                 return args1;
             }
         }
-        const t = args1.TextValue;
+        let t = args1.TextValue;
         let needClean = false;
         for (let i = 0; i < t.length; i++) {
-            const c = t[i];
+            let c = t[i];
             if (c === '\f' || c === '\n' || c === '\r' || c === '\t' || c === '\v') {
                 needClean = true;
                 break;
@@ -28,7 +28,7 @@ class Function_CLEAN extends Function_1 {
         }
         let result = '';
         for (let i = 0; i < t.length; i++) {
-            const c = t[i];
+            let c = t[i];
             if (c !== '\f' && c !== '\n' && c !== '\r' && c !== '\t' && c !== '\v') {
                 result += c;
             }

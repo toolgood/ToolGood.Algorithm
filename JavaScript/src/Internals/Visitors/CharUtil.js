@@ -9,7 +9,7 @@ export class CharUtil {
      */
     static StandardChar(o) {
         if (typeof o !== 'string' || o.length !== 1) return o;
-        const charCode = o.charCodeAt(0);
+        let charCode = o.charCodeAt(0);
         if (charCode >= 65 && charCode <= 90) return o;
         if (charCode <= 127) return o.toUpperCase();
         if (charCode <= 65280) {
@@ -51,10 +51,12 @@ export class CharUtil {
      * @returns {boolean} True if the string and character are equal after standardization, false otherwise.
      */
     static Equals(left, right) {
-        if(left.length != 1) return false;
-        if(left[0] != right) {
-            var a = this.StandardChar(left[0]);
-            if(a != right) return false;
+        if(left.length != right.length) return false;
+        for(var i = 0; i < left.length; i++) {
+            if(left[i] != right[i]) {
+                var a = this.StandardChar(left[i]);
+                if(a != right[i]) return false;
+            }
         }
         return true;
     }

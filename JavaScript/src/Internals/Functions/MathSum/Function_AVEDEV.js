@@ -6,15 +6,15 @@ class Function_AVEDEV extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this._args) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this._args) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
-        const list = [];
-        for (const arg of args) {
+        let list = [];
+        for (let arg of args) {
             if (arg.IsNotNumber) {
                 return engine.createErrorOperand("Function '{0}' parameter is error!", "AveDev");
             }
@@ -25,9 +25,9 @@ class Function_AVEDEV extends Function_N {
             return engine.createOperand(0);
         }
 
-        const avg = list.reduce((sum, value) => sum + value, 0) / list.length;
+        let avg = list.reduce((sum, value) => sum + value, 0) / list.length;
         let sum = 0;
-        for (const item of list) {
+        for (let item of list) {
             sum += Math.abs(item - avg);
         }
         return engine.createOperand(sum / list.length);

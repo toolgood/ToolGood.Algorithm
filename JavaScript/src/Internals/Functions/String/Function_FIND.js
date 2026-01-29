@@ -7,14 +7,14 @@ class Function_FIND extends Function_3 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function \'{0}\' parameter {1} is error!', 'Find', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotText) {
             args2.ToText('Function \'{0}\' parameter {1} is error!', 'Find', 2);
             if (args2.IsError) {
@@ -22,17 +22,17 @@ class Function_FIND extends Function_3 {
             }
         }
         if (this.func3 === null) {
-            const p = args2.TextValue.indexOf(args1.TextValue) + work.excelIndex;
+            let p = args2.TextValue.indexOf(args1.TextValue) + work.excelIndex;
             return Operand.Create(p);
         }
-        const count = this.func3.Evaluate(work, tempParameter);
+        let count = this.func3.Evaluate(work, tempParameter);
         if (count.IsNotNumber) {
             count.ToNumber('Function \'{0}\' parameter {1} is error!', 'Find', 3);
             if (count.IsError) {
                 return count;
             }
         }
-        const p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.excelIndex;
+        let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.excelIndex;
         return Operand.Create(p2);
     }
 

@@ -7,7 +7,7 @@ class Function_PROPER extends Function_1 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1.ToText('Function {0} parameter is error!', 'Proper');
             if (args1.IsError) {
@@ -15,14 +15,14 @@ class Function_PROPER extends Function_1 {
             }
         }
 
-        const text = args1.TextValue;
+        let text = args1.TextValue;
         if (text.length === 0) {
             return Operand.Create(text);
         }
         let needModify = false;
         let isFirst = true;
         for (let i = 0; i < text.length; i++) {
-            const t = text[i];
+            let t = text[i];
             if (t === ' ' || t === '\r' || t === '\n' || t === '\t' || t === '.') {
                 isFirst = true;
             } else if (isFirst) {
@@ -36,10 +36,10 @@ class Function_PROPER extends Function_1 {
         if (!needModify) {
             return args1; // no change
         }
-        const chars = text.split('');
+        let chars = text.split('');
         isFirst = true;
         for (let i = 0; i < chars.length; i++) {
-            const t = chars[i];
+            let t = chars[i];
             if (t === ' ' || t === '\r' || t === '\n' || t === '\t' || t === '.') {
                 isFirst = true;
             } else if (isFirst) {

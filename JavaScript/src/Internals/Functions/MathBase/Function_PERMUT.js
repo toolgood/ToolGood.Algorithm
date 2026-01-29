@@ -17,8 +17,8 @@ class Function_PERMUT extends Function_2 {
             if (args2.IsError) { return args2; }
         }
 
-        const total = args1.IntValue;
-        const count = args2.IntValue;
+        let total = args1.IntValue;
+        let count = args2.IntValue;
 
         let sum = 1;
         for (let i = 0; i < count; i++) {

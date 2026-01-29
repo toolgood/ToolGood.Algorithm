@@ -22,7 +22,7 @@ class Function_FIXED extends Function_3 {
         }
 
         // 四舍五入到指定小数位数
-        const s = Math.round(args1.NumberValue * Math.pow(10, num)) / Math.pow(10, num);
+        let s = Math.round(args1.NumberValue * Math.pow(10, num)) / Math.pow(10, num);
         let no = false;
         if (this.func3 !== null) {
             let args3 = this.func3.Evaluate(engine, tempParameter);

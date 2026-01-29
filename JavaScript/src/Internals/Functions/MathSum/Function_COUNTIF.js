@@ -7,19 +7,19 @@ class Function_COUNTIF extends Function_2 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotArray) {
             args1.ToArray('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsError) {
             return args2;
         }
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args1, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args1, list);
         if (o === false) {
             return Operand.error('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
         }
@@ -27,13 +27,13 @@ class Function_COUNTIF extends Function_2 {
         if (args2.IsNumber) {
             count = FunctionUtil.F_base_countif(list, args2.NumberValue);
         } else {
-            const trimmedText = args2.TextValue.trim();
-            const parsedValue = parseFloat(trimmedText);
+            let trimmedText = args2.TextValue.trim();
+            let parsedValue = parseFloat(trimmedText);
             if (!isNaN(parsedValue)) {
                 count = FunctionUtil.F_base_countif(list, parsedValue);
             } else {
-                const sunif = trimmedText;
-                const m2 = FunctionUtil.sumifMatch(sunif);
+                let sunif = trimmedText;
+                let m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 !== null) {
                     count = FunctionUtil.F_base_countif(list, m2[0], m2[1]);
                 } else {
@@ -49,7 +49,7 @@ class Function_COUNTIF extends Function_2 {
     }
 }
 
-const FunctionUtil = {
+let FunctionUtil = {
     F_base_GetList(args, list) {
         if (args.IsError) {
             return false;
@@ -57,25 +57,25 @@ const FunctionUtil = {
         if (args.IsNumber) {
             list.push(args.NumberValue);
         } else if (args.IsArray) {
-            for (const item of args.ArrayValue) {
-                const o = this.F_base_GetList(item, list);
+            for (let item of args.ArrayValue) {
+                let o = this.F_base_GetList(item, list);
                 if (o === false) {
                     return false;
                 }
             }
         } else if (args.IsJson) {
-            const i = args.ToArray(null);
+            let i = args.ToArray(null);
             if (i.IsError) {
                 return false;
             }
-            for (const item of i.ArrayValue) {
-                const o = this.F_base_GetList(item, list);
+            for (let item of i.ArrayValue) {
+                let o = this.F_base_GetList(item, list);
                 if (o === false) {
                     return false;
                 }
             }
         } else {
-            const o = args.ToNumber(null);
+            let o = args.ToNumber(null);
             if (o.IsError) {
                 return false;
             }
@@ -87,7 +87,7 @@ const FunctionUtil = {
     F_base_countif(dbs, d) {
         let count = 0;
         for (let i = 0; i < dbs.length; i++) {
-            const item = dbs[i];
+            let item = dbs[i];
             if (item === d) {
                 count++;
             }
@@ -98,7 +98,7 @@ const FunctionUtil = {
     F_base_countif(dbs, s, d) {
         let count = 0;
         for (let i = 0; i < dbs.length; i++) {
-            const item = dbs[i];
+            let item = dbs[i];
             if (this.F_base_compare(item, d, s)) {
                 count++;
             }
@@ -122,32 +122,32 @@ const FunctionUtil = {
     },
 
     sumifMatch(s) {
-        const c = s[0];
+        let c = s[0];
         if (c === '>' || c === '＞') {
             if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
-                const d = parseFloat(s.substring(2).trim());
+                let d = parseFloat(s.substring(2).trim());
                 if (!isNaN(d)) {
                     return ['>=', d];
                 }
             } else {
-                const d = parseFloat(s.substring(1).trim());
+                let d = parseFloat(s.substring(1).trim());
                 if (!isNaN(d)) {
                     return ['>', d];
                 }
             }
         } else if (c === '<' || c === '＜') {
             if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
-                const d = parseFloat(s.substring(2).trim());
+                let d = parseFloat(s.substring(2).trim());
                 if (!isNaN(d)) {
                     return ['<=', d];
                 }
             } else if (s.length > 1 && (s[1] === '>' || s[1] === '＞')) {
-                const d = parseFloat(s.substring(2).trim());
+                let d = parseFloat(s.substring(2).trim());
                 if (!isNaN(d)) {
                     return ['!=', d];
                 }
             } else {
-                const d = parseFloat(s.substring(1).trim());
+                let d = parseFloat(s.substring(1).trim());
                 if (!isNaN(d)) {
                     return ['<', d];
                 }
@@ -160,7 +160,7 @@ const FunctionUtil = {
                     index = 3;
                 }
             }
-            const d = parseFloat(s.substring(index).trim());
+            let d = parseFloat(s.substring(index).trim());
             if (!isNaN(d)) {
                 return ['=', d];
             }
@@ -172,7 +172,7 @@ const FunctionUtil = {
                     index = 3;
                 }
             }
-            const d = parseFloat(s.substring(index).trim());
+            let d = parseFloat(s.substring(index).trim());
             if (!isNaN(d)) {
                 return ['!=', d];
             }

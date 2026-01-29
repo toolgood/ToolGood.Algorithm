@@ -8,9 +8,9 @@ class Function_VARP extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this._args) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this._args) {
+            let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -20,8 +20,8 @@ class Function_VARP extends Function_N {
         if (args.length == 1) {
             return Operand.Error("Function '{0}}' parameter only one error!", "VarP");
         }
-        const list = [];
-        const o = FunctionUtil.F_base_GetList(args, list);
+        let list = [];
+        let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function '{0}' parameter is error!", "VarP");
         }
@@ -33,7 +33,7 @@ class Function_VARP extends Function_N {
         }
 
         let sum = 0;
-        const avg = list.reduce((sum, val) => sum + val, 0) / list.length;
+        let avg = list.reduce((sum, val) => sum + val, 0) / list.length;
         for (let i = 0; i < list.length; i++) {
             sum += (avg - list[i]) * (avg - list[i]);
         }

@@ -8,9 +8,9 @@ class Function_Mod extends Function_2 {
   }
 
   Evaluate(engine, tempParameter) {
-    const args1 = this.func1.Evaluate(engine, tempParameter);
+    let args1 = this.func1.Evaluate(engine, tempParameter);
     if (args1.IsError) { return args1; }
-    const args2 = this.func2.Evaluate(engine, tempParameter);
+    let args2 = this.func2.Evaluate(engine, tempParameter);
     if (args2.IsError) { return args2; }
 
     if (args1.IsNumber && args2.IsNumber) { //  优化性能
@@ -21,13 +21,13 @@ class Function_Mod extends Function_2 {
     if (args2.IsNull) { return Operand.Error('Function \'{0}\' parameter {1} is NULL!', '%', 2); }
 
     if (args1.IsText) {
-      const d = parseFloat(args1.TextValue);
+      let d = parseFloat(args1.TextValue);
       if (!isNaN(d)) {
         args1 = Operand.Create(d);
       } else {
-        const result = [false];
+        let result = [false];
         if (FunctionUtil.TryParseBoolean(args1.TextValue, result)) {
-          const b = result[0];
+          let b = result[0];
           args1 = b ? Operand.One : Operand.Zero;
         } else {
           return Operand.Error('Two types cannot be modulo ');
@@ -35,11 +35,11 @@ class Function_Mod extends Function_2 {
       }
     }
     if (args2.IsText) {
-      const d = parseFloat(args2.TextValue);
+      let d = parseFloat(args2.TextValue);
       if (!isNaN(d)) {
         args2 = Operand.Create(d);
       } else {
-        const result = [false];
+        let result = [false];
         if (FunctionUtil.TryParseBoolean(args2.TextValue, result)) {
           args2 = result[0] ? Operand.One : Operand.Zero;
         } else {

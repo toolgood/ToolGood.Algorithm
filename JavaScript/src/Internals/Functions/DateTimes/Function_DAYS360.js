@@ -18,8 +18,8 @@ class Function_DAYS360 extends Function_3 {
             if (args2.IsError) { return args2; }
         }
 
-        const startMyDate = args1.DateValue;
-        const endMyDate = args2.DateValue;
+        let startMyDate = args1.DateValue;
+        let endMyDate = args2.DateValue;
 
         let method = false;
         if (this.func3 !== null) {

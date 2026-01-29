@@ -17,10 +17,10 @@ class Function_ROUNDUP extends Function_2 {
             if (args2.IsError) { return args2; }
         }
         if (args1.NumberValue == 0.0) { return args1; }
-        const a = Math.pow(10, args2.IntValue);
-        const b = args1.DoubleValue;
+        let a = Math.pow(10, args2.IntValue);
+        let b = args1.DoubleValue;
 
-        const t = (Math.ceil(Math.abs(b) * a)) / a;
+        let t = (Math.ceil(Math.abs(b) * a)) / a;
         if (b > 0) return engine.createOperand(t);
         return engine.createOperand(-t);
     }

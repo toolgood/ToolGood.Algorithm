@@ -7,24 +7,24 @@ class Function_BETAINV extends Function_3 {
     }
 
     Evaluate(work, tempParameter) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 1);
             if (args1.IsError) return args1;
         }
-        const args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 2);
             if (args2.IsError) return args2;
         }
-        const args3 = this.func3.Evaluate(work, tempParameter);
+        let args3 = this.func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber) {
             args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 3);
             if (args3.IsError) return args3;
         }
-        const p = args1.DoubleValue;
-        const alpha = args2.DoubleValue;
-        const beta = args3.DoubleValue;
+        let p = args1.DoubleValue;
+        let alpha = args2.DoubleValue;
+        let beta = args3.DoubleValue;
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
             return Operand.error('Function \'{0}\' parameter is error!', 'BetaInv');
         }
@@ -36,21 +36,21 @@ class Function_BETAINV extends Function_3 {
     }
 }
 
-const ExcelFunctions = {
+let ExcelFunctions = {
     BetaInv(probability, alpha, beta) {
         return Beta.InvCDF(alpha, beta, probability);
     }
 };
 
-const Beta = {
+let Beta = {
     InvCDF(a, b, p) {
         return Brent.FindRoot(x => SpecialFunctions.BetaRegularized(a, b, x) - p, 0.0, 1.0, 1e-12);
     }
 };
 
-const Brent = {
+let Brent = {
     FindRoot(f, lowerBound, upperBound, accuracy = 1e-8, maxIterations = 100) {
-        const result = this.TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations);
+        let result = this.TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations);
         if (result.success) {
             return result.root;
         }
@@ -58,8 +58,8 @@ const Brent = {
     },
 
     TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations) {
-        const fmin = f(lowerBound);
-        const fmax = f(upperBound);
+        let fmin = f(lowerBound);
+        let fmax = f(upperBound);
         let froot = fmax;
         let d = 0.0, e = 0.0;
 
@@ -86,8 +86,8 @@ const Brent = {
                 fmax = fmin;
             }
 
-            const xAcc1 = 2.220446049250313e-16 * Math.abs(root) + 0.5 * accuracy;
-            const xMidOld = xMid;
+            let xAcc1 = 2.220446049250313e-16 * Math.abs(root) + 0.5 * accuracy;
+            let xMidOld = xMid;
             xMid = (upperBound - root) / 2.0;
 
             if (Math.abs(xMid) <= xAcc1 || this.AlmostEqualNormRelative(froot, 0, froot, accuracy)) {
@@ -99,14 +99,14 @@ const Brent = {
             }
 
             if (Math.abs(e) >= xAcc1 && Math.abs(fmin) > Math.abs(froot)) {
-                const s = froot / fmin;
+                let s = froot / fmin;
                 let p, q;
                 if (this.AlmostEqualRelative(lowerBound, upperBound)) {
                     p = 2.0 * xMid * s;
                     q = 1.0 - s;
                 } else {
                     q = fmin / fmax;
-                    const r = froot / fmax;
+                    let r = froot / fmax;
                     p = s * (2.0 * xMid * q * (q - r) - (root - lowerBound) * (r - 1.0));
                     q = (q - 1.0) * (r - 1.0) * (s - 1.0);
                 }
@@ -148,20 +148,20 @@ const Brent = {
 
     AlmostEqualRelative(a, b, maxAbsError, relativeError) {
         if (a === b) return true;
-        const diff = Math.abs(a - b);
+        let diff = Math.abs(a - b);
         if (diff <= maxAbsError) return true;
         return diff <= Math.max(Math.abs(a), Math.abs(b)) * relativeError;
     }
 };
 
-const SpecialFunctions = {
+let SpecialFunctions = {
     BetaRegularized(a, b, x) {
-        const bt = (x === 0.0 || x === 1.0) ? 0.0 : Math.exp(SpecialFunctions.GammaLn(a + b) - SpecialFunctions.GammaLn(a) - SpecialFunctions.GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1.0 - x)));
+        let bt = (x === 0.0 || x === 1.0) ? 0.0 : Math.exp(SpecialFunctions.GammaLn(a + b) - SpecialFunctions.GammaLn(a) - SpecialFunctions.GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1.0 - x)));
 
-        const symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
+        let symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
 
-        const eps = 2.220446049250313e-16;
-        const fpmin = Number.MIN_VALUE / eps;
+        let eps = 2.220446049250313e-16;
+        let fpmin = Number.MIN_VALUE / eps;
 
         let transformedX = x;
         let transformedA = a;
@@ -173,9 +173,9 @@ const SpecialFunctions = {
             transformedB = a;
         }
 
-        const qab = transformedA + transformedB;
-        const qap = transformedA + 1.0;
-        const qam = transformedA - 1.0;
+        let qab = transformedA + transformedB;
+        let qap = transformedA + 1.0;
+        let qam = transformedA - 1.0;
         let c = 1.0;
         let d = 1.0 - (qab * transformedX / qap);
 
@@ -187,7 +187,7 @@ const SpecialFunctions = {
         let h = d;
 
         for (let m = 1, m2 = 2; m <= 140; m++, m2 += 2) {
-            const aa = m * (transformedB - m) * transformedX / ((qam + m2) * (transformedA + m2));
+            let aa = m * (transformedB - m) * transformedX / ((qam + m2) * (transformedA + m2));
             d = 1.0 + (aa * d);
 
             if (Math.abs(d) < fpmin) {
@@ -201,7 +201,7 @@ const SpecialFunctions = {
 
             d = 1.0 / d;
             h *= d * c;
-            const aa2 = -(transformedA + m) * (qab + m) * transformedX / ((transformedA + m2) * (qap + m2));
+            let aa2 = -(transformedA + m) * (qab + m) * transformedX / ((transformedA + m2) * (qap + m2));
             d = 1.0 + (aa2 * d);
 
             if (Math.abs(d) < fpmin) {
@@ -214,7 +214,7 @@ const SpecialFunctions = {
             }
 
             d = 1.0 / d;
-            const del = d * c;
+            let del = d * c;
             h *= del;
 
             if (Math.abs(del - 1.0) <= eps) {
@@ -226,9 +226,9 @@ const SpecialFunctions = {
     },
 
     GammaLn(z) {
-        const GammaN = 10;
-        const GammaR = 10.900511;
-        const GammaDk = [
+        let GammaN = 10;
+        let GammaR = 10.900511;
+        let GammaDk = [
             2.48574089138753565546e-5,
             1.05142378581721974210,
             -3.45687097222016235469,
@@ -241,7 +241,7 @@ const SpecialFunctions = {
             4.63399473359905636708e-6,
             -2.7413595497501340645e-8
         ];
-        const Constants = {
+        let Constants = {
             LnPi: Math.log(Math.PI),
             LogTwoSqrtEOverPi: Math.log(2 * Math.sqrt(Math.E / Math.PI))
         };

@@ -7,21 +7,21 @@ class Function_EXPONDIST extends Function_3 {
     }
 
     Evaluate(engine, tempParameter) {
-        const args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1.ToNumber('Function {0} parameter {1} is error!', 'ExponDist', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        const args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2.ToNumber('Function {0} parameter {1} is error!', 'ExponDist', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        const args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotBoolean) {
             args3.ToBoolean('Function {0} parameter {1} is error!', 'ExponDist', 3);
             if (args3.IsError) {
@@ -29,7 +29,7 @@ class Function_EXPONDIST extends Function_3 {
             }
         }
 
-        const n1 = args1.DoubleValue;
+        let n1 = args1.DoubleValue;
         if (n1 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'ExponDist');
         }

@@ -13,7 +13,7 @@ class Function_FACT extends Function_1 {
         }
         if (args1.IsError) { return args1; }
 
-        const z = args1.IntValue;
+        let z = args1.IntValue;
         if (z < 0) {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "Fact");
         }

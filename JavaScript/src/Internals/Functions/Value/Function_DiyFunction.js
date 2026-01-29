@@ -7,9 +7,9 @@ class Function_DiyFunction extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const args = [];
-        for (const item of this.funcs) {
-            const aa = item.Evaluate(engine, tempParameter);
+        let args = [];
+        for (let item of this.funcs) {
+            let aa = item.Evaluate(engine, tempParameter);
             args.push(aa);
         }
         return engine.executeDiyFunction(this.funName, args);

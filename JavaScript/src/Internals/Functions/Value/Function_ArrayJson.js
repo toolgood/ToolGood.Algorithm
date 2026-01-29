@@ -7,9 +7,9 @@ class Function_ArrayJson extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        const result = new OperandKeyValueList();
-        for (const item of this.funcs) {
-            const o = item.Evaluate(engine, tempParameter);
+        let result = new OperandKeyValueList();
+        for (let item of this.funcs) {
+            let o = item.Evaluate(engine, tempParameter);
             result.addValue(o.value);
         }
         return result;

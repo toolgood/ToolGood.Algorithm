@@ -22,9 +22,9 @@ class Function_DATEDIF extends Function_3 {
             args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3);
             if (args3.IsError) { return args3; }
         }
-        const startMyDate = args1.DateValue;
-        const endMyDate = args2.DateValue;
-        const t = args3.TextValue.toLowerCase();
+        let startMyDate = args1.DateValue;
+        let endMyDate = args2.DateValue;
+        let t = args3.TextValue.toLowerCase();
 
         if (t === 'y') {
             // y: Years
@@ -50,18 +50,18 @@ class Function_DATEDIF extends Function_3 {
             }
         } else if (t === 'd') {
             // d: Days
-            const diffTime = Math.abs(endMyDate - startMyDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            let diffTime = Math.abs(endMyDate - startMyDate);
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return engine.createOperand(diffDays);
         } else if (t === 'yd') {
             // yd: Days of Year
-            const getDayOfYear = (date) => {
-                const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+            let getDayOfYear = (date) => {
+                let firstDayOfYear = new Date(date.getFullYear(), 0, 1);
                 return Math.ceil((date - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
             };
             let day = getDayOfYear(endMyDate) - getDayOfYear(startMyDate);
             if (endMyDate.getFullYear() > startMyDate.getFullYear() && day < 0) {
-                const days = getDayOfYear(new Date(startMyDate.getFullYear(), 11, 31));
+                let days = getDayOfYear(new Date(startMyDate.getFullYear(), 11, 31));
                 day = days + day;
             }
             return engine.createOperand(day);

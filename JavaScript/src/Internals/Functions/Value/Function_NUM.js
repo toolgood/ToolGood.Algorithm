@@ -9,8 +9,8 @@ class Function_NUM extends FunctionBase {
     }
 
     Evaluate(engine, tempParameter) {
-        const dict = NumberUnitTypeHelper.getUnitTypedict();
-        const d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[this.unit], engine.distanceUnit, engine.areaUnit, engine.volumeUnit, engine.massUnit);
+        let dict = NumberUnitTypeHelper.getUnitTypedict();
+        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[this.unit], engine.distanceUnit, engine.areaUnit, engine.volumeUnit, engine.massUnit);
         return Operand.Create(d2);
     }
 

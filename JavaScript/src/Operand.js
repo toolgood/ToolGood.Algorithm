@@ -385,7 +385,9 @@ class OperandBoolean extends Operand {
     get BooleanValue() { return this._value; }
 
     ToNumber(errorMessage) { return this._value ? Operand.One : Operand.Zero; }
-    ToNumber(errorMessage, ...args) { return this._value ? Operand.One : Operand.Zero; }
+    ToNumber(errorMessage, ...args) { 
+        return this._value ? Operand.One : Operand.Zero; 
+    }
 
     ToBoolean(errorMessage) { return this; }
     ToBoolean(errorMessage, ...args) { return this; }
