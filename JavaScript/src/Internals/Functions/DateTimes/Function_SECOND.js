@@ -13,7 +13,7 @@ class Function_SECOND extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return engine.createOperand(args1.DateValue.getSeconds());
+            return Operand.Create(args1.DateValue.getSeconds());
         } catch (e) {
             return engine.createErrorOperand("Function 'Second' is error!");
         }

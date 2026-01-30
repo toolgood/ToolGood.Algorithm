@@ -29,7 +29,7 @@ class Function_TIME extends Function_3 {
         } else {
             d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, 0);
         }
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

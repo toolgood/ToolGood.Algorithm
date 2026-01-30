@@ -1,4 +1,5 @@
 import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_QUOTIENT extends Function_2 {
     constructor(func1, func2) {
@@ -20,7 +21,7 @@ class Function_QUOTIENT extends Function_2 {
         if (args2.NumberValue == 0) {
             return engine.createErrorOperand("Function '{0}' div 0 error!", "Quotient");
         }
-        return engine.createOperand(Math.floor(args1.NumberValue / args2.NumberValue));
+        return Operand.Create(Math.floor(args1.NumberValue / args2.NumberValue));
     }
 
     toString(stringBuilder, addBrackets) {

@@ -15,7 +15,7 @@ class Function_LN extends Function_1 {
         if (z <= 0) {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "Ln");
         }
-        return engine.createOperand(Math.log(z));
+        return Operand.Create(Math.log(z));
     }
 
     toString(stringBuilder, addBrackets) {

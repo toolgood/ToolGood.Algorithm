@@ -11,7 +11,7 @@ class Function_SQRTPI extends Function_1 {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "SqrtPI");
             if (args1.IsError) { return args1; }
         }
-        return engine.createOperand(Math.sqrt(args1.DoubleValue * Math.PI));
+        return Operand.Create(Math.sqrt(args1.DoubleValue * Math.PI));
     }
 
     toString(stringBuilder, addBrackets) {

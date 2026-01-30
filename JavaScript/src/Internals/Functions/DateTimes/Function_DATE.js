@@ -63,7 +63,7 @@ class Function_DATE extends Function_N {
             }
             d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, args6.IntValue);
         }
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

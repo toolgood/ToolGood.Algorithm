@@ -24,7 +24,7 @@ class Function_MROUND extends Function_2 {
         let b = args1.NumberValue;
         // 四舍五入到最接近的倍数
         let r = Math.round(b / a) * a;
-        return engine.createOperand(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

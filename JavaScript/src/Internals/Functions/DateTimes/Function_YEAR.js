@@ -13,7 +13,7 @@ class Function_YEAR extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return engine.createOperand(args1.DateValue.getFullYear());
+            return Operand.Create(args1.DateValue.getFullYear());
         } catch (e) {
             return engine.createErrorOperand("Function 'Year' is error!");
         }

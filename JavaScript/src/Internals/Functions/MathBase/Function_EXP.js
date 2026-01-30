@@ -11,7 +11,7 @@ class Function_EXP extends Function_1 {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "Exp");
             if (args1.IsError) { return args1; }
         }
-        return engine.createOperand(Math.exp(args1.DoubleValue));
+        return Operand.Create(Math.exp(args1.DoubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

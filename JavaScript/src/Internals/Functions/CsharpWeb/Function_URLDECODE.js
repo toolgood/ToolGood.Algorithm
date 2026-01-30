@@ -15,7 +15,7 @@ class Function_URLDECODE extends Function_1 {
         }
         let s = args1.TextValue;
         let r = decodeURIComponent(s);
-        return engine.createOperand(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

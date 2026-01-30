@@ -21,7 +21,7 @@ class Function_FACT extends Function_1 {
         for (let i = 1; i <= z; i++) {
             d *= i;
         }
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

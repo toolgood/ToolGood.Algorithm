@@ -76,7 +76,7 @@ class Function_AVERAGEIF extends Function_3 {
             return engine.createErrorOperand("Function '{0}' div 0 error!", "AverageIf");
         }
 
-        return engine.createOperand(sum / count);
+        return Operand.Create(sum / count);
     }
 
     toString(stringBuilder, addBrackets) {

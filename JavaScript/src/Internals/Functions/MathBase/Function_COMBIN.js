@@ -1,4 +1,5 @@
 import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_COMBIN extends Function_2 {
     constructor(func1, func2) {
@@ -28,7 +29,7 @@ class Function_COMBIN extends Function_2 {
             sum *= (total - i);
             sum2 *= (i + 1);
         }
-        return engine.createOperand(sum / sum2);
+        return Operand.Create(sum / sum2);
     }
 
     toString(stringBuilder, addBrackets) {

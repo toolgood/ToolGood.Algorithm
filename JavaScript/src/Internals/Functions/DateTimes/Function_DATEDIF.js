@@ -35,24 +35,24 @@ class Function_DATEDIF extends Function_3 {
                 if (startMyDate.getDate() <= endMyDate.getDate()) b = true;
             }
             if (b) {
-                return engine.createOperand(endMyDate.getFullYear() - startMyDate.getFullYear());
+                return Operand.Create(endMyDate.getFullYear() - startMyDate.getFullYear());
             } else {
-                return engine.createOperand(endMyDate.getFullYear() - startMyDate.getFullYear() - 1);
+                return Operand.Create(endMyDate.getFullYear() - startMyDate.getFullYear() - 1);
             }
         } else if (t === 'm') {
             // m: Months
             let b = false;
             if (startMyDate.getDate() <= endMyDate.getDate()) b = true;
             if (b) {
-                return engine.createOperand((endMyDate.getFullYear() * 12 + endMyDate.getMonth() + 1) - (startMyDate.getFullYear() * 12 + startMyDate.getMonth() + 1));
+                return Operand.Create((endMyDate.getFullYear() * 12 + endMyDate.getMonth() + 1) - (startMyDate.getFullYear() * 12 + startMyDate.getMonth() + 1));
             } else {
-                return engine.createOperand((endMyDate.getFullYear() * 12 + endMyDate.getMonth() + 1) - (startMyDate.getFullYear() * 12 + startMyDate.getMonth() + 1) - 1);
+                return Operand.Create((endMyDate.getFullYear() * 12 + endMyDate.getMonth() + 1) - (startMyDate.getFullYear() * 12 + startMyDate.getMonth() + 1) - 1);
             }
         } else if (t === 'd') {
             // d: Days
             let diffTime = Math.abs(endMyDate - startMyDate);
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            return engine.createOperand(diffDays);
+            return Operand.Create(diffDays);
         } else if (t === 'yd') {
             // yd: Days of Year
             let getDayOfYear = (date) => {
@@ -64,7 +64,7 @@ class Function_DATEDIF extends Function_3 {
                 let days = getDayOfYear(new Date(startMyDate.getFullYear(), 11, 31));
                 day = days + day;
             }
-            return engine.createOperand(day);
+            return Operand.Create(day);
         } else if (t === 'md') {
             // md: Days of Month
             let mo = endMyDate.getDate() - startMyDate.getDate();
@@ -77,13 +77,13 @@ class Function_DATEDIF extends Function_3 {
                 }
                 mo += days;
             }
-            return engine.createOperand(mo);
+            return Operand.Create(mo);
         } else if (t === 'ym') {
             // ym: Months of Year
             let mo = (endMyDate.getMonth() + 1) - (startMyDate.getMonth() + 1);
             if (endMyDate.getDate() < startMyDate.getDate()) mo--;
             if (mo < 0) mo += 12;
-            return engine.createOperand(mo);
+            return Operand.Create(mo);
         }
         return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "DateDif", 3);
     }

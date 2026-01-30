@@ -27,7 +27,7 @@ class Function_TEXTTOBASE64URL extends Function_2 {
             let encoder = new TextEncoder(encoding);
             let bytes = encoder.encode(args1.TextValue);
             let t = Base64.ToBase64ForUrlString(bytes);
-            return engine.createOperand(t);
+            return Operand.Create(t);
         } catch (e) {
             // Ignore errors
         }

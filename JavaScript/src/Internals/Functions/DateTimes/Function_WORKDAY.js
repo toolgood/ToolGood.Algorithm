@@ -46,7 +46,7 @@ class Function_WORKDAY extends Function_N {
             if (list.has(currentDateStr)) continue;
             days--;
         }
-        return engine.createOperand(new MyDate(startMyDate));
+        return Operand.Create(new MyDate(startMyDate));
     }
 
     toString(stringBuilder, addBrackets) {

@@ -1,4 +1,5 @@
 import { Function_1 } from '../Function_1.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_SQRT extends Function_1 {
     constructor(func1) {
@@ -14,7 +15,7 @@ class Function_SQRT extends Function_1 {
         if (args1.NumberValue < 0) {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "Sqrt");
         }
-        return engine.createOperand(Math.sqrt(args1.DoubleValue));
+        return Operand.Create(Math.sqrt(args1.DoubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

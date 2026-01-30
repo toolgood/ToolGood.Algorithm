@@ -12,7 +12,7 @@ class Function_FLOOR extends Function_2 {
             if (args1.IsError) { return args1; }
         }
         if (this.func2 === null) {
-            return engine.createOperand(Math.floor(args1.NumberValue));
+            return Operand.Create(Math.floor(args1.NumberValue));
         }
 
         let args2 = this.func2.Evaluate(engine, tempParameter);
@@ -22,7 +22,7 @@ class Function_FLOOR extends Function_2 {
         }
         let b = args2.NumberValue;
         if (b >= 1) {
-            return engine.createOperand(args1.IntValue);
+            return Operand.Create(args1.IntValue);
         }
         if (b <= 0) {
             return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "Floor", 2);
@@ -30,7 +30,7 @@ class Function_FLOOR extends Function_2 {
 
         let a = args1.NumberValue;
         let d = Math.floor(a / b) * b;
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -13,7 +13,7 @@ class Function_CEILING extends Function_2 {
         }
 
         if (this.func2 === null) {
-            return engine.createOperand(Math.ceil(args1.NumberValue));
+            return Operand.Create(Math.ceil(args1.NumberValue));
         }
 
         let args2 = this.func2.Evaluate(engine, tempParameter);
@@ -23,7 +23,7 @@ class Function_CEILING extends Function_2 {
         }
         let b = args2.NumberValue;
         if (b == 0) {
-            return engine.createOperand(0);
+            return Operand.Create(0);
         }
         if (b < 0) {
             return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "Ceiling", 2);
@@ -31,7 +31,7 @@ class Function_CEILING extends Function_2 {
 
         let a = args1.NumberValue;
         let d = Math.ceil(a / b) * b;
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

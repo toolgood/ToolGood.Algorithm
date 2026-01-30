@@ -34,9 +34,9 @@ class Function_FIXED extends Function_3 {
         }
         if (no === false) {
             // 格式化数字，保留指定小数位数
-            return engine.createOperand(s.toFixed(num));
+            return Operand.Create(s.toFixed(num));
         }
-        return engine.createOperand(s.toString());
+        return Operand.Create(s.toString());
     }
 
     toString(stringBuilder, addBrackets) {

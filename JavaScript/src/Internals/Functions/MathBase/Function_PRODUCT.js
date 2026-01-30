@@ -29,7 +29,7 @@ class Function_PRODUCT extends Function_N {
         for (let a of list) {
             d *= a;
         }
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

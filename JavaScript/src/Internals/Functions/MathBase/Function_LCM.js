@@ -1,4 +1,5 @@
 import { Function_N } from '../Function_N.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_LCM extends Function_N {
     constructor(funcs) {
@@ -7,8 +8,8 @@ class Function_LCM extends Function_N {
 
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let i = 0; i < this._args.length; i++) {
-            let aa = this._args[i].Evaluate(engine, tempParameter);
+        for (let i = 0; i < this.funcs.length; i++) {
+            let aa = this.funcs[i].Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -25,7 +26,7 @@ class Function_LCM extends Function_N {
             return engine.createErrorOperand("Function '{0}' parameter is error!", "Lcm");
         }
 
-        return engine.createOperand(Function_LCM.calculateLCM(list));
+        return Operand.Create(Function_LCM.calculateLCM(list));
     }
 
     toString(stringBuilder, addBrackets) {

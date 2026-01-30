@@ -11,7 +11,7 @@ class Function_Percentage extends Function_1 {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "Percentage");
             if (args1.IsError) { return args1; }
         }
-        return engine.createOperand(args1.NumberValue / 100.0);
+        return Operand.Create(args1.NumberValue / 100.0);
     }
 
     toString(stringBuilder, addBrackets) {

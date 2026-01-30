@@ -9,7 +9,7 @@ class Function_TODAY extends FunctionBase {
         } else {
             now = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()));
         }
-        return engine.createOperand(new MyDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), 0, 0, 0));
+        return Operand.Create(new MyDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), 0, 0, 0));
     }
 
     toString(stringBuilder, addBrackets) {

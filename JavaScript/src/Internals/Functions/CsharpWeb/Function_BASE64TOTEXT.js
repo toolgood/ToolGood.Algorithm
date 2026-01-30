@@ -27,7 +27,7 @@ class Function_BASE64TOTEXT extends Function_2 {
             let bytes = Base64.FromBase64String(args1.TextValue);
             let decoder = new TextDecoder(encoding);
             let t = decoder.decode(bytes);
-            return engine.createOperand(t);
+            return Operand.Create(t);
         } catch (e) {
             // Ignore errors
         }

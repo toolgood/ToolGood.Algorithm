@@ -13,7 +13,7 @@ class Function_MONTH extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return engine.createOperand(args1.DateValue.getMonth() + 1); // JavaScript月份从0开始，需要加1
+            return Operand.Create(args1.DateValue.getMonth() + 1); // JavaScript月份从0开始，需要加1
         } catch (e) {
             return engine.createErrorOperand("Function 'Month' is error!");
         }

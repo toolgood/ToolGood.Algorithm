@@ -1,4 +1,5 @@
 import { Function_1 } from '../Function_1.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_ABS extends Function_1 {
     constructor(func1) {
@@ -11,7 +12,7 @@ class Function_ABS extends Function_1 {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "Abs");
             if (args1.IsError) { return args1; }
         }
-        return engine.createOperand(Math.abs(args1.NumberValue));
+        return Operand.Create(Math.abs(args1.NumberValue));
     }
 
     toString(stringBuilder, addBrackets) {

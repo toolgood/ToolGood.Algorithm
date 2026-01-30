@@ -15,7 +15,7 @@ class Function_URLENCODE extends Function_1 {
         }
         let s = args1.TextValue;
         let r = encodeURIComponent(s);
-        return engine.createOperand(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

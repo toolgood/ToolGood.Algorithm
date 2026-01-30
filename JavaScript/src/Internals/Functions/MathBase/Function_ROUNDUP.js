@@ -21,8 +21,8 @@ class Function_ROUNDUP extends Function_2 {
         let b = args1.DoubleValue;
 
         let t = (Math.ceil(Math.abs(b) * a)) / a;
-        if (b > 0) return engine.createOperand(t);
-        return engine.createOperand(-t);
+        if (b > 0) return Operand.Create(t);
+        return Operand.Create(-t);
     }
 
     toString(stringBuilder, addBrackets) {

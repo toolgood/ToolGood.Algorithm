@@ -31,11 +31,11 @@ class Function_TIMESTAMP extends Function_2 {
         if (Type == 0) {
             // 毫秒时间戳
             let ms = utcDate.getTime();
-            return engine.createOperand(ms);
+            return Operand.Create(ms);
         } else if (Type == 1) {
             // 秒时间戳
             let s = utcDate.getTime() / 1000;
-            return engine.createOperand(s);
+            return Operand.Create(s);
         }
         return engine.createErrorOperand("Function '{0}' parameter is error!", "TimeStamp");
     }

@@ -13,7 +13,7 @@ class Function_MINUTE extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return engine.createOperand(args1.DateValue.getMinutes());
+            return Operand.Create(args1.DateValue.getMinutes());
         } catch (e) {
             return engine.createErrorOperand("Function 'Minute' is error!");
         }

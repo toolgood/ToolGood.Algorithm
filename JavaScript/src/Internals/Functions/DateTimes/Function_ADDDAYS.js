@@ -23,7 +23,7 @@ class Function_ADDDAYS extends Function_2 {
         }
         let date = new Date(args1.DateValue.getTime());
         date.setDate(date.getDate() + args2.DoubleValue);
-        return engine.createOperand(new MyDate(date));
+        return Operand.Create(new MyDate(date));
     }
 
     toString(stringBuilder, addBrackets) {

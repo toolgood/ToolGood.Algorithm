@@ -20,7 +20,7 @@ class Function_FACTDOUBLE extends Function_1 {
         for (let i = z; i > 0; i -= 2) {
             d *= i;
         }
-        return engine.createOperand(d);
+        return Operand.Create(d);
     }
 
     toString(stringBuilder, addBrackets) {

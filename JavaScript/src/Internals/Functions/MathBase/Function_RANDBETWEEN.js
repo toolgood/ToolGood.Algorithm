@@ -16,7 +16,7 @@ class Function_RANDBETWEEN extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 2);
             if (args2.IsError) { return args2; }
         }
-        return engine.createOperand(Math.random() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
+        return Operand.Create(Math.random() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
     }
 
     toString(stringBuilder, addBrackets) {

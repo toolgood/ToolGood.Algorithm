@@ -73,7 +73,7 @@ class Function_DAYS360 extends Function_3 {
                 }
             }
         }
-        return engine.createOperand(days);
+        return Operand.Create(days);
     }
 
     toString(stringBuilder, addBrackets) {

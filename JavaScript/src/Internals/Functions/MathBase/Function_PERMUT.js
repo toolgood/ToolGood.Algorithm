@@ -1,4 +1,5 @@
 import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_PERMUT extends Function_2 {
     constructor(func1, func2) {
@@ -24,7 +25,7 @@ class Function_PERMUT extends Function_2 {
         for (let i = 0; i < count; i++) {
             sum *= (total - i);
         }
-        return engine.createOperand(sum);
+        return Operand.Create(sum);
     }
 
     toString(stringBuilder, addBrackets) {

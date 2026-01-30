@@ -14,9 +14,9 @@ class Function_ODD extends Function_1 {
         let z = args1.NumberValue;
         if (Math.abs(z % 2) == 1) { return args1; }
         z = Math.ceil(z);
-        if (z % 2 == 1) { return engine.createOperand(z); }
+        if (z % 2 == 1) { return Operand.Create(z); }
         z++;
-        return engine.createOperand(z);
+        return Operand.Create(z);
     }
 
     toString(stringBuilder, addBrackets) {

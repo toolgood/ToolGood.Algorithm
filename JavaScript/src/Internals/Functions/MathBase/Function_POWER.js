@@ -16,7 +16,7 @@ class Function_POWER extends Function_2 {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Power", 2);
             if (args2.IsError) { return args2; }
         }
-        return engine.createOperand(Math.pow(args1.DoubleValue, args2.DoubleValue));
+        return Operand.Create(Math.pow(args1.DoubleValue, args2.DoubleValue));
     }
 
     toString(stringBuilder, addBrackets) {

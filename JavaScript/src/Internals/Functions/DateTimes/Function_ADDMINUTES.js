@@ -23,7 +23,7 @@ class Function_ADDMINUTES extends Function_2 {
         }
         let date = new Date(args1.DateValue.getTime());
         date.setMinutes(date.getMinutes() + args2.IntValue);
-        return engine.createOperand(new MyDate(date));
+        return Operand.Create(new MyDate(date));
     }
 
     toString(stringBuilder, addBrackets) {

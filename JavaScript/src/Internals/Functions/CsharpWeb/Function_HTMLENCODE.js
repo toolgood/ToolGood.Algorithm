@@ -15,7 +15,7 @@ class Function_HTMLENCODE extends Function_1 {
         }
         let s = args1.TextValue;
         let r = Function_HTMLENCODE.HtmlEncode(s);
-        return engine.createOperand(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

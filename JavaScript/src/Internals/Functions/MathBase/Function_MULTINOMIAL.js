@@ -30,7 +30,7 @@ class Function_MULTINOMIAL extends Function_N {
         }
 
         let r = Function_MULTINOMIAL.factorial(sum) / n;
-        return engine.createOperand(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

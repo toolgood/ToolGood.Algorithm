@@ -49,7 +49,7 @@ class Function_NETWORKDAYS extends Function_N {
             }
             startMyDate.setDate(startMyDate.getDate() + 1);
         }
-        return engine.createOperand(days);
+        return Operand.Create(days);
     }
 
     toString(stringBuilder, addBrackets) {

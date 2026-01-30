@@ -22,11 +22,11 @@ class Function_AVERAGE extends Function_N {
         }
 
         if (list.length === 0) {
-            return engine.createOperand(0);
+            return Operand.Create(0);
         }
 
         let average = list.reduce((sum, value) => sum + value, 0) / list.length;
-        return engine.createOperand(average);
+        return Operand.Create(average);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -13,7 +13,7 @@ class Function_HOUR extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return engine.createOperand(args1.DateValue.getHours());
+            return Operand.Create(args1.DateValue.getHours());
         } catch (e) {
             return engine.createErrorOperand("Function 'Hour' is error!");
         }

@@ -14,9 +14,9 @@ class Function_EVEN extends Function_1 {
         let z = args1.NumberValue;
         if (z % 2 == 0) { return args1; }
         z = Math.ceil(z);
-        if (z % 2 == 0) { return engine.createOperand(z); }
+        if (z % 2 == 0) { return Operand.Create(z); }
         z++;
-        return engine.createOperand(z);
+        return Operand.Create(z);
     }
 
     toString(stringBuilder, addBrackets) {

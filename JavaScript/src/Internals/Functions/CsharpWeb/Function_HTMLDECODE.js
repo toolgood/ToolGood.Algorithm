@@ -15,7 +15,7 @@ class Function_HTMLDECODE extends Function_1 {
         }
         let s = args1.TextValue;
         let r = Function_HTMLDECODE.HtmlDecode(s);
-        return engine.createOperand(r);
+        return Operand.Create(r);
     }
 
     toString(stringBuilder, addBrackets) {

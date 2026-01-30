@@ -1,4 +1,5 @@
 import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_ROUNDDOWN extends Function_2 {
     constructor(func1, func2) {
@@ -22,8 +23,8 @@ class Function_ROUNDDOWN extends Function_2 {
         let a = Math.pow(10, args2.IntValue);
         let b = args1.NumberValue;
 
-        let result = Math.floor(b * a) / a;
-        return engine.createOperand(result);
+        let result = b >= 0 ? Math.floor(b * a) / a : Math.ceil(b * a) / a;
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

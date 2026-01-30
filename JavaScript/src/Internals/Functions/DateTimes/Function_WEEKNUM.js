@@ -34,7 +34,7 @@ class Function_WEEKNUM extends Function_2 {
         }
 
         let week = Math.ceil(days / 7.0);
-        return engine.createOperand(week);
+        return Operand.Create(week);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -29,7 +29,7 @@ class Function_TIMEVALUE extends Function_1 {
                 
                 // 创建一个时间对象（日期部分设为0）
                 let timeDate = new MyDate(0, 0, 0, hours, minutes, seconds);
-                return engine.createOperand(timeDate);
+                return Operand.Create(timeDate);
             }
         } catch (e) {
             // 解析失败

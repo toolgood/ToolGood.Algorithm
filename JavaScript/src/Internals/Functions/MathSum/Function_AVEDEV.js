@@ -22,7 +22,7 @@ class Function_AVEDEV extends Function_N {
         }
 
         if (list.length === 0) {
-            return engine.createOperand(0);
+            return Operand.Create(0);
         }
 
         let avg = list.reduce((sum, value) => sum + value, 0) / list.length;
@@ -30,7 +30,7 @@ class Function_AVEDEV extends Function_N {
         for (let item of list) {
             sum += Math.abs(item - avg);
         }
-        return engine.createOperand(sum / list.length);
+        return Operand.Create(sum / list.length);
     }
 
     toString(stringBuilder, addBrackets) {

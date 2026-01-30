@@ -20,7 +20,7 @@ class Function_EOMONTH extends Function_2 {
         let dt = new Date(args1.DateValue.getTime());
         dt.setMonth(dt.getMonth() + args2.IntValue + 1);
         dt.setDate(0); // 设置为当月的最后一天
-        return engine.createOperand(new MyDate(dt));
+        return Operand.Create(new MyDate(dt));
     }
 
     toString(stringBuilder, addBrackets) {

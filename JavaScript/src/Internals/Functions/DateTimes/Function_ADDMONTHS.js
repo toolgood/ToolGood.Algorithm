@@ -23,7 +23,7 @@ class Function_ADDMONTHS extends Function_2 {
         }
         let date = new Date(args1.DateValue.getTime());
         date.setMonth(date.getMonth() + args2.IntValue);
-        return engine.createOperand(new MyDate(date));
+        return Operand.Create(new MyDate(date));
     }
 
     toString(stringBuilder, addBrackets) {

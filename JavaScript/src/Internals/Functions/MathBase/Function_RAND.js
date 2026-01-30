@@ -6,7 +6,7 @@ class Function_RAND extends FunctionBase {
     }
 
     Evaluate(engine, tempParameter) {
-        return engine.createOperand(Math.random());
+        return Operand.Create(Math.random());
     }
 
     toString(stringBuilder, addBrackets) {
