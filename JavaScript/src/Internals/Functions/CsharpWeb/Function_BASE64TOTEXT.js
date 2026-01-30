@@ -1,5 +1,4 @@
 import { Function_2 } from '../Function_2.js';
-import { Base64 } from './Base64.js';
 import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 import * as iconv from 'iconv-lite';

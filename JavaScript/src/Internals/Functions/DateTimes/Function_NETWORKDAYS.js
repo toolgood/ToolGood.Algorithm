@@ -1,5 +1,4 @@
 import { Function_N } from '../Function_N.js';
-import { MyDate } from '../../MyDate.js';
 import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
