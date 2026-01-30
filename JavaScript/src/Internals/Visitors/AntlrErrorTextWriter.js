@@ -31,4 +31,16 @@ export class AntlrErrorTextWriter {
         this.ErrorMsg = msg;
     }
 
+    reportAttemptingFullContext(recognizer, dfa, startIndex, stopIndex, conflictingAlts, conflictState) {
+        // 空实现，因为我们不需要处理这个事件
+    }
+
+    reportContextSensitivity(recognizer, dfa, startIndex, stopIndex, prediction, acceptState) {
+        // 空实现，因为我们不需要处理这个事件
+    }
+
+    reportAmbiguity(recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs) {
+        // 空实现，因为我们不需要处理这个事件
+    }
+
 }
