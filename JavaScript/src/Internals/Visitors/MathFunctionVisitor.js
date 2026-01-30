@@ -2260,7 +2260,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_ArrayJsonItem(args1, args2);
+        return new Function_ArrayJsonItem(args2, args1);
     }
 
     /**
@@ -2271,9 +2271,24 @@ class MathFunctionVisitor extends mathVisitor  {
     visitGetJsonValue_fun(context) {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_GetJsonValue(args1, args2);
+        if (context.PARAMETER() != null) {
+            let op = new Function_PARAMETER(context.PARAMETER().getText ? context.PARAMETER().getText() : context.PARAMETER().text);
+            return new Function_GetJsonValue(args1, op);
+        }
+        if (context.parameter2() != null) {
+            let op = context.parameter2().accept(this);
+            return new Function_GetJsonValue(args1, op);
+        }
+        if (exprs.length > 1) {
+            let op2 = exprs[1].accept(this);
+            return new Function_GetJsonValue(args1, op2);
+        }
+        return new Function_GetJsonValue(args1, null);
     }
+    visitParameter2( context)
+	{
+		return new Function_Value(Operand.Create(context.children[0].getText()));
+	}
 
     /**
      * 访问NUM函数节点

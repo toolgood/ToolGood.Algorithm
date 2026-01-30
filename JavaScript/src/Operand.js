@@ -179,7 +179,12 @@ export class Operand {
         } else if (obj instanceof JsonData) {
             return new OperandJson(obj);
         } else if (Array.isArray(obj)) {
-            return new OperandArray(obj);
+            let arr=[];
+            for (let index = 0; index < obj.length; index++) {
+                const element =Operand.Create(obj[index]);
+                arr.push(element);
+            }
+            return new OperandArray(arr);
         }
         return Operand.CreateNull();
     }
@@ -560,8 +565,8 @@ class OperandJson extends Operand {
     get IsNotJson() { return false; }
     get Type() { return OperandType.JSON; }
     get JsonValue() { return this._value; }
-    get IsArrayJson() { return true; }
-    get IsNotArrayJson() { return false; }
+    get IsArrayJson() { return false; }
+    get IsNotArrayJson() { return true; }
 
     ToText(errorMessage = null) {
         return Operand.Create(this._value.toString());
