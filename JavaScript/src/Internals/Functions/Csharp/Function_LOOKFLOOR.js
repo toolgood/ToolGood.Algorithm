@@ -28,29 +28,29 @@ export class Function_LOOKFLOOR extends Function_2 {
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotArray) {
-            args2.ToArray('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
+            args2 = args2.ToArray("Function '{0}' parameter {1} is error!", "LookFloor", 2);
             if (args2.IsError) {
                 return args2;
             }
         }
         
         let list = [];
-        FunctionUtil.f_base_GetList(args2, list);
+        FunctionUtil.F_base_GetList(args2.ArrayValue, list);
         if (list.length === 0) {
-            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "LookFloor", 2);
         }
         list.sort((a, b) => a - b);
         let value = args1.NumberValue;
         let result = list[0];
         if (result === value) {
-            return args1;
+            return Operand.Create(result);
         }
         for (let i = 1; i < list.length; i++) {
             let val = list[i];
             if (val < value) {
                 result = val;
             } else if (val === value) {
-                return args1;
+                return Operand.Create(val);
             } else {
                 break;
             }
