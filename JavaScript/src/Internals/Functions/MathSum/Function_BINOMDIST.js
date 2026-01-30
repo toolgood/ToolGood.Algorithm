@@ -24,7 +24,7 @@ class Function_BINOMDIST extends Function_4 {
         }
         let args4 = this.func4.Evaluate(work, tempParameter);
         if (args4.IsNotBoolean) {
-            args4.ToBoolean('Function \'{0}\' parameter {1} is error!', 'BinomDist', 4);
+            args4 = args4.ToBoolean('Function \'{0}\' parameter {1} is error!', 'BinomDist', 4);
             if (args4.IsError) return args4;
         }
 

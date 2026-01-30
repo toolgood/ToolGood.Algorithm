@@ -38,7 +38,7 @@ export class Function_REMOVEEND extends Function_3 {
         if (this.func3 !== null) {
             let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
-                args3.ToBoolean('Function \'{0}\' parameter {1} is error!', 'RemoveEnd', 3);
+                args3 = args3.ToBoolean('Function \'{0}\' parameter {1} is error!', 'RemoveEnd', 3);
                 if (args3.IsError) {
                     return args3;
                 }

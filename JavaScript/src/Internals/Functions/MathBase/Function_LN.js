@@ -14,7 +14,7 @@ class Function_LN extends Function_1 {
         }
         let z = args1.DoubleValue;
         if (z <= 0) {
-            return engine.createErrorOperand("Function '{0}' parameter is error!", "Ln");
+            return Operand.Error("Function '{0}' parameter is error!", "Ln");
         }
         return Operand.Create(Math.log(z));
     }

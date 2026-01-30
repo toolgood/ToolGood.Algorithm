@@ -8,9 +8,9 @@ class Function_ISNUMBER extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNumber) {
-            return engine.createBooleanOperand(true);
+            return Operand.Create(true);
         }
-        return engine.createBooleanOperand(false);
+        return Operand.Create(false);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -15,7 +15,7 @@ class Function_YEAR extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.getFullYear());
         } catch (e) {
-            return engine.createErrorOperand("Function 'Year' is error!");
+            return Operand.Error("Function 'Year' is error!");
         }
     }
 

@@ -17,12 +17,12 @@ class Function_ISNULLORERROR extends Function_2 {
             return args1;
         }
         if (args1.IsNull || args1.IsError) {
-            return engine.createBooleanOperand(true);
+            return Operand.Create(true);
         }
         if (args1.IsText && args1.TextValue === null) {
-            return engine.createBooleanOperand(true);
+            return Operand.Create(true);
         }
-        return engine.createBooleanOperand(false);
+        return Operand.Create(false);
     }
 
     toString(stringBuilder, addBrackets) {

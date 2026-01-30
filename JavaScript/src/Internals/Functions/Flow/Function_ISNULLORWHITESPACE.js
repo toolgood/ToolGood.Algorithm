@@ -8,7 +8,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNull) {
-            return engine.createBooleanOperand(true);
+            return Operand.Create(true);
         }
         let textArgs;
         if (args1.IsNotText) {
@@ -17,7 +17,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
         } else {
             textArgs = args1;
         }
-        return engine.createBooleanOperand(textArgs.TextValue === null || textArgs.TextValue.trim() === "");
+        return Operand.Create(textArgs.TextValue === null || textArgs.TextValue.trim() === "");
     }
 
     toString(stringBuilder, addBrackets) {

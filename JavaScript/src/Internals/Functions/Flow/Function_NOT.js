@@ -11,7 +11,7 @@ class Function_NOT extends Function_1 {
             args1 = args1.ToBoolean("Function '{0}' parameter is error!", "Not");
             if (args1.IsError) { return args1; }
         }
-        return engine.createBooleanOperand(!args1.BooleanValue);
+        return Operand.Create(!args1.BooleanValue);
     }
 
     toString(stringBuilder, addBrackets) {

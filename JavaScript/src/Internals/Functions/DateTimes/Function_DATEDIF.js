@@ -85,7 +85,7 @@ class Function_DATEDIF extends Function_3 {
             if (mo < 0) mo += 12;
             return Operand.Create(mo);
         }
-        return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "DateDif", 3);
+        return Operand.Error("Function '{0}' parameter {1} is error!", "DateDif", 3);
     }
 
     toString(stringBuilder, addBrackets) {

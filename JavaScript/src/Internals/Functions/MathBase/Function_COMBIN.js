@@ -21,7 +21,7 @@ class Function_COMBIN extends Function_2 {
         let total = args1.IntValue;
         let count = args2.IntValue;
         if (total < 0 || count < 0 || total < count) {
-            return engine.createErrorOperand("Function '{0}' parameter is error!", "Combin");
+            return Operand.Error("Function '{0}' parameter is error!", "Combin");
         }
         let sum = 1;
         let sum2 = 1;

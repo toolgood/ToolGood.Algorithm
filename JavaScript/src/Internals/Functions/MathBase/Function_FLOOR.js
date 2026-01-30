@@ -26,7 +26,7 @@ class Function_FLOOR extends Function_2 {
             return Operand.Create(args1.IntValue);
         }
         if (b <= 0) {
-            return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "Floor", 2);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "Floor", 2);
         }
 
         let a = args1.NumberValue;

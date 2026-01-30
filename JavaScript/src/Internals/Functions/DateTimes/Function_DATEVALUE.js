@@ -60,7 +60,7 @@ class Function_DATEVALUE extends Function_N {
             if (engine.UseLocalTime) { return Operand.Create(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }
             return Operand.Create(new MyDate(time));
         }
-        return engine.createErrorOperand("Function '{0}' parameter is error!", "DateValue");
+        return Operand.Error("Function '{0}' parameter is error!", "DateValue");
     }
 
     toString(stringBuilder, addBrackets) {

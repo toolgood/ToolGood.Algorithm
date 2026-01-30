@@ -9,10 +9,10 @@ class Function_ISEVEN extends Function_1 {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNumber) {
             if (args1.IntValue % 2 == 0) {
-                return engine.createBooleanOperand(true);
+                return Operand.Create(true);
             }
         }
-        return engine.createBooleanOperand(false);
+        return Operand.Create(false);
     }
 
     toString(stringBuilder, addBrackets) {

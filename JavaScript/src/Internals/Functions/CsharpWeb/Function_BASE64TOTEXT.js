@@ -31,7 +31,7 @@ class Function_BASE64TOTEXT extends Function_2 {
         } catch (e) {
             // Ignore errors
         }
-        return engine.createErrorOperand("Function 'Base64ToText' is error!");
+        return Operand.Error("Function 'Base64ToText' is error!");
     }
 
     toString(stringBuilder, addBrackets) {

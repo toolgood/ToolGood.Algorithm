@@ -15,7 +15,7 @@ class Function_DAY extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.getDate());
         } catch (e) {
-            return engine.createErrorOperand("Function 'Day' is error!");
+            return Operand.Error("Function 'Day' is error!");
         }
     }
 

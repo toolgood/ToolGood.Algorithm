@@ -16,7 +16,7 @@ class Function_AVERAGE extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return engine.createErrorOperand("Function '{0}' parameter is error!", "Average");
+                return Operand.Error("Function '{0}' parameter is error!", "Average");
             }
             list.push(arg.NumberValue);
         }

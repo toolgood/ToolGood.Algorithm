@@ -13,7 +13,7 @@ class Function_SQRT extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         if (args1.NumberValue < 0) {
-            return engine.createErrorOperand("Function '{0}' parameter is error!", "Sqrt");
+            return Operand.Error("Function '{0}' parameter is error!", "Sqrt");
         }
         return Operand.Create(Math.sqrt(args1.DoubleValue));
     }

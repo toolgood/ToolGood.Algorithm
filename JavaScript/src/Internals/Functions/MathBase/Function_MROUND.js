@@ -19,7 +19,7 @@ class Function_MROUND extends Function_2 {
         }
         let a = args2.NumberValue;
         if (a <= 0) {
-            return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "MRound", 2);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "MRound", 2);
         }
 
         let b = args1.NumberValue;

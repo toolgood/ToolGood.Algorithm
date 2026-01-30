@@ -37,7 +37,7 @@ class Function_TIMESTAMP extends Function_2 {
             let s = utcDate.getTime() / 1000;
             return Operand.Create(s);
         }
-        return engine.createErrorOperand("Function '{0}' parameter is error!", "TimeStamp");
+        return Operand.Error("Function '{0}' parameter is error!", "TimeStamp");
     }
 
     toString(stringBuilder, addBrackets) {

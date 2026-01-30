@@ -27,7 +27,7 @@ class Function_CEILING extends Function_2 {
             return Operand.Create(0);
         }
         if (b < 0) {
-            return engine.createErrorOperand("Function '{0}' parameter {1} is error!", "Ceiling", 2);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "Ceiling", 2);
         }
 
         let a = args1.NumberValue;

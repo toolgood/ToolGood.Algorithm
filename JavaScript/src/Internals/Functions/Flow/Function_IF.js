@@ -15,7 +15,7 @@ class Function_IF extends Function_3 {
             return this.func2.Evaluate(engine, tempParameter);
         }
         if (this.func3 === null) {
-            return engine.createBooleanOperand(false);
+            return Operand.Create(false);
         }
         return this.func3.Evaluate(engine, tempParameter);
     }

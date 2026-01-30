@@ -14,9 +14,9 @@ class Function_ISERROR extends Function_2 {
             return args1;
         }
         if (args1.IsError) {
-            return engine.createBooleanOperand(true);
+            return Operand.Create(true);
         }
-        return engine.createBooleanOperand(false);
+        return Operand.Create(false);
     }
 
     toString(stringBuilder, addBrackets) {

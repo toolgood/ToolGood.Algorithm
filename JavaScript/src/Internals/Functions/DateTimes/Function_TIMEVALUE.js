@@ -34,7 +34,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return engine.createErrorOperand("Function '{0}' parameter is error!", "TimeValue");
+        return Operand.Error("Function '{0}' parameter is error!", "TimeValue");
     }
 
     toString(stringBuilder, addBrackets) {
