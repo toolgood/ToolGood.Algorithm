@@ -16,7 +16,7 @@ class Function_HEX2BIN extends Function_2 {
         }
 
         if (!RegexHelper.HexRegex.test(args1.TextValue)) {
-            return Operand.error('Function \'{0}\' parameter {1} is error!', 'HEX2BIN', 1);
+            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'HEX2BIN', 1);
         }
         let num = parseInt(args1.TextValue, 16).toString(2);
         if (this.func2 !== null) {
@@ -30,7 +30,7 @@ class Function_HEX2BIN extends Function_2 {
             if (num.length > args2.IntValue) {
                 return Operand.Create(num.padLeft(args2.IntValue, '0'));
             }
-            return Operand.error('Function \'{0}\' parameter {1} is error!', 'HEX2BIN', 2);
+            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'HEX2BIN', 2);
         }
         return Operand.Create(num);
     }

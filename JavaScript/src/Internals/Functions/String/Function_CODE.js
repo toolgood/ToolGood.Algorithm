@@ -15,7 +15,7 @@ class Function_CODE extends Function_1 {
             }
         }
         if (!args1.TextValue) {
-            return Operand.error('Function \'{0}\' parameter is error!', 'CODE');
+            return Operand.Error('Function \'{0}\' parameter is error!', 'CODE');
         }
         let c = args1.TextValue[0];
         return Operand.Create(c.charCodeAt(0));

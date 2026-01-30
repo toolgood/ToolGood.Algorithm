@@ -37,7 +37,7 @@ export class Function_LOOKCEILING extends Function_2 {
         let list = [];
         FunctionUtil.f_base_GetList(args2, list);
         if (list.length === 0) {
-            return Operand.error('Function \'{0}\' parameter {1} is error!', 'LookCeiling', 2);
+            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'LookCeiling', 2);
         }
         list.sort((a, b) => b - a);
         let value = args1.NumberValue;

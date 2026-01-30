@@ -16,7 +16,7 @@ class Function_ASIN extends Function_1 {
         }
         let x = args1.DoubleValue;
         if (x < -1 || x > 1) {
-            return Operand.error('Function \'{0}\' parameter is error!', 'Asin');
+            return Operand.Error('Function \'{0}\' parameter is error!', 'Asin');
         }
         return Operand.Create(Math.asin(x));
     }

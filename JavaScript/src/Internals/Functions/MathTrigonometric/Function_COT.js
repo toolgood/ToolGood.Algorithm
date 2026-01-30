@@ -16,7 +16,7 @@ class Function_COT extends Function_1 {
         }
         let d = Math.tan(args1.DoubleValue);
         if (d === 0) {
-            return Operand.error('Function \'{0}\') div 0 error!', 'Cot');
+            return Operand.Error('Function \'{0}\') div 0 error!', 'Cot');
         }
         return Operand.Create(1.0 / d);
     }

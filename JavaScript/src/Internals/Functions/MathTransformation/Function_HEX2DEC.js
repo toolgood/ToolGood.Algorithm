@@ -16,7 +16,7 @@ class Function_HEX2DEC extends Function_1 {
         }
 
         if (!RegexHelper.HexRegex.test(args1.TextValue)) {
-            return Operand.error('Function \'{0}\' parameter is error!', 'HEX2DEC');
+            return Operand.Error('Function \'{0}\' parameter is error!', 'HEX2DEC');
         }
         let num = parseInt(args1.TextValue, 16);
         return Operand.Create(num);

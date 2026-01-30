@@ -21,7 +21,7 @@ class Function_COUNTIF extends Function_2 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o === false) {
-            return Operand.error('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
+            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'CountIf', 1);
         }
         let count;
         if (args2.IsNumber) {
@@ -37,7 +37,7 @@ class Function_COUNTIF extends Function_2 {
                 if (m2 !== null) {
                     count = FunctionUtil.F_base_countif(list, m2[0], m2[1]);
                 } else {
-                    return Operand.error('Function \'{0}\' parameter {1} is error!', 'CountIf', 2);
+                    return Operand.Error('Function \'{0}\' parameter {1} is error!', 'CountIf', 2);
                 }
             }
         }

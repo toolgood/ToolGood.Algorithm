@@ -37,7 +37,7 @@ export class Function_LOOKFLOOR extends Function_2 {
         let list = [];
         FunctionUtil.f_base_GetList(args2, list);
         if (list.length === 0) {
-            return Operand.error('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
+            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'LookFloor', 2);
         }
         list.sort((a, b) => a - b);
         let value = args1.NumberValue;

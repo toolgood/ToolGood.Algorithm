@@ -70,7 +70,7 @@ export class Function_HAS extends Function_2 {
             }
             return Operand.False;
         }
-        return Operand.error('Function \'{0}\' parameter {1} is error!', 'Has', 1);
+        return Operand.Error('Function \'{0}\' parameter {1} is error!', 'Has', 1);
     }
     
     /**

@@ -26,7 +26,7 @@ class Function_BETAINV extends Function_3 {
         let alpha = args2.DoubleValue;
         let beta = args3.DoubleValue;
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
-            return Operand.error('Function \'{0}\' parameter is error!', 'BetaInv');
+            return Operand.Error('Function \'{0}\' parameter is error!', 'BetaInv');
         }
         return Operand.Create(ExcelFunctions.BetaInv(p, alpha, beta));
     }

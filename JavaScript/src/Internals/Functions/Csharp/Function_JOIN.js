@@ -39,7 +39,7 @@ export class Function_JOIN extends Function_N {
             let list = [];
             let o = FunctionUtil.f_base_GetList(args1, list);
             if (!o) {
-                return Operand.error('Function \'{0}\' parameter {1} is error!', 'Join', 1);
+                return Operand.Error('Function \'{0}\' parameter {1} is error!', 'Join', 1);
             }
             
             let args2 = args[1].ToText('Function \'{0}\' parameter {1} is error!', 'Join', 2);
@@ -58,7 +58,7 @@ export class Function_JOIN extends Function_N {
             for (let i = 1; i < args.length; i++) {
                 let o = FunctionUtil.f_base_GetList(args[i], list);
                 if (!o) {
-                    return Operand.error('Function \'{0}\' parameter {1} is error!', 'Join', i + 1);
+                    return Operand.Error('Function \'{0}\' parameter {1} is error!', 'Join', i + 1);
                 }
             }
             

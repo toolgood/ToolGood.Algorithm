@@ -27,7 +27,7 @@ class Function_BETADIST extends Function_3 {
         let beta = args3.DoubleValue;
 
         if (alpha < 0.0 || beta < 0.0) {
-            return Operand.error('Function \'{0}\' parameter is error!', 'BetaDist');
+            return Operand.Error('Function \'{0}\' parameter is error!', 'BetaDist');
         }
         return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
     }
