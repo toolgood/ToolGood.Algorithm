@@ -168,6 +168,54 @@ export class MyDate {
     static FromTimeSpan(milliseconds) {
         return new MyDate(milliseconds / 86400000);
     }
+
+    /**
+     * 添加年
+     */
+    addYears(years) {
+        let date = this.ToDateTime();
+        date.setFullYear(date.getFullYear() + years);
+        return new MyDate(date);
+    }
+
+    /**
+     * 添加月
+     */
+    AddMonths(months) {
+        let date = this.ToDateTime();
+        date.setMonth(date.getMonth() + months);
+        return new MyDate(date);
+    }
+
+    /**
+     * 添加天
+     */
+    AddDays(days) {
+        let date = this.ToDateTime();
+        date.setDate(date.getDate() + days);
+        return new MyDate(date);
+    }
+
+    /**
+     * 获取年
+     */
+    year() {
+        return this.Year;
+    }
+
+    /**
+     * 获取月
+     */
+    Month() {
+        return this.Month;
+    }
+
+    /**
+     * 获取日
+     */
+    Day() {
+        return this.Day;
+    }
 }
 
 // 浏览器支持

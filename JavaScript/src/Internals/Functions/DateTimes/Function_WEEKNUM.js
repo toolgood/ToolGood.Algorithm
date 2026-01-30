@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_WEEKNUM extends Function_2 {
     constructor(func1, func2) {
@@ -15,11 +16,12 @@ class Function_WEEKNUM extends Function_2 {
         let startMyDate = args1.DateValue;
 
         // 计算当年第一天的星期几（0表示星期日，6表示星期六）
-        let firstDayOfYear = new Date(startMyDate.getFullYear(), 0, 1);
+        let startDate = startMyDate.ToDateTime();
+        let firstDayOfYear = new Date(startDate.getFullYear(), 0, 1);
         let firstDayWeekday = firstDayOfYear.getDay();
         
         // 计算日期在当年的第几天
-        let dayOfYear = Math.ceil((startMyDate - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
+        let dayOfYear = Math.ceil((startDate - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
         
         let days = dayOfYear + firstDayWeekday;
         if (this.func2 !== null) {

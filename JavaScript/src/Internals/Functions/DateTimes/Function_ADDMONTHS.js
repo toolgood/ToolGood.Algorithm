@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_ADDMONTHS extends Function_2 {
     constructor(func1, func2) {
@@ -21,7 +22,7 @@ class Function_ADDMONTHS extends Function_2 {
                 return args2;
             }
         }
-        let date = new Date(args1.DateValue.getTime());
+        let date = new Date(args1.DateValue.ToDateTime().getTime());
         date.setMonth(date.getMonth() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }

@@ -1,5 +1,6 @@
 import { Function_N } from '../Function_N.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_NETWORKDAYS extends Function_N {
     constructor(funcs) {
@@ -18,8 +19,12 @@ class Function_NETWORKDAYS extends Function_N {
             if (args2.IsError) { return args2; }
         }
 
-        let startMyDate = new Date(args1.DateValue.getTime());
-        let endMyDate = new Date(args2.DateValue.getTime());
+        // 获取Date对象
+        let startDate = args1.DateValue.ToDateTime();
+        let endDate = args2.DateValue.ToDateTime();
+
+        let startMyDate = new Date(startDate.getTime());
+        let endMyDate = new Date(endDate.getTime());
 
         let list = new Set();
         for (let i = 2; i < this.funcs.length; i++) {
@@ -28,11 +33,13 @@ class Function_NETWORKDAYS extends Function_N {
                 let arDate = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (arDate.IsError) { return arDate; }
                 // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-                let dateStr = arDate.DateValue.toISOString().split('T')[0];
+                let dateObj = arDate.DateValue.ToDateTime();
+                let dateStr = dateObj.toISOString().split('T')[0];
                 list.add(dateStr);
             } else {
                 // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-                let dateStr = ar.DateValue.toISOString().split('T')[0];
+                let dateObj = ar.DateValue.ToDateTime();
+                let dateStr = dateObj.toISOString().split('T')[0];
                 list.add(dateStr);
             }
         }
