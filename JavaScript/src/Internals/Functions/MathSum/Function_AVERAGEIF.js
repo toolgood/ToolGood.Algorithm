@@ -1,4 +1,5 @@
 import { Function_3 } from '../Function_3.js';
+import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_AVERAGEIF extends Function_3 {
@@ -63,7 +64,7 @@ class Function_AVERAGEIF extends Function_3 {
                     let matchResult = Function_AVERAGEIF.sumifMatch(TextValue);
                     if (matchResult) {
                         count = Function_AVERAGEIF.countif(list, matchResult[0], matchResult[1]);
-                        sum = Function_AVERAGEIF.sumif(list, matchResult[0], matchResult[1], sumdbs);
+                    sum = Function_AVERAGEIF.sumif(list, matchResult[0], sumdbs, matchResult[1]);
                     } else {
                         return Operand.Error(StringCache.Function_parameter_error2, "AverageIf", 2);
                     }
@@ -128,12 +129,12 @@ class Function_AVERAGEIF extends Function_3 {
 
     // 辅助函数：sumifMatch
     static sumifMatch(pattern) {
-        let operators = ['=', '>', '<', '>=', '<=', '<>'];
+        let operators = ['=', '>', '<', '>=', '<=', '<>', '!='];
         for (let op of operators) {
             if (pattern.startsWith(op)) {
                 let value = parseFloat(pattern.substring(op.length).trim());
                 if (!isNaN(value)) {
-                    return [value, op];
+                    return [value, op === '!=' ? '<>' : op];
                 }
             }
         }

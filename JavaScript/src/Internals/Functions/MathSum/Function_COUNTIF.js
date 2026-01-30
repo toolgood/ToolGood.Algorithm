@@ -11,7 +11,7 @@ class Function_COUNTIF extends Function_2 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotArray) {
-            args1.ToArray(StringCache.Function_parameter_error2, 'CountIf', 1);
+            args1 = args1.ToArray(StringCache.Function_parameter_error2, 'CountIf', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -21,7 +21,7 @@ class Function_COUNTIF extends Function_2 {
             return args2;
         }
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o === false) {
             return Operand.Error(StringCache.Function_parameter_error2, 'CountIf', 1);
         }
@@ -37,7 +37,7 @@ class Function_COUNTIF extends Function_2 {
                 let sunif = trimmedText;
                 let m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 !== null) {
-                    count = FunctionUtil.F_base_countif(list, m2[0], m2[1]);
+                    count = FunctionUtil.F_base_countif(list, m2.operator, m2.value);
                 } else {
                     return Operand.Error(StringCache.Function_parameter_error2, 'CountIf', 2);
                 }

@@ -19,7 +19,7 @@ class Function_SUMIF extends Function_3 {
         }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) {
             return Operand.Error(StringCache.Function_parameter_error2, "SumIf", 1);
         }
@@ -31,7 +31,7 @@ class Function_SUMIF extends Function_3 {
                 return args3;
             }
             sumdbs = [];
-            let o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
+            let o2 = FunctionUtil.F_base_GetList(args3.ArrayValue, sumdbs);
             if (o2 == false) {
                 return Operand.Error(StringCache.Function_parameter_error2, "SumIf", 3);
             }
@@ -41,7 +41,7 @@ class Function_SUMIF extends Function_3 {
 
         let sum;
         if (args2.IsNumber) {
-            sum = FunctionUtil.F_base_countif(list, args2.NumberValue) * args2.NumberValue;
+            sum = FunctionUtil.F_base_sumif(list, args2.NumberValue, sumdbs);
         } else {
             let trimmedText = args2.TextValue.trim();
             let parsed = parseFloat(trimmedText);
@@ -51,7 +51,7 @@ class Function_SUMIF extends Function_3 {
                 let sunif = trimmedText;
                 let m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 != null) {
-                    sum = FunctionUtil.F_base_sumif(list, m2[0], m2[1], sumdbs);
+                    sum = FunctionUtil.F_base_sumif(list, m2.operator, m2.value, sumdbs);
                 } else {
                     return Operand.Error(StringCache.Function_parameter_error2, "SumIf", 2);
                 }

@@ -99,10 +99,20 @@ export var FunctionUtil = {
                     return { operator: "<", value: d };
                 }
             }
+        } else if(c === '=' && s.length > 1 && s[1] === '=') {
+            var d = parseFloat(s.substring(2).trim());
+            if(!isNaN(d)) {
+                return { operator: "=", value: d };
+            }
         } else if((c === '=' || c === '＝' || c === ' ') && s.length > 1) {
             var d = parseFloat(s.substring(1).trim());
             if(!isNaN(d)) {
                 return { operator: "=", value: d };
+            }
+        } else if(c === '!' && s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+            var d = parseFloat(s.substring(2).trim());
+            if(!isNaN(d)) {
+                return { operator: "!=", value: d };
             }
         } else {
             var d = parseFloat(s.trim());
@@ -129,23 +139,20 @@ export var FunctionUtil = {
         return null;
     },
 
-    F_base_countif: function(dbs, d) {
-        let count = 0;
-        for (let i = 0; i < dbs.length; i++) {
-            let item = dbs[i];
-            if (item === d) {
-                count++;
-            }
-        }
-        return count;
-    },
-
     F_base_countif: function(dbs, s, d) {
         let count = 0;
         for (let i = 0; i < dbs.length; i++) {
             let item = dbs[i];
-            if (this.F_base_compare(item, d, s)) {
-                count++;
+            if (arguments.length === 2) {
+                // 两个参数的情况：dbs 和 d
+                if (item === s) {
+                    count++;
+                }
+            } else {
+                // 三个参数的情况：dbs, s, d
+                if (this.F_base_compare(item, d, s)) {
+                    count++;
+                }
             }
         }
         return count;
@@ -162,25 +169,30 @@ export var FunctionUtil = {
             return a >= b;
         } else if (ss === '=') {
             return a === b;
+        } else if (ss === '!=') {
+            return a !== b;
         }
         return a !== b;
     },
 
-    F_base_sumif: function(list, d, sumdbs) {
+    F_base_sumif: function(list, arg1, arg2, arg3) {
         let sum = 0;
         for (let i = 0; i < list.length; i++) {
-            if (list[i] === d) {
-                sum += sumdbs[i];
-            }
-        }
-        return sum;
-    },
-
-    F_base_sumif: function(list, s, d, sumdbs) {
-        let sum = 0;
-        for (let i = 0; i < list.length; i++) {
-            if (this.F_base_compare(list[i], d, s)) {
-                sum += sumdbs[i];
+            if (arguments.length === 3) {
+                // 三个参数的情况：list, value, sumdbs
+                const value = arg1;
+                const sumdbs = arg2;
+                if (list[i] === value) {
+                    sum += sumdbs[i];
+                }
+            } else {
+                // 四个参数的情况：list, operator, value, sumdbs
+                const operator = arg1;
+                const value = arg2;
+                const sumdbs = arg3;
+                if (this.F_base_compare(list[i], value, operator)) {
+                    sum += sumdbs[i];
+                }
             }
         }
         return sum;
