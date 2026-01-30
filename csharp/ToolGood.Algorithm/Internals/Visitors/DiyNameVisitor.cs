@@ -206,11 +206,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
-		public object VisitCRC32_fun(mathParser.CRC32_funContext context)
-		{
-			return VisitChildren(context);
-		}
-
 		public object VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
 		{
 			return VisitChildren(context);

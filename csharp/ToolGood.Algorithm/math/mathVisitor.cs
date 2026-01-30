@@ -326,13 +326,6 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitJIS_fun(mathParser.JIS_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>CRC32_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCRC32_fun(mathParser.CRC32_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>LCM_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>

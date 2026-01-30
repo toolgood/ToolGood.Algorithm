@@ -231,10 +231,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
-		public ConditionTree VisitCRC32_fun(mathParser.CRC32_funContext context)
-		{
-			return Visit_fun(context);
-		}
 
 		public ConditionTree VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
 		{
