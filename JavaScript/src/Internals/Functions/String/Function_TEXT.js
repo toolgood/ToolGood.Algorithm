@@ -19,13 +19,30 @@ class Function_TEXT extends Function_2 {
             }
         }
 
-        if (args1.isText) {
+        if (args1.IsText) {
             return args1;
-        } else if (args1.isBoolean) {
+        } else if (args1.IsBoolean) {
             return Operand.Create(args1.BooleanValue ? 'TRUE' : 'FALSE');
         } else if (args1.IsNumber) {
-            // JavaScript的toLocaleString或其他格式化方法可能无法完全匹配C#的格式，但这里先使用基本的toString
-            return Operand.Create(args1.NumberValue.toString());
+            // 实现基本的数字格式化逻辑
+            const format = args2.TextValue;
+            const value = args1.NumberValue;
+            
+            // 处理简单的数字格式，如 "0.00"
+            if (format.includes('0')) {
+                // 计算小数位数
+                const decimalIndex = format.indexOf('.');
+                if (decimalIndex !== -1) {
+                    const decimalPlaces = format.substring(decimalIndex + 1).length;
+                    return Operand.Create(value.toFixed(decimalPlaces));
+                } else {
+                    // 没有小数部分，返回整数
+                    return Operand.Create(Math.round(value).toString());
+                }
+            }
+            
+            // 如果没有匹配的格式，使用默认的toString
+            return Operand.Create(value.toString());
         } else if (args1.IsDate) {
             // 同样，日期格式化可能需要更复杂的处理
             return Operand.Create(args1.DateValue.toString());

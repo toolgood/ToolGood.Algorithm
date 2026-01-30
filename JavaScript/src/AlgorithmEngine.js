@@ -234,6 +234,7 @@ class AlgorithmEngine {
           this.LastError = converted.ErrorMsg;
           return def;
         }
+        return converted.TextValue;
       }
       return obj.TextValue;
     } catch (ex) {

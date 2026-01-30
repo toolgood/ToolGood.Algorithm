@@ -18,18 +18,78 @@ class Function_RMB extends Function_1 {
     }
 
     F_base_ToChineseRMB(x) {
-        let s = x.toFixed(2).replace(/\d/g, (m, i, str) => {
-            let len = str.length - i - 3;
-            let chars = "#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A";
-            return chars[len * 2 + 1];
-        });
-        let Regex1 = /((?<=-|^)[^1-9]*)|((\d)0[A-E]*((?=[1-9])|$))|(([F-L])(0)[0A-L]*((?=[1-9])|$))/g;
-        let d = s.replace(Regex1, "$2$5$6");
-        let Regex2 = /./g;
-        let result = d.replace(Regex2, (m) => {
-            let chars = "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰";
-            return chars[m.charCodeAt(0) - '-'.charCodeAt(0)] || '';
-        });
+        if (x === 0) return "零元";
+        
+        const digits = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+        const units = ["", "拾", "佰", "仟"];
+        const bigUnits = ["", "万", "亿", "兆"];
+        const decimalUnits = ["角", "分"];
+        
+        let result = "";
+        let integerPart = Math.floor(x);
+        let decimalPart = Math.round((x - integerPart) * 100);
+        
+        // 处理整数部分
+        if (integerPart < 0) {
+            result = "负";
+            integerPart = -integerPart;
+        }
+        
+        if (integerPart === 0) {
+            result += "零";
+        } else {
+            let unitIndex = 0;
+            let bigUnitIndex = 0;
+            
+            while (integerPart > 0) {
+                const section = integerPart % 10000;
+                if (section > 0) {
+                    let sectionStr = "";
+                    let tempSection = section;
+                    let sectionUnitIndex = 0;
+                    
+                    while (tempSection > 0) {
+                        const digit = tempSection % 10;
+                        if (digit > 0) {
+                            sectionStr = digits[digit] + units[sectionUnitIndex] + sectionStr;
+                        } else {
+                            // 处理连续的零
+                            if (sectionStr && !sectionStr.startsWith("零")) {
+                                sectionStr = "零" + sectionStr;
+                            }
+                        }
+                        tempSection = Math.floor(tempSection / 10);
+                        sectionUnitIndex++;
+                    }
+                    
+                    result = sectionStr + bigUnits[bigUnitIndex] + result;
+                }
+                
+                integerPart = Math.floor(integerPart / 10000);
+                bigUnitIndex++;
+            }
+        }
+        
+        result += "元";
+        
+        // 处理小数部分
+        if (decimalPart === 0) {
+            result += "整";
+        } else {
+            const jiao = Math.floor(decimalPart / 10);
+            const fen = decimalPart % 10;
+            
+            if (jiao > 0) {
+                result += digits[jiao] + decimalUnits[0];
+            } else if (fen > 0) {
+                result += "零";
+            }
+            
+            if (fen > 0) {
+                result += digits[fen] + decimalUnits[1];
+            }
+        }
+        
         return result;
     }
 

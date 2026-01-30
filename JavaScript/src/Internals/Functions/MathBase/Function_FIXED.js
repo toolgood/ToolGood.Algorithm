@@ -1,4 +1,5 @@
 import { Function_3 } from '../Function_3.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_FIXED extends Function_3 {
     constructor(func1, func2, func3) {
@@ -33,8 +34,12 @@ class Function_FIXED extends Function_3 {
             no = args3.BooleanValue;
         }
         if (no === false) {
-            // 格式化数字，保留指定小数位数
-            return Operand.Create(s.toFixed(num));
+            // 格式化数字，保留指定小数位数并添加千位分隔符
+            let formatted = s.toFixed(num);
+            // 添加千位分隔符
+            let parts = formatted.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            return Operand.Create(parts.join('.'));
         }
         return Operand.Create(s.toString());
     }

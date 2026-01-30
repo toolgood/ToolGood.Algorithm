@@ -8,7 +8,7 @@ class Function_T extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.isText) {
+        if (args1.IsText) {
             return args1;
         }
         return Operand.Create('');
