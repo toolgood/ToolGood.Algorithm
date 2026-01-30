@@ -24,7 +24,7 @@ export class Function_HAS extends Function_2 {
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2.ToText('Function \'{0}\' parameter {1} is error!', 'Has', 2);
+            args2 = args2.ToText('Function \'{0}\' parameter {1} is error!', 'Has', 2);
             if (args2.IsError) {
                 return args2;
             }

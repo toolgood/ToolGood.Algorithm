@@ -9,17 +9,17 @@ class Function_BETAINV extends Function_3 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
-            args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 1);
+            args1 = args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 1);
             if (args1.IsError) return args1;
         }
         let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber) {
-            args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 2);
+            args2 = args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 2);
             if (args2.IsError) return args2;
         }
         let args3 = this.func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber) {
-            args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 3);
+            args3 = args3.ToNumber('Function \'{0}\' parameter {1} is error!', 'BetaInv', 3);
             if (args3.IsError) return args3;
         }
         let p = args1.DoubleValue;

@@ -9,7 +9,7 @@ class Function_LEFT extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1.ToText('Function {0} parameter {1} is error!', 'Left', 1);
+            args1 = args1.ToText('Function {0} parameter {1} is error!', 'Left', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -22,7 +22,7 @@ class Function_LEFT extends Function_2 {
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            args2.ToNumber('Function {0} parameter {1} is error!', 'Left', 2);
+            args2 = args2.ToNumber('Function {0} parameter {1} is error!', 'Left', 2);
             if (args2.IsError) {
                 return args2;
             }

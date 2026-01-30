@@ -9,7 +9,7 @@ class Function_RMB extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1.ToNumber('Function {0} parameter is error!', 'RMB');
+            args1 = args1.ToNumber('Function {0} parameter is error!', 'RMB');
             if (args1.IsError) {
                 return args1;
             }

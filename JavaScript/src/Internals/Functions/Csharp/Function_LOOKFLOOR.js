@@ -21,7 +21,7 @@ export class Function_LOOKFLOOR extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'LookFloor', 1);
+            args1 = args1.ToNumber('Function \'{0}\' parameter {1} is error!', 'LookFloor', 1);
             if (args1.IsError) {
                 return args1;
             }

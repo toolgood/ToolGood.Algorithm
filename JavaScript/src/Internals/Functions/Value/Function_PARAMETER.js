@@ -15,7 +15,7 @@ class Function_PARAMETER extends FunctionBase {
         if (txt === undefined || txt === null) {
             let args1 = this.func1.Evaluate(engine, tempParameter);
             if (args1.IsNotText) {
-                args1.ToText();
+                args1 = args1.ToText();
                 if (args1.IsError) {
                     return args1;
                 }

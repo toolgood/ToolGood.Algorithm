@@ -9,7 +9,7 @@ class Function_PROPER extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1.ToText('Function {0} parameter is error!', 'Proper');
+            args1 = args1.ToText('Function {0} parameter is error!', 'Proper');
             if (args1.IsError) {
                 return args1;
             }

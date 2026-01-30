@@ -9,7 +9,7 @@ class Function_BIN2OCT extends Function_2 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            args1.ToText('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 1);
+            args1 = args1.ToText('Function {0} parameter {1} is error!', 'BIN2OCT', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -22,15 +22,15 @@ class Function_BIN2OCT extends Function_2 {
         if (this.func2 !== null) {
             let args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber) {
-                args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
+                args2 = args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
                 if (args2.IsError) {
                     return args2;
                 }
             }
             if (num.length > args2.IntValue) {
-                return Operand.Create(num.padLeft(args2.IntValue, '0'));
+                return Operand.Error('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
             }
-            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
+            return Operand.Create(num.padLeft(args2.IntValue, '0'));
         }
         return Operand.Create(num);
     }

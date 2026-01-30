@@ -21,14 +21,14 @@ export class Function_REMOVESTART extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1.ToText('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 1);
+            args1 = args1.ToText('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2.ToText('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 2);
+            args2 = args2.ToText('Function \'{0}\' parameter {1} is error!', 'RemoveStart', 2);
             if (args2.IsError) {
                 return args2;
             }

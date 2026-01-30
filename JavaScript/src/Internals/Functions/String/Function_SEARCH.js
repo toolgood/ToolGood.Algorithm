@@ -9,14 +9,14 @@ class Function_SEARCH extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1.ToText('Function {0} parameter {1} is error!', 'Search', 1);
+            args1 = args1.ToText('Function {0} parameter {1} is error!', 'Search', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2.ToText('Function {0} parameter {1} is error!', 'Search', 2);
+            args2 = args2.ToText('Function {0} parameter {1} is error!', 'Search', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -28,7 +28,7 @@ class Function_SEARCH extends Function_3 {
         }
         let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
-            args3.ToNumber('Function {0} parameter {1} is error!', 'Search', 3);
+            args3 = args3.ToNumber('Function {0} parameter {1} is error!', 'Search', 3);
             if (args3.IsError) {
                 return args3;
             }
