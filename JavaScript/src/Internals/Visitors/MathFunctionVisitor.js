@@ -2034,8 +2034,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRIMSTART_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TRIMSTART(args1);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        if (exprs.length === 1) return new Function_TRIMSTART(args1);
+        let args2 = exprs[1].accept(this);
+        return new Function_TRIMSTART(args1, args2);
     }
 
     /**
@@ -2044,8 +2047,11 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRIMEND_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TRIMEND(args1);
+        let exprs = context.expr();
+        let args1 = exprs[0].accept(this);
+        if (exprs.length === 1) return new Function_TRIMEND(args1);
+        let args2 = exprs[1].accept(this);
+        return new Function_TRIMEND(args1, args2);
     }
 
     /**
@@ -2079,9 +2085,11 @@ class MathFunctionVisitor extends mathVisitor  {
      */
     visitJOIN_fun(context) {
         let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_JOIN(args1, args2);
+        let args = new Array(exprs.length);
+        for (let i = 0; i < exprs.length; i++) {
+            args[i] = exprs[i].accept(this);
+        }
+        return new Function_JOIN(args);
     }
 
     /**

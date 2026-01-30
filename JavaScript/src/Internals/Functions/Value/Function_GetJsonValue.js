@@ -23,7 +23,7 @@ class Function_GetJsonValue extends Function_2 {
             }
             let index = op.IntValue - engine.ExcelIndex;
             if (index < obj.ArrayValue.length) {
-                return obj.ArrayValue[index];
+                return Operand.Create(obj.ArrayValue[index]);
             }
             return Operand.Error('ARRARY index {0} greater than maximum length!', index);
         }
