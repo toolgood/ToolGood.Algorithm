@@ -31,10 +31,7 @@ class Function_DEC2OCT extends Function_2 {
         }
         return Operand.Create(num);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'DEC2OCT');
-    }
 }
 
 export { Function_DEC2OCT };
+

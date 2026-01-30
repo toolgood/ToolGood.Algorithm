@@ -42,10 +42,7 @@ class Function_COVAR extends Function_2 {
         let val = sum / list1.length;
         return Operand.Create(val);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Covar');
-    }
 }
 
 export { Function_COVAR };
+

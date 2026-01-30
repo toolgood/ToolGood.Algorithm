@@ -56,14 +56,6 @@ class Function_Div extends Function_2 {
     if (args1.IsNotNumber) { args1 = args1.ToNumber(StringCache.Function_parameter_error, '/', 1); if (args1.IsError) { return args1; } }
     return Operand.Create(args1.NumberValue / args2.NumberValue);
   }
-
-  ToString(stringBuilder, addBrackets) {
-    if (addBrackets) stringBuilder.push('(');
-    this.func1.ToString(stringBuilder, true);
-    stringBuilder.push(' / ');
-    this.func2.ToString(stringBuilder, true);
-    if (addBrackets) stringBuilder.push(')');
-  }
 }
 
 export { Function_Div };

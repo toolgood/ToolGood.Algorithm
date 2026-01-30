@@ -36,7 +36,5 @@ export class Function_GUID extends FunctionBase {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.push('GUID()');
-    }
 }
+

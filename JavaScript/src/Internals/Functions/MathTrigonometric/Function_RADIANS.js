@@ -18,10 +18,7 @@ class Function_RADIANS extends Function_1 {
         let r = args1.DoubleValue / 180 * Math.PI;
         return Operand.Create(r);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Radians');
-    }
 }
 
 export { Function_RADIANS };
+

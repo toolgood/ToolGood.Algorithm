@@ -25,10 +25,7 @@ class Function_ISNULLORERROR extends Function_2 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsNullOrError");
-    }
 }
 
 export { Function_ISNULLORERROR };
+

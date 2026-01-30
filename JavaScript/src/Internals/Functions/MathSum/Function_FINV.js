@@ -46,7 +46,7 @@ class Function_FINV extends Function_3 {
             let fmid;
             const targetP = 1 - p;
             
-            // 二分法迭代
+            // 二分法迭�?
             for (let i = 0; i < 100; i++) {
                 mid = (lower + upper) / 2;
                 fmid = SpecialFunctions.BetaRegularized(degreesFreedom / 2, degreesFreedom2 / 2, degreesFreedom * mid / (degreesFreedom * mid + degreesFreedom2)) - targetP;
@@ -62,14 +62,11 @@ class Function_FINV extends Function_3 {
                 }
             }
             
-            // 如果二分法也失败，返回区间中点
+            // 如果二分法也失败，返回区间中�?
             return Operand.Create((lower + upper) / 2);
         }
-    }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'FInv');
     }
 }
 
 export { Function_FINV };
+

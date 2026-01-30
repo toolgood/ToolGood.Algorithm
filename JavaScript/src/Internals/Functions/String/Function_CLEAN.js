@@ -36,10 +36,7 @@ class Function_CLEAN extends Function_1 {
         }
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Clean');
-    }
 }
 
 export { Function_CLEAN };
+

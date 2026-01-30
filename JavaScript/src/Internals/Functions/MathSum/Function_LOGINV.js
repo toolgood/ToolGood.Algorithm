@@ -36,10 +36,7 @@ class Function_LOGINV extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'LogInv');
-    }
 }
 
 export { Function_LOGINV };
+

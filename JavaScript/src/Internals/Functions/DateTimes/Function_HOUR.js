@@ -19,10 +19,7 @@ class Function_HOUR extends Function_1 {
             return Operand.Error(StringCache.Function_error, "Hour");
         }
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Hour");
-    }
 }
 
 export { Function_HOUR };
+

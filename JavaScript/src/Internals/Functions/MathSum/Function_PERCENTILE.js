@@ -30,10 +30,6 @@ class Function_PERCENTILE extends Function_2 {
         let k = args2.DoubleValue;
         return Operand.Create(ExcelFunctions.Percentile(list.map(q => q), k));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Percentile");
-    }
 }
 
 export { Function_PERCENTILE };

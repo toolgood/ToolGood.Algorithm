@@ -14,20 +14,5 @@ export class Function_N extends FunctionBase {
     Evaluate(work, tempParameter = null) {
         throw new Error('Not implemented');
     }
-    /**
-     * Adds function to string builder
-     * @param {string[]} stringBuilder
-     * @param {string} functionName
-     */
-    AddFunction(stringBuilder, functionName) {
-        stringBuilder.push(functionName);
-        stringBuilder.push('(');
-        for(let i = 0; i < this.funcs.length; i++) {
-            if(i > 0) {
-                stringBuilder.push(', ');
-            }
-            this.funcs[i].ToString(stringBuilder, false);
-        }
-        stringBuilder.push(')');
-    }
 }
+

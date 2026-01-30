@@ -19,10 +19,7 @@ class Function_SECOND extends Function_1 {
             return Operand.Error(StringCache.Function_error, "Second");
         }
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Second");
-    }
 }
 
 export { Function_SECOND };
+

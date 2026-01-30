@@ -72,10 +72,7 @@ class Function_SUBSTITUTE extends Function_4 {
         }
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Substitute');
-    }
 }
 
 export { Function_SUBSTITUTE };
+

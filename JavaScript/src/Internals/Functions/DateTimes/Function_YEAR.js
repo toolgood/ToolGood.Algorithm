@@ -20,9 +20,8 @@ class Function_YEAR extends Function_1 {
         }
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Year");
-    }
+    
 }
 
 export { Function_YEAR };
+

@@ -21,10 +21,7 @@ class Function_URLENCODE extends Function_1 {
             .toLowerCase();
         return Operand.Create(r);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "UrlEncode");
-    }
 }
 
 export { Function_URLENCODE };
+

@@ -35,10 +35,6 @@ class Function_TDIST extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "TDist");
-    }
 }
 
 export { Function_TDIST };

@@ -15,10 +15,7 @@ class Function_EXP extends Function_1 {
         }
         return Operand.Create(Math.exp(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Exp");
-    }
 }
 
 export { Function_EXP };
+

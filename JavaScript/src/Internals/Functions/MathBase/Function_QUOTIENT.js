@@ -24,10 +24,7 @@ class Function_QUOTIENT extends Function_2 {
         }
         return Operand.Create(Math.floor(args1.NumberValue / args2.NumberValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Quotient");
-    }
 }
 
 export { Function_QUOTIENT };
+

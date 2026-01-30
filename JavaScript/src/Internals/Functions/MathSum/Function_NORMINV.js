@@ -32,10 +32,6 @@ class Function_NORMINV extends Function_3 {
         let STDEV = args3.DoubleValue;
         return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "NormInv");
-    }
 }
 
 export { Function_NORMINV };

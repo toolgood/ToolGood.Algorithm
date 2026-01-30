@@ -28,10 +28,6 @@ class Function_TINV extends Function_2 {
         }
         return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "TInv");
-    }
 }
 
 export { Function_TINV };

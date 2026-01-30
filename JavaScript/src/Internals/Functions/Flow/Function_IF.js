@@ -20,10 +20,7 @@ class Function_IF extends Function_3 {
         }
         return this.func3.Evaluate(engine, tempParameter);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IF");
-    }
 }
 
 export { Function_IF };
+

@@ -10,10 +10,7 @@ class Function_NOW extends FunctionBase {
             return Operand.Create(new MyDate(new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours(), new Date().getMinutes(), new Date().getSeconds()))));
         }
     }
-
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.append("Now()");
-    }
 }
 
 export { Function_NOW };
+

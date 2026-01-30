@@ -44,10 +44,6 @@ class Function_PERCENTRANK extends Function_3 {
         }
         return Operand.Create(Math.round(v * Math.pow(10, d)) / Math.pow(10, d));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "PercentRank");
-    }
 }
 
 export { Function_PERCENTRANK };

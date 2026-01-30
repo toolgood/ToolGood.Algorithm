@@ -28,10 +28,7 @@ class Function_PARAM extends Function_2 {
         }
         return result;
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Param');
-    }
+ 
 }
 
 export { Function_PARAM };

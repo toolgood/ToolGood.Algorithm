@@ -18,9 +18,7 @@ class Function_LEN extends Function_1 {
         return Operand.Create(args1.TextValue.length);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Len');
-    }
+
 }
 
 export { Function_LEN };

@@ -50,10 +50,7 @@ class Function_PROPER extends Function_1 {
         }
         return Operand.Create(chars.join(''));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Proper');
-    }
 }
 
 export { Function_PROPER };
+

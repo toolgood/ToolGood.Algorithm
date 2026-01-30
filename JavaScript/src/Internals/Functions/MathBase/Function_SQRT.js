@@ -18,10 +18,7 @@ class Function_SQRT extends Function_1 {
         }
         return Operand.Create(Math.sqrt(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Sqrt");
-    }
 }
 
 export { Function_SQRT };
+

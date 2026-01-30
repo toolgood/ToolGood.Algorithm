@@ -18,10 +18,6 @@ class Function_NORMSINV extends Function_1 {
         let p = args1.DoubleValue;
         return Operand.Create(ExcelFunctions.NormSInv(p));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "NormSInv");
-    }
 }
 
 export { Function_NORMSINV };

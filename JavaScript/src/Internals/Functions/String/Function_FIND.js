@@ -36,10 +36,7 @@ class Function_FIND extends Function_3 {
         let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
         return Operand.Create(p2);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Find');
-    }
 }
 
 export { Function_FIND };
+

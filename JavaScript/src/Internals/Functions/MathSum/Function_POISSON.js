@@ -35,10 +35,6 @@ class Function_POISSON extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Poisson");
-    }
 }
 
 export { Function_POISSON };

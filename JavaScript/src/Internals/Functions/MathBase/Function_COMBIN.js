@@ -32,10 +32,7 @@ class Function_COMBIN extends Function_2 {
         }
         return Operand.Create(sum / sum2);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Combin");
-    }
 }
 
 export { Function_COMBIN };
+

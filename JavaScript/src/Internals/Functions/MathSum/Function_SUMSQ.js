@@ -31,10 +31,6 @@ class Function_SUMSQ extends Function_N {
         }
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "SumSQ");
-    }
 }
 
 export { Function_SUMSQ };

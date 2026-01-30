@@ -20,10 +20,6 @@ class Function_HTMLDECODE extends Function_1 {
         return Operand.Create(r);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "HtmlDecode");
-    }
-
     static HtmlDecode(input) {
         if (input == null) return '';
         return input.toString()
@@ -39,3 +35,4 @@ class Function_HTMLDECODE extends Function_1 {
 }
 
 export { Function_HTMLDECODE };
+

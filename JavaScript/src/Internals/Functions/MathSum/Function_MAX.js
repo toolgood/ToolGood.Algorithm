@@ -29,10 +29,7 @@ class Function_MAX extends Function_N {
 
         return Operand.Create(Math.max(...list));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Max');
-    }
 }
 
 export { Function_MAX };
+

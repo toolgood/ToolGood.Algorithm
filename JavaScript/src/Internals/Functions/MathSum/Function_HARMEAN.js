@@ -39,10 +39,7 @@ class Function_HARMEAN extends Function_N {
         }
         return Operand.Create(list.length / sum);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'HarMean');
-    }
 }
 
 export { Function_HARMEAN };
+

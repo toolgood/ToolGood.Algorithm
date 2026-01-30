@@ -17,10 +17,7 @@ class Function_ATAN extends Function_1 {
         }
         return Operand.Create(Math.atan(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Atan');
-    }
 }
 
 export { Function_ATAN };
+

@@ -28,10 +28,7 @@ class Function_PERMUT extends Function_2 {
         }
         return Operand.Create(sum);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Permut");
-    }
 }
 
 export { Function_PERMUT };
+

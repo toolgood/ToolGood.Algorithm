@@ -30,10 +30,7 @@ class Function_AVERAGE extends Function_N {
         let average = list.reduce((sum, value) => sum + value, 0) / list.length;
         return Operand.Create(average);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Average");
-    }
 }
 
 export { Function_AVERAGE };
+

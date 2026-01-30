@@ -17,10 +17,7 @@ class Function_COS extends Function_1 {
         }
         return Operand.Create(Math.cos(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Cos');
-    }
 }
 
 export { Function_COS };
+

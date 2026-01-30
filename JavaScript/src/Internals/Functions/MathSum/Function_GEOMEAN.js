@@ -35,10 +35,7 @@ class Function_GEOMEAN extends Function_N {
         let geoMean = Math.pow(product, 1.0 / list.length);
         return Operand.Create(geoMean);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'GeoMean');
-    }
 }
 
 export { Function_GEOMEAN };
+

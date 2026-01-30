@@ -20,10 +20,6 @@ class Function_HTMLENCODE extends Function_1 {
         return Operand.Create(r);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "HtmlEncode");
-    }
-
     static HtmlEncode(input) {
         if (input == null) return '';
         return input.toString().replace(/[&<>'"]/g, function (match) {
@@ -40,3 +36,4 @@ class Function_HTMLENCODE extends Function_1 {
 }
 
 export { Function_HTMLENCODE };
+

@@ -78,10 +78,7 @@ class Function_DAYS360 extends Function_3 {
         }
         return Operand.Create(days);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Days360");
-    }
 }
 
 export { Function_DAYS360 };
+

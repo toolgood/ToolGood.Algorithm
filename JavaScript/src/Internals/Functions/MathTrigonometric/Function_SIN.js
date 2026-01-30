@@ -17,10 +17,7 @@ class Function_SIN extends Function_1 {
         }
         return Operand.Create(Math.sin(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Sin');
-    }
 }
 
 export { Function_SIN };
+

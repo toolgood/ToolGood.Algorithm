@@ -16,9 +16,8 @@ class Function_ABS extends Function_1 {
         return Operand.Create(Math.abs(args1.NumberValue));
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Abs");
-    }
+    
 }
 
 export { Function_ABS };
+

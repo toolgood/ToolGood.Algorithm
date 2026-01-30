@@ -81,10 +81,6 @@ class Function_AVERAGEIF extends Function_3 {
         return Operand.Create(sum / count);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AverageIf");
-    }
-
     // 辅助函数：countif
     static countif(list, value, operator = '=') {
         let count = 0;
@@ -107,7 +103,7 @@ class Function_AVERAGEIF extends Function_3 {
         return sum;
     }
 
-    // 辅助函数：比较值
+    // 辅助函数：比较�?
     static compareValues(a, b, operator) {
         switch (operator) {
             case '=':
@@ -143,3 +139,4 @@ class Function_AVERAGEIF extends Function_3 {
 }
 
 export { Function_AVERAGEIF };
+

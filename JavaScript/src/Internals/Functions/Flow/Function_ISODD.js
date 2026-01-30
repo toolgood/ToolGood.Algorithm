@@ -15,10 +15,7 @@ class Function_ISODD extends Function_1 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsOdd");
-    }
 }
 
 export { Function_ISODD };
+

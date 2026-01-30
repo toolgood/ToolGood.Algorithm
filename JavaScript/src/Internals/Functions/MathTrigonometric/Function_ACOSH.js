@@ -21,10 +21,7 @@ class Function_ACOSH extends Function_1 {
         }
         return Operand.Create(Math.acosh(z));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Acosh');
-    }
 }
 
 export { Function_ACOSH };
+

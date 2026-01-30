@@ -33,10 +33,7 @@ class Function_PRODUCT extends Function_N {
         }
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Product");
-    }
 }
 
 export { Function_PRODUCT };
+

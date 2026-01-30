@@ -91,7 +91,5 @@ export class Function_HASVALUE extends Function_2 {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'HasValue');
-    }
 }
+

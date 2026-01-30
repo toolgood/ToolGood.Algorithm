@@ -38,10 +38,7 @@ class Function_SEARCH extends Function_3 {
         let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex) + engine.ExcelIndex;
         return Operand.Create(p2);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Search');
-    }
 }
 
 export { Function_SEARCH };
+

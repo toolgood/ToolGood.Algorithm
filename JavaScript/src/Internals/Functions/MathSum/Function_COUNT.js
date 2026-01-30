@@ -30,12 +30,9 @@ class Function_COUNT extends Function_N {
         }
         return Operand.Create(list.length);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Count');
-    }
 }
 
 
 
 export { Function_COUNT };
+

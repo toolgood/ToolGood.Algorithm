@@ -46,7 +46,5 @@ export class Function_ISREGEX extends Function_2 {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'IsRegex');
-    }
 }
+

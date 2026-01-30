@@ -27,10 +27,7 @@ class Function_ROUNDDOWN extends Function_2 {
         let result = b >= 0 ? Math.floor(b * a) / a : Math.ceil(b * a) / a;
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "RoundDown");
-    }
 }
 
 export { Function_ROUNDDOWN };
+

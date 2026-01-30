@@ -18,10 +18,7 @@ class Function_FISHERINV extends Function_1 {
         let n = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
         return Operand.Create(n);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'FisherInv');
-    }
 }
 
 export { Function_FISHERINV };
+

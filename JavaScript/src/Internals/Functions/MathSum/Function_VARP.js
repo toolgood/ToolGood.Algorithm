@@ -40,10 +40,6 @@ class Function_VARP extends Function_N {
         }
         return Operand.Create(sum / list.length);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "VarP");
-    }
 }
 
 export { Function_VARP };

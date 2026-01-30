@@ -20,10 +20,7 @@ class Function_EVEN extends Function_1 {
         z++;
         return Operand.Create(z);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Even");
-    }
 }
 
 export { Function_EVEN };
+

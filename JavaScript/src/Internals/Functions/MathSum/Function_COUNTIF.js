@@ -45,12 +45,9 @@ class Function_COUNTIF extends Function_2 {
         }
         return Operand.Create(count);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'CountIf');
-    }
 }
 
 
 
 export { Function_COUNTIF };
+

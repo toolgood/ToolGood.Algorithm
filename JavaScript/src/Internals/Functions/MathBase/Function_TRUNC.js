@@ -15,10 +15,7 @@ class Function_TRUNC extends Function_1 {
         }
         return Operand.Create(Math.trunc(args1.NumberValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Trunc");
-    }
 }
 
 export { Function_TRUNC };
+

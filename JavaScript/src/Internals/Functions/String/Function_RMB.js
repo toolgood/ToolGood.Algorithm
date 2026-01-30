@@ -94,9 +94,7 @@ class Function_RMB extends Function_1 {
         return result;
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'RMB');
-    }
+   
 }
 
 export { Function_RMB };

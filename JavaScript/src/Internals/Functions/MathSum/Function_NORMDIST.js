@@ -43,10 +43,7 @@ class Function_NORMDIST extends Function_4 {
         let b = args4.BooleanValue;
         return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'NormDist');
-    }
 }
 
 export { Function_NORMDIST };
+

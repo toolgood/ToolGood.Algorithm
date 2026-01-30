@@ -17,15 +17,7 @@ class Function_AND_N extends Function_N {
     }
     return b ? Operand.True : Operand.False;
   }
-
-  ToString(stringBuilder, addBrackets) {
-    stringBuilder.push('AND(');
-    for (let i = 0; i < this.funcs.length; i++) {
-      if (i > 0) stringBuilder.push(', ');
-      this.funcs[i].ToString(stringBuilder, false);
-    }
-    stringBuilder.push(')');
-  }
+ 
 }
 
 export { Function_AND_N };

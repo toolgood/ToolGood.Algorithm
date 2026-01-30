@@ -45,10 +45,7 @@ class Function_GAMMADIST extends Function_4 {
         }
         return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'GammaDist');
-    }
 }
 
 export { Function_GAMMADIST };
+

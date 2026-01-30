@@ -15,10 +15,7 @@ class Function_ISEVEN extends Function_1 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsEven");
-    }
 }
 
 export { Function_ISEVEN };
+

@@ -19,10 +19,7 @@ class Function_LN extends Function_1 {
         }
         return Operand.Create(Math.log(z));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Ln");
-    }
 }
 
 export { Function_LN };
+

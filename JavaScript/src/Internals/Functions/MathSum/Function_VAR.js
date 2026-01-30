@@ -38,10 +38,6 @@ class Function_VAR extends Function_N {
         }
         return Operand.Create((list.length * sum - sum2 * sum2) / list.length / (list.length - 1));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Var");
-    }
 }
 
 export { Function_VAR };

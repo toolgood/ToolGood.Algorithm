@@ -20,9 +20,6 @@ class Function_Array extends Function_N {
         return result;
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Array');
-    }
 }
 
 export { Function_Array };

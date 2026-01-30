@@ -27,10 +27,7 @@ class Function_ADDMONTHS extends Function_2 {
         date.setMonth(date.getMonth() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AddMonths");
-    }
 }
 
 export { Function_ADDMONTHS };
+

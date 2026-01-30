@@ -38,10 +38,7 @@ class Function_FDIST extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'FDist');
-    }
 }
 
 export { Function_FDIST };
+

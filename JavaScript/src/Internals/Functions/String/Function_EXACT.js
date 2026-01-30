@@ -24,10 +24,7 @@ class Function_EXACT extends Function_2 {
         }
         return Operand.Create(args1.TextValue === args2.TextValue);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Exact');
-    }
 }
 
 export { Function_EXACT };
+

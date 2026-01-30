@@ -38,10 +38,7 @@ class Function_NEGBINOMDIST extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'NegbinomDist');
-    }
 }
 
 export { Function_NEGBINOMDIST };
+

@@ -17,10 +17,7 @@ class Function_TRIM extends Function_1 {
         }
         return Operand.Create(args1.TextValue.trim());
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Trim');
-    }
 }
 
 export { Function_TRIM };
+

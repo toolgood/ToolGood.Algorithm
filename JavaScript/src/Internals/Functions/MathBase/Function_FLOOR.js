@@ -34,10 +34,7 @@ class Function_FLOOR extends Function_2 {
         let d = Math.floor(a / b) * b;
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Floor");
-    }
 }
 
 export { Function_FLOOR };
+

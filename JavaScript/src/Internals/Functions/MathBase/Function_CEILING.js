@@ -35,10 +35,7 @@ class Function_CEILING extends Function_2 {
         let d = Math.ceil(a / b) * b;
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Ceiling");
-    }
 }
 
 export { Function_CEILING };
+

@@ -34,10 +34,7 @@ class Function_TIME extends Function_3 {
         }
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Time");
-    }
 }
 
 export { Function_TIME };
+

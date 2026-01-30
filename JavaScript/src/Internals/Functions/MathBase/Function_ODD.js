@@ -20,10 +20,7 @@ class Function_ODD extends Function_1 {
         z++;
         return Operand.Create(z);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Odd");
-    }
 }
 
 export { Function_ODD };
+

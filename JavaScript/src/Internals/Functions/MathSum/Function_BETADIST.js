@@ -33,12 +33,9 @@ class Function_BETADIST extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'BetaDist');
-    }
 }
 
 
 
 export { Function_BETADIST };
+

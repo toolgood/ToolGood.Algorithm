@@ -41,8 +41,8 @@ class Function_WORKDAY extends Function_N {
         while (days > 0) {
             startMyDate.setDate(startMyDate.getDate() + 1);
             let dayOfWeek = startMyDate.getDay();
-            if (dayOfWeek === 6) continue; // 星期六
-            if (dayOfWeek === 0) continue; // 星期日
+            if (dayOfWeek === 6) continue; // 星期�?
+            if (dayOfWeek === 0) continue; // 星期�?
             // 将当前日期转换为YYYY-MM-DD格式以确保Set能够正确比较
             let currentDateStr = startMyDate.toISOString().split('T')[0];
             if (list.has(currentDateStr)) continue;
@@ -50,10 +50,7 @@ class Function_WORKDAY extends Function_N {
         }
         return Operand.Create(new MyDate(startMyDate));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Workday");
-    }
 }
 
 export { Function_WORKDAY };
+

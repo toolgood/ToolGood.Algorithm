@@ -15,11 +15,7 @@ class Function_Percentage extends Function_1 {
         }
         return Operand.Create(args1.NumberValue / 100.0);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.func1.toString(stringBuilder, false);
-        stringBuilder.append('%');
-    }
 }
 
 export { Function_Percentage };
+

@@ -59,10 +59,6 @@ class Function_SUMIF extends Function_3 {
         }
         return Operand.Create(sum);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "SumIf");
-    }
 }
 
 export { Function_SUMIF };

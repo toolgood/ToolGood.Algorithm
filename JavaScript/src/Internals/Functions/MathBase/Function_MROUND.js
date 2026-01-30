@@ -28,10 +28,7 @@ class Function_MROUND extends Function_2 {
         let r = Math.round(b / a) * a;
         return Operand.Create(r);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "MRound");
-    }
 }
 
 export { Function_MROUND };
+

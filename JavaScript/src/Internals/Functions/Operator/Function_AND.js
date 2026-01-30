@@ -7,9 +7,9 @@ class Function_AND extends Function_2 {
   }
 
   Evaluate(engine, tempParameter)  {
-    // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
-    // 在excel内 AND(x,y) OR(x,y) 先报错，
-    // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
+    // 程序 && and || or �?excel�? AND(x,y) OR(x,y) 有区�?
+    // 在excel�?AND(x,y) OR(x,y) 先报错，
+    // 在程序中�?& and  有true 直接返回true 就不会检测下一个会不会报错
     // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
     let args1 = this.func1.Evaluate(engine, tempParameter);
     if (args1.IsNotBoolean) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
@@ -19,14 +19,6 @@ class Function_AND extends Function_2 {
       return Operand.False;
     }
     return this.func2.Evaluate(engine, tempParameter).ToBoolean();
-  }
-
-  ToString(stringBuilder, addBrackets) {
-    if (addBrackets) stringBuilder.push('(');
-    this.func1.ToString(stringBuilder, false);
-    stringBuilder.push(' && ');
-    this.func2.ToString(stringBuilder, false);
-    if (addBrackets) stringBuilder.push(')');
   }
 }
 

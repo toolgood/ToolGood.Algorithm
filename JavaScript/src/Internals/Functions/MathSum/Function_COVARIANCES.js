@@ -44,10 +44,7 @@ class Function_COVARIANCES extends Function_2 {
         let val = sum / (list1.length - 1);
         return Operand.Create(val);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'CovarIanceS');
-    }
 }
 
 export { Function_COVARIANCES };
+

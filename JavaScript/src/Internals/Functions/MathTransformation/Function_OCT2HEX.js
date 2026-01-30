@@ -35,10 +35,6 @@ class Function_OCT2HEX extends Function_2 {
         }
         return Operand.Create(num);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'OCT2HEX');
-    }
 }
 
 let RegexHelper = {
@@ -46,3 +42,4 @@ let RegexHelper = {
 };
 
 export { Function_OCT2HEX };
+

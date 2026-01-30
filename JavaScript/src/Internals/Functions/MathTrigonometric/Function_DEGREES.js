@@ -19,10 +19,7 @@ class Function_DEGREES extends Function_1 {
         let r = (z / Math.PI * 180);
         return Operand.Create(r);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Degrees');
-    }
 }
 
 export { Function_DEGREES };
+

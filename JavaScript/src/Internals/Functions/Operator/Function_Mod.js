@@ -55,14 +55,6 @@ class Function_Mod extends Function_2 {
 
     return Operand.Create(args1.NumberValue % args2.NumberValue);
   }
-
-  ToString(stringBuilder, addBrackets) {
-    if (addBrackets) stringBuilder.push('(');
-    this.func1.ToString(stringBuilder, true);
-    stringBuilder.push(' % ');
-    this.func2.ToString(stringBuilder, true);
-    if (addBrackets) stringBuilder.push(')');
-  }
 }
 
 export { Function_Mod };

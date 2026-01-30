@@ -25,10 +25,7 @@ class Function_FACT extends Function_1 {
         }
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Fact");
-    }
 }
 
 export { Function_FACT };
+

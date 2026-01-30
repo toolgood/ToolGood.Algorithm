@@ -21,10 +21,7 @@ class Function_FISHER extends Function_1 {
         let n = 0.5 * Math.log((1 + x) / (1 - x));
         return Operand.Create(n);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Fisher');
-    }
 }
 
 export { Function_FISHER };
+

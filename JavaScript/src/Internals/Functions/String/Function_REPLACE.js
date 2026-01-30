@@ -75,10 +75,7 @@ class Function_REPLACE extends Function_4 {
         }
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Replace');
-    }
 }
 
 export { Function_REPLACE };
+

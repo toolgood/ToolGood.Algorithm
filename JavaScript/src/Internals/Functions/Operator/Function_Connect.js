@@ -24,14 +24,6 @@ class Function_Connect extends Function_2 {
 
     return Operand.Create(args1.TextValue + args2.TextValue);
   }
-
-  ToString(stringBuilder, addBrackets) {
-    if (addBrackets) stringBuilder.push('(');
-    this.func1.ToString(stringBuilder, false);
-    stringBuilder.push(' & ');
-    this.func2.ToString(stringBuilder, false);
-    if (addBrackets) stringBuilder.push(')');
-  }
 }
 
 export { Function_Connect };

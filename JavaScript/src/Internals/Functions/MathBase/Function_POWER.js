@@ -20,10 +20,7 @@ class Function_POWER extends Function_2 {
         }
         return Operand.Create(Math.pow(args1.DoubleValue, args2.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Power");
-    }
 }
 
 export { Function_POWER };
+

@@ -23,10 +23,7 @@ class Function_LOG extends Function_2 {
         }
         return Operand.Create(Math.log10(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Log");
-    }
 }
 
 export { Function_LOG };
+

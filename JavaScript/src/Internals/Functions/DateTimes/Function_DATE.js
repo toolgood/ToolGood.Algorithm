@@ -67,10 +67,7 @@ class Function_DATE extends Function_N {
         }
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Date");
-    }
 }
 
 export { Function_DATE };
+

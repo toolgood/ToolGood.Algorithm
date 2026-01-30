@@ -15,10 +15,7 @@ class Function_NOT extends Function_1 {
         }
         return Operand.Create(!args1.BooleanValue);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Not");
-    }
 }
 
 export { Function_NOT };
+

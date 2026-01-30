@@ -17,10 +17,7 @@ class Function_TAN extends Function_1 {
         }
         return Operand.Create(Math.tan(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Tan');
-    }
 }
 
 export { Function_TAN };
+

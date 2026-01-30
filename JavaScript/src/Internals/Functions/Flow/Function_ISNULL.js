@@ -25,10 +25,7 @@ class Function_ISNULL extends Function_2 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsNull");
-    }
 }
 
 export { Function_ISNULL };
+

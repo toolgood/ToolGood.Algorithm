@@ -13,10 +13,7 @@ class Function_ISLOGICAL extends Function_1 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsLogical");
-    }
 }
 
 export { Function_ISLOGICAL };
+

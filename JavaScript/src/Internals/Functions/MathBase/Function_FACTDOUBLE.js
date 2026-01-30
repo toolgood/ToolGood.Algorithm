@@ -24,10 +24,7 @@ class Function_FACTDOUBLE extends Function_1 {
         }
         return Operand.Create(d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "FactDouble");
-    }
 }
 
 export { Function_FACTDOUBLE };
+

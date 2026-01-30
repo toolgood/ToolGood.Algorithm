@@ -12,10 +12,7 @@ class Function_IFERROR extends Function_3 {
         }
         return this.func3.Evaluate(engine, tempParameter);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IfError");
-    }
 }
 
 export { Function_IFERROR };
+

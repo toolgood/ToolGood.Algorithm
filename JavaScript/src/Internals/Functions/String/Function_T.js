@@ -13,10 +13,7 @@ class Function_T extends Function_1 {
         }
         return Operand.Create('');
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'T');
-    }
 }
 
 export { Function_T };
+

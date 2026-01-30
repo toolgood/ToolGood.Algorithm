@@ -27,10 +27,7 @@ class Function_ADDHOURS extends Function_2 {
         date.setHours(date.getHours() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AddHours");
-    }
 }
 
 export { Function_ADDHOURS };
+

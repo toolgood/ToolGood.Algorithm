@@ -31,13 +31,6 @@ class Function_PARAMETER extends FunctionBase {
         return engine.GetParameter(txt);
     }
 
-    toString(stringBuilder, addBrackets) {
-        if (this.name !== undefined && this.name !== null) {
-            stringBuilder.append(this.name);
-        } else {
-            this.func1.toString(stringBuilder, false);
-        }
-    }
 }
 
 export { Function_PARAMETER };

@@ -47,7 +47,7 @@ class Function_NETWORKDAYS extends Function_N {
         let days = 0;
         while (startMyDate <= endMyDate) {
             let dayOfWeek = startMyDate.getDay();
-            if (dayOfWeek !== 0 && dayOfWeek !== 6) { // 0是周日，6是周六
+            if (dayOfWeek !== 0 && dayOfWeek !== 6) { // 0是周日，6是周�?
                 // 将当前日期转换为YYYY-MM-DD格式以确保Set能够正确比较
                 let currentDateStr = startMyDate.toISOString().split('T')[0];
                 if (!list.has(currentDateStr)) {
@@ -58,10 +58,7 @@ class Function_NETWORKDAYS extends Function_N {
         }
         return Operand.Create(days);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "NetWorkdays");
-    }
 }
 
 export { Function_NETWORKDAYS };
+

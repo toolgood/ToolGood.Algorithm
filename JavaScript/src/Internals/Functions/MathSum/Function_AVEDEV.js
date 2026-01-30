@@ -34,10 +34,7 @@ class Function_AVEDEV extends Function_N {
         }
         return Operand.Create(sum / list.length);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AveDev");
-    }
 }
 
 export { Function_AVEDEV };
+

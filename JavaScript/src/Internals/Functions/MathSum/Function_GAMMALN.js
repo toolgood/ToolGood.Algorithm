@@ -17,10 +17,7 @@ class Function_GAMMALN extends Function_1 {
         }
         return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'GammaLn');
-    }
 }
 
 export { Function_GAMMALN };
+

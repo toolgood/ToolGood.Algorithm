@@ -15,10 +15,7 @@ class Function_SQRTPI extends Function_1 {
         }
         return Operand.Create(Math.sqrt(args1.DoubleValue * Math.PI));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "SqrtPI");
-    }
 }
 
 export { Function_SQRTPI };
+

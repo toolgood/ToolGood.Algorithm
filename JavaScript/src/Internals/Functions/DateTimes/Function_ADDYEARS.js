@@ -27,10 +27,7 @@ class Function_ADDYEARS extends Function_2 {
         date.setFullYear(date.getFullYear() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AddYears");
-    }
 }
 
 export { Function_ADDYEARS };
+

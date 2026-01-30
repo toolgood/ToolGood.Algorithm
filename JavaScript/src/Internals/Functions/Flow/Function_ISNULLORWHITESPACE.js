@@ -21,10 +21,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
         }
         return Operand.Create(textArgs.TextValue === null || textArgs.TextValue.trim() === "");
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsNullOrWhiteSpace");
-    }
 }
 
 export { Function_ISNULLORWHITESPACE };
+

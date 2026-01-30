@@ -21,10 +21,7 @@ class Function_SEC extends Function_1 {
         }
         return Operand.Create(1.0 / d);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Sec');
-    }
 }
 
 export { Function_SEC };
+

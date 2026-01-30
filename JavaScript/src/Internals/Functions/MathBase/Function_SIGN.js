@@ -15,10 +15,7 @@ class Function_SIGN extends Function_1 {
         }
         return Operand.Create(Math.sign(args1.NumberValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Sign");
-    }
 }
 
 export { Function_SIGN };
+

@@ -21,10 +21,7 @@ class Function_CODE extends Function_1 {
         let c = args1.TextValue[0];
         return Operand.Create(c.charCodeAt(0));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'CODE');
-    }
 }
 
 export { Function_CODE };
+

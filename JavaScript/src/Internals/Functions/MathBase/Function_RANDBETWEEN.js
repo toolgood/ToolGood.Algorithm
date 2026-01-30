@@ -20,10 +20,7 @@ class Function_RANDBETWEEN extends Function_2 {
         }
         return Operand.Create(Math.random() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "RandBetween");
-    }
 }
 
 export { Function_RANDBETWEEN };
+

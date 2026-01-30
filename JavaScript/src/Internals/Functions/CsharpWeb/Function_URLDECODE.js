@@ -20,10 +20,7 @@ class Function_URLDECODE extends Function_1 {
             .replace(/\+/g, ' ');
         return Operand.Create(r);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "UrlDecode");
-    }
 }
 
 export { Function_URLDECODE };
+

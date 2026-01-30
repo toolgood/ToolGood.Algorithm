@@ -29,10 +29,7 @@ class Function_MIN extends Function_N {
 
         return Operand.Create(Math.min(...list));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Min');
-    }
 }
 
 export { Function_MIN };
+

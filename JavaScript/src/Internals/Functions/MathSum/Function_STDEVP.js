@@ -34,10 +34,6 @@ class Function_STDEVP extends Function_N {
         }
         return Operand.Create(Math.sqrt(sum / list.length));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "StdevP");
-    }
 }
 
 export { Function_STDEVP };

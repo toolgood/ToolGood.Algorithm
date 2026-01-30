@@ -65,14 +65,7 @@ class Function_NE extends Function_2 {
 
     return Operand.Create(args1.NumberValue !== args2.NumberValue);
   }
-
-  ToString(stringBuilder, addBrackets) {
-    if (addBrackets) stringBuilder.push('(');
-    this.func1.ToString(stringBuilder, false);
-    stringBuilder.push(" != ");
-    this.func2.ToString(stringBuilder, false);
-    if (addBrackets) stringBuilder.push(')');
-  }
 }
 
 export { Function_NE };
+

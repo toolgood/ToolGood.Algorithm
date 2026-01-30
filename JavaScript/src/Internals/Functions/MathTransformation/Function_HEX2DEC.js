@@ -22,10 +22,6 @@ class Function_HEX2DEC extends Function_1 {
         let num = parseInt(args1.TextValue, 16);
         return Operand.Create(num);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'HEX2DEC');
-    }
 }
 
 let RegexHelper = {
@@ -33,3 +29,4 @@ let RegexHelper = {
 };
 
 export { Function_HEX2DEC };
+

@@ -33,10 +33,7 @@ class Function_MID extends Function_3 {
         let length = args3.IntValue;
         return Operand.Create(args1.TextValue.substring(startIndex, startIndex + length));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Mid');
-    }
 }
 
 export { Function_MID };
+

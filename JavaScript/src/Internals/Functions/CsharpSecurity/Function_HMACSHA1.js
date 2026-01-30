@@ -59,7 +59,7 @@ export class Function_HMACSHA1 extends Function_3 {
                 buffer = Buffer.from(args1.TextValue, 'utf-8');
             }
             
-            // 使用Node.js的crypto模块计算HMAC-SHA1哈希值
+            // 使用Node.js的crypto模块计算HMAC-SHA1哈希�?
             let hmac = crypto.createHmac('sha1', args2.TextValue);
             hmac.update(buffer);
             let t = hmac.digest('hex').toUpperCase();
@@ -73,7 +73,5 @@ export class Function_HMACSHA1 extends Function_3 {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'HmacSHA1');
-    }
 }
+

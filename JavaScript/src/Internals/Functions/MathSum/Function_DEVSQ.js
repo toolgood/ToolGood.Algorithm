@@ -33,10 +33,7 @@ class Function_DEVSQ extends Function_N {
         }
         return Operand.Create(sum);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'DevSQ');
-    }
 }
 
 export { Function_DEVSQ };
+

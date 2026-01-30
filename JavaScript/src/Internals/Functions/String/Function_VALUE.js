@@ -29,10 +29,7 @@ class Function_VALUE extends Function_1 {
         }
         return Operand.error('Function {0} parameter is error!', 'Value');
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Value');
-    }
 }
 
 export { Function_VALUE };
+

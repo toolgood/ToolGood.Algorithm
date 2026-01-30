@@ -36,10 +36,7 @@ class Function_EXPONDIST extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'ExponDist');
-    }
 }
 
 export { Function_EXPONDIST };
+

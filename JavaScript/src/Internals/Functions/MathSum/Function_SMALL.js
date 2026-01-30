@@ -33,10 +33,6 @@ class Function_SMALL extends Function_2 {
         }
         return Operand.Create(list[k - engine.ExcelIndex]);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Small");
-    }
 }
 
 export { Function_SMALL };

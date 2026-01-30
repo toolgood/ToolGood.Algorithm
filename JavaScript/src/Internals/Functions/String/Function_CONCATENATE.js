@@ -34,10 +34,7 @@ class Function_CONCATENATE extends Function_N {
         }
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Concatenate');
-    }
 }
 
 export { Function_CONCATENATE };
+

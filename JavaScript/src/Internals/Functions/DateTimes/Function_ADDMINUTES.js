@@ -27,10 +27,7 @@ class Function_ADDMINUTES extends Function_2 {
         date.setMinutes(date.getMinutes() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AddMinutes");
-    }
 }
 
 export { Function_ADDMINUTES };
+

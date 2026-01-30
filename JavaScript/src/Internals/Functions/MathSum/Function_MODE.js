@@ -40,10 +40,7 @@ class Function_MODE extends Function_N {
         let sorted = Object.entries(dict).sort((a, b) => b[1] - a[1]);
         return Operand.Create(parseFloat(sorted[0][0]));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Mode');
-    }
 }
 
 export { Function_MODE };
+

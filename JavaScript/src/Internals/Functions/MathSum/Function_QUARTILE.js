@@ -38,10 +38,6 @@ class Function_QUARTILE extends Function_2 {
         let result = ExcelFunctions.Quartile(list, quant);
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Quartile");
-    }
 }
 
 export { Function_QUARTILE };

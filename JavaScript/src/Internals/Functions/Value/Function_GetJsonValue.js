@@ -131,12 +131,7 @@ class Function_GetJsonValue extends Function_2 {
         return Operand.Error('Operator is error!');
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.func1.toString(stringBuilder, false);
-        stringBuilder.append('[');
-        this.func2.toString(stringBuilder, false);
-        stringBuilder.append(']');
-    }
+ 
 }
 
 export { Function_GetJsonValue };

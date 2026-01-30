@@ -15,16 +15,7 @@ class Function_ArrayJson extends Function_N {
         return result;
     }
 
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.append('{');
-        for (let i = 0; i < this.funcs.length; i++) {
-            if (i > 0) {
-                stringBuilder.append(', ');
-            }
-            this.funcs[i].toString(stringBuilder, false);
-        }
-        stringBuilder.append('}');
-    }
+
 }
 
 export { Function_ArrayJson };

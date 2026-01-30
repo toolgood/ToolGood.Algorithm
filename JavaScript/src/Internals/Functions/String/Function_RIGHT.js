@@ -33,10 +33,7 @@ class Function_RIGHT extends Function_2 {
         let start = args1.TextValue.length - length;
         return Operand.Create(args1.TextValue.substring(start, start + length));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Right');
-    }
 }
 
 export { Function_RIGHT };
+

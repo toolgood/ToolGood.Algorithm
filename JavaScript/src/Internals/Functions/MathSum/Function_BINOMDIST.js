@@ -37,12 +37,9 @@ class Function_BINOMDIST extends Function_4 {
         }
         return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'BinomDist');
-    }
 }
 
 
 
 export { Function_BINOMDIST };
+

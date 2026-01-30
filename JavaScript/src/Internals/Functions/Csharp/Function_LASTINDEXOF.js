@@ -74,7 +74,5 @@ export class Function_LASTINDEXOF extends Function_4 {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'LastIndexOf');
-    }
 }
+

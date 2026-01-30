@@ -36,10 +36,7 @@ class Function_LOGNORMDIST extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'LognormDist');
-    }
 }
 
 export { Function_LOGNORMDIST };
+

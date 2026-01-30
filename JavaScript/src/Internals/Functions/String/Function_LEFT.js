@@ -31,10 +31,7 @@ class Function_LEFT extends Function_2 {
         let length = Math.min(args2.IntValue, args1.TextValue.length);
         return Operand.Create(args1.TextValue.substring(0, length));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Left');
-    }
 }
 
 export { Function_LEFT };
+

@@ -35,10 +35,6 @@ class Function_HEX2BIN extends Function_2 {
         }
         return Operand.Create(num);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'HEX2BIN');
-    }
 }
 
 let RegexHelper = {
@@ -46,3 +42,4 @@ let RegexHelper = {
 };
 
 export { Function_HEX2BIN };
+

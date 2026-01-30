@@ -35,10 +35,6 @@ class Function_MULTINOMIAL extends Function_N {
         return Operand.Create(r);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Multinomial");
-    }
-
     // 计算阶乘
     static factorial(n) {
         if (n <= 1) return 1;
@@ -51,3 +47,4 @@ class Function_MULTINOMIAL extends Function_N {
 }
 
 export { Function_MULTINOMIAL };
+

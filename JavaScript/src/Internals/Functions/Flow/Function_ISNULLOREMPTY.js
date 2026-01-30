@@ -21,10 +21,7 @@ class Function_ISNULLOREMPTY extends Function_1 {
         }
         return Operand.Create(textArgs.TextValue === null || textArgs.TextValue === "");
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsNullOrEmpty");
-    }
 }
 
 export { Function_ISNULLOREMPTY };
+

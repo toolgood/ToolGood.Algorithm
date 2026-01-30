@@ -18,10 +18,7 @@ class Function_CHAR extends Function_1 {
         let c = String.fromCharCode(args1.IntValue);
         return Operand.Create(c);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Char');
-    }
 }
 
 export { Function_CHAR };
+

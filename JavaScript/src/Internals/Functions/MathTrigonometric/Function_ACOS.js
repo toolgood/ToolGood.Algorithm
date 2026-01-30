@@ -21,10 +21,7 @@ class Function_ACOS extends Function_1 {
         }
         return Operand.Create(Math.acos(x));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Acos');
-    }
 }
 
 export { Function_ACOS };
+

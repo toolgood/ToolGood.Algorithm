@@ -18,10 +18,7 @@ class Function_ISERROR extends Function_2 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsError");
-    }
 }
 
 export { Function_ISERROR };
+

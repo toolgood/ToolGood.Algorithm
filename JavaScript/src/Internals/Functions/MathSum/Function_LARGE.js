@@ -35,10 +35,7 @@ class Function_LARGE extends Function_2 {
         }
         return Operand.Create(list[k - engine.ExcelIndex]);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Large');
-    }
 }
 
 export { Function_LARGE };
+

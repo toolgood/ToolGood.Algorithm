@@ -26,10 +26,7 @@ class Function_ROUND extends Function_2 {
         let factor = Math.pow(10, decimalPlaces);
         return Operand.Create(Math.round(args1.NumberValue * factor) / factor);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Round");
-    }
 }
 
 export { Function_ROUND };
+

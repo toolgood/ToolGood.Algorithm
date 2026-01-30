@@ -12,10 +12,7 @@ class Function_TODAY extends FunctionBase {
         }
         return Operand.Create(new MyDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), 0, 0, 0));
     }
-
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.append("Today()");
-    }
 }
 
 export { Function_TODAY };
+

@@ -21,10 +21,7 @@ class Function_ASIN extends Function_1 {
         }
         return Operand.Create(Math.asin(x));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Asin');
-    }
 }
 
 export { Function_ASIN };
+

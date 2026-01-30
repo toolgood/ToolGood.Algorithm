@@ -25,10 +25,6 @@ class Function_SUM extends Function_N {
         }
         return Operand.Create(list.reduce((sum, val) => sum + val, 0));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Sum");
-    }
 }
 
 export { Function_SUM };

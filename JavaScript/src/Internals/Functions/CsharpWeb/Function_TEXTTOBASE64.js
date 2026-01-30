@@ -41,10 +41,7 @@ class Function_TEXTTOBASE64 extends Function_2 {
         }
         return Operand.Error(StringCache.Function_error, "TextToBase64");
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "TextToBase64");
-    }
 }
 
 export { Function_TEXTTOBASE64 };
+

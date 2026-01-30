@@ -37,10 +37,7 @@ class Function_GAMMAINV extends Function_3 {
         }
         return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'GammaInv');
-    }
 }
 
 export { Function_GAMMAINV };
+

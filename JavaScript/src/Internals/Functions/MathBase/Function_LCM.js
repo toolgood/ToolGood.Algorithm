@@ -30,10 +30,6 @@ class Function_LCM extends Function_N {
         return Operand.Create(Function_LCM.calculateLCM(list));
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Lcm");
-    }
-
     // 计算多个数字的最小公倍数
     static calculateLCM(numbers) {
         // 计算两个数的GCD
@@ -59,3 +55,4 @@ class Function_LCM extends Function_N {
 }
 
 export { Function_LCM };
+

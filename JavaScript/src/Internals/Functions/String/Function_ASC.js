@@ -43,10 +43,7 @@ class Function_ASC extends Function_1 {
         }
         return chars.join('');
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'ASC');
-    }
 }
 
 export { Function_ASC };
+

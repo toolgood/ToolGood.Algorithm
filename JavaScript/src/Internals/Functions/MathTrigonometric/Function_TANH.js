@@ -17,10 +17,7 @@ class Function_TANH extends Function_1 {
         }
         return Operand.Create(Math.tanh(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Tanh');
-    }
 }
 
 export { Function_TANH };
+

@@ -17,10 +17,7 @@ class Function_COSH extends Function_1 {
         }
         return Operand.Create(Math.cosh(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Cosh');
-    }
 }
 
 export { Function_COSH };
+

@@ -27,10 +27,7 @@ class Function_ADDDAYS extends Function_2 {
         date.setDate(date.getDate() + args2.DoubleValue);
         return Operand.Create(new MyDate(date));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "AddDays");
-    }
 }
 
 export { Function_ADDDAYS };
+

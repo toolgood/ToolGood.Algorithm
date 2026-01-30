@@ -13,7 +13,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {number} def
      * @param {Function} tempParameter
@@ -37,7 +37,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {number} def
      * @param {Function} tempParameter
@@ -61,7 +61,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {boolean} def
      * @param {Function} tempParameter
@@ -85,7 +85,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {string} def
      * @param {Function} tempParameter
@@ -109,7 +109,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {Date} def
      * @param {Function} tempParameter
@@ -133,7 +133,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {Array} def
      * @param {Function} tempParameter
@@ -157,7 +157,7 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认值
+     * 执行函数,如果异常，返回默认�?
      * @param {AlgorithmEngine} work
      * @param {Object} def
      * @param {Function} tempParameter
@@ -185,7 +185,5 @@ export class FunctionBase {
         this.toString(stringBuilder,false);
         return stringBuilder.join("");
     }
-
-    toString(stringBuilder, addBrackets) {
-    }
 }
+

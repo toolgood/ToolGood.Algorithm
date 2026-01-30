@@ -22,10 +22,6 @@ class Function_OCT2DEC extends Function_1 {
         let num = parseInt(args1.TextValue, 8);
         return Operand.Create(num);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'OCT2DEC');
-    }
 }
 
 let RegexHelper = {
@@ -33,3 +29,4 @@ let RegexHelper = {
 };
 
 export { Function_OCT2DEC };
+

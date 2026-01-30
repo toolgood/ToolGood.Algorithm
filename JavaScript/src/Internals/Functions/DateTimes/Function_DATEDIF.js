@@ -90,10 +90,7 @@ class Function_DATEDIF extends Function_3 {
         }
         return Operand.Error(StringCache.Function_parameter_error, "DateDif", 3);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "DateDif");
-    }
 }
 
 export { Function_DATEDIF };
+

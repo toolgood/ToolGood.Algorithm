@@ -45,10 +45,7 @@ class Function_HYPGEOMDIST extends Function_4 {
         }
         return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'HypgeomDist');
-    }
 }
 
 export { Function_HYPGEOMDIST };
+

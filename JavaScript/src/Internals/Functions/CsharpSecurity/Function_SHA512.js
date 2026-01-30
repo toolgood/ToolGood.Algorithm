@@ -51,7 +51,7 @@ export class Function_SHA512 extends Function_2 {
                 buffer = Buffer.from(args1.TextValue, 'utf-8');
             }
             
-            // 使用Node.js的crypto模块计算SHA512哈希值
+            // 使用Node.js的crypto模块计算SHA512哈希�?
             let hash = crypto.createHash('sha512');
             hash.update(buffer);
             let t = hash.digest('hex').toUpperCase();
@@ -65,7 +65,5 @@ export class Function_SHA512 extends Function_2 {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'SHA512');
-    }
 }
+

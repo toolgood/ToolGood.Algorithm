@@ -17,10 +17,7 @@ class Function_UPPER extends Function_1 {
         }
         return Operand.Create(args1.TextValue.toUpperCase());
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Upper');
-    }
 }
 
 export { Function_UPPER };
+

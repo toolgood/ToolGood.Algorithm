@@ -21,10 +21,7 @@ class Function_ATANH extends Function_1 {
         }
         return Operand.Create(Math.atanh(x));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Atanh');
-    }
 }
 
 export { Function_ATANH };
+

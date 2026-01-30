@@ -51,7 +51,7 @@ export class Function_MD5 extends Function_2 {
                 buffer = Buffer.from(args1.TextValue, 'utf-8');
             }
             
-            // 使用Node.js的crypto模块计算MD5哈希值
+            // 使用Node.js的crypto模块计算MD5哈希�?
             let hash = crypto.createHash('md5');
             hash.update(buffer);
             let t = hash.digest('hex').toUpperCase();
@@ -65,7 +65,5 @@ export class Function_MD5 extends Function_2 {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'MD5');
-    }
 }
+

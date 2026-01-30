@@ -19,10 +19,7 @@ class Function_DAY extends Function_1 {
             return Operand.Error(StringCache.Function_error, "Day");
         }
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Day");
-    }
 }
 
 export { Function_DAY };
+

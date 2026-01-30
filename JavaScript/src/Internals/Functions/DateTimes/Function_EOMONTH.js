@@ -21,13 +21,10 @@ class Function_EOMONTH extends Function_2 {
         }
         let dt = new Date(args1.DateValue.ToDateTime().getTime());
         dt.setMonth(dt.getMonth() + args2.IntValue + 1);
-        dt.setDate(0); // 设置为当月的最后一天
+        dt.setDate(0); // 设置为当月的最后一�?
         return Operand.Create(new MyDate(dt));
-    }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "EoMonth");
     }
 }
 
 export { Function_EOMONTH };
+

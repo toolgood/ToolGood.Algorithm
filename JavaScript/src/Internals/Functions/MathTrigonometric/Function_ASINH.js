@@ -17,10 +17,7 @@ class Function_ASINH extends Function_1 {
         }
         return Operand.Create(Math.asinh(args1.DoubleValue));
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Asinh');
-    }
 }
 
 export { Function_ASINH };
+

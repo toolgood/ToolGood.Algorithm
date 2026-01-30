@@ -13,10 +13,7 @@ class Function_ISNUMBER extends Function_1 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsNumber");
-    }
 }
 
 export { Function_ISNUMBER };
+

@@ -73,7 +73,7 @@ export class Function_JOIN extends Function_N {
                         } else if (arrItem.IsBoolean) {
                             list.push(arrItem.BooleanValue);
                         } else {
-                            // 处理原始值
+                            // 处理原始�?
                             list.push(arrItem);
                         }
                     }
@@ -88,7 +88,5 @@ export class Function_JOIN extends Function_N {
      * @param {string[]} stringBuilder
      * @param {boolean} addBrackets
      */
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Join');
-    }
 }
+

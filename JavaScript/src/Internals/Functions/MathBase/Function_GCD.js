@@ -30,10 +30,6 @@ class Function_GCD extends Function_N {
         return Operand.Create(Function_GCD.calculateGCD(list));
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Gcd");
-    }
-
     // 计算多个数字的最大公约数
     static calculateGCD(numbers) {
         // 计算两个数的GCD
@@ -54,3 +50,4 @@ class Function_GCD extends Function_N {
 }
 
 export { Function_GCD };
+

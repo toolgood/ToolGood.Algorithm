@@ -13,10 +13,7 @@ class Function_ISNONTEXT extends Function_1 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsNontext");
-    }
 }
 
 export { Function_ISNONTEXT };
+

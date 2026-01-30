@@ -17,10 +17,7 @@ class Function_LOWER extends Function_1 {
         }
         return Operand.Create(args1.TextValue.toLowerCase());
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Lower');
-    }
 }
 
 export { Function_LOWER };
+

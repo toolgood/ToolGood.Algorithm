@@ -13,10 +13,7 @@ class Function_ISTEXT extends Function_1 {
         }
         return Operand.Create(false);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "IsText");
-    }
 }
 
 export { Function_ISTEXT };
+

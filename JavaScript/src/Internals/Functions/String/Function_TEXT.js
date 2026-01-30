@@ -37,7 +37,7 @@ class Function_TEXT extends Function_2 {
                     const decimalPlaces = format.substring(decimalIndex + 1).length;
                     return Operand.Create(value.toFixed(decimalPlaces));
                 } else {
-                    // 没有小数部分，返回整数
+                    // 没有小数部分，返回整�?
                     return Operand.Create(Math.round(value).toString());
                 }
             }
@@ -45,7 +45,7 @@ class Function_TEXT extends Function_2 {
             // 如果没有匹配的格式，使用默认的toString
             return Operand.Create(value.toString());
         } else if (args1.IsDate) {
-            // 同样，日期格式化可能需要更复杂的处理
+            // 同样，日期格式化可能需要更复杂的处�?
             return Operand.Create(args1.DateValue.toString());
         }
         let args1Text = args1.ToText(StringCache.Function_parameter_error, 'Text', 1);
@@ -54,10 +54,7 @@ class Function_TEXT extends Function_2 {
         }
         return Operand.Create(args1Text.TextValue.toString());
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Text');
-    }
 }
 
 export { Function_TEXT };
+

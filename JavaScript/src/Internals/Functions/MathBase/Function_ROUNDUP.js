@@ -26,10 +26,7 @@ class Function_ROUNDUP extends Function_2 {
         if (b > 0) return Operand.Create(t);
         return Operand.Create(-t);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "RoundUp");
-    }
 }
 
 export { Function_ROUNDUP };
+

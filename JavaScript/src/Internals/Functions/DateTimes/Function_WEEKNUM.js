@@ -20,7 +20,7 @@ class Function_WEEKNUM extends Function_2 {
         let firstDayOfYear = new Date(startDate.getFullYear(), 0, 1);
         let firstDayWeekday = firstDayOfYear.getDay();
         
-        // 计算日期在当年的第几天
+        // 计算日期在当年的第几�?
         let dayOfYear = Math.ceil((startDate - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
         
         let days = dayOfYear + firstDayWeekday;
@@ -38,10 +38,7 @@ class Function_WEEKNUM extends Function_2 {
         let week = Math.ceil(days / 7.0);
         return Operand.Create(week);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "WeekNum");
-    }
 }
 
 export { Function_WEEKNUM };
+

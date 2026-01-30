@@ -38,10 +38,7 @@ class Function_REPT extends Function_2 {
         }
         return Operand.Create(result);
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Rept');
-    }
 }
 
 export { Function_REPT };
+

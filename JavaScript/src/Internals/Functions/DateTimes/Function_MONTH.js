@@ -14,15 +14,12 @@ class Function_MONTH extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return Operand.Create(args1.DateValue.ToDateTime().getMonth() + 1); // JavaScript月份从0开始，需要加1
+            return Operand.Create(args1.DateValue.ToDateTime().getMonth() + 1); // JavaScript月份�?开始，需要加1
         } catch (e) {
             return Operand.Error(StringCache.Function_error, "Month");
         }
     }
-
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "Month");
-    }
 }
 
 export { Function_MONTH };
+

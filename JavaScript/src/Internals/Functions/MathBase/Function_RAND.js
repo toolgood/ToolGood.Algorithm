@@ -9,10 +9,7 @@ class Function_RAND extends FunctionBase {
     Evaluate(engine, tempParameter) {
         return Operand.Create(Math.random());
     }
-
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.push("Rand()");
-    }
 }
 
 export { Function_RAND };
+
