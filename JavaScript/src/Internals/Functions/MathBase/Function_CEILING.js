@@ -1,4 +1,5 @@
 import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_CEILING extends Function_2 {
     constructor(func1, func2) {

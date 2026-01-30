@@ -9,8 +9,8 @@ class Function_SUMSQ extends Function_N {
 
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let i = 0; i < this._args.length; i++) {
-            let aa = this._args[i].Evaluate(engine, tempParameter);
+        for (let i = 0; i < this.funcs.length; i++) {
+            let aa = this.funcs[i].Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }

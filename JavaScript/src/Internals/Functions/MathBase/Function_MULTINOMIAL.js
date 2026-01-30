@@ -1,4 +1,5 @@
 import { Function_N } from '../Function_N.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_MULTINOMIAL extends Function_N {
     constructor(funcs) {
@@ -7,7 +8,7 @@ class Function_MULTINOMIAL extends Function_N {
 
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this._args) {
+        for (let item of this.funcs) {
             let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);

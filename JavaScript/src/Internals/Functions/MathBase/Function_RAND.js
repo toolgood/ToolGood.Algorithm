@@ -1,4 +1,5 @@
 import { FunctionBase } from '../FunctionBase.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_RAND extends FunctionBase {
     constructor() {
@@ -10,7 +11,7 @@ class Function_RAND extends FunctionBase {
     }
 
     toString(stringBuilder, addBrackets) {
-        stringBuilder.append("Rand()");
+        stringBuilder.push("Rand()");
     }
 }
 
