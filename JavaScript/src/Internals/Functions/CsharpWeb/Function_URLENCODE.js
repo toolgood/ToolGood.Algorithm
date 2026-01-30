@@ -1,4 +1,5 @@
 import { Function_1 } from '../Function_1.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_URLENCODE extends Function_1 {
     constructor(func1) {
@@ -14,7 +15,9 @@ class Function_URLENCODE extends Function_1 {
             }
         }
         let s = args1.TextValue;
-        let r = encodeURIComponent(s);
+        let r = encodeURIComponent(s)
+            .replace(/%20/g, '+')
+            .toLowerCase();
         return Operand.Create(r);
     }
 

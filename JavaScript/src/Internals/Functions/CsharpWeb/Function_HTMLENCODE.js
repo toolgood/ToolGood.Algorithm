@@ -24,9 +24,17 @@ class Function_HTMLENCODE extends Function_1 {
     }
 
     static HtmlEncode(input) {
-        let temp = document.createElement('div');
-        temp.textContent = input;
-        return temp.innerHTML;
+        if (input == null) return '';
+        return input.toString().replace(/[&<>'"]/g, function (match) {
+            switch (match) {
+                case '&': return '&amp;';
+                case '<': return '&lt;';
+                case '>': return '&gt;';
+                case '"': return '&quot;';
+                case "'": return '&#39;';
+                default: return match;
+            }
+        });
     }
 }
 

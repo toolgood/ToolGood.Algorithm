@@ -15,7 +15,8 @@ class Function_URLDECODE extends Function_1 {
             }
         }
         let s = args1.TextValue;
-        let r = decodeURIComponent(s);
+        let r = decodeURIComponent(s)
+            .replace(/\+/g, ' ');
         return Operand.Create(r);
     }
 

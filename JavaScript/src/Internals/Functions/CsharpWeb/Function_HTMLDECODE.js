@@ -24,9 +24,16 @@ class Function_HTMLDECODE extends Function_1 {
     }
 
     static HtmlDecode(input) {
-        let temp = document.createElement('div');
-        temp.innerHTML = input;
-        return temp.textContent || temp.innerText || '';
+        if (input == null) return '';
+        return input.toString()
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&#([0-9]+);/g, function (match, dec) {
+                return String.fromCharCode(dec);
+            });
     }
 }
 
