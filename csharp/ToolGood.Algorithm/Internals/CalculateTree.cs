@@ -44,40 +44,6 @@ namespace ToolGood.Algorithm.Internals
 		internal CalculateTree()
 		{
 		}
-
-		/// <summary>
-		/// 解析
-		/// </summary>
-		/// <param name="exp"></param>
-		/// <returns></returns>
-		public static CalculateTree Parse(string exp)
-		{
-			var tree = new CalculateTree();
-			if(string.IsNullOrWhiteSpace(exp)) {
-				tree.Type = CalculateTreeType.Error;
-				tree.ErrorMessage = "exp is null";
-				return tree;
-			}
-			try {
-				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-				var stream = new AntlrCharStream(new AntlrInputStream(exp));
-				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-				var tokens = new CommonTokenStream(lexer);
-				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-				var context = parser.prog();
-				if(antlrErrorTextWriter.IsError) {
-					tree.Type = CalculateTreeType.Error;
-					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
-					return tree;
-				}
-				var visitor = new MathSplitVisitor2();
-				return visitor.Visit(context);
-			} catch(Exception ex) {
-				tree.Type = CalculateTreeType.Error;
-				tree.ErrorMessage = ex.Message;
-			}
-			return tree;
-		}
+		 
 	}
 }
