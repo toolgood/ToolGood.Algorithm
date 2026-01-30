@@ -1,5 +1,6 @@
 import { FunctionBase } from '../FunctionBase.js';
 import { Operand } from '../../../Operand.js';
+import { NumberUnitTypeHelper } from '../../NumberUnitTypeHelper.js';
 
 class Function_NUM extends FunctionBase {
     constructor(func1, func2) {
@@ -10,7 +11,7 @@ class Function_NUM extends FunctionBase {
 
     Evaluate(engine, tempParameter) {
         let dict = NumberUnitTypeHelper.getUnitTypedict();
-        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[this.unit], engine.distanceUnit, engine.areaUnit, engine.volumeUnit, engine.massUnit);
+        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[this.unit], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
         return Operand.Create(d2);
     }
 
