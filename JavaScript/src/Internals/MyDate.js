@@ -4,16 +4,43 @@
 export class MyDate {
     constructor(value, month, day, hour, minute, second) {
         if (month !== undefined && day !== undefined) {
-            // 构造函数重载：年、月、日、时、分、秒
-            let date = new Date(value, month - 1, day, hour || 0, minute || 0, second || 0);
-            this._value = date.getTime() / 86400000;
+            if (value === 0 && month === 0 && day === 0) {
+                // 只有时间部分，按照 C# 逻辑：只计算时间部分的数值
+                let totalSeconds = (hour || 0) * 3600 + (minute || 0) * 60 + (second || 0);
+                this._value = totalSeconds / 86400;
+            } else {
+                // 构造函数重载：年、月、日、时、分、秒
+                let date = new Date(value, month - 1, day, hour || 0, minute || 0, second || 0);
+                // 按照 C# 逻辑：从 1900 年 1 月 1 日开始计算天数
+                let start = new Date(1900, 0, 1);
+                let diffTime = date - start;
+                let diffDays = Math.floor(diffTime / 86400000) + 2;
+                // 正确计算当天的时间部分
+                let dayStart = new Date(value, month - 1, day, 0, 0, 0);
+                let timePart = (date.getTime() - dayStart.getTime()) / 86400000;
+                this._value = diffDays + timePart;
+            }
         } else if (typeof value === 'number') {
             this._value = value;
         } else if (value instanceof Date) {
-            this._value = value.getTime() / 86400000;
+            // 按照 C# 逻辑：从 1900 年 1 月 1 日开始计算天数
+            let start = new Date(1900, 0, 1);
+            let diffTime = value - start;
+            let diffDays = Math.floor(diffTime / 86400000) + 2;
+            // 正确计算当天的时间部分
+            let dayStart = new Date(value.getFullYear(), value.getMonth(), value.getDate(), 0, 0, 0);
+            let timePart = (value.getTime() - dayStart.getTime()) / 86400000;
+            this._value = diffDays + timePart;
         } else if (typeof value === 'string') {
             let date = new Date(value);
-            this._value = date.getTime() / 86400000;
+            // 按照 C# 逻辑：从 1900 年 1 月 1 日开始计算天数
+            let start = new Date(1900, 0, 1);
+            let diffTime = date - start;
+            let diffDays = Math.floor(diffTime / 86400000) + 2;
+            // 正确计算当天的时间部分
+            let dayStart = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+            let timePart = (date.getTime() - dayStart.getTime()) / 86400000;
+            this._value = diffDays + timePart;
         } else {
             this._value = 0;
         }
@@ -31,6 +58,18 @@ export class MyDate {
      * 转换为日期对象
      */
     ToDateTime() {
+        if (this._value > 365) {
+            // 按照 C# 逻辑：从 1900 年 1 月 1 日开始，减去 2 天偏移
+            let start = new Date(1900, 0, 1);
+            let days = Math.floor(this._value) - 2;
+            let date = new Date(start);
+            date.setDate(start.getDate() + days);
+            // 添加小数部分作为时间
+            let fractionalPart = this._value - Math.floor(this._value);
+            let milliseconds = fractionalPart * 86400000;
+            date.setTime(date.getTime() + milliseconds);
+            return date;
+        }
         return new Date(this._value * 86400000);
     }
 

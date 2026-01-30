@@ -1,6 +1,7 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { MyDate } from '../../MyDate.js';
 
 class Function_Add extends Function_2 {
   constructor(func1, func2) {
@@ -59,7 +60,9 @@ class Function_Add extends Function_2 {
     }
     if (args1.IsDate) {
       if (args2.IsDate) {
-        return Operand.Create(args1.DateValue.ToNumber() + args2.DateValue.ToNumber());
+        // 两个日期相加，创建新的 MyDate 对象
+        let totalValue = args1.DateValue.Value + args2.DateValue.Value;
+        return Operand.Create(new MyDate(totalValue));
       }
       if (args2.IsNotNumber) {
         let a2 = args2.ToNumber(`Function '{"+"}' parameter {2} is error!`);
@@ -67,7 +70,9 @@ class Function_Add extends Function_2 {
         args2 = a2;
       }
       if (args2.NumberValue === 0) { return args1; }
-      return Operand.Create(args1.DateValue.ToNumber() + args2.NumberValue);
+      // 日期加数字，创建新的 MyDate 对象
+      let totalValue = args1.DateValue.Value + args2.NumberValue;
+      return Operand.Create(new MyDate(totalValue));
     } else if (args2.IsDate) {
       if (args1.IsNotNumber) {
         let a1 = args1.ToNumber(`Function '{"+"}' parameter {1} is error!`);
@@ -75,7 +80,9 @@ class Function_Add extends Function_2 {
         args1 = a1;
       }
       if (args1.NumberValue === 0) { return args2; }
-      return Operand.Create(args2.DateValue.ToNumber() + args1.NumberValue);
+      // 数字加日期，创建新的 MyDate 对象
+      let totalValue = args1.NumberValue + args2.DateValue.Value;
+      return Operand.Create(new MyDate(totalValue));
     }
     if (args1.IsNotNumber) {
       let a1 = args1.ToNumber(`Function '{"+"}' parameter {1} is error!`);
