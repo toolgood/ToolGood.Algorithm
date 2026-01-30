@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_HOUR extends Function_1 {
@@ -16,7 +17,7 @@ class Function_HOUR extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.getHours());
         } catch (e) {
-            return Operand.Error("StringCache.Function_error1, "Hour"");
+            return Operand.Error(StringCache.Function_error1, "Hour");
         }
     }
 

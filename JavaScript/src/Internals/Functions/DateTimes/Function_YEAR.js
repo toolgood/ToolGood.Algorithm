@@ -17,7 +17,7 @@ class Function_YEAR extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.ToDateTime().getFullYear());
         } catch (e) {
-            return Operand.Error("StringCache.Function_error1, "Year"");
+            return Operand.Error(StringCache.Function_error1, "Year");
         }
     }
 

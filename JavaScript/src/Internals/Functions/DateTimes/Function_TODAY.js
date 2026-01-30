@@ -1,5 +1,6 @@
 import { FunctionBase } from '../FunctionBase.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_TODAY extends FunctionBase {
     Evaluate(engine, tempParameter) {

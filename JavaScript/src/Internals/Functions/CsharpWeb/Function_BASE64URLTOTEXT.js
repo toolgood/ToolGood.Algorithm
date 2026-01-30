@@ -46,7 +46,7 @@ class Function_BASE64URLTOTEXT extends Function_2 {
         } catch (e) {
             // Ignore errors
         }
-        return Operand.Error("StringCache.Function_error1, "Base64UrlToText"");
+        return Operand.Error(StringCache.Function_error1, "Base64UrlToText");
     }
 
     toString(stringBuilder, addBrackets) {

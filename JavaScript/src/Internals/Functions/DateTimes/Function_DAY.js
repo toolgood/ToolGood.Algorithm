@@ -17,7 +17,7 @@ class Function_DAY extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.ToDateTime().getDate());
         } catch (e) {
-            return Operand.Error("StringCache.Function_error1, "Day"");
+            return Operand.Error(StringCache.Function_error1, "Day");
         }
     }
 

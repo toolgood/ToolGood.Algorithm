@@ -181,8 +181,8 @@ export class FunctionBase {
     }
 
     toString(){
-        stringBuilder=[];
-        toString(stringBuilder,false);
+        const stringBuilder=[];
+        this.toString(stringBuilder,false);
         return stringBuilder.join("");
     }
 

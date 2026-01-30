@@ -17,7 +17,7 @@ class Function_MONTH extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.ToDateTime().getMonth() + 1); // JavaScript月份从0开始，需要加1
         } catch (e) {
-            return Operand.Error("StringCache.Function_error1, "Month"");
+            return Operand.Error(StringCache.Function_error1, "Month");
         }
     }
 
