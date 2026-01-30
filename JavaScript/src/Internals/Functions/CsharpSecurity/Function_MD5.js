@@ -67,14 +67,4 @@ export class Function_MD5 extends Function_2 {
     toString(stringBuilder, addBrackets) {
         this.AddFunction(stringBuilder, 'MD5');
     }
-    
-    /**
-     * @param {Uint8Array} buffer
-     * @returns {Promise<string>}
-     */
-    async getMd5String(buffer) {
-        let hashmessage = await crypto.subtle.digest('MD5', buffer);
-        let hashArray = Array.from(new Uint8Array(hashmessage));
-        return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    }
 }

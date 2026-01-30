@@ -67,14 +67,4 @@ export class Function_SHA1 extends Function_2 {
     toString(stringBuilder, addBrackets) {
         this.AddFunction(stringBuilder, 'SHA1');
     }
-    
-    /**
-     * @param {Uint8Array} buffer
-     * @returns {Promise<string>}
-     */
-    async getSha1String(buffer) {
-        let hashmessage = await crypto.subtle.digest('SHA-1', buffer);
-        let hashArray = Array.from(new Uint8Array(hashmessage));
-        return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    }
 }

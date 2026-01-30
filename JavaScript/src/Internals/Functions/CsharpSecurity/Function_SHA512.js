@@ -67,14 +67,4 @@ export class Function_SHA512 extends Function_2 {
     toString(stringBuilder, addBrackets) {
         this.AddFunction(stringBuilder, 'SHA512');
     }
-    
-    /**
-     * @param {Uint8Array} buffer
-     * @returns {Promise<string>}
-     */
-    async getSha512String(buffer) {
-        let hashmessage = await crypto.subtle.digest('SHA-512', buffer);
-        let hashArray = Array.from(new Uint8Array(hashmessage));
-        return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    }
 }

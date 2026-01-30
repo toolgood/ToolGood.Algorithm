@@ -67,14 +67,4 @@ export class Function_SHA256 extends Function_2 {
     toString(stringBuilder, addBrackets) {
         this.AddFunction(stringBuilder, 'SHA256');
     }
-    
-    /**
-     * @param {Uint8Array} buffer
-     * @returns {Promise<string>}
-     */
-    async getSha256String(buffer) {
-        let hashmessage = await crypto.subtle.digest('SHA-256', buffer);
-        let hashArray = Array.from(new Uint8Array(hashmessage));
-        return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    }
 }

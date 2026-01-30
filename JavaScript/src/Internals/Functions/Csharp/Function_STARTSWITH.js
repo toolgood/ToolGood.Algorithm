@@ -37,7 +37,7 @@ export class Function_STARTSWITH extends Function_3 {
         let text = args1.TextValue;
         let prefix = args2.TextValue;
         
-        if (this.func3 === null) {
+        if (this.func3 == null) {
             return Operand.Create(text.startsWith(prefix));
         }
         

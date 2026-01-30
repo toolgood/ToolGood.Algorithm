@@ -26,7 +26,7 @@ export class Function_TRIMEND extends Function_2 {
             }
         }
         
-        if (this.func2 === null) {
+        if (this.func2 == null) {
             return Operand.Create(args1.TextValue.trimEnd());
         }
         
