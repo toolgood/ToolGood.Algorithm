@@ -29,13 +29,9 @@ class Function_PERCENTRANK extends Function_3 {
             return Operand.Error(StringCache.Function_parameter_error2, "PercentRank");
         }
 
-        // 调试代码
-        console.log('PERCENTRANK 输入数组:', list);
-        console.log('PERCENTRANK 查找值:', args2.DoubleValue);
 
         let k = args2.DoubleValue;
         let v = ExcelFunctions.PercentRank(list.map(q => q), k);
-        console.log('PERCENTRANK 结果:', v);
         let d = 3;
         if (this.func3 != null) {
             let args3 = this.func3.Evaluate(engine, tempParameter);
