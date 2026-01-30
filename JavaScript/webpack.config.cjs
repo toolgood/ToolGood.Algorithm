@@ -24,6 +24,13 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js'],
+    fallback: {
+      "crypto": require.resolve("crypto-browserify"),
+      "buffer": require.resolve("buffer/"),
+      "string_decoder": require.resolve("string_decoder/"),
+      "stream": require.resolve("stream-browserify"),
+      "vm": require.resolve("vm-browserify")
+    }
   }
 };

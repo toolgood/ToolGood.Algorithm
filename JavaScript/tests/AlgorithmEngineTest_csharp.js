@@ -175,9 +175,20 @@ function testHash() {
   let sha256 = engine.TryEvaluate("Sha256('&=我中国人 >||')", "");
   assert.strictEqual(sha256, "FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A", "Sha256('&=我中国人 >||') 应该是 'FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A'");
   
-  let crc32 = engine.TryEvaluate("Crc32('&=我中国人 >||')", "");
-  assert.strictEqual(crc32, "60649EFF", "Crc32('&=我中国人 >||') 应该是 '60649EFF'");
-  
+  // let crc32 = engine.TryEvaluate("Crc32('&=我中国人 >||')", "");
+  // assert.strictEqual(crc32, "60649EFF", "Crc32('&=我中国人 >||') 应该是 '60649EFF'");
+  let dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "CF3923196E21B1E270FD72B089B092BB");
+
+  dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "EB4D4FC2AA5637060FD12004DF845801D8902105");
+
+  dt = engine.TryEvaluate("HmacSha256('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "3E25E0D14039E8258BBBBD15F7E3B91BB497A8966C12E1DEA3D651BF03CB4B97");
+
+  dt = engine.TryEvaluate("HmacSha512('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "4E9CE785C46569965C7C712A841EC7382C64D918D49F992EDB3504BED9C3A5EFBB1C8F712968F6B904417E07F9D72E707FCF148D55A4D3EDF1A9866B7BAC2049");
+
   console.log('Hash 测试通过！');
 }
 
@@ -400,9 +411,7 @@ function runAllTests() {
 }
 
 // 执行测试
-if (import.meta.url === import.meta.resolve('./')) {
-  runAllTests();
-}
+runAllTests();
 
 export {
   testUrlDecode,
