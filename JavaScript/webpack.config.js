@@ -1,5 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import webpack from 'webpack';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,7 +61,19 @@ export default {
       "child_process": false
     }
   },
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      },
+      'process': {
+        env: {
+          NODE_ENV: JSON.stringify('production')
+        },
+        version: JSON.stringify('')
+      }
+    })
+  ],
   optimization: {
     minimize: true,
     usedExports: true,
