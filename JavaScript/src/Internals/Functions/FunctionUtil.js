@@ -13,10 +13,13 @@ export var FunctionUtil = {
                 var o = this.F_base_GetList(item.ArrayValue, list);
                 if(!o) { return false; }
             } else if(item.IsJson) {
-                var i = item.ToArray(null);
-                if(i.IsError) { return false; }
-                var o = this.F_base_GetList(i.ArrayValue, list);
+                var array = item.ToArray(null);
+                if(array.IsError) { return false; }
+                var o = this.F_base_GetList(array.ArrayValue, list);
                 if(!o) { return false; }
+            } else if(item.IsNull) {
+                // 跳过空值
+                continue;
             } else {
                 var o = item.ToNumber(null);
                 if(o.IsError) { return false; }

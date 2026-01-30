@@ -24,7 +24,12 @@ class Function_QUARTILE extends Function_2 {
         }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        // 调试代码
+        console.log('args1:', args1);
+        console.log('args1.ArrayValue:', args1.ArrayValue);
+        console.log('args1.ArrayValue.length:', args1.ArrayValue.length);
+        
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) {
             return Operand.Error(StringCache.Function_parameter_error2, "Quartile", 1);
         }
@@ -33,7 +38,15 @@ class Function_QUARTILE extends Function_2 {
         if (quant < 0 || quant > 4) {
             return Operand.Error(StringCache.Function_parameter_error2, "Quartile", 2);
         }
-        return Operand.Create(ExcelFunctions.Quartile(list.map(q => q), quant));
+        
+        // 调试代码
+        console.log('QUARTILE 输入数组:', list);
+        console.log('QUARTILE 分位数:', quant);
+        
+        let result = ExcelFunctions.Quartile(list, quant);
+        console.log('QUARTILE 结果:', result);
+        
+        return Operand.Create(result);
     }
 
     toString(stringBuilder, addBrackets) {

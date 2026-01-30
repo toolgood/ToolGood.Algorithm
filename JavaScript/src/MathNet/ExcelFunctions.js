@@ -17,6 +17,8 @@ import { Binomial } from './Distributions/Binomial.js';
 import { Poisson } from './Distributions/Poisson.js';
 import { Weibull } from './Distributions/Weibull.js';
 import { ArrayStatistics } from './Statistics/ArrayStatistics.js';
+import { Statistics } from './Statistics/Statistics.js';
+import { QuantileDefinition } from './Statistics/QuantileDefinition.js';
 import { SpecialFunctions } from './SpecialFunctions/SpecialFunctions.js';
 
 const ExcelFunctions = {
@@ -172,13 +174,13 @@ const ExcelFunctions = {
                 return ArrayStatistics.Minimum(array);
 
             case 1:
-                return array.QuantileCustom(0.25, 'Excel');
+                return Statistics.QuantileCustom(array, 0.25, QuantileDefinition.R7);
 
             case 2:
-                return array.QuantileCustom(0.5, 'Excel');
+                return Statistics.QuantileCustom(array, 0.5, QuantileDefinition.R7);
 
             case 3:
-                return array.QuantileCustom(0.75, 'Excel');
+                return Statistics.QuantileCustom(array, 0.75, QuantileDefinition.R7);
 
             case 4:
                 return ArrayStatistics.Maximum(array);
@@ -195,7 +197,7 @@ const ExcelFunctions = {
      * @returns {number}
      */
     Percentile: function(array, k) {
-        return array.QuantileCustom(k, 'Excel');
+        return Statistics.QuantileCustom(array, k, QuantileDefinition.R7);
     },
 
     /**
@@ -205,7 +207,7 @@ const ExcelFunctions = {
      * @returns {number}
      */
     PercentRank: function(array, x) {
-        return array.QuantileRank(x);
+        return Statistics.QuantileRank(array, x);
     },
 
     /**

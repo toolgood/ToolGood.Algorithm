@@ -8,12 +8,12 @@ export var ArrayStatistics = {
 
         var min = Number.POSITIVE_INFINITY;
         for (var i = 0; i < data.length; i++) {
-            if (data[i] < min || Number.isNaN(data[i])) {
+            if (!Number.isNaN(data[i]) && data[i] < min) {
                 min = data[i];
             }
         }
 
-        return min;
+        return min === Number.POSITIVE_INFINITY ? Number.NaN : min;
     },
 
     Maximum: function(data) {
@@ -23,12 +23,12 @@ export var ArrayStatistics = {
 
         var max = Number.NEGATIVE_INFINITY;
         for (var i = 0; i < data.length; i++) {
-            if (data[i] > max || Number.isNaN(data[i])) {
+            if (!Number.isNaN(data[i]) && data[i] > max) {
                 max = data[i];
             }
         }
 
-        return max;
+        return max === Number.NEGATIVE_INFINITY ? Number.NaN : max;
     },
 
     QuantileCustomInplace: function(data, tau, definition) {

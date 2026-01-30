@@ -1,6 +1,6 @@
 import { Evaluate } from './Evaluate.js';
 import { Beta } from './Beta.js';
-import { Gamma } from './Gamma.js';
+import { Gamma as GammaUtil } from './Gamma.js';
 
 class SpecialFunctions {
     // Erf implementation arrays
@@ -446,15 +446,15 @@ class SpecialFunctions {
     }
 
     static Gamma(z) {
-        return Gamma.Gamma(z);
+        return GammaUtil.Gamma(z);
     }
 
     static GammaLowerRegularized(a, x) {
-        return Gamma.GammaLowerRegularized(a, x);
+        return GammaUtil.GammaLowerRegularized(a, x);
     }
 
     static GammaLowerRegularizedInv(a, y) {
-        return Gamma.GammaLowerRegularizedInv(a, y);
+        return GammaUtil.GammaLowerRegularizedInv(a, y);
     }
 }
 

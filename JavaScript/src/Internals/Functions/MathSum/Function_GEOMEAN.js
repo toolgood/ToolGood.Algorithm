@@ -25,14 +25,19 @@ class Function_GEOMEAN extends Function_N {
         if (list.length === 0) {
             return Operand.error('Function {0} parameter is error!', 'GeoMean');
         }
+        console.log('GEOMEAN 输入列表:', list);
+        console.log('GEOMEAN 列表长度:', list.length);
         let product = 1.0;
         for (let num of list) {
             if (num <= 0) {
                 return Operand.error('Function {0} parameter is error!', 'GeoMean');
             }
             product *= num;
+            console.log('GEOMEAN 当前乘积:', product);
         }
+        console.log('GEOMEAN 最终乘积:', product);
         let geoMean = Math.pow(product, 1.0 / list.length);
+        console.log('GEOMEAN 计算结果:', geoMean);
         return Operand.Create(geoMean);
     }
 

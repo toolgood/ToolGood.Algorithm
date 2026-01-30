@@ -161,7 +161,9 @@ export class Operand {
      * 创建操作数
      */
     static Create(obj) {
-        if (typeof obj === 'boolean') {
+        if (obj instanceof Operand) {
+            return obj;
+        } else if (typeof obj === 'boolean') {
             return obj ? Operand.True : Operand.False;
         } else if (typeof obj === 'number') {
             if (Number.isInteger(obj)) {

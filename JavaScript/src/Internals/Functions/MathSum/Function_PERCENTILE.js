@@ -23,7 +23,7 @@ class Function_PERCENTILE extends Function_2 {
             args2 = converted2;
         }
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) {
             return Operand.Error(StringCache.Function_parameter_error2, "Percentile", 1);
         }

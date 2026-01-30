@@ -5,13 +5,13 @@ class Evaluate {
      * @param {Array<number>} coefficients - The coefficients of the polynomial, in order from the highest degree to the lowest.
      * @returns {number} The value of the polynomial at the given point.
      */
-    static Polynomial(z, ...coefficients) {
-        if (coefficients.length === 0) {
+    static Polynomial(z, coefficients) {
+        if (!coefficients || coefficients.length === 0) {
             return 0;
         }
 
-        let sum = coefficients[coefficients.length - 1];
-        for (let i = coefficients.length - 2; i >= 0; --i) {
+        let sum = coefficients[0];
+        for (let i = 1; i < coefficients.length; ++i) {
             sum *= z;
             sum += coefficients[i];
         }

@@ -62,19 +62,19 @@ function testQUARTILE() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),0)", 0.0);
+  let quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),0)", 0.1);
   assert.strictEqual(quartile, 1.0, "QUARTILE(array(1,2,3,4,2,2,1,4),0) 应该是 1.0");
   
-  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),1)", 0.0);
+  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),1)", 0.1);
   assert.strictEqual(quartile, 1.75, "QUARTILE(array(1,2,3,4,2,2,1,4),1) 应该是 1.75");
   
-  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),2)", 0.0);
+  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),2)", 0.1);
   assert.strictEqual(quartile, 2.0, "QUARTILE(array(1,2,3,4,2,2,1,4),2) 应该是 2.0");
   
-  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),3)", 0.0);
+  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),3)", 0.1);
   assert.strictEqual(quartile, 3.25, "QUARTILE(array(1,2,3,4,2,2,1,4),3) 应该是 3.25");
   
-  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),4)", 0.0);
+  quartile = engine.TryEvaluate("QUARTILE(array(1,2,3,4,2,2,1,4),4)", 0.1);
   assert.strictEqual(quartile, 4.0, "QUARTILE(array(1,2,3,4,2,2,1,4),4) 应该是 4.0");
   
   console.log('QUARTILE 测试通过！');
@@ -107,7 +107,7 @@ function testPERCENTRANK() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let percentrank = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3)", 0.0);
+  let percentrank = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3)", 0.1);
   assert.strictEqual(percentrank, 0.714, "PERCENTRANK(array(1,2,3,4,2,2,1,4),3) 应该是 0.714");
   
   console.log('PERCENTRANK 测试通过！');
@@ -118,7 +118,7 @@ function testAVERAGE() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let average = engine.TryEvaluate("AVERAGE(1,2,3,4,2,2,1,4)", 0.0);
+  let average = engine.TryEvaluate("AVERAGE(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(average, 2.375, "AVERAGE(1,2,3,4,2,2,1,4) 应该是 2.375");
   
   console.log('AVERAGE 测试通过！');
@@ -129,7 +129,7 @@ function testGEOMEAN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let geomean = engine.TryEvaluate("GEOMEAN(1,2,3,4)", 0.0);
+  let geomean = engine.TryEvaluate("GEOMEAN(1,2,3,4)", 0.1);
   geomean = Math.round(geomean * 1000000) / 1000000;
   assert.strictEqual(geomean, Math.round(2.213363839 * 1000000) / 1000000, "GEOMEAN(1,2,3,4) 应该约等于 2.213363839");
   
@@ -141,7 +141,7 @@ function testHARMEAN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let harmean = engine.TryEvaluate("HARMEAN(1,2,3,4)", 0.0);
+  let harmean = engine.TryEvaluate("HARMEAN(1,2,3,4)", 0.1);
   harmean = Math.round(harmean * 1000000) / 1000000;
   assert.strictEqual(harmean, Math.round(1.92 * 1000000) / 1000000, "HARMEAN(1,2,3,4) 应该约等于 1.92");
   
@@ -164,7 +164,7 @@ function testAVEDEV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let avedev = engine.TryEvaluate("AVEDEV(1,2,3,4,2,2,1,4)", 0.0);
+  let avedev = engine.TryEvaluate("AVEDEV(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(avedev, 0.96875, "AVEDEV(1,2,3,4,2,2,1,4) 应该是 0.96875");
   
   console.log('AVEDEV 测试通过！');
@@ -175,7 +175,7 @@ function testSTDEV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let stdev = engine.TryEvaluate("STDEV(1,2,3,4,2,2,1,4)", 0.0);
+  let stdev = engine.TryEvaluate("STDEV(1,2,3,4,2,2,1,4)", 0.1);
   stdev = Math.round(stdev * 1000000) / 1000000;
   assert.strictEqual(stdev, Math.round(1.187734939 * 1000000) / 1000000, "STDEV(1,2,3,4,2,2,1,4) 应该约等于 1.187734939");
   
@@ -187,7 +187,7 @@ function testSTDEVP() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let stdevp = engine.TryEvaluate("STDEVP(1,2,3,4,2,2,1,4)", 0.0);
+  let stdevp = engine.TryEvaluate("STDEVP(1,2,3,4,2,2,1,4)", 0.1);
   stdevp = Math.round(stdevp * 1000000) / 1000000;
   assert.strictEqual(stdevp, Math.round(1.111024302 * 1000000) / 1000000, "STDEVP(1,2,3,4,2,2,1,4) 应该约等于 1.111024302");
   
@@ -199,7 +199,7 @@ function testDEVSQ() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let devsq = engine.TryEvaluate("DEVSQ(1,2,3,4,2,2,1,4)", 0.0);
+  let devsq = engine.TryEvaluate("DEVSQ(1,2,3,4,2,2,1,4)", 0.1);
   devsq = Math.round(devsq * 1000000) / 1000000;
   assert.strictEqual(devsq, Math.round(9.875 * 1000000) / 1000000, "DEVSQ(1,2,3,4,2,2,1,4) 应该约等于 9.875");
   
@@ -211,7 +211,7 @@ function testVAR() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let varValue = engine.TryEvaluate("VAR(1,2,3,4,2,2,1,4)", 0.0);
+  let varValue = engine.TryEvaluate("VAR(1,2,3,4,2,2,1,4)", 0.1);
   varValue = Math.round(varValue * 1000000) / 1000000;
   assert.strictEqual(varValue, Math.round(1.410714286 * 1000000) / 1000000, "VAR(1,2,3,4,2,2,1,4) 应该约等于 1.410714286");
   
@@ -223,7 +223,7 @@ function testVARP() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let varp = engine.TryEvaluate("VARP(1,2,3,4,2,2,1,4)", 0.0);
+  let varp = engine.TryEvaluate("VARP(1,2,3,4,2,2,1,4)", 0.1);
   varp = Math.round(varp * 1000000) / 1000000;
   assert.strictEqual(varp, Math.round(1.234375 * 1000000) / 1000000, "VARP(1,2,3,4,2,2,1,4) 应该约等于 1.234375");
   

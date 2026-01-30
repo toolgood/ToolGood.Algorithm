@@ -8,14 +8,21 @@ class Function_Array extends Function_N {
 
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
+        console.log('Function_Array.funcs.length:', this.funcs.length);
+        for (let i = 0; i < this.funcs.length; i++) {
+            let item = this.funcs[i];
+            console.log(`Function_Array.item[${i}]:`, item);
             let aa = item.Evaluate(engine, tempParameter);
+            console.log(`Function_Array.aa[${i}]:`, aa);
             if (aa.IsError) {
                 return aa;
             }
             args.push(aa);
         }
-        return Operand.Create(args);
+        console.log('Function_Array.args:', args);
+        let result = Operand.Create(args);
+        console.log('Function_Array.result:', result);
+        return result;
     }
 
     toString(stringBuilder, addBrackets) {
