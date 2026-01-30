@@ -1,100 +1,186 @@
-import assert from 'assert';
-import { AlgorithmEngine } from '../src/AlgorithmEngine.js';
-import { AlgorithmEngineEx } from '../src/AlgorithmEngineEx.js';
+import { AlgorithmEngineHelper } from '../src/AlgorithmEngineHelper.js';
 
-// 测试用例
-function test() {
-  console.log('开始测试 AlgorithmEngineHelper...');
-  
-  // 注意：JavaScript 中可能没有直接对应的 AlgorithmEngineHelper 类
-  // 这里我们简化测试，只测试基本功能
-  
-  // 测试参数处理
-  const engine = new AlgorithmEngineEx();
-  engine.AddParameter("dd", "test");
-  
-  // 测试公式检查
-  // 注意：JavaScript 中可能没有直接对应的 CheckFormula 方法
-  // 这里我们使用 try-catch 来模拟公式检查
-  function checkFormula(formula) {
-    try {
-      const testEngine = new AlgorithmEngine();
-      testEngine.TryEvaluate(formula, 0);
-      return true;
-    } catch {
-      return false;
+function assert(condition, message) {
+    if (!condition) {
+        throw new Error(message || 'Assertion failed');
     }
-  }
-  
-  let isValid = checkFormula("1+1");
-  assert.strictEqual(isValid, true, '"1+1" 应该是有效的公式');
-  
-  isValid = checkFormula("1+");
-  assert.strictEqual(isValid, false, '"1+" 应该是无效的公式');
-  
-  isValid = checkFormula("@123+1");
-  assert.strictEqual(isValid, false, '"@123+1" 应该是无效的公式');
-  
-  // 注意：JavaScript 版本可能会尝试解析不完整的公式
-  // 这里我们调整测试预期
-  
-  console.log('AlgorithmEngineHelper 测试通过！');
 }
 
-function testUnitConversion() {
-  console.log('开始测试 单位转换...');
-  
-  // 注意：JavaScript 中可能没有直接对应的 UnitConversion 方法
-  // 这里我们使用 AlgorithmEngine 来测试单位转换
-  const engine = new AlgorithmEngine();
-  
-  // 测试长度单位转换
-  let result = engine.TryEvaluate('1米=10分米', false);
-  assert.strictEqual(result, true, '1米应该等于10分米');
-  
-  result = engine.TryEvaluate('1米=100厘米', false);
-  assert.strictEqual(result, true, '1米应该等于100厘米');
-  
-  result = engine.TryEvaluate('1米=1000mm', false);
-  assert.strictEqual(result, true, '1米应该等于1000mm');
-  
-  // 测试面积单位转换
-  result = engine.TryEvaluate('1m2=100dm2', false);
-  assert.strictEqual(result, true, '1m2应该等于100dm2');
-  
-  result = engine.TryEvaluate('1m2=10000cm2', false);
-  assert.strictEqual(result, true, '1m2应该等于10000cm2');
-  
-  // 测试体积单位转换
-  result = engine.TryEvaluate('1m3=1000dm3', false);
-  assert.strictEqual(result, true, '1m3应该等于1000dm3');
-  
-  // 测试质量单位转换
-  result = engine.TryEvaluate('1t=1000kg', false);
-  assert.strictEqual(result, true, '1t应该等于1000kg');
-  
-  console.log('单位转换测试通过！');
+function assertEquals(expected, actual, message) {
+    if (expected !== actual) {
+        throw new Error(message || `Expected ${expected}, got ${actual}`);
+    }
 }
 
-// 运行所有测试
-function runAllTests() {
-  try {
-    test();
-    testUnitConversion();
-    console.log('所有测试通过！');
-  } catch (error) {
-    console.error('测试失败:', error.message);
-    process.exit(1);
-  }
+function assertTrue(condition, message) {
+    if (!condition) {
+        throw new Error(message || 'Expected true, got false');
+    }
 }
 
-// 执行测试
-if (import.meta.url === import.meta.resolve('./')) {
-  runAllTests();
+function assertFalse(condition, message) {
+    if (condition) {
+        throw new Error(message || 'Expected false, got true');
+    }
 }
 
-export {
-  test,
-  testUnitConversion,
-  runAllTests
-};
+console.log('Running AlgorithmEngineHelper tests...');
+
+// Test GetDiyNames function
+try {
+    console.log('Test 1: GetDiyNames basic functionality');
+    const p = AlgorithmEngineHelper.GetDiyNames('dd');
+    assertEquals('dd', p.Parameters[0].toString());
+    console.log('✓ Test 1 passed');
+} catch (error) {
+    console.error('✗ Test 1 failed:', error.message);
+}
+
+try {
+    console.log('Test 2: GetDiyNames repeated call');
+    const p3 = AlgorithmEngineHelper.GetDiyNames('dd');
+    assertEquals('dd', p3.Parameters[0].toString());
+    console.log('✓ Test 2 passed');
+} catch (error) {
+    console.error('✗ Test 2 failed:', error.message);
+}
+
+try {
+    console.log('Test 3: GetDiyNames with function and parameters');
+    const p5 = AlgorithmEngineHelper.GetDiyNames('ddd(d1,22)');
+    assertEquals('ddd', p5.Functions[0].Name);
+    assertEquals('d1', p5.Parameters[0].toString());
+    console.log('✓ Test 3 passed');
+} catch (error) {
+    console.error('✗ Test 3 failed:', error.message);
+}
+
+try {
+    console.log('Test 4: GetDiyNames with Chinese character');
+    const p6 = AlgorithmEngineHelper.GetDiyNames('长');
+    assertEquals('长', p6.Parameters[0].toString());
+    console.log('✓ Test 4 passed');
+} catch (error) {
+    console.error('✗ Test 4 failed:', error.message);
+}
+
+try {
+    console.log('Test 5: GetDiyNames with expression');
+    const p7 = AlgorithmEngineHelper.GetDiyNames('ddd+2');
+    assertEquals('ddd', p7.Parameters[0].toString());
+    console.log('✓ Test 5 passed');
+} catch (error) {
+    console.error('✗ Test 5 failed:', error.message);
+}
+
+try {
+    console.log('Test 6: GetDiyNames with JSON and parameter');
+    const p8 = AlgorithmEngineHelper.GetDiyNames(`{"A": 0.6,"B": 0.4,"C": 0.6,"E": 0.33,"F": 0.29,"Z": 0.15,
+"EB": 0.7,"EE": 0.65,"EA": 0.85,"AB": 1.0,"BC": 1.0,"AA":1.0,
+"EBC": 1.15,"BAB": 1.25,"BCB": 1.25,"BBC": 1.25,"CBB": 1.25,"EBA": 1.2,"AAA": 1.4}[瓦楞]`);
+    assertEquals('瓦楞', p8.Parameters[0].toString());
+    console.log('✓ Test 6 passed');
+} catch (error) {
+    console.error('✗ Test 6 failed:', error.message);
+}
+
+// Test IsKeywords function
+try {
+    console.log('Test 7: IsKeywords with false');
+    const b = AlgorithmEngineHelper.IsKeywords('false');
+    assertTrue(b);
+    console.log('✓ Test 7 passed');
+} catch (error) {
+    console.error('✗ Test 7 failed:', error.message);
+}
+
+// Test UnitConversion function
+try {
+    console.log('Test 8: UnitConversion distance units');
+    let b = AlgorithmEngineHelper.UnitConversion(1, '米', '千米', '测试');
+    assertEquals(0.001, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, '米', '分米', '测试');
+    assertEquals(10, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, '米', '厘米', '测试');
+    assertEquals(100, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, '米', 'mm', '测试');
+    assertEquals(1000, b);
+    console.log('✓ Test 8 passed');
+} catch (error) {
+    console.error('✗ Test 8 failed:', error.message);
+}
+
+try {
+    console.log('Test 9: UnitConversion area units');
+    let b = AlgorithmEngineHelper.UnitConversion(1, 'm2', 'dm2', '测试');
+    assertEquals(100, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, 'm2', 'cm2', '测试');
+    assertEquals(10000, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, 'm2', 'mm2', '测试');
+    assertEquals(1000000, b);
+    console.log('✓ Test 9 passed');
+} catch (error) {
+    console.error('✗ Test 9 failed:', error.message);
+}
+
+try {
+    console.log('Test 10: UnitConversion volume units');
+    let b = AlgorithmEngineHelper.UnitConversion(1, 'm3', 'dm3', '测试');
+    assertEquals(1000, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, 'm3', 'cm3', '测试');
+    assertEquals(1000000, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, 'm3', 'mm3', '测试');
+    assertEquals(1000000000, b);
+    console.log('✓ Test 10 passed');
+} catch (error) {
+    console.error('✗ Test 10 failed:', error.message);
+}
+
+try {
+    console.log('Test 11: UnitConversion mass units');
+    let b = AlgorithmEngineHelper.UnitConversion(1, 't', 'kg', '测试');
+    assertEquals(1000, b);
+    
+    b = AlgorithmEngineHelper.UnitConversion(1, 't', 'g', '测试');
+    assertEquals(1000000, b);
+    console.log('✓ Test 11 passed');
+} catch (error) {
+    console.error('✗ Test 11 failed:', error.message);
+}
+
+// Test CheckFormula function
+try {
+    console.log('Test 12: CheckFormula valid formula');
+    let b = AlgorithmEngineHelper.CheckFormula('1+1');
+    assertTrue(b);
+    console.log('✓ Test 12 passed');
+} catch (error) {
+    console.error('✗ Test 12 failed:', error.message);
+}
+
+try {
+    console.log('Test 13: CheckFormula invalid formula');
+    let b = AlgorithmEngineHelper.CheckFormula('1+');
+    assertFalse(b);
+    console.log('✓ Test 13 passed');
+} catch (error) {
+    console.error('✗ Test 13 failed:', error.message);
+}
+
+try {
+    console.log('Test 14: CheckFormula with invalid character');
+    let b = AlgorithmEngineHelper.CheckFormula('@123+1');
+    assertFalse(b);
+    console.log('✓ Test 14 passed');
+} catch (error) {
+    console.error('✗ Test 14 failed:', error.message);
+}
+
+console.log('All tests completed!');

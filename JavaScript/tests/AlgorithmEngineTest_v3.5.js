@@ -188,9 +188,7 @@ function runAllTests() {
 }
 
 // 执行测试
-if (import.meta.url === import.meta.resolve('./')) {
-  runAllTests();
-}
+runAllTests();
 
 export {
   testPARAM,
