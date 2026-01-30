@@ -30,7 +30,7 @@ console.log('Running AlgorithmEngineHelper tests...');
 try {
     console.log('Test 1: GetDiyNames basic functionality');
     const p = AlgorithmEngineHelper.GetDiyNames('dd');
-    assertEquals('dd', p.Parameters[0].toString());
+    assertEquals('dd', p.Parameters[0].Name);
     console.log('✓ Test 1 passed');
 } catch (error) {
     console.error('✗ Test 1 failed:', error.message);
@@ -39,7 +39,7 @@ try {
 try {
     console.log('Test 2: GetDiyNames repeated call');
     const p3 = AlgorithmEngineHelper.GetDiyNames('dd');
-    assertEquals('dd', p3.Parameters[0].toString());
+    assertEquals('dd', p3.Parameters[0].Name);
     console.log('✓ Test 2 passed');
 } catch (error) {
     console.error('✗ Test 2 failed:', error.message);
@@ -49,7 +49,7 @@ try {
     console.log('Test 3: GetDiyNames with function and parameters');
     const p5 = AlgorithmEngineHelper.GetDiyNames('ddd(d1,22)');
     assertEquals('ddd', p5.Functions[0].Name);
-    assertEquals('d1', p5.Parameters[0].toString());
+    assertEquals('d1', p5.Parameters[0].Name);
     console.log('✓ Test 3 passed');
 } catch (error) {
     console.error('✗ Test 3 failed:', error.message);
@@ -58,7 +58,7 @@ try {
 try {
     console.log('Test 4: GetDiyNames with Chinese character');
     const p6 = AlgorithmEngineHelper.GetDiyNames('长');
-    assertEquals('长', p6.Parameters[0].toString());
+    assertEquals('长', p6.Parameters[0].Name);
     console.log('✓ Test 4 passed');
 } catch (error) {
     console.error('✗ Test 4 failed:', error.message);
@@ -67,7 +67,7 @@ try {
 try {
     console.log('Test 5: GetDiyNames with expression');
     const p7 = AlgorithmEngineHelper.GetDiyNames('ddd+2');
-    assertEquals('ddd', p7.Parameters[0].toString());
+    assertEquals('ddd', p7.Parameters[0].Name);
     console.log('✓ Test 5 passed');
 } catch (error) {
     console.error('✗ Test 5 failed:', error.message);
