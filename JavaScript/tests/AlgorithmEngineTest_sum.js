@@ -29,7 +29,7 @@ function testMAX() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let max = engine.TryEvaluate("max(1,2,3,4,2,2,1,4)", 0.0);
+  let max = engine.TryEvaluate("MAX(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(max, 4.0, "max(1,2,3,4,2,2,1,4) 应该是 4.0");
   
   console.log('MAX 测试通过！');
@@ -40,7 +40,7 @@ function testMEDIAN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let median = engine.TryEvaluate("MEDIAN(1,2,3,4,2,2,1,4)", 0.0);
+  let median = engine.TryEvaluate("MEDIAN(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(median, 2.0, "MEDIAN(1,2,3,4,2,2,1,4) 应该是 2.0");
   
   console.log('MEDIAN 测试通过！');
@@ -51,7 +51,7 @@ function testMIN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let min = engine.TryEvaluate("MIN(1,2,3,4,2,2,1,4)", 0.0);
+  let min = engine.TryEvaluate("MIN(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(min, 1.0, "MIN(1,2,3,4,2,2,1,4) 应该是 1.0");
   
   console.log('MIN 测试通过！');
@@ -85,7 +85,7 @@ function testMODE() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let mode = engine.TryEvaluate("MODE(1,2,3,4,2,2,1,4)", 0.0);
+  let mode = engine.TryEvaluate("MODE(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(mode, 2.0, "MODE(1,2,3,4,2,2,1,4) 应该是 2.0");
   
   console.log('MODE 测试通过！');
@@ -96,7 +96,7 @@ function testPERCENTILE() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let percentile = engine.TryEvaluate("PERCENTILE(array(1,2,3,4,2,2,1,4),0.4)", 0.0);
+  let percentile = engine.TryEvaluate("PERCENTILE(array(1,2,3,4,2,2,1,4),0.4)", 0.1);
   assert.strictEqual(percentile, 2.0, "PERCENTILE(array(1,2,3,4,2,2,1,4),0.4) 应该是 2.0");
   
   console.log('PERCENTILE 测试通过！');
@@ -153,7 +153,7 @@ function testCOUNT() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let count = engine.TryEvaluate("COUNT(1,2,3,4,2,2,1,4)", 0.0);
+  let count = engine.TryEvaluate("COUNT(1,2,3,4,2,2,1,4)", 0.1);
   assert.strictEqual(count, 8.0, "COUNT(1,2,3,4,2,2,1,4) 应该是 8.0");
   
   console.log('COUNT 测试通过！');
@@ -235,7 +235,7 @@ function testNORMSDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let normsdist = engine.TryEvaluate("NORMSDIST(1)", 0.0);
+  let normsdist = engine.TryEvaluate("NORMSDIST(1)", 0.1);
   normsdist = Math.round(normsdist * 1000000) / 1000000;
   assert.strictEqual(normsdist, Math.round(0.841344746 * 1000000) / 1000000, "NORMSDIST(1) 应该约等于 0.841344746");
   
@@ -247,11 +247,11 @@ function testNORMDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let normdist = engine.TryEvaluate("NORMDIST(3,8,4,1)", 0.0);
+  let normdist = engine.TryEvaluate("NORMDIST(3,8,4,1)", 0.1);
   normdist = Math.round(normdist * 1000000) / 1000000;
   assert.strictEqual(normdist, Math.round(0.105649774 * 1000000) / 1000000, "NORMDIST(3,8,4,1) 应该约等于 0.105649774");
   
-  normdist = engine.TryEvaluate("NORMDIST(3,8,4,0)", 0.0);
+  normdist = engine.TryEvaluate("NORMDIST(3,8,4,0)", 0.1);
   normdist = Math.round(normdist * 1000000) / 1000000;
   assert.strictEqual(normdist, Math.round(0.045662271 * 1000000) / 1000000, "NORMDIST(3,8,4,0) 应该约等于 0.045662271");
   
@@ -263,7 +263,7 @@ function testNORMINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let norminv = engine.TryEvaluate("NORMINV(0.8,8,3)", 0.0);
+  let norminv = engine.TryEvaluate("NORMINV(0.8,8,3)", 0.1);
   norminv = Math.round(norminv * 1000000) / 1000000;
   assert.strictEqual(norminv, Math.round(10.5248637 * 1000000) / 1000000, "NORMINV(0.8,8,3) 应该约等于 10.5248637");
   
@@ -275,7 +275,7 @@ function testNORMSINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let normsinv = engine.TryEvaluate("NORMSINV(0.3)", 0.0);
+  let normsinv = engine.TryEvaluate("NORMSINV(0.3)", 0.1);
   normsinv = Math.round(normsinv * 1000000) / 1000000;
   assert.strictEqual(normsinv, Math.round(-0.524400513 * 1000000) / 1000000, "NORMSINV(0.3) 应该约等于 -0.524400513");
   
@@ -287,7 +287,7 @@ function testBETADIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let betadist = engine.TryEvaluate("BETADIST(0.5,11,22)", 0.0);
+  let betadist = engine.TryEvaluate("BETADIST(0.5,11,22)", 0.1);
   betadist = Math.round(betadist * 1000000) / 1000000;
   assert.strictEqual(betadist, Math.round(0.97494877 * 1000000) / 1000000, "BETADIST(0.5,11,22) 应该约等于 0.97494877");
   
@@ -299,7 +299,7 @@ function testBETAINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let betainv = engine.TryEvaluate("BETAINV(0.5,23,45)", 0.0);
+  let betainv = engine.TryEvaluate("BETAINV(0.5,23,45)", 0.1);
   betainv = Math.round(betainv * 1000000) / 1000000;
   assert.strictEqual(betainv, Math.round(0.336640759 * 1000000) / 1000000, "BETAINV(0.5,23,45) 应该约等于 0.336640759");
   
@@ -311,11 +311,11 @@ function testBINOMDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let binomdist = engine.TryEvaluate("BINOMDIST(12,45,0.5,0)", 0.0);
+  let binomdist = engine.TryEvaluate("BINOMDIST(12,45,0.5,0)", 0.1);
   binomdist = Math.round(binomdist * 1000000) / 1000000;
   assert.strictEqual(binomdist, Math.round(0.000817409 * 1000000) / 1000000, "BINOMDIST(12,45,0.5,0) 应该约等于 0.000817409");
   
-  binomdist = engine.TryEvaluate("BINOMDIST(12,45,0.5,1)", 0.0);
+  binomdist = engine.TryEvaluate("BINOMDIST(12,45,0.5,1)", 0.1);
   binomdist = Math.round(binomdist * 1000000) / 1000000;
   assert.strictEqual(binomdist, Math.round(0.00122945 * 1000000) / 1000000, "BINOMDIST(12,45,0.5,1) 应该约等于 0.00122945");
   
@@ -327,11 +327,11 @@ function testEXPONDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let expondist = engine.TryEvaluate("EXPONDIST(3,1,0)", 0.0);
+  let expondist = engine.TryEvaluate("EXPONDIST(3,1,0)", 0.1);
   expondist = Math.round(expondist * 1000000) / 1000000;
   assert.strictEqual(expondist, Math.round(0.049787068 * 1000000) / 1000000, "EXPONDIST(3,1,0) 应该约等于 0.049787068");
   
-  expondist = engine.TryEvaluate("EXPONDIST(3,1,1)", 0.0);
+  expondist = engine.TryEvaluate("EXPONDIST(3,1,1)", 0.1);
   expondist = Math.round(expondist * 1000000) / 1000000;
   assert.strictEqual(expondist, Math.round(0.950212932 * 1000000) / 1000000, "EXPONDIST(3,1,1) 应该约等于 0.950212932");
   
@@ -343,7 +343,7 @@ function testFDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let fdist = engine.TryEvaluate("FDIST(0.4,2,3)", 0.0);
+  let fdist = engine.TryEvaluate("FDIST(0.4,2,3)", 0.1);
   fdist = Math.round(fdist * 1000000) / 1000000;
   assert.strictEqual(fdist, Math.round(0.701465776 * 1000000) / 1000000, "FDIST(0.4,2,3) 应该约等于 0.701465776");
   
@@ -355,7 +355,7 @@ function testFINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let finv = engine.TryEvaluate("FINV(0.7,2,3)", 0.0);
+  let finv = engine.TryEvaluate("FINV(0.7,2,3)", 0.1);
   finv = Math.round(finv * 1000000) / 1000000;
   assert.strictEqual(finv, Math.round(0.402651432 * 1000000) / 1000000, "FINV(0.7,2,3) 应该约等于 0.402651432");
   
@@ -367,11 +367,11 @@ function testGAMMADIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let gammadist = engine.TryEvaluate("GAMMADIST(0.5,3,4,0)", 0.0);
+  let gammadist = engine.TryEvaluate("GAMMADIST(0.5,3,4,0)", 0.1);
   gammadist = Math.round(gammadist * 1000000) / 1000000;
   assert.strictEqual(gammadist, Math.round(0.001723627 * 1000000) / 1000000, "GAMMADIST(0.5,3,4,0) 应该约等于 0.001723627");
   
-  gammadist = engine.TryEvaluate("GAMMADIST(0.5,3,4,1)", 0.0);
+  gammadist = engine.TryEvaluate("GAMMADIST(0.5,3,4,1)", 0.1);
   gammadist = Math.round(gammadist * 1000000) / 1000000;
   assert.strictEqual(gammadist, Math.round(0.000296478 * 1000000) / 1000000, "GAMMADIST(0.5,3,4,1) 应该约等于 0.000296478");
   
@@ -383,7 +383,7 @@ function testGAMMAINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let gammainv = engine.TryEvaluate("GAMMAINV(0.2,3,4)", 0.0);
+  let gammainv = engine.TryEvaluate("GAMMAINV(0.2,3,4)", 0.1);
   gammainv = Math.round(gammainv * 1000000) / 1000000;
   assert.strictEqual(gammainv, Math.round(6.140176811 * 1000000) / 1000000, "GAMMAINV(0.2,3,4) 应该约等于 6.140176811");
   
@@ -395,7 +395,7 @@ function testGAMMALN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let gammaln = engine.TryEvaluate("GAMMALN(4)", 0.0);
+  let gammaln = engine.TryEvaluate("GAMMALN(4)", 0.1);
   gammaln = Math.round(gammaln * 1000000) / 1000000;
   assert.strictEqual(gammaln, Math.round(1.791759469 * 1000000) / 1000000, "GAMMALN(4) 应该约等于 1.791759469");
   
@@ -407,7 +407,7 @@ function testHYPGEOMDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let hypgeomdist = engine.TryEvaluate("HYPGEOMDIST(23,45,45,100)", 0.0);
+  let hypgeomdist = engine.TryEvaluate("HYPGEOMDIST(23,45,45,100)", 0.1);
   hypgeomdist = Math.round(hypgeomdist * 1000000) / 1000000;
   assert.strictEqual(hypgeomdist, Math.round(0.08715016 * 1000000) / 1000000, "HYPGEOMDIST(23,45,45,100) 应该约等于 0.08715016");
   
@@ -419,7 +419,7 @@ function testLOGINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let loginv = engine.TryEvaluate("LOGINV(0.1,45,33)", 0.0);
+  let loginv = engine.TryEvaluate("LOGINV(0.1,45,33)", 0.1);
   loginv = Math.round(loginv * 1000000) / 1000000;
   assert.strictEqual(loginv, Math.round(15.01122624 * 1000000) / 1000000, "LOGINV(0.1,45,33) 应该约等于 15.01122624");
   
@@ -431,7 +431,7 @@ function testLOGNORMDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let lognormdist = engine.TryEvaluate("LOGNORMDIST(15,23,45)", 0.0);
+  let lognormdist = engine.TryEvaluate("LOGNORMDIST(15,23,45)", 0.1);
   lognormdist = Math.round(lognormdist * 1000000) / 1000000;
   assert.strictEqual(lognormdist, Math.round(0.326019201 * 1000000) / 1000000, "LOGNORMDIST(15,23,45) 应该约等于 0.326019201");
   
@@ -443,7 +443,7 @@ function testNEGBINOMDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let negbinomdist = engine.TryEvaluate("NEGBINOMDIST(23,45,0.7)", 0.0);
+  let negbinomdist = engine.TryEvaluate("NEGBINOMDIST(23,45,0.7)", 0.1);
   negbinomdist = Math.round(negbinomdist * 1000000) / 1000000;
   assert.strictEqual(negbinomdist, Math.round(0.053463314 * 1000000) / 1000000, "NEGBINOMDIST(23,45,0.7) 应该约等于 0.053463314");
   
@@ -455,11 +455,11 @@ function testPOISSON() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let poisson = engine.TryEvaluate("POISSON(23,23,0)", 0.0);
+  let poisson = engine.TryEvaluate("POISSON(23,23,0)", 0.1);
   poisson = Math.round(poisson * 1000000) / 1000000;
   assert.strictEqual(poisson, Math.round(0.082884384 * 1000000) / 1000000, "POISSON(23,23,0) 应该约等于 0.082884384");
   
-  poisson = engine.TryEvaluate("POISSON(23,23,1)", 0.0);
+  poisson = engine.TryEvaluate("POISSON(23,23,1)", 0.1);
   poisson = Math.round(poisson * 1000000) / 1000000;
   assert.strictEqual(poisson, Math.round(0.555149936 * 1000000) / 1000000, "POISSON(23,23,1) 应该约等于 0.555149936");
   
@@ -471,11 +471,11 @@ function testTDIST() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let tdist = engine.TryEvaluate("TDIST(1.2,24,1)", 0.0);
+  let tdist = engine.TryEvaluate("TDIST(1.2,24,1)", 0.1);
   tdist = Math.round(tdist * 1000000) / 1000000;
   assert.strictEqual(tdist, Math.round(0.120925677 * 1000000) / 1000000, "TDIST(1.2,24,1) 应该约等于 0.120925677");
   
-  tdist = engine.TryEvaluate("TDIST(1.2,24,2)", 0.0);
+  tdist = engine.TryEvaluate("TDIST(1.2,24,2)", 0.1);
   tdist = Math.round(tdist * 1000000) / 1000000;
   assert.strictEqual(tdist, Math.round(0.241851353 * 1000000) / 1000000, "TDIST(1.2,24,2) 应该约等于 0.241851353");
   
@@ -487,7 +487,7 @@ function testTINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let tinv = engine.TryEvaluate("TINV(0.12,23)", 0.0);
+  let tinv = engine.TryEvaluate("TINV(0.12,23)", 0.1);
   tinv = Math.round(tinv * 1000000) / 1000000;
   assert.strictEqual(tinv, Math.round(1.614756561 * 1000000) / 1000000, "TINV(0.12,23) 应该约等于 1.614756561");
   
@@ -499,11 +499,11 @@ function testWEIBULL() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let weibull = engine.TryEvaluate("WEIBULL(1,2,3,1)", 0.0);
+  let weibull = engine.TryEvaluate("WEIBULL(1,2,3,1)", 0.1);
   weibull = Math.round(weibull * 1000000) / 1000000;
   assert.strictEqual(weibull, Math.round(0.105160683 * 1000000) / 1000000, "WEIBULL(1,2,3,1) 应该约等于 0.105160683");
   
-  weibull = engine.TryEvaluate("WEIBULL(1,2,3,0)", 0.0);
+  weibull = engine.TryEvaluate("WEIBULL(1,2,3,0)", 0.1);
   weibull = Math.round(weibull * 1000000) / 1000000;
   assert.strictEqual(weibull, Math.round(0.198853182 * 1000000) / 1000000, "WEIBULL(1,2,3,0) 应该约等于 0.198853182");
   
@@ -515,7 +515,7 @@ function testFISHER() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let fisher = engine.TryEvaluate("FISHER(0.68)", 0.0);
+  let fisher = engine.TryEvaluate("FISHER(0.68)", 0.1);
   fisher = Math.round(fisher * 1000000) / 1000000;
   assert.strictEqual(fisher, Math.round(0.8291140383 * 1000000) / 1000000, "FISHER(0.68) 应该约等于 0.8291140383");
   
@@ -527,7 +527,7 @@ function testFISHERINV() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let fisherinv = engine.TryEvaluate("FISHERINV(0.6)", 0.0);
+  let fisherinv = engine.TryEvaluate("FISHERINV(0.6)", 0.1);
   fisherinv = Math.round(fisherinv * 1000000) / 1000000;
   assert.strictEqual(fisherinv, Math.round(0.537049567 * 1000000) / 1000000, "FISHERINV(0.6) 应该约等于 0.537049567");
   
@@ -539,7 +539,7 @@ function testLARGE() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let large = engine.TryEvaluate("LARGE(array(1,2,3,4,2,2,1,4),3)", 0.0);
+  let large = engine.TryEvaluate("LARGE(array(1,2,3,4,2,2,1,4),3)", 0.1);
   large = Math.round(large * 1000000) / 1000000;
   assert.strictEqual(large, Math.round(3.0 * 1000000) / 1000000, "LARGE(array(1,2,3,4,2,2,1,4),3) 应该是 3.0");
   
@@ -551,7 +551,7 @@ function testSMALL() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let small = engine.TryEvaluate("SMALL(array(1,2,3,4,2,2,1,4),3)", 0.0);
+  let small = engine.TryEvaluate("SMALL(array(1,2,3,4,2,2,1,4),3)", 0.1);
   small = Math.round(small * 1000000) / 1000000;
   assert.strictEqual(small, Math.round(2.0 * 1000000) / 1000000, "SMALL(array(1,2,3,4,2,2,1,4),3) 应该是 2.0");
   
@@ -563,11 +563,11 @@ function testCOVAR() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let covar = engine.TryEvaluate("COVAR(array(3,7,6,11),array(5,15,13,9))", 0.0);
+  let covar = engine.TryEvaluate("COVAR(array(3,7,6,11),array(5,15,13,9))", 0.1);
   covar = Math.round(covar * 1000000) / 1000000;
   assert.strictEqual(covar, Math.round(3.375 * 1000000) / 1000000, "COVAR(array(3,7,6,11),array(5,15,13,9)) 应该约等于 3.375");
   
-  let covarP = engine.TryEvaluate("COVARIANCE.P(array(3,7,6,11),array(5,15,13,9))", 0.0);
+  let covarP = engine.TryEvaluate("COVARIANCE.P(array(3,7,6,11),array(5,15,13,9))", 0.1);
   covarP = Math.round(covarP * 1000000) / 1000000;
   assert.strictEqual(covarP, Math.round(3.375 * 1000000) / 1000000, "COVARIANCE.P(array(3,7,6,11),array(5,15,13,9)) 应该约等于 3.375");
   
@@ -579,7 +579,7 @@ function testCOVARIANCES() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let covariances = engine.TryEvaluate("COVARIANCE.S(array(3,7,6,11),array(5,15,13,9))", 0.0);
+  let covariances = engine.TryEvaluate("COVARIANCE.S(array(3,7,6,11),array(5,15,13,9))", 0.1);
   covariances = Math.round(covariances * 1000000) / 1000000;
   assert.strictEqual(covariances, Math.round(4.5 * 1000000) / 1000000, "COVARIANCE.S(array(3,7,6,11),array(5,15,13,9)) 应该约等于 4.5");
   
@@ -591,22 +591,22 @@ function testCOUNTIF() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'>1')", 0.0);
+  let countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'>1')", 0.1);
   assert.strictEqual(countif, 6.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'>1') 应该是 6.0");
-  
-  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'>=1')", 0.0);
+
+  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'>=1')", 0.1);
   assert.strictEqual(countif, 8.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'>=1') 应该是 8.0");
-  
-  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'!=1')", 0.0);
+
+  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'!=1')", 0.1);
   assert.strictEqual(countif, 6.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'!=1') 应该是 6.0");
-  
-  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'=1')", 0.0);
+
+  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'=1')", 0.1);
   assert.strictEqual(countif, 2.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'=1') 应该是 2.0");
-  
-  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<=1')", 0.0);
+
+  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<=1')", 0.1);
   assert.strictEqual(countif, 2.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'<=1') 应该是 2.0");
-  
-  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<'2')", 0.0);
+
+  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<'2')", 0.1);
   assert.strictEqual(countif, 2.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'<'2') 应该是 2.0");
   
   console.log('COUNTIF 测试通过！');
@@ -617,19 +617,19 @@ function testSUMIF() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>1')", 0.0);
+  let sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>1')", 0.1);
   assert.strictEqual(sumif, 17, "SUMIF(array(1,2,3,4,2,2,1,4),'>1') 应该是 17");
-  
-  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.0);
+
+  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.1);
   assert.strictEqual(sumif, 6, "SUMIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1)) 应该是 6");
-  
-  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>=2',array(1,1,1,1,1,1,1,1))", 0.0);
+
+  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>=2',array(1,1,1,1,1,1,1,1))", 0.1);
   assert.strictEqual(sumif, 6, "SUMIF(array(1,2,3,4,2,2,1,4),'>=2',array(1,1,1,1,1,1,1,1)) 应该是 6");
-  
-  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'<1',array(1,1,1,1,1,1,1,1))", 0.0);
+
+  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'<1',array(1,1,1,1,1,1,1,1))", 0.1);
   assert.strictEqual(sumif, 0, "SUMIF(array(1,2,3,4,2,2,1,4),'<1',array(1,1,1,1,1,1,1,1)) 应该是 0");
-  
-  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'==1',array(1,1,1,1,1,1,1,1))", 0.0);
+
+  sumif = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'==1',array(1,1,1,1,1,1,1,1))", 0.1);
   assert.strictEqual(sumif, 2, "SUMIF(array(1,2,3,4,2,2,1,4),'==1',array(1,1,1,1,1,1,1,1)) 应该是 2");
   
   console.log('SUMIF 测试通过！');
@@ -640,10 +640,10 @@ function testAVERAGEIF() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let averageif = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1')", 0.0);
+  let averageif = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1')", 0.1);
   assert.strictEqual(averageif, 2.833333333, "AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1') 应该是 2.833333333");
   
-  averageif = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.0);
+  averageif = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.1);
   assert.strictEqual(averageif, 1, "AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1)) 应该是 1");
   
   console.log('AVERAGEIF 测试通过！');
