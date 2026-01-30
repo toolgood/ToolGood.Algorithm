@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_NORMSDIST extends Function_1 {
     constructor(func1) {

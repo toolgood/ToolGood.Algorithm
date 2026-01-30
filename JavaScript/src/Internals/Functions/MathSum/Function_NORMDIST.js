@@ -1,5 +1,6 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_NORMDIST extends Function_4 {
     constructor(func1, func2, func3, func4) {
@@ -40,38 +41,7 @@ class Function_NORMDIST extends Function_4 {
         let avg = args2.DoubleValue;
         let STDEV = args3.DoubleValue;
         let b = args4.BooleanValue;
-        return Operand.Create(this.NormDist(num, avg, STDEV, b));
-    }
-
-    NormDist(x, mean, standardDev, cumulative) {
-        if (standardDev <= 0) {
-            return 0;
-        }
-        if (cumulative) {
-            // 正态分布的累积分布函数
-            return this.NORMSDIST((x - mean) / standardDev);
-        } else {
-            // 正态分布的概率密度函数
-            return this.NORMDENSITY(x, mean, standardDev);
-        }
-    }
-
-    // 正态分布的概率密度函数
-    NORMDENSITY(x, mean, standardDev) {
-        let exponent = -0.5 * Math.pow((x - mean) / standardDev, 2);
-        return Math.exp(exponent) / (standardDev * Math.sqrt(2 * Math.PI));
-    }
-
-    // 标准正态分布的累积分布函数（使用近似计算）
-    NORMSDIST(z) {
-        // 使用A&S公式（26.2.17）近似计算标准正态分布的累积分布函数
-        let t = 1.0 / (1.0 + 0.2316419 * Math.abs(z));
-        let d = 0.3989423 * Math.exp(-z * z / 2);
-        let probability = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
-        if (z > 0) {
-            return 1.0 - probability;
-        }
-        return probability;
+        return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
     }
 
     toString(stringBuilder, addBrackets) {

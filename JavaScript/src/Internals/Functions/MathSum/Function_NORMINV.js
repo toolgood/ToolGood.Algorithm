@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_NORMINV extends Function_3 {
     constructor(func1, func2, func3) {

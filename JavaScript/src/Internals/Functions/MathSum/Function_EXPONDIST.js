@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_EXPONDIST extends Function_3 {
     constructor(func1, func2, func3) {
@@ -33,20 +34,7 @@ class Function_EXPONDIST extends Function_3 {
         if (n1 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'ExponDist');
         }
-        return Operand.Create(this.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
-    }
-
-    ExponDist(x, lambda, cumulative) {
-        if (x < 0 || lambda <= 0) {
-            return 0;
-        }
-        if (cumulative) {
-            // 累积分布函数
-            return 1 - Math.exp(-lambda * x);
-        } else {
-            // 概率密度函数
-            return lambda * Math.exp(-lambda * x);
-        }
+        return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
     }
 
     toString(stringBuilder, addBrackets) {

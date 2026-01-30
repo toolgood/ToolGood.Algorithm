@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_LOGNORMDIST extends Function_3 {
     constructor(func1, func2, func3) {
@@ -33,29 +34,7 @@ class Function_LOGNORMDIST extends Function_3 {
         if (n3 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'LognormDist');
         }
-        return Operand.Create(this.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
-    }
-
-    LognormDist(x, mean, stdDev) {
-        if (x <= 0) {
-            return 0;
-        }
-        // 对数正态分布的累积分布函数
-        // LOGNORMDIST(x, mean, stdDev) = NORMSDIST((ln(x) - mean) / stdDev)
-        let z = (Math.log(x) - mean) / stdDev;
-        return this.NORMSDIST(z);
-    }
-
-    // 标准正态分布的累积分布函数（使用近似计算）
-    NORMSDIST(z) {
-        // 使用A&S公式（26.2.17）近似计算标准正态分布的累积分布函数
-        let t = 1.0 / (1.0 + 0.2316419 * Math.abs(z));
-        let d = 0.3989423 * Math.exp(-z * z / 2);
-        let probability = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
-        if (z > 0) {
-            return 1.0 - probability;
-        }
-        return probability;
+        return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
     }
 
     toString(stringBuilder, addBrackets) {

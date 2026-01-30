@@ -1,6 +1,7 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_PERCENTRANK extends Function_3 {
     constructor(func1, func2, func3) {

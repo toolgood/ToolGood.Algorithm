@@ -1,5 +1,6 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_HYPGEOMDIST extends Function_4 {
     constructor(func1, func2, func3, func4) {
@@ -42,37 +43,7 @@ class Function_HYPGEOMDIST extends Function_4 {
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
             return Operand.error('Function {0} parameter is error!', 'HypgeomDist');
         }
-        return Operand.Create(this.HypgeomDist(k, draws, success, population));
-    }
-
-    HypgeomDist(k, draws, success, population) {
-        // 超几何分布的概率质量函数
-        // HYPGEOMDIST(k, draws, success, population) = [C(success, k) * C(population - success, draws - k)] / C(population, draws)
-        if (k < 0 || k > success || k > draws || draws - k > population - success) {
-            return 0;
-        }
-        let numerator = this.Combination(success, k) * this.Combination(population - success, draws - k);
-        let denominator = this.Combination(population, draws);
-        if (denominator === 0) {
-            return 0;
-        }
-        return numerator / denominator;
-    }
-
-    // 计算组合数 C(n, k)
-    Combination(n, k) {
-        if (k < 0 || k > n) {
-            return 0;
-        }
-        if (k === 0 || k === n) {
-            return 1;
-        }
-        k = Math.min(k, n - k); // 利用对称性
-        let result = 1;
-        for (let i = 1; i <= k; i++) {
-            result *= (n - k + i) / i;
-        }
-        return Math.round(result);
+        return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }
 
     toString(stringBuilder, addBrackets) {

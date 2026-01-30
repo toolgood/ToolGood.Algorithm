@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_LOGINV extends Function_3 {
     constructor(func1, func2, func3) {
@@ -33,39 +34,7 @@ class Function_LOGINV extends Function_3 {
         if (n3 < 0.0) {
             return Operand.error('Function {0} parameter is error!', 'LogInv');
         }
-        return Operand.Create(this.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
-    }
-
-    LogInv(p, mean, stdDev) {
-        if (p <= 0 || p >= 1) {
-            return 0;
-        }
-        // 对数正态分布的逆函数
-        // LOGINV(p, mean, stdDev) = exp(mean + stdDev * NORMINV(p))
-        let normInvValue = this.NORMINV(p);
-        return Math.exp(mean + stdDev * normInvValue);
-    }
-
-    // 标准正态分布的逆函数（使用近似计算）
-    NORMINV(p) {
-        if (p <= 0) {
-            return -Infinity;
-        }
-        if (p >= 1) {
-            return Infinity;
-        }
-        if (p === 0.5) {
-            return 0;
-        }
-        // 使用Beasley-Springer-Moro算法近似计算
-        let q = p - 0.5;
-        let r = q * q;
-        let x = q * (((((-39689.01 * r + 220946.0) * r - 275928.6) * r + 138357.7) * r - 30664.52 * r + 2.506628) / (((((-54476.09 * r + 161585.8) * r - 155698.9) * r + 668013.1) * r - 13285.21) * r + 1.0));
-        // 改进近似
-        let e = 0.5 * Math.pow(x, 2) - Math.log(p);
-        let u = e / (1.0 + 0.5 * Math.pow(x, 2));
-        x = x - u * (1.0 + 0.5 * x * u) / (1.0 + u * (1.0 + (2.0 / 3.0) * u));
-        return x;
+        return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
     }
 
     toString(stringBuilder, addBrackets) {

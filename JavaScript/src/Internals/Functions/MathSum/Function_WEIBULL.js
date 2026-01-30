@@ -1,5 +1,6 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
+import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 
 class Function_WEIBULL extends Function_4 {
     constructor(func1, func2, func3, func4) {
