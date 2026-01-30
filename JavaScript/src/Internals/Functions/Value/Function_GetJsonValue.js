@@ -25,80 +25,110 @@ class Function_GetJsonValue extends Function_2 {
             if (index < obj.ArrayValue.length) {
                 return obj.ArrayValue[index];
             }
-            return Operand.error('ARRARY index {0} greater than maximum length!', index);
+            return Operand.Error('ARRARY index {0} greater than maximum length!', index);
         }
+        // 首先尝试作为 ArrayJson 处理
         if (obj.IsArrayJson) {
-                if (op.IsNumber) {
-                    let operand = obj.tryGetValue(op.NumberValue.toString());
-                    if (operand !== undefined) {
-                        return operand;
-                    }
-                    return Operand.error('Parameter name {0} is missing!', op.TextValue);
-                } else if (op.isText) {
-                    let operand = obj.tryGetValue(op.TextValue);
-                    if (operand !== undefined) {
-                        return operand;
-                    }
-                    return Operand.error('Parameter name {0} is missing!', op.TextValue);
+            if (op.IsNumber) {
+                let operand = obj.TryGetValue(op.NumberValue.toString());
+                if (operand !== null) {
+                    return operand;
                 }
-                return Operand.error('Parameter name is missing!');
+                return Operand.Error('Parameter name {0} is missing!', op.TextValue);
+            } else if (op.IsText) {
+                let operand = obj.TryGetValue(op.TextValue);
+                if (operand !== null) {
+                    return operand;
+                }
+                return Operand.Error('Parameter name {0} is missing!', op.TextValue);
             }
+            return Operand.Error('Parameter name is missing!');
+        }
 
+        // 然后尝试作为 Json 处理
         if (obj.IsJson) {
             let json = obj.JsonValue;
-            if (Array.IsArray(json)) {
+            if (json.IsArray) {
                 op = op.ToNumber('JSON parameter index is error!');
                 if (op.IsError) {
                     return op;
                 }
                 let index = op.IntValue - engine.ExcelIndex;
-                if (index < json.length) {
-                    let v = json[index];
-                    if (typeof v === 'string') {
-                        return Operand.Create(v);
+                if (index < json.inst_array.length) {
+                    let v = json.inst_array[index];
+                    if (v.IsString) {
+                        return Operand.Create(v.StringValue);
                     }
-                    if (typeof v === 'boolean') {
-                        return Operand.Create(v);
+                    if (v.IsBoolean) {
+                        return Operand.Create(v.BooleanValue);
                     }
-                    if (typeof v === 'number') {
-                        return Operand.Create(v);
+                    if (v.IsDouble) {
+                        return Operand.Create(v.NumberValue);
                     }
-                    if (typeof v === 'object' && v !== null) {
-                        return Operand.Create(v);
-                    }
-                    if (v === null) {
-                        return Operand.createNull();
+                    if (v.IsNull) {
+                        return Operand.CreateNull();
                     }
                     return Operand.Create(v);
                 }
-                return Operand.error('JSON index {0} greater than maximum length!', index);
-            } else {
+                return Operand.Error('JSON index {0} greater than maximum length!', index);
+            } else if (json.IsObject) {
                 op = op.ToText('JSON parameter name is error!');
                 if (op.IsError) {
                     return op;
                 }
-                let v = json[op.TextValue];
-                if (v !== undefined) {
-                    if (typeof v === 'string') {
-                        return Operand.Create(v);
+                
+                // 尝试直接访问属性
+                let v = json.inst_object[op.TextValue];
+                if (v) {
+                    if (v.IsString) {
+                        return Operand.Create(v.StringValue);
                     }
-                    if (typeof v === 'boolean') {
-                        return Operand.Create(v);
+                    if (v.IsBoolean) {
+                        return Operand.Create(v.BooleanValue);
                     }
-                    if (typeof v === 'number') {
-                        return Operand.Create(v);
+                    if (v.IsDouble) {
+                        return Operand.Create(v.NumberValue);
                     }
-                    if (typeof v === 'object' && v !== null) {
-                        return Operand.Create(v);
+                    if (v.IsNull) {
+                        return Operand.CreateNull();
                     }
-                    if (v === null) {
-                        return Operand.createNull();
+                    return Operand.Create(v);
+                }
+                
+                // 尝试访问带引号的属性
+                let quotedKey = '"' + op.TextValue + '"';
+                v = json.inst_object[quotedKey];
+                if (v) {
+                    if (v.IsString) {
+                        return Operand.Create(v.StringValue);
+                    }
+                    if (v.IsBoolean) {
+                        return Operand.Create(v.BooleanValue);
+                    }
+                    if (v.IsDouble) {
+                        return Operand.Create(v.NumberValue);
+                    }
+                    if (v.IsNull) {
+                        return Operand.CreateNull();
                     }
                     return Operand.Create(v);
                 }
             }
         }
-        return Operand.error('Operator is error!');
+        
+        // 最后尝试作为普通对象处理
+        if (typeof obj._value === 'object' && obj._value !== null) {
+            op = op.ToText('Parameter name is error!');
+            if (op.IsError) {
+                return op;
+            }
+            
+            let v = obj._value[op.TextValue];
+            if (v !== undefined) {
+                return Operand.Create(v);
+            }
+        }
+        return Operand.Error('Operator is error!');
     }
 
     toString(stringBuilder, addBrackets) {

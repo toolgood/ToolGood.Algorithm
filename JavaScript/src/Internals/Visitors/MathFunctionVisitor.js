@@ -2180,8 +2180,61 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitArrayJson_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ArrayJson(args1);
+        let exprs = context.arrayJson();
+        let args = new Array(exprs.length);
+        for (let i = 0; i < exprs.length; i++) {
+            args[i] = exprs[i].accept(this);
+        }
+        return new Function_ArrayJson(args);
+    }
+    visitArrayJson(context) {
+        let keyName = null;
+        if (context.NUM) {
+            let numContext = context.NUM();
+            if (numContext) {
+                let numText = numContext.getText ? numContext.getText() : numContext.text;
+                let key = parseInt(numText);
+                if (!isNaN(key)) {
+                    keyName = key.toString();
+                } else {
+                    return new Function_Value(Operand.Error(`Json key '${numText}' is error!`));
+                }
+            }
+        }
+        if (context.STRING) {
+            let stringContext = context.STRING();
+            if (stringContext) {
+                let opd = stringContext.getText ? stringContext.getText() : stringContext.text;
+                let sb = [];
+                let index = 1;
+                while (index < opd.length - 1) {
+                    let c = opd[index++];
+                    if (c === '\\') {
+                        let c2 = opd[index++];
+                        if (c2 === 'n') sb.push('\n');
+                        else if (c2 === 'r') sb.push('\r');
+                        else if (c2 === 't') sb.push('\t');
+                        else if (c2 === '0') sb.push('\0');
+                        else if (c2 === 'v') sb.push('\v');
+                        else if (c2 === 'a') sb.push('\a');
+                        else if (c2 === 'b') sb.push('\b');
+                        else if (c2 === 'f') sb.push('\f');
+                        else sb.push(opd[index++]);
+                    } else {
+                        sb.push(c);
+                    }
+                }
+                keyName = sb.join('');
+            }
+        }
+        if (context.parameter2) {
+            let paramContext = context.parameter2();
+            if (paramContext) {
+                keyName = paramContext.getText ? paramContext.getText() : paramContext.text;
+            }
+        }
+        let f = context.expr().accept(this);
+        return new Function_ArrayJsonItem(keyName, f);
     }
 
     /**

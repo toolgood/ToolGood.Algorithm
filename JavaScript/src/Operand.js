@@ -560,6 +560,8 @@ class OperandJson extends Operand {
     get IsNotJson() { return false; }
     get Type() { return OperandType.JSON; }
     get JsonValue() { return this._value; }
+    get IsArrayJson() { return true; }
+    get IsNotArrayJson() { return false; }
 
     ToText(errorMessage = null) {
         return Operand.Create(this._value.toString());
@@ -611,6 +613,27 @@ class OperandJson extends Operand {
     ToJson(errorMessage = null) {
         return this;
     }
+    
+    TryGetValue(key) {
+        if (this.JsonValue.IsObject) {
+            const value = this.JsonValue.inst_object[key];
+            if (value) {
+                if (value.IsString) {
+                    return Operand.Create(value.StringValue);
+                } else if (value.IsBoolean) {
+                    return Operand.Create(value.BooleanValue);
+                } else if (value.IsDouble) {
+                    return Operand.Create(value.NumberValue);
+                } else if (value.IsNull) {
+                    return Operand.CreateNull();
+                } else {
+                    return Operand.Create(value);
+                }
+            }
+        }
+        return null;
+    }
+    
     toString() {
         return this._value.toString();
     }
@@ -730,8 +753,8 @@ class OperandKeyValueList extends Operand {
 
     TryGetValue(key) {
         for (const item of this.TextList) {
-            if (item.Key === key.toString()) {
-                return item.Value;
+            if (item.key === key.toString()) {
+                return item.value;
             }
         }
         return null;
@@ -739,7 +762,7 @@ class OperandKeyValueList extends Operand {
 
     ContainsKey(value) {
         for (const item of this.TextList) {
-            if (value.TextValue === item.Key) {
+            if (value.TextValue === item.value) {
                 return true;
             }
         }

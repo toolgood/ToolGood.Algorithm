@@ -10,7 +10,7 @@ class Function_ArrayJson extends Function_N {
         let result = new OperandKeyValueList();
         for (let item of this.funcs) {
             let o = item.Evaluate(engine, tempParameter);
-            result.addValue(o.value);
+            result.AddValue(o._value);
         }
         return result;
     }
