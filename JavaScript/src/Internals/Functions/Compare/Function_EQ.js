@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_EQ extends Function_2 {
   constructor(func1, func2) {
@@ -30,7 +31,7 @@ class Function_EQ extends Function_2 {
       } else if (args1.IsNull) {
         return Operand.True;
       } else {
-        return Operand.Error("Function '==' compare is error.");
+        return Operand.Error(StringCache.Function_compare_error, "==");
       }
     } else if (args1.IsNull || args2.IsNull) {
       return Operand.False;
@@ -46,18 +47,18 @@ class Function_EQ extends Function_2 {
         let a1 = args1.ToText();
         return Operand.Create(a1.TextValue === args2.TextValue);
       } else {
-        return Operand.Error("Function '==' compare is error.");
+        return Operand.Error(StringCache.Function_compare_error, "==");
       }
     } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
-      return Operand.Error("Function '==' compare is error.");
+      return Operand.Error(StringCache.Function_compare_error, "==");
     }
     if (args1.IsNotNumber) {
-      let a1 = args1.ToNumber(`Function '==' parameter 1 is error!`);
+      let a1 = args1.ToNumber(StringCache.Function_parameter_error1, "==", 1);
       if (a1.IsError) { return a1; }
       args1 = a1;
     }
     if (args2.IsNotNumber) {
-      let a2 = args2.ToNumber(`Function '==' parameter 2 is error!`);
+      let a2 = args2.ToNumber(StringCache.Function_parameter_error1, "==", 2);
       if (a2.IsError) { return a2; }
       args2 = a2;
     }

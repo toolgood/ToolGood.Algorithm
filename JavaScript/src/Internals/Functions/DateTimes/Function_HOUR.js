@@ -16,7 +16,7 @@ class Function_HOUR extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.getHours());
         } catch (e) {
-            return Operand.Error("Function 'Hour' is error!");
+            return Operand.Error("StringCache.Function_error1, "Hour"");
         }
     }
 

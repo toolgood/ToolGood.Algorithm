@@ -40,7 +40,7 @@ class Function_TEXTTOBASE64 extends Function_2 {
         } catch (e) {
             // Ignore errors
         }
-        return Operand.Error("Function 'TextToBase64' is error!");
+        return Operand.Error("StringCache.Function_error1, "TextToBase64"");
     }
 
     toString(stringBuilder, addBrackets) {

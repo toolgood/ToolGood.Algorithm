@@ -16,7 +16,7 @@ class Function_SECOND extends Function_1 {
         try {
             return Operand.Create(args1.DateValue.getSeconds());
         } catch (e) {
-            return Operand.Error("Function 'Second' is error!");
+            return Operand.Error("StringCache.Function_error1, "Second"");
         }
     }
 
