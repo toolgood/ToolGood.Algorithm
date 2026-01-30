@@ -1,6 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import { StringCache } from '../../StringCache.js';
 
 class Function_LOWER extends Function_1 {
     constructor(func1) {
@@ -10,7 +10,7 @@ class Function_LOWER extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText('Function {0} parameter is error!', 'Lower');
+            args1 = args1.ToText(StringCache.Function_parameter_1_error, 'Lower');
             if (args1.IsError) {
                 return args1;
             }
