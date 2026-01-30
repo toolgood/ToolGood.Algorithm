@@ -1,10 +1,8 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using System.Collections;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
-using static Antlr4.Runtime.Atn.SemanticContext;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {

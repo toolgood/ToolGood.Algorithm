@@ -35,20 +35,15 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetHmacMd5String(byte[] buffer, string secret)
 		{
-#if WebAssembly
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-            return MD5.hmac_md5(buffer, keyByte);
-#else
 			byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
 			using(var hmacsha256 = new HMACMD5(keyByte)) {
 				byte[] hashmessage = hmacsha256.ComputeHash(buffer);
 #if NETSTANDARD2_1
 				return BitConverter.ToString(hashmessage).Replace("-", "");
 #else
-                return Convert.ToHexString(hashmessage);
+				return Convert.ToHexString(hashmessage);
 #endif
 			}
-#endif
 		}
 	}
 
