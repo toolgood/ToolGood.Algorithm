@@ -1,4 +1,5 @@
 import { Function_1 } from '../Function_1.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SQRTPI extends Function_1 {
     constructor(func1) {
@@ -8,7 +9,7 @@ class Function_SQRTPI extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber("Function {0} parameter is error!", "SqrtPI");
+            args1 = args1.ToNumber(StringCache.Function_parameter_error2, "SqrtPI");
             if (args1.IsError) { return args1; }
         }
         return Operand.Create(Math.sqrt(args1.DoubleValue * Math.PI));

@@ -2,6 +2,7 @@ import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import * as crypto from 'crypto';
 import * as iconv from 'iconv-lite';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_HMACSHA256
@@ -23,14 +24,14 @@ export class Function_HMACSHA256 extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText("Function {0} parameter {1} is error!", 'HmacSHA256', 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error2, 'HmacSHA256', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText("Function {0} parameter {1} is error!", 'HmacSHA256', 2);
+            args2 = args2.ToText(StringCache.Function_parameter_error2, 'HmacSHA256', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -41,7 +42,7 @@ export class Function_HMACSHA256 extends Function_3 {
             if (this.func3 !== undefined && this.func3 !== null) {
                 let args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.IsNotText) {
-                    args3 = args3.ToText("Function {0} parameter {1} is error!", 'HmacSHA256', 3);
+                    args3 = args3.ToText(StringCache.Function_parameter_error2, 'HmacSHA256', 3);
                     if (args3.IsError) {
                         return args3;
                     }

@@ -1,6 +1,7 @@
 import { Function_N } from '../Function_N.js';
 import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_JOIN
@@ -39,17 +40,17 @@ export class Function_JOIN extends Function_N {
             let list = [];
             let o = FunctionUtil.f_base_GetList(args1, list);
             if (!o) {
-                return Operand.Error("Function {0} parameter {1} is error!", 'Join', 1);
+                return Operand.Error(StringCache.Function_parameter_error2, 'Join', 1);
             }
             
-            let args2 = args[1].ToText("Function {0} parameter {1} is error!", 'Join', 2);
+            let args2 = args[1].ToText(StringCache.Function_parameter_error2, 'Join', 2);
             if (args2.IsError) {
                 return args2;
             }
             
             return Operand.Create(list.join(args2.TextValue));
         } else {
-            args1 = args1.ToText("Function {0} parameter {1} is error!", 'Join', 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error2, 'Join', 1);
             if (args1.IsError) {
                 return args1;
             }

@@ -1,5 +1,6 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_CONCATENATE extends Function_N {
     constructor(funcs) {
@@ -13,7 +14,7 @@ class Function_CONCATENATE extends Function_N {
         if (this.funcs.length === 1) {
             let a = this.funcs[0].Evaluate(work, tempParameter);
             if (a.IsNotText) {
-                a.ToText("Function {0} parameter {1} is error!", 'Concatenate', 1);
+                a.ToText(StringCache.Function_parameter_error2, 'Concatenate', 1);
                 if (a.IsError) {
                     return a;
                 }
@@ -24,7 +25,7 @@ class Function_CONCATENATE extends Function_N {
         for (let i = 0; i < this.funcs.length; i++) {
             let a = this.funcs[i].Evaluate(work, tempParameter);
             if (a.IsNotText) {
-                a.ToText("Function {0} parameter {1} is error!", 'Concatenate', i + 1);
+                a.ToText(StringCache.Function_parameter_error2, 'Concatenate', i + 1);
                 if (a.IsError) {
                     return a;
                 }

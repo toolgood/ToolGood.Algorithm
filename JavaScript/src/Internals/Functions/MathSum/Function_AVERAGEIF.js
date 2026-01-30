@@ -1,4 +1,5 @@
 import { Function_3 } from '../Function_3.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_AVERAGEIF extends Function_3 {
     constructor(func1, func2, func3) {
@@ -21,7 +22,7 @@ class Function_AVERAGEIF extends Function_3 {
         } else if (args1.IsNumber) {
             list.push(args1.NumberValue);
         } else {
-            return Operand.Error("Function {0} parameter {1} is error!", "AverageIf", 1);
+            return Operand.Error(StringCache.Function_parameter_error2, "AverageIf", 1);
         }
 
         let sumdbs;
@@ -38,7 +39,7 @@ class Function_AVERAGEIF extends Function_3 {
             } else if (args3.IsNumber) {
                 sumdbs.push(args3.NumberValue);
             } else {
-                return Operand.Error("Function {0} parameter {1} is error!", "AverageIf", 3);
+                return Operand.Error(StringCache.Function_parameter_error2, "AverageIf", 3);
             }
         } else {
             sumdbs = list;
@@ -64,11 +65,11 @@ class Function_AVERAGEIF extends Function_3 {
                         count = Function_AVERAGEIF.countif(list, matchResult[0], matchResult[1]);
                         sum = Function_AVERAGEIF.sumif(list, matchResult[0], matchResult[1], sumdbs);
                     } else {
-                        return Operand.Error("Function {0} parameter {1} is error!", "AverageIf", 2);
+                        return Operand.Error(StringCache.Function_parameter_error2, "AverageIf", 2);
                     }
                 }
             } else {
-                return Operand.Error("Function {0} parameter {1} is error!", "AverageIf", 2);
+                return Operand.Error(StringCache.Function_parameter_error2, "AverageIf", 2);
             }
         }
 

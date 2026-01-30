@@ -1,5 +1,6 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_LCM extends Function_N {
     constructor(funcs) {
@@ -17,13 +18,13 @@ class Function_LCM extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error("Function {0} parameter is error!", "Lcm");
+                return Operand.Error(StringCache.Function_parameter_error2, "Lcm");
             }
             list.push(arg.NumberValue);
         }
 
         if (list.length === 0) {
-            return Operand.Error("Function {0} parameter is error!", "Lcm");
+            return Operand.Error(StringCache.Function_parameter_error2, "Lcm");
         }
 
         return Operand.Create(Function_LCM.calculateLCM(list));

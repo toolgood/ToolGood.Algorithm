@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { MyDate } from '../../MyDate.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SECOND extends Function_1 {
     constructor(func1) {
@@ -9,7 +10,7 @@ class Function_SECOND extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate("Function {0} parameter is error!", "Second");
+            args1 = args1.ToMyDate(StringCache.Function_parameter_error2, "Second");
             if (args1.IsError) { return args1; }
         }
         try {

@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FACTDOUBLE extends Function_1 {
     constructor(func1) {
@@ -9,12 +10,12 @@ class Function_FACTDOUBLE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber("Function {0} parameter is error!", "FactDouble");
+            args1 = args1.ToNumber(StringCache.Function_parameter_error2, "FactDouble");
             if (args1.IsError) { return args1; }
         }
         let z = args1.IntValue;
         if (z < 0) {
-            return Operand.Error("Function {0} parameter is error!", "FactDouble");
+            return Operand.Error(StringCache.Function_parameter_error2, "FactDouble");
         }
 
         let d = 1;

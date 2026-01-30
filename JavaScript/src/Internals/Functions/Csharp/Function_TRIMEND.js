@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_TRIMEND
@@ -20,7 +21,7 @@ export class Function_TRIMEND extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText("Function {0} parameter {1} is error!", 'TrimEnd', 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error2, 'TrimEnd', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -32,7 +33,7 @@ export class Function_TRIMEND extends Function_2 {
         
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText("Function {0} parameter {1} is error!", 'TrimEnd', 2);
+            args2 = args2.ToText(StringCache.Function_parameter_error2, 'TrimEnd', 2);
             if (args2.IsError) {
                 return args2;
             }

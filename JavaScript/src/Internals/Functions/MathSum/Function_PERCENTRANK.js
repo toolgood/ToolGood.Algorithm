@@ -2,6 +2,7 @@ import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_PERCENTRANK extends Function_3 {
     constructor(func1, func2, func3) {
@@ -11,13 +12,13 @@ class Function_PERCENTRANK extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotArray) {
-            let converted1 = args1.ToArray("Function {0} parameter {1} is error!", "PercentRank", 1);
+            let converted1 = args1.ToArray(StringCache.Function_parameter_error2, "PercentRank", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            let converted2 = args2.ToNumber("Function {0} parameter {1} is error!", "PercentRank", 2);
+            let converted2 = args2.ToNumber(StringCache.Function_parameter_error2, "PercentRank", 2);
             if (converted2.IsError) return converted2;
             args2 = converted2;
         }
@@ -25,7 +26,7 @@ class Function_PERCENTRANK extends Function_3 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) {
-            return Operand.Error("Function {0} parameter is error!", "PercentRank");
+            return Operand.Error(StringCache.Function_parameter_error2, "PercentRank");
         }
 
         let k = args2.DoubleValue;
@@ -34,7 +35,7 @@ class Function_PERCENTRANK extends Function_3 {
         if (this.func3 != null) {
             let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsNotNumber) {
-                let converted3 = args3.ToNumber("Function {0} parameter {1} is error!", "PercentRank", 3);
+                let converted3 = args3.ToNumber(StringCache.Function_parameter_error2, "PercentRank", 3);
                 if (converted3.IsError) return converted3;
                 args3 = converted3;
             }

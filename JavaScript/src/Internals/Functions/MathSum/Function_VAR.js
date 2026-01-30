@@ -1,6 +1,7 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_VAR extends Function_N {
     constructor(funcs) {
@@ -24,10 +25,10 @@ class Function_VAR extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error("Function {0} parameter is error!", "Var");
+            return Operand.Error(StringCache.Function_parameter_error2, "Var");
         }
         if (list.length <= 1) {
-            return Operand.Error("Function {0} parameter is error!", "Var");
+            return Operand.Error(StringCache.Function_parameter_error2, "Var");
         }
         let sum = 0;
         let sum2 = 0;

@@ -1,6 +1,7 @@
 import { Operand } from '../../../Operand.js';
 import { Function_2 } from '../Function_2.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_Div extends Function_2 {
   constructor(func1, func2) {
@@ -48,11 +49,11 @@ class Function_Div extends Function_2 {
         }
       }
     }
-    if (args2.IsNotNumber) { args2 = args2.ToNumber("Function {0} parameter {1} is error!", '/', 2); if (args2.IsError) { return args2; } }
+    if (args2.IsNotNumber) { args2 = args2.ToNumber(StringCache.Function_parameter_error2, '/', 2); if (args2.IsError) { return args2; } }
     if (args2.NumberValue === 0) { return Operand.Error('Div 0 is error!'); }
     if (args2.NumberValue === 1) { return args1; }
 
-    if (args1.IsNotNumber) { args1 = args1.ToNumber("Function {0} parameter {1} is error!", '/', 1); if (args1.IsError) { return args1; } }
+    if (args1.IsNotNumber) { args1 = args1.ToNumber(StringCache.Function_parameter_error2, '/', 1); if (args1.IsError) { return args1; } }
     return Operand.Create(args1.NumberValue / args2.NumberValue);
   }
 

@@ -1,6 +1,7 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_STDEV extends Function_N {
     constructor(funcs) {
@@ -20,10 +21,10 @@ class Function_STDEV extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error("Function {0} parameter is error!", "Stdev");
+            return Operand.Error(StringCache.Function_parameter_error2, "Stdev");
         }
         if (list.length == 0) {
-            return Operand.Error("Function {0} parameter is error!", "Stdev");
+            return Operand.Error(StringCache.Function_parameter_error2, "Stdev");
         }
 
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;

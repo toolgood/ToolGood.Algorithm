@@ -1,6 +1,7 @@
 import { Function_2 } from '../Function_2.js';
 import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_LOOKCEILING
@@ -21,14 +22,14 @@ export class Function_LOOKCEILING extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber("Function {0} parameter {1} is error!", 'LookCeiling', 1);
+            args1 = args1.ToNumber(StringCache.Function_parameter_error2, 'LookCeiling', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotArray) {
-            args2 = args2.ToArray("Function {0} parameter {1} is error!", 'LookCeiling', 2);
+            args2 = args2.ToArray(StringCache.Function_parameter_error2, 'LookCeiling', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -37,7 +38,7 @@ export class Function_LOOKCEILING extends Function_2 {
         let list = [];
         FunctionUtil.F_base_GetList(args2.ArrayValue, list);
         if (list.length === 0) {
-            return Operand.Error("Function {0} parameter {1} is error!", 'LookCeiling', 2);
+            return Operand.Error(StringCache.Function_parameter_error2, 'LookCeiling', 2);
         }
         list.sort((a, b) => a - b);
         let value = args1.NumberValue;

@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { MyDate } from '../../MyDate.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_TIMEVALUE extends Function_1 {
     constructor(func1) {
@@ -9,7 +10,7 @@ class Function_TIMEVALUE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText("Function {0} parameter is error!", "TimeValue");
+            args1 = args1.ToText(StringCache.Function_parameter_error2, "TimeValue");
             if (args1.IsError) { return args1; }
         }
 
@@ -34,7 +35,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return Operand.Error("Function {0} parameter is error!", "TimeValue");
+        return Operand.Error(StringCache.Function_parameter_error2, "TimeValue");
     }
 
     toString(stringBuilder, addBrackets) {

@@ -1,4 +1,5 @@
 import { Function_N } from '../Function_N.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_AVEDEV extends Function_N {
     constructor(funcs) {
@@ -16,7 +17,7 @@ class Function_AVEDEV extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error("Function {0} parameter is error!", "AveDev");
+                return Operand.Error(StringCache.Function_parameter_error2, "AveDev");
             }
             list.push(arg.NumberValue);
         }

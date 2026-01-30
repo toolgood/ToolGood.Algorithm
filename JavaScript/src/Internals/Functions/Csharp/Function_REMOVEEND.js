@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_REMOVEEND
@@ -21,14 +22,14 @@ export class Function_REMOVEEND extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText("Function {0} parameter {1} is error!", 'RemoveEnd', 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error2, 'RemoveEnd', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText("Function {0} parameter {1} is error!", 'RemoveEnd', 2);
+            args2 = args2.ToText(StringCache.Function_parameter_error2, 'RemoveEnd', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -38,7 +39,7 @@ export class Function_REMOVEEND extends Function_3 {
         if (this.func3 !== null) {
             let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
-                args3 = args3.ToBoolean("Function {0} parameter {1} is error!", 'RemoveEnd', 3);
+                args3 = args3.ToBoolean(StringCache.Function_parameter_error2, 'RemoveEnd', 3);
                 if (args3.IsError) {
                     return args3;
                 }

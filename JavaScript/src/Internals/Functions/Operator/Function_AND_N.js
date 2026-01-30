@@ -1,5 +1,6 @@
 import { Operand } from '../../../Operand.js';
 import { Function_N } from '../Function_N.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_AND_N extends Function_N {
   constructor(funcs) {
@@ -11,7 +12,7 @@ class Function_AND_N extends Function_N {
     let b = true;
     for (let item of this.funcs) {
       let a = item.Evaluate(engine, tempParameter);
-      if (a.IsNotBoolean) { a = a.ToBoolean("Function {0} parameter {1} is error!", 'AND', index++); if (a.IsError) { return a; } }
+      if (a.IsNotBoolean) { a = a.ToBoolean(StringCache.Function_parameter_error2, 'AND', index++); if (a.IsError) { return a; } }
       if (a.BooleanValue === false) b = false;
     }
     return b ? Operand.True : Operand.False;
