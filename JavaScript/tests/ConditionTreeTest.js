@@ -30,8 +30,8 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.And, `Expected And, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()=bb", `Expected "AA.IsText()=bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t2.start, t2.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t2.start, t2.end + 1)}"`);
 
@@ -45,8 +45,8 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.Or, `Expected Or, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()=bb", `Expected "AA.IsText()=bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t2.start, t2.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t2.start, t2.end + 1)}"`);
 
@@ -60,10 +60,10 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.Or, `Expected Or, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
-        let t3 = t2.left;
-        let t4 = t2.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
+        let t3 = t2.nodes[0];
+        let t4 = t2.nodes[1];
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()=bb", `Expected "AA.IsText()=bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t3.start, t3.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t3.start, t3.end + 1)}"`);
         assert.strictEqual(txt.substring(t4.start, t4.end + 1), "tt=22", `Expected "tt=22", got "${txt.substring(t4.start, t4.end + 1)}"`);
@@ -78,8 +78,8 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.Or, `Expected Or, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()=bb", `Expected "AA.IsText()=bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t2.start, t2.end + 1), "AND(dd=ss , tt=22)", `Expected "AND(dd=ss , tt=22)", got "${txt.substring(t2.start, t2.end + 1)}"`);
 
@@ -93,11 +93,11 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.And, `Expected And, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(t2.Type, ConditionTreeType.Or, `Expected Or, got ${t2.Type}`);
-        let t3 = t2.left;
-        let t4 = t2.right;
+        let t3 = t2.nodes[0];
+        let t4 = t2.nodes[1];
 
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()==bb", `Expected "AA.IsText()==bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t3.start, t3.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t3.start, t3.end + 1)}"`);
@@ -124,11 +124,11 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.And, `Expected And, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(t2.Type, ConditionTreeType.Or, `Expected Or, got ${t2.Type}`);
-        let t3 = t2.left;
-        let t4 = t2.right;
+        let t3 = t2.nodes[0];
+        let t4 = t2.nodes[1];
 
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()==bb", `Expected "AA.IsText()==bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t3.start, t3.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t3.start, t3.end + 1)}"`);
@@ -144,11 +144,11 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.And, `Expected And, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(t2.Type, ConditionTreeType.Or, `Expected Or, got ${t2.Type}`);
-        let t3 = t2.left;
-        let t4 = t2.right;
+        let t3 = t2.nodes[0];
+        let t4 = t2.nodes[1];
 
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText()==bb", `Expected "AA.IsText()==bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t3.start, t3.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t3.start, t3.end + 1)}"`);
@@ -164,11 +164,11 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.And, `Expected And, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(t2.Type, ConditionTreeType.Or, `Expected Or, got ${t2.Type}`);
-        let t3 = t2.left;
-        let t4 = t2.right;
+        let t3 = t2.nodes[0];
+        let t4 = t2.nodes[1];
 
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA", `Expected "AA", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t3.start, t3.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t3.start, t3.end + 1)}"`);
@@ -184,11 +184,11 @@ export class ConditionTreeTest {
         let tree = AlgorithmEngineHelper.ParseCondition(txt);
 
         assert.strictEqual(tree.Type, ConditionTreeType.And, `Expected And, got ${tree.Type}`);
-        let t1 = tree.left;
-        let t2 = tree.right;
+        let t1 = tree.nodes[0];
+        let t2 = tree.nodes[1];
         assert.strictEqual(t2.Type, ConditionTreeType.Or, `Expected Or, got ${t2.Type}`);
-        let t3 = t2.left;
-        let t4 = t2.right;
+        let t3 = t2.nodes[0];
+        let t4 = t2.nodes[1];
 
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "1", `Expected "1", got "${txt.substring(t1.start, t1.end + 1)}"`);
         assert.strictEqual(txt.substring(t3.start, t3.end + 1), "dd=ss", `Expected "dd=ss", got "${txt.substring(t3.start, t3.end + 1)}"`);
