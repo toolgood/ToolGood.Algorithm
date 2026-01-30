@@ -7,12 +7,12 @@ class Function_NETWORKDAYS extends Function_N {
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this._args[0].Evaluate(engine, tempParameter);
+        let args1 = this.funcs[0].Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this._args[1].Evaluate(engine, tempParameter);
+        let args2 = this.funcs[1].Evaluate(engine, tempParameter);
         if (args2.IsNotDate) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
             if (args2.IsError) { return args2; }
@@ -22,8 +22,8 @@ class Function_NETWORKDAYS extends Function_N {
         let endMyDate = new Date(args2.DateValue.getTime());
 
         let list = new Set();
-        for (let i = 2; i < this._args.length; i++) {
-            let ar = this._args[i].Evaluate(engine, tempParameter);
+        for (let i = 2; i < this.funcs.length; i++) {
+            let ar = this.funcs[i].Evaluate(engine, tempParameter);
             if (ar.IsNotDate) {
                 let arDate = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (arDate.IsError) { return arDate; }

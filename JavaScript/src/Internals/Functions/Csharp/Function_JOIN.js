@@ -19,7 +19,7 @@ export class Function_JOIN extends Function_N {
      */
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this._args) {
+        for (let item of this.funcs) {
             let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;

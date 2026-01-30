@@ -9,7 +9,7 @@ class Function_AND_N extends Function_N {
   Evaluate(engine, tempParameter)  {
     let index = 1;
     let b = true;
-    for (let item of this._args) {
+    for (let item of this.funcs) {
       let a = item.Evaluate(engine, tempParameter);
       if (a.IsNotBoolean) { a = a.ToBoolean('Function \'{0}\' parameter {1} is error!', 'AND', index++); if (a.IsError) { return a; } }
       if (a.BooleanValue === false) b = false;
@@ -19,9 +19,9 @@ class Function_AND_N extends Function_N {
 
   ToString(stringBuilder, addBrackets) {
     stringBuilder.push('AND(');
-    for (let i = 0; i < this._args.length; i++) {
+    for (let i = 0; i < this.funcs.length; i++) {
       if (i > 0) stringBuilder.push(', ');
-      this._args[i].ToString(stringBuilder, false);
+      this.funcs[i].ToString(stringBuilder, false);
     }
     stringBuilder.push(')');
   }
