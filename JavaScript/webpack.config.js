@@ -24,7 +24,22 @@ export default {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    browsers: ['defaults']
+                  },
+                  modules: false,
+                  useBuiltIns: 'usage',
+                  corejs: 3
+                }
+              ]
+            ],
+            plugins: [
+              '@babel/plugin-transform-runtime'
+            ]
           }
         }
       }
@@ -37,8 +52,23 @@ export default {
       "buffer": "buffer",
       "stream": "stream-browserify",
       "vm": "vm-browserify",
-      "string_decoder": "string_decoder"
+      "string_decoder": "string_decoder",
+      "path": false,
+      "fs": false,
+      "net": false,
+      "tls": false,
+      "child_process": false
     }
   },
-  plugins: []
+  plugins: [],
+  optimization: {
+    minimize: true,
+    usedExports: true,
+    sideEffects: false
+  },
+  performance: {
+    hints: false,
+    maxAssetSize: 1000000,
+    maxEntrypointSize: 1000000
+  }
 };
