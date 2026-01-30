@@ -1,5 +1,6 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
+import { FunctionUtil } from '../FunctionUtil.js';
 
 class Function_COUNT extends Function_N {
     constructor(funcs) {
@@ -16,10 +17,15 @@ class Function_COUNT extends Function_N {
             args.push(aa);
         }
 
+        // 处理 count(Array(1,2,3,4)) 这种情况
+        if (args.length === 1 && args[0].IsArray) {
+            return Operand.Create(args[0].ArrayValue.length);
+        }
+
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o === false) {
-            return Operand.Error('Function \'{0}\' parameter is error!', 'Count');
+            return Operand.Error("Function '{0}' parameter is error!", 'Count');
         }
         return Operand.Create(list.length);
     }
@@ -29,35 +35,6 @@ class Function_COUNT extends Function_N {
     }
 }
 
-let FunctionUtil = {
-    F_base_GetList(args, list) {
-        for (let item of args) {
-            if (item.IsNumber) {
-                list.push(item.NumberValue);
-            } else if (item.IsArray) {
-                let o = this.F_base_GetList(item.ArrayValue, list);
-                if (o === false) {
-                    return false;
-                }
-            } else if (item.IsJson) {
-                let i = item.ToArray(null);
-                if (i.IsError) {
-                    return false;
-                }
-                let o = this.F_base_GetList(i.ArrayValue, list);
-                if (o === false) {
-                    return false;
-                }
-            } else {
-                let o = item.ToNumber(null);
-                if (o.IsError) {
-                    return false;
-                }
-                list.push(o.NumberValue);
-            }
-        }
-        return true;
-    }
-};
+
 
 export { Function_COUNT };

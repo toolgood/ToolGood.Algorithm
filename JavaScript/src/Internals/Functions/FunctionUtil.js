@@ -124,5 +124,62 @@ export var FunctionUtil = {
             return false;
         }
         return null;
+    },
+
+    F_base_countif: function(dbs, d) {
+        let count = 0;
+        for (let i = 0; i < dbs.length; i++) {
+            let item = dbs[i];
+            if (item === d) {
+                count++;
+            }
+        }
+        return count;
+    },
+
+    F_base_countif: function(dbs, s, d) {
+        let count = 0;
+        for (let i = 0; i < dbs.length; i++) {
+            let item = dbs[i];
+            if (this.F_base_compare(item, d, s)) {
+                count++;
+            }
+        }
+        return count;
+    },
+
+    F_base_compare: function(a, b, ss) {
+        if (ss === '<') {
+            return a < b;
+        } else if (ss === '<=') {
+            return a <= b;
+        } else if (ss === '>') {
+            return a > b;
+        } else if (ss === '>=') {
+            return a >= b;
+        } else if (ss === '=') {
+            return a === b;
+        }
+        return a !== b;
+    },
+
+    F_base_sumif: function(list, d, sumdbs) {
+        let sum = 0;
+        for (let i = 0; i < list.length; i++) {
+            if (list[i] === d) {
+                sum += sumdbs[i];
+            }
+        }
+        return sum;
+    },
+
+    F_base_sumif: function(list, s, d, sumdbs) {
+        let sum = 0;
+        for (let i = 0; i < list.length; i++) {
+            if (this.F_base_compare(list[i], d, s)) {
+                sum += sumdbs[i];
+            }
+        }
+        return sum;
     }
 };
