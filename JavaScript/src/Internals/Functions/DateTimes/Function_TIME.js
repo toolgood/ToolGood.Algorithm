@@ -1,6 +1,8 @@
 import { Function_3 } from '../Function_3.js';
 import { MyDate } from '../../MyDate.js';
 import { StringCache } from '../../../Internals/StringCache.js';
+import { Operand } from '../../../Operand.js';
+
 
 class Function_TIME extends Function_3 {
     constructor(func1, func2, func3) {

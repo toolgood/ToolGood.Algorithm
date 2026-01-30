@@ -19,8 +19,8 @@ class Function_Add extends Function_2 {
       if (args2.NumberValue === 0) { return args1; }
       return Operand.Create(args1.NumberValue + args2.NumberValue);
     }
-    if (args1.IsNull) { return Operand.Error(`Function '{"+"}' parameter {1} is NULL!`); }
-    if (args2.IsNull) { return Operand.Error(`Function '{"+"}' parameter {2} is NULL!`); }
+    if (args1.IsNull) { return Operand.Error(`Function '+' parameter {1} is NULL!`); }
+    if (args2.IsNull) { return Operand.Error(`Function '+' parameter {2} is NULL!`); }
 
     if (args1.IsText) {
       let d = parseFloat(args1.TextValue);
@@ -61,7 +61,7 @@ class Function_Add extends Function_2 {
     if (args1.IsDate) {
       if (args2.IsDate) {
         // 两个日期相加，创建新的 MyDate 对象
-        let totalValue = args1.DateValue.Value + args2.DateValue.Value;
+        let totalValue = args1.ToNumber().NumberValue + args2.ToNumber().NumberValue;
         return Operand.Create(new MyDate(totalValue));
       }
       if (args2.IsNotNumber) {

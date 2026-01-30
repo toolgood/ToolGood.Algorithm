@@ -273,7 +273,7 @@ class AlgorithmEngine {
         }
       }
       if (this.UseLocalTime) {
-        return obj.DateValue.ToDateTime(Date.prototype.constructor.prototype._Kind || 0);
+        return obj.DateValue.ToDateTime(1);
       }
       return obj.DateValue.ToDateTime(0);
     } catch (ex) {
