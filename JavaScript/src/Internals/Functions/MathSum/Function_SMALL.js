@@ -22,12 +22,12 @@ class Function_SMALL extends Function_2 {
             args2 = converted2;
         }
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) {
             return Operand.Error(StringCache.Function_parameter_error2, "Small", 1);
         }
         list.sort((a, b) => a - b);
-        let k = args2.IntValue;
+        let k = Math.round(args2.DoubleValue);
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
             return Operand.Error(StringCache.Function_parameter_error2, "Small", 2);
         }

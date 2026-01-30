@@ -2,6 +2,7 @@ import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 import { StringCache } from '../../../Internals/StringCache.js';
+import { SpecialFunctions } from '../../../MathNet/SpecialFunctions/SpecialFunctions.js';
 
 class Function_BETAINV extends Function_3 {
     constructor(func1, func2, func3) {
@@ -30,7 +31,34 @@ class Function_BETAINV extends Function_3 {
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
             return Operand.Error(StringCache.Function_parameter_error2, 'BetaInv');
         }
-        return Operand.Create(ExcelFunctions.BetaInv(p, alpha, beta));
+        try {
+            return Operand.Create(ExcelFunctions.BetaInv(p, alpha, beta));
+        } catch (error) {
+            // 如果计算失败，使用二分法尝试计算
+            let lower = 0;
+            let upper = 1;
+            let mid;
+            let fmid;
+            
+            // 二分法迭代
+            for (let i = 0; i < 100; i++) {
+                mid = (lower + upper) / 2;
+                fmid = SpecialFunctions.BetaRegularized(alpha, beta, mid) - p;
+                
+                if (Math.abs(fmid) < 1e-10) {
+                    return Operand.Create(mid);
+                }
+                
+                if (fmid < 0) {
+                    lower = mid;
+                } else {
+                    upper = mid;
+                }
+            }
+            
+            // 如果二分法也失败，返回区间中点
+            return Operand.Create((lower + upper) / 2);
+        }
     }
 
     toString(stringBuilder, addBrackets) {

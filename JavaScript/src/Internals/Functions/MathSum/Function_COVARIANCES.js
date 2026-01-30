@@ -20,8 +20,8 @@ class Function_COVARIANCES extends Function_2 {
         let list1 = [];
         let list2 = [];
 
-        let o1 = FunctionUtil.F_base_GetList(args1, list1);
-        let o2 = FunctionUtil.F_base_GetList(args2, list2);
+        let o1 = FunctionUtil.F_base_GetList(args1.ArrayValue, list1);
+        let o2 = FunctionUtil.F_base_GetList(args2.ArrayValue, list2);
         if (!o1) {
             return Operand.error('Function {0} parameter {1} is error!', 'CovarIanceS', 1);
         }

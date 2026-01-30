@@ -39,12 +39,67 @@ class StudentT {
             return location;
         }
 
-        return Brent.FindRoot(x => {
+        // Try Brent's method first
+        const brentResult = Brent.TryFindRoot(x => {
             const k = (x - location) / scale;
             const h = freedom / (freedom + (k * k));
             const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
             return x <= location ? ib - p : 1 - ib - p;
-        }, -800, 800, 1e-12);
+        }, -800, 800, 1e-12, 100);
+
+        if (brentResult.success) {
+            return brentResult.root;
+        }
+
+        // Fallback to binary search if Brent's method fails
+        let lower = -100;
+        let upper = 100;
+        let mid;
+        let fmid;
+
+        // Expand search interval if necessary
+        while (Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, upper))) {
+            lower *= 2;
+            upper *= 2;
+        }
+
+        // Binary search
+        for (let i = 0; i < 100; i++) {
+            mid = (lower + upper) / 2;
+            fmid = StudentT.InvCDFHelper(location, scale, freedom, p, mid);
+
+            if (Math.abs(fmid) < 1e-12) {
+                return mid;
+            }
+
+            if (Math.sign(fmid) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower))) {
+                lower = mid;
+            } else {
+                upper = mid;
+            }
+
+            if (Math.abs(upper - lower) < 1e-12) {
+                return mid;
+            }
+        }
+
+        return mid;
+    }
+
+    /**
+     * Helper function for InvCDF
+     * @param {number} location
+     * @param {number} scale
+     * @param {number} freedom
+     * @param {number} p
+     * @param {number} x
+     * @returns {number}
+     */
+    static InvCDFHelper(location, scale, freedom, p, x) {
+        const k = (x - location) / scale;
+        const h = freedom / (freedom + (k * k));
+        const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        return x <= location ? ib - p : 1 - ib - p;
     }
 }
 

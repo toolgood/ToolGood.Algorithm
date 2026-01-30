@@ -34,7 +34,8 @@ class Brent {
         let froot = fmax;
         let d = 0, e = 0;
 
-        let root = upperBound;
+        let root = lowerBound;
+        froot = fmin;
         let xMid = NaN;
 
         // Root must be bracketed.
@@ -66,8 +67,17 @@ class Brent {
             let xMidOld = xMid;
             xMid = (upperBound - root) / 2;
 
-            if (Math.abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot, 0, froot - 0, accuracy)) {
+            // 检查froot是否足够接近0
+            if (Precision.AlmostEqualNormRelative(froot, 0, froot - 0, accuracy)) {
                 return { success: true, root };
+            }
+
+            // 检查区间是否足够小
+            if (Math.abs(xMid) <= xAcc1) {
+                // 确保froot足够接近0才返回
+                if (Math.abs(froot) < 1e-6) {
+                    return { success: true, root };
+                }
             }
 
             if (xMid === xMidOld) {

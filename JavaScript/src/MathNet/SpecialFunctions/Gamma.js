@@ -1,6 +1,7 @@
 import { Constants } from '../Constants.js';
 import { Precision } from '../Precision.js';
 import { Beta } from './Beta.js';
+import { SpecialFunctions } from './SpecialFunctions.js';
 
 class Gamma {
     /**
