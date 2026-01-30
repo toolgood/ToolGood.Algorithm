@@ -20,6 +20,7 @@ import { Function_AND_N } from '../Functions/Operator/Function_AND_N.js';
 import { Function_OR_N } from '../Functions/Operator/Function_OR_N.js';
 import { Function_NOT } from '../Functions/Flow/Function_NOT.js';
 import { Function_Value } from '../Functions/Value/Function_Value.js';
+
 import { Function_VALUE } from '../Functions/String/Function_VALUE.js';
 import { Function_ABS } from '../Functions/MathBase/Function_ABS.js';
 import { Function_QUOTIENT } from '../Functions/MathBase/Function_QUOTIENT.js';
@@ -2237,7 +2238,16 @@ class MathFunctionVisitor extends mathVisitor  {
      */
     visitPARAMETER_fun(context) {
         let node = context.PARAMETER();
-		return new Function_PARAMETER(node.getText());
+        return new Function_PARAMETER(node.getText());
+    }
+
+    /**
+     * 访问NULL函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitNULL_fun(context) {
+        return new Function_Value(Operand.CreateNull(), "NULL");
     }
 
     /**

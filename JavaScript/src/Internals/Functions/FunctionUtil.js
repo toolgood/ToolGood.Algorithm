@@ -108,5 +108,21 @@ export var FunctionUtil = {
             }
         }
         return null;
+    },
+
+    TryParseBoolean: function(TextValue) {
+        if(TextValue.toLowerCase() === "true" || TextValue.toLowerCase() === "yes") {
+            return true;
+        }
+        if(TextValue.toLowerCase() === "false" || TextValue.toLowerCase() === "no") {
+            return false;
+        }
+        if(TextValue === "1" || TextValue === "是" || TextValue === "有") {
+            return true;
+        }
+        if(TextValue === "0" || TextValue === "否" || TextValue === "不是" || TextValue === "无" || TextValue === "没有") {
+            return false;
+        }
+        return null;
     }
 };
