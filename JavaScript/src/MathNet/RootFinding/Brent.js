@@ -51,12 +51,14 @@ class Brent {
             }
 
             if (Math.abs(fmax) < Math.abs(froot)) {
+                const temp = lowerBound;
                 lowerBound = root;
                 root = upperBound;
-                upperBound = lowerBound;
+                upperBound = temp;
+                const tempF = fmin;
                 fmin = froot;
                 froot = fmax;
-                fmax = fmin;
+                fmax = tempF;
             }
 
             // convergence check

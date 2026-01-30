@@ -10,8 +10,8 @@ class Evaluate {
             return 0;
         }
 
-        let sum = coefficients[0];
-        for (let i = 1; i < coefficients.length; ++i) {
+        let sum = coefficients[coefficients.length - 1];
+        for (let i = coefficients.length - 2; i >= 0; --i) {
             sum *= z;
             sum += coefficients[i];
         }
