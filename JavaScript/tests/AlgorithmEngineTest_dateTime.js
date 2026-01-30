@@ -18,6 +18,9 @@ class AlgorithmEngineWithTryEvaluate extends AlgorithmEngine {
       case 'boolean':
         return this.TryEvaluate_Boolean(exp, def);
       default:
+        if (def instanceof Date) {
+          return this.TryEvaluate_DateTime(exp, def);
+        }
         return def;
     }
   }
@@ -367,6 +370,7 @@ function runAllTests() {
 if (import.meta.url === import.meta.resolve('./')) {
   runAllTests();
 }
+runAllTests();
 
 export {
   testDATEVALUE,
