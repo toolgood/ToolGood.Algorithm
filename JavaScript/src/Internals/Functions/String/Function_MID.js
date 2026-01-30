@@ -28,7 +28,7 @@ class Function_MID extends Function_3 {
                 return args3;
             }
         }
-        let startIndex = args2.IntValue - engine.excelIndex;
+        let startIndex = args2.IntValue - engine.ExcelIndex;
         let length = args3.IntValue;
         return Operand.Create(args1.TextValue.substring(startIndex, startIndex + length));
     }

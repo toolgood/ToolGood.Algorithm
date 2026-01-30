@@ -30,10 +30,10 @@ class Function_LARGE extends Function_2 {
 
         list.sort((a, b) => b - a); // 降序排序
         let k = Math.round(args2.DoubleValue);
-        if (k < 1 - engine.excelIndex || k > list.length - engine.excelIndex) {
+        if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
             return Operand.error('Function {0} parameter {1} is error!', 'Large', 2);
         }
-        return Operand.Create(list[k - engine.excelIndex]);
+        return Operand.Create(list[k - engine.ExcelIndex]);
     }
 
     toString(stringBuilder, addBrackets) {

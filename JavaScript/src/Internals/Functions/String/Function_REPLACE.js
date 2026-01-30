@@ -58,7 +58,7 @@ class Function_REPLACE extends Function_4 {
             }
         }
 
-        let start = args2.IntValue - engine.excelIndex;
+        let start = args2.IntValue - engine.ExcelIndex;
         let length = args3.IntValue;
         let newtext = args4.TextValue;
 

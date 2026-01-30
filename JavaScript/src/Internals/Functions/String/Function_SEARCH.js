@@ -23,7 +23,7 @@ class Function_SEARCH extends Function_3 {
         }
 
         if (this.func3 === null) {
-            let p = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase()) + engine.excelIndex;
+            let p = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase()) + engine.ExcelIndex;
             return Operand.Create(p);
         }
         let args3 = this.func3.Evaluate(engine, tempParameter);
@@ -33,8 +33,8 @@ class Function_SEARCH extends Function_3 {
                 return args3;
             }
         }
-        let startIndex = args3.IntValue - engine.excelIndex;
-        let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex) + engine.excelIndex;
+        let startIndex = args3.IntValue - engine.ExcelIndex;
+        let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex) + engine.ExcelIndex;
         return Operand.Create(p2);
     }
 

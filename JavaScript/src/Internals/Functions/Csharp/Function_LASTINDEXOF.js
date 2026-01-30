@@ -37,7 +37,7 @@ export class Function_LASTINDEXOF extends Function_4 {
         let text = args1.TextValue;
         if (this.func3 === null) {
             let index = text.lastIndexOf(args2.TextValue);
-            return Operand.Create(index + engine.excelIndex);
+            return Operand.Create(index + engine.ExcelIndex);
         }
         let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
@@ -50,7 +50,7 @@ export class Function_LASTINDEXOF extends Function_4 {
         if (this.func4 === null) {
             let substring = text.substring(0, startIndex);
             let index = substring.lastIndexOf(args2.TextValue);
-            return Operand.Create(index + engine.excelIndex);
+            return Operand.Create(index + engine.ExcelIndex);
         }
         let args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.IsNotNumber) {
@@ -64,9 +64,9 @@ export class Function_LASTINDEXOF extends Function_4 {
         let substring = text.substring(startIndex, endIndex);
         let index = substring.lastIndexOf(args2.TextValue);
         if (index === -1) {
-            return Operand.Create(-1 + engine.excelIndex);
+            return Operand.Create(-1 + engine.ExcelIndex);
         }
-        return Operand.Create(index + startIndex + engine.excelIndex);
+        return Operand.Create(index + startIndex + engine.ExcelIndex);
     }
     
     /**

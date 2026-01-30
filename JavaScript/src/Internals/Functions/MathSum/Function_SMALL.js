@@ -27,10 +27,10 @@ class Function_SMALL extends Function_2 {
         }
         list.sort((a, b) => a - b);
         let k = args2.IntValue;
-        if (k < 1 - engine.excelIndex || k > list.length - engine.excelIndex) {
+        if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 2);
         }
-        return Operand.Create(list[k - engine.excelIndex]);
+        return Operand.Create(list[k - engine.ExcelIndex]);
     }
 
     toString(stringBuilder, addBrackets) {

@@ -22,7 +22,7 @@ class Function_FIND extends Function_3 {
             }
         }
         if (this.func3 === null) {
-            let p = args2.TextValue.indexOf(args1.TextValue) + work.excelIndex;
+            let p = args2.TextValue.indexOf(args1.TextValue) + work.ExcelIndex;
             return Operand.Create(p);
         }
         let count = this.func3.Evaluate(work, tempParameter);
@@ -32,7 +32,7 @@ class Function_FIND extends Function_3 {
                 return count;
             }
         }
-        let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.excelIndex;
+        let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
         return Operand.Create(p2);
     }
 

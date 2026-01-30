@@ -21,7 +21,7 @@ class Function_GetJsonValue extends Function_2 {
             if (op.IsError) {
                 return op;
             }
-            let index = op.IntValue - engine.excelIndex;
+            let index = op.IntValue - engine.ExcelIndex;
             if (index < obj.ArrayValue.length) {
                 return obj.ArrayValue[index];
             }
@@ -51,7 +51,7 @@ class Function_GetJsonValue extends Function_2 {
                 if (op.IsError) {
                     return op;
                 }
-                let index = op.IntValue - engine.excelIndex;
+                let index = op.IntValue - engine.ExcelIndex;
                 if (index < json.length) {
                     let v = json[index];
                     if (typeof v === 'string') {

@@ -35,7 +35,7 @@ export class Function_SUBSTRING extends Function_3 {
         }
         
         let text = args1.TextValue;
-        let startIndex = args2.IntValue - engine.excelIndex;
+        let startIndex = args2.IntValue - engine.ExcelIndex;
         
         if (this.func3 === null) {
             return Operand.Create(text.substring(startIndex));
