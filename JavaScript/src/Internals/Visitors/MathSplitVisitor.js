@@ -16,7 +16,7 @@ class MathSplitVisitor extends mathVisitor  {
             nodes: []
         };
         let t = context.op.text;
-        if (CharUtil.equals(t, "&&", "and")) {
+        if (CharUtil.Equals(t, "&&", "and")) {
             tree.Type = ConditionTreeType.And;
         } else {
             tree.Type = ConditionTreeType.Or;
@@ -25,8 +25,8 @@ class MathSplitVisitor extends mathVisitor  {
 
         tree.nodes.push(exprs[0].accept(this));
         tree.nodes.push(exprs[1].accept(this));
-        tree.start = context.start.startIndex;
-        tree.end = context.stop.stopIndex;
+        tree.start = context.start ? context.start.start : 0;
+        tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
         tree.conditionString = context.getText();
         return tree;
     }
@@ -37,8 +37,9 @@ class MathSplitVisitor extends mathVisitor  {
 
     visit_fun(context) {
         let tree = {
-            start: context.start.startIndex,
-            end: context.stop.stopIndex,
+            Type: ConditionTreeType.String,
+            start: context.start ? context.start.start : 0,
+            end: context.stop ? context.stop.stop : context.getText().length - 1,
             conditionString: context.getText()
         };
         return tree;

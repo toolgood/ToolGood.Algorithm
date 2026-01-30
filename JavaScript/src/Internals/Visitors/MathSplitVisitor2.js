@@ -30,8 +30,8 @@ export class MathSplitVisitor2 extends mathVisitor  {
         }
         tree.nodes.push(exprs[0].accept(this));
         tree.nodes.push(exprs[1].accept(this));
-        tree.start = context.start.startIndex;
-        tree.end = context.stop.stopIndex;
+        tree.start = context.start ? context.start.start : 0;
+        tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
         tree.conditionString = context.getText();
         return tree;
     }
@@ -51,16 +51,17 @@ export class MathSplitVisitor2 extends mathVisitor  {
         }
         tree.nodes.push(exprs[0].accept(this));
         tree.nodes.push(exprs[1].accept(this));
-        tree.start = context.start.startIndex;
-        tree.end = context.stop.stopIndex;
+        tree.start = context.start ? context.start.start : 0;
+        tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
         tree.conditionString = context.getText();
         return tree;
     }
 
     visit_fun(context) {
         let tree = {
-            start: context.start.startIndex,
-            end: context.stop.stopIndex,
+            Type: CalculateTreeType.String,
+            start: context.start ? context.start.start : 0,
+            end: context.stop ? context.stop.stop : context.getText().length - 1,
             conditionString: context.getText()
         };
         return tree;

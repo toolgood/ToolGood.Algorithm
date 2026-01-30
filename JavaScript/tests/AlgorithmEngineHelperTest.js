@@ -78,7 +78,7 @@ try {
     const p8 = AlgorithmEngineHelper.GetDiyNames(`{"A": 0.6,"B": 0.4,"C": 0.6,"E": 0.33,"F": 0.29,"Z": 0.15,
 "EB": 0.7,"EE": 0.65,"EA": 0.85,"AB": 1.0,"BC": 1.0,"AA":1.0,
 "EBC": 1.15,"BAB": 1.25,"BCB": 1.25,"BBC": 1.25,"CBB": 1.25,"EBA": 1.2,"AAA": 1.4}[瓦楞]`);
-    assertEquals('瓦楞', p8.Parameters[0].toString());
+    assertEquals('瓦楞', p8.Parameters[0].Name);
     console.log('✓ Test 6 passed');
 } catch (error) {
     console.error('✗ Test 6 failed:', error.message);

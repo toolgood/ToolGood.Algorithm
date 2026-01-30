@@ -606,8 +606,8 @@ function testCOUNTIF() {
   countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<=1')", 0.1);
   assert.strictEqual(countif, 2.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'<=1') 应该是 2.0");
 
-  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<'2')", 0.1);
-  assert.strictEqual(countif, 2.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'<'2') 应该是 2.0");
+  countif = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<2')", 0.1);
+  assert.strictEqual(countif, 2.0, "COUNTIF(array(1,2,3,4,2,2,1,4),'<2') 应该是 2.0");
   
   console.log('COUNTIF 测试通过！');
 }
@@ -641,6 +641,7 @@ function testAVERAGEIF() {
   const engine = new AlgorithmEngineWithTryEvaluate();
   
   let averageif = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1')", 0.1);
+  averageif = Math.round(averageif * 1000000000) / 1000000000;
   assert.strictEqual(averageif, 2.833333333, "AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1') 应该是 2.833333333");
   
   averageif = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.1);

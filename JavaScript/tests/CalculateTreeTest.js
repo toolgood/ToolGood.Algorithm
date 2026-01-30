@@ -1,70 +1,102 @@
 import assert from 'assert';
-import { AlgorithmEngine } from '../src/AlgorithmEngine.js';
+import { AlgorithmEngineHelper } from '../src/AlgorithmEngineHelper.js';
+import { CalculateTreeType } from '../src/Enums/CalculateTreeType.js';
 
-// 测试用例
-function test() {
-  console.log('开始测试 CalculateTree...');
-  
-  // 注意：JavaScript 中可能没有直接对应的 CalculateTree 类
-  // 这里我们简化测试，只测试表达式计算
-  
-  const engine = new AlgorithmEngine();
-  
-  // 测试加法
-  let result = engine.TryEvaluate('A1+1', 0);
-  assert.ok(typeof result === 'number', "'A1+1' 应该返回一个数字");
-  
-  // 测试减法
-  result = engine.TryEvaluate('A1-(1+1)', 0);
-  assert.ok(typeof result === 'number', "'A1-(1+1)' 应该返回一个数字");
-  
-  // 测试乘法
-  result = engine.TryEvaluate('A1*(1+1)', 0);
-  assert.ok(typeof result === 'number', "'A1*(1+1)' 应该返回一个数字");
-  
-  // 测试除法
-  result = engine.TryEvaluate('A1/(1+1)', 0);
-  assert.ok(typeof result === 'number', "'A1/(1+1)' 应该返回一个数字");
-  
-  // 测试取模
-  result = engine.TryEvaluate('A1%(1+1)', 0);
-  assert.ok(typeof result === 'number', "'A1%(1+1)' 应该返回一个数字");
-  
-  // 测试字符串连接
-  result = engine.TryEvaluate('A1&(1+1)', "");
-  assert.ok(typeof result === 'string', "'A1&(1+1)' 应该返回一个字符串");
-  
-  // 测试函数调用
-  result = engine.TryEvaluate('A1(1+1)', "");
-  assert.ok(typeof result === 'string', "'A1(1+1)' 应该返回一个字符串");
-  
-  // 测试负数
-  result = engine.TryEvaluate('-1+(1+1)', 0);
-  assert.strictEqual(result, 1, "'-1+(1+1)' 应该等于 1");
-  
-  result = engine.TryEvaluate('-1', 0);
-  assert.strictEqual(result, -1, "'-1' 应该等于 -1");
-  
-  console.log('CalculateTree 测试通过！');
+/**
+ * 计算树测试
+ */
+export class CalculateTreeTest {
+    static Test1() {
+        console.log('开始测试 CalculateTreeTest.Test1');
+        
+        let txt = "A1+1";
+        let t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Add, `Expected Add, got ${t1.Type}`);
+        assert.strictEqual(txt.substring(t1.start, t1.end + 1), "A1+1", `Expected "A1+1", got "${txt.substring(t1.start, t1.end + 1)}"`);
+        assert.strictEqual(t1.conditionString, "A1+1", `Expected "A1+1", got "${t1.conditionString}"`);
+
+        txt = "A1-(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Sub, `Expected Sub, got ${t1.Type}`);
+        assert.strictEqual(t1.nodes[1].conditionString, "1+1", `Expected "1+1", got "${t1.nodes[1].conditionString}"`);
+
+        txt = "A1*(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Mul, `Expected Mul, got ${t1.Type}`);
+
+        txt = "A1/(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Div, `Expected Div, got ${t1.Type}`);
+
+        txt = "A1%(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Mod, `Expected Mod, got ${t1.Type}`);
+
+        txt = "A1&(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Connect, `Expected Connect, got ${t1.Type}`);
+
+        txt = "A1(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.String, `Expected String, got ${t1.Type}`);
+
+        txt = "A1(1+1)-";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Error, `Expected Error, got ${t1.Type}`);
+
+        txt = "-1+(1+1)";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.Add, `Expected Add, got ${t1.Type}`);
+
+        txt = "-1";
+        t1 = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(t1.Type, CalculateTreeType.String, `Expected String, got ${t1.Type}`);
+
+        console.log('CalculateTreeTest.Test1 测试通过');
+    }
+
+    static TestError() {
+        console.log('开始测试 CalculateTreeTest.TestError');
+        
+        let txt = "";
+        let tree = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(tree.Type, CalculateTreeType.Error, `Expected Error, got ${tree.Type}`);
+        assert.strictEqual(tree.ErrorMessage, "exp is null", `Expected "exp is null", got "${tree.ErrorMessage}"`);
+
+        console.log('CalculateTreeTest.TestError 测试通过');
+    }
+
+    static TestComplexExpressions() {
+        console.log('开始测试 CalculateTreeTest.TestComplexExpressions');
+        
+        let txt = "A1+B1*C1";
+        let tree = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(tree.Type, CalculateTreeType.Add, `Expected Add, got ${tree.Type}`);
+
+        txt = "A1*(B1+C1)/D1";
+        tree = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(tree.Type, CalculateTreeType.Div, `Expected Div, got ${tree.Type}`);
+
+        txt = "A1+B1-C1*D1/E1";
+        tree = AlgorithmEngineHelper.ParseCalculate(txt);
+        assert.strictEqual(tree.Type, CalculateTreeType.Sub, `Expected Sub, got ${tree.Type}`);
+
+        console.log('CalculateTreeTest.TestComplexExpressions 测试通过');
+    }
+
+    static RunAllTests() {
+        console.log('开始运行所有 CalculateTree 测试');
+        this.Test1();
+        this.TestError();
+        this.TestComplexExpressions();
+        console.log('所有 CalculateTree 测试运行完成');
+    }
 }
 
-// 运行所有测试
-function runAllTests() {
-  try {
-    test();
-    console.log('所有测试通过！');
-  } catch (error) {
-    console.error('测试失败:', error.message);
-    process.exit(1);
-  }
+// 浏览器支持
+if (typeof window !== 'undefined') {
+    window.CalculateTreeTest = CalculateTreeTest;
 }
 
 // 执行测试
-if (import.meta.url === import.meta.resolve('./')) {
-  runAllTests();
-}
-
-export {
-  test,
-  runAllTests
-};
+CalculateTreeTest.RunAllTests();
