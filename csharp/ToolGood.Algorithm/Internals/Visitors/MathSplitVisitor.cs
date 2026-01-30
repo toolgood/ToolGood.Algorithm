@@ -1,10 +1,8 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using System.Collections;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
-using static Antlr4.Runtime.Atn.SemanticContext;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
@@ -231,10 +229,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
-		public ConditionTree VisitCRC32_fun(mathParser.CRC32_funContext context)
-		{
-			return Visit_fun(context);
-		}
 
 		public ConditionTree VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
 		{

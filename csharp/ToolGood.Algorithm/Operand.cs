@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.LitJson;
-using System.Text;
-using ToolGood.Algorithm.Internals.Functions;
-using ToolGood.Algorithm.Internals;
-
-
-#if WebAssembly
-using System.Linq2;
-#else
 using System.Linq;
-#endif
+using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
 {

@@ -34,9 +34,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetMd5String(byte[] buffer)
 		{
-#if WebAssembly
-            return MD5.MDString(buffer);
-#else
 #if NETSTANDARD2_1
 			System.Security.Cryptography.MD5 md5 = MD5.Create();
 			byte[] retVal = md5.ComputeHash(buffer);
@@ -45,7 +42,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 #else
             var retVal = MD5.HashData(buffer);
             return Convert.ToHexString(retVal);
-#endif
 #endif
 		}
 	}

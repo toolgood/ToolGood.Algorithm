@@ -213,7 +213,6 @@ namespace ToolGood.Algorithm
 					"SHA1",
 					"SHA256",
 					"SHA512",
-					"CRC32",
 					"HMACMD5",
 					"HMACSHA1",
 					"HMACSHA256",

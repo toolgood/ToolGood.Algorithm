@@ -1701,15 +1701,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return new Function_SHA512(args1, args2);
 		}
 
-		public FunctionBase VisitCRC32_fun(mathParser.CRC32_funContext context)
-		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_CRC32(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_CRC32(args1, args2);
-		}
-
 		public FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
 		{
 			var exprs = context.expr();

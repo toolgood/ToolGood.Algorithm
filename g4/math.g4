@@ -72,7 +72,6 @@ expr:
 	| expr '.' SHA1 '(' expr? ')'								# SHA1_fun
 	| expr '.' SHA256 '(' expr? ')'								# SHA256_fun
 	| expr '.' SHA512 '(' expr? ')'								# SHA512_fun
-	| expr '.' CRC32 '(' expr? ')'								# CRC32_fun
 	| expr '.' HMACMD5 '(' expr (',' expr)? ')'					# HMACMD5_fun
 	| expr '.' HMACSHA1 '(' expr (',' expr)? ')'				# HMACSHA1_fun
 	| expr '.' HMACSHA256 '(' expr (',' expr)? ')'				# HMACSHA256_fun
@@ -306,7 +305,6 @@ expr:
 	| SHA1 '(' expr (',' expr)? ')'								# SHA1_fun
 	| SHA256 '(' expr (',' expr)? ')'							# SHA256_fun
 	| SHA512 '(' expr (',' expr)? ')'							# SHA512_fun
-	| CRC32 '(' expr (',' expr)? ')'							# CRC32_fun
 	| HMACMD5 '(' expr ',' expr (',' expr)? ')'					# HMACMD5_fun
 	| HMACSHA1 '(' expr ',' expr (',' expr)? ')'				# HMACSHA1_fun
 	| HMACSHA256 '(' expr ',' expr (',' expr)? ')'				# HMACSHA256_fun
@@ -540,7 +538,6 @@ parameter2:
 	| SHA1
 	| SHA256
 	| SHA512
-	| CRC32
 	| HMACMD5
 	| HMACSHA1
 	| HMACSHA256
@@ -803,7 +800,6 @@ MD5: 'MD5';
 SHA1: 'SHA1';
 SHA256: 'SHA256';
 SHA512: 'SHA512';
-CRC32: 'CRC32';
 HMACMD5: 'HMACMD5';
 HMACSHA1: 'HMACSHA1';
 HMACSHA256: 'HMACSHA256';
