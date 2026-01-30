@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
+import { JsonMapper } from '../../../LitJson/index.js';
 
 class Function_JSON extends Function_1 {
     constructor(func1) {
@@ -18,17 +19,17 @@ class Function_JSON extends Function_1 {
             args1 = args1.ToText();
         }
         if (args1.IsNotText) {
-            return Operand.error('Function {0} parameter is error!', 'Json');
+            return Operand.Error('Function {0} parameter is error!', 'Json');
         }
         let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                let json = JSON.parse(txt);
+                let json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
             } catch (e) {
             }
         }
-        return Operand.error('Function {0} parameter is error!', 'Json');
+        return Operand.Error('Function {0} parameter is error!', 'Json');
     }
 
     toString(stringBuilder, addBrackets) {
