@@ -1,5 +1,6 @@
 import { Function_N } from '../Function_N.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_DATE extends Function_N {
     constructor(funcs) {

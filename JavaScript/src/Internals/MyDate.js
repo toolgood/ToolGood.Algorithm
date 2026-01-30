@@ -2,8 +2,12 @@
  * 日期时间处理类
  */
 export class MyDate {
-    constructor(value) {
-        if (typeof value === 'number') {
+    constructor(value, month, day, hour, minute, second) {
+        if (month !== undefined && day !== undefined) {
+            // 构造函数重载：年、月、日、时、分、秒
+            let date = new Date(value, month - 1, day, hour || 0, minute || 0, second || 0);
+            this._value = date.getTime() / 86400000;
+        } else if (typeof value === 'number') {
             this._value = value;
         } else if (value instanceof Date) {
             this._value = value.getTime() / 86400000;

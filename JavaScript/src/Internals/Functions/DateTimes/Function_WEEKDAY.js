@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_WEEKDAY extends Function_2 {
     constructor(func1, func2) {
@@ -23,7 +24,7 @@ class Function_WEEKDAY extends Function_2 {
             Type = args2.IntValue;
         }
 
-        let t = args1.DateValue.getDay(); // JavaScript中，0表示星期日，6表示星期六
+        let t = args1.DateValue.ToDateTime().getDay(); // JavaScript中，0表示星期日，6表示星期六
         if (Type == 1) {
             // 类型1：返回1-7，1表示星期日，7表示星期六
             return Operand.Create(t + 1);

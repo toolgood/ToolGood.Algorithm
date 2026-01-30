@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_MONTH extends Function_1 {
     constructor(func1) {
@@ -13,7 +14,7 @@ class Function_MONTH extends Function_1 {
             if (args1.IsError) { return args1; }
         }
         try {
-            return Operand.Create(args1.DateValue.getMonth() + 1); // JavaScript月份从0开始，需要加1
+            return Operand.Create(args1.DateValue.ToDateTime().getMonth() + 1); // JavaScript月份从0开始，需要加1
         } catch (e) {
             return Operand.Error("Function 'Month' is error!");
         }

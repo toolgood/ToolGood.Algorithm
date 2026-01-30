@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_TIMESTAMP extends Function_2 {
     constructor(func1, func2) {
@@ -20,22 +21,61 @@ class Function_TIMESTAMP extends Function_2 {
             Type = args2.IntValue;
         }
 
-        let args1 = args0.ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
-        if (args1.IsError) { return args1; }
-
-        // 转换为UTC时间戳
-        let utcDate = new Date(args1.DateValue.getUTCFullYear(), args1.DateValue.getUTCMonth(), args1.DateValue.getUTCDate(), 
-                                args1.DateValue.getUTCHours(), args1.DateValue.getUTCMinutes(), args1.DateValue.getUTCSeconds(), 
-                                args1.DateValue.getUTCMilliseconds());
+        let milliseconds;
+        if (args0.IsText) {
+            // 直接解析字符串为Date对象
+            let dateStr = args0.TextValue;
+            // 处理不同格式的日期字符串
+            let date;
+            
+            // 尝试解析为YYYY-MM-DD格式
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                let parts = dateStr.split('-');
+                let year = parseInt(parts[0]);
+                let month = parseInt(parts[1]) - 1; // 月份从0开始
+                let day = parseInt(parts[2]);
+                // 创建本地时间
+                date = new Date(year, month, day, 0, 0, 0, 0);
+            }
+            // 尝试解析为YYYY/MM/DD格式
+            else if (/^\d{4}\/\d{2}\/\d{2}$/.test(dateStr)) {
+                let parts = dateStr.split('/');
+                let year = parseInt(parts[0]);
+                let month = parseInt(parts[1]) - 1; // 月份从0开始
+                let day = parseInt(parts[2]);
+                // 创建本地时间
+                date = new Date(year, month, day, 0, 0, 0, 0);
+            }
+            // 尝试解析为其他格式
+            else {
+                date = new Date(dateStr);
+            }
+            
+            // 检查是否解析成功
+            if (isNaN(date.getTime())) {
+                // 解析失败
+                return Operand.Error("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
+            }
+            
+            milliseconds = date.getTime();
+        } else if (args0.IsDate) {
+            // 使用MyDate的ToDateTime方法获取Date对象
+            let date = args0.DateValue.ToDateTime();
+            milliseconds = date.getTime();
+        } else {
+            // 尝试转换为MyDate
+            let args1 = args0.ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
+            if (args1.IsError) { return args1; }
+            let date = args1.DateValue.ToDateTime();
+            milliseconds = date.getTime();
+        }
 
         if (Type == 0) {
             // 毫秒时间戳
-            let ms = utcDate.getTime();
-            return Operand.Create(ms);
+            return Operand.Create(milliseconds);
         } else if (Type == 1) {
             // 秒时间戳
-            let s = utcDate.getTime() / 1000;
-            return Operand.Create(s);
+            return Operand.Create(Math.floor(milliseconds / 1000));
         }
         return Operand.Error("Function '{0}' parameter is error!", "TimeStamp");
     }

@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_DATEDIF extends Function_3 {
     constructor(func1, func2, func3) {
@@ -22,66 +23,68 @@ class Function_DATEDIF extends Function_3 {
             args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3);
             if (args3.IsError) { return args3; }
         }
-        let startMyDate = args1.DateValue;
-        let endMyDate = args2.DateValue;
+        let startMyDate = args1.DateValue;  // MyDate对象
+        let endMyDate = args2.DateValue;    // MyDate对象
+        let startDate = startMyDate.ToDateTime();  // Date对象
+        let endDate = endMyDate.ToDateTime();      // Date对象
         let t = args3.TextValue.toLowerCase();
 
         if (t === 'y') {
             // y: Years
             let b = false;
-            if (startMyDate.getMonth() < endMyDate.getMonth()) {
+            if (startDate.getMonth() < endDate.getMonth()) {
                 b = true;
-            } else if (startMyDate.getMonth() === endMyDate.getMonth()) {
-                if (startMyDate.getDate() <= endMyDate.getDate()) b = true;
+            } else if (startDate.getMonth() === endDate.getMonth()) {
+                if (startDate.getDate() <= endDate.getDate()) b = true;
             }
             if (b) {
-                return Operand.Create(endMyDate.getFullYear() - startMyDate.getFullYear());
+                return Operand.Create(endDate.getFullYear() - startDate.getFullYear());
             } else {
-                return Operand.Create(endMyDate.getFullYear() - startMyDate.getFullYear() - 1);
+                return Operand.Create(endDate.getFullYear() - startDate.getFullYear() - 1);
             }
         } else if (t === 'm') {
             // m: Months
             let b = false;
-            if (startMyDate.getDate() <= endMyDate.getDate()) b = true;
+            if (startDate.getDate() <= endDate.getDate()) b = true;
             if (b) {
-                return Operand.Create((endMyDate.getFullYear() * 12 + endMyDate.getMonth() + 1) - (startMyDate.getFullYear() * 12 + startMyDate.getMonth() + 1));
+                return Operand.Create((endDate.getFullYear() * 12 + endDate.getMonth() + 1) - (startDate.getFullYear() * 12 + startDate.getMonth() + 1));
             } else {
-                return Operand.Create((endMyDate.getFullYear() * 12 + endMyDate.getMonth() + 1) - (startMyDate.getFullYear() * 12 + startMyDate.getMonth() + 1) - 1);
+                return Operand.Create((endDate.getFullYear() * 12 + endDate.getMonth() + 1) - (startDate.getFullYear() * 12 + startDate.getMonth() + 1) - 1);
             }
         } else if (t === 'd') {
             // d: Days
-            let diffTime = Math.abs(endMyDate - startMyDate);
+            let diffTime = Math.abs(endDate.getTime() - startDate.getTime());
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return Operand.Create(diffDays);
         } else if (t === 'yd') {
             // yd: Days of Year
             let getDayOfYear = (date) => {
                 let firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-                return Math.ceil((date - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
+                return Math.ceil((date.getTime() - firstDayOfYear.getTime()) / (1000 * 60 * 60 * 24)) + 1;
             };
-            let day = getDayOfYear(endMyDate) - getDayOfYear(startMyDate);
-            if (endMyDate.getFullYear() > startMyDate.getFullYear() && day < 0) {
-                let days = getDayOfYear(new Date(startMyDate.getFullYear(), 11, 31));
+            let day = getDayOfYear(endDate) - getDayOfYear(startDate);
+            if (endDate.getFullYear() > startDate.getFullYear() && day < 0) {
+                let days = getDayOfYear(new Date(startDate.getFullYear(), 11, 31));
                 day = days + day;
             }
             return Operand.Create(day);
         } else if (t === 'md') {
             // md: Days of Month
-            let mo = endMyDate.getDate() - startMyDate.getDate();
+            let mo = endDate.getDate() - startDate.getDate();
             if (mo < 0) {
                 let days;
-                if (startMyDate.getMonth() === 11) {
-                    days = new Date(startMyDate.getFullYear() + 1, 0, 0).getDate();
+                if (startDate.getMonth() === 11) {
+                    days = new Date(startDate.getFullYear() + 1, 0, 0).getDate();
                 } else {
-                    days = new Date(startMyDate.getFullYear(), startMyDate.getMonth() + 1, 0).getDate();
+                    days = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0).getDate();
                 }
                 mo += days;
             }
             return Operand.Create(mo);
         } else if (t === 'ym') {
             // ym: Months of Year
-            let mo = (endMyDate.getMonth() + 1) - (startMyDate.getMonth() + 1);
-            if (endMyDate.getDate() < startMyDate.getDate()) mo--;
+            let mo = (endDate.getMonth() + 1) - (startDate.getMonth() + 1);
+            if (endDate.getDate() < startDate.getDate()) mo--;
             if (mo < 0) mo += 12;
             return Operand.Create(mo);
         }

@@ -1,5 +1,6 @@
 import { Function_3 } from '../Function_3.js';
 import { MyDate } from '../../MyDate.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_DAYS360 extends Function_3 {
     constructor(func1, func2, func3) {
@@ -18,8 +19,10 @@ class Function_DAYS360 extends Function_3 {
             if (args2.IsError) { return args2; }
         }
 
-        let startMyDate = args1.DateValue;
-        let endMyDate = args2.DateValue;
+        let startMyDate = args1.DateValue;  // MyDate对象
+        let endMyDate = args2.DateValue;    // MyDate对象
+        let startDate = startMyDate.ToDateTime();  // Date对象
+        let endDate = endMyDate.ToDateTime();      // Date对象
 
         let method = false;
         if (this.func3 !== null) {
@@ -31,45 +34,45 @@ class Function_DAYS360 extends Function_3 {
             method = args3.BooleanValue;
         }
 
-        let days = endMyDate.getFullYear() * 360 + (endMyDate.getMonth()) * 30
-                    - startMyDate.getFullYear() * 360 - (startMyDate.getMonth()) * 30;
+        let days = endDate.getFullYear() * 360 + (endDate.getMonth()) * 30
+                    - startDate.getFullYear() * 360 - (startDate.getMonth()) * 30;
 
         if (method) {
-            if (endMyDate.getDate() == 31) days += 30;
-            if (startMyDate.getDate() == 31) days -= 30;
+            if (endDate.getDate() == 31) days += 30;
+            if (startDate.getDate() == 31) days -= 30;
         } else {
-            if (startMyDate.getMonth() == 11) {
-                if (startMyDate.getDate() == new Date(startMyDate.getFullYear() + 1, 0, 0).getDate()) {
+            if (startDate.getMonth() == 11) {
+                if (startDate.getDate() == new Date(startDate.getFullYear() + 1, 0, 0).getDate()) {
                     days -= 30;
                 } else {
-                    days -= startMyDate.getDate();
+                    days -= startDate.getDate();
                 }
             } else {
-                if (startMyDate.getDate() == new Date(startMyDate.getFullYear(), startMyDate.getMonth() + 1, 0).getDate()) {
+                if (startDate.getDate() == new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0).getDate()) {
                     days -= 30;
                 } else {
-                    days -= startMyDate.getDate();
+                    days -= startDate.getDate();
                 }
             }
-            if (endMyDate.getMonth() == 11) {
-                if (endMyDate.getDate() == new Date(endMyDate.getFullYear() + 1, 0, 0).getDate()) {
-                    if (startMyDate.getDate() < 30) {
+            if (endDate.getMonth() == 11) {
+                if (endDate.getDate() == new Date(endDate.getFullYear() + 1, 0, 0).getDate()) {
+                    if (startDate.getDate() < 30) {
                         days += 31;
                     } else {
                         days += 30;
                     }
                 } else {
-                    days += endMyDate.getDate();
+                    days += endDate.getDate();
                 }
             } else {
-                if (endMyDate.getDate() == new Date(endMyDate.getFullYear(), endMyDate.getMonth() + 1, 0).getDate()) {
-                    if (startMyDate.getDate() < 30) {
+                if (endDate.getDate() == new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0).getDate()) {
+                    if (startDate.getDate() < 30) {
                         days += 31;
                     } else {
                         days += 30;
                     }
                 } else {
-                    days += endMyDate.getDate();
+                    days += endDate.getDate();
                 }
             }
         }
