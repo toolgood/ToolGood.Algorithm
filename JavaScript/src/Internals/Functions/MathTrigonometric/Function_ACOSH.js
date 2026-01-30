@@ -10,14 +10,14 @@ class Function_ACOSH extends Function_1 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, 'Acosh');
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'Acosh');
             if (args1.IsError) {
                 return args1;
             }
         }
         let z = args1.DoubleValue;
         if (z < 1) {
-            return Operand.Error(StringCache.Function_parameter_error2, 'Acosh');
+            return Operand.Error(StringCache.Function_parameter_error, 'Acosh');
         }
         return Operand.Create(Math.acosh(z));
     }

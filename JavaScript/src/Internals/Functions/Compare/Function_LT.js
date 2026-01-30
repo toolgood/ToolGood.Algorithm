@@ -55,12 +55,12 @@ class Function_LT extends Function_2 {
       return Operand.Error(StringCache.Function_compare_error, "<");
     }
     if (args1.IsNotNumber) {
-      let a1 = args1.ToNumber(StringCache.Function_parameter_error1, "<", 1);
+      let a1 = args1.ToNumber(StringCache.Function_parameter_error, "<", 1);
       if (a1.IsError) { return a1; }
       args1 = a1;
     }
     if (args2.IsNotNumber) {
-      let a2 = args2.ToNumber(StringCache.Function_parameter_error1, "<", 2);
+      let a2 = args2.ToNumber(StringCache.Function_parameter_error, "<", 2);
       if (a2.IsError) { return a2; }
       args2 = a2;
     }

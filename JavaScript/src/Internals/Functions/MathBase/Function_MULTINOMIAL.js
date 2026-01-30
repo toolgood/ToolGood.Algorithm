@@ -18,7 +18,7 @@ class Function_MULTINOMIAL extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error2, "Multinomial");
+                return Operand.Error(StringCache.Function_parameter_error, "Multinomial");
             }
             list.push(arg.NumberValue);
         }

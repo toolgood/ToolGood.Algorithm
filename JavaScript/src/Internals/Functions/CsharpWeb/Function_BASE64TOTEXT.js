@@ -11,7 +11,7 @@ class Function_BASE64TOTEXT extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error2, "Base64ToText", 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error, "Base64ToText", 1);
             if (args1.IsError) return args1;
         }
         try {
@@ -21,7 +21,7 @@ class Function_BASE64TOTEXT extends Function_2 {
             } else {
                 let args2 = this.func2.Evaluate(engine, tempParameter);
                 if (args2.IsNotText) {
-                    args2 = args2.ToText(StringCache.Function_parameter_error2, "Base64ToText", 2);
+                    args2 = args2.ToText(StringCache.Function_parameter_error, "Base64ToText", 2);
                     if (args2.IsError) return args2;
                 }
                 encoding = args2.TextValue;
@@ -38,7 +38,7 @@ class Function_BASE64TOTEXT extends Function_2 {
         } catch (e) {
             // Ignore errors
         }
-        return Operand.Error(StringCache.Function_error1, "Base64ToText");
+        return Operand.Error(StringCache.Function_error, "Base64ToText");
     }
 
     toString(stringBuilder, addBrackets) {

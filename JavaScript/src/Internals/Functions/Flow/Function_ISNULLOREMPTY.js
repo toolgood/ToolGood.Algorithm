@@ -14,7 +14,7 @@ class Function_ISNULLOREMPTY extends Function_1 {
         }
         let textArgs;
         if (args1.IsNotText) {
-            textArgs = args1.ToText(StringCache.Function_parameter_error2, "IsNullOrEmpty", 1);
+            textArgs = args1.ToText(StringCache.Function_parameter_error, "IsNullOrEmpty", 1);
             if (textArgs.IsError) { return textArgs; }
         } else {
             textArgs = args1;

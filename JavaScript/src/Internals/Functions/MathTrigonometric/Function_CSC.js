@@ -10,14 +10,14 @@ class Function_CSC extends Function_1 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, 'Csc');
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'Csc');
             if (args1.IsError) {
                 return args1;
             }
         }
         let d = Math.sin(args1.DoubleValue);
         if (d === 0) {
-            return Operand.Error('Function \'{0}\') div 0 error!', 'Csc');
+            return Operand.Error('Function \'{0}\' div 0 error!', 'Csc');
         }
         return Operand.Create(1.0 / d);
     }

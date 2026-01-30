@@ -21,7 +21,7 @@ class Function_SUMSQ extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error2, "SumSQ");
+            return Operand.Error(StringCache.Function_parameter_error, "SumSQ");
         }
 
         let d = 0;

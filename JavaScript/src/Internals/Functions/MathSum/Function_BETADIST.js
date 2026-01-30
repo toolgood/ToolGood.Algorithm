@@ -11,17 +11,17 @@ class Function_BETADIST extends Function_3 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, 'BetaDist', 1);
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 1);
             if (args1.IsError) return args1;
         }
         let args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error2, 'BetaDist', 2);
+            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 2);
             if (args2.IsError) return args2;
         }
         let args3 = this.func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber) {
-            args3 = args3.ToNumber(StringCache.Function_parameter_error2, 'BetaDist', 3);
+            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 3);
             if (args3.IsError) return args3;
         }
         let x = args1.DoubleValue;
@@ -29,7 +29,7 @@ class Function_BETADIST extends Function_3 {
         let beta = args3.DoubleValue;
 
         if (alpha < 0.0 || beta < 0.0) {
-            return Operand.Error(StringCache.Function_parameter_error2, 'BetaDist');
+            return Operand.Error(StringCache.Function_parameter_error, 'BetaDist');
         }
         return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
     }

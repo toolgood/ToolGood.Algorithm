@@ -21,7 +21,7 @@ class Function_SUM extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error2, "Sum");
+            return Operand.Error(StringCache.Function_parameter_error, "Sum");
         }
         return Operand.Create(list.reduce((sum, val) => sum + val, 0));
     }

@@ -25,10 +25,10 @@ class Function_VAR extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error2, "Var");
+            return Operand.Error(StringCache.Function_parameter_error, "Var");
         }
         if (list.length <= 1) {
-            return Operand.Error(StringCache.Function_parameter_error2, "Var");
+            return Operand.Error(StringCache.Function_parameter_error, "Var");
         }
         let sum = 0;
         let sum2 = 0;

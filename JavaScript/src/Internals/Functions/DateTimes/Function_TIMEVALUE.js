@@ -11,7 +11,7 @@ class Function_TIMEVALUE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error2, "TimeValue");
+            args1 = args1.ToText(StringCache.Function_parameter_error, "TimeValue");
             if (args1.IsError) { return args1; }
         }
 
@@ -36,7 +36,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return Operand.Error(StringCache.Function_parameter_error2, "TimeValue");
+        return Operand.Error(StringCache.Function_parameter_error, "TimeValue");
     }
 
     toString(stringBuilder, addBrackets) {

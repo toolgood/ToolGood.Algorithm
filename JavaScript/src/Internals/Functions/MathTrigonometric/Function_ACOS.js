@@ -10,14 +10,14 @@ class Function_ACOS extends Function_1 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, 'Acos');
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'Acos');
             if (args1.IsError) {
                 return args1;
             }
         }
         let x = args1.DoubleValue;
         if (x < -1 || x > 1) {
-            return Operand.Error(StringCache.Function_parameter_error2, 'Acos');
+            return Operand.Error(StringCache.Function_parameter_error, 'Acos');
         }
         return Operand.Create(Math.acos(x));
     }

@@ -24,14 +24,14 @@ export class Function_HMACSHA512 extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error2, 'HmacSHA512', 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error, 'HmacSHA512', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText(StringCache.Function_parameter_error2, 'HmacSHA512', 2);
+            args2 = args2.ToText(StringCache.Function_parameter_error, 'HmacSHA512', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -42,7 +42,7 @@ export class Function_HMACSHA512 extends Function_3 {
             if (this.func3 !== undefined && this.func3 !== null) {
                 let args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.IsNotText) {
-                    args3 = args3.ToText(StringCache.Function_parameter_error2, 'HmacSHA512', 3);
+                    args3 = args3.ToText(StringCache.Function_parameter_error, 'HmacSHA512', 3);
                     if (args3.IsError) {
                         return args3;
                     }

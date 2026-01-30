@@ -11,12 +11,12 @@ class Function_WORKDAY extends Function_N {
     Evaluate(engine, tempParameter) {
         let args1 = this.funcs[0].Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error2, "Workday", 1);
+            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "Workday", 1);
             if (args1.IsError) { return args1; }
         }
         let args2 = this.funcs[1].Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error2, "Workday", 2);
+            args2 = args2.ToNumber(StringCache.Function_parameter_error, "Workday", 2);
             if (args2.IsError) { return args2; }
         }
 
@@ -26,7 +26,7 @@ class Function_WORKDAY extends Function_N {
         for (let i = 2; i < this.funcs.length; i++) {
             let ar = this.funcs[i].Evaluate(engine, tempParameter);
             if (ar.IsNotDate) {
-                let arDate = ar.ToMyDate(StringCache.Function_parameter_error2, "Workday", i + 1);
+                let arDate = ar.ToMyDate(StringCache.Function_parameter_error, "Workday", i + 1);
                 if (arDate.IsError) { return arDate; }
                 // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
                 let dateStr = arDate.DateValue.ToDateTime().toISOString().split('T')[0];

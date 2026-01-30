@@ -12,14 +12,14 @@ class Function_FIXED extends Function_3 {
         if (this.func2 !== null) {
             let args2 = this.func2.Evaluate(engine, tempParameter);
             if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error2, "Fixed", 2);
+                args2 = args2.ToNumber(StringCache.Function_parameter_error, "Fixed", 2);
                 if (args2.IsError) { return args2; }
             }
             num = args2.IntValue;
         }
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, "Fixed", 1);
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Fixed", 1);
             if (args1.IsError) { return args1; }
         }
 
@@ -29,7 +29,7 @@ class Function_FIXED extends Function_3 {
         if (this.func3 !== null) {
             let args3 = this.func3.Evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
-                args3 = args3.ToBoolean(StringCache.Function_parameter_error2, "Fixed", 3);
+                args3 = args3.ToBoolean(StringCache.Function_parameter_error, "Fixed", 3);
                 if (args3.IsError) { return args3; }
             }
             no = args3.BooleanValue;

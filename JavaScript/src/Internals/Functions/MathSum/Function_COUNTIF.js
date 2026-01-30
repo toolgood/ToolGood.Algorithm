@@ -11,7 +11,7 @@ class Function_COUNTIF extends Function_2 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotArray) {
-            args1 = args1.ToArray(StringCache.Function_parameter_error2, 'CountIf', 1);
+            args1 = args1.ToArray(StringCache.Function_parameter_error, 'CountIf', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -23,7 +23,7 @@ class Function_COUNTIF extends Function_2 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o === false) {
-            return Operand.Error(StringCache.Function_parameter_error2, 'CountIf', 1);
+            return Operand.Error(StringCache.Function_parameter_error, 'CountIf', 1);
         }
         let count;
         if (args2.IsNumber) {
@@ -39,7 +39,7 @@ class Function_COUNTIF extends Function_2 {
                 if (m2 !== null) {
                     count = FunctionUtil.F_base_countif(list, m2.operator, m2.value);
                 } else {
-                    return Operand.Error(StringCache.Function_parameter_error2, 'CountIf', 2);
+                    return Operand.Error(StringCache.Function_parameter_error, 'CountIf', 2);
                 }
             }
         }

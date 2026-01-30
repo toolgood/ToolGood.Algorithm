@@ -1,5 +1,6 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_REPLACE extends Function_4 {
     constructor(func1, func2, func3, func4) {
@@ -9,7 +10,7 @@ class Function_REPLACE extends Function_4 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText('Function {0} parameter {1} is error!', 'Replace', 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error, 'Replace', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -18,14 +19,14 @@ class Function_REPLACE extends Function_4 {
         if (this.func4 === null) {
             let args22 = this.func2.Evaluate(engine, tempParameter);
             if (args22.IsNotText) {
-                args22.ToText('Function {0} parameter {1} is error!', 'Replace', 2);
+                args22.ToText(StringCache.Function_parameter_error, 'Replace', 2);
                 if (args22.IsError) {
                     return args22;
                 }
             }
             let args32 = this.func3.Evaluate(engine, tempParameter);
             if (args32.IsNotText) {
-                args32.ToText('Function {0} parameter {1} is error!', 'Replace', 3);
+                args32.ToText(StringCache.Function_parameter_error, 'Replace', 3);
                 if (args32.IsError) {
                     return args32;
                 }

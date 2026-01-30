@@ -14,7 +14,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
         }
         let textArgs;
         if (args1.IsNotText) {
-            textArgs = args1.ToText(StringCache.Function_parameter_error2, "IsNullOrWhiteSpace", 1);
+            textArgs = args1.ToText(StringCache.Function_parameter_error, "IsNullOrWhiteSpace", 1);
             if (textArgs.IsError) { return textArgs; }
         } else {
             textArgs = args1;

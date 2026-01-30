@@ -21,10 +21,10 @@ class Function_STDEV extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error2, "Stdev");
+            return Operand.Error(StringCache.Function_parameter_error, "Stdev");
         }
         if (list.length == 0) {
-            return Operand.Error(StringCache.Function_parameter_error2, "Stdev");
+            return Operand.Error(StringCache.Function_parameter_error, "Stdev");
         }
 
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;

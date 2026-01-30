@@ -10,12 +10,12 @@ class Function_LN extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, "Ln");
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Ln");
             if (args1.IsError) { return args1; }
         }
         let z = args1.DoubleValue;
         if (z <= 0) {
-            return Operand.Error(StringCache.Function_parameter_error2, "Ln");
+            return Operand.Error(StringCache.Function_parameter_error, "Ln");
         }
         return Operand.Create(Math.log(z));
     }

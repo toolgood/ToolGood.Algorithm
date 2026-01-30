@@ -10,7 +10,7 @@ class Function_NOT extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotBoolean) {
-            args1 = args1.ToBoolean(StringCache.Function_parameter_error2, "Not");
+            args1 = args1.ToBoolean(StringCache.Function_parameter_error, "Not");
             if (args1.IsError) { return args1; }
         }
         return Operand.Create(!args1.BooleanValue);

@@ -15,7 +15,7 @@ class Function_TIMESTAMP extends Function_2 {
         if (this.func2 !== null) {
             let args2 = this.func2.Evaluate(engine, tempParameter);
             if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error2, "TimeStamp", 2);
+                args2 = args2.ToNumber(StringCache.Function_parameter_error, "TimeStamp", 2);
                 if (args2.IsError) { return args2; }
             }
             Type = args2.IntValue;
@@ -54,7 +54,7 @@ class Function_TIMESTAMP extends Function_2 {
             // 检查是否解析成功
             if (isNaN(date.getTime())) {
                 // 解析失败
-                return Operand.Error(StringCache.Function_parameter_error2, "TimeStamp", 1);
+                return Operand.Error(StringCache.Function_parameter_error, "TimeStamp", 1);
             }
             
             milliseconds = date.getTime();
@@ -64,7 +64,7 @@ class Function_TIMESTAMP extends Function_2 {
             milliseconds = date.getTime();
         } else {
             // 尝试转换为MyDate
-            let args1 = args0.ToMyDate(StringCache.Function_parameter_error2, "TimeStamp", 1);
+            let args1 = args0.ToMyDate(StringCache.Function_parameter_error, "TimeStamp", 1);
             if (args1.IsError) { return args1; }
             let date = args1.DateValue.ToDateTime();
             milliseconds = date.getTime();
@@ -77,7 +77,7 @@ class Function_TIMESTAMP extends Function_2 {
             // 秒时间戳
             return Operand.Create(Math.floor(milliseconds / 1000));
         }
-        return Operand.Error(StringCache.Function_parameter_error2, "TimeStamp");
+        return Operand.Error(StringCache.Function_parameter_error, "TimeStamp");
     }
 
     toString(stringBuilder, addBrackets) {

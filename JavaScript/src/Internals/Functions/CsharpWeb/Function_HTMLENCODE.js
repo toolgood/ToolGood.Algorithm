@@ -10,7 +10,7 @@ class Function_HTMLENCODE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error2, "HtmlEncode");
+            args1 = args1.ToText(StringCache.Function_parameter_error, "HtmlEncode");
             if (args1.IsError) {
                 return args1;
             }

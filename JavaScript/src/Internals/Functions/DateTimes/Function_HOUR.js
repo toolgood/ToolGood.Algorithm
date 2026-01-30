@@ -10,13 +10,13 @@ class Function_HOUR extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error2, "Hour");
+            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "Hour");
             if (args1.IsError) { return args1; }
         }
         try {
             return Operand.Create(args1.DateValue.getHours());
         } catch (e) {
-            return Operand.Error(StringCache.Function_error1, "Hour");
+            return Operand.Error(StringCache.Function_error, "Hour");
         }
     }
 

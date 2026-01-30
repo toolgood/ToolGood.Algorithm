@@ -10,7 +10,7 @@ class Function_DEC2OCT extends Function_2 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error2, 'DEC2OCT', 1);
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'DEC2OCT', 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -19,13 +19,13 @@ class Function_DEC2OCT extends Function_2 {
         if (this.func2 !== null) {
             let args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error2, 'DEC2OCT', 2);
+                args2 = args2.ToNumber(StringCache.Function_parameter_error, 'DEC2OCT', 2);
                 if (args2.IsError) {
                     return args2;
                 }
             }
             if (num.length > args2.IntValue) {
-                return Operand.Error(StringCache.Function_parameter_error2, 'DEC2OCT', 2);
+                return Operand.Error(StringCache.Function_parameter_error, 'DEC2OCT', 2);
             }
             return Operand.Create(num.padLeft(args2.IntValue, '0'));
         }

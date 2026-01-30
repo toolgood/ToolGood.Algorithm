@@ -12,7 +12,7 @@ class Function_AND_N extends Function_N {
     let b = true;
     for (let item of this.funcs) {
       let a = item.Evaluate(engine, tempParameter);
-      if (a.IsNotBoolean) { a = a.ToBoolean(StringCache.Function_parameter_error2, 'AND', index++); if (a.IsError) { return a; } }
+      if (a.IsNotBoolean) { a = a.ToBoolean(StringCache.Function_parameter_error, 'AND', index++); if (a.IsError) { return a; } }
       if (a.BooleanValue === false) b = false;
     }
     return b ? Operand.True : Operand.False;

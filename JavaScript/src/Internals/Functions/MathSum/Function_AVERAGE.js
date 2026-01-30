@@ -18,7 +18,7 @@ class Function_AVERAGE extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error2, "Average");
+                return Operand.Error(StringCache.Function_parameter_error, "Average");
             }
             list.push(arg.NumberValue);
         }

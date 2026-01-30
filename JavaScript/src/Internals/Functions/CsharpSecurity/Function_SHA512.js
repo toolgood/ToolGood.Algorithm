@@ -23,7 +23,7 @@ export class Function_SHA512 extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error2, "SHA512", 1);
+            args1 = args1.ToText(StringCache.Function_parameter_error, "SHA512", 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -34,7 +34,7 @@ export class Function_SHA512 extends Function_2 {
             if (this.func2 !== null) {
                 let args2 = this.func2.Evaluate(engine, tempParameter);
                 if (args2.IsNotText) {
-                    args2 = args2.ToText(StringCache.Function_parameter_error2, "SHA512", 2);
+                    args2 = args2.ToText(StringCache.Function_parameter_error, "SHA512", 2);
                     if (args2.IsError) {
                         return args2;
                     }

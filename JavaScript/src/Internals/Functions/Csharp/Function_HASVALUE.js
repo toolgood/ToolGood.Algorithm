@@ -25,7 +25,7 @@ export class Function_HASVALUE extends Function_2 {
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText(StringCache.Function_parameter_error2, 'HasValue', 2);
+            args2 = args2.ToText(StringCache.Function_parameter_error, 'HasValue', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -84,7 +84,7 @@ export class Function_HASVALUE extends Function_2 {
             }
             return Operand.False;
         }
-        return Operand.Error(StringCache.Function_parameter_error2, 'HasValue', 1);
+        return Operand.Error(StringCache.Function_parameter_error, 'HasValue', 1);
     }
     
     /**

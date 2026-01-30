@@ -11,14 +11,14 @@ class Function_ADDMINUTES extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error2, "AddMinutes", 1);
+            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "AddMinutes", 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error2, "AddMinutes", 2);
+            args2 = args2.ToNumber(StringCache.Function_parameter_error, "AddMinutes", 2);
             if (args2.IsError) {
                 return args2;
             }

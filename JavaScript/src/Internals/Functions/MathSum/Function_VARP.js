@@ -24,10 +24,10 @@ class Function_VARP extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error2, "VarP");
+            return Operand.Error(StringCache.Function_parameter_error, "VarP");
         }
         if (list.length == 0) {
-            return Operand.Error(StringCache.Function_parameter_error2, "VarP");
+            return Operand.Error(StringCache.Function_parameter_error, "VarP");
         }
         if (list.length == 1) {
             return Operand.Zero;

@@ -1,5 +1,6 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_TEXT extends Function_2 {
     constructor(func1, func2) {
@@ -13,7 +14,7 @@ class Function_TEXT extends Function_2 {
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText('Function {0} parameter {1} is error!', 'Text', 2);
+            args2 = args2.ToText(StringCache.Function_parameter_error, 'Text', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -47,7 +48,7 @@ class Function_TEXT extends Function_2 {
             // 同样，日期格式化可能需要更复杂的处理
             return Operand.Create(args1.DateValue.toString());
         }
-        let args1Text = args1.ToText('Function {0} parameter {1} is error!', 'Text', 1);
+        let args1Text = args1.ToText(StringCache.Function_parameter_error, 'Text', 1);
         if (args1Text.IsError) {
             return args1Text;
         }
