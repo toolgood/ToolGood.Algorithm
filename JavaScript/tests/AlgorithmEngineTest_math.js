@@ -29,7 +29,7 @@ function testPi() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let pi = engine.TryEvaluate("pi()", 0.0);
+  let pi = engine.TryEvaluate_Double("pi()", 0.0);
   assert.strictEqual(Math.round(pi * 1000000000) / 1000000000, 3.141592654, "pi() 应该约等于 3.141592654");
   
   console.log('Pi 测试通过！');
@@ -40,7 +40,7 @@ function testAbs() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let abs = engine.TryEvaluate("abs(-1.2)", 0.0);
+  let abs = engine.TryEvaluate_Double("abs(-1.2)", 0.0);
   assert.strictEqual(abs, 1.2, "abs(-1.2) 应该是 1.2");
   
   console.log('abs 测试通过！');
@@ -51,7 +51,7 @@ function testQUOTIENT() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let quotient = engine.TryEvaluate("QUOTIENT(7,3)", 0.0);
+  let quotient = engine.TryEvaluate_Double("QUOTIENT(7,3)", 0.0);
   assert.strictEqual(quotient, 2.0, "QUOTIENT(7,3) 应该是 2.0");
   
   console.log('QUOTIENT 测试通过！');
@@ -62,7 +62,7 @@ function testMOD() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let mod = engine.TryEvaluate("MOD(7,3)", 0.0);
+  let mod = engine.TryEvaluate_Double("MOD(7,3)", 0.0);
   assert.strictEqual(mod, 1.0, "MOD(7,3) 应该是 1.0");
   
   console.log('MOD 测试通过！');
@@ -73,13 +73,13 @@ function testSIGN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sign = engine.TryEvaluate("SIGN(0)", 0);
+  let sign = engine.TryEvaluate_Double("SIGN(0)", 0);
   assert.strictEqual(sign, 0, "SIGN(0) 应该是 0");
   
-  sign = engine.TryEvaluate("SIGN(9)", 0);
+  sign = engine.TryEvaluate_Double("SIGN(9)", 0);
   assert.strictEqual(sign, 1, "SIGN(9) 应该是 1");
   
-  sign = engine.TryEvaluate("SIGN(-9)", 0);
+  sign = engine.TryEvaluate_Double("SIGN(-9)", 0);
   assert.strictEqual(sign, -1, "SIGN(-9) 应该是 -1");
   
   console.log('SIGN 测试通过！');
@@ -90,7 +90,7 @@ function testSQRT() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sqrt = engine.TryEvaluate("SQRT(9)", 0.0);
+  let sqrt = engine.TryEvaluate_Double("SQRT(9)", 0.0);
   assert.strictEqual(sqrt, 3.0, "SQRT(9) 应该是 3.0");
   
   console.log('SQRT 测试通过！');
@@ -101,7 +101,7 @@ function testSUM() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sum = engine.TryEvaluate("SUM(1,2,3,4)", 0.0);
+  let sum = engine.TryEvaluate_Double("SUM(1,2,3,4)", 0.0);
   assert.strictEqual(sum, 10.0, "SUM(1,2,3,4) 应该是 10.0");
   
   console.log('SUM 测试通过！');
@@ -112,10 +112,10 @@ function testTRUNC() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let trunc = engine.TryEvaluate("TRUNC(9.222)", 0.0);
+  let trunc = engine.TryEvaluate_Double("TRUNC(9.222)", 0.0);
   assert.strictEqual(trunc, 9.0, "TRUNC(9.222) 应该是 9.0");
   
-  trunc = engine.TryEvaluate("TRUNC(-9.222)", 0.0);
+  trunc = engine.TryEvaluate_Double("TRUNC(-9.222)", 0.0);
   assert.strictEqual(trunc, -9.0, "TRUNC(-9.222) 应该是 -9.0");
   
   console.log('TRUNC 测试通过！');
@@ -126,10 +126,10 @@ function testInt() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let intValue = engine.TryEvaluate("int(9.222)", 0.0);
+  let intValue = engine.TryEvaluate_Double("int(9.222)", 0.0);
   assert.strictEqual(intValue, 9.0, "int(9.222) 应该是 9.0");
   
-  intValue = engine.TryEvaluate("int(-9.222)", 0.0);
+  intValue = engine.TryEvaluate_Double("int(-9.222)", 0.0);
   assert.strictEqual(intValue, -9.0, "int(-9.222) 应该是 -9.0");
   
   console.log('int 测试通过！');
@@ -140,10 +140,10 @@ function testGCD() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let gcd = engine.TryEvaluate("GCD(3,5,7)", 0.0);
+  let gcd = engine.TryEvaluate_Double("GCD(3,5,7)", 0.0);
   assert.strictEqual(gcd, 1.0, "GCD(3,5,7) 应该是 1.0");
   
-  gcd = engine.TryEvaluate("GCD(30,21)", 0.0);
+  gcd = engine.TryEvaluate_Double("GCD(30,21)", 0.0);
   assert.strictEqual(gcd, 3.0, "GCD(30,21) 应该是 3.0");
   
   console.log('GCD 测试通过！');
@@ -154,7 +154,7 @@ function testLCM() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let lcm = engine.TryEvaluate("LCM(3,5,7)", 0.0);
+  let lcm = engine.TryEvaluate_Double("LCM(3,5,7)", 0.0);
   assert.strictEqual(lcm, 105.0, "LCM(3,5,7) 应该是 105.0");
   
   console.log('LCM 测试通过！');
@@ -165,7 +165,7 @@ function testCombin() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let combin = engine.TryEvaluate("combin(10,2)", 0.0);
+  let combin = engine.TryEvaluate_Double("combin(10,2)", 0.0);
   assert.strictEqual(combin, 45.0, "combin(10,2) 应该是 45.0");
   
   console.log('combin 测试通过！');
@@ -176,7 +176,7 @@ function testPERMUT() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let permut = engine.TryEvaluate("PERMUT(10,2)", 0.0);
+  let permut = engine.TryEvaluate_Double("PERMUT(10,2)", 0.0);
   assert.strictEqual(permut, 90.0, "PERMUT(10,2) 应该是 90.0");
   
   console.log('PERMUT 测试通过！');
@@ -187,7 +187,7 @@ function testDegrees() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let degrees = engine.TryEvaluate("degrees(pi())", 0.0);
+  let degrees = engine.TryEvaluate_Double("degrees(pi())", 0.0);
   assert.strictEqual(degrees, 180.0, "degrees(pi()) 应该是 180.0");
   
   console.log('degrees 测试通过！');
@@ -198,7 +198,7 @@ function testRADIANS() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let radians = engine.TryEvaluate("RADIANS(180)", 0.0);
+  let radians = engine.TryEvaluate_Double("RADIANS(180)", 0.0);
   assert.strictEqual(Math.round(radians * 1000000000) / 1000000000, Math.round(Math.PI * 1000000000) / 1000000000, "RADIANS(180) 应该等于 Math.PI");
   
   console.log('RADIANS 测试通过！');
@@ -209,7 +209,7 @@ function testCos() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let cos = engine.TryEvaluate("cos(1)", 0.0);
+  let cos = engine.TryEvaluate_Double("cos(1)", 0.0);
   cos = Math.round(cos * 1000000) / 1000000;
   assert.strictEqual(cos, Math.round(Math.cos(1) * 1000000) / 1000000, "cos(1) 应该等于 Math.cos(1)");
   
@@ -221,7 +221,7 @@ function testCosh() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let cosh = engine.TryEvaluate("cosh(1)", 0.0);
+  let cosh = engine.TryEvaluate_Double("cosh(1)", 0.0);
   cosh = Math.round(cosh * 1000000) / 1000000;
   assert.strictEqual(cosh, Math.round(Math.cosh(1) * 1000000) / 1000000, "cosh(1) 应该等于 Math.cosh(1)");
   
@@ -233,7 +233,7 @@ function testSin() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sin = engine.TryEvaluate("sin(1)", 0.0);
+  let sin = engine.TryEvaluate_Double("sin(1)", 0.0);
   sin = Math.round(sin * 1000000) / 1000000;
   assert.strictEqual(sin, Math.round(Math.sin(1) * 1000000) / 1000000, "sin(1) 应该等于 Math.sin(1)");
   
@@ -245,7 +245,7 @@ function testSinh() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sinh = engine.TryEvaluate("sinh(1)", 0.0);
+  let sinh = engine.TryEvaluate_Double("sinh(1)", 0.0);
   sinh = Math.round(sinh * 1000000) / 1000000;
   assert.strictEqual(sinh, Math.round(Math.sinh(1) * 1000000) / 1000000, "sinh(1) 应该等于 Math.sinh(1)");
   
@@ -257,7 +257,7 @@ function testTan() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let tan = engine.TryEvaluate("tan(1)", 0.0);
+  let tan = engine.TryEvaluate_Double("tan(1)", 0.0);
   tan = Math.round(tan * 1000000) / 1000000;
   assert.strictEqual(tan, Math.round(Math.tan(1) * 1000000) / 1000000, "tan(1) 应该等于 Math.tan(1)");
   
@@ -269,7 +269,7 @@ function testTanh() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let tanh = engine.TryEvaluate("tanh(1)", 0.0);
+  let tanh = engine.TryEvaluate_Double("tanh(1)", 0.0);
   tanh = Math.round(tanh * 1000000) / 1000000;
   assert.strictEqual(tanh, Math.round(Math.tanh(1) * 1000000) / 1000000, "tanh(1) 应该等于 Math.tanh(1)");
   
@@ -281,7 +281,7 @@ function testAcos() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let acos = engine.TryEvaluate("acos(0.5)", 0.0);
+  let acos = engine.TryEvaluate_Double("acos(0.5)", 0.0);
   acos = Math.round(acos * 1000000) / 1000000;
   assert.strictEqual(acos, Math.round(Math.acos(0.5) * 1000000) / 1000000, "acos(0.5) 应该等于 Math.acos(0.5)");
   
@@ -293,7 +293,7 @@ function testAcosh() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let acosh = engine.TryEvaluate("acosh(1.5)", 0.0);
+  let acosh = engine.TryEvaluate_Double("acosh(1.5)", 0.0);
   acosh = Math.round(acosh * 1000000) / 1000000;
   assert.strictEqual(acosh, Math.round(Math.acosh(1.5) * 1000000) / 1000000, "acosh(1.5) 应该等于 Math.acosh(1.5)");
   
@@ -305,7 +305,7 @@ function testAsin() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let asin = engine.TryEvaluate("asin(0.5)", 0.0);
+  let asin = engine.TryEvaluate_Double("asin(0.5)", 0.0);
   asin = Math.round(asin * 1000000) / 1000000;
   assert.strictEqual(asin, Math.round(Math.asin(0.5) * 1000000) / 1000000, "asin(0.5) 应该等于 Math.asin(0.5)");
   
@@ -317,7 +317,7 @@ function testAsinh() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let asinh = engine.TryEvaluate("asinh(1.5)", 0.0);
+  let asinh = engine.TryEvaluate_Double("asinh(1.5)", 0.0);
   asinh = Math.round(asinh * 1000000) / 1000000;
   assert.strictEqual(asinh, Math.round(Math.asinh(1.5) * 1000000) / 1000000, "asinh(1.5) 应该等于 Math.asinh(1.5)");
   
@@ -329,7 +329,7 @@ function testAtan() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let atan = engine.TryEvaluate("atan(1)", 0.0);
+  let atan = engine.TryEvaluate_Double("atan(1)", 0.0);
   atan = Math.round(atan * 1000000) / 1000000;
   assert.strictEqual(atan, Math.round(Math.atan(1) * 1000000) / 1000000, "atan(1) 应该等于 Math.atan(1)");
   
@@ -341,7 +341,7 @@ function testAtanh() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let atanh = engine.TryEvaluate("atanh(0.5)", 0.0);
+  let atanh = engine.TryEvaluate_Double("atanh(0.5)", 0.0);
   atanh = Math.round(atanh * 1000000) / 1000000;
   assert.strictEqual(atanh, Math.round(Math.atanh(0.5) * 1000000) / 1000000, "atanh(0.5) 应该等于 Math.atanh(0.5)");
   
@@ -353,7 +353,7 @@ function testAtan2() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let atan2 = engine.TryEvaluate("atan2(1,2)", 0.0);
+  let atan2 = engine.TryEvaluate_Double("atan2(1,2)", 0.0);
   atan2 = Math.round(atan2 * 1000000) / 1000000;
   assert.strictEqual(atan2, Math.round(Math.atan2(1, 2) * 1000000) / 1000000, "atan2(1,2) 应该等于 Math.atan2(1, 2)");
   
@@ -365,7 +365,7 @@ function testROUND() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let round = engine.TryEvaluate("ROUND(4.333,2)", 0.0);
+  let round = engine.TryEvaluate_Double("ROUND(4.333,2)", 0.0);
   assert.strictEqual(round, 4.33, "ROUND(4.333,2) 应该是 4.33");
   
   console.log('ROUND 测试通过！');
@@ -376,10 +376,10 @@ function testROUNDDOWN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let rounddown = engine.TryEvaluate("ROUNDDOWN(4.333,2)", 0.0);
+  let rounddown = engine.TryEvaluate_Double("ROUNDDOWN(4.333,2)", 0.0);
   assert.strictEqual(rounddown, 4.33, "ROUNDDOWN(4.333,2) 应该是 4.33");
   
-  rounddown = engine.TryEvaluate("ROUNDDOWN(-3.141592, 3)", 0.0);
+  rounddown = engine.TryEvaluate_Double("ROUNDDOWN(-3.141592, 3)", 0.0);
   assert.strictEqual(rounddown, -3.141, "ROUNDDOWN(-3.141592, 3) 应该是 -3.141");
   
   console.log('ROUNDDOWN 测试通过！');
@@ -390,10 +390,10 @@ function testROUNDUP() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let roundup = engine.TryEvaluate("ROUNDUP(4.333,2)", 0.0);
+  let roundup = engine.TryEvaluate_Double("ROUNDUP(4.333,2)", 0.0);
   assert.strictEqual(roundup, 4.34, "ROUNDUP(4.333,2) 应该是 4.34");
   
-  roundup = engine.TryEvaluate("ROUNDUP(-3.141592, 3)", 0.0);
+  roundup = engine.TryEvaluate_Double("ROUNDUP(-3.141592, 3)", 0.0);
   assert.strictEqual(roundup, -3.142, "ROUNDUP(-3.141592, 3) 应该是 -3.142");
   
   console.log('ROUNDUP 测试通过！');
@@ -404,10 +404,10 @@ function testCEILING() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let ceiling = engine.TryEvaluate("CEILING(4.333,0.1)", 0.0);
+  let ceiling = engine.TryEvaluate_Double("CEILING(4.333,0.1)", 0.0);
   assert.strictEqual(ceiling, 4.4, "CEILING(4.333,0.1) 应该是 4.4");
   
-  ceiling = engine.TryEvaluate("CEILING(4.333)", 0.0);
+  ceiling = engine.TryEvaluate_Double("CEILING(4.333)", 0.0);
   assert.strictEqual(ceiling, 5, "CEILING(4.333) 应该是 5");
   
   console.log('CEILING 测试通过！');
@@ -418,10 +418,10 @@ function testFLOOR() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let floor = engine.TryEvaluate("FLOOR(4.363,0.1)", 0.0);
+  let floor = engine.TryEvaluate_Double("FLOOR(4.363,0.1)", 0.0);
   assert.strictEqual(floor, 4.3, "FLOOR(4.363,0.1) 应该是 4.3");
   
-  floor = engine.TryEvaluate("FLOOR(4.333)", 0.0);
+  floor = engine.TryEvaluate_Double("FLOOR(4.333)", 0.0);
   assert.strictEqual(floor, 4, "FLOOR(4.333) 应该是 4");
   
   console.log('FLOOR 测试通过！');
@@ -432,7 +432,7 @@ function testEven() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let even = engine.TryEvaluate("even(4.363)", 0.0);
+  let even = engine.TryEvaluate_Double("even(4.363)", 0.0);
   assert.strictEqual(even, 6.0, "even(4.363) 应该是 6.0");
   
   console.log('even 测试通过！');
@@ -443,7 +443,7 @@ function testOdd() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let odd = engine.TryEvaluate("odd(4.363)", 0.0);
+  let odd = engine.TryEvaluate_Double("odd(4.363)", 0.0);
   assert.strictEqual(odd, 5, "odd(4.363) 应该是 5");
   
   console.log('odd 测试通过！');
@@ -454,10 +454,10 @@ function testMROUND() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let mround = engine.TryEvaluate("MROUND(4.363,2)", 0.0);
+  let mround = engine.TryEvaluate_Double("MROUND(4.363,2)", 0.0);
   assert.strictEqual(mround, 4, "MROUND(4.363,2) 应该是 4");
   
-  mround = engine.TryEvaluate("MROUND(5.363,2)", 0.0);
+  mround = engine.TryEvaluate_Double("MROUND(5.363,2)", 0.0);
   assert.strictEqual(mround, 6, "MROUND(5.363,2) 应该是 6");
   
   console.log('MROUND 测试通过！');
@@ -468,7 +468,7 @@ function testRand() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let rand = engine.TryEvaluate("RAND()", 0.0);
+  let rand = engine.TryEvaluate_Double("RAND()", 0.0);
   assert.ok(rand > 0 && rand <= 1, "RAND() 应该返回一个 0 到 1 之间的数字");
   
   console.log('Rand 测试通过！');
@@ -479,7 +479,7 @@ function testRANDBETWEEN() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let randbetween = engine.TryEvaluate("RANDBETWEEN(2,99)", 0.0);
+  let randbetween = engine.TryEvaluate_Double("RANDBETWEEN(2,99)", 0.0);
   assert.ok(randbetween >= 2 && randbetween <= 99, "RANDBETWEEN(2,99) 应该返回一个 2 到 99 之间的数字");
   
   console.log('RANDBETWEEN 测试通过！');
@@ -490,10 +490,10 @@ function testFact() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let fact = engine.TryEvaluate("fact(6)", 0.0);
+  let fact = engine.TryEvaluate_Double("fact(6)", 0.0);
   assert.strictEqual(fact, 720.0, "fact(6) 应该是 720.0");
   
-  fact = engine.TryEvaluate("fact(3)", 0.0);
+  fact = engine.TryEvaluate_Double("fact(3)", 0.0);
   assert.strictEqual(fact, 6.0, "fact(3) 应该是 6.0");
   
   console.log('fact 测试通过！');
@@ -504,7 +504,7 @@ function testFactdouble() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let factdouble = engine.TryEvaluate("factdouble(10)", 0.0);
+  let factdouble = engine.TryEvaluate_Double("factdouble(10)", 0.0);
   assert.strictEqual(factdouble, 3840.0, "factdouble(10) 应该是 3840.0");
   
   console.log('factdouble 测试通过！');
@@ -515,7 +515,7 @@ function testPOWER() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let power = engine.TryEvaluate("POWER(10,2)", 0.0);
+  let power = engine.TryEvaluate_Double("POWER(10,2)", 0.0);
   assert.strictEqual(power, 100.0, "POWER(10,2) 应该是 100.0");
   
   console.log('POWER 测试通过！');
@@ -526,7 +526,7 @@ function testExp() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let exp = engine.TryEvaluate("exp(2)", 0.0);
+  let exp = engine.TryEvaluate_Double("exp(2)", 0.0);
   exp = Math.round(exp * 1000000) / 1000000;
   assert.strictEqual(exp, Math.round(Math.exp(2) * 1000000) / 1000000, "exp(2) 应该等于 Math.exp(2)");
   
@@ -538,7 +538,7 @@ function testLn() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let ln = engine.TryEvaluate("ln(4)", 0.0);
+  let ln = engine.TryEvaluate_Double("ln(4)", 0.0);
   ln = Math.round(ln * 1000000) / 1000000;
   assert.strictEqual(ln, Math.round(Math.log(4) * 1000000) / 1000000, "ln(4) 应该等于 Math.log(4)");
   
@@ -550,11 +550,11 @@ function testLog() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let log = engine.TryEvaluate("log(10)", 0.0);
+  let log = engine.TryEvaluate_Double("log(10)", 0.0);
   log = Math.round(log * 1000000) / 1000000;
   assert.strictEqual(log, 1.0, "log(10) 应该是 1.0");
   
-  log = engine.TryEvaluate("log(8,2)", 0.0);
+  log = engine.TryEvaluate_Double("log(8,2)", 0.0);
   log = Math.round(log * 1000000) / 1000000;
   assert.strictEqual(log, 3.0, "log(8,2) 应该是 3.0");
   
@@ -566,7 +566,7 @@ function testLog10() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let log10 = engine.TryEvaluate("log10(10)", 0.0);
+  let log10 = engine.TryEvaluate_Double("log10(10)", 0.0);
   log10 = Math.round(log10 * 1000000) / 1000000;
   assert.strictEqual(log10, 1.0, "log10(10) 应该是 1.0");
   
@@ -578,11 +578,11 @@ function testMULTINOMIAL() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let multinomial = engine.TryEvaluate("MULTINOMIAL(1,2,3)", 0.0);
+  let multinomial = engine.TryEvaluate_Double("MULTINOMIAL(1,2,3)", 0.0);
   multinomial = Math.round(multinomial * 1000000) / 1000000;
   assert.strictEqual(multinomial, 60.0, "MULTINOMIAL(1,2,3) 应该是 60.0");
   
-  multinomial = engine.TryEvaluate("MULTINOMIAL(1,2,3,4)", 0.0);
+  multinomial = engine.TryEvaluate_Double("MULTINOMIAL(1,2,3,4)", 0.0);
   multinomial = Math.round(multinomial * 1000000) / 1000000;
   assert.strictEqual(multinomial, 12600.0, "MULTINOMIAL(1,2,3,4) 应该是 12600.0");
   
@@ -594,7 +594,7 @@ function testPRODUCT() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let product = engine.TryEvaluate("PRODUCT(1,2,3,4)", 0.0);
+  let product = engine.TryEvaluate_Double("PRODUCT(1,2,3,4)", 0.0);
   product = Math.round(product * 1000000) / 1000000;
   assert.strictEqual(product, 24.0, "PRODUCT(1,2,3,4) 应该是 24.0");
   
@@ -606,7 +606,7 @@ function testSQRTPI() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sqrtpi = engine.TryEvaluate("SQRTPI(3)", 0.0);
+  let sqrtpi = engine.TryEvaluate_Double("SQRTPI(3)", 0.0);
   sqrtpi = Math.round(sqrtpi * 1000000) / 1000000;
   assert.ok(typeof sqrtpi === 'number', "SQRTPI(3) 应该返回一个数字");
   
@@ -618,7 +618,7 @@ function testSUMSQ() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let sumsq = engine.TryEvaluate("SUMSQ(1,2)", 0.0);
+  let sumsq = engine.TryEvaluate_Double("SUMSQ(1,2)", 0.0);
   sumsq = Math.round(sumsq * 1000000) / 1000000;
   assert.strictEqual(sumsq, 5.0, "SUMSQ(1,2) 应该是 5.0");
   
@@ -630,43 +630,43 @@ function testTransformation() {
   
   const engine = new AlgorithmEngineWithTryEvaluate();
   
-  let num = engine.TryEvaluate("BIN2DEC(10101)", 0);
+  let num = engine.TryEvaluate_Double("BIN2DEC(10101)", 0);
   assert.strictEqual(num, 21, "BIN2DEC(10101) 应该是 21");
   
-  num = engine.TryEvaluate("OCT2DEC(12456)", 0);
+  num = engine.TryEvaluate_Double("OCT2DEC(12456)", 0);
   assert.strictEqual(num, 5422, "OCT2DEC(12456) 应该是 5422");
   
-  num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
+  num = engine.TryEvaluate_Double("HEX2DEC('213adf')", 0);
   assert.strictEqual(num, 2177759, "HEX2DEC('213adf') 应该是 2177759");
   
-  let t = engine.TryEvaluate("DEC2BIN(10)", "");
+  let t = engine.TryEvaluate_Double("DEC2BIN(10)", "");
   assert.strictEqual(t, "1010", "DEC2BIN(10) 应该是 '1010'");
   
-  t = engine.TryEvaluate("OCT2BIN('721')", "");
+  t = engine.TryEvaluate_Double("OCT2BIN('721')", "");
   assert.strictEqual(t, "111010001", "OCT2BIN('721') 应该是 '111010001'");
   
-  t = engine.TryEvaluate("HEX2BIN('fa')", "");
+  t = engine.TryEvaluate_Double("HEX2BIN('fa')", "");
   assert.strictEqual(t, "11111010", "HEX2BIN('fa') 应该是 '11111010'");
   
-  t = engine.TryEvaluate("'fa'.HEX2BIN()", "");
+  t = engine.TryEvaluate_Double("'fa'.HEX2BIN()", "");
   assert.strictEqual(t, "11111010", "'fa'.HEX2BIN() 应该是 '11111010'");
   
-  t = engine.TryEvaluate("BIN2OCT(10)", "");
+  t = engine.TryEvaluate_Double("BIN2OCT(10)", "");
   assert.strictEqual(t, "2", "BIN2OCT(10) 应该是 '2'");
   
-  t = engine.TryEvaluate("DEC2OCT('75')", "");
+  t = engine.TryEvaluate_Double("DEC2OCT('75')", "");
   assert.strictEqual(t, "113", "DEC2OCT('75') 应该是 '113'");
   
-  t = engine.TryEvaluate("HEX2OCT('f5')", "");
+  t = engine.TryEvaluate_Double("HEX2OCT('f5')", "");
   assert.strictEqual(t, "365", "HEX2OCT('f5') 应该是 '365'");
   
-  t = engine.TryEvaluate("BIN2HEX(101010100)", "");
+  t = engine.TryEvaluate_Double("BIN2HEX(101010100)", "");
   assert.strictEqual(t, "154", "BIN2HEX(101010100) 应该是 '154'");
   
-  t = engine.TryEvaluate("OCT2HEX(75212)", "");
+  t = engine.TryEvaluate_Double("OCT2HEX(75212)", "");
   assert.strictEqual(t, "7A8A", "OCT2HEX(75212) 应该是 '7A8A'");
   
-  t = engine.TryEvaluate("DEC2HEX(952)", "");
+  t = engine.TryEvaluate_Double("DEC2HEX(952)", "");
   assert.strictEqual(t, "3B8", "DEC2HEX(952) 应该是 '3B8'");
   
   console.log('transformation 测试通过！');
@@ -748,6 +748,7 @@ function runAllTests() {
 if (import.meta.url === import.meta.resolve('./')) {
   runAllTests();
 }
+runAllTests();
 
 export {
   // 基础数学

@@ -716,6 +716,7 @@ function runAllTests() {
 if (import.meta.url === import.meta.resolve('./')) {
   runAllTests();
 }
+runAllTests();
 
 export {
   // 简单统计
