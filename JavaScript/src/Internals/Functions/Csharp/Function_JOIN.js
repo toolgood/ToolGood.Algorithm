@@ -56,9 +56,26 @@ export class Function_JOIN extends Function_N {
             
             let list = [];
             for (let i = 1; i < args.length; i++) {
-                let o = FunctionUtil.f_base_GetList(args[i], list);
-                if (!o) {
-                    return Operand.Error('Function \'{0}\' parameter {1} is error!', 'Join', i + 1);
+                let item = args[i];
+                if (item.IsNumber) {
+                    list.push(item.NumberValue);
+                } else if (item.IsText) {
+                    list.push(item.TextValue);
+                } else if (item.IsBoolean) {
+                    list.push(item.BooleanValue);
+                } else if (item.IsArray) {
+                    for (let arrItem of item.ArrayValue) {
+                        if (arrItem.IsNumber) {
+                            list.push(arrItem.NumberValue);
+                        } else if (arrItem.IsText) {
+                            list.push(arrItem.TextValue);
+                        } else if (arrItem.IsBoolean) {
+                            list.push(arrItem.BooleanValue);
+                        } else {
+                            // 处理原始值
+                            list.push(arrItem);
+                        }
+                    }
                 }
             }
             

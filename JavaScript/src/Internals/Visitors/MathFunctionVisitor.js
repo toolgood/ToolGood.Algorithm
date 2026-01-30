@@ -1975,7 +1975,9 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_ENDSWITH(args1, args2);
+        if (exprs.length === 2) return new Function_ENDSWITH(args1, args2, null);
+        let args3 = exprs[2].accept(this);
+        return new Function_ENDSWITH(args1, args2, args3);
     }
 
     /**
@@ -2063,7 +2065,9 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_REMOVESTART(args1, args2);
+        if (exprs.length === 2) return new Function_REMOVESTART(args1, args2, null);
+        let args3 = exprs[2].accept(this);
+        return new Function_REMOVESTART(args1, args2, args3);
     }
 
     /**
@@ -2075,7 +2079,9 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_REMOVEEND(args1, args2);
+        if (exprs.length === 2) return new Function_REMOVEEND(args1, args2, null);
+        let args3 = exprs[2].accept(this);
+        return new Function_REMOVEEND(args1, args2, args3);
     }
 
     /**
