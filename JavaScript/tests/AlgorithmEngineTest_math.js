@@ -639,34 +639,34 @@ function testTransformation() {
   num = engine.TryEvaluate_Double("HEX2DEC('213adf')", 0);
   assert.strictEqual(num, 2177759, "HEX2DEC('213adf') 应该是 2177759");
   
-  let t = engine.TryEvaluate_Double("DEC2BIN(10)", "");
+  let t = engine.TryEvaluate_String("DEC2BIN(10)", "");
   assert.strictEqual(t, "1010", "DEC2BIN(10) 应该是 '1010'");
   
-  t = engine.TryEvaluate_Double("OCT2BIN('721')", "");
+  t = engine.TryEvaluate_String("OCT2BIN('721')", "");
   assert.strictEqual(t, "111010001", "OCT2BIN('721') 应该是 '111010001'");
   
-  t = engine.TryEvaluate_Double("HEX2BIN('fa')", "");
+  t = engine.TryEvaluate_String("HEX2BIN('fa')", "");
   assert.strictEqual(t, "11111010", "HEX2BIN('fa') 应该是 '11111010'");
   
-  t = engine.TryEvaluate_Double("'fa'.HEX2BIN()", "");
+  t = engine.TryEvaluate_String("'fa'.HEX2BIN()", "");
   assert.strictEqual(t, "11111010", "'fa'.HEX2BIN() 应该是 '11111010'");
   
-  t = engine.TryEvaluate_Double("BIN2OCT(10)", "");
+  t = engine.TryEvaluate_String("BIN2OCT(10)", "");
   assert.strictEqual(t, "2", "BIN2OCT(10) 应该是 '2'");
   
-  t = engine.TryEvaluate_Double("DEC2OCT('75')", "");
+  t = engine.TryEvaluate_String("DEC2OCT('75')", "");
   assert.strictEqual(t, "113", "DEC2OCT('75') 应该是 '113'");
   
-  t = engine.TryEvaluate_Double("HEX2OCT('f5')", "");
+  t = engine.TryEvaluate_String("HEX2OCT('f5')", "");
   assert.strictEqual(t, "365", "HEX2OCT('f5') 应该是 '365'");
   
-  t = engine.TryEvaluate_Double("BIN2HEX(101010100)", "");
+  t = engine.TryEvaluate_String("BIN2HEX(101010100)", "");
   assert.strictEqual(t, "154", "BIN2HEX(101010100) 应该是 '154'");
   
-  t = engine.TryEvaluate_Double("OCT2HEX(75212)", "");
+  t = engine.TryEvaluate_String("OCT2HEX(75212)", "");
   assert.strictEqual(t, "7A8A", "OCT2HEX(75212) 应该是 '7A8A'");
   
-  t = engine.TryEvaluate_Double("DEC2HEX(952)", "");
+  t = engine.TryEvaluate_String("DEC2HEX(952)", "");
   assert.strictEqual(t, "3B8", "DEC2HEX(952) 应该是 '3B8'");
   
   console.log('transformation 测试通过！');
