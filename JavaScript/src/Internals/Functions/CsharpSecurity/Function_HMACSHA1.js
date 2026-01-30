@@ -23,14 +23,14 @@ export class Function_HMACSHA1 extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText('Function \'{0}\ parameter {1} is error!', 'HmacSHA1', 1);
+            args1 = args1.ToText('Function \'{0}\』 parameter {1} is error!', 'HmacSHA1', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText('Function \'{0}\ parameter {1} is error!', 'HmacSHA1', 2);
+            args2 = args2.ToText('Function \'{0}\』 parameter {1} is error!', 'HmacSHA1', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -38,10 +38,10 @@ export class Function_HMACSHA1 extends Function_3 {
         
         try {
             let encoding = 'utf-8';
-            if (this.func3 !== null) {
+            if (this.func3 !== undefined && this.func3 !== null) {
                 let args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.IsNotText) {
-                    args3 = args3.ToText('Function \'{0}\ parameter {1} is error!', 'HmacSHA1', 3);
+                    args3 = args3.ToText('Function \'{0}\』 parameter {1} is error!', 'HmacSHA1', 3);
                     if (args3.IsError) {
                         return args3;
                     }
@@ -64,7 +64,7 @@ export class Function_HMACSHA1 extends Function_3 {
             let t = hmac.digest('hex').toUpperCase();
             return Operand.Create(t);
         } catch (ex) {
-            return Operand.error('Function \'HmacSHA1\'is error!' + ex.message);
+            return Operand.Error('Function \'HmacSHA1\'is error!' + ex.message);
         }
     }
     

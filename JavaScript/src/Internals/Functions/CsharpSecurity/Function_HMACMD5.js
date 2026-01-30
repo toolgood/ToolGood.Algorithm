@@ -38,7 +38,7 @@ export class Function_HMACMD5 extends Function_3 {
         
         try {
             let encoding = 'utf-8';
-            if (this.func3 !== null) {
+            if (this.func3 !== undefined && this.func3 !== null) {
                 let args3 = this.func3.Evaluate(engine, tempParameter);
                 if (args3.IsNotText) {
                     args3 = args3.ToText('Function \'{0}\ parameter {1} is error!', 'HmacMD5', 3);
@@ -64,7 +64,7 @@ export class Function_HMACMD5 extends Function_3 {
             let t = hmac.digest('hex').toUpperCase();
             return Operand.Create(t);
         } catch (ex) {
-            return Operand.error('Function \'HmacMD5\'is error!' + ex.message);
+            return Operand.Error('Function \'HmacMD5\'is error!' + ex.message);
         }
     }
     
