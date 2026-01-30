@@ -1,6 +1,7 @@
 import { Function_2 } from '../Function_2.js';
 import { Base64 } from './Base64.js';
 import { Operand } from '../../../Operand.js';
+import * as iconv from 'iconv-lite';
 
 class Function_BASE64TOTEXT extends Function_2 {
     constructor(func1, func2) {
@@ -25,9 +26,14 @@ class Function_BASE64TOTEXT extends Function_2 {
                 }
                 encoding = args2.TextValue;
             }
-            let bytes = Base64.FromBase64String(args1.TextValue);
-            let decoder = new TextDecoder(encoding);
-            let t = decoder.decode(bytes);
+            let buffer = Buffer.from(args1.TextValue, 'base64');
+            let t;
+            if (iconv.encodingExists(encoding)) {
+                t = iconv.decode(buffer, encoding);
+            } else {
+                // 如果编码不支持，默认使用utf-8
+                t = buffer.toString('utf-8');
+            }
             return Operand.Create(t);
         } catch (e) {
             // Ignore errors
