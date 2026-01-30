@@ -67,7 +67,7 @@ function testIssues27() {
   const engine = new AlgorithmEngineWithTryEvaluate();
   
   // 测试日期时间相加
-  let result = engine.TryEvaluate('DATE(2024, 8, 1) + TIME(8, 0, 0)', new Date());
+  let result = engine.TryEvaluate_DateTime('DATE(2024, 8, 1) + TIME(8, 0, 0)', new Date());
   assert.ok(result instanceof Date, "'DATE(2024, 8, 1) + TIME(8, 0, 0)' 应该返回一个 Date 对象");
   assert.strictEqual(result.getFullYear(), 2024, "年份应该是 2024");
   assert.strictEqual(result.getMonth() + 1, 8, "月份应该是 8");
@@ -84,7 +84,7 @@ function testIssues0() {
   engine.AddParameter("瓦楞", "BC");
   
   // 测试 JSON 操作和参数使用
-  let result = engine.TryEvaluate(`{"A": 0.6,"B": 0.4,"C": 0.6,"E": 0.33,"F": 0.29,"Z": 0.15
+  let result = engine.TryEvaluate_Double(`{"A": 0.6,"B": 0.4,"C": 0.6,"E": 0.33,"F": 0.29,"Z": 0.15
 ,"EB": 0.7,"EE": 0.65,"EA": 0.85,"AB": 1.0,"BC": 1.0,"AA":1.0
 ,"EBC": 1.15,"BAB": 1.25,"BCB": 1.25,"BBC": 1.25,"CBB": 1.25,"EBA": 1.2,"AAA": 1.4}[瓦楞]`, 0);
   assert.strictEqual(result, 1.0, "JSON 操作应该返回 1.0");
