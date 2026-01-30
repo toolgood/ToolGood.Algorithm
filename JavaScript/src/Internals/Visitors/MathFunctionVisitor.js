@@ -194,7 +194,6 @@ import { Function_MD5 } from '../Functions/CsharpSecurity/Function_MD5.js';
 import { Function_SHA1 } from '../Functions/CsharpSecurity/Function_SHA1.js';
 import { Function_SHA256 } from '../Functions/CsharpSecurity/Function_SHA256.js';
 import { Function_SHA512 } from '../Functions/CsharpSecurity/Function_SHA512.js';
-import { Function_CRC32 } from '../Functions/CsharpSecurity/Function_CRC32.js';
 import { Function_HMACMD5 } from '../Functions/CsharpSecurity/Function_HMACMD5.js';
 import { Function_HMACSHA1 } from '../Functions/CsharpSecurity/Function_HMACSHA1.js';
 import { Function_HMACSHA256 } from '../Functions/CsharpSecurity/Function_HMACSHA256.js';
@@ -3102,18 +3101,6 @@ class MathFunctionVisitor extends mathVisitor  {
         return new Function_SHA512(args1, args2);
     }
 
-    /**
-     * 访问CRC32函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCRC32_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_CRC32(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_CRC32(args1, args2);
-    }
 
     /**
      * 访问HMACMD5函数节点

@@ -258,12 +258,6 @@ export default class mathVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by mathParser#CRC32_fun.
-	visitCRC32_fun(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by mathParser#LCM_fun.
 	visitLCM_fun(ctx) {
 	  return this.visitChildren(ctx);
