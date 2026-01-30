@@ -2,7 +2,7 @@
 using ToolGood.Algorithm;
 using ToolGood.Algorithm.Enums;
 
-namespace ToolGood.Algorithm2.Test.ConditionTrees
+namespace ToolGood.Algorithm.Test.ConditionTrees
 {
     [TestFixture]
     public class ConditionTreeTest
@@ -140,42 +140,49 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             Assert.AreEqual("[tt]==22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
         }
 
+        [Test]
+        public void Test10()
+        {
+            string txt = "AA && (dd=ss || [tt]==22)";
+            var tree = AlgorithmEngineHelper.ParseCondition(txt);
 
-		[Test]
-		public void Test10()
-		{
-			string txt = "AA && (dd=ss || [tt]==22)";
-			var tree = AlgorithmEngineHelper.ParseCondition(txt);
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
+            var t1 = tree.Nodes[0];
+            var t2 = tree.Nodes[1];
+            Assert.AreEqual(t2.Type, ConditionTreeType.Or);
+            var t3 = t2.Nodes[0];
+            var t4 = t2.Nodes[1];
 
-			Assert.AreEqual(tree.Type, ConditionTreeType.And);
-			var t1 = tree.Nodes[0];
-			var t2 = tree.Nodes[1];
-			Assert.AreEqual(t2.Type, ConditionTreeType.Or);
-			var t3 = t2.Nodes[0];
-			var t4 = t2.Nodes[1];
+            Assert.AreEqual("AA", txt.Substring(t1.Start, t1.End - t1.Start + 1));
+            Assert.AreEqual("dd=ss", txt.Substring(t3.Start, t3.End - t3.Start + 1));
+            Assert.AreEqual("[tt]==22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
+        }
 
-			Assert.AreEqual("AA", txt.Substring(t1.Start, t1.End - t1.Start + 1));
-			Assert.AreEqual("dd=ss", txt.Substring(t3.Start, t3.End - t3.Start + 1));
-			Assert.AreEqual("[tt]==22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
-		}
+        [Test]
+        public void Test11()
+        {
+            string txt = "1 && (dd=ss || [tt]==22)";
+            var tree = AlgorithmEngineHelper.ParseCondition(txt);
 
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
+            var t1 = tree.Nodes[0];
+            var t2 = tree.Nodes[1];
+            Assert.AreEqual(t2.Type, ConditionTreeType.Or);
+            var t3 = t2.Nodes[0];
+            var t4 = t2.Nodes[1];
 
-		[Test]
-		public void Test11()
-		{
-			string txt = "1 && (dd=ss || [tt]==22)";
-			var tree = AlgorithmEngineHelper.ParseCondition(txt);
+            Assert.AreEqual("1", txt.Substring(t1.Start, t1.End - t1.Start + 1));
+            Assert.AreEqual("dd=ss", txt.Substring(t3.Start, t3.End - t3.Start + 1));
+            Assert.AreEqual("[tt]==22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
+        }
 
-			Assert.AreEqual(tree.Type, ConditionTreeType.And);
-			var t1 = tree.Nodes[0];
-			var t2 = tree.Nodes[1];
-			Assert.AreEqual(t2.Type, ConditionTreeType.Or);
-			var t3 = t2.Nodes[0];
-			var t4 = t2.Nodes[1];
-
-			Assert.AreEqual("1", txt.Substring(t1.Start, t1.End - t1.Start + 1));
-			Assert.AreEqual("dd=ss", txt.Substring(t3.Start, t3.End - t3.Start + 1));
-			Assert.AreEqual("[tt]==22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
-		}
-	}
+        [Test]
+        public void TestError()
+        {
+            string txt = "";
+            var tree = AlgorithmEngineHelper.ParseCondition(txt);
+            Assert.AreEqual(tree.Type, ConditionTreeType.Error);
+            Assert.AreEqual("condition is null", tree.ErrorMessage);
+        }
+    }
 }
