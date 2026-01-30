@@ -297,7 +297,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let args2 = exprs[1].accept(this);
 
         let Type = context.op.text;
-        if (CharUtil.Equals(Type, "=", "==", "===")) {
+        if (CharUtil.Equals4(Type, "=", "==", "===")) {
             return new Function_EQ(args1, args2);
         } else if (CharUtil.Equals(Type, "<")) {
             return new Function_LT(args1, args2);
@@ -321,7 +321,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
         let t = context.op.text;
-        if (CharUtil.Equals(t, "&&", "AND")) {
+        if (CharUtil.Equals3(t, "&&", "AND")) {
             return new Function_AND(args1, args2);
         }
         return new Function_OR(args1, args2);
