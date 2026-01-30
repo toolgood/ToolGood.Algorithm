@@ -9,7 +9,7 @@ class Function_ABS extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Abs");
+            args1 = args1.ToNumber("Function {0} parameter is error!", "Abs");
             if (args1.IsError) { return args1; }
         }
         return Operand.Create(Math.abs(args1.NumberValue));

@@ -16,19 +16,19 @@ class Function_BIN2OCT extends Function_2 {
         }
 
         if (!RegexHelper.BinRegex.test(args1.TextValue)) {
-            return Operand.Error('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 1);
+            return Operand.Error("Function {0} parameter {1} is error!", 'BIN2OCT', 1);
         }
         let num = parseInt(args1.TextValue, 2).toString(8);
         if (this.func2 !== null) {
             let args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber) {
-                args2 = args2.ToNumber('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
+                args2 = args2.ToNumber("Function {0} parameter {1} is error!", 'BIN2OCT', 2);
                 if (args2.IsError) {
                     return args2;
                 }
             }
             if (num.length > args2.IntValue) {
-                return Operand.Error('Function \'{0}\' parameter {1} is error!', 'BIN2OCT', 2);
+                return Operand.Error("Function {0} parameter {1} is error!", 'BIN2OCT', 2);
             }
             return Operand.Create(num.padLeft(args2.IntValue, '0'));
         }

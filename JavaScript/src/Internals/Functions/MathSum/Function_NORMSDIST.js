@@ -10,7 +10,7 @@ class Function_NORMSDIST extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            let converted1 = args1.ToNumber("Function '{0}' parameter is error!", "NormSDist");
+            let converted1 = args1.ToNumber("Function {0} parameter is error!", "NormSDist");
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }

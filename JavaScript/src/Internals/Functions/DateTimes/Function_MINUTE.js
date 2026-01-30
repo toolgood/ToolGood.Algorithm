@@ -9,7 +9,7 @@ class Function_MINUTE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Minute");
+            args1 = args1.ToMyDate("Function {0} parameter is error!", "Minute");
             if (args1.IsError) { return args1; }
         }
         try {

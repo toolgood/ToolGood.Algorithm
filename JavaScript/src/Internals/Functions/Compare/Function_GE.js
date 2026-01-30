@@ -54,12 +54,12 @@ class Function_GE extends Function_2 {
       return Operand.Error("Function '>=' compare is error.");
     }
     if (args1.IsNotNumber) {
-      let a1 = args1.ToNumber(`Function '{'>='}' parameter {1} is error!`);
+      let a1 = args1.ToNumber(`Function '>=' parameter 1 is error!`);
       if (a1.IsError) { return a1; }
       args1 = a1;
     }
     if (args2.IsNotNumber) {
-      let a2 = args2.ToNumber(`Function '{'>='}' parameter {2} is error!`);
+      let a2 = args2.ToNumber(`Function '>=' parameter 2 is error!`);
       if (a2.IsError) { return a2; }
       args2 = a2;
     }

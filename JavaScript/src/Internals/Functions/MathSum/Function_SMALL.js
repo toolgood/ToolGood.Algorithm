@@ -10,25 +10,25 @@ class Function_SMALL extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotArray) {
-            let converted1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Small", 1);
+            let converted1 = args1.ToArray("Function {0} parameter {1} is error!", "Small", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            let converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Small", 2);
+            let converted2 = args2.ToNumber("Function {0} parameter {1} is error!", "Small", 2);
             if (converted2.IsError) return converted2;
             args2 = converted2;
         }
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) {
-            return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 1);
+            return Operand.Error("Function {0} parameter {1} is error!", "Small", 1);
         }
         list.sort((a, b) => a - b);
         let k = args2.IntValue;
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
-            return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 2);
+            return Operand.Error("Function {0} parameter {1} is error!", "Small", 2);
         }
         return Operand.Create(list[k - engine.ExcelIndex]);
     }

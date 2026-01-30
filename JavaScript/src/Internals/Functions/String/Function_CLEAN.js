@@ -9,7 +9,7 @@ class Function_CLEAN extends Function_1 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText('Function \'{0}\' parameter is error!', 'Clean');
+            args1 = args1.ToText("Function {0} parameter is error!", 'Clean');
             if (args1.IsError) {
                 return args1;
             }

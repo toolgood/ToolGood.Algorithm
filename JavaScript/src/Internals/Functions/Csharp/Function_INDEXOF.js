@@ -22,14 +22,14 @@ export class Function_INDEXOF extends Function_4 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 1);
+            args1 = args1.ToText("Function {0} parameter {1} is error!", "IndexOf", 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 2);
+            args2 = args2.ToText("Function {0} parameter {1} is error!", "IndexOf", 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -42,7 +42,7 @@ export class Function_INDEXOF extends Function_4 {
         }
         let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 3);
+            args3 = args3.ToNumber("Function {0} parameter {1} is error!", "IndexOf", 3);
             if (args3.IsError) {
                 return args3;
             }
@@ -54,7 +54,7 @@ export class Function_INDEXOF extends Function_4 {
         }
         let args4 = this.func4.Evaluate(engine, tempParameter);
         if (args4.IsNotNumber) {
-            args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 4);
+            args4 = args4.ToNumber("Function {0} parameter {1} is error!", "IndexOf", 4);
             if (args4.IsError) {
                 return args4;
             }

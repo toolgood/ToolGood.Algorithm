@@ -25,7 +25,7 @@ class Function_COUNT extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o === false) {
-            return Operand.Error("Function '{0}' parameter is error!", 'Count');
+            return Operand.Error("Function {0} parameter is error!", 'Count');
         }
         return Operand.Create(list.length);
     }

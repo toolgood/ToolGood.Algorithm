@@ -10,12 +10,12 @@ class Function_NETWORKDAYS extends Function_N {
     Evaluate(engine, tempParameter) {
         let args1 = this.funcs[0].Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
+            args1 = args1.ToMyDate("Function {0} parameter {1} is error!", "NetWorkdays", 1);
             if (args1.IsError) { return args1; }
         }
         let args2 = this.funcs[1].Evaluate(engine, tempParameter);
         if (args2.IsNotDate) {
-            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
+            args2 = args2.ToMyDate("Function {0} parameter {1} is error!", "NetWorkdays", 2);
             if (args2.IsError) { return args2; }
         }
 
@@ -30,7 +30,7 @@ class Function_NETWORKDAYS extends Function_N {
         for (let i = 2; i < this.funcs.length; i++) {
             let ar = this.funcs[i].Evaluate(engine, tempParameter);
             if (ar.IsNotDate) {
-                let arDate = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
+                let arDate = ar.ToMyDate("Function {0} parameter {1} is error!", "NetWorkdays", i + 1);
                 if (arDate.IsError) { return arDate; }
                 // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
                 let dateObj = arDate.DateValue.ToDateTime();

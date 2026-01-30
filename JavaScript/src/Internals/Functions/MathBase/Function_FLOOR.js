@@ -9,7 +9,7 @@ class Function_FLOOR extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 1);
+            args1 = args1.ToNumber("Function {0} parameter {1} is error!", "Floor", 1);
             if (args1.IsError) { return args1; }
         }
         if (this.func2 === null) {
@@ -18,7 +18,7 @@ class Function_FLOOR extends Function_2 {
 
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 2);
+            args2 = args2.ToNumber("Function {0} parameter {1} is error!", "Floor", 2);
             if (args2.IsError) { return args2; }
         }
         let b = args2.NumberValue;
@@ -26,7 +26,7 @@ class Function_FLOOR extends Function_2 {
             return Operand.Create(args1.IntValue);
         }
         if (b <= 0) {
-            return Operand.Error("Function '{0}' parameter {1} is error!", "Floor", 2);
+            return Operand.Error("Function {0} parameter {1} is error!", "Floor", 2);
         }
 
         let a = args1.NumberValue;

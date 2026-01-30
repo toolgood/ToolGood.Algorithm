@@ -16,7 +16,7 @@ class Function_AVEDEV extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error("Function '{0}' parameter is error!", "AveDev");
+                return Operand.Error("Function {0} parameter is error!", "AveDev");
             }
             list.push(arg.NumberValue);
         }

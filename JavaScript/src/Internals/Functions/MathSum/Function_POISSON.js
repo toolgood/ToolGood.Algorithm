@@ -10,19 +10,19 @@ class Function_POISSON extends Function_3 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            let converted1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Poisson", 1);
+            let converted1 = args1.ToNumber("Function {0} parameter {1} is error!", "Poisson", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            let converted2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Poisson", 2);
+            let converted2 = args2.ToNumber("Function {0} parameter {1} is error!", "Poisson", 2);
             if (converted2.IsError) return converted2;
             args2 = converted2;
         }
         let args3 = this.func3.Evaluate(engine, tempParameter);
         if (args3.IsNotBoolean) {
-            let converted3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3);
+            let converted3 = args3.ToBoolean("Function {0} parameter {1} is error!", "Poisson", 3);
             if (converted3.IsError) return converted3;
             args3 = converted3;
         }
@@ -30,7 +30,7 @@ class Function_POISSON extends Function_3 {
         let lambda = args2.DoubleValue;
         let state = args3.BooleanValue;
         if (!(lambda > 0.0)) {
-            return Operand.Error("Function '{0}' parameter is error!", "Poisson");
+            return Operand.Error("Function {0} parameter is error!", "Poisson");
         }
         return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
     }

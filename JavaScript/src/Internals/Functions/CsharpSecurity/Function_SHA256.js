@@ -22,7 +22,7 @@ export class Function_SHA256 extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "SHA256", 1);
+            args1 = args1.ToText("Function {0} parameter {1} is error!", "SHA256", 1);
             if (args1.IsError) {
                 return args1;
             }
@@ -33,7 +33,7 @@ export class Function_SHA256 extends Function_2 {
             if (this.func2 !== null) {
                 let args2 = this.func2.Evaluate(engine, tempParameter);
                 if (args2.IsNotText) {
-                    args2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA256", 2);
+                    args2 = args2.ToText("Function {0} parameter {1} is error!", "SHA256", 2);
                     if (args2.IsError) {
                         return args2;
                     }

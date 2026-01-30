@@ -9,12 +9,12 @@ class Function_FACTDOUBLE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "FactDouble");
+            args1 = args1.ToNumber("Function {0} parameter is error!", "FactDouble");
             if (args1.IsError) { return args1; }
         }
         let z = args1.IntValue;
         if (z < 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "FactDouble");
+            return Operand.Error("Function {0} parameter is error!", "FactDouble");
         }
 
         let d = 1;

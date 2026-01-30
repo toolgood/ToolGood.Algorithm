@@ -20,7 +20,7 @@ class Function_SUMIF extends Function_3 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) {
-            return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 1);
+            return Operand.Error("Function {0} parameter {1} is error!", "SumIf", 1);
         }
 
         let sumdbs;
@@ -32,7 +32,7 @@ class Function_SUMIF extends Function_3 {
             sumdbs = [];
             let o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
             if (o2 == false) {
-                return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 3);
+                return Operand.Error("Function {0} parameter {1} is error!", "SumIf", 3);
             }
         } else {
             sumdbs = list;
@@ -52,7 +52,7 @@ class Function_SUMIF extends Function_3 {
                 if (m2 != null) {
                     sum = FunctionUtil.F_base_sumif(list, m2[0], m2[1], sumdbs);
                 } else {
-                    return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 2);
+                    return Operand.Error("Function {0} parameter {1} is error!", "SumIf", 2);
                 }
             }
         }

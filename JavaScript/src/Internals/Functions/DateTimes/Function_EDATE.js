@@ -10,12 +10,12 @@ class Function_EDATE extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EDate", 1);
+            args1 = args1.ToMyDate("Function {0} parameter {1} is error!", "EDate", 1);
             if (args1.IsError) { return args1; }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EDate", 2);
+            args2 = args2.ToNumber("Function {0} parameter {1} is error!", "EDate", 2);
             if (args2.IsError) { return args2; }
         }
         // 获取开始日期的Date对象

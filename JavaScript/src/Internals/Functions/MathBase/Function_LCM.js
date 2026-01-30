@@ -17,13 +17,13 @@ class Function_LCM extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error("Function '{0}' parameter is error!", "Lcm");
+                return Operand.Error("Function {0} parameter is error!", "Lcm");
             }
             list.push(arg.NumberValue);
         }
 
         if (list.length === 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "Lcm");
+            return Operand.Error("Function {0} parameter is error!", "Lcm");
         }
 
         return Operand.Create(Function_LCM.calculateLCM(list));

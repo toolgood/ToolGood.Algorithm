@@ -13,7 +13,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
         }
         let textArgs;
         if (args1.IsNotText) {
-            textArgs = args1.ToText("Function '{0}' parameter {1} is error!", "IsNullOrWhiteSpace", 1);
+            textArgs = args1.ToText("Function {0} parameter {1} is error!", "IsNullOrWhiteSpace", 1);
             if (textArgs.IsError) { return textArgs; }
         } else {
             textArgs = args1;

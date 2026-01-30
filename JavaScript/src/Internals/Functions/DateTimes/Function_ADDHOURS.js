@@ -9,14 +9,14 @@ class Function_ADDHOURS extends Function_2 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddHours", 1);
+            args1 = args1.ToMyDate("Function {0} parameter {1} is error!", "AddHours", 1);
             if (args1.IsError) {
                 return args1;
             }
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddHours", 2);
+            args2 = args2.ToNumber("Function {0} parameter {1} is error!", "AddHours", 2);
             if (args2.IsError) {
                 return args2;
             }

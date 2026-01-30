@@ -24,7 +24,7 @@ export class Function_HASVALUE extends Function_2 {
         }
         let args2 = this.func2.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText('Function \'{0}\' parameter {1} is error!', 'HasValue', 2);
+            args2 = args2.ToText("Function {0} parameter {1} is error!", 'HasValue', 2);
             if (args2.IsError) {
                 return args2;
             }
@@ -83,7 +83,7 @@ export class Function_HASVALUE extends Function_2 {
             }
             return Operand.False;
         }
-        return Operand.Error('Function \'{0}\' parameter {1} is error!', 'HasValue', 1);
+        return Operand.Error("Function {0} parameter {1} is error!", 'HasValue', 1);
     }
     
     /**

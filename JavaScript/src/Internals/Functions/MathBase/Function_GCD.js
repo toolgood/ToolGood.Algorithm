@@ -17,13 +17,13 @@ class Function_GCD extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error("Function '{0}' parameter is error!", "Gcd");
+                return Operand.Error("Function {0} parameter is error!", "Gcd");
             }
             list.push(arg.NumberValue);
         }
 
         if (list.length === 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "Gcd");
+            return Operand.Error("Function {0} parameter is error!", "Gcd");
         }
 
         return Operand.Create(Function_GCD.calculateGCD(list));

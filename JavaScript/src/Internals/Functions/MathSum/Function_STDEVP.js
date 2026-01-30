@@ -20,10 +20,10 @@ class Function_STDEVP extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error("Function '{0}' parameter is error!", "StdevP");
+            return Operand.Error("Function {0} parameter is error!", "StdevP");
         }
         if (list.length == 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "StdevP");
+            return Operand.Error("Function {0} parameter is error!", "StdevP");
         }
 
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;

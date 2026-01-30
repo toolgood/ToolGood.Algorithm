@@ -9,7 +9,7 @@ class Function_ASC extends Function_1 {
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText('Function \'{0}\' parameter is error!', 'ASC');
+            args1 = args1.ToText("Function {0} parameter is error!", 'ASC');
             if (args1.IsError) {
                 return args1;
             }
