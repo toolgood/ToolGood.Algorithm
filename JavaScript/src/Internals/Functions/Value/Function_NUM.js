@@ -11,7 +11,8 @@ class Function_NUM extends FunctionBase {
 
     Evaluate(engine, tempParameter) {
         let dict = NumberUnitTypeHelper.getUnitTypedict();
-        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[this.unit], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
+        let unitKey = this.unit.toUpperCase();
+        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[unitKey], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
         return Operand.Create(d2);
     }
 

@@ -85,6 +85,9 @@ function testDistance() {
   let distance = engine.TryEvaluate('1=1m', false);
   assert.strictEqual(distance, true, '1=1m 应该是 true');
   
+  distance = engine.TryEvaluate('1=1M', false);
+  assert.strictEqual(distance, true, '1=1M 应该是 true');
+
   distance = engine.TryEvaluate('1=10dm', false);
   assert.strictEqual(distance, true, '1=10dm 应该是 true');
   
