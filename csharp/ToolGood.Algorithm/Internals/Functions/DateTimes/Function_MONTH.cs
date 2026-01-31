@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Month"); if (args1.IsError) { return args1; } }
             if (args1.DateValue.Month == null) {
-                return Operand.Error("Function 'Month' is error!");
+                return Operand.Error("Function '{0}' is error!", "Month");
             }
             return Operand.Create((int)args1.DateValue.Month.Value);
         }
