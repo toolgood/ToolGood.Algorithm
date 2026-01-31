@@ -7,8 +7,8 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import java.util.function.Function;
 
-public class Function_TRIMEND extends Function_2 {
-    public Function_TRIMEND(FunctionBase func1, FunctionBase func2) {
+public class Function_TRIMSTART extends Function_2 {
+    public Function_TRIMSTART(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }
 
@@ -16,44 +16,44 @@ public class Function_TRIMEND extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TrimEnd", 1);
+            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TrimStart", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         if (func2 == null) {
-            return Operand.Create(trimEnd(args1.getTextValue()));
+            return Operand.Create(trimStart(args1.getTextValue()));
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotText()) {
-            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TrimEnd", 2);
+            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TrimStart", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         char[] trimChars = args2.getTextValue().toCharArray();
-        return Operand.Create(trimEnd(args1.getTextValue(), trimChars));
+        return Operand.Create(trimStart(args1.getTextValue(), trimChars));
     }
 
-    private String trimEnd(String str) {
+    private String trimStart(String str) {
         if (str == null || str.isEmpty()) {
             return str;
         }
-        int end = str.length();
-        while (end > 0 && Character.isWhitespace(str.charAt(end - 1))) {
-            end--;
+        int start = 0;
+        while (start < str.length() && Character.isWhitespace(str.charAt(start))) {
+            start++;
         }
-        return str.substring(0, end);
+        return str.substring(start);
     }
 
-    private String trimEnd(String str, char[] trimChars) {
+    private String trimStart(String str, char[] trimChars) {
         if (str == null || str.isEmpty()) {
             return str;
         }
-        int end = str.length();
-        while (end > 0) {
+        int start = 0;
+        while (start < str.length()) {
             boolean found = false;
-            char c = str.charAt(end - 1);
+            char c = str.charAt(start);
             for (char trimChar : trimChars) {
                 if (c == trimChar) {
                     found = true;
@@ -63,13 +63,13 @@ public class Function_TRIMEND extends Function_2 {
             if (!found) {
                 break;
             }
-            end--;
+            start++;
         }
-        return str.substring(0, end);
+        return str.substring(start);
     }
 
     @Override
     public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "TrimEnd");
+        AddFunction(stringBuilder, "TrimStart");
     }
 }
