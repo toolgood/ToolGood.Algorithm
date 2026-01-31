@@ -143,7 +143,7 @@ namespace ToolGood.Algorithm.Test
 			dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", null);
             Assert.AreEqual(dt, "EB4D4FC2AA5637060FD12004DF845801D8902105");
 			dt = engine.TryEvaluate("HmacSha1('123','123')", null);
-			Assert.AreEqual(dt, "B2A1EC0F3E0607099D7F39791C04E9A4");
+			Assert.AreEqual(dt, "A3C024F01CCCB3B63457D848B0D2F89C1F744A3D");
 
 			dt = engine.TryEvaluate("HmacSha256('&=我中国人 >||','12')", null);
             Assert.AreEqual(dt, "3E25E0D14039E8258BBBBD15F7E3B91BB497A8966C12E1DEA3D651BF03CB4B97");
