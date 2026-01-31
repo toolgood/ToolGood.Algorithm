@@ -19,8 +19,8 @@ class Function_Sub extends Function_2 {
       if (args2.NumberValue === 0) { return args1; }
       return Operand.Create(args1.NumberValue - args2.NumberValue);
     }
-    if (args1.IsNull) { return Operand.Error(`Function '-' parameter 1 is NULL!`); }
-    if (args2.IsNull) { return Operand.Error(`Function '-' parameter 2 is NULL!`); }
+    if (args1.IsNull) { return Operand.Error(StringCache.Function_parameter_null, '-', 1); }
+    if (args2.IsNull) { return Operand.Error(StringCache.Function_parameter_null, '-', 2); }
 
     if (args1.IsText) {
       let date = MyDate.Parse(args1.TextValue);

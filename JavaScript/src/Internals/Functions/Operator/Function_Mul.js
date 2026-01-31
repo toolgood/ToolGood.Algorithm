@@ -47,7 +47,7 @@ class Function_Mul extends Function_2 {
           let b = result[0];
           args2 = b ? Operand.One : Operand.Zero;
         } else {
-          return Operand.Error('Two types cannot be multiplied');
+          return Operand.Error(StringCache.Function_modulo_error, 'multiplied');
         }
       }
     }
