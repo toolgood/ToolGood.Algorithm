@@ -15,9 +15,6 @@ class Function_DiyFunction extends Function_N {
         return engine.ExecuteDiyFunction(this.funName, args);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, this.funName);
-    }
 }
 
 export { Function_DiyFunction };

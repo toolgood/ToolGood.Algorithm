@@ -33,9 +33,7 @@ class Function_JSON extends Function_1 {
         return Operand.Error(StringCache.Function_parameter_1_error, 'Json');
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Json');
-    }
+
 }
 
 export { Function_JSON };

@@ -15,11 +15,6 @@ class Function_ArrayJsonItem extends Function_1 {
         return new OperandKeyValue(keyValue);
     }
 
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.append(this.key);
-        stringBuilder.append(':');
-        this.func1.toString(stringBuilder, false);
-    }
 }
 
 export { Function_ArrayJsonItem };

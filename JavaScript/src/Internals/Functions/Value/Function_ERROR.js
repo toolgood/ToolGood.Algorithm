@@ -17,9 +17,6 @@ class Function_ERROR extends Function_1 {
         return Operand.Error(args1.TextValue);
     }
 
-    toString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, 'Error');
-    }
 }
 
 export { Function_ERROR };

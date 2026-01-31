@@ -16,10 +16,7 @@ class Function_NUM extends FunctionBase {
         return Operand.Create(d2);
     }
 
-    toString(stringBuilder, addBrackets) {
-        stringBuilder.append(this.d);
-        stringBuilder.append(this.unit);
-    }
+
 }
 
 export { Function_NUM };
