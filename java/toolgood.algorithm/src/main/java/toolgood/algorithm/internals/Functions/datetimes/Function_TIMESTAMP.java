@@ -1,0 +1,56 @@
+package toolgood.algorithm.internals.functions.datetimes;
+
+import toolgood.algorithm.internals.Function_2;
+import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+
+import java.util.function.Function;
+
+public class Function_TIMESTAMP extends Function_2 {
+    public Function_TIMESTAMP(FunctionBase func1, FunctionBase func2) {
+        super(func1, func2);
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+        Operand args0 = func1.Evaluate(work, tempParameter);
+        if (args0.isError()) {
+            return args0;
+        }
+
+        int type = 0; // 毫秒
+        if (func2 != null) {
+            Operand args2 = func2.Evaluate(work, tempParameter);
+            if (args2.isNotNumber()) {
+                args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2);
+                if (args2.isError()) {
+                    return args2;
+                }
+            }
+            type = args2.getIntValue();
+        }
+        Operand dateOperand = args0.toMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
+        if (dateOperand.isError()) {
+            return dateOperand;
+        }
+        toolgood.algorithm.internals.MyDate myDate = dateOperand.getDateValue();
+        
+        // 计算时间戳
+        long timestamp = myDate.ToDateTime().getMillis();
+        
+        if (type == 0) {
+            // 返回毫秒时间戳
+            return Operand.create(timestamp);
+        } else if (type == 1) {
+            // 返回秒时间戳
+            return Operand.create((double) timestamp / 1000);
+        }
+        return Operand.error("Function '{0}' parameter is error!", "TimeStamp");
+    }
+
+    @Override
+    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, "TimeStamp");
+    }
+}
