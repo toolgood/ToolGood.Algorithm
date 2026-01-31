@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				var t = GetSha1String(encoding.GetBytes(args1.TextValue));
 				return Operand.Create(t);
 			} catch(Exception ex) {
-				return Operand.Error("Function 'SHA1' is error!" + ex.Message);
+				return Operand.Error("Function '{0}' is error!{1}", "SHA1", ex.Message);
 			}
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

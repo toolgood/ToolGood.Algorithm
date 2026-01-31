@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				var t = GetHmacSha512String(encoding.GetBytes(args1.TextValue), args2.TextValue);
 				return Operand.Create(t);
 			} catch(Exception ex) {
-				return Operand.Error("Function 'HmacSHA512' is error!" + ex.Message);
+				return Operand.Error("Function '{0}' is error!{1}", "HmacSHA512", ex.Message);
 			}
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
