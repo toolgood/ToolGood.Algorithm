@@ -134,6 +134,11 @@ function test() {
   assert.strictEqual(dt.getFullYear(), 2016, "");
   assert.strictEqual(dt.getMonth()+1, 1, "");
   assert.strictEqual(dt.getDate(), 2, "");
+
+  dt = engine.TryEvaluate_DateTime("'2016-1-2'-1", new Date(0));
+  assert.strictEqual(dt.getFullYear(), 2016, "");
+  assert.strictEqual(dt.getMonth()+1, 1, "");
+  assert.strictEqual(dt.getDate(), 1, "");
   
   let value = engine.TryEvaluate("1 > (-2)", false);
   assert.strictEqual(value, true, "1 > (-2) 应该等于 true");
