@@ -38,6 +38,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code LOOKFLOOR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code HASVALUE_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
@@ -114,6 +121,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDAYS360_fun(mathParser.DAYS360_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOOKCEILING_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code WEEKNUM_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -289,13 +303,6 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitJIS_fun(mathParser.JIS_funContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code CRC32_fun}
-	 * labeled alternative in {@link mathParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCRC32_fun(mathParser.CRC32_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code LCM_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -948,26 +955,12 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEXPONDIST_fun(mathParser.EXPONDIST_funContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code VLOOKUP_fun}
-	 * labeled alternative in {@link mathParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVLOOKUP_fun(mathParser.VLOOKUP_funContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code DEC2BIN_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDEC2BIN_fun(mathParser.DEC2BIN_funContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code LOOKUP_fun}
-	 * labeled alternative in {@link mathParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLOOKUP_fun(mathParser.LOOKUP_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code HEX2DEC_fun}
 	 * labeled alternative in {@link mathParser#expr}.
