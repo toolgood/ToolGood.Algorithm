@@ -40,7 +40,7 @@ class Function_BETAINV extends Function_3 {
             let mid;
             let fmid;
             
-            // 二分法迭�?
+            // 二分法迭�?
             for (let i = 0; i < 100; i++) {
                 mid = (lower + upper) / 2;
                 fmid = SpecialFunctions.BetaRegularized(alpha, beta, mid) - p;
@@ -56,7 +56,7 @@ class Function_BETAINV extends Function_3 {
                 }
             }
             
-            // 如果二分法也失败，返回区间中�?
+            // 如果二分法也失败，返回区间中�?
             return Operand.Create((lower + upper) / 2);
         }
     }

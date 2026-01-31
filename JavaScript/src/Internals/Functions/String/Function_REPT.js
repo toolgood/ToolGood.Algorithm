@@ -27,7 +27,7 @@ class Function_REPT extends Function_2 {
         let newtext = args1.TextValue;
         let length = args2.IntValue;
         if (length < 0) {
-            return Operand.error(StringCache.Function_parameter_error, 'Rept', 2);
+            return Operand.Error(StringCache.Function_parameter_error, 'Rept', 2);
         }
         if (length === 0) {
             return Operand.Create('');

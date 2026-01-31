@@ -34,7 +34,7 @@ class Function_NEGBINOMDIST extends Function_3 {
         let p = args3.DoubleValue;
 
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
-            return Operand.error('Function {0} parameter is error!', 'NegbinomDist');
+            return Operand.Error('Function {0} parameter is error!', 'NegbinomDist');
         }
         return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
     }

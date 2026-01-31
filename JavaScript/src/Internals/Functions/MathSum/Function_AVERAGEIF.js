@@ -103,7 +103,7 @@ class Function_AVERAGEIF extends Function_3 {
         return sum;
     }
 
-    // 辅助函数：比较�?
+    // 辅助函数：比较�?
     static compareValues(a, b, operator) {
         switch (operator) {
             case '=':

@@ -32,7 +32,7 @@ class Function_LOGINV extends Function_3 {
 
         let n3 = args3.DoubleValue;
         if (n3 < 0.0) {
-            return Operand.error('Function {0} parameter is error!', 'LogInv');
+            return Operand.Error('Function {0} parameter is error!', 'LogInv');
         }
         return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
     }

@@ -59,7 +59,7 @@ export class Function_HMACSHA512 extends Function_3 {
                 buffer = Buffer.from(args1.TextValue, 'utf-8');
             }
             
-            // 使用Node.js的crypto模块计算HMAC-SHA512哈希�?
+            // 使用Node.js的crypto模块计算HMAC-SHA512哈希�?
             let hmac = crypto.createHmac('sha512', args2.TextValue);
             hmac.update(buffer);
             let t = hmac.digest('hex').toUpperCase();

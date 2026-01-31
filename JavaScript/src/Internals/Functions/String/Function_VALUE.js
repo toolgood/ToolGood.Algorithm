@@ -27,7 +27,7 @@ class Function_VALUE extends Function_1 {
         if (!isNaN(parsedValue)) {
             return Operand.Create(parsedValue);
         }
-        return Operand.error('Function {0} parameter is error!', 'Value');
+        return Operand.Error('Function {0} parameter is error!', 'Value');
     }
 }
 

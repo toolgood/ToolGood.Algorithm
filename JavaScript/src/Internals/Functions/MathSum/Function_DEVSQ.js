@@ -20,10 +20,10 @@ class Function_DEVSQ extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
-            return Operand.error('Function {0} parameter is error!', 'DevSQ');
+            return Operand.Error('Function {0} parameter is error!', 'DevSQ');
         }
         if (list.length === 0) {
-            return Operand.error('Function {0} parameter is error!', 'DevSQ');
+            return Operand.Error('Function {0} parameter is error!', 'DevSQ');
         }
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;
         let sum = 0;

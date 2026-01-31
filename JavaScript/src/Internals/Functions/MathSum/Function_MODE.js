@@ -20,11 +20,11 @@ class Function_MODE extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
-            return Operand.error('Function {0} parameter is error!', 'Mode');
+            return Operand.Error('Function {0} parameter is error!', 'Mode');
         }
 
         if (list.length === 0) {
-            return Operand.error('Function {0} parameter is error!', 'Mode');
+            return Operand.Error('Function {0} parameter is error!', 'Mode');
         }
 
         let dict = {};

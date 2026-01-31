@@ -21,10 +21,10 @@ class Function_MEDIAN extends Function_N {
         let o = FunctionUtil.F_base_GetList(args, list);
 
         if (!o) {
-            return Operand.error('Function {0} parameter is error!', 'Median');
+            return Operand.Error('Function {0} parameter is error!', 'Median');
         }
         if (list.length === 0) {
-            return Operand.error('Function {0} parameter is error!', 'Median');
+            return Operand.Error('Function {0} parameter is error!', 'Median');
         }
 
         list.sort((a, b) => a - b); // 升序排序

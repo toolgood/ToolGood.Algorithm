@@ -20,11 +20,11 @@ class Function_MIN extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
-            return Operand.error('Function {0} parameter is error!', 'Min');
+            return Operand.Error('Function {0} parameter is error!', 'Min');
         }
 
         if (list.length === 0) {
-            return Operand.error('Function {0} parameter is error!', 'Min');
+            return Operand.Error('Function {0} parameter is error!', 'Min');
         }
 
         return Operand.Create(Math.min(...list));

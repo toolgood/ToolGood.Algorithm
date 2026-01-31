@@ -60,7 +60,7 @@ class Function_Add extends Function_2 {
     }
     if (args1.IsDate) {
       if (args2.IsDate) {
-        // 两个日期相加，创建新�?MyDate 对象
+        // 两个日期相加，创建新�?MyDate 对象
         let totalValue = args1.ToNumber().NumberValue + args2.ToNumber().NumberValue;
         return Operand.Create(new MyDate(totalValue));
       }

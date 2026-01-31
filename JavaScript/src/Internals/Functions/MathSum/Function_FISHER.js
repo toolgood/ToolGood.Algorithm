@@ -16,7 +16,7 @@ class Function_FISHER extends Function_1 {
         }
         let x = args1.DoubleValue;
         if (x >= 1 || x <= -1) {
-            return Operand.error('Function {0} parameter is error!', 'Fisher');
+            return Operand.Error('Function {0} parameter is error!', 'Fisher');
         }
         let n = 0.5 * Math.log((1 + x) / (1 - x));
         return Operand.Create(n);

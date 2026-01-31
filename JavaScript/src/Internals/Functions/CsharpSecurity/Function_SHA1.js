@@ -51,13 +51,13 @@ export class Function_SHA1 extends Function_2 {
                 buffer = Buffer.from(args1.TextValue, 'utf-8');
             }
             
-            // 使用Node.js的crypto模块计算SHA1哈希�?
+            // 使用Node.js的crypto模块计算SHA1哈希�?
             let hash = crypto.createHash('sha1');
             hash.update(buffer);
             let t = hash.digest('hex').toUpperCase();
             return Operand.Create(t);
         } catch (ex) {
-            return Operand.error('Function \'SHA1\'is error!' + ex.message);
+            return Operand.Error('Function \'SHA1\'is error!' + ex.message);
         }
     }
     

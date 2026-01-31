@@ -23,16 +23,16 @@ class Function_COVARIANCES extends Function_2 {
         let o1 = FunctionUtil.F_base_GetList(args1.ArrayValue, list1);
         let o2 = FunctionUtil.F_base_GetList(args2.ArrayValue, list2);
         if (!o1) {
-            return Operand.error('Function {0} parameter {1} is error!', 'CovarIanceS', 1);
+            return Operand.Error('Function {0} parameter {1} is error!', 'CovarIanceS', 1);
         }
         if (!o2) {
-            return Operand.error('Function {0} parameter {1} is error!', 'CovarIanceS', 2);
+            return Operand.Error('Function {0} parameter {1} is error!', 'CovarIanceS', 2);
         }
         if (list1.length !== list2.length) {
-            return Operand.error('Function {0} parameter\'s count error!', 'CovarIanceS');
+            return Operand.Error('Function {0} parameter\'s count error!', 'CovarIanceS');
         }
         if (list1.length === 1) {
-            return Operand.error('Function {0} parameter\'s count error!', 'CovarIanceS');
+            return Operand.Error('Function {0} parameter\'s count error!', 'CovarIanceS');
         }
 
         let avg1 = list1.reduce((sum, val) => sum + val, 0) / list1.length;

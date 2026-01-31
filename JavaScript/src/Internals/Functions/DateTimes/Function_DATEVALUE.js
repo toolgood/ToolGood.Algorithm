@@ -33,12 +33,12 @@ class Function_DATEVALUE extends Function_N {
             if (args1.LongValue <= 2958465) { // 9999-12-31 日时间在excel的数字为 2958465
                 return args1.ToMyDate();
             }
-            if (args1.LongValue <= 253402232399) { // 9999-12-31 12:59:59 日时�?�?时间�?�?253402232399�?
+            if (args1.LongValue <= 253402232399) { // 9999-12-31 12:59:59 日时�?�?时间�?�?253402232399�?
                 let time = new Date(Date.UTC(1970, 0, 1, 0, 0, 0) + args1.LongValue * 1000);
                 if (engine.UseLocalTime) { return Operand.Create(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }
                 return Operand.Create(new MyDate(time));
             }
-            // 注：时间�?253402232399 ms 转时�?�?1978-01-12 05:30:32
+            // 注：时间�?253402232399 ms 转时�?�?1978-01-12 05:30:32
             let time2 = new Date(Date.UTC(1970, 0, 1, 0, 0, 0) + args1.LongValue);
             if (engine.UseLocalTime) { return Operand.Create(new MyDate(new Date(time2.getTime() + time2.getTimezoneOffset() * 60000))); }
             return Operand.Create(new MyDate(time2));

@@ -24,18 +24,18 @@ class Function_HARMEAN extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
-            return Operand.error('Function {0} parameter is error!', 'HarMean');
+            return Operand.Error('Function {0} parameter is error!', 'HarMean');
         }
 
         let sum = 0;
         for (let db of list) {
             if (db === 0) {
-                return Operand.error('Function {0} parameter is error!', 'HarMean');
+                return Operand.Error('Function {0} parameter is error!', 'HarMean');
             }
             sum += 1 / db;
         }
         if (sum === 0) {
-            return Operand.error('Function {0} parameter is error!', 'HarMean');
+            return Operand.Error('Function {0} parameter is error!', 'HarMean');
         }
         return Operand.Create(list.length / sum);
     }

@@ -32,7 +32,7 @@ class Function_TIMESTAMP extends Function_2 {
             if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
                 let parts = dateStr.split('-');
                 let year = parseInt(parts[0]);
-                let month = parseInt(parts[1]) - 1; // 月份�?开�?
+                let month = parseInt(parts[1]) - 1; // 月份�?开�?
                 let day = parseInt(parts[2]);
                 // 创建本地时间
                 date = new Date(year, month, day, 0, 0, 0, 0);
@@ -41,17 +41,17 @@ class Function_TIMESTAMP extends Function_2 {
             else if (/^\d{4}\/\d{2}\/\d{2}$/.test(dateStr)) {
                 let parts = dateStr.split('/');
                 let year = parseInt(parts[0]);
-                let month = parseInt(parts[1]) - 1; // 月份�?开�?
+                let month = parseInt(parts[1]) - 1; // 月份�?开�?
                 let day = parseInt(parts[2]);
                 // 创建本地时间
                 date = new Date(year, month, day, 0, 0, 0, 0);
             }
-            // 尝试解析为其他格�?
+            // 尝试解析为其他格�?
             else {
                 date = new Date(dateStr);
             }
             
-            // 检查是否解析成�?
+            // 检查是否解析成�?
             if (isNaN(date.getTime())) {
                 // 解析失败
                 return Operand.Error(StringCache.Function_parameter_error, "TimeStamp", 1);
@@ -71,7 +71,7 @@ class Function_TIMESTAMP extends Function_2 {
         }
 
         if (Type == 0) {
-            // 毫秒时间�?
+            // 毫秒时间�?
             return Operand.Create(milliseconds);
         } else if (Type == 1) {
             // 秒时间戳

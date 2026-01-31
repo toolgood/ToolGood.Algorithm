@@ -32,7 +32,7 @@ class Function_EXPONDIST extends Function_3 {
 
         let n1 = args1.DoubleValue;
         if (n1 < 0.0) {
-            return Operand.error('Function {0} parameter is error!', 'ExponDist');
+            return Operand.Error('Function {0} parameter is error!', 'ExponDist');
         }
         return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
     }

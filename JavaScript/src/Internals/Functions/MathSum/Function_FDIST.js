@@ -34,7 +34,7 @@ class Function_FDIST extends Function_3 {
         let degreesFreedom = Math.round(args2.DoubleValue);
         let degreesFreedom2 = Math.round(args3.DoubleValue);
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
-            return Operand.error('Function {0} parameter is error!', 'FDist');
+            return Operand.Error('Function {0} parameter is error!', 'FDist');
         }
         return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
     }

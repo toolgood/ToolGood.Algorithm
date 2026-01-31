@@ -33,7 +33,7 @@ class Function_GAMMAINV extends Function_3 {
         let alpha = args2.DoubleValue;
         let beta = args3.DoubleValue;
         if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
-            return Operand.error('Function {0} parameter is error!', 'GammaInv');
+            return Operand.Error('Function {0} parameter is error!', 'GammaInv');
         }
         return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
     }

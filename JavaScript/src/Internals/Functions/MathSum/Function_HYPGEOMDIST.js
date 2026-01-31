@@ -41,7 +41,7 @@ class Function_HYPGEOMDIST extends Function_4 {
         let success = Math.round(args3.DoubleValue);
         let population = Math.round(args4.DoubleValue);
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
-            return Operand.error('Function {0} parameter is error!', 'HypgeomDist');
+            return Operand.Error('Function {0} parameter is error!', 'HypgeomDist');
         }
         return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }

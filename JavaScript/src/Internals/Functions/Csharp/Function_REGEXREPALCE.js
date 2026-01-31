@@ -47,7 +47,7 @@ export class Function_REGEXREPALCE extends Function_3 {
             let b = args1.TextValue.replace(regex, args3.TextValue);
             return Operand.Create(b);
         } catch (e) {
-            return Operand.error('Function \'RegexReplace\' is error!');
+            return Operand.Error('Function \'RegexReplace\' is error!');
         }
     }
     
