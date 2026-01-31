@@ -962,7 +962,7 @@ const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DF
 
 export default class mathLexer extends antlr4.Lexer {
 
-    static grammarFileName = "math.g4";
+    static grammarFileName = "";
     static channelNames = [];
 	static modeNames = [];
 	static literalNames = [];
