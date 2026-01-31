@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				var t = Base64.ToBase64String(bytes);
 				return Operand.Create(t);
 			} catch(Exception) { }
-			return Operand.Error("Function 'TextToBase64' is error!");
+			return Operand.Error("Function '{0}' is error!", "TextToBase64");
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{

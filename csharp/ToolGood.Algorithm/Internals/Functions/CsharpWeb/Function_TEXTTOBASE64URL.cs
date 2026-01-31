@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				var t = Base64.ToBase64ForUrlString(bytes);
 				return Operand.Create(t);
 			} catch(Exception) { }
-			return Operand.Error("Function 'TextToBase64url' is error!");
+			return Operand.Error("Function '{0}' is error!", "TextToBase64url");
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
