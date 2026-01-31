@@ -35,6 +35,6 @@ public class Function_COUNT extends Function_N {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Count");
+        AddFunction(stringBuilder, "Count");
     }
 }

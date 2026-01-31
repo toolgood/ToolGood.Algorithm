@@ -19,7 +19,7 @@ public class Function_ISLOGICAL extends Function_1 {
     }
 
     @Override
-    public void ToString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "IsLogical");
     }
 }

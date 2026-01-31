@@ -43,6 +43,6 @@ public class Function_BIN2OCT extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "BIN2OCT");
+        AddFunction(stringBuilder, "BIN2OCT");
     }
 }

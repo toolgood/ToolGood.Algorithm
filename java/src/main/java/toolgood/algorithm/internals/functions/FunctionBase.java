@@ -33,7 +33,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public short tryEvaluate(AlgorithmEngine work, short def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public short TryEvaluate(AlgorithmEngine work, short def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
@@ -58,7 +58,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public int tryEvaluate(AlgorithmEngine work, int def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public int TryEvaluate(AlgorithmEngine work, int def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
@@ -83,7 +83,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public long tryEvaluate(AlgorithmEngine work, long def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public long TryEvaluate(AlgorithmEngine work, long def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
@@ -108,7 +108,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public float tryEvaluate(AlgorithmEngine work, float def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public float TryEvaluate(AlgorithmEngine work, float def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
@@ -133,7 +133,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public double tryEvaluate(AlgorithmEngine work, double def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public double TryEvaluate(AlgorithmEngine work, double def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
@@ -158,7 +158,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public String tryEvaluate(AlgorithmEngine work, String def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public String TryEvaluate(AlgorithmEngine work, String def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isText()) {
@@ -183,7 +183,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public boolean tryEvaluate(AlgorithmEngine work, boolean def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public boolean TryEvaluate(AlgorithmEngine work, boolean def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isBoolean()) {
@@ -209,7 +209,7 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public MyDate tryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isDate()) {

@@ -23,7 +23,7 @@ public class Function_TRIM extends Function_1 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Trim");
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, "Trim");
     }
 }

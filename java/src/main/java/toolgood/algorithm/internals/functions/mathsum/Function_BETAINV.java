@@ -46,6 +46,6 @@ public class Function_BETAINV extends Function_3 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "BetaInv");
+        AddFunction(stringBuilder, "BetaInv");
     }
 }

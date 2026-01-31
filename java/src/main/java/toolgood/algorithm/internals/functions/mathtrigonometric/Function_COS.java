@@ -26,6 +26,6 @@ class Function_COS extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Cos");
+        AddFunction(stringBuilder, "Cos");
     }
 }

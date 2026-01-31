@@ -43,7 +43,7 @@ public class Function_FLOOR extends Function_2 {
     }
 
     @Override
-    public void ToString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Floor");
     }
 }

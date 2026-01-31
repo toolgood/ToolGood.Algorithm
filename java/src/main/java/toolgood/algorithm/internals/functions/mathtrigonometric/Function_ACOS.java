@@ -26,6 +26,6 @@ class Function_ACOS extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Acos");
+        AddFunction(stringBuilder, "Acos");
     }
 }

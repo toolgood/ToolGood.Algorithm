@@ -22,8 +22,8 @@ public class Function_Percentage extends Function_1 {
     }
 
     @Override
-    public void ToString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        func1.ToString(stringBuilder, false);
+    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
+        func1.toString(stringBuilder, false);
         stringBuilder.append('%');
     }
 }

@@ -21,7 +21,7 @@ public class Function_NUM extends FunctionBase {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         stringBuilder.append(d);
         stringBuilder.append(unit);
     }

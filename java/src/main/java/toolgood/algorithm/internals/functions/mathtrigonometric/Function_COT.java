@@ -31,6 +31,6 @@ class Function_COT extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Cot");
+        AddFunction(stringBuilder, "Cot");
     }
 }

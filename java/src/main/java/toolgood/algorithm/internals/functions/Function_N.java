@@ -9,7 +9,7 @@ abstract class Function_N extends FunctionBase {
         this.funcs = funcs;
     }
 
-    protected void addFunction(StringBuilder stringBuilder, String functionName) {
+    protected void AddFunction(StringBuilder stringBuilder, String functionName) {
         stringBuilder.append(functionName);
         stringBuilder.append('(');
         for (int i = 0; i < funcs.length; i++) {

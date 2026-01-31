@@ -31,6 +31,6 @@ class Function_CSC extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Csc");
+        AddFunction(stringBuilder, "Csc");
     }
 }

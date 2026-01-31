@@ -79,7 +79,7 @@ public class Function_SUBSTITUTE extends Function_4 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Substitute");
     }
 }

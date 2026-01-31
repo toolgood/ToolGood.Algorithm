@@ -26,6 +26,6 @@ class Function_SINH extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Sinh");
+        AddFunction(stringBuilder, "Sinh");
     }
 }

@@ -15,7 +15,7 @@ abstract class Function_4 extends FunctionBase {
         this.func4 = func4;
     }
     
-    protected void addFunction(StringBuilder stringBuilder, String functionName) {
+    protected void AddFunction(StringBuilder stringBuilder, String functionName) {
         stringBuilder.append(functionName);
         stringBuilder.append('(');
         func1.toString(stringBuilder, false);

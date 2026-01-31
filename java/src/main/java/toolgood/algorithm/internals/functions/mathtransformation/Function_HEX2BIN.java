@@ -43,6 +43,6 @@ public class Function_HEX2BIN extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "HEX2BIN");
+        AddFunction(stringBuilder, "HEX2BIN");
     }
 }

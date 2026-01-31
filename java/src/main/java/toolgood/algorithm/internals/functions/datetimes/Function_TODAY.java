@@ -16,7 +16,7 @@ public class Function_TODAY extends FunctionBase {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         stringBuilder.append("Today()");
     }
 }

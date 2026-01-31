@@ -26,7 +26,7 @@ public class Function_SECOND extends Function_1 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Second");
     }
 }

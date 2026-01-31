@@ -39,6 +39,6 @@ public class Function_AVERAGE extends Function_N {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Average");
+        AddFunction(stringBuilder, "Average");
     }
 }

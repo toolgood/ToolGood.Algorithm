@@ -26,6 +26,6 @@ class Function_ASINH extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Asinh");
+        AddFunction(stringBuilder, "Asinh");
     }
 }

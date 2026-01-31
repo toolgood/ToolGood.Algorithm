@@ -38,6 +38,6 @@ public class Function_DEC2HEX extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "DEC2HEX");
+        AddFunction(stringBuilder, "DEC2HEX");
     }
 }

@@ -43,6 +43,6 @@ public class Function_HEX2OCT extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "HEX2OCT");
+        AddFunction(stringBuilder, "HEX2OCT");
     }
 }

@@ -23,7 +23,7 @@ public class Function_UPPER extends Function_1 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Upper");
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, "Upper");
     }
 }

@@ -46,6 +46,6 @@ public class Function_BETADIST extends Function_3 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "BetaDist");
+        AddFunction(stringBuilder, "BetaDist");
     }
 }

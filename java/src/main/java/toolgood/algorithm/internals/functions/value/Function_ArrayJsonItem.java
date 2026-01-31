@@ -22,9 +22,9 @@ public class Function_ArrayJsonItem extends Function_1 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         stringBuilder.append(key);
         stringBuilder.append(':');
-        func1.ToString(stringBuilder, false);
+        func1.toString(stringBuilder, false);
     }
 }

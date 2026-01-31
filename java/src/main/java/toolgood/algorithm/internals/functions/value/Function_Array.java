@@ -27,7 +27,7 @@ public class Function_Array extends Function_N {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Array");
     }
 }

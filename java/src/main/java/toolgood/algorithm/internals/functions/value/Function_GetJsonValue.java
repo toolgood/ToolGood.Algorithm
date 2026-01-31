@@ -113,10 +113,10 @@ public class Function_GetJsonValue extends Function_2 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
-        func1.ToString(stringBuilder, false);
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
+        func1.toString(stringBuilder, false);
         stringBuilder.append('[');
-        func2.ToString(stringBuilder, false);
+        func2.toString(stringBuilder, false);
         stringBuilder.append(']');
     }
 }

@@ -30,6 +30,6 @@ public class Function_HEX2DEC extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "HEX2DEC");
+        AddFunction(stringBuilder, "HEX2DEC");
     }
 }

@@ -131,13 +131,13 @@ public class Function_Mul extends Function_2 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         if (addBrackets) {
             stringBuilder.append('(');
         }
-        func1.ToString(stringBuilder, true);
+        func1.toString(stringBuilder, true);
         stringBuilder.append(" * ");
-        func2.ToString(stringBuilder, true);
+        func2.toString(stringBuilder, true);
         if (addBrackets) {
             stringBuilder.append(')');
         }

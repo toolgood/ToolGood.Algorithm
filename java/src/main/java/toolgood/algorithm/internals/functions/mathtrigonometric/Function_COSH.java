@@ -26,6 +26,6 @@ class Function_COSH extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Cosh");
+        AddFunction(stringBuilder, "Cosh");
     }
 }

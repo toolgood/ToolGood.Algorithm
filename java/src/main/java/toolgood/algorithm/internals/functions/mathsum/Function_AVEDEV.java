@@ -43,6 +43,6 @@ public class Function_AVEDEV extends Function_N {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "AveDev");
+        AddFunction(stringBuilder, "AveDev");
     }
 }

@@ -25,7 +25,7 @@ public class Function_ISNULLOREMPTY extends Function_1 {
     }
 
     @Override
-    public void ToString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "IsNullOrEmpty");
     }
 }

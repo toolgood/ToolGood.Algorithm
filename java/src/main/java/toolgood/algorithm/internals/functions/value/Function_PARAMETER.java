@@ -41,9 +41,9 @@ public class Function_PARAMETER extends FunctionBase {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         if (name == null || name.isEmpty()) {
-            func1.ToString(stringBuilder, false);
+            func1.toString(stringBuilder, false);
         } else {
             stringBuilder.append(name);
         }

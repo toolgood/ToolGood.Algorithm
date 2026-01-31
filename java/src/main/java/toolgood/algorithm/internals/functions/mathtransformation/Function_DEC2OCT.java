@@ -38,6 +38,6 @@ public class Function_DEC2OCT extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "DEC2OCT");
+        AddFunction(stringBuilder, "DEC2OCT");
     }
 }

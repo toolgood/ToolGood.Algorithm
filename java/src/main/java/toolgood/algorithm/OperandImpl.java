@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.internals.JsonData;
+import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
 class OperandInt extends Operand {
@@ -37,8 +37,6 @@ class OperandInt extends Operand {
     @Override
     public double DoubleValue() { return value; }
 
-    @Override
-    public BigDecimal BigDecimalValue() { return BigDecimal.valueOf(value); }
 
     @Override
     public Operand ToNumber(String errorMessage) { return this; }
@@ -96,8 +94,6 @@ class OperandBigDecimal extends Operand {
     @Override
     public double DoubleValue() { return value.doubleValue(); }
 
-    @Override
-    public BigDecimal BigDecimalValue() { return value; }
 
     @Override
     public Operand ToNumber(String errorMessage) { return this; }
@@ -196,9 +192,9 @@ class OperandString extends Operand {
             return Operand.Create(bd);
         } catch (NumberFormatException e) {
             if (errorMessage == null) {
-                return error("Convert to number error!");
+                return Error("Convert to number error!");
             }
-            return error(errorMessage);
+            return Error(errorMessage);
         }
     }
 
@@ -209,9 +205,9 @@ class OperandString extends Operand {
             return Operand.Create(bd);
         } catch (NumberFormatException e) {
             if (errorMessage == null) {
-                return error("Convert to number error!");
+                return Error("Convert to number error!");
             }
-            return error(String.format(errorMessage, args));
+            return Error(String.format(errorMessage, args));
         }
     }
 
@@ -228,9 +224,9 @@ class OperandString extends Operand {
             return boolHolder.value ? Operand.TRUE : Operand.FALSE;
         }
         if (errorMessage == null) {
-            return error("Convert to bool error!");
+            return Error("Convert to bool error!");
         }
-        return error(errorMessage);
+        return Error(errorMessage);
     }
 
     @Override
@@ -240,9 +236,9 @@ class OperandString extends Operand {
             return boolHolder.value ? Operand.TRUE : Operand.FALSE;
         }
         if (errorMessage == null) {
-            return error("Convert to bool error!");
+            return Error("Convert to bool error!");
         }
-        return error(String.format(errorMessage, args));
+        return Error(String.format(errorMessage, args));
     }
 
     @Override
@@ -258,9 +254,9 @@ class OperandString extends Operand {
                 return Create(date);
             } catch (Exception ex) {
                 if (errorMessage == null) {
-                    return error("Convert to date error!");
+                    return Error("Convert to date error!");
                 }
-                return error(errorMessage);
+                return Error(errorMessage);
             }
         }
     }
@@ -278,16 +274,16 @@ class OperandString extends Operand {
                 return Create(date);
             } catch (Exception ex) {
                 if (errorMessage == null) {
-                    return error("Convert to date error!");
+                    return Error("Convert to date error!");
                 }
-                return error(String.format(errorMessage, args));
+                return Error(String.format(errorMessage, args));
             }
         }
     }
 
     @Override
     public Operand ToArray(String errorMessage) {
-        return error(errorMessage != null ? errorMessage : "Convert to array error!");
+        return Error(errorMessage != null ? errorMessage : "Convert to array error!");
     }
 
     @Override
@@ -295,12 +291,12 @@ class OperandString extends Operand {
         String txt = value.trim();
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
-                JsonData json = JsonData.parse(txt);
+                JsonData json = JsonData.Parse(txt);
                 return Operand.Create(json);
             } catch (Exception e) {
             }
         }
-        return error(errorMessage != null ? errorMessage : "Convert to json error!");
+        return Error(errorMessage != null ? errorMessage : "Convert to json error!");
     }
 
     @Override
@@ -366,16 +362,16 @@ class OperandMyDate extends Operand {
     public MyDate DateValue() { return value; }
 
     @Override
-    public Operand ToNumber(String errorMessage) { return Create(value.toTimestamp()); }
+    public Operand ToNumber(String errorMessage) { return Create(value.ToNumber()); }
 
     @Override
-    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.toTimestamp()); }
+    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.ToNumber()); }
 
     @Override
-    public Operand ToBoolean(String errorMessage) { return value.toTimestamp() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) { return value.ToNumber() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand ToBoolean(String errorMessage, Object... args) { return value.toTimestamp() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return value.ToNumber() != 0 ? TRUE : FALSE; }
 
     @Override
     public Operand ToText(String errorMessage) { return Create(value.toString()); }
@@ -441,21 +437,21 @@ class OperandJson extends Operand {
             }
             return Operand.Create(list);
         }
-        return error(errorMessage != null ? errorMessage : "Convert to array error!");
+        return Error(errorMessage != null ? errorMessage : "Convert to array error!");
     }
 
     @Override
     public Operand ToArray(String errorMessage, Object... args) {
-        if (value.isArray()) {
+        if (value.IsArray()) {
             List<Operand> list = new ArrayList<>();
             for (JsonData v : value.getArray()) {
-                if (v.isString()) {
+                if (v.IsString()) {
                     list.add(Operand.Create(v.getString()));
-                } else if (v.isBoolean()) {
+                } else if (v.IsBoolean()) {
                     list.add(Operand.Create(v.getBoolean()));
-                } else if (v.isNumber()) {
+                } else if (v.IsNumber()) {
                     list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));
-                } else if (v.isNull()) {
+                } else if (v.IsNull()) {
                     list.add(Operand.CreateNull());
                 } else {
                     list.add(Operand.Create(v));
@@ -463,7 +459,7 @@ class OperandJson extends Operand {
             }
             return Operand.Create(list);
         }
-        return error(String.format(errorMessage, args));
+        return Error(String.format(errorMessage, args));
     }
 
     @Override
@@ -516,10 +512,10 @@ class OperandArray extends Operand {
     public Operand ToJson(String errorMessage) {
         String txt = this.toString();
         try {
-            JsonData json = JsonData.parse(txt);
+            JsonData json = JsonData.Parse(txt);
             return Operand.Create(json);
         } catch (Exception e) {
-            return error(errorMessage != null ? errorMessage : "Convert to json error!");
+            return Error(errorMessage != null ? errorMessage : "Convert to json error!");
         }
     }
 
@@ -641,22 +637,22 @@ class OperandKeyValueList extends Operand {
 
     @Override
     public Operand ToArray(String errorMessage) {
-        return Create(this.getArrayValue());
+        return Create(this.ArrayValue());
     }
 
     @Override
     public Operand ToArray(String errorMessage, Object... args) {
-        return Create(this.getArrayValue());
+        return Create(this.ArrayValue());
     }
 
     @Override
     public Operand ToJson(String errorMessage) {
         String txt = this.toString();
         try {
-            JsonData json = JsonData.parse(txt);
+            JsonData json = JsonData.Parse(txt);
             return Operand.Create(json);
         } catch (Exception e) {
-            return error(errorMessage != null ? errorMessage : "Convert to json error!");
+            return Error(errorMessage != null ? errorMessage : "Convert to json error!");
         }
     }
 
@@ -676,7 +672,7 @@ class OperandKeyValueList extends Operand {
 
     public boolean containsKey(Operand value) {
         for (KeyValue item : textList) {
-            if (value.getTextValue().equals(item.key)) {
+            if (value.TextValue().equals(item.key)) {
                 return true;
             }
         }
@@ -686,11 +682,11 @@ class OperandKeyValueList extends Operand {
     public boolean containsValue(Operand value) {
         for (KeyValue item : textList) {
             Operand op = item.value;
-            if (value.getType() != op.getType()) {
+            if (value.Type() != op.Type()) {
                 continue;
             }
-            if (value.isText()) {
-                if (value.getTextValue().equals(op.getTextValue())) {
+            if (value.IsText()) {
+                if (value.TextValue().equals(op.TextValue())) {
                     return true;
                 }
             }
@@ -736,4 +732,3 @@ class OperandKeyValue extends Operand {
     public KeyValue Value() { return value; }
 }
 
-#endregion

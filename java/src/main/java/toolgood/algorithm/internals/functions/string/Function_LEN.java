@@ -23,7 +23,7 @@ public class Function_LEN extends Function_1 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Len");
     }
 }

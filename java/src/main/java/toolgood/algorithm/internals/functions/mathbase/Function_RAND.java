@@ -16,7 +16,7 @@ public class Function_RAND extends FunctionBase {
     }
 
     @Override
-    public void ToString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
         stringBuilder.append("Rand()");
     }
 }

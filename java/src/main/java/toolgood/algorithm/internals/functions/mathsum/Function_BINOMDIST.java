@@ -52,6 +52,6 @@ public class Function_BINOMDIST extends Function_4 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "BinomDist");
+        AddFunction(stringBuilder, "BinomDist");
     }
 }

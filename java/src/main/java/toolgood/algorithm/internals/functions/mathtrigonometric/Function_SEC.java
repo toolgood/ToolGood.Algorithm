@@ -31,6 +31,6 @@ class Function_SEC extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Sec");
+        AddFunction(stringBuilder, "Sec");
     }
 }

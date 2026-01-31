@@ -26,6 +26,6 @@ class Function_RADIANS extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Radians");
+        AddFunction(stringBuilder, "Radians");
     }
 }

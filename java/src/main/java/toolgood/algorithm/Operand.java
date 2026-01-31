@@ -135,7 +135,7 @@ public abstract class Operand {
     /**
      * BigDecimal值
      */
-    public BigDecimal BigDecimalValue() { throw new UnsupportedOperationException(); }
+    public Double DoubleValue() { throw new UnsupportedOperationException(); }
 
     /**
      * int值

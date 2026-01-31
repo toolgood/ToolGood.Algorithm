@@ -24,7 +24,7 @@ public class Function_Value extends FunctionBase {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         if (_showName != null && !_showName.isEmpty()) {
             stringBuilder.append(_showName);
             return;

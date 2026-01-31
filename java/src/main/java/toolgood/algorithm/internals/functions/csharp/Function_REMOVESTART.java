@@ -56,7 +56,7 @@ public class Function_REMOVESTART extends Function_3 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "RemoveStart");
     }
 }

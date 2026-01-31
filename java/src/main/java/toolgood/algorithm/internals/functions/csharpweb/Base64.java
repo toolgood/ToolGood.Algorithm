@@ -16,7 +16,7 @@ public class Base64 {
     private static final String base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
 
     public static String ToBase64String(byte[] input) {
-        return encoder.encodeToString(input);
+        return encoder.encodetoString(input);
     }
 
     public static byte[] FromBase64String(String base64Str) {
@@ -32,7 +32,7 @@ public class Base64 {
      * @return Input byte array converted to a base64ForUrl encoded string
      */
     public static String ToBase64ForUrlString(byte[] input) {
-        return urlEncoder.encodeToString(input);
+        return urlEncoder.encodetoString(input);
     }
 
     /**

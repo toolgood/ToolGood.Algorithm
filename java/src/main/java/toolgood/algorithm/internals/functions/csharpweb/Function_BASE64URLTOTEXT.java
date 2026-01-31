@@ -45,7 +45,7 @@ public class Function_BASE64URLTOTEXT extends Function_2 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Base64urlToText");
     }
 }

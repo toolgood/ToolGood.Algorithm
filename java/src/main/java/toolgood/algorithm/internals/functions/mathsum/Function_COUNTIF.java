@@ -58,6 +58,6 @@ public class Function_COUNTIF extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "CountIf");
+        AddFunction(stringBuilder, "CountIf");
     }
 }

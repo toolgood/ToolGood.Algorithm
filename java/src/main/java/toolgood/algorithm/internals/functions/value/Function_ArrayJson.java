@@ -21,13 +21,13 @@ public class Function_ArrayJson extends Function_N {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         stringBuilder.append('{');
         for (int i = 0; i < funcs.length; i++) {
             if (i > 0) {
                 stringBuilder.append(", ");
             }
-            funcs[i].ToString(stringBuilder, false);
+            funcs[i].toString(stringBuilder, false);
         }
         stringBuilder.append('}');
     }

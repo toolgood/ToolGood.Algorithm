@@ -26,6 +26,6 @@ class Function_DEGREES extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Degrees");
+        AddFunction(stringBuilder, "Degrees");
     }
 }

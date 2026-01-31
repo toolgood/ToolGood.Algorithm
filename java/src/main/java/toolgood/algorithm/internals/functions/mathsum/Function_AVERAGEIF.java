@@ -77,6 +77,6 @@ public class Function_AVERAGEIF extends Function_3 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "AverageIf");
+        AddFunction(stringBuilder, "AverageIf");
     }
 }

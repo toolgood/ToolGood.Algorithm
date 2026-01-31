@@ -48,7 +48,7 @@ public class Function_WEEKNUM extends Function_2 {
     }
 
     @Override
-    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "WeekNum");
     }
 }

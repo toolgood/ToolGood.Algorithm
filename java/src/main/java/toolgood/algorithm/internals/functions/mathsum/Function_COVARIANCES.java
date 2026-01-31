@@ -54,6 +54,6 @@ public class Function_COVARIANCES extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "CovarIanceS");
+        AddFunction(stringBuilder, "CovarIanceS");
     }
 }

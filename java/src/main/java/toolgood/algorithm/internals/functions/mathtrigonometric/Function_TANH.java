@@ -26,6 +26,6 @@ class Function_TANH extends Function_1 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Tanh");
+        AddFunction(stringBuilder, "Tanh");
     }
 }
