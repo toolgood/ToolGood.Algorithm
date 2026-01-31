@@ -1,9 +1,15 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import webpack from 'webpack';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// 读取 license 文件内容并转换为注释格式
+const licensePath = path.resolve(__dirname, '../license.md');
+const licenseContent = fs.readFileSync(licensePath, 'utf8');
+const licenseComment = `/*!\n${licenseContent.split('\n').map(line => ` * ${line}`).join('\n')}\n */`;
 
 export default {
   entry: './src/index.js',
@@ -72,6 +78,11 @@ export default {
         },
         version: JSON.stringify('')
       }
+    }),
+    new webpack.BannerPlugin({
+      banner: licenseComment,
+      raw: true,
+      entryOnly: true
     })
   ],
   optimization: {
