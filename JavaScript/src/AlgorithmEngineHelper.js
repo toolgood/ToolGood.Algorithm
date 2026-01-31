@@ -334,7 +334,7 @@ export class AlgorithmEngineHelper {
     /**
      * 编译公式
      */
-    static ParseFormula(exp) {
+    static ParseFormula(exp,errorListener) {
         if (!exp || exp.trim() === '') {
             throw new Error("Parameter exp invalid !");
         }
@@ -347,7 +347,12 @@ export class AlgorithmEngineHelper {
         const parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
-
+        if (errorListener) {
+            parser.addErrorListener(errorListener);
+            const context = parser.prog();
+            const visitor = new MathFunctionVisitor();
+            return visitor.visit(context);
+        }
         const context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             throw new Error(antlrErrorTextWriter.ErrorMsg);
