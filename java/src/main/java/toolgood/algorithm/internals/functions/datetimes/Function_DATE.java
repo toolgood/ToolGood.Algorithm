@@ -88,7 +88,7 @@ public class Function_DATE extends Function_N {
             }
             d = new toolgood.algorithm.internals.MyDate(args1.getIntValue(), args2.getIntValue(), args3.getIntValue(), args4.getIntValue(), args5.getIntValue(), args6.getIntValue());
         }
-        return Operand.create(d);
+        return Operand.Create(d);
     }
 
     @Override

@@ -13,8 +13,8 @@ class Function_COT extends Function_1 {
     }
 
     @Override
-    public Operand evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.evaluate(work, tempParameter);
+    public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.isNumber()) {
             args1 = args1.toNumber("Function '{0}' parameter is error!", "Cot");
             if (args1.isError()) {
@@ -24,9 +24,9 @@ class Function_COT extends Function_1 {
         double value = args1.getDoubleValue();
         double tanValue = Math.tan(value);
         if (tanValue == 0) {
-            return Operand.create(Double.POSITIVE_INFINITY);
+            return Operand.Create(Double.POSITIVE_INFINITY);
         }
-        return Operand.create(1.0 / tanValue);
+        return Operand.Create(1.0 / tanValue);
     }
 
     @Override

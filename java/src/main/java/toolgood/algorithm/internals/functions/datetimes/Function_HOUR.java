@@ -22,7 +22,7 @@ public class Function_HOUR extends Function_1 {
             }
         }
         toolgood.algorithm.internals.MyDate date = args1.getDateValue();
-        return Operand.create(date.Hour);
+        return Operand.Create(date.Hour);
     }
 
     @Override

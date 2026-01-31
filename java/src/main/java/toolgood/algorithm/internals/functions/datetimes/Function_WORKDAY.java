@@ -60,7 +60,7 @@ public class Function_WORKDAY extends Function_N {
             }
             days--;
         }
-        return Operand.create(startMyDate);
+        return Operand.Create(startMyDate);
     }
 
     @Override

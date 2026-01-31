@@ -33,9 +33,9 @@ public class Function_VALUE extends Function_1 {
         try {
             NumberFormat format = NumberFormat.getInstance(Locale.US);
             Number number = format.parse(args1.getTextValue());
-            return Operand.create(number.doubleValue());
+            return Operand.Create(number.doubleValue());
         } catch (ParseException e) {
-            return Operand.error("Function '{0}' parameter is error!", "Value");
+            return Operand.Error("Function '{0}' parameter is error!", "Value");
         }
     }
 

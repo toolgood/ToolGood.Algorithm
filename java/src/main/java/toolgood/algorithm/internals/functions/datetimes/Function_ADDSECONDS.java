@@ -32,11 +32,11 @@ public class Function_ADDSECONDS extends Function_2 {
             toolgood.algorithm.internals.MyDate date = args1.getDateValue();
             int seconds = args2.getIntValue();
             toolgood.algorithm.internals.MyDate result = date.AddSeconds(seconds);
-            return Operand.create(result);
+            return Operand.Create(result);
         } catch (Exception e) {
             // 捕获所有异常
         }
-        return Operand.error("Function '{0}' is error!", "AddSeconds");
+        return Operand.Error("Function '{0}' is error!", "AddSeconds");
     }
 
     @Override

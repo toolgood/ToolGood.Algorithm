@@ -32,11 +32,11 @@ public class Function_ADDDAYS extends Function_2 {
             toolgood.algorithm.internals.MyDate date = args1.getDateValue();
             int days = args2.getIntValue();
             toolgood.algorithm.internals.MyDate result = date.AddDays(days);
-            return Operand.create(result);
+            return Operand.Create(result);
         } catch (Exception e) {
             // 捕获所有异常
         }
-        return Operand.error("Function '{0}' is error!", "AddDays");
+        return Operand.Error("Function '{0}' is error!", "AddDays");
     }
 
     @Override

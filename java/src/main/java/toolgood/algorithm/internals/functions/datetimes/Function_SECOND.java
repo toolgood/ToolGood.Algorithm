@@ -22,7 +22,7 @@ public class Function_SECOND extends Function_1 {
             }
         }
         toolgood.algorithm.internals.MyDate date = args1.getDateValue();
-        return Operand.create(date.Second);
+        return Operand.Create(date.Second);
     }
 
     @Override

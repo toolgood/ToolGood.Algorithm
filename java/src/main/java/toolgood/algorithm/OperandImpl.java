@@ -17,55 +17,55 @@ class OperandInt extends Operand {
     }
 
     @Override
-    public boolean isNumber() { return true; }
+    public boolean IsNumber() { return true; }
 
     @Override
-    public boolean isNotNumber() { return false; }
+    public boolean IsNotNumber() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.NUMBER; }
+    public OperandType Type() { return OperandType.NUMBER; }
 
     @Override
-    public int getIntValue() { return value; }
+    public int IntValue() { return value; }
 
     @Override
-    public BigDecimal getNumberValue() { return BigDecimal.valueOf(value); }
+    public BigDecimal NumberValue() { return BigDecimal.valueOf(value); }
 
     @Override
-    public long getLongValue() { return value; }
+    public long LongValue() { return value; }
 
     @Override
-    public double getDoubleValue() { return value; }
+    public double DoubleValue() { return value; }
 
     @Override
-    public BigDecimal getBigDecimalValue() { return BigDecimal.valueOf(value); }
+    public BigDecimal BigDecimalValue() { return BigDecimal.valueOf(value); }
 
     @Override
-    public Operand toNumber(String errorMessage) { return this; }
+    public Operand ToNumber(String errorMessage) { return this; }
 
     @Override
-    public Operand toNumber(String errorMessage, Object... args) { return this; }
+    public Operand ToNumber(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toBoolean(String errorMessage) { return getIntValue() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) { return IntValue() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand toBoolean(String errorMessage, Object... args) { return getIntValue() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return IntValue() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand toText(String errorMessage) { return create(Integer.toString(value)); }
+    public Operand ToText(String errorMessage) { return Create(Integer.toString(value)); }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) { return create(Integer.toString(value)); }
+    public Operand ToText(String errorMessage, Object... args) { return Create(Integer.toString(value)); }
 
     @Override
-    public Operand toMyDate(String errorMessage) { return create(new MyDate(value)); }
+    public Operand ToMyDate(String errorMessage) { return Create(new MyDate(value)); }
 
     @Override
-    public Operand toMyDate(String errorMessage, Object... args) { return create(new MyDate(value)); }
+    public Operand ToMyDate(String errorMessage, Object... args) { return Create(new MyDate(value)); }
 
     @Override
-    public String toString() { return getNumberValue().toString(); }
+    public String toString() { return NumberValue().toString(); }
 }
 
 class OperandBigDecimal extends Operand {
@@ -76,55 +76,55 @@ class OperandBigDecimal extends Operand {
     }
 
     @Override
-    public boolean isNumber() { return true; }
+    public boolean IsNumber() { return true; }
 
     @Override
-    public boolean isNotNumber() { return false; }
+    public boolean IsNotNumber() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.NUMBER; }
+    public OperandType Type() { return OperandType.NUMBER; }
 
     @Override
-    public int getIntValue() { return value.intValue(); }
+    public int IntValue() { return value.intValue(); }
 
     @Override
-    public BigDecimal getNumberValue() { return value; }
+    public BigDecimal NumberValue() { return value; }
 
     @Override
-    public long getLongValue() { return value.longValue(); }
+    public long LongValue() { return value.longValue(); }
 
     @Override
-    public double getDoubleValue() { return value.doubleValue(); }
+    public double DoubleValue() { return value.doubleValue(); }
 
     @Override
-    public BigDecimal getBigDecimalValue() { return value; }
+    public BigDecimal BigDecimalValue() { return value; }
 
     @Override
-    public Operand toNumber(String errorMessage) { return this; }
+    public Operand ToNumber(String errorMessage) { return this; }
 
     @Override
-    public Operand toNumber(String errorMessage, Object... args) { return this; }
+    public Operand ToNumber(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toBoolean(String errorMessage) { return value.compareTo(BigDecimal.ZERO) != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) { return value.compareTo(BigDecimal.ZERO) != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand toBoolean(String errorMessage, Object... args) { return value.compareTo(BigDecimal.ZERO) != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return value.compareTo(BigDecimal.ZERO) != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand toText(String errorMessage) { return create(value.toString()); }
+    public Operand ToText(String errorMessage) { return Create(value.toString()); }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) { return create(value.toString()); }
+    public Operand ToText(String errorMessage, Object... args) { return Create(value.toString()); }
 
     @Override
-    public Operand toMyDate(String errorMessage) { return create(new MyDate(value.longValue())); }
+    public Operand ToMyDate(String errorMessage) { return Create(new MyDate(value.longValue())); }
 
     @Override
-    public Operand toMyDate(String errorMessage, Object... args) { return create(new MyDate(value.longValue())); }
+    public Operand ToMyDate(String errorMessage, Object... args) { return Create(new MyDate(value.longValue())); }
 
     @Override
-    public String toString() { return getNumberValue().toString(); }
+    public String toString() { return NumberValue().toString(); }
 }
 
 
@@ -137,34 +137,34 @@ class OperandBoolean extends Operand {
     }
 
     @Override
-    public boolean isBoolean() { return true; }
+    public boolean IsBoolean() { return true; }
 
     @Override
-    public boolean isNotBoolean() { return false; }
+    public boolean IsNotBoolean() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.BOOLEAN; }
+    public OperandType Type() { return OperandType.BOOLEAN; }
 
     @Override
-    public boolean getBooleanValue() { return value; }
+    public boolean BooleanValue() { return value; }
 
     @Override
-    public Operand toNumber(String errorMessage) { return value ? ONE : ZERO; }
+    public Operand ToNumber(String errorMessage) { return value ? ONE : ZERO; }
 
     @Override
-    public Operand toNumber(String errorMessage, Object... args) { return value ? ONE : ZERO; }
+    public Operand ToNumber(String errorMessage, Object... args) { return value ? ONE : ZERO; }
 
     @Override
-    public Operand toBoolean(String errorMessage) { return this; }
+    public Operand ToBoolean(String errorMessage) { return this; }
 
     @Override
-    public Operand toBoolean(String errorMessage, Object... args) { return this; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toText(String errorMessage) { return create(value ? "TRUE" : "FALSE"); }
+    public Operand ToText(String errorMessage) { return Create(value ? "TRUE" : "FALSE"); }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) { return create(value ? "TRUE" : "FALSE"); }
+    public Operand ToText(String errorMessage, Object... args) { return Create(value ? "TRUE" : "FALSE"); }
 
     @Override
     public String toString() { return value ? "true" : "false"; }
@@ -178,22 +178,22 @@ class OperandString extends Operand {
     }
 
     @Override
-    public boolean isText() { return true; }
+    public boolean IsText() { return true; }
 
     @Override
-    public boolean isNotText() { return false; }
+    public boolean IsNotText() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.TEXT; }
+    public OperandType Type() { return OperandType.TEXT; }
 
     @Override
-    public String getTextValue() { return value; }
+    public String TextValue() { return value; }
 
     @Override
-    public Operand toNumber(String errorMessage) {
+    public Operand ToNumber(String errorMessage) {
         try {
             BigDecimal bd = new BigDecimal(value);
-            return Operand.create(bd);
+            return Operand.Create(bd);
         } catch (NumberFormatException e) {
             if (errorMessage == null) {
                 return error("Convert to number error!");
@@ -203,10 +203,10 @@ class OperandString extends Operand {
     }
 
     @Override
-    public Operand toNumber(String errorMessage, Object... args) {
+    public Operand ToNumber(String errorMessage, Object... args) {
         try {
             BigDecimal bd = new BigDecimal(value);
-            return Operand.create(bd);
+            return Operand.Create(bd);
         } catch (NumberFormatException e) {
             if (errorMessage == null) {
                 return error("Convert to number error!");
@@ -216,13 +216,13 @@ class OperandString extends Operand {
     }
 
     @Override
-    public Operand toText(String errorMessage) { return this; }
+    public Operand ToText(String errorMessage) { return this; }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) { return this; }
+    public Operand ToText(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toBoolean(String errorMessage) {
+    public Operand ToBoolean(String errorMessage) {
         FunctionUtil.BooleanHolder boolHolder = new FunctionUtil.BooleanHolder();
         if (FunctionUtil.tryParseBoolean(value, boolHolder)) {
             return boolHolder.value ? Operand.TRUE : Operand.FALSE;
@@ -234,7 +234,7 @@ class OperandString extends Operand {
     }
 
     @Override
-    public Operand toBoolean(String errorMessage, Object... args) {
+    public Operand ToBoolean(String errorMessage, Object... args) {
         FunctionUtil.BooleanHolder boolHolder = new FunctionUtil.BooleanHolder();
         if (FunctionUtil.tryParseBoolean(value, boolHolder)) {
             return boolHolder.value ? Operand.TRUE : Operand.FALSE;
@@ -246,16 +246,16 @@ class OperandString extends Operand {
     }
 
     @Override
-    public Operand toMyDate(String errorMessage) {
+    public Operand ToMyDate(String errorMessage) {
         try {
             // 尝试解析为时间戳
             long timestamp = Long.parseLong(value);
-            return create(new MyDate(timestamp));
+            return Create(new MyDate(timestamp));
         } catch (NumberFormatException e) {
             // 尝试解析为日期字符串
             try {
                 MyDate date = MyDate.parse(value);
-                return create(date);
+                return Create(date);
             } catch (Exception ex) {
                 if (errorMessage == null) {
                     return error("Convert to date error!");
@@ -266,16 +266,16 @@ class OperandString extends Operand {
     }
 
     @Override
-    public Operand toMyDate(String errorMessage, Object... args) {
+    public Operand ToMyDate(String errorMessage, Object... args) {
         try {
             // 尝试解析为时间戳
             long timestamp = Long.parseLong(value);
-            return create(new MyDate(timestamp));
+            return Create(new MyDate(timestamp));
         } catch (NumberFormatException e) {
             // 尝试解析为日期字符串
             try {
                 MyDate date = MyDate.parse(value);
-                return create(date);
+                return Create(date);
             } catch (Exception ex) {
                 if (errorMessage == null) {
                     return error("Convert to date error!");
@@ -286,17 +286,17 @@ class OperandString extends Operand {
     }
 
     @Override
-    public Operand toArray(String errorMessage) {
+    public Operand ToArray(String errorMessage) {
         return error(errorMessage != null ? errorMessage : "Convert to array error!");
     }
 
     @Override
-    public Operand toJson(String errorMessage) {
+    public Operand ToJson(String errorMessage) {
         String txt = value.trim();
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
                 JsonData json = JsonData.parse(txt);
-                return Operand.create(json);
+                return Operand.Create(json);
             } catch (Exception e) {
             }
         }
@@ -354,40 +354,40 @@ class OperandMyDate extends Operand {
     }
 
     @Override
-    public boolean isDate() { return true; }
+    public boolean IsDate() { return true; }
 
     @Override
-    public boolean isNotDate() { return false; }
+    public boolean IsNotDate() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.DATE; }
+    public OperandType Type() { return OperandType.DATE; }
 
     @Override
-    public MyDate getDateValue() { return value; }
+    public MyDate DateValue() { return value; }
 
     @Override
-    public Operand toNumber(String errorMessage) { return create(value.toTimestamp()); }
+    public Operand ToNumber(String errorMessage) { return Create(value.toTimestamp()); }
 
     @Override
-    public Operand toNumber(String errorMessage, Object... args) { return create(value.toTimestamp()); }
+    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.toTimestamp()); }
 
     @Override
-    public Operand toBoolean(String errorMessage) { return value.toTimestamp() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) { return value.toTimestamp() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand toBoolean(String errorMessage, Object... args) { return value.toTimestamp() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return value.toTimestamp() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand toText(String errorMessage) { return create(value.toString()); }
+    public Operand ToText(String errorMessage) { return Create(value.toString()); }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) { return create(value.toString()); }
+    public Operand ToText(String errorMessage, Object... args) { return Create(value.toString()); }
 
     @Override
-    public Operand toMyDate(String errorMessage) { return this; }
+    public Operand ToMyDate(String errorMessage) { return this; }
 
     @Override
-    public Operand toMyDate(String errorMessage, Object... args) { return this; }
+    public Operand ToMyDate(String errorMessage, Object... args) { return this; }
 
     @Override
     public String toString() { return '"' + value.toString() + '"'; }
@@ -401,73 +401,73 @@ class OperandJson extends Operand {
     }
 
     @Override
-    public boolean isJson() { return true; }
+    public boolean IsJson() { return true; }
 
     @Override
-    public boolean isNotJson() { return false; }
+    public boolean IsNotJson() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.JSON; }
+    public OperandType Type() { return OperandType.JSON; }
 
     @Override
-    JsonData getJsonValue() { return value; }
+    JsonData JsonValue() { return value; }
 
     @Override
-    public Operand toText(String errorMessage) {
-        return create(value.toString());
+    public Operand ToText(String errorMessage) {
+        return Create(value.toString());
     }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) {
-        return create(value.toString());
+    public Operand ToText(String errorMessage, Object... args) {
+        return Create(value.toString());
     }
 
     @Override
-    public Operand toArray(String errorMessage) {
+    public Operand ToArray(String errorMessage) {
         if (value.isArray()) {
             List<Operand> list = new ArrayList<>();
             for (JsonData v : value.getArray()) {
                 if (v.isString()) {
-                    list.add(Operand.create(v.getString()));
+                    list.add(Operand.Create(v.getString()));
                 } else if (v.isBoolean()) {
-                    list.add(Operand.create(v.getBoolean()));
+                    list.add(Operand.Create(v.getBoolean()));
                 } else if (v.isNumber()) {
-                    list.add(Operand.create(new BigDecimal(v.getNumber().toString())));
+                    list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));
                 } else if (v.isNull()) {
-                    list.add(Operand.createNull());
+                    list.add(Operand.CreateNull());
                 } else {
-                    list.add(Operand.create(v));
+                    list.add(Operand.Create(v));
                 }
             }
-            return Operand.create(list);
+            return Operand.Create(list);
         }
         return error(errorMessage != null ? errorMessage : "Convert to array error!");
     }
 
     @Override
-    public Operand toArray(String errorMessage, Object... args) {
+    public Operand ToArray(String errorMessage, Object... args) {
         if (value.isArray()) {
             List<Operand> list = new ArrayList<>();
             for (JsonData v : value.getArray()) {
                 if (v.isString()) {
-                    list.add(Operand.create(v.getString()));
+                    list.add(Operand.Create(v.getString()));
                 } else if (v.isBoolean()) {
-                    list.add(Operand.create(v.getBoolean()));
+                    list.add(Operand.Create(v.getBoolean()));
                 } else if (v.isNumber()) {
-                    list.add(Operand.create(new BigDecimal(v.getNumber().toString())));
+                    list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));
                 } else if (v.isNull()) {
-                    list.add(Operand.createNull());
+                    list.add(Operand.CreateNull());
                 } else {
-                    list.add(Operand.create(v));
+                    list.add(Operand.Create(v));
                 }
             }
-            return Operand.create(list);
+            return Operand.Create(list);
         }
         return error(String.format(errorMessage, args));
     }
 
     @Override
-    public Operand toJson(String errorMessage) {
+    public Operand ToJson(String errorMessage) {
         return this;
     }
 
@@ -485,39 +485,39 @@ class OperandArray extends Operand {
     }
 
     @Override
-    public boolean isArray() { return true; }
+    public boolean IsArray() { return true; }
 
     @Override
-    public boolean isNotArray() { return false; }
+    public boolean IsNotArray() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.ARRARY; }
+    public OperandType Type() { return OperandType.ARRARY; }
 
     @Override
-    public List<Operand> getArrayValue() { return value; }
+    public List<Operand> ArrayValue() { return value; }
 
     @Override
-    public Operand toText(String errorMessage) {
-        return create(this.toString());
+    public Operand ToText(String errorMessage) {
+        return Create(this.toString());
     }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) {
-        return create(this.toString());
+    public Operand ToText(String errorMessage, Object... args) {
+        return Create(this.toString());
     }
 
     @Override
-    public Operand toArray(String errorMessage) { return this; }
+    public Operand ToArray(String errorMessage) { return this; }
 
     @Override
-    public Operand toArray(String errorMessage, Object... args) { return this; }
+    public Operand ToArray(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toJson(String errorMessage) {
+    public Operand ToJson(String errorMessage) {
         String txt = this.toString();
         try {
             JsonData json = JsonData.parse(txt);
-            return Operand.create(json);
+            return Operand.Create(json);
         } catch (Exception e) {
             return error(errorMessage != null ? errorMessage : "Convert to json error!");
         }
@@ -546,54 +546,54 @@ class OperandError extends Operand {
     }
 
     @Override
-    public OperandType getType() { return OperandType.ERROR; }
+    public OperandType Type() { return OperandType.ERROR; }
 
     @Override
-    public boolean isError() { return true; }
+    public boolean IsError() { return true; }
 
     @Override
-    public String getErrorMsg() { return errorMsg; }
+    public String ErrorMsg() { return errorMsg; }
 
     @Override
-    public Operand toNumber(String errorMessage) { return this; }
+    public Operand ToNumber(String errorMessage) { return this; }
 
     @Override
-    public Operand toNumber(String errorMessage, Object... args) { return this; }
+    public Operand ToNumber(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toBoolean(String errorMessage) { return this; }
+    public Operand ToBoolean(String errorMessage) { return this; }
 
     @Override
-    public Operand toBoolean(String errorMessage, Object... args) { return this; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toText(String errorMessage) { return this; }
+    public Operand ToText(String errorMessage) { return this; }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) { return this; }
+    public Operand ToText(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toArray(String errorMessage) { return this; }
+    public Operand ToArray(String errorMessage) { return this; }
 
     @Override
-    public Operand toArray(String errorMessage, Object... args) { return this; }
+    public Operand ToArray(String errorMessage, Object... args) { return this; }
 
     @Override
-    public Operand toMyDate(String errorMessage) { return this; }
+    public Operand ToMyDate(String errorMessage) { return this; }
 
     @Override
-    public Operand toMyDate(String errorMessage, Object... args) { return this; }
+    public Operand ToMyDate(String errorMessage, Object... args) { return this; }
 }
 
 class OperandNull extends Operand {
     @Override
-    public boolean isNull() { return true; }
+    public boolean IsNull() { return true; }
 
     @Override
-    public boolean isNotNull() { return false; }
+    public boolean IsNotNull() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.NULL; }
+    public OperandType Type() { return OperandType.NULL; }
 
     @Override
     public String toString() { return "null"; }
@@ -612,16 +612,16 @@ class OperandKeyValueList extends Operand {
     }
 
     @Override
-    public boolean isArrayJson() { return true; }
+    public boolean IsArrayJson() { return true; }
 
     @Override
-    public boolean isNotArrayJson() { return false; }
+    public boolean IsNotArrayJson() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.ARRARYJSON; }
+    public OperandType Type() { return OperandType.ARRARYJSON; }
 
     @Override
-    public List<Operand> getArrayValue() {
+    public List<Operand> ArrayValue() {
         List<Operand> result = new ArrayList<>();
         for (KeyValue kv : textList) {
             result.add(kv.value);
@@ -630,31 +630,31 @@ class OperandKeyValueList extends Operand {
     }
 
     @Override
-    public Operand toText(String errorMessage) {
-        return create(this.toString());
+    public Operand ToText(String errorMessage) {
+        return Create(this.toString());
     }
 
     @Override
-    public Operand toText(String errorMessage, Object... args) {
-        return create(this.toString());
+    public Operand ToText(String errorMessage, Object... args) {
+        return Create(this.toString());
     }
 
     @Override
-    public Operand toArray(String errorMessage) {
-        return create(this.getArrayValue());
+    public Operand ToArray(String errorMessage) {
+        return Create(this.getArrayValue());
     }
 
     @Override
-    public Operand toArray(String errorMessage, Object... args) {
-        return create(this.getArrayValue());
+    public Operand ToArray(String errorMessage, Object... args) {
+        return Create(this.getArrayValue());
     }
 
     @Override
-    public Operand toJson(String errorMessage) {
+    public Operand ToJson(String errorMessage) {
         String txt = this.toString();
         try {
             JsonData json = JsonData.parse(txt);
-            return Operand.create(json);
+            return Operand.Create(json);
         } catch (Exception e) {
             return error(errorMessage != null ? errorMessage : "Convert to json error!");
         }
@@ -725,15 +725,15 @@ class OperandKeyValue extends Operand {
     }
 
     @Override
-    public boolean isArrayJson() { return true; }
+    public boolean IsArrayJson() { return true; }
 
     @Override
-    public boolean isNotArrayJson() { return false; }
+    public boolean IsNotArrayJson() { return false; }
 
     @Override
-    public OperandType getType() { return OperandType.ARRARYJSON; }
+    public OperandType Type() { return OperandType.ARRARYJSON; }
 
-    public KeyValue getValue() { return value; }
+    public KeyValue Value() { return value; }
 }
 
 #endregion

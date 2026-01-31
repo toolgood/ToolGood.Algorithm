@@ -12,7 +12,7 @@ public class Function_TODAY extends FunctionBase {
         toolgood.algorithm.internals.MyDate now = toolgood.algorithm.internals.MyDate.now();
         // 创建一个只包含日期部分的新 MyDate 对象
         toolgood.algorithm.internals.MyDate today = new toolgood.algorithm.internals.MyDate(now.Year, now.Month, now.Day, 0, 0, 0);
-        return Operand.create(today);
+        return Operand.Create(today);
     }
 
     @Override

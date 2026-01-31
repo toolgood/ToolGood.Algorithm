@@ -28,9 +28,9 @@ public class Function_TIMEVALUE extends Function_1 {
         // 尝试解析时间字符串
         toolgood.algorithm.internals.MyDate date = parseTimeString(timeString);
         if (date != null) {
-            return Operand.create(date);
+            return Operand.Create(date);
         }
-        return Operand.error("Function '{0}' parameter is error!", "TimeValue");
+        return Operand.Error("Function '{0}' parameter is error!", "TimeValue");
     }
 
     private toolgood.algorithm.internals.MyDate parseTimeString(String timeString) {

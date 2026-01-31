@@ -22,7 +22,7 @@ public class Function_MINUTE extends Function_1 {
             }
         }
         toolgood.algorithm.internals.MyDate date = args1.getDateValue();
-        return Operand.create(date.Minute);
+        return Operand.Create(date.Minute);
     }
 
     @Override

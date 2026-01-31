@@ -6,7 +6,7 @@ public class Hypergeometric {
      /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).
         /// </summary>
-        /// <param name="k">The location in the domain where we want to evaluate the probability mass function.</param>
+        /// <param name="k">The location in the domain where we want to Evaluate the probability mass function.</param>
         /// <param name="population">The size of the population (N).</param>
         /// <param name="success">The number successes within the population (K, M).</param>
         /// <param name="draws">The number of draws without replacement (n).</param>

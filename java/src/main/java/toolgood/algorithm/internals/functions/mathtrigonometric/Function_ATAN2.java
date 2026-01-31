@@ -13,22 +13,22 @@ class Function_ATAN2 extends Function_2 {
     }
 
     @Override
-    public Operand evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.evaluate(work, tempParameter);
+    public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.isNumber()) {
             args1 = args1.toNumber("Function '{0}' parameter is error!", "Atan2");
             if (args1.isError()) {
                 return args1;
             }
         }
-        Operand args2 = func2.evaluate(work, tempParameter);
+        Operand args2 = func2.Evaluate(work, tempParameter);
         if (!args2.isNumber()) {
             args2 = args2.toNumber("Function '{0}' parameter is error!", "Atan2");
             if (args2.isError()) {
                 return args2;
             }
         }
-        return Operand.create(Math.atan2(args1.getDoubleValue(), args2.getDoubleValue()));
+        return Operand.Create(Math.atan2(args1.getDoubleValue(), args2.getDoubleValue()));
     }
 
     @Override

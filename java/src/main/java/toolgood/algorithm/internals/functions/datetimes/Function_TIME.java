@@ -42,7 +42,7 @@ public class Function_TIME extends Function_3 {
         } else {
             d = new toolgood.algorithm.internals.MyDate(0, 0, 0, args1.getIntValue(), args2.getIntValue(), 0);
         }
-        return Operand.create(d);
+        return Operand.Create(d);
     }
 
     @Override

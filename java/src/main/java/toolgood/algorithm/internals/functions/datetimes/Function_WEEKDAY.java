@@ -39,19 +39,19 @@ public class Function_WEEKDAY extends Function_2 {
 
         if (type == 1) {
             // 返回 1-7，其中 1 是星期日，7 是星期六
-            return Operand.create(dayOfWeek);
+            return Operand.Create(dayOfWeek);
         } else if (type == 2) {
             // 返回 1-7，其中 1 是星期一，7 是星期日
             if (dayOfWeek == 1) {
-                return Operand.create(7);
+                return Operand.Create(7);
             }
-            return Operand.create(dayOfWeek - 1);
+            return Operand.Create(dayOfWeek - 1);
         } else {
             // 返回 0-6，其中 0 是星期一，6 是星期日
             if (dayOfWeek == 1) {
-                return Operand.create(6);
+                return Operand.Create(6);
             }
-            return Operand.create(dayOfWeek - 2);
+            return Operand.Create(dayOfWeek - 2);
         }
     }
 

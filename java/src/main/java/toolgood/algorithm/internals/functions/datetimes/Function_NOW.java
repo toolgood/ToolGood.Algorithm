@@ -10,7 +10,7 @@ public class Function_NOW extends FunctionBase {
     @Override
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         toolgood.algorithm.internals.MyDate now = toolgood.algorithm.internals.MyDate.now();
-        return Operand.create(now);
+        return Operand.Create(now);
     }
 
     @Override

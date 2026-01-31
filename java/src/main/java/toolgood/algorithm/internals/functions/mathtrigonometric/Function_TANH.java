@@ -13,15 +13,15 @@ class Function_TANH extends Function_1 {
     }
 
     @Override
-    public Operand evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.evaluate(work, tempParameter);
+    public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.isNumber()) {
             args1 = args1.toNumber("Function '{0}' parameter is error!", "Tanh");
             if (args1.isError()) {
                 return args1;
             }
         }
-        return Operand.create(Math.tanh(args1.getDoubleValue()));
+        return Operand.Create(Math.tanh(args1.getDoubleValue()));
     }
 
     @Override

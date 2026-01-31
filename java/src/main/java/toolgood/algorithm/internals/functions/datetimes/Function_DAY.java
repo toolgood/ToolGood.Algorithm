@@ -23,9 +23,9 @@ public class Function_DAY extends Function_1 {
         }
         toolgood.algorithm.internals.MyDate date = args1.getDateValue();
         if (date.Day == null) {
-            return Operand.error("Function '{0}' is error!", "Day");
+            return Operand.Error("Function '{0}' is error!", "Day");
         }
-        return Operand.create(date.Day);
+        return Operand.Create(date.Day);
     }
 
     @Override

@@ -58,7 +58,7 @@ public class Function_NETWORKDAYS extends Function_N {
             }
             currentDate = currentDate.AddDays(1);
         }
-        return Operand.create(days);
+        return Operand.Create(days);
     }
 
     @Override

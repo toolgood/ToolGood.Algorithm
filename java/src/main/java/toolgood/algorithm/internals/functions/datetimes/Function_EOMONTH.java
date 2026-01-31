@@ -37,11 +37,11 @@ public class Function_EOMONTH extends Function_2 {
             toolgood.algorithm.internals.MyDate firstDayOfMonth = new toolgood.algorithm.internals.MyDate(tempDate.Year, tempDate.Month, 1, 0, 0, 0);
             // 减去一天，得到上个月的最后一天
             toolgood.algorithm.internals.MyDate lastDayOfMonth = firstDayOfMonth.AddDays(-1);
-            return Operand.create(lastDayOfMonth);
+            return Operand.Create(lastDayOfMonth);
         } catch (Exception e) {
             // 捕获所有异常
         }
-        return Operand.error("Function '{0}' is error!", "EoMonth");
+        return Operand.Error("Function '{0}' is error!", "EoMonth");
     }
 
     @Override

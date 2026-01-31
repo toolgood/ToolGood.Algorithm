@@ -15,7 +15,7 @@ public class Binomial {
     /// <summary>
     /// Computes the probability mass (PMF) at k, i.e. P(X = k).
     /// </summary>
-    /// <param name="k">The location in the domain where we want to evaluate the
+    /// <param name="k">The location in the domain where we want to Evaluate the
     /// probability mass function.</param>
     /// <param name="p">The success probability (p) in each trial. Range: 0 ≤ p ≤
     /// 1.</param>

@@ -41,12 +41,12 @@ public class Function_TIMESTAMP extends Function_2 {
         
         if (type == 0) {
             // 返回毫秒时间戳
-            return Operand.create(timestamp);
+            return Operand.Create(timestamp);
         } else if (type == 1) {
             // 返回秒时间戳
-            return Operand.create((double) timestamp / 1000);
+            return Operand.Create((double) timestamp / 1000);
         }
-        return Operand.error("Function '{0}' parameter is error!", "TimeStamp");
+        return Operand.Error("Function '{0}' parameter is error!", "TimeStamp");
     }
 
     @Override

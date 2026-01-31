@@ -44,7 +44,7 @@ public class Function_WEEKNUM extends Function_2 {
         }
 
         double week = Math.ceil(days / 7.0);
-        return Operand.create((int) week);
+        return Operand.Create((int) week);
     }
 
     @Override

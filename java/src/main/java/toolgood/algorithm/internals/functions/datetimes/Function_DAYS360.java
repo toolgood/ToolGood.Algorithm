@@ -95,7 +95,7 @@ public class Function_DAYS360 extends Function_3 {
                 }
             }
         }
-        return Operand.create(days);
+        return Operand.Create(days);
     }
 
     private int getDaysInMonth(int year, int month) {

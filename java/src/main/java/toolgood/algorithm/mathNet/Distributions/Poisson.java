@@ -6,7 +6,7 @@ public class Poisson {
         /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).
         /// </summary>
-        /// <param name="k">The location in the domain where we want to evaluate the probability mass function.</param>
+        /// <param name="k">The location in the domain where we want to Evaluate the probability mass function.</param>
         /// <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
         /// <returns>the probability mass at location <paramref name="k"/>.</returns>
         public static double PMF(double lambda, int k)

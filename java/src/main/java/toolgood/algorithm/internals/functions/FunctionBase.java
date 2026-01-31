@@ -1,8 +1,8 @@
 /**
  * Represents the base class for all function implementations that can be calculated by an algorithm engine.
  * <p>
- * This abstract class defines a contract for functions that can be evaluated within the context
- * of an algorithm engine. Derived classes must implement the {@link #evaluate} method to provide specific
+ * This abstract class defines a contract for functions that can be Evaluated within the context
+ * of an algorithm engine. Derived classes must implement the {@link #Evaluate} method to provide specific
  * function logic.
  */
 package toolgood.algorithm.internals.functions;
@@ -21,7 +21,7 @@ public abstract class FunctionBase {
      * @param tempParameter 临时参数，未找到返回null
      * @return
      */
-    public abstract Operand evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter);
+    public abstract Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter);
 
     //region TryEvaluate
 
@@ -35,7 +35,7 @@ public abstract class FunctionBase {
      */
     public short tryEvaluate(AlgorithmEngine work, short def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
                 if (obj.isError()) {
@@ -60,7 +60,7 @@ public abstract class FunctionBase {
      */
     public int tryEvaluate(AlgorithmEngine work, int def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
                 if (obj.isError()) {
@@ -85,7 +85,7 @@ public abstract class FunctionBase {
      */
     public long tryEvaluate(AlgorithmEngine work, long def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
                 if (obj.isError()) {
@@ -110,7 +110,7 @@ public abstract class FunctionBase {
      */
     public float tryEvaluate(AlgorithmEngine work, float def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
                 if (obj.isError()) {
@@ -135,7 +135,7 @@ public abstract class FunctionBase {
      */
     public double tryEvaluate(AlgorithmEngine work, double def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
                 if (obj.isError()) {
@@ -160,7 +160,7 @@ public abstract class FunctionBase {
      */
     public String tryEvaluate(AlgorithmEngine work, String def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isText()) {
                 obj = obj.toText("It can't be converted to string!");
                 if (obj.isError()) {
@@ -185,7 +185,7 @@ public abstract class FunctionBase {
      */
     public boolean tryEvaluate(AlgorithmEngine work, boolean def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isBoolean()) {
                 obj = obj.toBoolean("It can't be converted to bool!");
                 if (obj.isError()) {
@@ -211,7 +211,7 @@ public abstract class FunctionBase {
      */
     public MyDate tryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
-            Operand obj = this.evaluate(work, tempParameter);
+            Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isDate()) {
                 obj = obj.toMyDate("It can't be converted to DateTime!");
                 if (obj.isError()) {

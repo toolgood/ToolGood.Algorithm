@@ -23,9 +23,9 @@ public class Function_MONTH extends Function_1 {
         }
         toolgood.algorithm.internals.MyDate date = args1.getDateValue();
         if (date.Month == null) {
-            return Operand.error("Function '{0}' is error!", "Month");
+            return Operand.Error("Function '{0}' is error!", "Month");
         }
-        return Operand.create(date.Month);
+        return Operand.Create(date.Month);
     }
 
     @Override

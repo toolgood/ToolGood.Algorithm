@@ -48,24 +48,24 @@ public class Function_DATEDIF extends Function_3 {
                 if (startMyDate.Day <= endMyDate.Day) b = true;
             }
             if (b) {
-                return Operand.create(endMyDate.Year - startMyDate.Year);
+                return Operand.Create(endMyDate.Year - startMyDate.Year);
             } else {
-                return Operand.create(endMyDate.Year - startMyDate.Year - 1);
+                return Operand.Create(endMyDate.Year - startMyDate.Year - 1);
             }
         } else if (t.equals("m")) {
             // 计算月差
             boolean b = false;
             if (startMyDate.Day <= endMyDate.Day) b = true;
             if (b) {
-                return Operand.create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month);
+                return Operand.Create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month);
             } else {
-                return Operand.create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1);
+                return Operand.Create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1);
             }
         } else if (t.equals("d")) {
             // 计算日差
             long days = endMyDate.ToDateTime().getMillis() - startMyDate.ToDateTime().getMillis();
             days = days / (1000 * 60 * 60 * 24);
-            return Operand.create((int) days);
+            return Operand.Create((int) days);
         } else if (t.equals("yd")) {
             // 计算年内日差
             int startDayOfYear = startMyDate.DayOfYear();
@@ -76,7 +76,7 @@ public class Function_DATEDIF extends Function_3 {
                 int days = startMyDate.ToDateTime().dayOfYear().withMaximumValue().getDayOfYear();
                 day = days + day;
             }
-            return Operand.create(day);
+            return Operand.Create(day);
         } else if (t.equals("md")) {
             // 计算月内日差
             int mo = endMyDate.Day - startMyDate.Day;
@@ -89,15 +89,15 @@ public class Function_DATEDIF extends Function_3 {
                 }
                 mo += days;
             }
-            return Operand.create(mo);
+            return Operand.Create(mo);
         } else if (t.equals("ym")) {
             // 计算年内地差
             int mo = endMyDate.Month - startMyDate.Month;
             if (endMyDate.Day < startMyDate.Day) mo--;
             if (mo < 0) mo += 12;
-            return Operand.create(mo);
+            return Operand.Create(mo);
         }
-        return Operand.error("Function '{0}' parameter {1} is error!", "DateDif", 3);
+        return Operand.Error("Function '{0}' parameter {1} is error!", "DateDif", 3);
     }
 
     @Override

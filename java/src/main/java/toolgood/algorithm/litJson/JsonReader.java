@@ -296,7 +296,7 @@ public class JsonReader {
             if (current_symbol == current_input) {
                 if (!ReadToken()) {
                     if (automaton_stack.peek() != (int) ParserToken.End.value) {
-                        throw new JsonException("Input doesn't evaluate to proper JSON text");
+                        throw new JsonException("Input doesn't Evaluate to proper JSON text");
 
                     }
 
