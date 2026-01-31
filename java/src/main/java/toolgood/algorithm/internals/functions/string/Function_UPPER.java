@@ -15,7 +15,7 @@ public class Function_UPPER extends Function_1 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotText()) {
             args1 = args1.toText("Function '{0}' parameter is error!", "Upper");
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }

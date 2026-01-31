@@ -15,7 +15,7 @@ public class Function_TIMESTAMP extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args0 = func1.Evaluate(work, tempParameter);
-        if (args0.isError()) {
+        if (args0.IsError()) {
             return args0;
         }
 
@@ -24,14 +24,14 @@ public class Function_TIMESTAMP extends Function_2 {
             Operand args2 = func2.Evaluate(work, tempParameter);
             if (args2.isNotNumber()) {
                 args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2);
-                if (args2.isError()) {
+                if (args2.IsError()) {
                     return args2;
                 }
             }
             type = args2.getIntValue();
         }
         Operand dateOperand = args0.toMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
-        if (dateOperand.isError()) {
+        if (dateOperand.IsError()) {
             return dateOperand;
         }
         toolgood.algorithm.internals.MyDate myDate = dateOperand.getDateValue();

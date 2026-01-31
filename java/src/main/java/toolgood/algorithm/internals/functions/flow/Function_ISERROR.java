@@ -4,8 +4,8 @@ import toolgood.algorithm.Internals.Operand;
 import toolgood.algorithm.Internals.AlgorithmEngine;
 import toolgood.algorithm.internals.FunctionBase;
 
-public class Function_ISERROR extends Function_2 {
-    public Function_ISERROR(FunctionBase func1, FunctionBase func2) {
+public class Function_IsError extends Function_2 {
+    public Function_IsError(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }
 

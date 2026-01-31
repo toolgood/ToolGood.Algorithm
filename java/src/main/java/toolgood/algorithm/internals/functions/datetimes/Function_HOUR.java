@@ -17,7 +17,7 @@ public class Function_HOUR extends Function_1 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
             args1 = args1.toMyDate("Function '{0}' parameter is error!", "Hour");
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }

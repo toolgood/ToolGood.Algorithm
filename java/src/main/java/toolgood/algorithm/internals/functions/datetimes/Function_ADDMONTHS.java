@@ -17,14 +17,14 @@ public class Function_ADDMONTHS extends Function_2 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
             args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "AddMonths", 1);
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber()) {
             args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "AddMonths", 2);
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
         }

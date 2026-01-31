@@ -17,21 +17,21 @@ public class Function_DATEDIF extends Function_3 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
             args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1);
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotDate()) {
             args2 = args2.toMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2);
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.isNotText()) {
             args3 = args3.toText("Function '{0}' parameter {1} is error!", "DateDif", 3);
-            if (args3.isError()) {
+            if (args3.IsError()) {
                 return args3;
             }
         }

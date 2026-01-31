@@ -427,7 +427,7 @@ class OperandJson extends Operand {
                     list.add(Operand.Create(v.getString()));
                 } else if (v.isBoolean()) {
                     list.add(Operand.Create(v.getBoolean()));
-                } else if (v.isNumber()) {
+                } else if (v.IsNumber()) {
                     list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));
                 } else if (v.isNull()) {
                     list.add(Operand.CreateNull());

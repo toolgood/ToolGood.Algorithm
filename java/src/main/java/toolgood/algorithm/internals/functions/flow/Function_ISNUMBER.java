@@ -4,8 +4,8 @@ import toolgood.algorithm.Internals.Operand;
 import toolgood.algorithm.Internals.AlgorithmEngine;
 import toolgood.algorithm.internals.FunctionBase;
 
-public class Function_ISNUMBER extends Function_1 {
-    public Function_ISNUMBER(FunctionBase func1) {
+public class Function_IsNumber extends Function_1 {
+    public Function_IsNumber(FunctionBase func1) {
         super(func1);
     }
 

@@ -10,8 +10,8 @@ package toolgood.algorithm.internals.functions;
 import java.lang.StringBuilder;
 import java.util.function.Function;
 import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 
 public abstract class FunctionBase {
     /**
@@ -36,14 +36,14 @@ public abstract class FunctionBase {
     public short TryEvaluate(AlgorithmEngine work, short def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isNumber()) {
+            if (!obj.IsNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
-                if (obj.isError()) {
-                    work.setLastError(obj.getErrorMsg());
+                if (obj.IsError()) {
+                    work.setLastError(obj.ErrorMsg());
                     return def;
                 }
             }
-            return (short) obj.getIntValue();
+            return (short) obj.IntValue();
         } catch (Exception ex) {
             work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
@@ -61,9 +61,9 @@ public abstract class FunctionBase {
     public int TryEvaluate(AlgorithmEngine work, int def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isNumber()) {
+            if (!obj.IsNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
@@ -86,9 +86,9 @@ public abstract class FunctionBase {
     public long TryEvaluate(AlgorithmEngine work, long def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isNumber()) {
+            if (!obj.IsNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
@@ -111,9 +111,9 @@ public abstract class FunctionBase {
     public float TryEvaluate(AlgorithmEngine work, float def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isNumber()) {
+            if (!obj.IsNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
@@ -136,9 +136,9 @@ public abstract class FunctionBase {
     public double TryEvaluate(AlgorithmEngine work, double def, Function<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isNumber()) {
+            if (!obj.IsNumber()) {
                 obj = obj.toNumber("It can't be converted to number!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
@@ -163,7 +163,7 @@ public abstract class FunctionBase {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isText()) {
                 obj = obj.toText("It can't be converted to string!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
@@ -188,7 +188,7 @@ public abstract class FunctionBase {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isBoolean()) {
                 obj = obj.toBoolean("It can't be converted to bool!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
@@ -214,7 +214,7 @@ public abstract class FunctionBase {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.isDate()) {
                 obj = obj.toMyDate("It can't be converted to DateTime!");
-                if (obj.isError()) {
+                if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }

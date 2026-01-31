@@ -157,7 +157,7 @@ public class AlgorithmEngineTest {
     @Test
     public void base_test2() {
         AlgorithmEngine engine = new AlgorithmEngine();
-        String t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & isnumber(22)*3", "");
+        String t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & IsNumber(22)*3", "");
         assertNotEquals(t, "");
     }
 

@@ -247,7 +247,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitISERROR_fun(ISERROR_funContext context) {
+    public Object visitIsError_fun(IsError_funContext context) {
 
         return visitChildren(context);
     }
@@ -868,7 +868,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitISNUMBER_fun(ISNUMBER_funContext context) {
+    public Object visitIsNumber_fun(IsNumber_funContext context) {
 
         return visitChildren(context);
     }

@@ -212,7 +212,7 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
-    public ConditionTree visitISERROR_fun(mathParser.ISERROR_funContext context) {
+    public ConditionTree visitIsError_fun(mathParser.IsError_funContext context) {
         return visit_fun(context);
     }
 
@@ -733,7 +733,7 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
-    public ConditionTree visitISNUMBER_fun(mathParser.ISNUMBER_funContext context) {
+    public ConditionTree visitIsNumber_fun(mathParser.IsNumber_funContext context) {
         return visit_fun(context);
     }
 

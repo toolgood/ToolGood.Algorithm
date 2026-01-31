@@ -17,14 +17,14 @@ public class Function_TIME extends Function_3 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber()) {
             args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Time", 1);
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber()) {
             args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Time", 2);
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
         }
@@ -34,7 +34,7 @@ public class Function_TIME extends Function_3 {
             Operand args3 = func3.Evaluate(work, tempParameter);
             if (args3.isNotNumber()) {
                 args3 = args3.toNumber("Function '{0}' parameter {1} is error!", "Time", 3);
-                if (args3.isError()) {
+                if (args3.IsError()) {
                     return args3;
                 }
             }

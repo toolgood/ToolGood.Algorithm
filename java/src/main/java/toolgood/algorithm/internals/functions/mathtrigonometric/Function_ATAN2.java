@@ -15,16 +15,16 @@ class Function_ATAN2 extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (!args1.isNumber()) {
+        if (!args1.IsNumber()) {
             args1 = args1.toNumber("Function '{0}' parameter is error!", "Atan2");
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (!args2.isNumber()) {
+        if (!args2.IsNumber()) {
             args2 = args2.toNumber("Function '{0}' parameter is error!", "Atan2");
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
         }

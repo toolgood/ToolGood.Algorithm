@@ -1,0 +1,62 @@
+package toolgood.algorithm.internals.functions.mathsum;
+
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.Function_2;
+import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.internals.OperandType;
+import toolgood.algorithm.internals.functions.FunctionUtil;
+
+public class Function_SMALL extends Function_2 {
+    public Function_SMALL(FunctionBase func1, FunctionBase func2) {
+        super(func1, func2);
+    }
+
+    @Override
+    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(work, tempParameter);
+        if (args1.getOperandType() != OperandType.Array) {
+            args1 = args1.toArray("Function '{0}' parameter {1} is error!", "Small", 1);
+            if (args1.isError()) {
+                return args1;
+            }
+        }
+        Operand args2 = func2.Evaluate(work, tempParameter);
+        if (args2.getOperandType() != OperandType.Number) {
+            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Small", 2);
+            if (args2.isError()) {
+                return args2;
+            }
+        }
+
+        List<Double> list = new java.util.ArrayList<>();
+        boolean o = FunctionUtil.F_base_GetList(args1, list);
+        if (!o) {
+            return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 1);
+        }
+
+        list = list.stream().sorted().collect(Collectors.toList());
+        int k = args2.getIntValue();
+        int excelIndex = 0; // 假设默认Excel索引为0
+        try {
+            // 尝试获取ExcelIndex属性
+            java.lang.reflect.Field field = work.getClass().getField("ExcelIndex");
+            excelIndex = field.getInt(work);
+        } catch (Exception e) {
+            // 如果获取失败，使用默认值0
+        }
+
+        if (k < 1 - excelIndex || k > list.size() - excelIndex) {
+            return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 2);
+        }
+        return Operand.Create(list.get(k - excelIndex));
+    }
+
+    @Override
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
+        addFunction(stringBuilder, "Small");
+    }
+}

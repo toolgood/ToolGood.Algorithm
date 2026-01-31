@@ -39,13 +39,13 @@ public class AlgorithmEngineTest_flow {
     }
 
     @Test
-    public void iserror_test()
+    public void IsError_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        int t = engine.TryEvaluate("iserror(1/0,1)", 0);
+        int t = engine.TryEvaluate("IsError(1/0,1)", 0);
         assertEquals(1, t);
 
-        t = engine.TryEvaluate("iserror(1-'rrr',1)", 0);
+        t = engine.TryEvaluate("IsError(1-'rrr',1)", 0);
         assertEquals(1, t);
     }
     @Test
@@ -76,18 +76,18 @@ public class AlgorithmEngineTest_flow {
 
 
     @Test
-    public void ISNUMBER_test()
+    public void IsNumber_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        int t = engine.TryEvaluate("if(ISNUMBER(1),1,2)", 0);
+        int t = engine.TryEvaluate("if(IsNumber(1),1,2)", 0);
         assertEquals(1, t);
 
-        t = engine.TryEvaluate("if(ISNUMBER('e'),1,2)", 0);
+        t = engine.TryEvaluate("if(IsNumber('e'),1,2)", 0);
         assertEquals(2, t);
-        t = engine.TryEvaluate("if(ISNUMBER('11'),1,2)", 0);
+        t = engine.TryEvaluate("if(IsNumber('11'),1,2)", 0);
         assertEquals(2, t);
 
-        t = engine.TryEvaluate("if(ISNUMBER('2016-1-2'),1,2)", 0);
+        t = engine.TryEvaluate("if(IsNumber('2016-1-2'),1,2)", 0);
         assertEquals(2, t);
     }
 

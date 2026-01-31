@@ -13,7 +13,7 @@ public class FunctionUtil {
 
     public static boolean F_base_GetList(List<Operand> args, List<Double> list) {
         for (Operand item : args) {
-            if (item.isNumber()) {
+            if (item.IsNumber()) {
                 list.add(item.getDoubleValue());
             } else if (item.isArray()) {
                 boolean o = F_base_GetList(item.getArrayValue(), list);
@@ -22,7 +22,7 @@ public class FunctionUtil {
                 }
             } else if (item.isJson()) {
                 Operand i = item.toArray(null);
-                if (i.isError()) {
+                if (i.IsError()) {
                     return false;
                 }
                 boolean o = F_base_GetList(i.getArrayValue(), list);
@@ -31,7 +31,7 @@ public class FunctionUtil {
                 }
             } else {
                 Operand o = item.toNumber(null);
-                if (o.isError()) {
+                if (o.IsError()) {
                     return false;
                 }
                 list.add(o.getDoubleValue());
@@ -41,10 +41,10 @@ public class FunctionUtil {
     }
 
     public static boolean F_base_GetList(Operand args, List<Double> list) {
-        if (args.isError()) {
+        if (args.IsError()) {
             return false;
         }
-        if (args.isNumber()) {
+        if (args.IsNumber()) {
             list.add(args.getDoubleValue());
         } else if (args.isArray()) {
             boolean o = F_base_GetList(args.getArrayValue(), list);
@@ -53,7 +53,7 @@ public class FunctionUtil {
             }
         } else if (args.isJson()) {
             Operand i = args.toArray(null);
-            if (i.isError()) {
+            if (i.IsError()) {
                 return false;
             }
             boolean o = F_base_GetList(i.getArrayValue(), list);
@@ -62,7 +62,7 @@ public class FunctionUtil {
             }
         } else {
             Operand o = args.toNumber(null);
-            if (o.isError()) {
+            if (o.IsError()) {
                 return false;
             }
             list.add(o.getDoubleValue());
@@ -79,7 +79,7 @@ public class FunctionUtil {
                 }
             } else if (item.isJson()) {
                 Operand i = item.toArray(null);
-                if (i.isError()) {
+                if (i.IsError()) {
                     return false;
                 }
                 boolean o = F_base_GetList(i.getArrayValue(), list);
@@ -88,7 +88,7 @@ public class FunctionUtil {
                 }
             } else {
                 Operand o = item.toText(null);
-                if (o.isError()) {
+                if (o.IsError()) {
                     return false;
                 }
                 list.add(o.getTextValue());
@@ -98,7 +98,7 @@ public class FunctionUtil {
     }
 
     public static boolean F_base_GetList(Operand args, List<String> list) {
-        if (args.isError()) {
+        if (args.IsError()) {
             return false;
         }
         if (args.isArray()) {
@@ -108,7 +108,7 @@ public class FunctionUtil {
             }
         } else if (args.isJson()) {
             Operand i = args.toArray(null);
-            if (i.isError()) {
+            if (i.IsError()) {
                 return false;
             }
             boolean o = F_base_GetList(i.getArrayValue(), list);
@@ -117,7 +117,7 @@ public class FunctionUtil {
             }
         } else {
             Operand o = args.toText(null);
-            if (o.isError()) {
+            if (o.IsError()) {
                 return false;
             }
             list.add(o.getTextValue());

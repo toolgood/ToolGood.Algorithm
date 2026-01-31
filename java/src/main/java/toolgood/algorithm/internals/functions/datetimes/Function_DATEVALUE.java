@@ -19,7 +19,7 @@ public class Function_DATEVALUE extends Function_N {
         List<Operand> args = new ArrayList<>();
         for (FunctionBase item : funcs) {
             Operand aa = item.Evaluate(work, tempParameter);
-            if (aa.isError()) {
+            if (aa.IsError()) {
                 return aa;
             }
             args.add(aa);
@@ -30,7 +30,7 @@ public class Function_DATEVALUE extends Function_N {
         int type = 0;
         if (args.size() == 2) {
             Operand args2 = args.get(1).toNumber("Function '{0}' parameter {1} is error!", "DateValue", 2);
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
             type = args2.getIntValue();
@@ -56,7 +56,7 @@ public class Function_DATEVALUE extends Function_N {
             return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / (86400.0 * 1000.0)));
         } else if (type == 1) {
             Operand args1 = args.get(0).toText("Function '{0}' parameter {1} is error!", "DateValue", 1);
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
             toolgood.algorithm.internals.MyDate date = toolgood.algorithm.internals.MyDate.parse(args1.getTextValue());

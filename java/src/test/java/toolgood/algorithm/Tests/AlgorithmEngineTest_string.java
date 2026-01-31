@@ -85,7 +85,7 @@ public class AlgorithmEngineTest_string {
             AlgorithmEngine engine = new AlgorithmEngine();
             String t = engine.TryEvaluate("FIXED(4567.89,1)", "");
             assertEquals(t, "4,567.9");
-            //t = engine.TryEvaluate(" FIXED(4567.89,-1)", "");//iserror
+            //t = engine.TryEvaluate(" FIXED(4567.89,-1)", "");//IsError
             //assertEquals(t, "4,570.0");
             t = engine.TryEvaluate("FIXED(-4567.89, 1, TRUE())", "");
             assertEquals(t, "-4567.9");

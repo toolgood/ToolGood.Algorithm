@@ -18,14 +18,14 @@ public class Function_WORKDAY extends Function_N {
         Operand args1 = funcs[0].Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
             args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "Workday", 1);
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = funcs[1].Evaluate(work, tempParameter);
         if (args2.isNotNumber()) {
             args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Workday", 2);
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
         }
@@ -38,7 +38,7 @@ public class Function_WORKDAY extends Function_N {
             Operand ar = funcs[i].Evaluate(work, tempParameter);
             if (ar.isNotDate()) {
                 ar = ar.toMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
-                if (ar.isError()) {
+                if (ar.IsError()) {
                     return ar;
                 }
             }
