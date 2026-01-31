@@ -15,7 +15,7 @@ namespace Antlr4Helper.JavaScriptHelper
 			var text = File.ReadAllText(filePath);
 			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
 			text = text.Replace("mathParser.EOF = antlr4.Token.EOF;", "");
-			text = Regex.Replace(text, @"mathParser\..*?_funContext = .*?_funContext;", "");
+			text = Regex.Replace(text, @"mathParser\..*?Context = .*?Context;", "");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this.match", "this.match");
 			var ms = Regex.Matches(text, @"(mathParser\..*) = (\d+);");
 			Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -25,7 +25,7 @@ namespace Antlr4Helper.JavaScriptHelper
 			}
 			text = Regex.Replace(text, @"(mathParser\..*) = (\d+);", "");
 			var keys = dict.Keys.OrderByDescending(q => q.Length).ToList();
-			foreach(var item in keys) { 
+			foreach(var item in keys) {
 				text = Regex.Replace(text, @$"\b{item}\b", dict[item]);
 			}
 			text = Regex.Replace(text, @"([A-Z]*\(\) \{)[\r\n\t ]*(return this\.getToken\()", "$1$2");
@@ -35,6 +35,8 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = text.Replace("//NUM()", "NUM()");
 			text = text.Replace("//STRING()", "STRING()");
 
+			text = text.Replace("if ( visitor instanceof mathVisitor ) {", "");
+			text = Regex.Replace(text, @"\} else \{[\r\n\t ]*return visitor\.visitChildren\(this\);[\r\n\t ]*\}", "");
 
 
 			File.WriteAllText("mathParser.js", text);

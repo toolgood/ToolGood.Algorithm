@@ -1286,13 +1286,12 @@ export default class mathParser extends antlr4.Parser {
 
 	prog() {
 	    let localctx = new ProgContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 0, mathParser.RULE_prog);
+	    this.enterRule(localctx, 0, 0);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 12;
 	        this.expr(0);
-	        this.state = 13;
-	        this.match(mathParser.EOF);
+	        this.match(-1);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -1317,7 +1316,7 @@ export default class mathParser extends antlr4.Parser {
 	    let localctx = new ExprContext(this, this._ctx, _parentState);
 	    let _prevctx = localctx;
 	    const _startState = 2;
-	    this.enterRecursionRule(localctx, 2, mathParser.RULE_expr, _p);
+	    this.enterRecursionRule(localctx, 2, 1, _p);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -1330,20 +1329,17 @@ export default class mathParser extends antlr4.Parser {
 	            this._ctx = localctx;
 	            _prevctx = localctx;
 
-	            this.state = 16;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 17;
 	            this.expr(0);
-	            this.state = 18;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 2:
 	            localctx = new NOT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 20;
-	            this.match(mathParser.T__6);
+	            this.match(7);
 	            this.state = 21;
 	            this.expr(235);
 	            break;
@@ -1352,320 +1348,262 @@ export default class mathParser extends antlr4.Parser {
 	            localctx = new Array_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 22;
-	            this.match(mathParser.ARRAY);
-	            this.state = 23;
-	            this.match(mathParser.T__1);
+	            this.match(241);
+	            this.match(2);
 	            this.state = 24;
 	            this.expr(0);
 	            this.state = 29;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 25;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 26;
 	                this.expr(0);
 	                this.state = 31;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 32;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 4:
 	            localctx = new IF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 34;
-	            this.match(mathParser.IF);
-	            this.state = 35;
-	            this.match(mathParser.T__1);
+	            this.match(35);
+	            this.match(2);
 	            this.state = 36;
 	            this.expr(0);
-	            this.state = 37;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 38;
 	            this.expr(0);
 	            this.state = 41;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 39;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 40;
 	                this.expr(0);
 	            }
 
-	            this.state = 43;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 5:
 	            localctx = new ISNUMBER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 45;
-	            this.match(mathParser.ISNUMBER);
-	            this.state = 46;
-	            this.match(mathParser.T__1);
+	            this.match(37);
+	            this.match(2);
 	            this.state = 47;
 	            this.expr(0);
-	            this.state = 48;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 6:
 	            localctx = new ISTEXT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 50;
-	            this.match(mathParser.ISTEXT);
-	            this.state = 51;
-	            this.match(mathParser.T__1);
+	            this.match(38);
+	            this.match(2);
 	            this.state = 52;
 	            this.expr(0);
-	            this.state = 53;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 7:
 	            localctx = new ISERROR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 55;
-	            this.match(mathParser.ISERROR);
-	            this.state = 56;
-	            this.match(mathParser.T__1);
+	            this.match(39);
+	            this.match(2);
 	            this.state = 57;
 	            this.expr(0);
 	            this.state = 60;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 58;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 59;
 	                this.expr(0);
 	            }
 
-	            this.state = 62;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 8:
 	            localctx = new ISNONTEXT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 64;
-	            this.match(mathParser.ISNONTEXT);
-	            this.state = 65;
-	            this.match(mathParser.T__1);
+	            this.match(40);
+	            this.match(2);
 	            this.state = 66;
 	            this.expr(0);
-	            this.state = 67;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 9:
 	            localctx = new ISLOGICAL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 69;
-	            this.match(mathParser.ISLOGICAL);
-	            this.state = 70;
-	            this.match(mathParser.T__1);
+	            this.match(41);
+	            this.match(2);
 	            this.state = 71;
 	            this.expr(0);
-	            this.state = 72;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 10:
 	            localctx = new ISEVEN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 74;
-	            this.match(mathParser.ISEVEN);
-	            this.state = 75;
-	            this.match(mathParser.T__1);
+	            this.match(42);
+	            this.match(2);
 	            this.state = 76;
 	            this.expr(0);
-	            this.state = 77;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 11:
 	            localctx = new ISODD_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 79;
-	            this.match(mathParser.ISODD);
-	            this.state = 80;
-	            this.match(mathParser.T__1);
+	            this.match(43);
+	            this.match(2);
 	            this.state = 81;
 	            this.expr(0);
-	            this.state = 82;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 12:
 	            localctx = new IFERROR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 84;
-	            this.match(mathParser.IFERROR);
-	            this.state = 85;
-	            this.match(mathParser.T__1);
+	            this.match(36);
+	            this.match(2);
 	            this.state = 86;
 	            this.expr(0);
-	            this.state = 87;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 88;
 	            this.expr(0);
 	            this.state = 91;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 89;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 90;
 	                this.expr(0);
 	            }
 
-	            this.state = 93;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 13:
 	            localctx = new ISNULL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 95;
-	            this.match(mathParser.ISNULL);
-	            this.state = 96;
-	            this.match(mathParser.T__1);
+	            this.match(44);
+	            this.match(2);
 	            this.state = 97;
 	            this.expr(0);
 	            this.state = 100;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 98;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 99;
 	                this.expr(0);
 	            }
 
-	            this.state = 102;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 14:
 	            localctx = new ISNULLORERROR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 104;
-	            this.match(mathParser.ISNULLORERROR);
-	            this.state = 105;
-	            this.match(mathParser.T__1);
+	            this.match(45);
+	            this.match(2);
 	            this.state = 106;
 	            this.expr(0);
 	            this.state = 109;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 107;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 108;
 	                this.expr(0);
 	            }
 
-	            this.state = 111;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 15:
 	            localctx = new AND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 113;
-	            this.match(mathParser.AND);
-	            this.state = 114;
-	            this.match(mathParser.T__1);
+	            this.match(46);
+	            this.match(2);
 	            this.state = 115;
 	            this.expr(0);
 	            this.state = 120;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 116;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 117;
 	                this.expr(0);
 	                this.state = 122;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 123;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 16:
 	            localctx = new OR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 125;
-	            this.match(mathParser.OR);
-	            this.state = 126;
-	            this.match(mathParser.T__1);
+	            this.match(47);
+	            this.match(2);
 	            this.state = 127;
 	            this.expr(0);
 	            this.state = 132;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 128;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 129;
 	                this.expr(0);
 	                this.state = 134;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 135;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 17:
 	            localctx = new NOT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 137;
-	            this.match(mathParser.NOT);
-	            this.state = 138;
-	            this.match(mathParser.T__1);
+	            this.match(48);
+	            this.match(2);
 	            this.state = 139;
 	            this.expr(0);
-	            this.state = 140;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 18:
 	            localctx = new TRUE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 142;
-	            this.match(mathParser.TRUE);
+	            this.match(49);
 	            this.state = 145;
 	            this._errHandler.sync(this);
 	            var la_ = this._interp.adaptivePredict(this._input,8,this._ctx);
 	            if(la_===1) {
-	                this.state = 143;
-	                this.match(mathParser.T__1);
-	                this.state = 144;
-	                this.match(mathParser.T__2);
+	                this.match(2);
+	                this.match(3);
 
 	            }
 	            break;
@@ -1674,16 +1612,13 @@ export default class mathParser extends antlr4.Parser {
 	            localctx = new FALSE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 147;
-	            this.match(mathParser.FALSE);
+	            this.match(50);
 	            this.state = 150;
 	            this._errHandler.sync(this);
 	            var la_ = this._interp.adaptivePredict(this._input,9,this._ctx);
 	            if(la_===1) {
-	                this.state = 148;
-	                this.match(mathParser.T__1);
-	                this.state = 149;
-	                this.match(mathParser.T__2);
+	                this.match(2);
+	                this.match(3);
 
 	            }
 	            break;
@@ -1692,16 +1627,13 @@ export default class mathParser extends antlr4.Parser {
 	            localctx = new E_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 152;
-	            this.match(mathParser.E);
+	            this.match(51);
 	            this.state = 155;
 	            this._errHandler.sync(this);
 	            var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
 	            if(la_===1) {
-	                this.state = 153;
-	                this.match(mathParser.T__1);
-	                this.state = 154;
-	                this.match(mathParser.T__2);
+	                this.match(2);
+	                this.match(3);
 
 	            }
 	            break;
@@ -1710,16 +1642,13 @@ export default class mathParser extends antlr4.Parser {
 	            localctx = new PI_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 157;
-	            this.match(mathParser.PI);
+	            this.match(52);
 	            this.state = 160;
 	            this._errHandler.sync(this);
 	            var la_ = this._interp.adaptivePredict(this._input,11,this._ctx);
 	            if(la_===1) {
-	                this.state = 158;
-	                this.match(mathParser.T__1);
-	                this.state = 159;
-	                this.match(mathParser.T__2);
+	                this.match(2);
+	                this.match(3);
 
 	            }
 	            break;
@@ -1728,1634 +1657,1320 @@ export default class mathParser extends antlr4.Parser {
 	            localctx = new DEC2BIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 162;
-	            this.match(mathParser.DEC2BIN);
+	            this.match(53);
 
-	            this.state = 163;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 164;
 	            this.expr(0);
 	            this.state = 167;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 165;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 166;
 	                this.expr(0);
 	            }
 
-	            this.state = 169;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 23:
 	            localctx = new DEC2HEX_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 171;
-	            this.match(mathParser.DEC2HEX);
+	            this.match(54);
 
-	            this.state = 172;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 173;
 	            this.expr(0);
 	            this.state = 176;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 174;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 175;
 	                this.expr(0);
 	            }
 
-	            this.state = 178;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 24:
 	            localctx = new DEC2OCT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 180;
-	            this.match(mathParser.DEC2OCT);
+	            this.match(55);
 
-	            this.state = 181;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 182;
 	            this.expr(0);
 	            this.state = 185;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 183;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 184;
 	                this.expr(0);
 	            }
 
-	            this.state = 187;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 25:
 	            localctx = new HEX2BIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 189;
-	            this.match(mathParser.HEX2BIN);
+	            this.match(56);
 
-	            this.state = 190;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 191;
 	            this.expr(0);
 	            this.state = 194;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 192;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 193;
 	                this.expr(0);
 	            }
 
-	            this.state = 196;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 26:
 	            localctx = new HEX2DEC_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 198;
-	            this.match(mathParser.HEX2DEC);
+	            this.match(57);
 
-	            this.state = 199;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 200;
 	            this.expr(0);
-	            this.state = 201;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 27:
 	            localctx = new HEX2OCT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 203;
-	            this.match(mathParser.HEX2OCT);
+	            this.match(58);
 
-	            this.state = 204;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 205;
 	            this.expr(0);
 	            this.state = 208;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 206;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 207;
 	                this.expr(0);
 	            }
 
-	            this.state = 210;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 28:
 	            localctx = new OCT2BIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 212;
-	            this.match(mathParser.OCT2BIN);
+	            this.match(59);
 
-	            this.state = 213;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 214;
 	            this.expr(0);
 	            this.state = 217;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 215;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 216;
 	                this.expr(0);
 	            }
 
-	            this.state = 219;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 29:
 	            localctx = new OCT2DEC_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 221;
-	            this.match(mathParser.OCT2DEC);
+	            this.match(60);
 
-	            this.state = 222;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 223;
 	            this.expr(0);
-	            this.state = 224;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 30:
 	            localctx = new OCT2HEX_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 226;
-	            this.match(mathParser.OCT2HEX);
+	            this.match(61);
 
-	            this.state = 227;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 228;
 	            this.expr(0);
 	            this.state = 231;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 229;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 230;
 	                this.expr(0);
 	            }
 
-	            this.state = 233;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 31:
 	            localctx = new BIN2OCT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 235;
-	            this.match(mathParser.BIN2OCT);
+	            this.match(62);
 
-	            this.state = 236;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 237;
 	            this.expr(0);
 	            this.state = 240;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 238;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 239;
 	                this.expr(0);
 	            }
 
-	            this.state = 242;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 32:
 	            localctx = new BIN2DEC_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 244;
-	            this.match(mathParser.BIN2DEC);
+	            this.match(63);
 
-	            this.state = 245;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 246;
 	            this.expr(0);
-	            this.state = 247;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 33:
 	            localctx = new BIN2HEX_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 249;
-	            this.match(mathParser.BIN2HEX);
+	            this.match(64);
 
-	            this.state = 250;
-	            this.match(mathParser.T__1);
+	            this.match(2);
 	            this.state = 251;
 	            this.expr(0);
 	            this.state = 254;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 252;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 253;
 	                this.expr(0);
 	            }
 
-	            this.state = 256;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 34:
 	            localctx = new ABS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 258;
-	            this.match(mathParser.ABS);
-	            this.state = 259;
-	            this.match(mathParser.T__1);
+	            this.match(65);
+	            this.match(2);
 	            this.state = 260;
 	            this.expr(0);
-	            this.state = 261;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 35:
 	            localctx = new QUOTIENT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 263;
-	            this.match(mathParser.QUOTIENT);
-	            this.state = 264;
-	            this.match(mathParser.T__1);
+	            this.match(66);
+	            this.match(2);
 	            this.state = 265;
 	            this.expr(0);
 
-	            this.state = 266;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 267;
 	            this.expr(0);
-	            this.state = 269;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 36:
 	            localctx = new MOD_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 271;
-	            this.match(mathParser.MOD);
-	            this.state = 272;
-	            this.match(mathParser.T__1);
+	            this.match(67);
+	            this.match(2);
 	            this.state = 273;
 	            this.expr(0);
 
-	            this.state = 274;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 275;
 	            this.expr(0);
-	            this.state = 277;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 37:
 	            localctx = new SIGN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 279;
-	            this.match(mathParser.SIGN);
-	            this.state = 280;
-	            this.match(mathParser.T__1);
+	            this.match(68);
+	            this.match(2);
 	            this.state = 281;
 	            this.expr(0);
-	            this.state = 282;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 38:
 	            localctx = new SQRT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 284;
-	            this.match(mathParser.SQRT);
-	            this.state = 285;
-	            this.match(mathParser.T__1);
+	            this.match(69);
+	            this.match(2);
 	            this.state = 286;
 	            this.expr(0);
-	            this.state = 287;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 39:
 	            localctx = new TRUNC_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 289;
-	            this.match(mathParser.TRUNC);
-	            this.state = 290;
-	            this.match(mathParser.T__1);
+	            this.match(70);
+	            this.match(2);
 	            this.state = 291;
 	            this.expr(0);
-	            this.state = 292;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 40:
 	            localctx = new INT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 294;
-	            this.match(mathParser.INT);
-	            this.state = 295;
-	            this.match(mathParser.T__1);
+	            this.match(71);
+	            this.match(2);
 	            this.state = 296;
 	            this.expr(0);
-	            this.state = 297;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 41:
 	            localctx = new GCD_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 299;
-	            this.match(mathParser.GCD);
-	            this.state = 300;
-	            this.match(mathParser.T__1);
+	            this.match(72);
+	            this.match(2);
 	            this.state = 301;
 	            this.expr(0);
 	            this.state = 304; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            do {
-	                this.state = 302;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 303;
 	                this.expr(0);
 	                this.state = 306; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            } while(_la===4);
-	            this.state = 308;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 42:
 	            localctx = new LCM_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 310;
-	            this.match(mathParser.LCM);
-	            this.state = 311;
-	            this.match(mathParser.T__1);
+	            this.match(73);
+	            this.match(2);
 	            this.state = 312;
 	            this.expr(0);
 	            this.state = 315; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            do {
-	                this.state = 313;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 314;
 	                this.expr(0);
 	                this.state = 317; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            } while(_la===4);
-	            this.state = 319;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 43:
 	            localctx = new COMBIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 321;
-	            this.match(mathParser.COMBIN);
-	            this.state = 322;
-	            this.match(mathParser.T__1);
+	            this.match(74);
+	            this.match(2);
 	            this.state = 323;
 	            this.expr(0);
-	            this.state = 324;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 325;
 	            this.expr(0);
-	            this.state = 326;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 44:
 	            localctx = new PERMUT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 328;
-	            this.match(mathParser.PERMUT);
-	            this.state = 329;
-	            this.match(mathParser.T__1);
+	            this.match(75);
+	            this.match(2);
 	            this.state = 330;
 	            this.expr(0);
-	            this.state = 331;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 332;
 	            this.expr(0);
-	            this.state = 333;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 45:
 	            localctx = new DEGREES_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 335;
-	            this.match(mathParser.DEGREES);
-	            this.state = 336;
-	            this.match(mathParser.T__1);
+	            this.match(76);
+	            this.match(2);
 	            this.state = 337;
 	            this.expr(0);
-	            this.state = 338;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 46:
 	            localctx = new RADIANS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 340;
-	            this.match(mathParser.RADIANS);
-	            this.state = 341;
-	            this.match(mathParser.T__1);
+	            this.match(77);
+	            this.match(2);
 	            this.state = 342;
 	            this.expr(0);
-	            this.state = 343;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 47:
 	            localctx = new COS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 345;
-	            this.match(mathParser.COS);
-	            this.state = 346;
-	            this.match(mathParser.T__1);
+	            this.match(78);
+	            this.match(2);
 	            this.state = 347;
 	            this.expr(0);
-	            this.state = 348;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 48:
 	            localctx = new COSH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 350;
-	            this.match(mathParser.COSH);
-	            this.state = 351;
-	            this.match(mathParser.T__1);
+	            this.match(79);
+	            this.match(2);
 	            this.state = 352;
 	            this.expr(0);
-	            this.state = 353;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 49:
 	            localctx = new SIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 355;
-	            this.match(mathParser.SIN);
-	            this.state = 356;
-	            this.match(mathParser.T__1);
+	            this.match(80);
+	            this.match(2);
 	            this.state = 357;
 	            this.expr(0);
-	            this.state = 358;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 50:
 	            localctx = new SINH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 360;
-	            this.match(mathParser.SINH);
-	            this.state = 361;
-	            this.match(mathParser.T__1);
+	            this.match(81);
+	            this.match(2);
 	            this.state = 362;
 	            this.expr(0);
-	            this.state = 363;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 51:
 	            localctx = new TAN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 365;
-	            this.match(mathParser.TAN);
-	            this.state = 366;
-	            this.match(mathParser.T__1);
+	            this.match(82);
+	            this.match(2);
 	            this.state = 367;
 	            this.expr(0);
-	            this.state = 368;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 52:
 	            localctx = new TANH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 370;
-	            this.match(mathParser.TANH);
-	            this.state = 371;
-	            this.match(mathParser.T__1);
+	            this.match(83);
+	            this.match(2);
 	            this.state = 372;
 	            this.expr(0);
-	            this.state = 373;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 53:
 	            localctx = new ACOS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 375;
-	            this.match(mathParser.ACOS);
-	            this.state = 376;
-	            this.match(mathParser.T__1);
+	            this.match(84);
+	            this.match(2);
 	            this.state = 377;
 	            this.expr(0);
-	            this.state = 378;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 54:
 	            localctx = new ACOSH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 380;
-	            this.match(mathParser.ACOSH);
-	            this.state = 381;
-	            this.match(mathParser.T__1);
+	            this.match(85);
+	            this.match(2);
 	            this.state = 382;
 	            this.expr(0);
-	            this.state = 383;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 55:
 	            localctx = new ASIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 385;
-	            this.match(mathParser.ASIN);
-	            this.state = 386;
-	            this.match(mathParser.T__1);
+	            this.match(86);
+	            this.match(2);
 	            this.state = 387;
 	            this.expr(0);
-	            this.state = 388;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 56:
 	            localctx = new ASINH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 390;
-	            this.match(mathParser.ASINH);
-	            this.state = 391;
-	            this.match(mathParser.T__1);
+	            this.match(87);
+	            this.match(2);
 	            this.state = 392;
 	            this.expr(0);
-	            this.state = 393;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 57:
 	            localctx = new ATAN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 395;
-	            this.match(mathParser.ATAN);
-	            this.state = 396;
-	            this.match(mathParser.T__1);
+	            this.match(88);
+	            this.match(2);
 	            this.state = 397;
 	            this.expr(0);
-	            this.state = 398;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 58:
 	            localctx = new ATANH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 400;
-	            this.match(mathParser.ATANH);
-	            this.state = 401;
-	            this.match(mathParser.T__1);
+	            this.match(89);
+	            this.match(2);
 	            this.state = 402;
 	            this.expr(0);
-	            this.state = 403;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 59:
 	            localctx = new ATAN2_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 405;
-	            this.match(mathParser.ATAN2);
-	            this.state = 406;
-	            this.match(mathParser.T__1);
+	            this.match(90);
+	            this.match(2);
 	            this.state = 407;
 	            this.expr(0);
-	            this.state = 408;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 409;
 	            this.expr(0);
-	            this.state = 410;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 60:
 	            localctx = new ROUND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 412;
-	            this.match(mathParser.ROUND);
-	            this.state = 413;
-	            this.match(mathParser.T__1);
+	            this.match(91);
+	            this.match(2);
 	            this.state = 414;
 	            this.expr(0);
 	            this.state = 417;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 415;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 416;
 	                this.expr(0);
 	            }
 
-	            this.state = 419;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 61:
 	            localctx = new ROUNDDOWN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 421;
-	            this.match(mathParser.ROUNDDOWN);
-	            this.state = 422;
-	            this.match(mathParser.T__1);
+	            this.match(92);
+	            this.match(2);
 	            this.state = 423;
 	            this.expr(0);
-	            this.state = 424;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 425;
 	            this.expr(0);
-	            this.state = 426;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 62:
 	            localctx = new ROUNDUP_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 428;
-	            this.match(mathParser.ROUNDUP);
-	            this.state = 429;
-	            this.match(mathParser.T__1);
+	            this.match(93);
+	            this.match(2);
 	            this.state = 430;
 	            this.expr(0);
-	            this.state = 431;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 432;
 	            this.expr(0);
-	            this.state = 433;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 63:
 	            localctx = new CEILING_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 435;
-	            this.match(mathParser.CEILING);
-	            this.state = 436;
-	            this.match(mathParser.T__1);
+	            this.match(94);
+	            this.match(2);
 	            this.state = 437;
 	            this.expr(0);
 	            this.state = 440;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 438;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 439;
 	                this.expr(0);
 	            }
 
-	            this.state = 442;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 64:
 	            localctx = new FLOOR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 444;
-	            this.match(mathParser.FLOOR);
-	            this.state = 445;
-	            this.match(mathParser.T__1);
+	            this.match(95);
+	            this.match(2);
 	            this.state = 446;
 	            this.expr(0);
 	            this.state = 449;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 447;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 448;
 	                this.expr(0);
 	            }
 
-	            this.state = 451;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 65:
 	            localctx = new EVEN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 453;
-	            this.match(mathParser.EVEN);
-	            this.state = 454;
-	            this.match(mathParser.T__1);
+	            this.match(96);
+	            this.match(2);
 	            this.state = 455;
 	            this.expr(0);
-	            this.state = 456;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 66:
 	            localctx = new ODD_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 458;
-	            this.match(mathParser.ODD);
-	            this.state = 459;
-	            this.match(mathParser.T__1);
+	            this.match(97);
+	            this.match(2);
 	            this.state = 460;
 	            this.expr(0);
-	            this.state = 461;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 67:
 	            localctx = new MROUND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 463;
-	            this.match(mathParser.MROUND);
-	            this.state = 464;
-	            this.match(mathParser.T__1);
+	            this.match(98);
+	            this.match(2);
 	            this.state = 465;
 	            this.expr(0);
-	            this.state = 466;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 467;
 	            this.expr(0);
-	            this.state = 468;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 68:
 	            localctx = new RAND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 470;
-	            this.match(mathParser.RAND);
-	            this.state = 471;
-	            this.match(mathParser.T__1);
-	            this.state = 472;
-	            this.match(mathParser.T__2);
+	            this.match(99);
+	            this.match(2);
+	            this.match(3);
 	            break;
 
 	        case 69:
 	            localctx = new RANDBETWEEN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 473;
-	            this.match(mathParser.RANDBETWEEN);
-	            this.state = 474;
-	            this.match(mathParser.T__1);
+	            this.match(100);
+	            this.match(2);
 	            this.state = 475;
 	            this.expr(0);
-	            this.state = 476;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 477;
 	            this.expr(0);
-	            this.state = 478;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 70:
 	            localctx = new FACT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 480;
-	            this.match(mathParser.FACT);
-	            this.state = 481;
-	            this.match(mathParser.T__1);
+	            this.match(101);
+	            this.match(2);
 	            this.state = 482;
 	            this.expr(0);
-	            this.state = 483;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 71:
 	            localctx = new FACTDOUBLE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 485;
-	            this.match(mathParser.FACTDOUBLE);
-	            this.state = 486;
-	            this.match(mathParser.T__1);
+	            this.match(102);
+	            this.match(2);
 	            this.state = 487;
 	            this.expr(0);
-	            this.state = 488;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 72:
 	            localctx = new POWER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 490;
-	            this.match(mathParser.POWER);
-	            this.state = 491;
-	            this.match(mathParser.T__1);
+	            this.match(103);
+	            this.match(2);
 	            this.state = 492;
 	            this.expr(0);
-	            this.state = 493;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 494;
 	            this.expr(0);
-	            this.state = 495;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 73:
 	            localctx = new EXP_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 497;
-	            this.match(mathParser.EXP);
-	            this.state = 498;
-	            this.match(mathParser.T__1);
+	            this.match(104);
+	            this.match(2);
 	            this.state = 499;
 	            this.expr(0);
-	            this.state = 500;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 74:
 	            localctx = new LN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 502;
-	            this.match(mathParser.LN);
-	            this.state = 503;
-	            this.match(mathParser.T__1);
+	            this.match(105);
+	            this.match(2);
 	            this.state = 504;
 	            this.expr(0);
-	            this.state = 505;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 75:
 	            localctx = new LOG_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 507;
-	            this.match(mathParser.LOG);
-	            this.state = 508;
-	            this.match(mathParser.T__1);
+	            this.match(106);
+	            this.match(2);
 	            this.state = 509;
 	            this.expr(0);
 	            this.state = 512;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 510;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 511;
 	                this.expr(0);
 	            }
 
-	            this.state = 514;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 76:
 	            localctx = new LOG10_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 516;
-	            this.match(mathParser.LOG10);
-	            this.state = 517;
-	            this.match(mathParser.T__1);
+	            this.match(107);
+	            this.match(2);
 	            this.state = 518;
 	            this.expr(0);
-	            this.state = 519;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 77:
 	            localctx = new MULTINOMIAL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 521;
-	            this.match(mathParser.MULTINOMIAL);
-	            this.state = 522;
-	            this.match(mathParser.T__1);
+	            this.match(108);
+	            this.match(2);
 	            this.state = 523;
 	            this.expr(0);
 	            this.state = 528;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 524;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 525;
 	                this.expr(0);
 	                this.state = 530;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 531;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 78:
 	            localctx = new PRODUCT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 533;
-	            this.match(mathParser.PRODUCT);
-	            this.state = 534;
-	            this.match(mathParser.T__1);
+	            this.match(109);
+	            this.match(2);
 	            this.state = 535;
 	            this.expr(0);
 	            this.state = 540;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 536;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 537;
 	                this.expr(0);
 	                this.state = 542;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 543;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 79:
 	            localctx = new SQRTPI_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 545;
-	            this.match(mathParser.SQRTPI);
-	            this.state = 546;
-	            this.match(mathParser.T__1);
+	            this.match(110);
+	            this.match(2);
 	            this.state = 547;
 	            this.expr(0);
-	            this.state = 548;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 80:
 	            localctx = new SUMSQ_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 550;
-	            this.match(mathParser.SUMSQ);
-	            this.state = 551;
-	            this.match(mathParser.T__1);
+	            this.match(111);
+	            this.match(2);
 	            this.state = 552;
 	            this.expr(0);
 	            this.state = 557;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 553;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 554;
 	                this.expr(0);
 	                this.state = 559;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 560;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 81:
 	            localctx = new ASC_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 562;
-	            this.match(mathParser.ASC);
-	            this.state = 563;
-	            this.match(mathParser.T__1);
+	            this.match(112);
+	            this.match(2);
 	            this.state = 564;
 	            this.expr(0);
-	            this.state = 565;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 82:
 	            localctx = new JIS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 567;
-	            this.match(mathParser.JIS);
-	            this.state = 568;
-	            this.match(mathParser.T__1);
+	            this.match(113);
+	            this.match(2);
 	            this.state = 569;
 	            this.expr(0);
-	            this.state = 570;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 83:
 	            localctx = new CHAR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 572;
-	            this.match(mathParser.CHAR);
-	            this.state = 573;
-	            this.match(mathParser.T__1);
+	            this.match(114);
+	            this.match(2);
 	            this.state = 574;
 	            this.expr(0);
-	            this.state = 575;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 84:
 	            localctx = new CLEAN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 577;
-	            this.match(mathParser.CLEAN);
-	            this.state = 578;
-	            this.match(mathParser.T__1);
+	            this.match(115);
+	            this.match(2);
 	            this.state = 579;
 	            this.expr(0);
-	            this.state = 580;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 85:
 	            localctx = new CODE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 582;
-	            this.match(mathParser.CODE);
-	            this.state = 583;
-	            this.match(mathParser.T__1);
+	            this.match(116);
+	            this.match(2);
 	            this.state = 584;
 	            this.expr(0);
-	            this.state = 585;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 86:
 	            localctx = new CONCATENATE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 587;
-	            this.match(mathParser.CONCATENATE);
-	            this.state = 588;
-	            this.match(mathParser.T__1);
+	            this.match(117);
+	            this.match(2);
 	            this.state = 589;
 	            this.expr(0);
 	            this.state = 594;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 590;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 591;
 	                this.expr(0);
 	                this.state = 596;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 597;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 87:
 	            localctx = new EXACT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 599;
-	            this.match(mathParser.EXACT);
-	            this.state = 600;
-	            this.match(mathParser.T__1);
+	            this.match(118);
+	            this.match(2);
 	            this.state = 601;
 	            this.expr(0);
-	            this.state = 602;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 603;
 	            this.expr(0);
-	            this.state = 604;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 88:
 	            localctx = new FIND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 606;
-	            this.match(mathParser.FIND);
-	            this.state = 607;
-	            this.match(mathParser.T__1);
+	            this.match(119);
+	            this.match(2);
 	            this.state = 608;
 	            this.expr(0);
-	            this.state = 609;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 610;
 	            this.expr(0);
 	            this.state = 613;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 611;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 612;
 	                this.expr(0);
 	            }
 
-	            this.state = 615;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 89:
 	            localctx = new FIXED_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 617;
-	            this.match(mathParser.FIXED);
-	            this.state = 618;
-	            this.match(mathParser.T__1);
+	            this.match(120);
+	            this.match(2);
 	            this.state = 619;
 	            this.expr(0);
 	            this.state = 626;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 620;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 621;
 	                this.expr(0);
 	                this.state = 624;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                if(_la===4) {
-	                    this.state = 622;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 623;
 	                    this.expr(0);
 	                }
 
 	            }
 
-	            this.state = 628;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 90:
 	            localctx = new LEFT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 630;
-	            this.match(mathParser.LEFT);
-	            this.state = 631;
-	            this.match(mathParser.T__1);
+	            this.match(121);
+	            this.match(2);
 	            this.state = 632;
 	            this.expr(0);
 	            this.state = 635;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 633;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 634;
 	                this.expr(0);
 	            }
 
-	            this.state = 637;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 91:
 	            localctx = new LEN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 639;
-	            this.match(mathParser.LEN);
-	            this.state = 640;
-	            this.match(mathParser.T__1);
+	            this.match(122);
+	            this.match(2);
 	            this.state = 641;
 	            this.expr(0);
-	            this.state = 642;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 92:
 	            localctx = new LOWER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 644;
-	            this.match(mathParser.LOWER);
-	            this.state = 645;
-	            this.match(mathParser.T__1);
+	            this.match(123);
+	            this.match(2);
 	            this.state = 646;
 	            this.expr(0);
-	            this.state = 647;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 93:
 	            localctx = new MID_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 649;
-	            this.match(mathParser.MID);
-	            this.state = 650;
-	            this.match(mathParser.T__1);
+	            this.match(124);
+	            this.match(2);
 	            this.state = 651;
 	            this.expr(0);
-	            this.state = 652;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 653;
 	            this.expr(0);
-	            this.state = 654;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 655;
 	            this.expr(0);
-	            this.state = 656;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 94:
 	            localctx = new PROPER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 658;
-	            this.match(mathParser.PROPER);
-	            this.state = 659;
-	            this.match(mathParser.T__1);
+	            this.match(125);
+	            this.match(2);
 	            this.state = 660;
 	            this.expr(0);
-	            this.state = 661;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 95:
 	            localctx = new REPLACE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 663;
-	            this.match(mathParser.REPLACE);
-	            this.state = 664;
-	            this.match(mathParser.T__1);
+	            this.match(126);
+	            this.match(2);
 	            this.state = 665;
 	            this.expr(0);
-	            this.state = 666;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 667;
 	            this.expr(0);
-	            this.state = 668;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 669;
 	            this.expr(0);
 	            this.state = 672;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 670;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 671;
 	                this.expr(0);
 	            }
 
-	            this.state = 674;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 96:
 	            localctx = new REPT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 676;
-	            this.match(mathParser.REPT);
-	            this.state = 677;
-	            this.match(mathParser.T__1);
+	            this.match(127);
+	            this.match(2);
 	            this.state = 678;
 	            this.expr(0);
-	            this.state = 679;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 680;
 	            this.expr(0);
-	            this.state = 681;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 97:
 	            localctx = new RIGHT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 683;
-	            this.match(mathParser.RIGHT);
-	            this.state = 684;
-	            this.match(mathParser.T__1);
+	            this.match(128);
+	            this.match(2);
 	            this.state = 685;
 	            this.expr(0);
 	            this.state = 688;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 686;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 687;
 	                this.expr(0);
 	            }
 
-	            this.state = 690;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 98:
 	            localctx = new RMB_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 692;
-	            this.match(mathParser.RMB);
-	            this.state = 693;
-	            this.match(mathParser.T__1);
+	            this.match(129);
+	            this.match(2);
 	            this.state = 694;
 	            this.expr(0);
-	            this.state = 695;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 99:
 	            localctx = new SEARCH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 697;
-	            this.match(mathParser.SEARCH);
-	            this.state = 698;
-	            this.match(mathParser.T__1);
+	            this.match(130);
+	            this.match(2);
 	            this.state = 699;
 	            this.expr(0);
-	            this.state = 700;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 701;
 	            this.expr(0);
 	            this.state = 704;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 702;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 703;
 	                this.expr(0);
 	            }
 
-	            this.state = 706;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 100:
 	            localctx = new SUBSTITUTE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 708;
-	            this.match(mathParser.SUBSTITUTE);
-	            this.state = 709;
-	            this.match(mathParser.T__1);
+	            this.match(131);
+	            this.match(2);
 	            this.state = 710;
 	            this.expr(0);
-	            this.state = 711;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 712;
 	            this.expr(0);
-	            this.state = 713;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 714;
 	            this.expr(0);
 	            this.state = 717;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 715;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 716;
 	                this.expr(0);
 	            }
 
-	            this.state = 719;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 101:
 	            localctx = new T_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 721;
-	            this.match(mathParser.T);
-	            this.state = 722;
-	            this.match(mathParser.T__1);
+	            this.match(132);
+	            this.match(2);
 	            this.state = 723;
 	            this.expr(0);
-	            this.state = 724;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 102:
 	            localctx = new TEXT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 726;
-	            this.match(mathParser.TEXT);
-	            this.state = 727;
-	            this.match(mathParser.T__1);
+	            this.match(133);
+	            this.match(2);
 	            this.state = 728;
 	            this.expr(0);
-	            this.state = 729;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 730;
 	            this.expr(0);
-	            this.state = 731;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 103:
 	            localctx = new TRIM_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 733;
-	            this.match(mathParser.TRIM);
-	            this.state = 734;
-	            this.match(mathParser.T__1);
+	            this.match(134);
+	            this.match(2);
 	            this.state = 735;
 	            this.expr(0);
-	            this.state = 736;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 104:
 	            localctx = new UPPER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 738;
-	            this.match(mathParser.UPPER);
-	            this.state = 739;
-	            this.match(mathParser.T__1);
+	            this.match(135);
+	            this.match(2);
 	            this.state = 740;
 	            this.expr(0);
-	            this.state = 741;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 105:
 	            localctx = new VALUE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 743;
-	            this.match(mathParser.VALUE);
-	            this.state = 744;
-	            this.match(mathParser.T__1);
+	            this.match(136);
+	            this.match(2);
 	            this.state = 745;
 	            this.expr(0);
-	            this.state = 746;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 106:
 	            localctx = new DATEVALUE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 748;
-	            this.match(mathParser.DATEVALUE);
-	            this.state = 749;
-	            this.match(mathParser.T__1);
+	            this.match(137);
+	            this.match(2);
 	            this.state = 750;
 	            this.expr(0);
 	            this.state = 753;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 751;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 752;
 	                this.expr(0);
 	            }
 
-	            this.state = 755;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 107:
 	            localctx = new TIMEVALUE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 757;
-	            this.match(mathParser.TIMEVALUE);
-	            this.state = 758;
-	            this.match(mathParser.T__1);
+	            this.match(138);
+	            this.match(2);
 	            this.state = 759;
 	            this.expr(0);
-	            this.state = 760;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 108:
 	            localctx = new DATE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 762;
-	            this.match(mathParser.DATE);
-	            this.state = 763;
-	            this.match(mathParser.T__1);
+	            this.match(139);
+	            this.match(2);
 	            this.state = 764;
 	            this.expr(0);
-	            this.state = 765;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 766;
 	            this.expr(0);
-	            this.state = 767;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 768;
 	            this.expr(0);
 	            this.state = 779;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 769;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 770;
 	                this.expr(0);
 	                this.state = 777;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                if(_la===4) {
-	                    this.state = 771;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 772;
 	                    this.expr(0);
 	                    this.state = 775;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 773;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 774;
 	                        this.expr(0);
 	                    }
@@ -3364,2252 +2979,1823 @@ export default class mathParser extends antlr4.Parser {
 
 	            }
 
-	            this.state = 781;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 109:
 	            localctx = new TIME_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 783;
-	            this.match(mathParser.TIME);
-	            this.state = 784;
-	            this.match(mathParser.T__1);
+	            this.match(140);
+	            this.match(2);
 	            this.state = 785;
 	            this.expr(0);
-	            this.state = 786;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 787;
 	            this.expr(0);
 	            this.state = 790;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 788;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 789;
 	                this.expr(0);
 	            }
 
-	            this.state = 792;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 110:
 	            localctx = new NOW_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 794;
-	            this.match(mathParser.NOW);
-	            this.state = 795;
-	            this.match(mathParser.T__1);
-	            this.state = 796;
-	            this.match(mathParser.T__2);
+	            this.match(141);
+	            this.match(2);
+	            this.match(3);
 	            break;
 
 	        case 111:
 	            localctx = new TODAY_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 797;
-	            this.match(mathParser.TODAY);
-	            this.state = 798;
-	            this.match(mathParser.T__1);
-	            this.state = 799;
-	            this.match(mathParser.T__2);
+	            this.match(142);
+	            this.match(2);
+	            this.match(3);
 	            break;
 
 	        case 112:
 	            localctx = new YEAR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 800;
-	            this.match(mathParser.YEAR);
-	            this.state = 801;
-	            this.match(mathParser.T__1);
+	            this.match(143);
+	            this.match(2);
 	            this.state = 802;
 	            this.expr(0);
-	            this.state = 803;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 113:
 	            localctx = new MONTH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 805;
-	            this.match(mathParser.MONTH);
-	            this.state = 806;
-	            this.match(mathParser.T__1);
+	            this.match(144);
+	            this.match(2);
 	            this.state = 807;
 	            this.expr(0);
-	            this.state = 808;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 114:
 	            localctx = new DAY_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 810;
-	            this.match(mathParser.DAY);
-	            this.state = 811;
-	            this.match(mathParser.T__1);
+	            this.match(145);
+	            this.match(2);
 	            this.state = 812;
 	            this.expr(0);
-	            this.state = 813;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 115:
 	            localctx = new HOUR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 815;
-	            this.match(mathParser.HOUR);
-	            this.state = 816;
-	            this.match(mathParser.T__1);
+	            this.match(146);
+	            this.match(2);
 	            this.state = 817;
 	            this.expr(0);
-	            this.state = 818;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 116:
 	            localctx = new MINUTE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 820;
-	            this.match(mathParser.MINUTE);
-	            this.state = 821;
-	            this.match(mathParser.T__1);
+	            this.match(147);
+	            this.match(2);
 	            this.state = 822;
 	            this.expr(0);
-	            this.state = 823;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 117:
 	            localctx = new SECOND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 825;
-	            this.match(mathParser.SECOND);
-	            this.state = 826;
-	            this.match(mathParser.T__1);
+	            this.match(148);
+	            this.match(2);
 	            this.state = 827;
 	            this.expr(0);
-	            this.state = 828;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 118:
 	            localctx = new WEEKDAY_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 830;
-	            this.match(mathParser.WEEKDAY);
-	            this.state = 831;
-	            this.match(mathParser.T__1);
+	            this.match(149);
+	            this.match(2);
 	            this.state = 832;
 	            this.expr(0);
 	            this.state = 835;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 833;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 834;
 	                this.expr(0);
 	            }
 
-	            this.state = 837;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 119:
 	            localctx = new DATEDIF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 839;
-	            this.match(mathParser.DATEDIF);
-	            this.state = 840;
-	            this.match(mathParser.T__1);
+	            this.match(150);
+	            this.match(2);
 	            this.state = 841;
 	            this.expr(0);
-	            this.state = 842;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 843;
 	            this.expr(0);
-	            this.state = 844;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 845;
 	            this.expr(0);
-	            this.state = 846;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 120:
 	            localctx = new DAYS360_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 848;
-	            this.match(mathParser.DAYS360);
-	            this.state = 849;
-	            this.match(mathParser.T__1);
+	            this.match(151);
+	            this.match(2);
 	            this.state = 850;
 	            this.expr(0);
-	            this.state = 851;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 852;
 	            this.expr(0);
 	            this.state = 855;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 853;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 854;
 	                this.expr(0);
 	            }
 
-	            this.state = 857;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 121:
 	            localctx = new EDATE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 859;
-	            this.match(mathParser.EDATE);
-	            this.state = 860;
-	            this.match(mathParser.T__1);
+	            this.match(152);
+	            this.match(2);
 	            this.state = 861;
 	            this.expr(0);
-	            this.state = 862;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 863;
 	            this.expr(0);
-	            this.state = 864;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 122:
 	            localctx = new EOMONTH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 866;
-	            this.match(mathParser.EOMONTH);
-	            this.state = 867;
-	            this.match(mathParser.T__1);
+	            this.match(153);
+	            this.match(2);
 	            this.state = 868;
 	            this.expr(0);
-	            this.state = 869;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 870;
 	            this.expr(0);
-	            this.state = 871;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 123:
 	            localctx = new NETWORKDAYS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 873;
-	            this.match(mathParser.NETWORKDAYS);
-	            this.state = 874;
-	            this.match(mathParser.T__1);
+	            this.match(154);
+	            this.match(2);
 	            this.state = 875;
 	            this.expr(0);
-	            this.state = 876;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 877;
 	            this.expr(0);
 	            this.state = 880;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 878;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 879;
 	                this.expr(0);
 	            }
 
-	            this.state = 882;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 124:
 	            localctx = new WORKDAY_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 884;
-	            this.match(mathParser.WORKDAY);
-	            this.state = 885;
-	            this.match(mathParser.T__1);
+	            this.match(155);
+	            this.match(2);
 	            this.state = 886;
 	            this.expr(0);
-	            this.state = 887;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 888;
 	            this.expr(0);
 	            this.state = 891;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 889;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 890;
 	                this.expr(0);
 	            }
 
-	            this.state = 893;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 125:
 	            localctx = new WEEKNUM_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 895;
-	            this.match(mathParser.WEEKNUM);
-	            this.state = 896;
-	            this.match(mathParser.T__1);
+	            this.match(156);
+	            this.match(2);
 	            this.state = 897;
 	            this.expr(0);
 	            this.state = 900;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 898;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 899;
 	                this.expr(0);
 	            }
 
-	            this.state = 902;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 126:
 	            localctx = new MAX_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 904;
-	            this.match(mathParser.MAX);
-	            this.state = 905;
-	            this.match(mathParser.T__1);
+	            this.match(157);
+	            this.match(2);
 	            this.state = 906;
 	            this.expr(0);
 	            this.state = 909; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            do {
-	                this.state = 907;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 908;
 	                this.expr(0);
 	                this.state = 911; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            } while(_la===4);
-	            this.state = 913;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 127:
 	            localctx = new MEDIAN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 915;
-	            this.match(mathParser.MEDIAN);
-	            this.state = 916;
-	            this.match(mathParser.T__1);
+	            this.match(158);
+	            this.match(2);
 	            this.state = 917;
 	            this.expr(0);
 	            this.state = 920; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            do {
-	                this.state = 918;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 919;
 	                this.expr(0);
 	                this.state = 922; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            } while(_la===4);
-	            this.state = 924;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 128:
 	            localctx = new MIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 926;
-	            this.match(mathParser.MIN);
-	            this.state = 927;
-	            this.match(mathParser.T__1);
+	            this.match(159);
+	            this.match(2);
 	            this.state = 928;
 	            this.expr(0);
 	            this.state = 931; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            do {
-	                this.state = 929;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 930;
 	                this.expr(0);
 	                this.state = 933; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            } while(_la===4);
-	            this.state = 935;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 129:
 	            localctx = new QUARTILE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 937;
-	            this.match(mathParser.QUARTILE);
-	            this.state = 938;
-	            this.match(mathParser.T__1);
+	            this.match(160);
+	            this.match(2);
 	            this.state = 939;
 	            this.expr(0);
-	            this.state = 940;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 941;
 	            this.expr(0);
-	            this.state = 942;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 130:
 	            localctx = new MODE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 944;
-	            this.match(mathParser.MODE);
-	            this.state = 945;
-	            this.match(mathParser.T__1);
+	            this.match(161);
+	            this.match(2);
 	            this.state = 946;
 	            this.expr(0);
 	            this.state = 951;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 947;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 948;
 	                this.expr(0);
 	                this.state = 953;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 954;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 131:
 	            localctx = new LARGE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 956;
-	            this.match(mathParser.LARGE);
-	            this.state = 957;
-	            this.match(mathParser.T__1);
+	            this.match(162);
+	            this.match(2);
 	            this.state = 958;
 	            this.expr(0);
-	            this.state = 959;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 960;
 	            this.expr(0);
-	            this.state = 961;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 132:
 	            localctx = new SMALL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 963;
-	            this.match(mathParser.SMALL);
-	            this.state = 964;
-	            this.match(mathParser.T__1);
+	            this.match(163);
+	            this.match(2);
 	            this.state = 965;
 	            this.expr(0);
-	            this.state = 966;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 967;
 	            this.expr(0);
-	            this.state = 968;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 133:
 	            localctx = new PERCENTILE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 970;
-	            this.match(mathParser.PERCENTILE);
-	            this.state = 971;
-	            this.match(mathParser.T__1);
+	            this.match(164);
+	            this.match(2);
 	            this.state = 972;
 	            this.expr(0);
-	            this.state = 973;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 974;
 	            this.expr(0);
-	            this.state = 975;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 134:
 	            localctx = new PERCENTRANK_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 977;
-	            this.match(mathParser.PERCENTRANK);
-	            this.state = 978;
-	            this.match(mathParser.T__1);
+	            this.match(165);
+	            this.match(2);
 	            this.state = 979;
 	            this.expr(0);
-	            this.state = 980;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 981;
 	            this.expr(0);
-	            this.state = 982;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 135:
 	            localctx = new AVERAGE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 984;
-	            this.match(mathParser.AVERAGE);
-	            this.state = 985;
-	            this.match(mathParser.T__1);
+	            this.match(166);
+	            this.match(2);
 	            this.state = 986;
 	            this.expr(0);
 	            this.state = 991;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 987;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 988;
 	                this.expr(0);
 	                this.state = 993;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 994;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 136:
 	            localctx = new AVERAGEIF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 996;
-	            this.match(mathParser.AVERAGEIF);
-	            this.state = 997;
-	            this.match(mathParser.T__1);
+	            this.match(167);
+	            this.match(2);
 	            this.state = 998;
 	            this.expr(0);
-	            this.state = 999;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1000;
 	            this.expr(0);
 	            this.state = 1003;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1001;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1002;
 	                this.expr(0);
 	            }
 
-	            this.state = 1005;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 137:
 	            localctx = new GEOMEAN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1007;
-	            this.match(mathParser.GEOMEAN);
-	            this.state = 1008;
-	            this.match(mathParser.T__1);
+	            this.match(168);
+	            this.match(2);
 	            this.state = 1009;
 	            this.expr(0);
 	            this.state = 1014;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1010;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1011;
 	                this.expr(0);
 	                this.state = 1016;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1017;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 138:
 	            localctx = new HARMEAN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1019;
-	            this.match(mathParser.HARMEAN);
-	            this.state = 1020;
-	            this.match(mathParser.T__1);
+	            this.match(169);
+	            this.match(2);
 	            this.state = 1021;
 	            this.expr(0);
 	            this.state = 1026;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1022;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1023;
 	                this.expr(0);
 	                this.state = 1028;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1029;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 139:
 	            localctx = new COUNT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1031;
-	            this.match(mathParser.COUNT);
-	            this.state = 1032;
-	            this.match(mathParser.T__1);
+	            this.match(170);
+	            this.match(2);
 	            this.state = 1033;
 	            this.expr(0);
 	            this.state = 1038;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1034;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1035;
 	                this.expr(0);
 	                this.state = 1040;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1041;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 140:
 	            localctx = new COUNTIF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1043;
-	            this.match(mathParser.COUNTIF);
-	            this.state = 1044;
-	            this.match(mathParser.T__1);
+	            this.match(171);
+	            this.match(2);
 	            this.state = 1045;
 	            this.expr(0);
 	            this.state = 1050;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1046;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1047;
 	                this.expr(0);
 	                this.state = 1052;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1053;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 141:
 	            localctx = new SUM_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1055;
-	            this.match(mathParser.SUM);
-	            this.state = 1056;
-	            this.match(mathParser.T__1);
+	            this.match(172);
+	            this.match(2);
 	            this.state = 1057;
 	            this.expr(0);
 	            this.state = 1062;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1058;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1059;
 	                this.expr(0);
 	                this.state = 1064;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1065;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 142:
 	            localctx = new SUMIF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1067;
-	            this.match(mathParser.SUMIF);
-	            this.state = 1068;
-	            this.match(mathParser.T__1);
+	            this.match(173);
+	            this.match(2);
 	            this.state = 1069;
 	            this.expr(0);
-	            this.state = 1070;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1071;
 	            this.expr(0);
 	            this.state = 1074;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1072;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1073;
 	                this.expr(0);
 	            }
 
-	            this.state = 1076;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 143:
 	            localctx = new AVEDEV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1078;
-	            this.match(mathParser.AVEDEV);
-	            this.state = 1079;
-	            this.match(mathParser.T__1);
+	            this.match(174);
+	            this.match(2);
 	            this.state = 1080;
 	            this.expr(0);
 	            this.state = 1085;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1081;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1082;
 	                this.expr(0);
 	                this.state = 1087;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1088;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 144:
 	            localctx = new STDEV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1090;
-	            this.match(mathParser.STDEV);
-	            this.state = 1091;
-	            this.match(mathParser.T__1);
+	            this.match(175);
+	            this.match(2);
 	            this.state = 1092;
 	            this.expr(0);
 	            this.state = 1097;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1093;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1094;
 	                this.expr(0);
 	                this.state = 1099;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1100;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 145:
 	            localctx = new STDEVP_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1102;
-	            this.match(mathParser.STDEVP);
-	            this.state = 1103;
-	            this.match(mathParser.T__1);
+	            this.match(176);
+	            this.match(2);
 	            this.state = 1104;
 	            this.expr(0);
 	            this.state = 1109;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1105;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1106;
 	                this.expr(0);
 	                this.state = 1111;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1112;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 146:
 	            localctx = new COVAR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1114;
-	            this.match(mathParser.COVAR);
-	            this.state = 1115;
-	            this.match(mathParser.T__1);
+	            this.match(177);
+	            this.match(2);
 	            this.state = 1116;
 	            this.expr(0);
-	            this.state = 1117;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1118;
 	            this.expr(0);
-	            this.state = 1119;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 147:
 	            localctx = new COVARIANCES_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1121;
-	            this.match(mathParser.COVARIANCES);
-	            this.state = 1122;
-	            this.match(mathParser.T__1);
+	            this.match(178);
+	            this.match(2);
 	            this.state = 1123;
 	            this.expr(0);
-	            this.state = 1124;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1125;
 	            this.expr(0);
-	            this.state = 1126;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 148:
 	            localctx = new DEVSQ_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1128;
-	            this.match(mathParser.DEVSQ);
-	            this.state = 1129;
-	            this.match(mathParser.T__1);
+	            this.match(179);
+	            this.match(2);
 	            this.state = 1130;
 	            this.expr(0);
 	            this.state = 1135;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1131;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1132;
 	                this.expr(0);
 	                this.state = 1137;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1138;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 149:
 	            localctx = new VAR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1140;
-	            this.match(mathParser.VAR);
-	            this.state = 1141;
-	            this.match(mathParser.T__1);
+	            this.match(180);
+	            this.match(2);
 	            this.state = 1142;
 	            this.expr(0);
 	            this.state = 1147;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1143;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1144;
 	                this.expr(0);
 	                this.state = 1149;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1150;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 150:
 	            localctx = new VARP_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1152;
-	            this.match(mathParser.VARP);
-	            this.state = 1153;
-	            this.match(mathParser.T__1);
+	            this.match(181);
+	            this.match(2);
 	            this.state = 1154;
 	            this.expr(0);
 	            this.state = 1159;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1155;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1156;
 	                this.expr(0);
 	                this.state = 1161;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1162;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 151:
 	            localctx = new NORMDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1164;
-	            this.match(mathParser.NORMDIST);
-	            this.state = 1165;
-	            this.match(mathParser.T__1);
+	            this.match(182);
+	            this.match(2);
 	            this.state = 1166;
 	            this.expr(0);
-	            this.state = 1167;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1168;
 	            this.expr(0);
-	            this.state = 1169;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1170;
 	            this.expr(0);
-	            this.state = 1171;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1172;
 	            this.expr(0);
-	            this.state = 1173;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 152:
 	            localctx = new NORMINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1175;
-	            this.match(mathParser.NORMINV);
-	            this.state = 1176;
-	            this.match(mathParser.T__1);
+	            this.match(183);
+	            this.match(2);
 	            this.state = 1177;
 	            this.expr(0);
-	            this.state = 1178;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1179;
 	            this.expr(0);
-	            this.state = 1180;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1181;
 	            this.expr(0);
-	            this.state = 1182;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 153:
 	            localctx = new NORMSDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1184;
-	            this.match(mathParser.NORMSDIST);
-	            this.state = 1185;
-	            this.match(mathParser.T__1);
+	            this.match(184);
+	            this.match(2);
 	            this.state = 1186;
 	            this.expr(0);
-	            this.state = 1187;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 154:
 	            localctx = new NORMSINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1189;
-	            this.match(mathParser.NORMSINV);
-	            this.state = 1190;
-	            this.match(mathParser.T__1);
+	            this.match(185);
+	            this.match(2);
 	            this.state = 1191;
 	            this.expr(0);
-	            this.state = 1192;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 155:
 	            localctx = new BETADIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1194;
-	            this.match(mathParser.BETADIST);
-	            this.state = 1195;
-	            this.match(mathParser.T__1);
+	            this.match(186);
+	            this.match(2);
 	            this.state = 1196;
 	            this.expr(0);
-	            this.state = 1197;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1198;
 	            this.expr(0);
-	            this.state = 1199;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1200;
 	            this.expr(0);
-	            this.state = 1201;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 156:
 	            localctx = new BETAINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1203;
-	            this.match(mathParser.BETAINV);
-	            this.state = 1204;
-	            this.match(mathParser.T__1);
+	            this.match(187);
+	            this.match(2);
 	            this.state = 1205;
 	            this.expr(0);
-	            this.state = 1206;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1207;
 	            this.expr(0);
-	            this.state = 1208;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1209;
 	            this.expr(0);
-	            this.state = 1210;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 157:
 	            localctx = new BINOMDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1212;
-	            this.match(mathParser.BINOMDIST);
-	            this.state = 1213;
-	            this.match(mathParser.T__1);
+	            this.match(188);
+	            this.match(2);
 	            this.state = 1214;
 	            this.expr(0);
-	            this.state = 1215;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1216;
 	            this.expr(0);
-	            this.state = 1217;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1218;
 	            this.expr(0);
-	            this.state = 1219;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1220;
 	            this.expr(0);
-	            this.state = 1221;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 158:
 	            localctx = new EXPONDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1223;
-	            this.match(mathParser.EXPONDIST);
-	            this.state = 1224;
-	            this.match(mathParser.T__1);
+	            this.match(189);
+	            this.match(2);
 	            this.state = 1225;
 	            this.expr(0);
-	            this.state = 1226;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1227;
 	            this.expr(0);
-	            this.state = 1228;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1229;
 	            this.expr(0);
-	            this.state = 1230;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 159:
 	            localctx = new FDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1232;
-	            this.match(mathParser.FDIST);
-	            this.state = 1233;
-	            this.match(mathParser.T__1);
+	            this.match(190);
+	            this.match(2);
 	            this.state = 1234;
 	            this.expr(0);
-	            this.state = 1235;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1236;
 	            this.expr(0);
-	            this.state = 1237;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1238;
 	            this.expr(0);
-	            this.state = 1239;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 160:
 	            localctx = new FINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1241;
-	            this.match(mathParser.FINV);
-	            this.state = 1242;
-	            this.match(mathParser.T__1);
+	            this.match(191);
+	            this.match(2);
 	            this.state = 1243;
 	            this.expr(0);
-	            this.state = 1244;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1245;
 	            this.expr(0);
-	            this.state = 1246;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1247;
 	            this.expr(0);
-	            this.state = 1248;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 161:
 	            localctx = new FISHER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1250;
-	            this.match(mathParser.FISHER);
-	            this.state = 1251;
-	            this.match(mathParser.T__1);
+	            this.match(192);
+	            this.match(2);
 	            this.state = 1252;
 	            this.expr(0);
-	            this.state = 1253;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 162:
 	            localctx = new FISHERINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1255;
-	            this.match(mathParser.FISHERINV);
-	            this.state = 1256;
-	            this.match(mathParser.T__1);
+	            this.match(193);
+	            this.match(2);
 	            this.state = 1257;
 	            this.expr(0);
-	            this.state = 1258;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 163:
 	            localctx = new GAMMADIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1260;
-	            this.match(mathParser.GAMMADIST);
-	            this.state = 1261;
-	            this.match(mathParser.T__1);
+	            this.match(194);
+	            this.match(2);
 	            this.state = 1262;
 	            this.expr(0);
-	            this.state = 1263;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1264;
 	            this.expr(0);
-	            this.state = 1265;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1266;
 	            this.expr(0);
-	            this.state = 1267;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1268;
 	            this.expr(0);
-	            this.state = 1269;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 164:
 	            localctx = new GAMMAINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1271;
-	            this.match(mathParser.GAMMAINV);
-	            this.state = 1272;
-	            this.match(mathParser.T__1);
+	            this.match(195);
+	            this.match(2);
 	            this.state = 1273;
 	            this.expr(0);
-	            this.state = 1274;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1275;
 	            this.expr(0);
-	            this.state = 1276;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1277;
 	            this.expr(0);
-	            this.state = 1278;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 165:
 	            localctx = new GAMMALN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1280;
-	            this.match(mathParser.GAMMALN);
-	            this.state = 1281;
-	            this.match(mathParser.T__1);
+	            this.match(196);
+	            this.match(2);
 	            this.state = 1282;
 	            this.expr(0);
-	            this.state = 1283;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 166:
 	            localctx = new HYPGEOMDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1285;
-	            this.match(mathParser.HYPGEOMDIST);
-	            this.state = 1286;
-	            this.match(mathParser.T__1);
+	            this.match(197);
+	            this.match(2);
 	            this.state = 1287;
 	            this.expr(0);
-	            this.state = 1288;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1289;
 	            this.expr(0);
-	            this.state = 1290;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1291;
 	            this.expr(0);
-	            this.state = 1292;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1293;
 	            this.expr(0);
-	            this.state = 1294;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 167:
 	            localctx = new LOGINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1296;
-	            this.match(mathParser.LOGINV);
-	            this.state = 1297;
-	            this.match(mathParser.T__1);
+	            this.match(198);
+	            this.match(2);
 	            this.state = 1298;
 	            this.expr(0);
-	            this.state = 1299;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1300;
 	            this.expr(0);
-	            this.state = 1301;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1302;
 	            this.expr(0);
-	            this.state = 1303;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 168:
 	            localctx = new LOGNORMDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1305;
-	            this.match(mathParser.LOGNORMDIST);
-	            this.state = 1306;
-	            this.match(mathParser.T__1);
+	            this.match(199);
+	            this.match(2);
 	            this.state = 1307;
 	            this.expr(0);
-	            this.state = 1308;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1309;
 	            this.expr(0);
-	            this.state = 1310;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1311;
 	            this.expr(0);
-	            this.state = 1312;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 169:
 	            localctx = new NEGBINOMDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1314;
-	            this.match(mathParser.NEGBINOMDIST);
-	            this.state = 1315;
-	            this.match(mathParser.T__1);
+	            this.match(200);
+	            this.match(2);
 	            this.state = 1316;
 	            this.expr(0);
-	            this.state = 1317;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1318;
 	            this.expr(0);
-	            this.state = 1319;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1320;
 	            this.expr(0);
-	            this.state = 1321;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 170:
 	            localctx = new POISSON_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1323;
-	            this.match(mathParser.POISSON);
-	            this.state = 1324;
-	            this.match(mathParser.T__1);
+	            this.match(201);
+	            this.match(2);
 	            this.state = 1325;
 	            this.expr(0);
-	            this.state = 1326;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1327;
 	            this.expr(0);
-	            this.state = 1328;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1329;
 	            this.expr(0);
-	            this.state = 1330;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 171:
 	            localctx = new TDIST_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1332;
-	            this.match(mathParser.TDIST);
-	            this.state = 1333;
-	            this.match(mathParser.T__1);
+	            this.match(202);
+	            this.match(2);
 	            this.state = 1334;
 	            this.expr(0);
-	            this.state = 1335;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1336;
 	            this.expr(0);
-	            this.state = 1337;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1338;
 	            this.expr(0);
-	            this.state = 1339;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 172:
 	            localctx = new TINV_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1341;
-	            this.match(mathParser.TINV);
-	            this.state = 1342;
-	            this.match(mathParser.T__1);
+	            this.match(203);
+	            this.match(2);
 	            this.state = 1343;
 	            this.expr(0);
-	            this.state = 1344;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1345;
 	            this.expr(0);
-	            this.state = 1346;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 173:
 	            localctx = new WEIBULL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1348;
-	            this.match(mathParser.WEIBULL);
-	            this.state = 1349;
-	            this.match(mathParser.T__1);
+	            this.match(204);
+	            this.match(2);
 	            this.state = 1350;
 	            this.expr(0);
-	            this.state = 1351;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1352;
 	            this.expr(0);
-	            this.state = 1353;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1354;
 	            this.expr(0);
-	            this.state = 1355;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1356;
 	            this.expr(0);
-	            this.state = 1357;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 174:
 	            localctx = new URLENCODE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1359;
-	            this.match(mathParser.URLENCODE);
-	            this.state = 1360;
-	            this.match(mathParser.T__1);
+	            this.match(205);
+	            this.match(2);
 	            this.state = 1361;
 	            this.expr(0);
-	            this.state = 1362;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 175:
 	            localctx = new URLDECODE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1364;
-	            this.match(mathParser.URLDECODE);
-	            this.state = 1365;
-	            this.match(mathParser.T__1);
+	            this.match(206);
+	            this.match(2);
 	            this.state = 1366;
 	            this.expr(0);
-	            this.state = 1367;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 176:
 	            localctx = new HTMLENCODE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1369;
-	            this.match(mathParser.HTMLENCODE);
-	            this.state = 1370;
-	            this.match(mathParser.T__1);
+	            this.match(207);
+	            this.match(2);
 	            this.state = 1371;
 	            this.expr(0);
-	            this.state = 1372;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 177:
 	            localctx = new HTMLDECODE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1374;
-	            this.match(mathParser.HTMLDECODE);
-	            this.state = 1375;
-	            this.match(mathParser.T__1);
+	            this.match(208);
+	            this.match(2);
 	            this.state = 1376;
 	            this.expr(0);
-	            this.state = 1377;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 178:
 	            localctx = new BASE64TOTEXT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1379;
-	            this.match(mathParser.BASE64TOTEXT);
-	            this.state = 1380;
-	            this.match(mathParser.T__1);
+	            this.match(209);
+	            this.match(2);
 	            this.state = 1381;
 	            this.expr(0);
 	            this.state = 1384;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1382;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1383;
 	                this.expr(0);
 	            }
 
-	            this.state = 1386;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 179:
 	            localctx = new BASE64URLTOTEXT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1388;
-	            this.match(mathParser.BASE64URLTOTEXT);
-	            this.state = 1389;
-	            this.match(mathParser.T__1);
+	            this.match(210);
+	            this.match(2);
 	            this.state = 1390;
 	            this.expr(0);
 	            this.state = 1393;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1391;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1392;
 	                this.expr(0);
 	            }
 
-	            this.state = 1395;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 180:
 	            localctx = new TEXTTOBASE64_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1397;
-	            this.match(mathParser.TEXTTOBASE64);
-	            this.state = 1398;
-	            this.match(mathParser.T__1);
+	            this.match(211);
+	            this.match(2);
 	            this.state = 1399;
 	            this.expr(0);
 	            this.state = 1402;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1400;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1401;
 	                this.expr(0);
 	            }
 
-	            this.state = 1404;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 181:
 	            localctx = new TEXTTOBASE64URL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1406;
-	            this.match(mathParser.TEXTTOBASE64URL);
-	            this.state = 1407;
-	            this.match(mathParser.T__1);
+	            this.match(212);
+	            this.match(2);
 	            this.state = 1408;
 	            this.expr(0);
 	            this.state = 1411;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1409;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1410;
 	                this.expr(0);
 	            }
 
-	            this.state = 1413;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 182:
 	            localctx = new REGEX_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1415;
-	            this.match(mathParser.REGEX);
-	            this.state = 1416;
-	            this.match(mathParser.T__1);
+	            this.match(213);
+	            this.match(2);
 	            this.state = 1417;
 	            this.expr(0);
-	            this.state = 1418;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1419;
 	            this.expr(0);
-	            this.state = 1420;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 183:
 	            localctx = new REGEXREPALCE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1422;
-	            this.match(mathParser.REGEXREPALCE);
-	            this.state = 1423;
-	            this.match(mathParser.T__1);
+	            this.match(214);
+	            this.match(2);
 	            this.state = 1424;
 	            this.expr(0);
-	            this.state = 1425;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1426;
 	            this.expr(0);
-	            this.state = 1427;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1428;
 	            this.expr(0);
-	            this.state = 1429;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 184:
 	            localctx = new ISREGEX_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1431;
-	            this.match(mathParser.ISREGEX);
-	            this.state = 1432;
-	            this.match(mathParser.T__1);
+	            this.match(215);
+	            this.match(2);
 	            this.state = 1433;
 	            this.expr(0);
-	            this.state = 1434;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1435;
 	            this.expr(0);
-	            this.state = 1436;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 185:
 	            localctx = new GUID_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1438;
-	            this.match(mathParser.GUID);
-	            this.state = 1439;
-	            this.match(mathParser.T__1);
-	            this.state = 1440;
-	            this.match(mathParser.T__2);
+	            this.match(216);
+	            this.match(2);
+	            this.match(3);
 	            break;
 
 	        case 186:
 	            localctx = new MD5_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1441;
-	            this.match(mathParser.MD5);
-	            this.state = 1442;
-	            this.match(mathParser.T__1);
+	            this.match(217);
+	            this.match(2);
 	            this.state = 1443;
 	            this.expr(0);
 	            this.state = 1446;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1444;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1445;
 	                this.expr(0);
 	            }
 
-	            this.state = 1448;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 187:
 	            localctx = new SHA1_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1450;
-	            this.match(mathParser.SHA1);
-	            this.state = 1451;
-	            this.match(mathParser.T__1);
+	            this.match(218);
+	            this.match(2);
 	            this.state = 1452;
 	            this.expr(0);
 	            this.state = 1455;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1453;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1454;
 	                this.expr(0);
 	            }
 
-	            this.state = 1457;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 188:
 	            localctx = new SHA256_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1459;
-	            this.match(mathParser.SHA256);
-	            this.state = 1460;
-	            this.match(mathParser.T__1);
+	            this.match(219);
+	            this.match(2);
 	            this.state = 1461;
 	            this.expr(0);
 	            this.state = 1464;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1462;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1463;
 	                this.expr(0);
 	            }
 
-	            this.state = 1466;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 189:
 	            localctx = new SHA512_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1468;
-	            this.match(mathParser.SHA512);
-	            this.state = 1469;
-	            this.match(mathParser.T__1);
+	            this.match(220);
+	            this.match(2);
 	            this.state = 1470;
 	            this.expr(0);
 	            this.state = 1473;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1471;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1472;
 	                this.expr(0);
 	            }
 
-	            this.state = 1475;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 190:
 	            localctx = new HMACMD5_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1477;
-	            this.match(mathParser.HMACMD5);
-	            this.state = 1478;
-	            this.match(mathParser.T__1);
+	            this.match(221);
+	            this.match(2);
 	            this.state = 1479;
 	            this.expr(0);
-	            this.state = 1480;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1481;
 	            this.expr(0);
 	            this.state = 1484;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1482;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1483;
 	                this.expr(0);
 	            }
 
-	            this.state = 1486;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 191:
 	            localctx = new HMACSHA1_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1488;
-	            this.match(mathParser.HMACSHA1);
-	            this.state = 1489;
-	            this.match(mathParser.T__1);
+	            this.match(222);
+	            this.match(2);
 	            this.state = 1490;
 	            this.expr(0);
-	            this.state = 1491;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1492;
 	            this.expr(0);
 	            this.state = 1495;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1493;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1494;
 	                this.expr(0);
 	            }
 
-	            this.state = 1497;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 192:
 	            localctx = new HMACSHA256_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1499;
-	            this.match(mathParser.HMACSHA256);
-	            this.state = 1500;
-	            this.match(mathParser.T__1);
+	            this.match(223);
+	            this.match(2);
 	            this.state = 1501;
 	            this.expr(0);
-	            this.state = 1502;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1503;
 	            this.expr(0);
 	            this.state = 1506;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1504;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1505;
 	                this.expr(0);
 	            }
 
-	            this.state = 1508;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 193:
 	            localctx = new HMACSHA512_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1510;
-	            this.match(mathParser.HMACSHA512);
-	            this.state = 1511;
-	            this.match(mathParser.T__1);
+	            this.match(224);
+	            this.match(2);
 	            this.state = 1512;
 	            this.expr(0);
-	            this.state = 1513;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1514;
 	            this.expr(0);
 	            this.state = 1517;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1515;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1516;
 	                this.expr(0);
 	            }
 
-	            this.state = 1519;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 194:
 	            localctx = new TRIMSTART_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1521;
-	            this.match(mathParser.TRIMSTART);
-	            this.state = 1522;
-	            this.match(mathParser.T__1);
+	            this.match(225);
+	            this.match(2);
 	            this.state = 1523;
 	            this.expr(0);
 	            this.state = 1526;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1524;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1525;
 	                this.expr(0);
 	            }
 
-	            this.state = 1528;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 195:
 	            localctx = new TRIMEND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1530;
-	            this.match(mathParser.TRIMEND);
-	            this.state = 1531;
-	            this.match(mathParser.T__1);
+	            this.match(226);
+	            this.match(2);
 	            this.state = 1532;
 	            this.expr(0);
 	            this.state = 1535;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1533;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1534;
 	                this.expr(0);
 	            }
 
-	            this.state = 1537;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 196:
 	            localctx = new INDEXOF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1539;
-	            this.match(mathParser.INDEXOF);
-	            this.state = 1540;
-	            this.match(mathParser.T__1);
+	            this.match(227);
+	            this.match(2);
 	            this.state = 1541;
 	            this.expr(0);
-	            this.state = 1542;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1543;
 	            this.expr(0);
 	            this.state = 1550;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1544;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1545;
 	                this.expr(0);
 	                this.state = 1548;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                if(_la===4) {
-	                    this.state = 1546;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1547;
 	                    this.expr(0);
 	                }
 
 	            }
 
-	            this.state = 1552;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 197:
 	            localctx = new LASTINDEXOF_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1554;
-	            this.match(mathParser.LASTINDEXOF);
-	            this.state = 1555;
-	            this.match(mathParser.T__1);
+	            this.match(228);
+	            this.match(2);
 	            this.state = 1556;
 	            this.expr(0);
-	            this.state = 1557;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1558;
 	            this.expr(0);
 	            this.state = 1565;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1559;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1560;
 	                this.expr(0);
 	                this.state = 1563;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                if(_la===4) {
-	                    this.state = 1561;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1562;
 	                    this.expr(0);
 	                }
 
 	            }
 
-	            this.state = 1567;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 198:
 	            localctx = new SPLIT_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1569;
-	            this.match(mathParser.SPLIT);
-	            this.state = 1570;
-	            this.match(mathParser.T__1);
+	            this.match(229);
+	            this.match(2);
 	            this.state = 1571;
 	            this.expr(0);
-	            this.state = 1572;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1573;
 	            this.expr(0);
-	            this.state = 1574;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 199:
 	            localctx = new JOIN_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1576;
-	            this.match(mathParser.JOIN);
-	            this.state = 1577;
-	            this.match(mathParser.T__1);
+	            this.match(230);
+	            this.match(2);
 	            this.state = 1578;
 	            this.expr(0);
 	            this.state = 1581; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            do {
-	                this.state = 1579;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1580;
 	                this.expr(0);
 	                this.state = 1583; 
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            } while(_la===4);
-	            this.state = 1585;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 200:
 	            localctx = new SUBSTRING_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1587;
-	            this.match(mathParser.SUBSTRING);
-	            this.state = 1588;
-	            this.match(mathParser.T__1);
+	            this.match(231);
+	            this.match(2);
 	            this.state = 1589;
 	            this.expr(0);
-	            this.state = 1590;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1591;
 	            this.expr(0);
 	            this.state = 1594;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1592;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1593;
 	                this.expr(0);
 	            }
 
-	            this.state = 1596;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 201:
 	            localctx = new STARTSWITH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1598;
-	            this.match(mathParser.STARTSWITH);
-	            this.state = 1599;
-	            this.match(mathParser.T__1);
+	            this.match(232);
+	            this.match(2);
 	            this.state = 1600;
 	            this.expr(0);
-	            this.state = 1601;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1602;
 	            this.expr(0);
 	            this.state = 1605;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1603;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1604;
 	                this.expr(0);
 	            }
 
-	            this.state = 1607;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 202:
 	            localctx = new ENDSWITH_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1609;
-	            this.match(mathParser.ENDSWITH);
-	            this.state = 1610;
-	            this.match(mathParser.T__1);
+	            this.match(233);
+	            this.match(2);
 	            this.state = 1611;
 	            this.expr(0);
-	            this.state = 1612;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1613;
 	            this.expr(0);
 	            this.state = 1616;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1614;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1615;
 	                this.expr(0);
 	            }
 
-	            this.state = 1618;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 203:
 	            localctx = new ISNULLOREMPTY_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1620;
-	            this.match(mathParser.ISNULLOREMPTY);
-	            this.state = 1621;
-	            this.match(mathParser.T__1);
+	            this.match(234);
+	            this.match(2);
 	            this.state = 1622;
 	            this.expr(0);
-	            this.state = 1623;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 204:
 	            localctx = new ISNULLORWHITESPACE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1625;
-	            this.match(mathParser.ISNULLORWHITESPACE);
-	            this.state = 1626;
-	            this.match(mathParser.T__1);
+	            this.match(235);
+	            this.match(2);
 	            this.state = 1627;
 	            this.expr(0);
-	            this.state = 1628;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 205:
 	            localctx = new REMOVESTART_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1630;
-	            this.match(mathParser.REMOVESTART);
-	            this.state = 1631;
-	            this.match(mathParser.T__1);
+	            this.match(236);
+	            this.match(2);
 	            this.state = 1632;
 	            this.expr(0);
 	            this.state = 1639;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1633;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1634;
 	                this.expr(0);
 	                this.state = 1637;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                if(_la===4) {
-	                    this.state = 1635;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1636;
 	                    this.expr(0);
 	                }
 
 	            }
 
-	            this.state = 1641;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 206:
 	            localctx = new REMOVEEND_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1643;
-	            this.match(mathParser.REMOVEEND);
-	            this.state = 1644;
-	            this.match(mathParser.T__1);
+	            this.match(237);
+	            this.match(2);
 	            this.state = 1645;
 	            this.expr(0);
 	            this.state = 1652;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1646;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1647;
 	                this.expr(0);
 	                this.state = 1650;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                if(_la===4) {
-	                    this.state = 1648;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1649;
 	                    this.expr(0);
 	                }
 
 	            }
 
-	            this.state = 1654;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 207:
 	            localctx = new JSON_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1656;
-	            this.match(mathParser.JSON);
-	            this.state = 1657;
-	            this.match(mathParser.T__1);
+	            this.match(238);
+	            this.match(2);
 	            this.state = 1658;
 	            this.expr(0);
-	            this.state = 1659;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 208:
 	            localctx = new LOOKCEILING_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1661;
-	            this.match(mathParser.LOOKCEILING);
-	            this.state = 1662;
-	            this.match(mathParser.T__1);
+	            this.match(239);
+	            this.match(2);
 	            this.state = 1663;
 	            this.expr(0);
-	            this.state = 1664;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1665;
 	            this.expr(0);
-	            this.state = 1666;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 209:
 	            localctx = new LOOKFLOOR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1668;
-	            this.match(mathParser.LOOKFLOOR);
-	            this.state = 1669;
-	            this.match(mathParser.T__1);
+	            this.match(240);
+	            this.match(2);
 	            this.state = 1670;
 	            this.expr(0);
-	            this.state = 1671;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1672;
 	            this.expr(0);
-	            this.state = 1673;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 210:
 	            localctx = new DiyFunction_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1675;
-	            this.match(mathParser.PARAMETER);
-	            this.state = 1676;
-	            this.match(mathParser.T__1);
+	            this.match(253);
+	            this.match(2);
 	            this.state = 1685;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
@@ -5620,8 +4806,7 @@ export default class mathParser extends antlr4.Parser {
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	                while(_la===4) {
-	                    this.state = 1678;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1679;
 	                    this.expr(0);
 	                    this.state = 1684;
@@ -5630,174 +4815,139 @@ export default class mathParser extends antlr4.Parser {
 	                }
 	            }
 
-	            this.state = 1687;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 211:
 	            localctx = new ADDYEARS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1688;
-	            this.match(mathParser.ADDYEARS);
-	            this.state = 1689;
-	            this.match(mathParser.T__1);
+	            this.match(243);
+	            this.match(2);
 	            this.state = 1690;
 	            this.expr(0);
-	            this.state = 1691;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1692;
 	            this.expr(0);
-	            this.state = 1693;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 212:
 	            localctx = new ADDMONTHS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1695;
-	            this.match(mathParser.ADDMONTHS);
-	            this.state = 1696;
-	            this.match(mathParser.T__1);
+	            this.match(244);
+	            this.match(2);
 	            this.state = 1697;
 	            this.expr(0);
-	            this.state = 1698;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1699;
 	            this.expr(0);
-	            this.state = 1700;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 213:
 	            localctx = new ADDDAYS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1702;
-	            this.match(mathParser.ADDDAYS);
-	            this.state = 1703;
-	            this.match(mathParser.T__1);
+	            this.match(245);
+	            this.match(2);
 	            this.state = 1704;
 	            this.expr(0);
-	            this.state = 1705;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1706;
 	            this.expr(0);
-	            this.state = 1707;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 214:
 	            localctx = new ADDHOURS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1709;
-	            this.match(mathParser.ADDHOURS);
-	            this.state = 1710;
-	            this.match(mathParser.T__1);
+	            this.match(246);
+	            this.match(2);
 	            this.state = 1711;
 	            this.expr(0);
-	            this.state = 1712;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1713;
 	            this.expr(0);
-	            this.state = 1714;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 215:
 	            localctx = new ADDMINUTES_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1716;
-	            this.match(mathParser.ADDMINUTES);
-	            this.state = 1717;
-	            this.match(mathParser.T__1);
+	            this.match(247);
+	            this.match(2);
 	            this.state = 1718;
 	            this.expr(0);
-	            this.state = 1719;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1720;
 	            this.expr(0);
-	            this.state = 1721;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 216:
 	            localctx = new ADDSECONDS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1723;
-	            this.match(mathParser.ADDSECONDS);
-	            this.state = 1724;
-	            this.match(mathParser.T__1);
+	            this.match(248);
+	            this.match(2);
 	            this.state = 1725;
 	            this.expr(0);
-	            this.state = 1726;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1727;
 	            this.expr(0);
-	            this.state = 1728;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 217:
 	            localctx = new TIMESTAMP_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1730;
-	            this.match(mathParser.TIMESTAMP);
-	            this.state = 1731;
-	            this.match(mathParser.T__1);
+	            this.match(249);
+	            this.match(2);
 	            this.state = 1732;
 	            this.expr(0);
 	            this.state = 1735;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1733;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1734;
 	                this.expr(0);
 	            }
 
-	            this.state = 1737;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 218:
 	            localctx = new PARAM_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1739;
-	            this.match(mathParser.PARAM);
-	            this.state = 1740;
-	            this.match(mathParser.T__1);
+	            this.match(252);
+	            this.match(2);
 	            this.state = 1741;
 	            this.expr(0);
 	            this.state = 1744;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===4) {
-	                this.state = 1742;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1743;
 	                this.expr(0);
 	            }
 
-	            this.state = 1746;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 219:
 	            localctx = new ERROR_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1748;
-	            this.match(mathParser.ERROR);
-	            this.state = 1749;
-	            this.match(mathParser.T__1);
+	            this.match(33);
+	            this.match(2);
 	            this.state = 1751;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
@@ -5806,52 +4956,42 @@ export default class mathParser extends antlr4.Parser {
 	                this.expr(0);
 	            }
 
-	            this.state = 1753;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 220:
 	            localctx = new HAS_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1754;
-	            this.match(mathParser.HAS);
-	            this.state = 1755;
-	            this.match(mathParser.T__1);
+	            this.match(250);
+	            this.match(2);
 	            this.state = 1756;
 	            this.expr(0);
-	            this.state = 1757;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1758;
 	            this.expr(0);
-	            this.state = 1759;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 221:
 	            localctx = new HASVALUE_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1761;
-	            this.match(mathParser.HASVALUE);
-	            this.state = 1762;
-	            this.match(mathParser.T__1);
+	            this.match(251);
+	            this.match(2);
 	            this.state = 1763;
 	            this.expr(0);
-	            this.state = 1764;
-	            this.match(mathParser.T__3);
+	            this.match(4);
 	            this.state = 1765;
 	            this.expr(0);
-	            this.state = 1766;
-	            this.match(mathParser.T__2);
+	            this.match(3);
 	            break;
 
 	        case 222:
 	            localctx = new ArrayJson_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1768;
-	            this.match(mathParser.T__26);
+	            this.match(27);
 	            this.state = 1769;
 	            this.arrayJson();
 	            this.state = 1774;
@@ -5859,8 +4999,7 @@ export default class mathParser extends antlr4.Parser {
 	            var _alt = this._interp.adaptivePredict(this._input,98,this._ctx)
 	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	                if(_alt===1) {
-	                    this.state = 1770;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1771;
 	                    this.arrayJson(); 
 	                }
@@ -5873,22 +5012,19 @@ export default class mathParser extends antlr4.Parser {
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1777;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1782;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1783;
-	            this.match(mathParser.T__27);
+	            this.match(28);
 	            break;
 
 	        case 223:
 	            localctx = new Array_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1785;
-	            this.match(mathParser.T__4);
+	            this.match(5);
 	            this.state = 1786;
 	            this.expr(0);
 	            this.state = 1791;
@@ -5896,8 +5032,7 @@ export default class mathParser extends antlr4.Parser {
 	            var _alt = this._interp.adaptivePredict(this._input,100,this._ctx)
 	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	                if(_alt===1) {
-	                    this.state = 1787;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 1788;
 	                    this.expr(0); 
 	                }
@@ -5910,30 +5045,26 @@ export default class mathParser extends antlr4.Parser {
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            while(_la===4) {
-	                this.state = 1794;
-	                this.match(mathParser.T__3);
+	                this.match(4);
 	                this.state = 1799;
 	                this._errHandler.sync(this);
 	                _la = this._input.LA(1);
 	            }
-	            this.state = 1800;
-	            this.match(mathParser.T__5);
+	            this.match(6);
 	            break;
 
 	        case 224:
 	            localctx = new Version_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1802;
-	            this.match(mathParser.ALGORITHMVERSION);
+	            this.match(242);
 	            break;
 
 	        case 225:
 	            localctx = new PARAMETER_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1803;
-	            this.match(mathParser.PARAMETER);
+	            this.match(253);
 	            break;
 
 	        case 226:
@@ -5956,16 +5087,14 @@ export default class mathParser extends antlr4.Parser {
 	            localctx = new STRING_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1808;
-	            this.match(mathParser.STRING);
+	            this.match(31);
 	            break;
 
 	        case 228:
 	            localctx = new NULL_funContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 1809;
-	            this.match(mathParser.NULL);
+	            this.match(32);
 	            break;
 
 	        }
@@ -5985,7 +5114,7 @@ export default class mathParser extends antlr4.Parser {
 	                switch(la_) {
 	                case 1:
 	                    localctx = new MulDiv_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1812;
 	                    if (!( this.precpred(this._ctx, 233))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 233)");
@@ -6006,7 +5135,7 @@ export default class mathParser extends antlr4.Parser {
 
 	                case 2:
 	                    localctx = new AddSub_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1815;
 	                    if (!( this.precpred(this._ctx, 232))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 232)");
@@ -6027,7 +5156,7 @@ export default class mathParser extends antlr4.Parser {
 
 	                case 3:
 	                    localctx = new Judge_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1818;
 	                    if (!( this.precpred(this._ctx, 231))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 231)");
@@ -6048,7 +5177,7 @@ export default class mathParser extends antlr4.Parser {
 
 	                case 4:
 	                    localctx = new Judge_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1821;
 	                    if (!( this.precpred(this._ctx, 230))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 230)");
@@ -6069,7 +5198,7 @@ export default class mathParser extends antlr4.Parser {
 
 	                case 5:
 	                    localctx = new AndOr_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1824;
 	                    if (!( this.precpred(this._ctx, 229))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 229)");
@@ -6090,7 +5219,7 @@ export default class mathParser extends antlr4.Parser {
 
 	                case 6:
 	                    localctx = new AndOr_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1827;
 	                    if (!( this.precpred(this._ctx, 228))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 228)");
@@ -6111,136 +5240,107 @@ export default class mathParser extends antlr4.Parser {
 
 	                case 7:
 	                    localctx = new IF_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1830;
 	                    if (!( this.precpred(this._ctx, 227))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 227)");
 	                    }
-	                    this.state = 1831;
-	                    this.match(mathParser.T__24);
+	                    this.match(25);
 	                    this.state = 1832;
 	                    this.expr(0);
-	                    this.state = 1833;
-	                    this.match(mathParser.T__25);
+	                    this.match(26);
 	                    this.state = 1834;
 	                    this.expr(228);
 	                    break;
 
 	                case 8:
 	                    localctx = new ISNUMBER_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1836;
 	                    if (!( this.precpred(this._ctx, 336))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 336)");
 	                    }
-	                    this.state = 1837;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1838;
-	                    this.match(mathParser.ISNUMBER);
-	                    this.state = 1839;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1840;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(37);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 9:
 	                    localctx = new ISTEXT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1841;
 	                    if (!( this.precpred(this._ctx, 335))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 335)");
 	                    }
-	                    this.state = 1842;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1843;
-	                    this.match(mathParser.ISTEXT);
-	                    this.state = 1844;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1845;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(38);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 10:
 	                    localctx = new ISNONTEXT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1846;
 	                    if (!( this.precpred(this._ctx, 334))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 334)");
 	                    }
-	                    this.state = 1847;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1848;
-	                    this.match(mathParser.ISNONTEXT);
-	                    this.state = 1849;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1850;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(40);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 11:
 	                    localctx = new ISLOGICAL_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1851;
 	                    if (!( this.precpred(this._ctx, 333))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 333)");
 	                    }
-	                    this.state = 1852;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1853;
-	                    this.match(mathParser.ISLOGICAL);
-	                    this.state = 1854;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1855;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(41);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 12:
 	                    localctx = new ISEVEN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1856;
 	                    if (!( this.precpred(this._ctx, 332))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 332)");
 	                    }
-	                    this.state = 1857;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1858;
-	                    this.match(mathParser.ISEVEN);
-	                    this.state = 1859;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1860;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(42);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 13:
 	                    localctx = new ISODD_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1861;
 	                    if (!( this.precpred(this._ctx, 331))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 331)");
 	                    }
-	                    this.state = 1862;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1863;
-	                    this.match(mathParser.ISODD);
-	                    this.state = 1864;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1865;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(43);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 14:
 	                    localctx = new ISERROR_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1866;
 	                    if (!( this.precpred(this._ctx, 330))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 330)");
 	                    }
-	                    this.state = 1867;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1868;
-	                    this.match(mathParser.ISERROR);
-	                    this.state = 1869;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(39);
+	                    this.match(2);
 	                    this.state = 1871;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6249,23 +5349,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1873;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 15:
 	                    localctx = new ISNULL_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1874;
 	                    if (!( this.precpred(this._ctx, 329))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 329)");
 	                    }
-	                    this.state = 1875;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1876;
-	                    this.match(mathParser.ISNULL);
-	                    this.state = 1877;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(44);
+	                    this.match(2);
 	                    this.state = 1879;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6274,23 +5370,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1881;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 16:
 	                    localctx = new ISNULLORERROR_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1882;
 	                    if (!( this.precpred(this._ctx, 328))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 328)");
 	                    }
-	                    this.state = 1883;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1884;
-	                    this.match(mathParser.ISNULLORERROR);
-	                    this.state = 1885;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(45);
+	                    this.match(2);
 	                    this.state = 1887;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6299,24 +5391,20 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1889;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 17:
 	                    localctx = new DEC2BIN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1890;
 	                    if (!( this.precpred(this._ctx, 327))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 327)");
 	                    }
-	                    this.state = 1891;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1892;
-	                    this.match(mathParser.DEC2BIN);
+	                    this.match(1);
+	                    this.match(53);
 
-	                    this.state = 1893;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1895;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6325,24 +5413,20 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1897;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 18:
 	                    localctx = new DEC2HEX_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1898;
 	                    if (!( this.precpred(this._ctx, 326))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 326)");
 	                    }
-	                    this.state = 1899;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1900;
-	                    this.match(mathParser.DEC2HEX);
+	                    this.match(1);
+	                    this.match(54);
 
-	                    this.state = 1901;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1903;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6351,24 +5435,20 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1905;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 19:
 	                    localctx = new DEC2OCT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1906;
 	                    if (!( this.precpred(this._ctx, 325))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 325)");
 	                    }
-	                    this.state = 1907;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1908;
-	                    this.match(mathParser.DEC2OCT);
+	                    this.match(1);
+	                    this.match(55);
 
-	                    this.state = 1909;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1911;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6377,24 +5457,20 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1913;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 20:
 	                    localctx = new HEX2BIN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1914;
 	                    if (!( this.precpred(this._ctx, 324))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 324)");
 	                    }
-	                    this.state = 1915;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1916;
-	                    this.match(mathParser.HEX2BIN);
+	                    this.match(1);
+	                    this.match(56);
 
-	                    this.state = 1917;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1919;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6403,42 +5479,34 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1921;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 21:
 	                    localctx = new HEX2DEC_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1922;
 	                    if (!( this.precpred(this._ctx, 323))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 323)");
 	                    }
-	                    this.state = 1923;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1924;
-	                    this.match(mathParser.HEX2DEC);
+	                    this.match(1);
+	                    this.match(57);
 
-	                    this.state = 1925;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1926;
-	                    this.match(mathParser.T__2);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 22:
 	                    localctx = new HEX2OCT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1927;
 	                    if (!( this.precpred(this._ctx, 322))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 322)");
 	                    }
-	                    this.state = 1928;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1929;
-	                    this.match(mathParser.HEX2OCT);
+	                    this.match(1);
+	                    this.match(58);
 
-	                    this.state = 1930;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1932;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6447,24 +5515,20 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1934;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 23:
 	                    localctx = new OCT2BIN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1935;
 	                    if (!( this.precpred(this._ctx, 321))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 321)");
 	                    }
-	                    this.state = 1936;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1937;
-	                    this.match(mathParser.OCT2BIN);
+	                    this.match(1);
+	                    this.match(59);
 
-	                    this.state = 1938;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1940;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6473,42 +5537,34 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1942;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 24:
 	                    localctx = new OCT2DEC_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1943;
 	                    if (!( this.precpred(this._ctx, 320))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 320)");
 	                    }
-	                    this.state = 1944;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1945;
-	                    this.match(mathParser.OCT2DEC);
+	                    this.match(1);
+	                    this.match(60);
 
-	                    this.state = 1946;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1947;
-	                    this.match(mathParser.T__2);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 25:
 	                    localctx = new OCT2HEX_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1948;
 	                    if (!( this.precpred(this._ctx, 319))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 319)");
 	                    }
-	                    this.state = 1949;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1950;
-	                    this.match(mathParser.OCT2HEX);
+	                    this.match(1);
+	                    this.match(61);
 
-	                    this.state = 1951;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1953;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6517,24 +5573,20 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1955;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 26:
 	                    localctx = new BIN2OCT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1956;
 	                    if (!( this.precpred(this._ctx, 318))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 318)");
 	                    }
-	                    this.state = 1957;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1958;
-	                    this.match(mathParser.BIN2OCT);
+	                    this.match(1);
+	                    this.match(62);
 
-	                    this.state = 1959;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1961;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6543,42 +5595,34 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1963;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 27:
 	                    localctx = new BIN2DEC_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1964;
 	                    if (!( this.precpred(this._ctx, 317))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 317)");
 	                    }
-	                    this.state = 1965;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1966;
-	                    this.match(mathParser.BIN2DEC);
+	                    this.match(1);
+	                    this.match(63);
 
-	                    this.state = 1967;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1968;
-	                    this.match(mathParser.T__2);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 28:
 	                    localctx = new BIN2HEX_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1969;
 	                    if (!( this.precpred(this._ctx, 316))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 316)");
 	                    }
-	                    this.state = 1970;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1971;
-	                    this.match(mathParser.BIN2HEX);
+	                    this.match(1);
+	                    this.match(64);
 
-	                    this.state = 1972;
-	                    this.match(mathParser.T__1);
+	                    this.match(2);
 	                    this.state = 1974;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6587,125 +5631,97 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 1976;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 29:
 	                    localctx = new INT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1977;
 	                    if (!( this.precpred(this._ctx, 315))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 315)");
 	                    }
-	                    this.state = 1978;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1979;
-	                    this.match(mathParser.INT);
-	                    this.state = 1980;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1981;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(71);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 30:
 	                    localctx = new ASC_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1982;
 	                    if (!( this.precpred(this._ctx, 314))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 314)");
 	                    }
-	                    this.state = 1983;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1984;
-	                    this.match(mathParser.ASC);
-	                    this.state = 1985;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1986;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(112);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 31:
 	                    localctx = new JIS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1987;
 	                    if (!( this.precpred(this._ctx, 313))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 313)");
 	                    }
-	                    this.state = 1988;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1989;
-	                    this.match(mathParser.JIS);
-	                    this.state = 1990;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1991;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(113);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 32:
 	                    localctx = new CHAR_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1992;
 	                    if (!( this.precpred(this._ctx, 312))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 312)");
 	                    }
-	                    this.state = 1993;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1994;
-	                    this.match(mathParser.CHAR);
-	                    this.state = 1995;
-	                    this.match(mathParser.T__1);
-	                    this.state = 1996;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(114);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 33:
 	                    localctx = new CLEAN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 1997;
 	                    if (!( this.precpred(this._ctx, 311))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 311)");
 	                    }
-	                    this.state = 1998;
-	                    this.match(mathParser.T__0);
-	                    this.state = 1999;
-	                    this.match(mathParser.CLEAN);
-	                    this.state = 2000;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2001;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(115);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 34:
 	                    localctx = new CODE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2002;
 	                    if (!( this.precpred(this._ctx, 310))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 310)");
 	                    }
-	                    this.state = 2003;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2004;
-	                    this.match(mathParser.CODE);
-	                    this.state = 2005;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2006;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(116);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 35:
 	                    localctx = new CONCATENATE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2007;
 	                    if (!( this.precpred(this._ctx, 309))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 309)");
 	                    }
-	                    this.state = 2008;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2009;
-	                    this.match(mathParser.CONCATENATE);
-	                    this.state = 2010;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(117);
+	                    this.match(2);
 	                    this.state = 2019;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6716,8 +5732,7 @@ export default class mathParser extends antlr4.Parser {
 	                        this._errHandler.sync(this);
 	                        _la = this._input.LA(1);
 	                        while(_la===4) {
-	                            this.state = 2012;
-	                            this.match(mathParser.T__3);
+	                            this.match(4);
 	                            this.state = 2013;
 	                            this.expr(0);
 	                            this.state = 2018;
@@ -6726,71 +5741,58 @@ export default class mathParser extends antlr4.Parser {
 	                        }
 	                    }
 
-	                    this.state = 2021;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 36:
 	                    localctx = new EXACT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2022;
 	                    if (!( this.precpred(this._ctx, 308))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 308)");
 	                    }
-	                    this.state = 2023;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2024;
-	                    this.match(mathParser.EXACT);
-	                    this.state = 2025;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(118);
+	                    this.match(2);
 	                    this.state = 2026;
 	                    this.expr(0);
-	                    this.state = 2027;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 37:
 	                    localctx = new FIND_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2029;
 	                    if (!( this.precpred(this._ctx, 307))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 307)");
 	                    }
-	                    this.state = 2030;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2031;
-	                    this.match(mathParser.FIND);
-	                    this.state = 2032;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(119);
+	                    this.match(2);
 	                    this.state = 2033;
 	                    this.expr(0);
 	                    this.state = 2036;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2034;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2035;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2038;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 38:
 	                    localctx = new LEFT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2040;
 	                    if (!( this.precpred(this._ctx, 306))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 306)");
 	                    }
-	                    this.state = 2041;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2042;
-	                    this.match(mathParser.LEFT);
-	                    this.state = 2043;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(121);
+	                    this.match(2);
 	                    this.state = 2045;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6799,149 +5801,118 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2047;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 39:
 	                    localctx = new LEN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2048;
 	                    if (!( this.precpred(this._ctx, 305))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 305)");
 	                    }
-	                    this.state = 2049;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2050;
-	                    this.match(mathParser.LEN);
-	                    this.state = 2051;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2052;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(122);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 40:
 	                    localctx = new LOWER_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2053;
 	                    if (!( this.precpred(this._ctx, 304))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 304)");
 	                    }
-	                    this.state = 2054;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2055;
-	                    this.match(mathParser.LOWER);
-	                    this.state = 2056;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2057;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(123);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 41:
 	                    localctx = new MID_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2058;
 	                    if (!( this.precpred(this._ctx, 303))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 303)");
 	                    }
-	                    this.state = 2059;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2060;
-	                    this.match(mathParser.MID);
-	                    this.state = 2061;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(124);
+	                    this.match(2);
 	                    this.state = 2062;
 	                    this.expr(0);
-	                    this.state = 2063;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 2064;
 	                    this.expr(0);
-	                    this.state = 2065;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 42:
 	                    localctx = new PROPER_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2067;
 	                    if (!( this.precpred(this._ctx, 302))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 302)");
 	                    }
-	                    this.state = 2068;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2069;
-	                    this.match(mathParser.PROPER);
-	                    this.state = 2070;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2071;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(125);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 43:
 	                    localctx = new REPLACE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2072;
 	                    if (!( this.precpred(this._ctx, 301))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 301)");
 	                    }
-	                    this.state = 2073;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2074;
-	                    this.match(mathParser.REPLACE);
-	                    this.state = 2075;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(126);
+	                    this.match(2);
 	                    this.state = 2076;
 	                    this.expr(0);
-	                    this.state = 2077;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 2078;
 	                    this.expr(0);
 	                    this.state = 2081;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2079;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2080;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2083;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 44:
 	                    localctx = new REPT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2085;
 	                    if (!( this.precpred(this._ctx, 300))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 300)");
 	                    }
-	                    this.state = 2086;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2087;
-	                    this.match(mathParser.REPT);
-	                    this.state = 2088;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(127);
+	                    this.match(2);
 	                    this.state = 2089;
 	                    this.expr(0);
-	                    this.state = 2090;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 45:
 	                    localctx = new RIGHT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2092;
 	                    if (!( this.precpred(this._ctx, 299))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 299)");
 	                    }
-	                    this.state = 2093;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2094;
-	                    this.match(mathParser.RIGHT);
-	                    this.state = 2095;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(128);
+	                    this.match(2);
 	                    this.state = 2097;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -6950,189 +5921,150 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2099;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 46:
 	                    localctx = new RMB_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2100;
 	                    if (!( this.precpred(this._ctx, 298))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 298)");
 	                    }
-	                    this.state = 2101;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2102;
-	                    this.match(mathParser.RMB);
-	                    this.state = 2103;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2104;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(129);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 47:
 	                    localctx = new SEARCH_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2105;
 	                    if (!( this.precpred(this._ctx, 297))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 297)");
 	                    }
-	                    this.state = 2106;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2107;
-	                    this.match(mathParser.SEARCH);
-	                    this.state = 2108;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(130);
+	                    this.match(2);
 	                    this.state = 2109;
 	                    this.expr(0);
 	                    this.state = 2112;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2110;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2111;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2114;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 48:
 	                    localctx = new SUBSTITUTE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2116;
 	                    if (!( this.precpred(this._ctx, 296))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 296)");
 	                    }
-	                    this.state = 2117;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2118;
-	                    this.match(mathParser.SUBSTITUTE);
-	                    this.state = 2119;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(131);
+	                    this.match(2);
 	                    this.state = 2120;
 	                    this.expr(0);
-	                    this.state = 2121;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 2122;
 	                    this.expr(0);
 	                    this.state = 2125;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2123;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2124;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2127;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 49:
 	                    localctx = new T_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2129;
 	                    if (!( this.precpred(this._ctx, 295))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 295)");
 	                    }
-	                    this.state = 2130;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2131;
-	                    this.match(mathParser.T);
-	                    this.state = 2132;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2133;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(132);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 50:
 	                    localctx = new TEXT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2134;
 	                    if (!( this.precpred(this._ctx, 294))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 294)");
 	                    }
-	                    this.state = 2135;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2136;
-	                    this.match(mathParser.TEXT);
-	                    this.state = 2137;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(133);
+	                    this.match(2);
 	                    this.state = 2138;
 	                    this.expr(0);
-	                    this.state = 2139;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 51:
 	                    localctx = new TRIM_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2141;
 	                    if (!( this.precpred(this._ctx, 293))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 293)");
 	                    }
-	                    this.state = 2142;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2143;
-	                    this.match(mathParser.TRIM);
-	                    this.state = 2144;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2145;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(134);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 52:
 	                    localctx = new UPPER_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2146;
 	                    if (!( this.precpred(this._ctx, 292))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 292)");
 	                    }
-	                    this.state = 2147;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2148;
-	                    this.match(mathParser.UPPER);
-	                    this.state = 2149;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2150;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(135);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 53:
 	                    localctx = new VALUE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2151;
 	                    if (!( this.precpred(this._ctx, 291))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 291)");
 	                    }
-	                    this.state = 2152;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2153;
-	                    this.match(mathParser.VALUE);
-	                    this.state = 2154;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2155;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(136);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 54:
 	                    localctx = new DATEVALUE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2156;
 	                    if (!( this.precpred(this._ctx, 290))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 290)");
 	                    }
-	                    this.state = 2157;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2158;
-	                    this.match(mathParser.DATEVALUE);
-	                    this.state = 2159;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(137);
+	                    this.match(2);
 	                    this.state = 2161;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7141,246 +6073,198 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2163;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 55:
 	                    localctx = new TIMEVALUE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2164;
 	                    if (!( this.precpred(this._ctx, 289))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 289)");
 	                    }
-	                    this.state = 2165;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2166;
-	                    this.match(mathParser.TIMEVALUE);
-	                    this.state = 2167;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2168;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(138);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 56:
 	                    localctx = new YEAR_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2169;
 	                    if (!( this.precpred(this._ctx, 288))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 288)");
 	                    }
-	                    this.state = 2170;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2171;
-	                    this.match(mathParser.YEAR);
+	                    this.match(1);
+	                    this.match(143);
 	                    this.state = 2174;
 	                    this._errHandler.sync(this);
 	                    var la_ = this._interp.adaptivePredict(this._input,125,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 2172;
-	                        this.match(mathParser.T__1);
-	                        this.state = 2173;
-	                        this.match(mathParser.T__2);
+	                        this.match(2);
+	                        this.match(3);
 
 	                    }
 	                    break;
 
 	                case 57:
 	                    localctx = new MONTH_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2176;
 	                    if (!( this.precpred(this._ctx, 287))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 287)");
 	                    }
-	                    this.state = 2177;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2178;
-	                    this.match(mathParser.MONTH);
+	                    this.match(1);
+	                    this.match(144);
 	                    this.state = 2181;
 	                    this._errHandler.sync(this);
 	                    var la_ = this._interp.adaptivePredict(this._input,126,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 2179;
-	                        this.match(mathParser.T__1);
-	                        this.state = 2180;
-	                        this.match(mathParser.T__2);
+	                        this.match(2);
+	                        this.match(3);
 
 	                    }
 	                    break;
 
 	                case 58:
 	                    localctx = new DAY_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2183;
 	                    if (!( this.precpred(this._ctx, 286))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 286)");
 	                    }
-	                    this.state = 2184;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2185;
-	                    this.match(mathParser.DAY);
+	                    this.match(1);
+	                    this.match(145);
 	                    this.state = 2188;
 	                    this._errHandler.sync(this);
 	                    var la_ = this._interp.adaptivePredict(this._input,127,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 2186;
-	                        this.match(mathParser.T__1);
-	                        this.state = 2187;
-	                        this.match(mathParser.T__2);
+	                        this.match(2);
+	                        this.match(3);
 
 	                    }
 	                    break;
 
 	                case 59:
 	                    localctx = new HOUR_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2190;
 	                    if (!( this.precpred(this._ctx, 285))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 285)");
 	                    }
-	                    this.state = 2191;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2192;
-	                    this.match(mathParser.HOUR);
+	                    this.match(1);
+	                    this.match(146);
 	                    this.state = 2195;
 	                    this._errHandler.sync(this);
 	                    var la_ = this._interp.adaptivePredict(this._input,128,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 2193;
-	                        this.match(mathParser.T__1);
-	                        this.state = 2194;
-	                        this.match(mathParser.T__2);
+	                        this.match(2);
+	                        this.match(3);
 
 	                    }
 	                    break;
 
 	                case 60:
 	                    localctx = new MINUTE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2197;
 	                    if (!( this.precpred(this._ctx, 284))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 284)");
 	                    }
-	                    this.state = 2198;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2199;
-	                    this.match(mathParser.MINUTE);
+	                    this.match(1);
+	                    this.match(147);
 	                    this.state = 2202;
 	                    this._errHandler.sync(this);
 	                    var la_ = this._interp.adaptivePredict(this._input,129,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 2200;
-	                        this.match(mathParser.T__1);
-	                        this.state = 2201;
-	                        this.match(mathParser.T__2);
+	                        this.match(2);
+	                        this.match(3);
 
 	                    }
 	                    break;
 
 	                case 61:
 	                    localctx = new SECOND_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2204;
 	                    if (!( this.precpred(this._ctx, 283))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 283)");
 	                    }
-	                    this.state = 2205;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2206;
-	                    this.match(mathParser.SECOND);
+	                    this.match(1);
+	                    this.match(148);
 	                    this.state = 2209;
 	                    this._errHandler.sync(this);
 	                    var la_ = this._interp.adaptivePredict(this._input,130,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 2207;
-	                        this.match(mathParser.T__1);
-	                        this.state = 2208;
-	                        this.match(mathParser.T__2);
+	                        this.match(2);
+	                        this.match(3);
 
 	                    }
 	                    break;
 
 	                case 62:
 	                    localctx = new URLENCODE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2211;
 	                    if (!( this.precpred(this._ctx, 282))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 282)");
 	                    }
-	                    this.state = 2212;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2213;
-	                    this.match(mathParser.URLENCODE);
-	                    this.state = 2214;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2215;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(205);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 63:
 	                    localctx = new URLDECODE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2216;
 	                    if (!( this.precpred(this._ctx, 281))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 281)");
 	                    }
-	                    this.state = 2217;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2218;
-	                    this.match(mathParser.URLDECODE);
-	                    this.state = 2219;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2220;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(206);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 64:
 	                    localctx = new HTMLENCODE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2221;
 	                    if (!( this.precpred(this._ctx, 280))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 280)");
 	                    }
-	                    this.state = 2222;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2223;
-	                    this.match(mathParser.HTMLENCODE);
-	                    this.state = 2224;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2225;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(207);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 65:
 	                    localctx = new HTMLDECODE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2226;
 	                    if (!( this.precpred(this._ctx, 279))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 279)");
 	                    }
-	                    this.state = 2227;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2228;
-	                    this.match(mathParser.HTMLDECODE);
-	                    this.state = 2229;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2230;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(208);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 66:
 	                    localctx = new BASE64TOTEXT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2231;
 	                    if (!( this.precpred(this._ctx, 278))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 278)");
 	                    }
-	                    this.state = 2232;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2233;
-	                    this.match(mathParser.BASE64TOTEXT);
-	                    this.state = 2234;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(209);
+	                    this.match(2);
 	                    this.state = 2236;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7389,23 +6273,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2238;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 67:
 	                    localctx = new BASE64URLTOTEXT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2239;
 	                    if (!( this.precpred(this._ctx, 277))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 277)");
 	                    }
-	                    this.state = 2240;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2241;
-	                    this.match(mathParser.BASE64URLTOTEXT);
-	                    this.state = 2242;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(210);
+	                    this.match(2);
 	                    this.state = 2244;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7414,23 +6294,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2246;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 68:
 	                    localctx = new TEXTTOBASE64_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2247;
 	                    if (!( this.precpred(this._ctx, 276))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 276)");
 	                    }
-	                    this.state = 2248;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2249;
-	                    this.match(mathParser.TEXTTOBASE64);
-	                    this.state = 2250;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(211);
+	                    this.match(2);
 	                    this.state = 2252;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7439,23 +6315,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2254;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 69:
 	                    localctx = new TEXTTOBASE64URL_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2255;
 	                    if (!( this.precpred(this._ctx, 275))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 275)");
 	                    }
-	                    this.state = 2256;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2257;
-	                    this.match(mathParser.TEXTTOBASE64URL);
-	                    this.state = 2258;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(212);
+	                    this.match(2);
 	                    this.state = 2260;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7464,84 +6336,67 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2262;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 70:
 	                    localctx = new REGEX_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2263;
 	                    if (!( this.precpred(this._ctx, 274))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 274)");
 	                    }
-	                    this.state = 2264;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2265;
-	                    this.match(mathParser.REGEX);
-	                    this.state = 2266;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(213);
+	                    this.match(2);
 	                    this.state = 2267;
 	                    this.expr(0);
-	                    this.state = 2268;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 71:
 	                    localctx = new REGEXREPALCE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2270;
 	                    if (!( this.precpred(this._ctx, 273))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 273)");
 	                    }
-	                    this.state = 2271;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2272;
-	                    this.match(mathParser.REGEXREPALCE);
-	                    this.state = 2273;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(214);
+	                    this.match(2);
 	                    this.state = 2274;
 	                    this.expr(0);
-	                    this.state = 2275;
-	                    this.match(mathParser.T__3);
+	                    this.match(4);
 	                    this.state = 2276;
 	                    this.expr(0);
-	                    this.state = 2277;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 72:
 	                    localctx = new ISREGEX_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2279;
 	                    if (!( this.precpred(this._ctx, 272))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 272)");
 	                    }
-	                    this.state = 2280;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2281;
-	                    this.match(mathParser.ISREGEX);
-	                    this.state = 2282;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(215);
+	                    this.match(2);
 	                    this.state = 2283;
 	                    this.expr(0);
-	                    this.state = 2284;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 73:
 	                    localctx = new MD5_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2286;
 	                    if (!( this.precpred(this._ctx, 271))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 271)");
 	                    }
-	                    this.state = 2287;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2288;
-	                    this.match(mathParser.MD5);
-	                    this.state = 2289;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(217);
+	                    this.match(2);
 	                    this.state = 2291;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7550,23 +6405,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2293;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 74:
 	                    localctx = new SHA1_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2294;
 	                    if (!( this.precpred(this._ctx, 270))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 270)");
 	                    }
-	                    this.state = 2295;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2296;
-	                    this.match(mathParser.SHA1);
-	                    this.state = 2297;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(218);
+	                    this.match(2);
 	                    this.state = 2299;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7575,23 +6426,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2301;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 75:
 	                    localctx = new SHA256_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2302;
 	                    if (!( this.precpred(this._ctx, 269))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 269)");
 	                    }
-	                    this.state = 2303;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2304;
-	                    this.match(mathParser.SHA256);
-	                    this.state = 2305;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(219);
+	                    this.match(2);
 	                    this.state = 2307;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7600,23 +6447,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2309;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 76:
 	                    localctx = new SHA512_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2310;
 	                    if (!( this.precpred(this._ctx, 268))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 268)");
 	                    }
-	                    this.state = 2311;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2312;
-	                    this.match(mathParser.SHA512);
-	                    this.state = 2313;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(220);
+	                    this.match(2);
 	                    this.state = 2315;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7625,139 +6468,115 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2317;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 77:
 	                    localctx = new HMACMD5_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2318;
 	                    if (!( this.precpred(this._ctx, 267))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 267)");
 	                    }
-	                    this.state = 2319;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2320;
-	                    this.match(mathParser.HMACMD5);
-	                    this.state = 2321;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(221);
+	                    this.match(2);
 	                    this.state = 2322;
 	                    this.expr(0);
 	                    this.state = 2325;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2323;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2324;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2327;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 78:
 	                    localctx = new HMACSHA1_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2329;
 	                    if (!( this.precpred(this._ctx, 266))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 266)");
 	                    }
-	                    this.state = 2330;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2331;
-	                    this.match(mathParser.HMACSHA1);
-	                    this.state = 2332;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(222);
+	                    this.match(2);
 	                    this.state = 2333;
 	                    this.expr(0);
 	                    this.state = 2336;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2334;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2335;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2338;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 79:
 	                    localctx = new HMACSHA256_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2340;
 	                    if (!( this.precpred(this._ctx, 265))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 265)");
 	                    }
-	                    this.state = 2341;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2342;
-	                    this.match(mathParser.HMACSHA256);
-	                    this.state = 2343;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(223);
+	                    this.match(2);
 	                    this.state = 2344;
 	                    this.expr(0);
 	                    this.state = 2347;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2345;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2346;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2349;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 80:
 	                    localctx = new HMACSHA512_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2351;
 	                    if (!( this.precpred(this._ctx, 264))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 264)");
 	                    }
-	                    this.state = 2352;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2353;
-	                    this.match(mathParser.HMACSHA512);
-	                    this.state = 2354;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(224);
+	                    this.match(2);
 	                    this.state = 2355;
 	                    this.expr(0);
 	                    this.state = 2358;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2356;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2357;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2360;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 81:
 	                    localctx = new TRIMSTART_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2362;
 	                    if (!( this.precpred(this._ctx, 263))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 263)");
 	                    }
-	                    this.state = 2363;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2364;
-	                    this.match(mathParser.TRIMSTART);
-	                    this.state = 2365;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(225);
+	                    this.match(2);
 	                    this.state = 2367;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7766,23 +6585,19 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2369;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 82:
 	                    localctx = new TRIMEND_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2370;
 	                    if (!( this.precpred(this._ctx, 262))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 262)");
 	                    }
-	                    this.state = 2371;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2372;
-	                    this.match(mathParser.TRIMEND);
-	                    this.state = 2373;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(226);
+	                    this.match(2);
 	                    this.state = 2375;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -7791,347 +6606,285 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2377;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 83:
 	                    localctx = new INDEXOF_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2378;
 	                    if (!( this.precpred(this._ctx, 261))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 261)");
 	                    }
-	                    this.state = 2379;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2380;
-	                    this.match(mathParser.INDEXOF);
-	                    this.state = 2381;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(227);
+	                    this.match(2);
 	                    this.state = 2382;
 	                    this.expr(0);
 	                    this.state = 2389;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2383;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2384;
 	                        this.expr(0);
 	                        this.state = 2387;
 	                        this._errHandler.sync(this);
 	                        _la = this._input.LA(1);
 	                        if(_la===4) {
-	                            this.state = 2385;
-	                            this.match(mathParser.T__3);
+	                            this.match(4);
 	                            this.state = 2386;
 	                            this.expr(0);
 	                        }
 
 	                    }
 
-	                    this.state = 2391;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 84:
 	                    localctx = new LASTINDEXOF_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2393;
 	                    if (!( this.precpred(this._ctx, 260))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 260)");
 	                    }
-	                    this.state = 2394;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2395;
-	                    this.match(mathParser.LASTINDEXOF);
-	                    this.state = 2396;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(228);
+	                    this.match(2);
 	                    this.state = 2397;
 	                    this.expr(0);
 	                    this.state = 2404;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2398;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2399;
 	                        this.expr(0);
 	                        this.state = 2402;
 	                        this._errHandler.sync(this);
 	                        _la = this._input.LA(1);
 	                        if(_la===4) {
-	                            this.state = 2400;
-	                            this.match(mathParser.T__3);
+	                            this.match(4);
 	                            this.state = 2401;
 	                            this.expr(0);
 	                        }
 
 	                    }
 
-	                    this.state = 2406;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 85:
 	                    localctx = new SPLIT_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2408;
 	                    if (!( this.precpred(this._ctx, 259))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 259)");
 	                    }
-	                    this.state = 2409;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2410;
-	                    this.match(mathParser.SPLIT);
-	                    this.state = 2411;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(229);
+	                    this.match(2);
 	                    this.state = 2412;
 	                    this.expr(0);
-	                    this.state = 2413;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 86:
 	                    localctx = new JOIN_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2415;
 	                    if (!( this.precpred(this._ctx, 258))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 258)");
 	                    }
-	                    this.state = 2416;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2417;
-	                    this.match(mathParser.JOIN);
-	                    this.state = 2418;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(230);
+	                    this.match(2);
 	                    this.state = 2419;
 	                    this.expr(0);
 	                    this.state = 2424;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    while(_la===4) {
-	                        this.state = 2420;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2421;
 	                        this.expr(0);
 	                        this.state = 2426;
 	                        this._errHandler.sync(this);
 	                        _la = this._input.LA(1);
 	                    }
-	                    this.state = 2427;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 87:
 	                    localctx = new SUBSTRING_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2429;
 	                    if (!( this.precpred(this._ctx, 257))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 257)");
 	                    }
-	                    this.state = 2430;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2431;
-	                    this.match(mathParser.SUBSTRING);
-	                    this.state = 2432;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(231);
+	                    this.match(2);
 	                    this.state = 2433;
 	                    this.expr(0);
 	                    this.state = 2436;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2434;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2435;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2438;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 88:
 	                    localctx = new STARTSWITH_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2440;
 	                    if (!( this.precpred(this._ctx, 256))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 256)");
 	                    }
-	                    this.state = 2441;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2442;
-	                    this.match(mathParser.STARTSWITH);
-	                    this.state = 2443;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(232);
+	                    this.match(2);
 	                    this.state = 2444;
 	                    this.expr(0);
 	                    this.state = 2447;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2445;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2446;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2449;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 89:
 	                    localctx = new ENDSWITH_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2451;
 	                    if (!( this.precpred(this._ctx, 255))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 255)");
 	                    }
-	                    this.state = 2452;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2453;
-	                    this.match(mathParser.ENDSWITH);
-	                    this.state = 2454;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(233);
+	                    this.match(2);
 	                    this.state = 2455;
 	                    this.expr(0);
 	                    this.state = 2458;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2456;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2457;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2460;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 90:
 	                    localctx = new ISNULLOREMPTY_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2462;
 	                    if (!( this.precpred(this._ctx, 254))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 254)");
 	                    }
-	                    this.state = 2463;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2464;
-	                    this.match(mathParser.ISNULLOREMPTY);
-	                    this.state = 2465;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2466;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(234);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 91:
 	                    localctx = new ISNULLORWHITESPACE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2467;
 	                    if (!( this.precpred(this._ctx, 253))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 253)");
 	                    }
-	                    this.state = 2468;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2469;
-	                    this.match(mathParser.ISNULLORWHITESPACE);
-	                    this.state = 2470;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2471;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(235);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 92:
 	                    localctx = new REMOVESTART_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2472;
 	                    if (!( this.precpred(this._ctx, 252))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 252)");
 	                    }
-	                    this.state = 2473;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2474;
-	                    this.match(mathParser.REMOVESTART);
-	                    this.state = 2475;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(236);
+	                    this.match(2);
 	                    this.state = 2476;
 	                    this.expr(0);
 	                    this.state = 2479;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2477;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2478;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2481;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 93:
 	                    localctx = new REMOVEEND_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2483;
 	                    if (!( this.precpred(this._ctx, 251))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 251)");
 	                    }
-	                    this.state = 2484;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2485;
-	                    this.match(mathParser.REMOVEEND);
-	                    this.state = 2486;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(237);
+	                    this.match(2);
 	                    this.state = 2487;
 	                    this.expr(0);
 	                    this.state = 2490;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
 	                    if(_la===4) {
-	                        this.state = 2488;
-	                        this.match(mathParser.T__3);
+	                        this.match(4);
 	                        this.state = 2489;
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2492;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 94:
 	                    localctx = new JSON_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2494;
 	                    if (!( this.precpred(this._ctx, 250))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 250)");
 	                    }
-	                    this.state = 2495;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2496;
-	                    this.match(mathParser.JSON);
-	                    this.state = 2497;
-	                    this.match(mathParser.T__1);
-	                    this.state = 2498;
-	                    this.match(mathParser.T__2);
+	                    this.match(1);
+	                    this.match(238);
+	                    this.match(2);
+	                    this.match(3);
 	                    break;
 
 	                case 95:
 	                    localctx = new DiyFunction_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2499;
 	                    if (!( this.precpred(this._ctx, 249))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 249)");
 	                    }
-	                    this.state = 2500;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2501;
-	                    this.match(mathParser.PARAMETER);
-	                    this.state = 2502;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(253);
+	                    this.match(2);
 	                    this.state = 2511;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -8142,8 +6895,7 @@ export default class mathParser extends antlr4.Parser {
 	                        this._errHandler.sync(this);
 	                        _la = this._input.LA(1);
 	                        while(_la===4) {
-	                            this.state = 2504;
-	                            this.match(mathParser.T__3);
+	                            this.match(4);
 	                            this.state = 2505;
 	                            this.expr(0);
 	                            this.state = 2510;
@@ -8152,137 +6904,109 @@ export default class mathParser extends antlr4.Parser {
 	                        }
 	                    }
 
-	                    this.state = 2513;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 96:
 	                    localctx = new ADDYEARS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2514;
 	                    if (!( this.precpred(this._ctx, 248))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 248)");
 	                    }
-	                    this.state = 2515;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2516;
-	                    this.match(mathParser.ADDYEARS);
-	                    this.state = 2517;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(243);
+	                    this.match(2);
 	                    this.state = 2518;
 	                    this.expr(0);
-	                    this.state = 2519;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 97:
 	                    localctx = new ADDMONTHS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2521;
 	                    if (!( this.precpred(this._ctx, 247))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 247)");
 	                    }
-	                    this.state = 2522;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2523;
-	                    this.match(mathParser.ADDMONTHS);
-	                    this.state = 2524;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(244);
+	                    this.match(2);
 	                    this.state = 2525;
 	                    this.expr(0);
-	                    this.state = 2526;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 98:
 	                    localctx = new ADDDAYS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2528;
 	                    if (!( this.precpred(this._ctx, 246))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 246)");
 	                    }
-	                    this.state = 2529;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2530;
-	                    this.match(mathParser.ADDDAYS);
-	                    this.state = 2531;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(245);
+	                    this.match(2);
 	                    this.state = 2532;
 	                    this.expr(0);
-	                    this.state = 2533;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 99:
 	                    localctx = new ADDHOURS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2535;
 	                    if (!( this.precpred(this._ctx, 245))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 245)");
 	                    }
-	                    this.state = 2536;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2537;
-	                    this.match(mathParser.ADDHOURS);
-	                    this.state = 2538;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(246);
+	                    this.match(2);
 	                    this.state = 2539;
 	                    this.expr(0);
-	                    this.state = 2540;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 100:
 	                    localctx = new ADDMINUTES_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2542;
 	                    if (!( this.precpred(this._ctx, 244))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 244)");
 	                    }
-	                    this.state = 2543;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2544;
-	                    this.match(mathParser.ADDMINUTES);
-	                    this.state = 2545;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(247);
+	                    this.match(2);
 	                    this.state = 2546;
 	                    this.expr(0);
-	                    this.state = 2547;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 101:
 	                    localctx = new ADDSECONDS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2549;
 	                    if (!( this.precpred(this._ctx, 243))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 243)");
 	                    }
-	                    this.state = 2550;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2551;
-	                    this.match(mathParser.ADDSECONDS);
-	                    this.state = 2552;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(248);
+	                    this.match(2);
 	                    this.state = 2553;
 	                    this.expr(0);
-	                    this.state = 2554;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 102:
 	                    localctx = new TIMESTAMP_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2556;
 	                    if (!( this.precpred(this._ctx, 242))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 242)");
 	                    }
-	                    this.state = 2557;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2558;
-	                    this.match(mathParser.TIMESTAMP);
-	                    this.state = 2559;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(249);
+	                    this.match(2);
 	                    this.state = 2561;
 	                    this._errHandler.sync(this);
 	                    _la = this._input.LA(1);
@@ -8291,100 +7015,84 @@ export default class mathParser extends antlr4.Parser {
 	                        this.expr(0);
 	                    }
 
-	                    this.state = 2563;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 103:
 	                    localctx = new HAS_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2564;
 	                    if (!( this.precpred(this._ctx, 241))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 241)");
 	                    }
-	                    this.state = 2565;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2566;
-	                    this.match(mathParser.HAS);
-	                    this.state = 2567;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(250);
+	                    this.match(2);
 	                    this.state = 2568;
 	                    this.expr(0);
-	                    this.state = 2569;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 104:
 	                    localctx = new HASVALUE_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2571;
 	                    if (!( this.precpred(this._ctx, 240))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 240)");
 	                    }
-	                    this.state = 2572;
-	                    this.match(mathParser.T__0);
-	                    this.state = 2573;
-	                    this.match(mathParser.HASVALUE);
-	                    this.state = 2574;
-	                    this.match(mathParser.T__1);
+	                    this.match(1);
+	                    this.match(251);
+	                    this.match(2);
 	                    this.state = 2575;
 	                    this.expr(0);
-	                    this.state = 2576;
-	                    this.match(mathParser.T__2);
+	                    this.match(3);
 	                    break;
 
 	                case 105:
 	                    localctx = new GetJsonValue_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2578;
 	                    if (!( this.precpred(this._ctx, 239))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 239)");
 	                    }
-	                    this.state = 2579;
-	                    this.match(mathParser.T__4);
-	                    this.state = 2580;
-	                    this.match(mathParser.PARAMETER);
-	                    this.state = 2581;
-	                    this.match(mathParser.T__5);
+	                    this.match(5);
+	                    this.match(253);
+	                    this.match(6);
 	                    break;
 
 	                case 106:
 	                    localctx = new GetJsonValue_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2582;
 	                    if (!( this.precpred(this._ctx, 238))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 238)");
 	                    }
-	                    this.state = 2583;
-	                    this.match(mathParser.T__4);
+	                    this.match(5);
 	                    this.state = 2584;
 	                    this.expr(0);
-	                    this.state = 2585;
-	                    this.match(mathParser.T__5);
+	                    this.match(6);
 	                    break;
 
 	                case 107:
 	                    localctx = new GetJsonValue_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2587;
 	                    if (!( this.precpred(this._ctx, 237))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 237)");
 	                    }
-	                    this.state = 2588;
-	                    this.match(mathParser.T__0);
+	                    this.match(1);
 	                    this.state = 2589;
 	                    this.parameter2();
 	                    break;
 
 	                case 108:
 	                    localctx = new Percentage_funContext(this, new ExprContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, mathParser.RULE_expr);
+	                    this.pushNewRecursionContext(localctx, _startState, 1);
 	                    this.state = 2590;
 	                    if (!( this.precpred(this._ctx, 234))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 234)");
 	                    }
-	                    this.state = 2591;
-	                    this.match(mathParser.T__7);
+	                    this.match(8);
 	                    break;
 
 	                } 
@@ -8412,7 +7120,7 @@ export default class mathParser extends antlr4.Parser {
 
 	num() {
 	    let localctx = new NumContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 4, mathParser.RULE_num);
+	    this.enterRule(localctx, 4, 2);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -8420,12 +7128,10 @@ export default class mathParser extends antlr4.Parser {
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        if(_la===29) {
-	            this.state = 2597;
-	            this.match(mathParser.SUB);
+	            this.match(29);
 	        }
 
-	        this.state = 2600;
-	        this.match(mathParser.NUM);
+	        this.match(30);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -8444,7 +7150,7 @@ export default class mathParser extends antlr4.Parser {
 
 	unit() {
 	    let localctx = new UnitContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 6, mathParser.RULE_unit);
+	    this.enterRule(localctx, 6, 3);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -8475,19 +7181,17 @@ export default class mathParser extends antlr4.Parser {
 
 	arrayJson() {
 	    let localctx = new ArrayJsonContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 8, mathParser.RULE_arrayJson);
+	    this.enterRule(localctx, 8, 4);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 2607;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
 	        case 30:
-	            this.state = 2604;
-	            this.match(mathParser.NUM);
+	            this.match(30);
 	            break;
 	        case 31:
-	            this.state = 2605;
-	            this.match(mathParser.STRING);
+	            this.match(31);
 	            break;
 	        case 32:
 	        case 33:
@@ -8716,8 +7420,7 @@ export default class mathParser extends antlr4.Parser {
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
 	        }
-	        this.state = 2609;
-	        this.match(mathParser.T__25);
+	        this.match(26);
 	        this.state = 2610;
 	        this.expr(0);
 	    } catch (re) {
@@ -8738,7 +7441,7 @@ export default class mathParser extends antlr4.Parser {
 
 	parameter2() {
 	    let localctx = new Parameter2Context(this, this._ctx, this.state);
-	    this.enterRule(localctx, 10, mathParser.RULE_parameter2);
+	    this.enterRule(localctx, 10, 5);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -8768,270 +7471,270 @@ export default class mathParser extends antlr4.Parser {
 
 }
 
-mathParser.EOF = antlr4.Token.EOF;
-mathParser.T__0 = 1;
-mathParser.T__1 = 2;
-mathParser.T__2 = 3;
-mathParser.T__3 = 4;
-mathParser.T__4 = 5;
-mathParser.T__5 = 6;
-mathParser.T__6 = 7;
-mathParser.T__7 = 8;
-mathParser.T__8 = 9;
-mathParser.T__9 = 10;
-mathParser.T__10 = 11;
-mathParser.T__11 = 12;
-mathParser.T__12 = 13;
-mathParser.T__13 = 14;
-mathParser.T__14 = 15;
-mathParser.T__15 = 16;
-mathParser.T__16 = 17;
-mathParser.T__17 = 18;
-mathParser.T__18 = 19;
-mathParser.T__19 = 20;
-mathParser.T__20 = 21;
-mathParser.T__21 = 22;
-mathParser.T__22 = 23;
-mathParser.T__23 = 24;
-mathParser.T__24 = 25;
-mathParser.T__25 = 26;
-mathParser.T__26 = 27;
-mathParser.T__27 = 28;
-mathParser.SUB = 29;
-mathParser.NUM = 30;
-mathParser.STRING = 31;
-mathParser.NULL = 32;
-mathParser.ERROR = 33;
-mathParser.UNIT = 34;
-mathParser.IF = 35;
-mathParser.IFERROR = 36;
-mathParser.ISNUMBER = 37;
-mathParser.ISTEXT = 38;
-mathParser.ISERROR = 39;
-mathParser.ISNONTEXT = 40;
-mathParser.ISLOGICAL = 41;
-mathParser.ISEVEN = 42;
-mathParser.ISODD = 43;
-mathParser.ISNULL = 44;
-mathParser.ISNULLORERROR = 45;
-mathParser.AND = 46;
-mathParser.OR = 47;
-mathParser.NOT = 48;
-mathParser.TRUE = 49;
-mathParser.FALSE = 50;
-mathParser.E = 51;
-mathParser.PI = 52;
-mathParser.DEC2BIN = 53;
-mathParser.DEC2HEX = 54;
-mathParser.DEC2OCT = 55;
-mathParser.HEX2BIN = 56;
-mathParser.HEX2DEC = 57;
-mathParser.HEX2OCT = 58;
-mathParser.OCT2BIN = 59;
-mathParser.OCT2DEC = 60;
-mathParser.OCT2HEX = 61;
-mathParser.BIN2OCT = 62;
-mathParser.BIN2DEC = 63;
-mathParser.BIN2HEX = 64;
-mathParser.ABS = 65;
-mathParser.QUOTIENT = 66;
-mathParser.MOD = 67;
-mathParser.SIGN = 68;
-mathParser.SQRT = 69;
-mathParser.TRUNC = 70;
-mathParser.INT = 71;
-mathParser.GCD = 72;
-mathParser.LCM = 73;
-mathParser.COMBIN = 74;
-mathParser.PERMUT = 75;
-mathParser.DEGREES = 76;
-mathParser.RADIANS = 77;
-mathParser.COS = 78;
-mathParser.COSH = 79;
-mathParser.SIN = 80;
-mathParser.SINH = 81;
-mathParser.TAN = 82;
-mathParser.TANH = 83;
-mathParser.ACOS = 84;
-mathParser.ACOSH = 85;
-mathParser.ASIN = 86;
-mathParser.ASINH = 87;
-mathParser.ATAN = 88;
-mathParser.ATANH = 89;
-mathParser.ATAN2 = 90;
-mathParser.ROUND = 91;
-mathParser.ROUNDDOWN = 92;
-mathParser.ROUNDUP = 93;
-mathParser.CEILING = 94;
-mathParser.FLOOR = 95;
-mathParser.EVEN = 96;
-mathParser.ODD = 97;
-mathParser.MROUND = 98;
-mathParser.RAND = 99;
-mathParser.RANDBETWEEN = 100;
-mathParser.FACT = 101;
-mathParser.FACTDOUBLE = 102;
-mathParser.POWER = 103;
-mathParser.EXP = 104;
-mathParser.LN = 105;
-mathParser.LOG = 106;
-mathParser.LOG10 = 107;
-mathParser.MULTINOMIAL = 108;
-mathParser.PRODUCT = 109;
-mathParser.SQRTPI = 110;
-mathParser.SUMSQ = 111;
-mathParser.ASC = 112;
-mathParser.JIS = 113;
-mathParser.CHAR = 114;
-mathParser.CLEAN = 115;
-mathParser.CODE = 116;
-mathParser.CONCATENATE = 117;
-mathParser.EXACT = 118;
-mathParser.FIND = 119;
-mathParser.FIXED = 120;
-mathParser.LEFT = 121;
-mathParser.LEN = 122;
-mathParser.LOWER = 123;
-mathParser.MID = 124;
-mathParser.PROPER = 125;
-mathParser.REPLACE = 126;
-mathParser.REPT = 127;
-mathParser.RIGHT = 128;
-mathParser.RMB = 129;
-mathParser.SEARCH = 130;
-mathParser.SUBSTITUTE = 131;
-mathParser.T = 132;
-mathParser.TEXT = 133;
-mathParser.TRIM = 134;
-mathParser.UPPER = 135;
-mathParser.VALUE = 136;
-mathParser.DATEVALUE = 137;
-mathParser.TIMEVALUE = 138;
-mathParser.DATE = 139;
-mathParser.TIME = 140;
-mathParser.NOW = 141;
-mathParser.TODAY = 142;
-mathParser.YEAR = 143;
-mathParser.MONTH = 144;
-mathParser.DAY = 145;
-mathParser.HOUR = 146;
-mathParser.MINUTE = 147;
-mathParser.SECOND = 148;
-mathParser.WEEKDAY = 149;
-mathParser.DATEDIF = 150;
-mathParser.DAYS360 = 151;
-mathParser.EDATE = 152;
-mathParser.EOMONTH = 153;
-mathParser.NETWORKDAYS = 154;
-mathParser.WORKDAY = 155;
-mathParser.WEEKNUM = 156;
-mathParser.MAX = 157;
-mathParser.MEDIAN = 158;
-mathParser.MIN = 159;
-mathParser.QUARTILE = 160;
-mathParser.MODE = 161;
-mathParser.LARGE = 162;
-mathParser.SMALL = 163;
-mathParser.PERCENTILE = 164;
-mathParser.PERCENTRANK = 165;
-mathParser.AVERAGE = 166;
-mathParser.AVERAGEIF = 167;
-mathParser.GEOMEAN = 168;
-mathParser.HARMEAN = 169;
-mathParser.COUNT = 170;
-mathParser.COUNTIF = 171;
-mathParser.SUM = 172;
-mathParser.SUMIF = 173;
-mathParser.AVEDEV = 174;
-mathParser.STDEV = 175;
-mathParser.STDEVP = 176;
-mathParser.COVAR = 177;
-mathParser.COVARIANCES = 178;
-mathParser.DEVSQ = 179;
-mathParser.VAR = 180;
-mathParser.VARP = 181;
-mathParser.NORMDIST = 182;
-mathParser.NORMINV = 183;
-mathParser.NORMSDIST = 184;
-mathParser.NORMSINV = 185;
-mathParser.BETADIST = 186;
-mathParser.BETAINV = 187;
-mathParser.BINOMDIST = 188;
-mathParser.EXPONDIST = 189;
-mathParser.FDIST = 190;
-mathParser.FINV = 191;
-mathParser.FISHER = 192;
-mathParser.FISHERINV = 193;
-mathParser.GAMMADIST = 194;
-mathParser.GAMMAINV = 195;
-mathParser.GAMMALN = 196;
-mathParser.HYPGEOMDIST = 197;
-mathParser.LOGINV = 198;
-mathParser.LOGNORMDIST = 199;
-mathParser.NEGBINOMDIST = 200;
-mathParser.POISSON = 201;
-mathParser.TDIST = 202;
-mathParser.TINV = 203;
-mathParser.WEIBULL = 204;
-mathParser.URLENCODE = 205;
-mathParser.URLDECODE = 206;
-mathParser.HTMLENCODE = 207;
-mathParser.HTMLDECODE = 208;
-mathParser.BASE64TOTEXT = 209;
-mathParser.BASE64URLTOTEXT = 210;
-mathParser.TEXTTOBASE64 = 211;
-mathParser.TEXTTOBASE64URL = 212;
-mathParser.REGEX = 213;
-mathParser.REGEXREPALCE = 214;
-mathParser.ISREGEX = 215;
-mathParser.GUID = 216;
-mathParser.MD5 = 217;
-mathParser.SHA1 = 218;
-mathParser.SHA256 = 219;
-mathParser.SHA512 = 220;
-mathParser.HMACMD5 = 221;
-mathParser.HMACSHA1 = 222;
-mathParser.HMACSHA256 = 223;
-mathParser.HMACSHA512 = 224;
-mathParser.TRIMSTART = 225;
-mathParser.TRIMEND = 226;
-mathParser.INDEXOF = 227;
-mathParser.LASTINDEXOF = 228;
-mathParser.SPLIT = 229;
-mathParser.JOIN = 230;
-mathParser.SUBSTRING = 231;
-mathParser.STARTSWITH = 232;
-mathParser.ENDSWITH = 233;
-mathParser.ISNULLOREMPTY = 234;
-mathParser.ISNULLORWHITESPACE = 235;
-mathParser.REMOVESTART = 236;
-mathParser.REMOVEEND = 237;
-mathParser.JSON = 238;
-mathParser.LOOKCEILING = 239;
-mathParser.LOOKFLOOR = 240;
-mathParser.ARRAY = 241;
-mathParser.ALGORITHMVERSION = 242;
-mathParser.ADDYEARS = 243;
-mathParser.ADDMONTHS = 244;
-mathParser.ADDDAYS = 245;
-mathParser.ADDHOURS = 246;
-mathParser.ADDMINUTES = 247;
-mathParser.ADDSECONDS = 248;
-mathParser.TIMESTAMP = 249;
-mathParser.HAS = 250;
-mathParser.HASVALUE = 251;
-mathParser.PARAM = 252;
-mathParser.PARAMETER = 253;
-mathParser.WS = 254;
-mathParser.COMMENT = 255;
-mathParser.LINE_COMMENT = 256;
 
-mathParser.RULE_prog = 0;
-mathParser.RULE_expr = 1;
-mathParser.RULE_num = 2;
-mathParser.RULE_unit = 3;
-mathParser.RULE_arrayJson = 4;
-mathParser.RULE_parameter2 = 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class ProgContext extends antlr4.ParserRuleContext {
 
@@ -9044,23 +7747,19 @@ class ProgContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathParser.RULE_prog;
+        this.ruleIndex = 0;
     }
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
-	EOF() {
-	    return this.getToken(mathParser.EOF, 0);
-	};
+	//EOF() {return this.getToken(-1, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitProg(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
@@ -9079,7 +7778,7 @@ class ExprContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathParser.RULE_expr;
+        this.ruleIndex = 1;
     }
 
 
@@ -9098,9 +7797,7 @@ class CEILING_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	CEILING() {
-	    return this.getToken(mathParser.CEILING, 0);
-	};
+	//CEILING() {return this.getToken(94, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9114,17 +7811,15 @@ class CEILING_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCEILING_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.CEILING_funContext = CEILING_funContext;
+
 
 class FACT_funContext extends ExprContext {
 
@@ -9133,26 +7828,22 @@ class FACT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FACT() {
-	    return this.getToken(mathParser.FACT, 0);
-	};
+	//FACT() {return this.getToken(101, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFACT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FACT_funContext = FACT_funContext;
+
 
 class REGEXREPALCE_funContext extends ExprContext {
 
@@ -9161,9 +7852,7 @@ class REGEXREPALCE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	REGEXREPALCE() {
-	    return this.getToken(mathParser.REGEXREPALCE, 0);
-	};
+	//REGEXREPALCE() {return this.getToken(214, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9177,17 +7866,15 @@ class REGEXREPALCE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitREGEXREPALCE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.REGEXREPALCE_funContext = REGEXREPALCE_funContext;
+
 
 class LOOKFLOOR_funContext extends ExprContext {
 
@@ -9196,9 +7883,7 @@ class LOOKFLOOR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOOKFLOOR() {
-	    return this.getToken(mathParser.LOOKFLOOR, 0);
-	};
+	//LOOKFLOOR() {return this.getToken(240, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9212,17 +7897,15 @@ class LOOKFLOOR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOOKFLOOR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOOKFLOOR_funContext = LOOKFLOOR_funContext;
+
 
 class HASVALUE_funContext extends ExprContext {
 
@@ -9231,9 +7914,7 @@ class HASVALUE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HASVALUE() {
-	    return this.getToken(mathParser.HASVALUE, 0);
-	};
+	//HASVALUE() {return this.getToken(251, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9247,17 +7928,15 @@ class HASVALUE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHASVALUE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HASVALUE_funContext = HASVALUE_funContext;
+
 
 class AddSub_funContext extends ExprContext {
 
@@ -9278,22 +7957,18 @@ class AddSub_funContext extends ExprContext {
 	    }
 	};
 
-	SUB() {
-	    return this.getToken(mathParser.SUB, 0);
-	};
+	//SUB() {return this.getToken(29, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitAddSub_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.AddSub_funContext = AddSub_funContext;
+
 
 class AVERAGEIF_funContext extends ExprContext {
 
@@ -9302,9 +7977,7 @@ class AVERAGEIF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	AVERAGEIF() {
-	    return this.getToken(mathParser.AVERAGEIF, 0);
-	};
+	//AVERAGEIF() {return this.getToken(167, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9318,17 +7991,15 @@ class AVERAGEIF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitAVERAGEIF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.AVERAGEIF_funContext = AVERAGEIF_funContext;
+
 
 class PARAM_funContext extends ExprContext {
 
@@ -9337,9 +8008,7 @@ class PARAM_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PARAM() {
-	    return this.getToken(mathParser.PARAM, 0);
-	};
+	//PARAM() {return this.getToken(252, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9353,17 +8022,15 @@ class PARAM_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPARAM_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PARAM_funContext = PARAM_funContext;
+
 
 class ISNULLORERROR_funContext extends ExprContext {
 
@@ -9372,9 +8039,7 @@ class ISNULLORERROR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISNULLORERROR() {
-	    return this.getToken(mathParser.ISNULLORERROR, 0);
-	};
+	//ISNULLORERROR() {return this.getToken(45, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9388,17 +8053,15 @@ class ISNULLORERROR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISNULLORERROR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISNULLORERROR_funContext = ISNULLORERROR_funContext;
+
 
 class RIGHT_funContext extends ExprContext {
 
@@ -9407,9 +8070,7 @@ class RIGHT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	RIGHT() {
-	    return this.getToken(mathParser.RIGHT, 0);
-	};
+	//RIGHT() {return this.getToken(128, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9423,17 +8084,15 @@ class RIGHT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitRIGHT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.RIGHT_funContext = RIGHT_funContext;
+
 
 class OCT2BIN_funContext extends ExprContext {
 
@@ -9442,9 +8101,7 @@ class OCT2BIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	OCT2BIN() {
-	    return this.getToken(mathParser.OCT2BIN, 0);
-	};
+	OCT2//BIN() {return this.getToken(59, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9458,17 +8115,15 @@ class OCT2BIN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitOCT2BIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.OCT2BIN_funContext = OCT2BIN_funContext;
+
 
 class QUARTILE_funContext extends ExprContext {
 
@@ -9477,9 +8132,7 @@ class QUARTILE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	QUARTILE() {
-	    return this.getToken(mathParser.QUARTILE, 0);
-	};
+	//QUARTILE() {return this.getToken(160, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9493,17 +8146,15 @@ class QUARTILE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitQUARTILE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.QUARTILE_funContext = QUARTILE_funContext;
+
 
 class FINV_funContext extends ExprContext {
 
@@ -9512,9 +8163,7 @@ class FINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FINV() {
-	    return this.getToken(mathParser.FINV, 0);
-	};
+	//FINV() {return this.getToken(191, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9528,17 +8177,15 @@ class FINV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FINV_funContext = FINV_funContext;
+
 
 class NOT_funContext extends ExprContext {
 
@@ -9551,22 +8198,18 @@ class NOT_funContext extends ExprContext {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
-	NOT() {
-	    return this.getToken(mathParser.NOT, 0);
-	};
+	//NOT() {return this.getToken(48, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNOT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NOT_funContext = NOT_funContext;
+
 
 class DAYS360_funContext extends ExprContext {
 
@@ -9575,9 +8218,7 @@ class DAYS360_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DAYS360() {
-	    return this.getToken(mathParser.DAYS360, 0);
-	};
+	DAYS360//() {return this.getToken(151, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9591,17 +8232,15 @@ class DAYS360_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDAYS360_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DAYS360_funContext = DAYS360_funContext;
+
 
 class LOOKCEILING_funContext extends ExprContext {
 
@@ -9610,9 +8249,7 @@ class LOOKCEILING_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOOKCEILING() {
-	    return this.getToken(mathParser.LOOKCEILING, 0);
-	};
+	//LOOKCEILING() {return this.getToken(239, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9626,17 +8263,15 @@ class LOOKCEILING_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOOKCEILING_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOOKCEILING_funContext = LOOKCEILING_funContext;
+
 
 class WEEKNUM_funContext extends ExprContext {
 
@@ -9645,9 +8280,7 @@ class WEEKNUM_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	WEEKNUM() {
-	    return this.getToken(mathParser.WEEKNUM, 0);
-	};
+	//WEEKNUM() {return this.getToken(156, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9661,17 +8294,15 @@ class WEEKNUM_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitWEEKNUM_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.WEEKNUM_funContext = WEEKNUM_funContext;
+
 
 class POISSON_funContext extends ExprContext {
 
@@ -9680,9 +8311,7 @@ class POISSON_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	POISSON() {
-	    return this.getToken(mathParser.POISSON, 0);
-	};
+	//POISSON() {return this.getToken(201, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9696,17 +8325,15 @@ class POISSON_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPOISSON_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.POISSON_funContext = POISSON_funContext;
+
 
 class ISREGEX_funContext extends ExprContext {
 
@@ -9715,9 +8342,7 @@ class ISREGEX_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISREGEX() {
-	    return this.getToken(mathParser.ISREGEX, 0);
-	};
+	//ISREGEX() {return this.getToken(215, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9731,17 +8356,15 @@ class ISREGEX_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISREGEX_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISREGEX_funContext = ISREGEX_funContext;
+
 
 class COVARIANCES_funContext extends ExprContext {
 
@@ -9750,9 +8373,7 @@ class COVARIANCES_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COVARIANCES() {
-	    return this.getToken(mathParser.COVARIANCES, 0);
-	};
+	//COVARIANCES() {return this.getToken(178, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9766,17 +8387,15 @@ class COVARIANCES_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOVARIANCES_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COVARIANCES_funContext = COVARIANCES_funContext;
+
 
 class PERCENTILE_funContext extends ExprContext {
 
@@ -9785,9 +8404,7 @@ class PERCENTILE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PERCENTILE() {
-	    return this.getToken(mathParser.PERCENTILE, 0);
-	};
+	//PERCENTILE() {return this.getToken(164, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9801,17 +8418,15 @@ class PERCENTILE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPERCENTILE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PERCENTILE_funContext = PERCENTILE_funContext;
+
 
 class DiyFunction_funContext extends ExprContext {
 
@@ -9820,9 +8435,7 @@ class DiyFunction_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PARAMETER() {
-	    return this.getToken(mathParser.PARAMETER, 0);
-	};
+	PARAMETER() {return this.getToken(253, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9836,17 +8449,15 @@ class DiyFunction_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDiyFunction_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DiyFunction_funContext = DiyFunction_funContext;
+
 
 class SHA256_funContext extends ExprContext {
 
@@ -9855,9 +8466,7 @@ class SHA256_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SHA256() {
-	    return this.getToken(mathParser.SHA256, 0);
-	};
+	SHA256//() {return this.getToken(219, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9871,17 +8480,15 @@ class SHA256_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSHA256_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SHA256_funContext = SHA256_funContext;
+
 
 class HAS_funContext extends ExprContext {
 
@@ -9890,9 +8497,7 @@ class HAS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HAS() {
-	    return this.getToken(mathParser.HAS, 0);
-	};
+	//HAS() {return this.getToken(250, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9906,17 +8511,15 @@ class HAS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHAS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HAS_funContext = HAS_funContext;
+
 
 class HYPGEOMDIST_funContext extends ExprContext {
 
@@ -9925,9 +8528,7 @@ class HYPGEOMDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HYPGEOMDIST() {
-	    return this.getToken(mathParser.HYPGEOMDIST, 0);
-	};
+	//HYPGEOMDIST() {return this.getToken(197, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9941,17 +8542,15 @@ class HYPGEOMDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHYPGEOMDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HYPGEOMDIST_funContext = HYPGEOMDIST_funContext;
+
 
 class PERMUT_funContext extends ExprContext {
 
@@ -9960,9 +8559,7 @@ class PERMUT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PERMUT() {
-	    return this.getToken(mathParser.PERMUT, 0);
-	};
+	//PERMUT() {return this.getToken(75, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -9976,17 +8573,15 @@ class PERMUT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPERMUT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PERMUT_funContext = PERMUT_funContext;
+
 
 class TRIMSTART_funContext extends ExprContext {
 
@@ -9995,9 +8590,7 @@ class TRIMSTART_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TRIMSTART() {
-	    return this.getToken(mathParser.TRIMSTART, 0);
-	};
+	//TRIMSTART() {return this.getToken(225, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10011,17 +8604,15 @@ class TRIMSTART_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTRIMSTART_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TRIMSTART_funContext = TRIMSTART_funContext;
+
 
 class RMB_funContext extends ExprContext {
 
@@ -10030,26 +8621,22 @@ class RMB_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	RMB() {
-	    return this.getToken(mathParser.RMB, 0);
-	};
+	//RMB() {return this.getToken(129, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitRMB_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.RMB_funContext = RMB_funContext;
+
 
 class DEC2HEX_funContext extends ExprContext {
 
@@ -10058,9 +8645,7 @@ class DEC2HEX_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DEC2HEX() {
-	    return this.getToken(mathParser.DEC2HEX, 0);
-	};
+	DEC2//HEX() {return this.getToken(54, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10074,17 +8659,15 @@ class DEC2HEX_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDEC2HEX_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DEC2HEX_funContext = DEC2HEX_funContext;
+
 
 class CLEAN_funContext extends ExprContext {
 
@@ -10093,26 +8676,22 @@ class CLEAN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	CLEAN() {
-	    return this.getToken(mathParser.CLEAN, 0);
-	};
+	//CLEAN() {return this.getToken(115, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCLEAN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.CLEAN_funContext = CLEAN_funContext;
+
 
 class LOWER_funContext extends ExprContext {
 
@@ -10121,26 +8700,22 @@ class LOWER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOWER() {
-	    return this.getToken(mathParser.LOWER, 0);
-	};
+	//LOWER() {return this.getToken(123, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOWER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOWER_funContext = LOWER_funContext;
+
 
 class OR_funContext extends ExprContext {
 
@@ -10149,9 +8724,7 @@ class OR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	OR() {
-	    return this.getToken(mathParser.OR, 0);
-	};
+	//OR() {return this.getToken(47, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10165,17 +8738,15 @@ class OR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitOR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.OR_funContext = OR_funContext;
+
 
 class ADDMONTHS_funContext extends ExprContext {
 
@@ -10184,9 +8755,7 @@ class ADDMONTHS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ADDMONTHS() {
-	    return this.getToken(mathParser.ADDMONTHS, 0);
-	};
+	//ADDMONTHS() {return this.getToken(244, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10200,17 +8769,15 @@ class ADDMONTHS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitADDMONTHS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ADDMONTHS_funContext = ADDMONTHS_funContext;
+
 
 class NORMSINV_funContext extends ExprContext {
 
@@ -10219,26 +8786,22 @@ class NORMSINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NORMSINV() {
-	    return this.getToken(mathParser.NORMSINV, 0);
-	};
+	//NORMSINV() {return this.getToken(185, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNORMSINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NORMSINV_funContext = NORMSINV_funContext;
+
 
 class LEFT_funContext extends ExprContext {
 
@@ -10247,9 +8810,7 @@ class LEFT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LEFT() {
-	    return this.getToken(mathParser.LEFT, 0);
-	};
+	//LEFT() {return this.getToken(121, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10263,17 +8824,15 @@ class LEFT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLEFT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LEFT_funContext = LEFT_funContext;
+
 
 class ISEVEN_funContext extends ExprContext {
 
@@ -10282,26 +8841,22 @@ class ISEVEN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISEVEN() {
-	    return this.getToken(mathParser.ISEVEN, 0);
-	};
+	//ISEVEN() {return this.getToken(42, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISEVEN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISEVEN_funContext = ISEVEN_funContext;
+
 
 class LOGINV_funContext extends ExprContext {
 
@@ -10310,9 +8865,7 @@ class LOGINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOGINV() {
-	    return this.getToken(mathParser.LOGINV, 0);
-	};
+	//LOGINV() {return this.getToken(198, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10326,17 +8879,15 @@ class LOGINV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOGINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOGINV_funContext = LOGINV_funContext;
+
 
 class WORKDAY_funContext extends ExprContext {
 
@@ -10345,9 +8896,7 @@ class WORKDAY_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	WORKDAY() {
-	    return this.getToken(mathParser.WORKDAY, 0);
-	};
+	//WORKDAY() {return this.getToken(155, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10361,17 +8910,15 @@ class WORKDAY_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitWORKDAY_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.WORKDAY_funContext = WORKDAY_funContext;
+
 
 class ISERROR_funContext extends ExprContext {
 
@@ -10380,9 +8927,7 @@ class ISERROR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISERROR() {
-	    return this.getToken(mathParser.ISERROR, 0);
-	};
+	//ISERROR() {return this.getToken(39, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10396,17 +8941,15 @@ class ISERROR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISERROR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISERROR_funContext = ISERROR_funContext;
+
 
 class BIN2DEC_funContext extends ExprContext {
 
@@ -10415,26 +8958,22 @@ class BIN2DEC_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BIN2DEC() {
-	    return this.getToken(mathParser.BIN2DEC, 0);
-	};
+	BIN2//DEC() {return this.getToken(63, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBIN2DEC_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BIN2DEC_funContext = BIN2DEC_funContext;
+
 
 class JIS_funContext extends ExprContext {
 
@@ -10443,26 +8982,22 @@ class JIS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	JIS() {
-	    return this.getToken(mathParser.JIS, 0);
-	};
+	//JIS() {return this.getToken(113, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitJIS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.JIS_funContext = JIS_funContext;
+
 
 class LCM_funContext extends ExprContext {
 
@@ -10471,9 +9006,7 @@ class LCM_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LCM() {
-	    return this.getToken(mathParser.LCM, 0);
-	};
+	//LCM() {return this.getToken(73, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10487,17 +9020,15 @@ class LCM_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLCM_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LCM_funContext = LCM_funContext;
+
 
 class HARMEAN_funContext extends ExprContext {
 
@@ -10506,9 +9037,7 @@ class HARMEAN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HARMEAN() {
-	    return this.getToken(mathParser.HARMEAN, 0);
-	};
+	//HARMEAN() {return this.getToken(169, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10522,17 +9051,15 @@ class HARMEAN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHARMEAN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HARMEAN_funContext = HARMEAN_funContext;
+
 
 class NORMINV_funContext extends ExprContext {
 
@@ -10541,9 +9068,7 @@ class NORMINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NORMINV() {
-	    return this.getToken(mathParser.NORMINV, 0);
-	};
+	//NORMINV() {return this.getToken(183, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10557,17 +9082,15 @@ class NORMINV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNORMINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NORMINV_funContext = NORMINV_funContext;
+
 
 class GAMMAINV_funContext extends ExprContext {
 
@@ -10576,9 +9099,7 @@ class GAMMAINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	GAMMAINV() {
-	    return this.getToken(mathParser.GAMMAINV, 0);
-	};
+	//GAMMAINV() {return this.getToken(195, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10592,17 +9113,15 @@ class GAMMAINV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGAMMAINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GAMMAINV_funContext = GAMMAINV_funContext;
+
 
 class SQRT_funContext extends ExprContext {
 
@@ -10611,26 +9130,22 @@ class SQRT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SQRT() {
-	    return this.getToken(mathParser.SQRT, 0);
-	};
+	//SQRT() {return this.getToken(69, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSQRT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SQRT_funContext = SQRT_funContext;
+
 
 class DEGREES_funContext extends ExprContext {
 
@@ -10639,26 +9154,22 @@ class DEGREES_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DEGREES() {
-	    return this.getToken(mathParser.DEGREES, 0);
-	};
+	//DEGREES() {return this.getToken(76, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDEGREES_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DEGREES_funContext = DEGREES_funContext;
+
 
 class MROUND_funContext extends ExprContext {
 
@@ -10667,9 +9178,7 @@ class MROUND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MROUND() {
-	    return this.getToken(mathParser.MROUND, 0);
-	};
+	//MROUND() {return this.getToken(98, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10683,17 +9192,15 @@ class MROUND_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMROUND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MROUND_funContext = MROUND_funContext;
+
 
 class DATEDIF_funContext extends ExprContext {
 
@@ -10702,9 +9209,7 @@ class DATEDIF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DATEDIF() {
-	    return this.getToken(mathParser.DATEDIF, 0);
-	};
+	//DATEDIF() {return this.getToken(150, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10718,17 +9223,15 @@ class DATEDIF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDATEDIF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DATEDIF_funContext = DATEDIF_funContext;
+
 
 class TRIMEND_funContext extends ExprContext {
 
@@ -10737,9 +9240,7 @@ class TRIMEND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TRIMEND() {
-	    return this.getToken(mathParser.TRIMEND, 0);
-	};
+	//TRIMEND() {return this.getToken(226, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10753,17 +9254,15 @@ class TRIMEND_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTRIMEND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TRIMEND_funContext = TRIMEND_funContext;
+
 
 class ISLOGICAL_funContext extends ExprContext {
 
@@ -10772,26 +9271,22 @@ class ISLOGICAL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISLOGICAL() {
-	    return this.getToken(mathParser.ISLOGICAL, 0);
-	};
+	//ISLOGICAL() {return this.getToken(41, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISLOGICAL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISLOGICAL_funContext = ISLOGICAL_funContext;
+
 
 class INT_funContext extends ExprContext {
 
@@ -10800,26 +9295,22 @@ class INT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	INT() {
-	    return this.getToken(mathParser.INT, 0);
-	};
+	//INT() {return this.getToken(71, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitINT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.INT_funContext = INT_funContext;
+
 
 class SUMIF_funContext extends ExprContext {
 
@@ -10828,9 +9319,7 @@ class SUMIF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SUMIF() {
-	    return this.getToken(mathParser.SUMIF, 0);
-	};
+	//SUMIF() {return this.getToken(173, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10844,17 +9333,15 @@ class SUMIF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSUMIF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SUMIF_funContext = SUMIF_funContext;
+
 
 class HEX2OCT_funContext extends ExprContext {
 
@@ -10863,9 +9350,7 @@ class HEX2OCT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HEX2OCT() {
-	    return this.getToken(mathParser.HEX2OCT, 0);
-	};
+	HEX2//OCT() {return this.getToken(58, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10879,17 +9364,15 @@ class HEX2OCT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHEX2OCT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HEX2OCT_funContext = HEX2OCT_funContext;
+
 
 class PI_funContext extends ExprContext {
 
@@ -10898,22 +9381,18 @@ class PI_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PI() {
-	    return this.getToken(mathParser.PI, 0);
-	};
+	//PI() {return this.getToken(52, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPI_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PI_funContext = PI_funContext;
+
 
 class YEAR_funContext extends ExprContext {
 
@@ -10922,26 +9401,22 @@ class YEAR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	YEAR() {
-	    return this.getToken(mathParser.YEAR, 0);
-	};
+	//YEAR() {return this.getToken(143, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitYEAR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.YEAR_funContext = YEAR_funContext;
+
 
 class SQRTPI_funContext extends ExprContext {
 
@@ -10950,26 +9425,22 @@ class SQRTPI_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SQRTPI() {
-	    return this.getToken(mathParser.SQRTPI, 0);
-	};
+	//SQRTPI() {return this.getToken(110, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSQRTPI_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SQRTPI_funContext = SQRTPI_funContext;
+
 
 class CONCATENATE_funContext extends ExprContext {
 
@@ -10978,9 +9449,7 @@ class CONCATENATE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	CONCATENATE() {
-	    return this.getToken(mathParser.CONCATENATE, 0);
-	};
+	//CONCATENATE() {return this.getToken(117, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -10994,17 +9463,15 @@ class CONCATENATE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCONCATENATE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.CONCATENATE_funContext = CONCATENATE_funContext;
+
 
 class COUNT_funContext extends ExprContext {
 
@@ -11013,9 +9480,7 @@ class COUNT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COUNT() {
-	    return this.getToken(mathParser.COUNT, 0);
-	};
+	//COUNT() {return this.getToken(170, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11029,17 +9494,15 @@ class COUNT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOUNT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COUNT_funContext = COUNT_funContext;
+
 
 class FALSE_funContext extends ExprContext {
 
@@ -11048,22 +9511,18 @@ class FALSE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FALSE() {
-	    return this.getToken(mathParser.FALSE, 0);
-	};
+	//FALSE() {return this.getToken(50, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFALSE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FALSE_funContext = FALSE_funContext;
+
 
 class HTMLENCODE_funContext extends ExprContext {
 
@@ -11072,26 +9531,22 @@ class HTMLENCODE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HTMLENCODE() {
-	    return this.getToken(mathParser.HTMLENCODE, 0);
-	};
+	//HTMLENCODE() {return this.getToken(207, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHTMLENCODE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HTMLENCODE_funContext = HTMLENCODE_funContext;
+
 
 class BASE64URLTOTEXT_funContext extends ExprContext {
 
@@ -11100,9 +9555,7 @@ class BASE64URLTOTEXT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BASE64URLTOTEXT() {
-	    return this.getToken(mathParser.BASE64URLTOTEXT, 0);
-	};
+	BASE64//URLTOTEXT() {return this.getToken(210, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11116,17 +9569,15 @@ class BASE64URLTOTEXT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBASE64URLTOTEXT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BASE64URLTOTEXT_funContext = BASE64URLTOTEXT_funContext;
+
 
 class LOG10_funContext extends ExprContext {
 
@@ -11135,26 +9586,22 @@ class LOG10_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOG10() {
-	    return this.getToken(mathParser.LOG10, 0);
-	};
+	LOG10//() {return this.getToken(107, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOG10_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOG10_funContext = LOG10_funContext;
+
 
 class ISTEXT_funContext extends ExprContext {
 
@@ -11163,26 +9610,22 @@ class ISTEXT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISTEXT() {
-	    return this.getToken(mathParser.ISTEXT, 0);
-	};
+	//ISTEXT() {return this.getToken(38, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISTEXT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISTEXT_funContext = ISTEXT_funContext;
+
 
 class NEGBINOMDIST_funContext extends ExprContext {
 
@@ -11191,9 +9634,7 @@ class NEGBINOMDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NEGBINOMDIST() {
-	    return this.getToken(mathParser.NEGBINOMDIST, 0);
-	};
+	//NEGBINOMDIST() {return this.getToken(200, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11207,17 +9648,15 @@ class NEGBINOMDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNEGBINOMDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NEGBINOMDIST_funContext = NEGBINOMDIST_funContext;
+
 
 class NETWORKDAYS_funContext extends ExprContext {
 
@@ -11226,9 +9665,7 @@ class NETWORKDAYS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NETWORKDAYS() {
-	    return this.getToken(mathParser.NETWORKDAYS, 0);
-	};
+	//NETWORKDAYS() {return this.getToken(154, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11242,17 +9679,15 @@ class NETWORKDAYS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNETWORKDAYS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NETWORKDAYS_funContext = NETWORKDAYS_funContext;
+
 
 class FACTDOUBLE_funContext extends ExprContext {
 
@@ -11261,26 +9696,22 @@ class FACTDOUBLE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FACTDOUBLE() {
-	    return this.getToken(mathParser.FACTDOUBLE, 0);
-	};
+	//FACTDOUBLE() {return this.getToken(102, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFACTDOUBLE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FACTDOUBLE_funContext = FACTDOUBLE_funContext;
+
 
 class TIMEVALUE_funContext extends ExprContext {
 
@@ -11289,26 +9720,22 @@ class TIMEVALUE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TIMEVALUE() {
-	    return this.getToken(mathParser.TIMEVALUE, 0);
-	};
+	//TIMEVALUE() {return this.getToken(138, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTIMEVALUE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TIMEVALUE_funContext = TIMEVALUE_funContext;
+
 
 class AVEDEV_funContext extends ExprContext {
 
@@ -11317,9 +9744,7 @@ class AVEDEV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	AVEDEV() {
-	    return this.getToken(mathParser.AVEDEV, 0);
-	};
+	//AVEDEV() {return this.getToken(174, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11333,17 +9758,15 @@ class AVEDEV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitAVEDEV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.AVEDEV_funContext = AVEDEV_funContext;
+
 
 class GUID_funContext extends ExprContext {
 
@@ -11352,22 +9775,18 @@ class GUID_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	GUID() {
-	    return this.getToken(mathParser.GUID, 0);
-	};
+	//GUID() {return this.getToken(216, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGUID_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GUID_funContext = GUID_funContext;
+
 
 class JSON_funContext extends ExprContext {
 
@@ -11376,26 +9795,22 @@ class JSON_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	JSON() {
-	    return this.getToken(mathParser.JSON, 0);
-	};
+	//JSON() {return this.getToken(238, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitJSON_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.JSON_funContext = JSON_funContext;
+
 
 class FIXED_funContext extends ExprContext {
 
@@ -11404,9 +9819,7 @@ class FIXED_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FIXED() {
-	    return this.getToken(mathParser.FIXED, 0);
-	};
+	//FIXED() {return this.getToken(120, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11420,17 +9833,15 @@ class FIXED_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFIXED_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FIXED_funContext = FIXED_funContext;
+
 
 class GetJsonValue_funContext extends ExprContext {
 
@@ -11450,26 +9861,22 @@ class GetJsonValue_funContext extends ExprContext {
 	    }
 	};
 
-	PARAMETER() {
-	    return this.getToken(mathParser.PARAMETER, 0);
-	};
+	PARAMETER() {return this.getToken(253, 0);};
 
 	parameter2() {
 	    return this.getTypedRuleContext(Parameter2Context,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGetJsonValue_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GetJsonValue_funContext = GetJsonValue_funContext;
+
 
 class TINV_funContext extends ExprContext {
 
@@ -11478,9 +9885,7 @@ class TINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TINV() {
-	    return this.getToken(mathParser.TINV, 0);
-	};
+	//TINV() {return this.getToken(203, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11494,17 +9899,15 @@ class TINV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TINV_funContext = TINV_funContext;
+
 
 class EDATE_funContext extends ExprContext {
 
@@ -11513,9 +9916,7 @@ class EDATE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	EDATE() {
-	    return this.getToken(mathParser.EDATE, 0);
-	};
+	//EDATE() {return this.getToken(152, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11529,17 +9930,15 @@ class EDATE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitEDATE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.EDATE_funContext = EDATE_funContext;
+
 
 class GEOMEAN_funContext extends ExprContext {
 
@@ -11548,9 +9947,7 @@ class GEOMEAN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	GEOMEAN() {
-	    return this.getToken(mathParser.GEOMEAN, 0);
-	};
+	//GEOMEAN() {return this.getToken(168, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11564,17 +9961,15 @@ class GEOMEAN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGEOMEAN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GEOMEAN_funContext = GEOMEAN_funContext;
+
 
 class VAR_funContext extends ExprContext {
 
@@ -11583,9 +9978,7 @@ class VAR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	VAR() {
-	    return this.getToken(mathParser.VAR, 0);
-	};
+	//VAR() {return this.getToken(180, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11599,17 +9992,15 @@ class VAR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitVAR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.VAR_funContext = VAR_funContext;
+
 
 class SIGN_funContext extends ExprContext {
 
@@ -11618,26 +10009,22 @@ class SIGN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SIGN() {
-	    return this.getToken(mathParser.SIGN, 0);
-	};
+	//SIGN() {return this.getToken(68, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSIGN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SIGN_funContext = SIGN_funContext;
+
 
 class EOMONTH_funContext extends ExprContext {
 
@@ -11646,9 +10033,7 @@ class EOMONTH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	EOMONTH() {
-	    return this.getToken(mathParser.EOMONTH, 0);
-	};
+	//EOMONTH() {return this.getToken(153, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11662,17 +10047,15 @@ class EOMONTH_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitEOMONTH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.EOMONTH_funContext = EOMONTH_funContext;
+
 
 class FLOOR_funContext extends ExprContext {
 
@@ -11681,9 +10064,7 @@ class FLOOR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FLOOR() {
-	    return this.getToken(mathParser.FLOOR, 0);
-	};
+	//FLOOR() {return this.getToken(95, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11697,17 +10078,15 @@ class FLOOR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFLOOR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FLOOR_funContext = FLOOR_funContext;
+
 
 class HOUR_funContext extends ExprContext {
 
@@ -11716,26 +10095,22 @@ class HOUR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HOUR() {
-	    return this.getToken(mathParser.HOUR, 0);
-	};
+	//HOUR() {return this.getToken(146, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHOUR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HOUR_funContext = HOUR_funContext;
+
 
 class LEN_funContext extends ExprContext {
 
@@ -11744,26 +10119,22 @@ class LEN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LEN() {
-	    return this.getToken(mathParser.LEN, 0);
-	};
+	//LEN() {return this.getToken(122, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLEN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LEN_funContext = LEN_funContext;
+
 
 class ACOS_funContext extends ExprContext {
 
@@ -11772,26 +10143,22 @@ class ACOS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ACOS() {
-	    return this.getToken(mathParser.ACOS, 0);
-	};
+	//ACOS() {return this.getToken(84, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitACOS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ACOS_funContext = ACOS_funContext;
+
 
 class ISNULLORWHITESPACE_funContext extends ExprContext {
 
@@ -11800,26 +10167,22 @@ class ISNULLORWHITESPACE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISNULLORWHITESPACE() {
-	    return this.getToken(mathParser.ISNULLORWHITESPACE, 0);
-	};
+	//ISNULLORWHITESPACE() {return this.getToken(235, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISNULLORWHITESPACE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISNULLORWHITESPACE_funContext = ISNULLORWHITESPACE_funContext;
+
 
 class NUM_funContext extends ExprContext {
 
@@ -11837,17 +10200,15 @@ class NUM_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNUM_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NUM_funContext = NUM_funContext;
+
 
 class COSH_funContext extends ExprContext {
 
@@ -11856,26 +10217,22 @@ class COSH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COSH() {
-	    return this.getToken(mathParser.COSH, 0);
-	};
+	//COSH() {return this.getToken(79, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOSH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COSH_funContext = COSH_funContext;
+
 
 class QUOTIENT_funContext extends ExprContext {
 
@@ -11884,9 +10241,7 @@ class QUOTIENT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	QUOTIENT() {
-	    return this.getToken(mathParser.QUOTIENT, 0);
-	};
+	//QUOTIENT() {return this.getToken(66, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11900,17 +10255,15 @@ class QUOTIENT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitQUOTIENT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.QUOTIENT_funContext = QUOTIENT_funContext;
+
 
 class OCT2DEC_funContext extends ExprContext {
 
@@ -11919,26 +10272,22 @@ class OCT2DEC_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	OCT2DEC() {
-	    return this.getToken(mathParser.OCT2DEC, 0);
-	};
+	OCT2//DEC() {return this.getToken(60, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitOCT2DEC_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.OCT2DEC_funContext = OCT2DEC_funContext;
+
 
 class SEARCH_funContext extends ExprContext {
 
@@ -11947,9 +10296,7 @@ class SEARCH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SEARCH() {
-	    return this.getToken(mathParser.SEARCH, 0);
-	};
+	//SEARCH() {return this.getToken(130, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11963,17 +10310,15 @@ class SEARCH_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSEARCH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SEARCH_funContext = SEARCH_funContext;
+
 
 class ROUNDUP_funContext extends ExprContext {
 
@@ -11982,9 +10327,7 @@ class ROUNDUP_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ROUNDUP() {
-	    return this.getToken(mathParser.ROUNDUP, 0);
-	};
+	//ROUNDUP() {return this.getToken(93, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -11998,17 +10341,15 @@ class ROUNDUP_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitROUNDUP_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ROUNDUP_funContext = ROUNDUP_funContext;
+
 
 class COMBIN_funContext extends ExprContext {
 
@@ -12017,9 +10358,7 @@ class COMBIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COMBIN() {
-	    return this.getToken(mathParser.COMBIN, 0);
-	};
+	//COMBIN() {return this.getToken(74, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12033,17 +10372,15 @@ class COMBIN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOMBIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COMBIN_funContext = COMBIN_funContext;
+
 
 class CODE_funContext extends ExprContext {
 
@@ -12052,26 +10389,22 @@ class CODE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	CODE() {
-	    return this.getToken(mathParser.CODE, 0);
-	};
+	//CODE() {return this.getToken(116, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCODE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.CODE_funContext = CODE_funContext;
+
 
 class ASINH_funContext extends ExprContext {
 
@@ -12080,26 +10413,22 @@ class ASINH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ASINH() {
-	    return this.getToken(mathParser.ASINH, 0);
-	};
+	//ASINH() {return this.getToken(87, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitASINH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ASINH_funContext = ASINH_funContext;
+
 
 class SIN_funContext extends ExprContext {
 
@@ -12108,26 +10437,22 @@ class SIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SIN() {
-	    return this.getToken(mathParser.SIN, 0);
-	};
+	//SIN() {return this.getToken(80, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SIN_funContext = SIN_funContext;
+
 
 class SUBSTRING_funContext extends ExprContext {
 
@@ -12136,9 +10461,7 @@ class SUBSTRING_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SUBSTRING() {
-	    return this.getToken(mathParser.SUBSTRING, 0);
-	};
+	//SUBSTRING() {return this.getToken(231, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12152,17 +10475,15 @@ class SUBSTRING_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSUBSTRING_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SUBSTRING_funContext = SUBSTRING_funContext;
+
 
 class RANDBETWEEN_funContext extends ExprContext {
 
@@ -12171,9 +10492,7 @@ class RANDBETWEEN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	RANDBETWEEN() {
-	    return this.getToken(mathParser.RANDBETWEEN, 0);
-	};
+	//RANDBETWEEN() {return this.getToken(100, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12187,17 +10506,15 @@ class RANDBETWEEN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitRANDBETWEEN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.RANDBETWEEN_funContext = RANDBETWEEN_funContext;
+
 
 class AVERAGE_funContext extends ExprContext {
 
@@ -12206,9 +10523,7 @@ class AVERAGE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	AVERAGE() {
-	    return this.getToken(mathParser.AVERAGE, 0);
-	};
+	//AVERAGE() {return this.getToken(166, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12222,17 +10537,15 @@ class AVERAGE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitAVERAGE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.AVERAGE_funContext = AVERAGE_funContext;
+
 
 class LOG_funContext extends ExprContext {
 
@@ -12241,9 +10554,7 @@ class LOG_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOG() {
-	    return this.getToken(mathParser.LOG, 0);
-	};
+	//LOG() {return this.getToken(106, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12257,17 +10568,15 @@ class LOG_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOG_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOG_funContext = LOG_funContext;
+
 
 class HMACSHA512_funContext extends ExprContext {
 
@@ -12276,9 +10585,7 @@ class HMACSHA512_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HMACSHA512() {
-	    return this.getToken(mathParser.HMACSHA512, 0);
-	};
+	HMACSHA512//() {return this.getToken(224, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12292,17 +10599,15 @@ class HMACSHA512_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHMACSHA512_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HMACSHA512_funContext = HMACSHA512_funContext;
+
 
 class AndOr_funContext extends ExprContext {
 
@@ -12323,26 +10628,20 @@ class AndOr_funContext extends ExprContext {
 	    }
 	};
 
-	AND() {
-	    return this.getToken(mathParser.AND, 0);
-	};
+	//AND() {return this.getToken(46, 0);};
 
-	OR() {
-	    return this.getToken(mathParser.OR, 0);
-	};
+	//OR() {return this.getToken(47, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitAndOr_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.AndOr_funContext = AndOr_funContext;
+
 
 class STDEVP_funContext extends ExprContext {
 
@@ -12351,9 +10650,7 @@ class STDEVP_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	STDEVP() {
-	    return this.getToken(mathParser.STDEVP, 0);
-	};
+	//STDEVP() {return this.getToken(176, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12367,17 +10664,15 @@ class STDEVP_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSTDEVP_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.STDEVP_funContext = STDEVP_funContext;
+
 
 class ADDYEARS_funContext extends ExprContext {
 
@@ -12386,9 +10681,7 @@ class ADDYEARS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ADDYEARS() {
-	    return this.getToken(mathParser.ADDYEARS, 0);
-	};
+	//ADDYEARS() {return this.getToken(243, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12402,17 +10695,15 @@ class ADDYEARS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitADDYEARS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ADDYEARS_funContext = ADDYEARS_funContext;
+
 
 class ADDSECONDS_funContext extends ExprContext {
 
@@ -12421,9 +10712,7 @@ class ADDSECONDS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ADDSECONDS() {
-	    return this.getToken(mathParser.ADDSECONDS, 0);
-	};
+	//ADDSECONDS() {return this.getToken(248, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12437,17 +10726,15 @@ class ADDSECONDS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitADDSECONDS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ADDSECONDS_funContext = ADDSECONDS_funContext;
+
 
 class Array_funContext extends ExprContext {
 
@@ -12456,9 +10743,7 @@ class Array_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ARRAY() {
-	    return this.getToken(mathParser.ARRAY, 0);
-	};
+	//ARRAY() {return this.getToken(241, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12472,17 +10757,15 @@ class Array_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitArray_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.Array_funContext = Array_funContext;
+
 
 class ROUND_funContext extends ExprContext {
 
@@ -12491,9 +10774,7 @@ class ROUND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ROUND() {
-	    return this.getToken(mathParser.ROUND, 0);
-	};
+	//ROUND() {return this.getToken(91, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12507,17 +10788,15 @@ class ROUND_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitROUND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ROUND_funContext = ROUND_funContext;
+
 
 class EXP_funContext extends ExprContext {
 
@@ -12526,26 +10805,22 @@ class EXP_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	EXP() {
-	    return this.getToken(mathParser.EXP, 0);
-	};
+	//EXP() {return this.getToken(104, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitEXP_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.EXP_funContext = EXP_funContext;
+
 
 class COUNTIF_funContext extends ExprContext {
 
@@ -12554,9 +10829,7 @@ class COUNTIF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COUNTIF() {
-	    return this.getToken(mathParser.COUNTIF, 0);
-	};
+	//COUNTIF() {return this.getToken(171, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12570,17 +10843,15 @@ class COUNTIF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOUNTIF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COUNTIF_funContext = COUNTIF_funContext;
+
 
 class VARP_funContext extends ExprContext {
 
@@ -12589,9 +10860,7 @@ class VARP_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	VARP() {
-	    return this.getToken(mathParser.VARP, 0);
-	};
+	//VARP() {return this.getToken(181, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12605,17 +10874,15 @@ class VARP_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitVARP_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.VARP_funContext = VARP_funContext;
+
 
 class REMOVEEND_funContext extends ExprContext {
 
@@ -12624,9 +10891,7 @@ class REMOVEEND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	REMOVEEND() {
-	    return this.getToken(mathParser.REMOVEEND, 0);
-	};
+	//REMOVEEND() {return this.getToken(237, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12640,17 +10905,15 @@ class REMOVEEND_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitREMOVEEND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.REMOVEEND_funContext = REMOVEEND_funContext;
+
 
 class DATE_funContext extends ExprContext {
 
@@ -12659,9 +10922,7 @@ class DATE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DATE() {
-	    return this.getToken(mathParser.DATE, 0);
-	};
+	//DATE() {return this.getToken(139, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12675,17 +10936,15 @@ class DATE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDATE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DATE_funContext = DATE_funContext;
+
 
 class PARAMETER_funContext extends ExprContext {
 
@@ -12694,22 +10953,18 @@ class PARAMETER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PARAMETER() {
-	    return this.getToken(mathParser.PARAMETER, 0);
-	};
+	PARAMETER() {return this.getToken(253, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPARAMETER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PARAMETER_funContext = PARAMETER_funContext;
+
 
 class SPLIT_funContext extends ExprContext {
 
@@ -12718,9 +10973,7 @@ class SPLIT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SPLIT() {
-	    return this.getToken(mathParser.SPLIT, 0);
-	};
+	//SPLIT() {return this.getToken(229, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12734,17 +10987,15 @@ class SPLIT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSPLIT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SPLIT_funContext = SPLIT_funContext;
+
 
 class COVAR_funContext extends ExprContext {
 
@@ -12753,9 +11004,7 @@ class COVAR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COVAR() {
-	    return this.getToken(mathParser.COVAR, 0);
-	};
+	//COVAR() {return this.getToken(177, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12769,17 +11018,15 @@ class COVAR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOVAR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COVAR_funContext = COVAR_funContext;
+
 
 class URLDECODE_funContext extends ExprContext {
 
@@ -12788,26 +11035,22 @@ class URLDECODE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	URLDECODE() {
-	    return this.getToken(mathParser.URLDECODE, 0);
-	};
+	//URLDECODE() {return this.getToken(206, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitURLDECODE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.URLDECODE_funContext = URLDECODE_funContext;
+
 
 class LARGE_funContext extends ExprContext {
 
@@ -12816,9 +11059,7 @@ class LARGE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LARGE() {
-	    return this.getToken(mathParser.LARGE, 0);
-	};
+	//LARGE() {return this.getToken(162, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12832,17 +11073,15 @@ class LARGE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLARGE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LARGE_funContext = LARGE_funContext;
+
 
 class TIMESTAMP_funContext extends ExprContext {
 
@@ -12851,9 +11090,7 @@ class TIMESTAMP_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TIMESTAMP() {
-	    return this.getToken(mathParser.TIMESTAMP, 0);
-	};
+	//TIMESTAMP() {return this.getToken(249, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12867,17 +11104,15 @@ class TIMESTAMP_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTIMESTAMP_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TIMESTAMP_funContext = TIMESTAMP_funContext;
+
 
 class VALUE_funContext extends ExprContext {
 
@@ -12886,26 +11121,22 @@ class VALUE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	VALUE() {
-	    return this.getToken(mathParser.VALUE, 0);
-	};
+	//VALUE() {return this.getToken(136, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitVALUE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.VALUE_funContext = VALUE_funContext;
+
 
 class DAY_funContext extends ExprContext {
 
@@ -12914,26 +11145,22 @@ class DAY_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DAY() {
-	    return this.getToken(mathParser.DAY, 0);
-	};
+	//DAY() {return this.getToken(145, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDAY_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DAY_funContext = DAY_funContext;
+
 
 class WEIBULL_funContext extends ExprContext {
 
@@ -12942,9 +11169,7 @@ class WEIBULL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	WEIBULL() {
-	    return this.getToken(mathParser.WEIBULL, 0);
-	};
+	//WEIBULL() {return this.getToken(204, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12958,17 +11183,15 @@ class WEIBULL_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitWEIBULL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.WEIBULL_funContext = WEIBULL_funContext;
+
 
 class HMACSHA256_funContext extends ExprContext {
 
@@ -12977,9 +11200,7 @@ class HMACSHA256_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HMACSHA256() {
-	    return this.getToken(mathParser.HMACSHA256, 0);
-	};
+	HMACSHA256//() {return this.getToken(223, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -12993,17 +11214,15 @@ class HMACSHA256_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHMACSHA256_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HMACSHA256_funContext = HMACSHA256_funContext;
+
 
 class BINOMDIST_funContext extends ExprContext {
 
@@ -13012,9 +11231,7 @@ class BINOMDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BINOMDIST() {
-	    return this.getToken(mathParser.BINOMDIST, 0);
-	};
+	//BINOMDIST() {return this.getToken(188, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13028,17 +11245,15 @@ class BINOMDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBINOMDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BINOMDIST_funContext = BINOMDIST_funContext;
+
 
 class Judge_funContext extends ExprContext {
 
@@ -13060,17 +11275,15 @@ class Judge_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitJudge_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.Judge_funContext = Judge_funContext;
+
 
 class DEVSQ_funContext extends ExprContext {
 
@@ -13079,9 +11292,7 @@ class DEVSQ_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DEVSQ() {
-	    return this.getToken(mathParser.DEVSQ, 0);
-	};
+	//DEVSQ() {return this.getToken(179, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13095,17 +11306,15 @@ class DEVSQ_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDEVSQ_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DEVSQ_funContext = DEVSQ_funContext;
+
 
 class MODE_funContext extends ExprContext {
 
@@ -13114,9 +11323,7 @@ class MODE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MODE() {
-	    return this.getToken(mathParser.MODE, 0);
-	};
+	//MODE() {return this.getToken(161, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13130,17 +11337,15 @@ class MODE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMODE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MODE_funContext = MODE_funContext;
+
 
 class BETAINV_funContext extends ExprContext {
 
@@ -13149,9 +11354,7 @@ class BETAINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BETAINV() {
-	    return this.getToken(mathParser.BETAINV, 0);
-	};
+	//BETAINV() {return this.getToken(187, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13165,17 +11368,15 @@ class BETAINV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBETAINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BETAINV_funContext = BETAINV_funContext;
+
 
 class MAX_funContext extends ExprContext {
 
@@ -13184,9 +11385,7 @@ class MAX_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MAX() {
-	    return this.getToken(mathParser.MAX, 0);
-	};
+	//MAX() {return this.getToken(157, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13200,17 +11399,15 @@ class MAX_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMAX_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MAX_funContext = MAX_funContext;
+
 
 class MINUTE_funContext extends ExprContext {
 
@@ -13219,26 +11416,22 @@ class MINUTE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MINUTE() {
-	    return this.getToken(mathParser.MINUTE, 0);
-	};
+	//MINUTE() {return this.getToken(147, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMINUTE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MINUTE_funContext = MINUTE_funContext;
+
 
 class TAN_funContext extends ExprContext {
 
@@ -13247,26 +11440,22 @@ class TAN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TAN() {
-	    return this.getToken(mathParser.TAN, 0);
-	};
+	//TAN() {return this.getToken(82, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTAN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TAN_funContext = TAN_funContext;
+
 
 class IFERROR_funContext extends ExprContext {
 
@@ -13275,9 +11464,7 @@ class IFERROR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	IFERROR() {
-	    return this.getToken(mathParser.IFERROR, 0);
-	};
+	//IFERROR() {return this.getToken(36, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13291,17 +11478,15 @@ class IFERROR_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitIFERROR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.IFERROR_funContext = IFERROR_funContext;
+
 
 class FDIST_funContext extends ExprContext {
 
@@ -13310,9 +11495,7 @@ class FDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FDIST() {
-	    return this.getToken(mathParser.FDIST, 0);
-	};
+	//FDIST() {return this.getToken(190, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13326,17 +11509,15 @@ class FDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FDIST_funContext = FDIST_funContext;
+
 
 class INDEXOF_funContext extends ExprContext {
 
@@ -13345,9 +11526,7 @@ class INDEXOF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	INDEXOF() {
-	    return this.getToken(mathParser.INDEXOF, 0);
-	};
+	//INDEXOF() {return this.getToken(227, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13361,17 +11540,15 @@ class INDEXOF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitINDEXOF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.INDEXOF_funContext = INDEXOF_funContext;
+
 
 class UPPER_funContext extends ExprContext {
 
@@ -13380,26 +11557,22 @@ class UPPER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	UPPER() {
-	    return this.getToken(mathParser.UPPER, 0);
-	};
+	//UPPER() {return this.getToken(135, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitUPPER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.UPPER_funContext = UPPER_funContext;
+
 
 class HTMLDECODE_funContext extends ExprContext {
 
@@ -13408,26 +11581,22 @@ class HTMLDECODE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HTMLDECODE() {
-	    return this.getToken(mathParser.HTMLDECODE, 0);
-	};
+	//HTMLDECODE() {return this.getToken(208, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHTMLDECODE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HTMLDECODE_funContext = HTMLDECODE_funContext;
+
 
 class EXPONDIST_funContext extends ExprContext {
 
@@ -13436,9 +11605,7 @@ class EXPONDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	EXPONDIST() {
-	    return this.getToken(mathParser.EXPONDIST, 0);
-	};
+	//EXPONDIST() {return this.getToken(189, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13452,17 +11619,15 @@ class EXPONDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitEXPONDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.EXPONDIST_funContext = EXPONDIST_funContext;
+
 
 class DEC2BIN_funContext extends ExprContext {
 
@@ -13471,9 +11636,7 @@ class DEC2BIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DEC2BIN() {
-	    return this.getToken(mathParser.DEC2BIN, 0);
-	};
+	DEC2//BIN() {return this.getToken(53, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13487,17 +11650,15 @@ class DEC2BIN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDEC2BIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DEC2BIN_funContext = DEC2BIN_funContext;
+
 
 class HEX2DEC_funContext extends ExprContext {
 
@@ -13506,26 +11667,22 @@ class HEX2DEC_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HEX2DEC() {
-	    return this.getToken(mathParser.HEX2DEC, 0);
-	};
+	HEX2//DEC() {return this.getToken(57, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHEX2DEC_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HEX2DEC_funContext = HEX2DEC_funContext;
+
 
 class SMALL_funContext extends ExprContext {
 
@@ -13534,9 +11691,7 @@ class SMALL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SMALL() {
-	    return this.getToken(mathParser.SMALL, 0);
-	};
+	//SMALL() {return this.getToken(163, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13550,17 +11705,15 @@ class SMALL_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSMALL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SMALL_funContext = SMALL_funContext;
+
 
 class ODD_funContext extends ExprContext {
 
@@ -13569,26 +11722,22 @@ class ODD_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ODD() {
-	    return this.getToken(mathParser.ODD, 0);
-	};
+	//ODD() {return this.getToken(97, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitODD_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ODD_funContext = ODD_funContext;
+
 
 class TEXTTOBASE64_funContext extends ExprContext {
 
@@ -13597,9 +11746,7 @@ class TEXTTOBASE64_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TEXTTOBASE64() {
-	    return this.getToken(mathParser.TEXTTOBASE64, 0);
-	};
+	TEXTTOBASE64//() {return this.getToken(211, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13613,17 +11760,15 @@ class TEXTTOBASE64_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTEXTTOBASE64_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TEXTTOBASE64_funContext = TEXTTOBASE64_funContext;
+
 
 class MID_funContext extends ExprContext {
 
@@ -13632,9 +11777,7 @@ class MID_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MID() {
-	    return this.getToken(mathParser.MID, 0);
-	};
+	//MID() {return this.getToken(124, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13648,17 +11791,15 @@ class MID_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMID_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MID_funContext = MID_funContext;
+
 
 class PERCENTRANK_funContext extends ExprContext {
 
@@ -13667,9 +11808,7 @@ class PERCENTRANK_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PERCENTRANK() {
-	    return this.getToken(mathParser.PERCENTRANK, 0);
-	};
+	//PERCENTRANK() {return this.getToken(165, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13683,17 +11822,15 @@ class PERCENTRANK_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPERCENTRANK_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PERCENTRANK_funContext = PERCENTRANK_funContext;
+
 
 class STDEV_funContext extends ExprContext {
 
@@ -13702,9 +11839,7 @@ class STDEV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	STDEV() {
-	    return this.getToken(mathParser.STDEV, 0);
-	};
+	//STDEV() {return this.getToken(175, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13718,17 +11853,15 @@ class STDEV_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSTDEV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.STDEV_funContext = STDEV_funContext;
+
 
 class NORMSDIST_funContext extends ExprContext {
 
@@ -13737,26 +11870,22 @@ class NORMSDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NORMSDIST() {
-	    return this.getToken(mathParser.NORMSDIST, 0);
-	};
+	//NORMSDIST() {return this.getToken(184, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNORMSDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NORMSDIST_funContext = NORMSDIST_funContext;
+
 
 class ISNUMBER_funContext extends ExprContext {
 
@@ -13765,26 +11894,22 @@ class ISNUMBER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISNUMBER() {
-	    return this.getToken(mathParser.ISNUMBER, 0);
-	};
+	//ISNUMBER() {return this.getToken(37, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISNUMBER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISNUMBER_funContext = ISNUMBER_funContext;
+
 
 class LASTINDEXOF_funContext extends ExprContext {
 
@@ -13793,9 +11918,7 @@ class LASTINDEXOF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LASTINDEXOF() {
-	    return this.getToken(mathParser.LASTINDEXOF, 0);
-	};
+	//LASTINDEXOF() {return this.getToken(228, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13809,17 +11932,15 @@ class LASTINDEXOF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLASTINDEXOF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LASTINDEXOF_funContext = LASTINDEXOF_funContext;
+
 
 class MOD_funContext extends ExprContext {
 
@@ -13828,9 +11949,7 @@ class MOD_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MOD() {
-	    return this.getToken(mathParser.MOD, 0);
-	};
+	//MOD() {return this.getToken(67, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13844,17 +11963,15 @@ class MOD_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMOD_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MOD_funContext = MOD_funContext;
+
 
 class CHAR_funContext extends ExprContext {
 
@@ -13863,26 +11980,22 @@ class CHAR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	CHAR() {
-	    return this.getToken(mathParser.CHAR, 0);
-	};
+	//CHAR() {return this.getToken(114, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCHAR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.CHAR_funContext = CHAR_funContext;
+
 
 class REGEX_funContext extends ExprContext {
 
@@ -13891,9 +12004,7 @@ class REGEX_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	REGEX() {
-	    return this.getToken(mathParser.REGEX, 0);
-	};
+	//REGEX() {return this.getToken(213, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13907,17 +12018,15 @@ class REGEX_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitREGEX_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.REGEX_funContext = REGEX_funContext;
+
 
 class TEXTTOBASE64URL_funContext extends ExprContext {
 
@@ -13926,9 +12035,7 @@ class TEXTTOBASE64URL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TEXTTOBASE64URL() {
-	    return this.getToken(mathParser.TEXTTOBASE64URL, 0);
-	};
+	TEXTTOBASE64//URL() {return this.getToken(212, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13942,17 +12049,15 @@ class TEXTTOBASE64URL_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTEXTTOBASE64URL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TEXTTOBASE64URL_funContext = TEXTTOBASE64URL_funContext;
+
 
 class MD5_funContext extends ExprContext {
 
@@ -13961,9 +12066,7 @@ class MD5_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MD5() {
-	    return this.getToken(mathParser.MD5, 0);
-	};
+	MD5//() {return this.getToken(217, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -13977,17 +12080,15 @@ class MD5_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMD5_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MD5_funContext = MD5_funContext;
+
 
 class REPLACE_funContext extends ExprContext {
 
@@ -13996,9 +12097,7 @@ class REPLACE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	REPLACE() {
-	    return this.getToken(mathParser.REPLACE, 0);
-	};
+	//REPLACE() {return this.getToken(126, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14012,17 +12111,15 @@ class REPLACE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitREPLACE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.REPLACE_funContext = REPLACE_funContext;
+
 
 class ACOSH_funContext extends ExprContext {
 
@@ -14031,26 +12128,22 @@ class ACOSH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ACOSH() {
-	    return this.getToken(mathParser.ACOSH, 0);
-	};
+	//ACOSH() {return this.getToken(85, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitACOSH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ACOSH_funContext = ACOSH_funContext;
+
 
 class ISODD_funContext extends ExprContext {
 
@@ -14059,26 +12152,22 @@ class ISODD_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISODD() {
-	    return this.getToken(mathParser.ISODD, 0);
-	};
+	//ISODD() {return this.getToken(43, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISODD_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISODD_funContext = ISODD_funContext;
+
 
 class ASC_funContext extends ExprContext {
 
@@ -14087,26 +12176,22 @@ class ASC_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ASC() {
-	    return this.getToken(mathParser.ASC, 0);
-	};
+	//ASC() {return this.getToken(112, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitASC_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ASC_funContext = ASC_funContext;
+
 
 class COS_funContext extends ExprContext {
 
@@ -14115,26 +12200,22 @@ class COS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	COS() {
-	    return this.getToken(mathParser.COS, 0);
-	};
+	//COS() {return this.getToken(78, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitCOS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.COS_funContext = COS_funContext;
+
 
 class LN_funContext extends ExprContext {
 
@@ -14143,26 +12224,22 @@ class LN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LN() {
-	    return this.getToken(mathParser.LN, 0);
-	};
+	//LN() {return this.getToken(105, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LN_funContext = LN_funContext;
+
 
 class STRING_funContext extends ExprContext {
 
@@ -14171,22 +12248,18 @@ class STRING_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	STRING() {
-	    return this.getToken(mathParser.STRING, 0);
-	};
+	STRING() {return this.getToken(31, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSTRING_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.STRING_funContext = STRING_funContext;
+
 
 class HMACMD5_funContext extends ExprContext {
 
@@ -14195,9 +12268,7 @@ class HMACMD5_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HMACMD5() {
-	    return this.getToken(mathParser.HMACMD5, 0);
-	};
+	HMACMD5//() {return this.getToken(221, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14211,17 +12282,15 @@ class HMACMD5_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHMACMD5_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HMACMD5_funContext = HMACMD5_funContext;
+
 
 class PRODUCT_funContext extends ExprContext {
 
@@ -14230,9 +12299,7 @@ class PRODUCT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PRODUCT() {
-	    return this.getToken(mathParser.PRODUCT, 0);
-	};
+	//PRODUCT() {return this.getToken(109, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14246,17 +12313,15 @@ class PRODUCT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPRODUCT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PRODUCT_funContext = PRODUCT_funContext;
+
 
 class EXACT_funContext extends ExprContext {
 
@@ -14265,9 +12330,7 @@ class EXACT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	EXACT() {
-	    return this.getToken(mathParser.EXACT, 0);
-	};
+	//EXACT() {return this.getToken(118, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14281,17 +12344,15 @@ class EXACT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitEXACT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.EXACT_funContext = EXACT_funContext;
+
 
 class ADDMINUTES_funContext extends ExprContext {
 
@@ -14300,9 +12361,7 @@ class ADDMINUTES_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ADDMINUTES() {
-	    return this.getToken(mathParser.ADDMINUTES, 0);
-	};
+	//ADDMINUTES() {return this.getToken(247, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14316,17 +12375,15 @@ class ADDMINUTES_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitADDMINUTES_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ADDMINUTES_funContext = ADDMINUTES_funContext;
+
 
 class SUMSQ_funContext extends ExprContext {
 
@@ -14335,9 +12392,7 @@ class SUMSQ_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SUMSQ() {
-	    return this.getToken(mathParser.SUMSQ, 0);
-	};
+	//SUMSQ() {return this.getToken(111, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14351,17 +12406,15 @@ class SUMSQ_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSUMSQ_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SUMSQ_funContext = SUMSQ_funContext;
+
 
 class SUM_funContext extends ExprContext {
 
@@ -14370,9 +12423,7 @@ class SUM_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SUM() {
-	    return this.getToken(mathParser.SUM, 0);
-	};
+	//SUM() {return this.getToken(172, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14386,17 +12437,15 @@ class SUM_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSUM_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SUM_funContext = SUM_funContext;
+
 
 class SECOND_funContext extends ExprContext {
 
@@ -14405,26 +12454,22 @@ class SECOND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SECOND() {
-	    return this.getToken(mathParser.SECOND, 0);
-	};
+	//SECOND() {return this.getToken(148, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSECOND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SECOND_funContext = SECOND_funContext;
+
 
 class GAMMADIST_funContext extends ExprContext {
 
@@ -14433,9 +12478,7 @@ class GAMMADIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	GAMMADIST() {
-	    return this.getToken(mathParser.GAMMADIST, 0);
-	};
+	//GAMMADIST() {return this.getToken(194, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14449,17 +12492,15 @@ class GAMMADIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGAMMADIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GAMMADIST_funContext = GAMMADIST_funContext;
+
 
 class OCT2HEX_funContext extends ExprContext {
 
@@ -14468,9 +12509,7 @@ class OCT2HEX_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	OCT2HEX() {
-	    return this.getToken(mathParser.OCT2HEX, 0);
-	};
+	OCT2//HEX() {return this.getToken(61, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14484,17 +12523,15 @@ class OCT2HEX_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitOCT2HEX_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.OCT2HEX_funContext = OCT2HEX_funContext;
+
 
 class TODAY_funContext extends ExprContext {
 
@@ -14503,22 +12540,18 @@ class TODAY_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TODAY() {
-	    return this.getToken(mathParser.TODAY, 0);
-	};
+	//TODAY() {return this.getToken(142, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTODAY_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TODAY_funContext = TODAY_funContext;
+
 
 class ERROR_funContext extends ExprContext {
 
@@ -14527,26 +12560,22 @@ class ERROR_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ERROR() {
-	    return this.getToken(mathParser.ERROR, 0);
-	};
+	//ERROR() {return this.getToken(33, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitERROR_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ERROR_funContext = ERROR_funContext;
+
 
 class ATAN_funContext extends ExprContext {
 
@@ -14555,26 +12584,22 @@ class ATAN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ATAN() {
-	    return this.getToken(mathParser.ATAN, 0);
-	};
+	//ATAN() {return this.getToken(88, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitATAN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ATAN_funContext = ATAN_funContext;
+
 
 class E_funContext extends ExprContext {
 
@@ -14583,22 +12608,18 @@ class E_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	E() {
-	    return this.getToken(mathParser.E, 0);
-	};
+	//E() {return this.getToken(51, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.E_funContext = E_funContext;
+
 
 class TRIM_funContext extends ExprContext {
 
@@ -14607,26 +12628,22 @@ class TRIM_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TRIM() {
-	    return this.getToken(mathParser.TRIM, 0);
-	};
+	//TRIM() {return this.getToken(134, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTRIM_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TRIM_funContext = TRIM_funContext;
+
 
 class RADIANS_funContext extends ExprContext {
 
@@ -14635,26 +12652,22 @@ class RADIANS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	RADIANS() {
-	    return this.getToken(mathParser.RADIANS, 0);
-	};
+	//RADIANS() {return this.getToken(77, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitRADIANS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.RADIANS_funContext = RADIANS_funContext;
+
 
 class GAMMALN_funContext extends ExprContext {
 
@@ -14663,26 +12676,22 @@ class GAMMALN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	GAMMALN() {
-	    return this.getToken(mathParser.GAMMALN, 0);
-	};
+	//GAMMALN() {return this.getToken(196, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGAMMALN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GAMMALN_funContext = GAMMALN_funContext;
+
 
 class TEXT_funContext extends ExprContext {
 
@@ -14691,9 +12700,7 @@ class TEXT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TEXT() {
-	    return this.getToken(mathParser.TEXT, 0);
-	};
+	//TEXT() {return this.getToken(133, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14707,17 +12714,15 @@ class TEXT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTEXT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TEXT_funContext = TEXT_funContext;
+
 
 class FISHER_funContext extends ExprContext {
 
@@ -14726,26 +12731,22 @@ class FISHER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FISHER() {
-	    return this.getToken(mathParser.FISHER, 0);
-	};
+	//FISHER() {return this.getToken(192, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFISHER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FISHER_funContext = FISHER_funContext;
+
 
 class AND_funContext extends ExprContext {
 
@@ -14754,9 +12755,7 @@ class AND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	AND() {
-	    return this.getToken(mathParser.AND, 0);
-	};
+	//AND() {return this.getToken(46, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14770,17 +12769,15 @@ class AND_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitAND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.AND_funContext = AND_funContext;
+
 
 class ArrayJson_funContext extends ExprContext {
 
@@ -14801,17 +12798,15 @@ class ArrayJson_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitArrayJson_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ArrayJson_funContext = ArrayJson_funContext;
+
 
 class BIN2HEX_funContext extends ExprContext {
 
@@ -14820,9 +12815,7 @@ class BIN2HEX_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BIN2HEX() {
-	    return this.getToken(mathParser.BIN2HEX, 0);
-	};
+	BIN2//HEX() {return this.getToken(64, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14836,17 +12829,15 @@ class BIN2HEX_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBIN2HEX_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BIN2HEX_funContext = BIN2HEX_funContext;
+
 
 class MULTINOMIAL_funContext extends ExprContext {
 
@@ -14855,9 +12846,7 @@ class MULTINOMIAL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MULTINOMIAL() {
-	    return this.getToken(mathParser.MULTINOMIAL, 0);
-	};
+	//MULTINOMIAL() {return this.getToken(108, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14871,17 +12860,15 @@ class MULTINOMIAL_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMULTINOMIAL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MULTINOMIAL_funContext = MULTINOMIAL_funContext;
+
 
 class MONTH_funContext extends ExprContext {
 
@@ -14890,26 +12877,22 @@ class MONTH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MONTH() {
-	    return this.getToken(mathParser.MONTH, 0);
-	};
+	//MONTH() {return this.getToken(144, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMONTH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MONTH_funContext = MONTH_funContext;
+
 
 class URLENCODE_funContext extends ExprContext {
 
@@ -14918,26 +12901,22 @@ class URLENCODE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	URLENCODE() {
-	    return this.getToken(mathParser.URLENCODE, 0);
-	};
+	//URLENCODE() {return this.getToken(205, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitURLENCODE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.URLENCODE_funContext = URLENCODE_funContext;
+
 
 class NORMDIST_funContext extends ExprContext {
 
@@ -14946,9 +12925,7 @@ class NORMDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NORMDIST() {
-	    return this.getToken(mathParser.NORMDIST, 0);
-	};
+	//NORMDIST() {return this.getToken(182, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14962,17 +12939,15 @@ class NORMDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNORMDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NORMDIST_funContext = NORMDIST_funContext;
+
 
 class HMACSHA1_funContext extends ExprContext {
 
@@ -14981,9 +12956,7 @@ class HMACSHA1_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HMACSHA1() {
-	    return this.getToken(mathParser.HMACSHA1, 0);
-	};
+	HMACSHA1//() {return this.getToken(222, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -14997,17 +12970,15 @@ class HMACSHA1_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHMACSHA1_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HMACSHA1_funContext = HMACSHA1_funContext;
+
 
 class ENDSWITH_funContext extends ExprContext {
 
@@ -15016,9 +12987,7 @@ class ENDSWITH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ENDSWITH() {
-	    return this.getToken(mathParser.ENDSWITH, 0);
-	};
+	//ENDSWITH() {return this.getToken(233, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15032,17 +13001,15 @@ class ENDSWITH_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitENDSWITH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ENDSWITH_funContext = ENDSWITH_funContext;
+
 
 class Bracket_funContext extends ExprContext {
 
@@ -15056,17 +13023,15 @@ class Bracket_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBracket_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.Bracket_funContext = Bracket_funContext;
+
 
 class BETADIST_funContext extends ExprContext {
 
@@ -15075,9 +13040,7 @@ class BETADIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BETADIST() {
-	    return this.getToken(mathParser.BETADIST, 0);
-	};
+	//BETADIST() {return this.getToken(186, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15091,17 +13054,15 @@ class BETADIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBETADIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BETADIST_funContext = BETADIST_funContext;
+
 
 class ATANH_funContext extends ExprContext {
 
@@ -15110,26 +13071,22 @@ class ATANH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ATANH() {
-	    return this.getToken(mathParser.ATANH, 0);
-	};
+	//ATANH() {return this.getToken(89, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitATANH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ATANH_funContext = ATANH_funContext;
+
 
 class NOW_funContext extends ExprContext {
 
@@ -15138,22 +13095,18 @@ class NOW_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NOW() {
-	    return this.getToken(mathParser.NOW, 0);
-	};
+	//NOW() {return this.getToken(141, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNOW_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NOW_funContext = NOW_funContext;
+
 
 class MEDIAN_funContext extends ExprContext {
 
@@ -15162,9 +13115,7 @@ class MEDIAN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MEDIAN() {
-	    return this.getToken(mathParser.MEDIAN, 0);
-	};
+	//MEDIAN() {return this.getToken(158, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15178,17 +13129,15 @@ class MEDIAN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMEDIAN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MEDIAN_funContext = MEDIAN_funContext;
+
 
 class POWER_funContext extends ExprContext {
 
@@ -15197,9 +13146,7 @@ class POWER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	POWER() {
-	    return this.getToken(mathParser.POWER, 0);
-	};
+	//POWER() {return this.getToken(103, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15213,17 +13160,15 @@ class POWER_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPOWER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.POWER_funContext = POWER_funContext;
+
 
 class DEC2OCT_funContext extends ExprContext {
 
@@ -15232,9 +13177,7 @@ class DEC2OCT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DEC2OCT() {
-	    return this.getToken(mathParser.DEC2OCT, 0);
-	};
+	DEC2//OCT() {return this.getToken(55, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15248,17 +13191,15 @@ class DEC2OCT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDEC2OCT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DEC2OCT_funContext = DEC2OCT_funContext;
+
 
 class PROPER_funContext extends ExprContext {
 
@@ -15267,26 +13208,22 @@ class PROPER_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	PROPER() {
-	    return this.getToken(mathParser.PROPER, 0);
-	};
+	//PROPER() {return this.getToken(125, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPROPER_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.PROPER_funContext = PROPER_funContext;
+
 
 class TRUNC_funContext extends ExprContext {
 
@@ -15295,26 +13232,22 @@ class TRUNC_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TRUNC() {
-	    return this.getToken(mathParser.TRUNC, 0);
-	};
+	//TRUNC() {return this.getToken(70, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTRUNC_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TRUNC_funContext = TRUNC_funContext;
+
 
 class GCD_funContext extends ExprContext {
 
@@ -15323,9 +13256,7 @@ class GCD_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	GCD() {
-	    return this.getToken(mathParser.GCD, 0);
-	};
+	//GCD() {return this.getToken(72, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15339,17 +13270,15 @@ class GCD_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitGCD_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.GCD_funContext = GCD_funContext;
+
 
 class TANH_funContext extends ExprContext {
 
@@ -15358,26 +13287,22 @@ class TANH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TANH() {
-	    return this.getToken(mathParser.TANH, 0);
-	};
+	//TANH() {return this.getToken(83, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTANH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TANH_funContext = TANH_funContext;
+
 
 class HEX2BIN_funContext extends ExprContext {
 
@@ -15386,9 +13311,7 @@ class HEX2BIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	HEX2BIN() {
-	    return this.getToken(mathParser.HEX2BIN, 0);
-	};
+	HEX2//BIN() {return this.getToken(56, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15402,17 +13325,15 @@ class HEX2BIN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitHEX2BIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.HEX2BIN_funContext = HEX2BIN_funContext;
+
 
 class SINH_funContext extends ExprContext {
 
@@ -15421,26 +13342,22 @@ class SINH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SINH() {
-	    return this.getToken(mathParser.SINH, 0);
-	};
+	//SINH() {return this.getToken(81, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSINH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SINH_funContext = SINH_funContext;
+
 
 class SHA512_funContext extends ExprContext {
 
@@ -15449,9 +13366,7 @@ class SHA512_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SHA512() {
-	    return this.getToken(mathParser.SHA512, 0);
-	};
+	SHA512//() {return this.getToken(220, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15465,17 +13380,15 @@ class SHA512_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSHA512_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SHA512_funContext = SHA512_funContext;
+
 
 class MIN_funContext extends ExprContext {
 
@@ -15484,9 +13397,7 @@ class MIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	MIN() {
-	    return this.getToken(mathParser.MIN, 0);
-	};
+	//MIN() {return this.getToken(159, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15500,17 +13411,15 @@ class MIN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MIN_funContext = MIN_funContext;
+
 
 class ADDDAYS_funContext extends ExprContext {
 
@@ -15519,9 +13428,7 @@ class ADDDAYS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ADDDAYS() {
-	    return this.getToken(mathParser.ADDDAYS, 0);
-	};
+	//ADDDAYS() {return this.getToken(245, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15535,17 +13442,15 @@ class ADDDAYS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitADDDAYS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ADDDAYS_funContext = ADDDAYS_funContext;
+
 
 class ISNONTEXT_funContext extends ExprContext {
 
@@ -15554,26 +13459,22 @@ class ISNONTEXT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISNONTEXT() {
-	    return this.getToken(mathParser.ISNONTEXT, 0);
-	};
+	//ISNONTEXT() {return this.getToken(40, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISNONTEXT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISNONTEXT_funContext = ISNONTEXT_funContext;
+
 
 class ABS_funContext extends ExprContext {
 
@@ -15582,26 +13483,22 @@ class ABS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ABS() {
-	    return this.getToken(mathParser.ABS, 0);
-	};
+	//ABS() {return this.getToken(65, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitABS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ABS_funContext = ABS_funContext;
+
 
 class ROUNDDOWN_funContext extends ExprContext {
 
@@ -15610,9 +13507,7 @@ class ROUNDDOWN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ROUNDDOWN() {
-	    return this.getToken(mathParser.ROUNDDOWN, 0);
-	};
+	//ROUNDDOWN() {return this.getToken(92, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15626,17 +13521,15 @@ class ROUNDDOWN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitROUNDDOWN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ROUNDDOWN_funContext = ROUNDDOWN_funContext;
+
 
 class IF_funContext extends ExprContext {
 
@@ -15645,9 +13538,7 @@ class IF_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	IF() {
-	    return this.getToken(mathParser.IF, 0);
-	};
+	//IF() {return this.getToken(35, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15661,17 +13552,15 @@ class IF_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitIF_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.IF_funContext = IF_funContext;
+
 
 class JOIN_funContext extends ExprContext {
 
@@ -15680,9 +13569,7 @@ class JOIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	JOIN() {
-	    return this.getToken(mathParser.JOIN, 0);
-	};
+	//JOIN() {return this.getToken(230, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15696,17 +13583,15 @@ class JOIN_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitJOIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.JOIN_funContext = JOIN_funContext;
+
 
 class FIND_funContext extends ExprContext {
 
@@ -15715,9 +13600,7 @@ class FIND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FIND() {
-	    return this.getToken(mathParser.FIND, 0);
-	};
+	//FIND() {return this.getToken(119, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15731,17 +13614,15 @@ class FIND_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFIND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FIND_funContext = FIND_funContext;
+
 
 class SUBSTITUTE_funContext extends ExprContext {
 
@@ -15750,9 +13631,7 @@ class SUBSTITUTE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SUBSTITUTE() {
-	    return this.getToken(mathParser.SUBSTITUTE, 0);
-	};
+	//SUBSTITUTE() {return this.getToken(131, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15766,17 +13645,15 @@ class SUBSTITUTE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSUBSTITUTE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SUBSTITUTE_funContext = SUBSTITUTE_funContext;
+
 
 class Percentage_funContext extends ExprContext {
 
@@ -15790,17 +13667,15 @@ class Percentage_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitPercentage_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.Percentage_funContext = Percentage_funContext;
+
 
 class REPT_funContext extends ExprContext {
 
@@ -15809,9 +13684,7 @@ class REPT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	REPT() {
-	    return this.getToken(mathParser.REPT, 0);
-	};
+	//REPT() {return this.getToken(127, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15825,17 +13698,15 @@ class REPT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitREPT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.REPT_funContext = REPT_funContext;
+
 
 class ISNULL_funContext extends ExprContext {
 
@@ -15844,9 +13715,7 @@ class ISNULL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISNULL() {
-	    return this.getToken(mathParser.ISNULL, 0);
-	};
+	//ISNULL() {return this.getToken(44, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15860,17 +13729,15 @@ class ISNULL_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISNULL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISNULL_funContext = ISNULL_funContext;
+
 
 class ASIN_funContext extends ExprContext {
 
@@ -15879,26 +13746,22 @@ class ASIN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ASIN() {
-	    return this.getToken(mathParser.ASIN, 0);
-	};
+	//ASIN() {return this.getToken(86, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitASIN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ASIN_funContext = ASIN_funContext;
+
 
 class MulDiv_funContext extends ExprContext {
 
@@ -15920,17 +13783,15 @@ class MulDiv_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitMulDiv_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.MulDiv_funContext = MulDiv_funContext;
+
 
 class REMOVESTART_funContext extends ExprContext {
 
@@ -15939,9 +13800,7 @@ class REMOVESTART_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	REMOVESTART() {
-	    return this.getToken(mathParser.REMOVESTART, 0);
-	};
+	//REMOVESTART() {return this.getToken(236, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -15955,17 +13814,15 @@ class REMOVESTART_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitREMOVESTART_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.REMOVESTART_funContext = REMOVESTART_funContext;
+
 
 class T_funContext extends ExprContext {
 
@@ -15974,26 +13831,22 @@ class T_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	T() {
-	    return this.getToken(mathParser.T, 0);
-	};
+	//T() {return this.getToken(132, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.T_funContext = T_funContext;
+
 
 class WEEKDAY_funContext extends ExprContext {
 
@@ -16002,9 +13855,7 @@ class WEEKDAY_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	WEEKDAY() {
-	    return this.getToken(mathParser.WEEKDAY, 0);
-	};
+	//WEEKDAY() {return this.getToken(149, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16018,17 +13869,15 @@ class WEEKDAY_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitWEEKDAY_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.WEEKDAY_funContext = WEEKDAY_funContext;
+
 
 class BIN2OCT_funContext extends ExprContext {
 
@@ -16037,9 +13886,7 @@ class BIN2OCT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BIN2OCT() {
-	    return this.getToken(mathParser.BIN2OCT, 0);
-	};
+	BIN2//OCT() {return this.getToken(62, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16053,17 +13900,15 @@ class BIN2OCT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBIN2OCT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BIN2OCT_funContext = BIN2OCT_funContext;
+
 
 class NULL_funContext extends ExprContext {
 
@@ -16072,22 +13917,18 @@ class NULL_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	NULL() {
-	    return this.getToken(mathParser.NULL, 0);
-	};
+	//NULL() {return this.getToken(32, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNULL_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.NULL_funContext = NULL_funContext;
+
 
 class BASE64TOTEXT_funContext extends ExprContext {
 
@@ -16096,9 +13937,7 @@ class BASE64TOTEXT_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	BASE64TOTEXT() {
-	    return this.getToken(mathParser.BASE64TOTEXT, 0);
-	};
+	BASE64//TOTEXT() {return this.getToken(209, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16112,17 +13951,15 @@ class BASE64TOTEXT_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitBASE64TOTEXT_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.BASE64TOTEXT_funContext = BASE64TOTEXT_funContext;
+
 
 class TDIST_funContext extends ExprContext {
 
@@ -16131,9 +13968,7 @@ class TDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TDIST() {
-	    return this.getToken(mathParser.TDIST, 0);
-	};
+	//TDIST() {return this.getToken(202, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16147,17 +13982,15 @@ class TDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TDIST_funContext = TDIST_funContext;
+
 
 class DATEVALUE_funContext extends ExprContext {
 
@@ -16166,9 +13999,7 @@ class DATEVALUE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	DATEVALUE() {
-	    return this.getToken(mathParser.DATEVALUE, 0);
-	};
+	//DATEVALUE() {return this.getToken(137, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16182,17 +14013,15 @@ class DATEVALUE_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitDATEVALUE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.DATEVALUE_funContext = DATEVALUE_funContext;
+
 
 class STARTSWITH_funContext extends ExprContext {
 
@@ -16201,9 +14030,7 @@ class STARTSWITH_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	STARTSWITH() {
-	    return this.getToken(mathParser.STARTSWITH, 0);
-	};
+	//STARTSWITH() {return this.getToken(232, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16217,17 +14044,15 @@ class STARTSWITH_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSTARTSWITH_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.STARTSWITH_funContext = STARTSWITH_funContext;
+
 
 class EVEN_funContext extends ExprContext {
 
@@ -16236,26 +14061,22 @@ class EVEN_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	EVEN() {
-	    return this.getToken(mathParser.EVEN, 0);
-	};
+	//EVEN() {return this.getToken(96, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitEVEN_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.EVEN_funContext = EVEN_funContext;
+
 
 class LOGNORMDIST_funContext extends ExprContext {
 
@@ -16264,9 +14085,7 @@ class LOGNORMDIST_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	LOGNORMDIST() {
-	    return this.getToken(mathParser.LOGNORMDIST, 0);
-	};
+	//LOGNORMDIST() {return this.getToken(199, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16280,17 +14099,15 @@ class LOGNORMDIST_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitLOGNORMDIST_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.LOGNORMDIST_funContext = LOGNORMDIST_funContext;
+
 
 class ISNULLOREMPTY_funContext extends ExprContext {
 
@@ -16299,26 +14116,22 @@ class ISNULLOREMPTY_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ISNULLOREMPTY() {
-	    return this.getToken(mathParser.ISNULLOREMPTY, 0);
-	};
+	//ISNULLOREMPTY() {return this.getToken(234, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitISNULLOREMPTY_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ISNULLOREMPTY_funContext = ISNULLOREMPTY_funContext;
+
 
 class TRUE_funContext extends ExprContext {
 
@@ -16327,22 +14140,18 @@ class TRUE_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TRUE() {
-	    return this.getToken(mathParser.TRUE, 0);
-	};
+	//TRUE() {return this.getToken(49, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTRUE_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TRUE_funContext = TRUE_funContext;
+
 
 class FISHERINV_funContext extends ExprContext {
 
@@ -16351,26 +14160,22 @@ class FISHERINV_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	FISHERINV() {
-	    return this.getToken(mathParser.FISHERINV, 0);
-	};
+	//FISHERINV() {return this.getToken(193, 0);};
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitFISHERINV_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.FISHERINV_funContext = FISHERINV_funContext;
+
 
 class SHA1_funContext extends ExprContext {
 
@@ -16379,9 +14184,7 @@ class SHA1_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	SHA1() {
-	    return this.getToken(mathParser.SHA1, 0);
-	};
+	SHA1//() {return this.getToken(218, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16395,17 +14198,15 @@ class SHA1_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitSHA1_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.SHA1_funContext = SHA1_funContext;
+
 
 class TIME_funContext extends ExprContext {
 
@@ -16414,9 +14215,7 @@ class TIME_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	TIME() {
-	    return this.getToken(mathParser.TIME, 0);
-	};
+	//TIME() {return this.getToken(140, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16430,17 +14229,15 @@ class TIME_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitTIME_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.TIME_funContext = TIME_funContext;
+
 
 class ATAN2_funContext extends ExprContext {
 
@@ -16449,9 +14246,7 @@ class ATAN2_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ATAN2() {
-	    return this.getToken(mathParser.ATAN2, 0);
-	};
+	ATAN2//() {return this.getToken(90, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16465,17 +14260,15 @@ class ATAN2_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitATAN2_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ATAN2_funContext = ATAN2_funContext;
+
 
 class ADDHOURS_funContext extends ExprContext {
 
@@ -16484,9 +14277,7 @@ class ADDHOURS_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ADDHOURS() {
-	    return this.getToken(mathParser.ADDHOURS, 0);
-	};
+	//ADDHOURS() {return this.getToken(246, 0);};
 
 	expr = function(i) {
 	    if(i===undefined) {
@@ -16500,17 +14291,15 @@ class ADDHOURS_funContext extends ExprContext {
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitADDHOURS_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.ADDHOURS_funContext = ADDHOURS_funContext;
+
 
 class Version_funContext extends ExprContext {
 
@@ -16519,22 +14308,18 @@ class Version_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	ALGORITHMVERSION() {
-	    return this.getToken(mathParser.ALGORITHMVERSION, 0);
-	};
+	//ALGORITHMVERSION() {return this.getToken(242, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitVersion_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.Version_funContext = Version_funContext;
+
 
 class RAND_funContext extends ExprContext {
 
@@ -16543,22 +14328,18 @@ class RAND_funContext extends ExprContext {
         super.copyFrom(ctx);
     }
 
-	RAND() {
-	    return this.getToken(mathParser.RAND, 0);
-	};
+	//RAND() {return this.getToken(99, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitRAND_fun(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
 }
 
-mathParser.RAND_funContext = RAND_funContext;
+
 
 class NumContext extends antlr4.ParserRuleContext {
 
@@ -16571,23 +14352,17 @@ class NumContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathParser.RULE_num;
+        this.ruleIndex = 2;
     }
 
-	NUM() {
-	    return this.getToken(mathParser.NUM, 0);
-	};
+	NUM() {return this.getToken(30, 0);};
 
-	SUB() {
-	    return this.getToken(mathParser.SUB, 0);
-	};
+	//SUB() {return this.getToken(29, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitNum(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
@@ -16606,23 +14381,17 @@ class UnitContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathParser.RULE_unit;
+        this.ruleIndex = 3;
     }
 
-	UNIT() {
-	    return this.getToken(mathParser.UNIT, 0);
-	};
+	//UNIT() {return this.getToken(34, 0);};
 
-	T() {
-	    return this.getToken(mathParser.T, 0);
-	};
+	//T() {return this.getToken(132, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitUnit(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
@@ -16641,31 +14410,25 @@ class ArrayJsonContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathParser.RULE_arrayJson;
+        this.ruleIndex = 4;
     }
 
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
-	NUM() {
-	    return this.getToken(mathParser.NUM, 0);
-	};
+	NUM() {return this.getToken(30, 0);};
 
-	STRING() {
-	    return this.getToken(mathParser.STRING, 0);
-	};
+	STRING() {return this.getToken(31, 0);};
 
 	parameter2() {
 	    return this.getTypedRuleContext(Parameter2Context,0);
 	};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitArrayJson(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
@@ -16684,899 +14447,455 @@ class Parameter2Context extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathParser.RULE_parameter2;
+        this.ruleIndex = 5;
     }
 
-	E() {
-	    return this.getToken(mathParser.E, 0);
-	};
-
-	IF() {
-	    return this.getToken(mathParser.IF, 0);
-	};
-
-	IFERROR() {
-	    return this.getToken(mathParser.IFERROR, 0);
-	};
-
-	ISNUMBER() {
-	    return this.getToken(mathParser.ISNUMBER, 0);
-	};
-
-	ISTEXT() {
-	    return this.getToken(mathParser.ISTEXT, 0);
-	};
-
-	ISERROR() {
-	    return this.getToken(mathParser.ISERROR, 0);
-	};
-
-	ISNONTEXT() {
-	    return this.getToken(mathParser.ISNONTEXT, 0);
-	};
-
-	ISLOGICAL() {
-	    return this.getToken(mathParser.ISLOGICAL, 0);
-	};
-
-	ISEVEN() {
-	    return this.getToken(mathParser.ISEVEN, 0);
-	};
-
-	ISODD() {
-	    return this.getToken(mathParser.ISODD, 0);
-	};
-
-	ISNULL() {
-	    return this.getToken(mathParser.ISNULL, 0);
-	};
-
-	ISNULLORERROR() {
-	    return this.getToken(mathParser.ISNULLORERROR, 0);
-	};
-
-	AND() {
-	    return this.getToken(mathParser.AND, 0);
-	};
-
-	OR() {
-	    return this.getToken(mathParser.OR, 0);
-	};
-
-	NOT() {
-	    return this.getToken(mathParser.NOT, 0);
-	};
-
-	TRUE() {
-	    return this.getToken(mathParser.TRUE, 0);
-	};
-
-	FALSE() {
-	    return this.getToken(mathParser.FALSE, 0);
-	};
-
-	PI() {
-	    return this.getToken(mathParser.PI, 0);
-	};
-
-	DEC2BIN() {
-	    return this.getToken(mathParser.DEC2BIN, 0);
-	};
-
-	DEC2HEX() {
-	    return this.getToken(mathParser.DEC2HEX, 0);
-	};
-
-	DEC2OCT() {
-	    return this.getToken(mathParser.DEC2OCT, 0);
-	};
-
-	HEX2BIN() {
-	    return this.getToken(mathParser.HEX2BIN, 0);
-	};
-
-	HEX2DEC() {
-	    return this.getToken(mathParser.HEX2DEC, 0);
-	};
-
-	HEX2OCT() {
-	    return this.getToken(mathParser.HEX2OCT, 0);
-	};
-
-	OCT2BIN() {
-	    return this.getToken(mathParser.OCT2BIN, 0);
-	};
-
-	OCT2DEC() {
-	    return this.getToken(mathParser.OCT2DEC, 0);
-	};
-
-	OCT2HEX() {
-	    return this.getToken(mathParser.OCT2HEX, 0);
-	};
-
-	BIN2OCT() {
-	    return this.getToken(mathParser.BIN2OCT, 0);
-	};
-
-	BIN2DEC() {
-	    return this.getToken(mathParser.BIN2DEC, 0);
-	};
-
-	BIN2HEX() {
-	    return this.getToken(mathParser.BIN2HEX, 0);
-	};
-
-	ABS() {
-	    return this.getToken(mathParser.ABS, 0);
-	};
-
-	QUOTIENT() {
-	    return this.getToken(mathParser.QUOTIENT, 0);
-	};
-
-	MOD() {
-	    return this.getToken(mathParser.MOD, 0);
-	};
-
-	SIGN() {
-	    return this.getToken(mathParser.SIGN, 0);
-	};
-
-	SQRT() {
-	    return this.getToken(mathParser.SQRT, 0);
-	};
-
-	TRUNC() {
-	    return this.getToken(mathParser.TRUNC, 0);
-	};
-
-	INT() {
-	    return this.getToken(mathParser.INT, 0);
-	};
-
-	GCD() {
-	    return this.getToken(mathParser.GCD, 0);
-	};
-
-	LCM() {
-	    return this.getToken(mathParser.LCM, 0);
-	};
-
-	COMBIN() {
-	    return this.getToken(mathParser.COMBIN, 0);
-	};
-
-	PERMUT() {
-	    return this.getToken(mathParser.PERMUT, 0);
-	};
-
-	DEGREES() {
-	    return this.getToken(mathParser.DEGREES, 0);
-	};
-
-	RADIANS() {
-	    return this.getToken(mathParser.RADIANS, 0);
-	};
-
-	COS() {
-	    return this.getToken(mathParser.COS, 0);
-	};
-
-	COSH() {
-	    return this.getToken(mathParser.COSH, 0);
-	};
-
-	SIN() {
-	    return this.getToken(mathParser.SIN, 0);
-	};
-
-	SINH() {
-	    return this.getToken(mathParser.SINH, 0);
-	};
-
-	TAN() {
-	    return this.getToken(mathParser.TAN, 0);
-	};
-
-	TANH() {
-	    return this.getToken(mathParser.TANH, 0);
-	};
-
-	ACOS() {
-	    return this.getToken(mathParser.ACOS, 0);
-	};
-
-	ACOSH() {
-	    return this.getToken(mathParser.ACOSH, 0);
-	};
-
-	ASIN() {
-	    return this.getToken(mathParser.ASIN, 0);
-	};
-
-	ASINH() {
-	    return this.getToken(mathParser.ASINH, 0);
-	};
-
-	ATAN() {
-	    return this.getToken(mathParser.ATAN, 0);
-	};
-
-	ATANH() {
-	    return this.getToken(mathParser.ATANH, 0);
-	};
-
-	ATAN2() {
-	    return this.getToken(mathParser.ATAN2, 0);
-	};
-
-	ROUND() {
-	    return this.getToken(mathParser.ROUND, 0);
-	};
-
-	ROUNDDOWN() {
-	    return this.getToken(mathParser.ROUNDDOWN, 0);
-	};
-
-	ROUNDUP() {
-	    return this.getToken(mathParser.ROUNDUP, 0);
-	};
-
-	CEILING() {
-	    return this.getToken(mathParser.CEILING, 0);
-	};
-
-	FLOOR() {
-	    return this.getToken(mathParser.FLOOR, 0);
-	};
-
-	EVEN() {
-	    return this.getToken(mathParser.EVEN, 0);
-	};
-
-	ODD() {
-	    return this.getToken(mathParser.ODD, 0);
-	};
-
-	MROUND() {
-	    return this.getToken(mathParser.MROUND, 0);
-	};
-
-	RAND() {
-	    return this.getToken(mathParser.RAND, 0);
-	};
-
-	RANDBETWEEN() {
-	    return this.getToken(mathParser.RANDBETWEEN, 0);
-	};
-
-	FACT() {
-	    return this.getToken(mathParser.FACT, 0);
-	};
-
-	FACTDOUBLE() {
-	    return this.getToken(mathParser.FACTDOUBLE, 0);
-	};
-
-	POWER() {
-	    return this.getToken(mathParser.POWER, 0);
-	};
-
-	EXP() {
-	    return this.getToken(mathParser.EXP, 0);
-	};
-
-	LN() {
-	    return this.getToken(mathParser.LN, 0);
-	};
-
-	LOG() {
-	    return this.getToken(mathParser.LOG, 0);
-	};
-
-	LOG10() {
-	    return this.getToken(mathParser.LOG10, 0);
-	};
-
-	MULTINOMIAL() {
-	    return this.getToken(mathParser.MULTINOMIAL, 0);
-	};
-
-	PRODUCT() {
-	    return this.getToken(mathParser.PRODUCT, 0);
-	};
-
-	SQRTPI() {
-	    return this.getToken(mathParser.SQRTPI, 0);
-	};
-
-	SUMSQ() {
-	    return this.getToken(mathParser.SUMSQ, 0);
-	};
-
-	ASC() {
-	    return this.getToken(mathParser.ASC, 0);
-	};
-
-	JIS() {
-	    return this.getToken(mathParser.JIS, 0);
-	};
-
-	CHAR() {
-	    return this.getToken(mathParser.CHAR, 0);
-	};
-
-	CLEAN() {
-	    return this.getToken(mathParser.CLEAN, 0);
-	};
-
-	CODE() {
-	    return this.getToken(mathParser.CODE, 0);
-	};
-
-	CONCATENATE() {
-	    return this.getToken(mathParser.CONCATENATE, 0);
-	};
-
-	EXACT() {
-	    return this.getToken(mathParser.EXACT, 0);
-	};
-
-	FIND() {
-	    return this.getToken(mathParser.FIND, 0);
-	};
-
-	FIXED() {
-	    return this.getToken(mathParser.FIXED, 0);
-	};
-
-	LEFT() {
-	    return this.getToken(mathParser.LEFT, 0);
-	};
-
-	LEN() {
-	    return this.getToken(mathParser.LEN, 0);
-	};
-
-	LOWER() {
-	    return this.getToken(mathParser.LOWER, 0);
-	};
-
-	MID() {
-	    return this.getToken(mathParser.MID, 0);
-	};
-
-	PROPER() {
-	    return this.getToken(mathParser.PROPER, 0);
-	};
-
-	REPLACE() {
-	    return this.getToken(mathParser.REPLACE, 0);
-	};
-
-	REPT() {
-	    return this.getToken(mathParser.REPT, 0);
-	};
-
-	RIGHT() {
-	    return this.getToken(mathParser.RIGHT, 0);
-	};
-
-	RMB() {
-	    return this.getToken(mathParser.RMB, 0);
-	};
-
-	SEARCH() {
-	    return this.getToken(mathParser.SEARCH, 0);
-	};
-
-	SUBSTITUTE() {
-	    return this.getToken(mathParser.SUBSTITUTE, 0);
-	};
-
-	T() {
-	    return this.getToken(mathParser.T, 0);
-	};
-
-	TEXT() {
-	    return this.getToken(mathParser.TEXT, 0);
-	};
-
-	TRIM() {
-	    return this.getToken(mathParser.TRIM, 0);
-	};
-
-	UPPER() {
-	    return this.getToken(mathParser.UPPER, 0);
-	};
-
-	VALUE() {
-	    return this.getToken(mathParser.VALUE, 0);
-	};
-
-	DATEVALUE() {
-	    return this.getToken(mathParser.DATEVALUE, 0);
-	};
-
-	TIMEVALUE() {
-	    return this.getToken(mathParser.TIMEVALUE, 0);
-	};
-
-	DATE() {
-	    return this.getToken(mathParser.DATE, 0);
-	};
-
-	TIME() {
-	    return this.getToken(mathParser.TIME, 0);
-	};
-
-	NOW() {
-	    return this.getToken(mathParser.NOW, 0);
-	};
-
-	TODAY() {
-	    return this.getToken(mathParser.TODAY, 0);
-	};
-
-	YEAR() {
-	    return this.getToken(mathParser.YEAR, 0);
-	};
-
-	MONTH() {
-	    return this.getToken(mathParser.MONTH, 0);
-	};
-
-	DAY() {
-	    return this.getToken(mathParser.DAY, 0);
-	};
-
-	HOUR() {
-	    return this.getToken(mathParser.HOUR, 0);
-	};
-
-	MINUTE() {
-	    return this.getToken(mathParser.MINUTE, 0);
-	};
-
-	SECOND() {
-	    return this.getToken(mathParser.SECOND, 0);
-	};
-
-	WEEKDAY() {
-	    return this.getToken(mathParser.WEEKDAY, 0);
-	};
-
-	DATEDIF() {
-	    return this.getToken(mathParser.DATEDIF, 0);
-	};
-
-	DAYS360() {
-	    return this.getToken(mathParser.DAYS360, 0);
-	};
-
-	EDATE() {
-	    return this.getToken(mathParser.EDATE, 0);
-	};
-
-	EOMONTH() {
-	    return this.getToken(mathParser.EOMONTH, 0);
-	};
-
-	NETWORKDAYS() {
-	    return this.getToken(mathParser.NETWORKDAYS, 0);
-	};
-
-	WORKDAY() {
-	    return this.getToken(mathParser.WORKDAY, 0);
-	};
-
-	WEEKNUM() {
-	    return this.getToken(mathParser.WEEKNUM, 0);
-	};
-
-	MAX() {
-	    return this.getToken(mathParser.MAX, 0);
-	};
-
-	MEDIAN() {
-	    return this.getToken(mathParser.MEDIAN, 0);
-	};
-
-	MIN() {
-	    return this.getToken(mathParser.MIN, 0);
-	};
-
-	QUARTILE() {
-	    return this.getToken(mathParser.QUARTILE, 0);
-	};
-
-	MODE() {
-	    return this.getToken(mathParser.MODE, 0);
-	};
-
-	LARGE() {
-	    return this.getToken(mathParser.LARGE, 0);
-	};
-
-	SMALL() {
-	    return this.getToken(mathParser.SMALL, 0);
-	};
-
-	PERCENTILE() {
-	    return this.getToken(mathParser.PERCENTILE, 0);
-	};
-
-	PERCENTRANK() {
-	    return this.getToken(mathParser.PERCENTRANK, 0);
-	};
-
-	AVERAGE() {
-	    return this.getToken(mathParser.AVERAGE, 0);
-	};
-
-	AVERAGEIF() {
-	    return this.getToken(mathParser.AVERAGEIF, 0);
-	};
-
-	GEOMEAN() {
-	    return this.getToken(mathParser.GEOMEAN, 0);
-	};
-
-	HARMEAN() {
-	    return this.getToken(mathParser.HARMEAN, 0);
-	};
-
-	COUNT() {
-	    return this.getToken(mathParser.COUNT, 0);
-	};
-
-	COUNTIF() {
-	    return this.getToken(mathParser.COUNTIF, 0);
-	};
-
-	SUM() {
-	    return this.getToken(mathParser.SUM, 0);
-	};
-
-	SUMIF() {
-	    return this.getToken(mathParser.SUMIF, 0);
-	};
-
-	AVEDEV() {
-	    return this.getToken(mathParser.AVEDEV, 0);
-	};
-
-	STDEV() {
-	    return this.getToken(mathParser.STDEV, 0);
-	};
-
-	STDEVP() {
-	    return this.getToken(mathParser.STDEVP, 0);
-	};
-
-	COVAR() {
-	    return this.getToken(mathParser.COVAR, 0);
-	};
-
-	COVARIANCES() {
-	    return this.getToken(mathParser.COVARIANCES, 0);
-	};
-
-	DEVSQ() {
-	    return this.getToken(mathParser.DEVSQ, 0);
-	};
-
-	VAR() {
-	    return this.getToken(mathParser.VAR, 0);
-	};
-
-	VARP() {
-	    return this.getToken(mathParser.VARP, 0);
-	};
-
-	NORMDIST() {
-	    return this.getToken(mathParser.NORMDIST, 0);
-	};
-
-	NORMINV() {
-	    return this.getToken(mathParser.NORMINV, 0);
-	};
-
-	NORMSDIST() {
-	    return this.getToken(mathParser.NORMSDIST, 0);
-	};
-
-	NORMSINV() {
-	    return this.getToken(mathParser.NORMSINV, 0);
-	};
-
-	BETADIST() {
-	    return this.getToken(mathParser.BETADIST, 0);
-	};
-
-	BETAINV() {
-	    return this.getToken(mathParser.BETAINV, 0);
-	};
-
-	BINOMDIST() {
-	    return this.getToken(mathParser.BINOMDIST, 0);
-	};
-
-	EXPONDIST() {
-	    return this.getToken(mathParser.EXPONDIST, 0);
-	};
-
-	FDIST() {
-	    return this.getToken(mathParser.FDIST, 0);
-	};
-
-	FINV() {
-	    return this.getToken(mathParser.FINV, 0);
-	};
-
-	FISHER() {
-	    return this.getToken(mathParser.FISHER, 0);
-	};
-
-	FISHERINV() {
-	    return this.getToken(mathParser.FISHERINV, 0);
-	};
-
-	GAMMADIST() {
-	    return this.getToken(mathParser.GAMMADIST, 0);
-	};
-
-	GAMMAINV() {
-	    return this.getToken(mathParser.GAMMAINV, 0);
-	};
-
-	GAMMALN() {
-	    return this.getToken(mathParser.GAMMALN, 0);
-	};
-
-	HYPGEOMDIST() {
-	    return this.getToken(mathParser.HYPGEOMDIST, 0);
-	};
-
-	LOGINV() {
-	    return this.getToken(mathParser.LOGINV, 0);
-	};
-
-	LOGNORMDIST() {
-	    return this.getToken(mathParser.LOGNORMDIST, 0);
-	};
-
-	NEGBINOMDIST() {
-	    return this.getToken(mathParser.NEGBINOMDIST, 0);
-	};
-
-	POISSON() {
-	    return this.getToken(mathParser.POISSON, 0);
-	};
-
-	TDIST() {
-	    return this.getToken(mathParser.TDIST, 0);
-	};
-
-	TINV() {
-	    return this.getToken(mathParser.TINV, 0);
-	};
-
-	WEIBULL() {
-	    return this.getToken(mathParser.WEIBULL, 0);
-	};
-
-	URLENCODE() {
-	    return this.getToken(mathParser.URLENCODE, 0);
-	};
-
-	URLDECODE() {
-	    return this.getToken(mathParser.URLDECODE, 0);
-	};
-
-	HTMLENCODE() {
-	    return this.getToken(mathParser.HTMLENCODE, 0);
-	};
-
-	HTMLDECODE() {
-	    return this.getToken(mathParser.HTMLDECODE, 0);
-	};
-
-	BASE64TOTEXT() {
-	    return this.getToken(mathParser.BASE64TOTEXT, 0);
-	};
-
-	BASE64URLTOTEXT() {
-	    return this.getToken(mathParser.BASE64URLTOTEXT, 0);
-	};
-
-	TEXTTOBASE64() {
-	    return this.getToken(mathParser.TEXTTOBASE64, 0);
-	};
-
-	TEXTTOBASE64URL() {
-	    return this.getToken(mathParser.TEXTTOBASE64URL, 0);
-	};
-
-	REGEX() {
-	    return this.getToken(mathParser.REGEX, 0);
-	};
-
-	REGEXREPALCE() {
-	    return this.getToken(mathParser.REGEXREPALCE, 0);
-	};
-
-	ISREGEX() {
-	    return this.getToken(mathParser.ISREGEX, 0);
-	};
-
-	GUID() {
-	    return this.getToken(mathParser.GUID, 0);
-	};
-
-	MD5() {
-	    return this.getToken(mathParser.MD5, 0);
-	};
-
-	SHA1() {
-	    return this.getToken(mathParser.SHA1, 0);
-	};
-
-	SHA256() {
-	    return this.getToken(mathParser.SHA256, 0);
-	};
-
-	SHA512() {
-	    return this.getToken(mathParser.SHA512, 0);
-	};
-
-	HMACMD5() {
-	    return this.getToken(mathParser.HMACMD5, 0);
-	};
-
-	HMACSHA1() {
-	    return this.getToken(mathParser.HMACSHA1, 0);
-	};
-
-	HMACSHA256() {
-	    return this.getToken(mathParser.HMACSHA256, 0);
-	};
-
-	HMACSHA512() {
-	    return this.getToken(mathParser.HMACSHA512, 0);
-	};
-
-	TRIMSTART() {
-	    return this.getToken(mathParser.TRIMSTART, 0);
-	};
-
-	TRIMEND() {
-	    return this.getToken(mathParser.TRIMEND, 0);
-	};
-
-	INDEXOF() {
-	    return this.getToken(mathParser.INDEXOF, 0);
-	};
-
-	LASTINDEXOF() {
-	    return this.getToken(mathParser.LASTINDEXOF, 0);
-	};
-
-	SPLIT() {
-	    return this.getToken(mathParser.SPLIT, 0);
-	};
-
-	JOIN() {
-	    return this.getToken(mathParser.JOIN, 0);
-	};
-
-	SUBSTRING() {
-	    return this.getToken(mathParser.SUBSTRING, 0);
-	};
-
-	STARTSWITH() {
-	    return this.getToken(mathParser.STARTSWITH, 0);
-	};
-
-	ENDSWITH() {
-	    return this.getToken(mathParser.ENDSWITH, 0);
-	};
-
-	ISNULLOREMPTY() {
-	    return this.getToken(mathParser.ISNULLOREMPTY, 0);
-	};
-
-	ISNULLORWHITESPACE() {
-	    return this.getToken(mathParser.ISNULLORWHITESPACE, 0);
-	};
-
-	REMOVESTART() {
-	    return this.getToken(mathParser.REMOVESTART, 0);
-	};
-
-	REMOVEEND() {
-	    return this.getToken(mathParser.REMOVEEND, 0);
-	};
-
-	JSON() {
-	    return this.getToken(mathParser.JSON, 0);
-	};
-
-	LOOKCEILING() {
-	    return this.getToken(mathParser.LOOKCEILING, 0);
-	};
-
-	LOOKFLOOR() {
-	    return this.getToken(mathParser.LOOKFLOOR, 0);
-	};
-
-	ADDYEARS() {
-	    return this.getToken(mathParser.ADDYEARS, 0);
-	};
-
-	ADDMONTHS() {
-	    return this.getToken(mathParser.ADDMONTHS, 0);
-	};
-
-	ADDDAYS() {
-	    return this.getToken(mathParser.ADDDAYS, 0);
-	};
-
-	ADDHOURS() {
-	    return this.getToken(mathParser.ADDHOURS, 0);
-	};
-
-	ADDMINUTES() {
-	    return this.getToken(mathParser.ADDMINUTES, 0);
-	};
-
-	ADDSECONDS() {
-	    return this.getToken(mathParser.ADDSECONDS, 0);
-	};
-
-	TIMESTAMP() {
-	    return this.getToken(mathParser.TIMESTAMP, 0);
-	};
-
-	NULL() {
-	    return this.getToken(mathParser.NULL, 0);
-	};
-
-	ERROR() {
-	    return this.getToken(mathParser.ERROR, 0);
-	};
-
-	UNIT() {
-	    return this.getToken(mathParser.UNIT, 0);
-	};
-
-	HAS() {
-	    return this.getToken(mathParser.HAS, 0);
-	};
-
-	HASVALUE() {
-	    return this.getToken(mathParser.HASVALUE, 0);
-	};
-
-	ALGORITHMVERSION() {
-	    return this.getToken(mathParser.ALGORITHMVERSION, 0);
-	};
-
-	PARAM() {
-	    return this.getToken(mathParser.PARAM, 0);
-	};
-
-	PARAMETER() {
-	    return this.getToken(mathParser.PARAMETER, 0);
-	};
+	//E() {return this.getToken(51, 0);};
+
+	//IF() {return this.getToken(35, 0);};
+
+	//IFERROR() {return this.getToken(36, 0);};
+
+	//ISNUMBER() {return this.getToken(37, 0);};
+
+	//ISTEXT() {return this.getToken(38, 0);};
+
+	//ISERROR() {return this.getToken(39, 0);};
+
+	//ISNONTEXT() {return this.getToken(40, 0);};
+
+	//ISLOGICAL() {return this.getToken(41, 0);};
+
+	//ISEVEN() {return this.getToken(42, 0);};
+
+	//ISODD() {return this.getToken(43, 0);};
+
+	//ISNULL() {return this.getToken(44, 0);};
+
+	//ISNULLORERROR() {return this.getToken(45, 0);};
+
+	//AND() {return this.getToken(46, 0);};
+
+	//OR() {return this.getToken(47, 0);};
+
+	//NOT() {return this.getToken(48, 0);};
+
+	//TRUE() {return this.getToken(49, 0);};
+
+	//FALSE() {return this.getToken(50, 0);};
+
+	//PI() {return this.getToken(52, 0);};
+
+	DEC2//BIN() {return this.getToken(53, 0);};
+
+	DEC2//HEX() {return this.getToken(54, 0);};
+
+	DEC2//OCT() {return this.getToken(55, 0);};
+
+	HEX2//BIN() {return this.getToken(56, 0);};
+
+	HEX2//DEC() {return this.getToken(57, 0);};
+
+	HEX2//OCT() {return this.getToken(58, 0);};
+
+	OCT2//BIN() {return this.getToken(59, 0);};
+
+	OCT2//DEC() {return this.getToken(60, 0);};
+
+	OCT2//HEX() {return this.getToken(61, 0);};
+
+	BIN2//OCT() {return this.getToken(62, 0);};
+
+	BIN2//DEC() {return this.getToken(63, 0);};
+
+	BIN2//HEX() {return this.getToken(64, 0);};
+
+	//ABS() {return this.getToken(65, 0);};
+
+	//QUOTIENT() {return this.getToken(66, 0);};
+
+	//MOD() {return this.getToken(67, 0);};
+
+	//SIGN() {return this.getToken(68, 0);};
+
+	//SQRT() {return this.getToken(69, 0);};
+
+	//TRUNC() {return this.getToken(70, 0);};
+
+	//INT() {return this.getToken(71, 0);};
+
+	//GCD() {return this.getToken(72, 0);};
+
+	//LCM() {return this.getToken(73, 0);};
+
+	//COMBIN() {return this.getToken(74, 0);};
+
+	//PERMUT() {return this.getToken(75, 0);};
+
+	//DEGREES() {return this.getToken(76, 0);};
+
+	//RADIANS() {return this.getToken(77, 0);};
+
+	//COS() {return this.getToken(78, 0);};
+
+	//COSH() {return this.getToken(79, 0);};
+
+	//SIN() {return this.getToken(80, 0);};
+
+	//SINH() {return this.getToken(81, 0);};
+
+	//TAN() {return this.getToken(82, 0);};
+
+	//TANH() {return this.getToken(83, 0);};
+
+	//ACOS() {return this.getToken(84, 0);};
+
+	//ACOSH() {return this.getToken(85, 0);};
+
+	//ASIN() {return this.getToken(86, 0);};
+
+	//ASINH() {return this.getToken(87, 0);};
+
+	//ATAN() {return this.getToken(88, 0);};
+
+	//ATANH() {return this.getToken(89, 0);};
+
+	ATAN2//() {return this.getToken(90, 0);};
+
+	//ROUND() {return this.getToken(91, 0);};
+
+	//ROUNDDOWN() {return this.getToken(92, 0);};
+
+	//ROUNDUP() {return this.getToken(93, 0);};
+
+	//CEILING() {return this.getToken(94, 0);};
+
+	//FLOOR() {return this.getToken(95, 0);};
+
+	//EVEN() {return this.getToken(96, 0);};
+
+	//ODD() {return this.getToken(97, 0);};
+
+	//MROUND() {return this.getToken(98, 0);};
+
+	//RAND() {return this.getToken(99, 0);};
+
+	//RANDBETWEEN() {return this.getToken(100, 0);};
+
+	//FACT() {return this.getToken(101, 0);};
+
+	//FACTDOUBLE() {return this.getToken(102, 0);};
+
+	//POWER() {return this.getToken(103, 0);};
+
+	//EXP() {return this.getToken(104, 0);};
+
+	//LN() {return this.getToken(105, 0);};
+
+	//LOG() {return this.getToken(106, 0);};
+
+	LOG10//() {return this.getToken(107, 0);};
+
+	//MULTINOMIAL() {return this.getToken(108, 0);};
+
+	//PRODUCT() {return this.getToken(109, 0);};
+
+	//SQRTPI() {return this.getToken(110, 0);};
+
+	//SUMSQ() {return this.getToken(111, 0);};
+
+	//ASC() {return this.getToken(112, 0);};
+
+	//JIS() {return this.getToken(113, 0);};
+
+	//CHAR() {return this.getToken(114, 0);};
+
+	//CLEAN() {return this.getToken(115, 0);};
+
+	//CODE() {return this.getToken(116, 0);};
+
+	//CONCATENATE() {return this.getToken(117, 0);};
+
+	//EXACT() {return this.getToken(118, 0);};
+
+	//FIND() {return this.getToken(119, 0);};
+
+	//FIXED() {return this.getToken(120, 0);};
+
+	//LEFT() {return this.getToken(121, 0);};
+
+	//LEN() {return this.getToken(122, 0);};
+
+	//LOWER() {return this.getToken(123, 0);};
+
+	//MID() {return this.getToken(124, 0);};
+
+	//PROPER() {return this.getToken(125, 0);};
+
+	//REPLACE() {return this.getToken(126, 0);};
+
+	//REPT() {return this.getToken(127, 0);};
+
+	//RIGHT() {return this.getToken(128, 0);};
+
+	//RMB() {return this.getToken(129, 0);};
+
+	//SEARCH() {return this.getToken(130, 0);};
+
+	//SUBSTITUTE() {return this.getToken(131, 0);};
+
+	//T() {return this.getToken(132, 0);};
+
+	//TEXT() {return this.getToken(133, 0);};
+
+	//TRIM() {return this.getToken(134, 0);};
+
+	//UPPER() {return this.getToken(135, 0);};
+
+	//VALUE() {return this.getToken(136, 0);};
+
+	//DATEVALUE() {return this.getToken(137, 0);};
+
+	//TIMEVALUE() {return this.getToken(138, 0);};
+
+	//DATE() {return this.getToken(139, 0);};
+
+	//TIME() {return this.getToken(140, 0);};
+
+	//NOW() {return this.getToken(141, 0);};
+
+	//TODAY() {return this.getToken(142, 0);};
+
+	//YEAR() {return this.getToken(143, 0);};
+
+	//MONTH() {return this.getToken(144, 0);};
+
+	//DAY() {return this.getToken(145, 0);};
+
+	//HOUR() {return this.getToken(146, 0);};
+
+	//MINUTE() {return this.getToken(147, 0);};
+
+	//SECOND() {return this.getToken(148, 0);};
+
+	//WEEKDAY() {return this.getToken(149, 0);};
+
+	//DATEDIF() {return this.getToken(150, 0);};
+
+	DAYS360//() {return this.getToken(151, 0);};
+
+	//EDATE() {return this.getToken(152, 0);};
+
+	//EOMONTH() {return this.getToken(153, 0);};
+
+	//NETWORKDAYS() {return this.getToken(154, 0);};
+
+	//WORKDAY() {return this.getToken(155, 0);};
+
+	//WEEKNUM() {return this.getToken(156, 0);};
+
+	//MAX() {return this.getToken(157, 0);};
+
+	//MEDIAN() {return this.getToken(158, 0);};
+
+	//MIN() {return this.getToken(159, 0);};
+
+	//QUARTILE() {return this.getToken(160, 0);};
+
+	//MODE() {return this.getToken(161, 0);};
+
+	//LARGE() {return this.getToken(162, 0);};
+
+	//SMALL() {return this.getToken(163, 0);};
+
+	//PERCENTILE() {return this.getToken(164, 0);};
+
+	//PERCENTRANK() {return this.getToken(165, 0);};
+
+	//AVERAGE() {return this.getToken(166, 0);};
+
+	//AVERAGEIF() {return this.getToken(167, 0);};
+
+	//GEOMEAN() {return this.getToken(168, 0);};
+
+	//HARMEAN() {return this.getToken(169, 0);};
+
+	//COUNT() {return this.getToken(170, 0);};
+
+	//COUNTIF() {return this.getToken(171, 0);};
+
+	//SUM() {return this.getToken(172, 0);};
+
+	//SUMIF() {return this.getToken(173, 0);};
+
+	//AVEDEV() {return this.getToken(174, 0);};
+
+	//STDEV() {return this.getToken(175, 0);};
+
+	//STDEVP() {return this.getToken(176, 0);};
+
+	//COVAR() {return this.getToken(177, 0);};
+
+	//COVARIANCES() {return this.getToken(178, 0);};
+
+	//DEVSQ() {return this.getToken(179, 0);};
+
+	//VAR() {return this.getToken(180, 0);};
+
+	//VARP() {return this.getToken(181, 0);};
+
+	//NORMDIST() {return this.getToken(182, 0);};
+
+	//NORMINV() {return this.getToken(183, 0);};
+
+	//NORMSDIST() {return this.getToken(184, 0);};
+
+	//NORMSINV() {return this.getToken(185, 0);};
+
+	//BETADIST() {return this.getToken(186, 0);};
+
+	//BETAINV() {return this.getToken(187, 0);};
+
+	//BINOMDIST() {return this.getToken(188, 0);};
+
+	//EXPONDIST() {return this.getToken(189, 0);};
+
+	//FDIST() {return this.getToken(190, 0);};
+
+	//FINV() {return this.getToken(191, 0);};
+
+	//FISHER() {return this.getToken(192, 0);};
+
+	//FISHERINV() {return this.getToken(193, 0);};
+
+	//GAMMADIST() {return this.getToken(194, 0);};
+
+	//GAMMAINV() {return this.getToken(195, 0);};
+
+	//GAMMALN() {return this.getToken(196, 0);};
+
+	//HYPGEOMDIST() {return this.getToken(197, 0);};
+
+	//LOGINV() {return this.getToken(198, 0);};
+
+	//LOGNORMDIST() {return this.getToken(199, 0);};
+
+	//NEGBINOMDIST() {return this.getToken(200, 0);};
+
+	//POISSON() {return this.getToken(201, 0);};
+
+	//TDIST() {return this.getToken(202, 0);};
+
+	//TINV() {return this.getToken(203, 0);};
+
+	//WEIBULL() {return this.getToken(204, 0);};
+
+	//URLENCODE() {return this.getToken(205, 0);};
+
+	//URLDECODE() {return this.getToken(206, 0);};
+
+	//HTMLENCODE() {return this.getToken(207, 0);};
+
+	//HTMLDECODE() {return this.getToken(208, 0);};
+
+	BASE64//TOTEXT() {return this.getToken(209, 0);};
+
+	BASE64//URLTOTEXT() {return this.getToken(210, 0);};
+
+	TEXTTOBASE64//() {return this.getToken(211, 0);};
+
+	TEXTTOBASE64//URL() {return this.getToken(212, 0);};
+
+	//REGEX() {return this.getToken(213, 0);};
+
+	//REGEXREPALCE() {return this.getToken(214, 0);};
+
+	//ISREGEX() {return this.getToken(215, 0);};
+
+	//GUID() {return this.getToken(216, 0);};
+
+	MD5//() {return this.getToken(217, 0);};
+
+	SHA1//() {return this.getToken(218, 0);};
+
+	SHA256//() {return this.getToken(219, 0);};
+
+	SHA512//() {return this.getToken(220, 0);};
+
+	HMACMD5//() {return this.getToken(221, 0);};
+
+	HMACSHA1//() {return this.getToken(222, 0);};
+
+	HMACSHA256//() {return this.getToken(223, 0);};
+
+	HMACSHA512//() {return this.getToken(224, 0);};
+
+	//TRIMSTART() {return this.getToken(225, 0);};
+
+	//TRIMEND() {return this.getToken(226, 0);};
+
+	//INDEXOF() {return this.getToken(227, 0);};
+
+	//LASTINDEXOF() {return this.getToken(228, 0);};
+
+	//SPLIT() {return this.getToken(229, 0);};
+
+	//JOIN() {return this.getToken(230, 0);};
+
+	//SUBSTRING() {return this.getToken(231, 0);};
+
+	//STARTSWITH() {return this.getToken(232, 0);};
+
+	//ENDSWITH() {return this.getToken(233, 0);};
+
+	//ISNULLOREMPTY() {return this.getToken(234, 0);};
+
+	//ISNULLORWHITESPACE() {return this.getToken(235, 0);};
+
+	//REMOVESTART() {return this.getToken(236, 0);};
+
+	//REMOVEEND() {return this.getToken(237, 0);};
+
+	//JSON() {return this.getToken(238, 0);};
+
+	//LOOKCEILING() {return this.getToken(239, 0);};
+
+	//LOOKFLOOR() {return this.getToken(240, 0);};
+
+	//ADDYEARS() {return this.getToken(243, 0);};
+
+	//ADDMONTHS() {return this.getToken(244, 0);};
+
+	//ADDDAYS() {return this.getToken(245, 0);};
+
+	//ADDHOURS() {return this.getToken(246, 0);};
+
+	//ADDMINUTES() {return this.getToken(247, 0);};
+
+	//ADDSECONDS() {return this.getToken(248, 0);};
+
+	//TIMESTAMP() {return this.getToken(249, 0);};
+
+	//NULL() {return this.getToken(32, 0);};
+
+	//ERROR() {return this.getToken(33, 0);};
+
+	//UNIT() {return this.getToken(34, 0);};
+
+	//HAS() {return this.getToken(250, 0);};
+
+	//HASVALUE() {return this.getToken(251, 0);};
+
+	//ALGORITHMVERSION() {return this.getToken(242, 0);};
+
+	//PARAM() {return this.getToken(252, 0);};
+
+	PARAMETER() {return this.getToken(253, 0);};
 
 	accept(visitor) {
-	    if ( visitor instanceof mathVisitor ) {
+	    
 	        return visitor.visitParameter2(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
+	    
 	}
 
 
@@ -17585,9 +14904,9 @@ class Parameter2Context extends antlr4.ParserRuleContext {
 
 
 
-mathParser.ProgContext = ProgContext; 
-mathParser.ExprContext = ExprContext; 
-mathParser.NumContext = NumContext; 
-mathParser.UnitContext = UnitContext; 
-mathParser.ArrayJsonContext = ArrayJsonContext; 
-mathParser.Parameter2Context = Parameter2Context; 
+ 
+ 
+ 
+ 
+ 
+ 
