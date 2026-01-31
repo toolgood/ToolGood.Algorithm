@@ -1,10 +1,10 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { CryptoUtils } from './CryptoUtils.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import CryptoJS from 'crypto-js';
+import iconv from 'iconv-lite';
 
 /**
- * Function_SHA512
+ * Represents the SHA512 encryption function
  */
 export class Function_SHA512 extends Function_2 {
     /**
@@ -14,44 +14,45 @@ export class Function_SHA512 extends Function_2 {
     constructor(func1, func2) {
         super(func1, func2);
     }
-    
+
     /**
-     * @param {AlgorithmEngine} engine
-     * @returns {Operand}
+     * @param {AlgorithmEngine} work
+     * @param {Function} tempParameter
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+    Evaluate(work, tempParameter = null) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, "SHA512", 1);
-            if (args1.IsError) {
-                return args1;
-            }
+            const errorArgs1 = args1.ToText("Function '{0}' parameter {1} is error!", "SHA512", 1);
+            if (errorArgs1.IsError) return errorArgs1;
+            return errorArgs1;
         }
-        
+
         try {
-            let encoding = 'utf-8';
+            let encoding = 'utf8';
             if (this.func2 !== null) {
-                let args2 = this.func2.Evaluate(engine, tempParameter);
+                const args2 = this.func2.Evaluate(work, tempParameter);
                 if (args2.IsNotText) {
-                    args2 = args2.ToText(StringCache.Function_parameter_error, "SHA512", 2);
-                    if (args2.IsError) {
-                        return args2;
-                    }
+                    const errorArgs2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA512", 2);
+                    if (errorArgs2.IsError) return errorArgs2;
+                    return errorArgs2;
                 }
                 encoding = args2.TextValue;
             }
-            
-            // 使用浏览器兼容的CryptoUtils计算SHA512哈希值
-            let t = CryptoUtils.hash('SHA512', args1.TextValue, encoding);
-            return Operand.Create(t);
+
+            const bytes = iconv.encode(args1.TextValue, encoding);
+            const sha512Hash = CryptoJS.SHA512(CryptoJS.lib.WordArray.create(bytes));
+            const result = sha512Hash.toString().toUpperCase();
+            return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error('Function \'SHA512\'is error!' + ex.message);
+            return Operand.Error("Function 'SHA512' is error!" + ex.message);
         }
     }
-    
+
     /**
-     * @param {string[]} stringBuilder
+     * @param {string} stringBuilder
      * @param {boolean} addBrackets
      */
+    ToString(stringBuilder, addBrackets) {
+        this.AddFunction(stringBuilder, "SHA512");
+    }
 }
-

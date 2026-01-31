@@ -1926,7 +1926,9 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_HMACSHA1(args1, args2);
+        if (exprs.length === 2) return new Function_HMACSHA1(args1, args2, null);
+        let args3 = exprs[2].accept(this);
+        return new Function_HMACSHA1(args1, args2, args3);
     }
 
     /**
@@ -1938,7 +1940,9 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_HMACSHA256(args1, args2);
+        if (exprs.length === 2) return new Function_HMACSHA256(args1, args2, null);
+        let args3 = exprs[2].accept(this);
+        return new Function_HMACSHA256(args1, args2, args3);
     }
 
     /**
@@ -1950,7 +1954,9 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        return new Function_HMACSHA512(args1, args2);
+        if (exprs.length === 2) return new Function_HMACSHA512(args1, args2, null);
+        let args3 = exprs[2].accept(this);
+        return new Function_HMACSHA512(args1, args2, args3);
     }
 
     /**

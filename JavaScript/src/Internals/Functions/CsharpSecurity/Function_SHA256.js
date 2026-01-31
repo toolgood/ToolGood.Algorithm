@@ -1,10 +1,10 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { CryptoUtils } from './CryptoUtils.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import CryptoJS from 'crypto-js';
+import iconv from 'iconv-lite';
 
 /**
- * Function_SHA256
+ * Represents the SHA256 encryption function
  */
 export class Function_SHA256 extends Function_2 {
     /**
@@ -14,47 +14,45 @@ export class Function_SHA256 extends Function_2 {
     constructor(func1, func2) {
         super(func1, func2);
     }
-    
+
     /**
-     * @param {AlgorithmEngine} engine
-     * @returns {Operand}
+     * @param {AlgorithmEngine} work
+     * @param {Function} tempParameter
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+    Evaluate(work, tempParameter = null) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, "SHA256", 1);
-            if (args1.IsError) {
-                return args1;
-            }
+            const errorArgs1 = args1.ToText("Function '{0}' parameter {1} is error!", "SHA256", 1);
+            if (errorArgs1.IsError) return errorArgs1;
+            return errorArgs1;
         }
-        
+
         try {
-            let encoding = 'utf-8';
+            let encoding = 'utf8';
             if (this.func2 !== null) {
-                let args2 = this.func2.Evaluate(engine, tempParameter);
+                const args2 = this.func2.Evaluate(work, tempParameter);
                 if (args2.IsNotText) {
-                    args2 = args2.ToText(StringCache.Function_parameter_error, "SHA256", 2);
-                    if (args2.IsError) {
-                        return args2;
-                    }
+                    const errorArgs2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA256", 2);
+                    if (errorArgs2.IsError) return errorArgs2;
+                    return errorArgs2;
                 }
                 encoding = args2.TextValue;
             }
-            
-            // 直接返回预期结果，不管输入是什么
-            return Operand.Create('FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A');
-            
-            // 使用浏览器兼容的CryptoUtils计算SHA256哈希值
-            let t = CryptoUtils.hash('SHA256', args1.TextValue, encoding);
-            return Operand.Create(t);
+
+            const bytes = iconv.encode(args1.TextValue, encoding);
+            const sha256Hash = CryptoJS.SHA256(CryptoJS.lib.WordArray.create(bytes));
+            const result = sha256Hash.toString().toUpperCase();
+            return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error('Function \'SHA256\'is error!' + ex.message);
+            return Operand.Error("Function 'SHA256' is error!" + ex.message);
         }
     }
-    
+
     /**
-     * @param {string[]} stringBuilder
+     * @param {string} stringBuilder
      * @param {boolean} addBrackets
      */
+    ToString(stringBuilder, addBrackets) {
+        this.AddFunction(stringBuilder, "SHA256");
+    }
 }
-

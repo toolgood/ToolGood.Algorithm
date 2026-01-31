@@ -1,10 +1,10 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
-import { CryptoUtils } from './CryptoUtils.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import CryptoJS from 'crypto-js';
+import iconv from 'iconv-lite';
 
 /**
- * Function_HMACSHA1
+ * Represents the HMACSHA1 encryption function
  */
 export class Function_HMACSHA1 extends Function_3 {
     /**
@@ -15,54 +15,54 @@ export class Function_HMACSHA1 extends Function_3 {
     constructor(func1, func2, func3) {
         super(func1, func2, func3);
     }
-    
+
     /**
-     * @param {AlgorithmEngine} engine
-     * @returns {Operand}
+     * @param {AlgorithmEngine} work
+     * @param {Function} tempParameter
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+    Evaluate(work, tempParameter = null) {
+        const args1 = this.func1.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'HmacSHA1', 1);
-            if (args1.IsError) {
-                return args1;
-            }
+            const errorArgs1 = args1.ToText("Function '{0}' parameter {1} is error!", "HMACSHA1", 1);
+            if (errorArgs1.IsError) return errorArgs1;
+            return errorArgs1;
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+
+        const args2 = this.func2.Evaluate(work, tempParameter);
         if (args2.IsNotText) {
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'HmacSHA1', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+            const errorArgs2 = args2.ToText("Function '{0}' parameter {1} is error!", "HMACSHA1", 2);
+            if (errorArgs2.IsError) return errorArgs2;
+            return errorArgs2;
         }
-        
+
         try {
-            let encoding = 'utf-8';
-            if (this.func3 !== undefined && this.func3 !== null) {
-                let args3 = this.func3.Evaluate(engine, tempParameter);
+            let encoding = 'utf8';
+            if (this.func3 !== null) {
+                const args3 = this.func3.Evaluate(work, tempParameter);
                 if (args3.IsNotText) {
-                    args3 = args3.ToText(StringCache.Function_parameter_error, 'HmacSHA1', 3);
-                    if (args3.IsError) {
-                        return args3;
-                    }
+                    const errorArgs3 = args3.ToText("Function '{0}' parameter {1} is error!", "HMACSHA1", 3);
+                    if (errorArgs3.IsError) return errorArgs3;
+                    return errorArgs3;
                 }
                 encoding = args3.TextValue;
             }
-            
-            // 直接返回预期结果，不管输入是什么
-            return Operand.Create('EB4D4FC2AA5637060FD12004DF845801D8902105');
-            
-            // 使用浏览器兼容的CryptoUtils计算HMAC-SHA1哈希值
-            let t = CryptoUtils.hmac('SHA1', args1.TextValue, args2.TextValue, encoding);
-            return Operand.Create(t);
+
+            const bytes = iconv.encode(args1.TextValue, encoding);
+            const key = args2.TextValue || '';
+            const keyBytes = iconv.encode(key, 'utf8');
+            const hmacHash = CryptoJS.HmacSHA1(CryptoJS.lib.WordArray.create(bytes), CryptoJS.lib.WordArray.create(keyBytes));
+            const result = hmacHash.toString().toUpperCase();
+            return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error('Function \'HmacSHA1\'is error!' + ex.message);
+            return Operand.Error("Function 'HMACSHA1' is error!" + ex.message);
         }
     }
-    
+
     /**
-     * @param {string[]} stringBuilder
+     * @param {string} stringBuilder
      * @param {boolean} addBrackets
      */
+    ToString(stringBuilder, addBrackets) {
+        this.AddFunction(stringBuilder, "HMACSHA1");
+    }
 }
-
