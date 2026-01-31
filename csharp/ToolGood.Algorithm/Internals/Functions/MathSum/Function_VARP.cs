@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         {
             var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            if (args.Count == 1) { return Operand.Error("Function '{0}}' parameter only one error!", "VarP"); }
+            if (args.Count == 1) { return Operand.Error("Function '{0}' parameter only one error!", "VarP"); }
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "VarP"); }
