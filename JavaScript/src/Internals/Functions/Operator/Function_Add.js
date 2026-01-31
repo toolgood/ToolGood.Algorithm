@@ -36,7 +36,7 @@ class Function_Add extends Function_2 {
           if (FunctionUtil.TryParseBoolean(args1.TextValue, boolValue)) {
             args1 = boolValue[0] ? Operand.One : Operand.Zero;
           } else {
-            return Operand.Error("Function '+' is error");
+            return Operand.Error(StringCache.Function_parameter_error, '+',1);
           }
         }
       }
@@ -54,7 +54,7 @@ class Function_Add extends Function_2 {
             if (FunctionUtil.TryParseBoolean(args2.TextValue, boolValue)) {
               args2 = boolValue[0] ? Operand.One : Operand.Zero;
             } else {
-              return Operand.Error("Function '+' is error");
+              return Operand.Error(StringCache.Function_parameter_error, '+',2);
             }
           }
         }
