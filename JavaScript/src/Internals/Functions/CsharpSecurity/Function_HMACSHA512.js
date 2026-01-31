@@ -57,12 +57,4 @@ export class Function_HMACSHA512 extends Function_3 {
             return Operand.Error("Function 'HMACSHA512' is error!" + ex.message);
         }
     }
-
-    /**
-     * @param {string} stringBuilder
-     * @param {boolean} addBrackets
-     */
-    ToString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "HMACSHA512");
-    }
 }

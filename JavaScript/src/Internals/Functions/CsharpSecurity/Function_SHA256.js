@@ -47,12 +47,4 @@ export class Function_SHA256 extends Function_2 {
             return Operand.Error("Function 'SHA256' is error!" + ex.message);
         }
     }
-
-    /**
-     * @param {string} stringBuilder
-     * @param {boolean} addBrackets
-     */
-    ToString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "SHA256");
-    }
 }

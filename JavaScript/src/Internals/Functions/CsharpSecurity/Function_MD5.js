@@ -48,11 +48,5 @@ export class Function_MD5 extends Function_2 {
         }
     }
 
-    /**
-     * @param {string} stringBuilder
-     * @param {boolean} addBrackets
-     */
-    ToString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "MD5");
-    }
+
 }

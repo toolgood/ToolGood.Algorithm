@@ -57,12 +57,4 @@ export class Function_HMACMD5 extends Function_3 {
             return Operand.Error("Function 'HMACMD5' is error!" + ex.message);
         }
     }
-
-    /**
-     * @param {string} stringBuilder
-     * @param {boolean} addBrackets
-     */
-    ToString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "HMACMD5");
-    }
 }

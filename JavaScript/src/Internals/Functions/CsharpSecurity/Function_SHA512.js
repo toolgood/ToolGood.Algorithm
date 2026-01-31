@@ -47,12 +47,4 @@ export class Function_SHA512 extends Function_2 {
             return Operand.Error("Function 'SHA512' is error!" + ex.message);
         }
     }
-
-    /**
-     * @param {string} stringBuilder
-     * @param {boolean} addBrackets
-     */
-    ToString(stringBuilder, addBrackets) {
-        this.AddFunction(stringBuilder, "SHA512");
-    }
 }
