@@ -38,11 +38,11 @@ export class Function_REGEX extends Function_2 {
             let regex = new RegExp(args2.TextValue);
             let b = regex.exec(args1.TextValue);
             if (!b) {
-                return Operand.Error('Function \'Regex\'is error!');
+                return Operand.Error(StringCache.Function_error, 'Regex');
             }
             return Operand.Create(b[0]);
         } catch (e) {
-            return Operand.Error('Function \'Regex\'is error!');
+            return Operand.Error(StringCache.Function_error, 'Regex');
         }
     }
     

@@ -45,7 +45,7 @@ export class Function_SHA1 extends Function_2 {
             const result = sha1Hash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error("Function 'SHA1' is error!" + ex.message);
+            return Operand.Error(StringCache.Function_error, "SHA1");
         }
     }
 }

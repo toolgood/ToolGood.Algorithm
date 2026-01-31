@@ -55,7 +55,7 @@ export class Function_HMACSHA1 extends Function_3 {
             const result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error("Function 'HMACSHA1' is error!" + ex.message);
+            return Operand.Error(StringCache.Function_error, "HMACSHA1");
         }
     }
 }

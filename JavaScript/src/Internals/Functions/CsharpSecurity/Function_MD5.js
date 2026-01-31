@@ -45,7 +45,7 @@ export class Function_MD5 extends Function_2 {
             const result = md5Hash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error("Function 'MD5' is error!" + ex.message);
+            return Operand.Error(StringCache.Function_error, "MD5");
         }
     }
 
