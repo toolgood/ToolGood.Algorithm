@@ -1,738 +1,440 @@
+/**
+ * 操作数
+ */
 package toolgood.algorithm;
 
-import org.joda.time.DateTime;
-import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.litJson.JsonMapper;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Collection;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.MyDate;
+import toolgood.algorithm.internals.JsonData;
 
 public abstract class Operand {
-    public final static Operand Version = new OperandString("ToolGood.Algorithm 4.0.0.1");
-    public final static Operand True = new OperandBoolean(true);
-    public final static Operand False = new OperandBoolean(false);
-    public final static Operand One = Operand.Create(1);
-    public final static Operand Zero = Operand.Create(0);
+    /**
+     * 版本号
+     */
+    public static final Operand VERSION = new OperandString("ToolGood.Algorithm 6.1");
 
-    public boolean IsNull() {
-        return false;
+    /**
+     * True
+     */
+    public static final Operand TRUE = new OperandBoolean(true);
+
+    /**
+     * False
+     */
+    public static final Operand FALSE = new OperandBoolean(false);
+
+    /**
+     * One
+     */
+    public static final Operand ONE = Operand.create(new BigDecimal("1"));
+
+    /**
+     * Zero
+     */
+    public static final Operand ZERO = Operand.create(new BigDecimal("0"));
+
+
+    /**
+     * 是否为空值
+     */
+    public boolean isNull() { return false; }
+    /**
+     * 是否为非空值
+     */
+    public boolean isNotNull() { return true; }
+
+    /**
+     * 是否数字
+     */
+    public boolean isNumber() { return false; }
+    /**
+     * 是否非数字
+     */
+    public boolean isNotNumber() { return true; }
+
+    /**
+     * 是否字符串
+     */
+    public boolean isText() { return false; }
+    /**
+     * 是否非字符串
+     */
+    public boolean isNotText() { return true; }
+
+    /**
+     * 是否布尔值
+     */
+    public boolean isBoolean() { return false; }
+    /**
+     * 是否非布尔值
+     */
+    public boolean isNotBoolean() { return true; }
+    /**
+     * 是否数组
+     */
+    public boolean isArray() { return false; }
+    /**
+     * 是否非数组
+     */
+    public boolean isNotArray() { return true; }
+    /**
+     * 是否日期
+     */
+    public boolean isDate() { return false; }
+    /**
+     * 是否非日期
+     */
+    public boolean isNotDate() { return true; }
+    /**
+     * 是否Json对象
+     */
+    public boolean isJson() { return false; }
+    /**
+     * 是否非Json对象
+     */
+    public boolean isNotJson() { return true; }
+    /**
+     * 是否Json数组
+     */
+    public boolean isArrayJson() { return false; }
+    /**
+     * 是否非Json数组
+     */
+    public boolean isNotArrayJson() { return true; }
+
+    /**
+     * 是否出错
+     */
+    public boolean isError() { return false; }
+
+    /**
+     * 错误信息
+     */
+    public String getErrorMsg() { return null; }
+    
+    /**
+     * 操作数类型
+     */
+    public abstract OperandType getType();
+
+    
+
+    /**
+     * 数字值
+     */
+    public BigDecimal getNumberValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * double值
+     */
+    public double getDoubleValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * BigDecimal值
+     */
+    public BigDecimal getBigDecimalValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * int值
+     */
+    public int getIntValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * long值
+     */
+    public long getLongValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * 字符串值
+     */
+    public String getTextValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * 布尔值
+     */
+    public boolean getBooleanValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * 数组值
+     */
+    public List<Operand> getArrayValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * Json值
+     */
+    JsonData getJsonValue() { throw new UnsupportedOperationException(); }
+
+    /**
+     * 时间值
+     */
+    public MyDate getDateValue() { throw new UnsupportedOperationException(); }
+
+    
+    
+    /**
+     * 创建操作数
+     */
+    public static Operand create(boolean obj) {
+        return obj ? TRUE : FALSE;
     }
 
-    public boolean IsError() {
-        return false;
+    
+
+    /**
+     * 创建操作数
+     */
+    public static Operand create(short obj) {
+        return new OperandInt(obj);
     }
 
-    public String ErrorMsg() {
-        return null;
+    /**
+     * 创建操作数
+     */
+    public static Operand create(int obj) {
+        return new OperandInt(obj);
     }
 
-    public OperandType Type() {
-        return OperandType.ERROR;
+    /**
+     * 创建操作数
+     */
+    public static Operand create(long obj) {
+        return new OperandBigDecimal(new BigDecimal(obj));
     }
 
-    public BigDecimal NumberValue() {
-        return null;
+    /**
+     * 创建操作数
+     */
+    public static Operand create(float obj) {
+        return new OperandBigDecimal(new BigDecimal(obj));
     }
 
-    public double DoubleValue() {
-        return 0;
+    /**
+     * 创建操作数
+     */
+    public static Operand create(double obj) {
+        return new OperandBigDecimal(new BigDecimal(obj));
     }
 
-    public int IntValue() {
-        return 0;
+    /**
+     * 创建操作数
+     */
+    public static Operand create(BigDecimal obj) {
+        return new OperandBigDecimal(obj);
     }
 
-    public long LongValue() {
-        return 0;
-    }
+    
 
-    public Object Value() {
-        return null;
-    }
-
-    public String TextValue() {
-        return null;
-    }
-
-    public boolean BooleanValue() {
-        return false;
-    }
-
-    public List<Operand> ArrayValue() {
-        return null;
-    }
-
-    public JsonData JsonValue() {
-        return null;
-    }
-
-    public MyDate DateValue() {
-        return null;
-    }
-
-    public static Operand Create(final boolean obj) {
-        return obj ? True : False;
-    }
-
-    public static Operand Create(final short obj) {
-        return new OperandNumber(new BigDecimal(obj));
-    }
-
-    public static Operand Create(final int obj) {
-        return new OperandNumber(new BigDecimal(obj));
-    }
-
-    public static Operand Create(final long obj) {
-        return new OperandNumber(new BigDecimal(obj));
-    }
-
-    public static Operand Create(final float obj) {
-        return new OperandNumber(new BigDecimal(obj));
-    }
-
-    public static Operand Create(final double obj) {
-        return new OperandNumber(new BigDecimal(obj));
-    }
-
-    public static Operand Create(final BigDecimal obj) {
-        return new OperandNumber(obj);
-    }
-
-    public static Operand Create(final String obj) {
-        if (null == obj) {
-            return CreateNull();
+    /**
+     * 创建操作数
+     */
+    public static Operand create(String obj) {
+        if (obj == null) {
+            return Operand.createNull();
         }
         return new OperandString(obj);
     }
 
-    public static Operand CreateJson(final String txt) {
+    /**
+     * 创建操作数
+     */
+    public static Operand createJson(String txt) {
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
-                JsonData json = JsonMapper.ToObject(txt);
-                return Create(json);
+                JsonData json = JsonData.parse(txt);
+                return Operand.create(json);
             } catch (Exception e) {
             }
         }
-        return Error("string to json is error!");
+        return Operand.error("Convert to json error!");
     }
 
-    public static Operand Create(final MyDate obj) {
-        return new OperandDate(obj);
+    /**
+     * 创建操作数
+     */
+    public static Operand create(MyDate obj) {
+        return new OperandMyDate(obj);
     }
 
-    public static Operand Create(final DateTime obj) {
-        return new OperandDate(new MyDate(obj));
+    /**
+     * 创建操作数
+     */
+    public static Operand create(long timestamp) {
+        return new OperandMyDate(new MyDate(timestamp));
     }
 
-    public static Operand Create(final Date obj) {
-        return new OperandDate(new MyDate(obj));
-    }
-
-    public static Operand Create(final JsonData obj) {
+    /**
+     * 创建操作数
+     */
+    public static Operand create(JsonData obj) {
         return new OperandJson(obj);
     }
 
-    public static Operand Create(List<Operand> obj) {
+    /**
+     * 创建操作数
+     */
+    public static Operand create(List<Operand> obj) {
         return new OperandArray(obj);
     }
 
-    public static Operand Error(final String msg) {
+    /**
+     * 创建操作数
+     */
+    public static Operand create(Collection<String> obj) {
+        List<Operand> array = new ArrayList<>();
+        for (String item : obj) {
+            array.add(create(item));
+        }
+        return new OperandArray(array);
+    }
+
+    /**
+     * 创建操作数
+     */
+    public static Operand create(Collection<Double> obj) {
+        List<Operand> array = new ArrayList<>();
+        for (Double item : obj) {
+            array.add(create(new BigDecimal(item.toString())));
+        }
+        return new OperandArray(array);
+    }
+
+    /**
+     * 创建操作数
+     */
+    public static Operand create(Collection<BigDecimal> obj) {
+        List<Operand> array = new ArrayList<>();
+        for (BigDecimal item : obj) {
+            array.add(create(item));
+        }
+        return new OperandArray(array);
+    }
+
+    /**
+     * 创建操作数
+     */
+    public static Operand create(Collection<Integer> obj) {
+        List<Operand> array = new ArrayList<>();
+        for (Integer item : obj) {
+            array.add(create(item));
+        }
+        return new OperandArray(array);
+    }
+
+    /**
+     * 创建操作数
+     */
+    public static Operand create(Collection<Boolean> obj) {
+        List<Operand> array = new ArrayList<>();
+        for (Boolean item : obj) {
+            array.add(create(item));
+        }
+        return new OperandArray(array);
+    }
+
+    /**
+     * 创建操作数
+     */
+    public static Operand error(String msg) {
         return new OperandError(msg);
     }
 
-    public static Operand CreateNull() {
+    /**
+     * 创建操作数
+     */
+    public static Operand error(String msg, Object... args) {
+        return new OperandError(String.format(msg, args));
+    }
+
+    /**
+     * 创建操作数
+     */
+    public static Operand createNull() {
         return new OperandNull();
     }
 
-    public Operand ToNumber(final String errorMessage) {
-        return Error(errorMessage);
+    
+
+    
+
+    /**
+     * 转数值类型
+     */
+    public Operand toNumber(String errorMessage) {
+        return error(errorMessage != null ? errorMessage : "Convert to number error!");
     }
 
-    public Operand ToBoolean(final String errorMessage) {
-        return Error(errorMessage);
+    /**
+     * 转数值类型
+     */
+    public Operand toNumber(String errorMessage, Object... args) {
+        return error(String.format(errorMessage, args));
     }
 
-    public Operand ToText(final String errorMessage) {
-        return Error(errorMessage);
+    /**
+     * 转bool类型
+     */
+    public Operand toBoolean(String errorMessage) {
+        return error(errorMessage != null ? errorMessage : "Convert to bool error!");
     }
 
-    public Operand ToDate(final String errorMessage) {
-        return Error(errorMessage);
+    /**
+     * 转bool类型
+     */
+    public Operand toBoolean(String errorMessage, Object... args) {
+        return error(String.format(errorMessage, args));
     }
 
-    public Operand ToJson(final String errorMessage) {
-        return Error(errorMessage);
+    /**
+     * 转string类型
+     */
+    public Operand toText(String errorMessage) {
+        return error(errorMessage != null ? errorMessage : "Convert to string error!");
     }
 
-    public Operand ToArray(final String errorMessage) {
-        return Error(errorMessage);
+    /**
+     * 转string类型
+     */
+    public Operand toText(String errorMessage, Object... args) {
+        return error(String.format(errorMessage, args));
     }
 
-    static abstract class OperandT<T> extends Operand {
-        protected T _value;
-
-        @Override
-        public Object Value() {
-            return _value;
-        }
-
-        public OperandT(final T obj) {
-            _value = obj;
-        }
+    /**
+     * 转MyDate类型
+     */
+    public Operand toMyDate(String errorMessage) {
+        return error(errorMessage != null ? errorMessage : "Convert to date error!");
     }
 
-    static class OperandArray extends OperandT<java.util.List<Operand>> {
-        public OperandArray(final List<Operand> obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.ARRARY;
-        }
-
-        @Override
-        public List<Operand> ArrayValue() {
-            return _value;
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            return this;
-        }
-
+    /**
+     * 转MyDate类型
+     */
+    public Operand toMyDate(String errorMessage, Object... args) {
+        return error(String.format(errorMessage, args));
     }
 
-    static class OperandBoolean extends OperandT<Boolean> {
-        public OperandBoolean(final Boolean obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.BOOLEAN;
-        }
-
-        @Override
-        public boolean BooleanValue() {
-            return _value;
-        }
-
-        @Override
-        public Operand ToNumber(String errorMessage) {
-            return BooleanValue() ? One : Zero;
-        }
-
-        @Override
-        public Operand ToBoolean(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToText(String errorMessage) {
-            return Create(BooleanValue() ? "TRUE" : "FALSE");
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert bool to array error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToJson(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert bool to json error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToDate(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert bool to date error!";
-            }
-            return Error(errorMessage);
-        }
+    /**
+     * 转Array类型
+     */
+    public Operand toArray(String errorMessage) {
+        return error(errorMessage != null ? errorMessage : "Convert to array error!");
     }
 
-    static class OperandDate extends OperandT<MyDate> {
-        public OperandDate(final MyDate obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.DATE;
-        }
-
-        @Override
-        public MyDate DateValue() {
-            return _value;
-        }
-
-        @Override
-        public Operand ToNumber(String errorMessage) {
-            return Create(DateValue().ToNumber());
-        }
-
-        @Override
-        public Operand ToBoolean(String errorMessage) {
-            return ((DateValue().ToNumber().compareTo(new BigDecimal(0))) != 0) ? True : False;
-        }
-
-        @Override
-        public Operand ToText(String errorMessage) {
-            return Create(DateValue().toString());
-        }
-
-        @Override
-        public Operand ToDate(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert date to array error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToJson(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert date to json error!";
-            }
-            return Error(errorMessage);
-        }
-
+    /**
+     * 转Array类型
+     */
+    public Operand toArray(String errorMessage, Object... args) {
+        return error(String.format(errorMessage, args));
     }
 
-    static class OperandError extends Operand {
-        private final String _errorMsg;
-
-        public OperandError(final String msg) {
-            _errorMsg = msg;
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.ERROR;
-        }
-
-        @Override
-        public boolean IsError() {
-            return true;
-        }
-
-        public String ErrorMsg() {
-            return _errorMsg;
-        }
-
-        @Override
-        public Operand ToNumber(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToBoolean(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToText(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToJson(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToDate(String errorMessage) {
-            return this;
-        }
-
+    /**
+     * 转Json类型
+     */
+    public Operand toJson(String errorMessage) {
+        return error(errorMessage != null ? errorMessage : "Convert to json error!");
     }
 
-    static class OperandJson extends OperandT<JsonData> {
-        public OperandJson(final JsonData obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.JSON;
-        }
-
-        @Override
-        public JsonData JsonValue() {
-            return _value;
-        }
-
-        @Override
-        public Operand ToJson(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            if (JsonValue().IsArray()) {
-                final List<Operand> list = new ArrayList<Operand>();
-                for (JsonData v : JsonValue().inst_array) {
-                    if (v.IsString())
-                        list.add(Create(v.StringValue()));
-                    else if (v.IsBoolean())
-                        list.add(Create(v.BooleanValue()));
-                    else if (v.IsDouble())
-                        list.add(Create(v.NumberValue()));
-                    else if (v.IsNull())
-                        list.add(CreateNull());
-                    else
-                        list.add(Create(v));
-                }
-                return Create(list);
-            }
-            if (errorMessage == null) {
-                errorMessage = "Convert json to array error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToBoolean(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert json to bool error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToDate(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert json to date error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToNumber(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert json to number error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToText(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert number to string error!";
-            }
-            return Error(errorMessage);
-        }
-    }
-
-    static class OperandNull extends Operand {
-
-        @Override
-        public OperandType Type() {
-            return OperandType.NULL;
-        }
-
-        @Override
-        public boolean IsNull() {
-            return true;
-        }
-
-    }
-
-    static class OperandNumber extends OperandT<BigDecimal> {
-
-        public OperandNumber(BigDecimal obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.NUMBER;
-        }
-
-        @Override
-        public int IntValue() {
-            return _value.intValue();
-        }
-
-        @Override
-        public BigDecimal NumberValue() {
-            return _value;
-        }
-
-        @Override
-        public double DoubleValue() {
-            return _value.doubleValue();
-        }
-
-        @Override
-        public long LongValue() {
-            return _value.longValue();
-        }
-
-        @Override
-        public Operand ToNumber(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToBoolean(String errorMessage) {
-            return (NumberValue().compareTo(new BigDecimal(0)) != 0) ? True : False;
-        }
-
-        @Override
-        public Operand ToText(String errorMessage) {
-            String str = ((Double) NumberValue().doubleValue()).toString();
-            if (str.contains(".")) {
-                str = Pattern.compile("(\\.)?0+$").matcher(str).replaceAll("");
-            }
-            return Create(str);
-        }
-
-        @Override
-        public Operand ToDate(String errorMessage) {
-            return Create(new MyDate(NumberValue()));
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert number to array error!";
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToJson(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert number to json error!";
-            }
-            return Error(errorMessage);
-        }
-    }
-
-    static class OperandString extends OperandT<String> {
-
-        public OperandString(String obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.TEXT;
-        }
-
-        @Override
-        public String TextValue() {
-            return _value;
-        }
-
-        @Override
-        public Operand ToNumber(String errorMessage) {
-            try {
-                BigDecimal d = new BigDecimal(TextValue());
-                return Create(d);
-            } catch (Exception e) {
-            }
-            if (errorMessage == null) {
-                return Error("Convert string to number error!");
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToText(String errorMessage) {
-            return this;
-        }
-
-        @Override
-        public Operand ToBoolean(String errorMessage) {
-            if (TextValue().equalsIgnoreCase("true") || TextValue().equalsIgnoreCase("yes")) {
-                return True;
-            }
-            if (TextValue().equalsIgnoreCase("false") || TextValue().equalsIgnoreCase("no")) {
-                return False;
-            }
-            if (TextValue().equals("1") || TextValue().equals("是") || TextValue().equals("有")) {
-                return True;
-            }
-            if (TextValue().equals("0") || TextValue().equals("否") || TextValue().equals("不是") || TextValue().equals("无") || TextValue().equals("没有")) {
-                return False;
-            }
-            if (errorMessage == null) {
-                return Error("Convert string to bool error!");
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToDate(String errorMessage) {
-            MyDate date = MyDate.parse(TextValue());
-            if (date != null) {
-                return Create(date);
-            }
-            if (errorMessage == null) {
-                return Error("Convert string to date error!");
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToJson(String errorMessage) {
-            final String txt = TextValue();
-            if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
-                try {
-                    final JsonData json = JsonMapper.ToObject(txt);
-                    return Operand.Create(json);
-                } catch (final Exception e) {
-                }
-            }
-            if (errorMessage == null) {
-                return Error("Convert string to json error!");
-            }
-            return Error(errorMessage);
-        }
-
-        @Override
-        public Operand ToArray(String errorMessage) {
-            if (errorMessage == null) {
-                errorMessage = "Convert string to array error!";
-            }
-            return Error(errorMessage);
-        }
-
-    }
-
-    public static class KeyValue {
-        public String Key;
-        public Operand Value;
-    }
-
-    public static class OperandKeyValue extends OperandT<KeyValue> {
-        public OperandKeyValue(KeyValue obj) {
-            super(obj);
-        }
-
-        public OperandType Type() {
-            return OperandType.ARRARYJSON;
-        }
-    }
-
-    public static class OperandKeyValueList extends OperandT<KeyValue> {
-        private final List<KeyValue> TextList = new ArrayList<>();
-
-        public OperandKeyValueList(KeyValue obj) {
-            super(obj);
-        }
-
-        public OperandType Type() {
-            return OperandType.ARRARYJSON;
-        }
-
-        public List<Operand> ArrayValue() {
-            List<Operand> result = new ArrayList<>();
-            for (KeyValue kv : TextList) {
-                result.add(kv.Value);
-            }
-            return result;
-        }
-
-        public Operand ToArray(String errorMessage) {
-            return Create(this.ArrayValue());
-        }
-
-        public void AddValue(KeyValue keyValue) {
-            TextList.add(keyValue);
-        }
-
-        public boolean HasKey(String key) {
-            for (KeyValue item : TextList) {
-                if (item.Key.equals("" + key)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public Operand GetValue(String key) {
-            for (KeyValue item : TextList) {
-                if (item.Key.equals(key)) {
-                    return item.Value;
-                }
-            }
-            return null;
-        }
-
-        public boolean ContainsKey(Operand value) {
-            for (KeyValue item : TextList) {
-                if (item.Key.equals(value.TextValue())) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public boolean ContainsValue(Operand value) {
-            for (KeyValue item : TextList) {
-                Operand op = item.Value;
-                if (value.Type() != op.Type()) {
-                    continue;
-                }
-                if (value.Type() == OperandType.TEXT) {
-                    if (value.TextValue().equals(op.TextValue())) {
-                        return true;
-                    }
-                }
-                if (value.Type() == OperandType.NUMBER) {
-                    if (value.TextValue().equals(op.TextValue())) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        public Operand TryGetValueFloor(double key, boolean range_lookup) {
-            Operand value = null;
-            for (KeyValue item : TextList) {
-                try {
-                    double num = Double.parseDouble(item.Key);
-                    double t = Math.round(key - num * 1000000000d) / 1000000000d;
-                    if (t == 0) {
-                        return item.Value;
-                    } else if (range_lookup) {
-                        if (t > 0) {
-                            value = item.Value;
-                        } else if (value != null) {
-                            return value;
-                        }
-                    }
-                } catch (Exception ex) {
-                }
-            }
-            return value;
-        }
-    }
-
-
+    
 }

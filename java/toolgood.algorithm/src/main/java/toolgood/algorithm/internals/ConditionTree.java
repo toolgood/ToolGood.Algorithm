@@ -1,73 +1,91 @@
+/**
+ * 条件树
+ */
 package toolgood.algorithm.internals;
 
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import toolgood.algorithm.enums.ConditionTreeType;
-import toolgood.algorithm.math.mathLexer;
-import toolgood.algorithm.math.mathParser;
-
+import java.util.ArrayList;
 import java.util.List;
+import toolgood.algorithm.enums.ConditionTreeType;
 
-public class ConditionTree {
+public final class ConditionTree {
     /**
      * 子节点
      */
-    public List<ConditionTree> Nodes;
+    private List<ConditionTree> nodes;
+
     /**
      * 开始位置
      */
-    public int Start;
+    private int start;
+
     /**
      * 结束位置
      */
-    public int End;
+    private int end;
+
     /**
      * 类型
      */
-    public ConditionTreeType Type;
+    private ConditionTreeType type;
+
     /**
      * 条件
      */
-    public String ConditionString;
+    private String conditionString;
+
     /**
      * 出错信息
      */
-    public String ErrorMessage;
+    private String errorMessage;
 
-    public ConditionTree() {
-
+    ConditionTree() {
     }
 
-
-    public static ConditionTree Parse(String condition) {
-        ConditionTree tree = new ConditionTree();
-        if (condition == null || condition.equals("")) {
-            tree.Type = ConditionTreeType.Error;
-            tree.ErrorMessage = "condition 为空";
-            return tree;
-        }
-        try {
-            final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(condition));
-            final mathLexer lexer = new mathLexer(stream);
-            final CommonTokenStream tokens = new CommonTokenStream(lexer);
-            final mathParser parser = new mathParser(tokens);
-            final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
-            parser.removeErrorListeners();
-            parser.addErrorListener(antlrErrorListener);
-            final mathParser.ProgContext context = parser.prog();
-
-            if (antlrErrorListener.IsError) {
-                tree.ErrorMessage = antlrErrorListener.ErrorMsg;
-                return tree;
-            }
-
-            final MathSplitVisitor visitor = new MathSplitVisitor();
-            return visitor.visit(context);
-        } catch (Exception ex) {
-            tree.Type = ConditionTreeType.Error;
-            tree.ErrorMessage = ex.getMessage();
-        }
-        return tree;
+    public List<ConditionTree> getNodes() {
+        return nodes;
     }
 
+    void setNodes(List<ConditionTree> nodes) {
+        this.nodes = nodes;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    void setEnd(int end) {
+        this.end = end;
+    }
+
+    public ConditionTreeType getType() {
+        return type;
+    }
+
+    void setType(ConditionTreeType type) {
+        this.type = type;
+    }
+
+    public String getConditionString() {
+        return conditionString;
+    }
+
+    void setConditionString(String conditionString) {
+        this.conditionString = conditionString;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }

@@ -1,51 +1,41 @@
+/**
+ * 长度单位
+ */
 package toolgood.algorithm.enums;
 
 public enum DistanceUnitType {
-    /// <summary>
-    /// 毫米
-    /// </summary>
+    /**
+     * 毫米
+     */
     MM(1),
-    /// <summary>
-    /// 厘米
-    /// </summary>
+
+    /**
+     * 厘米
+     */
     CM(2),
-    /// <summary>
-    /// 分米
-    /// </summary>
+
+    /**
+     * 分米
+     */
     DM(3),
-    /// <summary>
-    /// 米
-    /// </summary>
+
+    /**
+     * 米
+     */
     M(4),
-    /// <summary>
-    /// 千米
-    /// </summary>
+
+    /**
+     * 千米
+     */
     KM(5);
 
-    private final int value;
+    private final byte value;
 
-    DistanceUnitType(int v) {
-        value = v;
+    DistanceUnitType(byte value) {
+        this.value = value;
     }
 
-    public static DistanceUnitType intToEnum(int value) {
-        switch (value) {
-            case 1:
-                return MM;
-            case 2:
-                return CM;
-            case 3:
-                return DM;
-            case 4:
-                return M;
-            case 5:
-                return KM;
-            default:
-                return null;
-        }
-    }
-
-    public int getValue() {
+    public byte getValue() {
         return value;
     }
 }

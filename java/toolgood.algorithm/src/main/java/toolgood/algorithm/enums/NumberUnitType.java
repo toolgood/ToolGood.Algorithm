@@ -22,13 +22,14 @@ public enum NumberUnitType {
     G(31),
     KG(32),
     T(33);
-    private final int value;
 
-    NumberUnitType(int v) {
-        value = v;
+    private final byte value;
+
+    NumberUnitType(byte value) {
+        this.value = value;
     }
 
-    public int getValue() {
+    public byte getValue() {
         return value;
     }
 }

@@ -1,39 +1,31 @@
+/**
+ * 重量单位
+ */
 package toolgood.algorithm.enums;
 
 public enum MassUnitType {
-    /// <summary>
-    /// 克
-    /// </summary>
+    /**
+     * 克
+     */
     G(31),
-    /// <summary>
-    /// 千克
-    /// </summary>
+
+    /**
+     * 千克
+     */
     KG(32),
-    /// <summary>
-    /// 吨
-    /// </summary>
+
+    /**
+     * 吨
+     */
     T(33);
 
-    private final int value;
+    private final byte value;
 
-    MassUnitType(int v) {
-        value = v;
+    MassUnitType(byte value) {
+        this.value = value;
     }
 
-    public static MassUnitType intToEnum(int value) {
-        switch (value) {
-            case 31:
-                return G;
-            case 32:
-                return KG;
-            case 33:
-                return T;
-            default:
-                return null;
-        }
-    }
-
-    public int getValue() {
+    public byte getValue() {
         return value;
     }
 }
