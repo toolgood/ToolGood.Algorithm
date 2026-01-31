@@ -32,8 +32,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				} else if(args1.IsNull) {
 					return Operand.True;
 				} else {
-					return Operand.Error("Function '>=' compare is error.");
-				}
+						return Operand.Error("Function '{0}' compare is error.", ">=");
+					}
 			} else if(args1.IsNull || args2.IsNull) {
 				return Operand.False;
 			} else if(args2.IsText) {
@@ -50,10 +50,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
 					return r >= 0 ? Operand.True : Operand.False;
 				} else {
-					return Operand.Error("Function '>=' compare is error.");
+					return Operand.Error("Function '{0}' compare is error.", ">=");
 				}
 			} else if(args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
-				return Operand.Error("Function '>=' compare is error.");
+				return Operand.Error("Function '{0}' compare is error.", ">=");
 			}
 			if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">=", 1); if(args1.IsError) { return args1; } }
 			if(args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", ">=", 2); if(args2.IsError) { return args2; } }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
@@ -32,8 +32,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				} else if(args1.IsNull) {
 					return Operand.True;
 				} else {
-					return Operand.Error("Function '==' compare is error.");
-				}
+						return Operand.Error("Function '{0}' compare is error.", "==");
+					}
 			} else if(args1.IsNull || args2.IsNull) {
 				return Operand.False;
 			} else if(args2.IsText) {
@@ -48,10 +48,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 					args1 = args1.ToText();
 					return Operand.Create(args1.TextValue == args2.TextValue);
 				} else {
-					return Operand.Error("Function '==' compare is error.");
+					return Operand.Error("Function '{0}' compare is error.", "==");
 				}
 			} else if(args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
-				return Operand.Error("Function '==' compare is error.");
+				return Operand.Error("Function '{0}' compare is error.", "==");
 			}
 			if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "==", 1); if(args1.IsError) { return args1; } }
 			if(args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "==", 2); if(args2.IsError) { return args2; } }
