@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Text;
 
@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 				} else if(DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
 					args1 = Operand.Create(new MyDate(dt));
 				} else {
-					return Operand.Error("Two types cannot be multiplied ");
+					return Operand.Error("Function '{0}' Two types cannot be multiplied ", "*");
 				}
 			}
 			if(args2.IsText) {
@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 				} else if(DateTime.TryParse(args2.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
 					args2 = Operand.Create(new MyDate(dt));
 				} else {
-					return Operand.Error("Two types cannot be multiplied");
+					return Operand.Error("Function '{0}' Two types cannot be multiplied", "*");
 				}
 			}
 			if(args1.IsDate) {

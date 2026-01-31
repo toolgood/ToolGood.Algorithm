@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Text;
 
@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 				} else if(DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
 					args1 = Operand.Create(new MyDate(dt));
 				} else {
-					return Operand.Error("Function '+' is error");
+					return Operand.Error("Function '{0}' is error!", "+");
 				}
 			}
 			if(args2.IsText) {
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 				} else if(DateTime.TryParse(args2.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
 					args2 = Operand.Create(new MyDate(dt));
 				} else {
-					return Operand.Error("Function '+' is error");
+					return Operand.Error("Function '{0}' is error!", "+");
 				}
 			}
 			if(args1.IsDate) {
