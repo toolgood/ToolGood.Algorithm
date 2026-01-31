@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 			var txt = name;
 			if (string.IsNullOrEmpty(name)) {
-				var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+				var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Parameter", 1); if (args1.IsError) return args1; }
 				txt = args1.TextValue;
 			} else {
 				txt = name;

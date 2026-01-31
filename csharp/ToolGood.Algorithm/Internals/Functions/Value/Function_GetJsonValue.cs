@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
@@ -15,32 +15,32 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			var op = func2.Evaluate(work, tempParameter); if (op.IsError) { return op; }
 
 			if (obj.IsArray) {
-				op = op.ToNumber("ARRARY index is error!");
+				op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
 				if (op.IsError) { return op; }
 				var index = op.IntValue - work.ExcelIndex;
 				if (index < obj.ArrayValue.Count)
 					return obj.ArrayValue[index];
-				return Operand.Error("ARRARY index {0} greater than maximum length!", index);
+				return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
 			}
 			if (obj.IsArrayJson) {
 				if (op.IsNumber) {
 					if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
 						return operand;
 					}
-					return Operand.Error("Parameter name '{0}' is missing!", op.TextValue);
+					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue);
 				} else if (op.IsText) {
 					if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
 						return operand;
 					}
-					return Operand.Error("Parameter name '{0}' is missing!", op.TextValue);
+					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue);
 				}
-				return Operand.Error("Parameter name is missing!");
+				return Operand.Error("Function '{0}' Parameter name is missing!", "GetJsonValue");
 			}
 
 			if (obj.IsJson) {
 				var json = obj.JsonValue;
 				if (json.IsArray) {
-					op = op.ToNumber("JSON parameter index is error!");
+					op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
 					if (op.IsError) { return op; }
 					var index = op.IntValue - work.ExcelIndex;
 					if (index < json.Count) {
@@ -53,9 +53,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 						if (v.IsNull) return Operand.CreateNull();
 						return Operand.Create(v);
 					}
-					return Operand.Error("JSON index {0} greater than maximum length!", index);
+					return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
 				} else {
-					op = op.ToText("JSON parameter name is error!");
+					op = op.ToText("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
 					if (op.IsError) { return op; }
 					var v = json[op.TextValue];
 					if (v != null) {
@@ -69,7 +69,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					}
 				}
 			}
-			return Operand.Error("Operator is error!");
+			return Operand.Error("Function '{0}' Operator is error!", "GetJsonValue");
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
