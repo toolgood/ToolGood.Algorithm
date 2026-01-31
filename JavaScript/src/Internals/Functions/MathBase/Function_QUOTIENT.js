@@ -20,7 +20,7 @@ class Function_QUOTIENT extends Function_2 {
         }
 
         if (args2.NumberValue == 0) {
-            return Operand.Error("Function '{0}' div 0 error!", "Quotient");
+            return Operand.Error(StringCache.Function_error, "Quotient");
         }
         return Operand.Create(Math.floor(args1.NumberValue / args2.NumberValue));
     }
