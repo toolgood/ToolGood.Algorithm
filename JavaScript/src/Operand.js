@@ -155,11 +155,7 @@ export class Operand {
         } else if (typeof obj === 'boolean') {
             return obj ? Operand.True : Operand.False;
         } else if (typeof obj === 'number') {
-            if (Number.isInteger(obj)) {
-                return new OperandInt(obj);
-            } else {
-                return new OperandDouble(obj);
-            }
+            return new OperandDouble(obj);
         } else if (typeof obj === 'string') {
             if (obj === null) {
                 return Operand.CreateNull();
@@ -286,59 +282,7 @@ export class Operand {
     }
 }
 
-class OperandInt extends Operand {
-    constructor(obj) {
-        super();
-        this._value = obj;
-    }
-    get IsNumber() { return true; }
-    get IsNotNumber() { return false; }
-    get Type() { return OperandType.NUMBER; }
-    get IntValue() { return this._value; }
-    get NumberValue() { return this._value; }
-
-    ToNumber(errorMessage) { return this; }
-    ToNumber(errorMessage, ...args) { return this; }
-
-    ToBoolean(errorMessage) { return this.IntValue !== 0 ? Operand.True : Operand.False; }
-    ToBoolean(errorMessage, ...args) { return this.IntValue !== 0 ? Operand.True : Operand.False; }
-
-    ToText(errorMessage) { return Operand.Create(this.IntValue.toString()); }
-    ToText(errorMessage, ...args) { return Operand.Create(this.IntValue.toString()); }
-
-    ToMyDate(errorMessage) { return Operand.Create(new MyDate(this.NumberValue)); }
-    ToMyDate(errorMessage, ...args) { return Operand.Create(new MyDate(this.NumberValue)); }
-
-    toString() { return this.NumberValue.toString(); }
-}
-
 class OperandDouble extends Operand {
-    constructor(obj) {
-        super();
-        this._value = obj;
-    }
-    get IsNumber() { return true; }
-    get IsNotNumber() { return false; }
-    get Type() { return OperandType.NUMBER; }
-    get IntValue() { return Math.floor(this._value); }
-    get NumberValue() { return this._value; }
-
-    ToNumber(errorMessage) { return this; }
-    ToNumber(errorMessage, ...args) { return this; }
-
-    ToBoolean(errorMessage) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
-    ToBoolean(errorMessage, ...args) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
-
-    ToText(errorMessage) { return Operand.Create(this.NumberValue.toString()); }
-    ToText(errorMessage, ...args) { return Operand.Create(this.NumberValue.toString()); }
-
-    ToMyDate(errorMessage) { return Operand.Create(new MyDate(this.NumberValue)); }
-    ToMyDate(errorMessage, ...args) { return Operand.Create(new MyDate(this.NumberValue)); }
-
-    toString() { return this.NumberValue.toString(); }
-}
-
-class OperandDecimal extends Operand {
     constructor(obj) {
         super();
         this._value = obj;
@@ -790,7 +734,7 @@ class OperandKeyValue extends Operand {
 }
 
 // 导出所有类
-export { OperandInt, OperandDouble, OperandDecimal, OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
+export {  OperandDouble,  OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
 
 // 初始化静态属性
 Operand.Version = new OperandString("ToolGood.Algorithm 6.1");
@@ -802,9 +746,7 @@ Operand.Zero = Operand.Create(0);
 // 浏览器支持
 if (typeof window !== 'undefined') {
     window.Operand = Operand;
-    window.OperandInt = OperandInt;
     window.OperandDouble = OperandDouble;
-    window.OperandDecimal = OperandDecimal;
     window.OperandBoolean = OperandBoolean;
     window.OperandString = OperandString;
     window.OperandMyDate = OperandMyDate;
