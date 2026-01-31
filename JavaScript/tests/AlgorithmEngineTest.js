@@ -131,7 +131,9 @@ function test() {
   
   // 日期测试 - JavaScript 中日期处理可能不同
   let dt = engine.TryEvaluate_DateTime("'2016-1-1'+1", new Date(0));
-  assert.strictEqual(dt.toString().split('T')[0], "2016-01-02", "'2016-1-1'+1 应该等于 '2016-1-2'");
+  assert.strictEqual(dt.getFullYear(), 2016, "");
+  assert.strictEqual(dt.getMonth()+1, 1, "");
+  assert.strictEqual(dt.getDate(), 2, "");
   
   let value = engine.TryEvaluate("1 > (-2)", false);
   assert.strictEqual(value, true, "1 > (-2) 应该等于 true");

@@ -231,8 +231,8 @@ export class MyDate {
         if (this.Year != null && this.Year > 1900) {
             let dt = new Date(this.Year, this.Month - 1, this.Day, this.Hour, this.Minute, this.Second);
             let start = new Date(1900, 0, 1);
-            let diffTime = dt - start;
-            let days = diffTime / (1000 * 60 * 60 * 24) + 2;
+            let diffTime = dt.getTime() - start.getTime();
+            let days = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 2);
             days += (this.Hour + (this.Minute + this.Second / 60) / 60) / 24;
             return days;
         }
