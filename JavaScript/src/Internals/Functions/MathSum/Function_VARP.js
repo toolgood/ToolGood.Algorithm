@@ -19,7 +19,7 @@ class Function_VARP extends Function_N {
         }
 
         if (args.length == 1) {
-            return Operand.Error("Function '{0}}' parameter only one error!", "VarP");
+            return Operand.Error(StringCache.Function_error, "VarP");
         }
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);

@@ -1,6 +1,7 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_COVARIANCES extends Function_2 {
     constructor(func1, func2) {
@@ -23,16 +24,16 @@ class Function_COVARIANCES extends Function_2 {
         let o1 = FunctionUtil.F_base_GetList(args1.ArrayValue, list1);
         let o2 = FunctionUtil.F_base_GetList(args2.ArrayValue, list2);
         if (!o1) {
-            return Operand.Error('Function {0} parameter {1} is error!', 'CovarIanceS', 1);
+            return Operand.Error(StringCache.Function_parameter_error, 'CovarIanceS', 1);
         }
         if (!o2) {
-            return Operand.Error('Function {0} parameter {1} is error!', 'CovarIanceS', 2);
+            return Operand.Error(StringCache.Function_parameter_error, 'CovarIanceS', 2);
         }
         if (list1.length !== list2.length) {
-            return Operand.Error('Function {0} parameter\'s count error!', 'CovarIanceS');
+            return Operand.Error(StringCache.Function_error, 'CovarIanceS');
         }
         if (list1.length === 1) {
-            return Operand.Error('Function {0} parameter\'s count error!', 'CovarIanceS');
+            return Operand.Error(StringCache.Function_error, 'CovarIanceS');
         }
 
         let avg1 = list1.reduce((sum, val) => sum + val, 0) / list1.length;

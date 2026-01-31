@@ -75,7 +75,7 @@ class Function_AVERAGEIF extends Function_3 {
         }
 
         if (count === 0) {
-            return Operand.Error("Function '{0}' div 0 error!", "AverageIf");
+            return Operand.Error(StringCache.Function_error, "AverageIf");
         }
 
         return Operand.Create(sum / count);

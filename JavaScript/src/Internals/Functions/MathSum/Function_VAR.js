@@ -19,7 +19,7 @@ class Function_VAR extends Function_N {
         }
 
         if (args.length == 1) {
-            return Operand.Error("Function '{0}}' parameter only one error!", "Var");
+            return Operand.Error(StringCache.Function_error, "Var");
         }
 
         let list = [];
