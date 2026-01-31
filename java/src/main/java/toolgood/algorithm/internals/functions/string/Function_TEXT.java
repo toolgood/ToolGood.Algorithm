@@ -4,9 +4,9 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import toolgood.algorithm.internals.FunctionBase;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_TEXT extends Function_2 {

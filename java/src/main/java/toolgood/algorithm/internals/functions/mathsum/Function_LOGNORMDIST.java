@@ -1,9 +1,9 @@
 package toolgood.algorithm.internals.functions.mathsum;
 
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.Function_3;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public class Function_LOGNORMDIST extends Function_3 {

@@ -2,10 +2,10 @@ package toolgood.algorithm.internals.functions.mathsum;
 
 import java.util.ArrayList;
 import java.util.List;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.Function_N;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.FunctionUtil;
 
 public class Function_HARMEAN extends Function_N {

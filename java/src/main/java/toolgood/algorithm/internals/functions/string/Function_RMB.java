@@ -4,9 +4,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import toolgood.algorithm.internals.FunctionBase;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_1;
 
 public class Function_RMB extends Function_1 {

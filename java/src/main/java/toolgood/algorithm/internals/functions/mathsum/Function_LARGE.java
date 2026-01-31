@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.Function_2;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.FunctionUtil;
 
 public class Function_LARGE extends Function_2 {

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.Visitors.CharUtil;
 
 public class FunctionUtil {

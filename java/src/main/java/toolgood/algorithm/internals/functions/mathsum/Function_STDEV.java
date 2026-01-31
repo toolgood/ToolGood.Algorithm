@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.Function_N;
-import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
 public class Function_STDEV extends Function_N {

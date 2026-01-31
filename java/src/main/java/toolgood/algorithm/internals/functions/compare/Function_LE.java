@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals.functions.compare;
 
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionBase;
 

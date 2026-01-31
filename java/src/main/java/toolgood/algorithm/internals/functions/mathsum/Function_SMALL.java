@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.Function_2;
-import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 

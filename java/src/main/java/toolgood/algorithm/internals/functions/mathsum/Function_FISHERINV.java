@@ -1,9 +1,9 @@
 package toolgood.algorithm.internals.functions.mathsum;
 
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.FunctionBase;
-import toolgood.algorithm.internals.Function_1;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.AlgorithmEngine;
 
 public class Function_FISHERINV extends Function_1 {
     public Function_FISHERINV(FunctionBase func1) {

@@ -2,8 +2,8 @@ package toolgood.algorithm.internals.functions.mathtrigonometric;
 
 import java.lang.StringBuilder;
 import java.util.function.Function;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.FunctionBase;
 

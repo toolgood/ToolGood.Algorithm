@@ -1,8 +1,8 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import toolgood.algorithm.Internals.Operand;
-import toolgood.algorithm.Internals.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import java.text.DecimalFormat;
 
 public class Function_FIXED extends Function_3 {

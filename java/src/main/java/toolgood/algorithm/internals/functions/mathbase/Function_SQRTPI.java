@@ -1,8 +1,8 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import toolgood.algorithm.internals.FunctionBase;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 
 public class Function_SQRTPI extends Function_1 {
     public Function_SQRTPI(FunctionBase func1) {

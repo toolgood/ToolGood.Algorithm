@@ -1,8 +1,8 @@
 package toolgood.algorithm.internals.functions.flow;
 
-import toolgood.algorithm.Internals.Operand;
-import toolgood.algorithm.Internals.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
 
 public class Function_IFERROR extends Function_3 {
     public Function_IFERROR(FunctionBase func1, FunctionBase func2, FunctionBase func3) {

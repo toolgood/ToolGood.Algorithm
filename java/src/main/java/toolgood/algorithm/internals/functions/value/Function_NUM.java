@@ -1,8 +1,8 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.FunctionBase;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 
 public class Function_NUM extends FunctionBase {
     private final double d;

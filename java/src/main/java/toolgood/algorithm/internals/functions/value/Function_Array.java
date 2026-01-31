@@ -3,9 +3,9 @@ package toolgood.algorithm.internals.functions.value;
 import java.util.ArrayList;
 import java.util.List;
 
-import toolgood.algorithm.internals.FunctionBase;
-import toolgood.algorithm.internals.Operand;
-import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_N;
 
 public class Function_Array extends Function_N {

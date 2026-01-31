@@ -3,9 +3,9 @@ package toolgood.algorithm.internals.functions.mathsum;
 import java.util.List;
 import java.util.function.Function;
 
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.Function_3;
-import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.mathnet.ExcelFunctions;

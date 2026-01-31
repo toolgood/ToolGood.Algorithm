@@ -1,8 +1,8 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import toolgood.algorithm.Internals.Operand;
-import toolgood.algorithm.Internals.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
 
 public class Function_COMBIN extends Function_2 {
     public Function_COMBIN(FunctionBase func1, FunctionBase func2) {

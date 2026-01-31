@@ -1,8 +1,8 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.Internals.Operand;
-import toolgood.algorithm.Internals.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
 
 public class Function_YEAR extends Function_1 {
     public Function_YEAR(FunctionBase func1) {
