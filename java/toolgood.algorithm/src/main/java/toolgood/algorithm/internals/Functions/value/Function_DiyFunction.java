@@ -1,0 +1,33 @@
+package toolgood.algorithm.internals.functions.value;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.internals.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.Function_N;
+
+public class Function_DiyFunction extends Function_N {
+    private final String funName;
+
+    public Function_DiyFunction(String name, FunctionBase[] funcs) {
+        super(funcs);
+        this.funName = name;
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        List<Operand> args = new ArrayList<>();
+        for (FunctionBase item : funcs) {
+            Operand aa = item.Evaluate(work, tempParameter);
+            args.add(aa);
+        }
+        return work.ExecuteDiyFunction(funName, args);
+    }
+
+    @Override
+    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, funName);
+    }
+}
