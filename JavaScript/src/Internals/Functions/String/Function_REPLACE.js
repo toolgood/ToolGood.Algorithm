@@ -1,6 +1,6 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../StringCache.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_REPLACE extends Function_4 {
     constructor(func1, func2, func3, func4) {
