@@ -1,6 +1,7 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_GEOMEAN extends Function_N {
     constructor(funcs) {
@@ -20,15 +21,15 @@ class Function_GEOMEAN extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
-            return Operand.Error('Function {0} parameter is error!', 'GeoMean');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'GeoMean');
         }
         if (list.length === 0) {
-            return Operand.Error('Function {0} parameter is error!', 'GeoMean');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'GeoMean');
         }
         let product = 1.0;
         for (let num of list) {
             if (num <= 0) {
-                return Operand.Error('Function {0} parameter is error!', 'GeoMean');
+                return Operand.Error(StringCache.Function_parameter_1_error, 'GeoMean');
             }
             product *= num;
         }

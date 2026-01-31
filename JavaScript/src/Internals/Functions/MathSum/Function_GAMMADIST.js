@@ -1,6 +1,7 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_GAMMADIST extends Function_4 {
     constructor(func1, func2, func3, func4) {
@@ -41,7 +42,7 @@ class Function_GAMMADIST extends Function_4 {
         let beta = args3.NumberValue;
         let cumulative = args4.BooleanValue;
         if (alpha < 0.0 || beta < 0.0) {
-            return Operand.Error('Function {0} parameter is error!', 'GammaDist');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'GammaDist');
         }
         return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
     }

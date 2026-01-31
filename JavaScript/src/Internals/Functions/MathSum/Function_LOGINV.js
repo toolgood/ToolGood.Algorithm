@@ -1,6 +1,7 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_LOGINV extends Function_3 {
     constructor(func1, func2, func3) {
@@ -32,7 +33,7 @@ class Function_LOGINV extends Function_3 {
 
         let n3 = args3.NumberValue;
         if (n3 < 0.0) {
-            return Operand.Error('Function {0} parameter is error!', 'LogInv');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'LogInv');
         }
         return Operand.Create(ExcelFunctions.LogInv(args1.NumberValue, args2.NumberValue, n3));
     }

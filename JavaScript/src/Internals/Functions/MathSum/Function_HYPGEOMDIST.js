@@ -1,6 +1,7 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_HYPGEOMDIST extends Function_4 {
     constructor(func1, func2, func3, func4) {
@@ -41,7 +42,7 @@ class Function_HYPGEOMDIST extends Function_4 {
         let success = Math.round(args3.NumberValue);
         let population = Math.round(args4.NumberValue);
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
-            return Operand.Error('Function {0} parameter is error!', 'HypgeomDist');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'HypgeomDist');
         }
         return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }

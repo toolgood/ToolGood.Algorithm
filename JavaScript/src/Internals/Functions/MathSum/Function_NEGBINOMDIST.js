@@ -1,6 +1,7 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_NEGBINOMDIST extends Function_3 {
     constructor(func1, func2, func3) {
@@ -34,7 +35,7 @@ class Function_NEGBINOMDIST extends Function_3 {
         let p = args3.NumberValue;
 
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
-            return Operand.Error('Function {0} parameter is error!', 'NegbinomDist');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'NegbinomDist');
         }
         return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
     }

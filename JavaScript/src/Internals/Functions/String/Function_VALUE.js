@@ -1,6 +1,7 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_VALUE extends Function_1 {
     constructor(func1) {
@@ -16,7 +17,7 @@ class Function_VALUE extends Function_1 {
             return args1.BooleanValue ? Operand.one : Operand.zero;
         }
         if (args1.IsNotText) {
-            args1 = args1.ToText('Function {0} parameter is error!', 'Value');
+            args1 = args1.ToText(StringCache.Function_parameter_1_error, 'Value');
             if (args1.IsError) {
                 return args1;
             }
@@ -27,7 +28,7 @@ class Function_VALUE extends Function_1 {
         if (!isNaN(parsedValue)) {
             return Operand.Create(parsedValue);
         }
-        return Operand.Error('Function {0} parameter is error!', 'Value');
+        return Operand.Error(StringCache.Function_parameter_1_error, 'Value');
     }
 }
 

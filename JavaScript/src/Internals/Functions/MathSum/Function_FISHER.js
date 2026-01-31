@@ -1,5 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FISHER extends Function_1 {
     constructor(func1) {
@@ -9,14 +10,14 @@ class Function_FISHER extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
-            args1 = args1.ToNumber('Function {0} parameter is error!', 'Fisher');
+            args1 = args1.ToNumber(StringCache.Function_parameter_1_error, 'Fisher');
             if (args1.IsError) {
                 return args1;
             }
         }
         let x = args1.NumberValue;
         if (x >= 1 || x <= -1) {
-            return Operand.Error('Function {0} parameter is error!', 'Fisher');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'Fisher');
         }
         let n = 0.5 * Math.log((1 + x) / (1 - x));
         return Operand.Create(n);

@@ -1,6 +1,7 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FDIST extends Function_3 {
     constructor(func1, func2, func3) {
@@ -34,7 +35,7 @@ class Function_FDIST extends Function_3 {
         let degreesFreedom = Math.round(args2.NumberValue);
         let degreesFreedom2 = Math.round(args3.NumberValue);
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
-            return Operand.Error('Function {0} parameter is error!', 'FDist');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'FDist');
         }
         return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
     }

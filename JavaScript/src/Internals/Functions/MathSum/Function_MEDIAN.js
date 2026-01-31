@@ -1,6 +1,7 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_MEDIAN extends Function_N {
     constructor(funcs) {
@@ -21,10 +22,10 @@ class Function_MEDIAN extends Function_N {
         let o = FunctionUtil.F_base_GetList(args, list);
 
         if (!o) {
-            return Operand.Error('Function {0} parameter is error!', 'Median');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'Median');
         }
         if (list.length === 0) {
-            return Operand.Error('Function {0} parameter is error!', 'Median');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'Median');
         }
 
         list.sort((a, b) => a - b); // 升序排序

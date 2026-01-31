@@ -1,6 +1,7 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
+import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_GAMMAINV extends Function_3 {
     constructor(func1, func2, func3) {
@@ -33,7 +34,7 @@ class Function_GAMMAINV extends Function_3 {
         let alpha = args2.NumberValue;
         let beta = args3.NumberValue;
         if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
-            return Operand.Error('Function {0} parameter is error!', 'GammaInv');
+            return Operand.Error(StringCache.Function_parameter_1_error, 'GammaInv');
         }
         return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
     }
