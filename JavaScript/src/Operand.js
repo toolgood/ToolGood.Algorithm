@@ -119,21 +119,10 @@ export class Operand {
      * 数字值
      */
     get NumberValue() { throw new Error('Not implemented'); }
-
-    /**
-     * double值
-     */
-    get DoubleValue() { throw new Error('Not implemented'); }
-
     /**
      * int值
      */
     get IntValue() { throw new Error('Not implemented'); }
-
-    /**
-     * long值
-     */
-    get LongValue() { throw new Error('Not implemented'); }
 
     /**
      * 字符串值
@@ -307,8 +296,6 @@ class OperandInt extends Operand {
     get Type() { return OperandType.NUMBER; }
     get IntValue() { return this._value; }
     get NumberValue() { return this._value; }
-    get LongValue() { return this._value; }
-    get DoubleValue() { return this._value; }
 
     ToNumber(errorMessage) { return this; }
     ToNumber(errorMessage, ...args) { return this; }
@@ -335,17 +322,15 @@ class OperandDouble extends Operand {
     get Type() { return OperandType.NUMBER; }
     get IntValue() { return Math.floor(this._value); }
     get NumberValue() { return this._value; }
-    get LongValue() { return this._value; }
-    get DoubleValue() { return this._value; }
 
     ToNumber(errorMessage) { return this; }
     ToNumber(errorMessage, ...args) { return this; }
 
-    ToBoolean(errorMessage) { return this.DoubleValue !== 0 ? Operand.True : Operand.False; }
-    ToBoolean(errorMessage, ...args) { return this.DoubleValue !== 0 ? Operand.True : Operand.False; }
+    ToBoolean(errorMessage) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
+    ToBoolean(errorMessage, ...args) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
 
-    ToText(errorMessage) { return Operand.Create(this.DoubleValue.toString()); }
-    ToText(errorMessage, ...args) { return Operand.Create(this.DoubleValue.toString()); }
+    ToText(errorMessage) { return Operand.Create(this.NumberValue.toString()); }
+    ToText(errorMessage, ...args) { return Operand.Create(this.NumberValue.toString()); }
 
     ToMyDate(errorMessage) { return Operand.Create(new MyDate(this.NumberValue)); }
     ToMyDate(errorMessage, ...args) { return Operand.Create(new MyDate(this.NumberValue)); }
@@ -363,8 +348,6 @@ class OperandDecimal extends Operand {
     get Type() { return OperandType.NUMBER; }
     get IntValue() { return Math.floor(this._value); }
     get NumberValue() { return this._value; }
-    get LongValue() { return this._value; }
-    get DoubleValue() { return this._value; }
 
     ToNumber(errorMessage) { return this; }
     ToNumber(errorMessage, ...args) { return this; }

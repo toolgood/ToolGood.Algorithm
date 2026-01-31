@@ -24,9 +24,9 @@ class Function_BETADIST extends Function_3 {
             args3 = args3.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 3);
             if (args3.IsError) return args3;
         }
-        let x = args1.DoubleValue;
-        let alpha = args2.DoubleValue;
-        let beta = args3.DoubleValue;
+        let x = args1.NumberValue;
+        let alpha = args2.NumberValue;
+        let beta = args3.NumberValue;
 
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.Error(StringCache.Function_parameter_error, 'BetaDist');

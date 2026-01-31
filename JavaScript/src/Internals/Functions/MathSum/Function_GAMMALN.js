@@ -15,7 +15,7 @@ class Function_GAMMALN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
+        return Operand.Create(ExcelFunctions.GAMMALN(args1.NumberValue));
     }
 }
 

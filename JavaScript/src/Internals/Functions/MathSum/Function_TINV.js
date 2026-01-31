@@ -21,7 +21,7 @@ class Function_TINV extends Function_2 {
             if (converted2.IsError) return converted2;
             args2 = converted2;
         }
-        let p = args1.DoubleValue;
+        let p = args1.NumberValue;
         let degreesFreedom = args2.IntValue;
         if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
             return Operand.Error(StringCache.Function_parameter_error, "TInv");

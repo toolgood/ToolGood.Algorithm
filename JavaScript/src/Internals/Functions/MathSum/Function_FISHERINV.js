@@ -14,7 +14,7 @@ class Function_FISHERINV extends Function_1 {
                 return args1;
             }
         }
-        let x = args1.DoubleValue;
+        let x = args1.NumberValue;
         let n = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
         return Operand.Create(n);
     }

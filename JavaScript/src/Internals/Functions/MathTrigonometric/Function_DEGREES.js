@@ -15,7 +15,7 @@ class Function_DEGREES extends Function_1 {
                 return args1;
             }
         }
-        let z = args1.DoubleValue;
+        let z = args1.NumberValue;
         let r = (z / Math.PI * 180);
         return Operand.Create(r);
     }

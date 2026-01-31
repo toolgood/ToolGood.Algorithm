@@ -15,7 +15,7 @@ class Function_SEC extends Function_1 {
                 return args1;
             }
         }
-        let d = Math.cos(args1.DoubleValue);
+        let d = Math.cos(args1.NumberValue);
         if (d === 0) {
             return Operand.Error('Function \'{0}\' div 0 error!', 'Sec');
         }

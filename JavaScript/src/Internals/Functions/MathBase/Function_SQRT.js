@@ -16,7 +16,7 @@ class Function_SQRT extends Function_1 {
         if (args1.NumberValue < 0) {
             return Operand.Error(StringCache.Function_parameter_error, "Sqrt");
         }
-        return Operand.Create(Math.sqrt(args1.DoubleValue));
+        return Operand.Create(Math.sqrt(args1.NumberValue));
     }
 }
 

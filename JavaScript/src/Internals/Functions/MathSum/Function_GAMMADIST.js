@@ -36,9 +36,9 @@ class Function_GAMMADIST extends Function_4 {
                 return args4;
             }
         }
-        let x = args1.DoubleValue;
-        let alpha = args2.DoubleValue;
-        let beta = args3.DoubleValue;
+        let x = args1.NumberValue;
+        let alpha = args2.NumberValue;
+        let beta = args3.NumberValue;
         let cumulative = args4.BooleanValue;
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.Error('Function {0} parameter is error!', 'GammaDist');

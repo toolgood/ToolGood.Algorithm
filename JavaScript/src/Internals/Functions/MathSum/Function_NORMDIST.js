@@ -37,9 +37,9 @@ class Function_NORMDIST extends Function_4 {
             }
         }
 
-        let num = args1.DoubleValue;
-        let avg = args2.DoubleValue;
-        let STDEV = args3.DoubleValue;
+        let num = args1.NumberValue;
+        let avg = args2.NumberValue;
+        let STDEV = args3.NumberValue;
         let b = args4.BooleanValue;
         return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
     }

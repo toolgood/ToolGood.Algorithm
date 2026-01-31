@@ -15,7 +15,7 @@ class Function_ATAN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.atan(args1.DoubleValue));
+        return Operand.Create(Math.atan(args1.NumberValue));
     }
 }
 

@@ -30,11 +30,11 @@ class Function_LOGINV extends Function_3 {
             }
         }
 
-        let n3 = args3.DoubleValue;
+        let n3 = args3.NumberValue;
         if (n3 < 0.0) {
             return Operand.Error('Function {0} parameter is error!', 'LogInv');
         }
-        return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
+        return Operand.Create(ExcelFunctions.LogInv(args1.NumberValue, args2.NumberValue, n3));
     }
 }
 

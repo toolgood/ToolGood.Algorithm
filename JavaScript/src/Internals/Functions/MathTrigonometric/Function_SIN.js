@@ -15,7 +15,7 @@ class Function_SIN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.sin(args1.DoubleValue));
+        return Operand.Create(Math.sin(args1.NumberValue));
     }
 }
 

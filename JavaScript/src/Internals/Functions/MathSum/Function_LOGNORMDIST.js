@@ -30,11 +30,11 @@ class Function_LOGNORMDIST extends Function_3 {
             }
         }
 
-        let n3 = args3.DoubleValue;
+        let n3 = args3.NumberValue;
         if (n3 < 0.0) {
             return Operand.Error('Function {0} parameter is error!', 'LognormDist');
         }
-        return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
+        return Operand.Create(ExcelFunctions.LognormDist(args1.NumberValue, args2.NumberValue, n3));
     }
 }
 

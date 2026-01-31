@@ -14,7 +14,7 @@ class Function_FISHER extends Function_1 {
                 return args1;
             }
         }
-        let x = args1.DoubleValue;
+        let x = args1.NumberValue;
         if (x >= 1 || x <= -1) {
             return Operand.Error('Function {0} parameter is error!', 'Fisher');
         }

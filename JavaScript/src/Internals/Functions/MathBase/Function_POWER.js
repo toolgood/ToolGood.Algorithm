@@ -18,7 +18,7 @@ class Function_POWER extends Function_2 {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, "Power", 2);
             if (args2.IsError) { return args2; }
         }
-        return Operand.Create(Math.pow(args1.DoubleValue, args2.DoubleValue));
+        return Operand.Create(Math.pow(args1.NumberValue, args2.NumberValue));
     }
 }
 

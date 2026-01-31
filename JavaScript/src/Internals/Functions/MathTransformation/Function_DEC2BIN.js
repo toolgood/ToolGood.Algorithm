@@ -15,7 +15,7 @@ class Function_DEC2BIN extends Function_2 {
                 return args1;
             }
         }
-        let num = Math.floor(args1.DoubleValue).toString(2);
+        let num = Math.floor(args1.NumberValue).toString(2);
         if (this.func2 !== null) {
             let args2 = this.func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber) {

@@ -30,9 +30,9 @@ class Function_FINV extends Function_3 {
                 return args3;
             }
         }
-        let p = args1.DoubleValue;
-        let degreesFreedom = Math.round(args2.DoubleValue);
-        let degreesFreedom2 = Math.round(args3.DoubleValue);
+        let p = args1.NumberValue;
+        let degreesFreedom = Math.round(args2.NumberValue);
+        let degreesFreedom2 = Math.round(args3.NumberValue);
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
             return Operand.Error('Function {0} parameter is error!', 'FInv');
         }

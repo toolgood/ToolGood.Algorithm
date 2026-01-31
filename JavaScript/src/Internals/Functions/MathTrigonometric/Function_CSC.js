@@ -15,7 +15,7 @@ class Function_CSC extends Function_1 {
                 return args1;
             }
         }
-        let d = Math.sin(args1.DoubleValue);
+        let d = Math.sin(args1.NumberValue);
         if (d === 0) {
             return Operand.Error('Function \'{0}\' div 0 error!', 'Csc');
         }

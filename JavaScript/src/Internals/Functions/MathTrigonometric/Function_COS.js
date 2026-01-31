@@ -15,7 +15,7 @@ class Function_COS extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.cos(args1.DoubleValue));
+        return Operand.Create(Math.cos(args1.NumberValue));
     }
 }
 

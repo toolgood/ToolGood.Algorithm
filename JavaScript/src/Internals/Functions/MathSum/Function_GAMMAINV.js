@@ -29,9 +29,9 @@ class Function_GAMMAINV extends Function_3 {
                 return args3;
             }
         }
-        let probability = args1.DoubleValue;
-        let alpha = args2.DoubleValue;
-        let beta = args3.DoubleValue;
+        let probability = args1.NumberValue;
+        let alpha = args2.NumberValue;
+        let beta = args3.NumberValue;
         if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
             return Operand.Error('Function {0} parameter is error!', 'GammaInv');
         }

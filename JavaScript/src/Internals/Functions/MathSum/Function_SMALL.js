@@ -27,7 +27,7 @@ class Function_SMALL extends Function_2 {
             return Operand.Error(StringCache.Function_parameter_error, "Small", 1);
         }
         list.sort((a, b) => a - b);
-        let k = Math.round(args2.DoubleValue);
+        let k = Math.round(args2.NumberValue);
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
             return Operand.Error(StringCache.Function_parameter_error, "Small", 2);
         }

@@ -15,7 +15,7 @@ class Function_TANH extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.tanh(args1.DoubleValue));
+        return Operand.Create(Math.tanh(args1.NumberValue));
     }
 }
 

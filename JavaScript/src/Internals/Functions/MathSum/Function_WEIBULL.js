@@ -33,9 +33,9 @@ class Function_WEIBULL extends Function_4 {
             if (converted4.IsError) return converted4;
             args4 = converted4;
         }
-        let x = args1.DoubleValue;
-        let shape = args2.DoubleValue;
-        let scale = args3.DoubleValue;
+        let x = args1.NumberValue;
+        let shape = args2.NumberValue;
+        let scale = args3.NumberValue;
         let state = args4.BooleanValue;
         if (shape <= 0.0 || scale <= 0.0) {
             return Operand.Error(StringCache.Function_parameter_error, "Weibull");

@@ -1,6 +1,5 @@
 import { Operand } from './Operand.js';
 import { DistanceUnitType, AreaUnitType, VolumeUnitType, MassUnitType } from './Enums/index.js';
-import InputStream from './antlr4/InputStream.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
 import mathLexer from './math/mathLexer.js';
 import mathParser from './math/mathParser.js';
@@ -61,127 +60,19 @@ class AlgorithmEngine {
     return functionObj.Evaluate(this);
   }
 
-  TryEvaluate_UInt16(exp, def) {
+  TryEvaluate_Int(exp, def) {
     try {
       const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
+      let obj = functionObj.Evaluate(this);
       if (obj.IsNotNumber) {
         const converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
         }
+        obj = converted;
       }
       return obj.IntValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_UInt32(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-      }
-      return obj.IntValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_UInt64(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-      }
-      return obj.LongValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_Int16(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-      }
-      return obj.IntValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_Int32(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-        return converted.IntValue;
-      }
-      return obj.IntValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_Int64(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-      }
-      return obj.LongValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_Single(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-      }
-      return obj.DoubleValue;
     } catch (ex) {
       this.LastError = ex.message + '\n' + ex.stack;
     }
@@ -191,31 +82,14 @@ class AlgorithmEngine {
   TryEvaluate_Double(exp, def) {
     try {
       const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
+      let obj = functionObj.Evaluate(this);
       if (obj.IsNotNumber) {
         const converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
         }
-      }
-      return obj.DoubleValue;
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_Decimal(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
+        obj = converted;
       }
       return obj.NumberValue;
     } catch (ex) {
@@ -294,24 +168,6 @@ class AlgorithmEngine {
         }
       }
       return obj.DateValue.ToTimeSpan();
-    } catch (ex) {
-      this.LastError = ex.message + '\n' + ex.stack;
-    }
-    return def;
-  }
-
-  TryEvaluate_MyDate(exp, def) {
-    try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
-      if (obj.IsNotDate) {
-        const converted = obj.ToMyDate("It can't be converted to DateTime!");
-        if (converted.IsError) {
-          this.LastError = converted.ErrorMsg;
-          return def;
-        }
-      }
-      return obj.DateValue;
     } catch (ex) {
       this.LastError = ex.message + '\n' + ex.stack;
     }

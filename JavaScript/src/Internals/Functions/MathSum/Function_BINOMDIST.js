@@ -31,7 +31,7 @@ class Function_BINOMDIST extends Function_4 {
         }
 
         let n2 = args2.IntValue;
-        let n3 = args3.DoubleValue;
+        let n3 = args3.NumberValue;
         if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
             return Operand.Error(StringCache.Function_parameter_error, 'BinomDist');
         }

@@ -30,9 +30,9 @@ class Function_FDIST extends Function_3 {
             }
         }
 
-        let x = args1.DoubleValue;
-        let degreesFreedom = Math.round(args2.DoubleValue);
-        let degreesFreedom2 = Math.round(args3.DoubleValue);
+        let x = args1.NumberValue;
+        let degreesFreedom = Math.round(args2.NumberValue);
+        let degreesFreedom2 = Math.round(args3.NumberValue);
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
             return Operand.Error('Function {0} parameter is error!', 'FDist');
         }

@@ -15,7 +15,7 @@ class Function_TAN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.tan(args1.DoubleValue));
+        return Operand.Create(Math.tan(args1.NumberValue));
     }
 }
 

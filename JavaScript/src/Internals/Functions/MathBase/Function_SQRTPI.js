@@ -13,7 +13,7 @@ class Function_SQRTPI extends Function_1 {
             args1 = args1.ToNumber(StringCache.Function_parameter_error, "SqrtPI");
             if (args1.IsError) { return args1; }
         }
-        return Operand.Create(Math.sqrt(args1.DoubleValue * Math.PI));
+        return Operand.Create(Math.sqrt(args1.NumberValue * Math.PI));
     }
 }
 

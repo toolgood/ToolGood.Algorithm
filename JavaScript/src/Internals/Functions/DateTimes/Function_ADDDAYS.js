@@ -24,7 +24,7 @@ class Function_ADDDAYS extends Function_2 {
             }
         }
         let date = new Date(args1.DateValue.ToDateTime().getTime());
-        date.setDate(date.getDate() + args2.DoubleValue);
+        date.setDate(date.getDate() + args2.NumberValue);
         return Operand.Create(new MyDate(date));
     }
 }

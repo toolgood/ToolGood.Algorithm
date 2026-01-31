@@ -15,7 +15,7 @@ class Function_NORMSDIST extends Function_1 {
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }
-        let num = args1.DoubleValue;
+        let num = args1.NumberValue;
         return Operand.Create(ExcelFunctions.NormSDist(num));
     }
 }

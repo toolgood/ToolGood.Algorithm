@@ -15,7 +15,7 @@ class Function_ACOSH extends Function_1 {
                 return args1;
             }
         }
-        let z = args1.DoubleValue;
+        let z = args1.NumberValue;
         if (z < 1) {
             return Operand.Error(StringCache.Function_parameter_error, 'Acosh');
         }

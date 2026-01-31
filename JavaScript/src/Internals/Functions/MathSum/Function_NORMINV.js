@@ -27,9 +27,9 @@ class Function_NORMINV extends Function_3 {
             if (converted3.IsError) return converted3;
             args3 = converted3;
         }
-        let p = args1.DoubleValue;
-        let avg = args2.DoubleValue;
-        let STDEV = args3.DoubleValue;
+        let p = args1.NumberValue;
+        let avg = args2.NumberValue;
+        let STDEV = args3.NumberValue;
         return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
     }
 }

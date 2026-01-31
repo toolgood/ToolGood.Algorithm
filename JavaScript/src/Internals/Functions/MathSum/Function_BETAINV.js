@@ -25,9 +25,9 @@ class Function_BETAINV extends Function_3 {
             args3 = args3.ToNumber(StringCache.Function_parameter_error, 'BetaInv', 3);
             if (args3.IsError) return args3;
         }
-        let p = args1.DoubleValue;
-        let alpha = args2.DoubleValue;
-        let beta = args3.DoubleValue;
+        let p = args1.NumberValue;
+        let alpha = args2.NumberValue;
+        let beta = args3.NumberValue;
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
             return Operand.Error(StringCache.Function_parameter_error, 'BetaInv');
         }

@@ -15,7 +15,7 @@ class Function_COSH extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.cosh(args1.DoubleValue));
+        return Operand.Create(Math.cosh(args1.NumberValue));
     }
 }
 

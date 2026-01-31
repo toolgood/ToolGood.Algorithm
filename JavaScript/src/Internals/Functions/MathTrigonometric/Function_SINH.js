@@ -15,7 +15,7 @@ class Function_SINH extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.sinh(args1.DoubleValue));
+        return Operand.Create(Math.sinh(args1.NumberValue));
     }
 }
 

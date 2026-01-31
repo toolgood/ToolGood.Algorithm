@@ -10,7 +10,7 @@ class AlgorithmEngineWithTryEvaluate extends AlgorithmEngine {
     switch (type) {
       case 'number':
         if (Number.isInteger(def)) {
-          return this.TryEvaluate_Int32(exp, def);
+          return this.TryEvaluate_Int(exp, def);
         } else {
           return this.TryEvaluate_Double(exp, def);
         }
@@ -31,7 +31,7 @@ class AlgorithmEngineExWithTryEvaluate extends AlgorithmEngineEx {
     switch (type) {
       case 'number':
         if (Number.isInteger(def)) {
-          return this.TryEvaluate_Int32(exp, def);
+          return this.TryEvaluate_Int(exp, def);
         } else {
           return this.TryEvaluate_Double(exp, def);
         }

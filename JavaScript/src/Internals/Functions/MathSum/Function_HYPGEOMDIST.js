@@ -36,10 +36,10 @@ class Function_HYPGEOMDIST extends Function_4 {
                 return args4;
             }
         }
-        let k = Math.round(args1.DoubleValue);
-        let draws = Math.round(args2.DoubleValue);
-        let success = Math.round(args3.DoubleValue);
-        let population = Math.round(args4.DoubleValue);
+        let k = Math.round(args1.NumberValue);
+        let draws = Math.round(args2.NumberValue);
+        let success = Math.round(args3.NumberValue);
+        let population = Math.round(args4.NumberValue);
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
             return Operand.Error('Function {0} parameter is error!', 'HypgeomDist');
         }

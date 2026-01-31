@@ -29,9 +29,9 @@ class Function_NEGBINOMDIST extends Function_3 {
                 return args3;
             }
         }
-        let k = Math.round(args1.DoubleValue);
-        let r = args2.DoubleValue;
-        let p = args3.DoubleValue;
+        let k = Math.round(args1.NumberValue);
+        let r = args2.NumberValue;
+        let p = args3.NumberValue;
 
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
             return Operand.Error('Function {0} parameter is error!', 'NegbinomDist');

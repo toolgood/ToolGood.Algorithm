@@ -28,7 +28,7 @@ class Function_POISSON extends Function_3 {
             args3 = converted3;
         }
         let k = args1.IntValue;
-        let lambda = args2.DoubleValue;
+        let lambda = args2.NumberValue;
         let state = args3.BooleanValue;
         if (!(lambda > 0.0)) {
             return Operand.Error(StringCache.Function_parameter_error, "Poisson");

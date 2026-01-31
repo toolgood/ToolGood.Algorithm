@@ -15,7 +15,7 @@ class Function_ASINH extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.asinh(args1.DoubleValue));
+        return Operand.Create(Math.asinh(args1.NumberValue));
     }
 }
 

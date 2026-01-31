@@ -27,7 +27,7 @@ class Function_PERCENTILE extends Function_2 {
         if (o == false) {
             return Operand.Error(StringCache.Function_parameter_error, "Percentile", 1);
         }
-        let k = args2.DoubleValue;
+        let k = args2.NumberValue;
         return Operand.Create(ExcelFunctions.Percentile(list.map(q => q), k));
     }
 }

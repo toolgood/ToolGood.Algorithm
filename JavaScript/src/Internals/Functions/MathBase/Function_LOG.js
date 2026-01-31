@@ -19,9 +19,9 @@ class Function_LOG extends Function_2 {
                 args2 = args2.ToNumber(StringCache.Function_parameter_error, "Log", 2);
                 if (args2.IsError) { return args2; }
             }
-            return Operand.Create(Math.log(args1.DoubleValue) / Math.log(args2.DoubleValue));
+            return Operand.Create(Math.log(args1.NumberValue) / Math.log(args2.NumberValue));
         }
-        return Operand.Create(Math.log10(args1.DoubleValue));
+        return Operand.Create(Math.log10(args1.NumberValue));
     }
 }
 

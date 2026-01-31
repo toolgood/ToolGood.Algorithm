@@ -22,7 +22,7 @@ class Function_ATAN2 extends Function_2 {
                 return args2;
             }
         }
-        return Operand.Create(Math.atan2(args1.DoubleValue, args2.DoubleValue));
+        return Operand.Create(Math.atan2(args1.NumberValue, args2.NumberValue));
     }
 }
 

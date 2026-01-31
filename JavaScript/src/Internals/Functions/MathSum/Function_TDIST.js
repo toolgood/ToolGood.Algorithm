@@ -27,7 +27,7 @@ class Function_TDIST extends Function_3 {
             if (converted3.IsError) return converted3;
             args3 = converted3;
         }
-        let x = args1.DoubleValue;
+        let x = args1.NumberValue;
         let degreesFreedom = args2.IntValue;
         let tails = args3.IntValue;
         if (degreesFreedom <= 0.0 || tails < 1 || tails > 2) {

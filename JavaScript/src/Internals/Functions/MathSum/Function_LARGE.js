@@ -29,7 +29,7 @@ class Function_LARGE extends Function_2 {
         }
 
         list.sort((a, b) => b - a); // 降序排序
-        let k = Math.round(args2.DoubleValue);
+        let k = Math.round(args2.NumberValue);
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
             return Operand.Error('Function {0} parameter {1} is error!', 'Large', 2);
         }

@@ -15,7 +15,7 @@ class Function_RADIANS extends Function_1 {
                 return args1;
             }
         }
-        let r = args1.DoubleValue / 180 * Math.PI;
+        let r = args1.NumberValue / 180 * Math.PI;
         return Operand.Create(r);
     }
 }
