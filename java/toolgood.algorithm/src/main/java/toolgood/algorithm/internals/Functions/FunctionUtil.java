@@ -1,0 +1,367 @@
+package toolgood.algorithm.internals.functions;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.internals.Visitors.CharUtil;
+
+public class FunctionUtil {
+    public static final long START_DATE_UTC = 0; // 1970-01-01 00:00:00 UTC in milliseconds
+
+    public static boolean F_base_GetList(List<Operand> args, List<Double> list) {
+        for (Operand item : args) {
+            if (item.isNumber()) {
+                list.add(item.getDoubleValue());
+            } else if (item.isArray()) {
+                boolean o = F_base_GetList(item.getArrayValue(), list);
+                if (!o) {
+                    return false;
+                }
+            } else if (item.isJson()) {
+                Operand i = item.toArray(null);
+                if (i.isError()) {
+                    return false;
+                }
+                boolean o = F_base_GetList(i.getArrayValue(), list);
+                if (!o) {
+                    return false;
+                }
+            } else {
+                Operand o = item.toNumber(null);
+                if (o.isError()) {
+                    return false;
+                }
+                list.add(o.getDoubleValue());
+            }
+        }
+        return true;
+    }
+
+    public static boolean F_base_GetList(Operand args, List<Double> list) {
+        if (args.isError()) {
+            return false;
+        }
+        if (args.isNumber()) {
+            list.add(args.getDoubleValue());
+        } else if (args.isArray()) {
+            boolean o = F_base_GetList(args.getArrayValue(), list);
+            if (!o) {
+                return false;
+            }
+        } else if (args.isJson()) {
+            Operand i = args.toArray(null);
+            if (i.isError()) {
+                return false;
+            }
+            boolean o = F_base_GetList(i.getArrayValue(), list);
+            if (!o) {
+                return false;
+            }
+        } else {
+            Operand o = args.toNumber(null);
+            if (o.isError()) {
+                return false;
+            }
+            list.add(o.getDoubleValue());
+        }
+        return true;
+    }
+
+    public static boolean F_base_GetList(List<Operand> args, List<String> list) {
+        for (Operand item : args) {
+            if (item.isArray()) {
+                boolean o = F_base_GetList(item.getArrayValue(), list);
+                if (!o) {
+                    return false;
+                }
+            } else if (item.isJson()) {
+                Operand i = item.toArray(null);
+                if (i.isError()) {
+                    return false;
+                }
+                boolean o = F_base_GetList(i.getArrayValue(), list);
+                if (!o) {
+                    return false;
+                }
+            } else {
+                Operand o = item.toText(null);
+                if (o.isError()) {
+                    return false;
+                }
+                list.add(o.getTextValue());
+            }
+        }
+        return true;
+    }
+
+    public static boolean F_base_GetList(Operand args, List<String> list) {
+        if (args.isError()) {
+            return false;
+        }
+        if (args.isArray()) {
+            boolean o = F_base_GetList(args.getArrayValue(), list);
+            if (!o) {
+                return false;
+            }
+        } else if (args.isJson()) {
+            Operand i = args.toArray(null);
+            if (i.isError()) {
+                return false;
+            }
+            boolean o = F_base_GetList(i.getArrayValue(), list);
+            if (!o) {
+                return false;
+            }
+        } else {
+            Operand o = args.toText(null);
+            if (o.isError()) {
+                return false;
+            }
+            list.add(o.getTextValue());
+        }
+        return true;
+    }
+
+    public static int F_base_countif(List<Double> dbs, double d) {
+        int count = 0;
+        for (double item : dbs) {
+            if (item == d) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int F_base_countif(List<Double> dbs, String s, double d) {
+        int count = 0;
+        for (double item : dbs) {
+            if (F_base_compare(item, d, s)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static double F_base_sumif(List<Double> dbs, double d, List<Double> sumdbs) {
+        double sum = 0;
+        for (int i = 0; i < dbs.size(); i++) {
+            double item = dbs.get(i);
+            if (item == d) {
+                sum += sumdbs.get(i);
+            }
+        }
+        return sum;
+    }
+
+    public static double F_base_sumif(List<Double> dbs, String s, double d, List<Double> sumdbs) {
+        double sum = 0;
+        for (int i = 0; i < dbs.size(); i++) {
+            if (F_base_compare(dbs.get(i), d, s)) {
+                sum += sumdbs.get(i);
+            }
+        }
+        return sum;
+    }
+
+    public static boolean F_base_compare(double a, double b, String ss) {
+        if (CharUtil.equals(ss, "<")) {
+            return a < b;
+        } else if (CharUtil.equals(ss, "<=")) {
+            return a <= b;
+        } else if (CharUtil.equals(ss, ">")) {
+            return a > b;
+        } else if (CharUtil.equals(ss, ">=")) {
+            return a >= b;
+        } else if (CharUtil.equals(ss, "=") || CharUtil.equals(ss, "==") || CharUtil.equals(ss, "===")) {
+            return a == b;
+        }
+        return a != b;
+    }
+
+    public static int F_base_gcd(List<Double> list) {
+        List<Double> sortedList = new ArrayList<>(list);
+        Collections.sort(sortedList);
+        int g = F_base_gcd((int) sortedList.get(1).doubleValue(), (int) sortedList.get(0).doubleValue());
+        for (int i = 2; i < sortedList.size(); i++) {
+            g = F_base_gcd((int) sortedList.get(i).doubleValue(), g);
+        }
+        return g;
+    }
+
+    public static int F_base_gcd(int a, int b) {
+        if (b == 1) {
+            return 1;
+        }
+        if (b == 0) {
+            return a;
+        }
+        return F_base_gcd(b, a % b);
+    }
+
+    public static int F_base_lgm(List<Double> list) {
+        List<Double> sortedList = new ArrayList<>(list);
+        Collections.sort(sortedList);
+        sortedList.removeIf(d -> d <= 1);
+
+        int a = (int) sortedList.get(0).doubleValue();
+        for (int i = 1; i < sortedList.size(); i++) {
+            int b = (int) sortedList.get(i).doubleValue();
+            int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
+            a = a / g * b;
+        }
+        return a;
+    }
+
+    public static int F_base_Factorial(int a) {
+        if (a <= 0) {
+            return 1;
+        }
+        int r = 1;
+        for (int i = a; i > 0; i--) {
+            r *= i;
+        }
+        return r;
+    }
+
+    public static Pair<String, Double> sumifMatch(String s) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+        char c = s.charAt(0);
+        if (c == '>' || c == '＞') {
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '＝')) {
+                try {
+                    double d = Double.parseDouble(s.substring(2).trim());
+                    return new Pair<>(">=", d);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            } else {
+                try {
+                    double d = Double.parseDouble(s.substring(1).trim());
+                    return new Pair<>(">", d);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
+        } else if (c == '<' || c == '＜') {
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '＝')) {
+                try {
+                    double d = Double.parseDouble(s.substring(2).trim());
+                    return new Pair<>("<=", d);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            } else if (s.length() > 1 && (s.charAt(1) == '>' || s.charAt(1) == '＞')) {
+                try {
+                    double d = Double.parseDouble(s.substring(2).trim());
+                    return new Pair<>("!=", d);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            } else {
+                try {
+                    double d = Double.parseDouble(s.substring(1).trim());
+                    return new Pair<>("<", d);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
+        } else if (c == '=' || c == '＝') {
+            int index = 1;
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '＝')) {
+                index = 2;
+                if (s.length() > 2 && (s.charAt(2) == '=' || s.charAt(2) == '＝')) {
+                    index = 3;
+                }
+            }
+            try {
+                double d = Double.parseDouble(s.substring(index).trim());
+                return new Pair<>("=", d);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        } else if (c == '!' || c == '！') {
+            int index = 1;
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '＝')) {
+                index = 2;
+                if (s.length() > 2 && (s.charAt(2) == '=' || s.charAt(2) == '＝')) {
+                    index = 3;
+                }
+            }
+            try {
+                double d = Double.parseDouble(s.substring(index).trim());
+                return new Pair<>("!=", d);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static int Compare(double t1, double t2) {
+        double b = t1 - t2;
+        if (b == 0) {
+            return 0;
+        } else if (b > 0) {
+            return 1;
+        }
+        return -1;
+    }
+
+    public static boolean tryParseBoolean(String textValue, BooleanHolder boolValue) {
+        if (textValue.equalsIgnoreCase("true")) {
+            boolValue.value = true;
+            return true;
+        }
+        if (textValue.equalsIgnoreCase("false")) {
+            boolValue.value = false;
+            return true;
+        }
+        if (textValue.equalsIgnoreCase("yes")) {
+            boolValue.value = true;
+            return true;
+        }
+        if (textValue.equalsIgnoreCase("no")) {
+            boolValue.value = false;
+            return true;
+        }
+        if (textValue.equals("1") || textValue.equals("是") || textValue.equals("有")) {
+            boolValue.value = true;
+            return true;
+        }
+        if (textValue.equals("0") || textValue.equals("否") || textValue.equals("不是") || textValue.equals("无") || textValue.equals("没有")) {
+            boolValue.value = false;
+            return true;
+        }
+        boolValue.value = false;
+        return false;
+    }
+
+    // 辅助类，用于在tryParseBoolean中返回布尔值
+    public static class BooleanHolder {
+        public boolean value;
+    }
+
+    // 辅助类，用于替代Tuple
+    public static class Pair<F, S> {
+        private final F first;
+        private final S second;
+
+        public Pair(F first, S second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        public F getFirst() {
+            return first;
+        }
+
+        public S getSecond() {
+            return second;
+        }
+    }
+}

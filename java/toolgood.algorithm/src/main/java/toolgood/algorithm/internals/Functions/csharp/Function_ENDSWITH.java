@@ -1,0 +1,53 @@
+package toolgood.algorithm.internals.functions.csharp;
+
+import toolgood.algorithm.internals.Function_3;
+import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+
+import java.util.function.Function;
+
+public class Function_ENDSWITH extends Function_3 {
+    public Function_ENDSWITH(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
+        super(func1, func2, func3);
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(work, tempParameter);
+        if (args1.IsNotText()) {
+            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "EndsWith", 1);
+            if (args1.IsError()) {
+                return args1;
+            }
+        }
+        Operand args2 = func2.Evaluate(work, tempParameter);
+        if (args2.IsNotText()) {
+            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "EndsWith", 2);
+            if (args2.IsError()) {
+                return args2;
+            }
+        }
+        String text = args1.getTextValue();
+        if (func3 == null) {
+            return Operand.Create(text.endsWith(args2.getTextValue()));
+        }
+        Operand args3 = func3.Evaluate(work, tempParameter);
+        if (args3.IsNotBoolean()) {
+            args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "EndsWith", 3);
+            if (args3.IsError()) {
+                return args3;
+            }
+        }
+        if (args3.getBooleanValue()) {
+            return Operand.Create(text.toLowerCase().endsWith(args2.getTextValue().toLowerCase()));
+        } else {
+            return Operand.Create(text.endsWith(args2.getTextValue()));
+        }
+    }
+
+    @Override
+    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, "EndsWith");
+    }
+}
