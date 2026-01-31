@@ -1,0 +1,46 @@
+package toolgood.algorithm.internals.functions.string;
+
+import toolgood.algorithm.FunctionBase;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.Function_1;
+
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
+public class Function_VALUE extends Function_1 {
+    public Function_VALUE(FunctionBase func1) {
+        super(func1);
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(work, tempParameter);
+        if (args1.isNumber()) {
+            return args1;
+        }
+        if (args1.isBoolean()) {
+            return args1.getBooleanValue() ? Operand.ONE : Operand.ZERO;
+        }
+        if (args1.isNotText()) {
+            args1 = args1.toText("Function '{0}' parameter is error!", "Value");
+            if (args1.isError()) {
+                return args1;
+            }
+        }
+
+        try {
+            NumberFormat format = NumberFormat.getInstance(Locale.US);
+            Number number = format.parse(args1.getTextValue());
+            return Operand.create(number.doubleValue());
+        } catch (ParseException e) {
+            return Operand.error("Function '{0}' parameter is error!", "Value");
+        }
+    }
+
+    @Override
+    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, "Value");
+    }
+}
