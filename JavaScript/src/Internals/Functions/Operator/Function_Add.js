@@ -23,17 +23,17 @@ class Function_Add extends Function_2 {
     if (args2.IsNull) { return Operand.Error(`Function '+' parameter {2} is NULL!`); }
 
     if (args1.IsText) {
-      let d = parseFloat(args1.TextValue);
-      if (!isNaN(d)) {
-        args1 = Operand.Create(d);
+      let date = MyDate.Parse(args1.TextValue);
+      if(date!=null){
+          args1 = Operand.Create(date);
       } else {
-        let boolValue = [false];
-        if (FunctionUtil.TryParseBoolean(args1.TextValue, boolValue)) {
-          args1 = boolValue[0] ? Operand.One : Operand.Zero;
+        let d = parseFloat(args1.TextValue);
+        if (!isNaN(d)) {
+          args1 = Operand.Create(d);
         } else {
-          let date = new Date(args1.TextValue);
-          if (!isNaN(date.getTime())) {
-            args1 = Operand.Create(new Date(date));
+          let boolValue = [false];
+          if (FunctionUtil.TryParseBoolean(args1.TextValue, boolValue)) {
+            args1 = boolValue[0] ? Operand.One : Operand.Zero;
           } else {
             return Operand.Error("Function '+' is error");
           }
@@ -41,22 +41,22 @@ class Function_Add extends Function_2 {
       }
     }
     if (args2.IsText) {
-      let d = parseFloat(args2.TextValue);
-      if (!isNaN(d)) {
-        args2 = Operand.Create(d);
-      } else {
-        let boolValue = [false];
-        if (FunctionUtil.TryParseBoolean(args2.TextValue, boolValue)) {
-          args2 = boolValue[0] ? Operand.One : Operand.Zero;
+      let date = MyDate.Parse(args2.TextValue);
+        if(date!=null){
+          args2 = Operand.Create(date);
         } else {
-          let date = new Date(args2.TextValue);
-          if (!isNaN(date.getTime())) {
-            args2 = Operand.Create(new Date(date));
+          let d = parseFloat(args2.TextValue);
+          if (!isNaN(d)) {
+            args2 = Operand.Create(d);
           } else {
-            return Operand.Error("Function '+' is error");
+            let boolValue = [false];
+            if (FunctionUtil.TryParseBoolean(args2.TextValue, boolValue)) {
+              args2 = boolValue[0] ? Operand.One : Operand.Zero;
+            } else {
+              return Operand.Error("Function '+' is error");
+            }
           }
         }
-      }
     }
     if (args1.IsDate) {
       if (args2.IsDate) {
@@ -71,7 +71,7 @@ class Function_Add extends Function_2 {
       }
       if (args2.NumberValue === 0) { return args1; }
       // 日期加数字，创建新的 MyDate 对象
-      let totalValue = args1.DateValue.Value + args2.NumberValue;
+      let totalValue = args1.ToNumber().NumberValue + args2.NumberValue;
       return Operand.Create(new MyDate(totalValue));
     } else if (args2.IsDate) {
       if (args1.IsNotNumber) {
@@ -81,7 +81,7 @@ class Function_Add extends Function_2 {
       }
       if (args1.NumberValue === 0) { return args2; }
       // 数字加日期，创建新的 MyDate 对象
-      let totalValue = args1.NumberValue + args2.DateValue.Value;
+      let totalValue = args1.NumberValue + args2.ToNumber().NumberValue;
       return Operand.Create(new MyDate(totalValue));
     }
     if (args1.IsNotNumber) {
