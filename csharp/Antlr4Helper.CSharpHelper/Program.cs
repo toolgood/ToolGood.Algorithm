@@ -82,6 +82,7 @@ RULE_prog = 0, RULE_expr = 1, RULE_num = 2, RULE_unit = 3, RULE_arrayJson = 4,
 			csText = Regex.Replace(csText, @"\[System.Diagnostics.DebuggerNonUserCode\] public ExprContext expr\(int i\) \{\r\n", "// [System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {");
 
 			csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*Match\(", "Match(");
+			csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*_la", "_la");
 			csText = Regex.Replace(csText, @"\bState = (\d+);\r\n[ \t]*ErrorHandler", "ErrorHandler");
 			csText = Regex.Replace(csText, @"public partial class mathParser", "partial class mathParser");
 			csText = Regex.Replace(csText, @"public partial class", "internal partial class");
@@ -89,7 +90,11 @@ RULE_prog = 0, RULE_expr = 1, RULE_num = 2, RULE_unit = 3, RULE_arrayJson = 4,
 			csText = Regex.Replace(csText, @"switch \(ruleIndex\) \{[\s\S]*?\}", "");
 			csText = Regex.Replace(csText, @"public const int[\s\S]*?;", "");
 
+			csText = csText.Replace("ExprContext _prevctx = _localctx;", "");
+			csText = csText.Replace("_prevctx = _localctx;", "");
 
+
+			//_prevctx = _localctx;
 
 			var list = dict.Keys.ToList().OrderByDescending(q => q.Length).ToList();
 

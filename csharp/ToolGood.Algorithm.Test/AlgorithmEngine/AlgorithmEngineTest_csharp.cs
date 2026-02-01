@@ -44,8 +44,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("TextToBase64('&=我中国人 >||')", null);
             Assert.AreEqual(r, "Jj3miJHkuK3lm73kurogPnx8");
 
-            r = engine.TryEvaluate("TextToBase64('&=我中国人 >||','GBK')", null);
-            Assert.AreEqual(r, "Jj3O0tbQufrIyyA+fHw=");
         }
 
         [Test]
@@ -55,8 +53,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||')", null);
             Assert.AreEqual(r, "Jj3miJHkuK3lm73kurogPnx8");
 
-            r = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||','GBK')", null);
-            Assert.AreEqual(r, "Jj3O0tbQufrIyyA-fHw");
         }
 
         [Test]
@@ -66,8 +62,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("Base64ToText('Jj3miJHkuK3lm73kurogPnx8')", null);
             Assert.AreEqual(r, "&=我中国人 >||");
 
-            r = engine.TryEvaluate("Base64ToText('Jj3O0tbQufrIyyA+fHw=','GBK')", null);
-            Assert.AreEqual(r, "&=我中国人 >||");
         }
 
         [Test]
@@ -77,8 +71,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8')", null);
             Assert.AreEqual(r, "&=我中国人 >||");
 
-            r = engine.TryEvaluate("Base64UrlToText('Jj3O0tbQufrIyyA-fHw','GBK')", null);
-            Assert.AreEqual(r, "&=我中国人 >||");
         }
 
         [Test]

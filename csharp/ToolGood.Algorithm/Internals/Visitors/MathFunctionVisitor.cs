@@ -35,9 +35,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 			var t = context.op.Text;
-			if (CharUtil.Equals(t, '*')) {
+			if(CharUtil.Equals(t, '*')) {
 				return new Function_Mul(args1, args2);
-			} else if (CharUtil.Equals(t, '/')) {
+			} else if(CharUtil.Equals(t, '/')) {
 				return new Function_Div(args1, args2);
 			}
 			return new Function_Mod(args1, args2);
@@ -49,9 +49,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 			var t = context.op.Text;
-			if (CharUtil.Equals(t, '&')) {
+			if(CharUtil.Equals(t, '&')) {
 				return new Function_Connect(args1, args2);
-			} else if (CharUtil.Equals(t, '+')) {
+			} else if(CharUtil.Equals(t, '+')) {
 				return new Function_Add(args1, args2);
 			}
 			return new Function_Sub(args1, args2);
@@ -64,15 +64,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args2 = exprs[1].Accept(this);
 
 			string type = context.op.Text;
-			if (CharUtil.Equals(type, "=", "==", "===")) {
+			if(CharUtil.Equals(type, "=", "==", "===")) {
 				return new Function_EQ(args1, args2);
-			} else if (CharUtil.Equals(type, "<")) {
+			} else if(CharUtil.Equals(type, "<")) {
 				return new Function_LT(args1, args2);
-			} else if (CharUtil.Equals(type, "<=")) {
+			} else if(CharUtil.Equals(type, "<=")) {
 				return new Function_LE(args1, args2);
-			} else if (CharUtil.Equals(type, ">")) {
+			} else if(CharUtil.Equals(type, ">")) {
 				return new Function_GT(args1, args2);
-			} else if (CharUtil.Equals(type, ">=")) {
+			} else if(CharUtil.Equals(type, ">=")) {
 				return new Function_GE(args1, args2);
 			}
 			return new Function_NE(args1, args2);
@@ -84,7 +84,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 			var t = context.op.Text;
-			if (CharUtil.Equals(t, "&&", "AND")) {
+			if(CharUtil.Equals(t, "&&", "AND")) {
 				return new Function_AND(args1, args2);
 			}
 			return new Function_OR(args1, args2);
@@ -99,7 +99,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 3) {
+			if(exprs.Length == 3) {
 				var args3 = exprs[2].Accept(this);
 				return new Function_IF(args1, args2, args3);
 			}
@@ -131,7 +131,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 2) {
+			if(exprs.Length == 2) {
 				var args2 = exprs[1].Accept(this);
 				return new Function_ISERROR(args1, args2);
 			}
@@ -142,7 +142,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 2) {
+			if(exprs.Length == 2) {
 				var args2 = exprs[1].Accept(this);
 				return new Function_ISNULL(args1, args2);
 			}
@@ -153,7 +153,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 2) {
+			if(exprs.Length == 2) {
 				var args2 = exprs[1].Accept(this);
 				return new Function_ISNULLORERROR(args1, args2);
 			}
@@ -188,7 +188,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_AND_N(args);
@@ -198,7 +198,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_OR_N(args);
@@ -286,7 +286,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_GCD(args);
@@ -296,7 +296,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_LCM(args);
@@ -424,9 +424,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_FIXED(args1, null, null);
+			if(exprs.Length == 1) return new Function_FIXED(args1, null, null);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_FIXED(args1, args2, null);
+			if(exprs.Length == 2) return new Function_FIXED(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_FIXED(args1, args2, args3);
 		}
@@ -439,7 +439,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_BIN2OCT(args1, null);
+			if(exprs.Length == 1) return new Function_BIN2OCT(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_BIN2OCT(args1, args2);
 		}
@@ -454,7 +454,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_BIN2HEX(args1, null);
+			if(exprs.Length == 1) return new Function_BIN2HEX(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_BIN2HEX(args1, args2);
 		}
@@ -463,7 +463,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_OCT2BIN(args1, null);
+			if(exprs.Length == 1) return new Function_OCT2BIN(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_OCT2BIN(args1, args2);
 		}
@@ -478,7 +478,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_OCT2HEX(args1, null);
+			if(exprs.Length == 1) return new Function_OCT2HEX(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_OCT2HEX(args1, args2);
 		}
@@ -487,7 +487,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_DEC2BIN(args1, null);
+			if(exprs.Length == 1) return new Function_DEC2BIN(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_DEC2BIN(args1, args2);
 		}
@@ -496,7 +496,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_DEC2OCT(args1, null);
+			if(exprs.Length == 1) return new Function_DEC2OCT(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_DEC2OCT(args1, args2);
 		}
@@ -505,7 +505,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_DEC2HEX(args1, null);
+			if(exprs.Length == 1) return new Function_DEC2HEX(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_DEC2HEX(args1, args2);
 		}
@@ -514,7 +514,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_HEX2BIN(args1, null);
+			if(exprs.Length == 1) return new Function_HEX2BIN(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_HEX2BIN(args1, args2);
 		}
@@ -523,7 +523,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_HEX2OCT(args1, null);
+			if(exprs.Length == 1) return new Function_HEX2OCT(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_HEX2OCT(args1, args2);
 		}
@@ -542,7 +542,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) {
+			if(exprs.Length == 1) {
 				return new Function_ROUND(args1, null);
 			}
 			var args2 = exprs[1].Accept(this);
@@ -569,7 +569,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1)
+			if(exprs.Length == 1)
 				return new Function_CEILING(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_CEILING(args1, args2);
@@ -579,7 +579,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1)
+			if(exprs.Length == 1)
 				return new Function_FLOOR(args1, null);
 
 			var args2 = exprs[1].Accept(this);
@@ -680,7 +680,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length > 1) {
+			if(exprs.Length > 1) {
 				var args2 = exprs[1].Accept(this);
 				return new Function_LOG(args1, args2);
 			}
@@ -697,7 +697,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_MULTINOMIAL(args);
@@ -707,7 +707,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_PRODUCT(args);
@@ -723,7 +723,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_SUMSQ(args);
@@ -769,7 +769,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_CONCATENATE(args);
@@ -789,7 +789,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 
-			if (exprs.Length == 2) {
+			if(exprs.Length == 2) {
 				return new Function_FIND(args1, args2, null);
 			}
 			var count = exprs[2].Accept(this);
@@ -800,7 +800,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) {
+			if(exprs.Length == 1) {
 				return new Function_LEFT(args1, null);
 			}
 			return new Function_LEFT(args1, exprs[1].Accept(this));
@@ -838,7 +838,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 3) {
+			if(exprs.Length == 3) {
 				var args22 = exprs[1].Accept(this);
 				var args32 = exprs[2].Accept(this);
 				return new Function_REPLACE(args1, args22, args32, null);
@@ -862,7 +862,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 
-			if (exprs.Length == 1) {
+			if(exprs.Length == 1) {
 				return new Function_RIGHT(args1);
 			}
 			var args2 = exprs[1].Accept(this);
@@ -881,7 +881,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 
-			if (exprs.Length == 2) {
+			if(exprs.Length == 2) {
 				return new Function_SEARCH(args1, args2, null);
 			}
 			var args3 = exprs[2].Accept(this);
@@ -894,7 +894,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 			var args3 = exprs[2].Accept(this);
-			if (exprs.Length == 3) {
+			if(exprs.Length == 3) {
 				return new Function_SUBSTITUTE(args1, args2, args3, null);
 			}
 			var args4 = exprs[3].Accept(this);
@@ -941,7 +941,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_DATEVALUE(args);
@@ -951,7 +951,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_TIMESTAMP(args1, null);
+			if(exprs.Length == 1) return new Function_TIMESTAMP(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_TIMESTAMP(args1, args2);
 		}
@@ -966,7 +966,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_DATE(args);
@@ -977,7 +977,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_TIME(args1, args2, null);
+			if(exprs.Length == 2) return new Function_TIME(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_TIME(args1, args2, args3);
 		}
@@ -1032,7 +1032,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_WEEKDAY(args1, null);
+			if(exprs.Length == 1) return new Function_WEEKDAY(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_WEEKDAY(args1, args2);
 		}
@@ -1051,7 +1051,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 3) {
+			if(exprs.Length == 3) {
 				var args3 = exprs[2].Accept(this);
 				return new Function_DAYS360(args1, args2, args3);
 			}
@@ -1078,7 +1078,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_NETWORKDAYS(args);
@@ -1088,7 +1088,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_WORKDAY(args);
@@ -1098,7 +1098,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_WEEKNUM(args1, null);
+			if(exprs.Length == 1) return new Function_WEEKNUM(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_WEEKNUM(args1, args2);
 		}
@@ -1159,7 +1159,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_MAX(args);
@@ -1169,7 +1169,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_MEDIAN(args);
@@ -1179,7 +1179,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_MIN(args);
@@ -1197,7 +1197,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_MODE(args);
@@ -1232,7 +1232,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_PERCENTRANK(args1, args2, null);
+			if(exprs.Length == 2) return new Function_PERCENTRANK(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_PERCENTRANK(args1, args2, args3);
 		}
@@ -1241,7 +1241,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_AVERAGE(args);
@@ -1252,7 +1252,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_AVERAGEIF(args1, args2, null);
+			if(exprs.Length == 2) return new Function_AVERAGEIF(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_AVERAGEIF(args1, args2, args3);
 		}
@@ -1261,7 +1261,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_GEOMEAN(args);
@@ -1271,7 +1271,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_HARMEAN(args);
@@ -1281,7 +1281,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_COUNT(args);
@@ -1299,7 +1299,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_SUM(args);
@@ -1310,7 +1310,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_SUMIF(args1, args2, null);
+			if(exprs.Length == 2) return new Function_SUMIF(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_SUMIF(args1, args2, args3);
 		}
@@ -1319,7 +1319,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_AVEDEV(args);
@@ -1329,7 +1329,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_STDEV(args);
@@ -1339,7 +1339,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_STDEVP(args);
@@ -1349,7 +1349,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_DEVSQ(args);
@@ -1359,7 +1359,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_VAR(args);
@@ -1369,7 +1369,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_VARP(args);
@@ -1601,38 +1601,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_BASE64TOTEXT(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_BASE64TOTEXT(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_BASE64TOTEXT(args1);
 		}
 
 		public FunctionBase VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_BASE64URLTOTEXT(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_BASE64URLTOTEXT(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_BASE64URLTOTEXT(args1);
 		}
 
 		public FunctionBase VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_TEXTTOBASE64(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TEXTTOBASE64(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_TEXTTOBASE64(args1);
 		}
 
 		public FunctionBase VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_TEXTTOBASE64URL(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TEXTTOBASE64URL(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_TEXTTOBASE64URL(args1);
 		}
 
 		public FunctionBase VisitREGEX_fun(mathParser.REGEX_funContext context)
@@ -1667,38 +1655,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitMD5_fun(mathParser.MD5_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_MD5(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_MD5(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_MD5(args1);
 		}
 
 		public FunctionBase VisitSHA1_fun(mathParser.SHA1_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_SHA1(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_SHA1(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_SHA1(args1);
 		}
 
 		public FunctionBase VisitSHA256_fun(mathParser.SHA256_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_SHA256(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_SHA256(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_SHA256(args1);
 		}
 
 		public FunctionBase VisitSHA512_fun(mathParser.SHA512_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_SHA512(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_SHA512(args1, args2);
+			var args1 = context.expr().Accept(this);
+			return new Function_SHA512(args1);
 		}
 
 		public FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
@@ -1706,9 +1682,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_HMACMD5(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_HMACMD5(args1, args2, args3);
+			return new Function_HMACMD5(args1, args2);
 		}
 
 		public FunctionBase VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
@@ -1716,9 +1690,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_HMACSHA1(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_HMACSHA1(args1, args2, args3);
+			return new Function_HMACSHA1(args1, args2);
 		}
 
 		public FunctionBase VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
@@ -1726,9 +1698,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_HMACSHA256(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_HMACSHA256(args1, args2, args3);
+			return new Function_HMACSHA256(args1, args2);
 		}
 
 		public FunctionBase VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
@@ -1736,16 +1706,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_HMACSHA512(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_HMACSHA512(args1, args2, args3);
+			return new Function_HMACSHA512(args1, args2);
 		}
 
 		public FunctionBase VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_TRIMSTART(args1, null);
+			if(exprs.Length == 1) return new Function_TRIMSTART(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_TRIMSTART(args1, args2);
 		}
@@ -1754,7 +1722,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) return new Function_TRIMEND(args1, null);
+			if(exprs.Length == 1) return new Function_TRIMEND(args1, null);
 			var args2 = exprs[1].Accept(this);
 			return new Function_TRIMEND(args1, args2);
 		}
@@ -1764,9 +1732,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_INDEXOF(args1, args2, null, null);
+			if(exprs.Length == 2) return new Function_INDEXOF(args1, args2, null, null);
 			var args3 = exprs[2].Accept(this);
-			if (exprs.Length == 3) return new Function_INDEXOF(args1, args2, args3, null);
+			if(exprs.Length == 3) return new Function_INDEXOF(args1, args2, args3, null);
 			var args4 = exprs[3].Accept(this);
 			return new Function_INDEXOF(args1, args2, args3, args4);
 		}
@@ -1776,9 +1744,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_LASTINDEXOF(args1, args2, null, null);
+			if(exprs.Length == 2) return new Function_LASTINDEXOF(args1, args2, null, null);
 			var args3 = exprs[2].Accept(this);
-			if (exprs.Length == 3) return new Function_LASTINDEXOF(args1, args2, args3, null);
+			if(exprs.Length == 3) return new Function_LASTINDEXOF(args1, args2, args3, null);
 			var args4 = exprs[3].Accept(this);
 			return new Function_LASTINDEXOF(args1, args2, args3, args4);
 		}
@@ -1795,7 +1763,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_JOIN(args);
@@ -1806,7 +1774,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_SUBSTRING(args1, args2, null);
+			if(exprs.Length == 2) return new Function_SUBSTRING(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_SUBSTRING(args1, args2, args3);
 		}
@@ -1816,7 +1784,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_STARTSWITH(args1, args2, null);
+			if(exprs.Length == 2) return new Function_STARTSWITH(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_STARTSWITH(args1, args2, args3);
 		}
@@ -1826,7 +1794,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_ENDSWITH(args1, args2, null);
+			if(exprs.Length == 2) return new Function_ENDSWITH(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_ENDSWITH(args1, args2, args3);
 		}
@@ -1848,7 +1816,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_REMOVESTART(args1, args2, null);
+			if(exprs.Length == 2) return new Function_REMOVESTART(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_REMOVESTART(args1, args2, args3);
 		}
@@ -1858,7 +1826,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
-			if (exprs.Length == 2) return new Function_REMOVEEND(args1, args2, null);
+			if(exprs.Length == 2) return new Function_REMOVEEND(args1, args2, null);
 			var args3 = exprs[2].Accept(this);
 			return new Function_REMOVEEND(args1, args2, args3);
 		}
@@ -1886,7 +1854,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = exprs[0].Accept(this);
 			var args2 = exprs[1].Accept(this);
 			return new Function_LOOKCEILING(args1, args2);
-		} 
+		}
 		#endregion
 
 		#region getValue
@@ -1895,7 +1863,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_Array(args);
@@ -1909,7 +1877,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
 		{
 			var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			if (context.unit() == null) { return new Function_Value(Operand.Create(d), context.num().GetText()); }
+			if(context.unit() == null) { return new Function_Value(Operand.Create(d), context.num().GetText()); }
 			var unit = context.unit().GetText();
 			return new Function_NUM(d, unit);
 		}
@@ -1930,18 +1898,18 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var opd = context.GetText();
 			var sb = new StringBuilder();
 			int index = 1;
-			while (index < opd.Length - 1) {
+			while(index < opd.Length - 1) {
 				var c = opd[index++];
-				if (c == '\\') {
+				if(c == '\\') {
 					var c2 = opd[index++];
-					if (c2 == 'n') sb.Append('\n');
-					else if (c2 == 'r') sb.Append('\r');
-					else if (c2 == 't') sb.Append('\t');
-					else if (c2 == '0') sb.Append('\0');
-					else if (c2 == 'v') sb.Append('\v');
-					else if (c2 == 'a') sb.Append('\a');
-					else if (c2 == 'b') sb.Append('\b');
-					else if (c2 == 'f') sb.Append('\f');
+					if(c2 == 'n') sb.Append('\n');
+					else if(c2 == 'r') sb.Append('\r');
+					else if(c2 == 't') sb.Append('\t');
+					else if(c2 == '0') sb.Append('\0');
+					else if(c2 == 'v') sb.Append('\v');
+					else if(c2 == 'a') sb.Append('\a');
+					else if(c2 == 'b') sb.Append('\b');
+					else if(c2 == 'f') sb.Append('\f');
 					else sb.Append(opd[index++]);
 				} else {
 					sb.Append(c);
@@ -1970,11 +1938,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (context.PARAMETER()!=null) {
+			if(context.PARAMETER() != null) {
 				var op = new Function_PARAMETER(context.PARAMETER().GetText());
 				return new Function_GetJsonValue(args1, op);
 			}
-			if (context.parameter2() != null) {
+			if(context.parameter2() != null) {
 				var op = context.parameter2().Accept(this);
 				return new Function_GetJsonValue(args1, op);
 			}
@@ -1987,7 +1955,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funName = context.PARAMETER().GetText();
 			var exprs = context.expr();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_DiyFunction(funName, args);
@@ -1997,7 +1965,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.expr();
 			var args1 = exprs[0].Accept(this);
-			if (exprs.Length == 1) {
+			if(exprs.Length == 1) {
 				return new Function_PARAM(args1, null);
 			}
 			var args2 = exprs[1].Accept(this);
@@ -2024,7 +1992,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var exprs = context.arrayJson();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for (int i = 0; i < exprs.Length; i++) {
+			for(int i = 0; i < exprs.Length; i++) {
 				args[i] = exprs[i].Accept(this);
 			}
 			return new Function_ArrayJson(args);
@@ -2034,29 +2002,29 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			string keyName = null;
 			//KeyValue keyValue = new KeyValue();
-			if (context.NUM() != null) {
-				if (int.TryParse(context.NUM().GetText(), out int key)) {
+			if(context.NUM() != null) {
+				if(int.TryParse(context.NUM().GetText(), out int key)) {
 					keyName = key.ToString();
 				} else {
 					return new Function_Value(Operand.Error("Json key '" + context.NUM().GetText() + "' is error!"));
 				}
 			}
-			if (context.STRING() != null) {
+			if(context.STRING() != null) {
 				var opd = context.STRING().GetText();
 				var sb = new StringBuilder(opd.Length - 2);
 				int index = 1;
-				while (index < opd.Length - 1) {
+				while(index < opd.Length - 1) {
 					var c = opd[index++];
-					if (c == '\\') {
+					if(c == '\\') {
 						var c2 = opd[index++];
-						if (c2 == 'n') sb.Append('\n');
-						else if (c2 == 'r') sb.Append('\r');
-						else if (c2 == 't') sb.Append('\t');
-						else if (c2 == '0') sb.Append('\0');
-						else if (c2 == 'v') sb.Append('\v');
-						else if (c2 == 'a') sb.Append('\a');
-						else if (c2 == 'b') sb.Append('\b');
-						else if (c2 == 'f') sb.Append('\f');
+						if(c2 == 'n') sb.Append('\n');
+						else if(c2 == 'r') sb.Append('\r');
+						else if(c2 == 't') sb.Append('\t');
+						else if(c2 == '0') sb.Append('\0');
+						else if(c2 == 'v') sb.Append('\v');
+						else if(c2 == 'a') sb.Append('\a');
+						else if(c2 == 'b') sb.Append('\b');
+						else if(c2 == 'f') sb.Append('\f');
 						else sb.Append(opd[index++]);
 					} else {
 						sb.Append(c);
@@ -2064,7 +2032,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				}
 				keyName = sb.ToString();
 			}
-			if (context.parameter2() != null) {
+			if(context.parameter2() != null) {
 				keyName = context.parameter2().GetText();
 			}
 			var f = context.expr().Accept(this);
@@ -2073,7 +2041,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitERROR_fun(mathParser.ERROR_funContext context)
 		{
-			if (context.expr() == null) { return new Function_Value(Operand.Error("")); }
+			if(context.expr() == null) { return new Function_Value(Operand.Error("")); }
 			var args1 = context.expr().Accept(this);
 			return new Function_ERROR(args1);
 		}

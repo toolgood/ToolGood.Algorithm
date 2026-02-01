@@ -50,7 +50,7 @@ partial class mathLexer : Lexer {
 		Interpreter = new LexerATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	private static readonly string[] _LiteralNames = {	};
+	private static readonly string[] _LiteralNames = {};
 	private static readonly string[] _SymbolicNames = {};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 

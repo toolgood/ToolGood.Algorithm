@@ -3,9 +3,9 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
-	internal class Function_TEXTTOBASE64 : Function_2
+	internal class Function_TEXTTOBASE64 : Function_1
 	{
-		public Function_TEXTTOBASE64(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_TEXTTOBASE64(FunctionBase func1) : base(func1)
 		{
 		}
 
@@ -13,14 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 1); if(args1.IsError) return args1; }
 			try {
-				Encoding encoding;
-				if(func2 == null) {
-					encoding = Encoding.UTF8;
-				} else {
-					var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 2); if(args2.IsError) return args2; }
-					encoding = Encoding.GetEncoding(args2.TextValue);
-				}
-				var bytes = encoding.GetBytes(args1.TextValue);
+				var bytes = Encoding.UTF8.GetBytes(args1.TextValue);
 				var t = Base64.ToBase64String(bytes);
 				return Operand.Create(t);
 			} catch(Exception) { }
