@@ -240,6 +240,15 @@ import { CharUtil } from './CharUtil.js';
 import { Operand } from '../../Operand.js';
 
 class MathFunctionVisitor extends mathVisitor  {
+    vL(context){
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
+        for (let i = 0; i < exprs.length; i++) {
+            args[i] = exprs[i].accept(this);
+        }
+        return args;
+    }
+
     /**
      * 访问程序节点
      * @param {Object} context - 上下文
@@ -466,12 +475,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAND_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_AND_N(args);
+        //let args =this.vL(context);
+        return new Function_AND_N(this.vL(context));
     }
 
     /**
@@ -480,12 +485,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitOR_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_OR_N(args);
+        //let args =this.vL(context);
+        return new Function_OR_N(this.vL(context));
     }
 
     /**
@@ -609,12 +610,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGCD_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_GCD(args);
+        //let args =this.vL(context);
+        return new Function_GCD(this.vL(context));
     }
 
     /**
@@ -623,12 +620,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLCM_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_LCM(args);
+        //let args =this.vL(context);
+        return new Function_LCM(this.vL(context));
     }
 
     /**
@@ -1207,12 +1200,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMULTINOMIAL_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MULTINOMIAL(args);
+        //let args =this.vL(context);
+        return new Function_MULTINOMIAL(this.vL(context));
     }
 
     /**
@@ -1221,12 +1210,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPRODUCT_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_PRODUCT(args);
+        //let args =this.vL(context);
+        return new Function_PRODUCT(this.vL(context));
     }
 
     /**
@@ -1245,12 +1230,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUMSQ_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_SUMSQ(args);
+        //let args =this.vL(context);
+        return new Function_SUMSQ(this.vL(context));
     }
 
     /**
@@ -1309,12 +1290,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCONCATENATE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_CONCATENATE(args);
+        //let args =this.vL(context);
+        return new Function_CONCATENATE(this.vL(context));
     }
 
     /**
@@ -1553,12 +1530,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDATEVALUE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_DATEVALUE(args);
+        //let args =this.vL(context);
+        return new Function_DATEVALUE(this.vL(context));
     }
 
     /**
@@ -1590,12 +1563,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDATE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_DATE(args);
+        //let args =this.vL(context);
+        return new Function_DATE(this.vL(context));
     }
 
     /**
@@ -1762,12 +1731,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNETWORKDAYS_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_NETWORKDAYS(args);
+        //let args =this.vL(context);
+        return new Function_NETWORKDAYS(this.vL(context));
     }
 
     /**
@@ -1776,12 +1741,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitWORKDAY_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_WORKDAY(args);
+        //let args =this.vL(context);
+        return new Function_WORKDAY(this.vL(context));
     }
 
     /**
@@ -1875,12 +1836,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMAX_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MAX(args);
+        //let args =this.vL(context);
+        return new Function_MAX(this.vL(context));
     }
 
     /**
@@ -1889,12 +1846,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMEDIAN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MEDIAN(args);
+        //let args =this.vL(context);
+        return new Function_MEDIAN(this.vL(context));
     }
 
     /**
@@ -1903,12 +1856,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMIN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MIN(args);
+        //let args =this.vL(context);
+        return new Function_MIN(this.vL(context));
     }
 
     /**
@@ -2083,12 +2032,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitJOIN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_JOIN(args);
+        //let args =this.vL(context);
+        return new Function_JOIN(this.vL(context));
     }
 
     /**
@@ -2163,12 +2108,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitArray_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_Array(args);
+        //let args =this.vL(context);
+        return new Function_Array(this.vL(context));
     }
 
     /**
@@ -2365,12 +2306,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMODE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MODE(args);
+        //let args =this.vL(context);
+        return new Function_MODE(this.vL(context));
     }
 
     /**
@@ -2429,12 +2366,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAVERAGE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_AVERAGE(args);
+        //let args =this.vL(context);
+        return new Function_AVERAGE(this.vL(context));
     }
 
     /**
@@ -2457,12 +2390,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitGEOMEAN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_GEOMEAN(args);
+        //let args =this.vL(context);
+        return new Function_GEOMEAN(this.vL(context));
     }
 
     /**
@@ -2471,12 +2400,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHARMEAN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_HARMEAN(args);
+        //let args =this.vL(context);
+        return new Function_HARMEAN(this.vL(context));
     }
 
     /**
@@ -2485,12 +2410,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitCOUNT_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_COUNT(args);
+        //let args =this.vL(context);
+        return new Function_COUNT(this.vL(context));
     }
 
     /**
@@ -2511,12 +2432,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSUM_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_SUM(args);
+        //let args =this.vL(context);
+        return new Function_SUM(this.vL(context));
     }
 
     /**
@@ -2539,12 +2456,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitAVEDEV_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_AVEDEV(args);
+        //let args =this.vL(context);
+        return new Function_AVEDEV(this.vL(context));
     }
 
     /**
@@ -2553,12 +2466,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSTDEV_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_STDEV(args);
+        //let args =this.vL(context);
+        return new Function_STDEV(this.vL(context));
     }
 
     /**
@@ -2567,12 +2476,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSTDEVP_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_STDEVP(args);
+        //let args =this.vL(context);
+        return new Function_STDEVP(this.vL(context));
     }
 
     /**
@@ -2581,12 +2486,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDEVSQ_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_DEVSQ(args);
+        //let args =this.vL(context);
+        return new Function_DEVSQ(this.vL(context));
     }
 
     /**
@@ -2595,12 +2496,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitVAR_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_VAR(args);
+        //let args =this.vL(context);
+        return new Function_VAR(this.vL(context));
     }
 
     /**
@@ -2609,12 +2506,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitVARP_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_VARP(args);
+        //let args =this.vL(context);
+        return new Function_VARP(this.vL(context));
     }
 
     /**
