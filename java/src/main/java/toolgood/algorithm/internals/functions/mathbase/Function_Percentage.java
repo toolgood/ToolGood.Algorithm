@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
 
 public class Function_Percentage extends Function_1 {
     public Function_Percentage(FunctionBase func1) {
@@ -18,7 +19,7 @@ public class Function_Percentage extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(args1.NumberValue() / 100.0);
+        return Operand.Create(args1.DoubleValue() / 100.0);
     }
 
     @Override

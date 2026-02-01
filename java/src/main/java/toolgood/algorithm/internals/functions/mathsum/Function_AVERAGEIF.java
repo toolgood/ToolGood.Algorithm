@@ -49,8 +49,8 @@ public class Function_AVERAGEIF extends Function_3 {
         double sum;
         int count;
         if (args2.IsNumber()) {
-            count = FunctionUtil.F_base_countif(list, args2.NumberValue());
-            sum = count * args2.NumberValue();
+            count = FunctionUtil.F_base_countif(list, args2.DoubleValue());
+            sum = count * args2.DoubleValue();
         } else {
             try {
                 double d = Double.parseDouble(args2.TextValue().trim());
@@ -58,10 +58,10 @@ public class Function_AVERAGEIF extends Function_3 {
                 sum = FunctionUtil.F_base_sumif(list, d, sumdbs);
             } catch (NumberFormatException e) {
                 String sunif = args2.TextValue().trim();
-                Object[] m2 = FunctionUtil.sumifMatch(sunif);
+                FunctionUtil.Pair<String, Double> m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 != null) {
-                    String operator = (String) m2[0];
-                    double value = (double) m2[1];
+                    String operator = m2.getFirst();
+                    double value = m2.getSecond();
                     count = FunctionUtil.F_base_countif(list, operator, value);
                     sum = FunctionUtil.F_base_sumif(list, operator, value, sumdbs);
                 } else {

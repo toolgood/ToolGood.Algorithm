@@ -35,8 +35,7 @@ public class FunctionUtil {
                 if (o.IsError()) {
                     return false;
                 }
-                list.add(o.DoubleValue
-());
+                list.add(o.DoubleValue());
             }
         }
         return true;
@@ -47,8 +46,7 @@ public class FunctionUtil {
             return false;
         }
         if (args.IsNumber()) {
-            list.add(args.DoubleValue
-());
+            list.add(args.DoubleValue());
         } else if (args.IsArray()) {
             boolean o = F_base_GetList(args.ArrayValue(), list);
             if (!o) {
@@ -68,8 +66,7 @@ public class FunctionUtil {
             if (o.IsError()) {
                 return false;
             }
-            list.add(o.DoubleValue
-());
+            list.add(o.DoubleValue());
         }
         return true;
     }

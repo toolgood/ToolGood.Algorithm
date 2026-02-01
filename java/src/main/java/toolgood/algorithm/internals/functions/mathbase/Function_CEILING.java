@@ -13,35 +13,35 @@ public class Function_CEILING extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.isNotNumber()) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Ceiling", 1);
-            if (args1.isError()) {
+        if (args1.IsNotNumber()) {
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 1);
+            if (args1.IsError()) {
                 return args1;
             }
         }
 
         if (func2 == null) {
-            return Operand.create(Math.ceil(args1.getNumberValue()));
+            return Operand.Create(Math.ceil(args1.NumberValue()));
         }
 
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.isNotNumber()) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Ceiling", 2);
-            if (args2.isError()) {
+        if (args2.IsNotNumber()) {
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 2);
+            if (args2.IsError()) {
                 return args2;
             }
         }
-        double b = args2.getNumberValue();
+        double b = args2.NumberValue();
         if (b == 0) {
-            return Operand.create(0);
+            return Operand.Create(0);
         }
         if (b < 0) {
-            return Operand.error("Function '{0}' parameter {1} is error!", "Ceiling", 2);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "Ceiling", 2);
         }
 
-        double a = args1.getNumberValue();
+        double a = args1.NumberValue();
         double d = Math.ceil(a / b) * b;
-        return Operand.create(d);
+        return Operand.Create(d);
     }
 
     @Override

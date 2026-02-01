@@ -1,18 +1,18 @@
 package toolgood.algorithm.internals.visitors;
 
 public class AntlrErrorTextWriter {
-    private boolean isError;
+    private boolean IsError;
     private String errorMsg;
 
     public AntlrErrorTextWriter() {
     }
 
     public boolean IsError() {
-        return isError;
+        return IsError;
     }
 
     public void setError(boolean error) {
-        isError = error;
+        IsError = error;
     }
 
     public String ErrorMsg() {
@@ -24,7 +24,7 @@ public class AntlrErrorTextWriter {
     }
 
     public void writeLine(String value) {
-        isError = true;
+        IsError = true;
         errorMsg = value;
     }
 }

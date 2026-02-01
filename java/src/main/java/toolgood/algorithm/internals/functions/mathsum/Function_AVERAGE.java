@@ -31,7 +31,7 @@ public class Function_AVERAGE extends Function_N {
             return Operand.Error("Function '{0}' parameter is error!", "Average");
         }
         if (list.size() == 0) {
-            return Operand.Zero();
+            return Operand.ZERO;
         }
         double avg = list.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
         return Operand.Create(avg);

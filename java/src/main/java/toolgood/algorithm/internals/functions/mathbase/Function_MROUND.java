@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_MROUND extends Function_2 {
     public Function_MROUND(FunctionBase func1, FunctionBase func2) {
@@ -25,12 +26,12 @@ public class Function_MROUND extends Function_2 {
                 return args2;
             }
         }
-        double a = args2.NumberValue();
+        double a = args2.DoubleValue();
         if (a <= 0) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "MRound", 2);
         }
 
-        double b = args1.NumberValue();
+        double b = args1.DoubleValue();
         double quotient = b / a;
         double roundedQuotient = Math.round(quotient);
         double r = roundedQuotient * a;

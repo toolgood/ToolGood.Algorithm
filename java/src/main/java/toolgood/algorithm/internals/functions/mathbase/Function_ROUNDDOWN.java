@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_ROUNDDOWN extends Function_2 {
     public Function_ROUNDDOWN(FunctionBase func1, FunctionBase func2) {
@@ -25,11 +26,11 @@ public class Function_ROUNDDOWN extends Function_2 {
                 return args2;
             }
         }
-        if (args1.NumberValue() == 0.0) {
+        if (args1.DoubleValue() == 0.0) {
             return args1;
         }
         double a = Math.pow(10, args2.IntValue());
-        double b = args1.NumberValue();
+        double b = args1.DoubleValue();
 
         b = (Math.floor(b * a)) / a;
         return Operand.Create(b);

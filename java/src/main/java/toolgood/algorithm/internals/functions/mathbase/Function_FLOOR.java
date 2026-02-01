@@ -4,6 +4,7 @@ import java.lang.StringBuilder;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_FLOOR extends Function_2 {
     public Function_FLOOR(FunctionBase func1, FunctionBase func2) {
@@ -13,34 +14,34 @@ public class Function_FLOOR extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.isNotNumber()) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Floor", 1);
-            if (args1.isError()) {
+        if (args1.IsNotNumber()) {
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 1);
+            if (args1.IsError()) {
                 return args1;
             }
         }
         if (func2 == null) {
-            return Operand.create(Math.floor(args1.getNumberValue()));
+            return Operand.Create(Math.floor(args1.DoubleValue()));
         }
 
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.isNotNumber()) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Floor", 2);
-            if (args2.isError()) {
+        if (args2.IsNotNumber()) {
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 2);
+            if (args2.IsError()) {
                 return args2;
             }
         }
-        double b = args2.getNumberValue();
+        double b = args2.DoubleValue();
         if (b >= 1) {
-            return Operand.create(args1.getIntValue());
+            return Operand.Create(args1.IntValue());
         }
         if (b <= 0) {
-            return Operand.error("Function '{0}' parameter {1} is error!", "Floor", 2);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "Floor", 2);
         }
 
-        double a = args1.getNumberValue();
+        double a = args1.DoubleValue();
         double d = Math.floor(a / b) * b;
-        return Operand.create(d);
+        return Operand.Create(d);
     }
 
     @Override

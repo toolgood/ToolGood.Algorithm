@@ -15,7 +15,7 @@ public class Function_TINV extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.Type() != OperandType.Number) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "TInv", 1);
@@ -31,8 +31,7 @@ public class Function_TINV extends Function_2 {
             }
         }
 
-        double p = args1.DoubleValue
-();
+        double p = args1.DoubleValue();
         int degreesFreedom = args2.IntValue();
 
         if (degreesFreedom <= 0 || p < 0.0 || p > 1.0) {

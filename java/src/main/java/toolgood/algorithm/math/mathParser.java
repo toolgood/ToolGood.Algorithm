@@ -22,7 +22,7 @@ public class mathParser extends Parser {
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, SUB=29, NUM=30, STRING=31, NULL=32, 
 		ERROR=33, UNIT=34, IF=35, IFERROR=36, ISNUMBER=37, ISTEXT=38, ISERROR=39, 
-		ISNONTEXT=40, ISLOGICAL=41, ISEVEN=42, ISODD=43, ISNULL=44, ISNULLORERROR=45, 
+		ISNONTEXT=40, ISLOGICAL=41, ISEVEN=42, ISODD=43, IsNull=44, ISNULLORERROR=45, 
 		AND=46, OR=47, NOT=48, TRUE=49, FALSE=50, E=51, PI=52, DEC2BIN=53, DEC2HEX=54, 
 		DEC2OCT=55, HEX2BIN=56, HEX2DEC=57, HEX2OCT=58, OCT2BIN=59, OCT2DEC=60, 
 		OCT2HEX=61, BIN2OCT=62, BIN2DEC=63, BIN2HEX=64, ABS=65, QUOTIENT=66, MOD=67, 
@@ -74,7 +74,7 @@ public class mathParser extends Parser {
 			"'!=='", "'!='", "'<>'", "'&&'", "'||'", "'?'", "':'", "'{'", "'}'", 
 			"'-'", null, null, "'NULL'", "'ERROR'", null, "'IF'", "'IFERROR'", "'ISNUMBER'", 
 			"'ISTEXT'", "'ISERROR'", "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", "'ISODD'", 
-			"'ISNULL'", "'ISNULLORERROR'", "'AND'", "'OR'", "'NOT'", null, null, 
+			"'IsNull'", "'ISNULLORERROR'", "'AND'", "'OR'", "'NOT'", null, null, 
 			"'E'", "'PI'", "'DEC2BIN'", "'DEC2HEX'", "'DEC2OCT'", "'HEX2BIN'", "'HEX2DEC'", 
 			"'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", "'OCT2HEX'", "'BIN2OCT'", "'BIN2DEC'", 
 			"'BIN2HEX'", "'ABS'", "'QUOTIENT'", "'MOD'", "'SIGN'", "'SQRT'", "'TRUNC'", 
@@ -114,7 +114,7 @@ public class mathParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, "SUB", "NUM", "STRING", "NULL", "ERROR", 
 			"UNIT", "IF", "IFERROR", "ISNUMBER", "ISTEXT", "ISERROR", "ISNONTEXT", 
-			"ISLOGICAL", "ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", "AND", "OR", 
+			"ISLOGICAL", "ISEVEN", "ISODD", "IsNull", "ISNULLORERROR", "AND", "OR", 
 			"NOT", "TRUE", "FALSE", "E", "PI", "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN", 
 			"HEX2DEC", "HEX2OCT", "OCT2BIN", "OCT2DEC", "OCT2HEX", "BIN2OCT", "BIN2DEC", 
 			"BIN2HEX", "ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", "TRUNC", "INT", 
@@ -3349,7 +3349,7 @@ public class mathParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNULL_funContext extends ExprContext {
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
+		public TerminalNode IsNull() { return getToken(mathParser.IsNull, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
@@ -3937,7 +3937,7 @@ public class mathParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(95);
-				match(ISNULL);
+				match(IsNull);
 				setState(96);
 				match(T__1);
 				setState(97);
@@ -9133,7 +9133,7 @@ public class mathParser extends Parser {
 						setState(1875);
 						match(T__0);
 						setState(1876);
-						match(ISNULL);
+						match(IsNull);
 						setState(1877);
 						match(T__1);
 						setState(1879);
@@ -11454,7 +11454,7 @@ public class mathParser extends Parser {
 			case ISLOGICAL:
 			case ISEVEN:
 			case ISODD:
-			case ISNULL:
+			case IsNull:
 			case ISNULLORERROR:
 			case AND:
 			case OR:
@@ -11700,7 +11700,7 @@ public class mathParser extends Parser {
 		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
 		public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
 		public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
+		public TerminalNode IsNull() { return getToken(mathParser.IsNull, 0); }
 		public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
 		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
 		public TerminalNode OR() { return getToken(mathParser.OR, 0); }

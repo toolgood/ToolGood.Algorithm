@@ -35,9 +35,9 @@ public class Function_BETADIST extends Function_3 {
                 return args3;
             }
         }
-        double x = args1.NumberValue();
-        double alpha = args2.NumberValue();
-        double beta = args3.NumberValue();
+        double x = args1.DoubleValue();
+        double alpha = args2.DoubleValue();
+        double beta = args3.DoubleValue();
 
         if (alpha < 0.0 || beta < 0.0) {
             return Operand.Error("Function '{0}' parameter is error!", "BetaDist");

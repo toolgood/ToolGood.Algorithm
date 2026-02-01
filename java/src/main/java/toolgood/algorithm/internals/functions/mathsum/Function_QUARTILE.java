@@ -5,6 +5,7 @@ import java.util.List;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
@@ -17,7 +18,7 @@ public class Function_QUARTILE extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Array) {
             args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Quartile", 1);

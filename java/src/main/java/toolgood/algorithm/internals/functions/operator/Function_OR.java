@@ -18,19 +18,19 @@ public class Function_OR extends Function_2 {
         // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotBoolean()) {
-            args1 = args1.ToBoolean();
+            args1 = args1.ToBoolean("Function '{0}' parameter {1} is error!", "OR", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         if (args1.BooleanValue()) {
-            Operand args2 = func2.Evaluate(work, tempParameter).ToBoolean();
+            Operand args2 = func2.Evaluate(work, tempParameter).ToBoolean("Function '{0}' parameter {1} is error!", "OR", 2);
             if (args2.IsError()) {
                 return args2;
             }
-            return Operand.True;
+            return Operand.TRUE;
         }
-        return func2.Evaluate(work, tempParameter).ToBoolean();
+        return func2.Evaluate(work, tempParameter).ToBoolean("Function '{0}' parameter {1} is error!", "OR", 2);
     }
 
     @Override

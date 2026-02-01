@@ -6,7 +6,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionUtil;
+import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 

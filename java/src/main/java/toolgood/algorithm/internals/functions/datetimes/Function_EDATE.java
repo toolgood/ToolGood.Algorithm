@@ -22,7 +22,7 @@ public class Function_EDATE extends Function_2 {
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.isNotNumber()) {
+        if (args2.IsNotNumber()) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EDate", 2);
             if (args2.IsError()) {
                 return args2;

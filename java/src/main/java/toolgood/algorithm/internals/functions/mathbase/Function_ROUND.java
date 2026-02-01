@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_ROUND extends Function_2 {
     public Function_ROUND(FunctionBase func1, FunctionBase func2) {
@@ -20,7 +21,7 @@ public class Function_ROUND extends Function_2 {
         }
 
         if (func2 == null) {
-            return Operand.Create(Math.round(args1.NumberValue()));
+            return Operand.Create(Math.round(args1.DoubleValue()));
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
@@ -30,7 +31,7 @@ public class Function_ROUND extends Function_2 {
             }
         }
         int decimalPlaces = args2.IntValue();
-        double value = args1.NumberValue();
+        double value = args1.DoubleValue();
         double factor = Math.pow(10, decimalPlaces);
         double roundedValue = Math.round(value * factor) / factor;
         return Operand.Create(roundedValue);

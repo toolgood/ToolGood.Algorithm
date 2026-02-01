@@ -3,6 +3,8 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+
 import java.util.Random;
 
 public class Function_RANDBETWEEN extends Function_2 {
@@ -27,7 +29,7 @@ public class Function_RANDBETWEEN extends Function_2 {
             }
         }
         Random rand = new Random();
-        return Operand.Create(rand.nextDouble() * (args2.NumberValue() - args1.NumberValue()) + args1.NumberValue());
+        return Operand.Create(rand.nextDouble() * (args2.DoubleValue() - args1.DoubleValue()) + args1.DoubleValue());
     }
 
     @Override

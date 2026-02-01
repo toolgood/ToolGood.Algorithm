@@ -33,7 +33,7 @@ public class Function_FIXED extends Function_3 {
             }
         }
 
-        double value = args1.NumberValue();
+        double value = args1.DoubleValue();
         double factor = Math.pow(10, num);
         double s = Math.round(value * factor) / factor;
         boolean no = false;

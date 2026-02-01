@@ -4,6 +4,7 @@ package toolgood.algorithm.internals.functions.mathsum;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_4;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.mathNet.ExcelFunctions;
@@ -15,7 +16,7 @@ public class Function_WEIBULL extends Function_4 {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Weibull", 1);
@@ -45,12 +46,9 @@ public class Function_WEIBULL extends Function_4 {
             }
         }
 
-        double x = args1.DoubleValue
-();
-        double shape = args2.DoubleValue
-();
-        double scale = args3.DoubleValue
-();
+        double x = args1.DoubleValue();
+        double shape = args2.DoubleValue();
+        double scale = args3.DoubleValue();
         boolean state = args4.BooleanValue();
 
         if (shape <= 0.0 || scale <= 0.0) {

@@ -15,7 +15,7 @@ public class Function_TDIST extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "TDist", 1);
@@ -38,8 +38,7 @@ public class Function_TDIST extends Function_3 {
             }
         }
 
-        double x = args1.DoubleValue
-();
+        double x = args1.DoubleValue();
         int degreesFreedom = args2.IntValue();
         int tails = args3.IntValue();
 

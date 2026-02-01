@@ -1,6 +1,8 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
 import toolgood.algorithm.Operand;
+
+
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
@@ -19,7 +21,7 @@ public class Function_EVEN extends Function_1 {
                 return args1;
             }
         }
-        double z = args1.NumberValue();
+        double z = args1.DoubleValue();
         if (z % 2 == 0) {
             return args1;
         }

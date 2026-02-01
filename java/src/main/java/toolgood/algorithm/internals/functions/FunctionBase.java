@@ -119,8 +119,7 @@ public abstract class FunctionBase {
                     return def;
                 }
             }
-            return (float) obj.DoubleValue
-();
+            return (float) obj.DoubleValue();
         } catch (Exception ex) {
             work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
@@ -145,8 +144,7 @@ public abstract class FunctionBase {
                     return def;
                 }
             }
-            return obj.DoubleValue
-();
+            return obj.DoubleValue();
         } catch (Exception ex) {
             work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }

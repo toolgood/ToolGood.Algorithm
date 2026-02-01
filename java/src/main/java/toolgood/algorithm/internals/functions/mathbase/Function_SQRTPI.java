@@ -18,8 +18,7 @@ public class Function_SQRTPI extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.sqrt(args1.DoubleValue
-() * Math.PI));
+        return Operand.Create(Math.sqrt(args1.DoubleValue() * Math.PI));
     }
 
     @Override

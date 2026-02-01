@@ -26,7 +26,7 @@ public class Function_AND_N extends Function_N {
                 b = false;
             }
         }
-        return b ? Operand.True : Operand.False;
+        return b ? Operand.TRUE : Operand.FALSE;
     }
 
     @Override

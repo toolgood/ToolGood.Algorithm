@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
@@ -27,13 +28,13 @@ public class Function_Add extends Function_2 {
         }
 
         if (args1.IsNumber() && args2.IsNumber()) { // 优化性能
-            if (args1.getNumberValue() == 0) {
+            if (args1.DoubleValue() == 0) {
                 return args2;
             }
-            if (args2.getNumberValue() == 0) {
+            if (args2.DoubleValue() == 0) {
                 return args1;
             }
-            return Operand.Create(args1.getNumberValue() + args2.getNumberValue());
+            return Operand.Create(args1.DoubleValue() + args2.DoubleValue());
         }
         if (args1.IsNull()) {
             return Operand.Error("Function '{0}' parameter {1} is NULL!", "+", 1);
@@ -49,7 +50,7 @@ public class Function_Add extends Function_2 {
             } catch (NumberFormatException e1) {
                 Boolean b = FunctionUtil.TryParseBoolean(args1.TextValue());
                 if (b != null) {
-                    args1 = b ? Operand.One : Operand.Zero;
+                    args1 = b ? Operand.ONE : Operand.ZERO;
                 } else {
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
@@ -68,7 +69,7 @@ public class Function_Add extends Function_2 {
             } catch (NumberFormatException e1) {
                 Boolean b = FunctionUtil.TryParseBoolean(args2.TextValue());
                 if (b != null) {
-                    args2 = b ? Operand.One : Operand.Zero;
+                    args2 = b ? Operand.ONE : Operand.ZERO;
                 } else {
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
@@ -90,10 +91,10 @@ public class Function_Add extends Function_2 {
                     return args2;
                 }
             }
-            if (args2.getNumberValue() == 0) {
+            if (args2.DoubleValue() == 0) {
                 return args1;
             }
-            return Operand.Create(args1.DateValue().add(args2.getNumberValue()));
+            return Operand.Create(args1.DateValue().add(args2.DoubleValue()));
         } else if (args2.IsDate()) {
             if (args1.IsNotNumber()) {
                 args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1);
@@ -101,10 +102,10 @@ public class Function_Add extends Function_2 {
                     return args1;
                 }
             }
-            if (args1.getNumberValue() == 0) {
+            if (args1.DoubleValue() == 0) {
                 return args2;
             }
-            return Operand.Create(args2.DateValue().add(args1.getNumberValue()));
+            return Operand.Create(args2.DateValue().add(args1.DoubleValue()));
         }
         if (args1.IsNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1);
@@ -119,14 +120,14 @@ public class Function_Add extends Function_2 {
             }
         }
 
-        if (args1.getNumberValue() == 0) {
+        if (args1.DoubleValue() == 0) {
             return args2;
         }
-        if (args2.getNumberValue() == 0) {
+        if (args2.DoubleValue() == 0) {
             return args1;
         }
 
-        return Operand.Create(args1.getNumberValue() + args2.getNumberValue());
+        return Operand.Create(args1.DoubleValue() + args2.DoubleValue());
     }
 
     @Override

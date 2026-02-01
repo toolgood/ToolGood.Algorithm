@@ -15,7 +15,7 @@ public class Function_POISSON extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Poisson", 1);
@@ -38,8 +38,7 @@ public class Function_POISSON extends Function_3 {
             }
         }
         int k = args1.IntValue();
-        double lambda = args2.DoubleValue
-();
+        double lambda = args2.DoubleValue();
         boolean state = args3.BooleanValue();
         if (!(lambda > 0.0)) {
             return Operand.Error("Function '{0}' parameter is error!", "Poisson");

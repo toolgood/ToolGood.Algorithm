@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
 
 public class Function_SIGN extends Function_1 {
     public Function_SIGN(FunctionBase func1) {
@@ -18,7 +19,7 @@ public class Function_SIGN extends Function_1 {
                 return args1;
             }
         }
-        double value = args1.NumberValue();
+        double value = args1.DoubleValue();
         int sign = (int) Math.signum(value);
         return Operand.Create(sign);
     }

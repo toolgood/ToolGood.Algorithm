@@ -6,6 +6,7 @@ import java.util.List;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
@@ -15,7 +16,7 @@ public class Function_SUMSQ extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         List<Operand> args = new ArrayList<>(funcs.length);
         for (int i = 0; i < funcs.length; i++) {
             Operand aa = funcs[i].Evaluate(work, tempParameter);

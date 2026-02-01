@@ -40,7 +40,7 @@ public class Function_LOOKCEILING extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "LookCeiling", 2);
         }
         list.sort(Collections.reverseOrder());
-        BigDecimal value = args1.getNumberValue();
+        BigDecimal value = args1.NumberValue();
         BigDecimal result = list.get(0);
         if (result.compareTo(value) == 0) {
             return args1;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
@@ -16,7 +17,7 @@ public class Function_SUMIF extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsError()) {
             return args1;
@@ -50,8 +51,7 @@ public class Function_SUMIF extends Function_3 {
         double sum = 0;
         if (args2.getOperandType() == OperandType.Number) {
             // 处理数字条件
-            double value = args2.DoubleValue
-();
+            double value = args2.DoubleValue();
             long count = FunctionUtil.F_base_countif(list, value);
             sum = count * value;
         } else {

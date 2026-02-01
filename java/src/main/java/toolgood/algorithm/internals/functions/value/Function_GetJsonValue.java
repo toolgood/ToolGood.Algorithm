@@ -35,7 +35,7 @@ public class Function_GetJsonValue extends Function_2 {
         if (obj.IsArrayJson()) {
             if (op.IsNumber()) {
                 Operand operand;
-                if (((OperandKeyValueList)obj).TryGetValue(op.getNumberValue().toString(), operand)) {
+                if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue().toString(), operand)) {
                     return operand;
                 }
                 return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
@@ -66,7 +66,7 @@ public class Function_GetJsonValue extends Function_2 {
                         return Operand.Create(v.BooleanValue());
                     }
                     if (v.isDouble()) {
-                        return Operand.Create(v.getNumberValue());
+                        return Operand.Create(v.NumberValue());
                     }
                     if (v.isObject()) {
                         return Operand.Create(v);
@@ -74,7 +74,7 @@ public class Function_GetJsonValue extends Function_2 {
                     if (v.IsArray()) {
                         return Operand.Create(v);
                     }
-                    if (v.isNull()) {
+                    if (v.IsNull()) {
                         return Operand.CreateNull();
                     }
                     return Operand.Create(v);
@@ -94,7 +94,7 @@ public class Function_GetJsonValue extends Function_2 {
                         return Operand.Create(v.BooleanValue());
                     }
                     if (v.isDouble()) {
-                        return Operand.Create(v.getNumberValue());
+                        return Operand.Create(v.NumberValue());
                     }
                     if (v.isObject()) {
                         return Operand.Create(v);
@@ -102,7 +102,7 @@ public class Function_GetJsonValue extends Function_2 {
                     if (v.IsArray()) {
                         return Operand.Create(v);
                     }
-                    if (v.isNull()) {
+                    if (v.IsNull()) {
                         return Operand.CreateNull();
                     }
                     return Operand.Create(v);

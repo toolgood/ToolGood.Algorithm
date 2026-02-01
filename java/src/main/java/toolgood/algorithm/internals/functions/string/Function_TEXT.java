@@ -36,7 +36,7 @@ public class Function_TEXT extends Function_2 {
             String format = args2.TextValue();
             try {
                 DecimalFormat df = new DecimalFormat(format, new DecimalFormatSymbols(Locale.US));
-                return Operand.Create(df.format(args1.getNumberValue()));
+                return Operand.Create(df.format(args1.NumberValue()));
             } catch (Exception e) {
                 return Operand.Error("Function '{0}' format is error!", "Text");
             }

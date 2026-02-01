@@ -13,7 +13,7 @@ public class Function_BETAINV extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "BetaInv", 1);
@@ -35,9 +35,9 @@ public class Function_BETAINV extends Function_3 {
                 return args3;
             }
         }
-        double p = args1.NumberValue();
-        double alpha = args2.NumberValue();
-        double beta = args3.NumberValue();
+        double p = args1.DoubleValue();
+        double alpha = args2.DoubleValue();
+        double beta = args3.DoubleValue();
 
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
             return Operand.Error("Function '{0}' parameter is error!", "BetaInv");

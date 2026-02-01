@@ -23,7 +23,7 @@ public class Function_WORKDAY extends Function_N {
             }
         }
         Operand args2 = funcs[1].Evaluate(work, tempParameter);
-        if (args2.isNotNumber()) {
+        if (args2.IsNotNumber()) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Workday", 2);
             if (args2.IsError()) {
                 return args2;

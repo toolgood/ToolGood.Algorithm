@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.mathtrigonometric;
 
 import java.lang.StringBuilder;
+import java.util.function.BiFunction;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
@@ -21,8 +22,7 @@ class Function_SEC extends Function_1 {
                 return args1;
             }
         }
-        double value = args1.DoubleValue
-();
+        double value = args1.DoubleValue();
         double cosValue = Math.cos(value);
         if (cosValue == 0) {
             return Operand.Create(Double.POSITIVE_INFINITY);

@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.mathtrigonometric;
 
 import java.lang.StringBuilder;
+import java.util.function.BiFunction;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
@@ -21,8 +22,7 @@ class Function_ASIN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.asin(args1.DoubleValue
-()));
+        return Operand.Create(Math.asin(args1.DoubleValue()));
     }
 
     @Override

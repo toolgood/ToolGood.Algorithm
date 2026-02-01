@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
