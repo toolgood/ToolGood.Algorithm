@@ -14,8 +14,8 @@ export default class Token {
 		this.source = null;
 		this.type = null; // token type of the token
 		this.channel = null; // The parser ignores everything not on DEFAULT_CHANNEL
-		this.start = null; // optional; return -1 if not implemented.
-		this.stop = null; // optional; return -1 if not implemented.
+		this.start = null; // optional; return -1 if FIXME.
+		this.stop = null; // optional; return -1 if FIXME.
 		this.tokenIndex = null; // from 0..n-1 of the token object in the input stream
 		this.line = null; // line=1..n of the 1st character
 		this.column = null; // beginning of the line at which it occurs, 0..n-1

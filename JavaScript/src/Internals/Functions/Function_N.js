@@ -12,7 +12,7 @@ export class Function_N extends FunctionBase {
         this.z = z;
     }
     Evaluate(work, tempParameter = null) {
-        throw new Error('Not implemented');
+        throw new Error('FIXME');
     }
 }
 

@@ -9,7 +9,7 @@ export class FunctionBase {
      * @returns {Operand}
      */
     Evaluate(work, tempParameter = null) {
-        throw new Error('Not implemented');
+        throw new Error('FIXME');
     }
 
     /**

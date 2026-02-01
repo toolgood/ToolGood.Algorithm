@@ -114,38 +114,38 @@ export class Operand {
     /**
      * 操作数类型
      */
-    get Type() { throw new Error('Not implemented'); }
+    get Type() { throw new Error('FIXME'); }
 
     /**
      * 数字值
      */
-    get NumberValue() { throw new Error('Not implemented'); }
+    get NumberValue() { throw new Error('FIXME'); }
     /**
      * int值
      */
-    get IntValue() { throw new Error('Not implemented'); }
+    get IntValue() { throw new Error('FIXME'); }
 
     /**
      * 字符串值
      */
-    get TextValue() { throw new Error('Not implemented'); }
+    get TextValue() { throw new Error('FIXME'); }
 
     /**
      * 布尔值
      */
-    get BooleanValue() { throw new Error('Not implemented'); }
+    get BooleanValue() { throw new Error('FIXME'); }
 
     /**
      * 数组值
      */
-    get ArrayValue() { throw new Error('Not implemented'); }
+    get ArrayValue() { throw new Error('FIXME'); }
 
-    get JsonValue() { throw new Error('Not implemented'); }
+    get JsonValue() { throw new Error('FIXME'); }
 
     /**
      * 时间值
      */
-    get DateValue() { throw new Error('Not implemented'); }
+    get DateValue() { throw new Error('FIXME'); }
 
     /**
      * 创建操作数
