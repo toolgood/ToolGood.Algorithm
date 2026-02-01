@@ -21,7 +21,6 @@ import { ConditionTreeType } from './Enums/ConditionTreeType.js';
 import { CalculateTreeType } from './Enums/CalculateTreeType.js';
 
 // 导入ANTLR生成的文件
-import InputStream from './antlr4/InputStream.js';
 import mathLexer from './math/mathLexer.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
 import mathParser from './math/mathParser.js';
