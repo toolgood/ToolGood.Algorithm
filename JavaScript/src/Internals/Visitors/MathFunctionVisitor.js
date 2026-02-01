@@ -1445,7 +1445,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let args1 = exprs[0].accept(this);
 
         if (exprs.length === 1) {
-            return new Function_RIGHT(context.expr().accept(this));
+            return new Function_RIGHT(args1,null);
         }
         let args2 = exprs[1].accept(this);
         return new Function_RIGHT(args1, args2);
