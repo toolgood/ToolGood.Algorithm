@@ -10,22 +10,6 @@ export class AntlrErrorTextWriter {
         this.ErrorMsg = null;
     }
 
-    /**
-     * Gets the encoding.
-     * @returns {string}
-     */
-    get Encoding() {
-        return 'UTF-8';
-    }
-
-    /**
-     * Writes a line of text.
-     * @param {string} value
-     */
-    WriteLine(value) {
-        this.IsError = true;
-        this.ErrorMsg = value;
-    }
     syntaxError(recognizer, offendingSymbol, line, column, msg, e) {
         this.IsError = true;
         this.ErrorMsg = msg;

@@ -2,12 +2,14 @@
  * DiyNameVisitor - DIY 名称访问者
  */
 import mathVisitor from '../../math/mathVisitor.js';
-import { DiyNameInfo } from '../DiyNameInfo.js';
 
 class DiyNameVisitor extends mathVisitor {
     constructor() {
         super();
-        this.diy = new DiyNameInfo();
+        this.diy = {
+            Parameters: [],
+            Functions: []
+        };
     }
     /**
      * 访问 PARAMETER 函数节点
