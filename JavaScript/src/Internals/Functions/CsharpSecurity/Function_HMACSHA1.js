@@ -1,20 +1,18 @@
-import { Function_3 } from '../Function_3.js';
+import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import CryptoJS from 'crypto-js';
-import iconv from 'iconv-lite';
 import { StringCache } from '../../../Internals/StringCache.js';
+import HmacSHA1 from 'crypto-js/hmac-sha1.js';
 
 /**
  * Represents the HMACSHA1 encryption function
  */
-export class Function_HMACSHA1 extends Function_3 {
+export class Function_HMACSHA1 extends Function_2 {
     /**
      * @param {FunctionBase} func1
      * @param {FunctionBase} func2
-     * @param {FunctionBase} func3
      */
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
+    constructor(func1, func2) {
+        super(func1, func2);
     }
 
     /**
@@ -37,21 +35,7 @@ export class Function_HMACSHA1 extends Function_3 {
         }
 
         try {
-            let encoding = 'utf8';
-            if (this.func3 !== null) {
-                const args3 = this.func3.Evaluate(work, tempParameter);
-                if (args3.IsNotText) {
-                    const errorArgs3 = args3.ToText(StringCache.Function_parameter_error, "HMACSHA1", 3);
-                    if (errorArgs3.IsError) return errorArgs3;
-                    return errorArgs3;
-                }
-                encoding = args3.TextValue;
-            }
-
-            const bytes = iconv.encode(args1.TextValue, encoding);
-            const key = args2.TextValue || '';
-            const keyBytes = iconv.encode(key, 'utf8');
-            const hmacHash = CryptoJS.HmacSHA1(CryptoJS.lib.WordArray.create(bytes), CryptoJS.lib.WordArray.create(keyBytes));
+            const hmacHash = HmacSHA1(args1.TextValue,args2.TextValue || '');
             const result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {

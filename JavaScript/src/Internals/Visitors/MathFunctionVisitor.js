@@ -1926,9 +1926,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACSHA1(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACSHA1(args1, args2, args3);
+        return new Function_HMACSHA1(args1, args2);
     }
 
     /**
@@ -1940,9 +1938,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACSHA256(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACSHA256(args1, args2, args3);
+        return new Function_HMACSHA256(args1, args2);
     }
 
     /**
@@ -1954,9 +1950,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACSHA512(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACSHA512(args1, args2, args3);
+        return new Function_HMACSHA512(args1, args2);
     }
 
     /**
@@ -2963,11 +2957,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBASE64TOTEXT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_BASE64TOTEXT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_BASE64TOTEXT(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_BASE64TOTEXT(args1);
     }
 
     /**
@@ -2976,11 +2967,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBASE64URLTOTEXT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_BASE64URLTOTEXT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_BASE64URLTOTEXT(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_BASE64URLTOTEXT(args1,);
     }
 
     /**
@@ -2989,11 +2977,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTEXTTOBASE64_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TEXTTOBASE64(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_TEXTTOBASE64(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_TEXTTOBASE64(args1);
     }
 
     /**
@@ -3002,11 +2987,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTEXTTOBASE64URL_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TEXTTOBASE64URL(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_TEXTTOBASE64URL(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_TEXTTOBASE64URL(args1);
     }
 
     /**
@@ -3061,11 +3043,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitMD5_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_MD5(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_MD5(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_MD5(args1);
     }
 
     /**
@@ -3074,11 +3053,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSHA1_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_SHA1(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_SHA1(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_SHA1(args1);
     }
 
     /**
@@ -3087,11 +3063,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSHA256_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_SHA256(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_SHA256(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_SHA256(args1);
     }
 
     /**
@@ -3100,11 +3073,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitSHA512_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_SHA512(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_SHA512(args1, args2);
+        let args1 = context.expr().accept(this);
+        return new Function_SHA512(args1);
     }
 
 
@@ -3117,9 +3087,7 @@ class MathFunctionVisitor extends mathVisitor  {
         let exprs = context.expr();
         let args1 = exprs[0].accept(this);
         let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACMD5(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACMD5(args1, args2, args3);
+        return new Function_HMACMD5(args1, args2);
     }
     visitBracket_fun(context) {
         return context.expr().accept(this);

@@ -1,19 +1,17 @@
-import { Function_2 } from '../Function_2.js';
+import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import CryptoJS from 'crypto-js';
-import iconv from 'iconv-lite';
 import { StringCache } from '../../../Internals/StringCache.js';
+import MD5 from 'crypto-js/md5.js';
 
 /**
  * Represents the MD5 encryption function
  */
-export class Function_MD5 extends Function_2 {
+export class Function_MD5 extends Function_1 {
     /**
      * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
      */
-    constructor(func1, func2) {
-        super(func1, func2);
+    constructor(func1) {
+        super(func1);
     }
 
     /**
@@ -29,25 +27,11 @@ export class Function_MD5 extends Function_2 {
         }
 
         try {
-            let encoding = 'utf8';
-            if (this.func2 !== null) {
-                const args2 = this.func2.Evaluate(work, tempParameter);
-                if (args2.IsNotText) {
-                    const errorArgs2 = args2.ToText(StringCache.Function_parameter_error, "MD5", 2);
-                    if (errorArgs2.IsError) return errorArgs2;
-                    return errorArgs2;
-                }
-                encoding = args2.TextValue;
-            }
-
-            const bytes = iconv.encode(args1.TextValue, encoding);
-            const md5Hash = CryptoJS.MD5(CryptoJS.lib.WordArray.create(bytes));
+            const md5Hash = MD5(args1.TextValue);
             const result = md5Hash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
             return Operand.Error(StringCache.Function_error, "MD5");
         }
     }
-
-
 }

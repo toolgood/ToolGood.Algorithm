@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "自动附加",
-            "program": "${workspaceFolder}/tests/AlgorithmEngineTest.js",
+            "program": "${workspaceFolder}/tests/AlgorithmEngineTest_csharp.js",
             "autoAttachChildProcesses": true
         }
     ]
