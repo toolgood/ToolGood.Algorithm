@@ -54,10 +54,11 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this\.match", "this.match");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this\._errHandler\.sync\(this\);", "this._errHandler.sync(this);");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*_la", "_la");
+			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*localctx", "localctx");
+			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*localctx", "localctx");
 
-		
 
-			text = Regex.Replace(text, @"sempred\(localctx, ruleIndex, predIndex\) \{[\s\S]+?\};", "sempred(localctx, ruleIndex, predIndex) { return true; };");
+
 
 			// expr 一般情况下返回 ExprContext 的数组 或 单个 ExprContext
 			text = Regex.Replace(text, @"expr = function\(i\) \{[\s\S]+?\};", "expr = function(i) {return this.getTypedRuleContexts(ExprContext);};");
@@ -66,10 +67,50 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"if\(parent===undefined\) \{[\r\n\t ]*parent = null;[\r\n\t ]*\}", "");
 			text = Regex.Replace(text, @"if\(invokingState===undefined \|\| invokingState===null\) \{[\r\n\t ]*invokingState = -1;[\r\n\t ]*}", "");
 
-
-
 			text = Regex.Replace(text, @"let _prevctx = localctx;", "");
 			text = Regex.Replace(text, @"_prevctx = localctx;", "");
+
+
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
+										, "this.F($1,$2,$3,$4,$5,$6);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
+										, "this.G($1,$2,$3,$4,$5);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
+										, "this.I($1,$2,$3,$4);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
+										, "this.J($1,$2,$3);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.D($1,$2,$3,$4);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.C($1,$2,$3);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.B($1,$2);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);", "this.A($1);");
+			text = Regex.Replace(text, @"this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);", "this.E($1,$2);");
+			text = Regex.Replace(text, @"this\._errHandler\.sync\(this\);[\r\n\t ]*_la = this\._input\.LA\(1\);", "_la = this.Z();");
+			text = Regex.Replace(text, @"_la = this\._input\.LA\(1\);", "_la = this.Y();");
+			text = Regex.Replace(text, @"this\._errHandler\.sync\(this\);", "this.X();");
+			text = text.Replace("this.pushNewRecursionContext(localctx, _startState, 1);", "this.W(localctx, _startState, 1);");
+			text = Regex.Replace(text, @"this\._errHandler\.reportMatch\(this\);[\r\n\t ]*this\.consume\(\);", "this.Q();");
+
+
+
+			text = Regex.Replace(text, @"sempred\(localctx, ruleIndex, predIndex\) \{[\s\S]+?\};", @" sempred(localctx, ruleIndex, predIndex){return true;};
+	A(a){this.match(a);}
+	B(a,b){this.match(a);this.match(b);}
+	C(a,b,c){this.match(a);this.match(b);this.match(c);}
+	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}
+	E(a,b){this.state=a;this.expr(b);}
+	F(a,b,c,d,e,f){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);}
+	G(a,b,c,e,f){this.match(a);this.match(b);this.match(c);this.state=e;this.expr(f);}
+	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}
+	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
+
+
+
+	Q(){this._errHandler.reportMatch(this);this.consume();}
+	W(a,b,c){this.pushNewRecursionContext(a, b, c);}
+	X(){this._errHandler.sync(this);}
+	Y(){return this._input.LA(1);}
+	Z(){this._errHandler.sync(this);return this._input.LA(1);}
+");
 
 			// 清理多余的空行和注释
 			text = Regex.Replace(text, @"[\t ]*//.*([\r\n])", "$1");
