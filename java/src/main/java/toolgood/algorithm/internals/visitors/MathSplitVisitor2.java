@@ -10,6 +10,8 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import toolgood.algorithm.enums.CalculateTreeType;
 import toolgood.algorithm.internals.CalculateTree;
 import toolgood.algorithm.math.mathParser;
+import toolgood.algorithm.math.mathParser.IsError_funContext;
+import toolgood.algorithm.math.mathParser.IsNumber_funContext;
 import toolgood.algorithm.math.mathVisitor;
 
 public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> implements mathVisitor<CalculateTree> {
@@ -1238,4 +1240,6 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     public CalculateTree visitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context) {
         return visit_fun(context);
     }
+
+ 
 }
