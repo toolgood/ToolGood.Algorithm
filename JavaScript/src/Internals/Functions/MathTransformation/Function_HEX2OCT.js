@@ -16,7 +16,7 @@ class Function_HEX2OCT extends Function_2 {
             }
         }
 
-        if (!RegexHelper.HexRegex.test(args1.TextValue)) {
+        if (!/^[0-9A-Fa-f]+$/.test(args1.TextValue)) {
             return Operand.Error(StringCache.Function_parameter_error, 'HEX2OCT', 1);
         }
         let num = parseInt(args1.TextValue, 16).toString(8);
@@ -36,10 +36,6 @@ class Function_HEX2OCT extends Function_2 {
         return Operand.Create(num);
     }
 }
-
-let RegexHelper = {
-    HexRegex: /^[0-9A-Fa-f]+$/
-};
 
 export { Function_HEX2OCT };
 

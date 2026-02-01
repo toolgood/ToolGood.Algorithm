@@ -16,7 +16,7 @@ class Function_HEX2BIN extends Function_2 {
             }
         }
 
-        if (!RegexHelper.HexRegex.test(args1.TextValue)) {
+        if (!/^[0-9A-Fa-f]+$/.test(args1.TextValue)) {
             return Operand.Error(StringCache.Function_parameter_error, 'HEX2BIN', 1);
         }
         let num = parseInt(args1.TextValue, 16).toString(2);
@@ -37,9 +37,7 @@ class Function_HEX2BIN extends Function_2 {
     }
 }
 
-let RegexHelper = {
-    HexRegex: /^[0-9A-Fa-f]+$/
-};
+ 
 
 export { Function_HEX2BIN };
 

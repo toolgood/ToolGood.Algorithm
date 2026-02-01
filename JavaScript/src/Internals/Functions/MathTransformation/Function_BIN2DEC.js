@@ -16,7 +16,7 @@ class Function_BIN2DEC extends Function_1 {
             }
         }
 
-        if (!RegexHelper.BinRegex.test(args1.TextValue)) {
+        if (!/^[01]+$/.test(args1.TextValue)) {
             return Operand.Error(StringCache.Function_parameter_error, 'BIN2DEC');
         }
         let num = parseInt(args1.TextValue, 2);
@@ -24,9 +24,6 @@ class Function_BIN2DEC extends Function_1 {
     }
 }
 
-let RegexHelper = {
-    BinRegex: /^[01]+$/
-};
 
 export { Function_BIN2DEC };
 

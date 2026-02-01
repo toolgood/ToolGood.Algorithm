@@ -16,17 +16,14 @@ class Function_OCT2DEC extends Function_1 {
             }
         }
 
-        if (!RegexHelper.OctRegex.test(args1.TextValue)) {
+        if (!/^[0-7]+$/.test(args1.TextValue)) {
             return Operand.Error(StringCache.Function_parameter_error, 'OCT2DEC');
         }
         let num = parseInt(args1.TextValue, 8);
         return Operand.Create(num);
     }
 }
-
-let RegexHelper = {
-    OctRegex: /^[0-7]+$/
-};
+ 
 
 export { Function_OCT2DEC };
 

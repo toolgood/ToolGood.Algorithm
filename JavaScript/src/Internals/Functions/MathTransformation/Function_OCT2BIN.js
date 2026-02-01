@@ -16,7 +16,7 @@ class Function_OCT2BIN extends Function_2 {
             }
         }
 
-        if (!RegexHelper.OctRegex.test(args1.TextValue)) {
+        if (!/^[0-7]+$/.test(args1.TextValue)) {
             return Operand.Error(StringCache.Function_parameter_error, 'OCT2BIN', 1);
         }
         let num = parseInt(args1.TextValue, 8).toString(2);
@@ -37,9 +37,6 @@ class Function_OCT2BIN extends Function_2 {
     }
 }
 
-let RegexHelper = {
-    OctRegex: /^[0-7]+$/
-};
-
+ 
 export { Function_OCT2BIN };
 
