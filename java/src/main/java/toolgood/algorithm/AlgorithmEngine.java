@@ -18,7 +18,7 @@ import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
 
 public class AlgorithmEngine {
-    private int ExcelIndex = 1;
+    public int ExcelIndex = 1;
 
     /**
      * 使用 本地时间， 影响 时间截转化

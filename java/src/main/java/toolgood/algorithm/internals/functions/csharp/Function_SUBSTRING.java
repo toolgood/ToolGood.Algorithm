@@ -5,7 +5,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
-import java.util.function.Function;
+
 
 public class Function_SUBSTRING extends Function_3 {
     public Function_SUBSTRING(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
@@ -30,7 +30,7 @@ public class Function_SUBSTRING extends Function_3 {
         }
 
         String text = args1.TextValue();
-        int startIndex = args2.IntValue() - work.getExcelIndex();
+        int startIndex = args2.IntValue() - work.ExcelIndex;
         if (startIndex < 0) {
             startIndex = 0;
         }

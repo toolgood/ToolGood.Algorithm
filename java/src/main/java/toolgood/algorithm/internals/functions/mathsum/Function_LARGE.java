@@ -39,10 +39,10 @@ public class Function_LARGE extends Function_2 {
 
         Collections.sort(list, Comparator.reverseOrder());
         int k = args2.IntValue();
-        if (k < 1 - work.ExcelIndex() || k > list.size() - work.ExcelIndex()) {
+        if (k < 1 - work.ExcelIndex || k > list.size() - work.ExcelIndex) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Large", 2);
         }
-        return Operand.Create(list.get(k - work.ExcelIndex()));
+        return Operand.Create(list.get(k - work.ExcelIndex));
     }
 
     @Override

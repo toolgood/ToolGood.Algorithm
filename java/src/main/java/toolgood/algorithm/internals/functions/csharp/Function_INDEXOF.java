@@ -5,7 +5,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
-import java.util.function.Function;
+
 
 public class Function_INDEXOF extends Function_4 {
     public Function_INDEXOF(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
@@ -30,7 +30,7 @@ public class Function_INDEXOF extends Function_4 {
         }
         String text = args1.TextValue();
         if (func3 == null) {
-            return Operand.Create(text.indexOf(args2.TextValue()) + work.getExcelIndex());
+            return Operand.Create(text.indexOf(args2.TextValue()) + work.ExcelIndex);
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
@@ -42,9 +42,9 @@ public class Function_INDEXOF extends Function_4 {
         if (func4 == null) {
             int startIndex = args3.IntValue();
             if (startIndex >= text.length()) {
-                return Operand.Create(-1 + work.getExcelIndex());
+                return Operand.Create(-1 + work.ExcelIndex);
             }
-            return Operand.Create(text.substring(startIndex).indexOf(args2.TextValue()) + startIndex + work.getExcelIndex());
+            return Operand.Create(text.substring(startIndex).indexOf(args2.TextValue()) + startIndex + work.ExcelIndex);
         }
         Operand args4 = func4.Evaluate(work, tempParameter);
         if (args4.IsNotNumber()) {
@@ -56,15 +56,15 @@ public class Function_INDEXOF extends Function_4 {
         int startIndex = args3.IntValue();
         int count = args4.IntValue();
         if (startIndex >= text.length()) {
-            return Operand.Create(-1 + work.getExcelIndex());
+            return Operand.Create(-1 + work.ExcelIndex);
         }
         int endIndex = Math.min(startIndex + count, text.length());
         String substring = text.substring(startIndex, endIndex);
         int result = substring.indexOf(args2.TextValue());
         if (result == -1) {
-            return Operand.Create(-1 + work.getExcelIndex());
+            return Operand.Create(-1 + work.ExcelIndex);
         }
-        return Operand.Create(result + startIndex + work.getExcelIndex());
+        return Operand.Create(result + startIndex + work.ExcelIndex);
     }
 
     @Override

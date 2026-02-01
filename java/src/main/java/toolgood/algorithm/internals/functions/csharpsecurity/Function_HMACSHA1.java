@@ -9,7 +9,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.function.Function;
+
 
 public class Function_HMACSHA1 extends Function_3 {
     public Function_HMACSHA1(FunctionBase func1, FunctionBase func2, FunctionBase func3) {

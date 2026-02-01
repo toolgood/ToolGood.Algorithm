@@ -33,7 +33,7 @@ public class Function_MID extends Function_3 {
                 return args3;
             }
         }
-        int start = args2.IntValue() - work.getExcelIndex();
+        int start = args2.IntValue() - work.ExcelIndex;
         int length = args3.IntValue();
         int end = Math.min(start + length, args1.TextValue().length());
         if (start < 0) {

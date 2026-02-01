@@ -7,7 +7,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.function.Function;
+
 
 public class Function_SHA1 extends Function_2 {
     public Function_SHA1(FunctionBase func1, FunctionBase func2) {

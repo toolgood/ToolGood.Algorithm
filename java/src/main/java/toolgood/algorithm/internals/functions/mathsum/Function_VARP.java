@@ -2,7 +2,7 @@ package toolgood.algorithm.internals.functions.mathsum;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
+
 
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;

@@ -5,7 +5,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
-import java.util.function.Function;
+
 
 public class Function_DATEDIF extends Function_3 {
     public Function_DATEDIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
@@ -29,7 +29,7 @@ public class Function_DATEDIF extends Function_3 {
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
-        if (args3.isNotText()) {
+        if (args3.IsNotText()) {
             args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3);
             if (args3.IsError()) {
                 return args3;

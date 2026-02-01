@@ -5,7 +5,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
-import java.util.function.Function;
+
 
 public class Function_ENDSWITH extends Function_3 {
     public Function_ENDSWITH(FunctionBase func1, FunctionBase func2, FunctionBase func3) {

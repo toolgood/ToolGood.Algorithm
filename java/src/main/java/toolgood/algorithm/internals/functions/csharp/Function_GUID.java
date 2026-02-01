@@ -5,7 +5,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
 import java.util.UUID;
-import java.util.function.Function;
+
 
 public class Function_GUID extends FunctionBase {
     public Function_GUID() {

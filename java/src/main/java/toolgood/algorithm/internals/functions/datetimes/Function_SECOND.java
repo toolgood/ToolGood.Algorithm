@@ -5,7 +5,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
-import java.util.function.Function;
+
 
 public class Function_SECOND extends Function_1 {
     public Function_SECOND(FunctionBase func1) {

@@ -1,6 +1,6 @@
 package toolgood.algorithm.mathNet.RootFinding;
 
-import java.util.function.Function;
+
 
 import toolgood.algorithm.mathNet.Precision;
 

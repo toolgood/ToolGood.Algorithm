@@ -5,7 +5,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
-import java.util.function.Function;
+
 
 public class Function_BASE64URLTOTEXT extends Function_2 {
     public Function_BASE64URLTOTEXT(FunctionBase func1, FunctionBase func2) {

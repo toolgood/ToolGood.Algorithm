@@ -6,7 +6,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
 import java.util.HashSet;
-import java.util.function.Function;
+
 
 public class Function_NETWORKDAYS extends Function_N {
     public Function_NETWORKDAYS(FunctionBase[] funcs) {

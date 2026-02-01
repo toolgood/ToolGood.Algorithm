@@ -23,7 +23,7 @@ public class Function_RMB extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(F_base_ToChineseRMB(args1.getNumberValue()));
+        return Operand.Create(F_base_ToChineseRMB(args1.NumberValue()));
     }
 
 

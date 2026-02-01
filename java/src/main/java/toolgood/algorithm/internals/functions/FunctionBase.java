@@ -9,7 +9,7 @@ package toolgood.algorithm.internals.functions;
 
 import java.lang.StringBuilder;
 import java.util.function.BiFunction;
-import java.util.function.Function;
+
 import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;

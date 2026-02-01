@@ -7,7 +7,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
+
 
 public class Function_JOIN extends Function_N {
     public Function_JOIN(FunctionBase[] funcs) {

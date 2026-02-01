@@ -28,7 +28,7 @@ public class Function_SEARCH extends Function_3 {
         }
 
         if (func3 == null) {
-            int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + work.getExcelIndex();
+            int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + work.ExcelIndex;
             return Operand.Create(p);
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
@@ -42,7 +42,7 @@ public class Function_SEARCH extends Function_3 {
         if (startIndex >= args2.TextValue().length()) {
             return Operand.Create(0);
         }
-        int p2 = args2.TextValue().substring(startIndex).toLowerCase().indexOf(args1.TextValue().toLowerCase()) + startIndex + work.getExcelIndex();
+        int p2 = args2.TextValue().substring(startIndex).toLowerCase().indexOf(args1.TextValue().toLowerCase()) + startIndex + work.ExcelIndex;
         return Operand.Create(p2);
     }
 

@@ -26,7 +26,7 @@ public class Function_GetJsonValue extends Function_2 {
             if (op.IsError()) {
                 return op;
             }
-            int index = op.IntValue() - work.getExcelIndex();
+            int index = op.IntValue() - work.ExcelIndex;
             if (index < obj.ArrayValue().size()) {
                 return obj.ArrayValue().get(index);
             }
@@ -56,7 +56,7 @@ public class Function_GetJsonValue extends Function_2 {
                 if (op.IsError()) {
                     return op;
                 }
-                int index = op.IntValue() - work.getExcelIndex();
+                int index = op.IntValue() - work.ExcelIndex;
                 if (index < json.size()) {
                     JsonData v = json.get(index);
                     if (v.isString()) {

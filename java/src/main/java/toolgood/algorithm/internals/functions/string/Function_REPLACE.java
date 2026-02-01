@@ -63,7 +63,7 @@ public class Function_REPLACE extends Function_4 {
             }
         }
 
-        int start = args2.IntValue() - work.getExcelIndex();
+        int start = args2.IntValue() - work.ExcelIndex;
         int length = args3.IntValue();
         String newtext = args4.TextValue();
 

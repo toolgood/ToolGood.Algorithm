@@ -7,7 +7,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.function.Function;
+
 
 public class Function_MD5 extends Function_2 {
     public Function_MD5(FunctionBase func1, FunctionBase func2) {

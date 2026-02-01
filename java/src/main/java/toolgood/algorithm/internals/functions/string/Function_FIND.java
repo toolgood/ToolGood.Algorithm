@@ -27,7 +27,7 @@ public class Function_FIND extends Function_3 {
             }
         }
         if (func3 == null) {
-            int p = args2.TextValue().indexOf(args1.TextValue()) + work.getExcelIndex();
+            int p = args2.TextValue().indexOf(args1.TextValue()) + work.ExcelIndex;
             return Operand.Create(p);
         }
         Operand count = func3.Evaluate(work, tempParameter);
@@ -37,7 +37,7 @@ public class Function_FIND extends Function_3 {
                 return count;
             }
         }
-        int p2 = args2.TextValue().substring(count.IntValue()).indexOf(args1.TextValue()) + count.IntValue() + work.getExcelIndex();
+        int p2 = args2.TextValue().substring(count.IntValue()).indexOf(args1.TextValue()) + count.IntValue() + work.ExcelIndex;
         return Operand.Create(p2);
     }
 

@@ -1,6 +1,6 @@
 package toolgood.algorithm.internals.functions.string;
 
-import toolgood.algorithm.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_1;
@@ -23,7 +23,7 @@ public class Function_VALUE extends Function_1 {
         if (args1.IsBoolean()) {
             return args1.BooleanValue() ? Operand.ONE : Operand.ZERO;
         }
-        if (args1.isNotText()) {
+        if (args1.IsNotText()) {
             args1 = args1.ToText("Function '{0}' parameter is error!", "Value");
             if (args1.IsError()) {
                 return args1;
