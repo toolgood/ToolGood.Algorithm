@@ -3,9 +3,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FIXED extends Function_3 {
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let num = 2;
@@ -23,7 +23,7 @@ class Function_FIXED extends Function_3 {
             if (args1.IsError) { return args1; }
         }
 
-        // 四舍五入到指定小数位�?
+        // 四舍五入到指定小数位�?
         let s = Math.round(args1.NumberValue * Math.pow(10, num)) / Math.pow(10, num);
         let no = false;
         if (this.func3 !== null) {
@@ -37,7 +37,7 @@ class Function_FIXED extends Function_3 {
         if (no === false) {
             // 格式化数字，保留指定小数位数并添加千位分隔符
             let formatted = s.toFixed(num);
-            // 添加千位分隔�?
+            // 添加千位分隔�?
             let parts = formatted.split('.');
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             return Operand.Create(parts.join('.'));

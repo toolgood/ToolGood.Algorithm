@@ -4,9 +4,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_EDATE extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
@@ -22,12 +22,12 @@ class Function_EDATE extends Function_2 {
         // 获取开始日期的Date对象
         let startDate = args1.DateValue.ToDateTime();
         // 创建新的日期对象
-        let date = new Date(startDate.getFullYear(), startDate.getMonth(), 1); // 先设置为月份的第一�?
+        let date = new Date(startDate.getFullYear(), startDate.getMonth(), 1); // 先设置为月份的第一�?
         // 添加月份
         date.setMonth(date.getMonth() + args2.IntValue);
-        // 计算该月的天�?
+        // 计算该月的天�?
         let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-        // 调整日期：如果原日期是月份的最后一天，则新日期也设置为月份的最后一�?
+        // 调整日期：如果原日期是月份的最后一天，则新日期也设置为月份的最后一�?
         let day = Math.min(startDate.getDate(), daysInMonth);
         date.setDate(day);
         return Operand.Create(new MyDate(date));

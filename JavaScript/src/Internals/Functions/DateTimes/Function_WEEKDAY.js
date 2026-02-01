@@ -3,9 +3,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_WEEKDAY extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
@@ -24,16 +24,16 @@ class Function_WEEKDAY extends Function_2 {
             Type = args2.IntValue;
         }
 
-        let t = args1.DateValue.ToDateTime().getDay(); // JavaScript中，0表示星期日，6表示星期�?
+        let t = args1.DateValue.ToDateTime().getDay(); // JavaScript中，0表示星期日，6表示星期�?
         if (Type == 1) {
-            // 类型1：返�?-7�?表示星期日，7表示星期�?
+            // 类型1：返�?-7�?表示星期日，7表示星期�?
             return Operand.Create(t + 1);
         } else if (Type == 2) {
-            // 类型2：返�?-7�?表示星期一�?表示星期�?
+            // 类型2：返�?-7�?表示星期一�?表示星期�?
             if (t == 0) return Operand.Create(7);
             return Operand.Create(t);
         }
-        // 其他类型：返�?-6�?表示星期一�?表示星期�?
+        // 其他类型：返�?-6�?表示星期一�?表示星期�?
         if (t == 0) {
             return Operand.Create(6);
         }

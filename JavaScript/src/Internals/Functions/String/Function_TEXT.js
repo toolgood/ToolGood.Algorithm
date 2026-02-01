@@ -3,9 +3,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_TEXT extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
@@ -37,7 +37,7 @@ class Function_TEXT extends Function_2 {
                     const decimalPlaces = format.substring(decimalIndex + 1).length;
                     return Operand.Create(value.toFixed(decimalPlaces));
                 } else {
-                    // 没有小数部分，返回整�?
+                    // 没有小数部分，返回整�?
                     return Operand.Create(Math.round(value).toString());
                 }
             }
@@ -45,7 +45,7 @@ class Function_TEXT extends Function_2 {
             // 如果没有匹配的格式，使用默认的toString
             return Operand.Create(value.toString());
         } else if (args1.IsDate) {
-            // 同样，日期格式化可能需要更复杂的处�?
+            // 同样，日期格式化可能需要更复杂的处�?
             return Operand.Create(args1.DateValue.toString());
         }
         let args1Text = args1.ToText(StringCache.Function_parameter_error, 'Text', 1);

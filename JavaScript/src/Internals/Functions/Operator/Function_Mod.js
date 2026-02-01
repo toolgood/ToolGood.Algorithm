@@ -4,8 +4,8 @@ import { FunctionUtil } from '../FunctionUtil.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_Mod extends Function_2 {
-  constructor(func1, func2) {
-    super(func1, func2);
+  constructor(funcs) {
+    super(funcs);
   }
 
   Evaluate(engine, tempParameter) {

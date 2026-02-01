@@ -11,9 +11,9 @@ export class Function_REGEXREPALCE extends Function_3 {
      * @param {FunctionBase} func2
      * @param {FunctionBase} func3
      */
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
     
     /**
      * @param {AlgorithmEngine} engine

@@ -5,9 +5,9 @@ import { Operand } from '../../../Operand.js';
 
 
 class Function_TIME extends Function_3 {
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);

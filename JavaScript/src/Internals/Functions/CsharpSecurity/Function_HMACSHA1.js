@@ -11,9 +11,9 @@ export class Function_HMACSHA1 extends Function_2 {
      * @param {FunctionBase} func1
      * @param {FunctionBase} func2
      */
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     /**
      * @param {AlgorithmEngine} work

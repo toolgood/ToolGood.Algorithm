@@ -2,9 +2,9 @@ import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_ISNULL extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);

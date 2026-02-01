@@ -1,9 +1,9 @@
 import { Function_3 } from '../Function_3.js';
 
 class Function_IFERROR extends Function_3 {
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);

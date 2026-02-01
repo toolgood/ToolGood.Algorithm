@@ -4,9 +4,9 @@ import { FunctionUtil } from '../FunctionUtil.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_COUNTIF extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);

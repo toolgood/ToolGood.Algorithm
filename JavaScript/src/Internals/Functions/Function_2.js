@@ -4,14 +4,14 @@ import { FunctionBase } from './FunctionBase.js';
  * Represents the base class for functions with two parameters
  */
 export class Function_2 extends FunctionBase {
-    /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
-     */
-    constructor(func1, func2) {
+ 
+    constructor(funcs) {
         super();
-        this.func1 = func1;
-        this.func2 = func2;
+        this.func1 = funcs[0];
+        this.func2=null;
+        if (funcs.length > 1){
+            this.func2 = funcs[1];
+        }
     }
     Evaluate(work, tempParameter = null) {
         throw new Error('Not implemented');

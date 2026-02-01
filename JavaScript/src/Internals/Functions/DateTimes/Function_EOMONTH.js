@@ -4,9 +4,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_EOMONTH extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
@@ -21,7 +21,7 @@ class Function_EOMONTH extends Function_2 {
         }
         let dt = new Date(args1.DateValue.ToDateTime().getTime());
         dt.setMonth(dt.getMonth() + args2.IntValue + 1);
-        dt.setDate(0); // 设置为当月的最后一�?
+        dt.setDate(0); // 设置为当月的最后一�?
         return Operand.Create(new MyDate(dt));
     }
 }

@@ -3,9 +3,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FIND extends Function_3 {
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);

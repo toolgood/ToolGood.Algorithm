@@ -4,9 +4,9 @@ import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_BINOMDIST extends Function_4 {
-    constructor(func1, func2, func3, func4) {
-        super(func1, func2, func3, func4);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(work, tempParameter) {
         let args1 = this.func1.Evaluate(work, tempParameter);

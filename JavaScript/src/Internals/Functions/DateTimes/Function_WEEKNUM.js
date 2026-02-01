@@ -3,9 +3,9 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_WEEKNUM extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);
@@ -20,7 +20,7 @@ class Function_WEEKNUM extends Function_2 {
         let firstDayOfYear = new Date(startDate.getFullYear(), 0, 1);
         let firstDayWeekday = firstDayOfYear.getDay();
         
-        // 计算日期在当年的第几�?
+        // 计算日期在当年的第几�?
         let dayOfYear = Math.ceil((startDate - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
         
         let days = dayOfYear + firstDayWeekday;

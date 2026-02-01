@@ -5,9 +5,9 @@ import { SpecialFunctions } from '../../../MathNet/SpecialFunctions/SpecialFunct
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FINV extends Function_3 {
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.func1.Evaluate(engine, tempParameter);

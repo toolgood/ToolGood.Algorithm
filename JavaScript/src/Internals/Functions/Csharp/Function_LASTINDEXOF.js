@@ -12,9 +12,9 @@ export class Function_LASTINDEXOF extends Function_4 {
      * @param {FunctionBase} func3
      * @param {FunctionBase} func4
      */
-    constructor(func1, func2, func3, func4) {
-        super(func1, func2, func3, func4);
-    }
+    constructor(funcs) {
+    super(funcs);
+  }
     
     /**
      * @param {AlgorithmEngine} engine
