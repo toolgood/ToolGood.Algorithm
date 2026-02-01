@@ -12,7 +12,7 @@ class Brent {
      * @throws {Error} If no root is found within the given iterations.
      */
     static FindRoot(f, lowerBound, upperBound, accuracy = 1e-8, maxIterations = 100) {
-        const result = Brent.TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations);
+        let result = Brent.TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations);
         if (result.success) {
             return result.root;
         }
@@ -52,18 +52,18 @@ class Brent {
             }
 
             if (Math.abs(fmax) < Math.abs(froot)) {
-                const temp = lowerBound;
+                let temp = lowerBound;
                 lowerBound = root;
                 root = upperBound;
                 upperBound = temp;
-                const tempF = fmin;
+                let tempF = fmin;
                 fmin = froot;
                 froot = fmax;
                 fmax = tempF;
             }
 
             // convergence check
-            const xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root) + 0.5 * accuracy;
+            let xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root) + 0.5 * accuracy;
             let xMidOld = xMid;
             xMid = (upperBound - root) / 2;
 
@@ -87,14 +87,14 @@ class Brent {
 
             if (Math.abs(e) >= xAcc1 && Math.abs(fmin) > Math.abs(froot)) {
                 // Attempt inverse quadratic interpolation
-                const s = froot / fmin;
+                let s = froot / fmin;
                 let p, q;
                 if (Precision.AlmostEqualRelative(lowerBound, upperBound)) {
                     p = 2 * xMid * s;
                     q = 1 - s;
                 } else {
                     q = fmin / fmax;
-                    const r = froot / fmax;
+                    let r = froot / fmax;
                     p = s * (2 * xMid * q * (q - r) - (root - lowerBound) * (r - 1));
                     q = (q - 1) * (r - 1) * (s - 1);
                 }
@@ -104,7 +104,7 @@ class Brent {
                     q = -q;
                 }
 
-                const absP = Math.abs(p);
+                let absP = Math.abs(p);
                 if (2 * absP < Math.min(3 * xMid * Math.abs(q) - Math.abs(xAcc1 * q), Math.abs(e * q))) {
                     // Accept interpolation
                     e = d;

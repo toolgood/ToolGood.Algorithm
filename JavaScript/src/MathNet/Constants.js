@@ -1,7 +1,7 @@
 /**
  * 常量
  */
-const Constants = {
+let Constants = {
     // Mathematical Constants
 
     /**

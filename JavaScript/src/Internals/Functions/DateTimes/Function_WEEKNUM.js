@@ -3,12 +3,12 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_WEEKNUM extends Function_2 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "WeekNum", 1);
             if (args1.IsError) { return args1; }
@@ -24,8 +24,8 @@ class Function_WEEKNUM extends Function_2 {
         let dayOfYear = Math.ceil((startDate - firstDayOfYear) / (1000 * 60 * 60 * 24)) + 1;
         
         let days = dayOfYear + firstDayWeekday;
-        if (this.func2 !== null) {
-            let args2 = this.func2.Evaluate(engine, tempParameter);
+        if (this.b !== null) {
+            let args2 = this.b.Evaluate(engine, tempParameter);
             if (args2.IsNotNumber) {
                 args2 = args2.ToNumber(StringCache.Function_parameter_error, "WeekNum", 2);
                 if (args2.IsError) { return args2; }

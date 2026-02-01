@@ -4,12 +4,12 @@ import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_NORMSINV extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    constructor(a) {
+        super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             let converted1 = args1.ToNumber(StringCache.Function_parameter_error, "NormSInv");
             if (converted1.IsError) return converted1;

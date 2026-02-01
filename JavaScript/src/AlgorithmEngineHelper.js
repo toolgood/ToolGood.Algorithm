@@ -267,7 +267,7 @@ export class AlgorithmEngineHelper {
      * 是否与内置关键字相同
      */
     static IsKeywords(parameter) {
-        const lexerSet = this.GetLexerSet();
+        let lexerSet = this.GetLexerSet();
         return lexerSet.has(CharUtil.StandardString(parameter));
     }
 
@@ -278,21 +278,21 @@ export class AlgorithmEngineHelper {
         if (!exp || exp.trim() === '') {
             throw new Error("Parameter exp invalid !");
         }
-        const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream =new AntlrCharStream(exp);
-        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        let stream =new AntlrCharStream(exp);
+        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
-        const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let tokens = new CommonTokenStream(lexer);
+        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
 
-        const context = parser.prog();
+        let context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             throw new Error(antlrErrorTextWriter.ErrorMsg);
         }
-        const visitor = new DiyNameVisitor();
+        let visitor = new DiyNameVisitor();
         visitor.visit(context);
         return visitor.diy;
     }
@@ -309,19 +309,19 @@ export class AlgorithmEngineHelper {
         if (oldSrcUnit === oldTarUnit) { return src; }
 
         if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+            let c = new DistanceConverter(oldSrcUnit, oldTarUnit);
             return c.LeftToRight(src);
         }
         if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new MassConverter(oldSrcUnit, oldTarUnit);
+            let c = new MassConverter(oldSrcUnit, oldTarUnit);
             return c.LeftToRight(src);
         }
         if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new AreaConverter(oldSrcUnit, oldTarUnit);
+            let c = new AreaConverter(oldSrcUnit, oldTarUnit);
             return c.LeftToRight(src);
         }
         if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+            let c = new VolumeConverter(oldSrcUnit, oldTarUnit);
             return c.LeftToRight(src);
         }
         if (!name) {
@@ -337,26 +337,26 @@ export class AlgorithmEngineHelper {
         if (!exp || exp.trim() === '') {
             throw new Error("Parameter exp invalid !");
         }
-        const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream =new AntlrCharStream(exp);
-        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        let stream =new AntlrCharStream(exp);
+        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
-        const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let tokens = new CommonTokenStream(lexer);
+        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
         if (errorListener) {
             parser.addErrorListener(errorListener);
-            const context = parser.prog();
-            const visitor = new MathFunctionVisitor();
+            let context = parser.prog();
+            let visitor = new MathFunctionVisitor();
             return visitor.visit(context);
         }
-        const context = parser.prog();
+        let context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             throw new Error(antlrErrorTextWriter.ErrorMsg);
         }
-        const visitor = new MathFunctionVisitor();
+        let visitor = new MathFunctionVisitor();
         return visitor.visit(context);
     }
 
@@ -365,17 +365,17 @@ export class AlgorithmEngineHelper {
      */
     static CheckFormula(exp) {
         if (!exp || exp.trim() === '') { return false; }
-        const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream =new AntlrCharStream(exp);
-        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        let stream =new AntlrCharStream(exp);
+        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
-        const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let tokens = new CommonTokenStream(lexer);
+        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
 
-        const context = parser.prog();
+        let context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             return false;
         }
@@ -386,7 +386,7 @@ export class AlgorithmEngineHelper {
      * 解析条件
      */
     static ParseCondition(condition) {
-        const tree = {
+        let tree = {
             Type: null,
             ErrorMessage: null
         };
@@ -396,23 +396,23 @@ export class AlgorithmEngineHelper {
             return tree;
         }
         try {
-            const antlrErrorTextWriter = new AntlrErrorTextWriter();
-            const stream =new AntlrCharStream(condition);
-            const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+            let antlrErrorTextWriter = new AntlrErrorTextWriter();
+            let stream =new AntlrCharStream(condition);
+            let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
             lexer.addErrorListener(antlrErrorTextWriter);
-            const tokens = new CommonTokenStream(lexer);
-            const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+            let tokens = new CommonTokenStream(lexer);
+            let parser = new mathParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorTextWriter);
 
-            const context = parser.prog();
+            let context = parser.prog();
             if (antlrErrorTextWriter.IsError) {
                 tree.Type = ConditionTreeType.Error;
                 tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
                 return tree;
             }
-            const visitor = new MathSplitVisitor();
+            let visitor = new MathSplitVisitor();
             return visitor.visit(context);
         } catch (ex) {
             tree.Type = ConditionTreeType.Error;
@@ -439,7 +439,7 @@ export class AlgorithmEngineHelper {
      * 解析计算表达式
      */
     static ParseCalculate(exp) {
-        const tree = {
+        let tree = {
             Type: null,
             ErrorMessage: null
         };
@@ -449,23 +449,23 @@ export class AlgorithmEngineHelper {
             return tree;
         }
         try {
-            const antlrErrorTextWriter = new AntlrErrorTextWriter();
-            const stream =new AntlrCharStream(exp);
-            const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+            let antlrErrorTextWriter = new AntlrErrorTextWriter();
+            let stream =new AntlrCharStream(exp);
+            let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
             lexer.addErrorListener(antlrErrorTextWriter);
-            const tokens = new CommonTokenStream(lexer);
-            const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+            let tokens = new CommonTokenStream(lexer);
+            let parser = new mathParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorTextWriter);
 
-            const context = parser.prog();
+            let context = parser.prog();
             if (antlrErrorTextWriter.IsError) {
                 tree.Type = CalculateTreeType.Error;
                 tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
                 return tree;
             }
-            const visitor = new MathSplitVisitor2();
+            let visitor = new MathSplitVisitor2();
             return visitor.visit(context);
         } catch (ex) {
             tree.Type = CalculateTreeType.Error;

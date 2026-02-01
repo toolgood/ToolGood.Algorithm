@@ -1,7 +1,7 @@
 /**
  * Precision
  */
-const Precision = {
+let Precision = {
     /**
      * Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
      * According to the definition of Prof. Demmel and used in LAPACK and Scilab.
@@ -23,9 +23,9 @@ const Precision = {
      * Converts a double to a 64-bit integer representation
      */
     doubleToInt64Bits: function(value) {
-        const buffer = new ArrayBuffer(8);
-        const float64Array = new Float64Array(buffer);
-        const int64Array = new BigInt64Array(buffer);
+        let buffer = new ArrayBuffer(8);
+        let float64Array = new Float64Array(buffer);
+        let int64Array = new BigInt64Array(buffer);
         float64Array[0] = value;
         return int64Array[0];
     },
@@ -34,9 +34,9 @@ const Precision = {
      * Converts a 64-bit integer representation to a double
      */
     int64BitsToDouble: function(bits) {
-        const buffer = new ArrayBuffer(8);
-        const int64Array = new BigInt64Array(buffer);
-        const float64Array = new Float64Array(buffer);
+        let buffer = new ArrayBuffer(8);
+        let int64Array = new BigInt64Array(buffer);
+        let float64Array = new Float64Array(buffer);
         int64Array[0] = bits;
         return float64Array[0];
     },

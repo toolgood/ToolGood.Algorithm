@@ -8,10 +8,10 @@ import SHA256 from 'crypto-js/sha256.js';
  */
 export class Function_SHA256 extends Function_1 {
     /**
-     * @param {FunctionBase} func1
+     * @param {FunctionBase} a
      */
-    constructor(func1) {
-        super(func1);
+    constructor(a) {
+        super(a);
     }
 
     /**
@@ -19,16 +19,16 @@ export class Function_SHA256 extends Function_1 {
      * @param {Function} tempParameter
      */
     Evaluate(work, tempParameter = null) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            const errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "SHA256", 1);
+            let errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "SHA256", 1);
             if (errorArgs1.IsError) return errorArgs1;
             return errorArgs1;
         }
 
         try {
-            const md5Hash = SHA256(args1.TextValue);
-            const result = md5Hash.toString().toUpperCase();
+            let md5Hash = SHA256(args1.TextValue);
+            let result = md5Hash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
             return Operand.Error(StringCache.Function_error, "SHA256");

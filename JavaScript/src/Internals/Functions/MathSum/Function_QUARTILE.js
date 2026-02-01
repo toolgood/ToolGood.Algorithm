@@ -5,18 +5,18 @@ import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_QUARTILE extends Function_2 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotArray) {
             let converted1 = args1.ToArray(StringCache.Function_parameter_error, "Quartile", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             let converted2 = args2.ToNumber(StringCache.Function_parameter_error, "Quartile", 2);
             if (converted2.IsError) return converted2;

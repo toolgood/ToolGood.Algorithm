@@ -2,9 +2,9 @@ import { Constants } from '../Constants.js';
 import { Precision } from '../Precision.js';
 
 // Gamma function coefficients
-const GammaN = 10;
-const GammaR = 10.900511;
-const GammaDk = [
+let GammaN = 10;
+let GammaR = 10.900511;
+let GammaDk = [
     2.48574089138753565546e-5,
     1.05142378581721974210,
     -3.45687097222016235469,
@@ -56,15 +56,15 @@ class Beta {
      * @returns {number}
      */
     static BetaRegularized(a, b, x) {
-        const bt = (x === 0 || x === 1)
+        let bt = (x === 0 || x === 1)
             ? 0
             : Math.exp(Beta.GammaLn(a + b) - Beta.GammaLn(a) - Beta.GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1 - x)));
 
-        const symmetryTransformation = x >= (a + 1) / (a + b + 2);
+        let symmetryTransformation = x >= (a + 1) / (a + b + 2);
 
         /* Continued fraction representation */
-        const eps = Precision.DoublePrecision;
-        const fpmin = 1e-300; // Approximation of 0.0.Increment() / eps
+        let eps = Precision.DoublePrecision;
+        let fpmin = 1e-300; // Approximation of 0.0.Increment() / eps
 
         let transformedX = x;
         let transformedA = a;
@@ -72,14 +72,14 @@ class Beta {
 
         if (symmetryTransformation) {
             transformedX = 1 - x;
-            const swap = transformedA;
+            let swap = transformedA;
             transformedA = transformedB;
             transformedB = swap;
         }
 
-        const qab = transformedA + transformedB;
-        const qap = transformedA + 1;
-        const qam = transformedA - 1;
+        let qab = transformedA + transformedB;
+        let qap = transformedA + 1;
+        let qam = transformedA - 1;
         let c = 1;
         let d = 1 - (qab * transformedX / qap);
 
@@ -91,7 +91,7 @@ class Beta {
         let h = d;
 
         for (let m = 1, m2 = 2; m <= 140; m++, m2 += 2) {
-            const aa = m * (transformedB - m) * transformedX / ((qam + m2) * (transformedA + m2));
+            let aa = m * (transformedB - m) * transformedX / ((qam + m2) * (transformedA + m2));
             d = 1 + (aa * d);
 
             if (Math.abs(d) < fpmin) {
@@ -105,7 +105,7 @@ class Beta {
 
             d = 1 / d;
             h *= d * c;
-            const aa2 = -(transformedA + m) * (qab + m) * transformedX / ((transformedA + m2) * (qap + m2));
+            let aa2 = -(transformedA + m) * (qab + m) * transformedX / ((transformedA + m2) * (qap + m2));
             d = 1 + (aa2 * d);
 
             if (Math.abs(d) < fpmin) {
@@ -119,7 +119,7 @@ class Beta {
             }
 
             d = 1 / d;
-            const del = d * c;
+            let del = d * c;
             h *= del;
 
             if (Math.abs(del - 1) <= eps) {

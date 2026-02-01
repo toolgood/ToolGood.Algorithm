@@ -173,7 +173,7 @@ class SpecialFunctions {
                 b = 0.5641584396;
             }
 
-            const g = Math.exp(-z * z) / z;
+            let g = Math.exp(-z * z) / z;
             result = (g * b) + (g * r);
         } else {
             // Any value of z larger than 28 will underflow to zero:
@@ -269,9 +269,9 @@ class SpecialFunctions {
             // double: Max error found: 2.001849e-18
             // long double: Max error found: 1.017064e-20
             // Maximum Deviation Found (actual error term at infinite precision) 8.030e-21
-            const y = 0.0891314744949340820313;
-            const g = p * (p + 10);
-            const r = Evaluate.Polynomial(p, SpecialFunctions.ErvInvImpAn) / Evaluate.Polynomial(p, SpecialFunctions.ErvInvImpAd);
+            let y = 0.0891314744949340820313;
+            let g = p * (p + 10);
+            let r = Evaluate.Polynomial(p, SpecialFunctions.ErvInvImpAn) / Evaluate.Polynomial(p, SpecialFunctions.ErvInvImpAd);
             result = (g * y) + (g * r);
         } else if (q >= 0.25) {
             // Rational approximation for 0.5 > q >= 0.25
@@ -284,10 +284,10 @@ class SpecialFunctions {
             // double : Max error found: 7.403372e-17
             // long double : Max error found: 6.084616e-20
             // Maximum Deviation Found (error term) 4.811e-20
-            const y = 2.249481201171875;
-            const g = Math.sqrt(-2 * Math.log(q));
-            const xs = q - 0.25;
-            const r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpBn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpBd);
+            let y = 2.249481201171875;
+            let g = Math.sqrt(-2 * Math.log(q));
+            let xs = q - 0.25;
+            let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpBn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpBd);
             result = g / (y + r);
         } else {
             // For q < 0.25 we have a series of rational approximations all
@@ -307,36 +307,36 @@ class SpecialFunctions {
             // or maybe second approximation.  After than we're dealing with very
             // small input values indeed: 80 and 128 bit long double's go all the
             // way down to ~ 1e-5000 so the "tail" is rather long...
-            const x = Math.sqrt(-Math.log(q));
+            let x = Math.sqrt(-Math.log(q));
             if (x < 3) {
                 // Max error found: 1.089051e-20
-                const y = 0.807220458984375;
-                const xs = x - 1.125;
-                const r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpCn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpCd);
+                let y = 0.807220458984375;
+                let xs = x - 1.125;
+                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpCn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpCd);
                 result = (y * x) + (r * x);
             } else if (x < 6) {
                 // Max error found: 8.389174e-21
-                const y = 0.93995571136474609375;
-                const xs = x - 3;
-                const r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpDn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpDd);
+                let y = 0.93995571136474609375;
+                let xs = x - 3;
+                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpDn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpDd);
                 result = (y * x) + (r * x);
             } else if (x < 18) {
                 // Max error found: 1.481312e-19
-                const y = 0.98362827301025390625;
-                const xs = x - 6;
-                const r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpEn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpEd);
+                let y = 0.98362827301025390625;
+                let xs = x - 6;
+                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpEn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpEd);
                 result = (y * x) + (r * x);
             } else if (x < 44) {
                 // Max error found: 5.697761e-20
-                const y = 0.99714565277099609375;
-                const xs = x - 18;
-                const r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpFn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpFd);
+                let y = 0.99714565277099609375;
+                let xs = x - 18;
+                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpFn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpFd);
                 result = (y * x) + (r * x);
             } else {
                 // Max error found: 1.279746e-20
-                const y = 0.99941349029541015625;
-                const xs = x - 44;
-                const r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpGn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpGd);
+                let y = 0.99941349029541015625;
+                let xs = x - 44;
+                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpGn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpGd);
                 result = (y * x) + (r * x);
             }
         }

@@ -26,7 +26,7 @@ class Evaluate {
      */
     static Series(nextSummand) {
         let compensation = 0;
-        const factor = 1 << 16;
+        let factor = 1 << 16;
 
         let sum = nextSummand();
         let current;
@@ -34,8 +34,8 @@ class Evaluate {
         do {
             // Kahan Summation
             current = nextSummand();
-            const y = current - compensation;
-            const t = sum + y;
+            let y = current - compensation;
+            let t = sum + y;
             compensation = t - sum;
             compensation -= y;
             sum = t;

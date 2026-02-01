@@ -1,4 +1,4 @@
-const ParserToken = {
+let ParserToken = {
     // Lexer tokens (see section A.1.1. of the manual)
     None: 65536, // System.Char.MaxValue + 1
 
@@ -32,7 +32,7 @@ const ParserToken = {
 };
 
 // Create JsonToken for compatibility with JsonMapper
-const JsonToken = {
+let JsonToken = {
     ArrayEnd: ']',
     ArrayStart: '[',
     Boolean: 'boolean',

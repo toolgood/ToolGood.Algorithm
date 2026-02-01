@@ -8,11 +8,11 @@ import HMACMD5 from 'crypto-js/hmac-md5.js';
  */
 export class Function_HMACMD5 extends Function_2 {
     /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
+     * @param {FunctionBase} a
+     * @param {FunctionBase} b
      */
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     /**
@@ -20,23 +20,23 @@ export class Function_HMACMD5 extends Function_2 {
      * @param {Function} tempParameter
      */
     Evaluate(work, tempParameter = null) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
-            const errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "HMACMD5", 1);
+            let errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "HMACMD5", 1);
             if (errorArgs1.IsError) return errorArgs1;
             return errorArgs1;
         }
 
-        const args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.b.Evaluate(work, tempParameter);
         if (args2.IsNotText) {
-            const errorArgs2 = args2.ToText(StringCache.Function_parameter_error, "HMACMD5", 2);
+            let errorArgs2 = args2.ToText(StringCache.Function_parameter_error, "HMACMD5", 2);
             if (errorArgs2.IsError) return errorArgs2;
             return errorArgs2;
         }
 
         try {
-            const hmacHash = HMACMD5(args1.TextValue,args2.TextValue || '');
-            const result = hmacHash.toString().toUpperCase();
+            let hmacHash = HMACMD5(args1.TextValue,args2.TextValue || '');
+            let result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
             return Operand.Error(StringCache.Function_error, "HMACMD5");

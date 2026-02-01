@@ -87,7 +87,7 @@ class Lexer {
 
     NextChar() {
         if (this.input_buffer !== 0) {
-            const tmp = this.input_buffer;
+            let tmp = this.input_buffer;
             this.input_buffer = 0;
             return tmp;
         }
@@ -568,7 +568,7 @@ Lexer.State22 = function(ctx) {
     ctx.L.unichar = 0;
 
     while (ctx.L.GetChar()) {
-        const c = String.fromCharCode(ctx.L.input_char);
+        let c = String.fromCharCode(ctx.L.input_char);
         if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')) {
             ctx.L.unichar += Lexer.HexValue(c) * mult;
             counter++;

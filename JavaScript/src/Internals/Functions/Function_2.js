@@ -5,12 +5,12 @@ import { FunctionBase } from './FunctionBase.js';
  */
 export class Function_2 extends FunctionBase {
  
-    constructor(funcs) {
+    constructor(z) {
         super();
-        this.func1 = funcs[0];
-        this.func2=null;
-        if (funcs.length > 1){
-            this.func2 = funcs[1];
+        this.a = z[0];
+        this.b=null;
+        if (z.length > 1){
+            this.b = z[1];
         }
     }
     Evaluate(work, tempParameter = null) {

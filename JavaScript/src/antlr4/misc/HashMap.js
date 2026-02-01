@@ -5,8 +5,8 @@
 import standardEqualsFunction from "../utils/standardEqualsFunction.js";
 import standardHashCodeFunction from "../utils/standardHashCodeFunction.js";
 
-const DEFAULT_LOAD_FACTOR = 0.75;
-const INITIAL_CAPACITY = 16
+let DEFAULT_LOAD_FACTOR = 0.75;
+let INITIAL_CAPACITY = 16
 
 export default class HashMap {
 
@@ -20,7 +20,7 @@ export default class HashMap {
 
     set(key, value) {
         this._expand();
-        const slot = this._getSlot(key);
+        let slot = this._getSlot(key);
         let bucket = this.buckets[slot];
         if (!bucket) {
             bucket = [[key, value]];
@@ -28,9 +28,9 @@ export default class HashMap {
             this.itemCount++;
             return value;
         }
-        const existing = bucket.find(pair => this.equalsFunction(pair[0], key), this);
+        let existing = bucket.find(pair => this.equalsFunction(pair[0], key), this);
         if(existing) {
-            const result = existing[1];
+            let result = existing[1];
             existing[1] = value;
             return result;
         } else {
@@ -41,20 +41,20 @@ export default class HashMap {
     }
 
     containsKey(key) {
-        const bucket = this._getBucket(key);
+        let bucket = this._getBucket(key);
         if(!bucket) {
             return false;
         }
-        const existing = bucket.find(pair => this.equalsFunction(pair[0], key), this);
+        let existing = bucket.find(pair => this.equalsFunction(pair[0], key), this);
         return !!existing;
     }
 
     get(key) {
-        const bucket = this._getBucket(key);
+        let bucket = this._getBucket(key);
         if(!bucket) {
             return null;
         }
-        const existing = bucket.find(pair => this.equalsFunction(pair[0], key), this);
+        let existing = bucket.find(pair => this.equalsFunction(pair[0], key), this);
         return existing ? existing[1] : null;
     }
 
@@ -71,7 +71,7 @@ export default class HashMap {
     }
 
     toString() {
-        const ss = this.entries().map(e => '{' + e[0] + ':' + e[1] + '}');
+        let ss = this.entries().map(e => '{' + e[0] + ':' + e[1] + '}');
         return '[' + ss.join(", ") + ']';
     }
 
@@ -80,7 +80,7 @@ export default class HashMap {
     }
 
     _getSlot(key) {
-        const hash = this.hashFunction(key);
+        let hash = this.hashFunction(key);
         return hash & this.buckets.length - 1;
     }
     _getBucket(key) {
@@ -91,16 +91,16 @@ export default class HashMap {
         if (this.itemCount <= this.threshold) {
             return;
         }
-        const old_buckets = this.buckets;
-        const newCapacity = this.buckets.length * 2;
+        let old_buckets = this.buckets;
+        let newCapacity = this.buckets.length * 2;
         this.buckets = new Array(newCapacity);
         this.threshold = Math.floor(newCapacity * DEFAULT_LOAD_FACTOR);
-        for (const bucket of old_buckets) {
+        for (let bucket of old_buckets) {
             if (!bucket) {
                 continue;
             }
-            for (const pair of bucket) {
-                const slot = this._getSlot(pair[0]);
+            for (let pair of bucket) {
+                let slot = this._getSlot(pair[0]);
                 let newBucket = this.buckets[slot];
                 if (!newBucket) {
                     newBucket = [];

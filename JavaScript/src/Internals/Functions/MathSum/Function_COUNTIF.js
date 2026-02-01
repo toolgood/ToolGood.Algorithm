@@ -4,19 +4,19 @@ import { FunctionUtil } from '../FunctionUtil.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_COUNTIF extends Function_2 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsNotArray) {
             args1 = args1.ToArray(StringCache.Function_parameter_error, 'CountIf', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        let args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.b.Evaluate(work, tempParameter);
         if (args2.IsError) {
             return args2;
         }

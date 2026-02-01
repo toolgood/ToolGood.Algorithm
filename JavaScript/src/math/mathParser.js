@@ -1,6 +1,6 @@
 
 import antlr4 from '../antlr4/index.web.js';
-const serializedATN = [4,1,256,2527,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,
+let serializedATN = [4,1,256,2527,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,
 7,4,2,5,7,5,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 5,1,28,8,1,10,1,12,1,31,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,42,8,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,
@@ -882,9 +882,9 @@ const serializedATN = [4,1,256,2527,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,
 1926,1968,1971,1988,1997,2033,2049,2064,2077,2113,2126,2133,2140,2147,2154,
 2161,2279,2287,2299,2301,2314,2316,2336,2348,2359,2370,2391,2402,2420,2423,
 2473,2504,2506,2510,2519];
-const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
-const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DFA(ds, index) );
-const sharedContextCache = new antlr4.atn.PredictionContextCache();
+let atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
+let decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DFA(ds, index) );
+let sharedContextCache = new antlr4.atn.PredictionContextCache();
 export default class mathParser extends antlr4.Parser {
     static grammarFileName = "";
     static literalNames =[];
@@ -923,10 +923,10 @@ export default class mathParser extends antlr4.Parser {
 		if(_p===undefined) {
 		    _p = 0;
 		}
-	    const _parentctx = this._ctx;
-	    const _parentState = this.state;
+	    let _parentctx = this._ctx;
+	    let _parentState = this.state;
 	    let localctx = new ExprContext(this, this._ctx, _parentState);
-	    const _startState = 2;
+	    let _startState = 2;
 	    this.enterRecursionRule(localctx, 2, 1, _p);
 	    var _la = 0;
 	    try {

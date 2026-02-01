@@ -4,14 +4,14 @@ import { FunctionUtil } from '../FunctionUtil.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SUMSQ extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    constructor(z) {
+        super(z);
     }
 
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let i = 0; i < this.funcs.length; i++) {
-            let aa = this.funcs[i].Evaluate(engine, tempParameter);
+        for (let i = 0; i < this.z.length; i++) {
+            let aa = this.z[i].Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }

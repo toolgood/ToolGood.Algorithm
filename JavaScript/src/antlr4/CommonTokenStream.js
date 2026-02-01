@@ -85,7 +85,7 @@ export default class CommonTokenStream extends BufferedTokenStream {
         let n = 0;
         this.fill();
         for (let i =0; i< this.tokens.length;i++) {
-            const t = this.tokens[i];
+            let t = this.tokens[i];
             if( t.channel===this.channel) {
                 n += 1;
             }

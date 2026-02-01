@@ -36,7 +36,7 @@ export default class DFA {
 		{
 			if (atnStartState.isPrecedenceDecision) {
 				this.precedenceDfa = true;
-				const precedenceState = new DFAState(null, new ATNConfigSet());
+				let precedenceState = new DFAState(null, new ATNConfigSet());
 				precedenceState.edges = [];
 				precedenceState.isAcceptState = false;
 				precedenceState.requiresFullContext = false;
@@ -113,7 +113,7 @@ export default class DFA {
 		if (this.precedenceDfa!==precedenceDfa) {
 			this._states = new HashSet();
 			if (precedenceDfa) {
-				const precedenceState = new DFAState(null, new ATNConfigSet());
+				let precedenceState = new DFAState(null, new ATNConfigSet());
 				precedenceState.edges = [];
 				precedenceState.isAcceptState = false;
 				precedenceState.requiresFullContext = false;
@@ -129,7 +129,7 @@ export default class DFA {
 	 * Return a list of all states in this DFA, ordered by state number.
 	 */
 	sortedStates() {
-		const list = this._states.values();
+		let list = this._states.values();
 		return list.sort(function(a, b) {
 			return a.stateNumber - b.stateNumber;
 		});
@@ -141,7 +141,7 @@ export default class DFA {
 		if (this.s0 === null) {
 			return "";
 		}
-		const serializer = new DFASerializer(this, literalNames, symbolicNames);
+		let serializer = new DFASerializer(this, literalNames, symbolicNames);
 		return serializer.toString();
 	}
 
@@ -149,7 +149,7 @@ export default class DFA {
 		if (this.s0 === null) {
 			return "";
 		}
-		const serializer = new LexerDFASerializer(this);
+		let serializer = new LexerDFASerializer(this);
 		return serializer.toString();
 	}
 

@@ -4,12 +4,12 @@ import { JsonMapper } from '../../../LitJson/JsonMapper.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_JSON extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    constructor(a) {
+        super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return args1;
         }

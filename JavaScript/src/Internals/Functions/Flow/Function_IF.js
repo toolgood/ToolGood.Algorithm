@@ -3,23 +3,23 @@ import { StringCache } from '../../../Internals/StringCache.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_IF extends Function_3 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotBoolean) {
             args1 = args1.ToBoolean(StringCache.Function_parameter_error, "If", 1);
             if (args1.IsError) { return args1; }
         }
         if (args1.BooleanValue) {
-            return this.func2.Evaluate(engine, tempParameter);
+            return this.b.Evaluate(engine, tempParameter);
         }
-        if (this.func3 === null) {
+        if (this.c === null) {
             return Operand.Create(false);
         }
-        return this.func3.Evaluate(engine, tempParameter);
+        return this.c.Evaluate(engine, tempParameter);
     }
 }
 

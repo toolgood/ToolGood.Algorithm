@@ -8,13 +8,13 @@ import HashCode from "../misc/HashCode.js";
 
 function checkParams(params, isCfg) {
 	if(params===null) {
-		const result = { state:null, alt:null, context:null, semanticContext:null };
+		let result = { state:null, alt:null, context:null, semanticContext:null };
 		if(isCfg) {
 			result.reachesIntoOuterContext = 0;
 		}
 		return result;
 	} else {
-		const props = {};
+		let props = {};
 		props.state = params.state || null;
 		props.alt = (params.alt === undefined) ? null : params.alt;
 		props.context = params.context || null;
@@ -75,7 +75,7 @@ export default class ATNConfig {
     }
 
     hashCode() {
-        const hash = new HashCode();
+        let hash = new HashCode();
         this.updateHashCode(hash);
         return hash.finish();
     }
@@ -104,7 +104,7 @@ export default class ATNConfig {
     }
 
     hashCodeForConfigSet() {
-        const hash = new HashCode();
+        let hash = new HashCode();
         hash.update(this.state.stateNumber, this.alt, this.semanticContext);
         return hash.finish();
     }

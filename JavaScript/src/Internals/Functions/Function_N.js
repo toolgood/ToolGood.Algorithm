@@ -5,11 +5,11 @@ import { FunctionBase } from './FunctionBase.js';
  */
 export class Function_N extends FunctionBase {
     /**
-     * @param {FunctionBase[]} funcs
+     * @param {FunctionBase[]} z
      */
-    constructor(funcs) {
+    constructor(z) {
         super();
-        this.funcs = funcs;
+        this.z = z;
     }
     Evaluate(work, tempParameter = null) {
         throw new Error('Not implemented');

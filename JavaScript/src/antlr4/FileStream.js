@@ -5,7 +5,7 @@
 
 import InputStream from './InputStream.js';
 import CharStream from './CharStream.js';
-const isNode =
+let isNode =
 	typeof process !== "undefined" &&
 	process.versions != null &&
 	process.versions.node != null;
@@ -33,7 +33,7 @@ export default class FileStream extends InputStream {
 	constructor(fileName, encoding, decodeToUnicodeCodePoints) {
 		if(!isNode)
 			throw new Error("FileStream is only available when running in Node!");
-		const data = fs.readFileSync(fileName, encoding || "utf-8" );
+		let data = fs.readFileSync(fileName, encoding || "utf-8" );
 		super(data, decodeToUnicodeCodePoints);
 		this.fileName = fileName;
 	}

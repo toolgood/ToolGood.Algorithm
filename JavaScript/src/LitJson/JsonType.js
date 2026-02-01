@@ -1,4 +1,4 @@
-const JsonType = {
+let JsonType = {
     None: 0,
     Object: 1,
     Array: 2,

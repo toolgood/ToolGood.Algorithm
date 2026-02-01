@@ -3,12 +3,12 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_RMB extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    constructor(a) {
+        super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_1_error, 'RMB');
             if (args1.IsError) {
@@ -21,10 +21,10 @@ class Function_RMB extends Function_1 {
     F_base_ToChineseRMB(x) {
         if (x === 0) return "零元";
         
-        const digits = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
-        const units = ["", "拾", "佰", "仟"];
-        const bigUnits = ["", "万", "亿", "兆"];
-        const decimalUnits = ["角", "分"];
+        let digits = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+        let units = ["", "拾", "佰", "仟"];
+        let bigUnits = ["", "万", "亿", "兆"];
+        let decimalUnits = ["角", "分"];
         
         let result = "";
         let integerPart = Math.floor(x);
@@ -43,14 +43,14 @@ class Function_RMB extends Function_1 {
             let bigUnitIndex = 0;
             
             while (integerPart > 0) {
-                const section = integerPart % 10000;
+                let section = integerPart % 10000;
                 if (section > 0) {
                     let sectionStr = "";
                     let tempSection = section;
                     let sectionUnitIndex = 0;
                     
                     while (tempSection > 0) {
-                        const digit = tempSection % 10;
+                        let digit = tempSection % 10;
                         if (digit > 0) {
                             sectionStr = digits[digit] + units[sectionUnitIndex] + sectionStr;
                         } else {
@@ -77,8 +77,8 @@ class Function_RMB extends Function_1 {
         if (decimalPart === 0) {
             result += "整";
         } else {
-            const jiao = Math.floor(decimalPart / 10);
-            const fen = decimalPart % 10;
+            let jiao = Math.floor(decimalPart / 10);
+            let fen = decimalPart % 10;
             
             if (jiao > 0) {
                 result += digits[jiao] + decimalUnits[0];

@@ -37,22 +37,22 @@ class AlgorithmEngine {
       this.LastError = 'Parameter exp invalid !';
       throw new Error(this.LastError);
     }
-    const antlrErrorTextWriter = new AntlrErrorTextWriter();
-    const stream =new AntlrCharStream(exp);
-    const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+    let antlrErrorTextWriter = new AntlrErrorTextWriter();
+    let stream =new AntlrCharStream(exp);
+    let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
     lexer.removeErrorListeners();
     lexer.addErrorListener(antlrErrorTextWriter);
-    const tokens = new CommonTokenStream(lexer);
-    const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+    let tokens = new CommonTokenStream(lexer);
+    let parser = new mathParser(tokens, null, antlrErrorTextWriter);
     parser.removeErrorListeners();
     parser.addErrorListener(antlrErrorTextWriter);
 
-    const context = parser.prog();
+    let context = parser.prog();
     if (antlrErrorTextWriter.IsError) {
       this.LastError = antlrErrorTextWriter.ErrorMsg;
       throw new Error(this.LastError);
     }
-    const visitor = new MathFunctionVisitor();
+    let visitor = new MathFunctionVisitor();
     return visitor.visit(context);
   }
 
@@ -62,10 +62,10 @@ class AlgorithmEngine {
 
   TryEvaluate_Int(exp, def) {
     try {
-      const functionObj = this.Parse(exp);
+      let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
       if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
+        let converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
@@ -81,10 +81,10 @@ class AlgorithmEngine {
 
   TryEvaluate_Double(exp, def) {
     try {
-      const functionObj = this.Parse(exp);
+      let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
       if (obj.IsNotNumber) {
-        const converted = obj.ToNumber("It can't be converted to number!");
+        let converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
@@ -100,10 +100,10 @@ class AlgorithmEngine {
 
   TryEvaluate_String(exp, def) {
     try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
+      let functionObj = this.Parse(exp);
+      let obj = functionObj.Evaluate(this);
       if (obj.IsNotText) {
-        const converted = obj.ToText("It can't be converted to string!");
+        let converted = obj.ToText("It can't be converted to string!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
@@ -119,10 +119,10 @@ class AlgorithmEngine {
 
   TryEvaluate_Boolean(exp, def) {
     try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
+      let functionObj = this.Parse(exp);
+      let obj = functionObj.Evaluate(this);
       if (obj.IsNotBoolean) {
-        const converted = obj.ToBoolean("It can't be converted to bool!");
+        let converted = obj.ToBoolean("It can't be converted to bool!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
@@ -137,10 +137,10 @@ class AlgorithmEngine {
 
   TryEvaluate_DateTime(exp, def) {
     try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
+      let functionObj = this.Parse(exp);
+      let obj = functionObj.Evaluate(this);
       if (obj.IsNotDate) {
-        const converted = obj.ToMyDate("It can't be converted to DateTime!");
+        let converted = obj.ToMyDate("It can't be converted to DateTime!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;
@@ -158,10 +158,10 @@ class AlgorithmEngine {
 
   TryEvaluate_TimeSpan(exp, def) {
     try {
-      const functionObj = this.Parse(exp);
-      const obj = functionObj.Evaluate(this);
+      let functionObj = this.Parse(exp);
+      let obj = functionObj.Evaluate(this);
       if (obj.IsNotDate) {
-        const converted = obj.ToMyDate("It can't be converted to DateTime!");
+        let converted = obj.ToMyDate("It can't be converted to DateTime!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
           return def;

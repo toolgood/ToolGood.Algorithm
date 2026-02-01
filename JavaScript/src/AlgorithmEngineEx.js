@@ -18,11 +18,11 @@ export class AlgorithmEngineEx extends AlgorithmEngine {
      * 自定义参数 请重写此方法
      */
     GetParameter(parameter) {
-        const key = this.IgnoreCase ? parameter.toLowerCase() : parameter;
+        let key = this.IgnoreCase ? parameter.toLowerCase() : parameter;
         if (this._tempdict[key] !== undefined) {
             return this._tempdict[key];
         }
-        const result = super.GetParameter ? super.GetParameter(parameter) : Operand.CreateNull();
+        let result = super.GetParameter ? super.GetParameter(parameter) : Operand.CreateNull();
         if (this.UseTempDict) {
             this._tempdict[key] = result;
         }
@@ -41,7 +41,7 @@ export class AlgorithmEngineEx extends AlgorithmEngine {
      * 添加自定义参数
      */
     AddParameter(key, obj) {
-        const paramKey = this.IgnoreCase ? key.toLowerCase() : key;
+        let paramKey = this.IgnoreCase ? key.toLowerCase() : key;
         if (obj instanceof Operand) {
             this._tempdict[paramKey] = obj;
         } else {
@@ -54,13 +54,13 @@ export class AlgorithmEngineEx extends AlgorithmEngine {
      */
     AddParameterFromJson(json) {
         if (json.startsWith('{') && json.endsWith('}')) {
-            const jo = JsonMapper.ToObject(json);
+            let jo = JsonMapper.ToObject(json);
             if (jo.IsObject) {
-                const obj = jo.EnsureDictionary();
-                for (const key in obj) {
+                let obj = jo.EnsureDictionary();
+                for (let key in obj) {
                     if (obj.hasOwnProperty(key)) {
-                        const v = obj[key];
-                        const paramKey = this.IgnoreCase ? key.toLowerCase() : key;
+                        let v = obj[key];
+                        let paramKey = this.IgnoreCase ? key.toLowerCase() : key;
                         if (v.IsString) {
                             this._tempdict[paramKey] = Operand.Create(v.StringValue);
                         } else if (v.IsBoolean) {

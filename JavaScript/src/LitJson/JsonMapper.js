@@ -8,7 +8,7 @@ class JsonMapper {
 
         if (reader.Token === JsonToken.ArrayEnd) return null;
 
-        const instance = new JsonData();
+        let instance = new JsonData();
 
         if (reader.Token === JsonToken.String) {
             instance.SetString(reader.Value);
@@ -33,7 +33,7 @@ class JsonMapper {
             instance.SetJsonType(JsonType.Array);
 
             while (true) {
-                const item = JsonMapper.ReadValue(reader);
+                let item = JsonMapper.ReadValue(reader);
                 if (item === null && reader.Token === JsonToken.ArrayEnd) break;
                 instance.Add(item);
             }
@@ -45,7 +45,7 @@ class JsonMapper {
 
                 if (reader.Token === JsonToken.ObjectEnd) break;
 
-                const property = reader.Value;
+                let property = reader.Value;
                 instance.Set(property, JsonMapper.ReadValue(reader));
             }
         }
@@ -54,7 +54,7 @@ class JsonMapper {
     }
 
     static ToObject(json) {
-        const reader = new JsonReader(json);
+        let reader = new JsonReader(json);
         return JsonMapper.ReadValue(reader);
     }
 }

@@ -18,7 +18,7 @@ import HashMap from "../misc/HashMap.js";
  * utility methods for analyzing configuration sets for conflicts and/or
  * ambiguities.
  */
-const PredictionMode = {
+let PredictionMode = {
     /**
      * The SLL(*) prediction mode. This prediction mode ignores the current
      * parser context when making predictions. This is the fastest prediction
@@ -191,7 +191,7 @@ const PredictionMode = {
             // since we'll often fail over anyway.
             if (configs.hasSemanticContext) {
                 // dup configs, tossing out semantic predicates
-                const dup = new ATNConfigSet();
+                let dup = new ATNConfigSet();
                 for(let i=0;i<configs.items.length;i++) {
                     let c = configs.items[i];
                     c = new ATNConfig({semanticContext:SemanticContext.NONE}, c);
@@ -202,7 +202,7 @@ const PredictionMode = {
             // now we have combined contexts for configs with dissimilar preds
         }
         // pure SLL or combined SLL+LL mode parsing
-        const altsets = PredictionMode.getConflictingAltSubsets(configs);
+        let altsets = PredictionMode.getConflictingAltSubsets(configs);
         return PredictionMode.hasConflictingAltSet(altsets) && !PredictionMode.hasStateAssociatedWithOneAlt(configs);
     },
 
@@ -218,7 +218,7 @@ const PredictionMode = {
      */
     hasConfigInRuleStopState: function(configs) {
         for(let i=0;i<configs.items.length;i++) {
-            const c = configs.items[i];
+            let c = configs.items[i];
             if (c.state instanceof RuleStopState) {
                 return true;
             }
@@ -238,7 +238,7 @@ const PredictionMode = {
      */
     allConfigsInRuleStopStates: function(configs) {
         for(let i=0;i<configs.items.length;i++) {
-            const c = configs.items[i];
+            let c = configs.items[i];
             if (!(c.state instanceof RuleStopState)) {
                 return false;
             }
@@ -413,7 +413,7 @@ const PredictionMode = {
      */
     hasNonConflictingAltSet: function(altsets) {
         for(let i=0;i<altsets.length;i++) {
-            const alts = altsets[i];
+            let alts = altsets[i];
             if (alts.length===1) {
                 return true;
             }
@@ -432,7 +432,7 @@ const PredictionMode = {
      */
     hasConflictingAltSet: function(altsets) {
         for(let i=0;i<altsets.length;i++) {
-            const alts = altsets[i];
+            let alts = altsets[i];
             if (alts.length>1) {
                 return true;
             }
@@ -451,7 +451,7 @@ const PredictionMode = {
     allSubsetsEqual: function(altsets) {
         let first = null;
         for(let i=0;i<altsets.length;i++) {
-            const alts = altsets[i];
+            let alts = altsets[i];
             if (first === null) {
                 first = alts;
             } else if (alts!==first) {
@@ -470,7 +470,7 @@ const PredictionMode = {
      * @param altsets a collection of alternative subsets
      */
     getUniqueAlt: function(altsets) {
-        const all = PredictionMode.getAlts(altsets);
+        let all = PredictionMode.getAlts(altsets);
         if (all.length===1) {
             return all.minValue();
         } else {
@@ -487,7 +487,7 @@ const PredictionMode = {
      * @return the set of represented alternatives in {@code altsets}
      */
     getAlts: function(altsets) {
-        const all = new BitSet();
+        let all = new BitSet();
         altsets.map( function(alts) { all.or(alts); });
         return all;
     },
@@ -502,7 +502,7 @@ const PredictionMode = {
      * </pre>
      */
     getConflictingAltSubsets: function(configs) {
-        const configToAlts = new HashMap();
+        let configToAlts = new HashMap();
         configToAlts.hashFunction = function(cfg) { HashCode.hashStuff(cfg.state.stateNumber, cfg.context); };
         configToAlts.equalsFunction = function(c1, c2) { return c1.state.stateNumber === c2.state.stateNumber && c1.context.equals(c2.context);};
         configs.items.map(function(cfg) {
@@ -525,7 +525,7 @@ const PredictionMode = {
      * </pre>
      */
     getStateToAltMap: function(configs) {
-        const m = new AltDict();
+        let m = new AltDict();
         configs.items.map(function(c) {
             let alts = m.get(c.state);
             if (alts === null) {
@@ -538,7 +538,7 @@ const PredictionMode = {
     },
 
     hasStateAssociatedWithOneAlt: function(configs) {
-        const values = PredictionMode.getStateToAltMap(configs).values();
+        let values = PredictionMode.getStateToAltMap(configs).values();
         for(let i=0;i<values.length;i++) {
             if (values[i].length===1) {
                 return true;
@@ -550,8 +550,8 @@ const PredictionMode = {
     getSingleViableAlt: function(altsets) {
         let result = null;
         for(let i=0;i<altsets.length;i++) {
-            const alts = altsets[i];
-            const minAlt = alts.minValue();
+            let alts = altsets[i];
+            let minAlt = alts.minValue();
             if(result===null) {
                 result = minAlt;
             } else if(result!==minAlt) { // more than 1 viable alt

@@ -33,7 +33,7 @@ export default class TerminalNodeImpl extends TerminalNode {
         if (this.symbol === null) {
             return Interval.INVALID_INTERVAL;
         }
-        const tokenIndex = this.symbol.tokenIndex;
+        let tokenIndex = this.symbol.tokenIndex;
         return new Interval(tokenIndex, tokenIndex);
     }
 

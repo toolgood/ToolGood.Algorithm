@@ -196,7 +196,7 @@ export default class Parser extends Recognizer {
      */
     removeParseListener(listener) {
         if (this._parseListeners !== null) {
-            const idx = this._parseListeners.indexOf(listener);
+            let idx = this._parseListeners.indexOf(listener);
             if (idx >= 0) {
                 this._parseListeners.splice(idx, 1);
             }
@@ -214,7 +214,7 @@ export default class Parser extends Recognizer {
     // Notify any parse listeners of an enter rule event.
     triggerEnterRuleEvent() {
         if (this._parseListeners !== null) {
-            const ctx = this._ctx;
+            let ctx = this._ctx;
             this._parseListeners.forEach(function (listener) {
                 listener.enterEveryRule(ctx);
                 ctx.enterRule(listener);
@@ -229,7 +229,7 @@ export default class Parser extends Recognizer {
     triggerExitRuleEvent() {
         if (this._parseListeners !== null) {
             // reverse order walk of listeners
-            const ctx = this._ctx;
+            let ctx = this._ctx;
             this._parseListeners.slice(0).reverse().forEach(function (listener) {
                 ctx.exitRule(listener);
                 listener.exitEveryRule(ctx);
@@ -254,13 +254,13 @@ export default class Parser extends Recognizer {
      * implement the {@link //getSerializedATN()} method.
      */
     getATNWithBypassAlts() {
-        const serializedAtn = this.getSerializedATN();
+        let serializedAtn = this.getSerializedATN();
         if (serializedAtn === null) {
             throw "The current parser does not support an ATN with bypass alternatives.";
         }
         let result = this.bypassAltsAtnCache[serializedAtn];
         if (result === null) {
-            const deserializationOptions = new ATNDeserializationOptions();
+            let deserializationOptions = new ATNDeserializationOptions();
             deserializationOptions.generateRuleBypassTransitions = true;
             result = new ATNDeserializer(deserializationOptions)
                 .deserialize(serializedAtn);
@@ -312,9 +312,9 @@ export default class Parser extends Recognizer {
             offendingToken = this.getCurrentToken();
         }
         this._syntaxErrors += 1;
-        const line = offendingToken.line;
-        const column = offendingToken.column;
-        const listener = this.getErrorListener();
+        let line = offendingToken.line;
+        let column = offendingToken.column;
+        let listener = this.getErrorListener();
         listener.syntaxError(this, offendingToken, line, column, msg, err);
     }
 
@@ -340,11 +340,11 @@ export default class Parser extends Recognizer {
      * listeners.
      */
     consume() {
-        const o = this.getCurrentToken();
+        let o = this.getCurrentToken();
         if (o.type !== Token.EOF) {
             this.getInputStream().consume();
         }
-        const hasListener = this._parseListeners !== null && this._parseListeners.length > 0;
+        let hasListener = this._parseListeners !== null && this._parseListeners.length > 0;
         if (this.buildParseTrees || hasListener) {
             let node;
             if (this._errHandler.inErrorRecoveryMode(this)) {
@@ -432,7 +432,7 @@ export default class Parser extends Recognizer {
 
     // Like {@link //enterRule} but for recursive rules.
     pushNewRecursionContext(localctx, state, ruleIndex) {
-        const previous = this._ctx;
+        let previous = this._ctx;
         previous.parentCtx = localctx;
         previous.invokingState = state;
         previous.stop = this._input.LT(-1);
@@ -448,9 +448,9 @@ export default class Parser extends Recognizer {
     unrollRecursionContexts(parentCtx) {
         this._precedenceStack.pop();
         this._ctx.stop = this._input.LT(-1);
-        const retCtx = this._ctx; // save current ctx (return value)
+        let retCtx = this._ctx; // save current ctx (return value)
         // unroll so _ctx is as it was before call to recursive method
-        const parseListeners = this.getParseListeners();
+        let parseListeners = this.getParseListeners();
         if (parseListeners !== null && parseListeners.length > 0) {
             while (this._ctx !== parentCtx) {
                 this.triggerExitRuleEvent();
@@ -502,9 +502,9 @@ export default class Parser extends Recognizer {
      * the ATN, otherwise {@code false}.
      */
     isExpectedToken(symbol) {
-        const atn = this._interp.atn;
+        let atn = this._interp.atn;
         let ctx = this._ctx;
-        const s = atn.states[this.state];
+        let s = atn.states[this.state];
         let following = atn.nextTokens(s);
         if (following.contains(symbol)) {
             return true;
@@ -513,8 +513,8 @@ export default class Parser extends Recognizer {
             return false;
         }
         while (ctx !== null && ctx.invokingState >= 0 && following.contains(Token.EPSILON)) {
-            const invokingState = atn.states[ctx.invokingState];
-            const rt = invokingState.transitions[0];
+            let invokingState = atn.states[ctx.invokingState];
+            let rt = invokingState.transitions[0];
             following = atn.nextTokens(rt.followState);
             if (following.contains(symbol)) {
                 return true;
@@ -540,14 +540,14 @@ export default class Parser extends Recognizer {
     }
 
     getExpectedTokensWithinCurrentRule() {
-        const atn = this._interp.atn;
-        const s = atn.states[this.state];
+        let atn = this._interp.atn;
+        let s = atn.states[this.state];
         return atn.nextTokens(s);
     }
 
     // Get a rule's index (i.e., {@code RULE_ruleName} field) or -1 if not found.
     getRuleIndex(ruleName) {
-        const ruleIndex = this.getRuleIndexMap()[ruleName];
+        let ruleIndex = this.getRuleIndexMap()[ruleName];
         if (ruleIndex !== null) {
             return ruleIndex;
         } else {
@@ -568,10 +568,10 @@ export default class Parser extends Recognizer {
         if (p === null) {
             p = this._ctx;
         }
-        const stack = [];
+        let stack = [];
         while (p !== null) {
             // compute what follows who invoked us
-            const ruleIndex = p.ruleIndex;
+            let ruleIndex = p.ruleIndex;
             if (ruleIndex < 0) {
                 stack.push("n/a");
             } else {
@@ -591,7 +591,7 @@ export default class Parser extends Recognizer {
     dumpDFA() {
         let seenOne = false;
         for (let i = 0; i < this._interp.decisionToDFA.length; i++) {
-            const dfa = this._interp.decisionToDFA[i];
+            let dfa = this._interp.decisionToDFA[i];
             if (dfa.states.length > 0) {
                 if (seenOne) {
                     console.log();

@@ -3,24 +3,24 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 
-export const StringSeedHashCode = Math.round(Math.random() * Math.pow(2, 32));
+export let StringSeedHashCode = Math.round(Math.random() * Math.pow(2, 32));
 
 export function stringHashCode (value) {
     if (!value) {
         return 0;
     }
-    const type = typeof value;
-    const key = type === 'string' ? value : type === 'object' && value.toString ? value.toString() : false;
+    let type = typeof value;
+    let key = type === 'string' ? value : type === 'object' && value.toString ? value.toString() : false;
     if (!key) {
         return 0;
     }
     let h1b, k1;
 
-    const remainder = key.length & 3; // key.length % 4
-    const bytes = key.length - remainder;
+    let remainder = key.length & 3; // key.length % 4
+    let bytes = key.length - remainder;
     let h1 = StringSeedHashCode;
-    const c1 = 0xcc9e2d51;
-    const c2 = 0x1b873593;
+    let c1 = 0xcc9e2d51;
+    let c2 = 0x1b873593;
     let i = 0;
 
     while (i < bytes) {

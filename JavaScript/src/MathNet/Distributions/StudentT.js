@@ -16,9 +16,9 @@ class StudentT {
             return Normal.CDF(location, scale, x);
         }
 
-        const k = (x - location) / scale;
-        const h = freedom / (freedom + (k * k));
-        const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        let k = (x - location) / scale;
+        let h = freedom / (freedom + (k * k));
+        let ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
         return x <= location ? ib : 1 - ib;
     }
 
@@ -40,10 +40,10 @@ class StudentT {
         }
 
         // Try Brent's method first
-        const brentResult = Brent.TryFindRoot(x => {
-            const k = (x - location) / scale;
-            const h = freedom / (freedom + (k * k));
-            const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        let brentResult = Brent.TryFindRoot(x => {
+            let k = (x - location) / scale;
+            let h = freedom / (freedom + (k * k));
+            let ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
             return x <= location ? ib - p : 1 - ib - p;
         }, -800, 800, 1e-12, 100);
 
@@ -96,9 +96,9 @@ class StudentT {
      * @returns {number}
      */
     static InvCDFHelper(location, scale, freedom, p, x) {
-        const k = (x - location) / scale;
-        const h = freedom / (freedom + (k * k));
-        const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        let k = (x - location) / scale;
+        let h = freedom / (freedom + (k * k));
+        let ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
         return x <= location ? ib - p : 1 - ib - p;
     }
 }

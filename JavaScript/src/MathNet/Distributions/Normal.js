@@ -32,7 +32,7 @@ class Normal {
      * @returns {number}
      */
     static PDF(mean, stddev, x) {
-        const d = (x - mean) / stddev;
+        let d = (x - mean) / stddev;
         return Math.exp(-0.5 * d * d) / (Constants.Sqrt2Pi * stddev);
     }
 }

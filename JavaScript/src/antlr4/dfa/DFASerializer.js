@@ -21,13 +21,13 @@ export default class DFASerializer {
            return null;
        }
        let buf = "";
-       const states = this.dfa.sortedStates();
+       let states = this.dfa.sortedStates();
        for(let i=0; i<states.length; i++) {
-           const s = states[i];
+           let s = states[i];
            if(s.edges!==null) {
-                const n = s.edges.length;
+                let n = s.edges.length;
                 for(let j=0;j<n;j++) {
-                    const t = s.edges[j] || null;
+                    let t = s.edges[j] || null;
                     if(t!==null && t.stateNumber !== 0x7FFFFFFF) {
                         buf = buf.concat(this.getStateString(s));
                         buf = buf.concat("-");
@@ -53,7 +53,7 @@ export default class DFASerializer {
     }
 
     getStateString(s) {
-        const baseStateStr = ( s.isAcceptState ? ":" : "") + "s" + s.stateNumber + ( s.requiresFullContext ? "^" : "");
+        let baseStateStr = ( s.isAcceptState ? ":" : "") + "s" + s.stateNumber + ( s.requiresFullContext ? "^" : "");
         if(s.isAcceptState) {
             if (s.predicates !== null) {
                 return baseStateStr + "=>" + arrayToString(s.predicates);

@@ -7,12 +7,12 @@ import { StringCache } from '../../../Internals/StringCache.js';
  */
 export class Function_REMOVEEND extends Function_3 {
     /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
-     * @param {FunctionBase} func3
+     * @param {FunctionBase} a
+     * @param {FunctionBase} b
+     * @param {FunctionBase} c
      */
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
     
     /**
@@ -20,14 +20,14 @@ export class Function_REMOVEEND extends Function_3 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'RemoveEnd', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'RemoveEnd', 2);
             if (args2.IsError) {
@@ -36,8 +36,8 @@ export class Function_REMOVEEND extends Function_3 {
         }
         
         let ignoreCase = false;
-        if (this.func3 !== null) {
-            let args3 = this.func3.Evaluate(engine, tempParameter);
+        if (this.c !== null) {
+            let args3 = this.c.Evaluate(engine, tempParameter);
             if (args3.IsNotBoolean) {
                 args3 = args3.ToBoolean(StringCache.Function_parameter_error, 'RemoveEnd', 3);
                 if (args3.IsError) {

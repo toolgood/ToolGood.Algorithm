@@ -49,10 +49,10 @@ import LexerPushModeAction from '../action/LexerPushModeAction.js';
 import LexerPopModeAction from '../action/LexerPopModeAction.js';
 import LexerModeAction from '../action/LexerModeAction.js';
 
-const SERIALIZED_VERSION = 4;
+let SERIALIZED_VERSION = 4;
 
 function initArray( length, value) {
-	const tmp = [];
+	let tmp = [];
 	tmp[length-1] = value;
 	return tmp.map(function(i) {return value;});
 }
@@ -69,15 +69,15 @@ export default class ATNDeserializer {
     }
 
     deserialize(data) {
-        const legacy = this.reset(data);
+        let legacy = this.reset(data);
         this.checkVersion(legacy);
         if(legacy)
             this.skipUUID();
-        const atn = this.readATN();
+        let atn = this.readATN();
         this.readStates(atn, legacy);
         this.readRules(atn, legacy);
         this.readModes(atn);
-        const sets = [];
+        let sets = [];
         this.readSets(atn, sets, this.readInt.bind(this));
         if(legacy)
             this.readSets(atn, sets, this.readInt32.bind(this));
@@ -95,13 +95,13 @@ export default class ATNDeserializer {
     }
 
     reset(data) {
-        const version = data.charCodeAt ? data.charCodeAt(0) : data[0];
+        let version = data.charCodeAt ? data.charCodeAt(0) : data[0];
         if(version === SERIALIZED_VERSION - 1) {
-            const adjust = function (c) {
-                const v = c.charCodeAt(0);
+            let adjust = function (c) {
+                let v = c.charCodeAt(0);
                 return v > 1 ? v - 2 : v + 65534;
             };
-            const temp = data.split("").map(adjust);
+            let temp = data.split("").map(adjust);
             // don't adjust the first value since that's the version number
             temp[0] = data.charCodeAt(0);
             this.data = temp;
@@ -121,25 +121,25 @@ export default class ATNDeserializer {
     }
 
     checkVersion(legacy) {
-        const version = this.readInt();
+        let version = this.readInt();
         if ( !legacy && version !== SERIALIZED_VERSION ) {
             throw ("Could not deserialize ATN with version " + version + " (expected " + SERIALIZED_VERSION + ").");
         }
     }
 
     readATN() {
-        const grammarType = this.readInt();
-        const maxTokenType = this.readInt();
+        let grammarType = this.readInt();
+        let maxTokenType = this.readInt();
         return new ATN(grammarType, maxTokenType);
     }
 
     readStates(atn, legacy) {
         let j, pair, stateNumber;
-        const  loopBackStateNumbers = [];
-        const  endStateNumbers = [];
-        const  nstates = this.readInt();
+        let  loopBackStateNumbers = [];
+        let  endStateNumbers = [];
+        let  nstates = this.readInt();
         for(let i=0; i<nstates; i++) {
-            const  stype = this.readInt();
+            let  stype = this.readInt();
             // ignore bad type of states
             if (stype===ATNState.INVALID_TYPE) {
                 atn.addState(null);
@@ -149,12 +149,12 @@ export default class ATNDeserializer {
             if (legacy && ruleIndex === 0xFFFF) {
                 ruleIndex = -1;
             }
-            const  s = this.stateFactory(stype, ruleIndex);
+            let  s = this.stateFactory(stype, ruleIndex);
             if (stype === ATNState.LOOP_END) { // special case
-                const  loopBackStateNumber = this.readInt();
+                let  loopBackStateNumber = this.readInt();
                 loopBackStateNumbers.push([s, loopBackStateNumber]);
             } else if(s instanceof BlockStartState) {
-                const  endStateNumber = this.readInt();
+                let  endStateNumber = this.readInt();
                 endStateNumbers.push([s, endStateNumber]);
             }
             atn.addState(s);
@@ -186,13 +186,13 @@ export default class ATNDeserializer {
 
     readRules(atn, legacy) {
         let i;
-        const nrules = this.readInt();
+        let nrules = this.readInt();
         if (atn.grammarType === ATNType.LEXER ) {
             atn.ruleToTokenType = initArray(nrules, 0);
         }
         atn.ruleToStartState = initArray(nrules, 0);
         for (i=0; i<nrules; i++) {
-            const s = this.readInt();
+            let s = this.readInt();
             atn.ruleToStartState[i] = atn.states[s];
             if ( atn.grammarType === ATNType.LEXER ) {
                 let tokenType = this.readInt();
@@ -204,7 +204,7 @@ export default class ATNDeserializer {
         }
         atn.ruleToStopState = initArray(nrules, 0);
         for (i=0; i<atn.states.length; i++) {
-            const state = atn.states[i];
+            let state = atn.states[i];
             if (!(state instanceof RuleStopState)) {
                 continue;
             }
@@ -214,7 +214,7 @@ export default class ATNDeserializer {
     }
 
     readModes(atn) {
-        const nmodes = this.readInt();
+        let nmodes = this.readInt();
         for (let i=0; i<nmodes; i++) {
             let s = this.readInt();
             atn.modeToStartState.push(atn.states[s]);
@@ -222,18 +222,18 @@ export default class ATNDeserializer {
     }
 
     readSets(atn, sets, reader) {
-        const m = this.readInt();
+        let m = this.readInt();
         for (let i=0; i<m; i++) {
-            const iset = new IntervalSet();
+            let iset = new IntervalSet();
             sets.push(iset);
-            const n = this.readInt();
-            const containsEof = this.readInt();
+            let n = this.readInt();
+            let containsEof = this.readInt();
             if (containsEof!==0) {
                 iset.addOne(-1);
             }
             for (let j=0; j<n; j++) {
-                const i1 = reader();
-                const i2 = reader();
+                let i1 = reader();
+                let i2 = reader();
                 iset.addRange(i1, i2);
             }
         }
@@ -241,23 +241,23 @@ export default class ATNDeserializer {
 
     readEdges(atn, sets) {
         let i, j, state, trans, target;
-        const nedges = this.readInt();
+        let nedges = this.readInt();
         for (i=0; i<nedges; i++) {
-            const src = this.readInt();
-            const trg = this.readInt();
-            const ttype = this.readInt();
-            const arg1 = this.readInt();
-            const arg2 = this.readInt();
-            const arg3 = this.readInt();
+            let src = this.readInt();
+            let trg = this.readInt();
+            let ttype = this.readInt();
+            let arg1 = this.readInt();
+            let arg2 = this.readInt();
+            let arg3 = this.readInt();
             trans = this.edgeFactory(atn, ttype, src, trg, arg1, arg2, arg3, sets);
-            const srcState = atn.states[src];
+            let srcState = atn.states[src];
             srcState.addTransition(trans);
         }
         // edges for rule stop states can be derived, so they aren't serialized
         for (i=0; i<atn.states.length; i++) {
             state = atn.states[i];
             for (j=0; j<state.transitions.length; j++) {
-                const t = state.transitions[j];
+                let t = state.transitions[j];
                 if (!(t instanceof RuleTransition)) {
                     continue;
                 }
@@ -306,10 +306,10 @@ export default class ATNDeserializer {
     }
 
     readDecisions(atn) {
-        const ndecisions = this.readInt();
+        let ndecisions = this.readInt();
         for (let i=0; i<ndecisions; i++) {
-            const s = this.readInt();
-            const decState = atn.states[s];
+            let s = this.readInt();
+            let decState = atn.states[s];
             atn.decisionToState.push(decState);
             decState.decision = i;
         }
@@ -317,10 +317,10 @@ export default class ATNDeserializer {
 
     readLexerActions(atn, legacy) {
         if (atn.grammarType === ATNType.LEXER) {
-            const count = this.readInt();
+            let count = this.readInt();
             atn.lexerActions = initArray(count, null);
             for (let i=0; i<count; i++) {
-                const actionType = this.readInt();
+                let actionType = this.readInt();
                 let data1 = this.readInt();
                 if (legacy && data1 === 0xFFFF) {
                     data1 = -1;
@@ -336,7 +336,7 @@ export default class ATNDeserializer {
 
     generateRuleBypassTransitions(atn) {
         let i;
-        const count = atn.ruleToStartState.length;
+        let count = atn.ruleToStartState.length;
         for(i=0; i<count; i++) {
             atn.ruleToTokenType[i] = atn.maxTokenType + i + 1;
         }
@@ -347,11 +347,11 @@ export default class ATNDeserializer {
 
     generateRuleBypassTransition(atn, idx) {
         let i, state;
-        const bypassStart = new BasicBlockStartState();
+        let bypassStart = new BasicBlockStartState();
         bypassStart.ruleIndex = idx;
         atn.addState(bypassStart);
 
-        const bypassStop = new BlockEndState();
+        let bypassStop = new BlockEndState();
         bypassStop.ruleIndex = idx;
         atn.addState(bypassStop);
 
@@ -386,7 +386,7 @@ export default class ATNDeserializer {
         for(i=0; i<atn.states.length; i++) {
             state = atn.states[i];
             for(let j=0; j<state.transitions.length; j++) {
-                const transition = state.transitions[j];
+                let transition = state.transitions[j];
                 if (transition === excludeTransition) {
                     continue;
                 }
@@ -398,8 +398,8 @@ export default class ATNDeserializer {
 
         // all transitions leaving the rule start state need to leave blockStart
         // instead
-        const ruleToStartState = atn.ruleToStartState[idx];
-        const count = ruleToStartState.transitions.length;
+        let ruleToStartState = atn.ruleToStartState[idx];
+        let count = ruleToStartState.transitions.length;
         while ( count > 0) {
             bypassStart.addTransition(ruleToStartState.transitions[count-1]);
             ruleToStartState.transitions = ruleToStartState.transitions.slice(-1);
@@ -408,7 +408,7 @@ export default class ATNDeserializer {
         atn.ruleToStartState[idx].addTransition(new EpsilonTransition(bypassStart));
         bypassStop.addTransition(new EpsilonTransition(endState));
 
-        const matchState = new BasicState();
+        let matchState = new BasicState();
         atn.addState(matchState);
         matchState.addTransition(new AtomTransition(bypassStop, atn.ruleToTokenType[idx]));
         bypassStart.addTransition(new EpsilonTransition(matchState));
@@ -421,7 +421,7 @@ export default class ATNDeserializer {
         if (!( state instanceof StarLoopEntryState)) {
             return null;
         }
-        const maybeLoopEndState = state.transitions[state.transitions.length - 1].target;
+        let maybeLoopEndState = state.transitions[state.transitions.length - 1].target;
         if (!( maybeLoopEndState instanceof LoopEndState)) {
             return null;
         }
@@ -441,7 +441,7 @@ export default class ATNDeserializer {
      */
     markPrecedenceDecisions(atn) {
         for(let i=0; i<atn.states.length; i++) {
-            const state = atn.states[i];
+            let state = atn.states[i];
             if (!( state instanceof StarLoopEntryState)) {
                 continue;
             }
@@ -449,7 +449,7 @@ export default class ATNDeserializer {
             // decision for the closure block that determines whether a
             // precedence rule should continue or complete.
             if ( atn.ruleToStartState[state.ruleIndex].isPrecedenceRule) {
-                const maybeLoopEndState = state.transitions[state.transitions.length - 1].target;
+                let maybeLoopEndState = state.transitions[state.transitions.length - 1].target;
                 if (maybeLoopEndState instanceof LoopEndState) {
                     if ( maybeLoopEndState.epsilonOnlyTransitions &&
                             (maybeLoopEndState.transitions[0].target instanceof RuleStopState)) {
@@ -466,7 +466,7 @@ export default class ATNDeserializer {
         }
         // verify assumptions
         for(let i=0; i<atn.states.length; i++) {
-            const state = atn.states[i];
+            let state = atn.states[i];
             if (state === null) {
                 continue;
             }
@@ -518,13 +518,13 @@ export default class ATNDeserializer {
     }
 
     readInt32() {
-        const low = this.readInt();
-        const high = this.readInt();
+        let low = this.readInt();
+        let high = this.readInt();
         return low | (high << 16);
     }
 
     edgeFactory(atn, type, src, trg, arg1, arg2, arg3, sets) {
-        const target = atn.states[trg];
+        let target = atn.states[trg];
         switch(type) {
         case Transition.EPSILON:
             return new EpsilonTransition(target);
@@ -553,7 +553,7 @@ export default class ATNDeserializer {
 
     stateFactory(type, ruleIndex) {
         if (this.stateFactories === null) {
-            const sf = [];
+            let sf = [];
             sf[ATNState.INVALID_TYPE] = null;
             sf[ATNState.BASIC] = () => new BasicState();
             sf[ATNState.RULE_START] = () => new RuleStartState();
@@ -572,7 +572,7 @@ export default class ATNDeserializer {
         if (type>this.stateFactories.length || this.stateFactories[type] === null) {
             throw("The specified state type " + type + " is not valid.");
         } else {
-            const s = this.stateFactories[type]();
+            let s = this.stateFactories[type]();
             if (s!==null) {
                 s.ruleIndex = ruleIndex;
                 return s;
@@ -582,7 +582,7 @@ export default class ATNDeserializer {
 
     lexerActionFactory(type, data1, data2) {
         if (this.actionFactories === null) {
-            const af = [];
+            let af = [];
             af[LexerActionType.CHANNEL] = (data1, data2) => new LexerChannelAction(data1);
             af[LexerActionType.CUSTOM] = (data1, data2) => new LexerCustomAction(data1, data2);
             af[LexerActionType.MODE] = (data1, data2) => new LexerModeAction(data1);

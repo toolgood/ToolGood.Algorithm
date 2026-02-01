@@ -13,7 +13,7 @@ export default class HashCode {
 
     update() {
         for(let i=0;i<arguments.length;i++) {
-            const value = arguments[i];
+            let value = arguments[i];
             if (value == null)
                 continue;
             if(Array.isArray(value))
@@ -61,7 +61,7 @@ export default class HashCode {
     }
 
     static hashStuff() {
-        const hash = new HashCode();
+        let hash = new HashCode();
         hash.update.apply(hash, arguments);
         return hash.finish();
     }

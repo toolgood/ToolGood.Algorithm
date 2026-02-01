@@ -63,8 +63,8 @@ export default class TokenStreamRewriter {
             index = tokenOrIndex.tokenIndex;
         }
 
-        const rewrites = this.getProgram(programName);
-        const op = new InsertBeforeOp(this.tokens, index, rewrites.length, text);
+        let rewrites = this.getProgram(programName);
+        let op = new InsertBeforeOp(this.tokens, index, rewrites.length, text);
         rewrites.push(op);
     }
 
@@ -130,7 +130,7 @@ export default class TokenStreamRewriter {
      * @returns {Rewrites}
      */
     initializeProgram(name) {
-        const is = [];
+        let is = [];
         this.programs.set(name, is);
         return is;
     }
@@ -153,7 +153,7 @@ export default class TokenStreamRewriter {
             programName = intervalOrProgram;
         }
 
-        const rewrites = this.programs.get(programName);
+        let rewrites = this.programs.get(programName);
         let start = interval.start;
         let stop = interval.stop;
 
@@ -198,7 +198,7 @@ export default class TokenStreamRewriter {
         if (stop === this.tokens.size - 1) {
             // Scan any remaining operations after last token
             // should be included (they will be inserts).
-            for (const op of indexToOp.values()) {
+            for (let op of indexToOp.values()) {
                 if (op.index >= this.tokens.size - 1) {
                     buf.push(op.text.toString());
                 }
@@ -361,7 +361,7 @@ class RewriteOperation {
 
     toString() {
         let opName = this.constructor.name;
-        const $index = opName.indexOf("$");
+        let $index = opName.indexOf("$");
         opName = opName.substring($index + 1, opName.length);
         return "<" + opName + "@" + this.tokens.get(this.index) +
             ":\"" + this.text + "\">";

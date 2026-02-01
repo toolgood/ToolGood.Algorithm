@@ -3,12 +3,12 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_RIGHT extends Function_2 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'Right', 1);
             if (args1.IsError) {
@@ -19,10 +19,10 @@ class Function_RIGHT extends Function_2 {
         if (args1.TextValue.length === 0) {
             return Operand.Create('');
         }
-        if (this.func2 === null) {
+        if (this.b === null) {
             return Operand.Create(args1.TextValue.substring(args1.TextValue.length - 1, args1.TextValue.length));
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Right', 2);
             if (args2.IsError) {

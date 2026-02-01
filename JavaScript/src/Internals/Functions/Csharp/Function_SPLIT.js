@@ -7,11 +7,11 @@ import { StringCache } from '../../../Internals/StringCache.js';
  */
 export class Function_SPLIT extends Function_2 {
     /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
+     * @param {FunctionBase} a
+     * @param {FunctionBase} b
      */
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
     
     /**
@@ -19,14 +19,14 @@ export class Function_SPLIT extends Function_2 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'Split', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'Split', 2);
             if (args2.IsError) {

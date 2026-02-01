@@ -25,7 +25,7 @@ export default class PredictionContextCache {
         if (ctx === PredictionContext.EMPTY) {
             return PredictionContext.EMPTY;
         }
-        const existing = this.cache.get(ctx) || null;
+        let existing = this.cache.get(ctx) || null;
         if (existing !== null) {
             return existing;
         }

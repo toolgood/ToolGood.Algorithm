@@ -10,7 +10,7 @@ export default class LexerATNConfig extends ATNConfig {
         super(params, config);
 
         // This is the backing field for {@link //getLexerActionExecutor}.
-        const lexerActionExecutor = params.lexerActionExecutor || null;
+        let lexerActionExecutor = params.lexerActionExecutor || null;
         this.lexerActionExecutor = lexerActionExecutor || (config!==null ? config.lexerActionExecutor : null);
         this.passedThroughNonGreedyDecision = config!==null ? this.checkNonGreedyDecision(config, this.state) : false;
         this.hashCodeForConfigSet = LexerATNConfig.prototype.hashCode;

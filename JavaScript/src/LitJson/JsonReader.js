@@ -3,7 +3,7 @@ import { ParserToken } from './ParserToken.js';
 import { JsonException } from './JsonException.js';
 import { StringReader } from './StringReader.js';
 
-const JsonToken = {
+let JsonToken = {
     None: 0,
     ObjectStart: 1,
     PropertyName: 2,
@@ -18,7 +18,7 @@ const JsonToken = {
 
 class JsonReader {
     constructor(json_text) {
-        const reader = new StringReader(json_text);
+        let reader = new StringReader(json_text);
 
         this.parser_in_string = false;
         this.parser_return = false;
@@ -46,13 +46,13 @@ class JsonReader {
 
     ProcessNumber(number) {
         if (number.includes('.') || number.includes('e') || number.includes('E')) {
-            const n_double = parseFloat(number);
+            let n_double = parseFloat(number);
             if (!isNaN(n_double)) {
                 this.token_value = n_double;
                 return;
             }
         } else {
-            const n_int = parseInt(number, 10);
+            let n_int = parseInt(number, 10);
             if (!isNaN(n_int)) {
                 this.token_value = n_int;
                 return;
@@ -109,7 +109,7 @@ class JsonReader {
     ReadToken() {
         if (this.end_of_input) return false;
 
-        const result = this.lexer.NextToken();
+        let result = this.lexer.NextToken();
 
         if (this.lexer.EndOfInput) {
             this.Close();

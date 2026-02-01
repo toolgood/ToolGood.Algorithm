@@ -5,18 +5,18 @@ import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_PERCENTRANK extends Function_3 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotArray) {
             let converted1 = args1.ToArray(StringCache.Function_parameter_error, "PercentRank", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             let converted2 = args2.ToNumber(StringCache.Function_parameter_error, "PercentRank", 2);
             if (converted2.IsError) return converted2;
@@ -33,8 +33,8 @@ class Function_PERCENTRANK extends Function_3 {
         let k = args2.NumberValue;
         let v = ExcelFunctions.PercentRank(list.map(q => q), k);
         let d = 3;
-        if (this.func3 != null) {
-            let args3 = this.func3.Evaluate(engine, tempParameter);
+        if (this.c != null) {
+            let args3 = this.c.Evaluate(engine, tempParameter);
             if (args3.IsNotNumber) {
                 let converted3 = args3.ToNumber(StringCache.Function_parameter_error, "PercentRank", 3);
                 if (converted3.IsError) return converted3;

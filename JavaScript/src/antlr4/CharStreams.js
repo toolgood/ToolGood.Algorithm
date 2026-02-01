@@ -27,9 +27,9 @@ export default {
    * failure.
    */
   fromBlob: function(blob, encoding, onLoad, onError) {
-    const reader = new window.FileReader();
+    let reader = new window.FileReader();
     reader.onload = function(e) {
-      const is = new CharStream(e.target.result, true);
+      let is = new CharStream(e.target.result, true);
       onLoad(is);
     };
     reader.onerror = onError;

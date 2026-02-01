@@ -102,14 +102,14 @@ export default class ParserRuleContext extends RuleContext {
 	}
 
 	addTokenNode(token) {
-		const node = new TerminalNodeImpl(token);
+		let node = new TerminalNodeImpl(token);
 		this.addChild(node);
 		node.parentCtx = this;
 		return node;
 	}
 
 	addErrorNode(badToken) {
-		const node = new ErrorNodeImpl(badToken);
+		let node = new ErrorNodeImpl(badToken);
 		this.addChild(node);
 		node.parentCtx = this;
 		return node;
@@ -124,7 +124,7 @@ export default class ParserRuleContext extends RuleContext {
 			return this.children[i];
 		} else {
 			for(let j=0; j<this.children.length; j++) {
-				const child = this.children[j];
+				let child = this.children[j];
 				if(child instanceof type) {
 					if(i===0) {
 						return child;
@@ -142,7 +142,7 @@ export default class ParserRuleContext extends RuleContext {
 			return null;
 		}
 		for(let j=0; j<this.children.length; j++) {
-			const child = this.children[j];
+			let child = this.children[j];
 			if (child instanceof TerminalNode) {
 				if (child.symbol.type === ttype) {
 					if(i===0) {
@@ -160,9 +160,9 @@ export default class ParserRuleContext extends RuleContext {
 		if (this.children=== null) {
 			return [];
 		} else {
-			const tokens = [];
+			let tokens = [];
 			for(let j=0; j<this.children.length; j++) {
-				const child = this.children[j];
+				let child = this.children[j];
 				if (child instanceof TerminalNode) {
 					if (child.symbol.type === ttype) {
 						tokens.push(child);
@@ -181,9 +181,9 @@ export default class ParserRuleContext extends RuleContext {
 		if (this.children=== null) {
 			return [];
 		} else {
-			const contexts = [];
+			let contexts = [];
 			for(let j=0; j<this.children.length; j++) {
-				const child = this.children[j];
+				let child = this.children[j];
 				if (child instanceof ctxType) {
 					contexts.push(child);
 				}

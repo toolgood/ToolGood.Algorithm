@@ -3,22 +3,22 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_DATEDIF extends Function_3 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "DateDif", 1);
             if (args1.IsError) { return args1; }
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotDate) {
             args2 = args2.ToMyDate(StringCache.Function_parameter_error, "DateDif", 2);
             if (args2.IsError) { return args2; }
         }
-        let args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.c.Evaluate(engine, tempParameter);
         if (args3.IsNotText) {
             args3 = args3.ToText(StringCache.Function_parameter_error, "DateDif", 3);
             if (args3.IsError) { return args3; }

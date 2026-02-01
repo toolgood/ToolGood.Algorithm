@@ -14,7 +14,7 @@ export default class Predicate extends SemanticContext {
     }
 
     evaluate(parser, outerContext) {
-        const localctx = this.isCtxDependent ? outerContext : null;
+        let localctx = this.isCtxDependent ? outerContext : null;
         return parser.sempred(localctx, this.ruleIndex, this.predIndex);
     }
 

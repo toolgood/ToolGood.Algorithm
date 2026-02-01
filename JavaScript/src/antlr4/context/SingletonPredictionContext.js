@@ -9,7 +9,7 @@ export default class SingletonPredictionContext extends PredictionContext {
 
     constructor(parent, returnState) {
         let hashCode = 0;
-        const hash = new HashCode();
+        let hash = new HashCode();
         if(parent !== null) {
             hash.update(parent, returnState);
         } else {
@@ -47,7 +47,7 @@ export default class SingletonPredictionContext extends PredictionContext {
     }
 
     toString() {
-        const up = this.parentCtx === null ? "" : this.parentCtx.toString();
+        let up = this.parentCtx === null ? "" : this.parentCtx.toString();
         if (up.length === 0) {
             if (this.returnState === PredictionContext.EMPTY_RETURN_STATE) {
                 return "$";

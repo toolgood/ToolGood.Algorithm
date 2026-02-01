@@ -3,10 +3,10 @@ import { Operand } from '../../../Operand.js';
 import { NumberUnitTypeHelper } from '../../NumberUnitTypeHelper.js';
 
 class Function_NUM extends FunctionBase {
-    constructor(func1, func2) {
+    constructor(a, b) {
         super();
-        this.d = func1;
-        this.unit = func2;
+        this.d = a;
+        this.unit = b;
     }
 
     Evaluate(engine, tempParameter) {

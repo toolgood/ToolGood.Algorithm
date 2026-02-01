@@ -2,18 +2,18 @@ import { FunctionBase } from '../FunctionBase.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_GetJsonValue extends FunctionBase {
-    constructor(funcs,op) {
+    constructor(z,op) {
     super();
-    this.func1=funcs;
-    this.func2=op;
+    this.a=z;
+    this.b=op;
   }
 
     Evaluate(engine, tempParameter) {
-        let obj = this.func1.Evaluate(engine, tempParameter);
+        let obj = this.a.Evaluate(engine, tempParameter);
         if (obj.IsError) {
             return obj;
         }
-        let op = this.func2.Evaluate(engine, tempParameter);
+        let op = this.b.Evaluate(engine, tempParameter);
         if (op.IsError) {
             return op;
         }

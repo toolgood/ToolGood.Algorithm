@@ -10,9 +10,9 @@ class BaseUnitConverter {
 
     // Convert the Unit on the Left to the Unit on the Right
     LeftToRight(value) {
-        const startFactor = this.units.FindFactor(this.unitLeft);
-        const endFactor = this.units.FindFactor(this.unitRight);
-        const result = (value / startFactor) * endFactor;
+        let startFactor = this.units.FindFactor(this.unitLeft);
+        let endFactor = this.units.FindFactor(this.unitRight);
+        let result = (value / startFactor) * endFactor;
         return result;
     }
 }

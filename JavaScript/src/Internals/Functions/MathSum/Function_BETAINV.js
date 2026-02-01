@@ -5,22 +5,22 @@ import { StringCache } from '../../../Internals/StringCache.js';
 import { SpecialFunctions } from '../../../MathNet/SpecialFunctions/SpecialFunctions.js';
 
 class Function_BETAINV extends Function_3 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_error, 'BetaInv', 1);
             if (args1.IsError) return args1;
         }
-        let args2 = this.func2.Evaluate(work, tempParameter);
+        let args2 = this.b.Evaluate(work, tempParameter);
         if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'BetaInv', 2);
             if (args2.IsError) return args2;
         }
-        let args3 = this.func3.Evaluate(work, tempParameter);
+        let args3 = this.c.Evaluate(work, tempParameter);
         if (args3.IsNotNumber) {
             args3 = args3.ToNumber(StringCache.Function_parameter_error, 'BetaInv', 3);
             if (args3.IsError) return args3;

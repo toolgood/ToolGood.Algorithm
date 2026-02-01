@@ -1,19 +1,19 @@
 import { FunctionBase } from '../FunctionBase.js';
 
 class Function_PARAMETER extends FunctionBase {
-    constructor(name, func1) {
+    constructor(name, a) {
         super();
         if (typeof name === 'string') {
             this.name = name;
         } else {
-            this.func1 = name;
+            this.a = name;
         }
     }
 
     Evaluate(engine, tempParameter) {
         let txt = this.name;
         if (txt === undefined || txt === null) {
-            let args1 = this.func1.Evaluate(engine, tempParameter);
+            let args1 = this.a.Evaluate(engine, tempParameter);
             if (args1.IsNotText) {
                 args1 = args1.ToText();
                 if (args1.IsError) {

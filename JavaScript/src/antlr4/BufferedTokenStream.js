@@ -123,9 +123,9 @@ export default class BufferedTokenStream extends TokenStream {
 	 * @see //get(int i)
 	 */
 	sync(i) {
-		const n = i - this.tokens.length + 1; // how many more elements we need?
+		let n = i - this.tokens.length + 1; // how many more elements we need?
 		if (n > 0) {
-			const fetched = this.fetch(n);
+			let fetched = this.fetch(n);
 			return fetched >= n;
 		}
 		return true;
@@ -141,7 +141,7 @@ export default class BufferedTokenStream extends TokenStream {
 			return 0;
 		}
 		for (let i = 0; i < n; i++) {
-			const t = this.tokenSource.nextToken();
+			let t = this.tokenSource.nextToken();
 			t.tokenIndex = this.tokens.length;
 			this.tokens.push(t);
 			if (t.type === Token.EOF) {
@@ -161,12 +161,12 @@ export default class BufferedTokenStream extends TokenStream {
 			return null;
 		}
 		this.lazyInit();
-		const subset = [];
+		let subset = [];
 		if (stop >= this.tokens.length) {
 			stop = this.tokens.length - 1;
 		}
 		for (let i = start; i < stop; i++) {
-			const t = this.tokens[i];
+			let t = this.tokens[i];
 			if (t.type === Token.EOF) {
 				break;
 			}
@@ -196,7 +196,7 @@ export default class BufferedTokenStream extends TokenStream {
 		if (k < 0) {
 			return this.LB(-k);
 		}
-		const i = this.index + k - 1;
+		let i = this.index + k - 1;
 		this.sync(i);
 		if (i >= this.tokens.length) { // return EOF token
 			// EOF must be last token
@@ -290,10 +290,10 @@ export default class BufferedTokenStream extends TokenStream {
 		if (tokenIndex < 0 || tokenIndex >= this.tokens.length) {
 			throw "" + tokenIndex + " not in 0.." + this.tokens.length - 1;
 		}
-		const nextOnChannel = this.nextTokenOnChannel(tokenIndex + 1, Lexer.DEFAULT_TOKEN_CHANNEL);
-		const from_ = tokenIndex + 1;
+		let nextOnChannel = this.nextTokenOnChannel(tokenIndex + 1, Lexer.DEFAULT_TOKEN_CHANNEL);
+		let from_ = tokenIndex + 1;
 		// if none onchannel to right, nextOnChannel=-1 so set to = last token
-		const to = nextOnChannel === -1 ? this.tokens.length - 1 : nextOnChannel;
+		let to = nextOnChannel === -1 ? this.tokens.length - 1 : nextOnChannel;
 		return this.filterForChannel(from_, to, channel);
 	}
 
@@ -311,20 +311,20 @@ export default class BufferedTokenStream extends TokenStream {
 		if (tokenIndex < 0 || tokenIndex >= this.tokens.length) {
 			throw "" + tokenIndex + " not in 0.." + this.tokens.length - 1;
 		}
-		const prevOnChannel = this.previousTokenOnChannel(tokenIndex - 1, Lexer.DEFAULT_TOKEN_CHANNEL);
+		let prevOnChannel = this.previousTokenOnChannel(tokenIndex - 1, Lexer.DEFAULT_TOKEN_CHANNEL);
 		if (prevOnChannel === tokenIndex - 1) {
 			return null;
 		}
 		// if none on channel to left, prevOnChannel=-1 then from=0
-		const from_ = prevOnChannel + 1;
-		const to = tokenIndex - 1;
+		let from_ = prevOnChannel + 1;
+		let to = tokenIndex - 1;
 		return this.filterForChannel(from_, to, channel);
 	}
 
 	filterForChannel(left, right, channel) {
-		const hidden = [];
+		let hidden = [];
 		for (let i = left; i < right + 1; i++) {
-			const t = this.tokens[i];
+			let t = this.tokens[i];
 			if (channel === -1) {
 				if (t.channel !== Lexer.DEFAULT_TOKEN_CHANNEL) {
 					hidden.push(t);
@@ -366,7 +366,7 @@ export default class BufferedTokenStream extends TokenStream {
 		}
 		let s = "";
 		for (let i = start; i < stop + 1; i++) {
-			const t = this.tokens[i];
+			let t = this.tokens[i];
 			if (t.type === Token.EOF) {
 				break;
 			}

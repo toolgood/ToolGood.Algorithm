@@ -8,10 +8,10 @@ import { StringCache } from '../../../Internals/StringCache.js';
  */
 export class Function_JOIN extends Function_N {
     /**
-     * @param {FunctionBase[]} funcs
+     * @param {FunctionBase[]} z
      */
-    constructor(funcs) {
-        super(funcs);
+    constructor(z) {
+        super(z);
     }
     
     /**
@@ -20,7 +20,7 @@ export class Function_JOIN extends Function_N {
      */
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
+        for (let item of this.z) {
             let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;

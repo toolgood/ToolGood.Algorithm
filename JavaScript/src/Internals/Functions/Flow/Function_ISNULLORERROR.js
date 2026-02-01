@@ -2,18 +2,18 @@ import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_ISNULLORERROR extends Function_2 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (this.func2 !== null) {
+        let args1 = this.a.Evaluate(engine, tempParameter);
+        if (this.b !== null) {
             if (args1.IsNull || args1.IsError) {
-                return this.func2.Evaluate(engine, tempParameter);
+                return this.b.Evaluate(engine, tempParameter);
             }
             if (args1.IsText && args1.TextValue === null) {
-                return this.func2.Evaluate(engine, tempParameter);
+                return this.b.Evaluate(engine, tempParameter);
             }
             return args1;
         }

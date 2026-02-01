@@ -47,7 +47,7 @@ class Binomial {
             return 1;
         }
 
-        const k = Math.floor(x);
+        let k = Math.floor(x);
         return SpecialFunctions.BetaRegularized(n - k, k + 1, 1 - p);
     }
 }

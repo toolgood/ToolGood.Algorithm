@@ -12,7 +12,7 @@ export default class DoubleDict {
     }
 
     get(a, b) {
-        const d = this.cacheMap.get(a) || null;
+        let d = this.cacheMap.get(a) || null;
         return d === null ? null : (d.get(b) || null);
     }
 

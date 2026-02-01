@@ -21,7 +21,7 @@ import { Statistics } from './Statistics/Statistics.js';
 import { QuantileDefinition } from './Statistics/QuantileDefinition.js';
 import { SpecialFunctions } from './SpecialFunctions/SpecialFunctions.js';
 
-const ExcelFunctions = {
+let ExcelFunctions = {
     /**
      * NormSDist
      * @param {number} z

@@ -64,7 +64,7 @@ class JsonData extends IJsonWrapper {
 
     *[Symbol.iterator]() {
         if (this.type === JsonType.Array) {
-            for (const item of this.inst_array) {
+            for (let item of this.inst_array) {
                 yield item;
             }
         }
@@ -149,7 +149,7 @@ class JsonData extends IJsonWrapper {
     }
 
     toString() {
-        const stringBuilder = [];
+        let stringBuilder = [];
         this.toStringBuilder(stringBuilder);
         return stringBuilder.join('');
     }
@@ -171,7 +171,7 @@ class JsonData extends IJsonWrapper {
         } else if (this.IsObject) {
             stringBuilder.push('{');
             let first = true;
-            for (const key in this.inst_object) {
+            for (let key in this.inst_object) {
                 if (!first) {
                     stringBuilder.push(',');
                 }

@@ -2,14 +2,14 @@ import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_Array extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    constructor(z) {
+        super(z);
     }
 
     Evaluate(engine, tempParameter) {
         let args = [];
-        for (let i = 0; i < this.funcs.length; i++) {
-            let item = this.funcs[i];
+        for (let i = 0; i < this.z.length; i++) {
+            let item = this.z[i];
             let aa = item.Evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;

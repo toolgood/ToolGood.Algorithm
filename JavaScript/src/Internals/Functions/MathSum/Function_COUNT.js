@@ -4,13 +4,13 @@ import { FunctionUtil } from '../FunctionUtil.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_COUNT extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    constructor(z) {
+        super(z);
     }
 
     Evaluate(work, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
+        for (let item of this.z) {
             let aa = item.Evaluate(work, tempParameter);
             if (aa.IsError) {
                 return aa;

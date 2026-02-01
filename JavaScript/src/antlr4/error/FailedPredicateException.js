@@ -19,8 +19,8 @@ export default class FailedPredicateException extends RecognitionException {
             recognizer: recognizer,
             input: recognizer.getInputStream(), ctx: recognizer._ctx
         });
-        const s = recognizer._interp.atn.states[recognizer.state]
-        const trans = s.transitions[0]
+        let s = recognizer._interp.atn.states[recognizer.state]
+        let trans = s.transitions[0]
         if (trans instanceof PredicateTransition) {
             this.ruleIndex = trans.ruleIndex;
             this.predicateIndex = trans.predIndex;

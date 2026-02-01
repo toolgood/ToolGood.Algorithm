@@ -3,14 +3,14 @@ import { Function_2 } from '../Function_2.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_Connect extends Function_2 {
-  constructor(funcs) {
-    super(funcs);
+  constructor(z) {
+    super(z);
   }
 
   Evaluate(engine, tempParameter) {
-    let args1 = this.func1.Evaluate(engine, tempParameter);
+    let args1 = this.a.Evaluate(engine, tempParameter);
     if (args1.IsError) { return args1; }
-    let args2 = this.func2.Evaluate(engine, tempParameter);
+    let args2 = this.b.Evaluate(engine, tempParameter);
     if (args2.IsError) { return args2; }
 
     if (args1.IsNull) {

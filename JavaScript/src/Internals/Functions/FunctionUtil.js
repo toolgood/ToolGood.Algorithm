@@ -180,16 +180,16 @@ export var FunctionUtil = {
         for (let i = 0; i < list.length; i++) {
             if (arguments.length === 3) {
                 // 三个参数的情况：list, value, sumdbs
-                const value = arg1;
-                const sumdbs = arg2;
+                let value = arg1;
+                let sumdbs = arg2;
                 if (list[i] === value) {
                     sum += sumdbs[i];
                 }
             } else {
                 // 四个参数的情况：list, operator, value, sumdbs
-                const operator = arg1;
-                const value = arg2;
-                const sumdbs = arg3;
+                let operator = arg1;
+                let value = arg2;
+                let sumdbs = arg3;
                 if (this.F_base_compare(list[i], value, operator)) {
                     sum += sumdbs[i];
                 }

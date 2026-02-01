@@ -95,12 +95,12 @@ export default class LexerActionExecutor {
 	 */
 	execute(lexer, input, startIndex) {
 		let requiresSeek = false;
-		const stopIndex = input.index;
+		let stopIndex = input.index;
 		try {
 			for (let i = 0; i < this.lexerActions.length; i++) {
 				let lexerAction = this.lexerActions[i];
 				if (lexerAction instanceof LexerIndexedCustomAction) {
-					const offset = lexerAction.offset;
+					let offset = lexerAction.offset;
 					input.seek(startIndex + offset);
 					lexerAction = lexerAction.action;
 					requiresSeek = (startIndex + offset) !== stopIndex;
@@ -135,7 +135,7 @@ export default class LexerActionExecutor {
 		} else if (this.lexerActions.length != other.lexerActions.length) {
 			return false;
 		} else {
-			const numActions = this.lexerActions.length
+			let numActions = this.lexerActions.length
 			for (let idx = 0; idx < numActions; ++idx) {
 				if (!this.lexerActions[idx].equals(other.lexerActions[idx])) {
 					return false;
@@ -164,7 +164,7 @@ export default class LexerActionExecutor {
 		if (lexerActionExecutor === null) {
 			return new LexerActionExecutor([ lexerAction ]);
 		}
-		const lexerActions = lexerActionExecutor.lexerActions.concat([ lexerAction ]);
+		let lexerActions = lexerActionExecutor.lexerActions.concat([ lexerAction ]);
 		return new LexerActionExecutor(lexerActions);
 	}
 }

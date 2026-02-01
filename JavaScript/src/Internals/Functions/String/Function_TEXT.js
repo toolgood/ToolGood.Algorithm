@@ -3,16 +3,16 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_TEXT extends Function_2 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return args1;
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'Text', 2);
             if (args2.IsError) {
@@ -26,15 +26,15 @@ class Function_TEXT extends Function_2 {
             return Operand.Create(args1.BooleanValue ? 'TRUE' : 'FALSE');
         } else if (args1.IsNumber) {
             // 实现基本的数字格式化逻辑
-            const format = args2.TextValue;
-            const value = args1.NumberValue;
+            let format = args2.TextValue;
+            let value = args1.NumberValue;
             
             // 处理简单的数字格式，如 "0.00"
             if (format.includes('0')) {
                 // 计算小数位数
-                const decimalIndex = format.indexOf('.');
+                let decimalIndex = format.indexOf('.');
                 if (decimalIndex !== -1) {
-                    const decimalPlaces = format.substring(decimalIndex + 1).length;
+                    let decimalPlaces = format.substring(decimalIndex + 1).length;
                     return Operand.Create(value.toFixed(decimalPlaces));
                 } else {
                     // 没有小数部分，返回整�?

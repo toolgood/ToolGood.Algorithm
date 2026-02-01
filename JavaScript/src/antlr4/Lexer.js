@@ -97,7 +97,7 @@ export default class Lexer extends Recognizer {
 		 * Mark start location in char stream so unbuffered streams are
 		 * guaranteed at least have text of current token
 		 */
-		const tokenStartMarker = this._input.mark();
+		let tokenStartMarker = this._input.mark();
 		try {
 			for (;;) {
 				if (this._hitEOF) {
@@ -226,7 +226,7 @@ export default class Lexer extends Recognizer {
 	 * custom Token objects or provide a new factory.
 	 */
 	emit() {
-		const t = this._factory.create(this._tokenFactorySourcePair, this._type,
+		let t = this._factory.create(this._tokenFactorySourcePair, this._type,
 				this._text, this._channel, this._tokenStartCharIndex, this
 						.getCharIndex() - 1, this._tokenStartLine,
 				this._tokenStartColumn);
@@ -235,9 +235,9 @@ export default class Lexer extends Recognizer {
 	}
 
 	emitEOF() {
-		const cpos = this.column;
-		const lpos = this.line;
-		const eof = this._factory.create(this._tokenFactorySourcePair, Token.EOF,
+		let cpos = this.column;
+		let lpos = this.line;
+		let eof = this._factory.create(this._tokenFactorySourcePair, Token.EOF,
 				null, Token.DEFAULT_CHANNEL, this._input.index,
 				this._input.index - 1, lpos, cpos);
 		this.emitToken(eof);
@@ -254,7 +254,7 @@ export default class Lexer extends Recognizer {
 	 * Forces load of all tokens. Does not include EOF token.
 	 */
 	getAllTokens() {
-		const tokens = [];
+		let tokens = [];
 		let t = this.nextToken();
 		while (t.type !== Token.EOF) {
 			tokens.push(t);
@@ -264,17 +264,17 @@ export default class Lexer extends Recognizer {
 	}
 
 	notifyListeners(e) {
-		const start = this._tokenStartCharIndex;
-		const stop = this._input.index;
-		const text = this._input.getText(start, stop);
-		const msg = "token recognition error at: '" + this.getErrorDisplay(text) + "'";
-		const listener = this.getErrorListener();
+		let start = this._tokenStartCharIndex;
+		let stop = this._input.index;
+		let text = this._input.getText(start, stop);
+		let msg = "token recognition error at: '" + this.getErrorDisplay(text) + "'";
+		let listener = this.getErrorListener();
 		listener.syntaxError(this, null, this._tokenStartLine,
 				this._tokenStartColumn, msg, e);
 	}
 
 	getErrorDisplay(s) {
-		const d = [];
+		let d = [];
 		for (let i = 0; i < s.length; i++) {
 			d.push(s[i]);
 		}

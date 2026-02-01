@@ -3,12 +3,12 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_BIN2DEC extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    constructor(a) {
+        super(a);
     }
 
     Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'BIN2DEC');
             if (args1.IsError) {

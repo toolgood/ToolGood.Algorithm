@@ -3,16 +3,16 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_CONCATENATE extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    constructor(z) {
+        super(z);
     }
 
     Evaluate(work, tempParameter) {
-        if (this.funcs.length === 0) {
+        if (this.z.length === 0) {
             return Operand.Create('');
         }
-        if (this.funcs.length === 1) {
-            let a = this.funcs[0].Evaluate(work, tempParameter);
+        if (this.z.length === 1) {
+            let a = this.z[0].Evaluate(work, tempParameter);
             if (a.IsNotText) {
                 a.ToText(StringCache.Function_parameter_error, 'Concatenate', 1);
                 if (a.IsError) {
@@ -22,8 +22,8 @@ class Function_CONCATENATE extends Function_N {
             return a;
         }
         let result = '';
-        for (let i = 0; i < this.funcs.length; i++) {
-            let a = this.funcs[i].Evaluate(work, tempParameter);
+        for (let i = 0; i < this.z.length; i++) {
+            let a = this.z[i].Evaluate(work, tempParameter);
             if (a.IsNotText) {
                 a.ToText(StringCache.Function_parameter_error, 'Concatenate', i + 1);
                 if (a.IsError) {

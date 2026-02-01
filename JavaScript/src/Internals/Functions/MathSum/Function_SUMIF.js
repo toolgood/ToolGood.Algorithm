@@ -4,16 +4,16 @@ import { FunctionUtil } from '../FunctionUtil.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SUMIF extends Function_3 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsError) {
             return args1;
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsError) {
             return args2;
         }
@@ -25,8 +25,8 @@ class Function_SUMIF extends Function_3 {
         }
 
         let sumdbs;
-        if (this.func3 != null) {
-            let args3 = this.func3.Evaluate(engine, tempParameter);
+        if (this.c != null) {
+            let args3 = this.c.Evaluate(engine, tempParameter);
             if (args3.IsError) {
                 return args3;
             }

@@ -19,7 +19,7 @@ export default class BitSet {
 
     get(index) {
         BitSet._checkIndex(index)
-        const slot = index >>> 5;
+        let slot = index >>> 5;
         if (slot >= this.data.length) {
             return false;
         }
@@ -28,20 +28,20 @@ export default class BitSet {
 
     clear(index) {
         BitSet._checkIndex(index)
-        const slot = index >>> 5;
+        let slot = index >>> 5;
         if (slot < this.data.length) {
             this.data[slot] &= ~(1 << index);
         }
     }
 
     or(set) {
-        const minCount = Math.min(this.data.length, set.data.length);
+        let minCount = Math.min(this.data.length, set.data.length);
         for (let k = 0; k < minCount; ++k) {
             this.data[k] |= set.data[k];
         }
         if (this.data.length < set.data.length) {
             this._resize((set.data.length << 5) - 1);
-            const c = set.data.length;
+            let c = set.data.length;
             for (let k = minCount; k < c; ++k) {
                 this.data[k] = set.data[k];
             }
@@ -49,13 +49,13 @@ export default class BitSet {
     }
 
     values() {
-        const result = new Array(this.length);
+        let result = new Array(this.length);
         let pos = 0;
-        const length = this.data.length;
+        let length = this.data.length;
         for (let k = 0; k < length; ++k) {
             let l = this.data[k];
             while (l !== 0) {
-                const t = l & -l;
+                let t = l & -l;
                 result[pos++] = (k << 5) + BitSet._bitCount(t - 1);
                 l ^= t;
             }
@@ -95,11 +95,11 @@ export default class BitSet {
     }
 
     _resize(index) {
-        const count = index + 32 >>> 5;
+        let count = index + 32 >>> 5;
         if (count <= this.data.length) {
             return;
         }
-        const data = new Uint32Array(count);
+        let data = new Uint32Array(count);
         data.set(this.data);
         data.fill(0, this.data.length);
         this.data = data;

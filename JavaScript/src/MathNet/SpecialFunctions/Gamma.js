@@ -11,9 +11,9 @@ class Gamma {
      * @returns {number}
      */
     static GammaLowerRegularized(a, x) {
-        const epsilon = 0.000000000000001;
-        const big = 4503599627370496.0;
-        const bigInv = 2.22044604925031308085e-16;
+        let epsilon = 0.000000000000001;
+        let big = 4503599627370496.0;
+        let bigInv = 2.22044604925031308085e-16;
 
         if (Precision.AlmostEqual(a, 0)) {
             if (Precision.AlmostEqual(x, 0)) {
@@ -27,7 +27,7 @@ class Gamma {
             return 0;
         }
 
-        const ax = (a * Math.log(x)) - x - Beta.GammaLn(a);
+        let ax = (a * Math.log(x)) - x - Beta.GammaLn(a);
         if (ax < -709.78271289338399) {
             return a < x ? 1 : 0;
         }
@@ -62,13 +62,13 @@ class Gamma {
             c++;
             y += 1;
             z += 2;
-            const yc = y * c;
+            let yc = y * c;
 
-            const p = (p2 * z) - (p3 * yc);
-            const q = (q2 * z) - (q3 * yc);
+            let p = (p2 * z) - (p3 * yc);
+            let q = (q2 * z) - (q3 * yc);
 
             if (q !== 0) {
-                const nextans = p / q;
+                let nextans = p / q;
                 error = Math.abs((ans - nextans) / nextans);
                 ans = nextans;
             } else {
@@ -101,9 +101,9 @@ class Gamma {
      * @returns {number}
      */
     static GammaLowerRegularizedInv(a, y0) {
-        const epsilon = 0.000000000000001;
-        const big = 4503599627370496.0;
-        const threshold = 5 * epsilon;
+        let epsilon = 0.000000000000001;
+        let big = 4503599627370496.0;
+        let threshold = 5 * epsilon;
 
         if (isNaN(a) || isNaN(y0)) {
             return NaN;
@@ -250,7 +250,7 @@ class Gamma {
      */
     static Gamma(z) {
         // GammaDk coefficients from Beta.js
-        const GammaDk = [
+        let GammaDk = [
             2.48574089138753565546e-5,
             1.05142378581721974210,
             -3.45687097222016235469,
@@ -263,8 +263,8 @@ class Gamma {
             4.63399473359905636708e-6,
             0.0
         ];
-        const GammaN = 10;
-        const GammaR = 10.900511;
+        let GammaN = 10;
+        let GammaR = 10.900511;
 
         if (z < 0.5) {
             let s = GammaDk[0];

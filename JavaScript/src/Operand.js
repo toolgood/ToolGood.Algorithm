@@ -169,7 +169,7 @@ export class Operand {
         } else if (Array.isArray(obj)) {
             let arr=[];
             for (let index = 0; index < obj.length; index++) {
-                const element =Operand.Create(obj[index]);
+                let element =Operand.Create(obj[index]);
                 arr.push(element);
             }
             return new OperandArray(arr);
@@ -183,7 +183,7 @@ export class Operand {
     static CreateJson(txt) {
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                const json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
             } catch (e) { }
         }
@@ -196,7 +196,7 @@ export class Operand {
     static Error(msg, ...args) {
         if (args.length > 0) {
             msg = msg.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -216,7 +216,7 @@ export class Operand {
     ToNumber(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -229,7 +229,7 @@ export class Operand {
     ToBoolean(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -242,7 +242,7 @@ export class Operand {
     ToText(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -255,7 +255,7 @@ export class Operand {
     ToMyDate(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -268,7 +268,7 @@ export class Operand {
     ToArray(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -346,12 +346,12 @@ class OperandString extends Operand {
 
     ToNumber(errorMessage) {
         if (this.TextValue.indexOf('.') === -1) {
-            const num = parseInt(this.TextValue);
+            let num = parseInt(this.TextValue);
             if (!isNaN(num)) {
                 return Operand.Create(num);
             }
         }
-        const d = parseFloat(this.TextValue);
+        let d = parseFloat(this.TextValue);
         if (!isNaN(d)) {
             return Operand.Create(d);
         }
@@ -362,12 +362,12 @@ class OperandString extends Operand {
     }
     ToNumber(errorMessage, ...args) {
         if (this.TextValue.indexOf('.') === -1) {
-            const num = parseInt(this.TextValue);
+            let num = parseInt(this.TextValue);
             if (!isNaN(num)) {
                 return Operand.Create(num);
             }
         }
-        const d = parseFloat(this.TextValue);
+        let d = parseFloat(this.TextValue);
         if (!isNaN(d)) {
             return Operand.Create(d);
         }
@@ -381,7 +381,7 @@ class OperandString extends Operand {
     ToText(errorMessage, ...args) { return this; }
 
     ToBoolean(errorMessage) {
-        const b = FunctionUtil.TryParseBoolean(this.TextValue);
+        let b = FunctionUtil.TryParseBoolean(this.TextValue);
         if (b !== null) {
             return b ? Operand.True : Operand.False;
         }
@@ -391,7 +391,7 @@ class OperandString extends Operand {
         return Operand.Error(errorMessage);
     }
     ToBoolean(errorMessage, ...args) {
-        const b = FunctionUtil.TryParseBoolean(this.TextValue);
+        let b = FunctionUtil.TryParseBoolean(this.TextValue);
         if (b !== null) {
             return b ? Operand.True : Operand.False;
         }
@@ -403,7 +403,7 @@ class OperandString extends Operand {
 
     ToMyDate(errorMessage) {
         try {
-            const date = new Date(this.TextValue);
+            let date = new Date(this.TextValue);
             if (!isNaN(date.getTime())) {
                 return Operand.Create(new MyDate(date));
             }
@@ -415,7 +415,7 @@ class OperandString extends Operand {
     }
     ToMyDate(errorMessage, ...args) {
         try {
-            const date = new Date(this.TextValue);
+            let date = new Date(this.TextValue);
             if (!isNaN(date.getTime())) {
                 return Operand.Create(new MyDate(date));
             }
@@ -430,10 +430,10 @@ class OperandString extends Operand {
         return Operand.Error(errorMessage ?? "Convert to array error!");
     }
     ToJson(errorMessage = null) {
-        const txt = this.TextValue.trim();
+        let txt = this.TextValue.trim();
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                const json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
             } catch (e) { }
         }
@@ -442,7 +442,7 @@ class OperandString extends Operand {
 
     toString() {
         let result = '"';
-        for (const c of this._value) {
+        for (let c of this._value) {
             switch (c) {
                 case '"': result += '\\"'; break;
                 case '\n': result += '\\n'; break;
@@ -507,8 +507,8 @@ class OperandJson extends Operand {
 
     ToArray(errorMessage) {
         if (this.JsonValue.IsArray) {
-            const list = [];
-            for (const v of this.JsonValue) {
+            let list = [];
+            for (let v of this.JsonValue) {
                 if (v.IsString) {
                     list.push(Operand.Create(v.StringValue));
                 } else if (v.IsBoolean) {
@@ -527,8 +527,8 @@ class OperandJson extends Operand {
     }
     ToArray(errorMessage, ...args) {
         if (this.JsonValue.IsArray) {
-            const list = [];
-            for (const v of this.JsonValue) {
+            let list = [];
+            for (let v of this.JsonValue) {
                 if (v.IsString) {
                     list.push(Operand.Create(v.StringValue));
                 } else if (v.IsBoolean) {
@@ -551,7 +551,7 @@ class OperandJson extends Operand {
     
     TryGetValue(key) {
         if (this.JsonValue.IsObject) {
-            const value = this.JsonValue.inst_object[key];
+            let value = this.JsonValue.inst_object[key];
             if (value) {
                 if (value.IsString) {
                     return Operand.Create(value.StringValue);
@@ -595,16 +595,16 @@ class OperandArray extends Operand {
     ToArray(errorMessage, ...args) { return this; }
 
     ToJson(errorMessage = null) {
-        const txt = this.toString();
+        let txt = this.toString();
         try {
-            const json = JsonMapper.ToObject(txt);
+            let json = JsonMapper.ToObject(txt);
             return Operand.Create(json);
         } catch (e) { }
         return Operand.Error(errorMessage ?? "Convert to json error!");
     }
 
     toString() {
-        const elements = this.ArrayValue.map(item => item.toString());
+        let elements = this.ArrayValue.map(item => item.toString());
         return '[' + elements.join(',') + ']';
     }
 }
@@ -674,9 +674,9 @@ class OperandKeyValueList extends Operand {
     }
 
     ToJson(errorMessage = null) {
-        const txt = this.toString();
+        let txt = this.toString();
         try {
-            const json = JsonMapper.ToObject(txt);
+            let json = JsonMapper.ToObject(txt);
             return Operand.Create(json);
         } catch (e) { }
         return Operand.Error(errorMessage ?? "Convert to json error!");
@@ -687,7 +687,7 @@ class OperandKeyValueList extends Operand {
     }
 
     TryGetValue(key) {
-        for (const item of this.TextList) {
+        for (let item of this.TextList) {
             if (item.key === key.toString()) {
                 return item.value;
             }
@@ -696,7 +696,7 @@ class OperandKeyValueList extends Operand {
     }
 
     ContainsKey(value) {
-        for (const item of this.TextList) {
+        for (let item of this.TextList) {
             if (value.TextValue === item.value) {
                 return true;
             }
@@ -705,8 +705,8 @@ class OperandKeyValueList extends Operand {
     }
 
     ContainsValue(value) {
-        for (const item of this.TextList) {
-            const op = item.Value;
+        for (let item of this.TextList) {
+            let op = item.Value;
             if (value.Type !== op.Type) { continue; }
             if (value.IsText) {
                 if (value.TextValue === op.TextValue) {
@@ -718,7 +718,7 @@ class OperandKeyValueList extends Operand {
     }
 
     toString() {
-        const elements = this.TextList.map(item => '"' + item.Key + '":' + item.Value.toString());
+        let elements = this.TextList.map(item => '"' + item.Key + '":' + item.Value.toString());
         return '{' + elements.join(',') + '}';
     }
 }

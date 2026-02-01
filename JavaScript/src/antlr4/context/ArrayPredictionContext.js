@@ -15,9 +15,9 @@ export default class ArrayPredictionContext extends PredictionContext {
          * null parent and
          * returnState == {@link //EMPTY_RETURN_STATE}.
          */
-        const h = new HashCode();
+        let h = new HashCode();
         h.update(parents, returnStates);
-        const hashCode = h.finish();
+        let hashCode = h.finish();
         super(hashCode);
         this.parents = parents;
         this.returnStates = returnStates;

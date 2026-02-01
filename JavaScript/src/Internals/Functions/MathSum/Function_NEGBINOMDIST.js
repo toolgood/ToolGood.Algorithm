@@ -4,26 +4,26 @@ import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_NEGBINOMDIST extends Function_3 {
-    constructor(funcs) {
-    super(funcs);
+    constructor(z) {
+    super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+        let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_error, 'NegbinomDist', 1);
             if (args1.IsError) {
                 return args1;
             }
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
+        let args2 = this.b.Evaluate(engine, tempParameter);
         if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'NegbinomDist', 2);
             if (args2.IsError) {
                 return args2;
             }
         }
-        let args3 = this.func3.Evaluate(engine, tempParameter);
+        let args3 = this.c.Evaluate(engine, tempParameter);
         if (args3.IsNotNumber) {
             args3 = args3.ToNumber(StringCache.Function_parameter_error, 'NegbinomDist', 3);
             if (args3.IsError) {
