@@ -11,13 +11,13 @@ class Function_PERCENTILE extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-            let converted1 = args1.ToArray(StringCache.Function_parameter_error, "Percentile", 1);
-            if (converted1.IsError) return converted1;
-            args1 = converted1;
+            args1 = args1.ToArray(StringCache.Function_parameter_error, "Percentile", 1);
+            if (args1.IsError) return args1;
+            
         let args2 = this.b.Evaluate(engine, tempParameter);
-            let converted2 = args2.ToNumber(StringCache.Function_parameter_error, "Percentile", 2);
-            if (converted2.IsError) return converted2;
-            args2 = converted2;
+            args2 = args2.ToNumber(StringCache.Function_parameter_error, "Percentile", 2);
+            if (args2.IsError) return args2;
+            
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) {

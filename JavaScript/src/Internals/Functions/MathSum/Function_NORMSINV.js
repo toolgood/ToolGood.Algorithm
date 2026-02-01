@@ -10,9 +10,9 @@ class Function_NORMSINV extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-            let converted1 = args1.ToNumber(StringCache.Function_parameter_error, "NormSInv");
-            if (converted1.IsError) return converted1;
-            args1 = converted1;
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, "NormSInv");
+            if (args1.IsError) return args1;
+            
         let p = args1.NumberValue;
         return Operand.Create(ExcelFunctions.NormSInv(p));
     }

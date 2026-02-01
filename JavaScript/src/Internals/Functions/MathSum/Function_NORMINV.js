@@ -10,17 +10,17 @@ class Function_NORMINV extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-            let converted1 = args1.ToNumber(StringCache.Function_parameter_error, "NormInv", 1);
-            if (converted1.IsError) return converted1;
-            args1 = converted1;
+            args1 = args1.ToNumber(StringCache.Function_parameter_error, "NormInv", 1);
+            if (args1.IsError) return args1;
+            
         let args2 = this.b.Evaluate(engine, tempParameter);
-            let converted2 = args2.ToNumber(StringCache.Function_parameter_error, "NormInv", 2);
-            if (converted2.IsError) return converted2;
-            args2 = converted2;
+            args2 = args2.ToNumber(StringCache.Function_parameter_error, "NormInv", 2);
+            if (args2.IsError) return args2;
+            
         let args3 = this.c.Evaluate(engine, tempParameter);
-            let converted3 = args3.ToNumber(StringCache.Function_parameter_error, "NormInv", 3);
-            if (converted3.IsError) return converted3;
-            args3 = converted3;
+            args3 = args3.ToNumber(StringCache.Function_parameter_error, "NormInv", 3);
+            if (args3.IsError) return args3;
+            
         let p = args1.NumberValue;
         let avg = args2.NumberValue;
         let STDEV = args3.NumberValue;
