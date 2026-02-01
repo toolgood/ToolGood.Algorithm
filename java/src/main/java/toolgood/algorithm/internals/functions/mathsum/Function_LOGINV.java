@@ -2,9 +2,10 @@ package toolgood.algorithm.internals.functions.mathsum;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.Function_3;
+import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
+
 
 public class Function_LOGINV extends Function_3 {
     public Function_LOGINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) {

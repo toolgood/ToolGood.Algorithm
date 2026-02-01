@@ -6,6 +6,7 @@ import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
+
 public class Function_NORMSINV extends Function_1 {
     public Function_NORMSINV(FunctionBase func1) {
         super(func1);

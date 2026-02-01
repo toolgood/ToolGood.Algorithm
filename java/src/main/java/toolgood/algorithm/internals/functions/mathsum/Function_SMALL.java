@@ -5,9 +5,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.Function_2;
+import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.OperandType;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
 public class Function_SMALL extends Function_2 {

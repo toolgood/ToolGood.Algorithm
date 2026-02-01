@@ -3,10 +3,11 @@ package toolgood.algorithm.internals.functions.mathsum;
 import java.util.function.Function;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.Function_4;
+import toolgood.algorithm.internals.functions.Function_4;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.OperandType;
-import toolgood.algorithm.mathnet.ExcelFunctions;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.mathNet.ExcelFunctions;
+
 
 public class Function_WEIBULL extends Function_4 {
     public Function_WEIBULL(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {

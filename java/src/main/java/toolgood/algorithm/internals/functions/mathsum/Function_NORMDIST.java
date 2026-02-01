@@ -2,9 +2,10 @@ package toolgood.algorithm.internals.functions.mathsum;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.Function_4;
+import toolgood.algorithm.internals.functions.Function_4;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
+
 
 public class Function_NORMDIST extends Function_4 {
     public Function_NORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {

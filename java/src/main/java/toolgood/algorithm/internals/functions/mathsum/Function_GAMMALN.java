@@ -6,6 +6,7 @@ import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
+
 public class Function_GAMMALN extends Function_1 {
     public Function_GAMMALN(FunctionBase func1) {
         super(func1);

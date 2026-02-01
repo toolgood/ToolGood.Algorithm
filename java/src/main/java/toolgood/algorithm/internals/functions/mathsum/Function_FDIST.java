@@ -6,6 +6,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
+
 public class Function_FDIST extends Function_3 {
     public Function_FDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
         super(func1, func2, func3);

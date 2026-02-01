@@ -3,10 +3,11 @@ package toolgood.algorithm.internals.functions.mathsum;
 import java.util.function.Function;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.Function_3;
+import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.OperandType;
-import toolgood.algorithm.mathnet.ExcelFunctions;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.mathNet.ExcelFunctions;
+
 
 public class Function_POISSON extends Function_3 {
     public Function_POISSON(FunctionBase func1, FunctionBase func2, FunctionBase func3) {

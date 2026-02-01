@@ -1,6 +1,6 @@
 package toolgood.algorithm.internals.functions.csharp;
 
-import toolgood.algorithm.internals.Function_2;
+import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;

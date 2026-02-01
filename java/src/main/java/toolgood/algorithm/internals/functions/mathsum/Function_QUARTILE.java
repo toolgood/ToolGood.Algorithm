@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.function.Function;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.Function_2;
+import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.OperandType;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
-import toolgood.algorithm.mathnet.ExcelFunctions;
+import toolgood.algorithm.mathNet.ExcelFunctions;
+
 
 public class Function_QUARTILE extends Function_2 {
     public Function_QUARTILE(FunctionBase func1, FunctionBase func2) {
