@@ -1,5 +1,3 @@
-import { JsonType } from './JsonType.js';
-
 class IJsonWrapper {
     get IsArray() {
         throw new Error('Not implemented');

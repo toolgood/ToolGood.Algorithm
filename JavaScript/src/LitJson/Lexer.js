@@ -53,7 +53,7 @@ class Lexer {
             case 'F':
                 return 15;
             default:
-                return digit.charCodeAt(0) - '0'.charCodeAt(0);
+                return digit.charCodeAt(0) - 48 /*'0'.charCodeAt(0)*/;
         }
     }
 
@@ -134,62 +134,62 @@ class Lexer {
 // State handler methods
 Lexer.State1 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char === ' '.charCodeAt(0) || (ctx.L.input_char >= '\t'.charCodeAt(0) && ctx.L.input_char <= '\r'.charCodeAt(0))) {
+        if (ctx.L.input_char === 32 /*' '.charCodeAt(0)*/ || (ctx.L.input_char >= 9 /*'\t'.charCodeAt(0)*/ && ctx.L.input_char <= 13 /*'\r'.charCodeAt(0)*/)) {
             continue;
         }
 
-        if (ctx.L.input_char >= '1'.charCodeAt(0) && ctx.L.input_char <= '9'.charCodeAt(0)) {
+        if (ctx.L.input_char >= 49 /*'1'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
             ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
             ctx.NextState = 3;
             return true;
         }
 
         switch (ctx.L.input_char) {
-            case '"'.charCodeAt(0):
+            case 34 /*'"'.charCodeAt(0)*/:
                 ctx.NextState = 19;
                 ctx.Return = true;
                 return true;
 
-            case ','.charCodeAt(0):
-            case ':'.charCodeAt(0):
-            case '['.charCodeAt(0):
-            case ']'.charCodeAt(0):
-            case '{'.charCodeAt(0):
-            case '}'.charCodeAt(0):
+            case 44 /*','.charCodeAt(0)*/:
+            case 58 /*':'.charCodeAt(0)*/:
+            case 91 /*'['.charCodeAt(0)*/:
+            case 93 /*']'.charCodeAt(0)*/:
+            case 123 /*'{'.charCodeAt(0)*/:
+            case 125 /*'}'.charCodeAt(0)*/:
                 ctx.NextState = 1;
                 ctx.Return = true;
                 return true;
 
-            case '-'.charCodeAt(0):
+            case 45 /*'-'.charCodeAt(0)*/:
                 ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
                 ctx.NextState = 2;
                 return true;
 
-            case '0'.charCodeAt(0):
+            case 48 /*'0'.charCodeAt(0)*/:
                 ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
                 ctx.NextState = 4;
                 return true;
 
-            case 'f'.charCodeAt(0):
+            case 102 /*'f'.charCodeAt(0)*/:
                 ctx.NextState = 12;
                 return true;
 
-            case 'n'.charCodeAt(0):
+            case 110 /*'n'.charCodeAt(0)*/:
                 ctx.NextState = 16;
                 return true;
 
-            case 't'.charCodeAt(0):
+            case 116 /*'t'.charCodeAt(0)*/:
                 ctx.NextState = 9;
                 return true;
 
-            case '\''.charCodeAt(0):
+            case 39 /*'\''.charCodeAt(0)*/:
                 if (!ctx.L.allow_single_quoted_strings) return false;
-                ctx.L.input_char = '"'.charCodeAt(0);
+                ctx.L.input_char = 34 /*'"'.charCodeAt(0)*/;
                 ctx.NextState = 23;
                 ctx.Return = true;
                 return true;
 
-            case '/'.charCodeAt(0):
+            case 47 /*'/'.charCodeAt(0)*/:
                 if (!ctx.L.allow_comments) return false;
                 ctx.NextState = 25;
                 return true;
@@ -204,13 +204,13 @@ Lexer.State1 = function(ctx) {
 Lexer.State2 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char >= '1'.charCodeAt(0) && ctx.L.input_char <= '9'.charCodeAt(0)) {
+    if (ctx.L.input_char >= 49 /*'1'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
         ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
         ctx.NextState = 3;
         return true;
     }
 
-    if (ctx.L.input_char === '0'.charCodeAt(0)) {
+    if (ctx.L.input_char === 48 /*'0'.charCodeAt(0)*/) {
         ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
         ctx.NextState = 4;
         return true;
@@ -221,33 +221,33 @@ Lexer.State2 = function(ctx) {
 
 Lexer.State3 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char >= '0'.charCodeAt(0) && ctx.L.input_char <= '9'.charCodeAt(0)) {
+        if (ctx.L.input_char >= 48 /*'0'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
             ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
             continue;
         }
 
-        if (ctx.L.input_char === ' '.charCodeAt(0) || (ctx.L.input_char >= '\t'.charCodeAt(0) && ctx.L.input_char <= '\r'.charCodeAt(0))) {
+        if (ctx.L.input_char === 32 /*' '.charCodeAt(0)*/ || (ctx.L.input_char >= 9 /*'\t'.charCodeAt(0)*/ && ctx.L.input_char <= 13 /*'\r'.charCodeAt(0)*/)) {
             ctx.Return = true;
             ctx.NextState = 1;
             return true;
         }
 
         switch (ctx.L.input_char) {
-            case ','.charCodeAt(0):
-            case ']'.charCodeAt(0):
-            case '}'.charCodeAt(0):
+            case 44 /*','.charCodeAt(0)*/:
+            case 93 /*']'.charCodeAt(0)*/:
+            case 125 /*'}'.charCodeAt(0)*/:
                 ctx.L.UngetChar();
                 ctx.Return = true;
                 ctx.NextState = 1;
                 return true;
 
-            case '.'.charCodeAt(0):
+            case 46 /*'.'.charCodeAt(0)*/:
                 ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
                 ctx.NextState = 5;
                 return true;
 
-            case 'e'.charCodeAt(0):
-            case 'E'.charCodeAt(0):
+            case 101 /*'e'.charCodeAt(0)*/:
+            case 69 /*'E'.charCodeAt(0)*/:
                 ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
                 ctx.NextState = 7;
                 return true;
@@ -262,28 +262,28 @@ Lexer.State3 = function(ctx) {
 Lexer.State4 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === ' '.charCodeAt(0) || (ctx.L.input_char >= '\t'.charCodeAt(0) && ctx.L.input_char <= '\r'.charCodeAt(0))) {
+    if (ctx.L.input_char === 32 /*' '.charCodeAt(0)*/ || (ctx.L.input_char >= 9 /*'\t'.charCodeAt(0)*/ && ctx.L.input_char <= 13 /*'\r'.charCodeAt(0)*/)) {
         ctx.Return = true;
         ctx.NextState = 1;
         return true;
     }
 
     switch (ctx.L.input_char) {
-        case ','.charCodeAt(0):
-        case ']'.charCodeAt(0):
-        case '}'.charCodeAt(0):
+        case 44 /*','.charCodeAt(0)*/:
+        case 93 /*']'.charCodeAt(0)*/:
+        case 125 /*'}'.charCodeAt(0)*/:
             ctx.L.UngetChar();
             ctx.Return = true;
             ctx.NextState = 1;
             return true;
 
-        case '.'.charCodeAt(0):
+        case 46 /*'.'.charCodeAt(0)*/:
             ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
             ctx.NextState = 5;
             return true;
 
-        case 'e'.charCodeAt(0):
-        case 'E'.charCodeAt(0):
+        case 101 /*'e'.charCodeAt(0)*/:
+        case 69 /*'E'.charCodeAt(0)*/:
             ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
             ctx.NextState = 7;
             return true;
@@ -296,7 +296,7 @@ Lexer.State4 = function(ctx) {
 Lexer.State5 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char >= '0'.charCodeAt(0) && ctx.L.input_char <= '9'.charCodeAt(0)) {
+    if (ctx.L.input_char >= 48 /*'0'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
         ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
         ctx.NextState = 6;
         return true;
@@ -307,28 +307,28 @@ Lexer.State5 = function(ctx) {
 
 Lexer.State6 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char >= '0'.charCodeAt(0) && ctx.L.input_char <= '9'.charCodeAt(0)) {
+        if (ctx.L.input_char >= 48 /*'0'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
             ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
             continue;
         }
 
-        if (ctx.L.input_char === ' '.charCodeAt(0) || (ctx.L.input_char >= '\t'.charCodeAt(0) && ctx.L.input_char <= '\r'.charCodeAt(0))) {
+        if (ctx.L.input_char === 32 /*' '.charCodeAt(0)*/ || (ctx.L.input_char >= 9 /*'\t'.charCodeAt(0)*/ && ctx.L.input_char <= 13 /*'\r'.charCodeAt(0)*/)) {
             ctx.Return = true;
             ctx.NextState = 1;
             return true;
         }
 
         switch (ctx.L.input_char) {
-            case ','.charCodeAt(0):
-            case ']'.charCodeAt(0):
-            case '}'.charCodeAt(0):
+            case 44 /*','.charCodeAt(0)*/:
+            case 93 /*']'.charCodeAt(0)*/:
+            case 125 /*'}'.charCodeAt(0)*/:
                 ctx.L.UngetChar();
                 ctx.Return = true;
                 ctx.NextState = 1;
                 return true;
 
-            case 'e'.charCodeAt(0):
-            case 'E'.charCodeAt(0):
+            case 101 /*'e'.charCodeAt(0)*/:
+            case 69 /*'E'.charCodeAt(0)*/:
                 ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
                 ctx.NextState = 7;
                 return true;
@@ -343,13 +343,13 @@ Lexer.State6 = function(ctx) {
 Lexer.State7 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char >= '0' && ctx.L.input_char <= '9') {
+    if (ctx.L.input_char >= 48 /*'0'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
         ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
         ctx.NextState = 8;
         return true;
     }
 
-    if (ctx.L.input_char === '+' || ctx.L.input_char === '-'.charCodeAt(0)) {
+    if (ctx.L.input_char === 43 /*'+'.charCodeAt(0)*/ || ctx.L.input_char === 45 /*'-'.charCodeAt(0)*/) {
         ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
         ctx.NextState = 8;
         return true;
@@ -360,21 +360,21 @@ Lexer.State7 = function(ctx) {
 
 Lexer.State8 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char >= '0'.charCodeAt(0) && ctx.L.input_char <= '9'.charCodeAt(0)) {
+        if (ctx.L.input_char >= 48 /*'0'.charCodeAt(0)*/ && ctx.L.input_char <= 57 /*'9'.charCodeAt(0)*/) {
             ctx.L.string_buffer.push(String.fromCharCode(ctx.L.input_char));
             continue;
         }
 
-        if (ctx.L.input_char === ' '.charCodeAt(0) || (ctx.L.input_char >= '\t'.charCodeAt(0) && ctx.L.input_char <= '\r'.charCodeAt(0))) {
+        if (ctx.L.input_char === 32 /*' '.charCodeAt(0)*/ || (ctx.L.input_char >= 9 /*'\t'.charCodeAt(0)*/ && ctx.L.input_char <= 13 /*'\r'.charCodeAt(0)*/)) {
             ctx.Return = true;
             ctx.NextState = 1;
             return true;
         }
 
         switch (ctx.L.input_char) {
-            case ','.charCodeAt(0):
-            case ']'.charCodeAt(0):
-            case '}'.charCodeAt(0):
+            case 44 /*','.charCodeAt(0)*/:
+            case 93 /*']'.charCodeAt(0)*/:
+            case 125 /*'}'.charCodeAt(0)*/:
                 ctx.L.UngetChar();
                 ctx.Return = true;
                 ctx.NextState = 1;
@@ -390,7 +390,7 @@ Lexer.State8 = function(ctx) {
 Lexer.State9 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'r'.charCodeAt(0)) {
+    if (ctx.L.input_char === 114 /*'r'.charCodeAt(0)*/) {
         ctx.NextState = 10;
         return true;
     }
@@ -401,7 +401,7 @@ Lexer.State9 = function(ctx) {
 Lexer.State10 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'u'.charCodeAt(0)) {
+    if (ctx.L.input_char === 117 /*'u'.charCodeAt(0)*/) {
         ctx.NextState = 11;
         return true;
     }
@@ -412,7 +412,7 @@ Lexer.State10 = function(ctx) {
 Lexer.State11 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'e'.charCodeAt(0)) {
+    if (ctx.L.input_char === 101 /*'e'.charCodeAt(0)*/) {
         ctx.Return = true;
         ctx.NextState = 1;
         return true;
@@ -424,7 +424,7 @@ Lexer.State11 = function(ctx) {
 Lexer.State12 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'a'.charCodeAt(0)) {
+    if (ctx.L.input_char === 97 /*'a'.charCodeAt(0)*/) {
         ctx.NextState = 13;
         return true;
     }
@@ -435,7 +435,7 @@ Lexer.State12 = function(ctx) {
 Lexer.State13 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'l'.charCodeAt(0)) {
+    if (ctx.L.input_char === 108 /*'l'.charCodeAt(0)*/) {
         ctx.NextState = 14;
         return true;
     }
@@ -446,7 +446,7 @@ Lexer.State13 = function(ctx) {
 Lexer.State14 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 's'.charCodeAt(0)) {
+    if (ctx.L.input_char === 115 /*'s'.charCodeAt(0)*/) {
         ctx.NextState = 15;
         return true;
     }
@@ -457,7 +457,7 @@ Lexer.State14 = function(ctx) {
 Lexer.State15 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'e'.charCodeAt(0)) {
+    if (ctx.L.input_char === 101 /*'e'.charCodeAt(0)*/) {
         ctx.Return = true;
         ctx.NextState = 1;
         return true;
@@ -469,7 +469,7 @@ Lexer.State15 = function(ctx) {
 Lexer.State16 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'u'.charCodeAt(0)) {
+    if (ctx.L.input_char === 117 /*'u'.charCodeAt(0)*/) {
         ctx.NextState = 17;
         return true;
     }
@@ -480,7 +480,7 @@ Lexer.State16 = function(ctx) {
 Lexer.State17 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'l'.charCodeAt(0)) {
+    if (ctx.L.input_char === 108 /*'l'.charCodeAt(0)*/) {
         ctx.NextState = 18;
         return true;
     }
@@ -491,7 +491,7 @@ Lexer.State17 = function(ctx) {
 Lexer.State18 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'l'.charCodeAt(0)) {
+    if (ctx.L.input_char === 108 /*'l'.charCodeAt(0)*/) {
         ctx.Return = true;
         ctx.NextState = 1;
         return true;
@@ -503,13 +503,13 @@ Lexer.State18 = function(ctx) {
 Lexer.State19 = function(ctx) {
     while (ctx.L.GetChar()) {
         switch (ctx.L.input_char) {
-            case '"'.charCodeAt(0):
+            case 34 /*'"'.charCodeAt(0)*/:
                 ctx.L.UngetChar();
                 ctx.Return = true;
                 ctx.NextState = 20;
                 return true;
 
-            case '\\'.charCodeAt(0):
+            case 92 /*'\\'.charCodeAt(0)*/:
                 ctx.StateStack = 19;
                 ctx.NextState = 21;
                 return true;
@@ -525,7 +525,7 @@ Lexer.State19 = function(ctx) {
 Lexer.State20 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === '"'.charCodeAt(0)) {
+    if (ctx.L.input_char === 34 /*'"'.charCodeAt(0)*/) {
         ctx.Return = true;
         ctx.NextState = 1;
         return true;
@@ -537,21 +537,21 @@ Lexer.State20 = function(ctx) {
 Lexer.State21 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === 'u'.charCodeAt(0)) {
+    if (ctx.L.input_char === 117 /*'u'.charCodeAt(0)*/) {
         ctx.NextState = 22;
         return true;
     }
 
     switch (ctx.L.input_char) {
-        case '"'.charCodeAt(0):
-        case '\''.charCodeAt(0):
-        case '/'.charCodeAt(0):
-        case '\\'.charCodeAt(0):
-        case 'b'.charCodeAt(0):
-        case 'f'.charCodeAt(0):
-        case 'n'.charCodeAt(0):
-        case 'r'.charCodeAt(0):
-        case 't'.charCodeAt(0):
+        case 34 /*'"'.charCodeAt(0)*/:
+        case 39 /*'\''.charCodeAt(0)*/:
+        case 47 /*'/'.charCodeAt(0)*/:
+        case 92 /*'\\'.charCodeAt(0)*/:
+        case 98 /*'b'.charCodeAt(0)*/:
+        case 102 /*'f'.charCodeAt(0)*/:
+        case 110 /*'n'.charCodeAt(0)*/:
+        case 114 /*'r'.charCodeAt(0)*/:
+        case 116 /*'t'.charCodeAt(0)*/:
             ctx.L.string_buffer.push(Lexer.ProcessEscChar(String.fromCharCode(ctx.L.input_char)));
             ctx.NextState = ctx.StateStack;
             return true;
@@ -589,13 +589,13 @@ Lexer.State22 = function(ctx) {
 Lexer.State23 = function(ctx) {
     while (ctx.L.GetChar()) {
         switch (ctx.L.input_char) {
-            case '\''.charCodeAt(0):
+            case 39 /*'\''.charCodeAt(0)*/:
                 ctx.L.UngetChar();
                 ctx.Return = true;
                 ctx.NextState = 24;
                 return true;
 
-            case '\\'.charCodeAt(0):
+            case 92 /*'\\'.charCodeAt(0)*/:
                 ctx.StateStack = 23;
                 ctx.NextState = 21;
                 return true;
@@ -611,8 +611,8 @@ Lexer.State23 = function(ctx) {
 Lexer.State24 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === '\''.charCodeAt(0)) {
-        ctx.L.input_char = '"'.charCodeAt(0);
+    if (ctx.L.input_char === 39 /*'\''.charCodeAt(0)*/) {
+        ctx.L.input_char = 34 /*'"'.charCodeAt(0)*/;
         ctx.Return = true;
         ctx.NextState = 1;
         return true;
@@ -624,12 +624,12 @@ Lexer.State24 = function(ctx) {
 Lexer.State25 = function(ctx) {
     ctx.L.GetChar();
 
-    if (ctx.L.input_char === '*'.charCodeAt(0)) {
+    if (ctx.L.input_char === 42 /*'*'.charCodeAt(0)*/) {
         ctx.NextState = 27;
         return true;
     }
 
-    if (ctx.L.input_char === '/'.charCodeAt(0)) {
+    if (ctx.L.input_char === 47 /*'/'.charCodeAt(0)*/) {
         ctx.NextState = 26;
         return true;
     }
@@ -639,7 +639,7 @@ Lexer.State25 = function(ctx) {
 
 Lexer.State26 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char === '\n'.charCodeAt(0)) {
+        if (ctx.L.input_char === 10 /*'\n'.charCodeAt(0)*/) {
             ctx.NextState = 1;
             return true;
         }
@@ -649,7 +649,7 @@ Lexer.State26 = function(ctx) {
 
 Lexer.State27 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char === '*'.charCodeAt(0)) {
+        if (ctx.L.input_char === 42 /*'*'.charCodeAt(0)*/) {
             ctx.NextState = 28;
             return true;
         }
@@ -659,9 +659,9 @@ Lexer.State27 = function(ctx) {
 
 Lexer.State28 = function(ctx) {
     while (ctx.L.GetChar()) {
-        if (ctx.L.input_char === '*'.charCodeAt(0)) continue;
+        if (ctx.L.input_char === 42 /*'*'.charCodeAt(0)*/) continue;
 
-        if (ctx.L.input_char === '/'.charCodeAt(0)) {
+        if (ctx.L.input_char === 47 /*'/'.charCodeAt(0)*/) {
             ctx.NextState = 1;
             return true;
         }
