@@ -35,9 +35,9 @@ public class Function_SHA256 extends Function_2 {
                         return args2;
                     }
                 }
-                charset = java.nio.charset.Charset.forName(args2.getTextValue());
+                charset = java.nio.charset.Charset.forName(args2.TextValue());
             }
-            byte[] buffer = args1.getTextValue().getBytes(charset);
+            byte[] buffer = args1.TextValue().getBytes(charset);
             String t = getSha256String(buffer);
             return Operand.Create(t);
         } catch (Exception ex) {

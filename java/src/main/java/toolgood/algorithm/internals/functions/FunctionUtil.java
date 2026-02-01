@@ -14,7 +14,8 @@ public class FunctionUtil {
     public static boolean F_base_GetList(List<Operand> args, List<Double> list) {
         for (Operand item : args) {
             if (item.IsNumber()) {
-                list.add(item.getDoubleValue());
+                list.add(item.DoubleValue
+());
             } else if (item.isArray()) {
                 boolean o = F_base_GetList(item.getArrayValue(), list);
                 if (!o) {
@@ -30,11 +31,13 @@ public class FunctionUtil {
                     return false;
                 }
             } else {
-                Operand o = item.toNumber(null);
+                Operand o = item.ToNumber
+(null);
                 if (o.IsError()) {
                     return false;
                 }
-                list.add(o.getDoubleValue());
+                list.add(o.DoubleValue
+());
             }
         }
         return true;
@@ -45,7 +48,8 @@ public class FunctionUtil {
             return false;
         }
         if (args.IsNumber()) {
-            list.add(args.getDoubleValue());
+            list.add(args.DoubleValue
+());
         } else if (args.isArray()) {
             boolean o = F_base_GetList(args.getArrayValue(), list);
             if (!o) {
@@ -61,11 +65,13 @@ public class FunctionUtil {
                 return false;
             }
         } else {
-            Operand o = args.toNumber(null);
+            Operand o = args.ToNumber
+(null);
             if (o.IsError()) {
                 return false;
             }
-            list.add(o.getDoubleValue());
+            list.add(o.DoubleValue
+());
         }
         return true;
     }
@@ -91,7 +97,7 @@ public class FunctionUtil {
                 if (o.IsError()) {
                     return false;
                 }
-                list.add(o.getTextValue());
+                list.add(o.TextValue());
             }
         }
         return true;
@@ -120,7 +126,7 @@ public class FunctionUtil {
             if (o.IsError()) {
                 return false;
             }
-            list.add(o.getTextValue());
+            list.add(o.TextValue());
         }
         return true;
     }

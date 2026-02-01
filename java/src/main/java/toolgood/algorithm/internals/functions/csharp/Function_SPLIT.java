@@ -28,7 +28,7 @@ public class Function_SPLIT extends Function_2 {
                 return args2;
             }
         }
-        String[] parts = args1.getTextValue().split(args2.getTextValue());
+        String[] parts = args1.TextValue().split(args2.TextValue());
         return Operand.Create(parts);
     }
 

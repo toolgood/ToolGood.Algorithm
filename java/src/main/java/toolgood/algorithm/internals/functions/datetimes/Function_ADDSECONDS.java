@@ -23,14 +23,15 @@ public class Function_ADDSECONDS extends Function_2 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber()) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "AddSeconds", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "AddSeconds", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         try {
             toolgood.algorithm.internals.MyDate date = args1.getDateValue();
-            int seconds = args2.getIntValue();
+            int seconds = args2.IntValue();
             toolgood.algorithm.internals.MyDate result = date.AddSeconds(seconds);
             return Operand.Create(result);
         } catch (Exception e) {

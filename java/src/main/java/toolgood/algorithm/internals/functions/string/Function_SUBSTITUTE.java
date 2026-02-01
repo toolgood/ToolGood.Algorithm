@@ -34,19 +34,20 @@ public class Function_SUBSTITUTE extends Function_4 {
             }
         }
         if (func4 == null) {
-            return Operand.Create(args1.getTextValue().replace(args2.getTextValue(), args3.getTextValue()));
+            return Operand.Create(args1.TextValue().replace(args2.TextValue(), args3.TextValue()));
         }
         Operand args4 = func4.Evaluate(work, tempParameter);
         if (args4.IsNotNumber()) {
-            args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Substitute", 4);
+            args4 = args4.ToNumber
+("Function '{0}' parameter {1} is error!", "Substitute", 4);
             if (args4.IsError()) {
                 return args4;
             }
         }
-        String text = args1.getTextValue();
-        String oldtext = args2.getTextValue();
-        String newtext = args3.getTextValue();
-        int index = args4.getIntValue();
+        String text = args1.TextValue();
+        String oldtext = args2.TextValue();
+        String newtext = args3.TextValue();
+        int index = args4.IntValue();
 
         int index2 = 0;
         int estimatedCapacity = Math.max(text.length(), text.length() + (newtext.length() - oldtext.length()));

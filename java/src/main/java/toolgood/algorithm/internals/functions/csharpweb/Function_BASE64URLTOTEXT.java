@@ -33,9 +33,9 @@ public class Function_BASE64URLTOTEXT extends Function_2 {
                         return args2;
                     }
                 }
-                charset = java.nio.charset.Charset.forName(args2.getTextValue());
+                charset = java.nio.charset.Charset.forName(args2.TextValue());
             }
-            byte[] bytes = Base64.FromBase64ForUrlString(args1.getTextValue());
+            byte[] bytes = Base64.FromBase64ForUrlString(args1.TextValue());
             String t = new String(bytes, charset);
             return Operand.Create(t);
         } catch (Exception e) {

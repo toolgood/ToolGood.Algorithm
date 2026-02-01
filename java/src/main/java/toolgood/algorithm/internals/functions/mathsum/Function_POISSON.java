@@ -18,14 +18,16 @@ public class Function_POISSON extends Function_3 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Poisson", 1);
+            args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "Poisson", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Poisson", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Poisson", 2);
             if (args2.IsError()) {
                 return args2;
             }
@@ -37,8 +39,9 @@ public class Function_POISSON extends Function_3 {
                 return args3;
             }
         }
-        int k = args1.getIntValue();
-        double lambda = args2.getDoubleValue();
+        int k = args1.IntValue();
+        double lambda = args2.DoubleValue
+();
         boolean state = args3.getBooleanValue();
         if (!(lambda > 0.0)) {
             return Operand.Error("Function '{0}' parameter is error!", "Poisson");

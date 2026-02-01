@@ -42,7 +42,7 @@ public class Function_Connect extends Function_2 {
             }
         }
 
-        return Operand.Create(args1.getTextValue() + args2.getTextValue());
+        return Operand.Create(args1.TextValue() + args2.TextValue());
     }
 
     @Override

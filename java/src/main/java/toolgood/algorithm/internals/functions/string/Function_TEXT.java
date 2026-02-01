@@ -33,7 +33,7 @@ public class Function_TEXT extends Function_2 {
         } else if (args1.IsBoolean()) {
             return Operand.Create(args1.getBooleanValue() ? "TRUE" : "FALSE");
         } else if (args1.IsNumber()) {
-            String format = args2.getTextValue();
+            String format = args2.TextValue();
             try {
                 DecimalFormat df = new DecimalFormat(format, new DecimalFormatSymbols(Locale.US));
                 return Operand.Create(df.format(args1.getNumberValue()));
@@ -41,7 +41,7 @@ public class Function_TEXT extends Function_2 {
                 return Operand.Error("Function '{0}' format is error!", "Text");
             }
         } else if (args1.IsDate()) {
-            String format = args2.getTextValue();
+            String format = args2.TextValue();
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
                 return Operand.Create(sdf.format(args1.getDateValue().toDate()));
@@ -53,7 +53,7 @@ public class Function_TEXT extends Function_2 {
         if (args1.IsError()) {
             return args1;
         }
-        return Operand.Create(args1.getTextValue());
+        return Operand.Create(args1.TextValue());
     }
 
     @Override

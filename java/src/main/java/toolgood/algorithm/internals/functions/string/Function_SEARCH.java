@@ -28,21 +28,22 @@ public class Function_SEARCH extends Function_3 {
         }
 
         if (func3 == null) {
-            int p = args2.getTextValue().toLowerCase().indexOf(args1.getTextValue().toLowerCase()) + work.getExcelIndex();
+            int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + work.getExcelIndex();
             return Operand.Create(p);
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Search", 3);
+            args3 = args3.ToNumber
+("Function '{0}' parameter {1} is error!", "Search", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
-        int startIndex = args3.getIntValue();
-        if (startIndex >= args2.getTextValue().length()) {
+        int startIndex = args3.IntValue();
+        if (startIndex >= args2.TextValue().length()) {
             return Operand.Create(0);
         }
-        int p2 = args2.getTextValue().substring(startIndex).toLowerCase().indexOf(args1.getTextValue().toLowerCase()) + startIndex + work.getExcelIndex();
+        int p2 = args2.TextValue().substring(startIndex).toLowerCase().indexOf(args1.TextValue().toLowerCase()) + startIndex + work.getExcelIndex();
         return Operand.Create(p2);
     }
 

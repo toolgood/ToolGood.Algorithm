@@ -44,16 +44,16 @@ public class Function_Div extends Function_2 {
 
         if (args1.IsText()) {
             try {
-                double d = Double.parseDouble(args1.getTextValue());
+                double d = Double.parseDouble(args1.TextValue());
                 args1 = Operand.Create(d);
             } catch (NumberFormatException e1) {
-                Boolean b = FunctionUtil.TryParseBoolean(args1.getTextValue());
+                Boolean b = FunctionUtil.TryParseBoolean(args1.TextValue());
                 if (b != null) {
                     args1 = b ? Operand.One : Operand.Zero;
                 } else {
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-                        java.util.Date dt = sdf.parse(args1.getTextValue());
+                        java.util.Date dt = sdf.parse(args1.TextValue());
                         args1 = Operand.Create(new MyDate(dt));
                     } catch (ParseException e2) {
                         return Operand.Error("Function '{0}' Two types cannot be divided!", "/");
@@ -63,16 +63,16 @@ public class Function_Div extends Function_2 {
         }
         if (args2.IsText()) {
             try {
-                double d = Double.parseDouble(args2.getTextValue());
+                double d = Double.parseDouble(args2.TextValue());
                 args2 = Operand.Create(d);
             } catch (NumberFormatException e1) {
-                Boolean b = FunctionUtil.TryParseBoolean(args2.getTextValue());
+                Boolean b = FunctionUtil.TryParseBoolean(args2.TextValue());
                 if (b != null) {
                     args1 = b ? Operand.One : Operand.Zero;
                 } else {
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-                        java.util.Date dt = sdf.parse(args2.getTextValue());
+                        java.util.Date dt = sdf.parse(args2.TextValue());
                         args2 = Operand.Create(new MyDate(dt));
                     } catch (ParseException e2) {
                         return Operand.Error("Function '{0}' Two types cannot be divided!", "/");
@@ -81,7 +81,8 @@ public class Function_Div extends Function_2 {
             }
         }
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "/", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "/", 2);
             if (args2.IsError()) {
                 return args2;
             }
@@ -97,7 +98,8 @@ public class Function_Div extends Function_2 {
             return Operand.Create(args1.getDateValue().divide(args2.getNumberValue()));
         }
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "/", 1);
+            args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "/", 1);
             if (args1.IsError()) {
                 return args1;
             }

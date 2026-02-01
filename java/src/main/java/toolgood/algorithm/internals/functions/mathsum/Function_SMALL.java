@@ -26,7 +26,8 @@ public class Function_SMALL extends Function_2 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Small", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Small", 2);
             if (args2.IsError()) {
                 return args2;
             }
@@ -39,7 +40,7 @@ public class Function_SMALL extends Function_2 {
         }
 
         list = list.stream().sorted().collect(Collectors.toList());
-        int k = args2.getIntValue();
+        int k = args2.IntValue();
         int excelIndex = 0; // 假设默认Excel索引为0
         try {
             // 尝试获取ExcelIndex属性

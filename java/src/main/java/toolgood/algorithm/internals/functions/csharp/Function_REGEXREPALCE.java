@@ -36,7 +36,7 @@ public class Function_REGEXREPALCE extends Function_3 {
                 return args3;
             }
         }
-        String result = Pattern.compile(args2.getTextValue()).matcher(args1.getTextValue()).replaceAll(args3.getTextValue());
+        String result = Pattern.compile(args2.TextValue()).matcher(args1.TextValue()).replaceAll(args3.TextValue());
         return Operand.Create(result);
     }
 

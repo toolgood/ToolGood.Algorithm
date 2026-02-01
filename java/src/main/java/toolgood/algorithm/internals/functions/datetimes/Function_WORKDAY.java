@@ -24,14 +24,15 @@ public class Function_WORKDAY extends Function_N {
         }
         Operand args2 = funcs[1].Evaluate(work, tempParameter);
         if (args2.isNotNumber()) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Workday", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Workday", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
 
         toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
-        int days = args2.getIntValue();
+        int days = args2.IntValue();
         HashSet<String> holidaySet = new HashSet<>();
         
         for (int i = 2; i < funcs.length; i++) {

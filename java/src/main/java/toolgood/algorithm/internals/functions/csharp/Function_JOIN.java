@@ -43,7 +43,7 @@ public class Function_JOIN extends Function_N {
                 return args2;
             }
 
-            return Operand.Create(String.join(args2.getTextValue(), list));
+            return Operand.Create(String.join(args2.TextValue(), list));
         } else {
             args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Join", 1);
             if (args1.IsError()) {
@@ -57,7 +57,7 @@ public class Function_JOIN extends Function_N {
                     return Operand.Error("Function '{0}' parameter {1} is error!", "Join", i + 1);
                 }
             }
-            return Operand.Create(String.join(args1.getTextValue(), list));
+            return Operand.Create(String.join(args1.TextValue(), list));
         }
     }
 

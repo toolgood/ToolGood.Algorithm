@@ -18,29 +18,33 @@ public class Function_TDIST extends Function_3 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "TDist", 1);
+            args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "TDist", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "TDist", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "TDist", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.getOperandType() != OperandType.Number) {
-            args3 = args3.toNumber("Function '{0}' parameter {1} is error!", "TDist", 3);
+            args3 = args3.ToNumber
+("Function '{0}' parameter {1} is error!", "TDist", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
 
-        double x = args1.getDoubleValue();
-        int degreesFreedom = args2.getIntValue();
-        int tails = args3.getIntValue();
+        double x = args1.DoubleValue
+();
+        int degreesFreedom = args2.IntValue();
+        int tails = args3.IntValue();
 
         if (degreesFreedom <= 0 || tails < 1 || tails > 2) {
             return Operand.Error("Function '{0}' parameter is error!", "TDist");

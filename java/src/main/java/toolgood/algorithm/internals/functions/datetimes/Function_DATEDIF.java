@@ -37,7 +37,7 @@ public class Function_DATEDIF extends Function_3 {
         }
         toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
         toolgood.algorithm.internals.MyDate endMyDate = args2.getDateValue();
-        String t = args3.getTextValue().toLowerCase();
+        String t = args3.TextValue().toLowerCase();
 
         if (t.equals("y")) {
             // 计算年差

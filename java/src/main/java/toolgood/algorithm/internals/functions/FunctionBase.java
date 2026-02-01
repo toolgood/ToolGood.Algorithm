@@ -37,7 +37,8 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.toNumber("It can't be converted to number!");
+                obj = obj.ToNumber
+("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.ErrorMsg());
                     return def;
@@ -62,13 +63,14 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.toNumber("It can't be converted to number!");
+                obj = obj.ToNumber
+("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
             }
-            return obj.getIntValue();
+            return obj.IntValue();
         } catch (Exception ex) {
             work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
@@ -87,7 +89,8 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.toNumber("It can't be converted to number!");
+                obj = obj.ToNumber
+("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
@@ -112,13 +115,15 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.toNumber("It can't be converted to number!");
+                obj = obj.ToNumber
+("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
             }
-            return (float) obj.getDoubleValue();
+            return (float) obj.DoubleValue
+();
         } catch (Exception ex) {
             work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
@@ -137,13 +142,15 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.toNumber("It can't be converted to number!");
+                obj = obj.ToNumber
+("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
                 }
             }
-            return obj.getDoubleValue();
+            return obj.DoubleValue
+();
         } catch (Exception ex) {
             work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
@@ -168,7 +175,7 @@ public abstract class FunctionBase {
                     return def;
                 }
             }
-            return obj.getTextValue();
+            return obj.TextValue();
         } catch (Exception ex) {
             work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }

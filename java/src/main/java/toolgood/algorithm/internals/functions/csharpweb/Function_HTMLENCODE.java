@@ -21,7 +21,7 @@ public class Function_HTMLENCODE extends Function_1 {
                 return args1;
             }
         }
-        String s = args1.getTextValue();
+        String s = args1.TextValue();
         String r = HtmlEncode(s);
         return Operand.Create(r);
     }

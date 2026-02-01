@@ -13,7 +13,8 @@ public class Function_SQRT extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sqrt");
+            args1 = args1.ToNumber
+("Function '{0}' parameter is error!", "Sqrt");
             if (args1.IsError()) {
                 return args1;
             }
@@ -21,7 +22,8 @@ public class Function_SQRT extends Function_1 {
         if (args1.getNumberValue() < 0) {
             return Operand.Error("Function '{0}' parameter is error!", "Sqrt");
         }
-        return Operand.Create(Math.sqrt(args1.getDoubleValue()));
+        return Operand.Create(Math.sqrt(args1.DoubleValue
+()));
     }
 
     @Override

@@ -41,8 +41,8 @@ public class Function_REMOVESTART extends Function_3 {
                 ignoreCase = true;
             }
         }
-        String text = args1.getTextValue();
-        String prefix = args2.getTextValue();
+        String text = args1.TextValue();
+        String prefix = args2.TextValue();
         boolean startsWith = false;
         if (ignoreCase) {
             startsWith = text.toLowerCase().startsWith(prefix.toLowerCase());

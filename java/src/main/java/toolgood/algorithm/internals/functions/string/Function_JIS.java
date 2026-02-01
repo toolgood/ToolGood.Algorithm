@@ -19,7 +19,7 @@ public class Function_JIS extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(F_base_ToSBC(args1.getTextValue()));
+        return Operand.Create(F_base_ToSBC(args1.TextValue()));
     }
 
     private static String F_base_ToSBC(String input) {

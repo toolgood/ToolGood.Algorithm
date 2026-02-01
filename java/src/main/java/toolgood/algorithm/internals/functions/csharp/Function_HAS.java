@@ -41,7 +41,7 @@ public class Function_HAS extends Function_2 {
                 if (t.IsError()) {
                     continue;
                 }
-                if (t.getTextValue().equals(args2.getTextValue())) {
+                if (t.TextValue().equals(args2.TextValue())) {
                     return Operand.True();
                 }
             }

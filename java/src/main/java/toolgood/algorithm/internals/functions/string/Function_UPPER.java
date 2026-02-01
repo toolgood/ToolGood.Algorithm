@@ -19,7 +19,7 @@ public class Function_UPPER extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(args1.getTextValue().toUpperCase());
+        return Operand.Create(args1.TextValue().toUpperCase());
     }
 
     @Override

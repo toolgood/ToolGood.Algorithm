@@ -14,7 +14,8 @@ public class Function_DEC2HEX extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2HEX", 1);
+            args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "DEC2HEX", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -23,7 +24,8 @@ public class Function_DEC2HEX extends Function_2 {
         if (func2 != null) {
             Operand args2 = func2.Evaluate(work, tempParameter);
             if (args2.IsNotNumber()) {
-                args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2HEX", 2);
+                args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "DEC2HEX", 2);
                 if (args2.IsError()) {
                     return args2;
                 }

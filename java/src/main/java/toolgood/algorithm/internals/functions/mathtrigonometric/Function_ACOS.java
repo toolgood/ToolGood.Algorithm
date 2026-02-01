@@ -16,12 +16,14 @@ class Function_ACOS extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.IsNumber()) {
-            args1 = args1.toNumber("Function '{0}' parameter is error!", "Acos");
+            args1 = args1.ToNumber
+("Function '{0}' parameter is error!", "Acos");
             if (args1.IsError()) {
                 return args1;
             }
         }
-        return Operand.Create(Math.acos(args1.getDoubleValue()));
+        return Operand.Create(Math.acos(args1.DoubleValue
+()));
     }
 
     @Override

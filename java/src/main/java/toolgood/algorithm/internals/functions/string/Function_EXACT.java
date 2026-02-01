@@ -26,7 +26,7 @@ public class Function_EXACT extends Function_2 {
                 return args2;
             }
         }
-        return Operand.Create(args1.getTextValue().equals(args2.getTextValue()));
+        return Operand.Create(args1.TextValue().equals(args2.TextValue()));
     }
 
     @Override

@@ -18,21 +18,24 @@ public class Function_WEIBULL extends Function_4 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 1);
+            args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "Weibull", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Weibull", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.getOperandType() != OperandType.Number) {
-            args3 = args3.toNumber("Function '{0}' parameter {1} is error!", "Weibull", 3);
+            args3 = args3.ToNumber
+("Function '{0}' parameter {1} is error!", "Weibull", 3);
             if (args3.IsError()) {
                 return args3;
             }
@@ -45,9 +48,12 @@ public class Function_WEIBULL extends Function_4 {
             }
         }
 
-        double x = args1.getDoubleValue();
-        double shape = args2.getDoubleValue();
-        double scale = args3.getDoubleValue();
+        double x = args1.DoubleValue
+();
+        double shape = args2.DoubleValue
+();
+        double scale = args3.DoubleValue
+();
         boolean state = args4.getBooleanValue();
 
         if (shape <= 0.0 || scale <= 0.0) {

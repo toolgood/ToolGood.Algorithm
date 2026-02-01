@@ -26,12 +26,13 @@ public class Function_WEEKDAY extends Function_2 {
         if (func2 != null) {
             Operand args2 = func2.Evaluate(work, tempParameter);
             if (args2.isNotNumber()) {
-                args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "WeekDay", 2);
+                args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "WeekDay", 2);
                 if (args2.IsError()) {
                     return args2;
                 }
             }
-            type = args2.getIntValue();
+            type = args2.IntValue();
         }
 
         toolgood.algorithm.internals.MyDate date = args1.getDateValue();

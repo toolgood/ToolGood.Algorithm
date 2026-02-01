@@ -29,7 +29,7 @@ public class Function_PARAMETER extends FunctionBase {
                     return args1;
                 }
             }
-            txt = args1.getTextValue();
+            txt = args1.TextValue();
         }
         if (tempParameter != null) {
             Operand r = tempParameter.apply(work, txt);

@@ -19,7 +19,7 @@ public class Function_CLEAN extends Function_1 {
                 return args1;
             }
         }
-        String t = args1.getTextValue();
+        String t = args1.TextValue();
         boolean needClean = false;
         for (int i = 0; i < t.length(); i++) {
             char c = t.charAt(i);

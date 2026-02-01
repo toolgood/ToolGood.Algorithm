@@ -33,12 +33,13 @@ public class Function_WEEKNUM extends Function_2 {
         if (func2 != null) {
             Operand args2 = func2.Evaluate(work, tempParameter);
             if (args2.isNotNumber()) {
-                args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "WeekNum", 2);
+                args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "WeekNum", 2);
                 if (args2.IsError()) {
                     return args2;
                 }
             }
-            if (args2.getIntValue() == 2) {
+            if (args2.IntValue() == 2) {
                 days--;
             }
         }

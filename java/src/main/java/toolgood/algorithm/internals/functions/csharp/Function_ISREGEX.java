@@ -29,7 +29,7 @@ public class Function_ISREGEX extends Function_2 {
                 return args2;
             }
         }
-        boolean b = Pattern.matches(args2.getTextValue(), args1.getTextValue());
+        boolean b = Pattern.matches(args2.TextValue(), args1.TextValue());
         return Operand.Create(b);
     }
 

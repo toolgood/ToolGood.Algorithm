@@ -19,7 +19,7 @@ public class Function_ERROR extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Error(args1.getTextValue());
+        return Operand.Error(args1.TextValue());
     }
 
     @Override

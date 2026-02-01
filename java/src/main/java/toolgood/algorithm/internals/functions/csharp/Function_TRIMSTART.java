@@ -22,7 +22,7 @@ public class Function_TRIMSTART extends Function_2 {
             }
         }
         if (func2 == null) {
-            return Operand.Create(trimStart(args1.getTextValue()));
+            return Operand.Create(trimStart(args1.TextValue()));
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotText()) {
@@ -31,8 +31,8 @@ public class Function_TRIMSTART extends Function_2 {
                 return args2;
             }
         }
-        char[] trimChars = args2.getTextValue().toCharArray();
-        return Operand.Create(trimStart(args1.getTextValue(), trimChars));
+        char[] trimChars = args2.TextValue().toCharArray();
+        return Operand.Create(trimStart(args1.TextValue(), trimChars));
     }
 
     private String trimStart(String str) {

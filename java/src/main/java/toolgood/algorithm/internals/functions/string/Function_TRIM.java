@@ -19,7 +19,7 @@ public class Function_TRIM extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(args1.getTextValue().trim());
+        return Operand.Create(args1.TextValue().trim());
     }
 
     @Override

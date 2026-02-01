@@ -19,7 +19,7 @@ public class Function_LEN extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(args1.getTextValue().length());
+        return Operand.Create(args1.TextValue().length());
     }
 
     @Override

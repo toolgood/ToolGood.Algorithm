@@ -20,12 +20,12 @@ public class Function_PARAM extends Function_2 {
             }
         }
         if (tempParameter != null) {
-            Operand r = tempParameter.apply(work, args1.getTextValue());
+            Operand r = tempParameter.apply(work, args1.TextValue());
             if (r != null) {
                 return r;
             }
         }
-        Operand result = work.getParameter(args1.getTextValue());
+        Operand result = work.getParameter(args1.TextValue());
         if (result.IsError()) {
             if (func2 != null) {
                 return func2.Evaluate(work, tempParameter);

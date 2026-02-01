@@ -16,12 +16,14 @@ class Function_SEC extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.IsNumber()) {
-            args1 = args1.toNumber("Function '{0}' parameter is error!", "Sec");
+            args1 = args1.ToNumber
+("Function '{0}' parameter is error!", "Sec");
             if (args1.IsError()) {
                 return args1;
             }
         }
-        double value = args1.getDoubleValue();
+        double value = args1.DoubleValue
+();
         double cosValue = Math.cos(value);
         if (cosValue == 0) {
             return Operand.Create(Double.POSITIVE_INFINITY);

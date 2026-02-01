@@ -17,22 +17,25 @@ public class Function_TINV extends Function_2 {
     @Override
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.getOperandType() != OperandType.Number) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "TInv", 1);
+        if (args1.Type() != OperandType.Number) {
+            args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "TInv", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "TInv", 2);
+        if (args2.Type() != OperandType.Number) {
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "TInv", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
 
-        double p = args1.getDoubleValue();
-        int degreesFreedom = args2.getIntValue();
+        double p = args1.DoubleValue
+();
+        int degreesFreedom = args2.IntValue();
 
         if (degreesFreedom <= 0 || p < 0.0 || p > 1.0) {
             return Operand.Error("Function '{0}' parameter is error!", "TInv");

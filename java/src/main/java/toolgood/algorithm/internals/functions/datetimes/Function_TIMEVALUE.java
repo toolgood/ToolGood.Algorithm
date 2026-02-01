@@ -24,7 +24,7 @@ public class Function_TIMEVALUE extends Function_1 {
             }
         }
 
-        String timeString = args1.getTextValue();
+        String timeString = args1.TextValue();
         // 尝试解析时间字符串
         toolgood.algorithm.internals.MyDate date = parseTimeString(timeString);
         if (date != null) {

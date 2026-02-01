@@ -50,12 +50,13 @@ public class Function_SUMIF extends Function_3 {
         double sum = 0;
         if (args2.getOperandType() == OperandType.Number) {
             // 处理数字条件
-            double value = args2.getDoubleValue();
+            double value = args2.DoubleValue
+();
             long count = FunctionUtil.F_base_countif(list, value);
             sum = count * value;
         } else {
             // 处理文本条件
-            String textValue = args2.getTextValue().trim();
+            String textValue = args2.TextValue().trim();
             try {
                 // 尝试解析为数字
                 double d = Double.parseDouble(textValue);

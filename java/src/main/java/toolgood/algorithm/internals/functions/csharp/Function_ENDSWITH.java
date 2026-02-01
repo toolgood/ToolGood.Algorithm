@@ -28,9 +28,9 @@ public class Function_ENDSWITH extends Function_3 {
                 return args2;
             }
         }
-        String text = args1.getTextValue();
+        String text = args1.TextValue();
         if (func3 == null) {
-            return Operand.Create(text.endsWith(args2.getTextValue()));
+            return Operand.Create(text.endsWith(args2.TextValue()));
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotBoolean()) {
@@ -40,9 +40,9 @@ public class Function_ENDSWITH extends Function_3 {
             }
         }
         if (args3.getBooleanValue()) {
-            return Operand.Create(text.toLowerCase().endsWith(args2.getTextValue().toLowerCase()));
+            return Operand.Create(text.toLowerCase().endsWith(args2.TextValue().toLowerCase()));
         } else {
-            return Operand.Create(text.endsWith(args2.getTextValue()));
+            return Operand.Create(text.endsWith(args2.TextValue()));
         }
     }
 

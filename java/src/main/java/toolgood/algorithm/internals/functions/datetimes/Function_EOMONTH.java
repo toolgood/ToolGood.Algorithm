@@ -23,14 +23,15 @@ public class Function_EOMONTH extends Function_2 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotNumber()) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "EoMonth", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "EoMonth", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         try {
             toolgood.algorithm.internals.MyDate date = args1.getDateValue();
-            int months = args2.getIntValue();
+            int months = args2.IntValue();
             // 添加指定的月份数（加上1）
             toolgood.algorithm.internals.MyDate tempDate = date.AddMonths(months + 1);
             // 创建一个新的日期，设置为该月的第一天

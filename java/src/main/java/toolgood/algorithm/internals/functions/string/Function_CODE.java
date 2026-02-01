@@ -19,10 +19,10 @@ public class Function_CODE extends Function_1 {
                 return args1;
             }
         }
-        if (args1.getTextValue().isEmpty()) {
+        if (args1.TextValue().isEmpty()) {
             return Operand.Error("Function '{0}' parameter is error!", "CODE");
         }
-        char c = args1.getTextValue().charAt(0);
+        char c = args1.TextValue().charAt(0);
         return Operand.Create((int) c);
     }
 

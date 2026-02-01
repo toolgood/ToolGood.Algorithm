@@ -31,7 +31,7 @@ public class Function_Value extends FunctionBase {
         }
         if (_value.IsText()) {
             stringBuilder.append('"');
-            String stringValue = _value.getTextValue();
+            String stringValue = _value.TextValue();
             stringValue = stringValue.replace("\\", "\\\\");
             stringValue = stringValue.replace("\r", "\\r");
             stringValue = stringValue.replace("\n", "\\n");

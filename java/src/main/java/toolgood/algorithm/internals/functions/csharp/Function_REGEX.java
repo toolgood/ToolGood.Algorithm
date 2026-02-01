@@ -31,8 +31,8 @@ public class Function_REGEX extends Function_2 {
             }
         }
 
-        Pattern pattern = Pattern.compile(args2.getTextValue());
-        Matcher matcher = pattern.matcher(args1.getTextValue());
+        Pattern pattern = Pattern.compile(args2.TextValue());
+        Matcher matcher = pattern.matcher(args1.TextValue());
         if (!matcher.find()) {
             return Operand.Error("Function '{0}' is error!", "Regex");
         }

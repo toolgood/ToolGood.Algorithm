@@ -19,7 +19,7 @@ public class Function_LOWER extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(args1.getTextValue().toLowerCase());
+        return Operand.Create(args1.TextValue().toLowerCase());
     }
 
     @Override

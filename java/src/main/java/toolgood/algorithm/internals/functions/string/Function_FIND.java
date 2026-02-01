@@ -27,17 +27,18 @@ public class Function_FIND extends Function_3 {
             }
         }
         if (func3 == null) {
-            int p = args2.getTextValue().indexOf(args1.getTextValue()) + work.getExcelIndex();
+            int p = args2.TextValue().indexOf(args1.TextValue()) + work.getExcelIndex();
             return Operand.Create(p);
         }
         Operand count = func3.Evaluate(work, tempParameter);
         if (count.IsNotNumber()) {
-            count = count.ToNumber("Function '{0}' parameter {1} is error!", "Find", 3);
+            count = count.ToNumber
+("Function '{0}' parameter {1} is error!", "Find", 3);
             if (count.IsError()) {
                 return count;
             }
         }
-        int p2 = args2.getTextValue().substring(count.getIntValue()).indexOf(args1.getTextValue()) + count.getIntValue() + work.getExcelIndex();
+        int p2 = args2.TextValue().substring(count.IntValue()).indexOf(args1.TextValue()) + count.IntValue() + work.getExcelIndex();
         return Operand.Create(p2);
     }
 

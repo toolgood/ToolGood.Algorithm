@@ -16,12 +16,14 @@ class Function_CSC extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.IsNumber()) {
-            args1 = args1.toNumber("Function '{0}' parameter is error!", "Csc");
+            args1 = args1.ToNumber
+("Function '{0}' parameter is error!", "Csc");
             if (args1.IsError()) {
                 return args1;
             }
         }
-        double value = args1.getDoubleValue();
+        double value = args1.DoubleValue
+();
         double sinValue = Math.sin(value);
         if (sinValue == 0) {
             return Operand.Create(Double.POSITIVE_INFINITY);

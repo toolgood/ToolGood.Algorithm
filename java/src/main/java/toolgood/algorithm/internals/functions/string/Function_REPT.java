@@ -21,14 +21,15 @@ public class Function_REPT extends Function_2 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Rept", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Rept", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
 
-        String newtext = args1.getTextValue();
-        int length = args2.getIntValue();
+        String newtext = args1.TextValue();
+        int length = args2.IntValue();
         if (length < 0) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Rept", 2);
         }

@@ -44,10 +44,10 @@ public class Function_HMACSHA1 extends Function_3 {
                         return args3;
                     }
                 }
-                charset = java.nio.charset.Charset.forName(args3.getTextValue());
+                charset = java.nio.charset.Charset.forName(args3.TextValue());
             }
-            byte[] buffer = args1.getTextValue().getBytes(charset);
-            String secret = args2.getTextValue();
+            byte[] buffer = args1.TextValue().getBytes(charset);
+            String secret = args2.TextValue();
             String t = getHmacSha1String(buffer, secret);
             return Operand.Create(t);
         } catch (Exception ex) {

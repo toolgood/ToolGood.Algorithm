@@ -19,17 +19,19 @@ public class Function_NE extends Function_2 {
             if(args1.IsNumber()) {
                 return Operand.Create(args1.getNumberValue().compareTo(args2.getNumberValue()) != 0);
             } else if(args1.isText()) {
-                return Operand.Create(!args1.getTextValue().equals(args2.getTextValue()));
+                return Operand.Create(!args1.TextValue().equals(args2.TextValue()));
             } else if(args1.isBoolean()) {
                 return Operand.Create(args1.getBooleanValue() != args2.getBooleanValue());
             } else if(args1.isDate()) {
-                args1 = args1.toNumber(null);
-                args2 = args2.toNumber(null);
+                args1 = args1.ToNumber
+(null);
+                args2 = args2.ToNumber
+(null);
                 return Operand.Create(args1.getNumberValue().compareTo(args2.getNumberValue()) != 0);
             } else if(args1.isJson()) {
                 args1 = args1.toText(null);
                 args2 = args2.toText(null);
-                return Operand.Create(!args1.getTextValue().equals(args2.getTextValue()));
+                return Operand.Create(!args1.TextValue().equals(args2.TextValue()));
             } else if(args1.isNull()) {
                 return Operand.FALSE;
             } else {
@@ -44,18 +46,20 @@ public class Function_NE extends Function_2 {
                     return a.getBooleanValue() != args1.getBooleanValue() ? Operand.TRUE : Operand.FALSE;
                 }
                 args1 = args1.toText(null);
-                return Operand.Create(!args1.getTextValue().equals(args2.getTextValue()));
+                return Operand.Create(!args1.TextValue().equals(args2.TextValue()));
             } else if(args1.isDate() || args1.IsNumber() || args1.isJson()) {
                 args1 = args1.toText(null);
-                return Operand.Create(!args1.getTextValue().equals(args2.getTextValue()));
+                return Operand.Create(!args1.TextValue().equals(args2.TextValue()));
             } else {
                 return Operand.Error("Function '{0}' compare is error.", "!=");
             }
         } else if(args1.isJson() || args2.isJson() || args1.isArray() || args2.isArray() || args1.isArrayJson() || args2.isArrayJson()) {
             return Operand.Error("Function '{0}' compare is error.", "!=");
         }
-        if(args1.isNotNumber()) { args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "!=", 1); if(args1.IsError()) { return args1; } }
-        if(args2.isNotNumber()) { args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "!=", 2); if(args2.IsError()) { return args2; } }
+        if(args1.isNotNumber()) { args1 = args1.ToNumber
+("Function '{0}' parameter {1} is error!", "!=", 1); if(args1.IsError()) { return args1; } }
+        if(args2.isNotNumber()) { args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "!=", 2); if(args2.IsError()) { return args2; } }
 
         return Operand.Create(args1.getNumberValue().compareTo(args2.getNumberValue()) != 0);
     }

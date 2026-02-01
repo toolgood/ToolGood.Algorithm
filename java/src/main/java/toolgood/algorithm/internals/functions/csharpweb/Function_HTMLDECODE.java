@@ -21,7 +21,7 @@ public class Function_HTMLDECODE extends Function_1 {
                 return args1;
             }
         }
-        String s = args1.getTextValue();
+        String s = args1.TextValue();
         String r = HtmlDecode(s);
         return Operand.Create(r);
     }

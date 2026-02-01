@@ -25,7 +25,7 @@ public class Function_JSON extends Function_1 {
         if (args1.IsNotText()) {
             return Operand.Error("Function '{0}' parameter is error!", "Json");
         }
-        String txt = args1.getTextValue();
+        String txt = args1.TextValue();
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
                 var json = JsonMapper.ToObject(txt);

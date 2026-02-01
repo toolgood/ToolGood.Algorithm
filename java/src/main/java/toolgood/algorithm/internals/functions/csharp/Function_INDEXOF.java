@@ -28,39 +28,41 @@ public class Function_INDEXOF extends Function_4 {
                 return args2;
             }
         }
-        String text = args1.getTextValue();
+        String text = args1.TextValue();
         if (func3 == null) {
-            return Operand.Create(text.indexOf(args2.getTextValue()) + work.getExcelIndex());
+            return Operand.Create(text.indexOf(args2.TextValue()) + work.getExcelIndex());
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 3);
+            args3 = args3.ToNumber
+("Function '{0}' parameter {1} is error!", "IndexOf", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
         if (func4 == null) {
-            int startIndex = args3.getIntValue();
+            int startIndex = args3.IntValue();
             if (startIndex >= text.length()) {
                 return Operand.Create(-1 + work.getExcelIndex());
             }
-            return Operand.Create(text.substring(startIndex).indexOf(args2.getTextValue()) + startIndex + work.getExcelIndex());
+            return Operand.Create(text.substring(startIndex).indexOf(args2.TextValue()) + startIndex + work.getExcelIndex());
         }
         Operand args4 = func4.Evaluate(work, tempParameter);
         if (args4.IsNotNumber()) {
-            args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 4);
+            args4 = args4.ToNumber
+("Function '{0}' parameter {1} is error!", "IndexOf", 4);
             if (args4.IsError()) {
                 return args4;
             }
         }
-        int startIndex = args3.getIntValue();
-        int count = args4.getIntValue();
+        int startIndex = args3.IntValue();
+        int count = args4.IntValue();
         if (startIndex >= text.length()) {
             return Operand.Create(-1 + work.getExcelIndex());
         }
         int endIndex = Math.min(startIndex + count, text.length());
         String substring = text.substring(startIndex, endIndex);
-        int result = substring.indexOf(args2.getTextValue());
+        int result = substring.indexOf(args2.TextValue());
         if (result == -1) {
             return Operand.Create(-1 + work.getExcelIndex());
         }

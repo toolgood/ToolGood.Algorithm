@@ -22,11 +22,12 @@ public class Function_GetJsonValue extends Function_2 {
         }
 
         if (obj.IsArray()) {
-            op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
+            op = op.ToNumber
+("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
             if (op.IsError()) {
                 return op;
             }
-            int index = op.getIntValue() - work.getExcelIndex();
+            int index = op.IntValue() - work.getExcelIndex();
             if (index < obj.getArrayValue().size()) {
                 return obj.getArrayValue().get(index);
             }
@@ -38,13 +39,13 @@ public class Function_GetJsonValue extends Function_2 {
                 if (((OperandKeyValueList)obj).TryGetValue(op.getNumberValue().toString(), operand)) {
                     return operand;
                 }
-                return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.getTextValue());
+                return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
             } else if (op.IsText()) {
                 Operand operand;
-                if (((OperandKeyValueList)obj).TryGetValue(op.getTextValue(), operand)) {
+                if (((OperandKeyValueList)obj).TryGetValue(op.TextValue(), operand)) {
                     return operand;
                 }
-                return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.getTextValue());
+                return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
             }
             return Operand.Error("Function '{0}' Parameter name is missing!", "GetJsonValue");
         }
@@ -52,11 +53,12 @@ public class Function_GetJsonValue extends Function_2 {
         if (obj.IsJson()) {
             JsonData json = obj.getJsonValue();
             if (json.isArray()) {
-                op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
+                op = op.ToNumber
+("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
                 if (op.IsError()) {
                     return op;
                 }
-                int index = op.getIntValue() - work.getExcelIndex();
+                int index = op.IntValue() - work.getExcelIndex();
                 if (index < json.size()) {
                     JsonData v = json.get(index);
                     if (v.isString()) {
@@ -85,7 +87,7 @@ public class Function_GetJsonValue extends Function_2 {
                 if (op.IsError()) {
                     return op;
                 }
-                JsonData v = json.get(op.getTextValue());
+                JsonData v = json.get(op.TextValue());
                 if (v != null) {
                     if (v.isString()) {
                         return Operand.Create(v.getStringValue());

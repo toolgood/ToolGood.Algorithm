@@ -27,7 +27,8 @@ public class Function_QUARTILE extends Function_2 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Quartile", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Quartile", 2);
             if (args2.IsError()) {
                 return args2;
             }
@@ -39,7 +40,7 @@ public class Function_QUARTILE extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 1);
         }
 
-        int quant = args2.getIntValue();
+        int quant = args2.IntValue();
         if (quant < 0 || quant > 4) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 2);
         }

@@ -21,28 +21,30 @@ public class Function_MID extends Function_3 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Mid", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Mid", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Mid", 3);
+            args3 = args3.ToNumber
+("Function '{0}' parameter {1} is error!", "Mid", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
-        int start = args2.getIntValue() - work.getExcelIndex();
-        int length = args3.getIntValue();
-        int end = Math.min(start + length, args1.getTextValue().length());
+        int start = args2.IntValue() - work.getExcelIndex();
+        int length = args3.IntValue();
+        int end = Math.min(start + length, args1.TextValue().length());
         if (start < 0) {
             start = 0;
         }
-        if (start >= args1.getTextValue().length()) {
+        if (start >= args1.TextValue().length()) {
             return Operand.Create("");
         }
-        return Operand.Create(args1.getTextValue().substring(start, end));
+        return Operand.Create(args1.TextValue().substring(start, end));
     }
 
     @Override

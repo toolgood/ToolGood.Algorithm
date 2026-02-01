@@ -32,7 +32,7 @@ public class Function_VALUE extends Function_1 {
 
         try {
             NumberFormat format = NumberFormat.getInstance(Locale.US);
-            Number number = format.parse(args1.getTextValue());
+            Number number = format.parse(args1.TextValue());
             return Operand.Create(number.doubleValue());
         } catch (ParseException e) {
             return Operand.Error("Function '{0}' parameter is error!", "Value");

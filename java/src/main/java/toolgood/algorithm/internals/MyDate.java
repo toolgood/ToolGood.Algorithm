@@ -368,19 +368,23 @@ public class MyDate {
     }
 
     public MyDate ADD(BigDecimal num) {
-        return new MyDate(this.ToNumber().add(num));
+        return new MyDate(this.ToNumber
+().add(num));
     }
 
     public MyDate SUB(BigDecimal num) {
-        return new MyDate(this.ToNumber().subtract(num));
+        return new MyDate(this.ToNumber
+().subtract(num));
     }
 
     public MyDate MUL(BigDecimal num) {
-        return new MyDate(this.ToNumber().multiply(num));
+        return new MyDate(this.ToNumber
+().multiply(num));
     }
 
     public MyDate DIV(BigDecimal num) {
-        return new MyDate(this.ToNumber().divide(num, MathContext.DECIMAL32));
+        return new MyDate(this.ToNumber
+().divide(num, MathContext.DECIMAL32));
     }
 
 }

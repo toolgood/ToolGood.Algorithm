@@ -13,7 +13,8 @@ public class Function_FACTDOUBLE extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "FactDouble");
+            args1 = args1.ToNumber
+("Function '{0}' parameter is error!", "FactDouble");
             if (args1.IsError()) {
                 return args1;
             }

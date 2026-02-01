@@ -20,7 +20,7 @@ public class Function_PROPER extends Function_1 {
             }
         }
 
-        String text = args1.getTextValue();
+        String text = args1.TextValue();
         if (text == null || text.isEmpty()) {
             return Operand.Create(text);
         }

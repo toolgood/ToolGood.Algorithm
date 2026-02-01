@@ -41,8 +41,8 @@ public class Function_REMOVEEND extends Function_3 {
                 ignoreCase = true;
             }
         }
-        String text = args1.getTextValue();
-        String suffix = args2.getTextValue();
+        String text = args1.TextValue();
+        String suffix = args2.TextValue();
         boolean endsWith = false;
         if (ignoreCase) {
             endsWith = text.toLowerCase().endsWith(suffix.toLowerCase());

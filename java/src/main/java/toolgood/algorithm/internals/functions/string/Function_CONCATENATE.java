@@ -34,7 +34,7 @@ public class Function_CONCATENATE extends Function_N {
                     return a;
                 }
             }
-            sb.append(a.getTextValue());
+            sb.append(a.TextValue());
         }
         return Operand.Create(sb.toString());
     }

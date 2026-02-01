@@ -19,7 +19,7 @@ public class Function_REPLACE extends Function_4 {
                 return args1;
             }
         }
-        String oldtext = args1.getTextValue();
+        String oldtext = args1.TextValue();
         if (func4 == null) {
             Operand args22 = func2.Evaluate(work, tempParameter);
             if (args22.IsNotText()) {
@@ -36,21 +36,23 @@ public class Function_REPLACE extends Function_4 {
                 }
             }
 
-            String old = args22.getTextValue();
-            String newstr = args32.getTextValue();
+            String old = args22.TextValue();
+            String newstr = args32.TextValue();
             return Operand.Create(oldtext.replace(old, newstr));
         }
 
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Replace", 2);
+            args2 = args2.ToNumber
+("Function '{0}' parameter {1} is error!", "Replace", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Replace", 3);
+            args3 = args3.ToNumber
+("Function '{0}' parameter {1} is error!", "Replace", 3);
             if (args3.IsError()) {
                 return args3;
             }
@@ -63,9 +65,9 @@ public class Function_REPLACE extends Function_4 {
             }
         }
 
-        int start = args2.getIntValue() - work.getExcelIndex();
-        int length = args3.getIntValue();
-        String newtext = args4.getTextValue();
+        int start = args2.IntValue() - work.getExcelIndex();
+        int length = args3.IntValue();
+        String newtext = args4.TextValue();
 
         StringBuilder sb = new StringBuilder(oldtext.length() - length + newtext.length());
         for (int i = 0; i < oldtext.length(); i++) {

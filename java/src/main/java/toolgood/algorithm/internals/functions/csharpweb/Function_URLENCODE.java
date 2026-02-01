@@ -22,7 +22,7 @@ public class Function_URLENCODE extends Function_1 {
             }
         }
         try {
-            String s = args1.getTextValue();
+            String s = args1.TextValue();
             String r = java.net.URLEncoder.encode(s, "UTF-8");
             return Operand.Create(r);
         } catch (Exception e) {
