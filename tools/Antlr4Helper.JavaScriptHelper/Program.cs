@@ -53,13 +53,23 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"[\r\n]+[\t ]*if \(!\( this\.precpred\(this\._ctx, \d+\)\)\) \{[\s\t ]+\}", "");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this\.match", "this.match");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this\._errHandler\.sync\(this\);", "this._errHandler.sync(this);");
+			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*_la", "_la");
 
+		
 
 			text = Regex.Replace(text, @"sempred\(localctx, ruleIndex, predIndex\) \{[\s\S]+?\};", "sempred(localctx, ruleIndex, predIndex) { return true; };");
 
 			// expr 一般情况下返回 ExprContext 的数组 或 单个 ExprContext
 			text = Regex.Replace(text, @"expr = function\(i\) \{[\s\S]+?\};", "expr = function(i) {return this.getTypedRuleContexts(ExprContext);};");
+			text = Regex.Replace(text, @"arrayJson = function\(i\) \{[\s\S]+?\};", "arrayJson = function(i) {return this.getTypedRuleContexts(ArrayJsonContext);};");
 
+			text = Regex.Replace(text, @"if\(parent===undefined\) \{[\r\n\t ]*parent = null;[\r\n\t ]*\}", "");
+			text = Regex.Replace(text, @"if\(invokingState===undefined \|\| invokingState===null\) \{[\r\n\t ]*invokingState = -1;[\r\n\t ]*}", "");
+
+
+
+			text = Regex.Replace(text, @"let _prevctx = localctx;", "");
+			text = Regex.Replace(text, @"_prevctx = localctx;", "");
 
 			// 清理多余的空行和注释
 			text = Regex.Replace(text, @"[\t ]*//.*([\r\n])", "$1");
