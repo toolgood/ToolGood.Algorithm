@@ -13,12 +13,10 @@ class Function_TEXT extends Function_2 {
             return args1;
         }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'Text', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
 
         if (args1.IsText) {
             return args1;

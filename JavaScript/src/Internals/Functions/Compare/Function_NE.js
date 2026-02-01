@@ -52,16 +52,10 @@ class Function_NE extends Function_2 {
     } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
       return Operand.Error(StringCache.Function_compare_error, "!=");
     }
-    if (args1.IsNotNumber) {
-      let a1 = args1.ToNumber(StringCache.Function_parameter_error, "!=", 1);
-      if (a1.IsError) { return a1; }
-      args1 = a1;
-    }
-    if (args2.IsNotNumber) {
-      let a2 = args2.ToNumber(StringCache.Function_parameter_error, "!=", 2);
-      if (a2.IsError) { return a2; }
-      args2 = a2;
-    }
+      args1 = args1.ToNumber(StringCache.Function_parameter_error, "!=", 1);
+      if (args1.IsError) { return args1; }
+        args2 = args2.ToNumber(StringCache.Function_parameter_error, "!=", 2);
+      if (args2.IsError) { return args2; }
 
     return Operand.Create(args1.NumberValue !== args2.NumberValue);
   }

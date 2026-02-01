@@ -8,12 +8,10 @@ class Function_PARAM extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText();
             if (args1.IsError) {
                 return args1;
             }
-        }
         if (tempParameter !== null) {
             let r = tempParameter(engine, args1.TextValue);
             if (r !== null) {

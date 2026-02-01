@@ -21,19 +21,15 @@ export class Function_LOOKCEILING extends Function_2 {
      */
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_error, 'LookCeiling', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotArray) {
             args2 = args2.ToArray(StringCache.Function_parameter_error, 'LookCeiling', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         
         let list = [];
         FunctionUtil.F_base_GetList(args2.ArrayValue, list);

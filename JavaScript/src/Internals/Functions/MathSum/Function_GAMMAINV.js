@@ -10,26 +10,20 @@ class Function_GAMMAINV extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_error, 'GammaInv', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'GammaInv', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         let args3 = this.c.Evaluate(engine, tempParameter);
-        if (args3.IsNotNumber) {
             args3 = args3.ToNumber(StringCache.Function_parameter_error, 'GammaInv', 3);
             if (args3.IsError) {
                 return args3;
             }
-        }
         let probability = args1.NumberValue;
         let alpha = args2.NumberValue;
         let beta = args3.NumberValue;

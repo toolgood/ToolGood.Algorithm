@@ -9,12 +9,10 @@ class Function_LEFT extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'Left', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         if (args1.TextValue.length === 0) {
             return Operand.Create('');
         }
@@ -22,12 +20,10 @@ class Function_LEFT extends Function_2 {
             return Operand.Create(args1.TextValue.substring(0, 1));
         }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Left', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         let length = Math.min(args2.IntValue, args1.TextValue.length);
         return Operand.Create(args1.TextValue.substring(0, length));
     }

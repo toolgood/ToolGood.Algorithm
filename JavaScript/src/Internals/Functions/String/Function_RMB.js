@@ -9,12 +9,10 @@ class Function_RMB extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_1_error, 'RMB');
             if (args1.IsError) {
                 return args1;
             }
-        }
         return Operand.Create(this.F_base_ToChineseRMB(args1.NumberValue));
     }
 

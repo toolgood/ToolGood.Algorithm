@@ -13,7 +13,7 @@ class Function_AND extends Function_2 {
     // 在程序中�?& and  有true 直接返回true 就不会检测下一个会不会报错
     // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
     let args1 = this.a.Evaluate(engine, tempParameter);
-    if (args1.IsNotBoolean) { args1 = args1.ToBoolean(StringCache.Function_parameter_error, 'AND', 1); if (args1.IsError) { return args1; } }
+     args1 = args1.ToBoolean(StringCache.Function_parameter_error, 'AND', 1); if (args1.IsError) { return args1; } 
     if (args1.BooleanValue === false) {
       let args2 = this.b.Evaluate(engine, tempParameter).ToBoolean(StringCache.Function_parameter_error, 'AND', 2);
       if (args2.IsError) { return args2; }

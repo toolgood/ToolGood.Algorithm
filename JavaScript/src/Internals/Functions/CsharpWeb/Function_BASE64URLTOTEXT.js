@@ -9,10 +9,8 @@ class Function_BASE64URLTOTEXT extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, "Base64UrlToText", 1);
             if (args1.IsError) return args1;
-        }
         try {
             let base64Url = args1.TextValue
                 .replace(/-/g, '+')

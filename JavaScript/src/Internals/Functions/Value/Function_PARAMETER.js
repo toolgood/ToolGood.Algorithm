@@ -14,12 +14,10 @@ class Function_PARAMETER extends FunctionBase {
         let txt = this.name;
         if (txt === undefined || txt === null) {
             let args1 = this.a.Evaluate(engine, tempParameter);
-            if (args1.IsNotText) {
                 args1 = args1.ToText();
                 if (args1.IsError) {
                     return args1;
                 }
-            }
             txt = args1.TextValue;
         }
         if (tempParameter &&tempParameter !== null) {

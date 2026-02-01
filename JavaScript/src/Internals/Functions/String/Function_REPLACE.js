@@ -9,28 +9,22 @@ class Function_REPLACE extends Function_4 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'Replace', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         let oldtext = args1.TextValue;
         if (this.d === null) {
             let args22 = this.b.Evaluate(engine, tempParameter);
-            if (args22.IsNotText) {
                 args22.ToText(StringCache.Function_parameter_error, 'Replace', 2);
                 if (args22.IsError) {
                     return args22;
                 }
-            }
             let args32 = this.c.Evaluate(engine, tempParameter);
-            if (args32.IsNotText) {
                 args32.ToText(StringCache.Function_parameter_error, 'Replace', 3);
                 if (args32.IsError) {
                     return args32;
                 }
-            }
 
             let oldStr = args22.TextValue;
             let newstr = args32.TextValue;
@@ -38,26 +32,20 @@ class Function_REPLACE extends Function_4 {
         }
 
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Replace', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         let args3 = this.c.Evaluate(engine, tempParameter);
-        if (args3.IsNotNumber) {
             args3 = args3.ToNumber(StringCache.Function_parameter_error, 'Replace', 3);
             if (args3.IsError) {
                 return args3;
             }
-        }
         let args4 = this.d.Evaluate(engine, tempParameter);
-        if (args4.IsNotText) {
             args4 = args4.ToText(StringCache.Function_parameter_error, 'Replace', 4);
             if (args4.IsError) {
                 return args4;
             }
-        }
 
         let start = args2.IntValue - engine.ExcelIndex;
         let length = args3.IntValue;

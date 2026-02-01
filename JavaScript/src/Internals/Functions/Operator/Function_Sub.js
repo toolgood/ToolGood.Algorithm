@@ -62,32 +62,24 @@ class Function_Sub extends Function_2 {
       if (args2.IsDate) {
         return Operand.Create(args1.DateValue.ToNumber().NumberValue - args2.DateValue.ToNumber().NumberValue);
       }
-      if (args2.IsNotNumber) {
         let a2 = args2.ToNumber(StringCache.Function_parameter_error, '-',2);
         if (a2.IsError) { return a2; }
         args2 = a2;
-      }
       if (args2.NumberValue === 0) { return args1; }
       let totalValue = args1.ToNumber().NumberValue - args2.ToNumber().NumberValue;
       return Operand.Create(new MyDate(totalValue));
     } else if (args2.IsDate) {
-      if (args1.IsNotNumber) {
         let a1 = args1.ToNumber(StringCache.Function_parameter_error, '-',1);
         if (a1.IsError) { return a1; }
         args1 = a1;
-      }
       return Operand.Create(args1.NumberValue - args2.DateValue.ToNumber().NumberValue);
     }
-    if (args1.IsNotNumber) {
       let a1 = args1.ToNumber(StringCache.Function_parameter_error, '-',1);
       if (a1.IsError) { return a1; }
       args1 = a1;
-    }
-    if (args2.IsNotNumber) {
       let a2 = args2.ToNumber(StringCache.Function_parameter_error, '-',2);
       if (a2.IsError) { return a2; }
       args2 = a2;
-    }
 
     if (args2.NumberValue === 0) { return args1; }
 

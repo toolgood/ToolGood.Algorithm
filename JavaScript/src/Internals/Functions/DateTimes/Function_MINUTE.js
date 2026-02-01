@@ -9,10 +9,8 @@ class Function_MINUTE extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "Minute");
             if (args1.IsError) { return args1; }
-        }
         try {
             return Operand.Create(args1.DateValue.getMinutes());
         } catch (e) {

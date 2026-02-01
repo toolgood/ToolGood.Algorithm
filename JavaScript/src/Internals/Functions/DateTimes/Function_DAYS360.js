@@ -9,15 +9,11 @@ class Function_DAYS360 extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "Days360", 1);
             if (args1.IsError) { return args1; }
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotDate) {
             args2 = args2.ToMyDate(StringCache.Function_parameter_error, "Days360", 2);
             if (args2.IsError) { return args2; }
-        }
 
         let startMyDate = args1.DateValue;  // MyDate对象
         let endMyDate = args2.DateValue;    // MyDate对象
@@ -27,10 +23,8 @@ class Function_DAYS360 extends Function_3 {
         let method = false;
         if (this.c !== null) {
             let args3 = this.c.Evaluate(engine, tempParameter);
-            if (args3.IsNotBoolean) {
                 args3 = args3.ToBoolean(StringCache.Function_parameter_error, "Days360", 3);
                 if (args3.IsError) { return args3; }
-            }
             method = args3.BooleanValue;
         }
 

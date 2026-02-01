@@ -10,23 +10,17 @@ class Function_TDIST extends Function_3 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
             let converted1 = args1.ToNumber(StringCache.Function_parameter_error, "TDist", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             let converted2 = args2.ToNumber(StringCache.Function_parameter_error, "TDist", 2);
             if (converted2.IsError) return converted2;
             args2 = converted2;
-        }
         let args3 = this.c.Evaluate(engine, tempParameter);
-        if (args3.IsNotNumber) {
             let converted3 = args3.ToNumber(StringCache.Function_parameter_error, "TDist", 3);
             if (converted3.IsError) return converted3;
             args3 = converted3;
-        }
         let x = args1.NumberValue;
         let degreesFreedom = args2.IntValue;
         let tails = args3.IntValue;

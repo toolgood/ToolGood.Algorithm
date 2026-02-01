@@ -9,12 +9,10 @@ class Function_FISHER extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
             args1 = args1.ToNumber(StringCache.Function_parameter_1_error, 'Fisher');
             if (args1.IsError) {
                 return args1;
             }
-        }
         let x = args1.NumberValue;
         if (x >= 1 || x <= -1) {
             return Operand.Error(StringCache.Function_parameter_1_error, 'Fisher');

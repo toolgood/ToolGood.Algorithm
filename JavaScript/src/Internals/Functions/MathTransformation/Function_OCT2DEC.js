@@ -9,12 +9,10 @@ class Function_OCT2DEC extends Function_1 {
 
     Evaluate(work, tempParameter) {
         let args1 = this.a.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'OCT2DEC');
             if (args1.IsError) {
                 return args1;
             }
-        }
 
         if (!/^[0-7]+$/.test(args1.TextValue)) {
             return Operand.Error(StringCache.Function_parameter_error, 'OCT2DEC');

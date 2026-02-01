@@ -21,29 +21,23 @@ export class Function_REMOVESTART extends Function_3 {
      */
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'RemoveStart', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'RemoveStart', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         
         let ignoreCase = false;
         if (this.c !== null) {
             let args3 = this.c.Evaluate(engine, tempParameter);
-            if (args3.IsNotBoolean) {
                 args3 = args3.ToBoolean(StringCache.Function_parameter_error, 'RemoveStart', 3);
                 if (args3.IsError) {
                     return args3;
                 }
-            }
             ignoreCase = args3.BooleanValue;
         }
         

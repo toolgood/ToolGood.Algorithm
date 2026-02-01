@@ -21,18 +21,12 @@ export class Function_HMACMD5 extends Function_2 {
      */
     Evaluate(work, tempParameter = null) {
         let args1 = this.a.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            let errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "HMACMD5", 1);
-            if (errorArgs1.IsError) return errorArgs1;
-            return errorArgs1;
-        }
+            args1 = args1.ToText(StringCache.Function_parameter_error, "HMACMD5", 1);
+            if (args1.IsError) return args1;
 
         let args2 = this.b.Evaluate(work, tempParameter);
-        if (args2.IsNotText) {
-            let errorArgs2 = args2.ToText(StringCache.Function_parameter_error, "HMACMD5", 2);
-            if (errorArgs2.IsError) return errorArgs2;
-            return errorArgs2;
-        }
+            args2 = args2.ToText(StringCache.Function_parameter_error, "HMACMD5", 2);
+            if (args2.IsError) return args2;
 
         try {
             let hmacHash = HMACMD5(args1.TextValue,args2.TextValue || '');

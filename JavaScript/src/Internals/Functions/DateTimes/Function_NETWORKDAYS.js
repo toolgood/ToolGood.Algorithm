@@ -9,15 +9,11 @@ class Function_NETWORKDAYS extends Function_N {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.z[0].Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "NetWorkdays", 1);
             if (args1.IsError) { return args1; }
-        }
         let args2 = this.z[1].Evaluate(engine, tempParameter);
-        if (args2.IsNotDate) {
             args2 = args2.ToMyDate(StringCache.Function_parameter_error, "NetWorkdays", 2);
             if (args2.IsError) { return args2; }
-        }
 
         // 获取Date对象
         let startDate = args1.DateValue.ToDateTime();

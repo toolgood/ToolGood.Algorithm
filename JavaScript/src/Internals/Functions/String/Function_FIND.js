@@ -9,30 +9,24 @@ class Function_FIND extends Function_3 {
 
     Evaluate(work, tempParameter) {
         let args1 = this.a.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, 'Find', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         let args2 = this.b.Evaluate(work, tempParameter);
-        if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'Find', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         if (this.c === null) {
             let p = args2.TextValue.indexOf(args1.TextValue) + work.ExcelIndex;
             return Operand.Create(p);
         }
         let count = this.c.Evaluate(work, tempParameter);
-        if (count.IsNotNumber) {
             count.ToNumber(StringCache.Function_parameter_error, 'Find', 3);
             if (count.IsError) {
                 return count;
             }
-        }
         let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
         return Operand.Create(p2);
     }

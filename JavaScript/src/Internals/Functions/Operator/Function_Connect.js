@@ -19,8 +19,8 @@ class Function_Connect extends Function_2 {
     } else if (args2.IsNull) {
       return args1.ToText(StringCache.Function_parameter_error, '&', 1);
     }
-    if (args1.IsNotText) { args1 = args1.ToText(StringCache.Function_parameter_error, '&', 1); if (args1.IsError) { return args1; } }
-    if (args2.IsNotText) { args2 = args2.ToText(StringCache.Function_parameter_error, '&', 2); if (args2.IsError) { return args2; } }
+    args1 = args1.ToText(StringCache.Function_parameter_error, '&', 1); if (args1.IsError) { return args1; } 
+    args2 = args2.ToText(StringCache.Function_parameter_error, '&', 2); if (args2.IsError) { return args2; } 
 
     return Operand.Create(args1.TextValue + args2.TextValue);
   }

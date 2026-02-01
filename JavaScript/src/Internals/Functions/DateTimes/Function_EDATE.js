@@ -10,15 +10,11 @@ class Function_EDATE extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "EDate", 1);
             if (args1.IsError) { return args1; }
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, "EDate", 2);
             if (args2.IsError) { return args2; }
-        }
         // 获取开始日期的Date对象
         let startDate = args1.DateValue.ToDateTime();
         // 创建新的日期对象

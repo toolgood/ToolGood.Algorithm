@@ -10,19 +10,15 @@ class Function_LARGE extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (!args1.IsArray) {
             args1 = args1.ToArray(StringCache.Function_parameter_error, 'Large', 1);
             if (args1.IsError) {
                 return args1;
             }
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Large', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (!o) {

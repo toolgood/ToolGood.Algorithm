@@ -9,12 +9,10 @@ class Function_PROPER extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_1_error, 'Proper');
             if (args1.IsError) {
                 return args1;
             }
-        }
 
         let text = args1.TextValue;
         if (text.length === 0) {

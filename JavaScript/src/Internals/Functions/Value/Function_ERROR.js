@@ -8,12 +8,10 @@ class Function_ERROR extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText();
             if (args1.IsError) {
                 return args1;
             }
-        }
         return Operand.Error(args1.TextValue);
     }
 

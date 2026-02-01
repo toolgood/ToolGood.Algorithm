@@ -24,12 +24,10 @@ export class Function_HASVALUE extends Function_2 {
             return args1;
         }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotText) {
             args2 = args2.ToText(StringCache.Function_parameter_error, 'HasValue', 2);
             if (args2.IsError) {
                 return args2;
             }
-        }
         
         if (args1.IsArrayJson) {
             return Operand.Create(args1.containsValue(args2));

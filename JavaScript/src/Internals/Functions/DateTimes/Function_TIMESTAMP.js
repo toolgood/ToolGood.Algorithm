@@ -14,10 +14,8 @@ class Function_TIMESTAMP extends Function_2 {
         let Type = 0; // 毫秒
         if (this.b !== null) {
             let args2 = this.b.Evaluate(engine, tempParameter);
-            if (args2.IsNotNumber) {
                 args2 = args2.ToNumber(StringCache.Function_parameter_error, "TimeStamp", 2);
                 if (args2.IsError) { return args2; }
-            }
             Type = args2.IntValue;
         }
 

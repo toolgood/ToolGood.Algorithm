@@ -13,7 +13,7 @@ class Function_OR_N extends Function_N {
     for (let item of this.z) {
       let a = item.Evaluate(engine, tempParameter);
       if (a.IsError) { return a; }
-      if (a.IsNotBoolean) { a = a.ToBoolean(StringCache.Function_parameter_error, 'OR', index++); if (a.IsError) { return a; } }
+      a = a.ToBoolean(StringCache.Function_parameter_error, 'OR', index++); if (a.IsError) { return a; } 
       if (a.BooleanValue) { b = true; }
     }
     return b ? Operand.True : Operand.False;

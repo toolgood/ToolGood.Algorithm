@@ -10,29 +10,21 @@ class Function_WEIBULL extends Function_4 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
             let converted1 = args1.ToNumber(StringCache.Function_parameter_error, "Weibull", 1);
             if (converted1.IsError) return converted1;
             args1 = converted1;
-        }
         let args2 = this.b.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
             let converted2 = args2.ToNumber(StringCache.Function_parameter_error, "Weibull", 2);
             if (converted2.IsError) return converted2;
             args2 = converted2;
-        }
         let args3 = this.c.Evaluate(engine, tempParameter);
-        if (args3.IsNotNumber) {
             let converted3 = args3.ToNumber(StringCache.Function_parameter_error, "Weibull", 3);
             if (converted3.IsError) return converted3;
             args3 = converted3;
-        }
         let args4 = this.d.Evaluate(engine, tempParameter);
-        if (args4.IsNotBoolean) {
             let converted4 = args4.ToBoolean(StringCache.Function_parameter_error, "Weibull", 4);
             if (converted4.IsError) return converted4;
             args4 = converted4;
-        }
         let x = args1.NumberValue;
         let shape = args2.NumberValue;
         let scale = args3.NumberValue;

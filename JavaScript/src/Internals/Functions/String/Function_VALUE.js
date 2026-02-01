@@ -15,12 +15,10 @@ class Function_VALUE extends Function_1 {
         if (args1.isBoolean) {
             return args1.BooleanValue ? Operand.one : Operand.zero;
         }
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_1_error, 'Value');
             if (args1.IsError) {
                 return args1;
             }
-        }
 
         let TextValue = args1.TextValue;
         let parsedValue = parseFloat(TextValue);

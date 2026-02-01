@@ -9,12 +9,10 @@ class Function_URLENCODE extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
             args1 = args1.ToText(StringCache.Function_parameter_error, "UrlEncode");
             if (args1.IsError) {
                 return args1;
             }
-        }
         let s = args1.TextValue;
         let r = encodeURIComponent(s)
             .replace(/%20/g, '+')

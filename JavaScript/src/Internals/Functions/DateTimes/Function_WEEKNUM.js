@@ -9,10 +9,8 @@ class Function_WEEKNUM extends Function_2 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
             args1 = args1.ToMyDate(StringCache.Function_parameter_error, "WeekNum", 1);
             if (args1.IsError) { return args1; }
-        }
         let startMyDate = args1.DateValue;
 
         // 计算当年第一天的星期几（0表示星期日，6表示星期六）
@@ -26,10 +24,8 @@ class Function_WEEKNUM extends Function_2 {
         let days = dayOfYear + firstDayWeekday;
         if (this.b !== null) {
             let args2 = this.b.Evaluate(engine, tempParameter);
-            if (args2.IsNotNumber) {
                 args2 = args2.ToNumber(StringCache.Function_parameter_error, "WeekNum", 2);
                 if (args2.IsError) { return args2; }
-            }
             if (args2.IntValue == 2) {
                 days--;
             }

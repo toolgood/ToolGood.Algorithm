@@ -20,11 +20,8 @@ export class Function_SHA1 extends Function_1 {
      */
     Evaluate(work, tempParameter = null) {
         let args1 = this.a.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            let errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "SHA1", 1);
-            if (errorArgs1.IsError) return errorArgs1;
-            return errorArgs1;
-        }
+            args1 = args1.ToText(StringCache.Function_parameter_error, "SHA1", 1);
+            if (args1.IsError) return args1;
 
         try {
             let md5Hash = SHA1(args1.TextValue);
