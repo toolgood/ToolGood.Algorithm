@@ -62,23 +62,6 @@ export class CharUtil {
     }
 
     /**
-     * Compares two strings for equality after standardization.
-     * @param {string} left - The first string to compare.
-     * @param {string} right - The second string to compare.
-     * @returns {boolean} True if the strings are equal after standardization, false otherwise.
-     */
-    static EqualsStrings(left, right) {
-        if(left.length != right.length) return false;
-        for(var i = 0; i < left.length; i++) {
-            if(left[i] != right[i]) {
-                var a = this.StandardChar(left[i]);
-                if(a != right[i]) return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Compares a string with two other strings for equality after standardization.
      * @param {string} left - The string to compare.
      * @param {string} arg1 - The first string to compare with.
@@ -86,8 +69,8 @@ export class CharUtil {
      * @returns {boolean} True if the string is equal to either of the other strings after standardization, false otherwise.
      */
     static Equals3(left, arg1, arg2) {
-        if(this.EqualsStrings(left, arg1)) return true;
-        if(this.EqualsStrings(left, arg2)) return true;
+        if(this.Equals(left, arg1)) return true;
+        if(this.Equals(left, arg2)) return true;
         return false;
     }
 
@@ -100,9 +83,9 @@ export class CharUtil {
      * @returns {boolean} True if the string is equal to any of the other strings after standardization, false otherwise.
      */
     static Equals4(left, arg1, arg2, arg3) {
-        if(this.EqualsStrings(left, arg1)) return true;
-        if(this.EqualsStrings(left, arg2)) return true;
-        if(this.EqualsStrings(left, arg3)) return true;
+        if(this.Equals(left, arg1)) return true;
+        if(this.Equals(left, arg2)) return true;
+        if(this.Equals(left, arg3)) return true;
         return false;
     }
 }
