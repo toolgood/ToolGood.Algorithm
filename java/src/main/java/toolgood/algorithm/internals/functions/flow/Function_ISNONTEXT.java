@@ -13,9 +13,9 @@ public class Function_ISNONTEXT extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotText()) {
-            return Operand.True();
+            return Operand.TRUE;
         }
-        return Operand.False();
+        return Operand.FALSE;
     }
 
     @Override

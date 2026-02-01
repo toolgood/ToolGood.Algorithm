@@ -6,9 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionUtil;
 
 public class Function_LARGE extends Function_2 {
     public Function_LARGE(FunctionBase func1, FunctionBase func2) {
@@ -42,7 +42,7 @@ public class Function_LARGE extends Function_2 {
         if (k < 1 - work.ExcelIndex || k > list.size() - work.ExcelIndex) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Large", 2);
         }
-        return Operand.Create(list.get(k - work.ExcelIndex));
+        return Operand.Create((double)list.get(k - work.ExcelIndex));
     }
 
     @Override

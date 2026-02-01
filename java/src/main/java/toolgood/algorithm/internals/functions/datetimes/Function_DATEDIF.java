@@ -15,14 +15,14 @@ public class Function_DATEDIF extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.isNotDate()) {
+        if (args1.IsNotDate()) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.isNotDate()) {
+        if (args2.IsNotDate()) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2);
             if (args2.IsError()) {
                 return args2;

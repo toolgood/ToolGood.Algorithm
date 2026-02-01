@@ -52,10 +52,10 @@ public class AlgorithmEngineTest_flow {
     public void ifnull_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        int t = engine.TryEvaluate("isnull(null,1)", 0);
+        int t = engine.TryEvaluate("IsNull(null,1)", 0);
         assertEquals(1, t);
 
-        t = engine.TryEvaluate("isnull(1,2)", 0);
+        t = engine.TryEvaluate("IsNull(1,2)", 0);
         assertEquals(1, t);
     }
 

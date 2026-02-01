@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
@@ -15,27 +16,27 @@ public class Function_DAYS360 extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.isNotDate()) {
+        if (args1.IsNotDate()) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.isNotDate()) {
+        if (args2.IsNotDate()) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
 
-        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
-        toolgood.algorithm.internals.MyDate endMyDate = args2.DateValue();
+        MyDate startMyDate = args1.DateValue();
+        MyDate endMyDate = args2.DateValue();
 
         boolean method = false;
         if (func3 != null) {
             Operand args3 = func3.Evaluate(work, tempParameter);
-            if (args3.isNotBoolean()) {
+            if (args3.IsNotBoolean()) {
                 args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Days360", 3);
                 if (args3.IsError()) {
                     return args3;

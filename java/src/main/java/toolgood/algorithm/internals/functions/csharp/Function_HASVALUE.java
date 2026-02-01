@@ -27,25 +27,25 @@ public class Function_HASVALUE extends Function_2 {
         }
 
         if (args1.IsArrayJson()) {
-            return Operand.Create(((toolgood.algorithm.internals.OperandKeyValueList) args1).ContainsValue(args2));
+            return Operand.Create(((OperandKeyValueList) args1).ContainsValue(args2));
         } else if (args1.IsJson()) {
-            Object json = args1.getJsonValue();
+            Object json = args1.JsonValue();
             // 这里需要根据实际的 JSON 实现进行调整
             // 假设使用了某种 JSON 库，如 Gson 或 Jackson
             // 此处为简化实现，实际需要根据具体的 JSON 处理方式进行修改
-            return Operand.False();
+            return Operand.FALSE;
         } else if (args1.IsArray()) {
-            toolgood.algorithm.internals.OperandArray ar = (toolgood.algorithm.internals.OperandArray) args1;
+            OperandArray ar = (OperandArray) args1;
             for (Operand item : ar.ArrayValue()) {
                 Operand t = item.ToText();
                 if (t.IsError()) {
                     continue;
                 }
                 if (t.TextValue().equals(args2.TextValue())) {
-                    return Operand.True();
+                    return Operand.TRUE;
                 }
             }
-            return Operand.False();
+            return Operand.FALSE;
         }
         return Operand.Error("Function '{0}' parameter {1} is error!", "HasValue", 1);
     }

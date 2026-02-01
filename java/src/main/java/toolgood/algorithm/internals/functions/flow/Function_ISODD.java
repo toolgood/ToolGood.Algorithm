@@ -14,10 +14,10 @@ public class Function_ISODD extends Function_1 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNumber()) {
             if (args1.IntValue() % 2 == 1) {
-                return Operand.True();
+                return Operand.TRUE;
             }
         }
-        return Operand.False();
+        return Operand.FALSE;
     }
 
     @Override

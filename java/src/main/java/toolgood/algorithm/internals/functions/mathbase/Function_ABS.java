@@ -19,7 +19,10 @@ public class Function_ABS extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(Math.abs(args1.NumberValue()));
+        if (args1.DoubleValue()>=0) {
+            return args1;   
+        }
+        return Operand.Create(-args1.DoubleValue());
     }
 
     @Override

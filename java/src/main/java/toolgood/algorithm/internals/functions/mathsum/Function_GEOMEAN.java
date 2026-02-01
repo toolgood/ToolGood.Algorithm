@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionUtil;
 
 public class Function_GEOMEAN extends Function_N {
     public Function_GEOMEAN(FunctionBase[] funcs) {

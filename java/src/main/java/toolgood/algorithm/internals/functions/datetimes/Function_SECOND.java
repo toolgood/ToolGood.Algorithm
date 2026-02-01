@@ -15,7 +15,7 @@ public class Function_SECOND extends Function_1 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.isNotDate()) {
+        if (args1.IsNotDate()) {
             args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Second");
             if (args1.IsError()) {
                 return args1;

@@ -3,9 +3,10 @@ package toolgood.algorithm.internals.functions.flow;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
-public class Function_IsError extends Function_2 {
-    public Function_IsError(FunctionBase func1, FunctionBase func2) {
+public class Function_ISERROR extends Function_2 {
+    public Function_ISERROR(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }
 
@@ -19,9 +20,9 @@ public class Function_IsError extends Function_2 {
             return args1;
         }
         if (args1.IsError()) {
-            return Operand.True();
+            return Operand.TRUE;
         }
-        return Operand.False();
+        return Operand.FALSE;
     }
 
     @Override

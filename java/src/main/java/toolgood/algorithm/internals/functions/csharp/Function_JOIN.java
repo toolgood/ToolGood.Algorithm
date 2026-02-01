@@ -2,6 +2,7 @@ package toolgood.algorithm.internals.functions.csharp;
 
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
@@ -33,7 +34,7 @@ public class Function_JOIN extends Function_N {
         }
         if (args1.IsArray()) {
             List<String> list = new ArrayList<>();
-            boolean o = toolgood.algorithm.internals.FunctionUtil.F_base_GetList(args1, list);
+            boolean o =  FunctionUtil.F_base_GetList(args1, list);
             if (!o) {
                 return Operand.Error("Function '{0}' parameter {1} is error!", "Join", 1);
             }
@@ -52,7 +53,7 @@ public class Function_JOIN extends Function_N {
 
             List<String> list = new ArrayList<>();
             for (int i = 1; i < args.size(); i++) {
-                boolean o = toolgood.algorithm.internals.FunctionUtil.F_base_GetList(args.get(i), list);
+                boolean o = FunctionUtil.F_base_GetList(args.get(i), list);
                 if (!o) {
                     return Operand.Error("Function '{0}' parameter {1} is error!", "Join", i + 1);
                 }

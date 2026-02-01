@@ -7,7 +7,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionUtil;
+import toolgood.algorithm.internals.functions.FunctionUtil;
 
 public class Function_MEDIAN extends Function_N {
     public Function_MEDIAN(FunctionBase[] funcs) {
@@ -36,7 +36,7 @@ public class Function_MEDIAN extends Function_N {
         }
 
         Collections.sort(list);
-        return Operand.Create(list.get(list.size() / 2));
+        return Operand.Create((double)list.get(list.size() / 2));
     }
 
     @Override

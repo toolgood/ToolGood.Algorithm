@@ -10,7 +10,9 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionUtil;
+import toolgood.algorithm.internals.functions.FunctionUtil;
+
+
 
 public class Function_MODE extends Function_N {
     public Function_MODE(FunctionBase[] funcs) {
@@ -40,7 +42,7 @@ public class Function_MODE extends Function_N {
         }
 
         Map.Entry<Double, Integer> maxEntry = Collections.max(dict.entrySet(), Comparator.comparingInt(Map.Entry::getValue));
-        return Operand.Create(maxEntry.getKey());
+        return Operand.Create((double)maxEntry.getKey());
     }
 
     @Override

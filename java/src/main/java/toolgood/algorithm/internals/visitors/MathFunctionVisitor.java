@@ -2033,8 +2033,8 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 					else if (c2 == 'r') sb.append('\r');
 					else if (c2 == 't') sb.append('\t');
 					else if (c2 == '0') sb.append('\0');
-					else if (c2 == 'v') sb.append('\u000b');
-					else if (c2 == 'a') sb.append('\u0007');
+					else if (c2 == 'v') sb.append('\v');
+					else if (c2 == 'a') sb.append('\a');
 					else if (c2 == 'b') sb.append('\b');
 					else if (c2 == 'f') sb.append('\f');
 					else sb.append(opd.charAt(index++));
@@ -2127,38 +2127,37 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 
 		public FunctionBase visitArrayJson(mathParser.ArrayJsonContext context)
 		{
-			String keyName = null;
+			string keyName = null;
 			//KeyValue keyValue = new KeyValue();
 			if (context.NUM() != null) {
-				try {
-					int key = Integer.parseInt(context.NUM().GetText());
+				if (int.TryParse(context.NUM().GetText(), out int key)) {
 					keyName = key.ToString();
-				} catch (NumberFormatException e) {
+				} else {
 					return new Function_Value(Operand.Error("Json key '" + context.NUM().GetText() + "' is error!"));
 				}
 			}
 			if (context.STRING() != null) {
-				String opd = context.STRING().GetText();
-				StringBuilder sb = new StringBuilder(opd.length() - 2);
+				var opd = context.STRING().GetText();
+				var sb = new StringBuilder(opd.Length - 2);
 				int index = 1;
-				while (index < opd.length() - 1) {
-					char c = opd.charAt(index++);
+				while (index < opd.Length - 1) {
+					var c = opd[index++];
 					if (c == '\\') {
-						char c2 = opd.charAt(index++);
-						if (c2 == 'n') sb.append('\n');
-						else if (c2 == 'r') sb.append('\r');
-						else if (c2 == 't') sb.append('\t');
-						else if (c2 == '0') sb.append('\0');
-						else if (c2 == 'v') sb.append('\u000b');
-						else if (c2 == 'a') sb.append('\u0007');
-						else if (c2 == 'b') sb.append('\b');
-						else if (c2 == 'f') sb.append('\f');
-						else sb.append(opd.charAt(index++));
+						var c2 = opd[index++];
+						if (c2 == 'n') sb.Append('\n');
+						else if (c2 == 'r') sb.Append('\r');
+						else if (c2 == 't') sb.Append('\t');
+						else if (c2 == '0') sb.Append('\0');
+						else if (c2 == 'v') sb.Append('\v');
+						else if (c2 == 'a') sb.Append('\a');
+						else if (c2 == 'b') sb.Append('\b');
+						else if (c2 == 'f') sb.Append('\f');
+						else sb.Append(opd[index++]);
 					} else {
-						sb.append(c);
+						sb.Append(c);
 					}
 				}
-				keyName = sb.toString();
+				keyName = sb.ToString();
 			}
 			if (context.parameter2() != null) {
 				keyName = context.parameter2().GetText();

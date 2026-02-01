@@ -22,7 +22,7 @@ public class Function_IF extends Function_3 {
             return func2.Evaluate(work, tempParameter);
         }
         if (func3 == null) {
-            return Operand.False();
+            return Operand.FALSE;
         }
         return func3.Evaluate(work, tempParameter);
     }

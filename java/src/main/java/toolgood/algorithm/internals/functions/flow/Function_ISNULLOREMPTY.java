@@ -13,7 +13,7 @@ public class Function_ISNULLOREMPTY extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNull()) {
-            return Operand.True();
+            return Operand.TRUE;
         }
         if (args1.IsNotText()) {
             args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IsNullOrEmpty", 1);

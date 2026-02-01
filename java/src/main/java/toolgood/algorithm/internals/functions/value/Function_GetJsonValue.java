@@ -50,7 +50,7 @@ public class Function_GetJsonValue extends Function_2 {
         }
 
         if (obj.IsJson()) {
-            JsonData json = obj.getJsonValue();
+            JsonData json = obj.JsonValue();
             if (json.IsArray()) {
                 op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
                 if (op.IsError()) {

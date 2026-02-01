@@ -36,13 +36,17 @@ public class Function_FINV extends Function_3 {
             }
         }
 
-        double p = args1.NumberValue();
+        double p = args1.DoubleValue();
         int degreesFreedom1 = args2.IntValue();
         int degreesFreedom2 = args3.IntValue();
         if (degreesFreedom1 <= 0 || degreesFreedom2 <= 0 || p < 0.0 || p > 1.0) {
             return Operand.Error("Function '{0}' parameter is error!", "FInv");
         }
-        return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom1, degreesFreedom2));
+        try {
+            return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom1, degreesFreedom2));
+        } catch (Exception e) {
+            return Operand.Error("Function '{0}' parameter is error!", "FInv");
+        }
     }
 
     @Override

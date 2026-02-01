@@ -2,6 +2,7 @@ package toolgood.algorithm.internals.functions.csharp;
 
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
@@ -35,7 +36,7 @@ public class Function_LOOKCEILING extends Function_2 {
         }
 
         List<BigDecimal> list = new ArrayList<>();
-        toolgood.algorithm.internals.FunctionUtil.F_base_GetList(args2, list);
+        FunctionUtil.F_base_GetList(args2, list);
         if (list.isEmpty()) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "LookCeiling", 2);
         }

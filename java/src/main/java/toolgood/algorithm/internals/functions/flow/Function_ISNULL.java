@@ -22,12 +22,12 @@ public class Function_ISNULL extends Function_2 {
             return args1;
         }
         if (args1.IsNull()) {
-            return Operand.True();
+            return Operand.TRUE;
         }
         if (args1.IsText() && args1.TextValue() == null) {
-            return Operand.True();
+            return Operand.TRUE;
         }
-        return Operand.False();
+        return Operand.FALSE;
     }
 
     @Override

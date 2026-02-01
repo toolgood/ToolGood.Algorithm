@@ -19,14 +19,14 @@ public class Function_SMALL extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.getOperandType() != OperandType.Array) {
+        if (args1.IsNotArray()) {
             args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Small", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.getOperandType() != OperandType.Number) {
+        if (args2.IsNotNumber()) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Small", 2);
             if (args2.IsError()) {
                 return args2;
@@ -53,7 +53,7 @@ public class Function_SMALL extends Function_2 {
         if (k < 1 - excelIndex || k > list.size() - excelIndex) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 2);
         }
-        return Operand.Create(list.get(k - excelIndex));
+        return Operand.Create((double)list.get(k - excelIndex));
     }
 
     @Override

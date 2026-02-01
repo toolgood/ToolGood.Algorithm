@@ -44,7 +44,7 @@ public class Function_DATEVALUE extends Function_N {
             }
             Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             if (args1.LongValue() <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
-                return args1.ToMyDate();
+                return args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateValue", 1);
             }
             if (args1.LongValue() <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L
                 // 这里需要实现类似 FunctionUtil.StartDateUtc.AddSeconds 的功能
@@ -64,7 +64,7 @@ public class Function_DATEVALUE extends Function_N {
                 return Operand.Create(date);
             }
         } else if (type == 2) {
-            return args.get(0).ToNumber("Function '{0}' parameter is error!", "DateValue").ToMyDate();
+            return args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1).ToMyDate("Function '{0}' parameter {1} is error!", "DateValue", 1);
         } else if (type == 3) {
             Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             // 这里需要实现类似 FunctionUtil.StartDateUtc.AddMilliseconds 的功能

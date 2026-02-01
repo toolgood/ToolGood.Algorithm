@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.string;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -31,7 +32,11 @@ public class Function_TEXT extends Function_2 {
         if (args1.IsText()) {
             return args1;
         } else if (args1.IsBoolean()) {
-            return Operand.Create(args1.BooleanValue() ? "TRUE" : "FALSE");
+            if (args1.TextValue().equals("TRUE")  ) {
+                return Operand.Create( "TRUE"  );
+            }else{
+                return Operand.Create( "FALSE");
+            }
         } else if (args1.IsNumber()) {
             String format = args2.TextValue();
             try {

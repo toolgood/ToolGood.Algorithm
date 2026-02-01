@@ -18,7 +18,7 @@ public class Function_NOT extends Function_1 {
                 return args1;
             }
         }
-        return args1.BooleanValue() ? Operand.False() : Operand.True();
+        return args1.BooleanValue() ? Operand.FALSE : Operand.TRUE;
     }
 
     @Override

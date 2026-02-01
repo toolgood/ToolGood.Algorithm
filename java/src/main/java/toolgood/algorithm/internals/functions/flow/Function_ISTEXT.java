@@ -3,9 +3,10 @@ package toolgood.algorithm.internals.functions.flow;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
 
-public class Function_IsText extends Function_1 {
-    public Function_IsText(FunctionBase func1) {
+public class Function_ISTEXT extends Function_1 {
+    public Function_ISTEXT(FunctionBase func1) {
         super(func1);
     }
 
@@ -13,9 +14,9 @@ public class Function_IsText extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsText()) {
-            return Operand.True();
+            return Operand.TRUE;
         }
-        return Operand.False();
+        return Operand.FALSE;
     }
 
     @Override

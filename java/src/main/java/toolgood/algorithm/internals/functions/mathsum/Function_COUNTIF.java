@@ -43,10 +43,10 @@ public class Function_COUNTIF extends Function_2 {
                 count = FunctionUtil.F_base_countif(list, d);
             } catch (NumberFormatException e) {
                 String sunif = args2.TextValue().trim();
-                Object[] m2 = FunctionUtil.sumifMatch(sunif);
+                FunctionUtil.Pair<String, Double> m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 != null) {
-                    String operator = (String) m2[0];
-                    double value = (double) m2[1];
+                    String operator = m2.getFirst();
+                    double value = m2.getSecond();
                     count = FunctionUtil.F_base_countif(list, operator, value);
                 } else {
                     return Operand.Error("Function '{0}' parameter {1} is error!", "CountIf", 2);

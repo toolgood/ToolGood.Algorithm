@@ -5,6 +5,7 @@ import java.util.List;
 
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
@@ -19,14 +20,14 @@ public class Function_PERCENTRANK extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.getOperandType() != OperandType.Array) {
+        if (args1.IsNotArray()) {
             args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "PercentRank", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.getOperandType() != OperandType.Number) {
+        if (args2.IsNotNumber()) {
             args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2);
             if (args2.IsError()) {
                 return args2;
@@ -40,12 +41,12 @@ public class Function_PERCENTRANK extends Function_3 {
         }
 
         double k = args2.DoubleValue();
-        double[] array = list.stream().mapToDouble(Double::doubleValue).ToArray();
+        double[] array = list.stream().mapToDouble(Double::doubleValue).toArray();
         double v = ExcelFunctions.PercentRank(array, k);
         int d = 3;
         if (func3 != null) {
             Operand args3 = func3.Evaluate(work, tempParameter);
-            if (args3.getOperandType() != OperandType.Number) {
+            if (args3.IsNotNumber()) {
                 args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3);
                 if (args3.IsError()) {
                     return args3;

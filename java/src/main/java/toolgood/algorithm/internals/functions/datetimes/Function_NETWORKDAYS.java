@@ -16,14 +16,14 @@ public class Function_NETWORKDAYS extends Function_N {
     @Override
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = funcs[0].Evaluate(work, tempParameter);
-        if (args1.isNotDate()) {
+        if (args1.IsNotDate()) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = funcs[1].Evaluate(work, tempParameter);
-        if (args2.isNotDate()) {
+        if (args2.IsNotDate()) {
             args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
             if (args2.IsError()) {
                 return args2;
@@ -36,7 +36,7 @@ public class Function_NETWORKDAYS extends Function_N {
         HashSet<String> list = new HashSet<>();
         for (int i = 2; i < funcs.length; i++) {
             Operand ar = funcs[i].Evaluate(work, tempParameter);
-            if (ar.isNotDate()) {
+            if (ar.IsNotDate()) {
                 ar = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (ar.IsError()) {
                     return ar;

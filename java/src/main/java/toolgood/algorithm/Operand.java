@@ -5,6 +5,7 @@ package toolgood.algorithm;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collection;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.MyDate;
@@ -282,7 +283,7 @@ public abstract class Operand {
     /**
      * 创建操作数
      */
-    public static Operand Create(Collection<String> obj) {
+    public static Operand Create(String[] obj) {
         List<Operand> array = new ArrayList<>();
         for (String item : obj) {
             array.add(Create(item));
@@ -293,7 +294,7 @@ public abstract class Operand {
     /**
      * 创建操作数
      */
-    public static Operand Create(Collection<Double> obj) {
+    public static Operand Create(Double[] obj) {
         List<Operand> array = new ArrayList<>();
         for (Double item : obj) {
             array.add(Create(new BigDecimal(item.toString())));
@@ -304,7 +305,7 @@ public abstract class Operand {
     /**
      * 创建操作数
      */
-    public static Operand Create(Collection<BigDecimal> obj) {
+    public static Operand Create(BigDecimal[] obj) {
         List<Operand> array = new ArrayList<>();
         for (BigDecimal item : obj) {
             array.add(Create(item));
@@ -315,7 +316,7 @@ public abstract class Operand {
     /**
      * 创建操作数
      */
-    public static Operand Create(Collection<Integer> obj) {
+    public static Operand Create(Integer[] obj) {
         List<Operand> array = new ArrayList<>();
         for (Integer item : obj) {
             array.add(Create(item));
@@ -326,7 +327,7 @@ public abstract class Operand {
     /**
      * 创建操作数
      */
-    public static Operand Create(Collection<Boolean> obj) {
+    public static Operand Create(Boolean[] obj) {
         List<Operand> array = new ArrayList<>();
         for (Boolean item : obj) {
             array.add(Create(item));

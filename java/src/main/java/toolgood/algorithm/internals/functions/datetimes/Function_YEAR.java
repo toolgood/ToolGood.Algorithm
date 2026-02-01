@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.datetimes;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
 
 public class Function_YEAR extends Function_1 {
     public Function_YEAR(FunctionBase func1) {
@@ -18,10 +19,10 @@ public class Function_YEAR extends Function_1 {
                 return args1;
             }
         }
-        if (args1.DateValue().year() == null) {
+        if (args1.DateValue().Year == null) {
             return Operand.Error("Function '{0}' is error!", "Year");
         }
-        return Operand.Create(args1.DateValue().year().getValue());
+        return Operand.Create((int)args1.DateValue().Year);
     }
 
     @Override
