@@ -16,7 +16,7 @@ public class Function_Mul extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsError()) {
             return args1;
@@ -93,7 +93,7 @@ public class Function_Mul extends Function_2 {
             if (args2.getNumberValue() == 1) {
                 return args1;
             }
-            return Operand.Create(args1.getDateValue().multiply(args2.getNumberValue()));
+            return Operand.Create(args1.DateValue().multiply(args2.getNumberValue()));
         } else if (args2.IsDate()) {
             if (args1.IsNotNumber()) {
                 args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1);
@@ -104,7 +104,7 @@ public class Function_Mul extends Function_2 {
             if (args1.getNumberValue() == 1) {
                 return args2;
             }
-            return Operand.Create(args2.getDateValue().multiply(args1.getNumberValue()));
+            return Operand.Create(args2.DateValue().multiply(args1.getNumberValue()));
         }
 
         if (args1.IsNotNumber()) {

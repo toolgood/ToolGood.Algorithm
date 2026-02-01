@@ -12,7 +12,7 @@ public class Function_BIN2HEX extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotText()) {
             args1 = args1.ToText("Function '{0}' parameter {1} is error!", "BIN2HEX", 1);

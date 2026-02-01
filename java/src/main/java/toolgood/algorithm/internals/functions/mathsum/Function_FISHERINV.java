@@ -11,7 +11,7 @@ public class Function_FISHERINV extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "FisherInv");

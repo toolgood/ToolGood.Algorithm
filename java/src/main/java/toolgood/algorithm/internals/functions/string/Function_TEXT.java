@@ -15,7 +15,7 @@ public class Function_TEXT extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsError()) {
             return args1;
@@ -31,7 +31,7 @@ public class Function_TEXT extends Function_2 {
         if (args1.IsText()) {
             return args1;
         } else if (args1.IsBoolean()) {
-            return Operand.Create(args1.getBooleanValue() ? "TRUE" : "FALSE");
+            return Operand.Create(args1.BooleanValue() ? "TRUE" : "FALSE");
         } else if (args1.IsNumber()) {
             String format = args2.TextValue();
             try {
@@ -44,7 +44,7 @@ public class Function_TEXT extends Function_2 {
             String format = args2.TextValue();
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
-                return Operand.Create(sdf.format(args1.getDateValue().toDate()));
+                return Operand.Create(sdf.format(args1.DateValue().toDate()));
             } catch (Exception e) {
                 return Operand.Error("Function '{0}' format is error!", "Text");
             }

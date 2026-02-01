@@ -2,7 +2,7 @@ package toolgood.algorithm.internals.functions;
 
 import java.lang.StringBuilder;
 
-abstract class Function_1 extends FunctionBase {
+public abstract class Function_1 extends FunctionBase {
     protected FunctionBase func1;
 
     protected Function_1(FunctionBase func1) {

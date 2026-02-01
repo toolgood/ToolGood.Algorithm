@@ -39,7 +39,7 @@ public class Function_STARTSWITH extends Function_3 {
                 return args3;
             }
         }
-        if (args3.getBooleanValue()) {
+        if (args3.BooleanValue()) {
             return Operand.Create(text.toLowerCase().startsWith(args2.TextValue().toLowerCase()));
         } else {
             return Operand.Create(text.startsWith(args2.TextValue()));

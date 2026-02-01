@@ -458,12 +458,12 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLOG10_fun(mathParser.LOG10_funContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ISTEXT_fun}
+	 * Visit a parse tree produced by the {@code IsText_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitISTEXT_fun(mathParser.ISTEXT_funContext ctx);
+	T visitIsText_fun(mathParser.IsText_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code NEGBINOMDIST_fun}
 	 * labeled alternative in {@link mathParser#expr}.

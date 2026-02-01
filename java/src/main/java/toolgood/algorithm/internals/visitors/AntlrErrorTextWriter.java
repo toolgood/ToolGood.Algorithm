@@ -15,7 +15,7 @@ public class AntlrErrorTextWriter {
         isError = error;
     }
 
-    public String getErrorMsg() {
+    public String ErrorMsg() {
         return errorMsg;
     }
 

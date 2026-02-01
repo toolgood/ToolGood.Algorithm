@@ -92,7 +92,7 @@ import toolgood.algorithm.internals.functions.flow.Function_ISNULLOREMPTY;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULLORERROR;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULLORWHITESPACE;
 import toolgood.algorithm.internals.functions.flow.Function_ISODD;
-import toolgood.algorithm.internals.functions.flow.Function_ISTEXT;
+import toolgood.algorithm.internals.functions.flow.Function_IsText;
 import toolgood.algorithm.internals.functions.flow.Function_NOT;
 import toolgood.algorithm.internals.functions.operator.Function_OR;
 import toolgood.algorithm.internals.functions.operator.Function_OR_N;
@@ -216,10 +216,10 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 			return new Function_ISNUMBER(args1);
 		}
 
-		public FunctionBase visitISTEXT_fun(mathParser.ISTEXT_funContext context)
+		public FunctionBase visitIsText_fun(mathParser.IsText_funContext context)
 		{
 			FunctionBase args1 = this.visit(context.expr());
-			return new Function_ISTEXT(args1);
+			return new Function_IsText(args1);
 		}
 
 		public FunctionBase visitISERROR_fun(mathParser.ISERROR_funContext context)

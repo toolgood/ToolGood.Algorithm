@@ -20,7 +20,7 @@ public class Function_QUARTILE extends Function_2 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Array) {
-            args1 = args1.toArray("Function '{0}' parameter {1} is error!", "Quartile", 1);
+            args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Quartile", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -43,7 +43,7 @@ public class Function_QUARTILE extends Function_2 {
         if (quant < 0 || quant > 4) {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 2);
         }
-        double[] array = list.stream().mapToDouble(Double::doubleValue).toArray();
+        double[] array = list.stream().mapToDouble(Double::doubleValue).ToArray();
         return Operand.Create(ExcelFunctions.Quartile(array, quant));
     }
 

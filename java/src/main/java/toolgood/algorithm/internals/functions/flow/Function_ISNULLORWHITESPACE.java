@@ -10,7 +10,7 @@ public class Function_ISNULLORWHITESPACE extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNull()) {
             return Operand.True();

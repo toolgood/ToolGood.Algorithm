@@ -16,27 +16,27 @@ public class Function_DAYS360 extends Function_3 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "Days360", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotDate()) {
-            args2 = args2.toMyDate("Function '{0}' parameter {1} is error!", "Days360", 2);
+            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
 
-        toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
-        toolgood.algorithm.internals.MyDate endMyDate = args2.getDateValue();
+        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
+        toolgood.algorithm.internals.MyDate endMyDate = args2.DateValue();
 
         boolean method = false;
         if (func3 != null) {
             Operand args3 = func3.Evaluate(work, tempParameter);
             if (args3.isNotBoolean()) {
-                args3 = args3.toBoolean("Function '{0}' parameter {1} is error!", "Days360", 3);
+                args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Days360", 3);
                 if (args3.IsError()) {
                     return args3;
                 }
@@ -44,7 +44,7 @@ public class Function_DAYS360 extends Function_3 {
             if (args3.IsError()) {
                 return args3;
             }
-            method = args3.getBooleanValue();
+            method = args3.BooleanValue();
         }
         int days = endMyDate.Year * 360 + (endMyDate.Month - 1) * 30
                     - startMyDate.Year * 360 - (startMyDate.Month - 1) * 30;

@@ -24,7 +24,7 @@ public class Function_DATEVALUE extends Function_N {
             }
             args.add(aa);
         }
-        if (args.get(0).isDate()) {
+        if (args.get(0).IsDate()) {
             return args.get(0);
         }
         int type = 0;
@@ -36,26 +36,26 @@ public class Function_DATEVALUE extends Function_N {
             type = args2.IntValue();
         }
         if (type == 0) {
-            if (args.get(0).isText()) {
+            if (args.get(0).IsText()) {
                 toolgood.algorithm.internals.MyDate date = toolgood.algorithm.internals.MyDate.parse(args.get(0).TextValue());
                 if (date != null) {
                     return Operand.Create(date);
                 }
             }
             Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
-            if (args1.getLongValue() <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
-                return args1.toMyDate();
+            if (args1.LongValue() <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
+                return args1.ToMyDate();
             }
-            if (args1.getLongValue() <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L
+            if (args1.LongValue() <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L
                 // 这里需要实现类似 FunctionUtil.StartDateUtc.AddSeconds 的功能
                 // 暂时使用 MyDate 的构造函数来处理
-                return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / 86400.0));
+                return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / 86400.0));
             }
             // 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
             // 这里需要实现类似 FunctionUtil.StartDateUtc.AddMilliseconds 的功能
-            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / (86400.0 * 1000.0)));
+            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / (86400.0 * 1000.0)));
         } else if (type == 1) {
-            Operand args1 = args.get(0).toText("Function '{0}' parameter {1} is error!", "DateValue", 1);
+            Operand args1 = args.get(0).ToText("Function '{0}' parameter {1} is error!", "DateValue", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -64,15 +64,15 @@ public class Function_DATEVALUE extends Function_N {
                 return Operand.Create(date);
             }
         } else if (type == 2) {
-            return args.get(0).ToNumber("Function '{0}' parameter is error!", "DateValue").toMyDate();
+            return args.get(0).ToNumber("Function '{0}' parameter is error!", "DateValue").ToMyDate();
         } else if (type == 3) {
             Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             // 这里需要实现类似 FunctionUtil.StartDateUtc.AddMilliseconds 的功能
-            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / (86400.0 * 1000.0)));
+            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / (86400.0 * 1000.0)));
         } else if (type == 4) {
             Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             // 这里需要实现类似 FunctionUtil.StartDateUtc.AddSeconds 的功能
-            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / 86400.0));
+            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / 86400.0));
         }
         return Operand.Error("Function '{0}' parameter is error!", "DateValue");
     }

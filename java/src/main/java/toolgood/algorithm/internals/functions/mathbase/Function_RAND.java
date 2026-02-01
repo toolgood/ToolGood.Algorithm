@@ -10,7 +10,7 @@ public class Function_RAND extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Random rand = new Random();
         return Operand.Create(rand.nextDouble());
     }

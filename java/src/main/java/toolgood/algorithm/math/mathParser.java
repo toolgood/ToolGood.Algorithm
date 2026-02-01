@@ -21,7 +21,7 @@ public class mathParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, SUB=29, NUM=30, STRING=31, NULL=32, 
-		ERROR=33, UNIT=34, IF=35, IFERROR=36, IsNumber=37, ISTEXT=38, IsError=39, 
+		ERROR=33, UNIT=34, IF=35, IFERROR=36, IsNumber=37, IsText=38, IsError=39, 
 		ISNONTEXT=40, ISLOGICAL=41, ISEVEN=42, ISODD=43, ISNULL=44, ISNULLORERROR=45, 
 		AND=46, OR=47, NOT=48, TRUE=49, FALSE=50, E=51, PI=52, DEC2BIN=53, DEC2HEX=54, 
 		DEC2OCT=55, HEX2BIN=56, HEX2DEC=57, HEX2OCT=58, OCT2BIN=59, OCT2DEC=60, 
@@ -73,7 +73,7 @@ public class mathParser extends Parser {
 			"'/'", "'+'", "'&'", "'>'", "'>='", "'<'", "'<='", "'='", "'=='", "'==='", 
 			"'!=='", "'!='", "'<>'", "'&&'", "'||'", "'?'", "':'", "'{'", "'}'", 
 			"'-'", null, null, "'NULL'", "'ERROR'", null, "'IF'", "'IFERROR'", "'IsNumber'", 
-			"'ISTEXT'", "'IsError'", "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", "'ISODD'", 
+			"'IsText'", "'IsError'", "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", "'ISODD'", 
 			"'ISNULL'", "'ISNULLORERROR'", "'AND'", "'OR'", "'NOT'", null, null, 
 			"'E'", "'PI'", "'DEC2BIN'", "'DEC2HEX'", "'DEC2OCT'", "'HEX2BIN'", "'HEX2DEC'", 
 			"'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", "'OCT2HEX'", "'BIN2OCT'", "'BIN2DEC'", 
@@ -113,7 +113,7 @@ public class mathParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, "SUB", "NUM", "STRING", "NULL", "ERROR", 
-			"UNIT", "IF", "IFERROR", "IsNumber", "ISTEXT", "IsError", "ISNONTEXT", 
+			"UNIT", "IF", "IFERROR", "IsNumber", "IsText", "IsError", "ISNONTEXT", 
 			"ISLOGICAL", "ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", "AND", "OR", 
 			"NOT", "TRUE", "FALSE", "E", "PI", "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN", 
 			"HEX2DEC", "HEX2OCT", "OCT2BIN", "OCT2DEC", "OCT2HEX", "BIN2OCT", "BIN2DEC", 
@@ -1197,15 +1197,15 @@ public class mathParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class ISTEXT_funContext extends ExprContext {
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
+	public static class IsText_funContext extends ExprContext {
+		public TerminalNode IsText() { return getToken(mathParser.IsText, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public ISTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
+		public IsText_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun(this);
+			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitIsText_fun(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3800,11 +3800,11 @@ public class mathParser extends Parser {
 				break;
 			case 6:
 				{
-				_localctx = new ISTEXT_funContext(_localctx);
+				_localctx = new IsText_funContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(50);
-				match(ISTEXT);
+				match(IsText);
 				setState(51);
 				match(T__1);
 				setState(52);
@@ -9020,14 +9020,14 @@ public class mathParser extends Parser {
 						break;
 					case 9:
 						{
-						_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new IsText_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(1841);
 						if (!(precpred(_ctx, 335))) throw new FailedPredicateException(this, "precpred(_ctx, 335)");
 						setState(1842);
 						match(T__0);
 						setState(1843);
-						match(ISTEXT);
+						match(IsText);
 						setState(1844);
 						match(T__1);
 						setState(1845);
@@ -11448,7 +11448,7 @@ public class mathParser extends Parser {
 			case IF:
 			case IFERROR:
 			case IsNumber:
-			case ISTEXT:
+			case IsText:
 			case IsError:
 			case ISNONTEXT:
 			case ISLOGICAL:
@@ -11694,7 +11694,7 @@ public class mathParser extends Parser {
 		public TerminalNode IF() { return getToken(mathParser.IF, 0); }
 		public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
 		public TerminalNode IsNumber() { return getToken(mathParser.IsNumber, 0); }
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
+		public TerminalNode IsText() { return getToken(mathParser.IsText, 0); }
 		public TerminalNode IsError() { return getToken(mathParser.IsError, 0); }
 		public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
 		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }

@@ -11,7 +11,7 @@ public class Function_AND_N extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         int index = 1;
         boolean b = true;
         for (FunctionBase item : funcs) {
@@ -22,7 +22,7 @@ public class Function_AND_N extends Function_N {
                     return a;
                 }
             }
-            if (a.getBooleanValue() == false) {
+            if (a.BooleanValue() == false) {
                 b = false;
             }
         }

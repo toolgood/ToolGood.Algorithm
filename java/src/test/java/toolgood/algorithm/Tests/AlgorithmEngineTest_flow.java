@@ -92,18 +92,18 @@ public class AlgorithmEngineTest_flow {
     }
 
     @Test
-    public void ISTEXT_test()
+    public void IsText_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        int t = engine.TryEvaluate("if(ISTEXT(1),1,2)", 0);
+        int t = engine.TryEvaluate("if(IsText(1),1,2)", 0);
         assertEquals(2, t);
 
-        t = engine.TryEvaluate("if(ISTEXT('e'),1,2)", 0);
+        t = engine.TryEvaluate("if(IsText('e'),1,2)", 0);
         assertEquals(1, t);
-        t = engine.TryEvaluate("if(ISTEXT('11'),1,2)", 0);
+        t = engine.TryEvaluate("if(IsText('11'),1,2)", 0);
         assertEquals(1, t);
 
-        t = engine.TryEvaluate("if(ISTEXT('2016-1-2'),1,2)", 0);
+        t = engine.TryEvaluate("if(IsText('2016-1-2'),1,2)", 0);
         assertEquals(1, t);
     }
 

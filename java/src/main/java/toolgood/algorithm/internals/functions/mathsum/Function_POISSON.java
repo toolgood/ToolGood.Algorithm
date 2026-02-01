@@ -32,7 +32,7 @@ public class Function_POISSON extends Function_3 {
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.getOperandType() != OperandType.Boolean) {
-            args3 = args3.toBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3);
+            args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3);
             if (args3.IsError()) {
                 return args3;
             }
@@ -40,7 +40,7 @@ public class Function_POISSON extends Function_3 {
         int k = args1.IntValue();
         double lambda = args2.DoubleValue
 ();
-        boolean state = args3.getBooleanValue();
+        boolean state = args3.BooleanValue();
         if (!(lambda > 0.0)) {
             return Operand.Error("Function '{0}' parameter is error!", "Poisson");
         }

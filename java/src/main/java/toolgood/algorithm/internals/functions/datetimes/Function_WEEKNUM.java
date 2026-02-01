@@ -16,12 +16,12 @@ public class Function_WEEKNUM extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
-        toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
+        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
 
         int dayOfYear = startMyDate.DayOfYear();
         // 计算当年第一天是星期几（1-7，1 是星期日）

@@ -18,7 +18,7 @@ public class Function_TIMEVALUE extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotText()) {
-            args1 = args1.toText("Function '{0}' parameter is error!", "TimeValue");
+            args1 = args1.ToText("Function '{0}' parameter is error!", "TimeValue");
             if (args1.IsError()) {
                 return args1;
             }

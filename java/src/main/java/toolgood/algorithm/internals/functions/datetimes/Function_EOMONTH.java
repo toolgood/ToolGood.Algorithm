@@ -16,7 +16,7 @@ public class Function_EOMONTH extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "EoMonth", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EoMonth", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -29,7 +29,7 @@ public class Function_EOMONTH extends Function_2 {
             }
         }
         try {
-            toolgood.algorithm.internals.MyDate date = args1.getDateValue();
+            toolgood.algorithm.internals.MyDate date = args1.DateValue();
             int months = args2.IntValue();
             // 添加指定的月份数（加上1）
             toolgood.algorithm.internals.MyDate tempDate = date.AddMonths(months + 1);

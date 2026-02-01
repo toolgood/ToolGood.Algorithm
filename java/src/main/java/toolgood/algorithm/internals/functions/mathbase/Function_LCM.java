@@ -12,7 +12,7 @@ public class Function_LCM extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         List<Operand> args = new ArrayList<>(funcs.length);
         for (int i = 0; i < funcs.length; i++) {
             Operand aa = funcs[i].Evaluate(work, tempParameter);

@@ -11,7 +11,7 @@ public class Function_GetJsonValue extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand obj = func1.Evaluate(work, tempParameter);
         if (obj.IsError()) {
             return obj;
@@ -27,8 +27,8 @@ public class Function_GetJsonValue extends Function_2 {
                 return op;
             }
             int index = op.IntValue() - work.getExcelIndex();
-            if (index < obj.getArrayValue().size()) {
-                return obj.getArrayValue().get(index);
+            if (index < obj.ArrayValue().size()) {
+                return obj.ArrayValue().get(index);
             }
             return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
         }
@@ -51,7 +51,7 @@ public class Function_GetJsonValue extends Function_2 {
 
         if (obj.IsJson()) {
             JsonData json = obj.getJsonValue();
-            if (json.isArray()) {
+            if (json.IsArray()) {
                 op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
                 if (op.IsError()) {
                     return op;
@@ -62,8 +62,8 @@ public class Function_GetJsonValue extends Function_2 {
                     if (v.isString()) {
                         return Operand.Create(v.getStringValue());
                     }
-                    if (v.isBoolean()) {
-                        return Operand.Create(v.getBooleanValue());
+                    if (v.IsBoolean()) {
+                        return Operand.Create(v.BooleanValue());
                     }
                     if (v.isDouble()) {
                         return Operand.Create(v.getNumberValue());
@@ -71,7 +71,7 @@ public class Function_GetJsonValue extends Function_2 {
                     if (v.isObject()) {
                         return Operand.Create(v);
                     }
-                    if (v.isArray()) {
+                    if (v.IsArray()) {
                         return Operand.Create(v);
                     }
                     if (v.isNull()) {
@@ -90,8 +90,8 @@ public class Function_GetJsonValue extends Function_2 {
                     if (v.isString()) {
                         return Operand.Create(v.getStringValue());
                     }
-                    if (v.isBoolean()) {
-                        return Operand.Create(v.getBooleanValue());
+                    if (v.IsBoolean()) {
+                        return Operand.Create(v.BooleanValue());
                     }
                     if (v.isDouble()) {
                         return Operand.Create(v.getNumberValue());
@@ -99,7 +99,7 @@ public class Function_GetJsonValue extends Function_2 {
                     if (v.isObject()) {
                         return Operand.Create(v);
                     }
-                    if (v.isArray()) {
+                    if (v.IsArray()) {
                         return Operand.Create(v);
                     }
                     if (v.isNull()) {

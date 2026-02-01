@@ -17,7 +17,7 @@ public class Function_WORKDAY extends Function_N {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = funcs[0].Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "Workday", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -30,19 +30,19 @@ public class Function_WORKDAY extends Function_N {
             }
         }
 
-        toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
+        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
         int days = args2.IntValue();
         HashSet<String> holidaySet = new HashSet<>();
         
         for (int i = 2; i < funcs.length; i++) {
             Operand ar = funcs[i].Evaluate(work, tempParameter);
             if (ar.isNotDate()) {
-                ar = ar.toMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
+                ar = ar.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
                 if (ar.IsError()) {
                     return ar;
                 }
             }
-            toolgood.algorithm.internals.MyDate holiday = ar.getDateValue();
+            toolgood.algorithm.internals.MyDate holiday = ar.DateValue();
             holidaySet.add(holiday.Year + "-" + holiday.Month + "-" + holiday.Day);
         }
         

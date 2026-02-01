@@ -1,43 +1,46 @@
 package toolgood.algorithm.internals.visitors;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
-import toolgood.algorithm.enums.CalculateTreeType;
-import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathVisitor;
-import toolgood.algorithm.internals.CalculateTree;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
+import toolgood.algorithm.enums.CalculateTreeType;
+import toolgood.algorithm.internals.CalculateTree;
+import toolgood.algorithm.math.mathParser;
+import toolgood.algorithm.math.mathVisitor;
+
 public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> implements mathVisitor<CalculateTree> {
+
     @Override
     public CalculateTree visitProg(mathParser.ProgContext context) {
-        return visit(context.expr());
+        return context.expr().accept(this);
     }
 
     @Override
     public CalculateTree visitBracket_fun(mathParser.Bracket_funContext context) {
-        return visit(context.expr());
+        return context.expr().accept(this);
     }
 
     @Override
     public CalculateTree visitMulDiv_fun(mathParser.MulDiv_funContext context) {
         CalculateTree tree = new CalculateTree();
         tree.Nodes = new ArrayList<>();
-        List<mathParser.ExprContext> exprs = context.expr();
+        List<ParseTree> exprs = context.expr();
         String t = context.op.getText();
-        if (CharUtil.Equals(t, "*")) {
+        if (t.equals("*")) {
             tree.Type = CalculateTreeType.Mul;
-        } else if (CharUtil.Equals(t, "/")) {
+        } else if (t.equals("/")) {
             tree.Type = CalculateTreeType.Div;
         } else {
             tree.Type = CalculateTreeType.Mod;
         }
-        tree.Nodes.add(this.visit(exprs.get(0)));
-        tree.Nodes.add(this.visit(exprs.get(1)));
-        tree.Start = context.start.getStartIndex();
-        tree.End = context.stop.getStopIndex();
+        tree.Nodes.add(exprs.get(0).accept(this));
+        tree.Nodes.add(exprs.get(1).accept(this));
+        tree.Start = context.getStart().getStartIndex();
+        tree.End = context.getStop().getStopIndex();
         tree.ConditionString = context.getText();
         return tree;
     }
@@ -46,27 +49,27 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     public CalculateTree visitAddSub_fun(mathParser.AddSub_funContext context) {
         CalculateTree tree = new CalculateTree();
         tree.Nodes = new ArrayList<>();
-        List<mathParser.ExprContext> exprs = context.expr();
+        List<ParseTree> exprs = context.expr();
         String t = context.op.getText();
-        if (CharUtil.Equals(t, "+")) {
+        if (t.equals("+")) {
             tree.Type = CalculateTreeType.Add;
-        } else if (CharUtil.Equals(t, "-")) {
+        } else if (t.equals("-")) {
             tree.Type = CalculateTreeType.Sub;
         } else {
             tree.Type = CalculateTreeType.Connect;
         }
-        tree.Nodes.add(this.visit(exprs.get(0)));
-        tree.Nodes.add(this.visit(exprs.get(1)));
-        tree.Start = context.start.getStartIndex();
-        tree.End = context.stop.getStopIndex();
+        tree.Nodes.add(exprs.get(0).accept(this));
+        tree.Nodes.add(exprs.get(1).accept(this));
+        tree.Start = context.getStart().getStartIndex();
+        tree.End = context.getStop().getStopIndex();
         tree.ConditionString = context.getText();
         return tree;
     }
 
-    public CalculateTree visit_fun(ParserRuleContext context) {
+    private CalculateTree visit_fun(org.antlr.v4.runtime.ParserRuleContext context) {
         CalculateTree tree = new CalculateTree();
-        tree.Start = context.start.getStartIndex();
-        tree.End = context.stop.getStopIndex();
+        tree.Start = context.getStart().getStartIndex();
+        tree.End = context.getStop().getStopIndex();
         tree.ConditionString = context.getText();
         return tree;
     }
@@ -562,7 +565,7 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     }
 
     @Override
-    public CalculateTree visitIsError_fun(mathParser.IsError_funContext context) {
+    public CalculateTree visitISERROR_fun(mathParser.ISERROR_funContext context) {
         return visit_fun(context);
     }
 
@@ -602,7 +605,7 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     }
 
     @Override
-    public CalculateTree visitIsNumber_fun(mathParser.IsNumber_funContext context) {
+    public CalculateTree visitISNUMBER_fun(mathParser.ISNUMBER_funContext context) {
         return visit_fun(context);
     }
 
@@ -617,7 +620,7 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     }
 
     @Override
-    public CalculateTree visitISTEXT_fun(mathParser.ISTEXT_funContext context) {
+    public CalculateTree visitIsText_fun(mathParser.IsText_funContext context) {
         return visit_fun(context);
     }
 

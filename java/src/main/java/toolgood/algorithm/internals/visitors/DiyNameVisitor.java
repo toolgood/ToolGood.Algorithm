@@ -14,28 +14,34 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitPARAMETER_fun(PARAMETER_funContext context) {
         TerminalNode node = context.PARAMETER();
         if (node != null) {
-            diy.Parameters.add(node.getText());
+            DiyNameInfo.KeyInfo keyInfo = diy.new KeyInfo();
+            keyInfo.Name = node.getText();
+            keyInfo.Start = node.getSymbol().getStartIndex();
+            keyInfo.End = node.getSymbol().getStopIndex();
+            diy.Parameters.add(keyInfo);
         }
-        node = context.PARAMETER2();
+        return visitChildren(context);
+    }
+    @Override
+    public Object visitGetJsonValue_fun(GetJsonValue_funContext context) {
+        TerminalNode node = context.PARAMETER();
         if (node != null) {
-            String str = node.getText();
-            if (str.startsWith("@")) {
-                diy.Parameters.add(str.substring(1));
-            } else if ((str.startsWith("【") && str.endsWith("】"))
-                    || (str.startsWith("[") && str.endsWith("]"))
-                    || (str.startsWith("#") && str.endsWith("#"))) {
-                diy.Parameters.add(str.substring(1, str.length() - 1));
-
-            } else {
-                diy.Parameters.add(str);
-            }
-            return null;
+            DiyNameInfo.KeyInfo keyInfo = diy.new KeyInfo();
+            keyInfo.Name = node.getText();
+            keyInfo.Start = node.getSymbol().getStartIndex();
+            keyInfo.End = node.getSymbol().getStopIndex();
+            diy.Parameters.add(keyInfo);
         }
         return visitChildren(context);
     }
     @Override
     public Object visitDiyFunction_fun(DiyFunction_funContext context) {
-        diy.Functions.add(context.PARAMETER().getText());
+        TerminalNode node = context.PARAMETER();
+        DiyNameInfo.KeyInfo keyInfo = diy.new KeyInfo();
+        keyInfo.Name = node.getText();
+        keyInfo.Start = node.getSymbol().getStartIndex();
+        keyInfo.End = node.getSymbol().getStopIndex();
+        diy.Functions.add(keyInfo);
         return visitChildren(context);
     }
 
@@ -397,7 +403,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitISTEXT_fun(ISTEXT_funContext context) {
+    public Object visitIsText_fun(IsText_funContext context) {
 
         return visitChildren(context);
     }
@@ -446,12 +452,6 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
 
     @Override
     public Object visitFIXED_fun(FIXED_funContext context) {
-
-        return visitChildren(context);
-    }
-
-    @Override
-    public Object visitGetJsonValue_fun(GetJsonValue_funContext context) {
 
         return visitChildren(context);
     }

@@ -1,5 +1,6 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
+import java.lang.StringBuilder;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
@@ -10,19 +11,19 @@ public class Function_ABS extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Abs");
-            if (args1.IsError()) {
+        if (args1.isNotNumber()) {
+            args1 = args1.toNumber("Function '{0}' parameter is error!", "Abs");
+            if (args1.isError()) {
                 return args1;
             }
         }
-        return Operand.Create(Math.abs(args1.NumberValue()));
+        return Operand.create(Math.abs(args1.getNumberValue()));
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
         AddFunction(stringBuilder, "Abs");
     }
 }

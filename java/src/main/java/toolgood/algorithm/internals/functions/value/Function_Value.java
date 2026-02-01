@@ -19,7 +19,7 @@ public class Function_Value extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         return _value;
     }
 
@@ -46,10 +46,10 @@ public class Function_Value extends FunctionBase {
             stringBuilder.append('"');
         } else if (_value.IsDate()) {
             stringBuilder.append('"');
-            stringBuilder.append(_value.getDateValue().toString());
+            stringBuilder.append(_value.DateValue().toString());
             stringBuilder.append('"');
         } else if (_value.IsBoolean()) {
-            stringBuilder.append(_value.getBooleanValue() ? "true" : "false");
+            stringBuilder.append(_value.BooleanValue() ? "true" : "false");
         } else {
             stringBuilder.append(_value.toString());
         }

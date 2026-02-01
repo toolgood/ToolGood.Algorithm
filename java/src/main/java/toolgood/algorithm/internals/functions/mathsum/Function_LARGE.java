@@ -16,7 +16,7 @@ public class Function_LARGE extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotArray()) {
             args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Large", 1);

@@ -11,7 +11,7 @@ public class Function_CONCATENATE extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         if (funcs.length == 0) {
             return Operand.Create("");
         }

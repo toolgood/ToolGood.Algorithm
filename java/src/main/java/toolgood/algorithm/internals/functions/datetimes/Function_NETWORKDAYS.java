@@ -17,32 +17,32 @@ public class Function_NETWORKDAYS extends Function_N {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = funcs[0].Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = funcs[1].Evaluate(work, tempParameter);
         if (args2.isNotDate()) {
-            args2 = args2.toMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
+            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
 
-        toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
-        toolgood.algorithm.internals.MyDate endMyDate = args2.getDateValue();
+        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
+        toolgood.algorithm.internals.MyDate endMyDate = args2.DateValue();
 
         HashSet<String> list = new HashSet<>();
         for (int i = 2; i < funcs.length; i++) {
             Operand ar = funcs[i].Evaluate(work, tempParameter);
             if (ar.isNotDate()) {
-                ar = ar.toMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
+                ar = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (ar.IsError()) {
                     return ar;
                 }
             }
-            toolgood.algorithm.internals.MyDate holiday = ar.getDateValue();
+            toolgood.algorithm.internals.MyDate holiday = ar.DateValue();
             list.add(holiday.Year + "-" + holiday.Month + "-" + holiday.Day);
         }
         int days = 0;

@@ -8,6 +8,7 @@
 package toolgood.algorithm.internals.functions;
 
 import java.lang.StringBuilder;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.Operand;
@@ -21,7 +22,7 @@ public abstract class FunctionBase {
      * @param tempParameter 临时参数，未找到返回null
      * @return
      */
-    public abstract Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter);
+    public abstract Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter);
 
     //region TryEvaluate
 
@@ -33,19 +34,19 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public short TryEvaluate(AlgorithmEngine work, short def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public short TryEvaluate(AlgorithmEngine work, short def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.ErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
             return (short) obj.IntValue();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -58,19 +59,19 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public int TryEvaluate(AlgorithmEngine work, int def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public int TryEvaluate(AlgorithmEngine work, int def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
             return obj.IntValue();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -83,19 +84,19 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public long TryEvaluate(AlgorithmEngine work, long def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public long TryEvaluate(AlgorithmEngine work, long def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
-            return obj.getLongValue();
+            return obj.LongValue();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -108,20 +109,20 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public float TryEvaluate(AlgorithmEngine work, float def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public float TryEvaluate(AlgorithmEngine work, float def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
             return (float) obj.DoubleValue
 ();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -134,20 +135,20 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public double TryEvaluate(AlgorithmEngine work, double def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public double TryEvaluate(AlgorithmEngine work, double def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
             return obj.DoubleValue
 ();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -160,19 +161,19 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public String TryEvaluate(AlgorithmEngine work, String def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public String TryEvaluate(AlgorithmEngine work, String def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isText()) {
-                obj = obj.toText("It can't be converted to string!");
+            if (!obj.IsText()) {
+                obj = obj.ToText("It can't be converted to string!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
             return obj.TextValue();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -185,19 +186,19 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public boolean TryEvaluate(AlgorithmEngine work, boolean def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public boolean TryEvaluate(AlgorithmEngine work, boolean def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isBoolean()) {
-                obj = obj.toBoolean("It can't be converted to bool!");
+            if (!obj.IsBoolean()) {
+                obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
-            return obj.getBooleanValue();
+            return obj.BooleanValue();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }
@@ -211,19 +212,19 @@ public abstract class FunctionBase {
      * @param tempParameter
      * @return
      */
-    public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
-            if (!obj.isDate()) {
-                obj = obj.toMyDate("It can't be converted to DateTime!");
+            if (!obj.IsDate()) {
+                obj = obj.ToMyDate("It can't be converted to DateTime!");
                 if (obj.IsError()) {
-                    work.setLastError(obj.getErrorMsg());
+                    work.SetLastError(obj.ErrorMsg());
                     return def;
                 }
             }
-            return obj.getDateValue();
+            return obj.DateValue();
         } catch (Exception ex) {
-            work.setLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
+            work.SetLastError(ex.getMessage() + "\r\n" + getStackTrace(ex));
         }
         return def;
     }

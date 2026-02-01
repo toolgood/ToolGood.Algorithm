@@ -11,7 +11,7 @@ public class Function_FIXED extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         int num = 2;
         if (func2 != null) {
             Operand args2 = func2.Evaluate(work, tempParameter);

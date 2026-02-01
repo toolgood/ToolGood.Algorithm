@@ -37,7 +37,7 @@ public class Function_REMOVEEND extends Function_3 {
                     return args3;
                 }
             }
-            if (args3.getBooleanValue()) {
+            if (args3.BooleanValue()) {
                 ignoreCase = true;
             }
         }

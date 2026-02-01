@@ -20,7 +20,7 @@ public class Function_PERCENTRANK extends Function_3 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Array) {
-            args1 = args1.toArray("Function '{0}' parameter {1} is error!", "PercentRank", 1);
+            args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "PercentRank", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -41,7 +41,7 @@ public class Function_PERCENTRANK extends Function_3 {
 
         double k = args2.DoubleValue
 ();
-        double[] array = list.stream().mapToDouble(Double::doubleValue).toArray();
+        double[] array = list.stream().mapToDouble(Double::doubleValue).ToArray();
         double v = ExcelFunctions.PercentRank(array, k);
         int d = 3;
         if (func3 != null) {

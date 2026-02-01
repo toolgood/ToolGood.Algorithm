@@ -30,11 +30,11 @@ public class Function_TIMESTAMP extends Function_2 {
             }
             type = args2.IntValue();
         }
-        Operand dateOperand = args0.toMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
+        Operand dateOperand = args0.ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
         if (dateOperand.IsError()) {
             return dateOperand;
         }
-        toolgood.algorithm.internals.MyDate myDate = dateOperand.getDateValue();
+        toolgood.algorithm.internals.MyDate myDate = dateOperand.DateValue();
         
         // 计算时间戳
         long timestamp = myDate.ToDateTime().getMillis();

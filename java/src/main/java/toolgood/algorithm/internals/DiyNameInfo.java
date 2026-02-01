@@ -10,28 +10,21 @@ public final class DiyNameInfo {
     /**
      * 自定义 参数
      */
-    private final List<KeyInfo> parameters;
+    public final List<KeyInfo> Parameters;
 
     /**
      * 自定义方法
      */
-    private final List<KeyInfo> functions;
+    public final List<KeyInfo> Functions;
 
     /**
      * 自定义类型
      */
-    DiyNameInfo() {
-        parameters = new ArrayList<>();
-        functions = new ArrayList<>();
+   public DiyNameInfo() {
+        Parameters = new ArrayList<>();
+        Functions = new ArrayList<>();
     }
-
-    public List<KeyInfo> getParameters() {
-        return parameters;
-    }
-
-    public List<KeyInfo> getFunctions() {
-        return functions;
-    }
+ 
 
     /**
      * 关键字信息
@@ -40,43 +33,19 @@ public final class DiyNameInfo {
         /**
          * 名称
          */
-        private String name;
+        public String Name;
         /**
          * 开始位置
          */
-        private int start;
+        public int Start;
         /**
          * 结束位置
          */
-        private int end;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getStart() {
-            return start;
-        }
-
-        public void setStart(int start) {
-            this.start = start;
-        }
-
-        public int getEnd() {
-            return end;
-        }
-
-        public void setEnd(int end) {
-            this.end = end;
-        }
-
+        public int End;
+      
         @Override
         public String toString() {
-            return name;
+            return Name;
         }
     }
 }

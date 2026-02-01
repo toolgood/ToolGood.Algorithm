@@ -16,7 +16,7 @@ public class Function_PERCENTILE extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotArray()) {
             args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Percentile", 1);
@@ -37,7 +37,7 @@ public class Function_PERCENTILE extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1);
         }
         double k = args2.DoubleValue();
-        double[] array = list.stream().mapToDouble(Double::doubleValue).toArray();
+        double[] array = list.stream().mapToDouble(Double::doubleValue).ToArray();
         return Operand.Create(ExcelFunctions.Percentile(array, k));
     }
 

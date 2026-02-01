@@ -16,12 +16,12 @@ public class Function_DAY extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter is error!", "Day");
+            args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Day");
             if (args1.IsError()) {
                 return args1;
             }
         }
-        toolgood.algorithm.internals.MyDate date = args1.getDateValue();
+        toolgood.algorithm.internals.MyDate date = args1.DateValue();
         if (date.Day == null) {
             return Operand.Error("Function '{0}' is error!", "Day");
         }

@@ -36,7 +36,7 @@ public class Function_HAS extends Function_2 {
             return Operand.False();
         } else if (args1.IsArray()) {
             toolgood.algorithm.internals.OperandArray ar = (toolgood.algorithm.internals.OperandArray) args1;
-            for (Operand item : ar.getArrayValue()) {
+            for (Operand item : ar.ArrayValue()) {
                 Operand t = item.ToText();
                 if (t.IsError()) {
                     continue;

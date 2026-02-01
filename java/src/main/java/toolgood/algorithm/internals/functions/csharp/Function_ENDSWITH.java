@@ -39,7 +39,7 @@ public class Function_ENDSWITH extends Function_3 {
                 return args3;
             }
         }
-        if (args3.getBooleanValue()) {
+        if (args3.BooleanValue()) {
             return Operand.Create(text.toLowerCase().endsWith(args2.TextValue().toLowerCase()));
         } else {
             return Operand.Create(text.endsWith(args2.TextValue()));

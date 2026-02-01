@@ -13,7 +13,7 @@ class Function_SINH extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.IsNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sinh");

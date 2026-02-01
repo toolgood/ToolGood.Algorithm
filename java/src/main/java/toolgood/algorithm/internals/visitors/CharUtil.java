@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals;
+package toolgood.algorithm.internals.visitors;
 
 import java.util.ArrayList;
 import java.util.List;

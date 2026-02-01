@@ -16,7 +16,7 @@ public class Function_Div extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsError()) {
             return args1;
@@ -94,7 +94,7 @@ public class Function_Div extends Function_2 {
         }
 
         if (args1.IsDate()) {
-            return Operand.Create(args1.getDateValue().divide(args2.getNumberValue()));
+            return Operand.Create(args1.DateValue().divide(args2.getNumberValue()));
         }
         if (args1.IsNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "/", 1);

@@ -362,16 +362,20 @@ class OperandMyDate extends Operand {
     public MyDate DateValue() { return value; }
 
     @Override
-    public Operand ToNumber(String errorMessage) { return Create(value.ToNumber()); }
+    public Operand ToNumber(String errorMessage) { return Create(value.ToNumber
+()); }
 
     @Override
-    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.ToNumber()); }
+    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.ToNumber
+()); }
 
     @Override
-    public Operand ToBoolean(String errorMessage) { return value.ToNumber() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) { return value.ToNumber
+() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand ToBoolean(String errorMessage, Object... args) { return value.ToNumber() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return value.ToNumber
+() != 0 ? TRUE : FALSE; }
 
     @Override
     public Operand ToText(String errorMessage) { return Create(value.toString()); }
@@ -420,12 +424,12 @@ class OperandJson extends Operand {
 
     @Override
     public Operand ToArray(String errorMessage) {
-        if (value.isArray()) {
+        if (value.IsArray()) {
             List<Operand> list = new ArrayList<>();
             for (JsonData v : value.getArray()) {
                 if (v.isString()) {
                     list.add(Operand.Create(v.getString()));
-                } else if (v.isBoolean()) {
+                } else if (v.IsBoolean()) {
                     list.add(Operand.Create(v.getBoolean()));
                 } else if (v.IsNumber()) {
                     list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));

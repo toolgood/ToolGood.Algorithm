@@ -16,7 +16,7 @@ public class Function_WEEKDAY extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -34,7 +34,7 @@ public class Function_WEEKDAY extends Function_2 {
             type = args2.IntValue();
         }
 
-        toolgood.algorithm.internals.MyDate date = args1.getDateValue();
+        toolgood.algorithm.internals.MyDate date = args1.DateValue();
         int dayOfWeek = date.DayOfWeek(); // 1-7，其中 1 是星期日，7 是星期六
 
         if (type == 1) {

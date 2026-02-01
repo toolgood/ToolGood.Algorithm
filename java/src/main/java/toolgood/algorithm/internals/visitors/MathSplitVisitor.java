@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals;
+package toolgood.algorithm.internals.visitors;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
@@ -341,7 +341,7 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
-    public ConditionTree visitISTEXT_fun(mathParser.ISTEXT_funContext context) {
+    public ConditionTree visitIsText_fun(mathParser.IsText_funContext context) {
         return visit_fun(context);
     }
 

@@ -11,7 +11,7 @@ public class Function_OR extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
         // 在excel内 AND(x,y) OR(x,y) 先报错，
         // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
@@ -23,7 +23,7 @@ public class Function_OR extends Function_2 {
                 return args1;
             }
         }
-        if (args1.getBooleanValue()) {
+        if (args1.BooleanValue()) {
             Operand args2 = func2.Evaluate(work, tempParameter).ToBoolean();
             if (args2.IsError()) {
                 return args2;

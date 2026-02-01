@@ -10,7 +10,7 @@ import toolgood.algorithm.enums.DistanceUnitType;
 import toolgood.algorithm.enums.MassUnitType;
 import toolgood.algorithm.enums.VolumeUnitType;
 import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.internals.Operand;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.visitors.AntlrErrorTextWriter;
 import toolgood.algorithm.math.mathLexer;
@@ -48,7 +48,21 @@ public class AlgorithmEngine {
     /**
      * 最后一个错误
      */
-    public String LastError;
+    private String LastError;
+
+    /**
+     * 获取最后一个错误
+     */
+    public String getLastError() {
+        return LastError;
+    }
+
+    /**
+     * 设置最后一个错误
+     */
+    public void SetLastError(String error) {
+        LastError = error;
+    }
 
     /**
      * 使用EXCEL索引
@@ -88,7 +102,7 @@ public class AlgorithmEngine {
 
         var context = parser.prog();
         if (antlrErrorTextWriter.IsError()) {
-            LastError = antlrErrorTextWriter.getErrorMsg();
+            LastError = antlrErrorTextWriter.ErrorMsg();
             throw new Exception(LastError);
         }
         var visitor = new MathFunctionVisitor();
@@ -112,13 +126,13 @@ public class AlgorithmEngine {
             if (obj.IsNotNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return (short) obj.IntValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -133,13 +147,13 @@ public class AlgorithmEngine {
             if (obj.IsNotNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return obj.IntValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -154,13 +168,13 @@ public class AlgorithmEngine {
             if (obj.IsNotNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return obj.LongValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -175,13 +189,13 @@ public class AlgorithmEngine {
             if (obj.IsNotNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return (float) obj.DoubleValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -196,13 +210,13 @@ public class AlgorithmEngine {
             if (obj.IsNotNumber()) {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return obj.DoubleValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -217,13 +231,13 @@ public class AlgorithmEngine {
             if (obj.IsNotText()) {
                 obj = obj.ToText("It can't be converted to string!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return obj.TextValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -238,13 +252,13 @@ public class AlgorithmEngine {
             if (obj.IsNotBoolean()) {
                 obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return obj.BooleanValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }
@@ -259,13 +273,13 @@ public class AlgorithmEngine {
             if (obj.IsNotDate()) {
                 obj = obj.ToMyDate("It can't be converted to DateTime!");
                 if (obj.IsError()) {
-                    LastError = obj.ErrorMsg;
+                    SetLastError(obj.ErrorMsg);
                     return def;
                 }
             }
             return obj.DateValue;
         } catch (Exception ex) {
-            LastError = ex.getMessage() + "\r\n" + ex.getStackTrace();
+            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
         }
         return def;
     }

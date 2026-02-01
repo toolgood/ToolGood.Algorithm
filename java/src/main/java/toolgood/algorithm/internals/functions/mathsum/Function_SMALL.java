@@ -19,7 +19,7 @@ public class Function_SMALL extends Function_2 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Array) {
-            args1 = args1.toArray("Function '{0}' parameter {1} is error!", "Small", 1);
+            args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Small", 1);
             if (args1.IsError()) {
                 return args1;
             }

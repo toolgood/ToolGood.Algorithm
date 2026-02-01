@@ -16,7 +16,7 @@ public class Function_Add extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsError()) {
             return args1;
@@ -82,7 +82,7 @@ public class Function_Add extends Function_2 {
         }
         if (args1.IsDate()) {
             if (args2.IsDate()) {
-                return Operand.Create(args1.getDateValue().add(args2.getDateValue()));
+                return Operand.Create(args1.DateValue().add(args2.DateValue()));
             }
             if (args2.IsNotNumber()) {
                 args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2);
@@ -93,7 +93,7 @@ public class Function_Add extends Function_2 {
             if (args2.getNumberValue() == 0) {
                 return args1;
             }
-            return Operand.Create(args1.getDateValue().add(args2.getNumberValue()));
+            return Operand.Create(args1.DateValue().add(args2.getNumberValue()));
         } else if (args2.IsDate()) {
             if (args1.IsNotNumber()) {
                 args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1);
@@ -104,7 +104,7 @@ public class Function_Add extends Function_2 {
             if (args1.getNumberValue() == 0) {
                 return args2;
             }
-            return Operand.Create(args2.getDateValue().add(args1.getNumberValue()));
+            return Operand.Create(args2.DateValue().add(args1.getNumberValue()));
         }
         if (args1.IsNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1);

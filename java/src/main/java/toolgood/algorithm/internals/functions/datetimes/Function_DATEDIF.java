@@ -16,27 +16,27 @@ public class Function_DATEDIF extends Function_3 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.isNotDate()) {
-            args2 = args2.toMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2);
+            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.isNotText()) {
-            args3 = args3.toText("Function '{0}' parameter {1} is error!", "DateDif", 3);
+            args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
-        toolgood.algorithm.internals.MyDate startMyDate = args1.getDateValue();
-        toolgood.algorithm.internals.MyDate endMyDate = args2.getDateValue();
+        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
+        toolgood.algorithm.internals.MyDate endMyDate = args2.DateValue();
         String t = args3.TextValue().toLowerCase();
 
         if (t.equals("y")) {

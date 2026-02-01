@@ -11,7 +11,7 @@ public class Function_ArrayJson extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         OperandKeyValueList result = new OperandKeyValueList();
         for (FunctionBase item : funcs) {
             Operand o = item.Evaluate(work, tempParameter);

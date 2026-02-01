@@ -39,7 +39,7 @@ public class Function_WEIBULL extends Function_4 {
         }
         Operand args4 = func4.Evaluate(work, tempParameter);
         if (args4.getOperandType() != OperandType.Boolean) {
-            args4 = args4.toBoolean("Function '{0}' parameter {1} is error!", "Weibull", 4);
+            args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "Weibull", 4);
             if (args4.IsError()) {
                 return args4;
             }
@@ -51,7 +51,7 @@ public class Function_WEIBULL extends Function_4 {
 ();
         double scale = args3.DoubleValue
 ();
-        boolean state = args4.getBooleanValue();
+        boolean state = args4.BooleanValue();
 
         if (shape <= 0.0 || scale <= 0.0) {
             return Operand.Error("Function '{0}' parameter is error!", "Weibull");

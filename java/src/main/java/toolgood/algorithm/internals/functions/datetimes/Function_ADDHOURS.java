@@ -16,7 +16,7 @@ public class Function_ADDHOURS extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
-            args1 = args1.toMyDate("Function '{0}' parameter {1} is error!", "AddHours", 1);
+            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddHours", 1);
             if (args1.IsError()) {
                 return args1;
             }
@@ -29,7 +29,7 @@ public class Function_ADDHOURS extends Function_2 {
             }
         }
         try {
-            toolgood.algorithm.internals.MyDate date = args1.getDateValue();
+            toolgood.algorithm.internals.MyDate date = args1.DateValue();
             int hours = args2.IntValue();
             toolgood.algorithm.internals.MyDate result = date.AddHours(hours);
             return Operand.Create(result);

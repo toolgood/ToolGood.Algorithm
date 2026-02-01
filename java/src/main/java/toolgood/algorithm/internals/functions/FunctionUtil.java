@@ -1,32 +1,32 @@
 package toolgood.algorithm.internals.functions;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.Visitors.CharUtil;
+import toolgood.algorithm.internals.visitors.CharUtil;
 
 public class FunctionUtil {
     public static final long START_DATE_UTC = 0; // 1970-01-01 00:00:00 UTC in milliseconds
 
-    public static boolean F_base_GetList(List<Operand> args, List<Double> list) {
+    public static boolean F_base_GetList_BigDecimal(List<Operand> args, List<BigDecimal> list) {
         for (Operand item : args) {
             if (item.IsNumber()) {
-                list.add(item.DoubleValue
-());
-            } else if (item.isArray()) {
-                boolean o = F_base_GetList(item.getArrayValue(), list);
+                list.add(item.NumberValue());
+            } else if (item.IsArray()) {
+                boolean o = F_base_GetList(item.ArrayValue(), list);
                 if (!o) {
                     return false;
                 }
-            } else if (item.isJson()) {
-                Operand i = item.toArray(null);
+            } else if (item.IsJson()) {
+                Operand i = item.ToArray(null);
                 if (i.IsError()) {
                     return false;
                 }
-                boolean o = F_base_GetList(i.getArrayValue(), list);
+                boolean o = F_base_GetList(i.ArrayValue(), list);
                 if (!o) {
                     return false;
                 }
@@ -42,24 +42,24 @@ public class FunctionUtil {
         return true;
     }
 
-    public static boolean F_base_GetList(Operand args, List<Double> list) {
+    public static boolean F_base_GetList_Double(Operand args, List<Double> list) {
         if (args.IsError()) {
             return false;
         }
         if (args.IsNumber()) {
             list.add(args.DoubleValue
 ());
-        } else if (args.isArray()) {
-            boolean o = F_base_GetList(args.getArrayValue(), list);
+        } else if (args.IsArray()) {
+            boolean o = F_base_GetList(args.ArrayValue(), list);
             if (!o) {
                 return false;
             }
-        } else if (args.isJson()) {
-            Operand i = args.toArray(null);
+        } else if (args.IsJson()) {
+            Operand i = args.ToArray(null);
             if (i.IsError()) {
                 return false;
             }
-            boolean o = F_base_GetList(i.getArrayValue(), list);
+            boolean o = F_base_GetList(i.ArrayValue(), list);
             if (!o) {
                 return false;
             }
@@ -76,22 +76,22 @@ public class FunctionUtil {
 
     public static boolean F_base_GetList(List<Operand> args, List<String> list) {
         for (Operand item : args) {
-            if (item.isArray()) {
-                boolean o = F_base_GetList(item.getArrayValue(), list);
+            if (item.IsArray()) {
+                boolean o = F_base_GetList(item.ArrayValue(), list);
                 if (!o) {
                     return false;
                 }
-            } else if (item.isJson()) {
-                Operand i = item.toArray(null);
+            } else if (item.IsJson()) {
+                Operand i = item.ToArray(null);
                 if (i.IsError()) {
                     return false;
                 }
-                boolean o = F_base_GetList(i.getArrayValue(), list);
+                boolean o = F_base_GetList(i.ArrayValue(), list);
                 if (!o) {
                     return false;
                 }
             } else {
-                Operand o = item.toText(null);
+                Operand o = item.ToText(null);
                 if (o.IsError()) {
                     return false;
                 }
@@ -101,26 +101,26 @@ public class FunctionUtil {
         return true;
     }
 
-    public static boolean F_base_GetList(Operand args, List<String> list) {
+    public static boolean F_base_GetList_String(Operand args, List<String> list) {
         if (args.IsError()) {
             return false;
         }
-        if (args.isArray()) {
-            boolean o = F_base_GetList(args.getArrayValue(), list);
+        if (args.IsArray()) {
+            boolean o = F_base_GetList(args.ArrayValue(), list);
             if (!o) {
                 return false;
             }
-        } else if (args.isJson()) {
-            Operand i = args.toArray(null);
+        } else if (args.IsJson()) {
+            Operand i = args.ToArray(null);
             if (i.IsError()) {
                 return false;
             }
-            boolean o = F_base_GetList(i.getArrayValue(), list);
+            boolean o = F_base_GetList(i.ArrayValue(), list);
             if (!o) {
                 return false;
             }
         } else {
-            Operand o = args.toText(null);
+            Operand o = args.ToText(null);
             if (o.IsError()) {
                 return false;
             }
@@ -171,15 +171,15 @@ public class FunctionUtil {
     }
 
     public static boolean F_base_compare(double a, double b, String ss) {
-        if (CharUtil.equals(ss, "<")) {
+        if (CharUtil.Equals(ss, "<")) {
             return a < b;
-        } else if (CharUtil.equals(ss, "<=")) {
+        } else if (CharUtil.Equals(ss, "<=")) {
             return a <= b;
-        } else if (CharUtil.equals(ss, ">")) {
+        } else if (CharUtil.Equals(ss, ">")) {
             return a > b;
-        } else if (CharUtil.equals(ss, ">=")) {
+        } else if (CharUtil.Equals(ss, ">=")) {
             return a >= b;
-        } else if (CharUtil.equals(ss, "=") || CharUtil.equals(ss, "==") || CharUtil.equals(ss, "===")) {
+        } else if (CharUtil.Equals(ss, "=") || CharUtil.Equals(ss, "==") || CharUtil.Equals(ss, "===")) {
             return a == b;
         }
         return a != b;

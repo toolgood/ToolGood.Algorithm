@@ -15,16 +15,16 @@ public class Function_VALUE extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNumber()) {
             return args1;
         }
-        if (args1.isBoolean()) {
-            return args1.getBooleanValue() ? Operand.ONE : Operand.ZERO;
+        if (args1.IsBoolean()) {
+            return args1.BooleanValue() ? Operand.ONE : Operand.ZERO;
         }
         if (args1.isNotText()) {
-            args1 = args1.toText("Function '{0}' parameter is error!", "Value");
+            args1 = args1.ToText("Function '{0}' parameter is error!", "Value");
             if (args1.IsError()) {
                 return args1;
             }
