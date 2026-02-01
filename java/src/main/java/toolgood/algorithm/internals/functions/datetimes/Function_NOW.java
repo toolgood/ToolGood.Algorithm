@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public class Function_NOW extends FunctionBase {
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         toolgood.algorithm.internals.MyDate now = toolgood.algorithm.internals.MyDate.now();
         return Operand.Create(now);
     }

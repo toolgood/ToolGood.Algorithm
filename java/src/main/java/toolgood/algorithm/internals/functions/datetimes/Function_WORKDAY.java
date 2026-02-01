@@ -14,7 +14,7 @@ public class Function_WORKDAY extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = funcs[0].Evaluate(work, tempParameter);
         if (args1.isNotDate()) {
             args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", 1);

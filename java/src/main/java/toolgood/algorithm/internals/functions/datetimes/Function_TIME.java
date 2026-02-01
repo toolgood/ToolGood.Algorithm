@@ -13,7 +13,7 @@ public class Function_TIME extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.isNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1);

@@ -3,6 +3,8 @@ package toolgood.algorithm.internals.functions.mathbase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_3;
+
 import java.text.DecimalFormat;
 
 public class Function_FIXED extends Function_3 {

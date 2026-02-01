@@ -15,7 +15,7 @@ public class Function_JOIN extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         List<Operand> args = new ArrayList<>();
         for (FunctionBase item : funcs) {
             Operand aa = item.Evaluate(work, tempParameter);

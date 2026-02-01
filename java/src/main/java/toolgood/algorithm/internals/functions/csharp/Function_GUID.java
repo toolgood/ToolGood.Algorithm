@@ -12,7 +12,7 @@ public class Function_GUID extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         return Operand.Create(UUID.randomUUID().toString());
     }
 

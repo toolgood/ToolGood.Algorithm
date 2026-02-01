@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public class Function_TODAY extends FunctionBase {
     @Override
-    public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         toolgood.algorithm.internals.MyDate now = toolgood.algorithm.internals.MyDate.now();
         // 创建一个只包含日期部分的新 MyDate 对象
         toolgood.algorithm.internals.MyDate today = new toolgood.algorithm.internals.MyDate(now.Year, now.Month, now.Day, 0, 0, 0);
