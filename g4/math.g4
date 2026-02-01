@@ -61,21 +61,21 @@ expr:
 	| expr '.' URLDECODE '(' ')'								# URLDECODE_fun
 	| expr '.' HTMLENCODE '(' ')'								# HTMLENCODE_fun
 	| expr '.' HTMLDECODE '(' ')'								# HTMLDECODE_fun
-	| expr '.' BASE64TOTEXT '(' expr? ')'						# BASE64TOTEXT_fun
-	| expr '.' BASE64URLTOTEXT '(' expr? ')'					# BASE64URLTOTEXT_fun
-	| expr '.' TEXTTOBASE64 '(' expr? ')'						# TEXTTOBASE64_fun
-	| expr '.' TEXTTOBASE64URL '(' expr? ')'					# TEXTTOBASE64URL_fun
+	| expr '.' BASE64TOTEXT '(' ')'								# BASE64TOTEXT_fun
+	| expr '.' BASE64URLTOTEXT '(' ')'							# BASE64URLTOTEXT_fun
+	| expr '.' TEXTTOBASE64 '(' ')'								# TEXTTOBASE64_fun
+	| expr '.' TEXTTOBASE64URL '(' ')'							# TEXTTOBASE64URL_fun
 	| expr '.' REGEX '(' expr ')'								# REGEX_fun
 	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
-	| expr '.' MD5 '(' expr? ')'								# MD5_fun
-	| expr '.' SHA1 '(' expr? ')'								# SHA1_fun
-	| expr '.' SHA256 '(' expr? ')'								# SHA256_fun
-	| expr '.' SHA512 '(' expr? ')'								# SHA512_fun
-	| expr '.' HMACMD5 '(' expr (',' expr)? ')'					# HMACMD5_fun
-	| expr '.' HMACSHA1 '(' expr (',' expr)? ')'				# HMACSHA1_fun
-	| expr '.' HMACSHA256 '(' expr (',' expr)? ')'				# HMACSHA256_fun
-	| expr '.' HMACSHA512 '(' expr (',' expr)? ')'				# HMACSHA512_fun
+	| expr '.' MD5 '(' ')'										# MD5_fun
+	| expr '.' SHA1 '(' ')'										# SHA1_fun
+	| expr '.' SHA256 '(' ')'									# SHA256_fun
+	| expr '.' SHA512 '(' ')'									# SHA512_fun
+	| expr '.' HMACMD5 '(' expr ')'								# HMACMD5_fun
+	| expr '.' HMACSHA1 '(' expr ')'							# HMACSHA1_fun
+	| expr '.' HMACSHA256 '(' expr ')'							# HMACSHA256_fun
+	| expr '.' HMACSHA512 '(' expr ')'							# HMACSHA512_fun
 	| expr '.' TRIMSTART '(' expr? ')'							# TRIMSTART_fun
 	| expr '.' TRIMEND '(' expr? ')'							# TRIMEND_fun
 	| expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
@@ -293,22 +293,22 @@ expr:
 	| URLDECODE '(' expr ')'									# URLDECODE_fun
 	| HTMLENCODE '(' expr ')'									# HTMLENCODE_fun
 	| HTMLDECODE '(' expr ')'									# HTMLDECODE_fun
-	| BASE64TOTEXT '(' expr (',' expr)? ')'						# BASE64TOTEXT_fun
-	| BASE64URLTOTEXT '(' expr (',' expr)? ')'					# BASE64URLTOTEXT_fun
-	| TEXTTOBASE64 '(' expr (',' expr)? ')'						# TEXTTOBASE64_fun
-	| TEXTTOBASE64URL '(' expr (',' expr)? ')'					# TEXTTOBASE64URL_fun
+	| BASE64TOTEXT '(' expr ')'									# BASE64TOTEXT_fun
+	| BASE64URLTOTEXT '(' expr ')'								# BASE64URLTOTEXT_fun
+	| TEXTTOBASE64 '(' expr ')'									# TEXTTOBASE64_fun
+	| TEXTTOBASE64URL '(' expr ')'								# TEXTTOBASE64URL_fun
 	| REGEX '(' expr ',' expr ')'								# REGEX_fun
 	| REGEXREPALCE '(' expr ',' expr ',' expr ')'				# REGEXREPALCE_fun
 	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun
 	| GUID '(' ')'												# GUID_fun
-	| MD5 '(' expr (',' expr)? ')'								# MD5_fun
-	| SHA1 '(' expr (',' expr)? ')'								# SHA1_fun
-	| SHA256 '(' expr (',' expr)? ')'							# SHA256_fun
-	| SHA512 '(' expr (',' expr)? ')'							# SHA512_fun
-	| HMACMD5 '(' expr ',' expr (',' expr)? ')'					# HMACMD5_fun
-	| HMACSHA1 '(' expr ',' expr (',' expr)? ')'				# HMACSHA1_fun
-	| HMACSHA256 '(' expr ',' expr (',' expr)? ')'				# HMACSHA256_fun
-	| HMACSHA512 '(' expr ',' expr (',' expr)? ')'				# HMACSHA512_fun
+	| MD5 '(' expr ')'											# MD5_fun
+	| SHA1 '(' expr ')'											# SHA1_fun
+	| SHA256 '(' expr ')'										# SHA256_fun
+	| SHA512 '(' expr ')'										# SHA512_fun
+	| HMACMD5 '(' expr ',' expr ')'								# HMACMD5_fun
+	| HMACSHA1 '(' expr ',' expr ')'							# HMACSHA1_fun
+	| HMACSHA256 '(' expr ',' expr ')'							# HMACSHA256_fun
+	| HMACSHA512 '(' expr ',' expr ')'							# HMACSHA512_fun
 	| TRIMSTART '(' expr (',' expr)? ')'						# TRIMSTART_fun
 	| TRIMEND '(' expr (',' expr)? ')'							# TRIMEND_fun
 	| INDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
