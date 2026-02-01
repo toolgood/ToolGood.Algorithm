@@ -283,12 +283,12 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWORKDAY_fun(mathParser.WORKDAY_funContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IsError_fun}
+	 * Visit a parse tree produced by the {@code ISERROR_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsError_fun(mathParser.IsError_funContext ctx);
+	T visitISERROR_fun(mathParser.ISERROR_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code BIN2DEC_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -458,12 +458,12 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLOG10_fun(mathParser.LOG10_funContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IsText_fun}
+	 * Visit a parse tree produced by the {@code ISTEXT_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsText_fun(mathParser.IsText_funContext ctx);
+	T visitISTEXT_fun(mathParser.ISTEXT_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code NEGBINOMDIST_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -1018,12 +1018,12 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNORMSDIST_fun(mathParser.NORMSDIST_funContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IsNumber_fun}
+	 * Visit a parse tree produced by the {@code ISNUMBER_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsNumber_fun(mathParser.IsNumber_funContext ctx);
+	T visitISNUMBER_fun(mathParser.ISNUMBER_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code LASTINDEXOF_fun}
 	 * labeled alternative in {@link mathParser#expr}.
