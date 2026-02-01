@@ -20,14 +20,14 @@ public class Function_QUARTILE extends Function_2 {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Array) {
             args1 = args1.toArray("Function '{0}' parameter {1} is error!", "Quartile", 1);
-            if (args1.isError()) {
+            if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
             args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Quartile", 2);
-            if (args2.isError()) {
+            if (args2.IsError()) {
                 return args2;
             }
         }
@@ -48,6 +48,6 @@ public class Function_QUARTILE extends Function_2 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "Quartile");
+        AddFunction(stringBuilder, "Quartile");
     }
 }

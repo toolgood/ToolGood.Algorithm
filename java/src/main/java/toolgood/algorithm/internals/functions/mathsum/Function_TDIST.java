@@ -8,8 +8,8 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.OperandType;
 import toolgood.algorithm.mathnet.ExcelFunctions;
 
-public class Function_POISSON extends Function_3 {
-    public Function_POISSON(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
+public class Function_TDIST extends Function_3 {
+    public Function_TDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
         super(func1, func2, func3);
     }
 
@@ -17,36 +17,39 @@ public class Function_POISSON extends Function_3 {
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.getOperandType() != OperandType.Number) {
-            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "Poisson", 1);
+            args1 = args1.toNumber("Function '{0}' parameter {1} is error!", "TDist", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "Poisson", 2);
+            args2 = args2.toNumber("Function '{0}' parameter {1} is error!", "TDist", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
-        if (args3.getOperandType() != OperandType.Boolean) {
-            args3 = args3.toBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3);
+        if (args3.getOperandType() != OperandType.Number) {
+            args3 = args3.toNumber("Function '{0}' parameter {1} is error!", "TDist", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
-        int k = args1.getIntValue();
-        double lambda = args2.getDoubleValue();
-        boolean state = args3.getBooleanValue();
-        if (!(lambda > 0.0)) {
-            return Operand.Error("Function '{0}' parameter is error!", "Poisson");
+
+        double x = args1.getDoubleValue();
+        int degreesFreedom = args2.getIntValue();
+        int tails = args3.getIntValue();
+
+        if (degreesFreedom <= 0 || tails < 1 || tails > 2) {
+            return Operand.Error("Function '{0}' parameter is error!", "TDist");
         }
-        return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
+
+        return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
     }
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Poisson");
+        AddFunction(stringBuilder, "TDist");
     }
 }

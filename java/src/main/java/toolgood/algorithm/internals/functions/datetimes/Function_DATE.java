@@ -1,6 +1,6 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.Function_N;
+import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;

@@ -57,6 +57,6 @@ public class Function_PERCENTRANK extends Function_3 {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        addFunction(stringBuilder, "PercentRank");
+        AddFunction(stringBuilder, "PercentRank");
     }
 }

@@ -9,16 +9,16 @@ import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
-public class Function_STDEV extends Function_N {
-    public Function_STDEV(FunctionBase[] funcs) {
+public class Function_SUMSQ extends Function_N {
+    public Function_SUMSQ(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
     public Operand Evaluate(Object work, Function<Object, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>();
-        for (FunctionBase item : funcs) {
-            Operand aa = item.Evaluate(work, tempParameter);
+        List<Operand> args = new ArrayList<>(funcs.length);
+        for (int i = 0; i < funcs.length; i++) {
+            Operand aa = funcs[i].Evaluate(work, tempParameter);
             if (aa.IsError()) {
                 return aa;
             }
@@ -28,22 +28,19 @@ public class Function_STDEV extends Function_N {
         List<Double> list = new ArrayList<>();
         boolean o = FunctionUtil.F_base_GetList(args, list);
         if (!o) {
-            return Operand.Error("Function '{0}' parameter is error!", "Stdev");
-        }
-        if (list.size() == 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "Stdev");
+            return Operand.Error("Function '{0}' parameter is error!", "SumSQ");
         }
 
-        double avg = list.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
-        double sum = 0;
+        double d = 0;
         for (int i = 0; i < list.size(); i++) {
-            sum += Math.pow(list.get(i) - avg, 2);
+            double a = list.get(i);
+            d += a * a;
         }
-        return Operand.Create(Math.sqrt(sum / (list.size() - 1)));
+        return Operand.Create(d);
     }
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Stdev");
+        AddFunction(stringBuilder, "SumSQ");
     }
 }

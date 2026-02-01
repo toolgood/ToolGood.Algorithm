@@ -11,81 +11,31 @@ public final class ConditionTree {
     /**
      * 子节点
      */
-    private List<ConditionTree> nodes;
-
+    public List<ConditionTree> Nodes;
     /**
      * 开始位置
      */
-    private int start;
+    public int Start;
 
     /**
      * 结束位置
      */
-    private int end;
+    public int End;
 
     /**
      * 类型
      */
-    private ConditionTreeType type;
+    public ConditionTreeType Type;
 
     /**
      * 条件
      */
-    private String conditionString;
+    public String ConditionString;
 
     /**
      * 出错信息
      */
-    private String errorMessage;
+    public String ErrorMessage;
 
-    ConditionTree() {
-    }
-
-    public List<ConditionTree> getNodes() {
-        return nodes;
-    }
-
-    void setNodes(List<ConditionTree> nodes) {
-        this.nodes = nodes;
-    }
-
-    public int getStart() {
-        return start;
-    }
-
-    void setStart(int start) {
-        this.start = start;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    void setEnd(int end) {
-        this.end = end;
-    }
-
-    public ConditionTreeType getType() {
-        return type;
-    }
-
-    void setType(ConditionTreeType type) {
-        this.type = type;
-    }
-
-    public String getConditionString() {
-        return conditionString;
-    }
-
-    void setConditionString(String conditionString) {
-        this.conditionString = conditionString;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
+ 
 }

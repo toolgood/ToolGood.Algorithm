@@ -6,8 +6,11 @@ import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.COVARIANCES_funContext;
 import toolgood.algorithm.math.mathParser.COVAR_funContext;
+import toolgood.algorithm.math.mathParser.LOOKCEILING_funContext;
+import toolgood.algorithm.math.mathParser.LOOKFLOOR_funContext;
 import toolgood.algorithm.math.mathParser.Version_funContext;
 import toolgood.algorithm.math.mathVisitor;
+import toolgood.algorithm.internals.ConditionTree;
 
 import java.util.ArrayList;
 
@@ -226,10 +229,6 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
         return visit_fun(context);
     }
 
-    @Override
-    public ConditionTree visitCRC32_fun(mathParser.CRC32_funContext context) {
-        return visit_fun(context);
-    }
 
     @Override
     public ConditionTree visitLCM_fun(mathParser.LCM_funContext context) {
@@ -1173,15 +1172,6 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
         return visit_fun(context);
     }
 
-    @Override
-    public ConditionTree visitVLOOKUP_fun(mathParser.VLOOKUP_funContext context) {
-        return visit_fun(context);
-    }
-
-    @Override
-    public ConditionTree visitLOOKUP_fun(mathParser.LOOKUP_funContext context) {
-        return visit_fun(context);
-    }
 
     @Override
     public ConditionTree visitNULL_fun(mathParser.NULL_funContext context) {
@@ -1221,4 +1211,14 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     public ConditionTree visitVersion_fun(Version_funContext context) {
         return visit_fun(context);
     }
+
+    @Override
+    public ConditionTree visitLOOKFLOOR_fun(LOOKFLOOR_funContext context) {
+           return visit_fun(context);
+ }
+
+    @Override
+    public ConditionTree visitLOOKCEILING_fun(LOOKCEILING_funContext context) {
+          return visit_fun(context);
+}
 }
