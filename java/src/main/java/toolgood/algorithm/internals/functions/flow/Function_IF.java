@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.flow;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_3;
 
 public class Function_IF extends Function_3 {
     public Function_IF(FunctionBase func1, FunctionBase func2, FunctionBase func3) {

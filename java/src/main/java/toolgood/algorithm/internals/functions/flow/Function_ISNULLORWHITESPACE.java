@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.flow;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
 
 public class Function_ISNULLORWHITESPACE extends Function_1 {
     public Function_ISNULLORWHITESPACE(FunctionBase func1) {

@@ -35,7 +35,7 @@ public class Function_HAS extends Function_2 {
             // 此处为简化实现，实际需要根据具体的 JSON 处理方式进行修改
             return Operand.FALSE;
         } else if (args1.IsArray()) {
-            toolgood.algorithm.internals.OperandArray ar = (toolgood.algorithm.internals.OperandArray) args1;
+            OperandArray ar = (OperandArray) args1;
             for (Operand item : ar.ArrayValue()) {
                 Operand t = item.ToText();
                 if (t.IsError()) {

@@ -36,7 +36,7 @@ public class Function_FDIST extends Function_3 {
             }
         }
 
-        double x = args1.NumberValue();
+        double x = args1.DoubleValue();
         int degreesFreedom1 = args2.IntValue();
         int degreesFreedom2 = args3.IntValue();
         if (degreesFreedom1 <= 0 || degreesFreedom2 <= 0) {

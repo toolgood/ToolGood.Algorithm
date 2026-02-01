@@ -4,6 +4,7 @@ import java.lang.StringBuilder;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_CEILING extends Function_2 {
     public Function_CEILING(FunctionBase func1, FunctionBase func2) {
@@ -21,7 +22,7 @@ public class Function_CEILING extends Function_2 {
         }
 
         if (func2 == null) {
-            return Operand.Create(Math.ceil(args1.NumberValue()));
+            return Operand.Create(Math.ceil(args1.DoubleValue()));
         }
 
         Operand args2 = func2.Evaluate(work, tempParameter);
@@ -31,7 +32,7 @@ public class Function_CEILING extends Function_2 {
                 return args2;
             }
         }
-        double b = args2.NumberValue();
+        double b = args2.DoubleValue();
         if (b == 0) {
             return Operand.Create(0);
         }
@@ -39,7 +40,7 @@ public class Function_CEILING extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Ceiling", 2);
         }
 
-        double a = args1.NumberValue();
+        double a = args1.DoubleValue();
         double d = Math.ceil(a / b) * b;
         return Operand.Create(d);
     }

@@ -37,7 +37,7 @@ public class Function_PERCENTILE extends Function_2 {
             return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1);
         }
         double k = args2.DoubleValue();
-        double[] array = list.stream().mapToDouble(Double::doubleValue).ToArray();
+        double[] array = list.stream().mapToDouble(Double::doubleValue).toArray();
         return Operand.Create(ExcelFunctions.Percentile(array, k));
     }
 

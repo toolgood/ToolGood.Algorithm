@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.flow;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
 
 public class Function_ISNULLORERROR extends Function_2 {
     public Function_ISNULLORERROR(FunctionBase func1, FunctionBase func2) {

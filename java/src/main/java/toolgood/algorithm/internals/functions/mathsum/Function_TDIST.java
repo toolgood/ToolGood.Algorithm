@@ -47,7 +47,11 @@ public class Function_TDIST extends Function_3 {
             return Operand.Error("Function '{0}' parameter is error!", "TDist");
         }
 
-        return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+        try {
+            return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+        } catch (Exception e) {
+            return Operand.Error("Function '{0}' parameter is error!", "TDist");
+        }
     }
 
     @Override

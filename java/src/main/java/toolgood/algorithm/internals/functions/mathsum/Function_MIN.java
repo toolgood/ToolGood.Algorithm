@@ -7,7 +7,9 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.FunctionUtil;
+import toolgood.algorithm.internals.functions.FunctionUtil;
+
+
 
 public class Function_MIN extends Function_N {
     public Function_MIN(FunctionBase[] funcs) {
@@ -31,7 +33,7 @@ public class Function_MIN extends Function_N {
             return Operand.Error("Function '{0}' parameter is error!", "Min");
         }
 
-        return Operand.Create(Collections.min(list));
+        return Operand.Create((double)Collections.min(list));
     }
 
     @Override

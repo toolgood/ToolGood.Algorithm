@@ -44,7 +44,7 @@ public class Function_BINOMDIST extends Function_4 {
         }
 
         int n2 = args2.IntValue();
-        double n3 = args3.NumberValue();
+        double n3 = args3.DoubleValue();
         if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
             return Operand.Error("Function '{0}' parameter is error!", "BinomDist");
         }
