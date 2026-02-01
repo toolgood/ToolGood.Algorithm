@@ -362,20 +362,16 @@ class OperandMyDate extends Operand {
     public MyDate DateValue() { return value; }
 
     @Override
-    public Operand ToNumber(String errorMessage) { return Create(value.ToNumber
-()); }
+    public Operand ToNumber(String errorMessage) { return Create(value.ToNumber()); }
 
     @Override
-    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.ToNumber
-()); }
+    public Operand ToNumber(String errorMessage, Object... args) { return Create(value.ToNumber()); }
 
     @Override
-    public Operand ToBoolean(String errorMessage) { return value.ToNumber
-() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) { return value.ToNumber() != 0 ? TRUE : FALSE; }
 
     @Override
-    public Operand ToBoolean(String errorMessage, Object... args) { return value.ToNumber
-() != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object... args) { return value.ToNumber() != 0 ? TRUE : FALSE; }
 
     @Override
     public Operand ToText(String errorMessage) { return Create(value.toString()); }

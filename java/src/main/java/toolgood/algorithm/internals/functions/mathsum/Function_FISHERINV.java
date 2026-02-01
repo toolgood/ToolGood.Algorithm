@@ -14,8 +14,7 @@ public class Function_FISHERINV extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber
-("Function '{0}' parameter is error!", "FisherInv");
+            args1 = args1.ToNumber("Function '{0}' parameter is error!", "FisherInv");
             if (args1.IsError()) {
                 return args1;
             }

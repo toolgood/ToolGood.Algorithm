@@ -38,8 +38,7 @@ public class Function_SUBSTITUTE extends Function_4 {
         }
         Operand args4 = func4.Evaluate(work, tempParameter);
         if (args4.IsNotNumber()) {
-            args4 = args4.ToNumber
-("Function '{0}' parameter {1} is error!", "Substitute", 4);
+            args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Substitute", 4);
             if (args4.IsError()) {
                 return args4;
             }

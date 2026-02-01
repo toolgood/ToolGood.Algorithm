@@ -27,8 +27,7 @@ public class Function_PERCENTRANK extends Function_3 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.getOperandType() != OperandType.Number) {
-            args2 = args2.ToNumber
-("Function '{0}' parameter {1} is error!", "PercentRank", 2);
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2);
             if (args2.IsError()) {
                 return args2;
             }
@@ -48,8 +47,7 @@ public class Function_PERCENTRANK extends Function_3 {
         if (func3 != null) {
             Operand args3 = func3.Evaluate(work, tempParameter);
             if (args3.getOperandType() != OperandType.Number) {
-                args3 = args3.ToNumber
-("Function '{0}' parameter {1} is error!", "PercentRank", 3);
+                args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3);
                 if (args3.IsError()) {
                     return args3;
                 }

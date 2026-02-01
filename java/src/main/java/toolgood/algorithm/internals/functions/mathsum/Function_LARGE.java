@@ -26,8 +26,7 @@ public class Function_LARGE extends Function_2 {
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber
-("Function '{0}' parameter {1} is error!", "Large", 2);
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Large", 2);
             if (args2.IsError()) {
                 return args2;
             }

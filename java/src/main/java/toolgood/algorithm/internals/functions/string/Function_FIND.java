@@ -32,8 +32,7 @@ public class Function_FIND extends Function_3 {
         }
         Operand count = func3.Evaluate(work, tempParameter);
         if (count.IsNotNumber()) {
-            count = count.ToNumber
-("Function '{0}' parameter {1} is error!", "Find", 3);
+            count = count.ToNumber("Function '{0}' parameter {1} is error!", "Find", 3);
             if (count.IsError()) {
                 return count;
             }

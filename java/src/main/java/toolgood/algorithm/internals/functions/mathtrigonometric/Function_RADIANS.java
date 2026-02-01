@@ -16,8 +16,7 @@ class Function_RADIANS extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (!args1.IsNumber()) {
-            args1 = args1.ToNumber
-("Function '{0}' parameter is error!", "Radians");
+            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Radians");
             if (args1.IsError()) {
                 return args1;
             }

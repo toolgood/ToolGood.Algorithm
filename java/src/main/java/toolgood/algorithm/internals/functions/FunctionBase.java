@@ -37,8 +37,7 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.ToNumber
-("It can't be converted to number!");
+                obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.ErrorMsg());
                     return def;
@@ -63,8 +62,7 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.ToNumber
-("It can't be converted to number!");
+                obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
@@ -89,8 +87,7 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.ToNumber
-("It can't be converted to number!");
+                obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
@@ -115,8 +112,7 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.ToNumber
-("It can't be converted to number!");
+                obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;
@@ -142,8 +138,7 @@ public abstract class FunctionBase {
         try {
             Operand obj = this.Evaluate(work, tempParameter);
             if (!obj.IsNumber()) {
-                obj = obj.ToNumber
-("It can't be converted to number!");
+                obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     work.setLastError(obj.getErrorMsg());
                     return def;

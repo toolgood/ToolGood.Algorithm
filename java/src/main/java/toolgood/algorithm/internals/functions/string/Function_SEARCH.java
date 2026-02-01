@@ -33,8 +33,7 @@ public class Function_SEARCH extends Function_3 {
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber
-("Function '{0}' parameter {1} is error!", "Search", 3);
+            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Search", 3);
             if (args3.IsError()) {
                 return args3;
             }

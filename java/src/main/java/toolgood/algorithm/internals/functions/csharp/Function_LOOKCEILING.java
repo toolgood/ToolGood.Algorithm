@@ -21,8 +21,7 @@ public class Function_LOOKCEILING extends Function_2 {
     public Operand Evaluate(AlgorithmEngine work, Function<String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber
-("Function '{0}' parameter {1} is error!", "LookCeiling", 1);
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "LookCeiling", 1);
             if (args1.IsError()) {
                 return args1;
             }

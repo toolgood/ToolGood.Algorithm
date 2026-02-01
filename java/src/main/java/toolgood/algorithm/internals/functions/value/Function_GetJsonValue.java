@@ -22,8 +22,7 @@ public class Function_GetJsonValue extends Function_2 {
         }
 
         if (obj.IsArray()) {
-            op = op.ToNumber
-("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
+            op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
             if (op.IsError()) {
                 return op;
             }
@@ -53,8 +52,7 @@ public class Function_GetJsonValue extends Function_2 {
         if (obj.IsJson()) {
             JsonData json = obj.getJsonValue();
             if (json.isArray()) {
-                op = op.ToNumber
-("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
+                op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
                 if (op.IsError()) {
                     return op;
                 }

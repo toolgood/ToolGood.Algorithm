@@ -85,8 +85,7 @@ public class Function_Add extends Function_2 {
                 return Operand.Create(args1.getDateValue().add(args2.getDateValue()));
             }
             if (args2.IsNotNumber()) {
-                args2 = args2.ToNumber
-("Function '{0}' parameter {1} is error!", "+", 2);
+                args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2);
                 if (args2.IsError()) {
                     return args2;
                 }
@@ -97,8 +96,7 @@ public class Function_Add extends Function_2 {
             return Operand.Create(args1.getDateValue().add(args2.getNumberValue()));
         } else if (args2.IsDate()) {
             if (args1.IsNotNumber()) {
-                args1 = args1.ToNumber
-("Function '{0}' parameter {1} is error!", "+", 1);
+                args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1);
                 if (args1.IsError()) {
                     return args1;
                 }
@@ -109,15 +107,13 @@ public class Function_Add extends Function_2 {
             return Operand.Create(args2.getDateValue().add(args1.getNumberValue()));
         }
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber
-("Function '{0}' parameter {1} is error!", "+", 1);
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber
-("Function '{0}' parameter {1} is error!", "+", 2);
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2);
             if (args2.IsError()) {
                 return args2;
             }

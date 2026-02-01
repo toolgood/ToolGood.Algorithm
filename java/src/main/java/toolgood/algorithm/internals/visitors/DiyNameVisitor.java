@@ -1,10 +1,10 @@
-package toolgood.algorithm.internals;
+package toolgood.algorithm.internals.visitors;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import toolgood.algorithm.math.mathParser.*;
-import toolgood.algorithm.DiyNameInfo;
+import toolgood.algorithm.internals.DiyNameInfo;
 import toolgood.algorithm.math.mathVisitor;
 
 public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements mathVisitor<Object> {
@@ -260,12 +260,6 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
 
     @Override
     public Object visitJIS_fun(JIS_funContext context) {
-
-        return visitChildren(context);
-    }
-
-    @Override
-    public Object visitCRC32_fun(CRC32_funContext context) {
 
         return visitChildren(context);
     }
@@ -1388,18 +1382,6 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitVLOOKUP_fun(VLOOKUP_funContext context) {
-
-        return visitChildren(context);
-    }
-
-    @Override
-    public Object visitLOOKUP_fun(LOOKUP_funContext context) {
-
-        return visitChildren(context);
-    }
-
-    @Override
     public Object visitNULL_fun(NULL_funContext context) {
 
         return visitChildren(context);
@@ -1434,5 +1416,13 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitVersion_fun(Version_funContext context) {
         return visitChildren(context);
     }
+    @Override
+    public Object visitLOOKFLOOR_fun(LOOKFLOOR_funContext context) {
+         return visitChildren(context);
+  }
+    @Override
+    public Object visitLOOKCEILING_fun(LOOKCEILING_funContext context) {
+         return visitChildren(context);
+ }
 
 }

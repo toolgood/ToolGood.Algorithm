@@ -31,8 +31,7 @@ public class FunctionUtil {
                     return false;
                 }
             } else {
-                Operand o = item.ToNumber
-(null);
+                Operand o = item.ToNumber(null);
                 if (o.IsError()) {
                     return false;
                 }
@@ -65,8 +64,7 @@ public class FunctionUtil {
                 return false;
             }
         } else {
-            Operand o = args.ToNumber
-(null);
+            Operand o = args.ToNumber(null);
             if (o.IsError()) {
                 return false;
             }

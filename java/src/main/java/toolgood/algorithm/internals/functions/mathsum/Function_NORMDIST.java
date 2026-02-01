@@ -16,24 +16,21 @@ public class Function_NORMDIST extends Function_4 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber
-("Function '{0}' parameter {1} is error!", "NormDist", 1);
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber
-("Function '{0}' parameter {1} is error!", "NormDist", 2);
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber
-("Function '{0}' parameter {1} is error!", "NormDist", 3);
+            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 3);
             if (args3.IsError()) {
                 return args3;
             }

@@ -38,8 +38,7 @@ public class Cylinder extends AlgorithmEngine {
         {
             if (operands.size() == 1)
             {
-                int r =(int) operands.get(0).ToNumber
-(null).NumberValue().intValue();
+                int r =(int) operands.get(0).ToNumber(null).NumberValue().intValue();
                 return Operand.Create(r * r * Math.PI);
             }
         }

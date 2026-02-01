@@ -34,8 +34,7 @@ public class Function_LASTINDEXOF extends Function_4 {
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber
-("Function '{0}' parameter {1} is error!", "LastIndexOf", 3);
+            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "LastIndexOf", 3);
             if (args3.IsError()) {
                 return args3;
             }
@@ -50,8 +49,7 @@ public class Function_LASTINDEXOF extends Function_4 {
         }
         Operand args4 = func4.Evaluate(work, tempParameter);
         if (args4.IsNotNumber()) {
-            args4 = args4.ToNumber
-("Function '{0}' parameter {1} is error!", "LastIndexOf", 4);
+            args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "LastIndexOf", 4);
             if (args4.IsError()) {
                 return args4;
             }

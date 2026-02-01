@@ -13,8 +13,7 @@ public class Function_SIGN extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.Function<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber
-("Function '{0}' parameter is error!", "Sign");
+            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sign");
             if (args1.IsError()) {
                 return args1;
             }

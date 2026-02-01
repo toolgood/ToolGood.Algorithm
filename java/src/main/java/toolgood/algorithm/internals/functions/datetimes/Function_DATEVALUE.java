@@ -29,8 +29,7 @@ public class Function_DATEVALUE extends Function_N {
         }
         int type = 0;
         if (args.size() == 2) {
-            Operand args2 = args.get(1).ToNumber
-("Function '{0}' parameter {1} is error!", "DateValue", 2);
+            Operand args2 = args.get(1).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 2);
             if (args2.IsError()) {
                 return args2;
             }
@@ -43,8 +42,7 @@ public class Function_DATEVALUE extends Function_N {
                     return Operand.Create(date);
                 }
             }
-            Operand args1 = args.get(0).ToNumber
-("Function '{0}' parameter {1} is error!", "DateValue", 1);
+            Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             if (args1.getLongValue() <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
                 return args1.toMyDate();
             }
@@ -66,16 +64,13 @@ public class Function_DATEVALUE extends Function_N {
                 return Operand.Create(date);
             }
         } else if (type == 2) {
-            return args.get(0).ToNumber
-("Function '{0}' parameter is error!", "DateValue").toMyDate();
+            return args.get(0).ToNumber("Function '{0}' parameter is error!", "DateValue").toMyDate();
         } else if (type == 3) {
-            Operand args1 = args.get(0).ToNumber
-("Function '{0}' parameter {1} is error!", "DateValue", 1);
+            Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             // 这里需要实现类似 FunctionUtil.StartDateUtc.AddMilliseconds 的功能
             return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / (86400.0 * 1000.0)));
         } else if (type == 4) {
-            Operand args1 = args.get(0).ToNumber
-("Function '{0}' parameter {1} is error!", "DateValue", 1);
+            Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
             // 这里需要实现类似 FunctionUtil.StartDateUtc.AddSeconds 的功能
             return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.getLongValue() / 86400.0));
         }
