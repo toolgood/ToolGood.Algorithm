@@ -14,7 +14,7 @@ public class Function_ArrayJsonItem extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         KeyValue keyValue = new KeyValue();
         keyValue.setKey(key);
         keyValue.setValue(func1.Evaluate(work, tempParameter));

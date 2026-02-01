@@ -15,7 +15,7 @@ public class Function_RMB extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
             args1 = args1.ToNumber("Function '{0}' parameter is error!", "RMB");
@@ -26,7 +26,7 @@ public class Function_RMB extends Function_1 {
         return Operand.Create(F_base_ToChineseRMB(args1.getNumberValue()));
     }
 
-    private static final Pattern Regex1 = Pattern.compile("((?<=-|^)[^1-9]*)|((?<z>0)[0A-E]*((?=[1-9])|(?<-z>(?=[F-L\.]|$))))|((?<b>[F-L])(?<z>0)[0A-L]*((?=[1-9])|(?<-z>(?=[\.]|$))))");
+
 
     private static String F_base_ToChineseRMB(double x) {
         String s = String.format(Locale.US, "%#.2f", x);

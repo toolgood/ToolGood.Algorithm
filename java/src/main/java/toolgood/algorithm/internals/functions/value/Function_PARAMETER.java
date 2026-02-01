@@ -19,7 +19,7 @@ public class Function_PARAMETER extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         String txt = name;
         if (txt == null || txt.isEmpty()) {
             Operand args1 = func1.Evaluate(work, tempParameter);

@@ -320,10 +320,10 @@ class OperandString extends Operand {
                 case '\0':
                     sb.append("\\0");
                     break;
-                case '\v':
+                case '\u000b':
                     sb.append("\\v");
                     break;
-                case '\a':
+                case '\u0007':
                     sb.append("\\a");
                     break;
                 case '\b':

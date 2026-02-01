@@ -11,7 +11,7 @@ public class Function_GetJsonValue extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand obj = func1.Evaluate(work, tempParameter);
         if (obj.IsError()) {
             return obj;

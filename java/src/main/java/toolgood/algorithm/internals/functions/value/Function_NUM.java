@@ -14,7 +14,7 @@ public class Function_NUM extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiBiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         var dict = NumberUnitTypeHelper.GetUnitTypedict();
         var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict.get(unit), work.getDistanceUnit(), work.getAreaUnit(), work.getVolumeUnit(), work.getMassUnit());
         return Operand.Create(d2);
