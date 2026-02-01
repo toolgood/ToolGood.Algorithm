@@ -1,7 +1,6 @@
 export const StringCache = {
   Function_parameter_error: "Function '{0}' parameter {1} is error!" ,
   Function_parameter_null: 'Function \'{0}\' parameter {1} is NULL!',
-  Function_parameter_null2: 'Function {0} parameter {1} is NULL!',
   Function_error:'Function \'{0}\'is error!',
   Function_Div_0_error:'Div 0 is error!',
   Function_modulo_error:'Two types cannot be {0} ',
