@@ -1,5 +1,6 @@
 import { OperandType } from './Enums/index.js';
-import { JsonMapper, JsonData } from './LitJson/index.js';
+import { JsonMapper } from './LitJson/JsonMapper.js';
+import { JsonData } from './LitJson/JsonData.js';
 import { FunctionUtil } from './Internals/Functions/FunctionUtil.js';
 import { MyDate } from './Internals/MyDate.js';
 

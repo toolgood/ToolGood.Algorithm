@@ -1,6 +1,6 @@
 import { AlgorithmEngine } from './AlgorithmEngine.js';
 import { Operand } from './Operand.js';
-import { JsonMapper } from './LitJson/index.js';
+import { JsonMapper } from './LitJson/JsonMapper.js';
 
 /**
  * AlgorithmEngine 扩展类

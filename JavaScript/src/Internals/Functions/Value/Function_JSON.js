@@ -1,6 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { JsonMapper } from '../../../LitJson/index.js';
+import { JsonMapper } from '../../../LitJson/JsonMapper.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_JSON extends Function_1 {
