@@ -85,11 +85,12 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"this\.match\((\d+)\);", "this.A($1);");
 			text = Regex.Replace(text, @"this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);", "this.E($1,$2);");
 			text = Regex.Replace(text, @"this\._errHandler\.sync\(this\);[\r\n\t ]*_la = this\._input\.LA\(1\);", "_la = this.Z();");
-			text = Regex.Replace(text, @"_la = this\._input\.LA\(1\);", "_la = this.Y();");
+			//text = Regex.Replace(text, @"this\._input\.LA\(1\);", "this.Y();");
 			text = Regex.Replace(text, @"this\._errHandler\.sync\(this\);", "this.X();");
 			text = text.Replace("this.pushNewRecursionContext(localctx, _startState, 1);", "this.W(localctx, _startState, 1);");
 			text = Regex.Replace(text, @"this\._errHandler\.reportMatch\(this\);[\r\n\t ]*this\.consume\(\);", "this.Q();");
-
+			text = text.Replace("this._input.LA(1);", "this.Y();");
+			text = text.Replace("this._input.LT(1);", "this.R();");
 
 
 			text = Regex.Replace(text, @"sempred\(localctx, ruleIndex, predIndex\) \{[\s\S]+?\};", @" sempred(localctx, ruleIndex, predIndex){return true;};
@@ -104,7 +105,7 @@ namespace Antlr4Helper.JavaScriptHelper
 	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
 
 
-
+	R(){return this._input.LT(1);}
 	Q(){this._errHandler.reportMatch(this);this.consume();}
 	W(a,b,c){this.pushNewRecursionContext(a, b, c);}
 	X(){this._errHandler.sync(this);}
