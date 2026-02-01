@@ -2029,15 +2029,15 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 				char c = opd.charAt(index++);
 				if (c == '\\') {
 					char c2 = opd.charAt(index++);
-					if (c2 == 'n') sb.append('\n');
-					else if (c2 == 'r') sb.append('\r');
-					else if (c2 == 't') sb.append('\t');
-					else if (c2 == '0') sb.append('\0');
-					else if (c2 == 'v') sb.append('\v');
-					else if (c2 == 'a') sb.append('\a');
-					else if (c2 == 'b') sb.append('\b');
-					else if (c2 == 'f') sb.append('\f');
-					else sb.append(opd.charAt(index++));
+					switch (c2) {
+						case 'b': sb.append('\b'); break;
+						case 'f': sb.append('\f'); break;
+						case 'n': sb.append('\n'); break;
+						case 'r': sb.append('\r'); break;
+						case 't': sb.append('\t'); break;
+						case '0': sb.append('\0'); break;
+						default: sb.append(c2); break;
+					}
 				} else {
 					sb.append(c);
 				}
@@ -2127,41 +2127,42 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 
 		public FunctionBase visitArrayJson(mathParser.ArrayJsonContext context)
 		{
-			string keyName = null;
-			//KeyValue keyValue = new KeyValue();
-			if (context.NUM() != null) {
-				if (int.TryParse(context.NUM().GetText(), out int key)) {
-					keyName = key.ToString();
-				} else {
-					return new Function_Value(Operand.Error("Json key '" + context.NUM().GetText() + "' is error!"));
-				}
+			String keyName = null;
+		//KeyValue keyValue = new KeyValue();
+		if (context.NUM() != null) {
+			try {
+				int key = Integer.parseInt(context.NUM().getText());
+				keyName = String.valueOf(key);
+			} catch (NumberFormatException e) {
+				return new Function_Value(Operand.Error("Json key '" + context.NUM().getText() + "' is error!"));
 			}
-			if (context.STRING() != null) {
-				var opd = context.STRING().GetText();
-				var sb = new StringBuilder(opd.Length - 2);
-				int index = 1;
-				while (index < opd.Length - 1) {
-					var c = opd[index++];
-					if (c == '\\') {
-						var c2 = opd[index++];
-						if (c2 == 'n') sb.Append('\n');
-						else if (c2 == 'r') sb.Append('\r');
-						else if (c2 == 't') sb.Append('\t');
-						else if (c2 == '0') sb.Append('\0');
-						else if (c2 == 'v') sb.Append('\v');
-						else if (c2 == 'a') sb.Append('\a');
-						else if (c2 == 'b') sb.Append('\b');
-						else if (c2 == 'f') sb.Append('\f');
-						else sb.Append(opd[index++]);
-					} else {
-						sb.Append(c);
+		}
+		if (context.STRING() != null) {
+			String opd = context.STRING().getText();
+			StringBuilder sb = new StringBuilder(opd.length() - 2);
+			int index = 1;
+			while (index < opd.length() - 1) {
+				char c = opd.charAt(index++);
+				if (c == '\\') {
+					char c2 = opd.charAt(index++);
+					switch (c2) {
+						case 'b': sb.append('\b'); break;
+						case 'f': sb.append('\f'); break;
+						case 'n': sb.append('\n'); break;
+						case 'r': sb.append('\r'); break;
+						case 't': sb.append('\t'); break;
+						case '0': sb.append('\0'); break;
+						default: sb.append(c2); break;
 					}
+				} else {
+					sb.append(c);
 				}
-				keyName = sb.ToString();
 			}
-			if (context.parameter2() != null) {
-				keyName = context.parameter2().GetText();
-			}
+			keyName = sb.toString();
+		}
+		if (context.parameter2() != null) {
+			keyName = context.parameter2().getText();
+		}
 			var f = context.expr().accept(this);
 			return new Function_ArrayJsonItem(keyName, f);
 		}

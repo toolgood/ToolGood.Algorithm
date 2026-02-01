@@ -95,17 +95,17 @@ public class AlgorithmEngine {
             throw new Exception(LastError);
         }
         AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-        var stream = CharStreams.fromString(exp);
-        var lexer = new mathLexer(stream);
-        var tokens = new CommonTokenStream(lexer);
-        var parser = new mathParser(tokens);
+        org.antlr.v4.runtime.CharStream stream = org.antlr.v4.runtime.CharStreams.fromString(exp);
+        mathLexer lexer = new mathLexer(stream);
+        org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
+        mathParser parser = new mathParser(tokens);
 
-        var context = parser.prog();
+        mathParser.ProgContext context = parser.prog();
         if (antlrErrorTextWriter.IsError()) {
             LastError = antlrErrorTextWriter.ErrorMsg();
             throw new Exception(LastError);
         }
-        var visitor = new MathFunctionVisitor();
+        MathFunctionVisitor visitor = new MathFunctionVisitor();
         return visitor.visit(context);
     }
 

@@ -31,7 +31,7 @@ public class Function_LCM extends Function_N {
             return Operand.Error("Function '{0}' parameter is error!", "Lcm");
         }
 
-        return Operand.Create(FunctionUtil.F_base_lgm(list));
+        return Operand.Create(FunctionUtil.F_base_lcm(list));
     }
 
     @Override

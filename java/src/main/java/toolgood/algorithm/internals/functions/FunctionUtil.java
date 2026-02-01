@@ -202,7 +202,7 @@ public class FunctionUtil {
         return F_base_gcd(b, a % b);
     }
 
-    public static int F_base_lgm(List<Double> list) {
+    public static int F_base_lcm(List<Double> list) {
         List<Double> sortedList = new ArrayList<>(list);
         Collections.sort(sortedList);
         sortedList.removeIf(d -> d <= 1);

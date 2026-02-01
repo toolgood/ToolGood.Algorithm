@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.internals.JsonData;
+import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
     /**
