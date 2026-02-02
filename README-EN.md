@@ -947,16 +947,16 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>HtmlDecode ★</td><td>HtmlDecode(text)<br>  Transdecode the HTML-encoded string.</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64ToText ★</td><td>Base64ToText(text[, encodingType])<br>   Converts Base64 to a string.</td> <td></td>
+        <td>Base64ToText ★</td><td>Base64ToText(text)<br>   Converts Base64 to a string.</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64UrlToText ★</td><td>Base64UrlToText(text[, encodingType])<br>   Converts a Base64 of type Url to a string.</td> <td></td>
+        <td>Base64UrlToText ★</td><td>Base64UrlToText(text)<br>   Converts a Base64 of type Url to a string.</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64 ★</td><td>TextToBase64(text[, encodingType])<br>   Converts a string to an Base64 string.</td> <td></td>
+        <td>TextToBase64 ★</td><td>TextToBase64(text)<br>   Converts a string to an Base64 string.</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64Url ★</td><td>TextToBase64Url(text[, encodingType])<br>   Converts a string to an Base64 string of type Url.</td> <td></td>
+        <td>TextToBase64Url ★</td><td>TextToBase64Url(text)<br>   Converts a string to an Base64 string of type Url.</td> <td></td>
     </tr>
 	<tr>
         <td>Regex ★ ▲</td><td>Regex(text, matchText)<br> returns a matching string.</td> <td></td>
@@ -971,31 +971,28 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>Guid</td><td>Guid()<br>  Generate a Guid string.</td> <td></td>
     </tr>
 	<tr>
-        <td>Md5 ★</td><td>Md5(text[, encodingType])<br> Returns the Hash string of Md5.</td> <td></td>
+        <td>Md5 ★</td><td>Md5(text)<br> Returns the Hash string of Md5.</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha1 ★</td><td>Sha1(text[, encodingType])<br> Returns the Hash string of Sha1.</td> <td></td>
+        <td>Sha1 ★</td><td>Sha1(text)<br> Returns the Hash string of Sha1.</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha256 ★</td><td>Sha256(text[, encodingType])<br> Returns the Hash string of Sha256.</td> <td></td>
+        <td>Sha256 ★</td><td>Sha256(text)<br> Returns the Hash string of Sha256.</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha512 ★</td><td>Sha512(text[, encodingType])<br> Returns the Hash string of Sha512.</td> <td></td>
+        <td>Sha512 ★</td><td>Sha512(text)<br> Returns the Hash string of Sha512.</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc32 ★</td><td>Crc32(text[, encodingType])<br> Returns the Hash string of Crc32.</td> <td></td>
+        <td>HmacMd5 ★</td><td>HmacMd5(text, secret)<br> Returns the Hash string of HmacMd5.</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacMd5 ★</td><td>HmacMd5(text, secret[, encodingType])<br> Returns the Hash string of HmacMd5.</td> <td></td>
+        <td>HmacSha1 ★</td><td>HmacSha1(text, secret)<br> Returns the Hash string of HmacSha1.</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha1 ★</td><td>HmacSha1(text, secret[, encodingType])<br> Returns the Hash string of HmacSha1.</td> <td></td>
+        <td>HmacSha256 ★</td><td>HmacSha256(text, secret)<br> Returns the Hash string of HmacSha256.</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha256 ★</td><td>HmacSha256(text, secret[, encodingType])<br> Returns the Hash string of HmacSha256.</td> <td></td>
-    </tr>
-	<tr>
-        <td>HmacSha512 ★</td><td>HmacSha512(text, secret[, encodingType])<br> Returns the Hash string of HmacSha512.</td> <td></td>
+        <td>HmacSha512 ★</td><td>HmacSha512(text, secret)<br> Returns the Hash string of HmacSha512.</td> <td></td>
     </tr>
 	<tr>
         <td>TrimStart ★<br>LTrim ★</td><td>TrimStart(text)<br>LTrim(text)<br>LTrim(text[, characterSet])<br>   Empty the left side of the string.</td> <td></td>

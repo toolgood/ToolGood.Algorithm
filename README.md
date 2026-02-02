@@ -940,19 +940,19 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>HtmlDecode ★</td><td>HtmlDecode(文本)<br>  将HTML 编码的字符串转解码。</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64ToText ★</td><td>Base64ToText(文本[, 编码类型])<br>   将Base64转换为字符串。</td> <td></td>
+        <td>Base64ToText ★</td><td>Base64ToText(文本)<br>   将Base64转换为字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64UrlToText ★</td><td>Base64UrlToText(文本[, 编码类型])<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
+        <td>Base64UrlToText ★</td><td>Base64UrlToText(文本)<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64 ★</td><td>TextToBase64(文本[, 编码类型])<br>   将字符串转换为Base64字符串。</td> <td></td>
+        <td>TextToBase64 ★</td><td>TextToBase64(文本)<br>   将字符串转换为Base64字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64Url ★</td><td>TextToBase64Url(文本[, 编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
+        <td>TextToBase64Url ★</td><td>TextToBase64Url(文本)<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex ★ ▲</td><td>Regex(文本, 匹配文本])<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex ★ ▲</td><td>Regex(文本, 匹配文本)<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RegexRepalce ★</td><td>RegexRepalce(文本, 匹配文本, 替换文本)<br>  匹配替换字符串。</td> <td></td>
@@ -964,31 +964,28 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>Guid</td><td>Guid()<br>  生成Guid字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Md5 ★</td><td>Md5(文本[, 编码类型])<br> 返回Md5的Hash字符串。</td> <td></td>
+        <td>Md5 ★</td><td>Md5(文本)<br> 返回Md5的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha1 ★</td><td>Sha1(文本[, 编码类型])<br> 返回Sha1的Hash字符串。</td> <td></td>
+        <td>Sha1 ★</td><td>Sha1(文本)<br> 返回Sha1的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha256 ★</td><td>Sha256(文本[, 编码类型])<br> 返回Sha256的Hash字符串。</td> <td></td>
+        <td>Sha256 ★</td><td>Sha256(文本)<br> 返回Sha256的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha512 ★</td><td>Sha512(文本[, 编码类型])<br> 返回Sha512的Hash字符串。</td> <td></td>
+        <td>Sha512 ★</td><td>Sha512(文本)<br> 返回Sha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc32 ★</td><td>Crc32(文本[, 编码类型])<br> 返回Crc32的Hash字符串。</td> <td></td>
+        <td>HmacMd5 ★</td><td>HmacMd5(文本, secret)<br> 返回HmacMd5的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacMd5 ★</td><td>HmacMd5(文本, secret[, 编码类型])<br> 返回HmacMd5的Hash字符串。</td> <td></td>
+        <td>HmacSha1 ★</td><td>HmacSha1(文本, secret)<br> 返回HmacSha1的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha1 ★</td><td>HmacSha1(文本, secret[, 编码类型])<br> 返回HmacSha1的Hash字符串。</td> <td></td>
+        <td>HmacSha256 ★</td><td>HmacSha256(文本, secret)<br> 返回HmacSha256的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha256 ★</td><td>HmacSha256(文本, secret[, 编码类型])<br> 返回HmacSha256的Hash字符串。</td> <td></td>
-    </tr>
-	<tr>
-        <td>HmacSha512 ★</td><td>HmacSha512(文本, secret[, 编码类型])<br> 返回HmacSha512的Hash字符串。</td> <td></td>
+        <td>HmacSha512 ★</td><td>HmacSha512(文本, secret)<br> 返回HmacSha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>TrimStart ★<br>LTrim ★</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本[, 字符集])<br>   消空字符串左边。</td> <td></td>
