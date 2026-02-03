@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
@@ -11,15 +11,24 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "StartsWith", 1); if(args1.IsError) { return args1; } }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "StartsWith", 2); if(args2.IsError) { return args2; } }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "StartsWith", 1);
+			if(args1.IsError) { return args1; }
+
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToText(args2, "StartsWith", 2);
+			if(args2.IsError) { return args2; }
 
 			var text = args1.TextValue;
 			if(func3 == null) {
 				return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
 			}
-			var args3 = func3.Evaluate(work, tempParameter); if(args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "StartsWith", 3); if(args3.IsError) { return args3; } }
-			return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+
+			var args3 = func3.Evaluate(work, tempParameter);
+			args3 = FunctionUtil.ConvertToBoolean(args3, "StartsWith", 3);
+			if(args3.IsError) { return args3; }
+
+			return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), FunctionUtil.GetStringComparison(args3.BooleanValue)));
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{

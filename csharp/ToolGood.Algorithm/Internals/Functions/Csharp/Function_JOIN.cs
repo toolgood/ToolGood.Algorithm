@@ -26,12 +26,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				var o = FunctionUtil.F_base_GetList(args1, list);
 				if(o == false) return Operand.Error("Function '{0}' parameter {1} is error!", "Join", 1);
 
-				var args2 = args[1].ToText("Function '{0}' parameter {1} is error!", "Join", 2);
+				var args2 = FunctionUtil.ConvertToText(args[1], "Join", 2);
 				if(args2.IsError) { return args2; }
 
 				return Operand.Create(string.Join(args2.TextValue, list));
 			} else {
-				args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Join", 1);
+				args1 = FunctionUtil.ConvertToText(args1, "Join", 1);
 				if(args1.IsError) { return args1; }
 
 				var list = new List<string>();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +15,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "LookCeiling", 1); if(args1.IsError) return args1; }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotArray) { args2 = args2.ToArray("Function '{0}' parameter {1} is error!", "LookCeiling", 2); if(args2.IsError) return args2; }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToNumber(args1, "LookCeiling", 1);
+			if(args1.IsError) { return args1; }
+
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToArray(args2, "LookCeiling", 2);
+			if(args2.IsError) { return args2; }
 
 			List<decimal> list = new List<decimal>();
 			FunctionUtil.F_base_GetList(args2, list);

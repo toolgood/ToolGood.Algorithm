@@ -11,11 +11,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TrimEnd", 1); if(args1.IsError) return args1; }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "TrimEnd", 1);
+			if(args1.IsError) { return args1; }
+
 			if(func2 == null) {
 				return Operand.Create(args1.TextValue.TrimEnd());
 			}
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TrimEnd", 2); if(args2.IsError) return args2; }
+
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToText(args2, "TrimEnd", 2);
+			if(args2.IsError) { return args2; }
+
 			char[] trimChars = args2.TextValue.ToCharArray();
 			return Operand.Create(args1.TextValue.TrimEnd(trimChars));
 		}

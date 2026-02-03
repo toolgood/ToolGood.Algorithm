@@ -9,6 +9,68 @@ namespace ToolGood.Algorithm.Internals.Functions
 	{
 		public static readonly DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
+		#region Parameter Validation
+
+		/// <summary>
+		/// 验证并转换参数为文本
+		/// </summary>
+		/// <param name="arg"></param>
+		/// <param name="functionName"></param>
+		/// <param name="paramIndex"></param>
+		/// <returns></returns>
+		public static Operand ConvertToText(Operand arg, string functionName, int paramIndex)
+		{
+			return arg.ToText($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+		}
+
+		/// <summary>
+		/// 验证并转换参数为布尔值
+		/// </summary>
+		/// <param name="arg"></param>
+		/// <param name="functionName"></param>
+		/// <param name="paramIndex"></param>
+		/// <returns></returns>
+		public static Operand ConvertToBoolean(Operand arg, string functionName, int paramIndex)
+		{
+			return arg.ToBoolean($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+		}
+
+		/// <summary>
+		/// 验证并转换参数为数字
+		/// </summary>
+		/// <param name="arg"></param>
+		/// <param name="functionName"></param>
+		/// <param name="paramIndex"></param>
+		/// <returns></returns>
+		public static Operand ConvertToNumber(Operand arg, string functionName, int paramIndex)
+		{
+			return arg.ToNumber($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+		}
+
+		/// <summary>
+		/// 验证并转换参数为数组
+		/// </summary>
+		/// <param name="arg"></param>
+		/// <param name="functionName"></param>
+		/// <param name="paramIndex"></param>
+		/// <returns></returns>
+		public static Operand ConvertToArray(Operand arg, string functionName, int paramIndex)
+		{
+			return arg.ToArray($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+		}
+
+		/// <summary>
+		/// 获取字符串比较选项
+		/// </summary>
+		/// <param name="ignoreCase"></param>
+		/// <returns></returns>
+		public static StringComparison GetStringComparison(bool ignoreCase)
+		{
+			return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+		}
+
+		#endregion Parameter Validation
+
 		private static bool F_base_GetList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
 			foreach(var item in args) {
