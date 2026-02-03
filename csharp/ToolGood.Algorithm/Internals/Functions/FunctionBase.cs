@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {

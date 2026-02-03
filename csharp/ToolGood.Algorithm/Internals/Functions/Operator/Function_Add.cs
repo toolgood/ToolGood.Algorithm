@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {

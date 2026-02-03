@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			ITerminalNode node = context.PARAMETER();
 			if(node != null) {
-				diy.Parameters.Add(new DiyNameInfo.KeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+				diy.Parameters.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			}
 			return VisitChildren(context);
 		}
@@ -20,14 +20,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			ITerminalNode node = context.PARAMETER();
 			if(node != null) {
-				diy.Parameters.Add(new DiyNameInfo.KeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+				diy.Parameters.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			}
 			return VisitChildren(context);
 		}
 		public object VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
 		{
 			ITerminalNode node = context.PARAMETER();
-			diy.Functions.Add(new DiyNameInfo.KeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+			diy.Functions.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			return VisitChildren(context);
 		}
 
