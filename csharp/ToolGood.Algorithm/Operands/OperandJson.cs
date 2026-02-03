@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 
@@ -27,16 +27,25 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToArray(string errorMessage)
 		{
-			if(JsonValue.IsArray) {
+			return ToArrayInternal(errorMessage);
+		}
+		public override Operand ToArray(string errorMessage, params object[] args)
+		{
+			return ToArrayInternal(string.Format(errorMessage, args));
+		}
+
+		private Operand ToArrayInternal(string errorMessage)
+		{
+			if (JsonValue.IsArray) {
 				var list = new List<Operand>();
-				foreach(JsonData v in JsonValue) {
-					if(v.IsString)
+				foreach (JsonData v in JsonValue) {
+					if (v.IsString)
 						list.Add(Operand.Create(v.StringValue));
-					else if(v.IsBoolean)
+					else if (v.IsBoolean)
 						list.Add(Operand.Create(v.BooleanValue));
-					else if(v.IsDouble)
+					else if (v.IsDouble)
 						list.Add(Operand.Create(v.NumberValue));
-					else if(v.IsNull)
+					else if (v.IsNull)
 						list.Add(Operand.CreateNull());
 					else
 						list.Add(Operand.Create(v));
@@ -45,26 +54,7 @@ namespace ToolGood.Algorithm
 			}
 			return Error(errorMessage ?? "Convert to array error!");
 		}
-		public override Operand ToArray(string errorMessage, params object[] args)
-		{
-			if(JsonValue.IsArray) {
-				var list = new List<Operand>();
-				foreach(JsonData v in JsonValue) {
-					if(v.IsString)
-						list.Add(Operand.Create(v.StringValue));
-					else if(v.IsBoolean)
-						list.Add(Operand.Create(v.BooleanValue));
-					else if(v.IsDouble)
-						list.Add(Operand.Create(v.NumberValue));
-					else if(v.IsNull)
-						list.Add(Operand.CreateNull());
-					else
-						list.Add(Operand.Create(v));
-				}
-				return Create(list);
-			}
-			return Error(string.Format(errorMessage, args));
-		}
+
 		public override Operand ToJson(string errorMessage = null)
 		{
 			return this;

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
@@ -33,5 +33,4 @@ namespace ToolGood.Algorithm
 
 		public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
 	}
-
 }

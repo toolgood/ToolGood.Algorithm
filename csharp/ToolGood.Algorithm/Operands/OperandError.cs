@@ -1,12 +1,12 @@
-﻿using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm
 {
 	internal sealed class OperandError : Operand
 	{
+		private readonly string _errorMsg;
 		public override OperandType Type => OperandType.ERROR;
 		public override bool IsError => true;
-		private readonly string _errorMsg;
 		public override string ErrorMsg => _errorMsg;
 
 		public OperandError(string msg)

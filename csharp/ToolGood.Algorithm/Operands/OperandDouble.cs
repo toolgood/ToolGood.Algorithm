@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm
 		public override int IntValue => (int)_value;
 		public override decimal NumberValue => (decimal)_value;
 		public override long LongValue => (long)_value;
-		public override double DoubleValue => (double)_value;
+		public override double DoubleValue => _value;
 
 		public override Operand ToNumber(string errorMessage) { return this; }
 		public override Operand ToNumber(string errorMessage, params object[] args) { return this; }
@@ -31,7 +31,6 @@ namespace ToolGood.Algorithm
 		public override Operand ToMyDate(string errorMessage) { return Create((MyDate)NumberValue); }
 		public override Operand ToMyDate(string errorMessage, params object[] args) { return Create((MyDate)NumberValue); }
 
-		public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
+		public override string ToString() { return DoubleValue.ToString(CultureInfo.InvariantCulture); }
 	}
-
 }

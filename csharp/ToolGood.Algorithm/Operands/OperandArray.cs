@@ -20,11 +20,11 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToText(string errorMessage = null)
 		{
-			return Create(this.ToString());
+			return Create(ToString());
 		}
 		public override Operand ToText(string errorMessage, params object[] args)
 		{
-			return Create(this.ToString());
+			return Create(ToString());
 		}
 
 		public override Operand ToArray(string errorMessage) { return this; }
@@ -32,21 +32,21 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToJson(string errorMessage = null)
 		{
-			var txt = this.ToString();
+			var txt = ToString();
 			try {
 				var json = JsonMapper.ToObject(txt);
 				return Operand.Create(json);
-			} catch(Exception) { }
+			} catch { }
 			return Error(errorMessage ?? "Convert to json error!");
 		}
 
 		public override string ToString()
 		{
-			var stringBuilder = new StringBuilder();
+			var stringBuilder = new StringBuilder(_value.Count * 16);
 			stringBuilder.Append('[');
-			for(int i = 0; i < ArrayValue.Count; i++) {
-				if(i > 0) stringBuilder.Append(',');
-				stringBuilder.Append(ArrayValue[i].ToString());
+			for (var i = 0; i < _value.Count; i++) {
+				if (i > 0) stringBuilder.Append(',');
+				stringBuilder.Append(_value[i].ToString());
 			}
 			stringBuilder.Append(']');
 			return stringBuilder.ToString();

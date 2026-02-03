@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,54 +10,54 @@ namespace ToolGood.Algorithm
 {
 	internal sealed class OperandKeyValueList : Operand
 	{
-		private readonly List<KeyValue> TextList;
+		private readonly List<KeyValue> _keyValueList;
 		public OperandKeyValueList()
 		{
-			TextList = new List<KeyValue>();
+			_keyValueList = new List<KeyValue>();
 		}
 
 		public override bool IsArrayJson => true;
 		public override bool IsNotArrayJson => false;
 		public override OperandType Type => OperandType.ARRARYJSON;
-		public override List<Operand> ArrayValue => TextList.Select(q => q.Value).ToList();
+		public override List<Operand> ArrayValue => _keyValueList.Select(q => q.Value).ToList();
 
 		public override Operand ToText(string errorMessage = null)
 		{
-			return Create(this.ToString());
+			return Create(ToString());
 		}
 		public override Operand ToText(string errorMessage, params object[] args)
 		{
-			return Create(this.ToString());
+			return Create(ToString());
 		}
 
 		public override Operand ToArray(string errorMessage)
 		{
-			return Create(this.ArrayValue);
+			return Create(ArrayValue);
 		}
 		public override Operand ToArray(string errorMessage, params object[] args)
 		{
-			return Create(this.ArrayValue);
+			return Create(ArrayValue);
 		}
 
 		public override Operand ToJson(string errorMessage = null)
 		{
-			var txt = this.ToString();
+			var txt = ToString();
 			try {
 				var json = JsonMapper.ToObject(txt);
 				return Operand.Create(json);
-			} catch(Exception) { }
+			} catch { }
 			return Error(errorMessage ?? "Convert to json error!");
 		}
 
 		public void AddValue(KeyValue keyValue)
 		{
-			TextList.Add(keyValue);
+			_keyValueList.Add(keyValue);
 		}
 
 		public bool TryGetValue(string key, out Operand value)
 		{
-			foreach(var item in TextList) {
-				if(item.Key == key.ToString()) {
+			foreach (var item in _keyValueList) {
+				if (item.Key == key) {
 					value = item.Value;
 					return true;
 				}
@@ -68,23 +68,16 @@ namespace ToolGood.Algorithm
 
 		public bool ContainsKey(Operand value)
 		{
-			foreach(var item in TextList) {
-				if(value.TextValue == item.Key) {
-					return true;
-				}
-			}
-			return false;
+			return _keyValueList.Any(item => item.Key == value.TextValue);
 		}
 
 		public bool ContainsValue(Operand value)
 		{
-			foreach(var item in TextList) {
+			foreach (var item in _keyValueList) {
 				var op = item.Value;
-				if(value.Type != op.Type) { continue; }
-				if(value.IsText) {
-					if(value.TextValue == op.TextValue) {
-						return true;
-					}
+				if (value.Type != op.Type) continue;
+				if (value.IsText && value.TextValue == op.TextValue) {
+					return true;
 				}
 			}
 			return false;
@@ -92,15 +85,15 @@ namespace ToolGood.Algorithm
 
 		public override string ToString()
 		{
-			var stringBuilder = new StringBuilder();
+			var stringBuilder = new StringBuilder(_keyValueList.Count * 32);
 			stringBuilder.Append('{');
-			for(int i = 0; i < TextList.Count; i++) {
-				if(i > 0) stringBuilder.Append(',');
+			for (var i = 0; i < _keyValueList.Count; i++) {
+				if (i > 0) stringBuilder.Append(',');
 				stringBuilder.Append('"');
-				stringBuilder.Append(TextList[i].Key);
+				stringBuilder.Append(_keyValueList[i].Key);
 				stringBuilder.Append('"');
 				stringBuilder.Append(':');
-				stringBuilder.Append(TextList[i].Value.ToString());
+				stringBuilder.Append(_keyValueList[i].Value.ToString());
 			}
 			stringBuilder.Append('}');
 			return stringBuilder.ToString();

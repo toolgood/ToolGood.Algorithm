@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.Operands;
@@ -24,74 +23,62 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToNumber(string errorMessage)
 		{
-			if(TextValue.Contains('.') == false && int.TryParse(TextValue, out int num)) {
-				return Operand.Create(num);
-			}
-			if(decimal.TryParse(TextValue, out decimal d)) {
-				return Operand.Create(d);
-			}
-			if(errorMessage == null) {
-				return Error("Convert to number error!");
-			}
-			return Error(errorMessage);
+			return ToNumberInternal(errorMessage);
 		}
 		public override Operand ToNumber(string errorMessage, params object[] args)
 		{
-			if(TextValue.Contains('.') == false && int.TryParse(TextValue, out int num)) {
-				return Operand.Create(num);
-			}
-			if(decimal.TryParse(TextValue, out decimal d)) {
-				return Operand.Create(d);
-			}
-			if(errorMessage == null) {
-				return Error("Convert to number error!");
-			}
-			return Error(string.Format(errorMessage, args));
+			return ToNumberInternal(string.Format(errorMessage, args));
 		}
 
+		private Operand ToNumberInternal(string errorMessage)
+		{
+			if (!TextValue.Contains('.') && int.TryParse(TextValue, out var num)) {
+				return Operand.Create(num);
+			}
+			if (decimal.TryParse(TextValue, out var d)) {
+				return Operand.Create(d);
+			}
+			return Error(errorMessage ?? "Convert to number error!");
+		}
 
 		public override Operand ToText(string errorMessage) { return this; }
 		public override Operand ToText(string errorMessage, params object[] args) { return this; }
 
 		public override Operand ToBoolean(string errorMessage)
 		{
-			if(FunctionUtil.TryParseBoolean(TextValue, out bool b)) {
-				return b ? Operand.True : Operand.False;
-			}
-			if(errorMessage == null) {
-				return Error("Convert to bool error!");
-			}
-			return Error(errorMessage);
+			return ToBooleanInternal(errorMessage);
 		}
 		public override Operand ToBoolean(string errorMessage, params object[] args)
 		{
-			if(FunctionUtil.TryParseBoolean(TextValue, out bool b)) {
-				return b ? Operand.True : Operand.False;
-			}
-			if(errorMessage == null) {
-				return Error("Convert to bool error!");
-			}
-			return Error(string.Format(errorMessage, args));
+			return ToBooleanInternal(string.Format(errorMessage, args));
 		}
 
+		private Operand ToBooleanInternal(string errorMessage)
+		{
+			if (FunctionUtil.TryParseBoolean(TextValue, out var b)) {
+				return b ? Operand.True : Operand.False;
+			}
+			return Error(errorMessage ?? "Convert to bool error!");
+		}
 
 		public override Operand ToMyDate(string errorMessage)
 		{
-			if(TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
-			if(DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
-			if(errorMessage == null) {
-				return Error("Convert to date error!");
-			}
-			return Error(errorMessage);
+			return ToMyDateInternal(errorMessage);
 		}
 		public override Operand ToMyDate(string errorMessage, params object[] args)
 		{
-			if(TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
-			if(DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
-			if(errorMessage == null) {
-				return Error("Convert to date error!");
+			return ToMyDateInternal(string.Format(errorMessage, args));
+		}
+
+		private Operand ToMyDateInternal(string errorMessage)
+		{
+			if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out var t)) {
+				return Create(new MyDate(t));
 			}
-			return Error(string.Format(errorMessage, args));
+			if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out var d)) {
+				return Create(new MyDate(d));
+			}
+			return Error(errorMessage ?? "Convert to date error!");
 		}
 
 		public override Operand ToArray(string errorMessage)
@@ -100,23 +87,22 @@ namespace ToolGood.Algorithm
 		}
 		public override Operand ToJson(string errorMessage = null)
 		{
-			var txt = this.TextValue.Trim();
-			if((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+			var txt = TextValue.Trim();
+			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch(Exception) { }
+				} catch { }
 			}
 			return Error(errorMessage ?? "Convert to json error!");
 		}
 
-
 		public override string ToString()
 		{
-			var sb = new StringBuilder();
+			var sb = new StringBuilder(_value.Length + 2);
 			sb.Append('"');
-			foreach(char c in _value) {
-				switch(c) {
+			foreach (var c in _value) {
+				switch (c) {
 					case '"': sb.Append("\\\""); break;
 					case '\n': sb.Append("\\n"); break;
 					case '\r': sb.Append("\\r"); break;

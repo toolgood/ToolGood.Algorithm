@@ -1,4 +1,4 @@
-﻿using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm
@@ -27,6 +27,6 @@ namespace ToolGood.Algorithm
 		public override Operand ToMyDate(string errorMessage) { return this; }
 		public override Operand ToMyDate(string errorMessage, params object[] args) { return this; }
 
-		public override string ToString() { return "\"" + DateValue.ToString() + "\""; }
+		public override string ToString() { return $"\"{DateValue}\""; }
 	}
 }

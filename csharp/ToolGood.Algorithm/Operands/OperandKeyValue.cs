@@ -1,4 +1,4 @@
-﻿using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm
