@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ToolGood.Algorithm.Internals.Visitors;
@@ -9,126 +9,85 @@ namespace ToolGood.Algorithm.Internals.Functions
 	{
 		public static readonly DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-		public static bool F_base_GetList(List<Operand> args, List<decimal> list)
+		private static bool F_base_GetList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
 			foreach(var item in args) {
-				if(item.IsNumber) {
-					list.Add(item.NumberValue);
-				} else if(item.IsArray) {
-					var o = F_base_GetList(item.ArrayValue, list);
+				if(item.IsArray) {
+					var o = F_base_GetList(item.ArrayValue, list, converter, valueGetter);
 					if(o == false) { return false; }
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
 					if(i.IsError) { return false; }
-					var o = F_base_GetList(i.ArrayValue, list);
+					var o = F_base_GetList(i.ArrayValue, list, converter, valueGetter);
 					if(o == false) { return false; }
 				} else {
-					var o = item.ToNumber(null);
-					if(o.IsError) { return false; }
-					list.Add(o.NumberValue);
+					var converted = converter(item);
+					if(converted.IsError) { return false; }
+					list.Add(valueGetter(converted));
 				}
 			}
 			return true;
 		}
-		public static bool F_base_GetList(List<Operand> args, List<double> list)
+
+		private static bool F_base_GetList<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
-			foreach(var item in args) {
-				if(item.IsNumber) {
-					list.Add(item.DoubleValue);
-				} else if(item.IsArray) {
-					var o = F_base_GetList(item.ArrayValue, list);
-					if(o == false) { return false; }
-				} else if(item.IsJson) {
-					var i = item.ToArray(null);
-					if(i.IsError) { return false; }
-					var o = F_base_GetList(i.ArrayValue, list);
-					if(o == false) { return false; }
-				} else {
-					var o = item.ToNumber(null);
-					if(o.IsError) { return false; }
-					list.Add(o.DoubleValue);
-				}
+			if(args.IsError) { return false; }
+			if(args.IsArray) {
+				var o = F_base_GetList(args.ArrayValue, list, converter, valueGetter);
+				if(o == false) { return false; }
+			} else if(args.IsJson) {
+				var i = args.ToArray(null);
+				if(i.IsError) { return false; }
+				var o = F_base_GetList(i.ArrayValue, list, converter, valueGetter);
+				if(o == false) { return false; }
+			} else {
+				var converted = converter(args);
+				if(converted.IsError) { return false; }
+				list.Add(valueGetter(converted));
 			}
 			return true;
+		}
+
+		public static bool F_base_GetList(List<Operand> args, List<decimal> list)
+		{
+			return F_base_GetList(args, list, 
+				obj => obj.IsNumber ? obj : obj.ToNumber(null),
+				obj => obj.NumberValue);
+		}
+
+		public static bool F_base_GetList(List<Operand> args, List<double> list)
+		{
+			return F_base_GetList(args, list, 
+				obj => obj.IsNumber ? obj : obj.ToNumber(null),
+				obj => obj.DoubleValue);
 		}
 
 		public static bool F_base_GetList(Operand args, List<decimal> list)
 		{
-			if(args.IsError) { return false; }
-			if(args.IsNumber) {
-				list.Add(args.NumberValue);
-			} else if(args.IsArray) {
-				var o = F_base_GetList(args.ArrayValue, list);
-				if(o == false) { return false; }
-			} else if(args.IsJson) {
-				var i = args.ToArray(null);
-				if(i.IsError) { return false; }
-				var o = F_base_GetList(i.ArrayValue, list);
-				if(o == false) { return false; }
-			} else {
-				var o = args.ToNumber(null);
-				if(o.IsError) { return false; }
-				list.Add(o.NumberValue);
-			}
-			return true;
+			return F_base_GetList(args, list, 
+				obj => obj.IsNumber ? obj : obj.ToNumber(null),
+				obj => obj.NumberValue);
 		}
+
 		public static bool F_base_GetList(Operand args, List<double> list)
 		{
-			if(args.IsError) { return false; }
-			if(args.IsNumber) {
-				list.Add(args.DoubleValue);
-			} else if(args.IsArray) {
-				var o = F_base_GetList(args.ArrayValue, list);
-				if(o == false) { return false; }
-			} else if(args.IsJson) {
-				var i = args.ToArray(null);
-				if(i.IsError) { return false; }
-				var o = F_base_GetList(i.ArrayValue, list);
-				if(o == false) { return false; }
-			} else {
-				var o = args.ToNumber(null);
-				if(o.IsError) { return false; }
-				list.Add(o.DoubleValue);
-			}
-			return true;
+			return F_base_GetList(args, list, 
+				obj => obj.IsNumber ? obj : obj.ToNumber(null),
+				obj => obj.DoubleValue);
 		}
+
 		public static bool F_base_GetList(Operand args, List<string> list)
 		{
-			if(args.IsError) { return false; }
-			if(args.IsArray) {
-				var o = F_base_GetList(args.ArrayValue, list);
-				if(o == false) { return false; }
-			} else if(args.IsJson) {
-				var i = args.ToArray(null);
-				if(i.IsError) { return false; }
-				var o = F_base_GetList(i.ArrayValue, list);
-				if(o == false) { return false; }
-			} else {
-				var o = args.ToText(null);
-				if(o.IsError) { return false; }
-				list.Add(o.TextValue);
-			}
-			return true;
+			return F_base_GetList(args, list, 
+				obj => obj.ToText(null),
+				obj => obj.TextValue);
 		}
 
 		public static bool F_base_GetList(List<Operand> args, List<string> list)
 		{
-			foreach(var item in args) {
-				if(item.IsArray) {
-					var o = F_base_GetList(item.ArrayValue, list);
-					if(o == false) { return false; }
-				} else if(item.IsJson) {
-					var i = item.ToArray(null);
-					if(i.IsError) { return false; }
-					var o = F_base_GetList(i.ArrayValue, list);
-					if(o == false) { return false; }
-				} else {
-					var o = item.ToText(null);
-					if(o.IsError) { return false; }
-					list.Add(o.TextValue);
-				}
-			}
-			return true;
+			return F_base_GetList(args, list, 
+				obj => obj.ToText(null),
+				obj => obj.TextValue);
 		}
 
 		public static int F_base_countif(List<decimal> dbs, decimal d)

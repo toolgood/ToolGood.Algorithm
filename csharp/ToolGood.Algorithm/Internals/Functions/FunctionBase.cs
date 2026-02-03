@@ -25,26 +25,40 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <summary>
 		/// 执行函数,如果异常，返回默认值
 		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="converter"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		private T TryEvaluate<T>(AlgorithmEngine work, T def, Func<Operand, Operand> converter, Func<Operand, T> resultConverter, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			try {
+				var obj = this.Evaluate(work, tempParameter);
+				var converted = converter(obj);
+				if(converted.IsError) {
+					work.LastError = converted.ErrorMsg;
+					return def;
+				}
+				return resultConverter(converted);
+			} catch(Exception ex) {
+				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
+			}
+			return def;
+		}
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
 		/// <param name="work"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
 		public ushort TryEvaluate(AlgorithmEngine work, ushort def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (ushort)obj.IntValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (ushort)obj.IntValue, tempParameter);
 		}
 
 		/// <summary>
@@ -56,20 +70,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public uint TryEvaluate(AlgorithmEngine work, uint def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (uint)obj.IntValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (uint)obj.IntValue, tempParameter);
 		}
 
 		/// <summary>
@@ -81,20 +84,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public ulong TryEvaluate(AlgorithmEngine work, ulong def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (ulong)obj.IntValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (ulong)obj.IntValue, tempParameter);
 		}
 
 		/// <summary>
@@ -106,20 +98,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public short TryEvaluate(AlgorithmEngine work, short def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (short)obj.IntValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (short)obj.IntValue, tempParameter);
 		}
 
 		/// <summary>
@@ -131,20 +112,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public int TryEvaluate(AlgorithmEngine work, int def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return obj.IntValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => obj.IntValue, tempParameter);
 		}
 
 		/// <summary>
@@ -156,20 +126,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public long TryEvaluate(AlgorithmEngine work, long def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return obj.LongValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => obj.LongValue, tempParameter);
 		}
 
 		/// <summary>
@@ -181,20 +140,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public float TryEvaluate(AlgorithmEngine work, float def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (float)obj.DoubleValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (float)obj.DoubleValue, tempParameter);
 		}
 
 		/// <summary>
@@ -206,20 +154,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public double TryEvaluate(AlgorithmEngine work, double def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (double)obj.DoubleValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (double)obj.DoubleValue, tempParameter);
 		}
 
 		/// <summary>
@@ -231,20 +168,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public decimal TryEvaluate(AlgorithmEngine work, decimal def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotNumber) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (decimal)obj.NumberValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotNumber ? obj.ToNumber("It can't be converted to number!") : obj,
+				obj => (decimal)obj.NumberValue, tempParameter);
 		}
 
 		/// <summary>
@@ -256,20 +182,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public string TryEvaluate(AlgorithmEngine work, string def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotText) {
-					obj = obj.ToText("It can't be converted to string!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return obj.TextValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotText ? obj.ToText("It can't be converted to string!") : obj,
+				obj => obj.TextValue, tempParameter);
 		}
 
 		/// <summary>
@@ -281,20 +196,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public bool TryEvaluate(AlgorithmEngine work, bool def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotBoolean) {
-					obj = obj.ToBoolean("It can't be converted to bool!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return obj.BooleanValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotBoolean ? obj.ToBoolean("It can't be converted to bool!") : obj,
+				obj => obj.BooleanValue, tempParameter);
 		}
 
 		/// <summary>
@@ -308,17 +212,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			try {
 				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotDate) {
-					obj = obj.ToMyDate("It can't be converted to DateTime!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
+				var converted = obj.IsNotDate ? obj.ToMyDate("It can't be converted to DateTime!") : obj;
+				if(converted.IsError) {
+					work.LastError = converted.ErrorMsg;
+					return def;
 				}
 				if(work.UseLocalTime) {
-					return obj.DateValue.ToDateTime(DateTimeKind.Local);
+					return converted.DateValue.ToDateTime(DateTimeKind.Local);
 				}
-				return obj.DateValue.ToDateTime(DateTimeKind.Utc);
+				return converted.DateValue.ToDateTime(DateTimeKind.Utc);
 			} catch(Exception ex) {
 				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
 			}
@@ -334,20 +236,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public TimeSpan TryEvaluate(AlgorithmEngine work, TimeSpan def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotDate) {
-					obj = obj.ToMyDate("It can't be converted to DateTime!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (TimeSpan)obj.DateValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotDate ? obj.ToMyDate("It can't be converted to DateTime!") : obj,
+				obj => (TimeSpan)obj.DateValue, tempParameter);
 		}
 
 		/// <summary>
@@ -360,20 +251,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			try {
-				var obj = this.Evaluate(work, tempParameter);
-				if(obj.IsNotDate) {
-					obj = obj.ToMyDate("It can't be converted to DateTime!");
-					if(obj.IsError) {
-						work.LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return obj.DateValue;
-			} catch(Exception ex) {
-				work.LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
+			return TryEvaluate(work, def, 
+				obj => obj.IsNotDate ? obj.ToMyDate("It can't be converted to DateTime!") : obj,
+				obj => obj.DateValue, tempParameter);
 		}
 
 		#endregion TryEvaluate
