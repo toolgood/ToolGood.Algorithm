@@ -238,10 +238,23 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static int F_base_gcd(List<decimal> list)
 		{
-			list = list.OrderBy(q => q).ToList();
-			var g = F_base_gcd((int)list[1], (int)list[0]);
+			if(list.Count < 2) return list.Count == 1 ? (int)list[0] : 1;
+			
+			int min1 = (int)list[0], min2 = (int)list[1];
+			if(min1 > min2) { var t = min1; min1 = min2; min2 = t; }
+			
 			for(int i = 2; i < list.Count; i++) {
-				g = F_base_gcd((int)list[i], g);
+				int val = (int)list[i];
+				if(val < min1) { min2 = min1; min1 = val; }
+				else if(val < min2) { min2 = val; }
+			}
+			
+			var g = F_base_gcd(min2, min1);
+			for(int i = 0; i < list.Count; i++) {
+				int val = (int)list[i];
+				if(val != min1 && val != min2) {
+					g = F_base_gcd(val > g ? val : g, val > g ? g : val);
+				}
 			}
 			return g;
 		}
@@ -255,16 +268,26 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static int F_base_lgm(List<decimal> list)
 		{
-			list = list.OrderBy(q => q).ToList();
-			list.RemoveAll(q => q <= 1);
-
-			int a = (int)list[0];
-			for(int i = 1; i < list.Count; i++) {
-				int b = (int)list[i];
+			if(list.Count == 0) return 1;
+			
+			int a = 0;
+			bool foundFirst = false;
+			
+			for(int i = 0; i < list.Count; i++) {
+				int val = (int)list[i];
+				if(val <= 1) continue;
+				
+				if(!foundFirst) {
+					a = val;
+					foundFirst = true;
+					continue;
+				}
+				
+				int b = val;
 				int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
 				a = a / g * b;
 			}
-			return a;
+			return foundFirst ? a : 1;
 		}
 
 		public static int F_base_Factorial(int a)
