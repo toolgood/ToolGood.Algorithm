@@ -11,15 +11,17 @@ namespace ToolGood.Algorithm.Test
         public void issues_12()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var dt = engine.TryEvaluate("Year(44406)=2021", false);
-            Assert.AreEqual(dt, true);
-            dt = engine.TryEvaluate("MONTH(44406)=7", false);
-            Assert.AreEqual(dt, true);
-            dt = engine.TryEvaluate("DAY(44406)=29", false);
-            Assert.AreEqual(dt, true);
+			// 防止有误解，禁止数字直接转时间
+			//var dt = engine.TryEvaluate("Year(44406)=2021", false);
+			//Assert.AreEqual(dt, true);
+			//dt = engine.TryEvaluate("MONTH(44406)=7", false);
+			//Assert.AreEqual(dt, true);
+			//dt = engine.TryEvaluate("DAY(44406)=29", false);
+			//Assert.AreEqual(dt, true);
 
-            int num = engine.TryEvaluate("date(2011,2,2)", 0);
-            Assert.AreEqual(num, 40576);
+			// 防止有误解，禁止时间直接转数字
+			//int num = engine.TryEvaluate("date(2011,2,2)", 0);
+            // Assert.AreEqual(num, 40576);
         }
 
         [Test]
@@ -30,13 +32,14 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(dt, 1275);
         }
 
-        [Test]
-        public void issues_27()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var dt = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", DateTime.Now);
-            Assert.AreEqual(dt, DateTime.Parse("2024-08-01 8:0"));
-        }
+        // 防止有误解，禁止时间相加减
+        //[Test]
+        //public void issues_27()
+        //{
+        //    AlgorithmEngine engine = new AlgorithmEngine();
+        //    var dt = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", DateTime.Now);
+        //    Assert.AreEqual(dt, DateTime.Parse("2024-08-01 8:0"));
+        //}
 
 
 

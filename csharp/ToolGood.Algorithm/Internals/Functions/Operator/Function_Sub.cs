@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -28,10 +27,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 					args1 = Operand.Create(d);
 				} else if(FunctionUtil.TryParseBoolean(args1.TextValue, out bool b)) {
 					args1 = b ? Operand.One : Operand.Zero;
-				} else if(TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
-					args1 = Operand.Create(ts);
-				} else if(DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
-					args1 = Operand.Create(new MyDate(dt));
 				} else {
 					return Operand.Error("Function '{0}' is error", "-");
 				}
@@ -41,24 +36,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 					args2 = Operand.Create(d);
 				} else if(FunctionUtil.TryParseBoolean(args2.TextValue, out bool b)) {
 					args2 = b ? Operand.One : Operand.Zero;
-				} else if(TimeSpan.TryParse(args2.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
-					args2 = Operand.Create(ts);
-				} else if(DateTime.TryParse(args2.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
-					args2 = Operand.Create(new MyDate(dt));
 				} else {
 					return Operand.Error("Function '{0}' is error", "-");
 				}
-			}
-			if(args1.IsDate) {
-				if(args2.IsDate) return Operand.Create(args1.DateValue - args2.DateValue);
-				args2 = FunctionUtil.ConvertToNumber(args2, "-", 2);
-				if(args2.IsError) { return args2; }
-				if(args2.NumberValue == 0m) { return args1; }
-				return Operand.Create(args1.DateValue - args2.NumberValue);
-			} else if(args2.IsDate) {
-				args1 = FunctionUtil.ConvertToNumber(args1, "-", 1);
-				if(args1.IsError) { return args1; }
-				return Operand.Create(args1.NumberValue - args2.DateValue);
 			}
 			args1 = FunctionUtil.ConvertToNumber(args1, "-", 1);
 			if(args1.IsError) { return args1; }

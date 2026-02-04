@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -28,10 +27,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 					args1 = Operand.Create(d);
 				} else if(FunctionUtil.TryParseBoolean(args1.TextValue, out bool b)) {
 					args1 = b ? Operand.One : Operand.Zero;
-				} else if(TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
-					args1 = Operand.Create(ts);
-				} else if(DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
-					args1 = Operand.Create(new MyDate(dt));
 				} else {
 					return Operand.Error("Function '{0}' Two types cannot be modulo", "%");
 				}
@@ -41,10 +36,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 					args2 = Operand.Create(d);
 				} else if(FunctionUtil.TryParseBoolean(args2.TextValue, out bool b)) {
 					args1 = b ? Operand.One : Operand.Zero;
-				} else if(TimeSpan.TryParse(args2.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
-					args2 = Operand.Create(ts);
-				} else if(DateTime.TryParse(args2.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
-					args2 = Operand.Create(new MyDate(dt));
 				} else {
 					return Operand.Error("Function '{0}' Two types cannot be modulo", "%");
 				}

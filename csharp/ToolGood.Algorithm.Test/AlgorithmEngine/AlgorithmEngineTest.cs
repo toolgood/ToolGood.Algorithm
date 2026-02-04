@@ -74,10 +74,11 @@ namespace ToolGood.Algorithm.Test
 			r = engine.TryEvaluate("(1=2)*9+2", 0);
 			Assert.AreEqual(2, r); ;
 
-			var dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue);
-			Assert.AreEqual(DateTime.Parse("2016-1-2"), dt); ;
-			dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);
-			Assert.AreEqual(DateTime.Parse("2016-1-1 9:0"), dt); ;
+			// 防止 有误解，不允许时间相加减
+			//var dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue);
+			//Assert.AreEqual(DateTime.Parse("2016-1-2"), dt); ;
+			//dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);
+			//Assert.AreEqual(DateTime.Parse("2016-1-1 9:0"), dt); ;
 
 			var value = engine.TryEvaluate("1 > (-2)", false);
 			Assert.AreEqual(value, true);
@@ -304,9 +305,9 @@ namespace ToolGood.Algorithm.Test
 		{
 			AlgorithmEngine engine = new AlgorithmEngine();
 			String t25 = engine.TryEvaluate("Engineversion", "");
-			Assert.AreEqual("ToolGood.Algorithm 6.1", t25);
+			Assert.AreEqual("ToolGood.Algorithm 6.2", t25);
 			String t26 = engine.TryEvaluate("Algorithmversion", "");
-			Assert.AreEqual("ToolGood.Algorithm 6.1", t26);
+			Assert.AreEqual("ToolGood.Algorithm 6.2", t26);
 		}
 
 

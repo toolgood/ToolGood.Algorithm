@@ -15,12 +15,6 @@ namespace ToolGood.Algorithm
 		public override OperandType Type => OperandType.DATE;
 		public override MyDate DateValue => _value;
 
-		public override Operand ToNumber(string errorMessage) { return Create((decimal)DateValue); }
-		public override Operand ToNumber(string errorMessage, params object[] args) { return Create((decimal)DateValue); }
-
-		public override Operand ToBoolean(string errorMessage) { return ((decimal)DateValue) != 0 ? True : False; }
-		public override Operand ToBoolean(string errorMessage, params object[] args) { return ((decimal)DateValue) != 0 ? True : False; }
-
 		public override Operand ToText(string errorMessage) { return Create(DateValue.ToString()); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(DateValue.ToString()); }
 

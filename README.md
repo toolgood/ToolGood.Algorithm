@@ -29,7 +29,6 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
     var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: AABB 字符串连接, 返回:aabb
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //Return: 11 返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //Return date: 2016-1-2 返回日期:2016-1-2
-    var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//Return datetime:2016-1-1 9:0  返回日期:2016-1-1 9:0
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null);//Return "ill"  返回"ill"
@@ -52,6 +51,8 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 注：`find`为Excel公式，find(要查找的字符串, 被查找的字符串[, 开始位置])
 
 注：6.0版本开始,`[X,X]`数组代码替换`{X,X}`。
+
+注：6.2版本开始，禁止时间转数字，数字转时间，时间加减乘除数字，相关操作使用`函数`代替。
 
 ## 自定义参数
 ``` csharp

@@ -28,9 +28,6 @@ namespace ToolGood.Algorithm
 		public override Operand ToText(string errorMessage) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
 
-		public override Operand ToMyDate(string errorMessage) { return Create((MyDate)NumberValue); }
-		public override Operand ToMyDate(string errorMessage, params object[] args) { return Create((MyDate)NumberValue); }
-
 		public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
 	}
 }

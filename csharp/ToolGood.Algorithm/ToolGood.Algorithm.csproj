@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。注：不兼容老版本</Description>
+    <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。注：不兼容老版本，禁止时间加减，数字、时间互转</Description>
     <Copyright>Copyright 2017-2026 ToolGood</Copyright>
     <AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
     <Authors>ToolGood</Authors>
@@ -19,7 +19,7 @@
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>6.1.2.2</Version>
+    <Version>6.2.0.0</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>

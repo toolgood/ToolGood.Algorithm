@@ -91,39 +91,6 @@ namespace ToolGood.Algorithm.Operands
         }
 
         /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="num"></param>
-        public MyDate(decimal num)
-        {
-            int days = (int)num;
-            if (days > 365) {
-                var start = new DateTime(1900, 1, 1).AddDays(((int)days) - 2);
-                Year = start.Year;
-                Month = start.Month;
-                Day = start.Day;
-            } else {
-                Year = null;
-                Month = null;
-                Day = days;
-            }
-            decimal d = num - days;
-            Hour = (int)(d * 24);
-            Minute = (int)((d * 24 - Hour) * 60.0m);
-            Second = (int)Math.Round(((d * 24 - Hour) * 60.0m - Minute) * 60.0m);
-            if (Second == 60) {
-                Second = 0;
-                Minute++;
-                if (Minute == 60) {
-                    Minute = 0;
-                    Hour++;
-                }
-            }
-        }
-
-
-  
-        /// <summary>
         /// 字符串转MyDate
         /// </summary>
         /// <param name="txt"></param>
@@ -248,7 +215,7 @@ namespace ToolGood.Algorithm.Operands
             if (Year == null || Year == 0) {
                 return this.ToString(f);
             }
-            return ((DateTime)this).ToString(f);
+            return this.ToDateTime().ToString(f);
         }
 
         /// <summary>
@@ -401,117 +368,26 @@ namespace ToolGood.Algorithm.Operands
             return myDate.ToTimeSpan();
         }
 
-        /// <summary>
-        /// decimal=>MyDate
-        /// </summary>
-        /// <param name="days"></param>
-        public static implicit operator MyDate(decimal days)
-        {
-            return new MyDate(days);
-        }
-
-        /// <summary>
-        /// MyDate=>decimal
-        /// </summary>
-        /// <param name="MyDate"></param>
-        public static implicit operator decimal(MyDate MyDate)
-        {
-            if (MyDate.Year != null && MyDate.Year > 1900) {
-                var dt = new DateTime((MyDate.Year ?? 0), (MyDate.Month ?? 0), (MyDate.Day ?? 0), MyDate.Hour, MyDate.Minute, MyDate.Second);
-                //decimal days = (decimal)(dt -  DateTime.MinValue).TotalDays;
-                decimal days = (decimal)(dt - new DateTime(1900, 1, 1)).TotalDays + 2;
-                days += (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0m) / 60) / 24;
-                return days;
-            }
-            return (MyDate.Day ?? 0) + (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0m) / 60) / 24;
-        }
-
-        /// <summary>
-        /// 加
-        /// </summary>
-        /// <param name="myDate"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public static MyDate operator +(MyDate myDate, MyDate num)
-        {
-            if (myDate.Year != null && num.Year == null) {
-                return new MyDate(myDate.ToDateTime().Add(num.ToTimeSpan()));
-            } else if (myDate.Year != null && num.Year == null) {
-                return new MyDate(num.ToDateTime().Add(myDate.ToTimeSpan()));
-            }
-            return (MyDate)((decimal)myDate + (decimal)num);
-        }
-
-        /// <summary>
-        /// 减
-        /// </summary>
-        /// <param name="myDate"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public static MyDate operator -(MyDate myDate, MyDate num)
-        {
-            if (myDate.Year != null && num.Year == null) {
-                return new MyDate(myDate.ToDateTime().Add(num.ToTimeSpan().Negate()));
-            } else if (myDate.Year != null && num.Year == null) {
-                return new MyDate(num.ToDateTime().Add(myDate.ToTimeSpan().Negate()));
-            }
-            return (MyDate)((decimal)myDate - (decimal)num);
-        }
-
-        /// <summary>加
-        ///
-        /// </summary>
-        /// <param name="myDate"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public static MyDate operator +(MyDate myDate, decimal num)
-        {
-            return (MyDate)((decimal)myDate + (decimal)num);
-        }
-
-        /// <summary>
-        /// 减
-        /// </summary>
-        /// <param name="myDate"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public static MyDate operator -(MyDate myDate, decimal num)
-        {
-            return (MyDate)((decimal)myDate - (decimal)num);
-        }
-
-        /// <summary>
-        /// 乘
-        /// </summary>
-        /// <param name="myDate"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public static MyDate operator *(MyDate myDate, decimal num)
-        {
-#if NETSTANDARD2_1
-            if (myDate.Year != null) {
-                return new MyDate(myDate.ToTimeSpan().Multiply((double)num));
-            }
-#endif
-            return (MyDate)((decimal)myDate * (decimal)num);
-        }
-
-        /// <summary>
-        /// 除
-        /// </summary>
-        /// <param name="myDate"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public static MyDate operator /(MyDate myDate, decimal num)
-        {
-#if NETSTANDARD2_1
-            if (myDate.Year != null) {
-                return new MyDate(myDate.ToTimeSpan().Divide((double)num));
-            }
-#endif
-            return (MyDate)((decimal)myDate / (decimal)num);
-        }
-
         #endregion operator
-    }
+
+        internal long ToLong()
+        {
+            long d = 0;
+            if (Year != null) {
+                d += Year.Value * 10000000000;
+            }
+            if (Month != null) {
+                d += Month.Value * 100000000;
+            }
+            if (Day != null) {
+                d += Day.Value * 1000000;
+            }
+            d += Hour * 10000;
+            d += Minute * 100;
+            d += Second;
+            return d;
+		}
+
+
+	}
 }
