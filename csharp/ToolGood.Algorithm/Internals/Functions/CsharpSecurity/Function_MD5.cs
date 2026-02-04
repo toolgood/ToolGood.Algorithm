@@ -12,7 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "MD5", 1); if(args1.IsError) return args1; }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "MD5", 1);
+			if(args1.IsError) { return args1; }
 			try {
 				var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
 				return Operand.Create(t);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Internals.Visitors;
 
@@ -12,9 +12,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2); if (args2.IsError) { return args2; } }
-            var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotText) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3); if (args3.IsError) { return args3; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToDate(args1, "DateDif", 1);
+			if (args1.IsError) { return args1; }
+
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToDate(args2, "DateDif", 2);
+			if (args2.IsError) { return args2; }
+
+			var args3 = func3.Evaluate(work, tempParameter);
+			args3 = FunctionUtil.ConvertToText(args3, "DateDif", 3);
+			if (args3.IsError) { return args3; }
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;
             var t = args3.TextValue.ToLower();

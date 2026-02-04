@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
@@ -11,16 +11,21 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1); if (args1.IsError) { return args1; } }
-            var startMyDate = (DateTime)args1.DateValue;
+            var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToDate(args1, "WeekNum", 1);
+			if (args1.IsError) { return args1; }
 
-            var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
-            if (func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekNum", 2); if (args2.IsError) { return args2; } }
-                if (args2.IntValue == 2) {
-                    days--;
-                }
-            }
+			var startMyDate = (DateTime)args1.DateValue;
+
+			var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
+			if (func2 != null) {
+				var args2 = func2.Evaluate(work, tempParameter);
+				args2 = FunctionUtil.ConvertToNumber(args2, "WeekNum", 2);
+				if (args2.IsError) { return args2; }
+				if (args2.IntValue == 2) {
+					days--;
+				}
+			}
 
             var week = Math.Ceiling(days / 7.0);
             return Operand.Create(week);

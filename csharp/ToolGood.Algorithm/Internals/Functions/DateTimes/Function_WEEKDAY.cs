@@ -14,13 +14,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToDate(args1, "WeekDay", 1);
+			if (args1.IsError) { return args1; }
 
-            var type = 1;
-            if (func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekDay", 2); if (args2.IsError) { return args2; } }
-                type = args2.IntValue;
-            }
+			var type = 1;
+			if (func2 != null) {
+				var args2 = func2.Evaluate(work, tempParameter);
+				args2 = FunctionUtil.ConvertToNumber(args2, "WeekDay", 2);
+				if (args2.IsError) { return args2; }
+				type = args2.IntValue;
+			}
 
             var t = ((DateTime)args1.DateValue).DayOfWeek;
             if (type == 1) {

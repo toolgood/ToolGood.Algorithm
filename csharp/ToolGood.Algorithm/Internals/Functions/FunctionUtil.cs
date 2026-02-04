@@ -60,6 +60,18 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 验证并转换参数为日期
+		/// </summary>
+		/// <param name="arg"></param>
+		/// <param name="functionName"></param>
+		/// <param name="paramIndex"></param>
+		/// <returns></returns>
+		public static Operand ConvertToDate(Operand arg, string functionName, int paramIndex)
+		{
+			return arg.ToMyDate($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+		}
+
+		/// <summary>
 		/// 获取字符串比较选项
 		/// </summary>
 		/// <param name="ignoreCase"></param>

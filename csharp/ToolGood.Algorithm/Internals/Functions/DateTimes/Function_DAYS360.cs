@@ -11,18 +11,24 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToDate(args1, "Days360", 1);
+			if (args1.IsError) { return args1; }
 
-            var startMyDate = (DateTime)args1.DateValue;
-            var endMyDate = (DateTime)args2.DateValue;
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToDate(args2, "Days360", 2);
+			if (args2.IsError) { return args2; }
 
-            var method = false;
-            if (func3 != null) {
-                var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Days360", 3); if (args3.IsError) { return args3; } }
-                if (args3.IsError) { return args3; }
-                method = args3.BooleanValue;
-            }
+			var startMyDate = (DateTime)args1.DateValue;
+			var endMyDate = (DateTime)args2.DateValue;
+
+			var method = false;
+			if (func3 != null) {
+				var args3 = func3.Evaluate(work, tempParameter);
+				args3 = FunctionUtil.ConvertToBoolean(args3, "Days360", 3);
+				if (args3.IsError) { return args3; }
+				method = args3.BooleanValue;
+			}
             var days = endMyDate.Year * 360 + (endMyDate.Month - 1) * 30
                         - startMyDate.Year * 360 - (startMyDate.Month - 1) * 30;
             if (method) {
