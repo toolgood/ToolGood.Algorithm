@@ -12,10 +12,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "HypgeomDist", 1); if (args1.IsError) return args1; }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "HypgeomDist", 2); if (args2.IsError) return args2; }
-            var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "HypgeomDist", 3); if (args3.IsError) return args3; }
-            var args4 = func4.Evaluate(work, tempParameter); if (args4.IsNotNumber) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "HypgeomDist", 4); if (args4.IsError) return args4; }
+            var args1 = func1.Evaluate(work, tempParameter);
+            args1 = FunctionUtil.ConvertToNumber(args1, "HypgeomDist", 1);
+            if (args1.IsError) return args1;
+
+            var args2 = func2.Evaluate(work, tempParameter);
+            args2 = FunctionUtil.ConvertToNumber(args2, "HypgeomDist", 2);
+            if (args2.IsError) return args2;
+
+            var args3 = func3.Evaluate(work, tempParameter);
+            args3 = FunctionUtil.ConvertToNumber(args3, "HypgeomDist", 3);
+            if (args3.IsError) return args3;
+
+            var args4 = func4.Evaluate(work, tempParameter);
+            args4 = FunctionUtil.ConvertToNumber(args4, "HypgeomDist", 4);
+            if (args4.IsError) return args4;
+
             int k = args1.IntValue;
             int draws = args2.IntValue;
             int success = args3.IntValue;

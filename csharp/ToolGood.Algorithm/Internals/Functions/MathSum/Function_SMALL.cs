@@ -13,8 +13,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Small", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Small", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+            args1 = FunctionUtil.ConvertToArray(args1, "Small", 1);
+            if (args1.IsError) { return args1; }
+
+            var args2 = func2.Evaluate(work, tempParameter);
+            args2 = FunctionUtil.ConvertToNumber(args2, "Small", 2);
+            if (args2.IsError) { return args2; }
+
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Small", 1); }

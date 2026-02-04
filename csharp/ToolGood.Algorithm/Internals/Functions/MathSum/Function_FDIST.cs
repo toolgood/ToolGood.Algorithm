@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -12,9 +12,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "FDist", 1); if (args1.IsError) return args1; }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "FDist", 2); if (args2.IsError) return args2; }
-            var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "FDist", 3); if (args3.IsError) return args3; }
+            var args1 = func1.Evaluate(work, tempParameter);
+            args1 = FunctionUtil.ConvertToNumber(args1, "FDist", 1);
+            if (args1.IsError) return args1;
+
+            var args2 = func2.Evaluate(work, tempParameter);
+            args2 = FunctionUtil.ConvertToNumber(args2, "FDist", 2);
+            if (args2.IsError) return args2;
+
+            var args3 = func3.Evaluate(work, tempParameter);
+            args3 = FunctionUtil.ConvertToNumber(args3, "FDist", 3);
+            if (args3.IsError) return args3;
 
             var x = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;

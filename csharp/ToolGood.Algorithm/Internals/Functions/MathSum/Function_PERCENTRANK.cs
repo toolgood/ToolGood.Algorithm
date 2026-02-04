@@ -14,8 +14,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "PercentRank", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+            args1 = FunctionUtil.ConvertToArray(args1, "PercentRank", 1);
+            if (args1.IsError) { return args1; }
+
+            var args2 = func2.Evaluate(work, tempParameter);
+            args2 = FunctionUtil.ConvertToNumber(args2, "PercentRank", 2);
+            if (args2.IsError) { return args2; }
 
             var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
@@ -25,7 +30,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var v = ExcelFunctions.PercentRank(list.Select(q => (double)q).ToArray(), (double)k);
             var d = 3;
             if (func3 != null) {
-                var args3 = func2.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3); if (args3.IsError) { return args3; } }
+                var args3 = func3.Evaluate(work, tempParameter);
+                args3 = FunctionUtil.ConvertToNumber(args3, "PercentRank", 3);
+                if (args3.IsError) { return args3; }
                 d = args3.IntValue;
             }
             return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));

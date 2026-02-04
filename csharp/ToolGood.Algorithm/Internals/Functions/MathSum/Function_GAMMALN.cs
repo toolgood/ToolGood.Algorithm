@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -12,7 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "GammaLn"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+            args1 = FunctionUtil.ConvertToNumber(args1, "GammaLn", 1);
+            if (args1.IsError) { return args1; }
             return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
