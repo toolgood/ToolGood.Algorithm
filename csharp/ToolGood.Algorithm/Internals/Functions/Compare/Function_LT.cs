@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				} else if(args1.IsBoolean) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
-					return Operand.Create(args1.DateValue.ToLong() < args2.DateValue.ToLong());
+					return Operand.Create(args1.NumberValue < args2.NumberValue);
 				} else if(args1.IsNull) {
 					return Operand.True;
 				}
