@@ -23,10 +23,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 					return Operand.Create(args1.BooleanValue == args2.BooleanValue);
 				} else if(args1.IsDate) {
 					return Operand.Create(args1.DateValue.ToLong() == args2.DateValue.ToLong());
-				} else if(args1.IsJson) {
-					args1 = args1.ToText();
-					args2 = args2.ToText();
-					return Operand.Create(args1.TextValue == args2.TextValue);
 				} else if(args1.IsNull) {
 					return Operand.True;
 				}

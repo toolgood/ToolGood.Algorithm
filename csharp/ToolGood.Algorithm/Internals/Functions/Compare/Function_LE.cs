@@ -26,11 +26,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
 					return Operand.Create(args1.NumberValue <= args2.NumberValue);
-				} else if(args1.IsJson) {
-					args1 = args1.ToText();
-					args2 = args2.ToText();
-					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-					return r <= 0 ? Operand.True : Operand.False;
 				} else if(args1.IsNull) {
 					return Operand.True;
 				}
