@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using System;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
@@ -6,30 +6,25 @@ namespace ToolGood.Algorithm.Internals.Visitors
 	{
 		public static char StandardChar(char o)
 		{
-			if(o <= 'Z') return o;
-			if(o <= 127) return char.ToUpperInvariant(o);
+			if(o < 'a') return o;  // '[', ']', '^', '_', '`' 等字符保持不变
+			if(o <= 'z') return (char)(o - 32); // a-z 直接转大写，避免方法调用
+			if(o < 127) return o; // 其他 ASCII 字符保持不变
 			if(o <= 65280) {
-				if(o == '×') return '*';//215
-				if(o == '÷') return '/';//247
-				if(o == '‘') return '\'';//8216
-				if(o == '’') return '\'';//8217
-				if(o == '“') return '"';//8220
-				if(o == '”') return '"';//8221
-				if(o == (char)12288) return (char)32;
-				if(o == '【') return '[';//12304
-				if(o == '】') return ']';//12305
-				if(o == '〔') return '(';//12308
-				if(o == '〕') return ')';//12309
-				return o;
+				switch(o) {
+					case (char)215: return '*';  // ×
+					case (char)247: return '/';  // ÷
+					case (char)8216: return '\''; // '
+					case (char)8217: return '\''; // '
+					case (char)8220: return '"';  // "
+					case (char)8221: return '"';  // "
+					case (char)12288: return (char)32;
+					case (char)12304: return '['; // 【
+					case (char)12305: return ']'; // 】
+					case (char)12308: return '('; // 〔
+					case (char)12309: return ')'; // 〕
+					default: return o;
+				}
 			} else if(o < 65375) {
-				//if(o == '＝') return '=';//65309
-				//if(o == '＋') return '+';//65291
-				//if(o == '－') return '-';//65293
-				//if(o == '／') return '/';//65295
-				//if (o == '（') return '(';//65288
-				//if (o == '）') return ')';//65289
-				//if (o == '，') return ',';//65292
-				//if (o == '！') return '!';//65281
 				o = (char)(o - 65248);
 			}
 			return char.ToUpperInvariant(o);
@@ -37,11 +32,23 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public static string StandardString(string s)
 		{
-			var sb = new StringBuilder(s.Length);
+			// 快速路径：检查是否需要转换
+			bool needsConversion = false;
 			for(int i = 0; i < s.Length; i++) {
-				sb.Append(StandardChar(s[i]));
+				char c = s[i];
+				if(c != StandardChar(c)) {
+					needsConversion = true;
+					break;
+				}
 			}
-			return sb.ToString();
+			if(!needsConversion) return s;
+
+			// 使用 string.Create 减少堆分配
+			return string.Create(s.Length, s, (span, str) => {
+				for(int i = 0; i < str.Length; i++) {
+					span[i] = StandardChar(str[i]);
+				}
+			});
 		}
 
 		public static bool Equals(string left, char right)
