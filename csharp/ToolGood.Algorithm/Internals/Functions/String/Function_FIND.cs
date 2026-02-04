@@ -11,13 +11,19 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Find", 1); if (args1.IsError) { return args1; } }
-			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "Find", 2); if (args2.IsError) { return args2; } }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "Find", 1);
+			if (args1.IsError) { return args1; }
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToText(args2, "Find", 2);
+			if (args2.IsError) { return args2; }
 			if (func3 == null) {
 				var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + work.ExcelIndex;
 				return Operand.Create(p);
 			}
-			var count = func3.Evaluate(work, tempParameter); if (count.IsNotNumber) { count = count.ToNumber("Function '{0}' parameter {1} is error!", "Find", 3); if (count.IsError) { return count; } }
+			var count = func3.Evaluate(work, tempParameter);
+			count = FunctionUtil.ConvertToNumber(count, "Find", 3);
+			if (count.IsError) { return count; }
 			var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + work.ExcelIndex;
 			return Operand.Create(p2);
 		}

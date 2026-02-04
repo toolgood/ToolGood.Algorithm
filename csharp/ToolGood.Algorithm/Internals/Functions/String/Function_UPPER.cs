@@ -11,7 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Upper"); if (args1.IsError) { return args1; } }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "Upper", 1);
+			if (args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.ToUpper());
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

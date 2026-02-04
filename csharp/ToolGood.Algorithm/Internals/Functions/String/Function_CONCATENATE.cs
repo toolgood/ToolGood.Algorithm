@@ -15,12 +15,16 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return Operand.Create("");
 			}
 			if (funcs.Length == 1) {
-				var a = funcs[0].Evaluate(work, tempParameter); if (a.IsNotText) { a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", 1); if (a.IsError) { return a; } }
+				var a = funcs[0].Evaluate(work, tempParameter);
+				a = FunctionUtil.ConvertToText(a, "Concatenate", 1);
+				if (a.IsError) { return a; }
 				return a; // 只有一个
 			}
 			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {
-				var a = funcs[i].Evaluate(work, tempParameter); if (a.IsNotText) { a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", i + 1); if (a.IsError) { return a; } }
+				var a = funcs[i].Evaluate(work, tempParameter);
+				a = FunctionUtil.ConvertToText(a, "Concatenate", i + 1);
+				if (a.IsError) { return a; }
 				sb.Append(a.TextValue);
 			}
 			return Operand.Create(sb.ToString());

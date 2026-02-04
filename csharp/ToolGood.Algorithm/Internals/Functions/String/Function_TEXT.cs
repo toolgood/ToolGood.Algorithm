@@ -13,7 +13,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "Text", 2); if (args2.IsError) { return args2; } }
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToText(args2, "Text", 2);
+			if (args2.IsError) { return args2; }
 
 			if (args1.IsText) {
 				return args1;
@@ -24,7 +26,8 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			} else if (args1.IsDate) {
 				return Operand.Create(args1.DateValue.ToString(args2.TextValue));
 			}
-			args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Text", 1); if (args1.IsError) { return args1; }
+			args1 = FunctionUtil.ConvertToText(args1, "Text", 1);
+			if (args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.ToString());
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

@@ -11,8 +11,12 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Rept", 1); if (args1.IsError) { return args1; } }
-			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Rept", 2); if (args2.IsError) { return args2; } }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "Rept", 1);
+			if (args1.IsError) { return args1; }
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToNumber(args2, "Rept", 2);
+			if (args2.IsError) { return args2; }
 
 			var newtext = args1.TextValue;
 			var length = args2.IntValue;

@@ -11,7 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Clean"); if (args1.IsError) { return args1; } }
+			var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToText(args1, "Clean", 1);
+			if (args1.IsError) { return args1; }
 			var t = args1.TextValue;
 			bool needClean = false;
 			for (int i = 0; i < t.Length; i++) {
