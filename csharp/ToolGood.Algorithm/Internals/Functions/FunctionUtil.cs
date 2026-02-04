@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 	{
 		public static readonly DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-		#region Parameter Validation
+		#region ConvertTo
 
 		/// <summary>
 		/// 验证并转换参数为文本
@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public static Operand ConvertToText(Operand arg, string functionName, int paramIndex)
 		{
-			return arg.ToText($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+			return arg.ToText("Function '{0}' parameter {1} is error!", functionName, paramIndex);
 		}
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public static Operand ConvertToBoolean(Operand arg, string functionName, int paramIndex)
 		{
-			return arg.ToBoolean($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+			return arg.ToBoolean("Function '{0}' parameter {1} is error!", functionName, paramIndex);
 		}
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public static Operand ConvertToNumber(Operand arg, string functionName, int paramIndex)
 		{
-			return arg.ToNumber($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+			return arg.ToNumber("Function '{0}' parameter {1} is error!", functionName, paramIndex);
 		}
 
 		/// <summary>
@@ -56,7 +56,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public static Operand ConvertToArray(Operand arg, string functionName, int paramIndex)
 		{
-			return arg.ToArray($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+			return arg.ToArray("Function '{0}' parameter {1} is error!", functionName, paramIndex);
 		}
 
 		/// <summary>
@@ -68,7 +68,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public static Operand ConvertToDate(Operand arg, string functionName, int paramIndex)
 		{
-			return arg.ToMyDate($"Function '{{0}}' parameter {{1}} is error!", functionName, paramIndex);
+			return arg.ToMyDate("Function '{0}' parameter {1} is error!", functionName, paramIndex);
 		}
 
 		/// <summary>
