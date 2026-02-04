@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
@@ -11,8 +11,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Combin", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Combin", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToNumber(args1, "Combin", 1);
+			if (args1.IsError) { return args1; }
+
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToNumber(args2, "Combin", 2);
+			if (args2.IsError) { return args2; }
 
             var total = args1.IntValue;
             var count = args2.IntValue;

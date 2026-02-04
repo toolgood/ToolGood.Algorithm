@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
@@ -11,12 +11,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Round", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+			args1 = FunctionUtil.ConvertToNumber(args1, "Round", 1);
+			if (args1.IsError) { return args1; }
 
-            if (func2 == null) {
-                return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
-            }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Round", 2); if (args2.IsError) { return args2; } }
+			if (func2 == null) {
+				return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
+			}
+			var args2 = func2.Evaluate(work, tempParameter);
+			args2 = FunctionUtil.ConvertToNumber(args2, "Round", 2);
+			if (args2.IsError) { return args2; }
             return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

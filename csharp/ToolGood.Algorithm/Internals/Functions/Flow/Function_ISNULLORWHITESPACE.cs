@@ -13,7 +13,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         {
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsNull) { return Operand.True; }
-            if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IsNullOrWhiteSpace", 1); if (args1.IsError) { return args1; } }
+            args1 = FunctionUtil.ConvertToText(args1, "IsNullOrWhiteSpace", 1);
+			if (args1.IsError) { return args1; }
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

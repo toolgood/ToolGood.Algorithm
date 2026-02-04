@@ -29,6 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <param name="work"></param>
 		/// <param name="def"></param>
 		/// <param name="converter"></param>
+		/// <param name="resultConverter"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
 		private T TryEvaluate<T>(AlgorithmEngine work, T def, Func<Operand, Operand> converter, Func<Operand, T> resultConverter, Func<AlgorithmEngine, string, Operand> tempParameter = null)
