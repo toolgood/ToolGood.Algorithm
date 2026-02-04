@@ -11,7 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "BIN2DEC"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Evaluate(work, tempParameter);
+            args1 = FunctionUtil.ConvertToText(args1, "BIN2DEC", 1);
+            if (args1.IsError) { return args1; }
 
             if (RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return Operand.Error("Function '{0}' parameter is error!", "BIN2DEC"); }
             var num = Convert.ToInt32(args1.TextValue, 2);

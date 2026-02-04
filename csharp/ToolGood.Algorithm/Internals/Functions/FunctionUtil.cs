@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#region ConvertTo
 
 		/// <summary>
-		/// 验证并转换参数为文本
+		/// 转换参数为文本
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="functionName"></param>
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 验证并转换参数为布尔值
+		/// 转换参数为布尔值
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="functionName"></param>
@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 验证并转换参数为数字
+		/// 转换参数为数字
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="functionName"></param>
@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 验证并转换参数为数组
+		/// 转换参数为数组
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="functionName"></param>
@@ -60,7 +60,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 验证并转换参数为日期
+		/// 转换参数为日期
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="functionName"></param>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
@@ -16,7 +16,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			bool b = false;
 			foreach(var item in funcs) {
 				var a = item.Evaluate(work, tempParameter);
-				if(a.IsNotBoolean) { a = a.ToBoolean("Function '{0}' parameter {1} is error!", "OR", index++); if(a.IsError) { return a; } }
+				a = FunctionUtil.ConvertToBoolean(a, "OR", index++);
+				if(a.IsError) { return a; }
 				if(a.BooleanValue) b = true;
 			}
 			return b ? Operand.True : Operand.False;

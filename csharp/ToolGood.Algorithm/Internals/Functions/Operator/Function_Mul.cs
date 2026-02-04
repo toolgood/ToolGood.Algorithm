@@ -53,17 +53,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 				}
 			}
 			if(args1.IsDate) {
-				if(args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "*", 2); if(args2.IsError) { return args2; } }
+				args2 = FunctionUtil.ConvertToNumber(args2, "*", 2);
+				if(args2.IsError) { return args2; }
 				if(args2.NumberValue == 1) { return args1; }
 				return Operand.Create((MyDate)(args1.DateValue * args2.NumberValue));
 			} else if(args2.IsDate) {
-				if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1); if(args1.IsError) { return args1; } }
+				args1 = FunctionUtil.ConvertToNumber(args1, "*", 1);
+				if(args1.IsError) { return args1; }
 				if(args1.NumberValue == 1) { return args2; }
 				return Operand.Create((MyDate)(args2.DateValue * args1.NumberValue));
 			}
 
-			if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1); if(args1.IsError) { return args1; } }
-			if(args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "*", 2); if(args2.IsError) { return args2; } }
+			args1 = FunctionUtil.ConvertToNumber(args1, "*", 1);
+			if(args1.IsError) { return args1; }
+			args2 = FunctionUtil.ConvertToNumber(args2, "*", 2);
+			if(args2.IsError) { return args2; }
 
 			if(args1.NumberValue == 1m) { return args2; }
 			if(args2.NumberValue == 1m) { return args1; }

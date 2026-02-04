@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
@@ -16,12 +16,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 			if(args1.IsNull) {
 				if(args2.IsNull) return args1;
-				return args2.ToText("Function '{0}' parameter {1} is error!", "&", 2);
+				return FunctionUtil.ConvertToText(args2, "&", 2);
 			} else if(args2.IsNull) {
-				return args1.ToText("Function '{0}' parameter {1} is error!", "&", 1);
+				return FunctionUtil.ConvertToText(args1, "&", 1);
 			}
-			if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "&", 1); if(args1.IsError) { return args1; } }
-			if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "&", 2); if(args2.IsError) { return args2; } }
+			args1 = FunctionUtil.ConvertToText(args1, "&", 1);
+			if(args1.IsError) { return args1; }
+			args2 = FunctionUtil.ConvertToText(args2, "&", 2);
+			if(args2.IsError) { return args2; }
 
 			return Operand.Create(args1.TextValue + args2.TextValue);
 		}
