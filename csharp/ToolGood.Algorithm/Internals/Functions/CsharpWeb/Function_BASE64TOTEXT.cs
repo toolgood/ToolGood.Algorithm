@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 			args1 = FunctionUtil.ConvertToText(args1, "Base64ToText", 1);
 			if(args1.IsError) { return args1; }
 			try {
-				var t = Encoding.UTF8.GetString(Base64.FromBase64String(args1.TextValue));
+				var t = Encoding.UTF8.GetString(Convert.FromBase64String(args1.TextValue));
 				return Operand.Create(t);
 			} catch(Exception) { }
 			return Operand.Error("Function '{0}' is error!", "Base64ToText");

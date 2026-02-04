@@ -15,7 +15,12 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 			args1 = FunctionUtil.ConvertToText(args1, "Base64urlToText", 1);
 			if(args1.IsError) { return args1; }
 			try {
-				var t = Encoding.UTF8.GetString(Base64.FromBase64ForUrlString(args1.TextValue));
+				var base64Url = args1.TextValue.Replace('-', '+').Replace('_', '/');
+				var padding = 4 - (base64Url.Length % 4);
+				if (padding < 4) {
+					base64Url += new string('=', padding);
+				}
+				var t = Encoding.UTF8.GetString(Convert.FromBase64String(base64Url));
 				return Operand.Create(t);
 			} catch(Exception) { }
 			return Operand.Error("Function '{0}' is error!", "Base64urlToText");
