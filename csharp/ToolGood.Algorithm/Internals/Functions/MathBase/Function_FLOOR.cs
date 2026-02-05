@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args2.IsError) { return args2; }
             var b = args2.NumberValue;
             if (b >= 1) { return Operand.Create(args1.IntValue); }
-            if (b <= 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "Floor", 2); }
+            if (b <= 0) { return ParameterError(2); }
 
             var a = args1.NumberValue;
             var d = Math.Floor(a / b) * b;

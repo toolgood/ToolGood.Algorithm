@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var newtext = args1.TextValue;
 			var length = args2.IntValue;
 			if (length < 0) {
-				return Operand.Error("Function '{0}' parameter {1} is error!", "Rept", 2);
+				return ParameterError(2);
 			}
 			if (length == 0) {
 				return Operand.Create("");

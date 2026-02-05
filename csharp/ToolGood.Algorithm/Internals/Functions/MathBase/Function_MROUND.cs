@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			var args2 = GetNumber_2(work, tempParameter);
 			if (args2.IsError) { return args2; }
             var a = args2.NumberValue;
-            if (a <= 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "MRound", 2); }
+            if (a <= 0) { return ParameterError(2); }
 
             var b = args1.NumberValue;
             var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;

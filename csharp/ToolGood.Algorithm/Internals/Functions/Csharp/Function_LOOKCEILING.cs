@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			List<decimal> list = new List<decimal>();
 			FunctionUtil.F_base_GetList(args2, list);
-			if(list.Count == 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "LookCeiling", 2); }
+			if(list.Count == 0) { return ParameterError(2); }
 			list = list.OrderByDescending(n => n).ToList();
 			var value = args1.NumberValue;
 			var result = list[0];

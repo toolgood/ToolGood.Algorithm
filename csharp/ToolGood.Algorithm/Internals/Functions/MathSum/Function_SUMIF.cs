@@ -20,14 +20,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 1); }
+            if (o == false) { return ParameterError(1); }
 
             List<decimal> sumdbs;
             if (func3 != null) {
                 var args3 = GetArray_3(work, tempParameter); if (args3.IsError) { return args3; }
                 sumdbs = new List<decimal>();
                 var o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
-                if (o2 == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 3); }
+                if (o2 == false) { return ParameterError(3); }
             } else {
                 sumdbs = list;
             }
@@ -44,7 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                     if (m2 != null) {
                         sum = FunctionUtil.F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
                     } else {
-                        return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 2);
+                        return ParameterError(2);
                     }
                 }
             }

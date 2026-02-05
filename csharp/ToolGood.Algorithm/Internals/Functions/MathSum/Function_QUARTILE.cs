@@ -25,11 +25,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 1); }
+            if (o == false) { return ParameterError(1); }
 
             var quant = args2.IntValue;
             if (quant < 0 || quant > 4) {
-                return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 2);
+                return ParameterError(2);
             }
             return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
         }

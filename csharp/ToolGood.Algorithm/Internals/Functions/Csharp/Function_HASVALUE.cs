@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				}
 				return Operand.False;
 			}
-			return Operand.Error("Function '{0}' parameter {1} is error!", "HasValue", 1);
+			return ParameterError(1);
 		}
 
 	}

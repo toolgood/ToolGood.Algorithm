@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1); }
+            if (o == false) { return ParameterError(1); }
             var k = args2.DoubleValue;
             return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
         }

@@ -25,12 +25,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args1, list);
-			if(o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Large", 1); }
+			if(o == false) { return ParameterError(1); }
 
 			list = list.OrderByDescending(q => q).ToList();
 			int k = args2.IntValue;
 			if(k < 1 - work.ExcelIndex || k > list.Count - work.ExcelIndex) {
-				return Operand.Error("Function '{0}' parameter {1} is error!", "Large", 2);
+				return ParameterError(2);
 			}
 			return Operand.Create(list[k - work.ExcelIndex]);
 		}

@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function '{0}' parameter {1} is error!", "DEC2OCT", 2);
+                return ParameterError(2);
             }
             return Operand.Create(num);
         }

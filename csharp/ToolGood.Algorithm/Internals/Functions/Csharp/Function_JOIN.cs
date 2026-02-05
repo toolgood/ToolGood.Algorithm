@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args1.IsArray) {
 				var list = new List<string>();
 				var o = FunctionUtil.F_base_GetList(args1, list);
-				if(o == false) return Operand.Error("Function '{0}' parameter {1} is error!", "Join", 1);
+				if(o == false) return ParameterError(1);
 
 				var args2 = ConvertToText(args[1], 2);
 				if(args2.IsError) { return args2; }
@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				var list = new List<string>();
 				for(int i = 1; i < args.Count; i++) {
 					var o = FunctionUtil.F_base_GetList(args[i], list);
-					if(o == false) return Operand.Error("Function '{0}' parameter {1} is error!", "Join", i + 1);
+					if(o == false) return ParameterError(i + 1);
 				}
 				return Operand.Create(string.Join(args1.TextValue, list));
 			}

@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetText_1(work, tempParameter);
             if (args1.IsError) { return args1; }
-            if (RegexHelper.HexRegex.IsMatch(args1.TextValue) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "HEX2OCT", 1); }
+            if (RegexHelper.HexRegex.IsMatch(args1.TextValue) == false) { return ParameterError(1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 8);
             if (func2 != null) {
                 var args2 = GetNumber_2(work, tempParameter);
@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function '{0}' parameter {1} is error!", "HEX2OCT", 2);
+                return ParameterError(2);
             }
             return Operand.Create(num);
         }

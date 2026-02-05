@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "CountIf", 1); }
+            if (o == false) { return ParameterError(1); }
             int count;
             if (args2.IsNumber) {
                 count = FunctionUtil.F_base_countif(list, args2.NumberValue);
@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                     if (m2 != null) {
                         count = FunctionUtil.F_base_countif(list, m2.Item1, m2.Item2);
                     } else {
-                        return Operand.Error("Function '{0}' parameter {1} is error!", "CountIf", 2);
+                        return ParameterError(2);
                     }
                 }
             }
