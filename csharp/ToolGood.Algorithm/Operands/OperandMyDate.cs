@@ -11,7 +11,6 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsDate => true;
-		public override bool IsNotDate => false;
 		public override OperandType Type => OperandType.DATE;
 		public override MyDate DateValue => _value;
 

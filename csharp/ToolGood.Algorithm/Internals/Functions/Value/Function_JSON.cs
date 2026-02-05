@@ -17,16 +17,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			if (args1.IsError) { return args1; }
-			if (args1.IsJson) { return args1; }
-			if (args1.IsArrayJson) { args1 = args1.ToText(); }
-			if (args1.IsNotText) { return FunctionError(); }
+			if(args1.IsError) { return args1; }
+			if(args1.IsJson) { return args1; }
+			if(args1.IsArrayJson) { args1 = args1.ToText(); }
+			if(args1.IsText == false) { return FunctionError(); }
 			var txt = args1.TextValue;
-			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+			if((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch (Exception) { }
+				} catch(Exception) { }
 			}
 			return FunctionError();
 		}

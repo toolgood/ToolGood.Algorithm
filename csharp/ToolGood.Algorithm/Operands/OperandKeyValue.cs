@@ -11,7 +11,6 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsArrayJson => true;
-		public override bool IsNotArrayJson => false;
 		public override OperandType Type => OperandType.ARRARYJSON;
 		public KeyValue Value => _value;
 	}

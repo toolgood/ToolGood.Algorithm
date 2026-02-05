@@ -42,74 +42,37 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		public virtual bool IsNull => false;
 		/// <summary>
-		/// 是否为非空值
-		/// </summary>
-		public virtual bool IsNotNull => true;
-
-		/// <summary>
 		/// 是否数字
 		/// </summary>
 		public virtual bool IsNumber => false;
-		/// <summary>
-		/// 是否非数字
-		/// </summary>
-		public virtual bool IsNotNumber => true;
-
 		/// <summary>
 		/// 是否字符串
 		/// </summary>
 		public virtual bool IsText => false;
 		/// <summary>
-		/// 是否非字符串
-		/// </summary>
-		public virtual bool IsNotText => true;
-
-		/// <summary>
 		/// 是否布尔值
 		/// </summary>
 		public virtual bool IsBoolean => false;
-		/// <summary>
-		/// 是否非布尔值
-		/// </summary>
-		public virtual bool IsNotBoolean => true;
 		/// <summary>
 		/// 是否数组
 		/// </summary>
 		public virtual bool IsArray => false;
 		/// <summary>
-		/// 是否非数组
-		/// </summary>
-		public virtual bool IsNotArray => true;
-		/// <summary>
 		/// 是否日期
 		/// </summary>
 		public virtual bool IsDate => false;
-		/// <summary>
-		/// 是否非日期
-		/// </summary>
-		public virtual bool IsNotDate => true;
 		/// <summary>
 		/// 是否Json对象
 		/// </summary>
 		public virtual bool IsJson => false;
 		/// <summary>
-		/// 是否非Json对象
-		/// </summary>
-		public virtual bool IsNotJson => true;
-		/// <summary>
 		/// 是否Json数组
 		/// </summary>
 		public virtual bool IsArrayJson => false;
 		/// <summary>
-		/// 是否非Json数组
-		/// </summary>
-		public virtual bool IsNotArrayJson => true;
-
-		/// <summary>
 		/// 是否出错
 		/// </summary>
 		public virtual bool IsError => false;
-
 		/// <summary>
 		/// 错误信息
 		/// </summary>

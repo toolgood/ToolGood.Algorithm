@@ -12,7 +12,6 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsJson => true;
-		public override bool IsNotJson => false;
 		public override OperandType Type => OperandType.JSON;
 		internal override JsonData JsonValue => _value;
 

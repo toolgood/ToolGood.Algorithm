@@ -10,7 +10,6 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsBoolean => true;
-		public override bool IsNotBoolean => false;
 		public override OperandType Type => OperandType.BOOLEAN;
 		public override bool BooleanValue => _value;
 

@@ -17,7 +17,6 @@ namespace ToolGood.Algorithm
 		}
 
 		public override bool IsText => true;
-		public override bool IsNotText => false;
 		public override OperandType Type => OperandType.TEXT;
 		public override string TextValue => _value;
 

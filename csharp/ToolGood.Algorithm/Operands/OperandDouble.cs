@@ -12,7 +12,6 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsNumber => true;
-		public override bool IsNotNumber => false;
 		public override OperandType Type => OperandType.NUMBER;
 		public override int IntValue => (int)_value;
 		public override decimal NumberValue => (decimal)_value;

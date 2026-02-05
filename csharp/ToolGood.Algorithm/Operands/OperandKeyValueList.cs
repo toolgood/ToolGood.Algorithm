@@ -17,7 +17,6 @@ namespace ToolGood.Algorithm
 		}
 
 		public override bool IsArrayJson => true;
-		public override bool IsNotArrayJson => false;
 		public override OperandType Type => OperandType.ARRARYJSON;
 		public override List<Operand> ArrayValue => _keyValueList.Select(q => q.Value).ToList();
 
