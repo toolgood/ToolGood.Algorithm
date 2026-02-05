@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				var t = GetSha512String(Encoding.UTF8.GetBytes(args1.TextValue));
 				return Operand.Create(t);
 			} catch(Exception) {
-				return Operand.Error("Function '{0}' is error!", "SHA512");
+				return FunctionError();
 			}
 		}
 

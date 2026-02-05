@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             var d = Math.Sin(args1.DoubleValue);
             if (d == 0) {
-                return Operand.Error("Function '{0}' div 0 error!", "Csc");
+                return Div0Error();
             }
             return Operand.Create(1.0 / d);
         }

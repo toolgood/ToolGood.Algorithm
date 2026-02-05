@@ -53,7 +53,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                 }
             }
             if (count == 0) {
-                return Operand.Error("Function '{0}' div 0 error!", "AverageIf");
+                return Div0Error();
             }
             return Operand.Create(sum / count);
         }

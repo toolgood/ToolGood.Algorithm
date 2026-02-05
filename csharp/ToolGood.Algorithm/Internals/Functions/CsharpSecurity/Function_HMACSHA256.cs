@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				var t = GetHmacSha256String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);
 				return Operand.Create(t);
 			} catch(Exception) {
-				return Operand.Error("Function '{0}' is error!", "HmacSHA256");
+				return FunctionError();
 			}
 		}
 

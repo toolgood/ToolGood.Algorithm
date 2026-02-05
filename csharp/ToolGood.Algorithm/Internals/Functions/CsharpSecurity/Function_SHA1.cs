@@ -19,8 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 			try {
 				var t = GetSha1String(Encoding.UTF8.GetBytes(args1.TextValue));
 				return Operand.Create(t);
-			} catch(Exception ex) {
-				return Operand.Error("Function '{0}' is error!", "SHA1", ex.Message);
+			} catch(Exception) {
+				return FunctionError();
 			}
 		}
 

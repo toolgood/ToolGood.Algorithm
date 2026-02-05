@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			var b = Regex.Match(args1.TextValue, args2.TextValue);
 			if(b.Success == false) {
-				return Operand.Error("Function '{0}' is error!", "Regex");
+				return FunctionError();
 			}
 			return Operand.Create(b.Value);
 		}

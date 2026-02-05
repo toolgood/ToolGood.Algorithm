@@ -104,15 +104,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#endregion
 		#region ParameterError FunctionError ParameterNull
 		/// <summary>
-		/// Creates an error operand indicating that a function parameter is null.
-		/// </summary>
-		/// <param name="paramIndex">The zero-based index of the parameter that is null.</param>
-		/// <returns>An operand representing an error for a null parameter at the specified index.</returns>
-		protected Operand ParameterNull(int paramIndex)
-		{
-			return Operand.Error("Function '{0}' parameter {1} is NULL!", Name, paramIndex);
-		}
-		/// <summary>
 		/// Creates an error operand indicating that a specific function parameter is invalid.
 		/// </summary>
 		/// <param name="paramIndex">The zero-based index of the parameter that caused the error.</param>
@@ -130,7 +121,23 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return Operand.Error("Function '{0}' parameter is error!", Name);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 
+		protected Operand CompareError()
+		{
+			return Operand.Error("Function '{0}' compare is error.", Name);
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		protected Operand Div0Error()
+		{
+			return Operand.Error("Function '{0}' Div 0 error!", Name);
+		}
 		#endregion
 	}
 }

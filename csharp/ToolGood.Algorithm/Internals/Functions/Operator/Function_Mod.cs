@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			var args1 = GetNumber_1(work, tempParameter); if(args1.IsError) { return args1; }
 			var args2 = GetNumber_2(work, tempParameter); if(args2.IsError) { return args2; }
 	 
-			if(args2.NumberValue == 0m) { return Operand.Error("Function '{0}' Div 0 is error!", "%"); }
+			if(args2.NumberValue == 0m) { return Div0Error(); }
 
 			return Operand.Create(args1.NumberValue % args2.NumberValue);
 		}

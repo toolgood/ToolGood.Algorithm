@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				var t = Encoding.UTF8.GetString(Convert.FromBase64String(args1.TextValue));
 				return Operand.Create(t);
 			} catch(Exception) {
-				return Operand.Error("Function '{0}' is error!", "Base64ToText");
+				return FunctionError();
 			}
 		}
 

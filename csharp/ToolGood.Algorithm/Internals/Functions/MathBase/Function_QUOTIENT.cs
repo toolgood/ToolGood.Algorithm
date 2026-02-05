@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args2.IsError) { return args2; }
 
             if (args2.NumberValue == 0) {
-                return Operand.Error("Function '{0}' div 0 error!", "Quotient");
+                return Div0Error();
             }
             return Operand.Create((int)(args1.NumberValue / args2.NumberValue));
         }

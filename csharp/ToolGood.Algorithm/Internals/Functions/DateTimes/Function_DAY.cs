@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var args1 = GetDate_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
             if (args1.DateValue.Day == null) {
-                return Operand.Error("Function '{0}' is error!", "Day");
+                return FunctionError();
             }
             return Operand.Create(args1.DateValue.Day.Value);
         }

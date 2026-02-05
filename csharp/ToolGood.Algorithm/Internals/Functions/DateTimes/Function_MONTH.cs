@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var args1 = GetDate_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
             if (args1.DateValue.Month == null) {
-                return Operand.Error("Function '{0}' is error!", "Month");
+                return FunctionError();
             }
             return Operand.Create((int)args1.DateValue.Month.Value);
         }
