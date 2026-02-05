@@ -1,27 +1,19 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	internal abstract class Function_4 : FunctionBase
+	internal abstract class Function_4 : Function_3
 	{
-		protected FunctionBase func1;
-		protected FunctionBase func2;
-		protected FunctionBase func3;
 		protected FunctionBase func4;
 
-		protected Function_4(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4)
+		protected Function_4(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4):base(func1, func2, func3)
 		{
-			this.func1 = func1;
-			this.func2 = func2;
-			this.func3 = func3;
 			this.func4 = func4;
 		}
 
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, Name);
-		}
-		protected void AddFunction(StringBuilder stringBuilder, string functionName)
+	 
+		protected override void AddFunction(StringBuilder stringBuilder, string functionName)
 		{
 			stringBuilder.Append(functionName);
 			stringBuilder.Append('(');
@@ -40,6 +32,43 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			stringBuilder.Append(')');
 		}
+
+
+		#region Get_4
+		protected Operand GetText_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args4 = func4.Evaluate(work, tempParameter);
+			if(args4.IsNotText) return FunctionUtil.ConvertToText(args4, Name, 4);
+			return args4;
+		}
+
+		protected Operand GetNumber_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args4 = func4.Evaluate(work, tempParameter);
+			if(args4.IsNotNumber) return FunctionUtil.ConvertToNumber(args4, Name, 4);
+			return args4;
+		}
+
+		protected Operand GetDate_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args4 = func4.Evaluate(work, tempParameter);
+			if(args4.IsNotDate) return FunctionUtil.ConvertToDate(args4, Name, 4);
+			return args4;
+		}
+
+		protected Operand GetBoolean_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args4 = func4.Evaluate(work, tempParameter);
+			if(args4.IsNotBoolean) return FunctionUtil.ConvertToBoolean(args4, Name, 4);
+			return args4;
+		}
+		protected Operand GetArray_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args4 = func4.Evaluate(work, tempParameter);
+			if(args4.IsNotArray) return FunctionUtil.ConvertToArray(args4, Name, 4);
+			return args4;
+		}
+		#endregion
 	}
 
 

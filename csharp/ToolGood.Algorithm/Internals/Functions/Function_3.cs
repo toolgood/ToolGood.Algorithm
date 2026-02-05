@@ -1,26 +1,18 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	internal abstract class Function_3 : FunctionBase
+	internal abstract class Function_3 : Function_2
 	{
-		protected FunctionBase func1;
-		protected FunctionBase func2;
 		protected FunctionBase func3;
 
-		protected Function_3(FunctionBase func1, FunctionBase func2, FunctionBase func3)
+		protected Function_3(FunctionBase func1, FunctionBase func2, FunctionBase func3):base(func1, func2)
 		{
-			this.func1 = func1;
-			this.func2 = func2;
 			this.func3 = func3;
 		}
-
-
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, Name);
-		}
-		protected void AddFunction(StringBuilder stringBuilder, string functionName)
+ 
+		protected override void AddFunction(StringBuilder stringBuilder, string functionName)
 		{
 			stringBuilder.Append(functionName);
 			stringBuilder.Append('(');
@@ -35,6 +27,44 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			stringBuilder.Append(')');
 		}
+
+
+		#region Get_3
+		protected Operand GetText_3(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args3 = func3.Evaluate(work, tempParameter);
+			if(args3.IsNotText) return FunctionUtil.ConvertToText(args3, Name, 3);
+			return args3;
+		}
+
+		protected Operand GetNumber_3(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args3 = func3.Evaluate(work, tempParameter);
+			if(args3.IsNotNumber) return FunctionUtil.ConvertToNumber(args3, Name, 3);
+			return args3;
+		}
+
+		protected Operand GetDate_3(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args3 = func3.Evaluate(work, tempParameter);
+			if(args3.IsNotDate) return FunctionUtil.ConvertToDate(args3, Name, 3);
+			return args3;
+		}
+
+		protected Operand GetBoolean_3(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args3 = func3.Evaluate(work, tempParameter);
+			if(args3.IsNotBoolean) return FunctionUtil.ConvertToBoolean(args3, Name, 3);
+			return args3;
+		}
+		protected Operand GetArray_3(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args3 = func3.Evaluate(work, tempParameter);
+			if(args3.IsNotArray) return FunctionUtil.ConvertToArray(args3, Name, 3);
+			return args3;
+		}
+		#endregion
+
 	}
 
 
