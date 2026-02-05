@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			stringBuilder.Append(functionName);
 			stringBuilder.Append('(');
-			func2.ToString(stringBuilder, false);
+			func1.ToString(stringBuilder, false);
 			if(func2 != null) {
 				stringBuilder.Append(", ");
 				func2.ToString(stringBuilder, false);
