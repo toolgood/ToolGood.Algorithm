@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		protected Function_4(FunctionBase[] funcs) : base(funcs)
 		{
-			if(funcs.Length>=4) {
+			if(funcs.Length >= 4) {
 				this.func4 = funcs[3];
 			}
 		}
@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			stringBuilder.Append(functionName);
 			stringBuilder.Append('(');
-			func4.ToString(stringBuilder, false);
+			func1.ToString(stringBuilder, false);
 			if(func2 != null) {
 				stringBuilder.Append(", ");
 				func2.ToString(stringBuilder, false);
