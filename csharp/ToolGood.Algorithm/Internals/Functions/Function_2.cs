@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 	{
 		protected FunctionBase func2;
 
-		public Function_2(FunctionBase func1, FunctionBase func2):base(func1)
+		public Function_2(FunctionBase func1, FunctionBase func2) : base(func1)
 		{
 			this.func2 = func2;
 		}
@@ -36,35 +36,35 @@ namespace ToolGood.Algorithm.Internals.Functions
 		protected Operand GetText_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotText) return ConvertToText(args2, 2);
-			return args2;
+			if(args2.IsText) return args2;
+			return ConvertToText(args2, 2);
 		}
 
 		protected Operand GetNumber_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotNumber) return ConvertToNumber(args2, 2);
-			return args2;
+			if(args2.IsNumber) return args2;
+			return ConvertToNumber(args2, 2);
 		}
 
 		protected Operand GetDate_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotDate) return ConvertToDate(args2, 2);
-			return args2;
+			if(args2.IsDate) return args2;
+			return ConvertToDate(args2, 2);
 		}
 
 		protected Operand GetBoolean_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotBoolean) return ConvertToBoolean(args2, 2);
-			return args2;
+			if(args2.IsBoolean) return args2;
+			return ConvertToBoolean(args2, 2);
 		}
 		protected Operand GetArray_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotArray) return ConvertToArray(args2, 2);
-			return args2;
+			if(args2.IsArray) return args2;
+			return ConvertToArray(args2, 2);
 		}
 		#endregion
 

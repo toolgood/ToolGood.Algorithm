@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			stringBuilder.Append(functionName);
 			stringBuilder.Append('(');
-			func1.ToString(stringBuilder, false);
+			func4.ToString(stringBuilder, false);
 			if(func2 != null) {
 				stringBuilder.Append(", ");
 				func2.ToString(stringBuilder, false);
@@ -34,40 +34,39 @@ namespace ToolGood.Algorithm.Internals.Functions
 			stringBuilder.Append(')');
 		}
 
-
 		#region Get_4
 		protected Operand GetText_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args4 = func4.Evaluate(work, tempParameter);
-			if(args4.IsNotText) return ConvertToText(args4, 4);
-			return args4;
+			if(args4.IsText) return args4;
+			return ConvertToText(args4, 4);
 		}
 
 		protected Operand GetNumber_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args4 = func4.Evaluate(work, tempParameter);
-			if(args4.IsNotNumber) return ConvertToNumber(args4, 4);
-			return args4;
+			if(args4.IsNumber) return args4;
+			return ConvertToNumber(args4, 4);
 		}
 
 		protected Operand GetDate_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args4 = func4.Evaluate(work, tempParameter);
-			if(args4.IsNotDate) return ConvertToDate(args4, 4);
-			return args4;
+			if(args4.IsDate) return args4;
+			return ConvertToDate(args4, 4);
 		}
 
 		protected Operand GetBoolean_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args4 = func4.Evaluate(work, tempParameter);
-			if(args4.IsNotBoolean) return ConvertToBoolean(args4, 4);
-			return args4;
+			if(args4.IsBoolean) return args4;
+			return ConvertToBoolean(args4, 4);
 		}
 		protected Operand GetArray_4(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args4 = func4.Evaluate(work, tempParameter);
-			if(args4.IsNotArray) return ConvertToArray(args4, 4);
-			return args4;
+			if(args4.IsArray) return args4;
+			return ConvertToArray(args4, 4);
 		}
 		#endregion
 	}
