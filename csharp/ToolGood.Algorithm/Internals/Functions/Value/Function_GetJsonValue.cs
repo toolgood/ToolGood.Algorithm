@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			var op = func2.Evaluate(work, tempParameter); if (op.IsError) { return op; }
 
 			if (obj.IsArray) {
-				op = FunctionUtil.ConvertToNumber(op, "GetJsonValue", 2);
+				op = ConvertToNumber(op, "GetJsonValue", 2);
 				if (op.IsError) { return op; }
 				var index = op.IntValue - work.ExcelIndex;
 				if (index < obj.ArrayValue.Count)
@@ -42,7 +42,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			if (obj.IsJson) {
 				var json = obj.JsonValue;
 				if (json.IsArray) {
-					op = FunctionUtil.ConvertToNumber(op, "GetJsonValue", 2);
+					op = ConvertToNumber(op, "GetJsonValue", 2);
 					if (op.IsError) { return op; }
 					var index = op.IntValue - work.ExcelIndex;
 					if (index < json.Count) {
@@ -57,7 +57,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					}
 					return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
 				} else {
-					op = FunctionUtil.ConvertToText(op, "GetJsonValue", 2);
+					op = ConvertToText(op, "GetJsonValue", 2);
 					if (op.IsError) { return op; }
 					var v = json[op.TextValue];
 					if (v != null) {

@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "Base64ToText", 1);
+			args1 = ConvertToText(args1, "Base64ToText", 1);
 			if(args1.IsError) { return args1; }
 			try {
 				var t = Encoding.UTF8.GetString(Convert.FromBase64String(args1.TextValue));

@@ -14,17 +14,17 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "Find", 1);
+			args1 = ConvertToText(args1, "Find", 1);
 			if (args1.IsError) { return args1; }
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToText(args2, "Find", 2);
+			args2 = ConvertToText(args2, "Find", 2);
 			if (args2.IsError) { return args2; }
 			if (func3 == null) {
 				var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + work.ExcelIndex;
 				return Operand.Create(p);
 			}
 			var count = func3.Evaluate(work, tempParameter);
-			count = FunctionUtil.ConvertToNumber(count, "Find", 3);
+			count = ConvertToNumber(count, "Find", 3);
 			if (count.IsError) { return count; }
 			var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + work.ExcelIndex;
 			return Operand.Create(p2);

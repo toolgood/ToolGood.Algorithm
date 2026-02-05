@@ -17,19 +17,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var num = 2;
 			if (func2 != null) {
 				var args2 = func2.Evaluate(work, tempParameter);
-				args2 = FunctionUtil.ConvertToNumber(args2, "Fixed", 2);
+				args2 = ConvertToNumber(args2, "Fixed", 2);
 				if (args2.IsError) { return args2; }
 				num = args2.IntValue;
 			}
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToNumber(args1, "Fixed", 1);
+			args1 = ConvertToNumber(args1, "Fixed", 1);
 			if (args1.IsError) { return args1; }
 
 			var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
 			var no = false;
 			if (func3 != null) {
 				var args3 = func3.Evaluate(work, tempParameter);
-				args3 = FunctionUtil.ConvertToBoolean(args3, "Fixed", 3);
+				args3 = ConvertToBoolean(args3, "Fixed", 3);
 				if (args3.IsError) { return args3; }
 				no = args3.BooleanValue;
 			}

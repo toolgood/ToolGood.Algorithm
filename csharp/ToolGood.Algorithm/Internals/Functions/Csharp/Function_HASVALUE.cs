@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args1.IsError) { return args1; }
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToText(args2, "HasValue", 2);
+			args2 = ConvertToText(args2, "HasValue", 2);
 			if(args2.IsError) { return args2; }
 
 			if(args1.IsArrayJson) {

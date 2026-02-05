@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "SHA512", 1);
+			args1 = ConvertToText(args1, "SHA512", 1);
 			if(args1.IsError) { return args1; }
 			try {
 				var t = GetSha512String(Encoding.UTF8.GetBytes(args1.TextValue));

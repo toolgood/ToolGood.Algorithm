@@ -18,14 +18,14 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			if (funcs.Length == 1) {
 				var a = funcs[0].Evaluate(work, tempParameter);
-				a = FunctionUtil.ConvertToText(a, "Concatenate", 1);
+				a = ConvertToText(a, "Concatenate", 1);
 				if (a.IsError) { return a; }
 				return a; // 只有一个
 			}
 			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {
 				var a = funcs[i].Evaluate(work, tempParameter);
-				a = FunctionUtil.ConvertToText(a, "Concatenate", i + 1);
+				a = ConvertToText(a, "Concatenate", i + 1);
 				if (a.IsError) { return a; }
 				sb.Append(a.TextValue);
 			}

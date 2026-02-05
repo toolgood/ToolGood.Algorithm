@@ -14,13 +14,13 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "Mid", 1);
+			args1 = ConvertToText(args1, "Mid", 1);
 			if (args1.IsError) { return args1; }
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToNumber(args2, "Mid", 2);
+			args2 = ConvertToNumber(args2, "Mid", 2);
 			if (args2.IsError) { return args2; }
 			var args3 = func3.Evaluate(work, tempParameter);
-			args3 = FunctionUtil.ConvertToNumber(args3, "Mid", 3);
+			args3 = ConvertToNumber(args3, "Mid", 3);
 			if (args3.IsError) { return args3; }
 			return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
 		}

@@ -19,14 +19,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
 			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToBoolean(args1, "AND", 1);
+			args1 = ConvertToBoolean(args1, "AND", 1);
 			if (args1.IsError) { return args1; }
 			if(args1.BooleanValue == false) {
-				var args2 = FunctionUtil.ConvertToBoolean(func2.Evaluate(work, tempParameter), "AND", 2);
+				var args2 = ConvertToBoolean(func2.Evaluate(work, tempParameter), "AND", 2);
 				if(args2.IsError) { return args2; }
 				return Operand.False;
 			}
-			return FunctionUtil.ConvertToBoolean(func2.Evaluate(work, tempParameter), "AND", 2);
+			return ConvertToBoolean(func2.Evaluate(work, tempParameter), "AND", 2);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{

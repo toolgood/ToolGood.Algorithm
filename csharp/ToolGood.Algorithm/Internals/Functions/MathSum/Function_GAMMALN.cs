@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-            args1 = FunctionUtil.ConvertToNumber(args1, "GammaLn", 1);
+            args1 = ConvertToNumber(args1, "GammaLn", 1);
             if (args1.IsError) { return args1; }
             return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
         }

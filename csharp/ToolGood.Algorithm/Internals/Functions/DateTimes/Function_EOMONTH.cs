@@ -14,11 +14,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToDate(args1, "EoMonth", 1);
+			args1 = ConvertToDate(args1, "EoMonth", 1);
 			if (args1.IsError) { return args1; }
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToNumber(args2, "EoMonth", 2);
+			args2 = ConvertToNumber(args2, "EoMonth", 2);
 			if (args2.IsError) { return args2; }
             var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);

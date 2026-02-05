@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			bool b = true;
 			foreach(var item in funcs) {
 				var a = item.Evaluate(work, tempParameter);
-				a = FunctionUtil.ConvertToBoolean(a, "AND", index++);
+				a = ConvertToBoolean(a, "AND", index++);
 				if(a.IsError) { return a; }
 				if(a.BooleanValue == false) b = false;
 			}

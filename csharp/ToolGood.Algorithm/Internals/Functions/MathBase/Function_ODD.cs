@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToNumber(args1, "Odd", 1);
+			args1 = ConvertToNumber(args1, "Odd", 1);
 			if (args1.IsError) { return args1; }
             var z = args1.NumberValue;
             if (z % 2 == 1) { return args1; }

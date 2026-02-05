@@ -15,15 +15,15 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToDate(args1, "DateDif", 1);
+			args1 = ConvertToDate(args1, "DateDif", 1);
 			if (args1.IsError) { return args1; }
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToDate(args2, "DateDif", 2);
+			args2 = ConvertToDate(args2, "DateDif", 2);
 			if (args2.IsError) { return args2; }
 
 			var args3 = func3.Evaluate(work, tempParameter);
-			args3 = FunctionUtil.ConvertToText(args3, "DateDif", 3);
+			args3 = ConvertToText(args3, "DateDif", 3);
 			if (args3.IsError) { return args3; }
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;

@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "Regex", 1);
+			args1 = ConvertToText(args1, "Regex", 1);
 			if(args1.IsError) { return args1; }
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToText(args2, "Regex", 2);
+			args2 = ConvertToText(args2, "Regex", 2);
 			if(args2.IsError) { return args2; }
 
 			var b = Regex.Match(args1.TextValue, args2.TextValue);

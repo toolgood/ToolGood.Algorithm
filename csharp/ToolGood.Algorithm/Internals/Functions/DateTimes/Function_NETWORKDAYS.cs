@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = funcs[0].Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToDate(args1, "NetWorkdays", 1);
+			args1 = ConvertToDate(args1, "NetWorkdays", 1);
 			if (args1.IsError) { return args1; }
 
 			var args2 = funcs[1].Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToDate(args2, "NetWorkdays", 2);
+			args2 = ConvertToDate(args2, "NetWorkdays", 2);
 			if (args2.IsError) { return args2; }
 
 			var startMyDate = (DateTime)args1.DateValue;
@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var list = new HashSet<DateTime>();
 			for (int i = 2; i < funcs.Length; i++) {
 				var ar = funcs[i].Evaluate(work, tempParameter);
-				ar = FunctionUtil.ConvertToDate(ar, "NetWorkdays", i + 1);
+				ar = ConvertToDate(ar, "NetWorkdays", i + 1);
 				if (ar.IsError) { return ar; }
 				list.Add(ar.DateValue);
 			}

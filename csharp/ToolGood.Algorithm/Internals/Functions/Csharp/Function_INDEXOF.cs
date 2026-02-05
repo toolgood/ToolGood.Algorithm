@@ -14,11 +14,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "IndexOf", 1);
+			args1 = ConvertToText(args1, "IndexOf", 1);
 			if(args1.IsError) { return args1; }
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToText(args2, "IndexOf", 2);
+			args2 = ConvertToText(args2, "IndexOf", 2);
 			if(args2.IsError) { return args2; }
 
 			var text = args1.TextValue;
@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 
 			var args3 = func3.Evaluate(work, tempParameter);
-			args3 = FunctionUtil.ConvertToNumber(args3, "IndexOf", 3);
+			args3 = ConvertToNumber(args3, "IndexOf", 3);
 			if(args3.IsError) { return args3; }
 
 			if(func4 == null) {
@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 
 			var args4 = func4.Evaluate(work, tempParameter);
-			args4 = FunctionUtil.ConvertToNumber(args4, "IndexOf", 4);
+			args4 = ConvertToNumber(args4, "IndexOf", 4);
 			if(args4.IsError) { return args4; }
 
 			return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);

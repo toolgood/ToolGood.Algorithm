@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-            args1 = FunctionUtil.ConvertToNumber(args1, "NormSInv", 1);
+            args1 = ConvertToNumber(args1, "NormSInv", 1);
             if (args1.IsError) return args1;
             var p = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSInv((double)p));

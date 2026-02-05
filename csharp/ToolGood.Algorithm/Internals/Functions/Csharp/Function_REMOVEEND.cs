@@ -14,17 +14,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToText(args1, "RemoveEnd", 1);
+			args1 = ConvertToText(args1, "RemoveEnd", 1);
 			if(args1.IsError) { return args1; }
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToText(args2, "RemoveEnd", 2);
+			args2 = ConvertToText(args2, "RemoveEnd", 2);
 			if(args2.IsError) { return args2; }
 
 			var comparison = StringComparison.Ordinal;
 			if(func3 != null) {
 				var args3 = func3.Evaluate(work, tempParameter);
-				args3 = FunctionUtil.ConvertToBoolean(args3, "RemoveEnd", 3);
+				args3 = ConvertToBoolean(args3, "RemoveEnd", 3);
 				if(args3.IsError) { return args3; }
 				comparison = FunctionUtil.GetStringComparison(args3.BooleanValue);
 			}

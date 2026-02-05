@@ -14,14 +14,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToNumber(args1, "Log", 1);
+			args1 = ConvertToNumber(args1, "Log", 1);
 			if (args1.IsError) { return args1; }
 
 			if (func2 == null)
 				return Operand.Create(Math.Log10(args1.DoubleValue));
 
 			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = FunctionUtil.ConvertToNumber(args2, "Log", 2);
+			args2 = ConvertToNumber(args2, "Log", 2);
 			if (args2.IsError) { return args2; }
 			return Operand.Create(Math.Log(args1.DoubleValue, args2.DoubleValue));
         }

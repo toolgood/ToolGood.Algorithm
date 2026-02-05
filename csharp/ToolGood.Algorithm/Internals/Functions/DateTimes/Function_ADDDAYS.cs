@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-            args1 = FunctionUtil.ConvertToDate(args1, "AddDays", 1);
+            args1 = ConvertToDate(args1, "AddDays", 1);
             if (args1.IsError) { return args1; }
 
             var args2 = func2.Evaluate(work, tempParameter);
-            args2 = FunctionUtil.ConvertToNumber(args2, "AddDays", 2);
+            args2 = ConvertToNumber(args2, "AddDays", 2);
             if (args2.IsError) { return args2; }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddDays(args2.DoubleValue)));
         }

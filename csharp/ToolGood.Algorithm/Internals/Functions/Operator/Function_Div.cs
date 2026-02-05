@@ -43,12 +43,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 					return Operand.Error("Function '{0}' Two types cannot be divided!", "/");
 				}
 			}
-			args2 = FunctionUtil.ConvertToNumber(args2, "/", 2);
+			args2 = ConvertToNumber(args2, "/", 2);
 			if(args2.IsError) { return args2; }
 			if(args2.NumberValue == 0) { return Operand.Error("Function '{0}' div 0 is error!", "/"); }
 			if(args2.NumberValue == 1) { return args1; }
 
-			args1 = FunctionUtil.ConvertToNumber(args1, "/", 1);
+			args1 = ConvertToNumber(args1, "/", 1);
 			if(args1.IsError) { return args1; }
 			return Operand.Create(args1.NumberValue / args2.NumberValue);
 		}

@@ -14,14 +14,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-            args1 = FunctionUtil.ConvertToText(args1, "BIN2OCT", 1);
+            args1 = ConvertToText(args1, "BIN2OCT", 1);
             if (args1.IsError) { return args1; }
 
             if (RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "BIN2OCT", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
             if (func2 != null) {
                 var args2 = func2.Evaluate(work, tempParameter);
-                args2 = FunctionUtil.ConvertToNumber(args2, "BIN2OCT", 2);
+                args2 = ConvertToNumber(args2, "BIN2OCT", 2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));

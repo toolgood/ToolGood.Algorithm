@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);
-			args1 = FunctionUtil.ConvertToDate(args1, "WeekNum", 1);
+			args1 = ConvertToDate(args1, "WeekNum", 1);
 			if (args1.IsError) { return args1; }
 
 			var startMyDate = (DateTime)args1.DateValue;
@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
 			if (func2 != null) {
 				var args2 = func2.Evaluate(work, tempParameter);
-				args2 = FunctionUtil.ConvertToNumber(args2, "WeekNum", 2);
+				args2 = ConvertToNumber(args2, "WeekNum", 2);
 				if (args2.IsError) { return args2; }
 				if (args2.IntValue == 2) {
 					days--;
