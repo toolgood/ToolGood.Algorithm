@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args = new List<Operand>();
+			var args = new List<Operand>(funcs.Length);
 			foreach(var item in funcs) { var aa = item.Evaluate(work, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
 			if(args[0].IsDate) { return args[0]; }
 			int type = 0;

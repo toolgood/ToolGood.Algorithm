@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args = new List<Operand>();
+			var args = new List<Operand>(funcs.Length);
 			foreach(var item in funcs) { var aa = item.Evaluate(work, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
 			var args1 = args[0];
 			if(args1.IsJson) {

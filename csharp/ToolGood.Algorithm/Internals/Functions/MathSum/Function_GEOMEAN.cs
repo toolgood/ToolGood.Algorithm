@@ -14,14 +14,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(); 
-            for (int i = 0; i < funcs.Length; i++) { 
-                var aa = GetNumber(work, tempParameter, i);
-                if (aa.IsError) { return aa; } 
-                args.Add(aa); 
-            }
+			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(work, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
 
-            var list = new List<double>();
+
+			var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return FunctionError(); }

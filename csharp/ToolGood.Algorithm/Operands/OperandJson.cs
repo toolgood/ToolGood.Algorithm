@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm
 		private Operand ToArrayInternal(string errorMessage)
 		{
 			if (JsonValue.IsArray) {
-				var list = new List<Operand>();
+				var list = new List<Operand>(JsonValue.Count);
 				foreach (JsonData v in JsonValue) {
 					if (v.IsString)
 						list.Add(Operand.Create(v.StringValue));
