@@ -10,6 +10,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			this.func1 = func1;
 		}
+
+		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		{
+			AddFunction(stringBuilder, Name);
+		}
 		protected void AddFunction(StringBuilder stringBuilder, string functionName)
 		{
 			stringBuilder.Append(functionName);

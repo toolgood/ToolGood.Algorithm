@@ -11,6 +11,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         {
         }
 
+        public override string Name => "CountIf";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);

@@ -9,6 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		{
 		}
 
+		public override string Name => "UrlEncode";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter);

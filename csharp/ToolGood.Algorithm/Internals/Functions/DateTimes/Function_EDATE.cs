@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         {
         }
 
+        public override string Name => "EDate";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);

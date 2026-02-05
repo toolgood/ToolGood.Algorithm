@@ -9,6 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 		}
 
+		public override string Name => "GetJsonValue";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var obj = func1.Evaluate(work, tempParameter); if (obj.IsError) { return obj; }

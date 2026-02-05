@@ -13,6 +13,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			this.funName = name;
 		}
 
+		public override string Name => funName;
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args = new List<Operand>();

@@ -9,6 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
         }
 
+        public override string Name => "Atanh";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter);

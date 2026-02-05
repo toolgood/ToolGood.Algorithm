@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
         }
 
+        public override string Name => "Gcd";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>(funcs.Length);

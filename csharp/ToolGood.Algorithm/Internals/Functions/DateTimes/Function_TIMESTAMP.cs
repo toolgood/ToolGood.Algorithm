@@ -9,6 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         {
         }
 
+        public override string Name => "Timestamp";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args0 = func1.Evaluate(work, tempParameter); if (args0.IsError) { return args0; }

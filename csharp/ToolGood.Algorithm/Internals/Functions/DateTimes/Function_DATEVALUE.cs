@@ -11,6 +11,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         {
         }
 
+        public override string Name => "DateValue";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>();

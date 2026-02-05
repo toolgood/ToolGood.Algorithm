@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
         }
 
+        public override string Name => "Fixed";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var num = 2;

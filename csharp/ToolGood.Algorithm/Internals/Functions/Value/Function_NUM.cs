@@ -14,6 +14,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			unit = func2;
 		}
 
+		public override string Name => "Num";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var dict = NumberUnitTypeHelper.GetUnitTypedict();

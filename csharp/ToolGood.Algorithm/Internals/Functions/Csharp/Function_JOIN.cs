@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
+		public override string Name => "Join";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args = new List<Operand>();

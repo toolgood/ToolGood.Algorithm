@@ -13,6 +13,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			this.key = key;
 		}
 
+		public override string Name => "ArrayJsonItem";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var keyValue = new KeyValue {

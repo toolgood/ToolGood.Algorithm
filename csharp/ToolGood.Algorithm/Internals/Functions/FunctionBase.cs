@@ -13,6 +13,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 	public abstract class FunctionBase
 	{
 		/// <summary>
+		/// 名称
+		/// </summary>
+		public abstract string Name { get; }	
+
+		/// <summary>
 		/// 进行计算
 		/// </summary>
 		/// <param name="work"></param>

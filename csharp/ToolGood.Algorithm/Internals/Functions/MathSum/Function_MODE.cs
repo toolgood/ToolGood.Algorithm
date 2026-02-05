@@ -11,6 +11,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         {
         }
 
+        public override string Name => "Mode";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }

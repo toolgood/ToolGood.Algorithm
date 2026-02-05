@@ -6,6 +6,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_TODAY : FunctionBase
     {
+        public override string Name => "Today";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             DateTime now;

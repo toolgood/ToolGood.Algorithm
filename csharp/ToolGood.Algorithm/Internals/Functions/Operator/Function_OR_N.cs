@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		{
 		}
 
+		public override string Name => "OrN";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var index = 1;

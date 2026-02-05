@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 		}
 
+		public override string Name => "ArrayJson";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var result = new OperandKeyValueList();

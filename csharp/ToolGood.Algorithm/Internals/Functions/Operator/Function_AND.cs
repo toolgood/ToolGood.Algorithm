@@ -10,6 +10,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		{
 		}
 
+		public override string Name => "And";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			// 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别

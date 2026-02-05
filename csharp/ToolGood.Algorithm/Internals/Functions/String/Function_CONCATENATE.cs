@@ -9,6 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 		}
 
+		public override string Name => "Concatenate";
+
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			if (funcs.Length == 0) {

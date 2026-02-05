@@ -9,6 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
         }
 
+        public override string Name => "Rand";
+
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
 #if NETSTANDARD2_1
