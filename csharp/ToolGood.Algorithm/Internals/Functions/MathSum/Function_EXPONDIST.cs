@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var n1 = args1.DoubleValue;
             if (n1 < 0.0) {
-                return Operand.Error("Function '{0}' parameter is error!", "ExponDist");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
         }

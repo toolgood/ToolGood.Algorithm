@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var n2 = args2.IntValue;
             var n3 = args3.DoubleValue;
             if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
-                return Operand.Error("Function '{0}' parameter is error!", "BinomDist");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
         }

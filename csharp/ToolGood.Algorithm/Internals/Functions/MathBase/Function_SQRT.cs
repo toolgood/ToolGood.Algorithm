@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args1 = GetNumber_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
             if (args1.NumberValue < 0) {
-                return Operand.Error("Function '{0}' parameter is error!", "Sqrt");
+                return FunctionError();
             }
             return Operand.Create(Math.Sqrt(args1.DoubleValue));
         }

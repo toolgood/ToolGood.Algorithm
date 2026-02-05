@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 var s = (args1 - FunctionUtil.StartDateUtc).TotalSeconds;
                 return Operand.Create(s);
             }
-            return Operand.Error("Function '{0}' parameter is error!", "TimeStamp");
+            return FunctionError();
         }
 
     }

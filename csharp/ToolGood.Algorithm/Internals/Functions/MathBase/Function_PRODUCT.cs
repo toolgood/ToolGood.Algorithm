@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Product"); }
+            if (o == false) { return FunctionError(); }
 
             decimal d = 1;
             for (int i = 0; i < list.Count; i++) {

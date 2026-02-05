@@ -67,7 +67,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				if(work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
 				return Operand.Create(time);
 			}
-			return Operand.Error("Function '{0}' parameter is error!", "DateValue");
+			return FunctionError();
 		}
 
 	}

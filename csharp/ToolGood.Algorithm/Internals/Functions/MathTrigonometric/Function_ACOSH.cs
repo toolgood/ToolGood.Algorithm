@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             var z = args1.DoubleValue;
             if (z < 1) {
-                return Operand.Error("Function '{0}' parameter is error!", "Acosh");
+                return FunctionError();
             }
             return Operand.Create(Math.Acosh((double)z));
         }

@@ -127,7 +127,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns>An <see cref="Operand"/> representing an error state for the function due to an invalid parameter.</returns>
 		protected Operand FunctionError()
 		{
-			return Operand.Error("Function '{0}' parameter is error!", Name);
+			return FunctionError();
 		}
 
 

@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 				return Operand.Create(d);
 			}
-			return Operand.Error("Function '{0}' parameter is error!", "Value");
+			return FunctionError();
 		}
 
 	}

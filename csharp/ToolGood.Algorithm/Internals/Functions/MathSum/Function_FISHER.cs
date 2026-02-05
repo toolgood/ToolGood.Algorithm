@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (args1.IsError) { return args1; }
             var x = args1.DoubleValue;
             if (x >= 1 || x <= -1) {
-                return Operand.Error("Function '{0}' parameter is error!", "Fisher");
+                return FunctionError();
             }
             var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
             return Operand.Create(n);

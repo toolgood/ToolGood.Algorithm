@@ -25,8 +25,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Var"); }
-            if (list.Count <= 1) { return Operand.Error("Function '{0}' parameter is error!", "Var"); }
+            if (o == false) { return FunctionError(); }
+            if (list.Count <= 1) { return FunctionError(); }
             decimal sum = 0;
             decimal sum2 = 0;
             for (int i = 0; i < list.Count; i++) {

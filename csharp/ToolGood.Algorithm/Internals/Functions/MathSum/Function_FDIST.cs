@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var degreesFreedom = args2.IntValue;
             var degreesFreedom2 = args3.IntValue;
             if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
-                return Operand.Error("Function '{0}' parameter is error!", "FDist");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
         }

@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var beta = args3.DoubleValue;
 
             if (alpha < 0.0 || beta < 0.0) {
-                return Operand.Error("Function '{0}' parameter is error!", "BetaDist");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
         }

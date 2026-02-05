@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var alpha = args2.DoubleValue;
             var beta = args3.DoubleValue;
             if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
-                return Operand.Error("Function '{0}' parameter is error!", "GammaInv");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
         }

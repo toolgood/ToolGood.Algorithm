@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Max"); }
+            if (o == false) { return FunctionError(); }
 
             return Operand.Create(list.Max());
         }

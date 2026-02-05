@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var lambda = args2.DoubleValue;
             bool state = args3.BooleanValue;
             if (!(lambda > 0.0)) {
-                return Operand.Error("Function '{0}' parameter is error!", "Poisson");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.Poisson(k, (double)lambda, state));
         }

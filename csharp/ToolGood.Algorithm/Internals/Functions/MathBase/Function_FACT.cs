@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             var z = args1.IntValue;
             if (z < 0) {
-                return Operand.Error("Function '{0}' parameter is error!", "Fact");
+                return FunctionError();
             }
             double d = 1;
             for (int i = 1; i <= z; i++) {

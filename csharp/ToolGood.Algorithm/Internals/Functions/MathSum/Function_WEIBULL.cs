@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var scale = args3.DoubleValue;
             var state = args4.BooleanValue;
             if (shape <= 0.0 || scale <= 0.0) {
-                return Operand.Error("Function '{0}' parameter is error!", "Weibull");
+                return FunctionError();
             }
 
             return Operand.Create(ExcelFunctions.Weibull((double)x, (double)shape, (double)scale, state));

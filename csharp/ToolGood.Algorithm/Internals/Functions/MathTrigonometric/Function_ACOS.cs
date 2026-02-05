@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             var x = args1.DoubleValue;
             if (x < -1 || x > 1) {
-                return Operand.Error("Function '{0}' parameter is error!", "Acos");
+                return FunctionError();
             }
             return Operand.Create(Math.Acos((double)x));
         }

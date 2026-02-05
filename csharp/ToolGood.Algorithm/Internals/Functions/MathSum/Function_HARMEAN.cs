@@ -25,17 +25,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "HarMean"); }
+            if (o == false) { return FunctionError(); }
 
             decimal sum = 0;
             foreach (var db in list) {
                 if (db == 0) {
-                    return Operand.Error("Function '{0}' parameter is error!", "HarMean");
+                    return FunctionError();
                 }
                 sum += 1 / db;
             }
             if (sum == 0) {
-                return Operand.Error("Function '{0}' parameter is error!", "HarMean");
+                return FunctionError();
             }
             return Operand.Create(list.Count / sum);
         }

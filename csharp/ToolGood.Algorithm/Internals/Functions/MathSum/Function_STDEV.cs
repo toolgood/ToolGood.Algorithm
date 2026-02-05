@@ -19,8 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Stdev"); }
-            if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "Stdev"); }
+            if (o == false) { return FunctionError(); }
+            if (list.Count == 0) { return FunctionError(); }
 
             var avg = list.Average();
             double sum = 0;

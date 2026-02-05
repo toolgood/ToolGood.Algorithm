@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             int success = args3.IntValue;
             int population = args4.IntValue;
             if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
-                return Operand.Error("Function '{0}' parameter is error!", "HypgeomDist");
+                return FunctionError();
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }

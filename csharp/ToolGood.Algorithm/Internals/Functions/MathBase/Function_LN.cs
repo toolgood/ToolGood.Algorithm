@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsError) { return args1; }
             var z = args1.DoubleValue;
             if (z <= 0) {
-                return Operand.Error("Function '{0}' parameter is error!", "Ln");
+                return FunctionError();
             }
             return Operand.Create(Math.Log((double)z));
         }

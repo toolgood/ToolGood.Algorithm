@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var args1 = GetText_1(work, tempParameter);
             if (args1.IsError) { return args1; }
 
-            if (RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return Operand.Error("Function '{0}' parameter is error!", "BIN2DEC"); }
+            if (RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return FunctionError(); }
             var num = Convert.ToInt32(args1.TextValue, 2);
             return Operand.Create(num);
         }

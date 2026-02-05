@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Gcd"); }
+            if (o == false) { return FunctionError(); }
 
             return Operand.Create(FunctionUtil.F_base_gcd(list));
         }

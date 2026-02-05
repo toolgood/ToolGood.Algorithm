@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Mode"); }
+            if (o == false) { return FunctionError(); }
 
             var dict = new Dictionary<decimal, int>();
             foreach (var item in list) {
