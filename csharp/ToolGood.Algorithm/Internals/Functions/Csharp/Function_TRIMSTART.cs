@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 	internal class Function_TRIMSTART : Function_2
 	{
+		public Function_TRIMSTART(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_TRIMSTART(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

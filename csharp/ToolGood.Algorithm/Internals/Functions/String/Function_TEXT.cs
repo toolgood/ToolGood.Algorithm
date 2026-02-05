@@ -6,6 +6,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_TEXT : Function_2
 	{
+		public Function_TEXT(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_TEXT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

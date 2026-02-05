@@ -9,7 +9,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
     internal class Function_QUARTILE : Function_2
     {
-        public Function_QUARTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_QUARTILE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_QUARTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

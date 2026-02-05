@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_EXACT : Function_2
 	{
+		public Function_EXACT(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_EXACT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

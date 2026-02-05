@@ -6,6 +6,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 	internal class Function_HAS : Function_2
 	{
+		public Function_HAS(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_HAS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

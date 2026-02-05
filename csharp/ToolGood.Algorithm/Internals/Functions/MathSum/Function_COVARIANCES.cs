@@ -7,7 +7,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_COVARIANCES : Function_2
     {
-        public Function_COVARIANCES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_COVARIANCES(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_COVARIANCES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

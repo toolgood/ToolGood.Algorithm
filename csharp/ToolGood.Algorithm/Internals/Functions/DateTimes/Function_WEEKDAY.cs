@@ -8,7 +8,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 	#endregion
 	internal class Function_WEEKDAY : Function_2
     {
-        public Function_WEEKDAY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_WEEKDAY(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_WEEKDAY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

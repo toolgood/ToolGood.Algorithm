@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
 	internal class Function_ATAN2 : Function_2
     {
-        public Function_ATAN2(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_ATAN2(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_ATAN2(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

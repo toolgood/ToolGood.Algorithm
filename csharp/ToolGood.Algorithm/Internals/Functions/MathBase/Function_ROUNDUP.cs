@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal class Function_ROUNDUP : Function_2
     {
-        public Function_ROUNDUP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_ROUNDUP(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_ROUNDUP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

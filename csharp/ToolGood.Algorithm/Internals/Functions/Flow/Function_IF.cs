@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
 	internal class Function_IF : Function_3
     {
-        public Function_IF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+		public Function_IF(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_IF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 

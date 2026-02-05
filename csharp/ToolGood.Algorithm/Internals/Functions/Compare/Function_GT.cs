@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
 	internal class Function_GT : Function_2
 	{
+		public Function_GT(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_GT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

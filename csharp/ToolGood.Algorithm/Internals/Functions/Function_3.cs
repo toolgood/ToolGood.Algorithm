@@ -11,7 +11,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			this.func3 = func3;
 		}
- 
+
+		protected Function_3(FunctionBase[] funcs) : base(funcs)
+		{
+			if(funcs.Length >= 3) {
+				this.func3 = funcs[2];
+			}
+		}
+
 		protected override void AddFunction(StringBuilder stringBuilder, string functionName)
 		{
 			stringBuilder.Append(functionName);

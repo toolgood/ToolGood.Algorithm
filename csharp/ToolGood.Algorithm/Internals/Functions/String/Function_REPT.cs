@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_REPT : Function_2
 	{
+		public Function_REPT(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_REPT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

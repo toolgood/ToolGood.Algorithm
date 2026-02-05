@@ -11,6 +11,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			this.func1 = func1;
 		}
+		protected Function_1(FunctionBase[] funcs)
+		{
+			this.func1 = funcs[0];
+		}
+
 
 		#region ToString
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

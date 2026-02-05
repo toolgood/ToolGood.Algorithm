@@ -9,6 +9,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 	class Function_LOOKCEILING : Function_2
 	{
+		public Function_LOOKCEILING(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_LOOKCEILING(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 	internal class Function_OR : Function_2
 	{
+		public Function_OR(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_OR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

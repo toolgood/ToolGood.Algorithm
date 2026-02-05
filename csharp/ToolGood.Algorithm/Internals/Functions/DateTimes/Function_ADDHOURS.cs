@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
     internal class Function_ADDHOURS : Function_2
     {
-        public Function_ADDHOURS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_ADDHOURS(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_ADDHOURS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

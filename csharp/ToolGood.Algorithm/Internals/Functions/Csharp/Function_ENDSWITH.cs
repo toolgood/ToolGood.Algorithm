@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 	internal class Function_ENDSWITH : Function_3
 	{
+		public Function_ENDSWITH(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_ENDSWITH(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
 		{
 		}

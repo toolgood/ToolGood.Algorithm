@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 	internal class Function_Connect : Function_2
 	{
+		public Function_Connect(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_Connect(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

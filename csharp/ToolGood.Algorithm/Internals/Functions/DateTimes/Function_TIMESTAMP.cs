@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_TIMESTAMP : Function_2
     {
-        public Function_TIMESTAMP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_TIMESTAMP(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_TIMESTAMP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

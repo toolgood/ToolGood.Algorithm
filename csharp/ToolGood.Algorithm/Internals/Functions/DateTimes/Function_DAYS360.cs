@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_DAYS360 : Function_3
     {
-        public Function_DAYS360(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+		public Function_DAYS360(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_DAYS360(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 

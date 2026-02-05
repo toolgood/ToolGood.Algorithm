@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
 	internal class Function_ISNULLORERROR : Function_2
     {
-        public Function_ISNULLORERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_ISNULLORERROR(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_ISNULLORERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

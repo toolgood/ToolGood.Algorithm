@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_LOGINV : Function_3
     {
-        public Function_LOGINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+		public Function_LOGINV(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_LOGINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 

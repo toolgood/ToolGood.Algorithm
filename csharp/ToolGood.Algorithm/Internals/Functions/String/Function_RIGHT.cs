@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_RIGHT : Function_2
 	{
-		public Function_RIGHT(FunctionBase func1) : base(func1, null)
+		public Function_RIGHT(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 

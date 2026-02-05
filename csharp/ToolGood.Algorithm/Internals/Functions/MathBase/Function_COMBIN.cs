@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal class Function_COMBIN : Function_2
     {
-        public Function_COMBIN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_COMBIN(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_COMBIN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

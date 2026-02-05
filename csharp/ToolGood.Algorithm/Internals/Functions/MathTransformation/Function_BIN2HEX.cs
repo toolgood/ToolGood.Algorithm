@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
 	internal class Function_BIN2HEX : Function_2
     {
-        public Function_BIN2HEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_BIN2HEX(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_BIN2HEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

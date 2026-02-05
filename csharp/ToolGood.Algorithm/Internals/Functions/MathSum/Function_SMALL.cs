@@ -7,6 +7,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_SMALL : Function_2
 	{
+		public Function_SMALL(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_SMALL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

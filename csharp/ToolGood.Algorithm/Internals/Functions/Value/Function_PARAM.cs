@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 	internal class Function_PARAM : Function_2
 	{
+		public Function_PARAM(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_PARAM(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

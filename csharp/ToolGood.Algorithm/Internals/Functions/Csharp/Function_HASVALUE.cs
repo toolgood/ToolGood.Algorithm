@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 	internal class Function_HASVALUE : Function_2
 	{
+		public Function_HASVALUE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_HASVALUE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

@@ -22,6 +22,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
 	{
+		private FunctionBase[] VisitExprs(mathParser.ExprContext[] exprs)
+		{
+			FunctionBase[] list = new FunctionBase[exprs.Length];
+			for(int i = 0; i < exprs.Length; i++) {
+				list[i] = exprs[i].Accept(this);
+			}
+			return list;
+		}
+
 		#region base
 
 		public FunctionBase VisitProg(mathParser.ProgContext context)
@@ -31,63 +40,58 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
+			var funcs = VisitExprs(context.expr());
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, '*')) {
-				return new Function_Mul(args1, args2);
+				return new Function_Mul(funcs);
 			} else if(CharUtil.Equals(t, '/')) {
-				return new Function_Div(args1, args2);
+				return new Function_Div(funcs);
 			}
-			return new Function_Mod(args1, args2);
+			return new Function_Mod(funcs);
 		}
 
 		public FunctionBase VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
+			var funcs = VisitExprs(context.expr());
+
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, '&')) {
-				return new Function_Connect(args1, args2);
+				return new Function_Connect(funcs);
 			} else if(CharUtil.Equals(t, '+')) {
-				return new Function_Add(args1, args2);
+				return new Function_Add(funcs);
 			}
-			return new Function_Sub(args1, args2);
+			return new Function_Sub(funcs);
 		}
 
 		public FunctionBase VisitJudge_fun(mathParser.Judge_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
+			var funcs = VisitExprs(context.expr());
 
 			string type = context.op.Text;
 			if(CharUtil.Equals(type, "=", "==", "===")) {
-				return new Function_EQ(args1, args2);
+				return new Function_EQ(funcs);
 			} else if(CharUtil.Equals(type, "<")) {
-				return new Function_LT(args1, args2);
+				return new Function_LT(funcs);
 			} else if(CharUtil.Equals(type, "<=")) {
-				return new Function_LE(args1, args2);
+				return new Function_LE(funcs);
 			} else if(CharUtil.Equals(type, ">")) {
-				return new Function_GT(args1, args2);
+				return new Function_GT(funcs);
 			} else if(CharUtil.Equals(type, ">=")) {
-				return new Function_GE(args1, args2);
+				return new Function_GE(funcs);
 			}
-			return new Function_NE(args1, args2);
+			return new Function_NE(funcs);
 		}
 
 		public FunctionBase VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
+			var funcs = VisitExprs(context.expr());
+
+
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, "&&", "AND")) {
-				return new Function_AND(args1, args2);
+				return new Function_AND(funcs);
 			}
-			return new Function_OR(args1, args2);
+			return new Function_OR(funcs);
 		}
 
 		#endregion base
@@ -96,23 +100,17 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitIF_fun(mathParser.IF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 3) {
-				var args3 = exprs[2].Accept(this);
-				return new Function_IF(args1, args2, args3);
-			}
-			return new Function_IF(args1, args2, null);
+			var funcs = VisitExprs(context.expr());
+			return new Function_IF(funcs);
 		}
 
 		public FunctionBase VisitIFERROR_fun(mathParser.IFERROR_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_IFERROR(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+
+
+			
+			return new Function_IFERROR(funcs);
 		}
 
 		public FunctionBase VisitISNUMBER_fun(mathParser.ISNUMBER_funContext context)
@@ -129,35 +127,23 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitISERROR_fun(mathParser.ISERROR_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 2) {
-				var args2 = exprs[1].Accept(this);
-				return new Function_ISERROR(args1, args2);
-			}
-			return new Function_ISERROR(args1, null);
+			var funcs = VisitExprs(context.expr());
+
+			return new Function_ISERROR(funcs);
 		}
 
 		public FunctionBase VisitISNULL_fun(mathParser.ISNULL_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 2) {
-				var args2 = exprs[1].Accept(this);
-				return new Function_ISNULL(args1, args2);
-			}
-			return new Function_ISNULL(args1, null);
+			var funcs = VisitExprs(context.expr());
+
+			return new Function_ISNULL(funcs);
 		}
 
 		public FunctionBase VisitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 2) {
-				var args2 = exprs[1].Accept(this);
-				return new Function_ISNULLORERROR(args1, args2);
-			}
-			return new Function_ISNULLORERROR(args1, null);
+			var funcs = VisitExprs(context.expr());
+
+			return new Function_ISNULLORERROR(funcs);
 		}
 
 		public FunctionBase VisitISEVEN_fun(mathParser.ISEVEN_funContext context)
@@ -186,22 +172,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitAND_fun(mathParser.AND_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_AND_N(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_AND_N(funcs);
 		}
 
 		public FunctionBase VisitOR_fun(mathParser.OR_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_OR_N(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_OR_N(funcs);
 		}
 
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
@@ -244,18 +222,18 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitQUOTIENT_fun(mathParser.QUOTIENT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_QUOTIENT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_QUOTIENT(funcs);
 		}
 
 		public FunctionBase VisitMOD_fun(mathParser.MOD_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_Mod(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_Mod(funcs);
 		}
 
 		public FunctionBase VisitSIGN_fun(mathParser.SIGN_funContext context)
@@ -284,38 +262,30 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitGCD_fun(mathParser.GCD_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_GCD(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_GCD(funcs);
 		}
 
 		public FunctionBase VisitLCM_fun(mathParser.LCM_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_LCM(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_LCM(funcs);
 		}
 
 		public FunctionBase VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_COMBIN(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_COMBIN(funcs);
 		}
 
 		public FunctionBase VisitPERMUT_fun(mathParser.PERMUT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_PERMUT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_PERMUT(funcs);
 		}
 
 		public FunctionBase VisitPercentage_fun(mathParser.Percentage_funContext context)
@@ -414,21 +384,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ATAN2(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ATAN2(funcs);
 		}
 
 		public FunctionBase VisitFIXED_fun(mathParser.FIXED_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_FIXED(args1, null, null);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_FIXED(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_FIXED(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_FIXED(funcs);
 		}
 
 		#endregion trigonometric functions
@@ -437,11 +400,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitBIN2OCT_fun(mathParser.BIN2OCT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_BIN2OCT(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_BIN2OCT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BIN2OCT(funcs);
 		}
 
 		public FunctionBase VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
@@ -452,20 +412,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_BIN2HEX(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_BIN2HEX(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BIN2HEX(funcs);
 		}
 
 		public FunctionBase VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_OCT2BIN(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_OCT2BIN(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_OCT2BIN(funcs);
 		}
 
 		public FunctionBase VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
@@ -476,56 +430,38 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_OCT2HEX(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_OCT2HEX(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_OCT2HEX(funcs);
 		}
 
 		public FunctionBase VisitDEC2BIN_fun(mathParser.DEC2BIN_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_DEC2BIN(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_DEC2BIN(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DEC2BIN(funcs);
 		}
 
 		public FunctionBase VisitDEC2OCT_fun(mathParser.DEC2OCT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_DEC2OCT(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_DEC2OCT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DEC2OCT(funcs);
 		}
 
 		public FunctionBase VisitDEC2HEX_fun(mathParser.DEC2HEX_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_DEC2HEX(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_DEC2HEX(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DEC2HEX(funcs);
 		}
 
 		public FunctionBase VisitHEX2BIN_fun(mathParser.HEX2BIN_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_HEX2BIN(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HEX2BIN(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_HEX2BIN(funcs);
 		}
 
 		public FunctionBase VisitHEX2OCT_fun(mathParser.HEX2OCT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_HEX2OCT(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HEX2OCT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_HEX2OCT(funcs);
 		}
 
 		public FunctionBase VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
@@ -540,50 +476,36 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitROUND_fun(mathParser.ROUND_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) {
-				return new Function_ROUND(args1, null);
-			}
-			var args2 = exprs[1].Accept(this);
-			return new Function_ROUND(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ROUND(funcs);
 		}
 
 		public FunctionBase VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ROUNDDOWN(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_ROUNDDOWN(funcs);
 		}
 
 		public FunctionBase VisitROUNDUP_fun(mathParser.ROUNDUP_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ROUNDUP(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_ROUNDUP(funcs);
 		}
 
 		public FunctionBase VisitCEILING_fun(mathParser.CEILING_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1)
-				return new Function_CEILING(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_CEILING(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_CEILING(funcs);
 		}
 
 		public FunctionBase VisitFLOOR_fun(mathParser.FLOOR_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1)
-				return new Function_FLOOR(args1, null);
-
-			var args2 = exprs[1].Accept(this);
-			return new Function_FLOOR(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_FLOOR(funcs);
 		}
 
 		public FunctionBase VisitEVEN_fun(mathParser.EVEN_funContext context)
@@ -600,10 +522,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitMROUND_fun(mathParser.MROUND_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_MROUND(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MROUND(funcs);
 		}
 
 		#endregion rounding
@@ -617,10 +537,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_RANDBETWEEN(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_RANDBETWEEN(funcs);
 		}
 
 		#endregion RAND
@@ -629,18 +547,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_COVARIANCES(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_COVARIANCES(funcs);
 		}
 
 		public FunctionBase VisitCOVAR_fun(mathParser.COVAR_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_COVAR(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_COVAR(funcs);
 		}
 
 		public FunctionBase VisitFACT_fun(mathParser.FACT_funContext context)
@@ -657,10 +571,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitPOWER_fun(mathParser.POWER_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_POWER(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_POWER(funcs);
 		}
 
 		public FunctionBase VisitEXP_fun(mathParser.EXP_funContext context)
@@ -677,14 +589,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitLOG_fun(mathParser.LOG_funContext context)
 		{
-			var exprs = context.expr();
-
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length > 1) {
-				var args2 = exprs[1].Accept(this);
-				return new Function_LOG(args1, args2);
-			}
-			return new Function_LOG(args1, null);
+			var funcs = VisitExprs(context.expr());
+			return new Function_LOG(funcs);
 		}
 
 		public FunctionBase VisitLOG10_fun(mathParser.LOG10_funContext context)
@@ -695,22 +601,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_MULTINOMIAL(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MULTINOMIAL(funcs);
 		}
 
 		public FunctionBase VisitPRODUCT_fun(mathParser.PRODUCT_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_PRODUCT(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_PRODUCT(funcs);
 		}
 
 		public FunctionBase VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
@@ -721,12 +619,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_SUMSQ(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMSQ(funcs);
 		}
 
 		#endregion
@@ -767,43 +661,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_CONCATENATE(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_CONCATENATE(funcs);
 		}
 
 		public FunctionBase VisitEXACT_fun(mathParser.EXACT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_EXACT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_EXACT(funcs);
 		}
 
 		public FunctionBase VisitFIND_fun(mathParser.FIND_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-
-			if(exprs.Length == 2) {
-				return new Function_FIND(args1, args2, null);
-			}
-			var count = exprs[2].Accept(this);
-			return new Function_FIND(args1, args2, count);
+			var funcs = VisitExprs(context.expr());
+			return new Function_FIND(funcs);
 		}
 
 		public FunctionBase VisitLEFT_fun(mathParser.LEFT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) {
-				return new Function_LEFT(args1, null);
-			}
-			return new Function_LEFT(args1, exprs[1].Accept(this));
+			var funcs = VisitExprs(context.expr());
+			return new Function_LEFT(funcs);
 		}
 
 		public FunctionBase VisitLEN_fun(mathParser.LEN_funContext context)
@@ -820,11 +697,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitMID_fun(mathParser.MID_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_MID(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MID(funcs);
 		}
 
 		public FunctionBase VisitPROPER_fun(mathParser.PROPER_funContext context)
@@ -835,38 +709,24 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitREPLACE_fun(mathParser.REPLACE_funContext context)
 		{
-			var exprs = context.expr();
+			var funcs = VisitExprs(context.expr());
 
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 3) {
-				var args22 = exprs[1].Accept(this);
-				var args32 = exprs[2].Accept(this);
-				return new Function_REPLACE(args1, args22, args32, null);
-			}
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			var args4 = exprs[3].Accept(this);
-			return new Function_REPLACE(args1, args2, args3, args4);
+ 
+			return new Function_REPLACE(funcs);
 		}
 
 		public FunctionBase VisitREPT_fun(mathParser.REPT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_REPT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_REPT(funcs);
 		}
 
 		public FunctionBase VisitRIGHT_fun(mathParser.RIGHT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-
-			if(exprs.Length == 1) {
-				return new Function_RIGHT(args1);
-			}
-			var args2 = exprs[1].Accept(this);
-			return new Function_RIGHT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_RIGHT(funcs);
 		}
 
 		public FunctionBase VisitRMB_fun(mathParser.RMB_funContext context)
@@ -877,28 +737,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitSEARCH_fun(mathParser.SEARCH_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-
-			if(exprs.Length == 2) {
-				return new Function_SEARCH(args1, args2, null);
-			}
-			var args3 = exprs[2].Accept(this);
-			return new Function_SEARCH(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_SEARCH(funcs);
 		}
 
 		public FunctionBase VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			if(exprs.Length == 3) {
-				return new Function_SUBSTITUTE(args1, args2, args3, null);
-			}
-			var args4 = exprs[3].Accept(this);
-			return new Function_SUBSTITUTE(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUBSTITUTE(funcs);
 		}
 
 		public FunctionBase VisitT_fun(mathParser.T_funContext context)
@@ -909,10 +755,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitTEXT_fun(mathParser.TEXT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TEXT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_TEXT(funcs);
 		}
 
 		public FunctionBase VisitTRIM_fun(mathParser.TRIM_funContext context)
@@ -939,21 +783,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_DATEVALUE(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DATEVALUE(funcs);
 		}
 
 		public FunctionBase VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_TIMESTAMP(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TIMESTAMP(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_TIMESTAMP(funcs);
 		}
 
 		public FunctionBase VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
@@ -964,22 +801,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitDATE_fun(mathParser.DATE_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_DATE(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DATE(funcs);
 		}
 
 		public FunctionBase VisitTIME_fun(mathParser.TIME_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_TIME(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_TIME(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_TIME(funcs);
 		}
 
 		public FunctionBase VisitNOW_fun(mathParser.NOW_funContext context)
@@ -1030,125 +859,86 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_WEEKDAY(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_WEEKDAY(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_WEEKDAY(funcs);
 		}
 
 		public FunctionBase VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_DATEDIF(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DATEDIF(funcs);
 		}
 
 		public FunctionBase VisitDAYS360_fun(mathParser.DAYS360_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 3) {
-				var args3 = exprs[2].Accept(this);
-				return new Function_DAYS360(args1, args2, args3);
-			}
-			return new Function_DAYS360(args1, args2, null);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DAYS360(funcs);
 		}
 
 		public FunctionBase VisitEDATE_fun(mathParser.EDATE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_EDATE(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_EDATE(funcs);
 		}
 
 		public FunctionBase VisitEOMONTH_fun(mathParser.EOMONTH_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_EOMONTH(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_EOMONTH(funcs);
 		}
 
 		public FunctionBase VisitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_NETWORKDAYS(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_NETWORKDAYS(funcs);
 		}
 
 		public FunctionBase VisitWORKDAY_fun(mathParser.WORKDAY_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_WORKDAY(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_WORKDAY(funcs);
 		}
 
 		public FunctionBase VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_WEEKNUM(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_WEEKNUM(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_WEEKNUM(funcs);
 		}
 
 		public FunctionBase VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ADDMONTHS(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ADDMONTHS(funcs);
 		}
 
 		public FunctionBase VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ADDYEARS(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ADDYEARS(funcs);
 		}
 
 		public FunctionBase VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ADDSECONDS(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ADDSECONDS(funcs);
 		}
 
 		public FunctionBase VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ADDMINUTES(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ADDMINUTES(funcs);
 		}
 
 		public FunctionBase VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ADDDAYS(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ADDDAYS(funcs);
 		}
 
 		public FunctionBase VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ADDHOURS(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_ADDHOURS(funcs);
 		}
 
 		#endregion MyDate time
@@ -1157,241 +947,152 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitMAX_fun(mathParser.MAX_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_MAX(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MAX(funcs);
 		}
 
 		public FunctionBase VisitMEDIAN_fun(mathParser.MEDIAN_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_MEDIAN(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MEDIAN(funcs);
 		}
 
 		public FunctionBase VisitMIN_fun(mathParser.MIN_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_MIN(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MIN(funcs);
 		}
 
 		public FunctionBase VisitQUARTILE_fun(mathParser.QUARTILE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_QUARTILE(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_QUARTILE(funcs);
 		}
 
 		public FunctionBase VisitMODE_fun(mathParser.MODE_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_MODE(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_MODE(funcs);
 		}
 
 		public FunctionBase VisitLARGE_fun(mathParser.LARGE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_LARGE(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_LARGE(funcs);
 		}
 
 		public FunctionBase VisitSMALL_fun(mathParser.SMALL_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_SMALL(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_SMALL(funcs);
 		}
 
 		public FunctionBase VisitPERCENTILE_fun(mathParser.PERCENTILE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_PERCENTILE(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_PERCENTILE(funcs);
 		}
 
 		public FunctionBase VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_PERCENTRANK(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_PERCENTRANK(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_PERCENTRANK(funcs);
 		}
 
 		public FunctionBase VisitAVERAGE_fun(mathParser.AVERAGE_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_AVERAGE(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_AVERAGE(funcs);
 		}
 
 		public FunctionBase VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_AVERAGEIF(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_AVERAGEIF(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_AVERAGEIF(funcs);
 		}
 
 		public FunctionBase VisitGEOMEAN_fun(mathParser.GEOMEAN_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_GEOMEAN(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_GEOMEAN(funcs);
 		}
 
 		public FunctionBase VisitHARMEAN_fun(mathParser.HARMEAN_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_HARMEAN(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_HARMEAN(funcs);
 		}
 
 		public FunctionBase VisitCOUNT_fun(mathParser.COUNT_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_COUNT(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_COUNT(funcs);
 		}
 
 		public FunctionBase VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_COUNTIF(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_COUNTIF(funcs);
 		}
 
 		public FunctionBase VisitSUM_fun(mathParser.SUM_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_SUM(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUM(funcs);
 		}
 
 		public FunctionBase VisitSUMIF_fun(mathParser.SUMIF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_SUMIF(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_SUMIF(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMIF(funcs);
 		}
 
 		public FunctionBase VisitAVEDEV_fun(mathParser.AVEDEV_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_AVEDEV(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_AVEDEV(funcs);
 		}
 
 		public FunctionBase VisitSTDEV_fun(mathParser.STDEV_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_STDEV(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_STDEV(funcs);
 		}
 
 		public FunctionBase VisitSTDEVP_fun(mathParser.STDEVP_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_STDEVP(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_STDEVP(funcs);
 		}
 
 		public FunctionBase VisitDEVSQ_fun(mathParser.DEVSQ_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_DEVSQ(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DEVSQ(funcs);
 		}
 
 		public FunctionBase VisitVAR_fun(mathParser.VAR_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_VAR(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_VAR(funcs);
 		}
 
 		public FunctionBase VisitVARP_fun(mathParser.VARP_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_VARP(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_VARP(funcs);
 		}
 
 		public FunctionBase VisitNORMDIST_fun(mathParser.NORMDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			var args4 = exprs[3].Accept(this);
-			return new Function_NORMDIST(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+			return new Function_NORMDIST(funcs);
 		}
 
 		public FunctionBase VisitNORMINV_fun(mathParser.NORMINV_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_NORMINV(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_NORMINV(funcs);
 		}
 
 		public FunctionBase VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
@@ -1408,57 +1109,38 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitBETADIST_fun(mathParser.BETADIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_BETADIST(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BETADIST(funcs);
 		}
 
 		public FunctionBase VisitBETAINV_fun(mathParser.BETAINV_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_BETAINV(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BETAINV(funcs);
 		}
 
 		public FunctionBase VisitBINOMDIST_fun(mathParser.BINOMDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			var args4 = exprs[3].Accept(this);
-			return new Function_BINOMDIST(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BINOMDIST(funcs);
 		}
 
 		public FunctionBase VisitEXPONDIST_fun(mathParser.EXPONDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_EXPONDIST(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_EXPONDIST(funcs);
 		}
 
 		public FunctionBase VisitFDIST_fun(mathParser.FDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_FDIST(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_FDIST(funcs);
 		}
 
 		public FunctionBase VisitFINV_fun(mathParser.FINV_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_FINV(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_FINV(funcs);
 		}
 
 		public FunctionBase VisitFISHER_fun(mathParser.FISHER_funContext context)
@@ -1475,21 +1157,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			var args4 = exprs[3].Accept(this);
-			return new Function_GAMMADIST(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+			return new Function_GAMMADIST(funcs);
 		}
 
 		public FunctionBase VisitGAMMAINV_fun(mathParser.GAMMAINV_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_GAMMAINV(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_GAMMAINV(funcs);
 		}
 
 		public FunctionBase VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
@@ -1500,76 +1175,53 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			var args4 = exprs[3].Accept(this);
-			return new Function_HYPGEOMDIST(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+			return new Function_HYPGEOMDIST(funcs);
 		}
 
 		public FunctionBase VisitLOGINV_fun(mathParser.LOGINV_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_LOGINV(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_LOGINV(funcs);
 		}
 
 		public FunctionBase VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_LOGNORMDIST(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_LOGNORMDIST(funcs);
 		}
 
 		public FunctionBase VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_NEGBINOMDIST(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_NEGBINOMDIST(funcs);
 		}
 
 		public FunctionBase VisitPOISSON_fun(mathParser.POISSON_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_POISSON(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_POISSON(funcs);
 		}
 
 		public FunctionBase VisitTDIST_fun(mathParser.TDIST_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_TDIST(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_TDIST(funcs);
 		}
 
 		public FunctionBase VisitTINV_fun(mathParser.TINV_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TINV(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_TINV(funcs);
 		}
 
 		public FunctionBase VisitWEIBULL_fun(mathParser.WEIBULL_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			var args4 = exprs[3].Accept(this);
-			return new Function_WEIBULL(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+			return new Function_WEIBULL(funcs);
 		}
+
+
 
 		#endregion sum
 
@@ -1625,27 +1277,25 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitREGEX_fun(mathParser.REGEX_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_REGEX(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_REGEX(funcs);
 		}
 
 		public FunctionBase VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			var args3 = exprs[2].Accept(this);
-			return new Function_REGEXREPALCE(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+
+
+			
+			return new Function_REGEXREPALCE(funcs);
 		}
 
 		public FunctionBase VisitISREGEX_fun(mathParser.ISREGEX_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_ISREGEX(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_ISREGEX(funcs);
 		}
 
 		public FunctionBase VisitGUID_fun(mathParser.GUID_funContext context)
@@ -1679,124 +1329,107 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HMACMD5(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_HMACMD5(funcs);
 		}
 
 		public FunctionBase VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HMACSHA1(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_HMACSHA1(funcs);
 		}
 
 		public FunctionBase VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HMACSHA256(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_HMACSHA256(funcs);
 		}
 
 		public FunctionBase VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HMACSHA512(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_HMACSHA512(funcs);
 		}
 
 		public FunctionBase VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_TRIMSTART(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TRIMSTART(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_TRIMSTART(funcs);
 		}
 
 		public FunctionBase VisitTRIMEND_fun(mathParser.TRIMEND_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) return new Function_TRIMEND(args1, null);
-			var args2 = exprs[1].Accept(this);
-			return new Function_TRIMEND(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_TRIMEND(funcs);
 		}
 
 		public FunctionBase VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_INDEXOF(args1, args2, null, null);
-			var args3 = exprs[2].Accept(this);
-			if(exprs.Length == 3) return new Function_INDEXOF(args1, args2, args3, null);
-			var args4 = exprs[3].Accept(this);
-			return new Function_INDEXOF(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+
+
+			
+			return new Function_INDEXOF(funcs);
 		}
 
 		public FunctionBase VisitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_LASTINDEXOF(args1, args2, null, null);
-			var args3 = exprs[2].Accept(this);
-			if(exprs.Length == 3) return new Function_LASTINDEXOF(args1, args2, args3, null);
-			var args4 = exprs[3].Accept(this);
-			return new Function_LASTINDEXOF(args1, args2, args3, args4);
+			var funcs = VisitExprs(context.expr());
+
+			 
+			return new Function_LASTINDEXOF(funcs);
 		}
 
 		public FunctionBase VisitSPLIT_fun(mathParser.SPLIT_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_SPLIT(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_SPLIT(funcs);
 		}
 
 		public FunctionBase VisitJOIN_fun(mathParser.JOIN_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_JOIN(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_JOIN(funcs);
 		}
 
 		public FunctionBase VisitSUBSTRING_fun(mathParser.SUBSTRING_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_SUBSTRING(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_SUBSTRING(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+
+
+			
+			return new Function_SUBSTRING(funcs);
 		}
 
 		public FunctionBase VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_STARTSWITH(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_STARTSWITH(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+
+
+			
+			return new Function_STARTSWITH(funcs);
 		}
 
 		public FunctionBase VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_ENDSWITH(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_ENDSWITH(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+
+			
+			return new Function_ENDSWITH(funcs);
 		}
 
 		public FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
@@ -1813,22 +1446,17 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_REMOVESTART(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_REMOVESTART(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+
+
+			
+			return new Function_REMOVESTART(funcs);
 		}
 
 		public FunctionBase VisitREMOVEEND_fun(mathParser.REMOVEEND_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			if(exprs.Length == 2) return new Function_REMOVEEND(args1, args2, null);
-			var args3 = exprs[2].Accept(this);
-			return new Function_REMOVEEND(args1, args2, args3);
+			var funcs = VisitExprs(context.expr());
+			return new Function_REMOVEEND(funcs);
 		}
 
 		public FunctionBase VisitJSON_fun(mathParser.JSON_funContext context)
@@ -1842,18 +1470,18 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		#region LOOKFLOOR LOOKCEILING
 		public FunctionBase VisitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_LOOKFLOOR(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_LOOKFLOOR(funcs);
 		}
 
 		public FunctionBase VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_LOOKCEILING(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_LOOKCEILING(funcs);
 		}
 		#endregion
 
@@ -1861,12 +1489,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitArray_fun(mathParser.Array_funContext context)
 		{
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_Array(args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_Array(funcs);
 		}
 
 		public FunctionBase VisitBracket_fun(mathParser.Bracket_funContext context)
@@ -1936,56 +1560,45 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
+			var funcs = VisitExprs(context.expr());
+
 			if(context.PARAMETER() != null) {
 				var op = new Function_PARAMETER(context.PARAMETER().GetText());
-				return new Function_GetJsonValue(args1, op);
+				return new Function_GetJsonValue(funcs[0], op);
 			}
 			if(context.parameter2() != null) {
 				var op = context.parameter2().Accept(this);
-				return new Function_GetJsonValue(args1, op);
+				return new Function_GetJsonValue(funcs[0], op);
 			}
-			var op2 = exprs[1].Accept(this);
-			return new Function_GetJsonValue(args1, op2);
+			return new Function_GetJsonValue(funcs[0], funcs[1]);
 		}
 
 		public FunctionBase VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
 		{
 			var funName = context.PARAMETER().GetText();
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.Length];
-			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
-			}
-			return new Function_DiyFunction(funName, args);
+			var funcs = VisitExprs(context.expr());
+			return new Function_DiyFunction(funName, funcs);
 		}
 
 		public FunctionBase VisitPARAM_fun(mathParser.PARAM_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			if(exprs.Length == 1) {
-				return new Function_PARAM(args1, null);
-			}
-			var args2 = exprs[1].Accept(this);
-			return new Function_PARAM(args1, args2);
+			var funcs = VisitExprs(context.expr());
+			return new Function_PARAM(funcs);
 		}
 
 		public FunctionBase VisitHAS_fun(mathParser.HAS_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HAS(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+			return new Function_HAS(funcs);
 		}
 
 		public FunctionBase VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
 		{
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this);
-			var args2 = exprs[1].Accept(this);
-			return new Function_HASVALUE(args1, args2);
+			var funcs = VisitExprs(context.expr());
+
+
+			return new Function_HASVALUE(funcs);
 		}
 
 		public FunctionBase VisitArrayJson_fun(mathParser.ArrayJson_funContext context)

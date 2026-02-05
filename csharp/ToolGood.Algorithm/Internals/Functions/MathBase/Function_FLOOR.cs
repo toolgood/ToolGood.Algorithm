@@ -5,7 +5,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal class Function_FLOOR : Function_2
     {
-        public Function_FLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_FLOOR(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_FLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

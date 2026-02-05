@@ -8,7 +8,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_PERCENTILE : Function_2
     {
-        public Function_PERCENTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_PERCENTILE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+		public Function_PERCENTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 

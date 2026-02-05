@@ -6,6 +6,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 	internal class Function_AND : Function_2
 	{
+		public Function_AND(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_AND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

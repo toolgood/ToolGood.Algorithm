@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
 	internal class Function_EQ : Function_2
 	{
-		public Function_EQ(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_EQ(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 

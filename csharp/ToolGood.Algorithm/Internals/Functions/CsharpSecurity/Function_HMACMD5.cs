@@ -6,6 +6,10 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
 	internal class Function_HMACMD5 : Function_2
 	{
+		public Function_HMACMD5(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_HMACMD5(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

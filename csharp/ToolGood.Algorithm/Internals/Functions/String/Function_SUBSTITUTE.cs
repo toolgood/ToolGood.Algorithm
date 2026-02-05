@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_SUBSTITUTE : Function_4
 	{
+		public Function_SUBSTITUTE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_SUBSTITUTE(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
 		{
 		}

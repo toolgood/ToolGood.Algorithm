@@ -7,6 +7,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 	class Function_LOOKFLOOR : Function_2
 	{
+		public Function_LOOKFLOOR(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_LOOKFLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}

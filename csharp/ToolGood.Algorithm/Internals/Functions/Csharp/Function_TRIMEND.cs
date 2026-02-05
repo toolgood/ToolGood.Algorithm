@@ -5,6 +5,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 	internal class Function_TRIMEND : Function_2
 	{
+		public Function_TRIMEND(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_TRIMEND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}
