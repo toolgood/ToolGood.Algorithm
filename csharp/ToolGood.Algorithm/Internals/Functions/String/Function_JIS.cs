@@ -44,10 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return new string(chars);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "JIS");
-		}
+
 	}
 
 }

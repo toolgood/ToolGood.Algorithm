@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             }
             return Operand.Create(num);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "BIN2HEX");
-        }
+
     }
 
     

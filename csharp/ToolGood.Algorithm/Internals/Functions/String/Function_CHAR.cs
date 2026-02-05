@@ -19,10 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			char c = (char)args1.IntValue;
 			return Operand.Create(new string(c, 1));
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Char");
-		}
+
 	}
 
 }

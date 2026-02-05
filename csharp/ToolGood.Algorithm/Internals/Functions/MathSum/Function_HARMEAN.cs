@@ -34,10 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(list.Count / sum);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "HarMean");
-        }
+
     }
 
 }

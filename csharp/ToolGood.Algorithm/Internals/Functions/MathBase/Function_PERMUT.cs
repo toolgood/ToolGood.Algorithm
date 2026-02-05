@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(sum);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Permut");
-        }
+
     }
 
     

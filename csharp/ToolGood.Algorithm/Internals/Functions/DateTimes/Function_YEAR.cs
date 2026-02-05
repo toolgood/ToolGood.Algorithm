@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create(args1.DateValue.Year.Value);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Year");
-        }
+
     }
 
 }

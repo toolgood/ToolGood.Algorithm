@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list.Count == 0) { return Operand.Zero; }
             return Operand.Create(list.Average());
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Average");
-        }
+
     }
 
 }

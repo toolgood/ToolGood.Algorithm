@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(Math.Sqrt(args1.DoubleValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Sqrt");
-        }
+
     }
 
     

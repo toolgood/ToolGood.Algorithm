@@ -32,10 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "LogInv");
-        }
+
     }
 
 }

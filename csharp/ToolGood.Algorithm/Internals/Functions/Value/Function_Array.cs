@@ -18,10 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 			return Operand.Create(args);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Array");
-		}
+
 	}
 
 }

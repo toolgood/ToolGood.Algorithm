@@ -36,10 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var b = args4.BooleanValue;
             return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NormDist");
-        }
+
     }
 
 }

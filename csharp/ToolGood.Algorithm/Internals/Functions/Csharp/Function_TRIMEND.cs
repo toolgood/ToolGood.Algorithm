@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			char[] trimChars = args2.TextValue.ToCharArray();
 			return Operand.Create(args1.TextValue.TrimEnd(trimChars));
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "TrimEnd");
-		}
+
 	}
 
 

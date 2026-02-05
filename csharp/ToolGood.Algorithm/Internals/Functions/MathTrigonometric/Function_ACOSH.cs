@@ -22,10 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             }
             return Operand.Create(Math.Acosh((double)z));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Acosh");
-        }
+
     }
 
     

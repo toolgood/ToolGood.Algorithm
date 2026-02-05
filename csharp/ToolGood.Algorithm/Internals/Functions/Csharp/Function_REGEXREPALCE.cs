@@ -29,10 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
 			return Operand.Create(b);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "RegexReplace");
-		}
+
 	}
 
 

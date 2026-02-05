@@ -25,10 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
 			return Operand.Create(b);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "IsRegex");
-		}
+
 	}
 
 

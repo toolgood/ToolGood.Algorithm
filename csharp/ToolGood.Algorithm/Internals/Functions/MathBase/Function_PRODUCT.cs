@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(d);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Product");
-        }
+
     }
 
     

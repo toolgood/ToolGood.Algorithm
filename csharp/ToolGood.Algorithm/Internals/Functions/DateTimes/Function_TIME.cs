@@ -33,10 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
             return Operand.Create(d);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Time");
-        }
+
     }
 
 }

@@ -24,10 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args3.IsError) { return args3; }
 			return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Mid");
-		}
+
 	}
 
 }

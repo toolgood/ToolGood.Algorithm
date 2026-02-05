@@ -29,10 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             b = ((int)(b * a)) / a;
             return Operand.Create(b);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "RoundDown");
-        }
+
     }
 
     

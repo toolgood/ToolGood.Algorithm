@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             if (args2.IsError) { return args2; }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "AddMonths");
-        }
+
     }
 
 }

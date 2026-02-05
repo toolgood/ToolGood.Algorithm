@@ -22,10 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(Math.Log((double)z));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Ln");
-        }
+
     }
 
     

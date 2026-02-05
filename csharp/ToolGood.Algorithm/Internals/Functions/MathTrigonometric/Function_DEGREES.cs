@@ -20,10 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             var r = (z / Math.PI * 180);
             return Operand.Create(r);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Degrees");
-        }
+
     }
 
     

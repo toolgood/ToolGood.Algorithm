@@ -23,9 +23,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsText && args1.TextValue == null) { return Operand.True; }
             return Operand.False;
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IsNull");
-        }
+
     }
 }

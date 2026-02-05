@@ -34,10 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(sum / sum2);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Combin");
-        }
+
     }
 
     

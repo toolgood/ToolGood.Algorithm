@@ -27,10 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;
             return Operand.Create(r);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "MRound");
-        }
+
     }
 
     

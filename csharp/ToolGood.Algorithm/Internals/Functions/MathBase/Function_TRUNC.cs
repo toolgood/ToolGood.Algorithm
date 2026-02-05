@@ -18,10 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsError) { return args1; }
             return Operand.Create((int)(args1.IntValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Trunc");
-        }
+
     }
 
     

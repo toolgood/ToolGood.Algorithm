@@ -34,10 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NegbinomDist");
-        }
+
     }
 
 }

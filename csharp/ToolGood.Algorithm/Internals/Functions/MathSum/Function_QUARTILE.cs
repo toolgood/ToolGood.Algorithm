@@ -35,10 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Quartile");
-        }
+
     }
 
 }

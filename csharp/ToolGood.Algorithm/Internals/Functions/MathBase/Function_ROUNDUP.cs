@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (b > 0) return Operand.Create(t);
             return Operand.Create(-t);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "RoundUp");
-        }
+
     }
 
     

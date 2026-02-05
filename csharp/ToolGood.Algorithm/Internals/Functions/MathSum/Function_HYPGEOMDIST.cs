@@ -39,10 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "HypgeomDist");
-        }
+
     }
 
 }

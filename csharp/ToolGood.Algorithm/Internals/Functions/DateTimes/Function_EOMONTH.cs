@@ -24,10 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "EoMonth");
-        }
+
     }
 
 }

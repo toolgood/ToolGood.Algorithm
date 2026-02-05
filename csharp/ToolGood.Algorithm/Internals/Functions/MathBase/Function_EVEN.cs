@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             z++;
             return Operand.Create(z);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Even");
-        }
+
     }
 
     

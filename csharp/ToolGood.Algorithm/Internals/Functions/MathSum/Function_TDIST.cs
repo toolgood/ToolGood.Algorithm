@@ -33,10 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "TDist");
-        }
+
     }
 
 }

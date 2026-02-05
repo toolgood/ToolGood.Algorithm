@@ -40,10 +40,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create(startMyDate);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Workday");
-        }
+
     }
 
 }

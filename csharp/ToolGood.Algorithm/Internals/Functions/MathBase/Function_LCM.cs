@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             return Operand.Create(FunctionUtil.F_base_lgm(list));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Lcm");
-        }
+
     }
 
     

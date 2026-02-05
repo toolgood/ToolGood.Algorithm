@@ -38,10 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(s.ToString(CultureInfo.InvariantCulture));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Fixed");
-        }
+
     }
 
     

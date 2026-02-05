@@ -18,9 +18,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsNotText) { return Operand.True; }
             return Operand.False;
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IsNontext");
-        }
+
     }
 }

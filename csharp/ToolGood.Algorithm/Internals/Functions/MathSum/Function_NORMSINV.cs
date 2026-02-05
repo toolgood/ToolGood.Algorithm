@@ -20,10 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var p = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSInv((double)p));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NormSInv");
-        }
+
     }
 
 }

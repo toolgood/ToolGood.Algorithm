@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsError) { return Operand.True; }
             return Operand.False;
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IsError");
-        }
+
     }
 
 }

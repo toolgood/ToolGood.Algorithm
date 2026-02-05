@@ -22,10 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Sum"); }
             return Operand.Create(list.Sum());
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Sum");
-        }
+
     }
 
 }

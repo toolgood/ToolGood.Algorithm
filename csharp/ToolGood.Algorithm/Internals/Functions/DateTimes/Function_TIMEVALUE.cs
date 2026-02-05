@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Error("Function '{0}' parameter is error!", "TimeValue");
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "TimeValue");
-        }
+
     }
 
 }

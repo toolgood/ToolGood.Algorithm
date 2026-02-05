@@ -20,10 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 			var r = System.Web.HttpUtility.UrlEncode(s);
 			return Operand.Create(r);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "UrlEncode");
-		}
+
 	}
 
 

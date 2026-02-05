@@ -22,10 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			char c = args1.TextValue[0];
 			return Operand.Create((int)c);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "CODE");
-		}
+
 	}
 
 }

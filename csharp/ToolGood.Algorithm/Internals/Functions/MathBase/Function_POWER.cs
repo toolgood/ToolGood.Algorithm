@@ -22,10 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args2.IsError) { return args2; }
             return Operand.Create(Math.Pow(args1.DoubleValue, args2.DoubleValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Power");
-        }
+
     }
 
     

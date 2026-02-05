@@ -24,10 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Split");
-		}
+
 	}
 
 

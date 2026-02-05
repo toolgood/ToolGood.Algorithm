@@ -26,10 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Error("Function '{0}' parameter is error!", "Value");
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Value");
-		}
+
 	}
 
 }

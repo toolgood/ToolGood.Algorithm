@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create((int)args1.DateValue.Month.Value);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Month");
-        }
+
     }
 
 }

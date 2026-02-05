@@ -20,10 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var num = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSDist((double)num));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NormSDist");
-        }
+
     }
 
 }

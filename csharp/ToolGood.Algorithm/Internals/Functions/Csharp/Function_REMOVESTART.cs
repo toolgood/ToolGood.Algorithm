@@ -35,10 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return args1;
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "RemoveStart");
-		}
+
 	}
 
 

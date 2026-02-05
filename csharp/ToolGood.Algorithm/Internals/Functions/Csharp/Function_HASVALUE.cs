@@ -61,10 +61,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return Operand.Error("Function '{0}' parameter {1} is error!", "HasValue", 1);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "HasValue");
-		}
+
 	}
 
 

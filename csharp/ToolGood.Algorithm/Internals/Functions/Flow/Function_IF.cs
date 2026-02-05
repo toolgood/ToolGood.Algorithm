@@ -20,9 +20,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (func3 == null) { return Operand.False; }
             return func3.Evaluate(work, tempParameter);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IF");
-        }
+
     }
 }

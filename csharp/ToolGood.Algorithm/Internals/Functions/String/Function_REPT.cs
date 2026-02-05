@@ -34,10 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create(sb.ToString());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Rept");
-		}
+
 	}
 
 }

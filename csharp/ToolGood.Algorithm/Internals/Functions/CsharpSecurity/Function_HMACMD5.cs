@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				return Operand.Error("Function '{0}' is error!{1}", "HmacMD5", ex.Message);
 			}
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "HmacMD5");
-		}
+
 
 		private string GetHmacMd5String(byte[] buffer, string secret)
 		{

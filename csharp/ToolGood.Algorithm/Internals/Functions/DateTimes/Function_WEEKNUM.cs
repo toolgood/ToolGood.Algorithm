@@ -32,10 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var week = Math.Ceiling(days / 7.0);
             return Operand.Create(week);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "WeekNum");
-        }
+
     }
 
 }

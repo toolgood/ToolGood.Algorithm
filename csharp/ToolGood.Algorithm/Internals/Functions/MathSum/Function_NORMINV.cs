@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var STDEV = args3.DoubleValue;
             return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NormInv");
-        }
+
     }
 
 }

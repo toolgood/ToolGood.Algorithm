@@ -34,10 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			int start = args1.TextValue.Length - length;
 			return Operand.Create(args1.TextValue.AsSpan(start, length).ToString());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Right");
-		}
+
 	}
 
 }

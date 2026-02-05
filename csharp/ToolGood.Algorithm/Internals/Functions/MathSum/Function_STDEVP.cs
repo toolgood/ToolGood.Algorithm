@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(Math.Sqrt((double)sum / list.Count));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "StdevP");
-        }
+
     }
 
 }

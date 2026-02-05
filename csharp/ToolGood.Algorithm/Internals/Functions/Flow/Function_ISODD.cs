@@ -19,10 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             }
             return Operand.False;
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IsOdd");
-        }
+
     }
 
 }

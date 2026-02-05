@@ -17,9 +17,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsNotBoolean) { args1 = args1.ToBoolean("Function '{0}' parameter is error!", "Not"); if (args1.IsError) { return args1; } }
             return args1.BooleanValue ? Operand.False : Operand.True;
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Not");
-        }
+
     }
 }

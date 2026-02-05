@@ -24,10 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				return Operand.Error("Function '{0}' is error!{1}", "MD5", ex.Message);
 			}
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "MD5");
-		}
+
 
 		private string GetMd5String(byte[] buffer)
 		{

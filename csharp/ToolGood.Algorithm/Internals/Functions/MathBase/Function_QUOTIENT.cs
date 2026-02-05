@@ -26,10 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create((int)(args1.NumberValue / args2.NumberValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Quotient");
-        }
+
     }
 
 

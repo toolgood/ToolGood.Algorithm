@@ -19,9 +19,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 			if (args1.IsError) { return args1; }
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IsNullOrWhiteSpace");
-        }
+
     } 
 }

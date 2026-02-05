@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var k = args2.DoubleValue;
             return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Percentile");
-        }
+
     }
 
 }

@@ -24,10 +24,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				return Operand.Error("Function '{0}' is error!{1}", "SHA256", ex.Message);
 			}
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "SHA256");
-		}
 
 		private string GetSha256String(byte[] buffer)
 		{

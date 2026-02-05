@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args2.IsError) { return args2; }
             return Operand.Create(Math.Atan2(args2.DoubleValue, args1.DoubleValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Atan2");
-        }
+
     }
 
     

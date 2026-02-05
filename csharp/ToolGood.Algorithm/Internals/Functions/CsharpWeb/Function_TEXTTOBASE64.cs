@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 			} catch(Exception) { }
 			return Operand.Error("Function '{0}' is error!", "TextToBase64");
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "TextToBase64");
-		}
+
 	}
 
 

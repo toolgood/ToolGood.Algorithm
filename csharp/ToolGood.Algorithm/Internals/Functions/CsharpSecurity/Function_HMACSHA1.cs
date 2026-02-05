@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				return Operand.Error("Function '{0}' is error!{1}", "HmacSHA1", ex.Message);
 			}
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "HmacSHA1");
-		}
+
 		private string GetHmacSha1String(byte[] buffer, string secret)
 		{
 			byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");

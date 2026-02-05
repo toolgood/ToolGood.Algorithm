@@ -39,10 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             return Operand.Create(ExcelFunctions.Weibull((double)x, (double)shape, (double)scale, state));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Weibull");
-        }
+
     }
 
 }

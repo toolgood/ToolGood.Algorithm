@@ -26,10 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             list = list.OrderBy(q => q).ToList();
             return Operand.Create(list[list.Count / 2]);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Median");
-        }
+
     }
 
 }

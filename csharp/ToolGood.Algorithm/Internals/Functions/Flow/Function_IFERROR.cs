@@ -17,9 +17,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsError) { return func2.Evaluate(work, tempParameter); }
             return func3.Evaluate(work, tempParameter);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "IfError");
-        }
+
     }
 }

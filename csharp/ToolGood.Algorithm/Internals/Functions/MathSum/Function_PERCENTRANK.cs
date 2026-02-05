@@ -39,10 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "PercentRank");
-        }
+
     }
 
 }

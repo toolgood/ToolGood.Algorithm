@@ -44,10 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				return Operand.Create(string.Join(args1.TextValue, list));
 			}
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Join");
-		}
+
 	}
 
 

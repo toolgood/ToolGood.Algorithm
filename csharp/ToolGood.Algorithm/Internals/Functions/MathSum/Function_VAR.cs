@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Var");
-        }
+
     }
 
 }

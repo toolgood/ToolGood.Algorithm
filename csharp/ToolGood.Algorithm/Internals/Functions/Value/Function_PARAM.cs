@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			}
 			return result;
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Param");
-		}
+
 	}
 
 }

@@ -31,10 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var r = FunctionUtil.F_base_Factorial(sum) / n;
             return Operand.Create(r);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Multinomial");
-        }
+
     }
 
     

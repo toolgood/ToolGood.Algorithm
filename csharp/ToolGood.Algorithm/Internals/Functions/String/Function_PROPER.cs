@@ -52,10 +52,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create(new string(chars));
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Proper");
-		}
+
 	}
 
 }

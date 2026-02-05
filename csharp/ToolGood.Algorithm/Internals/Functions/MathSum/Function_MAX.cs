@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             return Operand.Create(list.Max());
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Max");
-        }
+
     }
 
 }

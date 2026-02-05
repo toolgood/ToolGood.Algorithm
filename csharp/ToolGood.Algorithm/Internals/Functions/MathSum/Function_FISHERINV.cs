@@ -20,10 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
             return Operand.Create(n);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "FisherInv");
-        }
+
     }
 
 }

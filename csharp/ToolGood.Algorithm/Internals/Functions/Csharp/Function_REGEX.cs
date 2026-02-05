@@ -28,10 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return Operand.Create(b.Value);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Regex");
-		}
+
 	}
 
 

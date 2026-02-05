@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + work.ExcelIndex;
 			return Operand.Create(p2);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Search");
-		}
+
 	}
 
 }

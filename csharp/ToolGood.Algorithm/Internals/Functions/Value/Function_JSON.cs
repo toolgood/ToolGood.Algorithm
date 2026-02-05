@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			}
 			return Operand.Error("Function '{0}' parameter is error!", "Json");
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Json");
-		}
+
 	}
 
 }

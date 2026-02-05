@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var date = args1.DateValue.AddMinutes(args2.IntValue);
             return Operand.Create(date);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "AddMinutes");
-        }
+
     }
 
 }

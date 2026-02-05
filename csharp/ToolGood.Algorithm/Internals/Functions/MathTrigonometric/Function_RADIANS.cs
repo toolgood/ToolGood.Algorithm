@@ -19,10 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             var r = args1.DoubleValue / 180 * Math.PI;
             return Operand.Create(r);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Radians");
-        }
+
     }
 
 

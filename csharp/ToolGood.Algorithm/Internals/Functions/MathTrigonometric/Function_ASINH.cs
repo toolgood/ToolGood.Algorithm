@@ -18,10 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             return Operand.Create(Math.Asinh(args1.DoubleValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Asinh");
-        }
+
     }
 
     

@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Count"); }
             return Operand.Create(list.Count);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Count");
-        }
+
     }
 
 }

@@ -23,10 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Fisher");
-        }
+
     }
 
 }

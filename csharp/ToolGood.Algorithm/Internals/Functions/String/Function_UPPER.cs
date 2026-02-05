@@ -18,10 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.ToUpper());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Upper");
-		}
+
 	}
 
 }

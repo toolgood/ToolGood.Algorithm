@@ -18,10 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsError) { return args1; }
             return Operand.Create(Math.Exp(args1.DoubleValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Exp");
-        }
+
     }
 
     

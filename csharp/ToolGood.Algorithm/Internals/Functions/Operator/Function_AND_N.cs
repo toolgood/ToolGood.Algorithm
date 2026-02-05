@@ -25,10 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			return b ? Operand.True : Operand.False;
 		}
 
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "AND");
-		}
+
 	}
 
 

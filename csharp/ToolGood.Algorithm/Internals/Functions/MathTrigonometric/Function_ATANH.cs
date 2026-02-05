@@ -22,10 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             }
             return Operand.Create(Math.Atanh((double)x));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Atanh");
-        }
+
     }
 
     

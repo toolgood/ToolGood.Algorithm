@@ -43,10 +43,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create(days);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NetWorkdays");
-        }
+
     }
 
 }

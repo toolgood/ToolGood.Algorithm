@@ -32,10 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Substring");
-		}
+
 	}
 
 

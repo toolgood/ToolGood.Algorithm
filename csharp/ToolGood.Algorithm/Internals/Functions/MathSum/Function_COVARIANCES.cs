@@ -37,10 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var val = sum / (list1.Count - 1);
             return Operand.Create(val);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "CovarIanceS");
-        }
+
     }
 
     

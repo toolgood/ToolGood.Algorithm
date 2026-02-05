@@ -19,10 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			return Operand.Error(args1.TextValue);
 		}
 
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Error");
-		}
+
 	}
 
 }

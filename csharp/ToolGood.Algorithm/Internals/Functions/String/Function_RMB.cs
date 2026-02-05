@@ -30,10 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			string d = Regex1.Replace(s, "${b}${z}");
 			return Regex2.Replace(d, m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "RMB");
-		}
+
 	}
 
 }

@@ -21,10 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var num = Convert.ToInt32(args1.TextValue, 16);
             return Operand.Create(num);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "HEX2DEC");
-        }
+
     }
 
     

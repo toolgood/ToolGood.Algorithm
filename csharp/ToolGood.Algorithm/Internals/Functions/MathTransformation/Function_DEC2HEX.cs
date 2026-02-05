@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_DEC2HEX : Function_2
+    internal class Function_DEC2HEX : Function_2
     {
         public Function_DEC2HEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -15,25 +15,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = func1.Evaluate(work, tempParameter);
             args1 = FunctionUtil.ConvertToNumber(args1, "DEC2HEX", 1);
-            if (args1.IsError) { return args1; }
+            if(args1.IsError) { return args1; }
             var num = Convert.ToString(args1.IntValue, 16).ToUpper();
-            if (func2 != null) {
+            if(func2 != null) {
                 var args2 = func2.Evaluate(work, tempParameter);
                 args2 = FunctionUtil.ConvertToNumber(args2, "DEC2HEX", 2);
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
+                if(args2.IsError) { return args2; }
+                if(num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
                 return Operand.Error("Function '{0}' parameter {1} is error!", "DEC2HEX", 2);
             }
             return Operand.Create(num);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "DEC2HEX");
-        }
+
     }
-
-    
-
 }

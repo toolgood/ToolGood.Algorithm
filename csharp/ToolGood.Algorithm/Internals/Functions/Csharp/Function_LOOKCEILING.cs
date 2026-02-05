@@ -44,10 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return Operand.Create(result);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "LookCeiling");
-		}
+
 	}
 
 }

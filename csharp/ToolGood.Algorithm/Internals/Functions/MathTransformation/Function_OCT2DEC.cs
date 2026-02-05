@@ -21,10 +21,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var num = Convert.ToInt32(args1.TextValue, 8);
             return Operand.Create(num);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "OCT2DEC");
-        }
     }
 
     
