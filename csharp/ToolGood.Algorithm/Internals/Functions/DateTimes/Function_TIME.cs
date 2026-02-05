@@ -10,9 +10,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		{
 		}
 
-		public Function_TIME(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
-        {
-        }
+		
 
         public override string Name => "Time";
 

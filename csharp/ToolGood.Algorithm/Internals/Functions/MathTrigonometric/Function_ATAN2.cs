@@ -9,9 +9,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 		{
 		}
 
-		public Function_ATAN2(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		
 
         public override string Name => "Atan2";
 

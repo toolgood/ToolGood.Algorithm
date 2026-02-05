@@ -11,9 +11,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		public Function_LOOKFLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
+		
 
 		public override string Name => "LookFloor";
 

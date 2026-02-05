@@ -9,9 +9,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		{
 		}
 
-		public Function_DEC2OCT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		
 
         public override string Name => "Dec2Oct";
 

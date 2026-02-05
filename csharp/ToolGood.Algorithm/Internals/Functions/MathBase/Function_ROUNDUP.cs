@@ -9,9 +9,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		{
 		}
 
-		public Function_ROUNDUP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		
 
         public override string Name => "RoundUp";
 

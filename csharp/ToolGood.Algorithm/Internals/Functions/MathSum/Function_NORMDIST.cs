@@ -10,9 +10,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 		{
 		}
 
-		public Function_NORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
-        {
-        }
+		
 
         public override string Name => "NormDist";
 

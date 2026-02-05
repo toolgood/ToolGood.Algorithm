@@ -7,11 +7,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 	{
 		protected FunctionBase func3;
 
-		protected Function_3(FunctionBase func1, FunctionBase func2, FunctionBase func3):base(func1, func2)
-		{
-			this.func3 = func3;
-		}
-
 		protected Function_3(FunctionBase[] funcs) : base(funcs)
 		{
 			if(funcs.Length >= 3) {

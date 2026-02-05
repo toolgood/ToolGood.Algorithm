@@ -12,9 +12,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		{
 		}
 
-		public Function_WEEKDAY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		
 
         public override string Name => "Weekday";
 

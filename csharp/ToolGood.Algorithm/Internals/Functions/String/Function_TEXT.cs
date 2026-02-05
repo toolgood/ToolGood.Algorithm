@@ -10,9 +10,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 		}
 
-		public Function_TEXT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
+		
 
 		public override string Name => "Text";
 

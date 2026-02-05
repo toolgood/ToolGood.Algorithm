@@ -10,9 +10,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		{
 		}
 
-		public Function_HMACSHA1(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
+		
 
 		public override string Name => "HmacSHA1";
 

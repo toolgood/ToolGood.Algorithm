@@ -9,9 +9,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		{
 		}
 
-		public Function_HEX2BIN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		
 
         public override string Name => "Hex2Bin";
 
