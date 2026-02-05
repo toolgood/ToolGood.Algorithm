@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "Left", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 			if (args1.TextValue.Length == 0) {
 				return Operand.Create("");
@@ -22,8 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (func2 == null) {
 				return Operand.Create(args1.TextValue.AsSpan(0, 1).ToString());
 			}
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToNumber(args2, "Left", 2);
+			var args2 = GetNumber_2(work, tempParameter);
 			if (args2.IsError) { return args2; }
 			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
 			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());

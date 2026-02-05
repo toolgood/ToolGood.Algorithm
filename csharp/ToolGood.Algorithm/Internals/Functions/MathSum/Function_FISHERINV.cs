@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-            args1 = ConvertToNumber(args1, "FisherInv", 1);
+            var args1 = GetNumber_1(work, tempParameter);
             if (args1.IsError) { return args1; }
             var x = args1.DoubleValue;
             var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);

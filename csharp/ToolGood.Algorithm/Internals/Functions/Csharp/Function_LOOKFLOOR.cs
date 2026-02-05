@@ -15,12 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToNumber(args1, "LookFloor", 1);
+			var args1 = GetNumber_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToArray(args2, "LookFloor", 2);
+			var args2 = GetArray_2(work, tempParameter);
 			if(args2.IsError) { return args2; }
 
 			List<decimal> list = new List<decimal>();

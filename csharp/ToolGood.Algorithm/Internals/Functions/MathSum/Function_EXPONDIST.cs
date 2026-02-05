@@ -14,16 +14,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-            args1 = ConvertToNumber(args1, "ExponDist", 1);
+            var args1 = GetNumber_1(work, tempParameter);
             if (args1.IsError) return args1;
 
-            var args2 = func2.Evaluate(work, tempParameter);
-            args2 = ConvertToNumber(args2, "ExponDist", 2);
+            var args2 = GetNumber_2(work, tempParameter);
             if (args2.IsError) return args2;
 
-            var args3 = func3.Evaluate(work, tempParameter);
-            args3 = ConvertToBoolean(args3, "ExponDist", 3);
+            var args3 = GetBoolean_3(work, tempParameter);
             if (args3.IsError) return args3;
 
             var n1 = args1.DoubleValue;

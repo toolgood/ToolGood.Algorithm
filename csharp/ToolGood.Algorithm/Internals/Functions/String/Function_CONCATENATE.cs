@@ -17,15 +17,13 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return Operand.Create("");
 			}
 			if (funcs.Length == 1) {
-				var a = funcs[0].Evaluate(work, tempParameter);
-				a = ConvertToText(a, "Concatenate", 1);
+				var a = GetText(work, tempParameter, 0);
 				if (a.IsError) { return a; }
 				return a; // 只有一个
 			}
 			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {
-				var a = funcs[i].Evaluate(work, tempParameter);
-				a = ConvertToText(a, "Concatenate", i + 1);
+				var a = GetText(work, tempParameter, i);
 				if (a.IsError) { return a; }
 				sb.Append(a.TextValue);
 			}
@@ -33,5 +31,4 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		}
 
 	}
-
 }

@@ -28,34 +28,34 @@ namespace ToolGood.Algorithm.Internals.Functions
 		protected Operand GetText_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotText) return ConvertToText(args2, Name, 2);
+			if(args2.IsNotText) return ConvertToText(args2, 2);
 			return args2;
 		}
 
 		protected Operand GetNumber_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotNumber) return ConvertToNumber(args2, Name, 2);
+			if(args2.IsNotNumber) return ConvertToNumber(args2, 2);
 			return args2;
 		}
 
 		protected Operand GetDate_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotDate) return ConvertToDate(args2, Name, 2);
+			if(args2.IsNotDate) return ConvertToDate(args2, 2);
 			return args2;
 		}
 
 		protected Operand GetBoolean_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotBoolean) return ConvertToBoolean(args2, Name, 2);
+			if(args2.IsNotBoolean) return ConvertToBoolean(args2, 2);
 			return args2;
 		}
 		protected Operand GetArray_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args2 = func2.Evaluate(work, tempParameter);
-			if(args2.IsNotArray) return ConvertToArray(args2, Name, 2);
+			if(args2.IsNotArray) return ConvertToArray(args2, 2);
 			return args2;
 		}
 		#endregion

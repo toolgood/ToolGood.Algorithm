@@ -13,12 +13,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToDate(args1, "Days360", 1);
+            var args1 = GetDate_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToDate(args2, "Days360", 2);
+			var args2 = GetDate_2(work, tempParameter);
 			if (args2.IsError) { return args2; }
 
 			var startMyDate = (DateTime)args1.DateValue;
@@ -26,8 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			var method = false;
 			if (func3 != null) {
-				var args3 = func3.Evaluate(work, tempParameter);
-				args3 = ConvertToBoolean(args3, "Days360", 3);
+				var args3 = GetBoolean_3(work, tempParameter);
 				if (args3.IsError) { return args3; }
 				method = args3.BooleanValue;
 			}

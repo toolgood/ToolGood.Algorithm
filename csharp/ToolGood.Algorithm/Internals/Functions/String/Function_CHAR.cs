@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToNumber(args1, "Char", 1);
+			var args1 = GetNumber_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 			char c = (char)args1.IntValue;
 			return Operand.Create(new string(c, 1));

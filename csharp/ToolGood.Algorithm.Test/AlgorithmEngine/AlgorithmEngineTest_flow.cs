@@ -17,8 +17,9 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("if(1=1，1)", 0);
             Assert.AreEqual(1, t);
 
-            t = engine.TryEvaluate("if(3,1,2)", 0);
-            Assert.AreEqual(1, t);
+            // 禁止隐式转换
+            //t = engine.TryEvaluate("if(3,1,2)", 0);
+            //         Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if('1',1,2)", 0);
             Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if(0,1,2)", 0);

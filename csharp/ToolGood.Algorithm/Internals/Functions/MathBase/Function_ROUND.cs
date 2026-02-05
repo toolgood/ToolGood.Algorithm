@@ -13,15 +13,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToNumber(args1, "Round", 1);
+            var args1 = GetNumber_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 
 			if (func2 == null) {
 				return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
 			}
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToNumber(args2, "Round", 2);
+			var args2 = GetNumber_2(work, tempParameter);
 			if (args2.IsError) { return args2; }
             return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
         }

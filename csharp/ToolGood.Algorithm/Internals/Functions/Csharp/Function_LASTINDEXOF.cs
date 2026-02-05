@@ -13,12 +13,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "LastIndexOf", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToText(args2, "LastIndexOf", 2);
+			var args2 = GetText_2(work, tempParameter);
 			if(args2.IsError) { return args2; }
 
 			var text = args1.TextValue;
@@ -26,16 +24,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.ExcelIndex);
 			}
 
-			var args3 = func3.Evaluate(work, tempParameter);
-			args3 = ConvertToNumber(args3, "LastIndexOf", 3);
+			var args3 = GetNumber_3(work, tempParameter);
 			if(args3.IsError) { return args3; }
 
 			if(func4 == null) {
 				return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.ExcelIndex);
 			}
 
-			var args4 = func4.Evaluate(work, tempParameter);
-			args4 = ConvertToNumber(args4, "LastIndexOf", 4);
+			var args4 = GetNumber_4(work, tempParameter);
 			if(args4.IsError) { return args4; }
 
 			return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);

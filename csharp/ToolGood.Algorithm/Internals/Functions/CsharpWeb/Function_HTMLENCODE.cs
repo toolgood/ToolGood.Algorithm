@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "HtmlEncode", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 			var s = args1.TextValue;
 			var r = System.Web.HttpUtility.HtmlEncode(s);

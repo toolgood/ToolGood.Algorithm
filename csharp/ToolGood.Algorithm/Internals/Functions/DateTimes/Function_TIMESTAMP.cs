@@ -13,11 +13,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args0 = func1.Evaluate(work, tempParameter); if (args0.IsError) { return args0; }
+            var args0 = GetDate_1(work, tempParameter); if (args0.IsError) { return args0; }
 
             int type = 0; // 毫秒
             if (func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2); if (args2.IsError) { return args2; } }
+                var args2 = GetNumber_2(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2); if (args2.IsError) { return args2; } }
                 type = args2.IntValue;
             }
             DateTime args1;

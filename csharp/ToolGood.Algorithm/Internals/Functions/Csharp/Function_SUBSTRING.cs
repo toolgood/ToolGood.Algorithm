@@ -13,12 +13,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "Substring", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToNumber(args2, "Substring", 2);
+			var args2 = GetNumber_2(work, tempParameter);
 			if(args2.IsError) { return args2; }
 
 			var text = args1.TextValue;
@@ -26,8 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex).ToString());
 			}
 
-			var args3 = func3.Evaluate(work, tempParameter);
-			args3 = ConvertToNumber(args3, "Substring", 3);
+			var args3 = GetNumber_3(work, tempParameter);
 			if(args3.IsError) { return args3; }
 
 			return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());

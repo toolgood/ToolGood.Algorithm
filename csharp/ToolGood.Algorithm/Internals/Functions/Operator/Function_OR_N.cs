@@ -14,18 +14,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var index = 1;
 			bool b = false;
-			foreach(var item in funcs) {
-				var a = item.Evaluate(work, tempParameter);
-				a = ConvertToBoolean(a, "OR", index++);
+			for(int i = 0; i < funcs.Length; i++) {
+				var a = GetBoolean(work, tempParameter, i);
 				if(a.IsError) { return a; }
 				if(a.BooleanValue) b = true;
 			}
 			return b ? Operand.True : Operand.False;
 		}
 
+
 	}
-
-
 }

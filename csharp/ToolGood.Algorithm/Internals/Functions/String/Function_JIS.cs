@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "JIS", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 			return Operand.Create(F_base_ToSBC(args1.TextValue));
 		}

@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "Base64urlToText", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 			try {
 				var base64Url = args1.TextValue.Replace('-', '+').Replace('_', '/');
@@ -24,8 +23,9 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				}
 				var t = Encoding.UTF8.GetString(Convert.FromBase64String(base64Url));
 				return Operand.Create(t);
-			} catch(Exception) { }
-			return Operand.Error("Function '{0}' is error!", "Base64urlToText");
+			} catch(Exception) {
+				return Operand.Error("Function '{0}' is error!", "Base64urlToText");
+			}
 		}
 
 	}

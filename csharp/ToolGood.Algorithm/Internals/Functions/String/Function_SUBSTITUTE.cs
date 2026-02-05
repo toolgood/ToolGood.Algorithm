@@ -13,20 +13,16 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "Substitute", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToText(args2, "Substitute", 2);
+			var args2 = GetText_2(work, tempParameter);
 			if (args2.IsError) { return args2; }
-			var args3 = func3.Evaluate(work, tempParameter);
-			args3 = ConvertToText(args3, "Substitute", 3);
+			var args3 = GetText_3(work, tempParameter);
 			if (args3.IsError) { return args3; }
 			if (func4 == null) {
 				return Operand.Create(args1.TextValue.Replace(args2.TextValue, args3.TextValue));
 			}
-			var args4 = func4.Evaluate(work, tempParameter);
-			args4 = ConvertToNumber(args4, "Substitute", 4);
+			var args4 = GetNumber_4(work, tempParameter);
 			if (args4.IsError) { return args4; }
 			string text = args1.TextValue;
 			string oldtext = args2.TextValue;

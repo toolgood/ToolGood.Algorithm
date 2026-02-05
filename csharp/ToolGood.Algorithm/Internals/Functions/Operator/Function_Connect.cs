@@ -13,19 +13,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsError) { return args2; }
-
-			if(args1.IsNull) {
-				if(args2.IsNull) return args1;
-				return ConvertToText(args2, "&", 2);
-			} else if(args2.IsNull) {
-				return ConvertToText(args1, "&", 1);
-			}
-			args1 = ConvertToText(args1, "&", 1);
-			if(args1.IsError) { return args1; }
-			args2 = ConvertToText(args2, "&", 2);
-			if(args2.IsError) { return args2; }
+			var args1 = GetText_1(work, tempParameter); if(args1.IsError) { return args1; }
+			var args2 = GetText_2(work, tempParameter); if(args2.IsError) { return args2; }
 
 			return Operand.Create(args1.TextValue + args2.TextValue);
 		}

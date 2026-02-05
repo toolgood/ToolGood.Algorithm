@@ -13,13 +13,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-            args1 = ConvertToNumber(args1, "DEC2HEX", 1);
+            var args1 = GetNumber_1(work, tempParameter);
             if(args1.IsError) { return args1; }
             var num = Convert.ToString(args1.IntValue, 16).ToUpper();
             if(func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter);
-                args2 = ConvertToNumber(args2, "DEC2HEX", 2);
+                var args2 = GetNumber_2(work, tempParameter);
                 if(args2.IsError) { return args2; }
                 if(num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));

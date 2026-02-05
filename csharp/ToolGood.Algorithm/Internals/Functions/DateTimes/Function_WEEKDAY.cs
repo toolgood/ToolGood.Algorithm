@@ -16,14 +16,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToDate(args1, "WeekDay", 1);
+            var args1 = GetDate_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 
 			var type = 1;
 			if (func2 != null) {
-				var args2 = func2.Evaluate(work, tempParameter);
-				args2 = ConvertToNumber(args2, "WeekDay", 2);
+				var args2 = GetNumber_2(work, tempParameter);
 				if (args2.IsError) { return args2; }
 				type = args2.IntValue;
 			}

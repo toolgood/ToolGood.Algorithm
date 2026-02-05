@@ -14,22 +14,21 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToText(args2, "Text", 2);
-			if (args2.IsError) { return args2; }
+			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsError) { return args1; }
+			var args2 = GetText_2(work, tempParameter);
+			if(args2.IsError) { return args2; }
 
-			if (args1.IsText) {
+			if(args1.IsText) {
 				return args1;
-			} else if (args1.IsBoolean) {
+			} else if(args1.IsBoolean) {
 				return Operand.Create(args1.BooleanValue ? "TRUE" : "FALSE");
-			} else if (args1.IsNumber) {
+			} else if(args1.IsNumber) {
 				return Operand.Create(args1.NumberValue.ToString(args2.TextValue, CultureInfo.InvariantCulture));
-			} else if (args1.IsDate) {
+			} else if(args1.IsDate) {
 				return Operand.Create(args1.DateValue.ToString(args2.TextValue));
 			}
-			args1 = ConvertToText(args1, "Text", 1);
-			if (args1.IsError) { return args1; }
+			args1 = ConvertToText(args1, 1);
+			if(args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.ToString());
 		}
 

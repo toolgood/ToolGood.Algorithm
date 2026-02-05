@@ -14,42 +14,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsError) { return args2; }
+			var args1 = GetNumber_1(work, tempParameter); if(args1.IsError) { return args1; }
+			var args2 = GetNumber_2(work, tempParameter); if(args2.IsError) { return args2; }
 
-			if(args1.IsNumber && args2.IsNumber) { //  优化性能
-				if(args2.NumberValue == 1m) { return args1; }
-				if(args2.NumberValue == 0m) { return Operand.Error("Function '{0}' div 0 is error!", "/"); }
-				return Operand.Create(args1.NumberValue / args2.NumberValue);
-			}
-			if(args1.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "/", 1); }
-			if(args2.IsNull) { return Operand.Error("Function '{0}' parameter {1} is NULL!", "/", 2); }
-
-			if(args1.IsText) {
-				if(decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-					args1 = Operand.Create(d);
-				} else if(FunctionUtil.TryParseBoolean(args1.TextValue, out bool b)) {
-					args1 = b ? Operand.One : Operand.Zero;
-				} else {
-					return Operand.Error("Function '{0}' Two types cannot be divided!", "/");
-				}
-			}
-			if(args2.IsText) {
-				if(decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-					args2 = Operand.Create(d);
-				} else if(FunctionUtil.TryParseBoolean(args2.TextValue, out bool b)) {
-					args1 = b ? Operand.One : Operand.Zero;
-				} else {
-					return Operand.Error("Function '{0}' Two types cannot be divided!", "/");
-				}
-			}
-			args2 = ConvertToNumber(args2, "/", 2);
-			if(args2.IsError) { return args2; }
 			if(args2.NumberValue == 0) { return Operand.Error("Function '{0}' div 0 is error!", "/"); }
 			if(args2.NumberValue == 1) { return args1; }
 
-			args1 = ConvertToNumber(args1, "/", 1);
-			if(args1.IsError) { return args1; }
 			return Operand.Create(args1.NumberValue / args2.NumberValue);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

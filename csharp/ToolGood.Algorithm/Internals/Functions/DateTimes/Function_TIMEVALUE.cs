@@ -14,8 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "TimeValue", 1);
+            var args1 = GetText_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
 
             if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan dt)) {

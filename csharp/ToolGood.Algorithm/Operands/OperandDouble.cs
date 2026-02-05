@@ -22,8 +22,24 @@ namespace ToolGood.Algorithm
 		public override Operand ToNumber(string errorMessage) { return this; }
 		public override Operand ToNumber(string errorMessage, params object[] args) { return this; }
 
-		public override Operand ToBoolean(string errorMessage) { return DoubleValue != 0 ? True : False; }
-		public override Operand ToBoolean(string errorMessage, params object[] args) { return DoubleValue != 0 ? True : False; }
+		public override Operand ToBoolean(string errorMessage)
+		{
+			if(_value == 0) {
+				return False;
+			} else if(_value == 1) {
+				return True;
+			}
+			return base.ToBoolean(errorMessage);
+		}
+		public override Operand ToBoolean(string errorMessage, params object[] args)
+		{
+			if(_value == 0) {
+				return False;
+			} else if(_value == 1) {
+				return True;
+			}
+			return base.ToBoolean(errorMessage);
+		}
 
 		public override Operand ToText(string errorMessage) { return Create(DoubleValue.ToString(CultureInfo.InvariantCulture)); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(DoubleValue.ToString(CultureInfo.InvariantCulture)); }

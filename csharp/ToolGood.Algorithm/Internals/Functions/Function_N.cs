@@ -33,34 +33,34 @@ namespace ToolGood.Algorithm.Internals.Functions
 		protected Operand GetText(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(work, tempParameter);
-			if(args1.IsNotText) return ConvertToText(args1, Name, idx);
+			if(args1.IsNotText) return ConvertToText(args1, idx);
 			return args1;
 		}
 
 		protected Operand GetNumber(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(work, tempParameter);
-			if(args1.IsNotNumber) return ConvertToNumber(args1, Name, idx);
+			if(args1.IsNotNumber) return ConvertToNumber(args1, idx);
 			return args1;
 		}
 
 		protected Operand GetDate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(work, tempParameter);
-			if(args1.IsNotDate) return ConvertToDate(args1, Name, idx);
+			if(args1.IsNotDate) return ConvertToDate(args1, idx);
 			return args1;
 		}
 
 		protected Operand GetBoolean(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(work, tempParameter);
-			if(args1.IsNotBoolean) return ConvertToBoolean(args1, Name, idx);
+			if(args1.IsNotBoolean) return ConvertToBoolean(args1, idx);
 			return args1;
 		}
 		protected Operand GetArray(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(work, tempParameter);
-			if(args1.IsNotArray) return ConvertToArray(args1, Name, idx);
+			if(args1.IsNotArray) return ConvertToArray(args1, idx);
 			return args1;
 		}
 		#endregion

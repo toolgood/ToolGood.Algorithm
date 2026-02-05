@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-            args1 = ConvertToNumber(args1, "Degrees", 1);
+            var args1 = GetNumber_1(work, tempParameter);
             if (args1.IsError) { return args1; }
             var z = args1.DoubleValue;
             var r = (z / Math.PI * 180);

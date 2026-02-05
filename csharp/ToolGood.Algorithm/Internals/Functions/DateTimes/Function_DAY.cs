@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToDate(args1, "Day", 1);
+            var args1 = GetDate_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
             if (args1.DateValue.Day == null) {
                 return Operand.Error("Function '{0}' is error!", "Day");

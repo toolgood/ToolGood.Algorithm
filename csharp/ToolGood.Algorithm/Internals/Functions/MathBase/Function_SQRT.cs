@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToNumber(args1, "Sqrt", 1);
+            var args1 = GetNumber_1(work, tempParameter);
 			if (args1.IsError) { return args1; }
             if (args1.NumberValue < 0) {
                 return Operand.Error("Function '{0}' parameter is error!", "Sqrt");

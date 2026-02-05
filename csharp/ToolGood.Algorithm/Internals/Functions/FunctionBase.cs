@@ -50,65 +50,87 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// 转换参数为文本
 		/// </summary>
 		/// <param name="arg"></param>
-		/// <param name="functionName"></param>
 		/// <param name="paramIndex"></param>
 		/// <returns></returns>
-		protected Operand ConvertToText(Operand arg, string functionName, int paramIndex)
+		protected Operand ConvertToText(Operand arg, int paramIndex)
 		{
-			return arg.ToText("Function '{0}' parameter {1} is error!", functionName, paramIndex);
+			return arg.ToText("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
 		/// <summary>
 		/// 转换参数为布尔值
 		/// </summary>
 		/// <param name="arg"></param>
-		/// <param name="functionName"></param>
 		/// <param name="paramIndex"></param>
 		/// <returns></returns>
-		protected Operand ConvertToBoolean(Operand arg, string functionName, int paramIndex)
+		protected Operand ConvertToBoolean(Operand arg, int paramIndex)
 		{
-			return arg.ToBoolean("Function '{0}' parameter {1} is error!", functionName, paramIndex);
+			return arg.ToBoolean("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
 		/// <summary>
 		/// 转换参数为数字
 		/// </summary>
 		/// <param name="arg"></param>
-		/// <param name="functionName"></param>
 		/// <param name="paramIndex"></param>
 		/// <returns></returns>
-		protected Operand ConvertToNumber(Operand arg, string functionName, int paramIndex)
+		protected Operand ConvertToNumber(Operand arg, int paramIndex)
 		{
-			return arg.ToNumber("Function '{0}' parameter {1} is error!", functionName, paramIndex);
+			return arg.ToNumber("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
 		/// <summary>
 		/// 转换参数为数组
 		/// </summary>
 		/// <param name="arg"></param>
-		/// <param name="functionName"></param>
 		/// <param name="paramIndex"></param>
 		/// <returns></returns>
-		protected Operand ConvertToArray(Operand arg, string functionName, int paramIndex)
+		protected Operand ConvertToArray(Operand arg, int paramIndex)
 		{
-			return arg.ToArray("Function '{0}' parameter {1} is error!", functionName, paramIndex);
+			return arg.ToArray("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
 		/// <summary>
 		/// 转换参数为日期
 		/// </summary>
 		/// <param name="arg"></param>
-		/// <param name="functionName"></param>
 		/// <param name="paramIndex"></param>
 		/// <returns></returns>
-		protected Operand ConvertToDate(Operand arg, string functionName, int paramIndex)
+		protected Operand ConvertToDate(Operand arg, int paramIndex)
 		{
-			return arg.ToMyDate("Function '{0}' parameter {1} is error!", functionName, paramIndex);
+			return arg.ToMyDate("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
 		#endregion
+		#region ParameterError FunctionError ParameterNull
+		/// <summary>
+		/// Creates an error operand indicating that a function parameter is null.
+		/// </summary>
+		/// <param name="paramIndex">The zero-based index of the parameter that is null.</param>
+		/// <returns>An operand representing an error for a null parameter at the specified index.</returns>
+		protected Operand ParameterNull(int paramIndex)
+		{
+			return Operand.Error("Function '{0}' parameter {1} is NULL!", Name, paramIndex);
+		}
+		/// <summary>
+		/// Creates an error operand indicating that a specific function parameter is invalid.
+		/// </summary>
+		/// <param name="paramIndex">The zero-based index of the parameter that caused the error.</param>
+		/// <returns>An operand representing an error for the specified parameter.</returns>
+		protected Operand ParameterError(int paramIndex)
+		{
+			return Operand.Error("Function '{0}' parameter {1} is error!", Name, paramIndex);
+		}
+		/// <summary>
+		/// Creates an error operand indicating that a function parameter is invalid.
+		/// </summary>
+		/// <returns>An <see cref="Operand"/> representing an error state for the function due to an invalid parameter.</returns>
+		protected Operand FunctionError()
+		{
+			return Operand.Error("Function '{0}' parameter is error!", Name);
+		}
 
 
-
+		#endregion
 	}
 }

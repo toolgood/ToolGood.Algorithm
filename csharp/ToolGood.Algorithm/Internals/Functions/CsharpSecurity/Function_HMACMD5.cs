@@ -14,18 +14,16 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "HmacMD5", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToText(args2, "HmacMD5", 2);
+			var args2 = GetText_2(work, tempParameter);
 			if(args2.IsError) { return args2; }
 			try {
 				var t = GetHmacMd5String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);
 				return Operand.Create(t);
-			} catch(Exception ex) {
-				return Operand.Error("Function '{0}' is error!{1}", "HmacMD5", ex.Message);
+			} catch(Exception) {
+				return Operand.Error("Function '{0}' is error!", "HmacMD5");
 			}
 		}
 

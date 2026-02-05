@@ -13,23 +13,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			args1 = ConvertToText(args1, "TrimEnd", 1);
+			var args1 = GetText_1(work, tempParameter);
 			if(args1.IsError) { return args1; }
 
 			if(func2 == null) {
 				return Operand.Create(args1.TextValue.TrimEnd());
 			}
 
-			var args2 = func2.Evaluate(work, tempParameter);
-			args2 = ConvertToText(args2, "TrimEnd", 2);
+			var args2 = GetText_2(work, tempParameter);
 			if(args2.IsError) { return args2; }
+
 
 			char[] trimChars = args2.TextValue.ToCharArray();
 			return Operand.Create(args1.TextValue.TrimEnd(trimChars));
 		}
 
 	}
-
-
 }

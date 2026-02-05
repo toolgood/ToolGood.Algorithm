@@ -14,12 +14,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
-            args1 = ConvertToDate(args1, "AddMonths", 1);
+            var args1 = GetDate_1(work, tempParameter);
             if (args1.IsError) { return args1; }
 
-            var args2 = func2.Evaluate(work, tempParameter);
-            args2 = ConvertToNumber(args2, "AddMonths", 2);
+            var args2 = GetNumber_2(work, tempParameter);
             if (args2.IsError) { return args2; }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }

@@ -15,10 +15,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = GetText_1(work, tempParameter);
 			if (args1.IsNumber) { return args1; }
 			if (args1.IsBoolean) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
-			args1 = ConvertToText(args1, "Value", 1);
 			if (args1.IsError) { return args1; }
 
 			if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
