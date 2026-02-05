@@ -93,13 +93,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 				obj => obj.TextValue);
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<string> list)
-		{
-			return F_base_GetList(args, list, 
-				obj => obj.ToText(null),
-				obj => obj.TextValue);
-		}
-
 		public static int F_base_countif(List<decimal> dbs, decimal d)
 		{
 			int count = 0;
