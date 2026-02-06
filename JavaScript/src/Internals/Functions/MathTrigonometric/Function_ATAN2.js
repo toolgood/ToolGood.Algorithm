@@ -15,7 +15,7 @@ class Function_ATAN2 extends Function_2 {
         if (args1.IsError) { return args1; }
         let args2 = this.GetNumber_2(work, tempParameter);
         if (args2.IsError) { return args2; }
-        return Operand.Create(Math.atan2(args2.DoubleValue, args1.DoubleValue));
+        return Operand.Create(Math.atan2(args1.NumberValue, args2.NumberValue));
     }
 }
 

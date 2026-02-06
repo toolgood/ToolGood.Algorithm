@@ -13,14 +13,14 @@ class Function_PRODUCT extends Function_N {
     Evaluate(engine, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
-            let aa = this.GetNumber_1(engine, tempParameter, i);
+            let aa = this.GetNumber(engine, tempParameter, i);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
         let list = [];
         for (let arg of args) {
-            if (arg.IsNotNumber) {
+            if (!arg.IsNumber) {
                 return this.FunctionError();
             }
             list.push(arg.NumberValue);

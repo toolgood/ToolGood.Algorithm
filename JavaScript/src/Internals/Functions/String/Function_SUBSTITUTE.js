@@ -17,7 +17,7 @@ class Function_SUBSTITUTE extends Function_4 {
         if (args2.IsError) { return args2; }
         let args3 = this.GetText_3(work, tempParameter);
         if (args3.IsError) { return args3; }
-        if (this.d === null) {
+        if (this.d === null || this.d === undefined) {
             return Operand.Create(args1.TextValue.replace(new RegExp(args2.TextValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.TextValue));
         }
         let args4 = this.GetNumber_4(work, tempParameter);

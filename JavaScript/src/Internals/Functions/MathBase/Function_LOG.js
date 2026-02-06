@@ -14,13 +14,13 @@ class Function_LOG extends Function_2 {
         let args1 = this.GetNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        if (this.b === null) {
+        if (this.b === null || this.b === undefined) {
             return Operand.Create(Math.log10(args1.NumberValue));
         }
 
         let args2 = this.GetNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
-        return Operand.Create(Math.log(args1.NumberValue, args2.NumberValue));
+        return Operand.Create(Math.log(args1.NumberValue) / Math.log(args2.NumberValue));
     }
 }
 

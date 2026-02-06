@@ -11,19 +11,20 @@ class Function_FIXED extends Function_3 {
   }
 
     Evaluate(engine, tempParameter) {
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        
         let num = 2;
-        if (this.b !== null) {
+        if (this.b !== null && this.b !== undefined) {
             let args2 = this.GetNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
             num = args2.IntValue;
         }
-        let args1 = this.GetNumber_1(engine, tempParameter);
-        if (args1.IsError) { return args1; }
 
         // 四舍五入到指定小数位
         let s = Math.round(args1.NumberValue * Math.pow(10, num)) / Math.pow(10, num);
         let no = false;
-        if (this.c !== null) {
+        if (this.c !== null && this.c !== undefined) {
             let args3 = this.GetBoolean_3(engine, tempParameter);
             if (args3.IsError) { return args3; }
             no = args3.BooleanValue;

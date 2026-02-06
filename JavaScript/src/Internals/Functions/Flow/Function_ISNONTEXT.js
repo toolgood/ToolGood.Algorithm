@@ -12,7 +12,7 @@ class Function_ISNONTEXT extends Function_1 {
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
+        if (!args1.IsText) {
             return Operand.True;
         }
         return Operand.False;

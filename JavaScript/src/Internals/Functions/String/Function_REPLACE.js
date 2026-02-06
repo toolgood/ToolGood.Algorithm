@@ -14,20 +14,20 @@ class Function_REPLACE extends Function_4 {
         let args1 = this.GetText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         let oldtext = args1.TextValue;
-        if (this.d === null) {
+        if (this.d === null || this.d === undefined) {
             let args22 = this.b.Evaluate(work, tempParameter);
-                args22.ToText(this.FunctionError, 'Replace', 2);
-                if (args22.IsError) {
-                    return args22;
-                }
+            let converted22 = args22.ToText("Function '{0}' parameter {1} is error!", this.Name, 2);
+            if (converted22.IsError) {
+                return converted22;
+            }
             let args32 = this.c.Evaluate(work, tempParameter);
-                args32.ToText(this.FunctionError, 'Replace', 3);
-                if (args32.IsError) {
-                    return args32;
-                }
+            let converted32 = args32.ToText("Function '{0}' parameter {1} is error!", this.Name, 3);
+            if (converted32.IsError) {
+                return converted32;
+            }
 
-            let oldStr = args22.TextValue;
-            let newstr = args32.TextValue;
+            let oldStr = converted22.TextValue;
+            let newstr = converted32.TextValue;
             return Operand.Create(oldtext.replace(new RegExp(oldStr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newstr));
         }
 

@@ -14,7 +14,7 @@ class Function_FLOOR extends Function_2 {
         let args1 = this.GetNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        if (this.b === null) {
+        if (this.b === null || this.b === undefined) {
             return Operand.Create(Math.floor(args1.NumberValue));
         }
 

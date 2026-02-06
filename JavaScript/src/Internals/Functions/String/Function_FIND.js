@@ -15,13 +15,13 @@ class Function_FIND extends Function_3 {
         if (args1.IsError) { return args1; }
         let args2 = this.GetText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
-        if (this.c === null) {
+        if (this.c === null || this.c === undefined) {
             let p = args2.TextValue.indexOf(args1.TextValue) + work.ExcelIndex;
             return Operand.Create(p);
         }
         let count = this.GetNumber_3(work, tempParameter);
         if (count.IsError) { return count; }
-        let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
+      	let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
         return Operand.Create(p2);
     }
 }

@@ -16,7 +16,7 @@ class Function_SEARCH extends Function_3 {
         let args2 = this.GetText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
 
-        if (this.c === null) {
+        if (this.c === null || this.c === undefined) {
             let p = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase()) + work.ExcelIndex;
             return Operand.Create(p);
         }
