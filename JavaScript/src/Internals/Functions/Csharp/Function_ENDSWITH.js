@@ -28,7 +28,7 @@ export class Function_ENDSWITH extends Function_3 {
         if (args2.IsError) { return args2; }
 
         let text = args1.TextValue;
-        if (this.c === null) {
+        if (!this.c) {
             return Operand.Create(text.endsWith(args2.TextValue));
         }
 

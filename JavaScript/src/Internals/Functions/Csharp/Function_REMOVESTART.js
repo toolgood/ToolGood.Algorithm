@@ -28,7 +28,7 @@ export class Function_REMOVESTART extends Function_3 {
         if (args2.IsError) { return args2; }
 
         let ignoreCase = false;
-        if (this.c !== null) {
+        if (this.c) {
             let args3 = this.GetBoolean_3(engine, tempParameter);
             if (args3.IsError) { return args3; }
             ignoreCase = args3.BooleanValue;

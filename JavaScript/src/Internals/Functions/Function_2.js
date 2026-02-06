@@ -12,6 +12,7 @@ export class Function_2 extends Function_1 {
     constructor(a, b) {
         if (Array.isArray(a)) {
             super(a[0]);
+            this.b=null;
             if (a.length >= 2) {
                 this.b = a[1];
             }

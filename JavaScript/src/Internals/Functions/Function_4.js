@@ -9,6 +9,7 @@ export class Function_4 extends Function_3 {
      */
     constructor(funcs) {
         super(funcs);
+        this.d=null;
         if (funcs.length >= 4) {
             this.d = funcs[3];
         }
