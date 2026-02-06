@@ -23,7 +23,7 @@ class Function_JSON extends Function_1 {
             args1 = args1.ToText();
         }
         if (args1.IsNotText) {
-            return this.FunctionError('Json');
+            return this.FunctionError();
         }
         let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
@@ -33,7 +33,7 @@ class Function_JSON extends Function_1 {
             } catch (e) {
             }
         }
-        return this.FunctionError('Json');
+        return this.FunctionError();
     }
 
 

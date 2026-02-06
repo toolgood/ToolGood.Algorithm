@@ -1,6 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 import MD5 from 'crypto-js/md5.js';
 
 /**

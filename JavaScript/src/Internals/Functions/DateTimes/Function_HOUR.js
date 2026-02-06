@@ -1,6 +1,6 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 
 class Function_HOUR extends Function_1 {
     get Name() {

@@ -108,7 +108,7 @@ class Function_GetJsonValue extends Function_2 {
                 }
             }
         }
-        return Operand.Error('Function \'{0}\'' + ' Operator is error!', 'GetJsonValue');
+        return Operand.Error('Function \'{0}\' Operator is error!', 'GetJsonValue');
     }
 
     ToString(stringBuilder, addBrackets) {
