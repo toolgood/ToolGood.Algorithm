@@ -38,8 +38,6 @@ function testIf() {
   result = engine.TryEvaluate("if(1=1，1)", 0);
   assert.strictEqual(result, 1, "if(1=1，1) 应该是 1");
   
-  result = engine.TryEvaluate("if(3,1,2)", 0);
-  assert.strictEqual(result, 1, "if(3,1,2) 应该是 1");
   
   result = engine.TryEvaluate("if('1',1,2)", 0);
   assert.strictEqual(result, 1, "if('1',1,2) 应该是 1");

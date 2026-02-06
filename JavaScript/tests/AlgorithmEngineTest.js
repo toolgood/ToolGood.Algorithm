@@ -389,8 +389,8 @@ function Test_Json() {
   
   // 执行解析结果并断言
   let result = engine.Evaluate(t);
-  let jsonString = JSON.stringify(result.JsonValue);
-  console.log('JSON 执行结果:', jsonString);
+  // let jsonString = JSON.stringify(result.JsonValue);
+  // console.log('JSON 执行结果:', jsonString);
   
   console.log('Test_Json 测试通过！');
 }
