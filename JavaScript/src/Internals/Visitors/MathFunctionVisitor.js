@@ -2566,6 +2566,9 @@ class MathFunctionVisitor extends mathVisitor  {
         }
         return new Function_DiyFunction(funName, args);
     }
+    isitVersion_fun(context) {
+        return new Function_Value(Operand.Version, "VERSION");
+    }
 }
 
 export { MathFunctionVisitor };
