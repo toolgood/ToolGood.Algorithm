@@ -728,7 +728,7 @@ class OperandKeyValue extends Operand {
 export {  OperandDouble,   OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
 
 // 初始化静态属性
-Operand.Version = new OperandString("ToolGood.Algorithm 6.1");
+Operand.Version = new OperandString("ToolGood.Algorithm 6.2");
 Operand.True = new OperandBoolean(true);
 Operand.False = new OperandBoolean(false);
 Operand.One = Operand.Create(1);
