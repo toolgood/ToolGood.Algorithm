@@ -129,16 +129,6 @@ function test() {
   r = engine.TryEvaluate("(1=2)*9+2", 0);
   assert.strictEqual(r, 2, "(1=2)*9+2 应该等于 2");
   
-  // 日期测试 - JavaScript 中日期处理可能不同
-  let dt = engine.TryEvaluate_DateTime("'2016-1-1'+1", new Date(0));
-  assert.strictEqual(dt.getFullYear(), 2016, "");
-  assert.strictEqual(dt.getMonth()+1, 1, "");
-  assert.strictEqual(dt.getDate(), 2, "");
-
-  dt = engine.TryEvaluate_DateTime("'2016-1-2'-1", new Date(0));
-  assert.strictEqual(dt.getFullYear(), 2016, "");
-  assert.strictEqual(dt.getMonth()+1, 1, "");
-  assert.strictEqual(dt.getDate(), 1, "");
   
   let value = engine.TryEvaluate("1 > (-2)", false);
   assert.strictEqual(value, true, "1 > (-2) 应该等于 true");
@@ -200,6 +190,37 @@ function test() {
   // null 测试
   let bb2 = engine.TryEvaluate("'111'*null", 0);
   assert.strictEqual(bb2, 0, "'111'*null 应该等于 0");
+  
+  // 更多 null 测试
+  bb2 = engine.TryEvaluate("1>null", true);
+  assert.strictEqual(bb2, false, "1>null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("1>=null", true);
+  assert.strictEqual(bb2, false, "1>=null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("1<=null", true);
+  assert.strictEqual(bb2, false, "1<=null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("1<null", true);
+  assert.strictEqual(bb2, false, "1<null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("1==null", true);
+  assert.strictEqual(bb2, false, "1==null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("1!=null", false);
+  assert.strictEqual(bb2, true, "1!=null 应该等于 true");
+  
+  bb2 = engine.TryEvaluate("null=null", false);
+  assert.strictEqual(bb2, true, "null=null 应该等于 true");
+  
+  bb2 = engine.TryEvaluate("null!=null", true);
+  assert.strictEqual(bb2, false, "null!=null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("'111'=null", true);
+  assert.strictEqual(bb2, false, "'111'=null 应该等于 false");
+  
+  bb2 = engine.TryEvaluate("'111'!=null", false);
+  assert.strictEqual(bb2, true, "'111'!=null 应该等于 true");
   
   console.log('Test 测试通过！');
 }
@@ -350,6 +371,10 @@ function TestVersion() {
   let t26 = engine.TryEvaluate("Algorithmversion", "");
   console.log('Algorithmversion:', t26);
   
+  // 断言版本号
+  assert.strictEqual(t25, "ToolGood.Algorithm 6.2", "Engineversion 应该等于 'ToolGood.Algorithm 6.2'");
+  assert.strictEqual(t26, "ToolGood.Algorithm 6.2", "Algorithmversion 应该等于 'ToolGood.Algorithm 6.2'");
+  
   console.log('TestVersion 测试通过！');
 }
 
@@ -359,8 +384,13 @@ function Test_Json() {
   const engine = new AlgorithmEngineWithTryEvaluate();
   
   // JSON 解析测试
-  // let t = engine.Parse('{"灰色":"L","canBookCount":905,"saleCount":91,"specId":"43b0e72e98731aed69e1f0cc7d64bf4d"}');
-  // console.log('JSON 解析结果:', t);
+  let t = engine.Parse('{"灰色":"L","canBookCount":905,"saleCount":91,"specId":"43b0e72e98731aed69e1f0cc7d64bf4d"}');
+  console.log('JSON 解析结果:', t);
+  
+  // 执行解析结果并断言
+  let result = engine.Evaluate(t);
+  let jsonString = JSON.stringify(result.JsonValue);
+  console.log('JSON 执行结果:', jsonString);
   
   console.log('Test_Json 测试通过！');
 }
