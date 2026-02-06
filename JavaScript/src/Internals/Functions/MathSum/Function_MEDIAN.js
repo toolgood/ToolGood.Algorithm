@@ -1,9 +1,12 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_MEDIAN extends Function_N {
+    get Name() {
+        return "Median";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -21,14 +24,14 @@ class Function_MEDIAN extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
 
-        if (!o) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Median');
+        if (o == false) {
+            return this.FunctionError();
         }
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Median');
+        if (list.length == 0) {
+            return this.FunctionError();
         }
 
-        list.sort((a, b) => a - b); // 升序排序
+        list.sort((a, b) => a - b);
         return Operand.Create(list[Math.floor(list.length / 2)]);
     }
 }

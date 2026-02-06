@@ -1,28 +1,27 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_COUNTIF extends Function_2 {
+    get Name() {
+        return "CountIf";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(work, tempParameter) {
-        let args1 = this.a.Evaluate(work, tempParameter);
-            args1 = args1.ToArray(StringCache.Function_parameter_error, 'CountIf', 1);
-            if (args1.IsError) {
-                return args1;
-            }
+        let args1 = this.GetArray_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+
         let args2 = this.b.Evaluate(work, tempParameter);
-        if (args2.IsError) {
-            return args2;
-        }
+        if (args2.IsError) { return args2; }
+
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
-        if (o === false) {
-            return Operand.Error(StringCache.Function_parameter_error, 'CountIf', 1);
-        }
+        let o = FunctionUtil.F_base_GetList(args1, list);
+        if (o == false) { return this.ParameterError(1); }
+
         let count;
         if (args2.IsNumber) {
             count = FunctionUtil.F_base_countif(list, args2.NumberValue);
@@ -34,10 +33,10 @@ class Function_COUNTIF extends Function_2 {
             } else {
                 let sunif = trimmedText;
                 let m2 = FunctionUtil.sumifMatch(sunif);
-                if (m2 !== null) {
-                    count = FunctionUtil.F_base_countif(list, m2.operator, m2.value);
+                if (m2 != null) {
+                    count = FunctionUtil.F_base_countif(list, m2[0], m2[1]);
                 } else {
-                    return Operand.Error(StringCache.Function_parameter_error, 'CountIf', 2);
+                    return this.ParameterError(2);
                 }
             }
         }

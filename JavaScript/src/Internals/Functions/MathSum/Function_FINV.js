@@ -1,65 +1,33 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
-import { SpecialFunctions } from '../../../MathNet/SpecialFunctions/SpecialFunctions.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FINV extends Function_3 {
+    get Name() {
+        return "FInv";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'FInv', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'FInv', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'FInv', 3);
-            if (args3.IsError) {
-                return args3;
-            }
-        let p = args1.NumberValue;
-        let degreesFreedom = Math.round(args2.NumberValue);
-        let degreesFreedom2 = Math.round(args3.NumberValue);
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) return args1;
+
+        let args2 = this.GetNumber_2(engine, tempParameter);
+        if (args2.IsError) return args2;
+
+        let args3 = this.GetNumber_3(engine, tempParameter);
+        if (args3.IsError) return args3;
+
+        let p = args1.DoubleValue;
+        let degreesFreedom = args2.IntValue;
+        let degreesFreedom2 = args3.IntValue;
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'FInv');
+            return this.FunctionError();
         }
-        try {
-            return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
-        } catch (error) {
-            // 如果计算失败，使用二分法尝试计算
-            let lower = 0;
-            let upper = 1000;
-            let mid;
-            let fmid;
-            let targetP = 1 - p;
-            
-            // 二分法迭�?
-            for (let i = 0; i < 100; i++) {
-                mid = (lower + upper) / 2;
-                fmid = SpecialFunctions.BetaRegularized(degreesFreedom / 2, degreesFreedom2 / 2, degreesFreedom * mid / (degreesFreedom * mid + degreesFreedom2)) - targetP;
-                
-                if (Math.abs(fmid) < 1e-10) {
-                    return Operand.Create(mid);
-                }
-                
-                if (fmid < 0) {
-                    lower = mid;
-                } else {
-                    upper = mid;
-                }
-            }
-            
-            // 如果二分法也失败，返回区间中�?
-            return Operand.Create((lower + upper) / 2);
-        }
+        return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
     }
 }
 

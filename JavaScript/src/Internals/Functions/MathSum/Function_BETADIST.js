@@ -1,29 +1,32 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_BETADIST extends Function_3 {
+    get Name() {
+        return "BetaDist";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(work, tempParameter) {
-        let args1 = this.a.Evaluate(work, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 1);
-            if (args1.IsError) return args1;
-        let args2 = this.b.Evaluate(work, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 2);
-            if (args2.IsError) return args2;
-        let args3 = this.c.Evaluate(work, tempParameter);
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'BetaDist', 3);
-            if (args3.IsError) return args3;
-        let x = args1.NumberValue;
-        let alpha = args2.NumberValue;
-        let beta = args3.NumberValue;
+        let args1 = this.GetNumber_1(work, tempParameter);
+        if (args1.IsError) return args1;
+
+        let args2 = this.GetNumber_2(work, tempParameter);
+        if (args2.IsError) return args2;
+
+        let args3 = this.GetNumber_3(work, tempParameter);
+        if (args3.IsError) return args3;
+
+        let x = args1.DoubleValue;
+        let alpha = args2.DoubleValue;
+        let beta = args3.DoubleValue;
 
         if (alpha < 0.0 || beta < 0.0) {
-            return Operand.Error(StringCache.Function_parameter_error, 'BetaDist');
+            return this.FunctionError();
         }
         return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
     }

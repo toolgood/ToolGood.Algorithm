@@ -1,9 +1,12 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_DEVSQ extends Function_N {
+    get Name() {
+        return "DevSq";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -20,11 +23,11 @@ class Function_DEVSQ extends Function_N {
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
-        if (!o) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'DevSQ');
+        if (o == false) {
+            return this.FunctionError();
         }
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'DevSQ');
+        if (list.length == 0) {
+            return this.FunctionError();
         }
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;
         let sum = 0;

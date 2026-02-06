@@ -1,35 +1,31 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_LOGNORMDIST extends Function_3 {
+    get Name() {
+        return "LogNormDist";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'LognormDist', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'LognormDist', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'LognormDist', 3);
-            if (args3.IsError) {
-                return args3;
-            }
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) return args1;
 
-        let n3 = args3.NumberValue;
+        let args2 = this.GetNumber_2(engine, tempParameter);
+        if (args2.IsError) return args2;
+
+        let args3 = this.GetNumber_3(engine, tempParameter);
+        if (args3.IsError) return args3;
+
+        let n3 = args3.DoubleValue;
         if (n3 < 0.0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'LognormDist');
+            return this.FunctionError();
         }
-        return Operand.Create(ExcelFunctions.LognormDist(args1.NumberValue, args2.NumberValue, n3));
+        return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
     }
 }
 

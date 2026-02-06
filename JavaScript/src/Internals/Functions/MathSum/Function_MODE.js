@@ -1,9 +1,12 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_MODE extends Function_N {
+    get Name() {
+        return "Mode";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -20,12 +23,8 @@ class Function_MODE extends Function_N {
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
-        if (!o) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Mode');
-        }
-
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Mode');
+        if (o == false) {
+            return this.FunctionError();
         }
 
         let dict = {};
@@ -37,7 +36,6 @@ class Function_MODE extends Function_N {
             }
         }
 
-        // 按出现次数降序排序，返回出现次数最多的数字
         let sorted = Object.entries(dict).sort((a, b) => b[1] - a[1]);
         return Operand.Create(parseFloat(sorted[0][0]));
     }

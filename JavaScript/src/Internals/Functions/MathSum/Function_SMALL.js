@@ -1,31 +1,32 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SMALL extends Function_2 {
+    get Name() {
+        return "Small";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToArray(StringCache.Function_parameter_error, "Small", 1);
-            if (args1.IsError) return args1;
-            
+        args1 = this.ConvertToArray(args1, 1);
+        if (args1.IsError) { return args1; }
+
         let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, "Small", 2);
-            if (args2.IsError) return args2;
-            
+        args2 = this.ConvertToNumber(args2, 2);
+        if (args2.IsError) { return args2; }
+
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
-        if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error, "Small", 1);
-        }
+        let o = FunctionUtil.F_base_GetList(args1, list);
+        if (o == false) { return this.ParameterError(1); }
         list.sort((a, b) => a - b);
-        let k = Math.round(args2.NumberValue);
+        let k = args2.IntValue;
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
-            return Operand.Error(StringCache.Function_parameter_error, "Small", 2);
+            return this.ParameterError(2);
         }
         return Operand.Create(list[k - engine.ExcelIndex]);
     }

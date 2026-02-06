@@ -1,8 +1,12 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import { FunctionUtil } from '../FunctionUtil.js';
 
 class Function_AVERAGE extends Function_N {
+    get Name() {
+        return "Average";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -16,19 +20,10 @@ class Function_AVERAGE extends Function_N {
         }
 
         let list = [];
-        for (let arg of args) {
-            if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error, "Average");
-            }
-            list.push(arg.NumberValue);
-        }
-
-        if (list.length === 0) {
-            return Operand.Create(0);
-        }
-
-        let average = list.reduce((sum, value) => sum + value, 0) / list.length;
-        return Operand.Create(average);
+        let o = FunctionUtil.F_base_GetList(args, list);
+        if (o == false) { return this.FunctionError(); }
+        if (list.length == 0) { return Operand.Zero; }
+        return Operand.Create(list.reduce((sum, value) => sum + value, 0) / list.length);
     }
 }
 

@@ -1,40 +1,35 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_HYPGEOMDIST extends Function_4 {
+    get Name() {
+        return "HypgeomDist";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'HypgeomDist', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'HypgeomDist', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'HypgeomDist', 3);
-            if (args3.IsError) {
-                return args3;
-            }
-        let args4 = this.d.Evaluate(engine, tempParameter);
-            args4 = args4.ToNumber(StringCache.Function_parameter_error, 'HypgeomDist', 4);
-            if (args4.IsError) {
-                return args4;
-            }
-        let k = Math.round(args1.NumberValue);
-        let draws = Math.round(args2.NumberValue);
-        let success = Math.round(args3.NumberValue);
-        let population = Math.round(args4.NumberValue);
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) return args1;
+
+        let args2 = this.GetNumber_2(engine, tempParameter);
+        if (args2.IsError) return args2;
+
+        let args3 = this.GetNumber_3(engine, tempParameter);
+        if (args3.IsError) return args3;
+
+        let args4 = this.GetNumber_4(engine, tempParameter);
+        if (args4.IsError) return args4;
+
+        let k = args1.IntValue;
+        let draws = args2.IntValue;
+        let success = args3.IntValue;
+        let population = args4.IntValue;
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'HypgeomDist');
+            return this.FunctionError();
         }
         return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }

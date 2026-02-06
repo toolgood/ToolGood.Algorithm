@@ -1,9 +1,12 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_STDEV extends Function_N {
+    get Name() {
+        return "StDev";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -21,10 +24,10 @@ class Function_STDEV extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error, "Stdev");
+            return this.FunctionError();
         }
         if (list.length == 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "Stdev");
+            return this.FunctionError();
         }
 
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;

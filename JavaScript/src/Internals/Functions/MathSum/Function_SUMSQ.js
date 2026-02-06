@@ -1,9 +1,12 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SUMSQ extends Function_N {
+    get Name() {
+        return "SumSq";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -21,7 +24,7 @@ class Function_SUMSQ extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error, "SumSQ");
+            return this.FunctionError();
         }
 
         let d = 0;
