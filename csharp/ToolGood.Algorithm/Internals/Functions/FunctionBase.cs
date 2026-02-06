@@ -102,6 +102,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		#endregion
+
 		#region ParameterError FunctionError ParameterNull
 		/// <summary>
 		/// Creates an error operand indicating that a specific function parameter is invalid.
@@ -138,6 +139,125 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			return Operand.Error("Function '{0}' Div 0 error!", Name);
 		}
+		#endregion
+
+		#region TryEvaluate
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="converter"></param>
+		/// <param name="resultConverter"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		private T TryEvaluate<T>(AlgorithmEngine work, T def, Func<Operand, Operand> converter, Func<Operand, T> resultConverter, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			try {
+				var obj = this.Evaluate(work, tempParameter);
+				var converted = converter(obj);
+				if(converted.IsError) {
+					work.LastError = converted.ErrorMsg;
+					return def;
+				}
+				return resultConverter(converted);
+			} catch(Exception ex) {
+				work.LastError = ex.Message;
+			}
+			return def;
+		}
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		public int TryEvaluate(AlgorithmEngine work, int def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			return TryEvaluate(work, def,
+				obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
+				obj => obj.IntValue, tempParameter);
+		}
+		   
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		public decimal TryEvaluate(AlgorithmEngine work, decimal def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			return TryEvaluate(work, def,
+				obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
+				obj => (decimal)obj.NumberValue, tempParameter);
+		}
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		public string TryEvaluate(AlgorithmEngine work, string def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			return TryEvaluate(work, def,
+				obj => obj.IsText ? obj : obj.ToText("It can't be converted to string!"),
+				obj => obj.TextValue, tempParameter);
+		}
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		public bool TryEvaluate(AlgorithmEngine work, bool def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			return TryEvaluate(work, def,
+				obj => obj.IsBoolean ? obj : obj.ToBoolean("It can't be converted to bool!"),
+				obj => obj.BooleanValue, tempParameter);
+		}
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		public DateTime TryEvaluate(AlgorithmEngine work, DateTime def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			return TryEvaluate(work, def,
+				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
+				obj => {
+					if(work.UseLocalTime) {
+						return obj.DateValue.ToDateTime(DateTimeKind.Local);
+					}
+					return obj.DateValue.ToDateTime(DateTimeKind.Utc);
+				} , tempParameter);
+		}
+
+		/// <summary>
+		/// 执行函数,如果异常，返回默认值
+		/// </summary>
+		/// <param name="work"></param>
+		/// <param name="def"></param>
+		/// <param name="tempParameter"></param>
+		/// <returns></returns>
+		public TimeSpan TryEvaluate(AlgorithmEngine work, TimeSpan def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		{
+			return TryEvaluate(work, def,
+				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
+				obj => (TimeSpan)obj.DateValue, tempParameter);
+		}
+ 
 		#endregion
 	}
 }
