@@ -1,25 +1,36 @@
-import { Operand } from '../../../Operand.js';
 import { Function_2 } from '../Function_2.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_OR extends Function_2 {
+  get Name() {
+    return 'Or';
+  }
+
   constructor(z) {
     super(z);
   }
 
-  Evaluate(engine, tempParameter) {
-    // 程序 && and || or �?excel�? AND(x,y) OR(x,y) 有区�?
-    // 在excel�?AND(x,y) OR(x,y) 先报错，
-    // 在程序中�?& and  有true 直接返回true 就不会检测下一个会不会报错
+  Evaluate(work, tempParameter) {
+    // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
+    // 在excel内 AND(x,y) OR(x,y) 先报错，
+    // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
     // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-    let args1 = this.a.Evaluate(engine, tempParameter);
-    args1 = args1.ToBoolean(StringCache.Function_parameter_error, 'OR', 1); if (args1.IsError) { return args1; } 
+    let args1 = this.GetBoolean_1(work, tempParameter);
+    if (args1.IsError) { return args1; }
     if (args1.BooleanValue) {
-      let args2 = this.b.Evaluate(engine, tempParameter).ToBoolean(StringCache.Function_parameter_error, 'OR', 2);
+      let args2 = this.GetBoolean_2(work, tempParameter);
       if (args2.IsError) { return args2; }
       return Operand.True;
     }
-    return this.b.Evaluate(engine, tempParameter).ToBoolean(StringCache.Function_parameter_error, 'OR', 2);
+    return this.GetBoolean_2(work, tempParameter);
+  }
+
+  ToString(stringBuilder, addBrackets) {
+    if (addBrackets) stringBuilder.append('(');
+    this.a.ToString(stringBuilder, false);
+    stringBuilder.append(' || ');
+    this.b.ToString(stringBuilder, false);
+    if (addBrackets) stringBuilder.append(')');
   }
 }
 

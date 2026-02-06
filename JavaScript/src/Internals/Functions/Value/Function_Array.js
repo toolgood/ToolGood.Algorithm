@@ -2,15 +2,19 @@ import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_Array extends Function_N {
+    get Name() {
+        return "Array";
+    }
+
     constructor(z) {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    Evaluate(work, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
             let item = this.z[i];
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.Evaluate(work, tempParameter);
             if (aa.IsError) {
                 return aa;
             }

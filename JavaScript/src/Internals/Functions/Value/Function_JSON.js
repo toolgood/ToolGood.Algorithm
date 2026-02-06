@@ -1,15 +1,18 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
 import { JsonMapper } from '../../../LitJson/JsonMapper.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_JSON extends Function_1 {
+    get Name() {
+        return "Json";
+    }
+
     constructor(a) {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
+    Evaluate(work, tempParameter) {
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsError) {
             return args1;
         }
@@ -20,7 +23,7 @@ class Function_JSON extends Function_1 {
             args1 = args1.ToText();
         }
         if (args1.IsNotText) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Json');
+            return this.FunctionError('Json');
         }
         let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
@@ -30,7 +33,7 @@ class Function_JSON extends Function_1 {
             } catch (e) {
             }
         }
-        return Operand.Error(StringCache.Function_parameter_1_error, 'Json');
+        return this.FunctionError('Json');
     }
 
 

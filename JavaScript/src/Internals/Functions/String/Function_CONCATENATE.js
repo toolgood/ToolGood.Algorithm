@@ -1,8 +1,11 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_CONCATENATE extends Function_N {
+    get Name() {
+        return "Concatenate";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -13,7 +16,7 @@ class Function_CONCATENATE extends Function_N {
         }
         if (this.z.length === 1) {
             let a = this.z[0].Evaluate(work, tempParameter);
-                a.ToText(StringCache.Function_parameter_error, 'Concatenate', 1);
+                a.ToText(this.FunctionError, 'Concatenate', 1);
                 if (a.IsError) {
                     return a;
                 }
@@ -22,7 +25,7 @@ class Function_CONCATENATE extends Function_N {
         let result = '';
         for (let i = 0; i < this.z.length; i++) {
             let a = this.z[i].Evaluate(work, tempParameter);
-                a.ToText(StringCache.Function_parameter_error, 'Concatenate', i + 1);
+                a.ToText(this.FunctionError, 'Concatenate', i + 1);
                 if (a.IsError) {
                     return a;
                 }

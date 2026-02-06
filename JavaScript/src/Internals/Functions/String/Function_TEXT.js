@@ -1,22 +1,24 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_TEXT extends Function_2 {
-    constructor(z) {
-    super(z);
-  }
+    get Name() {
+        return "Text";
+    }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
+    constructor(z) {
+        super(z);
+    }
+
+    Evaluate(work, tempParameter) {
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsError) {
             return args1;
         }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'Text', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+        let args2 = this.GetText_2(work, tempParameter);
+        if (args2.IsError) {
+            return args2;
+        }
 
         if (args1.IsText) {
             return args1;
@@ -35,7 +37,7 @@ class Function_TEXT extends Function_2 {
                     let decimalPlaces = format.substring(decimalIndex + 1).length;
                     return Operand.Create(value.toFixed(decimalPlaces));
                 } else {
-                    // 没有小数部分，返回整�?
+                    // 没有小数部分，返回整数
                     return Operand.Create(Math.round(value).toString());
                 }
             }
@@ -43,10 +45,10 @@ class Function_TEXT extends Function_2 {
             // 如果没有匹配的格式，使用默认的toString
             return Operand.Create(value.toString());
         } else if (args1.IsDate) {
-            // 同样，日期格式化可能需要更复杂的处�?
+            // 同样，日期格式化可能需要更复杂的处理
             return Operand.Create(args1.DateValue.toString());
         }
-        let args1Text = args1.ToText(StringCache.Function_parameter_error, 'Text', 1);
+        let args1Text = args1.ToText(this.FunctionError, 'Text', 1);
         if (args1Text.IsError) {
             return args1Text;
         }
@@ -55,4 +57,3 @@ class Function_TEXT extends Function_2 {
 }
 
 export { Function_TEXT };
-

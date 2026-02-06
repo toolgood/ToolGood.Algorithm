@@ -1,63 +1,63 @@
-import { FunctionBase } from '../FunctionBase.js';
+import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
-class Function_GetJsonValue extends FunctionBase {
-    constructor(z,op) {
-    super();
-    this.a=z;
-    this.b=op;
-  }
+class Function_GetJsonValue extends Function_2 {
+    get Name() {
+        return "GetJsonValue";
+    }
 
-    Evaluate(engine, tempParameter) {
-        let obj = this.a.Evaluate(engine, tempParameter);
+    constructor(z, op) {
+        super(z, op);
+    }
+
+    Evaluate(work, tempParameter) {
+        let obj = this.a.Evaluate(work, tempParameter);
         if (obj.IsError) {
             return obj;
         }
-        let op = this.b.Evaluate(engine, tempParameter);
+        let op = this.b.Evaluate(work, tempParameter);
         if (op.IsError) {
             return op;
         }
 
         if (obj.IsArray) {
-            op = op.ToNumber('ARRARY index is error!');
+            op = op.ToNumber('Function \'{0}\'' + ' ARRARY index is error!', 'GetJsonValue');
             if (op.IsError) {
                 return op;
             }
-            let index = op.IntValue - engine.ExcelIndex;
+            let index = op.IntValue - work.ExcelIndex;
             if (index < obj.ArrayValue.length) {
                 return obj.ArrayValue[index];
             }
-            return Operand.Error('ARRARY index {0} greater than maximum length!', index);
+            return Operand.Error('Function \'{0}\'' + ' ARRARY index {1} greater than maximum length!', 'GetJsonValue', index);
         }
-        // 首先尝试作为 ArrayJson 处理
         if (obj.IsArrayJson) {
             if (op.IsNumber) {
                 let operand = obj.TryGetValue(op.NumberValue.toString());
                 if (operand !== null) {
                     return operand;
                 }
-                return Operand.Error('Parameter name {0} is missing!', op.TextValue);
+                return Operand.Error('Function \'{0}\'' + ' Parameter name \'{1}\'' + ' is missing!', 'GetJsonValue', op.TextValue);
             } else if (op.IsText) {
                 let operand = obj.TryGetValue(op.TextValue);
                 if (operand !== null) {
                     return operand;
                 }
-                return Operand.Error('Parameter name {0} is missing!', op.TextValue);
+                return Operand.Error('Function \'{0}\'' + ' Parameter name \'{1}\'' + ' is missing!', 'GetJsonValue', op.TextValue);
             }
-            return Operand.Error('Parameter name is missing!');
+            return Operand.Error('Function \'{0}\'' + ' Parameter name is missing!', 'GetJsonValue');
         }
 
-        // 然后尝试作为 Json 处理
         if (obj.IsJson) {
             let json = obj.JsonValue;
             if (json.IsArray) {
-                op = op.ToNumber('JSON parameter index is error!');
+                op = op.ToNumber('Function \'{0}\'' + ' JSON parameter index is error!', 'GetJsonValue');
                 if (op.IsError) {
                     return op;
                 }
-                let index = op.IntValue - engine.ExcelIndex;
-                if (index < json.inst_array.length) {
-                    let v = json.inst_array[index];
+                let index = op.IntValue - work.ExcelIndex;
+                if (index < json.length) {
+                    let v = json[index];
                     if (v.IsString) {
                         return Operand.Create(v.StringValue);
                     }
@@ -67,20 +67,24 @@ class Function_GetJsonValue extends FunctionBase {
                     if (v.IsDouble) {
                         return Operand.Create(v.NumberValue);
                     }
+                    if (v.IsObject) {
+                        return Operand.Create(v);
+                    }
+                    if (v.IsArray) {
+                        return Operand.Create(v);
+                    }
                     if (v.IsNull) {
                         return Operand.CreateNull();
                     }
                     return Operand.Create(v);
                 }
-                return Operand.Error('JSON index {0} greater than maximum length!', index);
+                return Operand.Error('Function \'{0}\' JSON index {1} greater than maximum length!', 'GetJsonValue', index);
             } else if (json.IsObject) {
-                op = op.ToText('JSON parameter name is error!');
+                op = op.ToText('Function \'{0}\' JSON parameter name is error!', 'GetJsonValue');
                 if (op.IsError) {
                     return op;
                 }
-                
-                // 尝试直接访问属性
-                let v = json.inst_object[op.TextValue];
+                let v = json[op.TextValue];
                 if (v) {
                     if (v.IsString) {
                         return Operand.Create(v.StringValue);
@@ -91,24 +95,11 @@ class Function_GetJsonValue extends FunctionBase {
                     if (v.IsDouble) {
                         return Operand.Create(v.NumberValue);
                     }
-                    if (v.IsNull) {
-                        return Operand.CreateNull();
+                    if (v.IsObject) {
+                        return Operand.Create(v);
                     }
-                    return Operand.Create(v);
-                }
-                
-                // 尝试访问带引号的属性
-                let quotedKey = '"' + op.TextValue + '"';
-                v = json.inst_object[quotedKey];
-                if (v) {
-                    if (v.IsString) {
-                        return Operand.Create(v.StringValue);
-                    }
-                    if (v.IsBoolean) {
-                        return Operand.Create(v.BooleanValue);
-                    }
-                    if (v.IsDouble) {
-                        return Operand.Create(v.NumberValue);
+                    if (v.IsArray) {
+                        return Operand.Create(v);
                     }
                     if (v.IsNull) {
                         return Operand.CreateNull();
@@ -117,23 +108,16 @@ class Function_GetJsonValue extends FunctionBase {
                 }
             }
         }
-        
-        // 最后尝试作为普通对象处理
-        if (typeof obj._value === 'object' && obj._value !== null) {
-            op = op.ToText('Parameter name is error!');
-            if (op.IsError) {
-                return op;
-            }
-            
-            let v = obj._value[op.TextValue];
-            if (v !== undefined) {
-                return Operand.Create(v);
-            }
-        }
-        return Operand.Error('Operator is error!');
+        return Operand.Error('Function \'{0}\'' + ' Operator is error!', 'GetJsonValue');
     }
 
- 
+    ToString(stringBuilder, addBrackets) {
+        this.a.ToString(stringBuilder, false);
+        stringBuilder.append('[');
+        this.b.ToString(stringBuilder, false);
+        stringBuilder.append(']');
+    }
+
 }
 
 export { Function_GetJsonValue };

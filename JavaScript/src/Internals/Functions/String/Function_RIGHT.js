@@ -1,18 +1,18 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_RIGHT extends Function_2 {
-    constructor(z) {
-    super(z);
-  }
+    get Name() {
+        return "Right";
+    }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Right', 1);
-            if (args1.IsError) {
-                return args1;
-            }
+    constructor(z) {
+        super(z);
+    }
+
+    Evaluate(work, tempParameter) {
+        let args1 = this.GetText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
 
         if (args1.TextValue.length === 0) {
             return Operand.Create('');
@@ -20,11 +20,8 @@ class Function_RIGHT extends Function_2 {
         if (this.b === null) {
             return Operand.Create(args1.TextValue.substring(args1.TextValue.length - 1, args1.TextValue.length));
         }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Right', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+        let args2 = this.GetNumber_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
         let length = Math.min(args2.IntValue, args1.TextValue.length);
         let start = args1.TextValue.length - length;
         return Operand.Create(args1.TextValue.substring(start, start + length));

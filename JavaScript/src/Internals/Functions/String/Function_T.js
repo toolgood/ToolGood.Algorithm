@@ -2,12 +2,16 @@ import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_T extends Function_1 {
+    get Name() {
+        return "T";
+    }
+
     constructor(a) {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
+    Evaluate(work, tempParameter) {
+        let args1 = this.a.Evaluate(work, tempParameter);
         if (args1.IsText) {
             return args1;
         }

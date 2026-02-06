@@ -1,36 +1,27 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SUBSTITUTE extends Function_4 {
-    constructor(z) {
-    super(z);
-  }
+    get Name() {
+        return "Substitute";
+    }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Substitute', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'Substitute', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToText(StringCache.Function_parameter_error, 'Substitute', 3);
-            if (args3.IsError) {
-                return args3;
-            }
+    constructor(z) {
+        super(z);
+    }
+
+    Evaluate(work, tempParameter) {
+        let args1 = this.GetText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+        let args2 = this.GetText_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
+        let args3 = this.GetText_3(work, tempParameter);
+        if (args3.IsError) { return args3; }
         if (this.d === null) {
             return Operand.Create(args1.TextValue.replace(new RegExp(args2.TextValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.TextValue));
         }
-        let args4 = this.d.Evaluate(engine, tempParameter);
-            args4 = args4.ToNumber(StringCache.Function_parameter_error, 'Substitute', 4);
-            if (args4.IsError) {
-                return args4;
-            }
+        let args4 = this.GetNumber_4(work, tempParameter);
+        if (args4.IsError) { return args4; }
         let text = args1.TextValue;
         let oldtext = args2.TextValue;
         let newtext = args3.TextValue;

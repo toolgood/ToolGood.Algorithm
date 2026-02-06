@@ -1,32 +1,26 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FIND extends Function_3 {
+    get Name() {
+        return "Find";
+    }
+
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     Evaluate(work, tempParameter) {
-        let args1 = this.a.Evaluate(work, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Find', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(work, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'Find', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+        let args1 = this.GetText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+        let args2 = this.GetText_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
         if (this.c === null) {
             let p = args2.TextValue.indexOf(args1.TextValue) + work.ExcelIndex;
             return Operand.Create(p);
         }
-        let count = this.c.Evaluate(work, tempParameter);
-            count.ToNumber(StringCache.Function_parameter_error, 'Find', 3);
-            if (count.IsError) {
-                return count;
-            }
+        let count = this.GetNumber_3(work, tempParameter);
+        if (count.IsError) { return count; }
         let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
         return Operand.Create(p2);
     }
