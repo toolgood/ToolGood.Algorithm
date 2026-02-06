@@ -29,7 +29,7 @@ export class Function_LOOKCEILING extends Function_2 {
         if (args2.IsError) { return args2; }
 
         let list = [];
-        FunctionUtil.f_base_GetList(args2, list);
+        FunctionUtil.F_base_GetList(args2.ArrayValue, list);
         if (list.length === 0) { return this.ParameterError(2); }
 
         list.sort((a, b) => b - a);

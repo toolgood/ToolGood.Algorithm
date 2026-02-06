@@ -41,7 +41,7 @@ export class Function_JOIN extends Function_N {
         
         if (args1.IsArray) {
             let list = [];
-            let o = FunctionUtil.f_base_GetList(args1, list);
+            let o = FunctionUtil.F_base_GetList(args1, list);
             if (!o) { return this.ParameterError(1); }
             
             let args2 = this.ConvertToText(args[1], 2);
@@ -54,7 +54,7 @@ export class Function_JOIN extends Function_N {
             
             let list = [];
             for (let i = 1; i < args.length; i++) {
-                let o = FunctionUtil.f_base_GetList(args[i], list);
+                let o = FunctionUtil.F_base_GetList(args[i], list);
                 if (!o) { return this.ParameterError(i + 1); }
             }
             
