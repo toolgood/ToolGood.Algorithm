@@ -3,6 +3,10 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_ISNULLORWHITESPACE extends Function_1 {
+    get Name() {
+        return "IsNullOrWhiteSpace";
+    }
+
     constructor(a) {
         super(a);
     }
@@ -10,7 +14,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
         if (args1.IsNull) {
-            return Operand.Create(true);
+            return Operand.True;
         }
         let textArgs;
         if (args1.IsNotText) {
@@ -19,7 +23,7 @@ class Function_ISNULLORWHITESPACE extends Function_1 {
         } else {
             textArgs = args1;
         }
-        return Operand.Create(textArgs.TextValue === null || textArgs.TextValue.trim() === "");
+        return textArgs.TextValue === null || textArgs.TextValue.trim() === "" ? Operand.True : Operand.False;
     }
 }
 

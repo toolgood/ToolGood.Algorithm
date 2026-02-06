@@ -1,8 +1,11 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_PRODUCT extends Function_N {
+    get Name() {
+        return "Product";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -10,7 +13,7 @@ class Function_PRODUCT extends Function_N {
     Evaluate(engine, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
-            let aa = this.z[i].Evaluate(engine, tempParameter);
+            let aa = this.GetNumber_1(engine, tempParameter, i);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -18,17 +21,14 @@ class Function_PRODUCT extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error, "Product");
+                return this.FunctionError();
             }
             list.push(arg.NumberValue);
         }
 
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "Product");
-        }
-
         let d = 1;
-        for (let a of list) {
+        for (let i = 0; i < list.length; i++) {
+            let a = list[i];
             d *= a;
         }
         return Operand.Create(d);

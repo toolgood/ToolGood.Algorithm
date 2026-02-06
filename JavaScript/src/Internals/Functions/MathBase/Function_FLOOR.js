@@ -1,29 +1,28 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_FLOOR extends Function_2 {
+    get Name() {
+        return "Floor";
+    }
+
     constructor(z) {
     super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Floor", 1);
-            if (args1.IsError) { return args1; }
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
         if (this.b === null) {
             return Operand.Create(Math.floor(args1.NumberValue));
         }
 
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, "Floor", 2);
-            if (args2.IsError) { return args2; }
+        let args2 = this.GetNumber_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
         let b = args2.NumberValue;
-        if (b >= 1) {
-            return Operand.Create(args1.IntValue);
-        }
-        if (b <= 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "Floor", 2);
+        if (b == 0) {
+            return Operand.Zero;
         }
 
         let a = args1.NumberValue;

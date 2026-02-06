@@ -1,8 +1,11 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_GCD extends Function_N {
+    get Name() {
+        return "Gcd";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -10,7 +13,7 @@ class Function_GCD extends Function_N {
     Evaluate(engine, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
-            let aa = this.z[i].Evaluate(engine, tempParameter);
+            let aa = this.GetNumber_1(engine, tempParameter, i);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -18,20 +21,16 @@ class Function_GCD extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error, "Gcd");
+                return this.FunctionError();
             }
             list.push(arg.NumberValue);
         }
 
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "Gcd");
-        }
-
-        return Operand.Create(Function_GCD.calculateGCD(list));
+        return Operand.Create(this.calculateGCD(list));
     }
 
     // 计算多个数字的最大公约数
-    static calculateGCD(numbers) {
+    calculateGCD(numbers) {
         // 计算两个数的GCD
         let gcdTwo = (a, b) => {
             a = Math.abs(a);

@@ -1,8 +1,11 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_MULTINOMIAL extends Function_N {
+    get Name() {
+        return "Multinomial";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -18,25 +21,25 @@ class Function_MULTINOMIAL extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error, "Multinomial");
+                return this.FunctionError();
             }
             list.push(arg.NumberValue);
         }
 
         let sum = 0;
         let n = 1;
-        for (let value of list) {
-            let a = Math.max(0, Math.floor(value)); // 小于等于0时按0处理
-            n *= Function_MULTINOMIAL.factorial(a);
+        for (let i = 0; i < list.length; i++) {
+            let a = Math.floor(list[i]); // 小于等于0 时，按0处理
+            n *= this.calculateFactorial(a);
             sum += a;
         }
 
-        let r = Function_MULTINOMIAL.factorial(sum) / n;
+        let r = this.calculateFactorial(sum) / n;
         return Operand.Create(r);
     }
 
     // 计算阶乘
-    static factorial(n) {
+    calculateFactorial(n) {
         if (n <= 1) return 1;
         let result = 1;
         for (let i = 2; i <= n; i++) {

@@ -1,22 +1,26 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_ODD extends Function_1 {
+    get Name() {
+        return "Odd";
+    }
+
     constructor(a) {
         super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Odd");
-            if (args1.IsError) { return args1; }
-        let z = args1.NumberValue;
-        if (Math.abs(z % 2) == 1) { return args1; }
-        z = Math.ceil(z);
-        if (z % 2 == 1) { return Operand.Create(z); }
-        z++;
-        return Operand.Create(z);
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        let n = args1.NumberValue;
+        if (n == 0) {
+            return Operand.Create(1);
+        }
+        if (n > 0) {
+            return Operand.Create(Math.ceil(n / 2) * 2 - 1);
+        }
+        return Operand.Create(Math.floor(n / 2) * 2 + 1);
     }
 }
 

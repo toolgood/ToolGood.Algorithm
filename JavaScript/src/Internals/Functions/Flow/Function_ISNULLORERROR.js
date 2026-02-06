@@ -2,6 +2,10 @@ import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_ISNULLORERROR extends Function_2 {
+    get Name() {
+        return "IsNullorError";
+    }
+
     constructor(z) {
     super(z);
   }
@@ -18,12 +22,12 @@ class Function_ISNULLORERROR extends Function_2 {
             return args1;
         }
         if (args1.IsNull || args1.IsError) {
-            return Operand.Create(true);
+            return Operand.True;
         }
         if (args1.IsText && args1.TextValue === null) {
-            return Operand.Create(true);
+            return Operand.True;
         }
-        return Operand.Create(false);
+        return Operand.False;
     }
 }
 
