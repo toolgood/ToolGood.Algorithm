@@ -6,11 +6,11 @@ import { StringCache } from '../../../Internals/StringCache.js';
  * Function_STARTSWITH
  */
 export class Function_STARTSWITH extends Function_3 {
-    /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
-     * @param {FunctionBase} c
-     */
+
+    get Name() {
+        return "StartsWith";
+    }
+    
     constructor(z) {
     super(z);
   }
@@ -20,16 +20,11 @@ export class Function_STARTSWITH extends Function_3 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'StartsWith', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'StartsWith', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+        let args1 = this.GetText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetText_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
         
         let text = args1.TextValue;
         let prefix = args2.TextValue;
@@ -38,11 +33,8 @@ export class Function_STARTSWITH extends Function_3 {
             return Operand.Create(text.startsWith(prefix));
         }
         
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToBoolean(StringCache.Function_parameter_error, 'StartsWith', 3);
-            if (args3.IsError) {
-                return args3;
-            }
+        let args3 = this.GetBoolean_3(engine, tempParameter);
+        if (args3.IsError) { return args3; }
         
         let ignoreCase = args3.BooleanValue;
         if (ignoreCase) {

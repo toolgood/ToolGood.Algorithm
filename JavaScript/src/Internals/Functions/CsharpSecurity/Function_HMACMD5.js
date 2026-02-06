@@ -7,10 +7,11 @@ import HMACMD5 from 'crypto-js/hmac-md5.js';
  * Represents the HMACMD5 encryption function
  */
 export class Function_HMACMD5 extends Function_2 {
-    /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
-     */
+
+    get Name() {
+        return "HmacMD5";
+    }
+
     constructor(z) {
     super(z);
   }
@@ -20,20 +21,18 @@ export class Function_HMACMD5 extends Function_2 {
      * @param {Function} tempParameter
      */
     Evaluate(work, tempParameter = null) {
-        let args1 = this.a.Evaluate(work, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, "HMACMD5", 1);
-            if (args1.IsError) return args1;
+        let args1 = this.GetText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
 
-        let args2 = this.b.Evaluate(work, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, "HMACMD5", 2);
-            if (args2.IsError) return args2;
+        let args2 = this.GetText_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
 
         try {
             let hmacHash = HMACMD5(args1.TextValue,args2.TextValue || '');
             let result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error(StringCache.Function_error, "HMACMD5");
+            return this.FunctionError();
         }
     }
 }

@@ -3,17 +3,20 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_NETWORKDAYS extends Function_N {
+    get Name() {
+        return "NetworkDays";
+    }
+
     constructor(z) {
         super(z);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.z[0].Evaluate(engine, tempParameter);
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "NetWorkdays", 1);
-            if (args1.IsError) { return args1; }
-        let args2 = this.z[1].Evaluate(engine, tempParameter);
-            args2 = args2.ToMyDate(StringCache.Function_parameter_error, "NetWorkdays", 2);
-            if (args2.IsError) { return args2; }
+        let args1 = this.GetDate(engine, tempParameter, 0);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetDate(engine, tempParameter, 1);
+        if (args2.IsError) { return args2; }
 
         // 获取Date对象
         let startDate = args1.DateValue.ToDateTime();
@@ -24,20 +27,12 @@ class Function_NETWORKDAYS extends Function_N {
 
         let list = new Set();
         for (let i = 2; i < this.z.length; i++) {
-            let ar = this.z[i].Evaluate(engine, tempParameter);
-            if (ar.IsNotDate) {
-                let arDate = ar.ToMyDate(StringCache.Function_parameter_error, "NetWorkdays", i + 1);
-                if (arDate.IsError) { return arDate; }
-                // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-                let dateObj = arDate.DateValue.ToDateTime();
-                let dateStr = dateObj.toISOString().split('T')[0];
-                list.add(dateStr);
-            } else {
-                // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-                let dateObj = ar.DateValue.ToDateTime();
-                let dateStr = dateObj.toISOString().split('T')[0];
-                list.add(dateStr);
-            }
+            let ar = this.GetDate(engine, tempParameter, i);
+            if (ar.IsError) { return ar; }
+            // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
+            let dateObj = ar.DateValue.ToDateTime();
+            let dateStr = dateObj.toISOString().split('T')[0];
+            list.add(dateStr);
         }
 
         let days = 0;

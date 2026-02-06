@@ -6,11 +6,11 @@ import { StringCache } from '../../../Internals/StringCache.js';
  * Function_SUBSTRING
  */
 export class Function_SUBSTRING extends Function_3 {
-    /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
-     * @param {FunctionBase} c
-     */
+
+    get Name() {
+        return "Substring";
+    }
+    
     constructor(z) {
     super(z);
   }
@@ -20,16 +20,11 @@ export class Function_SUBSTRING extends Function_3 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Substring', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Substring', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+        let args1 = this.GetText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetNumber_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
         
         let text = args1.TextValue;
         let startIndex = args2.IntValue - engine.ExcelIndex;
@@ -38,11 +33,8 @@ export class Function_SUBSTRING extends Function_3 {
             return Operand.Create(text.substring(startIndex));
         }
         
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'Substring', 3);
-            if (args3.IsError) {
-                return args3;
-            }
+        let args3 = this.GetNumber_3(engine, tempParameter);
+        if (args3.IsError) { return args3; }
         
         let length = args3.IntValue;
         let endIndex = startIndex + length;

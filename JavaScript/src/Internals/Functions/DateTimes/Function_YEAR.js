@@ -3,19 +3,21 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_YEAR extends Function_1 {
+    get Name() {
+        return "Year";
+    }
+
     constructor(a) {
         super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "Year");
-            if (args1.IsError) { return args1; }
-        try {
-            return Operand.Create(args1.DateValue.ToDateTime().getFullYear());
-        } catch (e) {
-            return Operand.Error(StringCache.Function_error, "Year");
+        let args1 = this.GetDate_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        if (args1.DateValue.Year == null) {
+            return this.FunctionError();
         }
+        return Operand.Create(args1.DateValue.Year);
     }
 
     

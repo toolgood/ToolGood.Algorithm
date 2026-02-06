@@ -7,10 +7,11 @@ import HmacSHA512 from 'crypto-js/hmac-sha512.js';
  * Represents the HMACSHA512 encryption function
  */
 export class Function_HMACSHA512 extends Function_2 {
-    /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
-     */
+
+    get Name() {
+        return "HmacSHA512";
+    }
+
     constructor(z) {
     super(z);
   }
@@ -20,20 +21,18 @@ export class Function_HMACSHA512 extends Function_2 {
      * @param {Function} tempParameter
      */
     Evaluate(work, tempParameter = null) {
-        let args1 = this.a.Evaluate(work, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, "HMACSHA512", 1);
-            if (args1.IsError) return args1;
+        let args1 = this.GetText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
 
-        let args2 = this.b.Evaluate(work, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, "HMACSHA512", 2);
-            if (args2.IsError) return args2;
+        let args2 = this.GetText_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
 
         try {
             let hmacHash = HmacSHA512(args1.TextValue,args2.TextValue || '');
             let result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error(StringCache.Function_error, "HMACSHA512");
+            return this.FunctionError();
         }
     }
 }

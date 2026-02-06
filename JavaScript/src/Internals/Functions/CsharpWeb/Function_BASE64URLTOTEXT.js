@@ -3,14 +3,17 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_BASE64URLTOTEXT extends Function_1 {
+    get Name() {
+        return "Base64UrlToText";
+    }
+
     constructor(a) {
         super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, "Base64UrlToText", 1);
-            if (args1.IsError) return args1;
+        let args1 = this.GetText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
         try {
             let base64Url = args1.TextValue
                 .replace(/-/g, '+')
@@ -23,9 +26,8 @@ class Function_BASE64URLTOTEXT extends Function_1 {
             let t = buffer.toString('utf-8');
             return Operand.Create(t);
         } catch (e) {
-            // Ignore errors
+            return this.FunctionError();
         }
-        return Operand.Error(StringCache.Function_error, "Base64UrlToText");
     }
 }
 

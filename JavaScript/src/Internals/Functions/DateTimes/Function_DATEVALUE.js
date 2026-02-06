@@ -4,6 +4,10 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_DATEVALUE extends Function_N {
+    get Name() {
+        return "DateValue";
+    }
+
     constructor(z) {
         super(z);
     }
@@ -62,7 +66,7 @@ class Function_DATEVALUE extends Function_N {
             if (engine.UseLocalTime) { return Operand.Create(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }
             return Operand.Create(new MyDate(time));
         }
-        return Operand.Error(StringCache.Function_parameter_error, "DateValue");
+        return this.FunctionError();
     }
 }
 

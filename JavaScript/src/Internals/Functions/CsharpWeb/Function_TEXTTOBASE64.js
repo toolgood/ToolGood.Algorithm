@@ -3,22 +3,24 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_TEXTTOBASE64 extends Function_1 {
+    get Name() {
+        return "TextToBase64";
+    }
+
     constructor(a) {
         super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, "TextToBase64", 1);
-            if (args1.IsError) return args1;
+        let args1 = this.GetText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
         try {
             let buffer = Buffer.from(args1.TextValue, 'utf-8');
             let t = buffer.toString('base64');
             return Operand.Create(t);
         } catch (e) {
-            // Ignore errors
+            return this.FunctionError();
         }
-        return Operand.Error(StringCache.Function_error, "TextToBase64");
     }
 }
 

@@ -6,10 +6,11 @@ import { StringCache } from '../../../Internals/StringCache.js';
  * Function_TRIMSTART
  */
 export class Function_TRIMSTART extends Function_2 {
-    /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
-     */
+
+    get Name() {
+        return "TrimStart";
+    }
+    
     constructor(z) {
     super(z);
   }
@@ -19,21 +20,15 @@ export class Function_TRIMSTART extends Function_2 {
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'TrimStart', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        
+        let args1 = this.GetText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
         if (this.b == null) {
             return Operand.Create(args1.TextValue.trimStart());
         }
         
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'TrimStart', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+        let args2 = this.GetText_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
         
         let trimChars = args2.TextValue.split('');
         let text = args1.TextValue;

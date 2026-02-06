@@ -3,19 +3,21 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_DAY extends Function_1 {
+    get Name() {
+        return "Day";
+    }
+
     constructor(a) {
         super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "Day");
-            if (args1.IsError) { return args1; }
-        try {
-            return Operand.Create(args1.DateValue.ToDateTime().getDate());
-        } catch (e) {
-            return Operand.Error(StringCache.Function_error, "Day");
+        let args1 = this.GetDate_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        if (args1.DateValue.Day == null) {
+            return this.FunctionError();
         }
+        return Operand.Create(args1.DateValue.Day);
     }
 }
 

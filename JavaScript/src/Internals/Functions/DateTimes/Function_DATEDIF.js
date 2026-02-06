@@ -3,20 +3,23 @@ import { Operand } from '../../../Operand.js';
 import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_DATEDIF extends Function_3 {
+    get Name() {
+        return "DateDif";
+    }
+
     constructor(z) {
     super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "DateDif", 1);
-            if (args1.IsError) { return args1; }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToMyDate(StringCache.Function_parameter_error, "DateDif", 2);
-            if (args2.IsError) { return args2; }
-        let args3 = this.c.Evaluate(engine, tempParameter);
-            args3 = args3.ToText(StringCache.Function_parameter_error, "DateDif", 3);
-            if (args3.IsError) { return args3; }
+        let args1 = this.GetDate_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetDate_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+
+        let args3 = this.GetText_3(engine, tempParameter);
+        if (args3.IsError) { return args3; }
         let startMyDate = args1.DateValue;  // MyDate对象
         let endMyDate = args2.DateValue;    // MyDate对象
         let startDate = startMyDate.ToDateTime();  // Date对象
@@ -82,7 +85,7 @@ class Function_DATEDIF extends Function_3 {
             if (mo < 0) mo += 12;
             return Operand.Create(mo);
         }
-        return Operand.Error(StringCache.Function_parameter_error, "DateDif", 3);
+        return this.ParameterError(3);
     }
 }
 

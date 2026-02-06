@@ -4,14 +4,17 @@ import { StringCache } from '../../../Internals/StringCache.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_TIMEVALUE extends Function_1 {
+    get Name() {
+        return "TimeValue";
+    }
+
     constructor(a) {
         super(a);
     }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToText(StringCache.Function_parameter_error, "TimeValue");
-            if (args1.IsError) { return args1; }
+        let args1 = this.GetText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
 
         try {
             // 尝试解析时间字符�?
@@ -34,7 +37,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return Operand.Error(StringCache.Function_parameter_error, "TimeValue");
+        return this.FunctionError();
     }
 }
 

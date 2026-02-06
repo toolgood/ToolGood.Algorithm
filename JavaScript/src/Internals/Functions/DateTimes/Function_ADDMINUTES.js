@@ -4,22 +4,21 @@ import { StringCache } from '../../../Internals/StringCache.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_ADDMINUTES extends Function_2 {
+    get Name() {
+        return "AddMinutes";
+    }
+
     constructor(z) {
     super(z);
   }
 
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "AddMinutes", 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, "AddMinutes", 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        let date = new Date(args1.DateValue.getTime());
+        let args1 = this.GetDate_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetNumber_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+        let date = new Date(args1.DateValue.ToDateTime().getTime());
         date.setMinutes(date.getMinutes() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }
