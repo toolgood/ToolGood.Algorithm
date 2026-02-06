@@ -36,9 +36,6 @@ export class Function_SPLIT extends Function_2 {
         return Operand.Create(result);
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

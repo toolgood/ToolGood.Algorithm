@@ -37,69 +37,41 @@ export class Operand {
      * 是否为空值
      */
     get IsNull() { return false; }
-    /**
-     * 是否为非空值
-     */
-    get IsNotNull() { return true; }
 
     /**
      * 是否数字
      */
     get IsNumber() { return false; }
-    /**
-     * 是否非数字
-     */
-    get IsNotNumber() { return true; }
 
     /**
      * 是否字符串
      */
     get IsText() { return false; }
-    /**
-     * 是否非字符串
-     */
-    get IsNotText() { return true; }
 
     /**
      * 是否布尔值
      */
     get IsBoolean() { return false; }
-    /**
-     * 是否非布尔值
-     */
-    get IsNotBoolean() { return true; }
+
     /**
      * 是否数组
      */
     get IsArray() { return false; }
-    /**
-     * 是否非数组
-     */
-    get IsNotArray() { return true; }
+
     /**
      * 是否日期
      */
     get IsDate() { return false; }
-    /**
-     * 是否非日期
-     */
-    get IsNotDate() { return true; }
+
     /**
      * 是否Json对象
      */
     get IsJson() { return false; }
-    /**
-     * 是否非Json对象
-     */
-    get IsNotJson() { return true; }
+
     /**
      * 是否Json数组
      */
     get IsArrayJson() { return false; }
-    /**
-     * 是否非Json数组
-     */
-    get IsNotArrayJson() { return true; }
 
     /**
      * 是否出错
@@ -120,10 +92,21 @@ export class Operand {
      * 数字值
      */
     get NumberValue() { throw new Error('FIXME'); }
+    
+    /**
+     * double值
+     */
+    get DoubleValue() { throw new Error('FIXME'); }
+
     /**
      * int值
      */
     get IntValue() { throw new Error('FIXME'); }
+
+    /**
+     * long值
+     */
+    get LongValue() { throw new Error('FIXME'); }
 
     /**
      * 字符串值
@@ -289,24 +272,39 @@ class OperandDouble extends Operand {
         this._value = obj;
     }
     get IsNumber() { return true; }
-    get IsNotNumber() { return false; }
     get Type() { return OperandType.NUMBER; }
     get IntValue() { return Math.floor(this._value); }
     get NumberValue() { return this._value; }
+    get LongValue() { return Math.floor(this._value); }
+    get DoubleValue() { return this._value; }
 
     ToNumber(errorMessage) { return this; }
     ToNumber(errorMessage, ...args) { return this; }
 
-    ToBoolean(errorMessage) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
-    ToBoolean(errorMessage, ...args) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
+    ToBoolean(errorMessage) {
+        if (this._value === 0) {
+            return Operand.False;
+        } else if (this._value === 1) {
+            return Operand.True;
+        }
+        return super.ToBoolean(errorMessage);
+    }
+    ToBoolean(errorMessage, ...args) {
+        if (this._value === 0) {
+            return Operand.False;
+        } else if (this._value === 1) {
+            return Operand.True;
+        }
+        return super.ToBoolean(errorMessage, ...args);
+    }
 
-    ToText(errorMessage) { return Operand.Create(this.NumberValue.toString()); }
-    ToText(errorMessage, ...args) { return Operand.Create(this.NumberValue.toString()); }
+    ToText(errorMessage) { return Operand.Create(this.DoubleValue.toString()); }
+    ToText(errorMessage, ...args) { return Operand.Create(this.DoubleValue.toString()); }
 
     ToMyDate(errorMessage) { return Operand.Create(new MyDate(this.NumberValue)); }
     ToMyDate(errorMessage, ...args) { return Operand.Create(new MyDate(this.NumberValue)); }
 
-    toString() { return this.NumberValue.toString(); }
+    toString() { return this.DoubleValue.toString(); }
 }
 
 class OperandBoolean extends Operand {
@@ -315,7 +313,6 @@ class OperandBoolean extends Operand {
         this._value = obj;
     }
     get IsBoolean() { return true; }
-    get IsNotBoolean() { return false; }
     get Type() { return OperandType.BOOLEAN; }
     get BooleanValue() { return this._value; }
 
@@ -340,7 +337,6 @@ class OperandString extends Operand {
     }
 
     get IsText() { return true; }
-    get IsNotText() { return false; }
     get Type() { return OperandType.TEXT; }
     get TextValue() { return this._value; }
 
@@ -467,7 +463,6 @@ class OperandMyDate extends Operand {
         this._value = obj;
     }
     get IsDate() { return true; }
-    get IsNotDate() { return false; }
     get Type() { return OperandType.DATE; }
     get DateValue() { return this._value; }
 
@@ -492,11 +487,9 @@ class OperandJson extends Operand {
         this._value = obj;
     }
     get IsJson() { return true; }
-    get IsNotJson() { return false; }
     get Type() { return OperandType.JSON; }
     get JsonValue() { return this._value; }
     get IsArrayJson() { return false; }
-    get IsNotArrayJson() { return true; }
 
     ToText(errorMessage = null) {
         return Operand.Create(this._value.toString());
@@ -580,7 +573,6 @@ class OperandArray extends Operand {
         this._value = obj;
     }
     get IsArray() { return true; }
-    get IsNotArray() { return false; }
     get Type() { return OperandType.ARRARY; }
     get ArrayValue() { return this._value; }
 
@@ -655,7 +647,6 @@ class OperandKeyValueList extends Operand {
     }
 
     get IsArrayJson() { return true; }
-    get IsNotArrayJson() { return false; }
     get Type() { return OperandType.ARRARYJSON; }
     get ArrayValue() { return this.TextList.map(q => q.Value); }
 
@@ -729,13 +720,12 @@ class OperandKeyValue extends Operand {
         this._value = obj;
     }
     get IsArrayJson() { return true; }
-    get IsNotArrayJson() { return false; }
     get Type() { return OperandType.ARRARYJSON; }
     get Value() { return this._value; }
 }
 
 // 导出所有类
-export {  OperandDouble,  OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
+export {  OperandDouble,   OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
 
 // 初始化静态属性
 Operand.Version = new OperandString("ToolGood.Algorithm 6.1");

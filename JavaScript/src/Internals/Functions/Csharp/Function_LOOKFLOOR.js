@@ -1,53 +1,48 @@
 import { Function_2 } from '../Function_2.js';
 import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_LOOKFLOOR
  */
 export class Function_LOOKFLOOR extends Function_2 {
     /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
+     * @param {FunctionBase[]} funcs
      */
-    constructor(z) {
-    super(z);
-  }
+    constructor(funcs) {
+        super(funcs);
+    }
+    
+    get Name() {
+        return "LookFloor";
+    }
     
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
     Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'LookFloor', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToArray(StringCache.Function_parameter_error, "LookFloor", 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        
+        let args1 = this.GetNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetArray_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+
         let list = [];
-        FunctionUtil.F_base_GetList(args2.ArrayValue, list);
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "LookFloor", 2);
-        }
+        FunctionUtil.f_base_GetList(args2, list);
+        if (list.length === 0) { return this.ParameterError(2); }
+
         list.sort((a, b) => a - b);
         let value = args1.NumberValue;
         let result = list[0];
-        if (result === value) {
-            return Operand.Create(result);
-        }
+        if (result === value) { return args1; }
+
         for (let i = 1; i < list.length; i++) {
             let val = list[i];
             if (val < value) {
                 result = val;
             } else if (val === value) {
-                return Operand.Create(val);
+                return args1;
             } else {
                 break;
             }
@@ -55,9 +50,6 @@ export class Function_LOOKFLOOR extends Function_2 {
         return Operand.Create(result);
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

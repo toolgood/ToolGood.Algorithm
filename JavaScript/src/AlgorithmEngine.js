@@ -64,7 +64,7 @@ class AlgorithmEngine {
     try {
       let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
+      if (!obj.IsNumber) {
         let converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
@@ -83,7 +83,7 @@ class AlgorithmEngine {
     try {
       let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
-      if (obj.IsNotNumber) {
+      if (!obj.IsNumber) {
         let converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
@@ -102,7 +102,7 @@ class AlgorithmEngine {
     try {
       let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
-      if (obj.IsNotText) {
+      if (!obj.IsText) {
         let converted = obj.ToText("It can't be converted to string!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
@@ -121,7 +121,7 @@ class AlgorithmEngine {
     try {
       let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
-      if (obj.IsNotBoolean) {
+      if (!obj.IsBoolean) {
         let converted = obj.ToBoolean("It can't be converted to bool!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
@@ -139,7 +139,7 @@ class AlgorithmEngine {
     try {
       let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
-      if (obj.IsNotDate) {
+      if (!obj.IsDate) {
         let converted = obj.ToMyDate("It can't be converted to DateTime!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;
@@ -160,7 +160,7 @@ class AlgorithmEngine {
     try {
       let functionObj = this.Parse(exp);
       let obj = functionObj.Evaluate(this);
-      if (obj.IsNotDate) {
+      if (!obj.IsDate) {
         let converted = obj.ToMyDate("It can't be converted to DateTime!");
         if (converted.IsError) {
           this.LastError = converted.ErrorMsg;

@@ -240,6 +240,26 @@ export class MyDate {
     }
 
     /**
+     * 转换为长整型数字，格式：年月日时分秒
+     */
+    ToLong() {
+        let d = 0;
+        if (this.Year != null) {
+            d += this.Year * 10000000000;
+        }
+        if (this.Month != null) {
+            d += this.Month * 100000000;
+        }
+        if (this.Day != null) {
+            d += this.Day * 1000000;
+        }
+        d += this.Hour * 10000;
+        d += this.Minute * 100;
+        d += this.Second;
+        return d;
+    }
+
+    /**
      * 静态方法：解析字符串为MyDate对象
      */
     static Parse(txt) {
@@ -319,103 +339,7 @@ export class MyDate {
     }
 }
 
-// 运算符重载
-// 注意：JavaScript不支持运算符重载，所以这里提供静态方法来模拟
-
-/**
- * 加法运算
- */
-export function addMyDate(a, b) {
-    if (a instanceof MyDate && b instanceof MyDate) {
-        if (a.Year != null && b.Year == null) {
-            let date = a.ToDateTime();
-            let timeSpan = b.ToTimeSpan();
-            date.setSeconds(date.getSeconds() + timeSpan.seconds);
-            date.setMinutes(date.getMinutes() + timeSpan.minutes);
-            date.setHours(date.getHours() + timeSpan.hours);
-            date.setDate(date.getDate() + timeSpan.days);
-            return new MyDate(date);
-        } else if (b.Year != null && a.Year == null) {
-            let date = b.ToDateTime();
-            let timeSpan = a.ToTimeSpan();
-            date.setSeconds(date.getSeconds() + timeSpan.seconds);
-            date.setMinutes(date.getMinutes() + timeSpan.minutes);
-            date.setHours(date.getHours() + timeSpan.hours);
-            date.setDate(date.getDate() + timeSpan.days);
-            return new MyDate(date);
-        }
-        // 两个都有年份或都没有年份，转换为数字相加
-        return new MyDate(a.valueOf() + b.valueOf());
-    } else if (a instanceof MyDate && typeof b === 'number') {
-        // MyDate + number
-        return new MyDate(a.valueOf() + b);
-    } else if (typeof a === 'number' && b instanceof MyDate) {
-        // number + MyDate
-        return new MyDate(a + b.valueOf());
-    }
-    return null;
-}
-
-/**
- * 减法运算
- */
-export function subtractMyDate(a, b) {
-    if (a instanceof MyDate && b instanceof MyDate) {
-        if (a.Year != null && b.Year == null) {
-            let date = a.ToDateTime();
-            let timeSpan = b.ToTimeSpan();
-            date.setSeconds(date.getSeconds() - timeSpan.seconds);
-            date.setMinutes(date.getMinutes() - timeSpan.minutes);
-            date.setHours(date.getHours() - timeSpan.hours);
-            date.setDate(date.getDate() - timeSpan.days);
-            return new MyDate(date);
-        } else if (b.Year != null && a.Year == null) {
-            let date = b.ToDateTime();
-            let timeSpan = a.ToTimeSpan();
-            date.setSeconds(date.getSeconds() - timeSpan.seconds);
-            date.setMinutes(date.getMinutes() - timeSpan.minutes);
-            date.setHours(date.getHours() - timeSpan.hours);
-            date.setDate(date.getDate() - timeSpan.days);
-            return new MyDate(date);
-        }
-        // 两个都有年份或都没有年份，转换为数字相减
-        return new MyDate(a.valueOf() - b.valueOf());
-    } else if (a instanceof MyDate && typeof b === 'number') {
-        // MyDate - number
-        return new MyDate(a.valueOf() - b);
-    }
-    return null;
-}
-
-/**
- * 乘法运算
- */
-export function multiplyMyDate(a, b) {
-    if (a instanceof MyDate && typeof b === 'number') {
-        // 只有时间部分参与乘法运算
-        let timeSpan = a.ToTimeSpan();
-        return new MyDate(null, null, (timeSpan.days * b), (timeSpan.hours * b), (timeSpan.minutes * b), (timeSpan.seconds * b));
-    }
-    return null;
-}
-
-/**
- * 除法运算
- */
-export function divideMyDate(a, b) {
-    if (a instanceof MyDate && typeof b === 'number') {
-        // 只有时间部分参与除法运算
-        let timeSpan = a.ToTimeSpan();
-        return new MyDate(null, null, (timeSpan.days / b), (timeSpan.hours / b), (timeSpan.minutes / b), (timeSpan.seconds / b));
-    }
-    return null;
-}
-
 // 浏览器支持
 if (typeof window !== 'undefined') {
     window.MyDate = MyDate;
-    window.addMyDate = addMyDate;
-    window.subtractMyDate = subtractMyDate;
-    window.multiplyMyDate = multiplyMyDate;
-    window.divideMyDate = divideMyDate;
 }

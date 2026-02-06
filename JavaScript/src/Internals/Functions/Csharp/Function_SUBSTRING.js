@@ -49,9 +49,6 @@ export class Function_SUBSTRING extends Function_3 {
         return Operand.Create(text.substring(startIndex, endIndex));
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

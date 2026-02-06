@@ -1,18 +1,20 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_HASVALUE
  */
 export class Function_HASVALUE extends Function_2 {
     /**
-     * @param {FunctionBase} a
-     * @param {FunctionBase} b
+     * @param {FunctionBase[]} funcs
      */
-    constructor(z) {
-    super(z);
-  }
+    constructor(funcs) {
+        super(funcs);
+    }
+    
+    get Name() {
+        return "HasValue";
+    }
     
     /**
      * @param {AlgorithmEngine} engine
@@ -20,20 +22,16 @@ export class Function_HASVALUE extends Function_2 {
      */
     Evaluate(engine, tempParameter) {
         let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsError) {
-            return args1;
-        }
-        let args2 = this.b.Evaluate(engine, tempParameter);
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'HasValue', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.GetText_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+
         if (args1.IsArrayJson) {
             return Operand.Create(args1.containsValue(args2));
         } else if (args1.IsJson) {
             let json = args1.JsonValue;
-            if (Array.IsArray(json)) {
+            if (Array.isArray(json)) {
                 for (let i = 0; i < json.length; i++) {
                     let v = json[i];
                     if (typeof v === 'string') {
@@ -82,12 +80,9 @@ export class Function_HASVALUE extends Function_2 {
             }
             return Operand.False;
         }
-        return Operand.Error(StringCache.Function_parameter_error, 'HasValue', 1);
+        return this.ParameterError(1);
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

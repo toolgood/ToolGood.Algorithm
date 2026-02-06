@@ -46,9 +46,6 @@ export class Function_TRIMSTART extends Function_2 {
         return Operand.Create(text.substring(index));
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

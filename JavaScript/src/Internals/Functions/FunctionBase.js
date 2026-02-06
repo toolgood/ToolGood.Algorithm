@@ -1,7 +1,15 @@
 /**
  * Represents the base class for all function implementations that can be calculated by an algorithm engine.
  */
+import { Operand } from '../../Operand.js';
+
 export class FunctionBase {
+    /**
+     * 名称
+     */
+    get Name() {
+        throw new Error('FIXME');
+    }
     /**
      * 进行计算
      * @param {AlgorithmEngine} work
@@ -13,172 +21,105 @@ export class FunctionBase {
     }
 
     /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {number} def
-     * @param {Function} tempParameter
-     * @returns {number}
-     */
-    TryEvaluate(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotNumber) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.IntValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
-    }
-
-    /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {number} def
-     * @param {Function} tempParameter
-     * @returns {number}
-     */
-    TryEvaluateNumber(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotNumber) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.NumberValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
-    }
-
-    /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {boolean} def
-     * @param {Function} tempParameter
-     * @returns {boolean}
-     */
-    TryEvaluateBool(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotBool) {
-                obj = obj.ToBool("It can't be converted to bool!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.BoolValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
-    }
-
-    /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {string} def
-     * @param {Function} tempParameter
+     * Returns a string that represents the current object.
      * @returns {string}
      */
-    TryEvaluateString(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotText) {
-                obj = obj.ToText("It can't be converted to Text!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.TextValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
+    toString() {
+        const stringBuilder = [];
+        this.ToString(stringBuilder, false);
+        return stringBuilder.join('');
     }
 
     /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {Date} def
-     * @param {Function} tempParameter
-     * @returns {Date}
+     * Appends a string representation of the current object to the specified array, optionally including brackets.
+     * @param {Array} stringBuilder The array to which the string representation will be appended.
+     * @param {boolean} addBrackets true to enclose the string representation in brackets; otherwise, false.
      */
-    TryEvaluateDate(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotDate) {
-                obj = obj.ToDate("It can't be converted to date!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.DateValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
+    ToString(stringBuilder, addBrackets) {
+        throw new Error('FIXME');
     }
 
     /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {Array} def
-     * @param {Function} tempParameter
-     * @returns {Array}
+     * 转换参数为文本
+     * @param {Operand} arg
+     * @param {number} paramIndex
+     * @returns {Operand}
      */
-    TryEvaluateArray(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotArray) {
-                obj = obj.ToArray("It can't be converted to array!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.ArrayValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
+    ConvertToText(arg, paramIndex) {
+        return arg.ToText("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
     /**
-     * 执行函数,如果异常，返回默认�?
-     * @param {AlgorithmEngine} work
-     * @param {Object} def
-     * @param {Function} tempParameter
-     * @returns {Object}
+     * 转换参数为布尔值
+     * @param {Operand} arg
+     * @param {number} paramIndex
+     * @returns {Operand}
      */
-    TryEvaluateJson(work, def, tempParameter = null) {
-        try {
-            var obj = this.Evaluate(work, tempParameter);
-            if(obj.IsNotJson) {
-                obj = obj.ToJson("It can't be converted to json!");
-                if(obj.IsError) {
-                    work.LastError = obj.ErrorMsg;
-                    return def;
-                }
-            }
-            return obj.JsonValue;
-        } catch(ex) {
-            work.LastError = ex.message + "\r\n" + ex.stack;
-        }
-        return def;
+    ConvertToBoolean(arg, paramIndex) {
+        return arg.ToBoolean("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
- 
+
+    /**
+     * 转换参数为数字
+     * @param {Operand} arg
+     * @param {number} paramIndex
+     * @returns {Operand}
+     */
+    ConvertToNumber(arg, paramIndex) {
+        return arg.ToNumber("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
+    }
+
+    /**
+     * 转换参数为数组
+     * @param {Operand} arg
+     * @param {number} paramIndex
+     * @returns {Operand}
+     */
+    ConvertToArray(arg, paramIndex) {
+        return arg.ToArray("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
+    }
+
+    /**
+     * 转换参数为日期
+     * @param {Operand} arg
+     * @param {number} paramIndex
+     * @returns {Operand}
+     */
+    ConvertToDate(arg, paramIndex) {
+        return arg.ToMyDate("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
+    }
+
+    /**
+     * Creates an error operand indicating that a specific function parameter is invalid.
+     * @param {number} paramIndex The zero-based index of the parameter that caused the error.
+     * @returns {Operand} An operand representing an error for the specified parameter.
+     */
+    ParameterError(paramIndex) {
+        return Operand.Error("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
+    }
+
+    /**
+     * Creates an error operand indicating that a function parameter is invalid.
+     * @returns {Operand} An operand representing an error state for the function due to an invalid parameter.
+     */
+    FunctionError() {
+        return Operand.Error("Function '{0}' parameter is error!", this.Name);
+    }
+
+    /**
+     * Creates an error operand indicating that a comparison error occurred.
+     * @returns {Operand} An operand representing a comparison error.
+     */
+    CompareError() {
+        return Operand.Error("Function '{0}' compare is error.", this.Name);
+    }
+
+    /**
+     * Creates an error operand indicating a division by zero error.
+     * @returns {Operand} An operand representing a division by zero error.
+     */
+    Div0Error() {
+        return Operand.Error("Function '{0}' Div 0 error!", this.Name);
+    }
 }
 

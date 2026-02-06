@@ -12,6 +12,10 @@ export class Function_GUID extends FunctionBase {
         super();
     }
     
+    get Name() {
+        return "Guid";
+    }
+    
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
@@ -32,9 +36,9 @@ export class Function_GUID extends FunctionBase {
         });
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
+    ToString(stringBuilder, addBrackets) {
+        stringBuilder.push("GUID()");
+    }
 }
 

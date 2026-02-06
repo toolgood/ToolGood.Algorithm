@@ -1,7 +1,6 @@
 import { Function_N } from '../Function_N.js';
 import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_JOIN
@@ -12,6 +11,10 @@ export class Function_JOIN extends Function_N {
      */
     constructor(z) {
         super(z);
+    }
+    
+    get Name() {
+        return "Join";
     }
     
     /**
@@ -39,54 +42,26 @@ export class Function_JOIN extends Function_N {
         if (args1.IsArray) {
             let list = [];
             let o = FunctionUtil.f_base_GetList(args1, list);
-            if (!o) {
-                return Operand.Error(StringCache.Function_parameter_error, 'Join', 1);
-            }
+            if (!o) { return this.ParameterError(1); }
             
-            let args2 = args[1].ToText(StringCache.Function_parameter_error, 'Join', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+            let args2 = this.ConvertToText(args[1], 2);
+            if (args2.IsError) { return args2; }
             
             return Operand.Create(list.join(args2.TextValue));
         } else {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Join', 1);
-            if (args1.IsError) {
-                return args1;
-            }
+            args1 = this.ConvertToText(args1, 1);
+            if (args1.IsError) { return args1; }
             
             let list = [];
             for (let i = 1; i < args.length; i++) {
-                let item = args[i];
-                if (item.IsNumber) {
-                    list.push(item.NumberValue);
-                } else if (item.IsText) {
-                    list.push(item.TextValue);
-                } else if (item.IsBoolean) {
-                    list.push(item.BooleanValue);
-                } else if (item.IsArray) {
-                    for (let arrItem of item.ArrayValue) {
-                        if (arrItem.IsNumber) {
-                            list.push(arrItem.NumberValue);
-                        } else if (arrItem.IsText) {
-                            list.push(arrItem.TextValue);
-                        } else if (arrItem.IsBoolean) {
-                            list.push(arrItem.BooleanValue);
-                        } else {
-                            // 处理原始�?
-                            list.push(arrItem);
-                        }
-                    }
-                }
+                let o = FunctionUtil.f_base_GetList(args[i], list);
+                if (!o) { return this.ParameterError(i + 1); }
             }
             
             return Operand.Create(list.join(args1.TextValue));
         }
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

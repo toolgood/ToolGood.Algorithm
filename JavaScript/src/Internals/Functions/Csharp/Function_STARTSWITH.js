@@ -52,9 +52,6 @@ export class Function_STARTSWITH extends Function_3 {
         }
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 
