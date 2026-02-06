@@ -20,7 +20,7 @@ class Function_QUARTILE extends Function_2 {
         if (args2.IsError) { return args2; }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) { return this.ParameterError(1); }
 
         let quant = args2.IntValue;

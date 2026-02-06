@@ -20,7 +20,7 @@ class Function_PERCENTRANK extends Function_3 {
         if (args2.IsError) { return args2; }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) { return this.FunctionError(); }
 
         let k = args2.DoubleValue;
