@@ -20,16 +20,18 @@ namespace ToolGood.Algorithm
 		private static readonly Regex unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
 
 		/// <summary>
-		/// 是否与内置关键字相同
+		/// 是不是参数
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
-		public static bool HasKeywords(string parameter)
+		public static bool IsParameter(string parameter)
 		{
 			if(string.IsNullOrWhiteSpace(parameter)) { return false; }
 			var diy = GetDiyNames(parameter);
-			if(diy.Parameters.Count == 0 && diy.Functions.Count == 0) {
-				return true;
+			if(diy.Functions.Count > 0) { return false; }
+			if(diy.Parameters.Count == 1) {
+				var p = diy.Parameters[0];
+				return p.Name == parameter;
 			}
 			return false;
 		}
