@@ -301,9 +301,6 @@ class OperandDouble extends Operand {
     ToText(errorMessage) { return Operand.Create(this.DoubleValue.toString()); }
     ToText(errorMessage, ...args) { return Operand.Create(this.DoubleValue.toString()); }
 
-    ToMyDate(errorMessage) { return Operand.Create(new MyDate(this.NumberValue)); }
-    ToMyDate(errorMessage, ...args) { return Operand.Create(new MyDate(this.NumberValue)); }
-
     toString() { return this.DoubleValue.toString(); }
 }
 
@@ -399,7 +396,7 @@ class OperandString extends Operand {
 
     ToMyDate(errorMessage) {
         try {
-            let date = new Date(this.TextValue);
+            let date = new Date(this.TextValue.replaceAll("/","-"));
             if (!isNaN(date.getTime())) {
                 return Operand.Create(new MyDate(date));
             }
@@ -411,7 +408,7 @@ class OperandString extends Operand {
     }
     ToMyDate(errorMessage, ...args) {
         try {
-            let date = new Date(this.TextValue);
+            let date = new Date(this.TextValue.replaceAll("/","-"));
             if (!isNaN(date.getTime())) {
                 return Operand.Create(new MyDate(date));
             }
