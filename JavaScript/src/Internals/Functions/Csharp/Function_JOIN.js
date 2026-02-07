@@ -16,7 +16,29 @@ export class Function_JOIN extends Function_N {
     get Name() {
         return "Join";
     }
-    
+    F_base_GetList(item, list){
+            if(item.IsError){
+                return false;
+            } else if(item.IsArray) {
+                for (let i = 0; i < item.ArrayValue.length; i++) {
+                    let o = this.F_base_GetList(item.ArrayValue[i], list);
+                    if (!o) { return false}
+                }
+            } else if(item.IsJson) {
+                var array = item.ToArray(null);
+                if(array.IsError) { return false; }
+                for (let i = 0; i < item.ArrayValue.length; i++) {
+                    let o = this.F_base_GetList(item.ArrayValue[i], list);
+                    if (!o) { return false }
+                }
+            } else if(item.IsNull) {
+            } else {
+                var o = item.ToText(null);
+                if(o.IsError) { return false; }
+                list.push(o.TextValue);
+            }
+        return true;
+    }
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
@@ -41,7 +63,7 @@ export class Function_JOIN extends Function_N {
         
         if (args1.IsArray) {
             let list = [];
-            let o = FunctionUtil.F_base_GetList(args1, list);
+            let o = this.F_base_GetList(args1, list);
             if (!o) { return this.ParameterError(1); }
             
             let args2 = this.ConvertToText(args[1], 2);
@@ -54,14 +76,13 @@ export class Function_JOIN extends Function_N {
             
             let list = [];
             for (let i = 1; i < args.length; i++) {
-                let o = FunctionUtil.F_base_GetList(args[i], list);
+                let o = this.F_base_GetList(args[i], list);
                 if (!o) { return this.ParameterError(i + 1); }
             }
             
             return Operand.Create(list.join(args1.TextValue));
         }
     }
-    
 
 }
 
