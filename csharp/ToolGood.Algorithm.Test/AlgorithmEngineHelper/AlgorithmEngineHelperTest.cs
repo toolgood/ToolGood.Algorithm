@@ -39,8 +39,11 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 		[Test]
 		public void Test2()
 		{
-			var b = AlgorithmEngineHelper.IsKeywords("false");
+			var b = AlgorithmEngineHelper.HasKeywords("false");
 			Assert.IsTrue(b);
+
+			b = AlgorithmEngineHelper.HasKeywords("f11");
+			Assert.IsFalse(b);
 		}
 
 		[Test]

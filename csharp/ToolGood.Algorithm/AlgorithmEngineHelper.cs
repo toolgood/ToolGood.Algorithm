@@ -17,47 +17,6 @@ namespace ToolGood.Algorithm
 	/// </summary>
 	public static class AlgorithmEngineHelper
 	{
-		private static readonly HashSet<string> _lexerSet = new HashSet<string>(StringComparer.Ordinal) {
-			"NULL", "IF", "IFERROR", "ISNUMBER", "ISTEXT", "ISERROR", "ISNONTEXT", "ISLOGICAL",
-			"ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", "AND", "OR", "NOT", "TRUE", "FALSE",
-			"E", "PI", "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN", "HEX2DEC", "HEX2OCT",
-			"OCT2BIN", "OCT2DEC", "OCT2HEX", "BIN2OCT", "BIN2DEC", "BIN2HEX",
-			"ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", "TRUNC", "INT", "GCD", "LCM",
-			"COMBIN", "PERMUT", "DEGREES", "RADIANS", "COS", "COSH", "SIN", "SINH",
-			"TAN", "TANH", "ACOS", "ACOSH", "ASIN", "ASINH", "ATAN", "ATANH", "ATAN2",
-			"ROUND", "ROUNDDOWN", "ROUNDUP", "CEILING", "FLOOR", "EVEN", "ODD", "MROUND",
-			"RAND", "RANDBETWEEN", "FACT", "FACTDOUBLE", "POWER", "EXP", "LN", "LOG", "LOG10",
-			"MULTINOMIAL", "PRODUCT", "SQRTPI", "SUMSQ", "ASC", "JIS", "WIDECHAR",
-			"CHAR", "CLEAN", "CODE", "CONCATENATE", "EXACT", "FIND", "FIXED", "LEFT", "LEN",
-			"LOWER", "TOLOWER", "MID", "PROPER", "REPLACE", "REPT", "RIGHT", "RMB",
-			"SEARCH", "SUBSTITUTE", "T", "TEXT", "TRIM", "UPPER", "TOUPPER", "VALUE",
-			"DATEVALUE", "TIMEVALUE", "DATE", "TIME", "NOW", "TODAY", "YEAR", "MONTH", "DAY",
-			"HOUR", "MINUTE", "SECOND", "WEEKDAY", "DATEDIF", "DAYS360", "EDATE", "EOMONTH",
-			"NETWORKDAYS", "WORKDAY", "WEEKNUM", "MAX", "MEDIAN", "MIN", "QUARTILE", "MODE",
-			"LARGE", "SMALL", "PERCENTILE", "PERCENTILE.INC", "PERCENTRANK", "PERCENTRANK.INC",
-			"AVERAGE", "AVERAGEIF", "GEOMEAN", "HARMEAN", "COUNT", "COUNTIF", "SUM", "SUMIF",
-			"AVEDEV", "STDEV", "STDEV.S", "STDEVP", "STDEV.P", "COVAR", "COVARIANCE.P",
-			"COVARIANCE.S'", "DEVSQ", "VAR", "VAR.S", "VARP", "VAR.P",
-			"NORMDIST", "NORM.DIST", "NORMINV", "NORM.INV", "NORMSDIST", "NORM.S.DIST",
-			"NORMSINV", "NORM.S.INV", "BETADIST", "BETA.DIST", "BETAINV", "BETA.INV",
-			"BINOMDIST", "BINOM.DIST", "EXPONDIST", "EXPON.DIST", "FDIST", "F.DIST",
-			"FINV", "F.INV", "FISHER", "FISHERINV", "GAMMADIST", "GAMMA.DIST",
-			"GAMMAINV", "GAMMA.INV", "GAMMALN", "GAMMALN.PRECISE", "HYPGEOMDIST", "HYPGEOM.DIST",
-			"LOGINV", "LOGNORM.INV", "LOGNORMDIST", "LOGNORM.DIST", "NEGBINOMDIST", "NEGBINOM.DIST",
-			"POISSON", "POISSON.DIST", "TDIST", "T.DIST", "TINV", "T.INV", "WEIBULL",
-			"URLENCODE", "URLDECODE", "HTMLENCODE", "HTMLDECODE",
-			"BASE64TOTEXT", "BASE64URLTOTEXT", "TEXTTOBASE64", "TEXTTOBASE64URL",
-			"REGEX", "REGEXREPALCE", "ISREGEX", "ISMATCH", "GUID",
-			"MD5", "SHA1", "SHA256", "SHA512", "HMACMD5", "HMACSHA1", "HMACSHA256", "HMACSHA512",
-			"TRIMSTART", "LTRIM", "TRIMEND", "RTRIM", "INDEXOF", "LASTINDEXOF",
-			"SPLIT", "JOIN", "SUBSTRING", "STARTSWITH", "ENDSWITH",
-			"ISNULLOREMPTY", "ISNULLORWHITESPACE", "REMOVESTART", "REMOVEEND",
-			"JSON", "ARRAY", "LOOKFLOOR", "LOOKCEILING",
-			"ADDYEARS", "ADDMONTHS", "ADDDAYS", "ADDHOURS", "ADDMINUTES", "ADDSECONDS", "TIMESTAMP",
-			"HAS", "HASKEY", "CONTAINS", "CONTAINSKEY", "HASVALUE", "CONTAINSVALUE",
-			"PARAM", "PARAMETER", "GETPARAMETER", "ERROR"
-		};
-	
 		private static readonly Regex unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
 
 		/// <summary>
@@ -65,9 +24,14 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
-		public static bool IsKeywords(string parameter)
+		public static bool HasKeywords(string parameter)
 		{
-			return _lexerSet.Contains(CharUtil.StandardString(parameter));
+			if(string.IsNullOrWhiteSpace(parameter)) { return false; }
+			var diy = GetDiyNames(parameter);
+			if(diy.Parameters.Count == 0 && diy.Functions.Count == 0) {
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>
