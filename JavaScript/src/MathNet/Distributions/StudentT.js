@@ -39,31 +39,19 @@ class StudentT {
             return location;
         }
 
-        // Try Brent's method first
-        let brentResult = Brent.TryFindRoot(x => {
-            let k = (x - location) / scale;
-            let h = freedom / (freedom + (k * k));
-            let ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
-            return x <= location ? ib - p : 1 - ib - p;
-        }, -800, 800, 1e-12, 100);
-
-        if (brentResult.success) {
-            return brentResult.root;
-        }
-
-        // Fallback to binary search if Brent's method fails
+        // 使用二分查找
         let lower = -100;
         let upper = 100;
         let mid;
         let fmid;
 
-        // Expand search interval if necessary
+        // 扩展搜索区间如果需要
         while (Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, upper))) {
             lower *= 2;
             upper *= 2;
         }
 
-        // Binary search
+        // 二分查找
         for (let i = 0; i < 100; i++) {
             mid = (lower + upper) / 2;
             fmid = StudentT.InvCDFHelper(location, scale, freedom, p, mid);

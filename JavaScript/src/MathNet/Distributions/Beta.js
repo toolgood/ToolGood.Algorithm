@@ -60,7 +60,29 @@ class Beta {
      * @returns {number}
      */
     static InvCDF(a, b, p) {
-        return Brent.FindRoot(x => SpecialFunctions.BetaRegularized(a, b, x) - p, 0, 1, 1e-12);
+        // 使用二分法寻找根
+        let left = 0;
+        let right = 1;
+        let mid;
+        let tolerance = 1e-15;
+        let maxIterations = 100;
+        
+        for (let i = 0; i < maxIterations; i++) {
+            mid = (left + right) / 2;
+            let value = SpecialFunctions.BetaRegularized(a, b, mid) - p;
+            
+            if (Math.abs(value) < tolerance) {
+                return mid;
+            }
+            
+            if (value < 0) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        
+        return mid;
     }
 }
 
