@@ -11,8 +11,8 @@ class Function_HTMLDECODE extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetText_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         let s = args1.TextValue;
         let r = Function_HTMLDECODE.HtmlDecode(s);

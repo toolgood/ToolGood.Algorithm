@@ -7,7 +7,7 @@ class Function_TODAY extends FunctionBase {
         return "Today";
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let now;
         if (engine.UseLocalTime) {
             now = new Date();
@@ -17,7 +17,7 @@ class Function_TODAY extends FunctionBase {
         return Operand.Create(new MyDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), 0, 0, 0));
     }
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         stringBuilder.push("Today()");
     }
 }

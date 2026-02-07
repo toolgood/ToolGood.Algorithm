@@ -11,22 +11,22 @@ class Function_SMALL extends Function_2 {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-        args1 = this.ConvertToArray(args1, 1);
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
+        args1 = this.convertToArray(args1, 1);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.b.Evaluate(engine, tempParameter);
-        args2 = this.ConvertToNumber(args2, 2);
+        let args2 = this.b.evaluate(engine, tempParameter);
+        args2 = this.convertToNumber(args2, 2);
         if (args2.IsError) { return args2; }
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
-        if (o == false) { return this.ParameterError(1); }
+        if (o == false) { return this.parameterError(1); }
         list.sort((a, b) => a - b);
         let k = args2.IntValue;
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
-            return this.ParameterError(2);
+            return this.parameterError(2);
         }
         return Operand.Create(list[k - engine.ExcelIndex]);
     }

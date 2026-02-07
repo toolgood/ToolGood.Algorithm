@@ -10,10 +10,10 @@ class Function_GCD extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
-            let aa = this.GetNumber(engine, tempParameter, i);
+            let aa = this.getNumber(engine, tempParameter, i);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -21,7 +21,7 @@ class Function_GCD extends Function_N {
         let list = [];
         for (let arg of args) {
             if (!arg.IsNumber) {
-                return this.FunctionError();
+                return this.functionError();
             }
             list.push(arg.NumberValue);
         }

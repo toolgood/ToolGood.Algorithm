@@ -11,10 +11,10 @@ class Function_HARMEAN extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -28,18 +28,18 @@ class Function_HARMEAN extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return this.FunctionError();
+            return this.functionError();
         }
 
         let sum = 0;
         for (let db of list) {
             if (db === 0) {
-                return this.FunctionError();
+                return this.functionError();
             }
             sum += 1 / db;
         }
         if (sum === 0) {
-            return this.FunctionError();
+            return this.functionError();
         }
         return Operand.Create(list.length / sum);
     }

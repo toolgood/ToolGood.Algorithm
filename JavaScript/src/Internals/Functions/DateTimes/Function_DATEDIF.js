@@ -11,14 +11,14 @@ class Function_DATEDIF extends Function_3 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetDate_2(engine, tempParameter);
+        let args2 = this.getDate_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
-        let args3 = this.GetText_3(engine, tempParameter);
+        let args3 = this.getText_3(engine, tempParameter);
         if (args3.IsError) { return args3; }
         let startMyDate = args1.DateValue;  // MyDate对象
         let endMyDate = args2.DateValue;    // MyDate对象
@@ -85,7 +85,7 @@ class Function_DATEDIF extends Function_3 {
             if (mo < 0) mo += 12;
             return Operand.Create(mo);
         }
-        return this.ParameterError(3);
+        return this.parameterError(3);
     }
 }
 

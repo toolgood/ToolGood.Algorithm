@@ -12,18 +12,18 @@ class Function_WORKDAY extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate(engine, tempParameter, 0);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate(engine, tempParameter, 0);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetNumber(engine, tempParameter, 1);
+        let args2 = this.getNumber(engine, tempParameter, 1);
         if (args2.IsError) { return args2; }
 
         let startMyDate = new Date(args1.DateValue.ToDateTime().getTime());
         let days = args2.IntValue;
         let list = new Set();
         for (let i = 2; i < this.z.length; i++) {
-            let ar = this.GetDate(engine, tempParameter, i);
+            let ar = this.getDate(engine, tempParameter, i);
             if (ar.IsError) { return ar; }
             // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
             let dateStr = ar.DateValue.ToDateTime().toISOString().split('T')[0];

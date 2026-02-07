@@ -11,8 +11,8 @@ class Function_JSON extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.a.Evaluate(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.a.evaluate(work, tempParameter);
         if (args1.IsError) {
             return args1;
         }
@@ -23,7 +23,7 @@ class Function_JSON extends Function_1 {
             args1 = args1.ToText();
         }
         if (args1.IsNotText) {
-            return this.FunctionError();
+            return this.functionError();
         }
         let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
@@ -33,7 +33,7 @@ class Function_JSON extends Function_1 {
             } catch (e) {
             }
         }
-        return this.FunctionError();
+        return this.functionError();
     }
 
 

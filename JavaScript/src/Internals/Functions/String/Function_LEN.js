@@ -10,8 +10,8 @@ class Function_LEN extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         return Operand.Create(args1.TextValue.length);
     }

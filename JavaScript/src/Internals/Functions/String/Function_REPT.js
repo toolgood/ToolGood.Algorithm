@@ -10,17 +10,17 @@ class Function_REPT extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetNumber_2(work, tempParameter);
+        let args2 = this.getNumber_2(work, tempParameter);
         if (args2.IsError) { return args2; }
 
         let newtext = args1.TextValue;
         let length = args2.IntValue;
         if (length < 0) {
-            return Operand.Error(this.FunctionError, 'Rept', 2);
+            return Operand.Error(this.functionError, 'Rept', 2);
         }
         if (length === 0) {
             return Operand.Create('');

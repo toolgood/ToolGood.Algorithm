@@ -10,12 +10,12 @@ class Function_SEC extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetNumber_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getNumber_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         let d = Math.cos(args1.DoubleValue);
         if (d === 0) {
-            return this.Div0Error();
+            return this.div0Error();
         }
         return Operand.Create(1.0 / d);
     }

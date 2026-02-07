@@ -10,11 +10,11 @@ class Function_Array extends Function_N {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
             let item = this.z[i];
-            let aa = item.Evaluate(work, tempParameter);
+            let aa = item.evaluate(work, tempParameter);
             if (aa.IsError) {
                 return aa;
             }

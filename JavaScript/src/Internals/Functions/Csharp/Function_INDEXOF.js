@@ -20,11 +20,11 @@ export class Function_INDEXOF extends Function_4 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetText_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetText_2(engine, tempParameter);
+        let args2 = this.getText_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
         let text = args1.TextValue;
@@ -33,7 +33,7 @@ export class Function_INDEXOF extends Function_4 {
             return Operand.Create(index + engine.ExcelIndex);
         }
 
-        let args3 = this.GetNumber_3(engine, tempParameter);
+        let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) { return args3; }
 
         if (this.d == null) {
@@ -42,7 +42,7 @@ export class Function_INDEXOF extends Function_4 {
             return Operand.Create(index + engine.ExcelIndex);
         }
 
-        let args4 = this.GetNumber_4(engine, tempParameter);
+        let args4 = this.getNumber_4(engine, tempParameter);
         if (args4.IsError) { return args4; }
 
         let startIndex = args3.IntValue;

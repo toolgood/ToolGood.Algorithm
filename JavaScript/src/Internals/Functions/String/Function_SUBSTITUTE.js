@@ -10,17 +10,17 @@ class Function_SUBSTITUTE extends Function_4 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
-        let args2 = this.GetText_2(work, tempParameter);
+        let args2 = this.getText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
-        let args3 = this.GetText_3(work, tempParameter);
+        let args3 = this.getText_3(work, tempParameter);
         if (args3.IsError) { return args3; }
         if (this.d === null || this.d === undefined) {
             return Operand.Create(args1.TextValue.replace(new RegExp(args2.TextValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.TextValue));
         }
-        let args4 = this.GetNumber_4(work, tempParameter);
+        let args4 = this.getNumber_4(work, tempParameter);
         if (args4.IsError) { return args4; }
         let text = args1.TextValue;
         let oldtext = args2.TextValue;

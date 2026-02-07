@@ -7,7 +7,7 @@ class Function_NOW extends FunctionBase {
         return "Now";
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         if (engine.UseLocalTime) {
             return Operand.Create(new MyDate(new Date()));
         } else {
@@ -15,7 +15,7 @@ class Function_NOW extends FunctionBase {
         }
     }
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         stringBuilder.push("Now()");
     }
 }

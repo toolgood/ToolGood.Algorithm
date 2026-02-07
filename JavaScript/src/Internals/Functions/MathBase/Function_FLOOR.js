@@ -10,15 +10,15 @@ class Function_FLOOR extends Function_2 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetNumber_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
         if (this.b === null || this.b === undefined) {
             return Operand.Create(Math.floor(args1.NumberValue));
         }
 
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
         let b = args2.NumberValue;
         if (b == 0) {

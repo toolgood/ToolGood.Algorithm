@@ -11,10 +11,10 @@ class Function_MEDIAN extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -25,10 +25,10 @@ class Function_MEDIAN extends Function_N {
         let o = FunctionUtil.F_base_GetList(args, list);
 
         if (o == false) {
-            return this.FunctionError();
+            return this.functionError();
         }
         if (list.length == 0) {
-            return this.FunctionError();
+            return this.functionError();
         }
 
         list.sort((a, b) => a - b);

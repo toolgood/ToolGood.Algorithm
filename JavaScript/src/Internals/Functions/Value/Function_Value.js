@@ -11,11 +11,11 @@ class Function_Value extends FunctionBase {
         this._showName = showName;
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         return this._value;
     }
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         if (this._showName != null && this._showName !== '') {
             stringBuilder.append(this._showName);
             return;

@@ -10,8 +10,8 @@ class Function_ISEVEN extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
         if (args1.IsNumber) {
             if (args1.IntValue % 2 == 0) {
                 return Operand.True;

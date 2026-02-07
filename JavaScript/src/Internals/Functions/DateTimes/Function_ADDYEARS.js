@@ -12,11 +12,11 @@ class Function_ADDYEARS extends Function_2 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
         let date = new Date(args1.DateValue.ToDateTime().getTime());
         date.setFullYear(date.getFullYear() + args2.IntValue);

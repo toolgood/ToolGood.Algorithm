@@ -10,11 +10,11 @@ class Function_CODE extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         if (!args1.TextValue) {
-            return Operand.Error(this.FunctionError, 'CODE');
+            return Operand.Error(this.functionError, 'CODE');
         }
         let c = args1.TextValue[0];
         return Operand.Create(c.charCodeAt(0));

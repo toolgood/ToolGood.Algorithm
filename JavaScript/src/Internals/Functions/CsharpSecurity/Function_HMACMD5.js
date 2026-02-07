@@ -20,11 +20,11 @@ export class Function_HMACMD5 extends Function_2 {
      * @param {AlgorithmEngine} work
      * @param {Function} tempParameter
      */
-    Evaluate(work, tempParameter = null) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter = null) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetText_2(work, tempParameter);
+        let args2 = this.getText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
 
         try {
@@ -32,7 +32,7 @@ export class Function_HMACMD5 extends Function_2 {
             let result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return this.FunctionError();
+            return this.functionError();
         }
     }
 }

@@ -11,16 +11,16 @@ class Function_IF extends Function_3 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetBoolean_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getBoolean_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         if (args1.BooleanValue) {
-            return this.b.Evaluate(engine, tempParameter);
+            return this.b.evaluate(engine, tempParameter);
         }
         if (this.c === null) {
             return Operand.False;
         }
-        return this.c.Evaluate(engine, tempParameter);
+        return this.c.evaluate(engine, tempParameter);
     }
 }
 

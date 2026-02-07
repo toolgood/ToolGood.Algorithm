@@ -20,7 +20,7 @@ export class Function_GUID extends FunctionBase {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         return Operand.Create(this.generateGuid());
     }
     
@@ -37,7 +37,7 @@ export class Function_GUID extends FunctionBase {
     }
     
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         stringBuilder.push("GUID()");
     }
 }

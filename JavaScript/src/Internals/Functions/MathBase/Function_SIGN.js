@@ -10,8 +10,8 @@ class Function_SIGN extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetNumber_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         return Operand.Create(Math.sign(args1.NumberValue));
     }

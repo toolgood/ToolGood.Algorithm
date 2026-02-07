@@ -10,10 +10,10 @@ class Function_EXACT extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
-        let args2 = this.GetText_2(work, tempParameter);
+        let args2 = this.getText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
         return Operand.Create(args1.TextValue === args2.TextValue);
     }

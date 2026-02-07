@@ -11,14 +11,14 @@ class Function_TIMESTAMP extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         let type = 0; // 毫秒
         if(this.b != null) {
-            let args2 = this.GetNumber_2(work, tempParameter);
+            let args2 = this.getNumber_2(work, tempParameter);
             if(args2.IsError) { return args2; }
             type = args2.IntValue;
         }
-        let args0 = this.GetDate_1(work, tempParameter);
+        let args0 = this.getDate_1(work, tempParameter);
         if(args0.IsError) { return args0; }
       
         let ms=args0.DateValue.ToDateTime().valueOf()

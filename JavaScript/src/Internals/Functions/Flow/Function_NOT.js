@@ -11,8 +11,8 @@ class Function_NOT extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetBoolean_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getBoolean_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         return args1.BooleanValue ? Operand.False : Operand.True;
     }

@@ -11,16 +11,16 @@ class Function_COUNTIF extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetArray_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getArray_1(work, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.b.Evaluate(work, tempParameter);
+        let args2 = this.b.evaluate(work, tempParameter);
         if (args2.IsError) { return args2; }
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
-        if (o == false) { return this.ParameterError(1); }
+        if (o == false) { return this.parameterError(1); }
 
         let count;
         if (args2.IsNumber) {
@@ -36,7 +36,7 @@ class Function_COUNTIF extends Function_2 {
                 if (m2 != null) {
                     count = FunctionUtil.F_base_countif(list, m2.operator, m2.value);
                 } else {
-                    return this.ParameterError(2);
+                    return this.parameterError(2);
                 }
             }
         }

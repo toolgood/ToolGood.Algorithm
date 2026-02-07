@@ -10,10 +10,10 @@ class Function_MULTINOMIAL extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -21,7 +21,7 @@ class Function_MULTINOMIAL extends Function_N {
         let list = [];
         for (let arg of args) {
             if (arg.IsNotNumber) {
-                return this.FunctionError();
+                return this.functionError();
             }
             list.push(arg.NumberValue);
         }

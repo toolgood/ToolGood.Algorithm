@@ -10,17 +10,17 @@ class Function_SEARCH extends Function_3 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
-        let args2 = this.GetText_2(work, tempParameter);
+        let args2 = this.getText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
 
         if (this.c === null || this.c === undefined) {
             let p = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase()) + work.ExcelIndex;
             return Operand.Create(p);
         }
-        let args3 = this.GetNumber_3(work, tempParameter);
+        let args3 = this.getNumber_3(work, tempParameter);
         if (args3.IsError) { return args3; }
         let startIndex = args3.IntValue - work.ExcelIndex;
         let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex) + work.ExcelIndex;

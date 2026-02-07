@@ -11,8 +11,8 @@ class Function_HOUR extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         return Operand.Create(args1.DateValue.Hour);
     }

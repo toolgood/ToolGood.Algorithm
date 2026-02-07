@@ -10,10 +10,10 @@ class Function_ISERROR extends Function_2 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
         if (this.b != null) {
-            if (args1.IsError) { return this.b.Evaluate(engine, tempParameter); }
+            if (args1.IsError) { return this.b.evaluate(engine, tempParameter); }
             return args1;
         }
         if (args1.IsError) { return Operand.True; }

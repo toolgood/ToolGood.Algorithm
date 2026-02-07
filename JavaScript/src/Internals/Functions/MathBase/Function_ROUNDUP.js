@@ -10,10 +10,10 @@ class Function_ROUNDUP extends Function_2 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetNumber_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
         if (args1.NumberValue == 0.0) { return args1; }
         let a = Math.pow(10, args2.IntValue);

@@ -10,12 +10,12 @@ class Function_TEXT extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.a.Evaluate(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.a.evaluate(work, tempParameter);
         if (args1.IsError) {
             return args1;
         }
-        let args2 = this.GetText_2(work, tempParameter);
+        let args2 = this.getText_2(work, tempParameter);
         if (args2.IsError) {
             return args2;
         }
@@ -42,13 +42,13 @@ class Function_TEXT extends Function_2 {
                 }
             }
             
-            // 如果没有匹配的格式，使用默认的toString
+            // 如果没有匹配的格式，使用默认的toString2
             return Operand.Create(value.toString());
         } else if (args1.IsDate) {
             // 同样，日期格式化可能需要更复杂的处理
             return Operand.Create(args1.DateValue.toString());
         }
-        let args1Text = args1.ToText(this.FunctionError, 'Text', 1);
+        let args1Text = args1.ToText(this.functionError, 'Text', 1);
         if (args1Text.IsError) {
             return args1Text;
         }

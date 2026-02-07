@@ -21,16 +21,16 @@ export class Function_LOOKCEILING extends Function_2 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetNumber_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetArray_2(engine, tempParameter);
+        let args2 = this.getArray_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
         let list = [];
         FunctionUtil.F_base_GetList(args2.ArrayValue, list);
-        if (list.length === 0) { return this.ParameterError(2); }
+        if (list.length === 0) { return this.parameterError(2); }
 
         list.sort((a, b) => b - a);
         let value = args1.NumberValue;

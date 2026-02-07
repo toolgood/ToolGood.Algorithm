@@ -11,10 +11,10 @@ class Function_SUMSQ extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let i = 0; i < this.z.length; i++) {
-            let aa = this.z[i].Evaluate(engine, tempParameter);
+            let aa = this.z[i].evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -24,7 +24,7 @@ class Function_SUMSQ extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return this.FunctionError();
+            return this.functionError();
         }
 
         let d = 0;

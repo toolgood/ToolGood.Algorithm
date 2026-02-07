@@ -20,16 +20,16 @@ export class Function_3 extends Function_2 {
      * @param {Array} stringBuilder
      * @param {string} functionName
      */
-    AddFunction(stringBuilder, functionName) {
+    addFunction(stringBuilder, functionName) {
         stringBuilder.push(functionName);
         stringBuilder.push('(');
-        this.a.ToString(stringBuilder, false);
+        this.a.toString2(stringBuilder, false);
         if (this.b != null) {
             stringBuilder.push(', ');
-            this.b.ToString(stringBuilder, false);
+            this.b.toString2(stringBuilder, false);
             if (this.c != null) {
                 stringBuilder.push(', ');
-                this.c.ToString(stringBuilder, false);
+                this.c.toString2(stringBuilder, false);
             }
         }
         stringBuilder.push(')');
@@ -40,10 +40,10 @@ export class Function_3 extends Function_2 {
      * @param {Function} tempParameter
      * @returns {Operand}
      */
-    GetText_3(work, tempParameter) {
-        let args3 = this.c.Evaluate(work, tempParameter);
+    getText_3(work, tempParameter) {
+        let args3 = this.c.evaluate(work, tempParameter);
         if (args3.IsText) return args3;
-        return this.ConvertToText(args3, 3);
+        return this.convertToText(args3, 3);
     }
     
     /**
@@ -51,10 +51,10 @@ export class Function_3 extends Function_2 {
      * @param {Function} tempParameter
      * @returns {Operand}
      */
-    GetNumber_3(work, tempParameter) {
-        let args3 = this.c.Evaluate(work, tempParameter);
+    getNumber_3(work, tempParameter) {
+        let args3 = this.c.evaluate(work, tempParameter);
         if (args3.IsNumber) return args3;
-        return this.ConvertToNumber(args3, 3);
+        return this.convertToNumber(args3, 3);
     }
     
     /**
@@ -62,10 +62,10 @@ export class Function_3 extends Function_2 {
      * @param {Function} tempParameter
      * @returns {Operand}
      */
-    GetDate_3(work, tempParameter) {
-        let args3 = this.c.Evaluate(work, tempParameter);
+    getDate_3(work, tempParameter) {
+        let args3 = this.c.evaluate(work, tempParameter);
         if (args3.IsDate) return args3;
-        return this.ConvertToDate(args3, 3);
+        return this.convertToDate(args3, 3);
     }
     
     /**
@@ -73,10 +73,10 @@ export class Function_3 extends Function_2 {
      * @param {Function} tempParameter
      * @returns {Operand}
      */
-    GetBoolean_3(work, tempParameter) {
-        let args3 = this.c.Evaluate(work, tempParameter);
+    getBoolean_3(work, tempParameter) {
+        let args3 = this.c.evaluate(work, tempParameter);
         if (args3.IsBoolean) return args3;
-        return this.ConvertToBoolean(args3, 3);
+        return this.convertToBoolean(args3, 3);
     }
     
     /**
@@ -84,13 +84,13 @@ export class Function_3 extends Function_2 {
      * @param {Function} tempParameter
      * @returns {Operand}
      */
-    GetArray_3(work, tempParameter) {
-        let args3 = this.c.Evaluate(work, tempParameter);
+    getArray_3(work, tempParameter) {
+        let args3 = this.c.evaluate(work, tempParameter);
         if (args3.IsArray) return args3;
-        return this.ConvertToArray(args3, 3);
+        return this.convertToArray(args3, 3);
     }
     
-    Evaluate(work, tempParameter = null) {
+    evaluate(work, tempParameter = null) {
         throw new Error('FIXME');
     }
 

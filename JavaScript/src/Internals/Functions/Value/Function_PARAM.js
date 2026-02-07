@@ -10,8 +10,8 @@ class Function_PARAM extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         if (tempParameter !== null) {
             let r = tempParameter(work, args1.TextValue);
@@ -22,7 +22,7 @@ class Function_PARAM extends Function_2 {
         let result = work.GetParameter(args1.TextValue);
         if (result.IsError) {
             if (this.b !== null) {
-                return this.b.Evaluate(work, tempParameter);
+                return this.b.evaluate(work, tempParameter);
             }
         }
         return result;

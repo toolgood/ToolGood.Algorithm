@@ -12,20 +12,20 @@ class Function_QUARTILE extends Function_2 {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetArray_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getArray_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
-        if (o == false) { return this.ParameterError(1); }
+        if (o == false) { return this.parameterError(1); }
 
         let quant = args2.IntValue;
         if (quant < 0 || quant > 4) {
-            return this.ParameterError(2);
+            return this.parameterError(2);
         }
         return Operand.Create(ExcelFunctions.Quartile(list, quant));
     }

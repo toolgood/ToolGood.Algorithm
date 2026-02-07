@@ -20,8 +20,8 @@ export class Function_SHA256 extends Function_1 {
      * @param {AlgorithmEngine} work
      * @param {Function} tempParameter
      */
-    Evaluate(work, tempParameter = null) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter = null) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
 
         try {
@@ -29,7 +29,7 @@ export class Function_SHA256 extends Function_1 {
             let result = md5Hash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return this.FunctionError();
+            return this.functionError();
         }
     }
 }

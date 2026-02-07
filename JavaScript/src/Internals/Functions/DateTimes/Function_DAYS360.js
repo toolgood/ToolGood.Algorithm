@@ -11,11 +11,11 @@ class Function_DAYS360 extends Function_3 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetDate_2(engine, tempParameter);
+        let args2 = this.getDate_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
         let startMyDate = args1.DateValue;  // MyDate对象
@@ -25,7 +25,7 @@ class Function_DAYS360 extends Function_3 {
 
         let method = false;
         if (this.c !== null) {
-            let args3 = this.GetBoolean_3(engine, tempParameter);
+            let args3 = this.getBoolean_3(engine, tempParameter);
             if (args3.IsError) { return args3; }
             method = args3.BooleanValue;
         }

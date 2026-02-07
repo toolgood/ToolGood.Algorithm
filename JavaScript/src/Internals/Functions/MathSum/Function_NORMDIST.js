@@ -11,17 +11,17 @@ class Function_NORMDIST extends Function_4 {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetNumber_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) return args1;
 
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) return args2;
 
-        let args3 = this.GetNumber_3(engine, tempParameter);
+        let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) return args3;
 
-        let args4 = this.GetBoolean_4(engine, tempParameter);
+        let args4 = this.getBoolean_4(engine, tempParameter);
         if (args4.IsError) return args4;
 
         let num = args1.DoubleValue;

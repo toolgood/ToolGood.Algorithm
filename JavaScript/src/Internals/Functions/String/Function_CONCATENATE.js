@@ -10,13 +10,13 @@ class Function_CONCATENATE extends Function_N {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         if (this.z.length === 0) {
             return Operand.Create('');
         }
         if (this.z.length === 1) {
-            let a = this.z[0].Evaluate(work, tempParameter);
-                a.ToText(this.FunctionError, 'Concatenate', 1);
+            let a = this.z[0].evaluate(work, tempParameter);
+                a.ToText(this.functionError, 'Concatenate', 1);
                 if (a.IsError) {
                     return a;
                 }
@@ -24,8 +24,8 @@ class Function_CONCATENATE extends Function_N {
         }
         let result = '';
         for (let i = 0; i < this.z.length; i++) {
-            let a = this.z[i].Evaluate(work, tempParameter);
-                a.ToText(this.FunctionError, 'Concatenate', i + 1);
+            let a = this.z[i].evaluate(work, tempParameter);
+                a.ToText(this.functionError, 'Concatenate', i + 1);
                 if (a.IsError) {
                     return a;
                 }

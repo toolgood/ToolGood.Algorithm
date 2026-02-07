@@ -10,7 +10,7 @@ class Function_RAND extends FunctionBase {
         super();
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         return Operand.Create(Math.random());
     }
 }

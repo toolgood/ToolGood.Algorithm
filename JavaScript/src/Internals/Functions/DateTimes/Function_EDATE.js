@@ -12,11 +12,11 @@ class Function_EDATE extends Function_2 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
         // 获取开始日期的Date对象
         let startDate = args1.DateValue.ToDateTime();

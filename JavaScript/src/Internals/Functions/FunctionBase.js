@@ -16,7 +16,7 @@ export class FunctionBase {
      * @param {Function} tempParameter 临时参数，未找到返回null
      * @returns {Operand}
      */
-    Evaluate(work, tempParameter = null) {
+    evaluate(work, tempParameter = null) {
         throw new Error('FIXME');
     }
 
@@ -24,9 +24,9 @@ export class FunctionBase {
      * Returns a string that represents the current object.
      * @returns {string}
      */
-    toString() {
+    toString2() {
         const stringBuilder = [];
-        this.ToString(stringBuilder, false);
+        this.toString2(stringBuilder, false);
         return stringBuilder.join('');
     }
 
@@ -35,7 +35,7 @@ export class FunctionBase {
      * @param {Array} stringBuilder The array to which the string representation will be appended.
      * @param {boolean} addBrackets true to enclose the string representation in brackets; otherwise, false.
      */
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         throw new Error('FIXME');
     }
 
@@ -45,7 +45,7 @@ export class FunctionBase {
      * @param {number} paramIndex
      * @returns {Operand}
      */
-    ConvertToText(arg, paramIndex) {
+    convertToText(arg, paramIndex) {
         return arg.ToText("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
@@ -55,7 +55,7 @@ export class FunctionBase {
      * @param {number} paramIndex
      * @returns {Operand}
      */
-    ConvertToBoolean(arg, paramIndex) {
+    convertToBoolean(arg, paramIndex) {
         return arg.ToBoolean("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
@@ -65,7 +65,7 @@ export class FunctionBase {
      * @param {number} paramIndex
      * @returns {Operand}
      */
-    ConvertToNumber(arg, paramIndex) {
+    convertToNumber(arg, paramIndex) {
         return arg.ToNumber("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
@@ -75,7 +75,7 @@ export class FunctionBase {
      * @param {number} paramIndex
      * @returns {Operand}
      */
-    ConvertToArray(arg, paramIndex) {
+    convertToArray(arg, paramIndex) {
         return arg.ToArray("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
@@ -85,7 +85,7 @@ export class FunctionBase {
      * @param {number} paramIndex
      * @returns {Operand}
      */
-    ConvertToDate(arg, paramIndex) {
+    convertToDate(arg, paramIndex) {
         return arg.ToMyDate("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
@@ -94,7 +94,7 @@ export class FunctionBase {
      * @param {number} paramIndex The zero-based index of the parameter that caused the error.
      * @returns {Operand} An operand representing an error for the specified parameter.
      */
-    ParameterError(paramIndex) {
+    parameterError(paramIndex) {
         return Operand.Error("Function '{0}' parameter {1} is error!", this.Name, paramIndex);
     }
 
@@ -102,7 +102,7 @@ export class FunctionBase {
      * Creates an error operand indicating that a function parameter is invalid.
      * @returns {Operand} An operand representing an error state for the function due to an invalid parameter.
      */
-    FunctionError() {
+    functionError() {
         return Operand.Error("Function '{0}' parameter is error!", this.Name);
     }
 
@@ -110,7 +110,7 @@ export class FunctionBase {
      * Creates an error operand indicating that a comparison error occurred.
      * @returns {Operand} An operand representing a comparison error.
      */
-    CompareError() {
+    compareError() {
         return Operand.Error("Function '{0}' compare is error.", this.Name);
     }
 
@@ -118,7 +118,7 @@ export class FunctionBase {
      * Creates an error operand indicating a division by zero error.
      * @returns {Operand} An operand representing a division by zero error.
      */
-    Div0Error() {
+    div0Error() {
         return Operand.Error("Function '{0}' Div 0 error!", this.Name);
     }
 }

@@ -11,21 +11,21 @@ class Function_BETAINV extends Function_3 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetNumber_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getNumber_1(work, tempParameter);
         if (args1.IsError) return args1;
 
-        let args2 = this.GetNumber_2(work, tempParameter);
+        let args2 = this.getNumber_2(work, tempParameter);
         if (args2.IsError) return args2;
 
-        let args3 = this.GetNumber_3(work, tempParameter);
+        let args3 = this.getNumber_3(work, tempParameter);
         if (args3.IsError) return args3;
 
         let p = args1.DoubleValue;
         let alpha = args2.DoubleValue;
         let beta = args3.DoubleValue;
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
-            return this.FunctionError();
+            return this.functionError();
         }
         return Operand.Create(ExcelFunctions.BetaInv(p, alpha, beta));
     }

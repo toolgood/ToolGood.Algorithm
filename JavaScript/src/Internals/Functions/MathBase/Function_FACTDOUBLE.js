@@ -10,11 +10,11 @@ class Function_FACTDOUBLE extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetNumber_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         let z = args1.IntValue;
-        if (z < 0) { return this.FunctionError(); }
+        if (z < 0) { return this.functionError(); }
 
         let d = 1;
         for (let i = z; i > 0; i -= 2) {

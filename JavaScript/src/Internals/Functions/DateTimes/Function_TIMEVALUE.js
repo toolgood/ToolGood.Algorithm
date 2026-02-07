@@ -12,8 +12,8 @@ class Function_TIMEVALUE extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetText_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
         try {
@@ -37,7 +37,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return this.FunctionError();
+        return this.functionError();
     }
 }
 

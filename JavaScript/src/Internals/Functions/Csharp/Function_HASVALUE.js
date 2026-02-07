@@ -20,11 +20,11 @@ export class Function_HASVALUE extends Function_2 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetText_2(engine, tempParameter);
+        let args2 = this.getText_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
         if (args1.IsArrayJson) {
@@ -80,7 +80,7 @@ export class Function_HASVALUE extends Function_2 {
             }
             return Operand.False;
         }
-        return this.ParameterError(1);
+        return this.parameterError(1);
     }
     
 

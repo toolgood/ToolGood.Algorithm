@@ -10,12 +10,12 @@ class Function_GetJsonValue extends Function_2 {
         super(z, op);
     }
 
-    Evaluate(work, tempParameter) {
-        let obj = this.a.Evaluate(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let obj = this.a.evaluate(work, tempParameter);
         if (obj.IsError) {
             return obj;
         }
-        let op = this.b.Evaluate(work, tempParameter);
+        let op = this.b.evaluate(work, tempParameter);
         if (op.IsError) {
             return op;
         }
@@ -111,10 +111,10 @@ class Function_GetJsonValue extends Function_2 {
         return Operand.Error('Function \'{0}\' Operator is error!', 'GetJsonValue');
     }
 
-    ToString(stringBuilder, addBrackets) {
-        this.a.ToString(stringBuilder, false);
+    toString2(stringBuilder, addBrackets) {
+        this.a.toString2(stringBuilder, false);
         stringBuilder.append('[');
-        this.b.ToString(stringBuilder, false);
+        this.b.toString2(stringBuilder, false);
         stringBuilder.append(']');
     }
 

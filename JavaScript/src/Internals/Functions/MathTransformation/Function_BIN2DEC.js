@@ -10,11 +10,11 @@ class Function_BIN2DEC extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetText_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
 
-        if (!/^[01]+$/.test(args1.TextValue)) { return this.FunctionError(); }
+        if (!/^[01]+$/.test(args1.TextValue)) { return this.functionError(); }
         let num = parseInt(args1.TextValue, 2);
         return Operand.Create(num);
     }

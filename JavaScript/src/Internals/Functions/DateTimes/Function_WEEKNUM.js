@@ -11,8 +11,8 @@ class Function_WEEKNUM extends Function_2 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetDate_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         let startMyDate = args1.DateValue;
 
@@ -26,7 +26,7 @@ class Function_WEEKNUM extends Function_2 {
         
         let days = dayOfYear + firstDayWeekday;
         if (this.b != null) {
-            let args2 = this.GetNumber_2(engine, tempParameter);
+            let args2 = this.getNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
             if (args2.IntValue == 2) {
                 days--;

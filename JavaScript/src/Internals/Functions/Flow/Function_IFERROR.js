@@ -9,10 +9,10 @@ class Function_IFERROR extends Function_3 {
     super(z);
   }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter);
-        if (args1.IsError) { return this.b.Evaluate(engine, tempParameter); }
-        return this.c.Evaluate(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
+        if (args1.IsError) { return this.b.evaluate(engine, tempParameter); }
+        return this.c.evaluate(engine, tempParameter);
     }
 }
 

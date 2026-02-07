@@ -10,8 +10,8 @@ class Function_RADIANS extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetNumber_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getNumber_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         let r = args1.DoubleValue / 180 * Math.PI;
         return Operand.Create(r);

@@ -11,20 +11,20 @@ class Function_SUMIF extends Function_3 {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetArray_1(engine, tempParameter); if (args1.IsError) { return args1; }
-        let args2 = this.b.Evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
+    evaluate(engine, tempParameter) {
+        let args1 = this.getArray_1(engine, tempParameter); if (args1.IsError) { return args1; }
+        let args2 = this.b.evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
-        if (o == false) { return this.ParameterError(1); }
+        if (o == false) { return this.parameterError(1); }
 
         let sumdbs;
         if (this.c != null) {
-            let args3 = this.GetArray_3(engine, tempParameter); if (args3.IsError) { return args3; }
+            let args3 = this.getArray_3(engine, tempParameter); if (args3.IsError) { return args3; }
             sumdbs = [];
             let o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
-            if (o2 == false) { return this.ParameterError(3); }
+            if (o2 == false) { return this.parameterError(3); }
         } else {
             sumdbs = list;
         }
@@ -44,11 +44,11 @@ class Function_SUMIF extends Function_3 {
                     if (m2 != null) {
                         sum = FunctionUtil.F_base_sumif(list, m2.operator, m2.value, sumdbs);
                     } else {
-                        return this.ParameterError(2);
+                        return this.parameterError(2);
                     }
                 }
             } else {
-                return this.ParameterError(2);
+                return this.parameterError(2);
             }
         }
         return Operand.Create(sum);

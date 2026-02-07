@@ -13,14 +13,14 @@ class Function_NUM extends FunctionBase {
         this.unit = b;
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         let dict = NumberUnitTypeHelper.getUnitTypedict();
         let unitKey = this.unit.toUpperCase();
         let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[unitKey], work.DistanceUnit, work.AreaUnit, work.VolumeUnit, work.MassUnit);
         return Operand.Create(d2);
     }
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         stringBuilder.append(this.d);
         stringBuilder.append(this.unit);
     }

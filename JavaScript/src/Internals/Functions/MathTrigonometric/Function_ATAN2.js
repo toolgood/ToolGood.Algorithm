@@ -10,10 +10,10 @@ class Function_ATAN2 extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetNumber_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getNumber_1(work, tempParameter);
         if (args1.IsError) { return args1; }
-        let args2 = this.GetNumber_2(work, tempParameter);
+        let args2 = this.getNumber_2(work, tempParameter);
         if (args2.IsError) { return args2; }
         return Operand.Create(Math.atan2(args1.NumberValue, args2.NumberValue));
     }

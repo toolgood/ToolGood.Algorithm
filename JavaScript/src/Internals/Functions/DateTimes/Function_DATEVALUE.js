@@ -12,10 +12,10 @@ class Function_DATEVALUE extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -66,7 +66,7 @@ class Function_DATEVALUE extends Function_N {
             if (engine.UseLocalTime) { return Operand.Create(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }
             return Operand.Create(new MyDate(time));
         }
-        return this.FunctionError();
+        return this.functionError();
     }
 }
 

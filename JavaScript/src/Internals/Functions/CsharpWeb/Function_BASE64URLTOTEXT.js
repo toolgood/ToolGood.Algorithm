@@ -11,8 +11,8 @@ class Function_BASE64URLTOTEXT extends Function_1 {
         super(a);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetText_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         try {
             let base64Url = args1.TextValue
@@ -26,7 +26,7 @@ class Function_BASE64URLTOTEXT extends Function_1 {
             let t = buffer.toString('utf-8');
             return Operand.Create(t);
         } catch (e) {
-            return this.FunctionError();
+            return this.functionError();
         }
     }
 }

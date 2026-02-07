@@ -11,17 +11,17 @@ class Function_COVARIANCES extends Function_2 {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.a.Evaluate(engine, tempParameter); if (args1.IsError) { return args1; }
-        let args2 = this.b.Evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter); if (args1.IsError) { return args1; }
+        let args2 = this.b.evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
 
         let list1 = [];
         let list2 = [];
 
         let o1 = FunctionUtil.F_base_GetList(args1, list1);
         let o2 = FunctionUtil.F_base_GetList(args2, list2);
-        if (o1 == false) { return this.ParameterError(1); }
-        if (o2 == false) { return this.ParameterError(2); }
+        if (o1 == false) { return this.parameterError(1); }
+        if (o2 == false) { return this.parameterError(2); }
         if (list1.length != list2.length) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }
         if (list1.length == 1) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }
 

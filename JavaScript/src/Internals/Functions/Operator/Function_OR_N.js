@@ -10,10 +10,10 @@ class Function_OR_N extends Function_N {
     super(z);
   }
 
-  Evaluate(work, tempParameter) {
+  evaluate(work, tempParameter) {
     let b = false;
     for (let i = 0; i < this.z.length; i++) {
-      let a = this.GetBoolean(work, tempParameter, i);
+      let a = this.getBoolean(work, tempParameter, i);
       if (a.IsError) { return a; }
       if (a.BooleanValue) b = true;
     }

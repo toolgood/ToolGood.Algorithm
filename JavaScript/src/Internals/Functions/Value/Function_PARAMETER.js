@@ -14,10 +14,10 @@ class Function_PARAMETER extends FunctionBase {
         }
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         let txt = this.name;
         if (txt === undefined || txt === null) {
-            let args1 = this.func1.Evaluate(work, tempParameter);
+            let args1 = this.func1.evaluate(work, tempParameter);
                 args1 = args1.ToText();
                 if (args1.IsError) {
                     return args1;
@@ -33,9 +33,9 @@ class Function_PARAMETER extends FunctionBase {
         return work.GetParameter(txt);
     }
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         if (this.name === undefined || this.name === null) {
-            this.func1.ToString(stringBuilder, false);
+            this.func1.toString2(stringBuilder, false);
         } else {
             stringBuilder.append(this.name);
         }

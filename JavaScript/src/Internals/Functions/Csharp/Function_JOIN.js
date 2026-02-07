@@ -43,10 +43,10 @@ export class Function_JOIN extends Function_N {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -64,20 +64,20 @@ export class Function_JOIN extends Function_N {
         if (args1.IsArray) {
             let list = [];
             let o = this.F_base_GetList(args1, list);
-            if (!o) { return this.ParameterError(1); }
+            if (!o) { return this.parameterError(1); }
             
-            let args2 = this.ConvertToText(args[1], 2);
+            let args2 = this.convertToText(args[1], 2);
             if (args2.IsError) { return args2; }
             
             return Operand.Create(list.join(args2.TextValue));
         } else {
-            args1 = this.ConvertToText(args1, 1);
+            args1 = this.convertToText(args1, 1);
             if (args1.IsError) { return args1; }
             
             let list = [];
             for (let i = 1; i < args.length; i++) {
                 let o = this.F_base_GetList(args[i], list);
-                if (!o) { return this.ParameterError(i + 1); }
+                if (!o) { return this.parameterError(i + 1); }
             }
             
             return Operand.Create(list.join(args1.TextValue));

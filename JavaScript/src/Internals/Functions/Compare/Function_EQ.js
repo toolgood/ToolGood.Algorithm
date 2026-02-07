@@ -10,10 +10,10 @@ class Function_EQ extends Function_2 {
     return "==";
   }
 
-  Evaluate(engine, tempParameter) {
-    let args1 = this.a.Evaluate(engine, tempParameter);
+  evaluate(engine, tempParameter) {
+    let args1 = this.a.evaluate(engine, tempParameter);
     if (args1.IsError) { return args1; }
-    let args2 = this.b.Evaluate(engine, tempParameter);
+    let args2 = this.b.evaluate(engine, tempParameter);
     if (args2.IsError) { return args2; }
 
     if (args1.Type === args2.Type) {
@@ -28,26 +28,26 @@ class Function_EQ extends Function_2 {
       } else if (args1.IsNull) {
         return Operand.True;
       } else {
-        return this.CompareError();
+        return this.compareError();
       }
     } else if (args1.IsNull || args2.IsNull) {
       return Operand.False;
     } else if (args1.IsDate || args2.IsDate || args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
-      return this.CompareError();
+      return this.compareError();
     }
-    args1 = this.ConvertToNumber(args1, 1);
+    args1 = this.convertToNumber(args1, 1);
     if (args1.IsError) { return args1; }
-    args2 = this.ConvertToNumber(args2, 2);
+    args2 = this.convertToNumber(args2, 2);
     if (args2.IsError) { return args2; }
 
     return Operand.Create(args1.NumberValue === args2.NumberValue);
   }
 
-  ToString(stringBuilder, addBrackets) {
+  toString2(stringBuilder, addBrackets) {
     if (addBrackets) stringBuilder.push('(');
-    this.a.ToString(stringBuilder, false);
+    this.a.toString2(stringBuilder, false);
     stringBuilder.push(" == ");
-    this.b.ToString(stringBuilder, false);
+    this.b.toString2(stringBuilder, false);
     if (addBrackets) stringBuilder.push(')');
   }
 }

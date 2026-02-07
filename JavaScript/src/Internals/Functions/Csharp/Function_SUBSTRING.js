@@ -19,11 +19,11 @@ export class Function_SUBSTRING extends Function_3 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetText_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
-        let args2 = this.GetNumber_2(engine, tempParameter);
+        let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
         
         let text = args1.TextValue;
@@ -33,7 +33,7 @@ export class Function_SUBSTRING extends Function_3 {
             return Operand.Create(text.substring(startIndex));
         }
         
-        let args3 = this.GetNumber_3(engine, tempParameter);
+        let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) { return args3; }
         
         let length = args3.IntValue;

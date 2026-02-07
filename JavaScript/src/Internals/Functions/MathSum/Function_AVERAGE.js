@@ -11,17 +11,17 @@ class Function_AVERAGE extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
-        if (o == false) { return this.FunctionError(); }
+        if (o == false) { return this.functionError(); }
         if (list.length == 0) { return Operand.Zero; }
         return Operand.Create(list.reduce((sum, value) => sum + value, 0) / list.length);
     }

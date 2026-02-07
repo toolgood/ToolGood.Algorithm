@@ -10,9 +10,9 @@ class Function_Mul extends Function_2 {
     super(z);
   }
 
-  Evaluate(work, tempParameter) {
-    let args1 = this.GetNumber_1(work, tempParameter); if (args1.IsError) { return args1; }
-    let args2 = this.GetNumber_2(work, tempParameter); if (args2.IsError) { return args2; }
+  evaluate(work, tempParameter) {
+    let args1 = this.getNumber_1(work, tempParameter); if (args1.IsError) { return args1; }
+    let args2 = this.getNumber_2(work, tempParameter); if (args2.IsError) { return args2; }
 
     if (args1.NumberValue === 1) { return args2; }
     if (args2.NumberValue === 1) { return args1; }
@@ -20,11 +20,11 @@ class Function_Mul extends Function_2 {
     return Operand.Create(args1.NumberValue * args2.NumberValue);
   }
 
-  ToString(stringBuilder, addBrackets) {
+  toString2(stringBuilder, addBrackets) {
     if (addBrackets) stringBuilder.append('(');
-    this.a.ToString(stringBuilder, true);
+    this.a.toString2(stringBuilder, true);
     stringBuilder.append(' * ');
-    this.b.ToString(stringBuilder, true);
+    this.b.toString2(stringBuilder, true);
     if (addBrackets) stringBuilder.append(')');
   }
 }

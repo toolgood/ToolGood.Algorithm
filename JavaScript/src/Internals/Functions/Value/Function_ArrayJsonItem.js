@@ -11,18 +11,18 @@ class Function_ArrayJsonItem extends Function_1 {
         this.key = key;
     }
 
-    Evaluate(work, tempParameter) {
+    evaluate(work, tempParameter) {
         let keyValue = {
             key: this.key,
-            value: this.a.Evaluate(work, tempParameter)
+            value: this.a.evaluate(work, tempParameter)
         };
         return new OperandKeyValue(keyValue);
     }
 
-    ToString(stringBuilder, addBrackets) {
+    toString2(stringBuilder, addBrackets) {
         stringBuilder.append(this.key);
         stringBuilder.append(':');
-        this.a.ToString(stringBuilder, false);
+        this.a.toString2(stringBuilder, false);
     }
 
 }

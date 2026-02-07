@@ -10,17 +10,17 @@ class Function_DEC2HEX extends Function_2 {
         super(z);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.GetNumber_1(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.getNumber_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         let num = args1.IntValue.toString(16).toUpperCase();
         if (this.b != null) {
-            let args2 = this.GetNumber_2(work, tempParameter);
+            let args2 = this.getNumber_2(work, tempParameter);
             if (args2.IsError) { return args2; }
             if (num.length > args2.IntValue) {
                 return Operand.Create(num.padStart(args2.IntValue, '0'));
             }
-            return this.ParameterError(2);
+            return this.parameterError(2);
         }
         return Operand.Create(num);
     }

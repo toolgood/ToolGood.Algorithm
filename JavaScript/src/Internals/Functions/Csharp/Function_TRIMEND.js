@@ -19,15 +19,15 @@ export class Function_TRIMEND extends Function_2 {
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.GetText_1(engine, tempParameter);
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
 
         if (this.b == null) {
             return Operand.Create(args1.TextValue.trimEnd());
         }
         
-        let args2 = this.GetText_2(engine, tempParameter);
+        let args2 = this.getText_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
         
         let trimChars = args2.TextValue.split('');

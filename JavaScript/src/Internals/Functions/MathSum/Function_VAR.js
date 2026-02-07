@@ -11,10 +11,10 @@ class Function_VAR extends Function_N {
         super(z);
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
         for (let item of this.z) {
-            let aa = item.Evaluate(engine, tempParameter);
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -28,10 +28,10 @@ class Function_VAR extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return this.FunctionError();
+            return this.functionError();
         }
         if (list.length <= 1) {
-            return this.FunctionError();
+            return this.functionError();
         }
         let sum = 0;
         let sum2 = 0;

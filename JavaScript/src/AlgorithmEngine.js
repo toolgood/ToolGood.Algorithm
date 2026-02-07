@@ -57,13 +57,13 @@ class AlgorithmEngine {
   }
 
   Evaluate(functionObj) {
-    return functionObj.Evaluate(this);
+    return functionObj.evaluate(this);
   }
 
   TryEvaluate_Int(exp, def) {
     try {
       let functionObj = this.Parse(exp);
-      let obj = functionObj.Evaluate(this);
+      let obj = functionObj.evaluate(this);
       if (!obj.IsNumber) {
         let converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
@@ -82,7 +82,7 @@ class AlgorithmEngine {
   TryEvaluate_Double(exp, def) {
     try {
       let functionObj = this.Parse(exp);
-      let obj = functionObj.Evaluate(this);
+      let obj = functionObj.evaluate(this);
       if (!obj.IsNumber) {
         let converted = obj.ToNumber("It can't be converted to number!");
         if (converted.IsError) {
@@ -101,7 +101,7 @@ class AlgorithmEngine {
   TryEvaluate_String(exp, def) {
     try {
       let functionObj = this.Parse(exp);
-      let obj = functionObj.Evaluate(this);
+      let obj = functionObj.evaluate(this);
       if (!obj.IsText) {
         let converted = obj.ToText("It can't be converted to string!");
         if (converted.IsError) {
@@ -120,7 +120,7 @@ class AlgorithmEngine {
   TryEvaluate_Boolean(exp, def) {
     try {
       let functionObj = this.Parse(exp);
-      let obj = functionObj.Evaluate(this);
+      let obj = functionObj.evaluate(this);
       if (!obj.IsBoolean) {
         let converted = obj.ToBoolean("It can't be converted to bool!");
         if (converted.IsError) {
@@ -138,7 +138,7 @@ class AlgorithmEngine {
   TryEvaluate_DateTime(exp, def) {
     try {
       let functionObj = this.Parse(exp);
-      let obj = functionObj.Evaluate(this);
+      let obj = functionObj.evaluate(this);
       if (!obj.IsDate) {
         let converted = obj.ToMyDate("It can't be converted to DateTime!");
         if (converted.IsError) {
@@ -159,7 +159,7 @@ class AlgorithmEngine {
   TryEvaluate_TimeSpan(exp, def) {
     try {
       let functionObj = this.Parse(exp);
-      let obj = functionObj.Evaluate(this);
+      let obj = functionObj.evaluate(this);
       if (!obj.IsDate) {
         let converted = obj.ToMyDate("It can't be converted to DateTime!");
         if (converted.IsError) {

@@ -10,15 +10,15 @@ class Function_VALUE extends Function_1 {
         super(a);
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.a.Evaluate(work, tempParameter);
+    evaluate(work, tempParameter) {
+        let args1 = this.a.evaluate(work, tempParameter);
         if (args1.IsNumber) {
             return args1;
         }
         if (args1.isBoolean) {
             return args1.BooleanValue ? Operand.one : Operand.zero;
         }
-            args1 = args1.ToText(this.FunctionError, 'Value');
+            args1 = args1.ToText(this.functionError, 'Value');
             if (args1.IsError) {
                 return args1;
             }
@@ -28,7 +28,7 @@ class Function_VALUE extends Function_1 {
         if (!isNaN(parsedValue)) {
             return Operand.Create(parsedValue);
         }
-        return Operand.Error(this.FunctionError, 'Value');
+        return Operand.Error(this.functionError, 'Value');
     }
 }
 
