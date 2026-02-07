@@ -87,8 +87,19 @@ try {
 // Test IsKeywords function
 try {
     console.log('Test 7: IsKeywords with false');
-    const b = AlgorithmEngineHelper.IsKeywords('false');
-    assertTrue(b);
+    let b = AlgorithmEngineHelper.IsParameter('false');
+    assertFalse(b);
+
+	b = AlgorithmEngineHelper.IsParameter("f11");
+	assertTrue(b);
+
+	b = AlgorithmEngineHelper.IsParameter("f11+1");
+	assertFalse(b);
+
+	b = AlgorithmEngineHelper.IsParameter("f11++");
+	assertFalse(b);
+
+
     console.log('✓ Test 7 passed');
 } catch (error) {
     console.error('✗ Test 7 failed:', error.message);
