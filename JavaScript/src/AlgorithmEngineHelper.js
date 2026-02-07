@@ -37,10 +37,10 @@ export class AlgorithmEngineHelper {
         if (!parameter || parameter.trim() === '') { return false; }
         try {
             let diy = this.GetDiyNames(parameter);
-            if (diy.functions && diy.functions.length > 0) { return false; }
-            if (diy.parameters && diy.parameters.length === 1) {
-                let p = diy.parameters[0];
-                return p.name === parameter;
+            if (diy.Functions && diy.Functions.length > 0) { return false; }
+            if (diy.Parameters && diy.Parameters.length === 1) {
+                let p = diy.Parameters[0];
+                return p.Name === parameter;
             }
         } catch (ex) { }
         return false;

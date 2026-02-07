@@ -1,197 +1,213 @@
+import assert from 'assert';
 import { AlgorithmEngineHelper } from '../src/AlgorithmEngineHelper.js';
 
-function assert(condition, message) {
-    if (!condition) {
-        throw new Error(message || 'Assertion failed');
-    }
-}
-
-function assertEquals(expected, actual, message) {
-    if (expected !== actual) {
-        throw new Error(message || `Expected ${expected}, got ${actual}`);
-    }
-}
-
-function assertTrue(condition, message) {
-    if (!condition) {
-        throw new Error(message || 'Expected true, got false');
-    }
-}
-
-function assertFalse(condition, message) {
-    if (condition) {
-        throw new Error(message || 'Expected false, got true');
-    }
-}
-
-console.log('Running AlgorithmEngineHelper tests...');
-
-// Test GetDiyNames function
-try {
-    console.log('Test 1: GetDiyNames basic functionality');
+// 测试 GetDiyNames 函数
+function testGetDiyNamesBasic() {
+    console.log('开始测试 GetDiyNames 基本功能...');
+    
     const p = AlgorithmEngineHelper.GetDiyNames('dd');
-    assertEquals('dd', p.Parameters[0].Name);
-    console.log('✓ Test 1 passed');
-} catch (error) {
-    console.error('✗ Test 1 failed:', error.message);
+    assert.strictEqual('dd', p.Parameters[0].Name, "GetDiyNames('dd') 应该返回包含参数 'dd' 的对象");
+    
+    console.log('GetDiyNames 基本功能 测试通过！');
 }
 
-try {
-    console.log('Test 2: GetDiyNames repeated call');
+function testGetDiyNamesRepeated() {
+    console.log('开始测试 GetDiyNames 重复调用...');
+    
     const p3 = AlgorithmEngineHelper.GetDiyNames('dd');
-    assertEquals('dd', p3.Parameters[0].Name);
-    console.log('✓ Test 2 passed');
-} catch (error) {
-    console.error('✗ Test 2 failed:', error.message);
+    assert.strictEqual('dd', p3.Parameters[0].Name, "GetDiyNames('dd') 重复调用应该返回相同结果");
+    
+    console.log('GetDiyNames 重复调用 测试通过！');
 }
 
-try {
-    console.log('Test 3: GetDiyNames with function and parameters');
+function testGetDiyNamesWithFunction() {
+    console.log('开始测试 GetDiyNames 带函数和参数...');
+    
     const p5 = AlgorithmEngineHelper.GetDiyNames('ddd(d1,22)');
-    assertEquals('ddd', p5.Functions[0].Name);
-    assertEquals('d1', p5.Parameters[0].Name);
-    console.log('✓ Test 3 passed');
-} catch (error) {
-    console.error('✗ Test 3 failed:', error.message);
+    assert.strictEqual('ddd', p5.Functions[0].Name, "GetDiyNames('ddd(d1,22)') 应该返回包含函数 'ddd' 的对象");
+    assert.strictEqual('d1', p5.Parameters[0].Name, "GetDiyNames('ddd(d1,22)') 应该返回包含参数 'd1' 的对象");
+    
+    console.log('GetDiyNames 带函数和参数 测试通过！');
 }
 
-try {
-    console.log('Test 4: GetDiyNames with Chinese character');
+function testGetDiyNamesWithChinese() {
+    console.log('开始测试 GetDiyNames 带中文字符...');
+    
     const p6 = AlgorithmEngineHelper.GetDiyNames('长');
-    assertEquals('长', p6.Parameters[0].Name);
-    console.log('✓ Test 4 passed');
-} catch (error) {
-    console.error('✗ Test 4 failed:', error.message);
+    assert.strictEqual('长', p6.Parameters[0].Name, "GetDiyNames('长') 应该返回包含参数 '长' 的对象");
+    
+    console.log('GetDiyNames 带中文字符 测试通过！');
 }
 
-try {
-    console.log('Test 5: GetDiyNames with expression');
+function testGetDiyNamesWithExpression() {
+    console.log('开始测试 GetDiyNames 带表达式...');
+    
     const p7 = AlgorithmEngineHelper.GetDiyNames('ddd+2');
-    assertEquals('ddd', p7.Parameters[0].Name);
-    console.log('✓ Test 5 passed');
-} catch (error) {
-    console.error('✗ Test 5 failed:', error.message);
+    assert.strictEqual('ddd', p7.Parameters[0].Name, "GetDiyNames('ddd+2') 应该返回包含参数 'ddd' 的对象");
+    
+    console.log('GetDiyNames 带表达式 测试通过！');
 }
 
-try {
-    console.log('Test 6: GetDiyNames with JSON and parameter');
+function testGetDiyNamesWithJson() {
+    console.log('开始测试 GetDiyNames 带 JSON 和参数...');
+    
     const p8 = AlgorithmEngineHelper.GetDiyNames(`{"A": 0.6,"B": 0.4,"C": 0.6,"E": 0.33,"F": 0.29,"Z": 0.15,
 "EB": 0.7,"EE": 0.65,"EA": 0.85,"AB": 1.0,"BC": 1.0,"AA":1.0,
 "EBC": 1.15,"BAB": 1.25,"BCB": 1.25,"BBC": 1.25,"CBB": 1.25,"EBA": 1.2,"AAA": 1.4}[瓦楞]`);
-    assertEquals('瓦楞', p8.Parameters[0].Name);
-    console.log('✓ Test 6 passed');
-} catch (error) {
-    console.error('✗ Test 6 failed:', error.message);
+    assert.strictEqual('瓦楞', p8.Parameters[0].Name, "GetDiyNames 带 JSON 和参数 应该返回包含参数 '瓦楞' 的对象");
+    
+    console.log('GetDiyNames 带 JSON 和参数 测试通过！');
 }
 
-// Test IsKeywords function
-try {
-    console.log('Test 7: IsKeywords with false');
+// 测试 IsParameter 函数
+function testIsParameter() {
+    console.log('开始测试 IsParameter...');
+    
     let b = AlgorithmEngineHelper.IsParameter('false');
-    assertFalse(b);
+    assert.strictEqual(b, false, "IsParameter('false') 应该返回 false");
 
-	b = AlgorithmEngineHelper.IsParameter("f11");
-	assertTrue(b);
+    b = AlgorithmEngineHelper.IsParameter("f11");
+    assert.strictEqual(b, true, "IsParameter('f11') 应该返回 true");
 
-	b = AlgorithmEngineHelper.IsParameter("f11+1");
-	assertFalse(b);
+    b = AlgorithmEngineHelper.IsParameter("f11+1");
+    assert.strictEqual(b, false, "IsParameter('f11+1') 应该返回 false");
 
-	b = AlgorithmEngineHelper.IsParameter("f11++");
-	assertFalse(b);
-
-
-    console.log('✓ Test 7 passed');
-} catch (error) {
-    console.error('✗ Test 7 failed:', error.message);
+    b = AlgorithmEngineHelper.IsParameter("f11++");
+    assert.strictEqual(b, false, "IsParameter('f11++') 应该返回 false");
+    
+    console.log('IsParameter 测试通过！');
 }
 
-// Test UnitConversion function
-try {
-    console.log('Test 8: UnitConversion distance units');
+// 测试 UnitConversion 函数
+function testUnitConversionDistance() {
+    console.log('开始测试 UnitConversion 距离单位...');
+    
     let b = AlgorithmEngineHelper.UnitConversion(1, '米', '千米', '测试');
-    assertEquals(0.001, b);
+    assert.strictEqual(b, 0.001, "UnitConversion(1, '米', '千米', '测试') 应该返回 0.001");
     
     b = AlgorithmEngineHelper.UnitConversion(1, '米', '分米', '测试');
-    assertEquals(10, b);
+    assert.strictEqual(b, 10, "UnitConversion(1, '米', '分米', '测试') 应该返回 10");
     
     b = AlgorithmEngineHelper.UnitConversion(1, '米', '厘米', '测试');
-    assertEquals(100, b);
+    assert.strictEqual(b, 100, "UnitConversion(1, '米', '厘米', '测试') 应该返回 100");
     
     b = AlgorithmEngineHelper.UnitConversion(1, '米', 'mm', '测试');
-    assertEquals(1000, b);
-    console.log('✓ Test 8 passed');
-} catch (error) {
-    console.error('✗ Test 8 failed:', error.message);
+    assert.strictEqual(b, 1000, "UnitConversion(1, '米', 'mm', '测试') 应该返回 1000");
+    
+    console.log('UnitConversion 距离单位 测试通过！');
 }
 
-try {
-    console.log('Test 9: UnitConversion area units');
+function testUnitConversionArea() {
+    console.log('开始测试 UnitConversion 面积单位...');
+    
     let b = AlgorithmEngineHelper.UnitConversion(1, 'm2', 'dm2', '测试');
-    assertEquals(100, b);
+    assert.strictEqual(b, 100, "UnitConversion(1, 'm2', 'dm2', '测试') 应该返回 100");
     
     b = AlgorithmEngineHelper.UnitConversion(1, 'm2', 'cm2', '测试');
-    assertEquals(10000, b);
+    assert.strictEqual(b, 10000, "UnitConversion(1, 'm2', 'cm2', '测试') 应该返回 10000");
     
     b = AlgorithmEngineHelper.UnitConversion(1, 'm2', 'mm2', '测试');
-    assertEquals(1000000, b);
-    console.log('✓ Test 9 passed');
-} catch (error) {
-    console.error('✗ Test 9 failed:', error.message);
+    assert.strictEqual(b, 1000000, "UnitConversion(1, 'm2', 'mm2', '测试') 应该返回 1000000");
+    
+    console.log('UnitConversion 面积单位 测试通过！');
 }
 
-try {
-    console.log('Test 10: UnitConversion volume units');
+function testUnitConversionVolume() {
+    console.log('开始测试 UnitConversion 体积单位...');
+    
     let b = AlgorithmEngineHelper.UnitConversion(1, 'm3', 'dm3', '测试');
-    assertEquals(1000, b);
+    assert.strictEqual(b, 1000, "UnitConversion(1, 'm3', 'dm3', '测试') 应该返回 1000");
     
     b = AlgorithmEngineHelper.UnitConversion(1, 'm3', 'cm3', '测试');
-    assertEquals(1000000, b);
+    assert.strictEqual(b, 1000000, "UnitConversion(1, 'm3', 'cm3', '测试') 应该返回 1000000");
     
     b = AlgorithmEngineHelper.UnitConversion(1, 'm3', 'mm3', '测试');
-    assertEquals(1000000000, b);
-    console.log('✓ Test 10 passed');
-} catch (error) {
-    console.error('✗ Test 10 failed:', error.message);
+    assert.strictEqual(b, 1000000000, "UnitConversion(1, 'm3', 'mm3', '测试') 应该返回 1000000000");
+    
+    console.log('UnitConversion 体积单位 测试通过！');
 }
 
-try {
-    console.log('Test 11: UnitConversion mass units');
+function testUnitConversionMass() {
+    console.log('开始测试 UnitConversion 质量单位...');
+    
     let b = AlgorithmEngineHelper.UnitConversion(1, 't', 'kg', '测试');
-    assertEquals(1000, b);
+    assert.strictEqual(b, 1000, "UnitConversion(1, 't', 'kg', '测试') 应该返回 1000");
     
     b = AlgorithmEngineHelper.UnitConversion(1, 't', 'g', '测试');
-    assertEquals(1000000, b);
-    console.log('✓ Test 11 passed');
-} catch (error) {
-    console.error('✗ Test 11 failed:', error.message);
+    assert.strictEqual(b, 1000000, "UnitConversion(1, 't', 'g', '测试') 应该返回 1000000");
+    
+    console.log('UnitConversion 质量单位 测试通过！');
 }
 
-// Test CheckFormula function
-try {
-    console.log('Test 12: CheckFormula valid formula');
+// 测试 CheckFormula 函数
+function testCheckFormulaValid() {
+    console.log('开始测试 CheckFormula 有效公式...');
+    
     let b = AlgorithmEngineHelper.CheckFormula('1+1');
-    assertTrue(b);
-    console.log('✓ Test 12 passed');
-} catch (error) {
-    console.error('✗ Test 12 failed:', error.message);
+    assert.strictEqual(b, true, "CheckFormula('1+1') 应该返回 true");
+    
+    console.log('CheckFormula 有效公式 测试通过！');
 }
 
-try {
-    console.log('Test 13: CheckFormula invalid formula');
+function testCheckFormulaInvalid() {
+    console.log('开始测试 CheckFormula 无效公式...');
+    
     let b = AlgorithmEngineHelper.CheckFormula('1+');
-    assertFalse(b);
-    console.log('✓ Test 13 passed');
-} catch (error) {
-    console.error('✗ Test 13 failed:', error.message);
+    assert.strictEqual(b, false, "CheckFormula('1+') 应该返回 false");
+    
+    console.log('CheckFormula 无效公式 测试通过！');
 }
 
-try {
-    console.log('Test 14: CheckFormula with invalid character');
+function testCheckFormulaInvalidChar() {
+    console.log('开始测试 CheckFormula 带无效字符...');
+    
     let b = AlgorithmEngineHelper.CheckFormula('@123+1');
-    assertFalse(b);
-    console.log('✓ Test 14 passed');
-} catch (error) {
-    console.error('✗ Test 14 failed:', error.message);
+    assert.strictEqual(b, false, "CheckFormula('@123+1') 应该返回 false");
+    
+    console.log('CheckFormula 带无效字符 测试通过！');
 }
 
-console.log('All tests completed!');
+// 运行所有测试
+function runAllTests() {
+    try {
+        testGetDiyNamesBasic();
+        testGetDiyNamesRepeated();
+        testGetDiyNamesWithFunction();
+        testGetDiyNamesWithChinese();
+        testGetDiyNamesWithExpression();
+        testGetDiyNamesWithJson();
+        testIsParameter();
+        testUnitConversionDistance();
+        testUnitConversionArea();
+        testUnitConversionVolume();
+        testUnitConversionMass();
+        testCheckFormulaValid();
+        testCheckFormulaInvalid();
+        testCheckFormulaInvalidChar();
+        console.log('所有测试通过！');
+    } catch (error) {
+        console.error('测试失败:', error.message);
+        process.exit(1);
+    }
+}
+
+// 执行测试
+runAllTests();
+
+export {
+    testGetDiyNamesBasic,
+    testGetDiyNamesRepeated,
+    testGetDiyNamesWithFunction,
+    testGetDiyNamesWithChinese,
+    testGetDiyNamesWithExpression,
+    testGetDiyNamesWithJson,
+    testIsParameter,
+    testUnitConversionDistance,
+    testUnitConversionArea,
+    testUnitConversionVolume,
+    testUnitConversionMass,
+    testCheckFormulaValid,
+    testCheckFormulaInvalid,
+    testCheckFormulaInvalidChar,
+    runAllTests
+};

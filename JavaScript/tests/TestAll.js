@@ -10,8 +10,8 @@ import { testDATEVALUE, testTIMESTAMP, testTIMEVALUE, testDATE, testTime, testNo
 import { testUrlDecode, testUrlEncode, testHtmlEncode, testHtmlDecode, testTextToBase64, testTextToBase64Url, testBase64ToText, testBase64UrlToText, testRegex, testIsRegex, testGuid, testHash, testIndexOf, testSplit, testTrimStart, testTrimEnd, testJoin, testSubstring, testStartsWith, testEndsWith, testIsNullOrEmpty, testIsNullOrWhiteSpace, testRemoveStart, testRemoveEnd, testJson, runAllTests as runCSharpTests } from './AlgorithmEngineTest_csharp.js';
 import { testMAX, testMEDIAN, testMIN, testQUARTILE, testMODE, testPERCENTILE, testPERCENTRANK, testAVERAGE, testGEOMEAN, testHARMEAN, testCOUNT, testAVEDEV, testSTDEV, testSTDEVP, testDEVSQ, testVAR, testVARP, testNORMSDIST, testNORMDIST, testNORMINV, testNORMSINV, testBETADIST, testBETAINV, testBINOMDIST, testEXPONDIST, testFDIST, testFINV, testGAMMADIST, testGAMMAINV, testGAMMALN, testHYPGEOMDIST, testLOGINV, testLOGNORMDIST, testNEGBINOMDIST, testPOISSON, testTDIST, testTINV, testWEIBULL, testFISHER, testFISHERINV, testLARGE, testSMALL, testCOVAR, testCOVARIANCES, testCOUNTIF, testSUMIF, testAVERAGEIF, runAllTests as runSumTests } from './AlgorithmEngineTest_sum.js';
 import { testPARAM, testError, testJson as testJsonV35, testArray, testDistance, testArea, testVolume, testMass, testUnitError, runAllTests as runV35Tests } from './AlgorithmEngineTest_v3.5.js';
-// SimpleTest.js 没有导出函数，直接运行该文件
-import './SimpleTest.js';
+import { runAllTests as runSimpleTests } from './SimpleTest.js';
+import { runAllTests as runAlgorithmEngineHelperTests } from './AlgorithmEngineHelperTest.js';
 import { CalculateTreeTest } from './CalculateTreeTest.js';
 import { ConditionTreeTest } from './ConditionTreeTest.js';
 import { testIssues13, testIssues0, runAllTests as runIssuesTests } from './IssuesTest.js';
@@ -37,12 +37,11 @@ function runAllTests() {
   console.log('=====================================');
   
   try {
-    // SimpleTest.js 已在导入时自动运行
-    console.log('\n=====================================');
-    console.log('开始测试: SimpleTest');
-    console.log('=====================================');
-    console.log('✅ SimpleTest 测试通过！');
-
+    // 运行 SimpleTest
+    runTest(runSimpleTests, 'SimpleTest');
+    
+    // 运行 AlgorithmEngineHelperTest
+    runTest(runAlgorithmEngineHelperTests, 'AlgorithmEngineHelperTest');
     
     // 运行 AlgorithmEngineTest
     runTest(runAlgorithmEngineTests, 'AlgorithmEngineTest');
