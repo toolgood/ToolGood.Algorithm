@@ -1,6 +1,6 @@
 class FsmContext {
     constructor() {
-        this.Return = false;
+        this.ret = false;
         this.nextState = 0;
         this.L = null;
         this.stateStack = 0;
