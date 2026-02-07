@@ -269,9 +269,9 @@ class MathFunctionVisitor extends mathVisitor  {
      */
     visitMulDiv_fun(context) {
         let t = context.op.text;
-        if (CharUtil.Equals(t, '*')) {
+        if (CharUtil.equals(t, '*')) {
             return new Function_Mul(this.vN(context));
-        } else if (CharUtil.Equals(t, '/')) {
+        } else if (CharUtil.equals(t, '/')) {
             return new Function_Div(this.vN(context));
         }
         return new Function_Mod(this.vN(context));
@@ -284,9 +284,9 @@ class MathFunctionVisitor extends mathVisitor  {
      */
     visitAddSub_fun(context) {
         let t = context.op.text;
-        if (CharUtil.Equals(t, '&')) {
+        if (CharUtil.equals(t, '&')) {
             return new Function_Connect(this.vN(context));
-        } else if (CharUtil.Equals(t, '+')) {
+        } else if (CharUtil.equals(t, '+')) {
             return new Function_Add(this.vN(context));
         }
         return new Function_Sub(this.vN(context));
@@ -299,15 +299,15 @@ class MathFunctionVisitor extends mathVisitor  {
      */
     visitJudge_fun(context) {
         let Type = context.op.text;
-        if (CharUtil.Equals4(Type, "=", "==", "===")) {
+        if (CharUtil.equals4(Type, "=", "==", "===")) {
             return new Function_EQ(this.vN(context));
-        } else if (CharUtil.Equals(Type, "<")) {
+        } else if (CharUtil.equals(Type, "<")) {
             return new Function_LT(this.vN(context));
-        } else if (CharUtil.Equals(Type, "<=")) {
+        } else if (CharUtil.equals(Type, "<=")) {
             return new Function_LE(this.vN(context));
-        } else if (CharUtil.Equals(Type, ">")) {
+        } else if (CharUtil.equals(Type, ">")) {
             return new Function_GT(this.vN(context));
-        } else if (CharUtil.Equals(Type, ">=")) {
+        } else if (CharUtil.equals(Type, ">=")) {
             return new Function_GE(this.vN(context));
         }
         return new Function_NE(this.vN(context));
@@ -320,7 +320,7 @@ class MathFunctionVisitor extends mathVisitor  {
      */
     visitAndOr_fun(context) {
         let t = context.op.text;
-        if (CharUtil.Equals3(t, "&&", "AND")) {
+        if (CharUtil.equals3(t, "&&", "AND")) {
             return new Function_AND(this.vN(context));
         }
         return new Function_OR(this.vN(context));

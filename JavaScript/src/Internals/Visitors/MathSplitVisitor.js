@@ -16,7 +16,7 @@ class MathSplitVisitor extends mathVisitor  {
             nodes: []
         };
         let t = context.op.text;
-        if (CharUtil.Equals3(t, "&&", "and")) {
+        if (CharUtil.equals3(t, "&&", "and")) {
             tree.Type = ConditionTreeType.And;
         } else {
             tree.Type = ConditionTreeType.Or;

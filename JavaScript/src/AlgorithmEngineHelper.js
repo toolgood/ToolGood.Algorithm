@@ -268,7 +268,7 @@ export class AlgorithmEngineHelper {
      */
     static IsKeywords(parameter) {
         let lexerSet = this.GetLexerSet();
-        return lexerSet.has(CharUtil.StandardString(parameter));
+        return lexerSet.has(CharUtil.standardString(parameter));
     }
 
     /**

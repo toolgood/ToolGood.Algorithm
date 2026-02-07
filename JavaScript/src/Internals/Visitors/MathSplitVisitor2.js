@@ -21,9 +21,9 @@ export class MathSplitVisitor2 extends mathVisitor  {
         };
         let exprs = context.expr();
         let t = context.op.text;
-        if (CharUtil.Equals(t, '*')) {
+        if (CharUtil.equals(t, '*')) {
             tree.Type = CalculateTreeType.Mul;
-        } else if (CharUtil.Equals(t, '/')) {
+        } else if (CharUtil.equals(t, '/')) {
             tree.Type = CalculateTreeType.Div;
         } else {
             tree.Type = CalculateTreeType.Mod;
@@ -42,9 +42,9 @@ export class MathSplitVisitor2 extends mathVisitor  {
         };
         let exprs = context.expr();
         let t = context.op.text;
-        if (CharUtil.Equals(t, '+')) {
+        if (CharUtil.equals(t, '+')) {
             tree.Type = CalculateTreeType.Add;
-        } else if (CharUtil.Equals(t, '-')) {
+        } else if (CharUtil.equals(t, '-')) {
             tree.Type = CalculateTreeType.Sub;
         } else {
             tree.Type = CalculateTreeType.Connect;

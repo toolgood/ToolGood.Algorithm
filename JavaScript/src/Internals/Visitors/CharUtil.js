@@ -7,7 +7,7 @@ export class CharUtil {
      * @param {string} o - The character to standardize.
      * @returns {string} The standardized character.
      */
-    static StandardChar(o) {
+    static standardChar(o) {
         if (typeof o !== 'string' || o.length !== 1) return o;
         let charCode = o.charCodeAt(0);
         if (charCode >= 65 && charCode <= 90) return o;
@@ -36,10 +36,10 @@ export class CharUtil {
      * @param {string} s - The string to standardize.
      * @returns {string} The standardized string.
      */
-    static StandardString(s) {
+    static standardString(s) {
         var sb = [];
         for(var i = 0; i < s.length; i++) {
-            sb.push(this.StandardChar(s[i]));
+            sb.push(this.standardChar(s[i]));
         }
         return sb.join('');
     }
@@ -50,11 +50,11 @@ export class CharUtil {
      * @param {string} right - The character to compare with.
      * @returns {boolean} True if the string and character are equal after standardization, false otherwise.
      */
-    static Equals(left, right) {
+    static equals(left, right) {
         if(left.length != right.length) return false;
         for(var i = 0; i < left.length; i++) {
             if(left[i] != right[i]) {
-                var a = this.StandardChar(left[i]);
+                var a = this.standardChar(left[i]);
                 if(a != right[i]) return false;
             }
         }
@@ -68,9 +68,9 @@ export class CharUtil {
      * @param {string} arg2 - The second string to compare with.
      * @returns {boolean} True if the string is equal to either of the other strings after standardization, false otherwise.
      */
-    static Equals3(left, arg1, arg2) {
-        if(this.Equals(left, arg1)) return true;
-        if(this.Equals(left, arg2)) return true;
+    static equals3(left, arg1, arg2) {
+        if(this.equals(left, arg1)) return true;
+        if(this.equals(left, arg2)) return true;
         return false;
     }
 
@@ -82,10 +82,10 @@ export class CharUtil {
      * @param {string} arg3 - The third string to compare with.
      * @returns {boolean} True if the string is equal to any of the other strings after standardization, false otherwise.
      */
-    static Equals4(left, arg1, arg2, arg3) {
-        if(this.Equals(left, arg1)) return true;
-        if(this.Equals(left, arg2)) return true;
-        if(this.Equals(left, arg3)) return true;
+    static equals4(left, arg1, arg2, arg3) {
+        if(this.equals(left, arg1)) return true;
+        if(this.equals(left, arg2)) return true;
+        if(this.equals(left, arg3)) return true;
         return false;
     }
 }
