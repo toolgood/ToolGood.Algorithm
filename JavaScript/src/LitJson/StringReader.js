@@ -5,7 +5,7 @@ class StringReader {
         this.length = text.length;
     }
 
-    Read() {
+    read() {
         if (this.position >= this.length) {
             return -1;
         }

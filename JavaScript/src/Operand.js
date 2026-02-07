@@ -166,7 +166,7 @@ export class Operand {
     static CreateJson(txt) {
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                let json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.toObject(txt);
                 return Operand.Create(json);
             } catch (e) { }
         }
@@ -426,7 +426,7 @@ class OperandString extends Operand {
         let txt = this.TextValue.trim();
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                let json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.toObject(txt);
                 return Operand.Create(json);
             } catch (e) { }
         }
@@ -586,7 +586,7 @@ class OperandArray extends Operand {
     ToJson(errorMessage = null) {
         let txt = this.toString();
         try {
-            let json = JsonMapper.ToObject(txt);
+            let json = JsonMapper.toObject(txt);
             return Operand.Create(json);
         } catch (e) { }
         return Operand.Error(errorMessage ?? "Convert to json error!");
@@ -664,7 +664,7 @@ class OperandKeyValueList extends Operand {
     ToJson(errorMessage = null) {
         let txt = this.toString();
         try {
-            let json = JsonMapper.ToObject(txt);
+            let json = JsonMapper.toObject(txt);
             return Operand.Create(json);
         } catch (e) { }
         return Operand.Error(errorMessage ?? "Convert to json error!");

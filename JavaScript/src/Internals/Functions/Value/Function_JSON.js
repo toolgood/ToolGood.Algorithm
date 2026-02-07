@@ -28,7 +28,7 @@ class Function_JSON extends Function_1 {
         let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                let json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.toObject(txt);
                 return Operand.Create(json);
             } catch (e) {
             }

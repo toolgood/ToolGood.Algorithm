@@ -44,7 +44,7 @@ class JsonReader {
         return this.token_value;
     }
 
-    ProcessNumber(number) {
+    processNumber(number) {
         if (number.includes('.') || number.includes('e') || number.includes('E')) {
             let n_double = parseFloat(number);
             if (!isNaN(n_double)) {
@@ -61,7 +61,7 @@ class JsonReader {
         this.token_value = 0;
     }
 
-    ProcessSymbol() {
+    processSymbol() {
         if (this.current_symbol === 91 /*'['.charCodeAt(0)*/) {
             this.token = JsonToken.ArrayStart;
             this.parser_return = true;
@@ -94,7 +94,7 @@ class JsonReader {
             this.token = JsonToken.Null;
             this.parser_return = true;
         } else if (this.current_symbol === ParserToken.Number) {
-            this.ProcessNumber(this.lexer.StringValue);
+            this.processNumber(this.lexer.StringValue);
             this.token = JsonToken.Double;
             this.parser_return = true;
         } else if (this.current_symbol === ParserToken.Pair) {
@@ -106,13 +106,13 @@ class JsonReader {
         }
     }
 
-    ReadToken() {
+    readToken() {
         if (this.end_of_input) return false;
 
-        let result = this.lexer.NextToken();
+        let result = this.lexer.nextToken();
 
         if (this.lexer.EndOfInput) {
-            this.Close();
+            this.close();
             return false;
         }
 
@@ -121,7 +121,7 @@ class JsonReader {
         return result;
     }
 
-    Close() {
+    close() {
         if (this.end_of_input) {
             return;
         }
@@ -130,7 +130,7 @@ class JsonReader {
         this.end_of_json = true;
     }
 
-    Read() {
+    read() {
         if (this.end_of_input) {
             return false;
         }
@@ -151,7 +151,7 @@ class JsonReader {
         if (!this.read_started) {
             this.read_started = true;
 
-            if (!this.ReadToken()) {
+            if (!this.readToken()) {
                 return false;
             }
         }
@@ -168,10 +168,10 @@ class JsonReader {
 
             this.current_symbol = this.automaton_stack.pop();
 
-            this.ProcessSymbol();
+            this.processSymbol();
 
             if (this.current_symbol === this.current_input) {
-                if (!this.ReadToken()) {
+                if (!this.readToken()) {
                     if (this.automaton_stack[this.automaton_stack.length - 1] !== ParserToken.End) {
                         throw new JsonException("Input doesn't evaluate to proper JSON text");
                     }

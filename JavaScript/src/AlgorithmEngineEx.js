@@ -54,9 +54,9 @@ export class AlgorithmEngineEx extends AlgorithmEngine {
      */
     AddParameterFromJson(json) {
         if (json.startsWith('{') && json.endsWith('}')) {
-            let jo = JsonMapper.ToObject(json);
+            let jo = JsonMapper.toObject(json);
             if (jo.IsObject) {
-                let obj = jo.EnsureDictionary();
+                let obj = jo.ensureDictionary();
                 for (let key in obj) {
                     if (obj.hasOwnProperty(key)) {
                         let v = obj[key];

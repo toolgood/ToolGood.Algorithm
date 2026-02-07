@@ -59,7 +59,7 @@ class JsonData extends IJsonWrapper {
     }
 
     getEnumerator() {
-        return this.EnsureList().values();
+        return this.ensureList().values();
     }
 
     *[Symbol.iterator]() {
@@ -70,7 +70,7 @@ class JsonData extends IJsonWrapper {
         }
     }
 
-    EnsureDictionary() {
+    ensureDictionary() {
         if (this.type === JsonType.Object) {
             return this.inst_object;
         }
@@ -79,7 +79,7 @@ class JsonData extends IJsonWrapper {
         return this.inst_object;
     }
 
-    EnsureList() {
+    ensureList() {
         if (this.type === JsonType.Array) {
             return this.inst_array;
         }
@@ -108,11 +108,11 @@ class JsonData extends IJsonWrapper {
     }
 
     Add(val) {
-        this.EnsureList().push(val);
+        this.ensureList().push(val);
     }
 
     Set(key, val) {
-        this.EnsureDictionary()[key] = val;
+        this.ensureDictionary()[key] = val;
     }
 
     SetJsonType(type) {
