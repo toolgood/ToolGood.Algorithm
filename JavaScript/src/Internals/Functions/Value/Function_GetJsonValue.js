@@ -56,8 +56,8 @@ class Function_GetJsonValue extends Function_2 {
                     return op;
                 }
                 let index = op.IntValue - work.ExcelIndex;
-                if (index < json.length) {
-                    let v = json[index];
+                if (index < json.inst_array.length) {
+                    let v = json.inst_array[index];
                     if (v.IsString) {
                         return Operand.Create(v.StringValue);
                     }
@@ -84,7 +84,7 @@ class Function_GetJsonValue extends Function_2 {
                 if (op.IsError) {
                     return op;
                 }
-                let v = json[op.TextValue];
+                let v = json.inst_object[op.TextValue];
                 if (v) {
                     if (v.IsString) {
                         return Operand.Create(v.StringValue);
