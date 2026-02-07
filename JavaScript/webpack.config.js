@@ -97,19 +97,16 @@ export default {
         terserOptions: {
           mangle: {
             toplevel: true,
-            keep_classnames: false,
-            keep_fnames: false,
             safari10: false,
             properties: {
-              regex: /^visit.*_fun$|^[A-Z][a-zA-Z0-9]*$/,
+              regex: /^[a-z][a-zA-Z0-9—_]*$/,// 小写字母开头都替换
               keep_quoted: false,
-              reserved: []
             }
           },
           compress: {
             drop_console: true,
             drop_debugger: true,
-            passes: 2
+            passes: 2,
           }
         }
       })
