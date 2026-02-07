@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 	public class AlgorithmEngineHelperTest
 	{
 		[Test]
-		public void Test()
+		public void GetDiyNames_test()
 		{
 			DiyNameInfo p = AlgorithmEngineHelper.GetDiyNames("dd");
 			Assert.AreEqual("dd", p.Parameters[0].ToString());
@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 		}
 
 		[Test]
-		public void Test2()
+		public void IsParameter_Test()
 		{
 			var b = AlgorithmEngineHelper.IsParameter("false");
 			Assert.IsFalse(b);
@@ -47,10 +47,13 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
 			b = AlgorithmEngineHelper.IsParameter("f11+1");
 			Assert.IsFalse(b);
+
+			b = AlgorithmEngineHelper.IsParameter("f11++");
+			Assert.IsFalse(b);
 		}
 
 		[Test]
-		public void Test3()
+		public void UnitConversion_test()
 		{
 			var b = AlgorithmEngineHelper.UnitConversion(1M, "米", "千米", "测试");
 			Assert.AreEqual(0.001M, b);
@@ -82,7 +85,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 		}
 
 		[Test]
-		public void Test5()
+		public void CheckFormula_test()
 		{
 			var b = AlgorithmEngineHelper.CheckFormula("1+1");
 			Assert.IsTrue(b);

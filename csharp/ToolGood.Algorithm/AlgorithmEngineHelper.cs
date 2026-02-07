@@ -27,12 +27,14 @@ namespace ToolGood.Algorithm
 		public static bool IsParameter(string parameter)
 		{
 			if(string.IsNullOrWhiteSpace(parameter)) { return false; }
-			var diy = GetDiyNames(parameter);
-			if(diy.Functions.Count > 0) { return false; }
-			if(diy.Parameters.Count == 1) {
-				var p = diy.Parameters[0];
-				return p.Name == parameter;
-			}
+			try {
+				var diy = GetDiyNames(parameter);
+				if(diy.Functions.Count > 0) { return false; }
+				if(diy.Parameters.Count == 1) {
+					var p = diy.Parameters[0];
+					return p.Name == parameter;
+				}
+			} catch(Exception) { }
 			return false;
 		}
 
