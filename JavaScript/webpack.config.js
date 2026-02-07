@@ -101,7 +101,7 @@ export default {
             keep_fnames: false,
             safari10: false,
             properties: {
-              regex: /^visit.*_fun$/,
+              regex: /^visit.*_fun$|^[A-Z][a-zA-Z0-9]*$/,
               keep_quoted: false,
               reserved: []
             }
