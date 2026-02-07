@@ -171,19 +171,19 @@ let ExcelFunctions = {
     Quartile: function(array, quant) {
         switch (quant) {
             case 0:
-                return ArrayStatistics.Minimum(array);
+                return ArrayStatistics.minimum(array);
 
             case 1:
-                return Statistics.QuantileCustom(array, 0.25, QuantileDefinition.R7);
+                return Statistics.quantileCustom(array, 0.25, QuantileDefinition.R7);
 
             case 2:
-                return Statistics.QuantileCustom(array, 0.5, QuantileDefinition.R7);
+                return Statistics.quantileCustom(array, 0.5, QuantileDefinition.R7);
 
             case 3:
-                return Statistics.QuantileCustom(array, 0.75, QuantileDefinition.R7);
+                return Statistics.quantileCustom(array, 0.75, QuantileDefinition.R7);
 
             case 4:
-                return ArrayStatistics.Maximum(array);
+                return ArrayStatistics.maximum(array);
 
             default:
                 throw new Error('quant must be between 0 and 4');
@@ -197,7 +197,7 @@ let ExcelFunctions = {
      * @returns {number}
      */
     Percentile: function(array, k) {
-        return Statistics.QuantileCustom(array, k, QuantileDefinition.R7);
+        return Statistics.quantileCustom(array, k, QuantileDefinition.R7);
     },
 
     /**
@@ -207,7 +207,7 @@ let ExcelFunctions = {
      * @returns {number}
      */
     PercentRank: function(array, x) {
-        return Statistics.QuantileRank(array, x);
+        return Statistics.quantileRank(array, x);
     },
 
     /**

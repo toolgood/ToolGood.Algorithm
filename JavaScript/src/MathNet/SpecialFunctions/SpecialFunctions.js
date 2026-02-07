@@ -268,7 +268,7 @@ class SpecialFunctions {
             //
             // double: Max error found: 2.001849e-18
             // long double: Max error found: 1.017064e-20
-            // Maximum Deviation Found (actual error term at infinite precision) 8.030e-21
+            // maximum Deviation Found (actual error term at infinite precision) 8.030e-21
             let y = 0.0891314744949340820313;
             let g = p * (p + 10);
             let r = Evaluate.polynomial(p, SpecialFunctions.ErvInvImpAn) / Evaluate.polynomial(p, SpecialFunctions.ErvInvImpAd);
@@ -283,7 +283,7 @@ class SpecialFunctions {
             //
             // double : Max error found: 7.403372e-17
             // long double : Max error found: 6.084616e-20
-            // Maximum Deviation Found (error term) 4.811e-20
+            // maximum Deviation Found (error term) 4.811e-20
             let y = 2.249481201171875;
             let g = Math.sqrt(-2 * Math.log(q));
             let xs = q - 0.25;

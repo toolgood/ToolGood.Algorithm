@@ -62,7 +62,7 @@ class Brent {
             }
 
             // convergence check
-            let xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root) + 0.5 * accuracy;
+            let xAcc1 = Precision.positiveDoublePrecision * Math.abs(root) + 0.5 * accuracy;
             let xMidOld = xMid;
             xMid = (upperBound - root) / 2;
 
@@ -85,7 +85,7 @@ class Brent {
                 // Attempt inverse quadratic interpolation
                 let s = froot / fmin;
                 let p, q;
-                if (Precision.AlmostEqualRelative(lowerBound, root)) {
+                if (Precision.almostEqualRelative(lowerBound, root)) {
                     p = 2 * xMid * s;
                     q = 1 - s;
                 } else {

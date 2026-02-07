@@ -63,8 +63,8 @@ class Beta {
         let symmetryTransformation = x >= (a + 1) / (a + b + 2);
 
         /* Continued fraction representation */
-        let eps = Precision.DoublePrecision;
-        let fpmin = 1e-300; // Approximation of 0.0.Increment() / eps
+        let eps = Precision.doublePrecision;
+        let fpmin = 1e-300; // Approximation of 0.0.increment() / eps
 
         let transformedX = x;
         let transformedA = a;

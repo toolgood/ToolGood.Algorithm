@@ -15,15 +15,15 @@ class Gamma {
         let big = 4503599627370496.0;
         let bigInv = 2.22044604925031308085e-16;
 
-        if (Precision.AlmostEqual(a, 0)) {
-            if (Precision.AlmostEqual(x, 0)) {
+        if (Precision.almostEqual(a, 0)) {
+            if (Precision.almostEqual(x, 0)) {
                 //use right hand limit value because so that regularized upper/lower gamma definition holds.
                 return 1;
             }
             return 1;
         }
 
-        if (Precision.AlmostEqual(x, 0)) {
+        if (Precision.almostEqual(x, 0)) {
             return 0;
         }
 
@@ -109,11 +109,11 @@ class Gamma {
             return NaN;
         }
 
-        if (Precision.AlmostEqual(y0, 0)) {
+        if (Precision.almostEqual(y0, 0)) {
             return 0;
         }
 
-        if (Precision.AlmostEqual(y0, 1)) {
+        if (Precision.almostEqual(y0, 1)) {
             return Infinity;
         }
 
