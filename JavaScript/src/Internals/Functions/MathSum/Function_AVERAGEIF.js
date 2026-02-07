@@ -45,8 +45,8 @@ class Function_AVERAGEIF extends Function_3 {
                     let sunif = TextValue;
                     let m2 = FunctionUtil.sumifMatch(sunif);
                     if (m2 != null) {
-                        count = FunctionUtil.F_base_countif(list, m2[0], m2[1]);
-                        sum = FunctionUtil.F_base_sumif(list, m2[0], m2[1], sumdbs);
+                        count = FunctionUtil.F_base_countif(list, m2.operator, m2.value);
+                        sum = FunctionUtil.F_base_sumif(list, m2.operator, m2.value, sumdbs);
                     } else {
                         return this.ParameterError(2);
                     }

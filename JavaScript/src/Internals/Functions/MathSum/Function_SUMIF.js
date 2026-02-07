@@ -42,7 +42,7 @@ class Function_SUMIF extends Function_3 {
                     let sunif = trimmedText;
                     let m2 = FunctionUtil.sumifMatch(sunif);
                     if (m2 != null) {
-                        sum = FunctionUtil.F_base_sumif(list, m2[0], m2[1], sumdbs);
+                        sum = FunctionUtil.F_base_sumif(list, m2.operator, m2.value, sumdbs);
                     } else {
                         return this.ParameterError(2);
                     }
