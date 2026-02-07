@@ -24,7 +24,7 @@ class Beta {
      * @param {number} z
      * @returns {number}
      */
-    static GammaLn(z) {
+    static gammaLn(z) {
         if (z < 0.5) {
             let s = GammaDk[0];
             for (let i = 1; i <= GammaN; i++) {
@@ -55,10 +55,10 @@ class Beta {
      * @param {number} x
      * @returns {number}
      */
-    static BetaRegularized(a, b, x) {
+    static betaRegularized(a, b, x) {
         let bt = (x === 0 || x === 1)
             ? 0
-            : Math.exp(Beta.GammaLn(a + b) - Beta.GammaLn(a) - Beta.GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1 - x)));
+            : Math.exp(Beta.gammaLn(a + b) - Beta.gammaLn(a) - Beta.gammaLn(b) + (a * Math.log(x)) + (b * Math.log(1 - x)));
 
         let symmetryTransformation = x >= (a + 1) / (a + b + 2);
 

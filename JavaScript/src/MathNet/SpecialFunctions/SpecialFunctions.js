@@ -3,37 +3,37 @@ import { Beta } from './Beta.js';
 import { Gamma as GammaUtil } from './Gamma.js';
 
 class SpecialFunctions {
-    // Erf implementation arrays
-    static ErfImpAn = [0.00337916709551257388990745, -0.00073695653048167948530905, -0.374732337392919607868241, 0.0817442448733587196071743, -0.0421089319936548595203468, 0.0070165709512095756344528, -0.00495091255982435110337458, 0.000871646599037922480317225];
-    static ErfImpAd = [1, -0.218088218087924645390535, 0.412542972725442099083918, -0.0841891147873106755410271, 0.0655338856400241519690695, -0.0120019604454941768171266, 0.00408165558926174048329689, -0.000615900721557769691924509];
-    static ErfImpBn = [-0.0361790390718262471360258, 0.292251883444882683221149, 0.281447041797604512774415, 0.125610208862766947294894, 0.0274135028268930549240776, 0.00250839672168065762786937];
-    static ErfImpBd = [1, 1.8545005897903486499845, 1.43575803037831418074962, 0.582827658753036572454135, 0.124810476932949746447682, 0.0113724176546353285778481];
-    static ErfImpCn = [-0.0397876892611136856954425, 0.153165212467878293257683, 0.191260295600936245503129, 0.10276327061989304213645, 0.029637090615738836726027, 0.0046093486780275489468812, 0.000307607820348680180548455];
-    static ErfImpCd = [1, 1.95520072987627704987886, 1.64762317199384860109595, 0.768238607022126250082483, 0.209793185936509782784315, 0.0319569316899913392596356, 0.00213363160895785378615014];
-    static ErfImpDn = [-0.0300838560557949717328341, 0.0538578829844454508530552, 0.0726211541651914182692959, 0.0367628469888049348429018, 0.00964629015572527529605267, 0.00133453480075291076745275, 0.778087599782504251917881e-4];
-    static ErfImpDd = [1, 1.75967098147167528287343, 1.32883571437961120556307, 0.552528596508757581287907, 0.133793056941332861912279, 0.0179509645176280768640766, 0.00104712440019937356634038, -0.106640381820357337177643e-7];
-    static ErfImpEn = [-0.0117907570137227847827732, 0.014262132090538809896674, 0.0202234435902960820020765, 0.00930668299990432009042239, 0.00213357802422065994322516, 0.00025022987386460102395382, 0.120534912219588189822126e-4];
-    static ErfImpEd = [1, 1.50376225203620482047419, 0.965397786204462896346934, 0.339265230476796681555511, 0.0689740649541569716897427, 0.00771060262491768307365526, 0.000371421101531069302990367];
-    static ErfImpFn = [-0.00546954795538729307482955, 0.00404190278731707110245394, 0.0054963369553161170521356, 0.00212616472603945399437862, 0.000394984014495083900689956, 0.365565477064442377259271e-4, 0.135485897109932323253786e-5];
-    static ErfImpFd = [1, 1.21019697773630784832251, 0.620914668221143886601045, 0.173038430661142762569515, 0.0276550813773432047594539, 0.00240625974424309709745382, 0.891811817251336577241006e-4, -0.465528836283382684461025e-11];
-    static ErfImpGn = [-0.00270722535905778347999196, 0.0013187563425029400461378, 0.00119925933261002333923989, 0.00027849619811344664248235, 0.267822988218331849989363e-4, 0.923043672315028197865066e-6];
-    static ErfImpGd = [1, 0.814632808543141591118279, 0.268901665856299542168425, 0.0449877216103041118694989, 0.00381759663320248459168994, 0.000131571897888596914350697, 0.404815359675764138445257e-11];
-    static ErfImpHn = [-0.00109946720691742196814323, 0.000406425442750422675169153, 0.000274499489416900707787024, 0.465293770646659383436343e-4, 0.320955425395767463401993e-5, 0.778286018145020892261936e-7];
-    static ErfImpHd = [1, 0.588173710611846046373373, 0.139363331289409746077541, 0.0166329340417083678763028, 0.00100023921310234908642639, 0.24254837521587225125068e-4];
-    static ErfImpIn = [-0.00056907993601094962855594, 0.000169498540373762264416984, 0.518472354581100890120501e-4, 0.382819312231928859704678e-5, 0.824989931281894431781794e-7];
-    static ErfImpId = [1, 0.339637250051139347430323, 0.043472647870310663055044, 0.00248549335224637114641629, 0.535633305337152900549536e-4, -0.117490944405459578783846e-12];
-    static ErfImpJn = [-0.000241313599483991337479091, 0.574224975202501512365975e-4, 0.115998962927383778460557e-4, 0.581762134402593739370875e-6, 0.853971555085673614607418e-8];
-    static ErfImpJd = [1, 0.233044138299687841018015, 0.0204186940546440312625597, 0.000797185647564398289151125, 0.117019281670172327758019e-4];
-    static ErfImpKn = [-0.000146674699277760365803642, 0.162666552112280519955647e-4, 0.269116248509165239294897e-5, 0.979584479468091935086972e-7, 0.101994647625723465722285e-8];
-    static ErfImpKd = [1, 0.165907812944847226546036, 0.0103361716191505884359634, 0.000286593026373868366935721, 0.298401570840900340874568e-5];
-    static ErfImpLn = [-0.583905797629771786720406e-4, 0.412510325105496173512992e-5, 0.431790922420250949096906e-6, 0.993365155590013193345569e-8, 0.653480510020104699270084e-10];
-    static ErfImpLd = [1, 0.105077086072039915406159, 0.00414278428675475620830226, 0.726338754644523769144108e-4, 0.477818471047398785369849e-6];
-    static ErfImpMn = [-0.196457797609229579459841e-4, 0.157243887666800692441195e-5, 0.543902511192700878690335e-7, 0.317472492369117710852685e-9];
-    static ErfImpMd = [1, 0.052803989240957632204885, 0.000926876069151753290378112, 0.541011723226630257077328e-5, 0.535093845803642394908747e-15];
-    static ErfImpNn = [-0.789224703978722689089794e-5, 0.622088451660986955124162e-6, 0.145728445676882396797184e-7, 0.603715505542715364529243e-10];
-    static ErfImpNd = [1, 0.0375328846356293715248719, 0.000467919535974625308126054, 0.193847039275845656900547e-5];
+    // erf implementation arrays
+    static erfImpAn = [0.00337916709551257388990745, -0.00073695653048167948530905, -0.374732337392919607868241, 0.0817442448733587196071743, -0.0421089319936548595203468, 0.0070165709512095756344528, -0.00495091255982435110337458, 0.000871646599037922480317225];
+    static erfImpAd = [1, -0.218088218087924645390535, 0.412542972725442099083918, -0.0841891147873106755410271, 0.0655338856400241519690695, -0.0120019604454941768171266, 0.00408165558926174048329689, -0.000615900721557769691924509];
+    static erfImpBn = [-0.0361790390718262471360258, 0.292251883444882683221149, 0.281447041797604512774415, 0.125610208862766947294894, 0.0274135028268930549240776, 0.00250839672168065762786937];
+    static erfImpBd = [1, 1.8545005897903486499845, 1.43575803037831418074962, 0.582827658753036572454135, 0.124810476932949746447682, 0.0113724176546353285778481];
+    static erfImpCn = [-0.0397876892611136856954425, 0.153165212467878293257683, 0.191260295600936245503129, 0.10276327061989304213645, 0.029637090615738836726027, 0.0046093486780275489468812, 0.000307607820348680180548455];
+    static erfImpCd = [1, 1.95520072987627704987886, 1.64762317199384860109595, 0.768238607022126250082483, 0.209793185936509782784315, 0.0319569316899913392596356, 0.00213363160895785378615014];
+    static erfImpDn = [-0.0300838560557949717328341, 0.0538578829844454508530552, 0.0726211541651914182692959, 0.0367628469888049348429018, 0.00964629015572527529605267, 0.00133453480075291076745275, 0.778087599782504251917881e-4];
+    static erfImpDd = [1, 1.75967098147167528287343, 1.32883571437961120556307, 0.552528596508757581287907, 0.133793056941332861912279, 0.0179509645176280768640766, 0.00104712440019937356634038, -0.106640381820357337177643e-7];
+    static erfImpEn = [-0.0117907570137227847827732, 0.014262132090538809896674, 0.0202234435902960820020765, 0.00930668299990432009042239, 0.00213357802422065994322516, 0.00025022987386460102395382, 0.120534912219588189822126e-4];
+    static erfImpEd = [1, 1.50376225203620482047419, 0.965397786204462896346934, 0.339265230476796681555511, 0.0689740649541569716897427, 0.00771060262491768307365526, 0.000371421101531069302990367];
+    static erfImpFn = [-0.00546954795538729307482955, 0.00404190278731707110245394, 0.0054963369553161170521356, 0.00212616472603945399437862, 0.000394984014495083900689956, 0.365565477064442377259271e-4, 0.135485897109932323253786e-5];
+    static erfImpFd = [1, 1.21019697773630784832251, 0.620914668221143886601045, 0.173038430661142762569515, 0.0276550813773432047594539, 0.00240625974424309709745382, 0.891811817251336577241006e-4, -0.465528836283382684461025e-11];
+    static erfImpGn = [-0.00270722535905778347999196, 0.0013187563425029400461378, 0.00119925933261002333923989, 0.00027849619811344664248235, 0.267822988218331849989363e-4, 0.923043672315028197865066e-6];
+    static erfImpGd = [1, 0.814632808543141591118279, 0.268901665856299542168425, 0.0449877216103041118694989, 0.00381759663320248459168994, 0.000131571897888596914350697, 0.404815359675764138445257e-11];
+    static erfImpHn = [-0.00109946720691742196814323, 0.000406425442750422675169153, 0.000274499489416900707787024, 0.465293770646659383436343e-4, 0.320955425395767463401993e-5, 0.778286018145020892261936e-7];
+    static erfImpHd = [1, 0.588173710611846046373373, 0.139363331289409746077541, 0.0166329340417083678763028, 0.00100023921310234908642639, 0.24254837521587225125068e-4];
+    static erfImpIn = [-0.00056907993601094962855594, 0.000169498540373762264416984, 0.518472354581100890120501e-4, 0.382819312231928859704678e-5, 0.824989931281894431781794e-7];
+    static erfImpId = [1, 0.339637250051139347430323, 0.043472647870310663055044, 0.00248549335224637114641629, 0.535633305337152900549536e-4, -0.117490944405459578783846e-12];
+    static erfImpJn = [-0.000241313599483991337479091, 0.574224975202501512365975e-4, 0.115998962927383778460557e-4, 0.581762134402593739370875e-6, 0.853971555085673614607418e-8];
+    static erfImpJd = [1, 0.233044138299687841018015, 0.0204186940546440312625597, 0.000797185647564398289151125, 0.117019281670172327758019e-4];
+    static erfImpKn = [-0.000146674699277760365803642, 0.162666552112280519955647e-4, 0.269116248509165239294897e-5, 0.979584479468091935086972e-7, 0.101994647625723465722285e-8];
+    static erfImpKd = [1, 0.165907812944847226546036, 0.0103361716191505884359634, 0.000286593026373868366935721, 0.298401570840900340874568e-5];
+    static erfImpLn = [-0.583905797629771786720406e-4, 0.412510325105496173512992e-5, 0.431790922420250949096906e-6, 0.993365155590013193345569e-8, 0.653480510020104699270084e-10];
+    static erfImpLd = [1, 0.105077086072039915406159, 0.00414278428675475620830226, 0.726338754644523769144108e-4, 0.477818471047398785369849e-6];
+    static erfImpMn = [-0.196457797609229579459841e-4, 0.157243887666800692441195e-5, 0.543902511192700878690335e-7, 0.317472492369117710852685e-9];
+    static erfImpMd = [1, 0.052803989240957632204885, 0.000926876069151753290378112, 0.541011723226630257077328e-5, 0.535093845803642394908747e-15];
+    static erfImpNn = [-0.789224703978722689089794e-5, 0.622088451660986955124162e-6, 0.145728445676882396797184e-7, 0.603715505542715364529243e-10];
+    static erfImpNd = [1, 0.0375328846356293715248719, 0.000467919535974625308126054, 0.193847039275845656900547e-5];
 
-    // ErfInv implementation arrays
+    // erfInv implementation arrays
     static ErvInvImpAn = [-0.000508781949658280665617, -0.00836874819741736770379, 0.0334806625409744615033, -0.0126926147662974029034, -0.0365637971411762664006, 0.0219878681111168899165, 0.00822687874676915743155, -0.00538772965071242932965];
     static ErvInvImpAd = [1, -0.970005043303290640362, -1.56574558234175846809, 1.56221558398423026363, 0.662328840472002992063, -0.71228902341542847553, -0.0527396382340099713954, 0.0795283687341571680018, -0.00233393759374190016776, 0.000886216390456424707504];
     static ErvInvImpBn = [-0.202433508355938759655, 0.105264680699391713268, 8.37050328343119927838, 17.6447298408374015486, -18.8510648058714251895, -44.6382324441786960818, 17.445385985570866523, 21.1294655448340526258, -3.67192254707729348546];
@@ -54,7 +54,7 @@ class SpecialFunctions {
      * @param {number} x
      * @returns {number}
      */
-    static Erf(x) {
+    static erf(x) {
         if (x === 0) {
             return 0;
         }
@@ -63,7 +63,7 @@ class SpecialFunctions {
             return x > 0 ? 1 : -1;
         }
 
-        return SpecialFunctions.ErfImp(x, false);
+        return SpecialFunctions.erfImp(x, false);
     }
 
     /**
@@ -71,7 +71,7 @@ class SpecialFunctions {
      * @param {number} x
      * @returns {number}
      */
-    static Erfc(x) {
+    static erfc(x) {
         if (x === 0) {
             return 1;
         }
@@ -80,7 +80,7 @@ class SpecialFunctions {
             return x > 0 ? 0 : 2;
         }
 
-        return SpecialFunctions.ErfImp(x, true);
+        return SpecialFunctions.erfImp(x, true);
     }
 
     /**
@@ -89,17 +89,17 @@ class SpecialFunctions {
      * @param {boolean} invert
      * @returns {number}
      */
-    static ErfImp(z, invert) {
+    static erfImp(z, invert) {
         if (z < 0) {
             if (!invert) {
-                return -SpecialFunctions.ErfImp(-z, false);
+                return -SpecialFunctions.erfImp(-z, false);
             }
 
             if (z < -0.5) {
-                return 2 - SpecialFunctions.ErfImp(-z, true);
+                return 2 - SpecialFunctions.erfImp(-z, true);
             }
 
-            return 1 + SpecialFunctions.ErfImp(-z, false);
+            return 1 + SpecialFunctions.erfImp(-z, false);
         }
 
         let result;
@@ -113,7 +113,7 @@ class SpecialFunctions {
                 result = (z * 1.125) + (z * 0.003379167095512573896158903121545171688);
             } else {
                 // Worst case absolute error found: 6.688618532e-21
-                result = (z * 1.125) + (z * Evaluate.Polynomial(z, SpecialFunctions.ErfImpAn) / Evaluate.Polynomial(z, SpecialFunctions.ErfImpAd));
+                result = (z * 1.125) + (z * Evaluate.polynomial(z, SpecialFunctions.erfImpAn) / Evaluate.polynomial(z, SpecialFunctions.erfImpAd));
             }
         } else if ((z < 110) || ((z < 110) && invert)) {
             // We'll be calculating erfc:
@@ -121,55 +121,55 @@ class SpecialFunctions {
             let r, b;
             if (z < 0.75) {
                 // Worst case absolute error found: 5.582813374e-21
-                r = Evaluate.Polynomial(z - 0.5, SpecialFunctions.ErfImpBn) / Evaluate.Polynomial(z - 0.5, SpecialFunctions.ErfImpBd);
+                r = Evaluate.polynomial(z - 0.5, SpecialFunctions.erfImpBn) / Evaluate.polynomial(z - 0.5, SpecialFunctions.erfImpBd);
                 b = 0.3440242112;
             } else if (z < 1.25) {
                 // Worst case absolute error found: 4.01854729e-21
-                r = Evaluate.Polynomial(z - 0.75, SpecialFunctions.ErfImpCn) / Evaluate.Polynomial(z - 0.75, SpecialFunctions.ErfImpCd);
+                r = Evaluate.polynomial(z - 0.75, SpecialFunctions.erfImpCn) / Evaluate.polynomial(z - 0.75, SpecialFunctions.erfImpCd);
                 b = 0.419990927;
             } else if (z < 2.25) {
                 // Worst case absolute error found: 2.866005373e-21
-                r = Evaluate.Polynomial(z - 1.25, SpecialFunctions.ErfImpDn) / Evaluate.Polynomial(z - 1.25, SpecialFunctions.ErfImpDd);
+                r = Evaluate.polynomial(z - 1.25, SpecialFunctions.erfImpDn) / Evaluate.polynomial(z - 1.25, SpecialFunctions.erfImpDd);
                 b = 0.4898625016;
             } else if (z < 3.5) {
                 // Worst case absolute error found: 1.045355789e-21
-                r = Evaluate.Polynomial(z - 2.25, SpecialFunctions.ErfImpEn) / Evaluate.Polynomial(z - 2.25, SpecialFunctions.ErfImpEd);
+                r = Evaluate.polynomial(z - 2.25, SpecialFunctions.erfImpEn) / Evaluate.polynomial(z - 2.25, SpecialFunctions.erfImpEd);
                 b = 0.5317370892;
             } else if (z < 5.25) {
                 // Worst case absolute error found: 8.300028706e-22
-                r = Evaluate.Polynomial(z - 3.5, SpecialFunctions.ErfImpFn) / Evaluate.Polynomial(z - 3.5, SpecialFunctions.ErfImpFd);
+                r = Evaluate.polynomial(z - 3.5, SpecialFunctions.erfImpFn) / Evaluate.polynomial(z - 3.5, SpecialFunctions.erfImpFd);
                 b = 0.5489973426;
             } else if (z < 8) {
                 // Worst case absolute error found: 1.700157534e-21
-                r = Evaluate.Polynomial(z - 5.25, SpecialFunctions.ErfImpGn) / Evaluate.Polynomial(z - 5.25, SpecialFunctions.ErfImpGd);
+                r = Evaluate.polynomial(z - 5.25, SpecialFunctions.erfImpGn) / Evaluate.polynomial(z - 5.25, SpecialFunctions.erfImpGd);
                 b = 0.5571740866;
             } else if (z < 11.5) {
                 // Worst case absolute error found: 3.002278011e-22
-                r = Evaluate.Polynomial(z - 8, SpecialFunctions.ErfImpHn) / Evaluate.Polynomial(z - 8, SpecialFunctions.ErfImpHd);
+                r = Evaluate.polynomial(z - 8, SpecialFunctions.erfImpHn) / Evaluate.polynomial(z - 8, SpecialFunctions.erfImpHd);
                 b = 0.5609807968;
             } else if (z < 17) {
                 // Worst case absolute error found: 6.741114695e-21
-                r = Evaluate.Polynomial(z - 11.5, SpecialFunctions.ErfImpIn) / Evaluate.Polynomial(z - 11.5, SpecialFunctions.ErfImpId);
+                r = Evaluate.polynomial(z - 11.5, SpecialFunctions.erfImpIn) / Evaluate.polynomial(z - 11.5, SpecialFunctions.erfImpId);
                 b = 0.5626493692;
             } else if (z < 24) {
                 // Worst case absolute error found: 7.802346984e-22
-                r = Evaluate.Polynomial(z - 17, SpecialFunctions.ErfImpJn) / Evaluate.Polynomial(z - 17, SpecialFunctions.ErfImpJd);
+                r = Evaluate.polynomial(z - 17, SpecialFunctions.erfImpJn) / Evaluate.polynomial(z - 17, SpecialFunctions.erfImpJd);
                 b = 0.5634598136;
             } else if (z < 38) {
                 // Worst case absolute error found: 2.414228989e-22
-                r = Evaluate.Polynomial(z - 24, SpecialFunctions.ErfImpKn) / Evaluate.Polynomial(z - 24, SpecialFunctions.ErfImpKd);
+                r = Evaluate.polynomial(z - 24, SpecialFunctions.erfImpKn) / Evaluate.polynomial(z - 24, SpecialFunctions.erfImpKd);
                 b = 0.5638477802;
             } else if (z < 60) {
                 // Worst case absolute error found: 5.896543869e-24
-                r = Evaluate.Polynomial(z - 38, SpecialFunctions.ErfImpLn) / Evaluate.Polynomial(z - 38, SpecialFunctions.ErfImpLd);
+                r = Evaluate.polynomial(z - 38, SpecialFunctions.erfImpLn) / Evaluate.polynomial(z - 38, SpecialFunctions.erfImpLd);
                 b = 0.5640528202;
             } else if (z < 85) {
                 // Worst case absolute error found: 3.080612264e-21
-                r = Evaluate.Polynomial(z - 60, SpecialFunctions.ErfImpMn) / Evaluate.Polynomial(z - 60, SpecialFunctions.ErfImpMd);
+                r = Evaluate.polynomial(z - 60, SpecialFunctions.erfImpMn) / Evaluate.polynomial(z - 60, SpecialFunctions.erfImpMd);
                 b = 0.5641309023;
             } else {
                 // Worst case absolute error found: 8.094633491e-22
-                r = Evaluate.Polynomial(z - 85, SpecialFunctions.ErfImpNn) / Evaluate.Polynomial(z - 85, SpecialFunctions.ErfImpNd);
+                r = Evaluate.polynomial(z - 85, SpecialFunctions.erfImpNn) / Evaluate.polynomial(z - 85, SpecialFunctions.erfImpNd);
                 b = 0.5641584396;
             }
 
@@ -193,7 +193,7 @@ class SpecialFunctions {
      * @param {number} z
      * @returns {number}
      */
-    static ErfInv(z) {
+    static erfInv(z) {
         if (z === 0) {
             return 0;
         }
@@ -217,7 +217,7 @@ class SpecialFunctions {
             s = 1;
         }
 
-        return SpecialFunctions.ErfInvImpl(p, q, s);
+        return SpecialFunctions.erfInvImpl(p, q, s);
     }
 
     /**
@@ -225,7 +225,7 @@ class SpecialFunctions {
      * @param {number} z
      * @returns {number}
      */
-    static ErfcInv(z) {
+    static erfcInv(z) {
         if (z <= 0) {
             return Infinity;
         }
@@ -245,7 +245,7 @@ class SpecialFunctions {
             s = 1;
         }
 
-        return SpecialFunctions.ErfInvImpl(p, q, s);
+        return SpecialFunctions.erfInvImpl(p, q, s);
     }
 
     /**
@@ -255,7 +255,7 @@ class SpecialFunctions {
      * @param {number} s
      * @returns {number}
      */
-    static ErfInvImpl(p, q, s) {
+    static erfInvImpl(p, q, s) {
         let result;
 
         if (p <= 0.5) {
@@ -271,7 +271,7 @@ class SpecialFunctions {
             // Maximum Deviation Found (actual error term at infinite precision) 8.030e-21
             let y = 0.0891314744949340820313;
             let g = p * (p + 10);
-            let r = Evaluate.Polynomial(p, SpecialFunctions.ErvInvImpAn) / Evaluate.Polynomial(p, SpecialFunctions.ErvInvImpAd);
+            let r = Evaluate.polynomial(p, SpecialFunctions.ErvInvImpAn) / Evaluate.polynomial(p, SpecialFunctions.ErvInvImpAd);
             result = (g * y) + (g * r);
         } else if (q >= 0.25) {
             // Rational approximation for 0.5 > q >= 0.25
@@ -287,7 +287,7 @@ class SpecialFunctions {
             let y = 2.249481201171875;
             let g = Math.sqrt(-2 * Math.log(q));
             let xs = q - 0.25;
-            let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpBn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpBd);
+            let r = Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpBn) / Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpBd);
             result = g / (y + r);
         } else {
             // For q < 0.25 we have a series of rational approximations all
@@ -312,31 +312,31 @@ class SpecialFunctions {
                 // Max error found: 1.089051e-20
                 let y = 0.807220458984375;
                 let xs = x - 1.125;
-                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpCn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpCd);
+                let r = Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpCn) / Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpCd);
                 result = (y * x) + (r * x);
             } else if (x < 6) {
                 // Max error found: 8.389174e-21
                 let y = 0.93995571136474609375;
                 let xs = x - 3;
-                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpDn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpDd);
+                let r = Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpDn) / Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpDd);
                 result = (y * x) + (r * x);
             } else if (x < 18) {
                 // Max error found: 1.481312e-19
                 let y = 0.98362827301025390625;
                 let xs = x - 6;
-                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpEn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpEd);
+                let r = Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpEn) / Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpEd);
                 result = (y * x) + (r * x);
             } else if (x < 44) {
                 // Max error found: 5.697761e-20
                 let y = 0.99714565277099609375;
                 let xs = x - 18;
-                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpFn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpFd);
+                let r = Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpFn) / Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpFd);
                 result = (y * x) + (r * x);
             } else {
                 // Max error found: 1.279746e-20
                 let y = 0.99941349029541015625;
                 let xs = x - 44;
-                let r = Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpGn) / Evaluate.Polynomial(xs, SpecialFunctions.ErvInvImpGd);
+                let r = Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpGn) / Evaluate.polynomial(xs, SpecialFunctions.ErvInvImpGd);
                 result = (y * x) + (r * x);
             }
         }
@@ -350,7 +350,7 @@ class SpecialFunctions {
      * @param {number} k
      * @returns {number}
      */
-    static Binomial(n, k) {
+    static binomial(n, k) {
         if (k < 0 || k > n) {
             return 0;
         }
@@ -371,7 +371,7 @@ class SpecialFunctions {
      * @param {number} k
      * @returns {number}
      */
-    static BinomialLn(n, k) {
+    static binomialLn(n, k) {
         if (k < 0 || k > n) {
             return -Infinity;
         }
@@ -391,7 +391,7 @@ class SpecialFunctions {
      * @param {number} n
      * @returns {number}
      */
-    static Factorial(n) {
+    static factorial(n) {
         if (n < 0) {
             return NaN;
         }
@@ -410,7 +410,7 @@ class SpecialFunctions {
      * @param {number} n
      * @returns {number}
      */
-    static FactorialLn(n) {
+    static factorialLn(n) {
         if (n < 0) {
             return NaN;
         }
@@ -429,7 +429,7 @@ class SpecialFunctions {
      * @param {number} x
      * @returns {number}
      */
-    static ExponentialMinusOne(x) {
+    static exponentialMinusOne(x) {
         if (Math.abs(x) < 1e-6) {
             return x + x * x / 2 + x * x * x / 6;
         }
@@ -437,24 +437,24 @@ class SpecialFunctions {
     }
 
     // Expose methods from Beta and Gamma classes
-    static GammaLn(z) {
-        return Beta.GammaLn(z);
+    static gammaLn(z) {
+        return Beta.gammaLn(z);
     }
 
-    static BetaRegularized(a, b, x) {
-        return Beta.BetaRegularized(a, b, x);
+    static betaRegularized(a, b, x) {
+        return Beta.betaRegularized(a, b, x);
     }
 
-    static Gamma(z) {
+    static gamma(z) {
         return GammaUtil.Gamma(z);
     }
 
-    static GammaLowerRegularized(a, x) {
-        return GammaUtil.GammaLowerRegularized(a, x);
+    static gammaLowerRegularized(a, x) {
+        return GammaUtil.gammaLowerRegularized(a, x);
     }
 
-    static GammaLowerRegularizedInv(a, y) {
-        return GammaUtil.GammaLowerRegularizedInv(a, y);
+    static gammaLowerRegularizedInv(a, y) {
+        return GammaUtil.gammaLowerRegularizedInv(a, y);
     }
 }
 

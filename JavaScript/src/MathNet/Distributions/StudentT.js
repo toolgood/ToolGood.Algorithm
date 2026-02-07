@@ -11,14 +11,14 @@ class StudentT {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(location, scale, freedom, x) {
+    static cdf(location, scale, freedom, x) {
         if (!isFinite(freedom)) {
-            return Normal.CDF(location, scale, x);
+            return Normal.cdf(location, scale, x);
         }
 
         let k = (x - location) / scale;
         let h = freedom / (freedom + (k * k));
-        let ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        let ib = 0.5 * SpecialFunctions.betaRegularized(freedom / 2, 0.5, h);
         return x <= location ? ib : 1 - ib;
     }
 
@@ -30,9 +30,9 @@ class StudentT {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(location, scale, freedom, p) {
+    static invCDF(location, scale, freedom, p) {
         if (!isFinite(freedom)) {
-            return Normal.InvCDF(location, scale, p);
+            return Normal.invCDF(location, scale, p);
         }
 
         if (p === 0.5) {
@@ -46,7 +46,7 @@ class StudentT {
         let fmid;
 
         // 扩展搜索区间如果需要
-        while (Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, upper))) {
+        while (Math.sign(StudentT.invCDFHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.invCDFHelper(location, scale, freedom, p, upper))) {
             lower *= 2;
             upper *= 2;
         }
@@ -54,13 +54,13 @@ class StudentT {
         // 二分查找
         for (let i = 0; i < 100; i++) {
             mid = (lower + upper) / 2;
-            fmid = StudentT.InvCDFHelper(location, scale, freedom, p, mid);
+            fmid = StudentT.invCDFHelper(location, scale, freedom, p, mid);
 
             if (Math.abs(fmid) < 1e-12) {
                 return mid;
             }
 
-            if (Math.sign(fmid) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower))) {
+            if (Math.sign(fmid) === Math.sign(StudentT.invCDFHelper(location, scale, freedom, p, lower))) {
                 lower = mid;
             } else {
                 upper = mid;
@@ -75,7 +75,7 @@ class StudentT {
     }
 
     /**
-     * Helper function for InvCDF
+     * Helper function for invCDF
      * @param {number} location
      * @param {number} scale
      * @param {number} freedom
@@ -83,10 +83,10 @@ class StudentT {
      * @param {number} x
      * @returns {number}
      */
-    static InvCDFHelper(location, scale, freedom, p, x) {
+    static invCDFHelper(location, scale, freedom, p, x) {
         let k = (x - location) / scale;
         let h = freedom / (freedom + (k * k));
-        let ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        let ib = 0.5 * SpecialFunctions.betaRegularized(freedom / 2, 0.5, h);
         return x <= location ? ib - p : 1 - ib - p;
     }
 }

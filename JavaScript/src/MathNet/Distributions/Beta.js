@@ -9,7 +9,7 @@ class Beta {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(a, b, x) {
+    static cdf(a, b, x) {
         if (x < 0) {
             return 0;
         }
@@ -49,7 +49,7 @@ class Beta {
             return x;
         }
 
-        return SpecialFunctions.BetaRegularized(a, b, x);
+        return SpecialFunctions.betaRegularized(a, b, x);
     }
 
     /**
@@ -59,7 +59,7 @@ class Beta {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(a, b, p) {
+    static invCDF(a, b, p) {
         // 使用二分法寻找根
         let left = 0;
         let right = 1;
@@ -69,7 +69,7 @@ class Beta {
         
         for (let i = 0; i < maxIterations; i++) {
             mid = (left + right) / 2;
-            let value = SpecialFunctions.BetaRegularized(a, b, mid) - p;
+            let value = SpecialFunctions.betaRegularized(a, b, mid) - p;
             
             if (Math.abs(value) < tolerance) {
                 return mid;

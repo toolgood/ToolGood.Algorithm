@@ -10,7 +10,7 @@ class Gamma {
      * @param {number} x
      * @returns {number}
      */
-    static GammaLowerRegularized(a, x) {
+    static gammaLowerRegularized(a, x) {
         let epsilon = 0.000000000000001;
         let big = 4503599627370496.0;
         let bigInv = 2.22044604925031308085e-16;
@@ -27,7 +27,7 @@ class Gamma {
             return 0;
         }
 
-        let ax = (a * Math.log(x)) - x - Beta.GammaLn(a);
+        let ax = (a * Math.log(x)) - x - Beta.gammaLn(a);
         if (ax < -709.78271289338399) {
             return a < x ? 1 : 0;
         }
@@ -100,7 +100,7 @@ class Gamma {
      * @param {number} y0
      * @returns {number}
      */
-    static GammaLowerRegularizedInv(a, y0) {
+    static gammaLowerRegularizedInv(a, y0) {
         let epsilon = 0.000000000000001;
         let big = 4503599627370496.0;
         let threshold = 5 * epsilon;
@@ -126,9 +126,9 @@ class Gamma {
 
         // Initial Guess
         let d = 1 / (9 * a);
-        let y = 1 - d - (0.98 * Constants.Sqrt2 * SpecialFunctions.ErfInv((2 * transformedY0) - 1) * Math.sqrt(d));
+        let y = 1 - d - (0.98 * Constants.Sqrt2 * SpecialFunctions.erfInv((2 * transformedY0) - 1) * Math.sqrt(d));
         let x = a * y * y * y;
-        let lgm = Beta.GammaLn(a);
+        let lgm = Beta.gammaLn(a);
 
         for (let i = 0; i < 10; i++) {
             if (x < xLower || x > xUpper) {
@@ -136,7 +136,7 @@ class Gamma {
                 break;
             }
 
-            y = 1 - Gamma.GammaLowerRegularized(a, x);
+            y = 1 - Gamma.gammaLowerRegularized(a, x);
             if (y < yLower || y > yUpper) {
                 d = 0.0625;
                 break;
@@ -177,7 +177,7 @@ class Gamma {
 
             while (xUpper === big) {
                 x = (1 + d) * x;
-                y = 1 - Gamma.GammaLowerRegularized(a, x);
+                y = 1 - Gamma.gammaLowerRegularized(a, x);
                 if (y < transformedY0) {
                     xUpper = x;
                     yLower = y;
@@ -192,7 +192,7 @@ class Gamma {
         d = 0.5;
         for (let i = 0; i < 400; i++) {
             x = xLower + (d * (xUpper - xLower));
-            y = 1 - Gamma.GammaLowerRegularized(a, x);
+            y = 1 - Gamma.gammaLowerRegularized(a, x);
             lgm = (xUpper - xLower) / (xLower + xUpper);
             if (Math.abs(lgm) < threshold) {
                 return x;

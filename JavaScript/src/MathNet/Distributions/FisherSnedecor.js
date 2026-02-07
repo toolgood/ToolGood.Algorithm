@@ -9,8 +9,8 @@ class FisherSnedecor {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(d1, d2, x) {
-        return SpecialFunctions.BetaRegularized(d1 / 2, d2 / 2, d1 * x / (d1 * x + d2));
+    static cdf(d1, d2, x) {
+        return SpecialFunctions.betaRegularized(d1 / 2, d2 / 2, d1 * x / (d1 * x + d2));
     }
 
     /**
@@ -20,7 +20,7 @@ class FisherSnedecor {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(d1, d2, p) {
+    static invCDF(d1, d2, p) {
         // 使用二分法寻找根
         let left = 0;
         let right = 1000;
@@ -30,7 +30,7 @@ class FisherSnedecor {
         
         for (let i = 0; i < maxIterations; i++) {
             mid = (left + right) / 2;
-            let value = SpecialFunctions.BetaRegularized(d1 / 2, d2 / 2, d1 * mid / (d1 * mid + d2)) - p;
+            let value = SpecialFunctions.betaRegularized(d1 / 2, d2 / 2, d1 * mid / (d1 * mid + d2)) - p;
             
             if (Math.abs(value) < tolerance) {
                 return mid;

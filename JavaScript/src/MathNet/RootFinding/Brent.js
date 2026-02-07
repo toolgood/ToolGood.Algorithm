@@ -11,8 +11,8 @@ class Brent {
      * @returns {number} The root of the function.
      * @throws {Error} If no root is found within the given iterations.
      */
-    static FindRoot(f, lowerBound, upperBound, accuracy = 1e-8, maxIterations = 100) {
-        let result = Brent.TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations);
+    static findRoot(f, lowerBound, upperBound, accuracy = 1e-8, maxIterations = 100) {
+        let result = Brent.tryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations);
         if (result.success) {
             return result.root;
         }
@@ -28,7 +28,7 @@ class Brent {
      * @param {number} maxIterations - The maximum number of iterations to perform.
      * @returns {Object} An object with success flag and root value.
      */
-    static TryFindRoot(f, lowerBound, upperBound, accuracy = 1e-8, maxIterations = 100) {
+    static tryFindRoot(f, lowerBound, upperBound, accuracy = 1e-8, maxIterations = 100) {
         let fmin = f(lowerBound);
         let fmax = f(upperBound);
         let d = 0, e = 0;

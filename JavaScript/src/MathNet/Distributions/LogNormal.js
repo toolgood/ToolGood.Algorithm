@@ -9,9 +9,9 @@ class LogNormal {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(mu, sigma, x) {
+    static cdf(mu, sigma, x) {
         return x < 0 ? 0
-            : 0.5 * (1 + SpecialFunctions.Erf((Math.log(x) - mu) / (sigma * Constants.Sqrt2)));
+            : 0.5 * (1 + SpecialFunctions.erf((Math.log(x) - mu) / (sigma * Constants.Sqrt2)));
     }
 
     /**
@@ -21,9 +21,9 @@ class LogNormal {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(mu, sigma, p) {
+    static invCDF(mu, sigma, p) {
         return p <= 0 ? 0 : p >= 1 ? Infinity
-            : Math.exp(mu - sigma * Constants.Sqrt2 * SpecialFunctions.ErfcInv(2 * p));
+            : Math.exp(mu - sigma * Constants.Sqrt2 * SpecialFunctions.erfcInv(2 * p));
     }
 }
 
