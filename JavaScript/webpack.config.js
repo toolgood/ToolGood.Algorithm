@@ -99,7 +99,7 @@ export default {
             toplevel: true,
             safari10: false,
             properties: {
-              regex: /^[a-z_][a-zA-Z0-9—_]*$|^(Get|Set|Next|F_)[a-zA-Z0-9—_]*$|^[A-Z]+_[A-Z0-9_]+$/,// 小写字母开头都替换
+              regex: /^[a-z_][a-zA-Z0-9—_]*$|^(Get|Set|Next|F_|State)[a-zA-Z0-9—_]*$|^[A-Z]+_[A-Z0-9_]+$/,// 小写字母开头都替换
               keep_quoted: false,
             }
           },
