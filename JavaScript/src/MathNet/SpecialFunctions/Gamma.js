@@ -126,7 +126,7 @@ class Gamma {
 
         // Initial Guess
         let d = 1 / (9 * a);
-        let y = 1 - d - (0.98 * Constants.Sqrt2 * SpecialFunctions.erfInv((2 * transformedY0) - 1) * Math.sqrt(d));
+        let y = 1 - d - (0.98 * Constants.sqrt2 * SpecialFunctions.erfInv((2 * transformedY0) - 1) * Math.sqrt(d));
         let x = a * y * y * y;
         let lgm = Beta.gammaLn(a);
 
@@ -275,7 +275,7 @@ class Gamma {
             return Math.PI / (
                 Math.sin(Math.PI * z) *
                 s *
-                Constants.TwoSqrtEOverPi *
+                Constants.twoSqrtEOverPi *
                 Math.pow((0.5 - z + GammaR) / Math.E, 0.5 - z)
             );
         } else {
@@ -284,7 +284,7 @@ class Gamma {
                 s += GammaDk[i] / (z + i - 1);
             }
 
-            return s * Constants.TwoSqrtEOverPi * Math.pow((z - 0.5 + GammaR) / Math.E, z - 0.5);
+            return s * Constants.twoSqrtEOverPi * Math.pow((z - 0.5 + GammaR) / Math.E, z - 0.5);
         }
     }
 }

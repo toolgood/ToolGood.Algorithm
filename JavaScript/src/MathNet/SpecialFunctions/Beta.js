@@ -31,10 +31,10 @@ class Beta {
                 s += GammaDk[i] / (i - z);
             }
 
-            return Constants.LnPi
+            return Constants.lnPi
                    - Math.log(Math.sin(Math.PI * z))
                    - Math.log(s)
-                   - Constants.LogTwoSqrtEOverPi
+                   - Constants.logTwoSqrtEOverPi
                    - ((0.5 - z) * Math.log((0.5 - z + GammaR) / Math.E));
         } else {
             let s = GammaDk[0];
@@ -43,7 +43,7 @@ class Beta {
             }
 
             return Math.log(s)
-                   + Constants.LogTwoSqrtEOverPi
+                   + Constants.logTwoSqrtEOverPi
                    + ((z - 0.5) * Math.log((z - 0.5 + GammaR) / Math.E));
         }
     }

@@ -10,7 +10,7 @@ class Normal {
      * @returns {number}
      */
     static cdf(mean, stddev, x) {
-        return 0.5 * SpecialFunctions.erfc((mean - x) / (stddev * Constants.Sqrt2));
+        return 0.5 * SpecialFunctions.erfc((mean - x) / (stddev * Constants.sqrt2));
     }
 
     /**
@@ -21,7 +21,7 @@ class Normal {
      * @returns {number}
      */
     static invCDF(mean, stddev, p) {
-        return mean - (stddev * Constants.Sqrt2 * SpecialFunctions.erfcInv(2 * p));
+        return mean - (stddev * Constants.sqrt2 * SpecialFunctions.erfcInv(2 * p));
     }
 
     /**
@@ -33,7 +33,7 @@ class Normal {
      */
     static pdf(mean, stddev, x) {
         let d = (x - mean) / stddev;
-        return Math.exp(-0.5 * d * d) / (Constants.Sqrt2Pi * stddev);
+        return Math.exp(-0.5 * d * d) / (Constants.sqrt2Pi * stddev);
     }
 }
 
