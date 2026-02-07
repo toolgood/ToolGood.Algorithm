@@ -14,7 +14,7 @@ import { testPARAM, testError, testJson as testJsonV35, testArray, testDistance,
 import './SimpleTest.js';
 import { CalculateTreeTest } from './CalculateTreeTest.js';
 import { ConditionTreeTest } from './ConditionTreeTest.js';
-import { testIssues12, testIssues13, testIssues27, testIssues0, runAllTests as runIssuesTests } from './IssuesTest.js';
+import { testIssues13, testIssues0, runAllTests as runIssuesTests } from './IssuesTest.js';
 
 // 测试执行函数
 function runTest(testFunction, testName) {
