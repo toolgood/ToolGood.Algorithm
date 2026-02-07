@@ -99,14 +99,14 @@ export default {
             toplevel: true,
             safari10: false,
             properties: {
-              regex: /^[a-z_][a-zA-Z0-9—_]*$|^(Get|Set|Next)[a-zA-Z0-9—_]*$|^[A-Z]+_[A-Z]+$/,// 小写字母开头都替换
+              regex: /^[a-z_][a-zA-Z0-9—_]*$|^(Get|Set|Next|F_)[a-zA-Z0-9—_]*$|^[A-Z]+_[A-Z0-9_]+$/,// 小写字母开头都替换
               keep_quoted: false,
             }
           },
           compress: {
             drop_console: true,
             drop_debugger: true,
-            passes: 2,
+            passes: 3,
           }
         }
       })
