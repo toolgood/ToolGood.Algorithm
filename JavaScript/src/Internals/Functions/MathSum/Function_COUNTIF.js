@@ -34,7 +34,7 @@ class Function_COUNTIF extends Function_2 {
                 let sunif = trimmedText;
                 let m2 = FunctionUtil.sumifMatch(sunif);
                 if (m2 != null) {
-                    count = FunctionUtil.F_base_countif(list, m2[0], m2[1]);
+                    count = FunctionUtil.F_base_countif(list, m2.operator, m2.value);
                 } else {
                     return this.ParameterError(2);
                 }

@@ -5,6 +5,11 @@ export var FunctionUtil = {
     StartDateUtc: new Date(Date.UTC(1970, 0, 1, 0, 0, 0, 0)),
 
     F_base_GetList: function(args, list) {
+        // 检查 args 是否是 OperandArray 对象
+        if (args.IsArray) {
+            args = args.ArrayValue;
+        }
+        
         for(var i = 0; i < args.length; i++) {
             var item = args[i];
             if(item.IsNumber) {
