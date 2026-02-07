@@ -3,7 +3,7 @@ import { JsonReader,JsonToken } from './JsonReader.js';
 import { JsonType } from './JsonType.js';
 
 class JsonMapper {
-    static ReadValue(reader) {
+    static readValue(reader) {
         reader.read();
 
         if (reader.Token === JsonToken.ArrayEnd) return null;
@@ -33,7 +33,7 @@ class JsonMapper {
             instance.SetJsonType(JsonType.Array);
 
             while (true) {
-                let item = JsonMapper.ReadValue(reader);
+                let item = JsonMapper.readValue(reader);
                 if (item === null && reader.Token === JsonToken.ArrayEnd) break;
                 instance.Add(item);
             }
@@ -46,7 +46,7 @@ class JsonMapper {
                 if (reader.Token === JsonToken.ObjectEnd) break;
 
                 let property = reader.Value;
-                instance.Set(property, JsonMapper.ReadValue(reader));
+                instance.Set(property, JsonMapper.readValue(reader));
             }
         }
 
@@ -55,7 +55,7 @@ class JsonMapper {
 
     static toObject(json) {
         let reader = new JsonReader(json);
-        return JsonMapper.ReadValue(reader);
+        return JsonMapper.readValue(reader);
     }
 }
 
