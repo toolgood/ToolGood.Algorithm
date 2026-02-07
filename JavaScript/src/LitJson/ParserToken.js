@@ -31,16 +31,4 @@ let ParserToken = {
     Epsilon: 65554
 };
 
-// Create JsonToken for compatibility with JsonMapper
-let JsonToken = {
-    ArrayEnd: ']',
-    ArrayStart: '[',
-    Boolean: 'boolean',
-    Double: 'number',
-    Null: 'null',
-    ObjectEnd: '}',
-    ObjectStart: '{',
-    String: 'string'
-};
-
-export { ParserToken, JsonToken };
+export { ParserToken };
