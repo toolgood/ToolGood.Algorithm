@@ -1,4 +1,3 @@
-import { Brent } from '../RootFinding/Brent.js';
 import { SpecialFunctions } from '../SpecialFunctions/SpecialFunctions.js';
 
 class FisherSnedecor {

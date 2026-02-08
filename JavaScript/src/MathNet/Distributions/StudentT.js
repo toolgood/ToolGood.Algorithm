@@ -1,5 +1,4 @@
 import { Normal } from './Normal.js';
-import { Brent } from '../RootFinding/Brent.js';
 import { SpecialFunctions } from '../SpecialFunctions/SpecialFunctions.js';
 
 class StudentT {
