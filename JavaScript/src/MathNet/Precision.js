@@ -176,25 +176,4 @@ let Precision = {
     }
 };
 
-// 添加方法到 Number.prototype
-Number.prototype.increment = function(count = 1) {
-    return Precision.increment(this, count);
-};
-
-Number.prototype.epsilonOf = function() {
-    return Precision.epsilonOf(this);
-};
-
-Number.prototype.positiveEpsilonOf = function() {
-    return Precision.positiveEpsilonOf(this);
-};
-
-Number.prototype.almostEqualRelative = function(other) {
-    return Precision.almostEqualRelative(this, other);
-};
-
-Number.prototype.almostEqual = function(other) {
-    return Precision.almostEqual(this, other);
-};
-
 export { Precision };
