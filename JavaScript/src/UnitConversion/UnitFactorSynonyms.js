@@ -4,10 +4,10 @@ class UnitFactorSynonyms {
     }
 
     // Find if some synonym of a given UnitFactor is included in this UnitFactor
-    Contains(synonyms) {
+    contains(synonyms) {
         if (synonyms instanceof UnitFactorSynonyms) {
             for (let syn of synonyms._synonyms) {
-                if (this.Contains(syn)) {
+                if (this.contains(syn)) {
                     return true;
                 }
             }

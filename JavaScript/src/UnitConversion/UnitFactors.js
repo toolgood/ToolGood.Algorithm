@@ -27,9 +27,9 @@ class UnitFactors {
     }
 
     // Find the key or null for a given unit
-    FindUnit(synonyms) {
+    findUnit(synonyms) {
         for (let item of Object.values(this.factors)) {
-            if (item.synonyms.Contains(synonyms)) {
+            if (item.synonyms.contains(synonyms)) {
                 return item.synonyms;
             }
         }
@@ -37,9 +37,9 @@ class UnitFactors {
     }
 
     // Get the factor for a given unit
-    FindFactor(synonyms) {
+    findFactor(synonyms) {
         for (let item of Object.values(this.factors)) {
-            if (item.synonyms.Contains(synonyms)) {
+            if (item.synonyms.contains(synonyms)) {
                 return item.factor;
             }
         }

@@ -83,21 +83,21 @@ export class AlgorithmEngineHelper {
         oldSrcUnit = oldSrcUnit.replace(this.unitRegex, "");
         if (oldSrcUnit === oldTarUnit) { return src; }
 
-        if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
+        if (DistanceConverter.exists(oldSrcUnit, oldTarUnit)) {
             let c = new DistanceConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+            return c.leftToRight(src);
         }
-        if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
+        if (MassConverter.exists(oldSrcUnit, oldTarUnit)) {
             let c = new MassConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+            return c.leftToRight(src);
         }
-        if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
+        if (AreaConverter.exists(oldSrcUnit, oldTarUnit)) {
             let c = new AreaConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+            return c.leftToRight(src);
         }
-        if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
+        if (VolumeConverter.exists(oldSrcUnit, oldTarUnit)) {
             let c = new VolumeConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+            return c.leftToRight(src);
         }
         if (!name) {
             throw new Error(`The input item has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
