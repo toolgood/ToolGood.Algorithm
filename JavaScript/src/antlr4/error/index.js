@@ -4,8 +4,7 @@
  */
 
 import RecognitionException from './RecognitionException.js';
-import ErrorListener from './ErrorListener.js';
 
 export default {
-    RecognitionException,       ErrorListener
+    RecognitionException
 }
