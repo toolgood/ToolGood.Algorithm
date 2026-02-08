@@ -20,7 +20,7 @@ class FisherSnedecor {
      * @param {number} p
      * @returns {number}
      */
-    static invCDF(d1, d2, p) {
+    static invCdf(d1, d2, p) {
         // 使用二分法寻找根
         let left = 0;
         let right = 1000;

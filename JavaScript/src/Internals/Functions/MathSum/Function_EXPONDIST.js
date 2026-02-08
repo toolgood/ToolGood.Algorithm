@@ -25,7 +25,7 @@ class Function_EXPONDIST extends Function_3 {
         if (n1 < 0.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
+        return Operand.Create(ExcelFunctions.exponDist(n1, args2.DoubleValue, args3.BooleanValue));
     }
 }
 

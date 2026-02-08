@@ -27,7 +27,7 @@ class Function_NEGBINOMDIST extends Function_3 {
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
+        return Operand.Create(ExcelFunctions.negbinomDist(k, r, p));
     }
 }
 

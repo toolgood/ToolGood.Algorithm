@@ -248,7 +248,7 @@ class Gamma {
      * @param {number} z
      * @returns {number}
      */
-    static Gamma(z) {
+    static gamma(z) {
         // GammaDk coefficients from Beta.js
         let GammaDk = [
             2.48574089138753565546e-5,

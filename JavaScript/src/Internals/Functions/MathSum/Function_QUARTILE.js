@@ -27,7 +27,7 @@ class Function_QUARTILE extends Function_2 {
         if (quant < 0 || quant > 4) {
             return this.parameterError(2);
         }
-        return Operand.Create(ExcelFunctions.Quartile(list, quant));
+        return Operand.Create(ExcelFunctions.quartile(list, quant));
     }
 }
 

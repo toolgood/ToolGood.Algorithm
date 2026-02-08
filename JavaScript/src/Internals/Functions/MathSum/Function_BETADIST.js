@@ -28,7 +28,7 @@ class Function_BETADIST extends Function_3 {
         if (alpha < 0.0 || beta < 0.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
+        return Operand.Create(ExcelFunctions.betaDist(x, alpha, beta));
     }
 }
 

@@ -41,7 +41,7 @@ class Gamma {
         }
 
         if (shape > 160) {
-            return Math.exp(Gamma.PDFLn(shape, rate, x));
+            return Math.exp(Gamma.pdfLn(shape, rate, x));
         }
 
         return Math.pow(rate, shape) * Math.pow(x, shape - 1) * Math.exp(-rate * x) / SpecialFunctions.gamma(shape);
@@ -54,7 +54,7 @@ class Gamma {
      * @param {number} x
      * @returns {number}
      */
-    static PDFLn(shape, rate, x) {
+    static pdfLn(shape, rate, x) {
         if (!isFinite(rate)) {
             return x === shape ? Infinity : -Infinity;
         }
@@ -77,7 +77,7 @@ class Gamma {
      * @param {number} p
      * @returns {number}
      */
-    static invCDF(shape, rate, p) {
+    static invCdf(shape, rate, p) {
         return SpecialFunctions.gammaLowerRegularizedInv(shape, p) / rate;
     }
 }

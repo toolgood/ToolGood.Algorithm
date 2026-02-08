@@ -22,7 +22,7 @@ class Function_TINV extends Function_2 {
         if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
+        return Operand.Create(ExcelFunctions.tInv(p, degreesFreedom));
     }
 }
 

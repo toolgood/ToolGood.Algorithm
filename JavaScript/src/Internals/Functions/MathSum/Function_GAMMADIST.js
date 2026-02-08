@@ -31,7 +31,7 @@ class Function_GAMMADIST extends Function_4 {
         if (alpha < 0.0 || beta < 0.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
+        return Operand.Create(ExcelFunctions.gammaDist(x, alpha, beta, cumulative));
     }
 }
 

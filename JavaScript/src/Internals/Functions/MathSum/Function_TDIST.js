@@ -26,7 +26,7 @@ class Function_TDIST extends Function_3 {
         if (degreesFreedom <= 0.0 || tails < 1 || tails > 2) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+        return Operand.Create(ExcelFunctions.tDist(x, degreesFreedom, tails));
     }
 }
 

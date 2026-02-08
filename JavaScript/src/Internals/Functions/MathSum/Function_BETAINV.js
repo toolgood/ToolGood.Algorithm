@@ -27,7 +27,7 @@ class Function_BETAINV extends Function_3 {
         if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.BetaInv(p, alpha, beta));
+        return Operand.Create(ExcelFunctions.betaInv(p, alpha, beta));
     }
 }
 

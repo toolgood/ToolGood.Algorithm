@@ -24,7 +24,7 @@ class Function_PERCENTRANK extends Function_3 {
         if (o == false) { return this.functionError(); }
 
         let k = args2.DoubleValue;
-        let v = ExcelFunctions.PercentRank(list.map(q => q), k);
+        let v = ExcelFunctions.percentRank(list.map(q => q), k);
         let d = 3;
         if (this.c != null) {
             let args3 = this.getNumber_3(engine, tempParameter);

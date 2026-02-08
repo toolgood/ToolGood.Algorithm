@@ -31,7 +31,7 @@ class Function_WEIBULL extends Function_4 {
             return this.functionError();
         }
 
-        return Operand.Create(ExcelFunctions.Weibull(x, shape, scale, state));
+        return Operand.Create(ExcelFunctions.weibull(x, shape, scale, state));
     }
 }
 

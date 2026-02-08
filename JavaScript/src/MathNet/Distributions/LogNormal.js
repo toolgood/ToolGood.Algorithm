@@ -21,7 +21,7 @@ class LogNormal {
      * @param {number} p
      * @returns {number}
      */
-    static invCDF(mu, sigma, p) {
+    static invCdf(mu, sigma, p) {
         return p <= 0 ? 0 : p >= 1 ? Infinity
             : Math.exp(mu - sigma * Constants.sqrt2 * SpecialFunctions.erfcInv(2 * p));
     }

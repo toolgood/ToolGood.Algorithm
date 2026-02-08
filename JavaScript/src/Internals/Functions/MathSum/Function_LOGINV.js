@@ -25,7 +25,7 @@ class Function_LOGINV extends Function_3 {
         if (n3 < 0.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
+        return Operand.Create(ExcelFunctions.logInv(args1.DoubleValue, args2.DoubleValue, n3));
     }
 }
 

@@ -59,7 +59,7 @@ class Beta {
      * @param {number} p
      * @returns {number}
      */
-    static invCDF(a, b, p) {
+    static invCdf(a, b, p) {
         // 使用二分法寻找根
         let left = 0;
         let right = 1;

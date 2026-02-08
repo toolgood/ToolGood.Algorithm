@@ -27,7 +27,7 @@ let ExcelFunctions = {
      * @param {number} z
      * @returns {number}
      */
-    NormSDist: function(z) {
+    normSDist: function(z) {
         return Normal.cdf(0, 1, z);
     },
 
@@ -36,8 +36,8 @@ let ExcelFunctions = {
      * @param {number} probability
      * @returns {number}
      */
-    NormSInv: function(probability) {
-        return Normal.invCDF(0, 1, probability);
+    normSInv: function(probability) {
+        return Normal.invCdf(0, 1, probability);
     },
 
     /**
@@ -48,7 +48,7 @@ let ExcelFunctions = {
      * @param {boolean} cumulative
      * @returns {number}
      */
-    NormDist: function(x, mean, standardDev, cumulative) {
+    normDist: function(x, mean, standardDev, cumulative) {
         return cumulative ? Normal.cdf(mean, standardDev, x) : Normal.pdf(mean, standardDev, x);
     },
 
@@ -59,8 +59,8 @@ let ExcelFunctions = {
      * @param {number} standardDev
      * @returns {number}
      */
-    NormInv: function(probability, mean, standardDev) {
-        return Normal.invCDF(mean, standardDev, probability);
+    normInv: function(probability, mean, standardDev) {
+        return Normal.invCdf(mean, standardDev, probability);
     },
 
     /**
@@ -71,7 +71,7 @@ let ExcelFunctions = {
      * @returns {number}
      * @throws {Error}
      */
-    TDist: function(x, degreesFreedom, tails) {
+    tDist: function(x, degreesFreedom, tails) {
         switch (tails) {
             case 1:
                 return 1 - StudentT.cdf(0, 1, degreesFreedom, x);
@@ -90,8 +90,8 @@ let ExcelFunctions = {
      * @param {number} degreesFreedom
      * @returns {number}
      */
-    TInv: function(probability, degreesFreedom) {
-        return -StudentT.invCDF(0, 1, degreesFreedom, probability / 2);
+    tInv: function(probability, degreesFreedom) {
+        return -StudentT.invCdf(0, 1, degreesFreedom, probability / 2);
     },
 
     /**
@@ -101,7 +101,7 @@ let ExcelFunctions = {
      * @param {number} degreesFreedom2
      * @returns {number}
      */
-    FDist: function(x, degreesFreedom1, degreesFreedom2) {
+    fDist: function(x, degreesFreedom1, degreesFreedom2) {
         return 1 - FisherSnedecor.cdf(degreesFreedom1, degreesFreedom2, x);
     },
 
@@ -112,8 +112,8 @@ let ExcelFunctions = {
      * @param {number} degreesFreedom2
      * @returns {number}
      */
-    FInv: function(probability, degreesFreedom1, degreesFreedom2) {
-        return FisherSnedecor.invCDF(degreesFreedom1, degreesFreedom2, 1 - probability);
+    fInv: function(probability, degreesFreedom1, degreesFreedom2) {
+        return FisherSnedecor.invCdf(degreesFreedom1, degreesFreedom2, 1 - probability);
     },
 
     /**
@@ -123,7 +123,7 @@ let ExcelFunctions = {
      * @param {number} beta
      * @returns {number}
      */
-    BetaDist: function(x, alpha, beta) {
+    betaDist: function(x, alpha, beta) {
         return Beta.cdf(alpha, beta, x);
     },
 
@@ -134,8 +134,8 @@ let ExcelFunctions = {
      * @param {number} beta
      * @returns {number}
      */
-    BetaInv: function(probability, alpha, beta) {
-        return Beta.invCDF(alpha, beta, probability);
+    betaInv: function(probability, alpha, beta) {
+        return Beta.invCdf(alpha, beta, probability);
     },
 
     /**
@@ -146,7 +146,7 @@ let ExcelFunctions = {
      * @param {boolean} cumulative
      * @returns {number}
      */
-    GammaDist: function(x, alpha, beta, cumulative) {
+    gammaDist: function(x, alpha, beta, cumulative) {
         return cumulative ? Gamma.cdf(alpha, 1 / beta, x) : Gamma.pdf(alpha, 1 / beta, x);
     },
 
@@ -157,8 +157,8 @@ let ExcelFunctions = {
      * @param {number} beta
      * @returns {number}
      */
-    GammaInv: function(probability, alpha, beta) {
-        return Gamma.invCDF(alpha, 1 / beta, probability);
+    gammaInv: function(probability, alpha, beta) {
+        return Gamma.invCdf(alpha, 1 / beta, probability);
     },
 
     /**
@@ -168,7 +168,7 @@ let ExcelFunctions = {
      * @returns {number}
      * @throws {Error}
      */
-    Quartile: function(array, quant) {
+    quartile: function(array, quant) {
         switch (quant) {
             case 0:
                 return ArrayStatistics.minimum(array);
@@ -196,7 +196,7 @@ let ExcelFunctions = {
      * @param {number} k
      * @returns {number}
      */
-    Percentile: function(array, k) {
+    percentile: function(array, k) {
         return Statistics.quantileCustom(array, k, QuantileDefinition.R7);
     },
 
@@ -206,7 +206,7 @@ let ExcelFunctions = {
      * @param {number} x
      * @returns {number}
      */
-    PercentRank: function(array, x) {
+    percentRank: function(array, x) {
         return Statistics.quantileRank(array, x);
     },
 
@@ -215,7 +215,7 @@ let ExcelFunctions = {
      * @param {number} z
      * @returns {number}
      */
-    GAMMALN: function(z) {
+    gammaln: function(z) {
         return SpecialFunctions.gammaLn(z);
     },
 
@@ -226,7 +226,7 @@ let ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    ExponDist: function(x, rate, state) {
+    exponDist: function(x, rate, state) {
         if (state) {
             return Exponential.cdf(rate, x);
         }
@@ -241,7 +241,7 @@ let ExcelFunctions = {
      * @param {number} population
      * @returns {number}
      */
-    HypgeomDist: function(k, draws, success, population) {
+    hypgeomDist: function(k, draws, success, population) {
         return Hypergeometric.pmf(population, success, draws, k);
     },
 
@@ -252,7 +252,7 @@ let ExcelFunctions = {
      * @param {number} p
      * @returns {number}
      */
-    NegbinomDist: function(k, r, p) {
+    negbinomDist: function(k, r, p) {
         return NegativeBinomial.pmf(r, p, k);
     },
 
@@ -263,7 +263,7 @@ let ExcelFunctions = {
      * @param {number} sigma
      * @returns {number}
      */
-    LognormDist: function(x, mu, sigma) {
+    lognormDist: function(x, mu, sigma) {
         return LogNormal.cdf(mu, sigma, x);
     },
 
@@ -274,8 +274,8 @@ let ExcelFunctions = {
      * @param {number} sigma
      * @returns {number}
      */
-    LogInv: function(p, mu, sigma) {
-        return LogNormal.invCDF(mu, sigma, p);
+    logInv: function(p, mu, sigma) {
+        return LogNormal.invCdf(mu, sigma, p);
     },
 
     /**
@@ -286,7 +286,7 @@ let ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    BinomDist: function(k, n, p, state) {
+    binomDist: function(k, n, p, state) {
         if (state === false) {
             return binomial.pmf(p, n, k);
         }
@@ -300,7 +300,7 @@ let ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    Poisson: function(k, lambda, state) {
+    poisson: function(k, lambda, state) {
         if (state === false) {
             return Poisson.pmf(lambda, k);
         }
@@ -315,7 +315,7 @@ let ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    Weibull: function(x, shape, scale, state) {
+    weibull: function(x, shape, scale, state) {
         if (state === false) {
             return Weibull.pdf(shape, scale, x);
         }

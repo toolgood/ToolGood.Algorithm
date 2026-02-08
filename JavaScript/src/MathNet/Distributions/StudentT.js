@@ -30,9 +30,9 @@ class StudentT {
      * @param {number} p
      * @returns {number}
      */
-    static invCDF(location, scale, freedom, p) {
+    static invCdf(location, scale, freedom, p) {
         if (!isFinite(freedom)) {
-            return Normal.invCDF(location, scale, p);
+            return Normal.invCdf(location, scale, p);
         }
 
         if (p === 0.5) {
@@ -46,7 +46,7 @@ class StudentT {
         let fmid;
 
         // 扩展搜索区间如果需要
-        while (Math.sign(StudentT.invCDFHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.invCDFHelper(location, scale, freedom, p, upper))) {
+        while (Math.sign(StudentT.invCdfHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.invCdfHelper(location, scale, freedom, p, upper))) {
             lower *= 2;
             upper *= 2;
         }
@@ -54,13 +54,13 @@ class StudentT {
         // 二分查找
         for (let i = 0; i < 100; i++) {
             mid = (lower + upper) / 2;
-            fmid = StudentT.invCDFHelper(location, scale, freedom, p, mid);
+            fmid = StudentT.invCdfHelper(location, scale, freedom, p, mid);
 
             if (Math.abs(fmid) < 1e-12) {
                 return mid;
             }
 
-            if (Math.sign(fmid) === Math.sign(StudentT.invCDFHelper(location, scale, freedom, p, lower))) {
+            if (Math.sign(fmid) === Math.sign(StudentT.invCdfHelper(location, scale, freedom, p, lower))) {
                 lower = mid;
             } else {
                 upper = mid;
@@ -75,7 +75,7 @@ class StudentT {
     }
 
     /**
-     * Helper function for invCDF
+     * Helper function for invCdf
      * @param {number} location
      * @param {number} scale
      * @param {number} freedom
@@ -83,7 +83,7 @@ class StudentT {
      * @param {number} x
      * @returns {number}
      */
-    static invCDFHelper(location, scale, freedom, p, x) {
+    static invCdfHelper(location, scale, freedom, p, x) {
         let k = (x - location) / scale;
         let h = freedom / (freedom + (k * k));
         let ib = 0.5 * SpecialFunctions.betaRegularized(freedom / 2, 0.5, h);

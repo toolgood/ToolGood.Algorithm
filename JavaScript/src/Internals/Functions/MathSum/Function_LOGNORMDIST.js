@@ -25,7 +25,7 @@ class Function_LOGNORMDIST extends Function_3 {
         if (n3 < 0.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
+        return Operand.Create(ExcelFunctions.lognormDist(args1.DoubleValue, args2.DoubleValue, n3));
     }
 }
 

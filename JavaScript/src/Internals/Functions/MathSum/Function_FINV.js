@@ -27,7 +27,7 @@ class Function_FINV extends Function_3 {
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
+        return Operand.Create(ExcelFunctions.fInv(p, degreesFreedom, degreesFreedom2));
     }
 }
 

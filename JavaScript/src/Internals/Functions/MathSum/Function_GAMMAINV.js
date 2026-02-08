@@ -27,7 +27,7 @@ class Function_GAMMAINV extends Function_3 {
         if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
+        return Operand.Create(ExcelFunctions.gammaInv(probability, alpha, beta));
     }
 }
 

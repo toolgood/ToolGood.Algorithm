@@ -26,7 +26,7 @@ class Function_POISSON extends Function_3 {
         if (!(lambda > 0.0)) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
+        return Operand.Create(ExcelFunctions.poisson(k, lambda, state));
     }
 }
 

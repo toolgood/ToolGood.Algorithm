@@ -27,7 +27,7 @@ class Function_FDIST extends Function_3 {
         if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
+        return Operand.Create(ExcelFunctions.fDist(x, degreesFreedom, degreesFreedom2));
     }
 }
 

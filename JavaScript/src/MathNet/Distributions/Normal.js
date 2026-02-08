@@ -20,7 +20,7 @@ class Normal {
      * @param {number} p
      * @returns {number}
      */
-    static invCDF(mean, stddev, p) {
+    static invCdf(mean, stddev, p) {
         return mean - (stddev * Constants.sqrt2 * SpecialFunctions.erfcInv(2 * p));
     }
 

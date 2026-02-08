@@ -446,7 +446,7 @@ class SpecialFunctions {
     }
 
     static gamma(z) {
-        return GammaUtil.Gamma(z);
+        return GammaUtil.gamma(z);
     }
 
     static gammaLowerRegularized(a, x) {

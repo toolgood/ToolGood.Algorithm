@@ -29,7 +29,7 @@ class Function_BINOMDIST extends Function_4 {
         if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
+        return Operand.Create(ExcelFunctions.binomDist(args1.IntValue, n2, n3, args4.BooleanValue));
     }
 }
 

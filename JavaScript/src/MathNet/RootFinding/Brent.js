@@ -121,7 +121,7 @@ class Brent {
             if (Math.abs(d) > xAcc1) {
                 root += d;
             } else {
-                root += Brent.Sign(xAcc1, xMid);
+                root += Brent.sign(xAcc1, xMid);
             }
 
             froot = f(root);
@@ -136,7 +136,7 @@ class Brent {
      * @param {number} b
      * @returns {number} a*sign(b)
      */
-    static Sign(a, b) {
+    static sign(a, b) {
         return b >= 0 ? (a >= 0 ? a : -a) : (a >= 0 ? -a : a);
     }
 }

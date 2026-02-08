@@ -15,7 +15,7 @@ class Function_NORMSINV extends Function_1 {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) return args1;
         let p = args1.DoubleValue;
-        return Operand.Create(ExcelFunctions.NormSInv(p));
+        return Operand.Create(ExcelFunctions.normSInv(p));
     }
 }
 

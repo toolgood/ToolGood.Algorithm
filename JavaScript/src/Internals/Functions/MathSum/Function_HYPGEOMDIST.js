@@ -31,7 +31,7 @@ class Function_HYPGEOMDIST extends Function_4 {
         if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
             return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
+        return Operand.Create(ExcelFunctions.hypgeomDist(k, draws, success, population));
     }
 }
 
