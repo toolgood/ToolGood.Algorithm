@@ -2,11 +2,11 @@
  * MathSplitvisitor.js
  * 访问者类，用于解析数学表达式并构建条件树
  */
-import mathVisitor from '../../math/mathVisitor.js';
+import mathjsVisitor from '../../math/mathjsVisitor.js';
 import { CharUtil } from './CharUtil.js';
 import { ConditionTreeType } from '../../Enums/ConditionTreeType.js';
 
-class MathSplitVisitor extends mathVisitor  {
+class MathSplitVisitor extends mathjsVisitor  {
     visitProg(context) {
         return context.expr().accept(this);
     }

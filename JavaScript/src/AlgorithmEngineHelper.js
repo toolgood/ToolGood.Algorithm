@@ -21,9 +21,9 @@ import { ConditionTreeType } from './Enums/ConditionTreeType.js';
 import { CalculateTreeType } from './Enums/CalculateTreeType.js';
 
 // 导入ANTLR生成的文件
-import mathLexer from './math/mathLexer.js';
+import mathjsLexer from './math/mathjsLexer.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
-import mathParser from './math/mathParser.js';
+import mathjsParser from './math/mathjsParser.js';
 
 /**
  * 算法引擎助手
@@ -55,11 +55,11 @@ export class AlgorithmEngineHelper {
         }
         let antlrErrorTextWriter = new AntlrErrorTextWriter();
         let stream =new AntlrCharStream(exp);
-        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let lexer = new mathjsLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
         let tokens = new CommonTokenStream(lexer);
-        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let parser = new mathjsParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
 
@@ -114,11 +114,11 @@ export class AlgorithmEngineHelper {
         }
         let antlrErrorTextWriter = new AntlrErrorTextWriter();
         let stream =new AntlrCharStream(exp);
-        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let lexer = new mathjsLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
         let tokens = new CommonTokenStream(lexer);
-        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let parser = new mathjsParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
         if (errorListener) {
@@ -142,11 +142,11 @@ export class AlgorithmEngineHelper {
         if (!exp || exp.trim() === '') { return false; }
         let antlrErrorTextWriter = new AntlrErrorTextWriter();
         let stream =new AntlrCharStream(exp);
-        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let lexer = new mathjsLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
         let tokens = new CommonTokenStream(lexer);
-        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let parser = new mathjsParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
 
@@ -173,11 +173,11 @@ export class AlgorithmEngineHelper {
         try {
             let antlrErrorTextWriter = new AntlrErrorTextWriter();
             let stream =new AntlrCharStream(condition);
-            let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+            let lexer = new mathjsLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
             lexer.addErrorListener(antlrErrorTextWriter);
             let tokens = new CommonTokenStream(lexer);
-            let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+            let parser = new mathjsParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorTextWriter);
 
@@ -226,11 +226,11 @@ export class AlgorithmEngineHelper {
         try {
             let antlrErrorTextWriter = new AntlrErrorTextWriter();
             let stream =new AntlrCharStream(exp);
-            let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+            let lexer = new mathjsLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
             lexer.addErrorListener(antlrErrorTextWriter);
             let tokens = new CommonTokenStream(lexer);
-            let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+            let parser = new mathjsParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorTextWriter);
 

@@ -1,8 +1,8 @@
 import { Operand } from './Operand.js';
 import { DistanceUnitType, AreaUnitType, VolumeUnitType, MassUnitType } from './Enums/index.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
-import mathLexer from './math/mathLexer.js';
-import mathParser from './math/mathParser.js';
+import mathjsLexer from './math/mathjsLexer.js';
+import mathjsParser from './math/mathjsParser.js';
 import { AntlrErrorTextWriter } from './Internals/Visitors/AntlrErrorTextWriter.js';
 import { MathFunctionVisitor } from './Internals/Visitors/MathFunctionVisitor.js';
 import { AntlrCharStream } from './Internals/Visitors/AntlrCharStream.js';
@@ -39,11 +39,11 @@ class AlgorithmEngine {
     }
     let antlrErrorTextWriter = new AntlrErrorTextWriter();
     let stream =new AntlrCharStream(exp);
-    let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+    let lexer = new mathjsLexer(stream, null, antlrErrorTextWriter);
     lexer.removeErrorListeners();
     lexer.addErrorListener(antlrErrorTextWriter);
     let tokens = new CommonTokenStream(lexer);
-    let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+    let parser = new mathjsParser(tokens, null, antlrErrorTextWriter);
     parser.removeErrorListeners();
     parser.addErrorListener(antlrErrorTextWriter);
 

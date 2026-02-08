@@ -1,7 +1,7 @@
 /**
  * MathFunctionvisitor - 数学函数访问者
  */
-import mathVisitor from '../../math/mathVisitor.js';
+import mathjsVisitor from '../../math/mathjsVisitor.js';
 import { Function_Mul } from '../Functions/Operator/Function_Mul.js';
 import { Function_Div } from '../Functions/Operator/Function_Div.js';
 import { Function_Mod } from '../Functions/Operator/Function_Mod.js';
@@ -239,7 +239,7 @@ import { Function_ERROR } from '../Functions/Value/Function_ERROR.js';
 import { CharUtil } from './CharUtil.js';
 import { Operand } from '../../Operand.js';
 
-class MathFunctionVisitor extends mathVisitor  {
+class MathFunctionVisitor extends mathjsVisitor  {
     vN(context){
         let exprs = context.expr();
         let args = new Array(exprs.length);
