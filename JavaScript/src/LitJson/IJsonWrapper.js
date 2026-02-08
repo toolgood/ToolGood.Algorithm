@@ -23,31 +23,31 @@ class IJsonWrapper {
         throw new Error('FIXME');
     }
 
-    SetBoolean(val) {
+    setBoolean(val) {
         throw new Error('FIXME');
     }
 
-    SetDouble(val) {
+    setDouble(val) {
         throw new Error('FIXME');
     }
 
-    SetJsonType(type) {
+    setJsonType(type) {
         throw new Error('FIXME');
     }
 
-    SetString(val) {
+    setString(val) {
         throw new Error('FIXME');
     }
 
-    SetNull() {
+    setNull() {
         throw new Error('FIXME');
     }
 
-    Add(val) {
+    add(val) {
         throw new Error('FIXME');
     }
 
-    Set(key, val) {
+    set(key, val) {
         throw new Error('FIXME');
     }
 }

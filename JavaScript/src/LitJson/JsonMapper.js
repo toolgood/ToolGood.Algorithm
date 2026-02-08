@@ -11,34 +11,34 @@ class JsonMapper {
         let instance = new JsonData();
 
         if (reader.Token === JsonToken.String) {
-            instance.SetString(reader.Value);
+            instance.setString(reader.Value);
             return instance;
         }
 
         if (reader.Token === JsonToken.Double) {
-            instance.SetDouble(reader.Value);
+            instance.setDouble(reader.Value);
             return instance;
         }
 
         if (reader.Token === JsonToken.Boolean) {
-            instance.SetBoolean(reader.Value);
+            instance.setBoolean(reader.Value);
             return instance;
         }
         if (reader.Token === JsonToken.Null) {
-            instance.SetNull();
+            instance.setNull();
             return instance;
         }
 
         if (reader.Token === JsonToken.ArrayStart) {
-            instance.SetJsonType(JsonType.Array);
+            instance.setJsonType(JsonType.Array);
 
             while (true) {
                 let item = JsonMapper.readValue(reader);
                 if (item === null && reader.Token === JsonToken.ArrayEnd) break;
-                instance.Add(item);
+                instance.add(item);
             }
         } else if (reader.Token === JsonToken.ObjectStart) {
-            instance.SetJsonType(JsonType.Object);
+            instance.setJsonType(JsonType.Object);
 
             while (true) {
                 reader.read();
@@ -46,7 +46,7 @@ class JsonMapper {
                 if (reader.Token === JsonToken.ObjectEnd) break;
 
                 let property = reader.Value;
-                instance.Set(property, JsonMapper.readValue(reader));
+                instance.set(property, JsonMapper.readValue(reader));
             }
         }
 

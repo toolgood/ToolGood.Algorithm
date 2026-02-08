@@ -88,34 +88,34 @@ class JsonData extends IJsonWrapper {
         return this.inst_array;
     }
 
-    SetBoolean(val) {
+    setBoolean(val) {
         this.type = JsonType.Boolean;
         this.inst_boolean = val;
     }
 
-    SetDouble(val) {
+    setDouble(val) {
         this.type = JsonType.Double;
         this.inst_double = val;
     }
 
-    SetString(val) {
+    setString(val) {
         this.type = JsonType.String;
         this.inst_string = val;
     }
 
-    SetNull() {
+    setNull() {
         this.type = JsonType.Null;
     }
 
-    Add(val) {
+    add(val) {
         this.ensureList().push(val);
     }
 
-    Set(key, val) {
+    set(key, val) {
         this.ensureDictionary()[key] = val;
     }
 
-    SetJsonType(type) {
+    setJsonType(type) {
         if (this.type === type) {
             return;
         }
