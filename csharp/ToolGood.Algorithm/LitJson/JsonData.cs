@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.LitJson
 {
-	internal sealed class JsonData : IJsonWrapper, IEnumerable
+	internal sealed class JsonData : IEnumerable
 	{
 		#region Fields
 
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.LitJson
 
 		public int Count {
 			get {
-				if (type == JsonType.Array) return inst_array.Count;
+				if(type == JsonType.Array) return inst_array.Count;
 				return inst_object.Count;
 			}
 		}
@@ -42,7 +42,7 @@ namespace ToolGood.Algorithm.LitJson
 		public JsonData this[string prop_name] {
 			get {
 				//EnsureDictionary();
-				if (inst_object.TryGetValue(prop_name, out JsonData data)) {
+				if(inst_object.TryGetValue(prop_name, out JsonData data)) {
 					return data;
 				}
 				return null;
@@ -51,7 +51,7 @@ namespace ToolGood.Algorithm.LitJson
 
 		public JsonData this[int index] {
 			get {
-				if (type == JsonType.Array)
+				if(type == JsonType.Array)
 					return inst_array[index];
 				return null;
 				//return object_list[index].Value;
@@ -70,35 +70,35 @@ namespace ToolGood.Algorithm.LitJson
 
 		#region IJsonWrapper Methods
 
-		void IJsonWrapper.SetBoolean(bool val)
+		internal void SetBoolean(bool val)
 		{
 			type = JsonType.Boolean;
 			inst_boolean = val;
 		}
 
-		void IJsonWrapper.SetDouble(decimal val)
+		internal void SetDouble(decimal val)
 		{
 			type = JsonType.Double;
 			inst_double = (decimal)val;
 		}
 
-		void IJsonWrapper.SetString(string val)
+		internal void SetString(string val)
 		{
 			type = JsonType.String;
 			inst_string = val;
 		}
 
-		void IJsonWrapper.SetNull()
+		internal void SetNull()
 		{
 			type = JsonType.Null;
 		}
 
-		void IJsonWrapper.Add(IJsonWrapper val)
+		internal void Add(JsonData val)
 		{
 			EnsureList().Add((val as JsonData));
 		}
 
-		void IJsonWrapper.Set(string key, IJsonWrapper val)
+		internal void Set(string key, JsonData val)
 		{
 			JsonData data = val as JsonData;
 			EnsureDictionary()[key] = data;
@@ -112,7 +112,7 @@ namespace ToolGood.Algorithm.LitJson
 
 		private Dictionary<string, JsonData> EnsureDictionary()
 		{
-			if (type == JsonType.Object) return inst_object;
+			if(type == JsonType.Object) return inst_object;
 			type = JsonType.Object;
 			inst_object = new Dictionary<string, JsonData>();
 			//object_list = new List<KeyValuePair<string, JsonData>>();
@@ -121,7 +121,7 @@ namespace ToolGood.Algorithm.LitJson
 
 		private List<JsonData> EnsureList()
 		{
-			if (type == JsonType.Array) return inst_array;
+			if(type == JsonType.Array) return inst_array;
 			type = JsonType.Array;
 			inst_array = new List<JsonData>();
 			return inst_array;
@@ -129,12 +129,12 @@ namespace ToolGood.Algorithm.LitJson
 
 		#endregion Private Methods
 
-		void IJsonWrapper.SetJsonType(JsonType type)
+		internal void SetJsonType(JsonType type)
 		{
-			if (this.type == type)
+			if(this.type == type)
 				return;
 
-			switch (type) {
+			switch(type) {
 				case JsonType.None:
 					break;
 
@@ -180,24 +180,24 @@ namespace ToolGood.Algorithm.LitJson
 		}
 		private void ToString(StringBuilder stringBuilder)
 		{
-			if (IsNull) {
+			if(IsNull) {
 				stringBuilder.Append("null");
-			} else if (IsBoolean) {
+			} else if(IsBoolean) {
 				stringBuilder.Append(inst_boolean ? "true" : "false");
-			} else if (IsArray) {
+			} else if(IsArray) {
 				stringBuilder.Append("[");
-				for (int i = 0; i < inst_array.Count; i++) {
-					if (i > 0) {
+				for(int i = 0; i < inst_array.Count; i++) {
+					if(i > 0) {
 						stringBuilder.Append(",");
 					}
 					inst_array[i].ToString(stringBuilder);
 				}
 				stringBuilder.Append("]");
-			} else if (IsObject) {
+			} else if(IsObject) {
 				stringBuilder.Append("{");
 				bool first = true;
-				foreach (var kv in inst_object) {
-					if (!first) {
+				foreach(var kv in inst_object) {
+					if(!first) {
 						stringBuilder.Append(",");
 					}
 					first = false;
@@ -209,13 +209,13 @@ namespace ToolGood.Algorithm.LitJson
 					kv.Value.ToString(stringBuilder);
 				}
 				stringBuilder.Append("}");
-			} else if (IsString) {
+			} else if(IsString) {
 				stringBuilder.Append("\"");
 				stringBuilder.Append(inst_string.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r")
 						.Replace("\t", "\\t").Replace("\0", "\\0").Replace("\v", "\\v")
 						.Replace("\a", "\\a").Replace("\b", "\\b").Replace("\f", "\\f"));
 				stringBuilder.Append("\"");
-			} else if (IsDouble) {
+			} else if(IsDouble) {
 				stringBuilder.Append(inst_double.ToString(CultureInfo.InvariantCulture));
 			}
 		}
