@@ -4,8 +4,5 @@
  */
 
 import DFA from './DFA.js';
-import DFASerializer from './DFASerializer.js';
-import LexerDFASerializer from './LexerDFASerializer.js';
-import PredPrediction from './PredPrediction.js';
 
-export default { DFA, DFASerializer, LexerDFASerializer, PredPrediction };
+export default { DFA };
