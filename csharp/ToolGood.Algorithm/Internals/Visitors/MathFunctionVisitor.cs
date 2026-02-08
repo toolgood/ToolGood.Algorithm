@@ -1280,38 +1280,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitArrayJson(mathParser.ArrayJsonContext context)
 		{
 			string keyName = null;
-			//KeyValue keyValue = new KeyValue();
-			if(context.NUM() != null) {
-				if(int.TryParse(context.NUM().GetText(), out int key)) {
-					keyName = key.ToString();
-				} else {
-					return new Function_Value(Operand.Error("Json key '" + context.NUM().GetText() + "' is error!"));
-				}
-			}
-			if(context.STRING() != null) {
-				var opd = context.STRING().GetText();
-				var sb = new StringBuilder(opd.Length - 2);
-				int index = 1;
-				while(index < opd.Length - 1) {
-					var c = opd[index++];
-					if(c == '\\') {
-						var c2 = opd[index++];
-						if(c2 == 'n') sb.Append('\n');
-						else if(c2 == 'r') sb.Append('\r');
-						else if(c2 == 't') sb.Append('\t');
-						else if(c2 == '0') sb.Append('\0');
-						else if(c2 == 'v') sb.Append('\v');
-						else if(c2 == 'a') sb.Append('\a');
-						else if(c2 == 'b') sb.Append('\b');
-						else if(c2 == 'f') sb.Append('\f');
-						else sb.Append(opd[index++]);
-					} else {
-						sb.Append(c);
-					}
-				}
-				keyName = sb.ToString();
-			}
-			if(context.parameter2() != null) {
+			if(context.key != null) {
+				keyName = context.key.Text.Trim(new char[] { '"', '\'', ' ', '\t', '\r', '\n', '\f' });
+			} else if(context.parameter2() != null) {
 				keyName = context.parameter2().GetText();
 			}
 			var f = context.expr().Accept(this);

@@ -348,7 +348,8 @@ expr:
 num: '-'? NUM;
 unit: UNIT | T;
 
-arrayJson: (NUM | STRING | parameter2) ':' expr;
+arrayJson: key=(NUM | STRING) ':' expr
+	| parameter2 ':' expr;
 
 parameter2:
 	E

@@ -33,7 +33,6 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 partial class mathLexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
-	 
 	public static string[] channelNames = {};
 
 	public static string[] modeNames = {};
@@ -63,7 +62,7 @@ partial class mathLexer : Lexer {
 		}
 	}
 
-	public override string GrammarFileName { get { return "math.g4"; } }
+	public override string GrammarFileName { get { return ""; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
