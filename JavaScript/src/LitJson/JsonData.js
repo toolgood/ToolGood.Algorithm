@@ -1,9 +1,7 @@
-import { IJsonWrapper } from './IJsonWrapper.js';
 import { JsonType } from './JsonType.js';
 
-class JsonData extends IJsonWrapper {
+class JsonData  {
     constructor() {
-        super();
         this.inst_array = null;
         this.inst_boolean = false;
         this.inst_double = 0;

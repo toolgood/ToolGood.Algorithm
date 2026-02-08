@@ -2,19 +2,7 @@ import { Lexer } from './Lexer.js';
 import { ParserToken } from './ParserToken.js';
 import { JsonException } from './JsonException.js';
 import { StringReader } from './StringReader.js';
-
-let JsonToken = {
-    None: 0,
-    ObjectStart: 1,
-    PropertyName: 2,
-    ObjectEnd: 3,
-    ArrayStart: 4,
-    ArrayEnd: 5,
-    Double: 6,
-    String: 7,
-    Boolean: 8,
-    Null: 9
-};
+import { JsonToken } from './JsonToken.js';
 
 class JsonReader {
     constructor(json_text) {
@@ -253,4 +241,4 @@ JsonReader.parse_table = {
     }
 };
 
-export { JsonReader, JsonToken };
+export { JsonReader };

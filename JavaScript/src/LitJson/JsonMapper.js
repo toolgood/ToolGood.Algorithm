@@ -1,5 +1,6 @@
 import { JsonData } from './JsonData.js';
-import { JsonReader,JsonToken } from './JsonReader.js';
+import { JsonReader } from './JsonReader.js';
+import { JsonToken } from './JsonToken.js';
 import { JsonType } from './JsonType.js';
 
 class JsonMapper {
