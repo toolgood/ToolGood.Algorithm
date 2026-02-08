@@ -7,26 +7,26 @@ using Antlr4Helper.JavaScriptHelper.Helpers;
 
 namespace Antlr4Helper.JavaScriptHelper
 {
-	class Program
+	class Program2
 	{
-		static void Main(string[] args)
+		static void Main2(string[] args)
 		{
-			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathjsParser.js");
+			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathParser.js");
 			var text = File.ReadAllText(filePath);
 			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
-			text = text.Replace("import mathjsVisitor from './mathjsVisitor.js';", "");
-			text = text.Replace("mathjsParser.EOF = antlr4.Token.EOF;", "");
-			text = Regex.Replace(text, @"mathjsParser\..*?Context = .*?Context;", "");
+			text = text.Replace("import mathVisitor from './mathVisitor.js';", "");
+			text = text.Replace("mathParser.EOF = antlr4.Token.EOF;", "");
+			text = Regex.Replace(text, @"mathParser\..*?Context = .*?Context;", "");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this.match", "this.match");
 
-			// 替换所有的 mathjsParser.xxx = n 为字典，然后再替换回去
-			var ms = Regex.Matches(text, @"(mathjsParser\..*) = (\d+);");
+			// 替换所有的 mathParser.xxx = n 为字典，然后再替换回去
+			var ms = Regex.Matches(text, @"(mathParser\..*) = (\d+);");
 			Dictionary<string, string> dict = new Dictionary<string, string>();
-			dict["mathjsParser.EOF"] = "-1";
+			dict["mathParser.EOF"] = "-1";
 			foreach(Match m in ms) {
 				dict[m.Groups[1].Value] = m.Groups[2].Value;
 			}
-			text = Regex.Replace(text, @"(mathjsParser\..*) = (\d+);", "");
+			text = Regex.Replace(text, @"(mathParser\..*) = (\d+);", "");
 			var keys = dict.Keys.OrderByDescending(q => q.Length).ToList();
 			foreach(var item in keys) {
 				text = Regex.Replace(text, @$"\b{item}\b", dict[item]);
@@ -40,7 +40,7 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = text.Replace("//NUM()", "NUM()");
 			text = text.Replace("//STRING()", "STRING()");
 
-			text = text.Replace("if ( visitor instanceof mathjsVisitor ) {", "");
+			text = text.Replace("if ( visitor instanceof mathVisitor ) {", "");
 			text = Regex.Replace(text, @"\} else \{[\r\n\t ]*return visitor\.visitChildren\(this\);[\r\n\t ]*\}", "");
 
 
@@ -119,7 +119,7 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"([\r\n])([\r\n])+", "$1");
 
 
-			File.WriteAllText("mathjsParser.js", text);
+			File.WriteAllText("mathParser.js", text);
 
 
 
