@@ -1159,11 +1159,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
-		public object VisitUnit(mathParser.UnitContext context)
-		{
-			return VisitChildren(context);
-		}
-
 		public object VisitArrayJson(mathParser.ArrayJsonContext context)
 		{
 			return VisitChildren(context);

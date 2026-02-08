@@ -1161,10 +1161,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
-		public CalculateTree VisitUnit(mathParser.UnitContext context)
-		{
-			return Visit_fun(context);
-		}
 
 		public CalculateTree VisitUPPER_fun(mathParser.UPPER_funContext context)
 		{

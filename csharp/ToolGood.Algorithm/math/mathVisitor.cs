@@ -1669,12 +1669,6 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNum(mathParser.NumContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="mathParser.unit"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitUnit(mathParser.UnitContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="mathParser.arrayJson"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

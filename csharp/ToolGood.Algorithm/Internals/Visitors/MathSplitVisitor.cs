@@ -1175,10 +1175,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
-		public ConditionTree VisitUnit(mathParser.UnitContext context)
-		{
-			return Visit_fun(context);
-		}
 
 		public ConditionTree VisitArrayJson(mathParser.ArrayJsonContext context)
 		{
