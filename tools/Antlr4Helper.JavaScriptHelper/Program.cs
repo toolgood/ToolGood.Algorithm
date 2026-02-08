@@ -99,8 +99,6 @@ namespace Antlr4Helper.JavaScriptHelper
 	C(a,b,c){this.match(a);this.match(b);this.match(c);}
 	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}
 	E(a,b){this.state=a;this.expr(b);}
-	F(a,b,c,d,e,f){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);}
-	G(a,b,c,e,f){this.match(a);this.match(b);this.match(c);this.state=e;this.expr(f);}
 	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}
 	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
 
