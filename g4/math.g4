@@ -341,12 +341,12 @@ expr:
 	| '[' expr (',' expr)* ','* ']'								# Array_fun
 	| ALGORITHMVERSION											# Version_fun
 	| PARAMETER													# PARAMETER_fun
-	| num unit?													# NUM_fun
+	| num  unit=(UNIT | T)?										# NUM_fun
 	| STRING													# STRING_fun
 	| NULL														# NULL_fun;
 
 num: '-'? NUM;
-unit: UNIT | T;
+ 
 
 arrayJson: key=(NUM | STRING) ':' expr
 	| parameter2 ':' expr;
@@ -362,7 +362,6 @@ parameter2:
 	| ISLOGICAL
 	| ISEVEN
 	| ISODD
-	| IFERROR
 	| ISNULL
 	| ISNULLORERROR
 	| AND
