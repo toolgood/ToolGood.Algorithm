@@ -51,8 +51,7 @@ namespace Antlr4Helper.CSharpHelper
 		ADDSECONDS=248, TIMESTAMP=249, HAS=250, HASVALUE=251, PARAM=252, PARAMETER=253, 
 		WS=254, COMMENT=255, LINE_COMMENT=256;
 
-RULE_prog = 0, RULE_expr = 1, RULE_num = 2, RULE_unit = 3, RULE_arrayJson = 4,
-			RULE_parameter2 = 5;
+RULE_prog = 0, RULE_expr = 1, RULE_num = 2, RULE_arrayJson = 3, RULE_parameter2 = 4;
 ";
 			var array = str.Split(",\r\n\t;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 			Dictionary<string, string> dict = new Dictionary<string, string>();
