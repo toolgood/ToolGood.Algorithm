@@ -54,12 +54,6 @@ export default class mathjsVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by mathjsParser#AND_fun.
-	visitAND_fun(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by mathjsParser#ArrayJson_fun.
 	visitArrayJson_fun(ctx) {
 	  return this.visitChildren(ctx);
@@ -98,12 +92,6 @@ export default class mathjsVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by mathjsParser#T_fun.
 	visitT_fun(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by mathjsParser#OR_fun.
-	visitOR_fun(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

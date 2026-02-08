@@ -17,11 +17,9 @@ expr:
 	| expr op = ('+' | '-' | '&') expr							# AddSub_fun
 	| expr op = ('>' | '>=' | '<' | '<=') expr					# Judge_fun
 	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	# Judge_fun
-	| expr op = ('&&' | AND) expr								# AndOr_fun
-	| expr op = ('||' | OR) expr								# AndOr_fun
+	| expr op = '&&'  expr										# AndOr_fun
+	| expr op = '||'  expr										# AndOr_fun
 	| expr '?' expr ':' expr									# IF_fun
-	| AND '(' expr (',' expr)* ')'								# AND_fun
-	| OR '(' expr (',' expr)* ')'								# OR_fun
 	| T '(' expr ')'											# T_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
@@ -39,8 +37,6 @@ arrayJson: (NUM | STRING | parameter2) ':' expr;
 
 parameter2:
 	NULL
-	| AND
-	| OR
 	| T
 	| UNIT
 	| PARAMETER;
@@ -78,8 +74,6 @@ UNIT:
 	| 'G'
 	| 'KG';
 
-AND: 'AND';
-OR: 'OR';
 T: 'T';
 
 PARAMETER:'PERCENTILE.INC'
