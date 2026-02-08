@@ -1411,13 +1411,6 @@ export default class mathVisitor extends antlr4.tree.ParseTreeVisitor {
 	  return this.v(ctx);
 	}
 
-
-	// Visit a parse tree produced by mathParser#unit.
-	visitUnit(ctx) {
-	  return this.v(ctx);
-	}
-
-
 	// Visit a parse tree produced by mathParser#arrayJson.
 	visitArrayJson(ctx) {
 	  return this.v(ctx);

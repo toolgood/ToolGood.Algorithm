@@ -37,8 +37,8 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"([A-Z][0-9A-Z]*\(\) \{return this\.getToken.*?;)[\r\n\t ]*};", "$1};");
 			text = Regex.Replace(text, @"([A-Z][0-9A-Z]*\(\) \{return this\.getToken.*?};)", "//$1");
 			text = text.Replace("//PARAMETER()", "PARAMETER()");
-			text = text.Replace("//NUM()", "NUM()");
-			text = text.Replace("//STRING()", "STRING()");
+			//text = text.Replace("//NUM()", "NUM()");
+			//text = text.Replace("//STRING()", "STRING()");
 
 			text = text.Replace("if ( visitor instanceof mathVisitor ) {", "");
 			text = Regex.Replace(text, @"\} else \{[\r\n\t ]*return visitor\.visitChildren\(this\);[\r\n\t ]*\}", "");

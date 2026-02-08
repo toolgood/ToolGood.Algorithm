@@ -1919,9 +1919,9 @@ class MathFunctionVisitor extends mathVisitor  {
     visitNUM_fun(context) {
         let numText = context.num().getText ? context.num().getText() : context.num().text;
         let d = parseFloat(numText);
-		if (!context.unit()) { return new Function_Value(Operand.Create(d), numText); }
-		let unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
-		return new Function_NUM(d, unitText);
+        if (context.unit == null) { return new Function_Value(Operand.Create(d), numText); }
+        let unit = context.unit.text;
+        return new Function_NUM(d, unit);
     }
 
     /**
