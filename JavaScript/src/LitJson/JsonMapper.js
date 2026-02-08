@@ -30,7 +30,7 @@ class JsonMapper {
         }
 
         if (reader.Token === JsonToken.ArrayStart) {
-            instance.setJsonType(JsonType.Array);
+            instance.setJsonType(JsonType.array);
 
             while (true) {
                 let item = JsonMapper.readValue(reader);
@@ -38,7 +38,7 @@ class JsonMapper {
                 instance.add(item);
             }
         } else if (reader.Token === JsonToken.ObjectStart) {
-            instance.setJsonType(JsonType.Object);
+            instance.setJsonType(JsonType.object);
 
             while (true) {
                 reader.read();

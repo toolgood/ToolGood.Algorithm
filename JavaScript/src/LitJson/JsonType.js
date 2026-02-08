@@ -1,11 +1,11 @@
 let JsonType = {
-    None: 0,
-    Object: 1,
-    Array: 2,
-    String: 3,
-    Double: 4,
-    Boolean: 5,
-    Null: 6
+    none: 0,
+    object: 1,
+    array: 2,
+    string: 3,
+    double: 4,
+    boolean: 5,
+    null: 6
 };
 
 export { JsonType };

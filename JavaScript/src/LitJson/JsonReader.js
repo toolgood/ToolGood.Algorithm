@@ -25,8 +25,8 @@ class JsonReader {
 
         this.read_started = false;
         this.automaton_stack = [];
-        this.automaton_stack.push(ParserToken.End);
-        this.automaton_stack.push(ParserToken.Text);
+        this.automaton_stack.push(ParserToken.end);
+        this.automaton_stack.push(ParserToken.text);
 
         this.lexer = new Lexer(reader);
 
@@ -84,22 +84,22 @@ class JsonReader {
                 }
                 this.parser_in_string = true;
             }
-        } else if (this.current_symbol === ParserToken.CharSeq) {
+        } else if (this.current_symbol === ParserToken.charSeq) {
             this.token_value = this.lexer.StringValue;
-        } else if (this.current_symbol === ParserToken.False) {
+        } else if (this.current_symbol === ParserToken.false) {
             this.token = JsonToken.Boolean;
             this.token_value = false;
             this.parser_return = true;
-        } else if (this.current_symbol === ParserToken.Null) {
+        } else if (this.current_symbol === ParserToken.null) {
             this.token = JsonToken.Null;
             this.parser_return = true;
-        } else if (this.current_symbol === ParserToken.Number) {
+        } else if (this.current_symbol === ParserToken.number) {
             this.processNumber(this.lexer.StringValue);
             this.token = JsonToken.Double;
             this.parser_return = true;
-        } else if (this.current_symbol === ParserToken.Pair) {
+        } else if (this.current_symbol === ParserToken.pair) {
             this.token = JsonToken.PropertyName;
-        } else if (this.current_symbol === ParserToken.True) {
+        } else if (this.current_symbol === ParserToken.true) {
             this.token = JsonToken.Boolean;
             this.token_value = true;
             this.parser_return = true;
@@ -138,8 +138,8 @@ class JsonReader {
         if (this.end_of_json) {
             this.end_of_json = false;
             this.automaton_stack.length = 0;
-            this.automaton_stack.push(ParserToken.End);
-            this.automaton_stack.push(ParserToken.Text);
+            this.automaton_stack.push(ParserToken.end);
+            this.automaton_stack.push(ParserToken.text);
         }
 
         this.parser_in_string = false;
@@ -160,7 +160,7 @@ class JsonReader {
 
         while (true) {
             if (this.parser_return) {
-                if (this.automaton_stack[this.automaton_stack.length - 1] === ParserToken.End) {
+                if (this.automaton_stack[this.automaton_stack.length - 1] === ParserToken.end) {
                     this.end_of_json = true;
                 }
                 return true;
@@ -172,7 +172,7 @@ class JsonReader {
 
             if (this.current_symbol === this.current_input) {
                 if (!this.readToken()) {
-                    if (this.automaton_stack[this.automaton_stack.length - 1] !== ParserToken.End) {
+                    if (this.automaton_stack[this.automaton_stack.length - 1] !== ParserToken.end) {
                         throw new JsonException("Input doesn't evaluate to proper JSON text");
                     }
 
@@ -191,7 +191,7 @@ class JsonReader {
                 throw JsonException.createWithToken(this.current_input, e);
             }
 
-            if (entry_symbols[0] === ParserToken.Epsilon) {
+            if (entry_symbols[0] === ParserToken.epsilon) {
                 continue;
             }
 
@@ -204,52 +204,52 @@ class JsonReader {
 
 // Parse table
 JsonReader.parse_table = {
-    [ParserToken.Array]: {
-        [91 /*'['.charCodeAt(0)*/]: [91 /*'['.charCodeAt(0)*/, ParserToken.ArrayPrime]
+    [ParserToken.array]: {
+        [91 /*'['.charCodeAt(0)*/]: [91 /*'['.charCodeAt(0)*/, ParserToken.arrayPrime]
     },
-    [ParserToken.ArrayPrime]: {
-        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/],
-        [91 /*'['.charCodeAt(0)*/]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/],
+    [ParserToken.arrayPrime]: {
+        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/],
+        [91 /*'['.charCodeAt(0)*/]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/],
         [93 /*']'.charCodeAt(0)*/]: [93 /*']'.charCodeAt(0)*/],
-        [123 /*'{'.charCodeAt(0)*/]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/],
-        [ParserToken.Number]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/],
-        [ParserToken.True]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/],
-        [ParserToken.False]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/],
-        [ParserToken.Null]: [ParserToken.Value, ParserToken.ValueRest, 93 /*']'.charCodeAt(0)*/]
+        [123 /*'{'.charCodeAt(0)*/]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/],
+        [ParserToken.number]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/],
+        [ParserToken.true]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/],
+        [ParserToken.false]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/],
+        [ParserToken.null]: [ParserToken.value, ParserToken.valueRest, 93 /*']'.charCodeAt(0)*/]
     },
-    [ParserToken.Object]: {
-        [123 /*'{'.charCodeAt(0)*/]: [123 /*'{'.charCodeAt(0)*/, ParserToken.ObjectPrime]
+    [ParserToken.object]: {
+        [123 /*'{'.charCodeAt(0)*/]: [123 /*'{'.charCodeAt(0)*/, ParserToken.objectPrime]
     },
-    [ParserToken.ObjectPrime]: {
-        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.Pair, ParserToken.PairRest, 125 /*'}'.charCodeAt(0)*/],
+    [ParserToken.objectPrime]: {
+        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.pair, ParserToken.pairRest, 125 /*'}'.charCodeAt(0)*/],
         [125 /*'}'.charCodeAt(0)*/]: [0 /*''.charCodeAt(0)*/]
     },
-    [ParserToken.Pair]: {
-        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.String, 58 /*':'.charCodeAt(0)*/, ParserToken.Value]
+    [ParserToken.pair]: {
+        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.string, 58 /*':'.charCodeAt(0)*/, ParserToken.value]
     },
-    [ParserToken.PairRest]: {
-        [44 /*','.charCodeAt(0)*/]: [44 /*','.charCodeAt(0)*/, ParserToken.Pair, ParserToken.PairRest],
-        [125 /*'}'.charCodeAt(0)*/]: [ParserToken.Epsilon]
+    [ParserToken.pairRest]: {
+        [44 /*','.charCodeAt(0)*/]: [44 /*','.charCodeAt(0)*/, ParserToken.pair, ParserToken.pairRest],
+        [125 /*'}'.charCodeAt(0)*/]: [ParserToken.epsilon]
     },
-    [ParserToken.String]: {
-        [34 /*'"'.charCodeAt(0)*/]: [34 /*'"'.charCodeAt(0)*/, ParserToken.CharSeq, 34 /*'"'.charCodeAt(0)*/]
+    [ParserToken.string]: {
+        [34 /*'"'.charCodeAt(0)*/]: [34 /*'"'.charCodeAt(0)*/, ParserToken.charSeq, 34 /*'"'.charCodeAt(0)*/]
     },
-    [ParserToken.Text]: {
-        [91 /*'['.charCodeAt(0)*/]: [ParserToken.Array],
-        [123 /*'{'.charCodeAt(0)*/]: [ParserToken.Object]
+    [ParserToken.text]: {
+        [91 /*'['.charCodeAt(0)*/]: [ParserToken.array],
+        [123 /*'{'.charCodeAt(0)*/]: [ParserToken.object]
     },
-    [ParserToken.Value]: {
-        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.String],
-        [91 /*'['.charCodeAt(0)*/]: [ParserToken.Array],
-        [123 /*'{'.charCodeAt(0)*/]: [ParserToken.Object],
-        [ParserToken.Number]: [ParserToken.Number],
-        [ParserToken.True]: [ParserToken.True],
-        [ParserToken.False]: [ParserToken.False],
-        [ParserToken.Null]: [ParserToken.Null]
+    [ParserToken.value]: {
+        [34 /*'"'.charCodeAt(0)*/]: [ParserToken.string],
+        [91 /*'['.charCodeAt(0)*/]: [ParserToken.array],
+        [123 /*'{'.charCodeAt(0)*/]: [ParserToken.object],
+        [ParserToken.number]: [ParserToken.number],
+        [ParserToken.true]: [ParserToken.true],
+        [ParserToken.false]: [ParserToken.false],
+        [ParserToken.null]: [ParserToken.null]
     },
-    [ParserToken.ValueRest]: {
-        [44 /*','.charCodeAt(0)*/]: [44 /*','.charCodeAt(0)*/, ParserToken.Value, ParserToken.ValueRest],
-        [93 /*']'.charCodeAt(0)*/]: [ParserToken.Epsilon]
+    [ParserToken.valueRest]: {
+        [44 /*','.charCodeAt(0)*/]: [44 /*','.charCodeAt(0)*/, ParserToken.value, ParserToken.valueRest],
+        [93 /*']'.charCodeAt(0)*/]: [ParserToken.epsilon]
     }
 };
 

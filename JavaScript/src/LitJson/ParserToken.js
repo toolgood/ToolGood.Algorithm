@@ -1,34 +1,34 @@
 let ParserToken = {
     // Lexer tokens (see section A.1.1. of the manual)
-    None: 65536, // System.Char.MaxValue + 1
+    none: 65536, // System.Char.MaxValue + 1
 
-    Number: 65537,
-    True: 65538,
-    False: 65539,
-    Null: 65540,
-    CharSeq: 65541,
+    number: 65537,
+    true: 65538,
+    false: 65539,
+    null: 65540,
+    charSeq: 65541,
 
     // Single char
-    Char: 65542,
+    char: 65542,
 
     // Parser Rules (see section A.2.1 of the manual)
-    Text: 65543,
+    text: 65543,
 
-    Object: 65544,
-    ObjectPrime: 65545,
-    Pair: 65546,
-    PairRest: 65547,
-    Array: 65548,
-    ArrayPrime: 65549,
-    Value: 65550,
-    ValueRest: 65551,
-    String: 65552,
+    object: 65544,
+    objectPrime: 65545,
+    pair: 65546,
+    pairRest: 65547,
+    array: 65548,
+    arrayPrime: 65549,
+    value: 65550,
+    valueRest: 65551,
+    string: 65552,
 
     // End of input
-    End: 65553,
+    end: 65553,
 
     // The empty rule
-    Epsilon: 65554
+    epsilon: 65554
 };
 
 export { ParserToken };

@@ -112,7 +112,7 @@ class Lexer {
                 this.string_buffer.length = 0;
                 this.token = Lexer.fsm_return_table[this.state - 1];
 
-                if (this.token === ParserToken.Char) {
+                if (this.token === ParserToken.char) {
                     this.token = this.input_char;
                 }
 
@@ -705,30 +705,30 @@ Lexer.fsm_handler_table = [
 ];
 
 Lexer.fsm_return_table = [
-    ParserToken.Char,
+    ParserToken.char,
     0,
-    ParserToken.Number,
-    ParserToken.Number,
+    ParserToken.number,
+    ParserToken.number,
     0,
-    ParserToken.Number,
+    ParserToken.number,
     0,
-    ParserToken.Number,
-    0,
-    0,
-    ParserToken.True,
+    ParserToken.number,
     0,
     0,
-    0,
-    ParserToken.False,
-    0,
-    0,
-    ParserToken.Null,
-    ParserToken.CharSeq,
-    ParserToken.Char,
+    ParserToken.true,
     0,
     0,
-    ParserToken.CharSeq,
-    ParserToken.Char,
+    0,
+    ParserToken.false,
+    0,
+    0,
+    ParserToken.null,
+    ParserToken.charSeq,
+    ParserToken.char,
+    0,
+    0,
+    ParserToken.charSeq,
+    ParserToken.char,
     0,
     0,
     0,
