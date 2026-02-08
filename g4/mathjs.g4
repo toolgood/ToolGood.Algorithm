@@ -3,7 +3,9 @@ grammar mathjs;
 prog: expr EOF;
 
 expr:
-	expr '.' T '(' ')'											# T_fun
+	expr '.' T '(' ')'											# DiyFunction_fun
+	| expr '.' AND '(' ')'										# DiyFunction_fun
+	| expr '.' OR '(' ')'										# DiyFunction_fun
 	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
 	| expr '[' PARAMETER ']'									# GetJsonValue_fun
 	| expr '[' expr ']'											# GetJsonValue_fun
@@ -19,25 +21,28 @@ expr:
 	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	# Judge_fun
 	| expr op = '&&'  expr										# AndOr_fun
 	| expr op = '||'  expr										# AndOr_fun
-	| expr '?' expr ':' expr									# IF_fun
-	| T '(' expr ')'											# T_fun
+	| expr '?' expr ':' expr									# DiyFunction_fun
+	| T '(' expr ')'											# DiyFunction_fun
+	| AND '(' (expr (',' expr)*)? ')'							# DiyFunction_fun
+	| OR '(' (expr (',' expr)*)? ')'							# DiyFunction_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
 	| '[' expr (',' expr)* ','* ']'								# Array_fun
 	| PARAMETER													# PARAMETER_fun
-	| num unit?													# NUM_fun
+	| num unit=(UNIT | T)										# NUM_fun
 	| STRING													# STRING_fun
 	| NULL														# NULL_fun
 	;
 
 num: '-'? NUM;
-unit: UNIT | T;
-
-arrayJson: (NUM | STRING | parameter2) ':' expr;
+arrayJson: key=(NUM | STRING) ':' expr
+	| parameter2 ':' expr;
 
 parameter2:
 	NULL
 	| T
+	| AND
+	| OR
 	| UNIT
 	| PARAMETER;
  
@@ -75,6 +80,8 @@ UNIT:
 	| 'KG';
 
 T: 'T';
+AND: 'AND';
+OR: 'OR';
 
 PARAMETER:'PERCENTILE.INC'
 	|'PERCENTRANK.INC'
