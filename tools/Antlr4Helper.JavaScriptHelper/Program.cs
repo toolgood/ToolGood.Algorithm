@@ -71,6 +71,15 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"_prevctx = localctx;", "");
 
 
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
+										, "this.K($1,$2,$3,$4,$5,$6,$7);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
+										, "this.L($1,$2,$3,$4,$5,$6);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
+										, "this.M($1,$2,$3,$4,$5);");
+			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
+										, "this.N($1,$2,$3,$4);");
+
 			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
 										, "this.F($1,$2,$3,$4,$5,$6);");
 			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
@@ -79,6 +88,10 @@ namespace Antlr4Helper.JavaScriptHelper
 										, "this.I($1,$2,$3,$4);");
 			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
 										, "this.J($1,$2,$3);");
+			text = Regex.Replace(text, @"this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
+										, "this.O($1,$2,$3);");
+
+
 			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.D($1,$2,$3,$4);");
 			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.C($1,$2,$3);");
 			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.B($1,$2);");
@@ -99,10 +112,15 @@ namespace Antlr4Helper.JavaScriptHelper
 	C(a,b,c){this.match(a);this.match(b);this.match(c);}
 	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}
 	E(a,b){this.state=a;this.expr(b);}
-	F(a,b,c,d,e,f){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);}
+	//F(a,b,c,d,e,f){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);}
 	G(a,b,c,e,f){this.match(a);this.match(b);this.match(c);this.state=e;this.expr(f);}
 	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}
 	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
+	K(a,b,c,d,e,f,g){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);this.match(g);}
+	L(a,b,c,e,f,g){this.match(a);this.match(b);this.match(c);this.state=e;this.expr(f);this.match(g);}
+	M(a,b,e,f,g){this.match(a);this.match(b);this.state=e;this.expr(f);this.match(g);}
+	N(a,e,f,g){this.match(a);this.state=e;this.expr(f);this.match(g);}
+	O(e,f,g){this.state=e;this.expr(f);this.match(g);}
 
 
 	R(){return this._input.LT(1);}
