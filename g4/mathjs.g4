@@ -22,10 +22,10 @@ expr:
 	| expr op = '&&'  expr										# AndOr_fun
 	| expr op = '||'  expr										# AndOr_fun
 	| expr '?' expr ':' expr									# DiyFunction_fun
-	| T '(' expr ')'											# DiyFunction_fun
-	| AND '(' (expr (',' expr)*)? ')'							# DiyFunction_fun
-	| OR '(' (expr (',' expr)*)? ')'							# DiyFunction_fun
-	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
+	| func=T '(' expr ')'										# DiyFunction_fun
+	| func=AND '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
+	| func=OR '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
+	| func=PARAMETER '(' (expr (',' expr)*)? ')'				# DiyFunction_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
 	| '[' expr (',' expr)* ','* ']'								# Array_fun
 	| PARAMETER													# PARAMETER_fun
