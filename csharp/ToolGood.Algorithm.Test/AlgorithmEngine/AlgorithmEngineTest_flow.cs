@@ -235,7 +235,7 @@ namespace ToolGood.Algorithm.Test
         public void andor_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("1=1 && 2==2 and 3=3", false);
+            var t = engine.TryEvaluate("1=1 && 2==2 && 3=3", false);
             Assert.AreEqual(true, t);
 
             t = engine.TryEvaluate("1=1 && 2!=2", true);
@@ -247,17 +247,17 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("1=1 || 2!=2", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("1=1 and 2==2", false);
-            Assert.AreEqual(true, t);
+            //t = engine.TryEvaluate("1=1 and 2==2", false);
+            //Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("1=1 and 2!=2", true);
-            Assert.AreEqual(false, t);
+            //t = engine.TryEvaluate("1=1 and 2!=2", true);
+            //Assert.AreEqual(false, t);
 
-            t = engine.TryEvaluate("1=1 and 2!=2", true);
-            Assert.AreEqual(false, t);
+            //t = engine.TryEvaluate("1=1 and 2!=2", true);
+            //Assert.AreEqual(false, t);
 
-            t = engine.TryEvaluate("1=1 or 2!=2", false);
-            Assert.AreEqual(true, t);
+            //t = engine.TryEvaluate("1=1 or 2!=2", false);
+            //Assert.AreEqual(true, t);
         }
     }
 }

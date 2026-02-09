@@ -77,7 +77,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			var t = context.op.Text;
-			if(CharUtil.Equals(t, "&&", "AND")) {
+			if(CharUtil.Equals(t, "&&")) {
 				return new Function_AND(funcs);
 			}
 			return new Function_OR(funcs);

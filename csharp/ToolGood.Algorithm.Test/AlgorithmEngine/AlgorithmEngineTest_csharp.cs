@@ -198,7 +198,10 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(dt, "1,2,5,6");
             dt = engine.TryEvaluate("Join(',',1,2,5,6,split('7,8,9',','))", null);
             Assert.AreEqual(dt, "1,2,5,6,7,8,9");
-        }
+
+			dt = engine.TryEvaluate("Join(',',1,2,5,6，'tt')", null);
+			Assert.AreEqual(dt, "1,2,5,6,tt");
+		}
 
         [Test]
         public void Substring()
