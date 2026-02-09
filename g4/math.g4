@@ -112,8 +112,8 @@ expr:
 	| expr op = ('+' | '-' | '&') expr							# AddSub_fun
 	| expr op = ('>' | '>=' | '<' | '<=') expr					# Judge_fun
 	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	# Judge_fun
-	| expr op = ('&&' | AND) expr								# AndOr_fun
-	| expr op = ('||' | OR) expr								# AndOr_fun
+	| expr op = '&&' expr										# AndOr_fun
+	| expr op = '||' expr										# AndOr_fun
 	| expr '?' expr ':' expr									# IF_fun
 	// 运算符优先级 结束
 	| ARRAY '(' expr (',' expr)* ')'						# Array_fun
