@@ -22,7 +22,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 		var o = engine.Evaluate();
 		a=o.NumberValue;
 	}
-	var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// Support(支持) && || and or 
+	var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && ||  
 	var c = engine.TryEvaluate("2+3", 0);
 	var q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
 	var e = engine.TryEvaluate("count(array(1, 2, 3, 4))", 0);//{} represents array, return: 4 {}代表数组, 返回:4
