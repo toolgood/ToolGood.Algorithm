@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
 	internal class Function_RADIANS : Function_1
     {
-        public Function_RADIANS(FunctionBase func1) : base(func1)
+        public Function_RADIANS(FunctionBase[] func1) : base(func1)
         {
         }
 

@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
 	internal class Function_TEXTTOBASE64URL : Function_1
 	{
-		public Function_TEXTTOBASE64URL(FunctionBase func1) : base(func1)
+		public Function_TEXTTOBASE64URL(FunctionBase[] func1) : base(func1)
 		{
 		}
 

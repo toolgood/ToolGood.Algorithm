@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_CLEAN : Function_1
 	{
-		public Function_CLEAN(FunctionBase func1) : base(func1)
+		public Function_CLEAN(FunctionBase[] func1) : base(func1)
 		{
 		}
 

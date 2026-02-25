@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_GAMMALN : Function_1
     {
-        public Function_GAMMALN(FunctionBase func1) : base(func1)
+        public Function_GAMMALN(FunctionBase[] func1) : base(func1)
         {
         }
 

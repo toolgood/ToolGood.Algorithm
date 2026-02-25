@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
 	internal class Function_HTMLENCODE : Function_1
 	{
-		public Function_HTMLENCODE(FunctionBase func1) : base(func1)
+		public Function_HTMLENCODE(FunctionBase[] func1) : base(func1)
 		{
 		}
 

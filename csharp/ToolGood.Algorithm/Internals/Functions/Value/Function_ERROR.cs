@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 	internal class Function_ERROR : Function_1
 	{
-		public Function_ERROR(FunctionBase func1) : base(func1)
+		public Function_ERROR(FunctionBase[] func1) : base(func1)
 		{
 		}
 

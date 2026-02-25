@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
 	internal class Function_HEX2DEC : Function_1
     {
-        public Function_HEX2DEC(FunctionBase func1) : base(func1)
+        public Function_HEX2DEC(FunctionBase[] func1) : base(func1)
         {
         }
 

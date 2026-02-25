@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
 	internal class Function_COSH : Function_1
     {
-        public Function_COSH(FunctionBase func1) : base(func1)
+        public Function_COSH(FunctionBase[] func1) : base(func1)
         {
         }
 

@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_LEN : Function_1
 	{
-		public Function_LEN(FunctionBase func1) : base(func1)
+		public Function_LEN(FunctionBase[] func1) : base(func1)
 		{
 		}
 

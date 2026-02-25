@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
 	internal class Function_ISNONTEXT : Function_1
 	{
-		public Function_ISNONTEXT(FunctionBase func1) : base(func1)
+		public Function_ISNONTEXT(FunctionBase[] func1) : base(func1)
 		{
 		}
 

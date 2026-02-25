@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
 	internal class Function_SHA1 : Function_1
 	{
-		public Function_SHA1(FunctionBase func1) : base(func1)
+		public Function_SHA1(FunctionBase[] func1) : base(func1)
 		{
 		}
 

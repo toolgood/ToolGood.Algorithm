@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
 	internal class Function_TAN : Function_1
     {
-        public Function_TAN(FunctionBase func1) : base(func1)
+        public Function_TAN(FunctionBase[] func1) : base(func1)
         {
         }
 

@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 {
 	internal class Function_JIS : Function_1
 	{
-		public Function_JIS(FunctionBase func1) : base(func1)
+		public Function_JIS(FunctionBase[] func1) : base(func1)
 		{
 		}
 

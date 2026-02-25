@@ -18,12 +18,12 @@ expr:
 	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	# Judge_fun
 	| expr op = '&&'  expr										# AndOr_fun
 	| expr op = '||'  expr										# AndOr_fun
-	| expr '?' expr ':' expr									# DiyFunction_fun
+	| expr '?' expr ':' expr									# IF_fun
 	| f=(T|UNIT|PARAMETER) '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
 	| '[' expr (',' expr)* ','* ']'								# Array_fun
 	| PARAMETER													# PARAMETER_fun
-	| num unit=(UNIT | T)										# NUM_fun
+	| num unit=(UNIT | T)?										# NUM_fun
 	| STRING													# STRING_fun
 	| NULL														# NULL_fun
 	;

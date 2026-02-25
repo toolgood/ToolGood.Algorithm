@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_FISHER : Function_1
     {
-        public Function_FISHER(FunctionBase func1) : base(func1)
+        public Function_FISHER(FunctionBase[] func1) : base(func1)
         {
         }
 

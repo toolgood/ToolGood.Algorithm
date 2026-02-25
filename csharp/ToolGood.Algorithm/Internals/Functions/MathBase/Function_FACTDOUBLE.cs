@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal class Function_FACTDOUBLE : Function_1
     {
-        public Function_FACTDOUBLE(FunctionBase func1) : base(func1)
+        public Function_FACTDOUBLE(FunctionBase[] func1) : base(func1)
         {
         }
 

@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
 	internal class Function_ISTEXT : Function_1
     {
-        public Function_ISTEXT(FunctionBase func1) : base(func1)
+        public Function_ISTEXT(FunctionBase[] func1) : base(func1)
         {
         }
 

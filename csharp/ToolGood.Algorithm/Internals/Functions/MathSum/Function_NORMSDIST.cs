@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal class Function_NORMSDIST : Function_1
     {
-        public Function_NORMSDIST(FunctionBase func1) : base(func1)
+        public Function_NORMSDIST(FunctionBase[] func1) : base(func1)
         {
         }
 

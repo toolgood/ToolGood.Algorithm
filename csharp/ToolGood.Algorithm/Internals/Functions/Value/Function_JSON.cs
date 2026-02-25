@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 	internal class Function_JSON : Function_1
 	{
-		public Function_JSON(FunctionBase func1) : base(func1)
+		public Function_JSON(FunctionBase[] func1) : base(func1)
 		{
 		}
 

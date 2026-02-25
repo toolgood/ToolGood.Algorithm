@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal class Function_EVEN : Function_1
     {
-        public Function_EVEN(FunctionBase func1) : base(func1)
+        public Function_EVEN(FunctionBase[] func1) : base(func1)
         {
         }
 

@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
 	internal class Function_ISNULLOREMPTY : Function_1
     {
-        public Function_ISNULLOREMPTY(FunctionBase func1) : base(func1)
+        public Function_ISNULLOREMPTY(FunctionBase[] func1) : base(func1)
         {
         }
 

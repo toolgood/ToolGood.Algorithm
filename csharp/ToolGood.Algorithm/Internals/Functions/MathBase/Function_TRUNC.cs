@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal class Function_TRUNC : Function_1
     {
-        public Function_TRUNC(FunctionBase func1) : base(func1)
+        public Function_TRUNC(FunctionBase[] func1) : base(func1)
         {
         }
 

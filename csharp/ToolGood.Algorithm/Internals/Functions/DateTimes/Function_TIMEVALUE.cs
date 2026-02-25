@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal class Function_TIMEVALUE : Function_1
     {
-        public Function_TIMEVALUE(FunctionBase func1) : base(func1)
+        public Function_TIMEVALUE(FunctionBase[] func1) : base(func1)
         {
         }
 

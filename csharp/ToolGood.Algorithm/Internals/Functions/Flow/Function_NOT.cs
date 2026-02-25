@@ -8,8 +8,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         public Function_NOT(FunctionBase func1) : base(func1)
         {
         }
+		public Function_NOT(FunctionBase[] func1) : base(func1)
+		{
+		}
 
-        public override string Name => "Not";
+		public override string Name => "Not";
 
         public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
