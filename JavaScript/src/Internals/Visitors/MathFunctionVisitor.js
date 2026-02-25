@@ -595,7 +595,7 @@ class MathFunctionVisitor extends mathVisitor {
 
     visitPARAMETER_fun(context) {
         let node = context.PARAMETER();
-        let t = CharUtil.standardString(node.text);
+        let t = CharUtil.standardString(node.getText());
         if (t === "E") {
             return new Function_Value(Operand.Create(Math.E), "E");
         } else if (t === "PI") {
@@ -607,7 +607,7 @@ class MathFunctionVisitor extends mathVisitor {
         } else if (t === "ALGORITHMVERSION" || t === "ENGINEVERSION") {
             return new Function_Value(Operand.Version, t);
         }
-        return new Function_PARAMETER(node.text);
+        return new Function_PARAMETER(node.getText());
     }
 
     visitPercentage_fun(context) {
@@ -677,7 +677,7 @@ class MathFunctionVisitor extends mathVisitor {
     }
 
     visitNUM_fun(context) {
-        let numText = context.num().text;
+        let numText = context.num().getText();
         let d = parseFloat(numText);
         if (context.unit == null) {
             return new Function_Value(Operand.Create(d), numText);
