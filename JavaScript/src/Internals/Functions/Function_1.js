@@ -7,7 +7,11 @@ export class Function_1 extends FunctionBase {
 
     constructor(a) {
         super();
-        this.a = a;
+        if (Array.isArray(a)) {
+            this.a=a[0];
+        } else{
+            this.a = a;
+        }
     }
     
     /**
