@@ -141,6 +141,24 @@ namespace Antlr4Helper.JavaScriptHelper
 
 
 
+			filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathLexer.js");
+			text = File.ReadAllText(filePath);
+			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
+
+
+			text = text.Replace("static grammarFileName = \"math.g4\";", "static grammarFileName = \"\";");
+			text = Regex.Replace(text, @"static literalNames = \[[\s\S]+?\];", "static literalNames =[];");
+			text = Regex.Replace(text, @"static symbolicNames = \[[\s\S]+?\];", "static symbolicNames =[];");
+			text = Regex.Replace(text, @"static ruleNames = \[[\s\S]+?\];", "static ruleNames =[];");
+			text = Regex.Replace(text, @"(mathLexer\..*) = (\d+);", "");
+			text = text.Replace("mathLexer.EOF = antlr4.Token.EOF;", "");
+			File.WriteAllText("mathLexer.js", text);
+
+
+			filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathVisitor.js");
+			text = File.ReadAllText(filePath);
+			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
+			File.WriteAllText("mathVisitor.js", text);
 
 		}
 	}
