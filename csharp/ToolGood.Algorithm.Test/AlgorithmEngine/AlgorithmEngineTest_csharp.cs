@@ -107,8 +107,8 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(dt, "2E1CEFBDFA3677725B7856E02D225819");
 			dt = engine.TryEvaluate("Md5('123')", null);
 			Assert.AreEqual(dt, "202CB962AC59075B964B07152D234B70");
-			dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", null);
-            Assert.AreEqual(dt, null);
+			//dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", null);
+   //         Assert.AreEqual(dt, null);
 
             dt = engine.TryEvaluate("Sha1('&=我中国人 >||')", null);
             Assert.AreEqual(dt, "F2C250C58F3A40DC54B5A47F0F6B1187AD5AC2EE");

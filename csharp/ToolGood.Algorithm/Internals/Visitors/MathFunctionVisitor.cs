@@ -433,13 +433,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			if(context.PARAMETER() != null) {
-				var op = new Function_PARAMETER(context.PARAMETER().GetText());
-				return new Function_GetJsonValue(funcs[0], op);
-			}
 			if(context.p != null) {
 				string keyName = context.p.Text.Trim(new char[] { '"', '\'', ' ', '\t', '\r', '\n', '\f' });
-				var op = new Function_PARAMETER(keyName);
+				var op = new Function_Value(Operand.Create(keyName), keyName);
+				return new Function_GetJsonValue(funcs[0], op);
+			}
+			if(context.PARAMETER() != null) {
+				var op = new Function_PARAMETER(context.PARAMETER().GetText());
 				return new Function_GetJsonValue(funcs[0], op);
 			}
 			return new Function_GetJsonValue(funcs[0], funcs[1]);
