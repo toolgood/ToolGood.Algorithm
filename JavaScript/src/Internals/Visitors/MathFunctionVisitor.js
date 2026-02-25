@@ -1,6 +1,3 @@
-/**
- * MathFunctionvisitor - 数学函数访问者
- */
 import mathVisitor from '../../math/mathVisitor.js';
 import { Function_Mul } from '../Functions/Operator/Function_Mul.js';
 import { Function_Div } from '../Functions/Operator/Function_Div.js';
@@ -78,6 +75,7 @@ import { Function_POWER } from '../Functions/MathBase/Function_POWER.js';
 import { Function_EXP } from '../Functions/MathBase/Function_EXP.js';
 import { Function_LN } from '../Functions/MathBase/Function_LN.js';
 import { Function_LOG } from '../Functions/MathBase/Function_LOG.js';
+import { Function_LOG10 } from '../Functions/MathBase/Function_LOG10.js';
 import { Function_MULTINOMIAL } from '../Functions/MathBase/Function_MULTINOMIAL.js';
 import { Function_PRODUCT } from '../Functions/MathBase/Function_PRODUCT.js';
 import { Function_SQRTPI } from '../Functions/MathBase/Function_SQRTPI.js';
@@ -239,8 +237,268 @@ import { Function_ERROR } from '../Functions/Value/Function_ERROR.js';
 import { CharUtil } from './CharUtil.js';
 import { Operand } from '../../Operand.js';
 
-class MathFunctionVisitor extends mathVisitor  {
-    vN(context){
+const funcDict = {
+    "IF": (args) => new Function_IF(args),
+    "IFERROR": (args) => new Function_IFERROR(args),
+    "ISNUMBER": (args) => new Function_ISNUMBER(args),
+    "ISTEXT": (args) => new Function_ISTEXT(args),
+    "ISERROR": (args) => new Function_ISERROR(args),
+    "ISNONTEXT": (args) => new Function_ISNONTEXT(args),
+    "ISLOGICAL": (args) => new Function_ISLOGICAL(args),
+    "ISEVEN": (args) => new Function_ISEVEN(args),
+    "ISODD": (args) => new Function_ISODD(args),
+    "ISNULL": (args) => new Function_ISNULL(args),
+    "ISNULLORERROR": (args) => new Function_ISNULLORERROR(args),
+    "AND": (args) => new Function_AND(args),
+    "OR": (args) => new Function_OR(args),
+    "NOT": (args) => new Function_NOT(args),
+    "DEC2BIN": (args) => new Function_DEC2BIN(args),
+    "DEC2HEX": (args) => new Function_DEC2HEX(args),
+    "DEC2OCT": (args) => new Function_DEC2OCT(args),
+    "HEX2BIN": (args) => new Function_HEX2BIN(args),
+    "HEX2DEC": (args) => new Function_HEX2DEC(args),
+    "HEX2OCT": (args) => new Function_HEX2OCT(args),
+    "OCT2BIN": (args) => new Function_OCT2BIN(args),
+    "OCT2DEC": (args) => new Function_OCT2DEC(args),
+    "OCT2HEX": (args) => new Function_OCT2HEX(args),
+    "BIN2OCT": (args) => new Function_BIN2OCT(args),
+    "BIN2DEC": (args) => new Function_BIN2DEC(args),
+    "BIN2HEX": (args) => new Function_BIN2HEX(args),
+    "ABS": (args) => new Function_ABS(args),
+    "QUOTIENT": (args) => new Function_QUOTIENT(args),
+    "MOD": (args) => new Function_Mod(args),
+    "SIGN": (args) => new Function_SIGN(args),
+    "SQRT": (args) => new Function_SQRT(args),
+    "TRUNC": (args) => new Function_TRUNC(args),
+    "INT": (args) => new Function_TRUNC(args),
+    "GCD": (args) => new Function_GCD(args),
+    "LCM": (args) => new Function_LCM(args),
+    "COMBIN": (args) => new Function_COMBIN(args),
+    "PERMUT": (args) => new Function_PERMUT(args),
+    "DEGREES": (args) => new Function_DEGREES(args),
+    "RADIANS": (args) => new Function_RADIANS(args),
+    "COS": (args) => new Function_COS(args),
+    "COSH": (args) => new Function_COSH(args),
+    "SIN": (args) => new Function_SIN(args),
+    "SINH": (args) => new Function_SINH(args),
+    "TAN": (args) => new Function_TAN(args),
+    "TANH": (args) => new Function_TANH(args),
+    "ACOS": (args) => new Function_ACOS(args),
+    "ACOSH": (args) => new Function_ACOSH(args),
+    "ASIN": (args) => new Function_ASIN(args),
+    "ASINH": (args) => new Function_ASINH(args),
+    "ATAN": (args) => new Function_ATAN(args),
+    "ATANH": (args) => new Function_ATANH(args),
+    "ATAN2": (args) => new Function_ATAN2(args),
+    "ROUND": (args) => new Function_ROUND(args),
+    "ROUNDDOWN": (args) => new Function_ROUNDDOWN(args),
+    "ROUNDUP": (args) => new Function_ROUNDUP(args),
+    "CEILING": (args) => new Function_CEILING(args),
+    "FLOOR": (args) => new Function_FLOOR(args),
+    "EVEN": (args) => new Function_EVEN(args),
+    "ODD": (args) => new Function_ODD(args),
+    "MROUND": (args) => new Function_MROUND(args),
+    "RANDBETWEEN": (args) => new Function_RANDBETWEEN(args),
+    "FACT": (args) => new Function_FACT(args),
+    "FACTDOUBLE": (args) => new Function_FACTDOUBLE(args),
+    "POWER": (args) => new Function_POWER(args),
+    "EXP": (args) => new Function_EXP(args),
+    "LN": (args) => new Function_LN(args),
+    "LOG": (args) => new Function_LOG(args),
+    "LOG10": (args) => new Function_LOG10(args),
+    "MULTINOMIAL": (args) => new Function_MULTINOMIAL(args),
+    "PRODUCT": (args) => new Function_PRODUCT(args),
+    "SQRTPI": (args) => new Function_SQRTPI(args),
+    "SUMSQ": (args) => new Function_SUMSQ(args),
+    "ASC": (args) => new Function_ASC(args),
+    "JIS": (args) => new Function_JIS(args),
+    "WIDECHAR": (args) => new Function_JIS(args),
+    "CHAR": (args) => new Function_CHAR(args),
+    "CLEAN": (args) => new Function_CLEAN(args),
+    "CODE": (args) => new Function_CODE(args),
+    "CONCATENATE": (args) => new Function_CONCATENATE(args),
+    "EXACT": (args) => new Function_EXACT(args),
+    "FIND": (args) => new Function_FIND(args),
+    "FIXED": (args) => new Function_FIXED(args),
+    "LEFT": (args) => new Function_LEFT(args),
+    "LEN": (args) => new Function_LEN(args),
+    "LOWER": (args) => new Function_LOWER(args),
+    "TOLOWER": (args) => new Function_LOWER(args),
+    "MID": (args) => new Function_MID(args),
+    "PROPER": (args) => new Function_PROPER(args),
+    "REPLACE": (args) => new Function_REPLACE(args),
+    "REPT": (args) => new Function_REPT(args),
+    "RIGHT": (args) => new Function_RIGHT(args),
+    "RMB": (args) => new Function_RMB(args),
+    "SEARCH": (args) => new Function_SEARCH(args),
+    "SUBSTITUTE": (args) => new Function_SUBSTITUTE(args),
+    "T": (args) => new Function_T(args),
+    "TEXT": (args) => new Function_TEXT(args),
+    "TRIM": (args) => new Function_TRIM(args),
+    "UPPER": (args) => new Function_UPPER(args),
+    "TOUPPER": (args) => new Function_UPPER(args),
+    "VALUE": (args) => new Function_VALUE(args),
+    "DATEVALUE": (args) => new Function_DATEVALUE(args),
+    "TIMEVALUE": (args) => new Function_TIMEVALUE(args),
+    "DATE": (args) => new Function_DATE(args),
+    "TIME": (args) => new Function_TIME(args),
+    "YEAR": (args) => new Function_YEAR(args),
+    "MONTH": (args) => new Function_MONTH(args),
+    "DAY": (args) => new Function_DAY(args),
+    "HOUR": (args) => new Function_HOUR(args),
+    "MINUTE": (args) => new Function_MINUTE(args),
+    "SECOND": (args) => new Function_SECOND(args),
+    "WEEKDAY": (args) => new Function_WEEKDAY(args),
+    "DATEDIF": (args) => new Function_DATEDIF(args),
+    "DAYS360": (args) => new Function_DAYS360(args),
+    "EDATE": (args) => new Function_EDATE(args),
+    "EOMONTH": (args) => new Function_EOMONTH(args),
+    "NETWORKDAYS": (args) => new Function_NETWORKDAYS(args),
+    "WORKDAY": (args) => new Function_WORKDAY(args),
+    "WEEKNUM": (args) => new Function_WEEKNUM(args),
+    "MAX": (args) => new Function_MAX(args),
+    "MEDIAN": (args) => new Function_MEDIAN(args),
+    "MIN": (args) => new Function_MIN(args),
+    "QUARTILE": (args) => new Function_QUARTILE(args),
+    "MODE": (args) => new Function_MODE(args),
+    "LARGE": (args) => new Function_LARGE(args),
+    "SMALL": (args) => new Function_SMALL(args),
+    "PERCENTILE": (args) => new Function_PERCENTILE(args),
+    "PERCENTILE.INC": (args) => new Function_PERCENTILE(args),
+    "PERCENTRANK": (args) => new Function_PERCENTRANK(args),
+    "PERCENTRANK.INC": (args) => new Function_PERCENTRANK(args),
+    "AVERAGE": (args) => new Function_AVERAGE(args),
+    "AVERAGEIF": (args) => new Function_AVERAGEIF(args),
+    "GEOMEAN": (args) => new Function_GEOMEAN(args),
+    "HARMEAN": (args) => new Function_HARMEAN(args),
+    "COUNT": (args) => new Function_COUNT(args),
+    "COUNTIF": (args) => new Function_COUNTIF(args),
+    "SUM": (args) => new Function_SUM(args),
+    "SUMIF": (args) => new Function_SUMIF(args),
+    "AVEDEV": (args) => new Function_AVEDEV(args),
+    "STDEV": (args) => new Function_STDEV(args),
+    "STDEV.S": (args) => new Function_STDEV(args),
+    "STDEVP": (args) => new Function_STDEVP(args),
+    "STDEV.P": (args) => new Function_STDEVP(args),
+    "COVAR": (args) => new Function_COVAR(args),
+    "COVARIANCE.P": (args) => new Function_COVAR(args),
+    "COVARIANCE.S": (args) => new Function_COVARIANCES(args),
+    "DEVSQ": (args) => new Function_DEVSQ(args),
+    "VAR": (args) => new Function_VAR(args),
+    "VAR.S": (args) => new Function_VAR(args),
+    "VARP": (args) => new Function_VARP(args),
+    "VAR.P": (args) => new Function_VARP(args),
+    "NORMDIST": (args) => new Function_NORMDIST(args),
+    "NORM.DIST": (args) => new Function_NORMDIST(args),
+    "NORMINV": (args) => new Function_NORMINV(args),
+    "NORM.INV": (args) => new Function_NORMINV(args),
+    "NORMSDIST": (args) => new Function_NORMSDIST(args),
+    "NORM.S.DIST": (args) => new Function_NORMSDIST(args),
+    "NORMSINV": (args) => new Function_NORMSINV(args),
+    "NORM.S.INV": (args) => new Function_NORMSINV(args),
+    "BETADIST": (args) => new Function_BETADIST(args),
+    "BETA.DIST": (args) => new Function_BETADIST(args),
+    "BETAINV": (args) => new Function_BETAINV(args),
+    "BETA.INV": (args) => new Function_BETAINV(args),
+    "BINOMDIST": (args) => new Function_BINOMDIST(args),
+    "BINOM.DIST": (args) => new Function_BINOMDIST(args),
+    "EXPONDIST": (args) => new Function_EXPONDIST(args),
+    "EXPON.DIST": (args) => new Function_EXPONDIST(args),
+    "FDIST": (args) => new Function_FDIST(args),
+    "F.DIST": (args) => new Function_FDIST(args),
+    "FINV": (args) => new Function_FINV(args),
+    "F.INV": (args) => new Function_FINV(args),
+    "FISHER": (args) => new Function_FISHER(args),
+    "FISHERINV": (args) => new Function_FISHERINV(args),
+    "GAMMADIST": (args) => new Function_GAMMADIST(args),
+    "GAMMA.DIST": (args) => new Function_GAMMADIST(args),
+    "GAMMAINV": (args) => new Function_GAMMAINV(args),
+    "GAMMA.INV": (args) => new Function_GAMMAINV(args),
+    "GAMMALN": (args) => new Function_GAMMALN(args),
+    "GAMMALN.PRECISE": (args) => new Function_GAMMALN(args),
+    "HYPGEOMDIST": (args) => new Function_HYPGEOMDIST(args),
+    "HYPGEOM.DIST": (args) => new Function_HYPGEOMDIST(args),
+    "LOGINV": (args) => new Function_LOGINV(args),
+    "LOGNORM.INV": (args) => new Function_LOGINV(args),
+    "LOGNORMDIST": (args) => new Function_LOGNORMDIST(args),
+    "LOGNORM.DIST": (args) => new Function_LOGNORMDIST(args),
+    "NEGBINOMDIST": (args) => new Function_NEGBINOMDIST(args),
+    "NEGBINOM.DIST": (args) => new Function_NEGBINOMDIST(args),
+    "POISSON": (args) => new Function_POISSON(args),
+    "POISSON.DIST": (args) => new Function_POISSON(args),
+    "TDIST": (args) => new Function_TDIST(args),
+    "T.DIST": (args) => new Function_TDIST(args),
+    "TINV": (args) => new Function_TINV(args),
+    "T.INV": (args) => new Function_TINV(args),
+    "WEIBULL": (args) => new Function_WEIBULL(args),
+    "URLENCODE": (args) => new Function_URLENCODE(args),
+    "URLDECODE": (args) => new Function_URLDECODE(args),
+    "HTMLENCODE": (args) => new Function_HTMLENCODE(args),
+    "HTMLDECODE": (args) => new Function_HTMLDECODE(args),
+    "BASE64TOTEXT": (args) => new Function_BASE64TOTEXT(args),
+    "BASE64URLTOTEXT": (args) => new Function_BASE64URLTOTEXT(args),
+    "TEXTTOBASE64": (args) => new Function_TEXTTOBASE64(args),
+    "TEXTTOBASE64URL": (args) => new Function_TEXTTOBASE64URL(args),
+    "REGEX": (args) => new Function_REGEX(args),
+    "REGEXREPALCE": (args) => new Function_REGEXREPALCE(args),
+    "ISREGEX": (args) => new Function_ISREGEX(args),
+    "ISMATCH": (args) => new Function_ISREGEX(args),
+    "MD5": (args) => new Function_MD5(args),
+    "SHA1": (args) => new Function_SHA1(args),
+    "SHA256": (args) => new Function_SHA256(args),
+    "SHA512": (args) => new Function_SHA512(args),
+    "HMACMD5": (args) => new Function_HMACMD5(args),
+    "HMACSHA1": (args) => new Function_HMACSHA1(args),
+    "HMACSHA256": (args) => new Function_HMACSHA256(args),
+    "HMACSHA512": (args) => new Function_HMACSHA512(args),
+    "TRIMSTART": (args) => new Function_TRIMSTART(args),
+    "LTRIM": (args) => new Function_TRIMSTART(args),
+    "TRIMEND": (args) => new Function_TRIMEND(args),
+    "RTRIM": (args) => new Function_TRIMEND(args),
+    "INDEXOF": (args) => new Function_INDEXOF(args),
+    "LASTINDEXOF": (args) => new Function_LASTINDEXOF(args),
+    "SPLIT": (args) => new Function_SPLIT(args),
+    "JOIN": (args) => new Function_JOIN(args),
+    "SUBSTRING": (args) => new Function_SUBSTRING(args),
+    "STARTSWITH": (args) => new Function_STARTSWITH(args),
+    "ENDSWITH": (args) => new Function_ENDSWITH(args),
+    "ISNULLOREMPTY": (args) => new Function_ISNULLOREMPTY(args),
+    "ISNULLORWHITESPACE": (args) => new Function_ISNULLORWHITESPACE(args),
+    "REMOVESTART": (args) => new Function_REMOVESTART(args),
+    "REMOVEEND": (args) => new Function_REMOVEEND(args),
+    "JSON": (args) => new Function_JSON(args),
+    "LOOKCEILING": (args) => new Function_LOOKCEILING(args),
+    "LOOKFLOOR": (args) => new Function_LOOKFLOOR(args),
+    "ARRAY": (args) => new Function_Array(args),
+    "ADDYEARS": (args) => new Function_ADDYEARS(args),
+    "ADDMONTHS": (args) => new Function_ADDMONTHS(args),
+    "ADDDAYS": (args) => new Function_ADDDAYS(args),
+    "ADDHOURS": (args) => new Function_ADDHOURS(args),
+    "ADDMINUTES": (args) => new Function_ADDMINUTES(args),
+    "ADDSECONDS": (args) => new Function_ADDSECONDS(args),
+    "TIMESTAMP": (args) => new Function_TIMESTAMP(args),
+    "HAS": (args) => new Function_HAS(args),
+    "HASKEY": (args) => new Function_HAS(args),
+    "CONTAINS": (args) => new Function_HAS(args),
+    "CONTAINSKEY": (args) => new Function_HAS(args),
+    "HASVALUE": (args) => new Function_HASVALUE(args),
+    "CONTAINSVALUE": (args) => new Function_HASVALUE(args),
+    "PARAM": (args) => new Function_PARAM(args),
+    "PARAMETER": (args) => new Function_PARAM(args),
+    "GETPARAMETER": (args) => new Function_PARAM(args),
+    "ERROR": (args) => new Function_ERROR(args),
+};
+
+function findFunction(funcName) {
+    return funcDict[funcName];
+}
+
+class MathFunctionVisitor {
+    static getFuncDict() {
+        return funcDict;
+    }
+
+    vN(context) {
         let exprs = context.expr();
         let args = new Array(exprs.length);
         for (let i = 0; i < exprs.length; i++) {
@@ -248,1575 +506,139 @@ class MathFunctionVisitor extends mathVisitor  {
         }
         return args;
     }
-    v1(context){
+
+    v1(context) {
         return context.expr().accept(this);
     }
 
-
-    /**
-     * 访问程序节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitProg(context) {
         return this.v1(context);
     }
 
-    /**
-     * 访问乘除函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitMulDiv_fun(context) {
+        let funcs = this.vN(context);
         let t = context.op.text;
         if (CharUtil.equals(t, '*')) {
-            return new Function_Mul(this.vN(context));
+            return new Function_Mul(funcs);
         } else if (CharUtil.equals(t, '/')) {
-            return new Function_Div(this.vN(context));
+            return new Function_Div(funcs);
         }
-        return new Function_Mod(this.vN(context));
+        return new Function_Mod(funcs);
     }
 
-    /**
-     * 访问加减函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitAddSub_fun(context) {
+        let funcs = this.vN(context);
         let t = context.op.text;
         if (CharUtil.equals(t, '&')) {
-            return new Function_Connect(this.vN(context));
+            return new Function_Connect(funcs);
         } else if (CharUtil.equals(t, '+')) {
-            return new Function_Add(this.vN(context));
+            return new Function_Add(funcs);
         }
-        return new Function_Sub(this.vN(context));
+        return new Function_Sub(funcs);
     }
 
-    /**
-     * 访问判断函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitJudge_fun(context) {
+        let funcs = this.vN(context);
         let Type = context.op.text;
         if (CharUtil.equals4(Type, "=", "==", "===")) {
-            return new Function_EQ(this.vN(context));
+            return new Function_EQ(funcs);
         } else if (CharUtil.equals(Type, "<")) {
-            return new Function_LT(this.vN(context));
+            return new Function_LT(funcs);
         } else if (CharUtil.equals(Type, "<=")) {
-            return new Function_LE(this.vN(context));
+            return new Function_LE(funcs);
         } else if (CharUtil.equals(Type, ">")) {
-            return new Function_GT(this.vN(context));
+            return new Function_GT(funcs);
         } else if (CharUtil.equals(Type, ">=")) {
-            return new Function_GE(this.vN(context));
+            return new Function_GE(funcs);
         }
-        return new Function_NE(this.vN(context));
+        return new Function_NE(funcs);
     }
 
-    /**
-     * 访问与或函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitAndOr_fun(context) {
+        let funcs = this.vN(context);
         let t = context.op.text;
-        if (CharUtil.equals3(t, "&&", "AND")) {
-            return new Function_AND(this.vN(context));
+        if (CharUtil.equals(t, "&&")) {
+            return new Function_AND(funcs);
         }
-        return new Function_OR(this.vN(context));
+        return new Function_OR(funcs);
     }
 
-    /**
-     * 访问IF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitIF_fun(context) {
-            return new Function_IF(this.vN(context));
+    visitDiyFunction_fun(context) {
+        let t = CharUtil.standardString(context.f.text);
+        if (t === "E") {
+            return new Function_Value(Operand.Create(Math.E), "E");
+        } else if (t === "PI") {
+            return new Function_Value(Operand.Create(Math.PI), "PI");
+        } else if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
+            return new Function_Value(Operand.True, t);
+        } else if (t === "FALSE" || t === "NO" || t === "不是" || t === "否" || t === "没有" || t === "无") {
+            return new Function_Value(Operand.False, t);
+        } else if (t === "ALGORITHMVERSION" || t === "ENGINEVERSION") {
+            return new Function_Value(Operand.Version, t);
+        } else if (t === "RAND") {
+            return new Function_RAND();
+        } else if (t === "GUID") {
+            return new Function_GUID();
+        } else if (t === "NOW") {
+            return new Function_NOW();
+        } else if (t === "TODAY") {
+            return new Function_TODAY();
+        }
+
+        let funcs = this.vN(context);
+        let func = findFunction(t);
+        if (func) {
+            return func(funcs);
+        }
+        return new Function_DiyFunction(t, funcs);
     }
 
-    /**
-     * 访问IFERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitIFERROR_fun(context) {
-        return new Function_IFERROR(this.vN(context));
+    visitPARAMETER_fun(context) {
+        let node = context.PARAMETER();
+        let t = CharUtil.standardString(node.text);
+        if (t === "E") {
+            return new Function_Value(Operand.Create(Math.E), "E");
+        } else if (t === "PI") {
+            return new Function_Value(Operand.Create(Math.PI), "PI");
+        } else if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
+            return new Function_Value(Operand.True, t);
+        } else if (t === "FALSE" || t === "NO" || t === "不是" || t === "否" || t === "没有" || t === "无") {
+            return new Function_Value(Operand.False, t);
+        } else if (t === "ALGORITHMVERSION" || t === "ENGINEVERSION") {
+            return new Function_Value(Operand.Version, t);
+        }
+        return new Function_PARAMETER(node.text);
     }
 
-    /**
-     * 访问ISNUMBER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNUMBER_fun(context) {
-        
-        return new Function_ISNUMBER(this.v1(context));
-    }
-
-    /**
-     * 访问ISTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISTEXT_fun(context) {
-        
-        return new Function_ISTEXT(this.v1(context));
-    }
-
-    /**
-     * 访问ISERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISERROR_fun(context) {
-        return new Function_ISERROR(this.vN(context));
-    }
-
-    /**
-     * 访问ISNULL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULL_fun(context) {
-        return new Function_ISNULL(this.vN(context));
-    }
-
-    /**
-     * 访问ISNULLORERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULLORERROR_fun(context) {
-        return new Function_ISNULLORERROR(this.vN(context));
-    }
-
-    /**
-     * 访问ISEVEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISEVEN_fun(context) {
-        
-        return new Function_ISEVEN(this.v1(context));
-    }
-
-    /**
-     * 访问ISLOGICAL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISLOGICAL_fun(context) {
-        
-        return new Function_ISLOGICAL(this.v1(context));
-    }
-
-    /**
-     * 访问ISODD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISODD_fun(context) {
-        
-        return new Function_ISODD(this.v1(context));
-    }
-
-    /**
-     * 访问ISNONTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNONTEXT_fun(context) {
-        
-        return new Function_ISNONTEXT(this.v1(context));
-    }
-
-    /**
-     * 访问AND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAND_fun(context) {
-        //let args =this.vN(context);
-        return new Function_AND_N(this.vN(context));
-    }
-
-    /**
-     * 访问OR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOR_fun(context) {
-        //let args =this.vN(context);
-        return new Function_OR_N(this.vN(context));
-    }
-
-    /**
-     * 访问NOT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNOT_fun(context) {
-        
-        return new Function_NOT(this.v1(context));
-    }
-
-    /**
-     * 访问TRUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRUE_fun(context) {
-        return new Function_Value(Operand.True);
-    }
-
-    /**
-     * 访问FALSE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFALSE_fun(context) {
-        return new Function_Value(Operand.False);
-    }
-
-    /**
-     * 访问E函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitE_fun(context) {
-        return new Function_Value(Operand.Create(Math.E), "E");
-    }
-
-    /**
-     * 访问PI函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPI_fun(context) {
-        return new Function_Value(Operand.Create(Math.PI), "PI");
-    }
-
-    /**
-     * 访问ABS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitABS_fun(context) {
-        return new Function_ABS(this.v1(context));
-    }
-
-    /**
-     * 访问QUOTIENT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitQUOTIENT_fun(context) {
-        return new Function_QUOTIENT(this.vN(context));
-    }
-
-    /**
-     * 访问MOD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMOD_fun(context) {
-        return new Function_Mod(this.vN(context));
-    }
-
-    /**
-     * 访问SIGN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSIGN_fun(context) {
-        return new Function_SIGN(this.v1(context));
-    }
-
-    /**
-     * 访问SQRT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSQRT_fun(context) {
-        return new Function_SQRT(this.v1(context));
-    }
-
-    /**
-     * 访问TRUNC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRUNC_fun(context) {
-        return new Function_TRUNC(this.v1(context));
-    }
-
-    /**
-     * 访问INT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitINT_fun(context) {
-        return new Function_TRUNC(this.v1(context));
-    }
-
-    /**
-     * 访问GCD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGCD_fun(context) {
-        //let args =this.vN(context);
-        return new Function_GCD(this.vN(context));
-    }
-
-    /**
-     * 访问LCM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLCM_fun(context) {
-        //let args =this.vN(context);
-        return new Function_LCM(this.vN(context));
-    }
-
-    /**
-     * 访问COMBIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOMBIN_fun(context) {
-        return new Function_COMBIN(this.vN(context));
-    }
-
-    /**
-     * 访问PERMUT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPERMUT_fun(context) {
-        return new Function_PERMUT(this.vN(context));
-    }
-
-    /**
-     * 访问Percentage函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitPercentage_fun(context) {
-        return new Function_Percentage(this.v1(context));
+        let args1 = this.v1(context);
+        return new Function_Percentage(args1);
+    }
+
+    visitSTRING_fun(context) {
+        let opd = context.getText();
+        let sb = [];
+        let index = 1;
+        while (index < opd.length - 1) {
+            let c = opd[index++];
+            if (c === '\\') {
+                let c2 = opd[index++];
+                if (c2 === 'n') sb.push('\n');
+                else if (c2 === 'r') sb.push('\r');
+                else if (c2 === 't') sb.push('\t');
+                else if (c2 === '0') sb.push('\0');
+                else if (c2 === 'v') sb.push('\v');
+                else if (c2 === 'a') sb.push('\a');
+                else if (c2 === 'b') sb.push('\b');
+                else if (c2 === 'f') sb.push('\f');
+                else sb.push(opd[index++]);
+            } else {
+                sb.push(c);
+            }
+        }
+        return new Function_Value(Operand.Create(sb.join('')));
     }
 
-    /**
-     * 访问DEGREES函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEGREES_fun(context) {
-        
-        return new Function_DEGREES(this.v1(context));
-    }
-
-    /**
-     * 访问RADIANS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRADIANS_fun(context) {
-        
-        return new Function_RADIANS(this.v1(context));
-    }
-
-    /**
-     * 访问COS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOS_fun(context) {
-        
-        return new Function_COS(this.v1(context));
-    }
-
-    /**
-     * 访问COSH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOSH_fun(context) {
-        
-        return new Function_COSH(this.v1(context));
-    }
-
-    /**
-     * 访问SIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSIN_fun(context) {
-        
-        return new Function_SIN(this.v1(context));
-    }
-
-    /**
-     * 访问SINH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSINH_fun(context) {
-        
-        return new Function_SINH(this.v1(context));
-    }
-
-    /**
-     * 访问TAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTAN_fun(context) {
-        
-        return new Function_TAN(this.v1(context));
-    }
-
-    /**
-     * 访问TANH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTANH_fun(context) {
-        
-        return new Function_TANH(this.v1(context));
-    }
-
-    /**
-     * 访问ACOS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitACOS_fun(context) {
-        
-        return new Function_ACOS(this.v1(context));
-    }
-
-    /**
-     * 访问ACOSH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitACOSH_fun(context) {
-        
-        return new Function_ACOSH(this.v1(context));
-    }
-
-    /**
-     * 访问ASIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitASIN_fun(context) {
-        
-        return new Function_ASIN(this.v1(context));
-    }
-
-    /**
-     * 访问ASINH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitASINH_fun(context) {
-        
-        return new Function_ASINH(this.v1(context));
-    }
-
-    /**
-     * 访问ATAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitATAN_fun(context) {
-        
-        return new Function_ATAN(this.v1(context));
-    }
-
-    /**
-     * 访问ATANH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitATANH_fun(context) {
-        
-        return new Function_ATANH(this.v1(context));
-    }
-
-    /**
-     * 访问ATAN2函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitATAN2_fun(context) {
-        return new Function_ATAN2(this.vN(context));
-    }
-
-    /**
-     * 访问FIXED函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFIXED_fun(context) {
-        return new Function_FIXED(this.vN(context));
-    }
-
-    /**
-     * 访问BIN2OCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBIN2OCT_fun(context) {
-        return new Function_BIN2OCT(this.vN(context));
-    }
-
-    /**
-     * 访问BIN2DEC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBIN2DEC_fun(context) {
-        
-        return new Function_BIN2DEC(this.v1(context));
-    }
-
-    /**
-     * 访问BIN2HEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBIN2HEX_fun(context) {
-        return new Function_BIN2HEX(this.vN(context));
-    }
-
-    /**
-     * 访问OCT2BIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOCT2BIN_fun(context) {
-        return new Function_OCT2BIN(this.vN(context));
-    }
-
-    /**
-     * 访问OCT2DEC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOCT2DEC_fun(context) {
-        
-        return new Function_OCT2DEC(this.v1(context));
-    }
-
-    /**
-     * 访问OCT2HEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOCT2HEX_fun(context) {
-        return new Function_OCT2HEX(this.vN(context));
-    }
-
-    /**
-     * 访问DEC2BIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEC2BIN_fun(context) {
-        return new Function_DEC2BIN(this.vN(context));
-    }
-
-    /**
-     * 访问DEC2OCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEC2OCT_fun(context) {
-        return new Function_DEC2OCT(this.vN(context));
-    }
-
-    /**
-     * 访问DEC2HEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEC2HEX_fun(context) {
-        return new Function_DEC2HEX(this.vN(context));
-    }
-
-    /**
-     * 访问HEX2BIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHEX2BIN_fun(context) {
-        return new Function_HEX2BIN(this.vN(context));
-    }
-
-    /**
-     * 访问HEX2OCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHEX2OCT_fun(context) {
-        return new Function_HEX2OCT(this.vN(context));
-    }
-
-    /**
-     * 访问HEX2DEC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHEX2DEC_fun(context) {
-        
-        return new Function_HEX2DEC(this.v1(context));
-    }
-
-    /**
-     * 访问ROUND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitROUND_fun(context) {
-        return new Function_ROUND(this.vN(context));
-    }
-
-    /**
-     * 访问ROUNDDOWN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitROUNDDOWN_fun(context) {
-        return new Function_ROUNDDOWN(this.vN(context));
-    }
-
-    /**
-     * 访问ROUNDUP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitROUNDUP_fun(context) {
-        return new Function_ROUNDUP(this.vN(context));
-    }
-
-    /**
-     * 访问CEILING函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCEILING_fun(context) {
-        return new Function_CEILING(this.vN(context));
-    }
-
-    /**
-     * 访问FLOOR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFLOOR_fun(context) {
-        return new Function_FLOOR(this.vN(context));
-    }
-
-    /**
-     * 访问EVEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEVEN_fun(context) {
-        
-        return new Function_EVEN(this.v1(context));
-    }
-
-    /**
-     * 访问ODD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitODD_fun(context) {
-        
-        return new Function_ODD(this.v1(context));
-    }
-
-    /**
-     * 访问MROUND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMROUND_fun(context) {
-        return new Function_MROUND(this.vN(context));
-    }
-
-    /**
-     * 访问RAND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRAND_fun(context) {
-        return new Function_RAND();
-    }
-
-    /**
-     * 访问RANDBETWEEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRANDBETWEEN_fun(context) {
-        return new Function_RANDBETWEEN(this.vN(context));
-    }
-
-    /**
-     * 访问COVARIANCES函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOVARIANCES_fun(context) {
-        return new Function_COVARIANCES(this.vN(context));
-    }
-
-    /**
-     * 访问COVAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOVAR_fun(context) {
-        return new Function_COVAR(this.vN(context));
-    }
-
-    /**
-     * 访问FACT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFACT_fun(context) {
-        
-        return new Function_FACT(this.v1(context));
-    }
-
-    /**
-     * 访问FACTDOUBLE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFACTDOUBLE_fun(context) {
-        
-        return new Function_FACTDOUBLE(this.v1(context));
-    }
-
-    /**
-     * 访问POWER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPOWER_fun(context) {
-        return new Function_POWER(this.vN(context));
-    }
-
-    /**
-     * 访问EXP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEXP_fun(context) {
-        
-        return new Function_EXP(this.v1(context));
-    }
-
-    /**
-     * 访问LN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLN_fun(context) {
-        
-        return new Function_LN(this.v1(context));
-    }
-
-    /**
-     * 访问LOG函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOG_fun(context) {
-            return new Function_LOG(this.vN(context));
-    }
-
-    /**
-     * 访问LOG10函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOG10_fun(context) {
-        let es=[this.v1(context)];
-        return new Function_LOG(es);
-    }
-
-    /**
-     * 访问MULTINOMIAL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMULTINOMIAL_fun(context) {
-        //let args =this.vN(context);
-        return new Function_MULTINOMIAL(this.vN(context));
-    }
-
-    /**
-     * 访问PRODUCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPRODUCT_fun(context) {
-        //let args =this.vN(context);
-        return new Function_PRODUCT(this.vN(context));
-    }
-
-    /**
-     * 访问SQRTPI函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSQRTPI_fun(context) {
-        
-        return new Function_SQRTPI(this.v1(context));
-    }
-
-    /**
-     * 访问SUMSQ函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUMSQ_fun(context) {
-        //let args =this.vN(context);
-        return new Function_SUMSQ(this.vN(context));
-    }
-
-    /**
-     * 访问ASC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitASC_fun(context) {
-        
-        return new Function_ASC(this.v1(context));
-    }
-
-    /**
-     * 访问JIS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitJIS_fun(context) {
-        
-        return new Function_JIS(this.v1(context));
-    }
-
-    /**
-     * 访问CHAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCHAR_fun(context) {
-        
-        return new Function_CHAR(this.v1(context));
-    }
-
-    /**
-     * 访问CLEAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCLEAN_fun(context) {
-        
-        return new Function_CLEAN(this.v1(context));
-    }
-
-    /**
-     * 访问CODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCODE_fun(context) {
-        
-        return new Function_CODE(this.v1(context));
-    }
-
-    /**
-     * 访问CONCATENATE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCONCATENATE_fun(context) {
-        //let args =this.vN(context);
-        return new Function_CONCATENATE(this.vN(context));
-    }
-
-    /**
-     * 访问EXACT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEXACT_fun(context) {
-        return new Function_EXACT(this.vN(context));
-    }
-
-    /**
-     * 访问FIND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFIND_fun(context) {
-        return new Function_FIND(this.vN(context));
-    }
-
-    /**
-     * 访问LEFT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLEFT_fun(context) {
-        return new Function_LEFT(this.vN(context));
-    }
-
-    /**
-     * 访问LEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLEN_fun(context) {
-        
-        return new Function_LEN(this.v1(context));
-    }
-
-    /**
-     * 访问LOWER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOWER_fun(context) {
-        
-        return new Function_LOWER(this.v1(context));
-    }
-
-    /**
-     * 访问MID函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMID_fun(context) {
-        return new Function_MID(this.vN(context));
-    }
-
-    /**
-     * 访问PROPER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPROPER_fun(context) {
-        
-        return new Function_PROPER(this.v1(context));
-    }
-
-    /**
-     * 访问REPLACE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREPLACE_fun(context) {
-        return new Function_REPLACE(this.vN(context));
-    }
-
-    /**
-     * 访问REPT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREPT_fun(context) {
-        return new Function_REPT(this.vN(context));
-    }
-
-    /**
-     * 访问RIGHT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRIGHT_fun(context) {
-        return new Function_RIGHT(this.vN(context));
-    }
-
-    /**
-     * 访问RMB函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRMB_fun(context) {
-        
-        return new Function_RMB(this.v1(context));
-    }
-
-    /**
-     * 访问SEARCH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSEARCH_fun(context) {
-        return new Function_SEARCH(this.vN(context));
-    }
-
-    /**
-     * 访问SUBSTITUTE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUBSTITUTE_fun(context) {
-        return new Function_SUBSTITUTE(this.vN(context));
-    }
-
-    /**
-     * 访问T函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitT_fun(context) {
-        
-        return new Function_T(this.v1(context));
-    }
-
-    /**
-     * 访问TEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTEXT_fun(context) {
-        return new Function_TEXT(this.vN(context));
-    }
-
-    /**
-     * 访问TRIM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRIM_fun(context) {
-        
-        return new Function_TRIM(this.v1(context));
-    }
-
-    /**
-     * 访问UPPER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitUPPER_fun(context) {
-        
-        return new Function_UPPER(this.v1(context));
-    }
-
-    /**
-     * 访问VALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitVALUE_fun(context) {
-        
-        return new Function_VALUE(this.v1(context));
-    }
-
-    /**
-     * 访问DATEVALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDATEVALUE_fun(context) {
-        //let args =this.vN(context);
-        return new Function_DATEVALUE(this.vN(context));
-    }
-
-    /**
-     * 访问TIMESTAMP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTIMESTAMP_fun(context) {
-        return new Function_TIMESTAMP(this.vN(context));
-    }
-
-    /**
-     * 访问TIMEVALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTIMEVALUE_fun(context) {
-        
-        return new Function_TIMEVALUE(this.v1(context));
-    }
-
-    /**
-     * 访问DATE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDATE_fun(context) {
-        //let args =this.vN(context);
-        return new Function_DATE(this.vN(context));
-    }
-
-    /**
-     * 访问TIME函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTIME_fun(context) {
-        return new Function_TIME(this.vN(context));
-    }
-
-    /**
-     * 访问NOW函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNOW_fun(context) {
-        return new Function_NOW();
-    }
-
-    /**
-     * 访问TODAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTODAY_fun(context) {
-        return new Function_TODAY();
-    }
-
-    /**
-     * 访问YEAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitYEAR_fun(context) {
-        
-        return new Function_YEAR(this.v1(context));
-    }
-
-    /**
-     * 访问MONTH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMONTH_fun(context) {
-        
-        return new Function_MONTH(this.v1(context));
-    }
-
-    /**
-     * 访问DAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDAY_fun(context) {
-        
-        return new Function_DAY(this.v1(context));
-    }
-
-    /**
-     * 访问HOUR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHOUR_fun(context) {
-        
-        return new Function_HOUR(this.v1(context));
-    }
-
-    /**
-     * 访问MINUTE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMINUTE_fun(context) {
-        
-        return new Function_MINUTE(this.v1(context));
-    }
-
-    /**
-     * 访问SECOND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSECOND_fun(context) {
-        
-        return new Function_SECOND(this.v1(context));
-    }
-
-    /**
-     * 访问WEEKDAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWEEKDAY_fun(context) {
-        return new Function_WEEKDAY(this.vN(context));
-    }
-
-    /**
-     * 访问DATEDIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDATEDIF_fun(context) {
-        return new Function_DATEDIF(this.vN(context));
-    }
-
-    /**
-     * 访问DAYS360函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDAYS360_fun(context) {
-        return new Function_DAYS360(this.vN(context));
-    }
-
-    /**
-     * 访问EDATE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEDATE_fun(context) {
-        return new Function_EDATE(this.vN(context));
-    }
-
-    /**
-     * 访问EOMONTH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEOMONTH_fun(context) {
-        return new Function_EOMONTH(this.vN(context));
-    }
-
-    /**
-     * 访问NETWORKDAYS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNETWORKDAYS_fun(context) {
-        //let args =this.vN(context);
-        return new Function_NETWORKDAYS(this.vN(context));
-    }
-
-    /**
-     * 访问WORKDAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWORKDAY_fun(context) {
-        //let args =this.vN(context);
-        return new Function_WORKDAY(this.vN(context));
-    }
-
-    /**
-     * 访问WEEKNUM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWEEKNUM_fun(context) {
-        return new Function_WEEKNUM(this.vN(context));
-    }
-
-    /**
-     * 访问ADDMONTHS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDMONTHS_fun(context) {
-        return new Function_ADDMONTHS(this.vN(context));
-    }
-
-    /**
-     * 访问ADDYEARS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDYEARS_fun(context) {
-        return new Function_ADDYEARS(this.vN(context));
-    }
-
-    /**
-     * 访问ADDSECONDS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDSECONDS_fun(context) {
-        return new Function_ADDSECONDS(this.vN(context));
-    }
-
-    /**
-     * 访问ADDMINUTES函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDMINUTES_fun(context) {
-        return new Function_ADDMINUTES(this.vN(context));
-    }
-
-    /**
-     * 访问ADDDAYS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDDAYS_fun(context) {
-        return new Function_ADDDAYS(this.vN(context));
-    }
-
-    /**
-     * 访问ADDHOURS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDHOURS_fun(context) {
-        return new Function_ADDHOURS(this.vN(context));
-    }
-
-    /**
-     * 访问MAX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMAX_fun(context) {
-        //let args =this.vN(context);
-        return new Function_MAX(this.vN(context));
-    }
-
-    /**
-     * 访问MEDIAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMEDIAN_fun(context) {
-        //let args =this.vN(context);
-        return new Function_MEDIAN(this.vN(context));
-    }
-
-    /**
-     * 访问MIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMIN_fun(context) {
-        //let args =this.vN(context);
-        return new Function_MIN(this.vN(context));
-    }
-
-    /**
-     * 访问HMACSHA1函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACSHA1_fun(context) {
-        return new Function_HMACSHA1(this.vN(context));
-    }
-
-    /**
-     * 访问HMACSHA256函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACSHA256_fun(context) {
-        return new Function_HMACSHA256(this.vN(context));
-    }
-
-    /**
-     * 访问HMACSHA512函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACSHA512_fun(context) {
-        return new Function_HMACSHA512(this.vN(context));
-    }
-
-    /**
-     * 访问STARTSWITH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSTARTSWITH_fun(context) {
-        return new Function_STARTSWITH(this.vN(context));
-    }
-
-    /**
-     * 访问ENDSWITH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitENDSWITH_fun(context) {
-        return new Function_ENDSWITH(this.vN(context));
-    }
-
-    /**
-     * 访问INDEXOF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitINDEXOF_fun(context) {
-        return new Function_INDEXOF(this.vN(context));
-    }
-
-    /**
-     * 访问LASTINDEXOF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLASTINDEXOF_fun(context) {
-        return new Function_LASTINDEXOF(this.vN(context));
-    }
-
-    /**
-     * 访问SPLIT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSPLIT_fun(context) {
-        return new Function_SPLIT(this.vN(context));
-    }
-
-    /**
-     * 访问SUBSTRING函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUBSTRING_fun(context) {
-        return new Function_SUBSTRING(this.vN(context));
-    }
-
-    /**
-     * 访问TRIMSTART函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRIMSTART_fun(context) {
-        return new Function_TRIMSTART(this.vN(context));
-    }
-
-    /**
-     * 访问TRIMEND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRIMEND_fun(context) {
-        return new Function_TRIMEND(this.vN(context));
-    }
-
-    /**
-     * 访问REMOVESTART函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREMOVESTART_fun(context) {
-        return new Function_REMOVESTART(this.vN(context));
-    }
-
-    /**
-     * 访问REMOVEEND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREMOVEEND_fun(context) {
-        return new Function_REMOVEEND(this.vN(context));
-    }
-
-    /**
-     * 访问JOIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitJOIN_fun(context) {
-        //let args =this.vN(context);
-        return new Function_JOIN(this.vN(context));
-    }
-
-    /**
-     * 访问LOOKCEILING函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOOKCEILING_fun(context) {
-        return new Function_LOOKCEILING(this.vN(context));
-    }
-
-    /**
-     * 访问LOOKFLOOR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOOKFLOOR_fun(context) {
-        return new Function_LOOKFLOOR(this.vN(context));
-    }
-
-    /**
-     * 访问HAS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHAS_fun(context) {
-        return new Function_HAS(this.vN(context));
-    }
-
-    /**
-     * 访问HASVALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHASVALUE_fun(context) {
-        
-        return new Function_HASVALUE(this.v1(context));
-    }
-
-    /**
-     * 访问ISNULLOREMPTY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULLOREMPTY_fun(context) {
-        
-        return new Function_ISNULLOREMPTY(this.v1(context));
-    }
-
-    /**
-     * 访问ISNULLORWHITESPACE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULLORWHITESPACE_fun(context) {
-        
-        return new Function_ISNULLORWHITESPACE(this.v1(context));
-    }
-
-    /**
-     * 访问Array函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitArray_fun(context) {
-        //let args =this.vN(context);
-        return new Function_Array(this.vN(context));
-    }
-
-    /**
-     * 访问JSON函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitJSON_fun(context) {
-        
-        return new Function_JSON(this.v1(context));
-    }
-
-    /**
-     * 访问ArrayJson函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitArrayJson_fun(context) {
         let exprs = context.arrayJson();
         let args = new Array(exprs.length);
@@ -1825,715 +647,68 @@ class MathFunctionVisitor extends mathVisitor  {
         }
         return new Function_ArrayJson(args);
     }
+
+    visitGetJsonValue_fun(context) {
+        let funcs = this.vN(context);
+        if (context.p != null) {
+            let keyName = context.p.text.trim().replace(/^["'"\s\t\r\n\f]+|["'"\s\t\r\n\f]+$/g, '');
+            let op = new Function_Value(Operand.Create(keyName), keyName);
+            return new Function_GetJsonValue(funcs[0], op);
+        }
+        if (context.PARAMETER() != null) {
+            let op = new Function_PARAMETER(context.PARAMETER().text);
+            return new Function_GetJsonValue(funcs[0], op);
+        }
+        return new Function_GetJsonValue(funcs[0], funcs[1]);
+    }
+
+    visitArray_fun(context) {
+        let funcs = this.vN(context);
+        return new Function_Array(funcs);
+    }
+
+    visitNOT_fun(context) {
+        let args1 = this.v1(context);
+        return new Function_NOT(args1);
+    }
+
+    visitBracket_fun(context) {
+        return this.v1(context);
+    }
+
+    visitNUM_fun(context) {
+        let numText = context.num().text;
+        let d = parseFloat(numText);
+        if (context.unit == null) {
+            return new Function_Value(Operand.Create(d), numText);
+        }
+        let unit = context.unit.text;
+        return new Function_Num(d, unit);
+    }
+
+    visitNULL_fun(context) {
+        return new Function_Value(Operand.CreateNull(), "NULL");
+    }
+
+    visitNum(context) {
+        let d = parseFloat(context.getText());
+        return new Function_Value(Operand.Create(d), context.getText());
+    }
+
     visitArrayJson(context) {
         let keyName = null;
-        if (context.key){
-            let stringContext = context.key.text.replace(/^["'\s\t\r\n\f]+|["'\s\t\r\n\f]+$/g, '');
-            keyName=stringContext;
-        }else if (context.parameter2) {
-            let paramContext = context.parameter2();
-            if (paramContext) {
-                keyName = paramContext.getText ? paramContext.getText() : paramContext.text;
-            }
+        if (context.key) {
+            let stringContext = context.key.text.replace(/^["'"\s\t\r\n\f]+|["'"\s\t\r\n\f]+$/g, '');
+            keyName = stringContext;
         }
         let f = this.v1(context);
         return new Function_ArrayJsonItem(keyName, f);
     }
 
-    /**
-     * 访问ArrayJsonItem函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitArrayJsonItem_fun(context) {
-        return new Function_ArrayJsonItem(args2, args1);
-    }
-
-    /**
-     * 访问GetJsonValue函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGetJsonValue_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (context.PARAMETER() != null) {
-            let op = new Function_PARAMETER(context.PARAMETER().getText ? context.PARAMETER().getText() : context.PARAMETER().text);
-            return new Function_GetJsonValue(args1, op);
-        }
-        if (context.parameter2() != null) {
-            let op = context.parameter2().accept(this);
-            return new Function_GetJsonValue(args1, op);
-        }
-        if (exprs.length > 1) {
-            let op2 = exprs[1].accept(this);
-            return new Function_GetJsonValue(args1, op2);
-        }
-        return new Function_GetJsonValue(this.vN(context));
-    }
-    visitParameter2( context)
-	{
-		return new Function_Value(Operand.Create(context.children[0].getText()));
-	}
-
-    /**
-     * 访问NUM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNUM_fun(context) {
-        let numText = context.num().getText ? context.num().getText() : context.num().text;
-        let d = parseFloat(numText);
-        if (context.unit == null) { return new Function_Value(Operand.Create(d), numText); }
-        let unit = context.unit.text;
-        return new Function_NUM(d, unit);
-    }
-
-    /**
-     * 访问PARAM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPARAM_fun(context) {
-        
-        return new Function_PARAM(this.v1(context));
-    }
-
-    /**
-     * 访问PARAMETER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPARAMETER_fun(context) {
-        let node = context.PARAMETER();
-        return new Function_PARAMETER(node.getText());
-    }
-
-    /**
-     * 访问NULL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNULL_fun(context) {
-        return new Function_Value(Operand.CreateNull(), "NULL");
-    }
-
-    /**
-     * 访问DiyFunction函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDiyFunction_fun(context) {
-        return new Function_DiyFunction(this.vN(context));
-    }
-
-    /**
-     * 访问ERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitERROR_fun(context) {
-        
-        return new Function_ERROR(this.v1(context));
-    }
-
-    /**
-     * 访问QUARTILE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitQUARTILE_fun(context) {
-        return new Function_QUARTILE(this.vN(context));
-    }
-
-    /**
-     * 访问MODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMODE_fun(context) {
-        //let args =this.vN(context);
-        return new Function_MODE(this.vN(context));
-    }
-
-    /**
-     * 访问LARGE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLARGE_fun(context) {
-        return new Function_LARGE(this.vN(context));
-    }
-
-    /**
-     * 访问SMALL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSMALL_fun(context) {
-        return new Function_SMALL(this.vN(context));
-    }
-
-    /**
-     * 访问PERCENTILE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPERCENTILE_fun(context) {
-        return new Function_PERCENTILE(this.vN(context));
-    }
-
-    /**
-     * 访问PERCENTRANK函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPERCENTRANK_fun(context) {
-        return new Function_PERCENTRANK(this.vN(context));
-    }
-
-    /**
-     * 访问AVERAGE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAVERAGE_fun(context) {
-        //let args =this.vN(context);
-        return new Function_AVERAGE(this.vN(context));
-    }
-
-    /**
-     * 访问AVERAGEIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAVERAGEIF_fun(context) {
-        return new Function_AVERAGEIF(this.vN(context));
-    }
-
-    /**
-     * 访问GEOMEAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGEOMEAN_fun(context) {
-        //let args =this.vN(context);
-        return new Function_GEOMEAN(this.vN(context));
-    }
-
-    /**
-     * 访问HARMEAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHARMEAN_fun(context) {
-        //let args =this.vN(context);
-        return new Function_HARMEAN(this.vN(context));
-    }
-
-    /**
-     * 访问COUNT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOUNT_fun(context) {
-        //let args =this.vN(context);
-        return new Function_COUNT(this.vN(context));
-    }
-
-    /**
-     * 访问COUNTIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOUNTIF_fun(context) {
-        return new Function_COUNTIF(this.vN(context));
-    }
-
-    /**
-     * 访问SUM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUM_fun(context) {
-        //let args =this.vN(context);
-        return new Function_SUM(this.vN(context));
-    }
-
-    /**
-     * 访问SUMIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUMIF_fun(context) {
-        return new Function_SUMIF(this.vN(context));
-    }
-
-    /**
-     * 访问AVEDEV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAVEDEV_fun(context) {
-        //let args =this.vN(context);
-        return new Function_AVEDEV(this.vN(context));
-    }
-
-    /**
-     * 访问STDEV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSTDEV_fun(context) {
-        //let args =this.vN(context);
-        return new Function_STDEV(this.vN(context));
-    }
-
-    /**
-     * 访问STDEVP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSTDEVP_fun(context) {
-        //let args =this.vN(context);
-        return new Function_STDEVP(this.vN(context));
-    }
-
-    /**
-     * 访问DEVSQ函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEVSQ_fun(context) {
-        //let args =this.vN(context);
-        return new Function_DEVSQ(this.vN(context));
-    }
-
-    /**
-     * 访问VAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitVAR_fun(context) {
-        //let args =this.vN(context);
-        return new Function_VAR(this.vN(context));
-    }
-
-    /**
-     * 访问VARP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitVARP_fun(context) {
-        //let args =this.vN(context);
-        return new Function_VARP(this.vN(context));
-    }
-
-    /**
-     * 访问NORMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMDIST_fun(context) {
-        return new Function_NORMDIST(this.vN(context));
-    }
-
-    /**
-     * 访问NORMINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMINV_fun(context) {
-        return new Function_NORMINV(this.vN(context));
-    }
-
-    /**
-     * 访问NORMSDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMSDIST_fun(context) {
-        
-        return new Function_NORMSDIST(this.v1(context));
-    }
-
-    /**
-     * 访问NORMSINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMSINV_fun(context) {
-        
-        return new Function_NORMSINV(this.v1(context));
-    }
-
-    /**
-     * 访问BETADIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBETADIST_fun(context) {
-        return new Function_BETADIST(this.vN(context));
-    }
-
-    /**
-     * 访问BETAINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBETAINV_fun(context) {
-        return new Function_BETAINV(this.vN(context));
-    }
-
-    /**
-     * 访问BINOMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBINOMDIST_fun(context) {
-        return new Function_BINOMDIST(this.vN(context));
-    }
-
-    /**
-     * 访问EXPONDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEXPONDIST_fun(context) {
-        return new Function_EXPONDIST(this.vN(context));
-    }
-
-    /**
-     * 访问FDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFDIST_fun(context) {
-        return new Function_FDIST(this.vN(context));
-    }
-
-    /**
-     * 访问FINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFINV_fun(context) {
-        return new Function_FINV(this.vN(context));
-    }
-
-    /**
-     * 访问FISHER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFISHER_fun(context) {
-        
-        return new Function_FISHER(this.v1(context));
-    }
-
-    /**
-     * 访问FISHERINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFISHERINV_fun(context) {
-        
-        return new Function_FISHERINV(this.v1(context));
-    }
-
-    /**
-     * 访问GAMMADIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGAMMADIST_fun(context) {
-        return new Function_GAMMADIST(this.vN(context));
-    }
-
-    /**
-     * 访问GAMMAINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGAMMAINV_fun(context) {
-        return new Function_GAMMAINV(this.vN(context));
-    }
-
-    /**
-     * 访问GAMMALN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGAMMALN_fun(context) {
-        
-        return new Function_GAMMALN(this.v1(context));
-    }
-
-    /**
-     * 访问HYPGEOMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHYPGEOMDIST_fun(context) {
-        return new Function_HYPGEOMDIST(this.vN(context));
-    }
-
-    /**
-     * 访问LOGINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOGINV_fun(context) {
-        return new Function_LOGINV(this.vN(context));
-    }
-
-    /**
-     * 访问LOGNORMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOGNORMDIST_fun(context) {
-        return new Function_LOGNORMDIST(this.vN(context));
-    }
-
-    /**
-     * 访问NEGBINOMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNEGBINOMDIST_fun(context) {
-        return new Function_NEGBINOMDIST(this.vN(context));
-    }
-
-    /**
-     * 访问POISSON函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPOISSON_fun(context) {
-        return new Function_POISSON(this.vN(context));
-    }
-
-    /**
-     * 访问TDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTDIST_fun(context) {
-        return new Function_TDIST(this.vN(context));
-    }
-
-    /**
-     * 访问TINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTINV_fun(context) {
-        return new Function_TINV(this.vN(context));
-    }
-
-    /**
-     * 访问WEIBULL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWEIBULL_fun(context) {
-        return new Function_WEIBULL(this.vN(context));
-    }
-
-    /**
-     * 访问URLENCODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitURLENCODE_fun(context) {
-        
-        return new Function_URLENCODE(this.v1(context));
-    }
-
-    /**
-     * 访问URLDECODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitURLDECODE_fun(context) {
-        return new Function_URLDECODE(this.v1(context));
-    }
-
-    /**
-     * 访问HTMLENCODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHTMLENCODE_fun(context) {
-        return new Function_HTMLENCODE(this.v1(context));
-    }
-
-    /**
-     * 访问HTMLDECODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHTMLDECODE_fun(context) {
-        return new Function_HTMLDECODE(this.v1(context));
-    }
-
-    /**
-     * 访问BASE64TOTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBASE64TOTEXT_fun(context) {
-        return new Function_BASE64TOTEXT(this.v1(context));
-    }
-
-    /**
-     * 访问BASE64URLTOTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBASE64URLTOTEXT_fun(context) {
-        return new Function_BASE64URLTOTEXT(this.v1(context));
-    }
-
-    /**
-     * 访问TEXTTOBASE64函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTEXTTOBASE64_fun(context) {
-        return new Function_TEXTTOBASE64(this.v1(context));
-    }
-
-    /**
-     * 访问TEXTTOBASE64URL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTEXTTOBASE64URL_fun(context) {
-        return new Function_TEXTTOBASE64URL(this.v1(context));
-    }
-
-    /**
-     * 访问REGEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREGEX_fun(context) {
-        return new Function_REGEX(this.vN(context));
-    }
-
-    /**
-     * 访问REGEXREPALCE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREGEXREPALCE_fun(context) {
-        return new Function_REGEXREPALCE(this.vN(context));
-    }
-
-    /**
-     * 访问ISREGEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISREGEX_fun(context) {
-        return new Function_ISREGEX(this.vN(context));
-    }
-
-    /**
-     * 访问GUID函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGUID_fun(context) {
-        return new Function_GUID();
-    }
-
-    /**
-     * 访问MD5函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMD5_fun(context) {
-        return new Function_MD5(this.v1(context));
-    }
-
-    /**
-     * 访问SHA1函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSHA1_fun(context) {
-        return new Function_SHA1(this.v1(context));
-    }
-
-    /**
-     * 访问SHA256函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSHA256_fun(context) {
-        return new Function_SHA256(this.v1(context));
-    }
-
-    /**
-     * 访问SHA512函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSHA512_fun(context) {
-        return new Function_SHA512(this.v1(context));
-    }
-
-
-    /**
-     * 访问HMACMD5函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACMD5_fun(context) {
-        return new Function_HMACMD5(this.vN(context));
-    }
-    visitBracket_fun(context) {
-        return this.v1(context);
-    }
-
-    visitSTRING_fun(context) {
-        var opd = context.getText();
-        var sb = [];
-        let index = 1;
-        while (index < opd.length - 1) {
-            var c = opd[index++];
-            if (c == '\\') {
-                var c2 = opd[index++];
-                if (c2 == 'n') sb.push('\n');
-                else if (c2 == 'r') sb.push('\r');
-                else if (c2 == 't') sb.push('\t');
-                else if (c2 == '0') sb.push('\0');
-                else if (c2 == 'v') sb.push('\v');
-                else if (c2 == 'a') sb.push('\a');
-                else if (c2 == 'b') sb.push('\b');
-                else if (c2 == 'f') sb.push('\f');
-                else sb.push(opd[index++]);
-            } else {
-                sb.push(c);
-            }
-        }
-        return new Function_Value(Operand.Create(sb.join('')));
-    }
-    visitDiyFunction_fun(context) {
-        let funName = context.PARAMETER().getText();
-        let exprs = context.expr();
-        let args = [];
-        for (let i = 0; i < exprs.length; i++) {
-            args.push(exprs[i].accept(this));
-        }
-        return new Function_DiyFunction(funName, args);
-    }
-    visitVersion_fun(context) {
-        return new Function_Value(Operand.Version, "VERSION");
+    visitIF_fun(context) {
+        let funcs = this.vN(context);
+        return new Function_IF(funcs);
     }
 }
 
-export { MathFunctionVisitor };
+export { MathFunctionVisitor, funcDict, findFunction };
