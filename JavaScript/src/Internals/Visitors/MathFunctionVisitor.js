@@ -493,7 +493,7 @@ function findFunction(funcName) {
     return funcDict[funcName];
 }
 
-class MathFunctionVisitor {
+class MathFunctionVisitor extends mathVisitor {
     static getFuncDict() {
         return funcDict;
     }
