@@ -1,9 +1,9 @@
-﻿namespace ToolGood.Algorithm.Internals
+namespace ToolGood.Algorithm.Internals
 {
 	/// <summary>
 	/// 关键字信息
 	/// </summary>
-	public sealed class DiyNameKeyInfo
+	public struct DiyNameKeyInfo
 	{
 		/// <summary>
 		/// 名称
