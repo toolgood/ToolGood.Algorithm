@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.Operands
 {
-	internal class KeyValue
+	internal sealed class KeyValue
 	{
 		public string Key;
 		public Operand Value;
