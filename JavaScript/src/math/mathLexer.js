@@ -216,12 +216,28 @@ const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DF
 
 export default class mathLexer extends antlr4.Lexer {
 
-    static grammarFileName = "";
+    static grammarFileName = "math.g4";
     static channelNames = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
 	static modeNames = [ "DEFAULT_MODE" ];
-	static literalNames =[];
-	static symbolicNames =[];
-	static ruleNames =[];
+	static literalNames = [ null, "'.'", "'('", "','", "')'", "'['", "']'", 
+                         "'!'", "'%'", "'*'", "'/'", "'+'", "'-'", "'&'", 
+                         "'>'", "'>='", "'<'", "'<='", "'='", "'=='", "'==='", 
+                         "'!=='", "'!='", "'<>'", "'&&'", "'||'", "'?'", 
+                         "':'", "'{'", "'}'", null, null, "'NULL'", null, 
+                         "'T'" ];
+	static symbolicNames = [ null, null, null, null, null, null, null, null, 
+                          null, null, null, null, null, null, null, null, 
+                          null, null, null, null, null, null, null, null, 
+                          null, null, null, null, null, null, "NUM", "STRING", 
+                          "NULL", "UNIT", "T", "PARAMETER", "WS", "COMMENT", 
+                          "LINE_COMMENT" ];
+	static ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
+                      "T__7", "T__8", "T__9", "T__10", "T__11", "T__12", 
+                      "T__13", "T__14", "T__15", "T__16", "T__17", "T__18", 
+                      "T__19", "T__20", "T__21", "T__22", "T__23", "T__24", 
+                      "T__25", "T__26", "T__27", "T__28", "NUM", "STRING", 
+                      "NULL", "UNIT", "T", "PARAMETER", "FullWidthLetter", 
+                      "WS", "COMMENT", "LINE_COMMENT" ];
 
     constructor(input) {
         super(input)
@@ -229,45 +245,45 @@ export default class mathLexer extends antlr4.Lexer {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+mathLexer.EOF = antlr4.Token.EOF;
+mathLexer.T__0 = 1;
+mathLexer.T__1 = 2;
+mathLexer.T__2 = 3;
+mathLexer.T__3 = 4;
+mathLexer.T__4 = 5;
+mathLexer.T__5 = 6;
+mathLexer.T__6 = 7;
+mathLexer.T__7 = 8;
+mathLexer.T__8 = 9;
+mathLexer.T__9 = 10;
+mathLexer.T__10 = 11;
+mathLexer.T__11 = 12;
+mathLexer.T__12 = 13;
+mathLexer.T__13 = 14;
+mathLexer.T__14 = 15;
+mathLexer.T__15 = 16;
+mathLexer.T__16 = 17;
+mathLexer.T__17 = 18;
+mathLexer.T__18 = 19;
+mathLexer.T__19 = 20;
+mathLexer.T__20 = 21;
+mathLexer.T__21 = 22;
+mathLexer.T__22 = 23;
+mathLexer.T__23 = 24;
+mathLexer.T__24 = 25;
+mathLexer.T__25 = 26;
+mathLexer.T__26 = 27;
+mathLexer.T__27 = 28;
+mathLexer.T__28 = 29;
+mathLexer.NUM = 30;
+mathLexer.STRING = 31;
+mathLexer.NULL = 32;
+mathLexer.UNIT = 33;
+mathLexer.T = 34;
+mathLexer.PARAMETER = 35;
+mathLexer.WS = 36;
+mathLexer.COMMENT = 37;
+mathLexer.LINE_COMMENT = 38;
 
 
 

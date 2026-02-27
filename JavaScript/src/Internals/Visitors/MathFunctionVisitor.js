@@ -683,7 +683,7 @@ class MathFunctionVisitor extends mathVisitor {
             return new Function_Value(Operand.Create(d), numText);
         }
         let unit = context.unit.text;
-        return new Function_Num(d, unit);
+        return new Function_NUM(d, unit);
     }
 
     visitNULL_fun(context) {
