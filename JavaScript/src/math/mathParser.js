@@ -1330,31 +1330,6 @@ class ArrayJsonContext extends antlr4.ParserRuleContext {
 	expr() {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
-
-	NUM() {
-	    return this.getToken(mathParser.NUM, 0);
-	};
-
-	STRING() {
-	    return this.getToken(mathParser.STRING, 0);
-	};
-
-	NULL() {
-	    return this.getToken(mathParser.NULL, 0);
-	};
-
-	T() {
-	    return this.getToken(mathParser.T, 0);
-	};
-
-	UNIT() {
-	    return this.getToken(mathParser.UNIT, 0);
-	};
-
-	PARAMETER() {
-	    return this.getToken(mathParser.PARAMETER, 0);
-	};
-
 	accept(visitor) {
 	    if ( visitor instanceof mathVisitor ) {
 	        return visitor.visitArrayJson(this);

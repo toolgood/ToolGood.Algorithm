@@ -245,45 +245,6 @@ export default class mathLexer extends antlr4.Lexer {
     }
 }
 
-mathLexer.EOF = antlr4.Token.EOF;
-mathLexer.T__0 = 1;
-mathLexer.T__1 = 2;
-mathLexer.T__2 = 3;
-mathLexer.T__3 = 4;
-mathLexer.T__4 = 5;
-mathLexer.T__5 = 6;
-mathLexer.T__6 = 7;
-mathLexer.T__7 = 8;
-mathLexer.T__8 = 9;
-mathLexer.T__9 = 10;
-mathLexer.T__10 = 11;
-mathLexer.T__11 = 12;
-mathLexer.T__12 = 13;
-mathLexer.T__13 = 14;
-mathLexer.T__14 = 15;
-mathLexer.T__15 = 16;
-mathLexer.T__16 = 17;
-mathLexer.T__17 = 18;
-mathLexer.T__18 = 19;
-mathLexer.T__19 = 20;
-mathLexer.T__20 = 21;
-mathLexer.T__21 = 22;
-mathLexer.T__22 = 23;
-mathLexer.T__23 = 24;
-mathLexer.T__24 = 25;
-mathLexer.T__25 = 26;
-mathLexer.T__26 = 27;
-mathLexer.T__27 = 28;
-mathLexer.T__28 = 29;
-mathLexer.NUM = 30;
-mathLexer.STRING = 31;
-mathLexer.NULL = 32;
-mathLexer.UNIT = 33;
-mathLexer.T = 34;
-mathLexer.PARAMETER = 35;
-mathLexer.WS = 36;
-mathLexer.COMMENT = 37;
-mathLexer.LINE_COMMENT = 38;
 
 
 
