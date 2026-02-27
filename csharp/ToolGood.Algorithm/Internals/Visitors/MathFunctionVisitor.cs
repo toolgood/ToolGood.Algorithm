@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
 using System.Text;
@@ -1197,7 +1197,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
 		{
 			var opd = context.GetText();
-			var sb = new StringBuilder();
+			var sb = new StringBuilder(opd.Length);
 			int index = 1;
 			while(index < opd.Length - 1) {
 				var c = opd[index++];
