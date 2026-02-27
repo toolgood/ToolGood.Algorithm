@@ -475,7 +475,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitLOG10_fun(mathParser.LOG10_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
-			return new Function_LOG(args1, null);
+			return new Function_LOG10(args1);
 		}
 		public FunctionBase VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
 		{
