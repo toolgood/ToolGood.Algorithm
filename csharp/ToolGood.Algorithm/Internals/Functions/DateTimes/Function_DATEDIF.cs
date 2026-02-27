@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using ToolGood.Algorithm.Internals.Visitors;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -26,9 +25,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			if (args3.IsError) { return args3; }
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;
-            var t = args3.TextValue.ToLower();
+            var t = args3.TextValue;
 
-            if (CharUtil.Equals(t, 'Y')) {
+            if (t.Equals("Y", StringComparison.OrdinalIgnoreCase)) {
 
                 #region y
 
@@ -45,7 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 }
 
                 #endregion y
-            } else if (CharUtil.Equals(t, 'M')) {
+            } else if (t.Equals("M", StringComparison.OrdinalIgnoreCase)) {
 
                 #region m
 
@@ -58,9 +57,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 }
 
                 #endregion m
-            } else if (CharUtil.Equals(t, 'D')) {
+            } else if (t.Equals("D", StringComparison.OrdinalIgnoreCase)) {
                 return Operand.Create((endMyDate - startMyDate).Days);
-            } else if (CharUtil.Equals(t, "YD")) {
+            } else if (t.Equals("YD", StringComparison.OrdinalIgnoreCase)) {
 
                 #region yd
 
@@ -72,7 +71,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 return Operand.Create((day));
 
                 #endregion yd
-            } else if (CharUtil.Equals(t, "MD")) {
+            } else if (t.Equals("MD", StringComparison.OrdinalIgnoreCase)) {
 
                 #region md
 
@@ -89,7 +88,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 return Operand.Create((mo));
 
                 #endregion md
-            } else if (CharUtil.Equals(t, "YM")) {
+            } else if (t.Equals("YM", StringComparison.OrdinalIgnoreCase)) {
 
                 #region ym
 
