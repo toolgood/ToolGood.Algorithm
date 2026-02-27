@@ -216,34 +216,57 @@ const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DF
 
 export default class mathLexer extends antlr4.Lexer {
 
-    static grammarFileName = "math.g4";
-    static channelNames = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
-	static modeNames = [ "DEFAULT_MODE" ];
-	static literalNames = [ null, "'.'", "'('", "','", "')'", "'['", "']'", 
-                         "'!'", "'%'", "'*'", "'/'", "'+'", "'-'", "'&'", 
-                         "'>'", "'>='", "'<'", "'<='", "'='", "'=='", "'==='", 
-                         "'!=='", "'!='", "'<>'", "'&&'", "'||'", "'?'", 
-                         "':'", "'{'", "'}'", null, null, "'NULL'", null, 
-                         "'T'" ];
-	static symbolicNames = [ null, null, null, null, null, null, null, null, 
-                          null, null, null, null, null, null, null, null, 
-                          null, null, null, null, null, null, null, null, 
-                          null, null, null, null, null, null, "NUM", "STRING", 
-                          "NULL", "UNIT", "T", "PARAMETER", "WS", "COMMENT", 
-                          "LINE_COMMENT" ];
-	static ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
-                      "T__7", "T__8", "T__9", "T__10", "T__11", "T__12", 
-                      "T__13", "T__14", "T__15", "T__16", "T__17", "T__18", 
-                      "T__19", "T__20", "T__21", "T__22", "T__23", "T__24", 
-                      "T__25", "T__26", "T__27", "T__28", "NUM", "STRING", 
-                      "NULL", "UNIT", "T", "PARAMETER", "FullWidthLetter", 
-                      "WS", "COMMENT", "LINE_COMMENT" ];
+    static grammarFileName = "";
+    static channelNames =[];
+	static modeNames =[];
+	static literalNames =[];
+	static symbolicNames =[];
+	static ruleNames =[];
 
     constructor(input) {
         super(input)
         this._interp = new antlr4.atn.LexerATNSimulator(this, atn, decisionsToDFA, new antlr4.atn.PredictionContextCache());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
