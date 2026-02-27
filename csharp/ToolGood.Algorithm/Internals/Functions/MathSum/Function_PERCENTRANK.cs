@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_PERCENTRANK : Function_3
+	internal sealed class Function_PERCENTRANK : Function_3
     {
 		public Function_PERCENTRANK(FunctionBase[] funcs) : base(funcs)
 		{

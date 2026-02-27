@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_REMOVESTART : Function_3
+	internal sealed class Function_REMOVESTART : Function_3
 	{
 		public Function_REMOVESTART(FunctionBase[] funcs) : base(funcs)
 		{

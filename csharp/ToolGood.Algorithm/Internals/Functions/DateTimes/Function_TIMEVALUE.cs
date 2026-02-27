@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_TIMEVALUE : Function_1
+	internal sealed class Function_TIMEVALUE : Function_1
     {
         public Function_TIMEVALUE(FunctionBase func1) : base(func1)
         {

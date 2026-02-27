@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_SIGN : Function_1
+	internal sealed class Function_SIGN : Function_1
     {
         public Function_SIGN(FunctionBase func1) : base(func1)
         {

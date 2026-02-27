@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 
-	internal class Function_GUID : FunctionBase
+	internal sealed class Function_GUID : FunctionBase
 	{
 		public Function_GUID()
 		{

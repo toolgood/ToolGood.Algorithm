@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_VARP : Function_N
+	internal sealed class Function_VARP : Function_N
     {
         public Function_VARP(FunctionBase[] funcs) : base(funcs)
         {

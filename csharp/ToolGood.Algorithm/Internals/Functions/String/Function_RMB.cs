@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_RMB : Function_1
+	internal sealed class Function_RMB : Function_1
 	{
 		public Function_RMB(FunctionBase func1) : base(func1)
 		{

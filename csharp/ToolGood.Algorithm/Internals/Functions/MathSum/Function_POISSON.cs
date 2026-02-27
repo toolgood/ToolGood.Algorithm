@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_POISSON : Function_3
+	internal sealed class Function_POISSON : Function_3
     {
 		public Function_POISSON(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,9 +1,9 @@
-ï»¿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_TIMESTAMP : Function_2
+	internal sealed class Function_TIMESTAMP : Function_2
 	{
 		public Function_TIMESTAMP(FunctionBase[] funcs) : base(funcs)
 		{
@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			int type = 0; // æ¯«ç§’
+			int type = 0; // ºÁÃë
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsError) { return args2; }

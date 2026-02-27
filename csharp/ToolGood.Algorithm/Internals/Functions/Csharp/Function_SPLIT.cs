@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_SPLIT : Function_2
+	internal sealed class Function_SPLIT : Function_2
 	{
 		public Function_SPLIT(FunctionBase[] funcs) : base(funcs)
 		{

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_COUNTIF : Function_2
+	internal sealed class Function_COUNTIF : Function_2
     {
 		public Function_COUNTIF(FunctionBase[] funcs) : base(funcs)
 		{

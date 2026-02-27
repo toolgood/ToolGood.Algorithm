@@ -2,7 +2,7 @@ using System;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_LOG10 : Function_1
+	internal sealed class Function_LOG10 : Function_1
 	{
 		public Function_LOG10(FunctionBase func1) : base(func1)
 		{

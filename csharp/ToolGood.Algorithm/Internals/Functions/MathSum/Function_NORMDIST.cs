@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_NORMDIST : Function_4
+	internal sealed class Function_NORMDIST : Function_4
     {
 		public Function_NORMDIST(FunctionBase[] funcs) : base(funcs)
 		{

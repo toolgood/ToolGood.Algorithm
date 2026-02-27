@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_RANDBETWEEN : Function_2
+	internal sealed class Function_RANDBETWEEN : Function_2
     {
 		public Function_RANDBETWEEN(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
-	internal class Function_GE : Function_2
+	internal sealed class Function_GE : Function_2
 	{
 		public Function_GE(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 	#region second minute hour month year day
 
 	#endregion
-	internal class Function_WEEKDAY : Function_2
+	internal sealed class Function_WEEKDAY : Function_2
     {
 		public Function_WEEKDAY(FunctionBase[] funcs) : base(funcs)
 		{

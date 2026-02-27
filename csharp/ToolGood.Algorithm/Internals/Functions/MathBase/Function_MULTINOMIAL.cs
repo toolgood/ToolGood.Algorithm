@@ -1,10 +1,10 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_MULTINOMIAL : Function_N
+	internal sealed class Function_MULTINOMIAL : Function_N
     {
         public Function_MULTINOMIAL(FunctionBase[] funcs) : base(funcs)
         {
@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             int sum = 0;
             int n = 1;
             for (int i = 0; i < list.Count; i++) {
-                var a = (int)list[i]; // å°äºŽç­‰äºŽ0 æ—¶ï¼ŒæŒ‰0å¤„ç†
+                var a = (int)list[i]; // Ð¡ÓÚµÈÓÚ0 Ê±£¬°´0´¦Àí
                 n *= FunctionUtil.F_base_Factorial(a);
                 sum += a;
             }

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	internal class Function_ISNULL : Function_2
+	internal sealed class Function_ISNULL : Function_2
     {
 		public Function_ISNULL(FunctionBase[] funcs) : base(funcs)
 		{

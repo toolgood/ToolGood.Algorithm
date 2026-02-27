@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_COVARIANCES : Function_2
+	internal sealed class Function_COVARIANCES : Function_2
     {
 		public Function_COVARIANCES(FunctionBase[] funcs) : base(funcs)
 		{

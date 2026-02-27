@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_SUBSTRING : Function_3
+	internal sealed class Function_SUBSTRING : Function_3
 	{
 		public Function_SUBSTRING(FunctionBase[] funcs) : base(funcs)
 		{

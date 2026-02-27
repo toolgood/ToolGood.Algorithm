@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_HARMEAN : Function_N
+	internal sealed class Function_HARMEAN : Function_N
     {
         public Function_HARMEAN(FunctionBase[] funcs) : base(funcs)
         {

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_SUBSTITUTE : Function_4
+	internal sealed class Function_SUBSTITUTE : Function_4
 	{
 		public Function_SUBSTITUTE(FunctionBase[] funcs) : base(funcs)
 		{

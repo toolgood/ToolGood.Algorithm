@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
-	internal class Function_LT : Function_2
+	internal sealed class Function_LT : Function_2
 	{
 		public Function_LT(FunctionBase[] funcs) : base(funcs)
 		{

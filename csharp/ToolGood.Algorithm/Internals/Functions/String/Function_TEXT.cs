@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_TEXT : Function_2
+	internal sealed class Function_TEXT : Function_2
 	{
 		public Function_TEXT(FunctionBase[] funcs) : base(funcs)
 		{

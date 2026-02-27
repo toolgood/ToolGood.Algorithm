@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_DATEVALUE : Function_N
+	internal sealed class Function_DATEVALUE : Function_N
 	{
 		public Function_DATEVALUE(FunctionBase[] funcs) : base(funcs)
 		{
@@ -35,12 +35,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				if(args1.LongValue <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
 					return args1.ToMyDate();
 				}
-				if(args1.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L，
+				if(args1.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时�?�?时间�?�?253402232399L�?
 					var time = FunctionUtil.StartDateUtc.AddSeconds(args1.LongValue);
 					if(engine.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
 					return Operand.Create(time);
 				}
-				// 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
+				// 注：时间�?253402232399 ms 转时�?�?1978-01-12 05:30:32
 				var time2 = FunctionUtil.StartDateUtc.AddMilliseconds(args1.LongValue);
 				if(engine.UseLocalTime) { return Operand.Create(time2.ToLocalTime()); }
 				return Operand.Create(time2);

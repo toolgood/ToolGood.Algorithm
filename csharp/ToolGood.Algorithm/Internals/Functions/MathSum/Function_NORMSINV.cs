@@ -4,7 +4,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_NORMSINV : Function_1
+	internal sealed class Function_NORMSINV : Function_1
     {
         public Function_NORMSINV(FunctionBase func1) : base(func1)
         {

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_FISHERINV : Function_1
+	internal sealed class Function_FISHERINV : Function_1
     {
         public Function_FISHERINV(FunctionBase func1) : base(func1)
         {

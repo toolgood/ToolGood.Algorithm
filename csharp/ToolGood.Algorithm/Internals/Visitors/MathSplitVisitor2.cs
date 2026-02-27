@@ -6,7 +6,7 @@ using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
-	internal class MathSplitVisitor2 : AbstractParseTreeVisitor<CalculateTree>, ImathVisitor<CalculateTree>
+	internal sealed class MathSplitVisitor2 : AbstractParseTreeVisitor<CalculateTree>, ImathVisitor<CalculateTree>
 	{
 		public CalculateTree VisitProg(mathParser.ProgContext context)
 		{

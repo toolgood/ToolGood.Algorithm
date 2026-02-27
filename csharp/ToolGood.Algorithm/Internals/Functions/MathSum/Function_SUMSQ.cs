@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 
-    internal class Function_SUMSQ : Function_N
+    internal sealed class Function_SUMSQ : Function_N
     {
         public Function_SUMSQ(FunctionBase[] funcs) : base(funcs)
         {

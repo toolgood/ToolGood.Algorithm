@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_Array : Function_N
+	internal sealed class Function_Array : Function_N
 	{
 		public Function_Array(FunctionBase[] funcs) : base(funcs)
 		{

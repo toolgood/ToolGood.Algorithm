@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_TODAY : FunctionBase
+	internal sealed class Function_TODAY : FunctionBase
     {
         public override string Name => "Today";
 

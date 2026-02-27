@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_BIN2HEX : Function_2
+	internal sealed class Function_BIN2HEX : Function_2
     {
 		public Function_BIN2HEX(FunctionBase[] funcs) : base(funcs)
 		{

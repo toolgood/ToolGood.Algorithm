@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
-	internal class Function_ATAN2 : Function_2
+	internal sealed class Function_ATAN2 : Function_2
     {
 		public Function_ATAN2(FunctionBase[] funcs) : base(funcs)
 		{

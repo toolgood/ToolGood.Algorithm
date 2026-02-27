@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
-	internal class Function_OR : Function_2
+	internal sealed class Function_OR : Function_2
 	{
 		public Function_OR(FunctionBase[] funcs) : base(funcs)
 		{
@@ -17,9 +17,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			// 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
-			// 在excel内 AND(x,y) OR(x,y) 先报错，
-			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
+			// 程序 && and || or �?excel�? AND(x,y) OR(x,y) 有区�?
+			// 在excel�?AND(x,y) OR(x,y) 先报错，
+			// 在程序中�?& and  有true 直接返回true 就不会检测下一个会不会报错
 			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
 			var args1 = GetBoolean_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }

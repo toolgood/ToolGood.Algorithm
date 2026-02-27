@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_RAND : FunctionBase
+	internal sealed class Function_RAND : FunctionBase
     {
         public Function_RAND()
         {

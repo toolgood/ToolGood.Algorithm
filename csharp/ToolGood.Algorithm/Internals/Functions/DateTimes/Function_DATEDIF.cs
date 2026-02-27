@@ -4,7 +4,7 @@ using ToolGood.Algorithm.Internals.Visitors;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_DATEDIF : Function_3
+	internal sealed class Function_DATEDIF : Function_3
     {
 		public Function_DATEDIF(FunctionBase[] funcs) : base(funcs)
 		{

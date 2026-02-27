@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_SMALL : Function_2
+	internal sealed class Function_SMALL : Function_2
 	{
 		public Function_SMALL(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_JOIN : Function_N
+	internal sealed class Function_JOIN : Function_N
 	{
 		public Function_JOIN(FunctionBase[] funcs) : base(funcs)
 		{

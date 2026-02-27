@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_LASTINDEXOF : Function_4
+	internal sealed class Function_LASTINDEXOF : Function_4
 	{
 		public Function_LASTINDEXOF(FunctionBase[] funcs) : base(funcs)
 		{

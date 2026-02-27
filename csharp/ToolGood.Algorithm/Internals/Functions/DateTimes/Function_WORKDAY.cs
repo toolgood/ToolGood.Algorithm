@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_WORKDAY : Function_N
+	internal sealed class Function_WORKDAY : Function_N
     {
         public Function_WORKDAY(FunctionBase[] funcs) : base(funcs)
         {

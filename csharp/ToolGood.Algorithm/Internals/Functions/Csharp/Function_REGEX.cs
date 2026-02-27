@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_REGEX : Function_2
+	internal sealed class Function_REGEX : Function_2
 	{
 		public Function_REGEX(FunctionBase[] funcs) : base(funcs)
 		{

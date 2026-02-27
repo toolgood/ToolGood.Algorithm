@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_ArrayJson : Function_N
+	internal sealed class Function_ArrayJson : Function_N
 	{
 		public Function_ArrayJson(FunctionBase[] funcs) : base(funcs)
 		{

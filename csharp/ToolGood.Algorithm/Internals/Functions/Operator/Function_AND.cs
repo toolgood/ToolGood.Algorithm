@@ -1,10 +1,10 @@
-ï»¿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 
-	internal class Function_AND : Function_2
+	internal sealed class Function_AND : Function_2
 	{
 		public Function_AND(FunctionBase[] funcs) : base(funcs)
 		{
@@ -18,10 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			// ç¨‹åº && and || or ä¸ excelçš„  AND(x,y) OR(x,y) æœ‰åŒºåˆ«
-			// åœ¨excelå†… AND(x,y) OR(x,y) å…ˆæŠ¥é”™ï¼Œ
-			// åœ¨ç¨‹åºä¸­ï¼Œ&& and  æœ‰true ç›´æ¥è¿”å›true å°±ä¸ä¼šæ£€æµ‹ä¸‹ä¸€ä¸ªä¼šä¸ä¼šæŠ¥é”™
-			// åœ¨ç¨‹åºä¸­ï¼Œ|| or  æœ‰false ç›´æ¥è¿”å›false å°±ä¸ä¼šæ£€æµ‹ä¸‹ä¸€ä¸ªä¼šä¸ä¼šæŠ¥é”™
+			// ³ÌĞò && and || or Óë excelµÄ  AND(x,y) OR(x,y) ÓĞÇø±ğ
+			// ÔÚexcelÄÚ AND(x,y) OR(x,y) ÏÈ±¨´í£¬
+			// ÔÚ³ÌĞòÖĞ£¬&& and  ÓĞtrue Ö±½Ó·µ»Øtrue ¾Í²»»á¼ì²âÏÂÒ»¸ö»á²»»á±¨´í
+			// ÔÚ³ÌĞòÖĞ£¬|| or  ÓĞfalse Ö±½Ó·µ»Øfalse ¾Í²»»á¼ì²âÏÂÒ»¸ö»á²»»á±¨´í
 			var args1 = GetBoolean_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			if(args1.BooleanValue == false) {

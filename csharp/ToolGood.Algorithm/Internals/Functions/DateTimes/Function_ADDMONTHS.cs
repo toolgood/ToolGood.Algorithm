@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_ADDMONTHS : Function_2
+	internal sealed class Function_ADDMONTHS : Function_2
     {
 		public Function_ADDMONTHS(FunctionBase[] funcs) : base(funcs)
 		{

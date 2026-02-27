@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
-	internal class Function_HMACMD5 : Function_2
+	internal sealed class Function_HMACMD5 : Function_2
 	{
 		public Function_HMACMD5(FunctionBase[] funcs) : base(funcs)
 		{

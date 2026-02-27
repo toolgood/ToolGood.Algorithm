@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.LitJson;
@@ -6,7 +6,7 @@ using ToolGood.Algorithm.LitJson;
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 
-	internal class Function_JSON : Function_1
+	internal sealed class Function_JSON : Function_1
 	{
 		public Function_JSON(FunctionBase func1) : base(func1)
 		{

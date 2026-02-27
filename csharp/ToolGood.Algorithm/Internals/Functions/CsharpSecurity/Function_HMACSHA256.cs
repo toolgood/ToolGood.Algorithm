@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
-	internal class Function_HMACSHA256 : Function_2
+	internal sealed class Function_HMACSHA256 : Function_2
 	{
 		public Function_HMACSHA256(FunctionBase[] funcs) : base(funcs)
 		{

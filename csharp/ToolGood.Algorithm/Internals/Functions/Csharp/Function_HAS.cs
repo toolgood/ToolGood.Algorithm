@@ -4,7 +4,7 @@ using System.Text;
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 
-	internal class Function_HAS : Function_2
+	internal sealed class Function_HAS : Function_2
 	{
 		public Function_HAS(FunctionBase[] funcs) : base(funcs)
 		{

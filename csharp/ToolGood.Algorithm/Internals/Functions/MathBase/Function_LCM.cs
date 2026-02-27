@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_LCM : Function_N
+	internal sealed class Function_LCM : Function_N
     {
         public Function_LCM(FunctionBase[] funcs) : base(funcs)
         {

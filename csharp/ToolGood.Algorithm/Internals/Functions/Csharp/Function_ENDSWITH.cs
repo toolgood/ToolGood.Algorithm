@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_ENDSWITH : Function_3
+	internal sealed class Function_ENDSWITH : Function_3
 	{
 		public Function_ENDSWITH(FunctionBase[] funcs) : base(funcs)
 		{

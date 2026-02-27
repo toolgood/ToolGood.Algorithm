@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
-	internal class Function_Connect : Function_2
+	internal sealed class Function_Connect : Function_2
 	{
 		public Function_Connect(FunctionBase[] funcs) : base(funcs)
 		{

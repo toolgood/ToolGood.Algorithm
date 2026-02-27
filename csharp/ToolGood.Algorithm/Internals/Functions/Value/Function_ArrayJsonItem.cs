@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_ArrayJsonItem : Function_1
+	internal sealed class Function_ArrayJsonItem : Function_1
 	{
 		private readonly string key;
 

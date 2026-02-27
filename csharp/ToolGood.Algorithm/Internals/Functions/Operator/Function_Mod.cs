@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
-	internal class Function_Mod : Function_2
+	internal sealed class Function_Mod : Function_2
 	{
 		public Function_Mod(FunctionBase[] funcs) : base(funcs)
 		{

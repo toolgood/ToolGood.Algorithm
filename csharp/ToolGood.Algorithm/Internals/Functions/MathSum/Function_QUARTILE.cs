@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 
-    internal class Function_QUARTILE : Function_2
+    internal sealed class Function_QUARTILE : Function_2
     {
 		public Function_QUARTILE(FunctionBase[] funcs) : base(funcs)
 		{

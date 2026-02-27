@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_YEAR : Function_1
+	internal sealed class Function_YEAR : Function_1
     {
         public Function_YEAR(FunctionBase func1) : base(func1)
         {

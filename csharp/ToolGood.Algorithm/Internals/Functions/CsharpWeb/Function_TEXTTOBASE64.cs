@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
-	internal class Function_TEXTTOBASE64 : Function_1
+	internal sealed class Function_TEXTTOBASE64 : Function_1
 	{
 		public Function_TEXTTOBASE64(FunctionBase func1) : base(func1)
 		{

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_NUM : FunctionBase
+	internal sealed class Function_NUM : FunctionBase
 	{
 		private readonly decimal d;
 		private readonly string unit;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_PERCENTILE : Function_2
+	internal sealed class Function_PERCENTILE : Function_2
     {
 		public Function_PERCENTILE(FunctionBase[] funcs) : base(funcs)
 		{

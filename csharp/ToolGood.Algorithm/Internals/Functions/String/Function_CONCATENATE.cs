@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_CONCATENATE : Function_N
+	internal sealed class Function_CONCATENATE : Function_N
 	{
 		public Function_CONCATENATE(FunctionBase[] funcs) : base(funcs)
 		{
@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (funcs.Length == 1) {
 				var a = GetText(engine, tempParameter, 0);
 				if (a.IsError) { return a; }
-				return a; // 只有一个
+				return a; // 只有一�?
 			}
 			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {

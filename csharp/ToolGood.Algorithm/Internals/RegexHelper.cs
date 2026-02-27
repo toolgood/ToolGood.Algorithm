@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.Internals
 {
-    internal partial class RegexHelper
+    internal sealed partial class RegexHelper
     {
 #if NETSTANDARD2_1
         /// <summary>

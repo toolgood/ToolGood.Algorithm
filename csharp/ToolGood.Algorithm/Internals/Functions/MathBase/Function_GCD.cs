@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_GCD : Function_N
+	internal sealed class Function_GCD : Function_N
     {
         public Function_GCD(FunctionBase[] funcs) : base(funcs)
         {

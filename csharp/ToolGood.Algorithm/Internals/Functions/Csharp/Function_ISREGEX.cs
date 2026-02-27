@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_ISREGEX : Function_2
+	internal sealed class Function_ISREGEX : Function_2
 	{
 		public Function_ISREGEX(FunctionBase[] funcs) : base(funcs)
 		{

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_COMBIN : Function_2
+	internal sealed class Function_COMBIN : Function_2
     {
 		public Function_COMBIN(FunctionBase[] funcs) : base(funcs)
 		{

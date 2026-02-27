@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_TRIMSTART : Function_2
+	internal sealed class Function_TRIMSTART : Function_2
 	{
 		public Function_TRIMSTART(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_Value : FunctionBase
+	internal sealed class Function_Value : FunctionBase
 	{
 		private readonly Operand _value;
 		private readonly string _showName;

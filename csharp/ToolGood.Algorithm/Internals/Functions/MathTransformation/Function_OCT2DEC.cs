@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_OCT2DEC : Function_1
+	internal sealed class Function_OCT2DEC : Function_1
     {
         public Function_OCT2DEC(FunctionBase func1) : base(func1)
         {

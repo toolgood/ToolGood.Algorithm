@@ -3,7 +3,7 @@
 	/// <summary>
 	/// 关键字信息
 	/// </summary>
-	public class DiyNameKeyInfo
+	public sealed class DiyNameKeyInfo
 	{
 		/// <summary>
 		/// 名称

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_DAYS360 : Function_3
+	internal sealed class Function_DAYS360 : Function_3
     {
 		public Function_DAYS360(FunctionBase[] funcs) : base(funcs)
 		{

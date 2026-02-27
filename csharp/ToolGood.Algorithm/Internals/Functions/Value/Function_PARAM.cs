@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_PARAM : Function_2
+	internal sealed class Function_PARAM : Function_2
 	{
 		public Function_PARAM(FunctionBase[] funcs) : base(funcs)
 		{

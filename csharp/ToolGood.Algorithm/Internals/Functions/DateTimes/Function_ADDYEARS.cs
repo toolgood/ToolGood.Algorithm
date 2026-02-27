@@ -4,7 +4,7 @@ using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_ADDYEARS : Function_2
+	internal sealed class Function_ADDYEARS : Function_2
     {
 		public Function_ADDYEARS(FunctionBase[] funcs) : base(funcs)
 		{

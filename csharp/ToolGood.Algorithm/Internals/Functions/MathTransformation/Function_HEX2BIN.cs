@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_HEX2BIN : Function_2
+	internal sealed class Function_HEX2BIN : Function_2
     {
 		public Function_HEX2BIN(FunctionBase[] funcs) : base(funcs)
 		{

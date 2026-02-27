@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Operands;
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 
-	internal class Function_Add : Function_2
+	internal sealed class Function_Add : Function_2
 	{
 		public Function_Add(FunctionBase[] funcs) : base(funcs)
 		{

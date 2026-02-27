@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_PERMUT : Function_2
+	internal sealed class Function_PERMUT : Function_2
     {
 		public Function_PERMUT(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_INDEXOF : Function_4
+	internal sealed class Function_INDEXOF : Function_4
 	{
 		public Function_INDEXOF(FunctionBase[] funcs) : base(funcs)
 		{

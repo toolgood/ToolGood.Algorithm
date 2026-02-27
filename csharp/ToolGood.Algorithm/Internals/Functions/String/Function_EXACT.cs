@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_EXACT : Function_2
+	internal sealed class Function_EXACT : Function_2
 	{
 		public Function_EXACT(FunctionBase[] funcs) : base(funcs)
 		{

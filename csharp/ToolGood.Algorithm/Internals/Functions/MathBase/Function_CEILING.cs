@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_CEILING : Function_2
+	internal sealed class Function_CEILING : Function_2
     {
 		public Function_CEILING(FunctionBase[] funcs) : base(funcs)
 		{

@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
@@ -13,15 +13,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 	public abstract class FunctionBase
 	{
 		/// <summary>
-		/// åç§°
+		/// Ãû³Æ
 		/// </summary>
 		public abstract string Name { get; }
 
 		/// <summary>
-		/// è¿›è¡Œè®¡ç®—
+		/// ½øĞĞ¼ÆËã
 		/// </summary>
 		/// <param name="engine"></param>
-		/// <param name="tempParameter">ä¸´æ—¶å‚æ•°ï¼Œæœªæ‰¾åˆ°è¿”å›null</param>
+		/// <param name="tempParameter">ÁÙÊ±²ÎÊı£¬Î´ÕÒµ½·µ»Ønull</param>
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
 
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		#region ConvertToText
 		/// <summary>
-		/// è½¬æ¢å‚æ•°ä¸ºæ–‡æœ¬
+		/// ×ª»»²ÎÊıÎªÎÄ±¾
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// è½¬æ¢å‚æ•°ä¸ºå¸ƒå°”å€¼
+		/// ×ª»»²ÎÊıÎª²¼¶ûÖµ
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -69,7 +69,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// è½¬æ¢å‚æ•°ä¸ºæ•°å­—
+		/// ×ª»»²ÎÊıÎªÊı×Ö
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -80,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// è½¬æ¢å‚æ•°ä¸ºæ•°ç»„
+		/// ×ª»»²ÎÊıÎªÊı×é
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// è½¬æ¢å‚æ•°ä¸ºæ—¥æœŸ
+		/// ×ª»»²ÎÊıÎªÈÕÆÚ
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -144,7 +144,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#region TryEvaluate
 
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="engine"></param>
@@ -170,7 +170,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -184,7 +184,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 		   
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -198,7 +198,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -212,7 +212,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -226,7 +226,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -245,7 +245,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// æ‰§è¡Œå‡½æ•°,å¦‚æœå¼‚å¸¸ï¼Œè¿”å›é»˜è®¤å€¼
+		/// Ö´ĞĞº¯Êı,Èç¹ûÒì³££¬·µ»ØÄ¬ÈÏÖµ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>

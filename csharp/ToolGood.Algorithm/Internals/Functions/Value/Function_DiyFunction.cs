@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_DiyFunction : Function_N
+	internal sealed class Function_DiyFunction : Function_N
 	{
 		private readonly string funName;
 

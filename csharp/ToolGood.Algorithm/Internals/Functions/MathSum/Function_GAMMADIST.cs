@@ -4,7 +4,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_GAMMADIST : Function_4
+	internal sealed class Function_GAMMADIST : Function_4
     {
 		public Function_GAMMADIST(FunctionBase[] funcs) : base(funcs)
 		{

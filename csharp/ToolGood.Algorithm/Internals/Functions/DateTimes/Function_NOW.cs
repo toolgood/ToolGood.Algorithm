@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_NOW : FunctionBase
+	internal sealed class Function_NOW : FunctionBase
     {
         public override string Name => "Now";
 

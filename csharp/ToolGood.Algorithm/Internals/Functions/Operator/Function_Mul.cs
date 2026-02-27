@@ -5,7 +5,7 @@ using System.Text;
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 
-	internal class Function_Mul : Function_2
+	internal sealed class Function_Mul : Function_2
 	{
 		public Function_Mul(FunctionBase[] funcs) : base(funcs)
 		{

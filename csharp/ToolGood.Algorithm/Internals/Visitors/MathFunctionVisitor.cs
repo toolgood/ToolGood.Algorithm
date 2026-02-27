@@ -19,7 +19,7 @@ using ToolGood.Algorithm.Internals.Functions.Value;
 using ToolGood.Algorithm.math;
 namespace ToolGood.Algorithm.Internals.Visitors
 {
-	internal class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
+	internal sealed class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
 	{
 		private FunctionBase[] VisitExprs(mathParser.ExprContext[] exprs)
 		{

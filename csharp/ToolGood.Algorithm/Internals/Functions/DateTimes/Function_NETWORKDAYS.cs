@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_NETWORKDAYS : Function_N
+	internal sealed class Function_NETWORKDAYS : Function_N
     {
         public Function_NETWORKDAYS(FunctionBase[] funcs) : base(funcs)
         {

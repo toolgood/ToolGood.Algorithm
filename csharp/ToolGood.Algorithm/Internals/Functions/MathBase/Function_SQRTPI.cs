@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_SQRTPI : Function_1
+	internal sealed class Function_SQRTPI : Function_1
     {
         public Function_SQRTPI(FunctionBase func1) : base(func1)
         {

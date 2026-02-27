@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-    internal class Function_ISNULLORWHITESPACE : Function_1
+    internal sealed class Function_ISNULLORWHITESPACE : Function_1
     {
         public Function_ISNULLORWHITESPACE(FunctionBase func1) : base(func1)
         {
