@@ -656,7 +656,8 @@ class MathFunctionVisitor extends mathVisitor {
             return new Function_GetJsonValue(funcs[0], op);
         }
         if (context.PARAMETER() != null) {
-            let op = new Function_PARAMETER(context.PARAMETER().text);
+            let param = context.PARAMETER();
+            let op = new Function_PARAMETER(param.getText ? param.getText() : param.text);
             return new Function_GetJsonValue(funcs[0], op);
         }
         return new Function_GetJsonValue(funcs[0], funcs[1]);

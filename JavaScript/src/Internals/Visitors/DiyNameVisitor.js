@@ -20,7 +20,7 @@ class DiyNameVisitor extends mathVisitor {
     visitPARAMETER_fun(context) {
         let node = context.PARAMETER();
         if (node) {
-            let t = CharUtil.standardString(node.text);
+            let t = CharUtil.standardString(node.getText());
             if (t === "E") {
                 return this.visitChildren(context);
             } else if (t === "PI") {
@@ -32,10 +32,11 @@ class DiyNameVisitor extends mathVisitor {
             } else if (t === "ALGORITHMVERSION" || t === "ENGINEVERSION") {
                 return this.visitChildren(context);
             }
+            let symbol = node.getSymbol();
             this.diy.Parameters.push({
-                Name: node.text,
-                Start: node.symbol.start,
-                End: node.symbol.stop
+                Name: node.getText(),
+                Start: symbol.start,
+                End: symbol.stop
             });
         }
         return this.visitChildren(context);
@@ -47,10 +48,11 @@ class DiyNameVisitor extends mathVisitor {
     visitGetJsonValue_fun(context) {
         let node = context.PARAMETER();
         if (node) {
+            let symbol = node.getSymbol();
             this.diy.Parameters.push({
-                Name: node.text,
-                Start: node.symbol.start,
-                End: node.symbol.stop
+                Name: node.getText(),
+                Start: symbol.start,
+                End: symbol.stop
             });
         }
         return this.visitChildren(context);
@@ -60,7 +62,11 @@ class DiyNameVisitor extends mathVisitor {
      * 访问 DIY 函数节点
      */
     visitDiyFunction_fun(context) {
-        let t = CharUtil.standardString(context.f.text);
+        let node = context.f;
+        if (!node) {
+            return this.visitChildren(context);
+        }
+        let t = CharUtil.standardString(node.text);
         if (t === "E") {
             return this.visitChildren(context);
         } else if (t === "PI") {
@@ -83,11 +89,10 @@ class DiyNameVisitor extends mathVisitor {
         if (funcDict[t]) {
             return this.visitChildren(context);
         }
-        let node = context.f;
         this.diy.Functions.push({
             Name: node.text,
-            Start: node.symbol.start,
-            End: node.symbol.stop
+            Start: node.start,
+            End: node.stop
         });
         return this.visitChildren(context);
     }
