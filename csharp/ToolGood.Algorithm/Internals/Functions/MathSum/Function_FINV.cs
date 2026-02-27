@@ -14,15 +14,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "FInv";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetNumber_1(work, tempParameter);
+            var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) return args1;
 
-            var args2 = GetNumber_2(work, tempParameter);
+            var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) return args2;
 
-            var args3 = GetNumber_3(work, tempParameter);
+            var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
 
             var p = args1.DoubleValue;

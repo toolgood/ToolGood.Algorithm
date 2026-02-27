@@ -12,9 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override string Name => "TimeValue";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetText_1(work, tempParameter);
+            var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
             if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan dt)) {

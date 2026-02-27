@@ -13,12 +13,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override string Name => "Days360";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetDate_1(work, tempParameter);
+            var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var args2 = GetDate_2(work, tempParameter);
+			var args2 = GetDate_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
 			var startMyDate = (DateTime)args1.DateValue;
@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			var method = false;
 			if (func3 != null) {
-				var args3 = GetBoolean_3(work, tempParameter);
+				var args3 = GetBoolean_3(engine, tempParameter);
 				if (args3.IsError) { return args3; }
 				method = args3.BooleanValue;
 			}

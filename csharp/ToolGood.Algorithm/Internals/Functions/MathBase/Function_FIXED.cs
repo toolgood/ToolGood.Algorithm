@@ -14,21 +14,21 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override string Name => "Fixed";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var num = 2;
 			if (func2 != null) {
-				var args2 = GetNumber_2(work, tempParameter);
+				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsError) { return args2; }
 				num = args2.IntValue;
 			}
-			var args1 = GetNumber_1(work, tempParameter);
+			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
 			var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
 			var no = false;
 			if (func3 != null) {
-				var args3 = GetBoolean_3(work, tempParameter);
+				var args3 = GetBoolean_3(engine, tempParameter);
 				if (args3.IsError) { return args3; }
 				no = args3.BooleanValue;
 			}

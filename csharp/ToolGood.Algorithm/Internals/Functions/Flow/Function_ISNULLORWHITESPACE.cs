@@ -11,11 +11,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
         public override string Name => "IsNullOrWhitespace";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
+            var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNull) { return Operand.True; }
-            var textArg = GetText_1(work, tempParameter);
+            var textArg = GetText_1(engine, tempParameter);
 			if (textArg.IsError) { return textArg; }
             return Operand.Create(string.IsNullOrWhiteSpace(textArg.TextValue));
         }

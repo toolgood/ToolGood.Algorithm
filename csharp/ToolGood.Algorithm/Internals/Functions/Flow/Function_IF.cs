@@ -13,13 +13,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
         public override string Name => "If";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetBoolean_1(work, tempParameter);
+            var args1 = GetBoolean_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
-            if (args1.BooleanValue) return func2.Evaluate(work, tempParameter);
+            if (args1.BooleanValue) return func2.Evaluate(engine, tempParameter);
             if (func3 == null) { return Operand.False; }
-            return func3.Evaluate(work, tempParameter);
+            return func3.Evaluate(engine, tempParameter);
         }
 
     }

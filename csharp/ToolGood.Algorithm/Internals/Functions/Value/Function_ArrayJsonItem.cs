@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "ArrayJsonItem";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var keyValue = new KeyValue {
 				Key = key,
-				Value = func1.Evaluate(work, tempParameter)
+				Value = func1.Evaluate(engine, tempParameter)
 			};
 			return new OperandKeyValue(keyValue);
 		}

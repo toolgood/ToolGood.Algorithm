@@ -12,9 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		public override string Name => "MD5";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 			try {
 				var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));

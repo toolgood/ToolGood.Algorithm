@@ -12,11 +12,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override string Name => "Product";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { 
-                var aa = GetNumber(work, tempParameter, i);
+                var aa = GetNumber(engine, tempParameter, i);
                 if (aa.IsError) { return aa; } 
                 args.Add(aa); 
             }

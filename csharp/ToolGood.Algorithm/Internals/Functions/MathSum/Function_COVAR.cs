@@ -15,10 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "Covar";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
+            var args1 = func1.Evaluate(engine, tempParameter); if (args1.IsError) { return args1; }
+            var args2 = func2.Evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
             var list1 = new List<decimal>();
             var list2 = new List<decimal>();
             var o1 = FunctionUtil.F_base_GetList(args1, list1);

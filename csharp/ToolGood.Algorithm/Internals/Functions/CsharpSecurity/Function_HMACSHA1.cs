@@ -14,12 +14,12 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		public override string Name => "HmacSHA1";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = GetText_2(work, tempParameter);
+			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsError) { return args2; }
 			try {
 				var t = GetHmacSha1String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);

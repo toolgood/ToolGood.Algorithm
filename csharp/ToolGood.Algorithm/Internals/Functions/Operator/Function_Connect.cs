@@ -15,10 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override string Name => "&";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = GetText_2(work, tempParameter); if(args2.IsError) { return args2; }
+			var args1 = GetText_1(engine, tempParameter); if(args1.IsError) { return args1; }
+			var args2 = GetText_2(engine, tempParameter); if(args2.IsError) { return args2; }
 
 			return Operand.Create(args1.TextValue + args2.TextValue);
 		}

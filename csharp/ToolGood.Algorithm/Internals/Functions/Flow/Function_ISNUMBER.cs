@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
         public override string Name => "IsNumber";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
+            var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNumber) { return Operand.True; }
             return Operand.False;
         }

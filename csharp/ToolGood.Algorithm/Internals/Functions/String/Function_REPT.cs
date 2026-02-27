@@ -13,11 +13,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override string Name => "Rept";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
-			var args2 = GetNumber_2(work, tempParameter);
+			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
 			var newtext = args1.TextValue;

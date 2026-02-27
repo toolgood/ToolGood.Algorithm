@@ -15,10 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "SumIf";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetArray_1(work, tempParameter); if (args1.IsError) { return args1; }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
+            var args1 = GetArray_1(engine, tempParameter); if (args1.IsError) { return args1; }
+            var args2 = func2.Evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             List<decimal> sumdbs;
             if (func3 != null) {
-                var args3 = GetArray_3(work, tempParameter); if (args3.IsError) { return args3; }
+                var args3 = GetArray_3(engine, tempParameter); if (args3.IsError) { return args3; }
                 sumdbs = new List<decimal>();
                 var o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
                 if (o2 == false) { return ParameterError(3); }

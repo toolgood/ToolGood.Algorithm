@@ -14,9 +14,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "Json";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 			if(args1.IsJson) { return args1; }
 			if(args1.IsArrayJson) { args1 = args1.ToText(); }

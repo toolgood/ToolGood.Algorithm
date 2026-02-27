@@ -20,11 +20,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "Parameter";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var txt = name;
 			if(string.IsNullOrEmpty(name)) {
-				var args1 = func1.Evaluate(work, tempParameter);
+				var args1 = func1.Evaluate(engine, tempParameter);
 				args1 = ConvertToText(args1, 1);
 				if(args1.IsError) { return args1; }
 				txt = args1.TextValue;
@@ -32,10 +32,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				txt = name;
 			}
 			if(tempParameter != null) {
-				var r = tempParameter(work, txt);
+				var r = tempParameter(engine, txt);
 				if(r != null) return r;
 			}
-			return work.GetParameter(txt);
+			return engine.GetParameter(txt);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{

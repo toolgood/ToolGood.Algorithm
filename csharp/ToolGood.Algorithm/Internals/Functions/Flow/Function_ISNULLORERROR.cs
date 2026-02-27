@@ -13,12 +13,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
         public override string Name => "IsNullOrError";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
+            var args1 = func1.Evaluate(engine, tempParameter);
             if (func2 != null) {
-                if (args1.IsNull || args1.IsError) { return func2.Evaluate(work, tempParameter); }
-                if (args1.IsText && args1.TextValue == null) { return func2.Evaluate(work, tempParameter); }
+                if (args1.IsNull || args1.IsError) { return func2.Evaluate(engine, tempParameter); }
+                if (args1.IsText && args1.TextValue == null) { return func2.Evaluate(engine, tempParameter); }
                 return args1;
             }
             if (args1.IsNull || args1.IsError) { return Operand.True; }

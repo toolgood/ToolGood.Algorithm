@@ -8,10 +8,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
     {
         public override string Name => "Today";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             DateTime now;
-            if (work.UseLocalTime) {
+            if (engine.UseLocalTime) {
                 now = DateTime.Now;
             } else {
                 now = DateTime.UtcNow;

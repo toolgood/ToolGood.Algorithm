@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 
         public override string Name => "Asinh";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetNumber_1(work, tempParameter);
+            var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
             return Operand.Create(Math.Asinh(args1.DoubleValue));
         }

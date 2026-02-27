@@ -13,10 +13,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 
 		public override string Name => ">=";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsError) { return args2; }
+			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsError) { return args1; }
+			var args2 = func2.Evaluate(engine, tempParameter); if(args2.IsError) { return args2; }
 
 			if(args1.Type == args2.Type) {
 				if(args1.IsNumber) {

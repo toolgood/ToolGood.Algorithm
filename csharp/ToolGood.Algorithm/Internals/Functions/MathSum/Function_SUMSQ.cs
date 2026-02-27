@@ -13,10 +13,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "SumSq";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>(funcs.Length);
-            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
+            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Evaluate(engine, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);

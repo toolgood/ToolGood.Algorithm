@@ -15,20 +15,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override string Name => "Or";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			// 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
 			// 在excel内 AND(x,y) OR(x,y) 先报错，
 			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
 			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-			var args1 = GetBoolean_1(work, tempParameter);
+			var args1 = GetBoolean_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			if(args1.BooleanValue) {
-				var args2 = GetBoolean_2(work, tempParameter);
+				var args2 = GetBoolean_2(engine, tempParameter);
 				if(args2.IsError) { return args2; }
 				return Operand.True;
 			}
-			return GetBoolean_2(work, tempParameter);
+			return GetBoolean_2(engine, tempParameter);
 		}
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

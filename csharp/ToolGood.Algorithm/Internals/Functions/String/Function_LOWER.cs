@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override string Name => "Lower";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.ToLower());
 		}

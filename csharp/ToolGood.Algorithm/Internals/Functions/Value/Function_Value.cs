@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "Value";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			return _value;
 		}

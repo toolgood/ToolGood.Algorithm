@@ -16,14 +16,14 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override string Name => "Weekday";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetDate_1(work, tempParameter);
+            var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
 			var type = 1;
 			if (func2 != null) {
-				var args2 = GetNumber_2(work, tempParameter);
+				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsError) { return args2; }
 				type = args2.IntValue;
 			}

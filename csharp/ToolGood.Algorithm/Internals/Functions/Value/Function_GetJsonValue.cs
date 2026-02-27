@@ -12,15 +12,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "GetJsonValue";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var obj = func1.Evaluate(work, tempParameter); if(obj.IsError) { return obj; }
-			var op = func2.Evaluate(work, tempParameter); if(op.IsError) { return op; }
+			var obj = func1.Evaluate(engine, tempParameter); if(obj.IsError) { return obj; }
+			var op = func2.Evaluate(engine, tempParameter); if(op.IsError) { return op; }
 
 			if(obj.IsArray) {
 				op = ConvertToNumber(op, 2);
 				if(op.IsError) { return op; }
-				var index = op.IntValue - work.ExcelIndex;
+				var index = op.IntValue - engine.ExcelIndex;
 				if(index < obj.ArrayValue.Count)
 					return obj.ArrayValue[index];
 				return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
@@ -45,7 +45,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				if(json.IsArray) {
 					op = ConvertToNumber(op, 2);
 					if(op.IsError) { return op; }
-					var index = op.IntValue - work.ExcelIndex;
+					var index = op.IntValue - engine.ExcelIndex;
 					if(index < json.Count) {
 						var v = json[index];
 						if(v.IsString) return Operand.Create(v.StringValue);

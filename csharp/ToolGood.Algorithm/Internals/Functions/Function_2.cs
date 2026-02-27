@@ -33,36 +33,36 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 
 		#region Get_2
-		protected Operand GetText_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetText_2(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args2 = func2.Evaluate(work, tempParameter);
+			var args2 = func2.Evaluate(engine, tempParameter);
 			if(args2.IsText) return args2;
 			return ConvertToText(args2, 2);
 		}
 
-		protected Operand GetNumber_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetNumber_2(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args2 = func2.Evaluate(work, tempParameter);
+			var args2 = func2.Evaluate(engine, tempParameter);
 			if(args2.IsNumber) return args2;
 			return ConvertToNumber(args2, 2);
 		}
 
-		protected Operand GetDate_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetDate_2(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args2 = func2.Evaluate(work, tempParameter);
+			var args2 = func2.Evaluate(engine, tempParameter);
 			if(args2.IsDate) return args2;
 			return ConvertToDate(args2, 2);
 		}
 
-		protected Operand GetBoolean_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetBoolean_2(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args2 = func2.Evaluate(work, tempParameter);
+			var args2 = func2.Evaluate(engine, tempParameter);
 			if(args2.IsBoolean) return args2;
 			return ConvertToBoolean(args2, 2);
 		}
-		protected Operand GetArray_2(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetArray_2(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args2 = func2.Evaluate(work, tempParameter);
+			var args2 = func2.Evaluate(engine, tempParameter);
 			if(args2.IsArray) return args2;
 			return ConvertToArray(args2, 2);
 		}

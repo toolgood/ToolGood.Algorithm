@@ -12,12 +12,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override string Name => "NetworkDays";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetDate(work, tempParameter, 0);
+            var args1 = GetDate(engine, tempParameter, 0);
 			if (args1.IsError) { return args1; }
 
-			var args2 = GetDate(work, tempParameter, 1);
+			var args2 = GetDate(engine, tempParameter, 1);
 			if (args2.IsError) { return args2; }
 
 			var startMyDate = (DateTime)args1.DateValue;
@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			var list = new HashSet<DateTime>();
 			for (int i = 2; i < funcs.Length; i++) {
-				var ar = GetDate(work, tempParameter, i);
+				var ar = GetDate(engine, tempParameter, i);
 				if (ar.IsError) { return ar; }
 				list.Add(ar.DateValue);
 			}

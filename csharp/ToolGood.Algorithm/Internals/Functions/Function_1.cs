@@ -32,36 +32,36 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#endregion
 
 		#region Get_1
-		protected Operand GetText_1(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetText_1(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsText) return args1;  
 			return ConvertToText(args1, 1);
 		}
 
-		protected Operand GetNumber_1(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetNumber_1(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsNumber) return args1;  
 			return ConvertToNumber(args1, 1);
 		}
 
-		protected Operand GetDate_1(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetDate_1(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsDate) return args1;   
 			return ConvertToDate(args1, 1);
 		}
 
-		protected Operand GetBoolean_1(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetBoolean_1(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsBoolean) return args1;  
 			return ConvertToBoolean(args1, 1);
 		}
-		protected Operand GetArray_1(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		protected Operand GetArray_1(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsArray) return args1;  
 			return ConvertToArray(args1, 1);
 		}
