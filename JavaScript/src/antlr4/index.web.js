@@ -9,12 +9,13 @@ import { default as error } from './error/index.js';
 
 import Lexer from './Lexer.js';
 import Parser from './Parser.js';
+import Token from './Token.js';
 
 import ParserRuleContext from './context/ParserRuleContext.js';
  
 
 export default {
-    atn, dfa, tree, error, Lexer, Parser, ParserRuleContext
+    atn, dfa, tree, error, Lexer, Parser, ParserRuleContext, Token
 }
 
 // export {
