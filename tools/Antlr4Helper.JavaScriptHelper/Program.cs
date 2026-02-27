@@ -70,66 +70,10 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"let _prevctx = localctx;", "");
 			text = Regex.Replace(text, @"_prevctx = localctx;", "");
 
-
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
-										, "this.K($1,$2,$3,$4,$5,$6,$7);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
-										, "this.L($1,$2,$3,$4,$5,$6);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
-										, "this.M($1,$2,$3,$4,$5);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
-										, "this.N($1,$2,$3,$4);");
-
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
-										, "this.F($1,$2,$3,$4,$5,$6);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
-										, "this.G($1,$2,$3,$4,$5);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
-										, "this.I($1,$2,$3,$4);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);"
-										, "this.J($1,$2,$3);");
-			text = Regex.Replace(text, @"this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);"
-										, "this.O($1,$2,$3);");
+ 
 
 
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.D($1,$2,$3,$4);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.C($1,$2,$3);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);[\r\n\t ]*this\.match\((\d+)\);", "this.B($1,$2);");
-			text = Regex.Replace(text, @"this\.match\((\d+)\);", "this.A($1);");
-			text = Regex.Replace(text, @"this\.state = (\d+);[\r\n\t ]*this\.expr\((\d+)\);", "this.E($1,$2);");
-			text = Regex.Replace(text, @"this\._errHandler\.sync\(this\);[\r\n\t ]*_la = this\._input\.LA\(1\);", "_la = this.Z();");
-			//text = Regex.Replace(text, @"this\._input\.LA\(1\);", "this.Y();");
-			text = Regex.Replace(text, @"this\._errHandler\.sync\(this\);", "this.X();");
-			text = text.Replace("this.pushNewRecursionContext(localctx, _startState, 1);", "this.W(localctx, _startState, 1);");
-			text = Regex.Replace(text, @"this\._errHandler\.reportMatch\(this\);[\r\n\t ]*this\.consume\(\);", "this.Q();");
-			text = text.Replace("this._input.LA(1);", "this.Y();");
-			text = text.Replace("this._input.LT(1);", "this.R();");
-
-
-			text = Regex.Replace(text, @"sempred\(localctx, ruleIndex, predIndex\) \{[\s\S]+?\};", @" sempred(localctx, ruleIndex, predIndex){return true;};
-	A(a){this.match(a);}
-	B(a,b){this.match(a);this.match(b);}
-	C(a,b,c){this.match(a);this.match(b);this.match(c);}
-	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}
-	E(a,b){this.state=a;this.expr(b);}
-	//F(a,b,c,d,e,f){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);}
-	G(a,b,c,e,f){this.match(a);this.match(b);this.match(c);this.state=e;this.expr(f);}
-	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}
-	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
-	K(a,b,c,d,e,f,g){this.match(a);this.match(b);this.match(c);this.match(d);this.state=e;this.expr(f);this.match(g);}
-	L(a,b,c,e,f,g){this.match(a);this.match(b);this.match(c);this.state=e;this.expr(f);this.match(g);}
-	M(a,b,e,f,g){this.match(a);this.match(b);this.state=e;this.expr(f);this.match(g);}
-	N(a,e,f,g){this.match(a);this.state=e;this.expr(f);this.match(g);}
-	O(e,f,g){this.state=e;this.expr(f);this.match(g);}
-
-
-	R(){return this._input.LT(1);}
-	Q(){this._errHandler.reportMatch(this);this.consume();}
-	W(a,b,c){this.pushNewRecursionContext(a, b, c);}
-	X(){this._errHandler.sync(this);}
-	Y(){return this._input.LA(1);}
-	Z(){this._errHandler.sync(this);return this._input.LA(1);}
-");
+			text = Regex.Replace(text, @"sempred\(localctx, ruleIndex, predIndex\) \{[\s\S]+?\};", @" sempred(localctx, ruleIndex, predIndex){return true;};");
 
 			// 清理多余的空行和注释
 			text = Regex.Replace(text, @"[\t ]*//.*([\r\n])", "$1");
@@ -150,7 +94,11 @@ namespace Antlr4Helper.JavaScriptHelper
 			text = Regex.Replace(text, @"static literalNames = \[[\s\S]+?\];", "static literalNames =[];");
 			text = Regex.Replace(text, @"static symbolicNames = \[[\s\S]+?\];", "static symbolicNames =[];");
 			text = Regex.Replace(text, @"static ruleNames = \[[\s\S]+?\];", "static ruleNames =[];");
+			text = Regex.Replace(text, @"static channelNames = \[[\s\S]+?\];", "static channelNames =[];");
+			text = Regex.Replace(text, @"static modeNames = \[[\s\S]+?\];", "static modeNames =[];");
 			text = Regex.Replace(text, @"(mathLexer\..*) = (\d+);", "");
+
+
 			text = text.Replace("mathLexer.EOF = antlr4.Token.EOF;", "");
 			File.WriteAllText("mathLexer.js", text);
 
