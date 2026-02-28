@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				Nodes = new List<ConditionTree>()
 			};
 			var t = context.op.Text;
-			if(CharUtil.Equals(t, "&&", "and")) {
+			if(CharUtil.Equals(t, "&&")) {
 				tree.Type = ConditionTreeType.And;
 			} else {
 				tree.Type = ConditionTreeType.Or;
