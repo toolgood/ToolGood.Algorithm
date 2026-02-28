@@ -39,11 +39,15 @@ namespace ToolGood.Algorithm
 		/// Null
 		/// </summary>
 		public static readonly Operand Null = new OperandNull();
-		private static readonly Operand[] IntCache = new Operand[256];
+
+		// 整数缓存范围: -1000 ~ 1000，共2001个值
+		private const int IntCacheOffset = 1000;
+		private const int IntCacheSize = 2001;
+		private static readonly Operand[] IntCache = new Operand[IntCacheSize];
 		static Operand()
 		{
-			for (int i = 0; i < 256; i++)
-				IntCache[i] = new OperandInt(i - 128);
+			for (int i = 0; i < IntCacheSize; i++)
+				IntCache[i] = new OperandInt(i - IntCacheOffset);
 		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
@@ -171,8 +175,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(int obj)
 		{
-			if (obj >= -128 && obj <= 127)
-				return IntCache[obj + 128];
+			if (obj >= -IntCacheOffset && obj <= IntCacheOffset)
+				return IntCache[obj + IntCacheOffset];
 			return new OperandInt(obj);
 		}
 

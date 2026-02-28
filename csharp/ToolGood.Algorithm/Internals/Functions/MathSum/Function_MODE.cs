@@ -23,8 +23,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var dict = new Dictionary<decimal, int>();
             foreach (var item in list) {
-                if (dict.ContainsKey(item)) {
-                    dict[item] += 1;
+                if (dict.TryGetValue(item, out int count)) {
+                    dict[item] = count + 1;
                 } else {
                     dict[item] = 1;
                 }
