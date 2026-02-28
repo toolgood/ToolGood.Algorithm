@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args1, list);
 			if(o == false) { return ParameterError(1); }
-			list = list.OrderBy(q => q).ToList();
+			list.Sort();
 			int k = args2.IntValue;
 			if(k < 1 - engine.ExcelIndex || k > list.Count - engine.ExcelIndex) {
 				return ParameterError(2);

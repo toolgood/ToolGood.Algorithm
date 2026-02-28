@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return FunctionError(); }
 
-            list = list.OrderBy(q => q).ToList();
+            list.Sort();
             return Operand.Create(list[list.Count / 2]);
         }
 
