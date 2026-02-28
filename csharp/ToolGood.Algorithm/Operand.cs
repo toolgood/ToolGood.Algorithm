@@ -334,7 +334,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<string> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -348,7 +348,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<double> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -362,7 +362,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<int> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -376,7 +376,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<bool> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
