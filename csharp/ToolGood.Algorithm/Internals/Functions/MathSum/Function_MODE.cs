@@ -29,7 +29,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                     dict[item] = 1;
                 }
             }
-            return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
+            decimal modeKey = 0;
+            int maxCount = 0;
+            foreach (var kvp in dict) {
+                if (kvp.Value > maxCount) {
+                    maxCount = kvp.Value;
+                    modeKey = kvp.Key;
+                }
+            }
+            return Operand.Create(modeKey);
         }
 
     }

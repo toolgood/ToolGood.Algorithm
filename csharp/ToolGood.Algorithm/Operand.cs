@@ -35,6 +35,16 @@ namespace ToolGood.Algorithm
 		/// Zero
 		/// </summary>
 		public static readonly Operand Zero = Operand.Create(0m);
+		/// <summary>
+		/// Null
+		/// </summary>
+		public static readonly Operand Null = new OperandNull();
+		private static readonly Operand[] IntCache = new Operand[256];
+		static Operand()
+		{
+			for (int i = 0; i < 256; i++)
+				IntCache[i] = new OperandInt(i - 128);
+		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
 		/// <summary>
@@ -161,6 +171,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(int obj)
 		{
+			if (obj >= -128 && obj <= 127)
+				return IntCache[obj + 128];
 			return new OperandInt(obj);
 		}
 
@@ -395,10 +407,7 @@ namespace ToolGood.Algorithm
 		/// 创建操作数
 		/// </summary>
 		/// <returns></returns>
-		public static Operand CreateNull()
-		{
-			return new OperandNull();
-		}
+		public static Operand CreateNull() => Null;
 
 		#endregion Create
 
