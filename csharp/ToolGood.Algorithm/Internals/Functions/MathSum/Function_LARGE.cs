@@ -29,12 +29,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var o = FunctionUtil.F_base_GetList(args1, list);
 			if(o == false) { return ParameterError(1); }
 
-			list = list.OrderByDescending(q => q).ToList();
+			list.Sort();
 			int k = args2.IntValue;
 			if(k < 1 - engine.ExcelIndex || k > list.Count - engine.ExcelIndex) {
 				return ParameterError(2);
 			}
-			return Operand.Create(list[k - engine.ExcelIndex]);
+			return Operand.Create(list[list.Count - k + engine.ExcelIndex - 1]);
 		}
 
 	}

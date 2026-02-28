@@ -28,17 +28,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			List<decimal> list = new List<decimal>();
 			FunctionUtil.F_base_GetList(args2, list);
 			if(list.Count == 0) { return ParameterError(2); }
-			list = list.OrderByDescending(n => n).ToList();
+			list.Sort();
 			var value = args1.NumberValue;
-			var result = list[0];
+			var result = list[list.Count - 1];
 			if(result == value) { return args1; }
-			for(int i = 1; i < list.Count; i++) {
+			for(int i = list.Count - 2; i >= 0; i--) {
 				var val = list[i];
 				if(val > value) {
 					result = val;
 				} else if(val == value) {
 					return args1;
-				} else /*if(val < value)*/ {
+				} else {
 					break;
 				}
 			}
