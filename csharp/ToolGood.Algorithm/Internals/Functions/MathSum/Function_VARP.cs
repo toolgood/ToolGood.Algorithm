@@ -24,14 +24,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list.Count == 0) { return FunctionError(); }
             if (list.Count == 1) { return Operand.Zero; }
 
-            decimal sum = 0;
-            foreach (var item in list) { sum += item; }
-            decimal avg = sum / list.Count;
-            decimal sum2 = 0;
+            decimal mean = 0, m2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                sum2 += (avg - list[i]) * (avg - list[i]);
+                decimal delta = list[i] - mean;
+                mean += delta / (i + 1);
+                m2 += delta * (list[i] - mean);
             }
-            return Operand.Create(sum2 / list.Count);
+            return Operand.Create(m2 / list.Count);
         }
 
     }

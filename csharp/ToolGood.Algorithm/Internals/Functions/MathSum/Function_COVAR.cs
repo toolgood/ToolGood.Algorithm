@@ -28,16 +28,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
             if (list1.Count == 0) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
 
-            decimal sum1 = 0, sum2 = 0;
-            for (int i = 0; i < list1.Count; i++) { sum1 += list1[i]; sum2 += list2[i]; }
-            var avg1 = sum1 / list1.Count;
-            var avg2 = sum2 / list1.Count;
-            decimal sum = 0;
+            decimal mean1 = 0, mean2 = 0, c = 0;
             for (int i = 0; i < list1.Count; i++) {
-                sum += (list1[i] - avg1) * (list2[i] - avg2);
+                decimal delta1 = list1[i] - mean1;
+                decimal delta2 = list2[i] - mean2;
+                mean1 += delta1 / (i + 1);
+                mean2 += delta2 / (i + 1);
+                c += delta1 * (list2[i] - mean2);
             }
-            var val = sum / list1.Count;
-            return Operand.Create(val);
+            return Operand.Create(c / list1.Count);
         }
 
     }
