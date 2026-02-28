@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				}
 			}
 			if(args1.IsArray) {
-				var list = new List<string>();
+				var list = new List<string>(args1.ArrayValue.Count);
 				var o = FunctionUtil.F_base_GetList(args1, list);
 				if(o == false) return ParameterError(1);
 
@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				args1 = ConvertToText(args1, 1);
 				if(args1.IsError) { return args1; }
 
-				var list = new List<string>();
+				var list = new List<string>(args.Count);
 				for(int i = 1; i < args.Count; i++) {
 					var o = FunctionUtil.F_base_GetList(args[i], list);
 					if(o == false) return ParameterError(i + 1);
