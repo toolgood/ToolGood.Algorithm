@@ -21,7 +21,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return Operand.Zero; }
-            return Operand.Create(list.Average());
+            decimal sum = 0;
+            foreach (var item in list) { sum += item; }
+            return Operand.Create(sum / list.Count);
         }
 
     }

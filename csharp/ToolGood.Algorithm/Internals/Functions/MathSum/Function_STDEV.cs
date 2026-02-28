@@ -22,12 +22,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return FunctionError(); }
 
-            var avg = list.Average();
             double sum = 0;
+            foreach (var item in list) { sum += item; }
+            var avg = sum / list.Count;
+            double sum2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                sum += (list[i] - avg) * (list[i] - avg);
+                sum2 += (list[i] - avg) * (list[i] - avg);
             }
-            return Operand.Create(Math.Sqrt((double)sum / (list.Count - 1)));
+            return Operand.Create(Math.Sqrt(sum2 / (list.Count - 1)));
         }
 
     }

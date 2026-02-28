@@ -25,11 +25,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list.Count == 1) { return Operand.Zero; }
 
             decimal sum = 0;
-            decimal avg = list.Average();
+            foreach (var item in list) { sum += item; }
+            decimal avg = sum / list.Count;
+            decimal sum2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                sum += (avg - list[i]) * (avg - list[i]);
+                sum2 += (avg - list[i]) * (avg - list[i]);
             }
-            return Operand.Create(sum / list.Count);
+            return Operand.Create(sum2 / list.Count);
         }
 
     }

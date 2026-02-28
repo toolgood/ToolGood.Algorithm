@@ -21,12 +21,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return FunctionError(); }
-            var avg = list.Average();
             decimal sum = 0;
+            foreach (var item in list) { sum += item; }
+            var avg = sum / list.Count;
+            decimal sum2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                sum += (list[i] - avg) * (list[i] - avg);
+                sum2 += (list[i] - avg) * (list[i] - avg);
             }
-            return Operand.Create(sum);
+            return Operand.Create(sum2);
         }
 
     }
