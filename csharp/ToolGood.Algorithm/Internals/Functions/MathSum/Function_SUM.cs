@@ -20,7 +20,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
-            return Operand.Create(list.Sum());
+            decimal sum = 0;
+            foreach (var item in list)
+                sum += item;
+            return Operand.Create(sum);
         }
 
     }

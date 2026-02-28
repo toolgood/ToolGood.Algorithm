@@ -1183,15 +1183,17 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
 		{
-			var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			if(context.unit == null) { return new Function_Value(Operand.Create(d), context.num().GetText()); }
+			var text = context.num().GetText();
+			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
+			if(context.unit == null) { return new Function_Value(Operand.Create(d), text); }
 			var unit = context.unit.Text;
 			return new Function_NUM(d, unit);
 		}
 		public FunctionBase VisitNum(mathParser.NumContext context)
 		{
-			var d = decimal.Parse(context.GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			return new Function_Value(Operand.Create(d), context.GetText());
+			var text = context.GetText();
+			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
+			return new Function_Value(Operand.Create(d), text);
 		}
  
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)

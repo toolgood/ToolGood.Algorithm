@@ -822,7 +822,7 @@ namespace ToolGood.Algorithm.LitJson
 
                 if (fsm_context.Return) {
                     string_value = string_buffer.ToString();
-                    string_buffer.Remove(0, string_buffer.Length);
+                    string_buffer.Clear();
                     token = fsm_return_table[state - 1];
 
                     if (token == (int)ParserToken.Char) token = input_char;

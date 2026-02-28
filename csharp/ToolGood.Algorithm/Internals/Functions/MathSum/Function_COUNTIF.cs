@@ -30,11 +30,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (args2.IsNumber) {
                 count = FunctionUtil.F_base_countif(list, args2.NumberValue);
             } else {
-                if (decimal.TryParse(args2.TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+                var span = args2.TextValue.AsSpan().Trim();
+                if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     count = FunctionUtil.F_base_countif(list, d);
                 } else {
-                    var sunif = args2.TextValue.Trim();
-                    var m2 = FunctionUtil.sumifMatch(sunif);
+                    var m2 = FunctionUtil.sumifMatch(args2.TextValue.Trim());
                     if (m2 != null) {
                         count = FunctionUtil.F_base_countif(list, m2.Item1, m2.Item2);
                     } else {

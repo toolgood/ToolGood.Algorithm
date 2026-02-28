@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ToolGood.Algorithm.Internals.Visitors;
 
@@ -231,47 +232,48 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static Tuple<string, decimal> sumifMatch(string s)
 		{
-			var c = s[0];
+			var span = s.AsSpan();
+			var c = span[0];
 			if(c == '>' || c == '＞') {
-				if(s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
-					if(decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+				if(span.Length > 1 && (span[1] == '=' || span[1] == '＝')) {
+					if(decimal.TryParse(span.Slice(2).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 						return Tuple.Create(">=", d);
 					}
-				} else if(decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
+				} else if(decimal.TryParse(span.Slice(1).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 					return Tuple.Create(">", d);
 				}
 			} else if(c == '<' || c == '＜') {
-				if(s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
-					if(decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+				if(span.Length > 1 && (span[1] == '=' || span[1] == '＝')) {
+					if(decimal.TryParse(span.Slice(2).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 						return Tuple.Create("<=", d);
 					}
-				} else if(s.Length > 1 && (s[1] == '>' || s[1] == '＞')) {
-					if(decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+				} else if(span.Length > 1 && (span[1] == '>' || span[1] == '＞')) {
+					if(decimal.TryParse(span.Slice(2).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 						return Tuple.Create("!=", d);
 					}
-				} else if(decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
+				} else if(decimal.TryParse(span.Slice(1).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 					return Tuple.Create("<", d);
 				}
 			} else if(c == '=' || c == '＝') {
 				var index = 1;
-				if(s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+				if(span.Length > 1 && (span[1] == '=' || span[1] == '＝')) {
 					index = 2;
-					if(s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
+					if(span.Length > 2 && (span[2] == '=' || span[2] == '＝')) {
 						index = 3;
 					}
 				}
-				if(decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
+				if(decimal.TryParse(span.Slice(index).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 					return Tuple.Create("=", d);
 				}
 			} else if(c == '!' || c == '！') {
 				var index = 1;
-				if(s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+				if(span.Length > 1 && (span[1] == '=' || span[1] == '＝')) {
 					index = 2;
-					if(s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
+					if(span.Length > 2 && (span[2] == '=' || span[2] == '＝')) {
 						index = 3;
 					}
 				}
-				if(decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
+				if(decimal.TryParse(span.Slice(index).Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 					return Tuple.Create("!=", d);
 				}
 			}

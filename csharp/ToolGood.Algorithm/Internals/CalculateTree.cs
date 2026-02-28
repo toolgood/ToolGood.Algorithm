@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals

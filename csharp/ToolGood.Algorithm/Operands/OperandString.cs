@@ -31,10 +31,11 @@ namespace ToolGood.Algorithm
 
 		private Operand ToNumberInternal(string errorMessage)
 		{
-			if (!TextValue.Contains('.') && int.TryParse(TextValue, out var num)) {
+			var span = TextValue.AsSpan();
+			if (span.IndexOf('.') < 0 && int.TryParse(span, NumberStyles.Integer, CultureInfo.InvariantCulture, out var num)) {
 				return Operand.Create(num);
 			}
-			if (decimal.TryParse(TextValue, out var d)) {
+			if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out var d)) {
 				return Operand.Create(d);
 			}
 			return Error(errorMessage ?? "Convert to number error!");
@@ -71,10 +72,11 @@ namespace ToolGood.Algorithm
 
 		private Operand ToMyDateInternal(string errorMessage)
 		{
-			if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out var t)) {
+			var span = TextValue.AsSpan();
+			if (TimeSpan.TryParse(span, CultureInfo.InvariantCulture, out var t)) {
 				return Create(new MyDate(t));
 			}
-			if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out var d)) {
+			if (DateTime.TryParse(span, CultureInfo.InvariantCulture, DateTimeStyles.None, out var d)) {
 				return Create(new MyDate(d));
 			}
 			return Error(errorMessage ?? "Convert to date error!");
@@ -86,10 +88,11 @@ namespace ToolGood.Algorithm
 		}
 		public override Operand ToJson(string errorMessage = null)
 		{
-			var txt = TextValue.Trim();
-			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+			var span = TextValue.AsSpan().Trim();
+			if ((span.Length > 0 && span[0] == '{' && span[span.Length - 1] == '}') || 
+				(span.Length > 0 && span[0] == '[' && span[span.Length - 1] == ']')) {
 				try {
-					var json = JsonMapper.ToObject(txt);
+					var json = JsonMapper.ToObject(span.ToString());
 					return Operand.Create(json);
 				} catch { }
 			}
