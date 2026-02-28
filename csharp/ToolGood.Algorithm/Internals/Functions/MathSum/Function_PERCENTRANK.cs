@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return FunctionError(); }
 
             var k = args2.DoubleValue;
-            var v = ExcelFunctions.PercentRank(list.Select(q => (double)q).ToArray(), (double)k);
+            var v = ExcelFunctions.PercentRank(list.ToArray(), k);
             var d = 3;
             if (func3 != null) {
                 var args3 = GetNumber_3(engine, tempParameter);

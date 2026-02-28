@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (quant < 0 || quant > 4) {
                 return ParameterError(2);
             }
-            return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
+            return Operand.Create(ExcelFunctions.Quartile(list.ToArray(), quant));
         }
 
     }
