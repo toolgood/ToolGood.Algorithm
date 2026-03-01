@@ -116,12 +116,12 @@ namespace Antlr4Helper.CSharpHelper
 
 
 			csText = Regex.Replace(csText, @"//.*", "");
+			csText = Regex.Replace(csText, @"[\r\n]+[ \t]*[\r\n]+", "\r\n");
+			csText = Regex.Replace(csText, @"[\r\n]+[ \t]*[\r\n]+", "\r\n");
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
-
-
 			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
 			File.WriteAllText("mathLexer.cs", csText);
 
@@ -137,7 +137,12 @@ namespace Antlr4Helper.CSharpHelper
 
 
 
-
+			csText = Regex.Replace(csText, @"[\r\n]+[ \t]*[\r\n]+", "\r\n");
+			csText = Regex.Replace(csText, @"[\r\n]+[ \t]*[\r\n]+", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
 			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
 			File.WriteAllText("mathVisitor.cs", csText);
 

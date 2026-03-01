@@ -1,23 +1,8 @@
 namespace ToolGood.Algorithm.math
 {
-
-
-
-
-
-
-
-
-
-
-
-
 #pragma warning disable 0162
-
 #pragma warning disable 0219
-
 #pragma warning disable 1591
-
 #pragma warning disable 419
 using System;
 using System.IO;

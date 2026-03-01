@@ -8,9 +8,7 @@ namespace ToolGood.Algorithm.math
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 // Generated from math.g4 by ANTLR 4.13.2
-
 // Unreachable code detected
 #pragma warning disable 0162
 // The variable '...' is assigned but its value is never used
@@ -19,18 +17,14 @@ namespace ToolGood.Algorithm.math
 #pragma warning disable 1591
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
-
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
-
 /// <summary>
 /// This interface defines a complete generic visitor for a parse tree produced
 /// by <see cref="mathParser"/>.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
-
-
 interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="mathParser.prog"/>.
