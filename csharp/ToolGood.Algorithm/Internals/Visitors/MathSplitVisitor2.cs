@@ -8,20 +8,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class MathSplitVisitor2 : AbstractParseTreeVisitor<CalculateTree>, ImathVisitor<CalculateTree>
 	{
+		private bool hasBracket = false;
+
 		public CalculateTree VisitProg(mathParser.ProgContext context)
 		{
+			hasBracket = false;
 			return context.expr().Accept(this);
 		}
 
 		public CalculateTree VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
+			hasBracket = true;
 			return context.expr().Accept(this);
 		}
 		public CalculateTree VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>()
+				Nodes = new List<CalculateTree>(),
+				HasBracket = hasBracket,
 			};
+			hasBracket = false;
 			var exprs = context.expr();
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, '*')) {
@@ -35,14 +41,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.ConditionString = context.GetText();
+			tree.Text = context.GetText();
 			return tree;
 		}
 		public CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>()
+				Nodes = new List<CalculateTree>(),
+				HasBracket = hasBracket,
 			};
+			hasBracket = false;
 			var exprs = context.expr();
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, '+')) {
@@ -56,7 +64,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.ConditionString = context.GetText();
+			tree.Text = context.GetText();
 			return tree;
 		}
 
@@ -66,7 +74,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new CalculateTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				ConditionString = context.GetText()
+				Text = context.GetText()
 			};
 			return tree;
 		}
@@ -885,7 +893,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return Visit_fun(context);
 		}
- 
+
 		public CalculateTree VisitPROPER_fun(mathParser.PROPER_funContext context)
 		{
 			return Visit_fun(context);

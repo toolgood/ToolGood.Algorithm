@@ -8,16 +8,21 @@ namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
 	{
+		private bool hasBracket = false;
+
 		public ConditionTree VisitProg(mathParser.ProgContext context)
 		{
+			hasBracket = false;
 			return context.expr().Accept(this);
 		}
 
 		public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
 			var tree = new ConditionTree {
-				Nodes = new List<ConditionTree>()
+				Nodes = new List<ConditionTree>(),
+				HasBracket=hasBracket,
 			};
+			hasBracket = false;
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, "&&")) {
 				tree.Type = ConditionTreeType.And;
@@ -30,12 +35,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.ConditionString = context.GetText();
+			tree.Text = context.GetText();
 			return tree;
 		}
 
 		public ConditionTree VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
+			hasBracket = true;
 			return context.expr().Accept(this);
 		}
 
@@ -44,7 +50,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new ConditionTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				ConditionString = context.GetText()
+				Text = context.GetText()
 			};
 			return tree;
 		}

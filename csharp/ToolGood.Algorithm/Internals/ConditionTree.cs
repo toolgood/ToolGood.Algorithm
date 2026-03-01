@@ -29,9 +29,14 @@ namespace ToolGood.Algorithm.Internals
 		public ConditionTreeType Type { get; internal set; }
 
 		/// <summary>
-		/// 条件
+		/// 文本
 		/// </summary>
-		public string ConditionString { get; internal set; }
+		public string Text { get; internal set; }
+
+		/// <summary>
+		/// 外面是否有括号
+		/// </summary>
+		public bool HasBracket {  get; internal set; }
 
 		/// <summary>
 		/// 出错信息
