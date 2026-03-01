@@ -43,7 +43,7 @@ partial class mathParser : Parser {
 	{
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
-	internal partial class ProgContext : ParserRuleContext {
+	internal sealed class ProgContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -79,7 +79,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal partial class ExprContext : ParserRuleContext {
+	internal class ExprContext : ParserRuleContext {
 		public ExprContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -90,7 +90,7 @@ partial class mathParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
-	internal partial class CEILING_funContext : ExprContext {
+	internal sealed class CEILING_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -101,7 +101,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCEILING_fun(this);
 		}
 	}
-	internal partial class FACT_funContext : ExprContext {
+	internal sealed class FACT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -112,7 +112,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFACT_fun(this);
 		}
 	}
-	internal partial class REGEXREPALCE_funContext : ExprContext {
+	internal sealed class REGEXREPALCE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -123,7 +123,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitREGEXREPALCE_fun(this);
 		}
 	}
-	internal partial class LOOKFLOOR_funContext : ExprContext {
+	internal sealed class LOOKFLOOR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -134,7 +134,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOOKFLOOR_fun(this);
 		}
 	}
-	internal partial class HASVALUE_funContext : ExprContext {
+	internal sealed class HASVALUE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -145,7 +145,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHASVALUE_fun(this);
 		}
 	}
-	internal partial class AddSub_funContext : ExprContext {
+	internal sealed class AddSub_funContext : ExprContext {
 		public IToken op;
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -157,7 +157,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitAddSub_fun(this);
 		}
 	}
-	internal partial class AVERAGEIF_funContext : ExprContext {
+	internal sealed class AVERAGEIF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -168,7 +168,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitAVERAGEIF_fun(this);
 		}
 	}
-	internal partial class PARAM_funContext : ExprContext {
+	internal sealed class PARAM_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -179,7 +179,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPARAM_fun(this);
 		}
 	}
-	internal partial class ISNULLORERROR_funContext : ExprContext {
+	internal sealed class ISNULLORERROR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -190,7 +190,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISNULLORERROR_fun(this);
 		}
 	}
-	internal partial class RIGHT_funContext : ExprContext {
+	internal sealed class RIGHT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -201,7 +201,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitRIGHT_fun(this);
 		}
 	}
-	internal partial class OCT2BIN_funContext : ExprContext {
+	internal sealed class OCT2BIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -212,7 +212,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitOCT2BIN_fun(this);
 		}
 	}
-	internal partial class QUARTILE_funContext : ExprContext {
+	internal sealed class QUARTILE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -223,7 +223,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitQUARTILE_fun(this);
 		}
 	}
-	internal partial class FINV_funContext : ExprContext {
+	internal sealed class FINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -234,7 +234,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFINV_fun(this);
 		}
 	}
-	internal partial class NOT_funContext : ExprContext {
+	internal sealed class NOT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -245,7 +245,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNOT_fun(this);
 		}
 	}
-	internal partial class DAYS360_funContext : ExprContext {
+	internal sealed class DAYS360_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -256,7 +256,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDAYS360_fun(this);
 		}
 	}
-	internal partial class LOOKCEILING_funContext : ExprContext {
+	internal sealed class LOOKCEILING_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -267,7 +267,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOOKCEILING_fun(this);
 		}
 	}
-	internal partial class WEEKNUM_funContext : ExprContext {
+	internal sealed class WEEKNUM_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -278,7 +278,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitWEEKNUM_fun(this);
 		}
 	}
-	internal partial class POISSON_funContext : ExprContext {
+	internal sealed class POISSON_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -289,7 +289,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPOISSON_fun(this);
 		}
 	}
-	internal partial class ISREGEX_funContext : ExprContext {
+	internal sealed class ISREGEX_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -300,7 +300,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISREGEX_fun(this);
 		}
 	}
-	internal partial class COVARIANCES_funContext : ExprContext {
+	internal sealed class COVARIANCES_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -311,7 +311,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOVARIANCES_fun(this);
 		}
 	}
-	internal partial class PERCENTILE_funContext : ExprContext {
+	internal sealed class PERCENTILE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -322,7 +322,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPERCENTILE_fun(this);
 		}
 	}
-	internal partial class DiyFunction_funContext : ExprContext {
+	internal sealed class DiyFunction_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(253, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -334,7 +334,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDiyFunction_fun(this);
 		}
 	}
-	internal partial class SHA256_funContext : ExprContext {
+	internal sealed class SHA256_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -345,7 +345,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSHA256_fun(this);
 		}
 	}
-	internal partial class HAS_funContext : ExprContext {
+	internal sealed class HAS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -356,7 +356,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHAS_fun(this);
 		}
 	}
-	internal partial class HYPGEOMDIST_funContext : ExprContext {
+	internal sealed class HYPGEOMDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -367,7 +367,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHYPGEOMDIST_fun(this);
 		}
 	}
-	internal partial class PERMUT_funContext : ExprContext {
+	internal sealed class PERMUT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -378,7 +378,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPERMUT_fun(this);
 		}
 	}
-	internal partial class TRIMSTART_funContext : ExprContext {
+	internal sealed class TRIMSTART_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -389,7 +389,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTRIMSTART_fun(this);
 		}
 	}
-	internal partial class RMB_funContext : ExprContext {
+	internal sealed class RMB_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -400,7 +400,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitRMB_fun(this);
 		}
 	}
-	internal partial class DEC2HEX_funContext : ExprContext {
+	internal sealed class DEC2HEX_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -411,7 +411,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDEC2HEX_fun(this);
 		}
 	}
-	internal partial class CLEAN_funContext : ExprContext {
+	internal sealed class CLEAN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -422,7 +422,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCLEAN_fun(this);
 		}
 	}
-	internal partial class LOWER_funContext : ExprContext {
+	internal sealed class LOWER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -433,7 +433,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOWER_fun(this);
 		}
 	}
-	internal partial class OR_funContext : ExprContext {
+	internal sealed class OR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -444,7 +444,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitOR_fun(this);
 		}
 	}
-	internal partial class ADDMONTHS_funContext : ExprContext {
+	internal sealed class ADDMONTHS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -455,7 +455,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitADDMONTHS_fun(this);
 		}
 	}
-	internal partial class NORMSINV_funContext : ExprContext {
+	internal sealed class NORMSINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -466,7 +466,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNORMSINV_fun(this);
 		}
 	}
-	internal partial class LEFT_funContext : ExprContext {
+	internal sealed class LEFT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -477,7 +477,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLEFT_fun(this);
 		}
 	}
-	internal partial class ISEVEN_funContext : ExprContext {
+	internal sealed class ISEVEN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -488,7 +488,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISEVEN_fun(this);
 		}
 	}
-	internal partial class LOGINV_funContext : ExprContext {
+	internal sealed class LOGINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -499,7 +499,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOGINV_fun(this);
 		}
 	}
-	internal partial class WORKDAY_funContext : ExprContext {
+	internal sealed class WORKDAY_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -510,7 +510,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitWORKDAY_fun(this);
 		}
 	}
-	internal partial class ISERROR_funContext : ExprContext {
+	internal sealed class ISERROR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -521,7 +521,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISERROR_fun(this);
 		}
 	}
-	internal partial class BIN2DEC_funContext : ExprContext {
+	internal sealed class BIN2DEC_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -532,7 +532,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBIN2DEC_fun(this);
 		}
 	}
-	internal partial class JIS_funContext : ExprContext {
+	internal sealed class JIS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -543,7 +543,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitJIS_fun(this);
 		}
 	}
-	internal partial class LCM_funContext : ExprContext {
+	internal sealed class LCM_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -554,7 +554,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLCM_fun(this);
 		}
 	}
-	internal partial class HARMEAN_funContext : ExprContext {
+	internal sealed class HARMEAN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -565,7 +565,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHARMEAN_fun(this);
 		}
 	}
-	internal partial class NORMINV_funContext : ExprContext {
+	internal sealed class NORMINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -576,7 +576,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNORMINV_fun(this);
 		}
 	}
-	internal partial class GAMMAINV_funContext : ExprContext {
+	internal sealed class GAMMAINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -587,7 +587,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGAMMAINV_fun(this);
 		}
 	}
-	internal partial class SQRT_funContext : ExprContext {
+	internal sealed class SQRT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -598,7 +598,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSQRT_fun(this);
 		}
 	}
-	internal partial class DEGREES_funContext : ExprContext {
+	internal sealed class DEGREES_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -609,7 +609,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDEGREES_fun(this);
 		}
 	}
-	internal partial class MROUND_funContext : ExprContext {
+	internal sealed class MROUND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -620,7 +620,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMROUND_fun(this);
 		}
 	}
-	internal partial class DATEDIF_funContext : ExprContext {
+	internal sealed class DATEDIF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -631,7 +631,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDATEDIF_fun(this);
 		}
 	}
-	internal partial class TRIMEND_funContext : ExprContext {
+	internal sealed class TRIMEND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -642,7 +642,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTRIMEND_fun(this);
 		}
 	}
-	internal partial class ISLOGICAL_funContext : ExprContext {
+	internal sealed class ISLOGICAL_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -653,7 +653,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISLOGICAL_fun(this);
 		}
 	}
-	internal partial class INT_funContext : ExprContext {
+	internal sealed class INT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -664,7 +664,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitINT_fun(this);
 		}
 	}
-	internal partial class SUMIF_funContext : ExprContext {
+	internal sealed class SUMIF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -675,7 +675,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSUMIF_fun(this);
 		}
 	}
-	internal partial class HEX2OCT_funContext : ExprContext {
+	internal sealed class HEX2OCT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -686,7 +686,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHEX2OCT_fun(this);
 		}
 	}
-	internal partial class PI_funContext : ExprContext {
+	internal sealed class PI_funContext : ExprContext {
 		public PI_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -694,7 +694,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPI_fun(this);
 		}
 	}
-	internal partial class YEAR_funContext : ExprContext {
+	internal sealed class YEAR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -705,7 +705,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitYEAR_fun(this);
 		}
 	}
-	internal partial class SQRTPI_funContext : ExprContext {
+	internal sealed class SQRTPI_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -716,7 +716,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSQRTPI_fun(this);
 		}
 	}
-	internal partial class CONCATENATE_funContext : ExprContext {
+	internal sealed class CONCATENATE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -727,7 +727,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCONCATENATE_fun(this);
 		}
 	}
-	internal partial class COUNT_funContext : ExprContext {
+	internal sealed class COUNT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -738,7 +738,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOUNT_fun(this);
 		}
 	}
-	internal partial class FALSE_funContext : ExprContext {
+	internal sealed class FALSE_funContext : ExprContext {
 		public FALSE_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -746,7 +746,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFALSE_fun(this);
 		}
 	}
-	internal partial class HTMLENCODE_funContext : ExprContext {
+	internal sealed class HTMLENCODE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -757,7 +757,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHTMLENCODE_fun(this);
 		}
 	}
-	internal partial class BASE64URLTOTEXT_funContext : ExprContext {
+	internal sealed class BASE64URLTOTEXT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -768,7 +768,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
 		}
 	}
-	internal partial class LOG10_funContext : ExprContext {
+	internal sealed class LOG10_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -779,7 +779,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOG10_fun(this);
 		}
 	}
-	internal partial class ISTEXT_funContext : ExprContext {
+	internal sealed class ISTEXT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -790,7 +790,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISTEXT_fun(this);
 		}
 	}
-	internal partial class NEGBINOMDIST_funContext : ExprContext {
+	internal sealed class NEGBINOMDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -801,7 +801,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNEGBINOMDIST_fun(this);
 		}
 	}
-	internal partial class NETWORKDAYS_funContext : ExprContext {
+	internal sealed class NETWORKDAYS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -812,7 +812,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNETWORKDAYS_fun(this);
 		}
 	}
-	internal partial class FACTDOUBLE_funContext : ExprContext {
+	internal sealed class FACTDOUBLE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -823,7 +823,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFACTDOUBLE_fun(this);
 		}
 	}
-	internal partial class TIMEVALUE_funContext : ExprContext {
+	internal sealed class TIMEVALUE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -834,7 +834,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTIMEVALUE_fun(this);
 		}
 	}
-	internal partial class AVEDEV_funContext : ExprContext {
+	internal sealed class AVEDEV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -845,7 +845,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitAVEDEV_fun(this);
 		}
 	}
-	internal partial class GUID_funContext : ExprContext {
+	internal sealed class GUID_funContext : ExprContext {
 		public GUID_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -853,7 +853,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGUID_fun(this);
 		}
 	}
-	internal partial class JSON_funContext : ExprContext {
+	internal sealed class JSON_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -864,7 +864,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitJSON_fun(this);
 		}
 	}
-	internal partial class FIXED_funContext : ExprContext {
+	internal sealed class FIXED_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -875,7 +875,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFIXED_fun(this);
 		}
 	}
-	internal partial class GetJsonValue_funContext : ExprContext {
+	internal sealed class GetJsonValue_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -890,7 +890,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGetJsonValue_fun(this);
 		}
 	}
-	internal partial class TINV_funContext : ExprContext {
+	internal sealed class TINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -901,7 +901,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTINV_fun(this);
 		}
 	}
-	internal partial class EDATE_funContext : ExprContext {
+	internal sealed class EDATE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -912,7 +912,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitEDATE_fun(this);
 		}
 	}
-	internal partial class GEOMEAN_funContext : ExprContext {
+	internal sealed class GEOMEAN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -923,7 +923,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGEOMEAN_fun(this);
 		}
 	}
-	internal partial class VAR_funContext : ExprContext {
+	internal sealed class VAR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -934,7 +934,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitVAR_fun(this);
 		}
 	}
-	internal partial class SIGN_funContext : ExprContext {
+	internal sealed class SIGN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -945,7 +945,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSIGN_fun(this);
 		}
 	}
-	internal partial class EOMONTH_funContext : ExprContext {
+	internal sealed class EOMONTH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -956,7 +956,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitEOMONTH_fun(this);
 		}
 	}
-	internal partial class FLOOR_funContext : ExprContext {
+	internal sealed class FLOOR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -967,7 +967,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFLOOR_fun(this);
 		}
 	}
-	internal partial class HOUR_funContext : ExprContext {
+	internal sealed class HOUR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -978,7 +978,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHOUR_fun(this);
 		}
 	}
-	internal partial class LEN_funContext : ExprContext {
+	internal sealed class LEN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -989,7 +989,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLEN_fun(this);
 		}
 	}
-	internal partial class ACOS_funContext : ExprContext {
+	internal sealed class ACOS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1000,7 +1000,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitACOS_fun(this);
 		}
 	}
-	internal partial class ISNULLORWHITESPACE_funContext : ExprContext {
+	internal sealed class ISNULLORWHITESPACE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1011,7 +1011,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
 		}
 	}
-	internal partial class NUM_funContext : ExprContext {
+	internal sealed class NUM_funContext : ExprContext {
 		public IToken unit;
 		[System.Diagnostics.DebuggerNonUserCode] public NumContext num() {
 			return GetRuleContext<NumContext>(0);
@@ -1023,7 +1023,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNUM_fun(this);
 		}
 	}
-	internal partial class COSH_funContext : ExprContext {
+	internal sealed class COSH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1034,7 +1034,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOSH_fun(this);
 		}
 	}
-	internal partial class QUOTIENT_funContext : ExprContext {
+	internal sealed class QUOTIENT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1045,7 +1045,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitQUOTIENT_fun(this);
 		}
 	}
-	internal partial class OCT2DEC_funContext : ExprContext {
+	internal sealed class OCT2DEC_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1056,7 +1056,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitOCT2DEC_fun(this);
 		}
 	}
-	internal partial class SEARCH_funContext : ExprContext {
+	internal sealed class SEARCH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1067,7 +1067,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSEARCH_fun(this);
 		}
 	}
-	internal partial class ROUNDUP_funContext : ExprContext {
+	internal sealed class ROUNDUP_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1078,7 +1078,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitROUNDUP_fun(this);
 		}
 	}
-	internal partial class COMBIN_funContext : ExprContext {
+	internal sealed class COMBIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1089,7 +1089,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOMBIN_fun(this);
 		}
 	}
-	internal partial class CODE_funContext : ExprContext {
+	internal sealed class CODE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1100,7 +1100,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCODE_fun(this);
 		}
 	}
-	internal partial class ASINH_funContext : ExprContext {
+	internal sealed class ASINH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1111,7 +1111,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitASINH_fun(this);
 		}
 	}
-	internal partial class SIN_funContext : ExprContext {
+	internal sealed class SIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1122,7 +1122,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSIN_fun(this);
 		}
 	}
-	internal partial class SUBSTRING_funContext : ExprContext {
+	internal sealed class SUBSTRING_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1133,7 +1133,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSUBSTRING_fun(this);
 		}
 	}
-	internal partial class RANDBETWEEN_funContext : ExprContext {
+	internal sealed class RANDBETWEEN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1144,7 +1144,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitRANDBETWEEN_fun(this);
 		}
 	}
-	internal partial class AVERAGE_funContext : ExprContext {
+	internal sealed class AVERAGE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1155,7 +1155,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitAVERAGE_fun(this);
 		}
 	}
-	internal partial class LOG_funContext : ExprContext {
+	internal sealed class LOG_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1166,7 +1166,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOG_fun(this);
 		}
 	}
-	internal partial class HMACSHA512_funContext : ExprContext {
+	internal sealed class HMACSHA512_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1177,7 +1177,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHMACSHA512_fun(this);
 		}
 	}
-	internal partial class AndOr_funContext : ExprContext {
+	internal sealed class AndOr_funContext : ExprContext {
 		public IToken op;
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1189,7 +1189,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitAndOr_fun(this);
 		}
 	}
-	internal partial class STDEVP_funContext : ExprContext {
+	internal sealed class STDEVP_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1200,7 +1200,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSTDEVP_fun(this);
 		}
 	}
-	internal partial class ADDYEARS_funContext : ExprContext {
+	internal sealed class ADDYEARS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1211,7 +1211,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitADDYEARS_fun(this);
 		}
 	}
-	internal partial class ADDSECONDS_funContext : ExprContext {
+	internal sealed class ADDSECONDS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1222,7 +1222,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitADDSECONDS_fun(this);
 		}
 	}
-	internal partial class Array_funContext : ExprContext {
+	internal sealed class Array_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1233,7 +1233,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitArray_fun(this);
 		}
 	}
-	internal partial class ROUND_funContext : ExprContext {
+	internal sealed class ROUND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1244,7 +1244,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitROUND_fun(this);
 		}
 	}
-	internal partial class EXP_funContext : ExprContext {
+	internal sealed class EXP_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1255,7 +1255,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitEXP_fun(this);
 		}
 	}
-	internal partial class COUNTIF_funContext : ExprContext {
+	internal sealed class COUNTIF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1266,7 +1266,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOUNTIF_fun(this);
 		}
 	}
-	internal partial class VARP_funContext : ExprContext {
+	internal sealed class VARP_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1277,7 +1277,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitVARP_fun(this);
 		}
 	}
-	internal partial class REMOVEEND_funContext : ExprContext {
+	internal sealed class REMOVEEND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1288,7 +1288,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitREMOVEEND_fun(this);
 		}
 	}
-	internal partial class DATE_funContext : ExprContext {
+	internal sealed class DATE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1299,7 +1299,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDATE_fun(this);
 		}
 	}
-	internal partial class PARAMETER_funContext : ExprContext {
+	internal sealed class PARAMETER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(253, 0); }
 		public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
@@ -1308,7 +1308,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPARAMETER_fun(this);
 		}
 	}
-	internal partial class SPLIT_funContext : ExprContext {
+	internal sealed class SPLIT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1319,7 +1319,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSPLIT_fun(this);
 		}
 	}
-	internal partial class COVAR_funContext : ExprContext {
+	internal sealed class COVAR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1330,7 +1330,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOVAR_fun(this);
 		}
 	}
-	internal partial class URLDECODE_funContext : ExprContext {
+	internal sealed class URLDECODE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1341,7 +1341,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitURLDECODE_fun(this);
 		}
 	}
-	internal partial class LARGE_funContext : ExprContext {
+	internal sealed class LARGE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1352,7 +1352,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLARGE_fun(this);
 		}
 	}
-	internal partial class TIMESTAMP_funContext : ExprContext {
+	internal sealed class TIMESTAMP_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1363,7 +1363,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTIMESTAMP_fun(this);
 		}
 	}
-	internal partial class VALUE_funContext : ExprContext {
+	internal sealed class VALUE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1374,7 +1374,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitVALUE_fun(this);
 		}
 	}
-	internal partial class DAY_funContext : ExprContext {
+	internal sealed class DAY_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1385,7 +1385,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDAY_fun(this);
 		}
 	}
-	internal partial class WEIBULL_funContext : ExprContext {
+	internal sealed class WEIBULL_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1396,7 +1396,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitWEIBULL_fun(this);
 		}
 	}
-	internal partial class HMACSHA256_funContext : ExprContext {
+	internal sealed class HMACSHA256_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1407,7 +1407,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHMACSHA256_fun(this);
 		}
 	}
-	internal partial class BINOMDIST_funContext : ExprContext {
+	internal sealed class BINOMDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1418,7 +1418,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBINOMDIST_fun(this);
 		}
 	}
-	internal partial class Judge_funContext : ExprContext {
+	internal sealed class Judge_funContext : ExprContext {
 		public IToken op;
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1430,7 +1430,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitJudge_fun(this);
 		}
 	}
-	internal partial class DEVSQ_funContext : ExprContext {
+	internal sealed class DEVSQ_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1441,7 +1441,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDEVSQ_fun(this);
 		}
 	}
-	internal partial class MODE_funContext : ExprContext {
+	internal sealed class MODE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1452,7 +1452,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMODE_fun(this);
 		}
 	}
-	internal partial class BETAINV_funContext : ExprContext {
+	internal sealed class BETAINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1463,7 +1463,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBETAINV_fun(this);
 		}
 	}
-	internal partial class MAX_funContext : ExprContext {
+	internal sealed class MAX_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1474,7 +1474,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMAX_fun(this);
 		}
 	}
-	internal partial class MINUTE_funContext : ExprContext {
+	internal sealed class MINUTE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1485,7 +1485,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMINUTE_fun(this);
 		}
 	}
-	internal partial class TAN_funContext : ExprContext {
+	internal sealed class TAN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1496,7 +1496,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTAN_fun(this);
 		}
 	}
-	internal partial class IFERROR_funContext : ExprContext {
+	internal sealed class IFERROR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1507,7 +1507,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitIFERROR_fun(this);
 		}
 	}
-	internal partial class FDIST_funContext : ExprContext {
+	internal sealed class FDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1518,7 +1518,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFDIST_fun(this);
 		}
 	}
-	internal partial class INDEXOF_funContext : ExprContext {
+	internal sealed class INDEXOF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1529,7 +1529,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitINDEXOF_fun(this);
 		}
 	}
-	internal partial class UPPER_funContext : ExprContext {
+	internal sealed class UPPER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1540,7 +1540,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitUPPER_fun(this);
 		}
 	}
-	internal partial class HTMLDECODE_funContext : ExprContext {
+	internal sealed class HTMLDECODE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1551,7 +1551,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHTMLDECODE_fun(this);
 		}
 	}
-	internal partial class EXPONDIST_funContext : ExprContext {
+	internal sealed class EXPONDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1562,7 +1562,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitEXPONDIST_fun(this);
 		}
 	}
-	internal partial class DEC2BIN_funContext : ExprContext {
+	internal sealed class DEC2BIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1573,7 +1573,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDEC2BIN_fun(this);
 		}
 	}
-	internal partial class HEX2DEC_funContext : ExprContext {
+	internal sealed class HEX2DEC_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1584,7 +1584,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHEX2DEC_fun(this);
 		}
 	}
-	internal partial class SMALL_funContext : ExprContext {
+	internal sealed class SMALL_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1595,7 +1595,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSMALL_fun(this);
 		}
 	}
-	internal partial class ODD_funContext : ExprContext {
+	internal sealed class ODD_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1606,7 +1606,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitODD_fun(this);
 		}
 	}
-	internal partial class TEXTTOBASE64_funContext : ExprContext {
+	internal sealed class TEXTTOBASE64_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1617,7 +1617,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTEXTTOBASE64_fun(this);
 		}
 	}
-	internal partial class MID_funContext : ExprContext {
+	internal sealed class MID_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1628,7 +1628,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMID_fun(this);
 		}
 	}
-	internal partial class PERCENTRANK_funContext : ExprContext {
+	internal sealed class PERCENTRANK_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1639,7 +1639,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPERCENTRANK_fun(this);
 		}
 	}
-	internal partial class STDEV_funContext : ExprContext {
+	internal sealed class STDEV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1650,7 +1650,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSTDEV_fun(this);
 		}
 	}
-	internal partial class NORMSDIST_funContext : ExprContext {
+	internal sealed class NORMSDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1661,7 +1661,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNORMSDIST_fun(this);
 		}
 	}
-	internal partial class ISNUMBER_funContext : ExprContext {
+	internal sealed class ISNUMBER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1672,7 +1672,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISNUMBER_fun(this);
 		}
 	}
-	internal partial class LASTINDEXOF_funContext : ExprContext {
+	internal sealed class LASTINDEXOF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1683,7 +1683,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLASTINDEXOF_fun(this);
 		}
 	}
-	internal partial class MOD_funContext : ExprContext {
+	internal sealed class MOD_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1694,7 +1694,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMOD_fun(this);
 		}
 	}
-	internal partial class CHAR_funContext : ExprContext {
+	internal sealed class CHAR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1705,7 +1705,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCHAR_fun(this);
 		}
 	}
-	internal partial class REGEX_funContext : ExprContext {
+	internal sealed class REGEX_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1716,7 +1716,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitREGEX_fun(this);
 		}
 	}
-	internal partial class TEXTTOBASE64URL_funContext : ExprContext {
+	internal sealed class TEXTTOBASE64URL_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1727,7 +1727,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
 		}
 	}
-	internal partial class MD5_funContext : ExprContext {
+	internal sealed class MD5_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1738,7 +1738,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMD5_fun(this);
 		}
 	}
-	internal partial class REPLACE_funContext : ExprContext {
+	internal sealed class REPLACE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1749,7 +1749,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitREPLACE_fun(this);
 		}
 	}
-	internal partial class ACOSH_funContext : ExprContext {
+	internal sealed class ACOSH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1760,7 +1760,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitACOSH_fun(this);
 		}
 	}
-	internal partial class ISODD_funContext : ExprContext {
+	internal sealed class ISODD_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1771,7 +1771,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISODD_fun(this);
 		}
 	}
-	internal partial class ASC_funContext : ExprContext {
+	internal sealed class ASC_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1782,7 +1782,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitASC_fun(this);
 		}
 	}
-	internal partial class COS_funContext : ExprContext {
+	internal sealed class COS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1793,7 +1793,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitCOS_fun(this);
 		}
 	}
-	internal partial class LN_funContext : ExprContext {
+	internal sealed class LN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1804,7 +1804,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLN_fun(this);
 		}
 	}
-	internal partial class STRING_funContext : ExprContext {
+	internal sealed class STRING_funContext : ExprContext {
 		public STRING_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -1812,7 +1812,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSTRING_fun(this);
 		}
 	}
-	internal partial class HMACMD5_funContext : ExprContext {
+	internal sealed class HMACMD5_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1823,7 +1823,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHMACMD5_fun(this);
 		}
 	}
-	internal partial class PRODUCT_funContext : ExprContext {
+	internal sealed class PRODUCT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1834,7 +1834,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPRODUCT_fun(this);
 		}
 	}
-	internal partial class EXACT_funContext : ExprContext {
+	internal sealed class EXACT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1845,7 +1845,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitEXACT_fun(this);
 		}
 	}
-	internal partial class ADDMINUTES_funContext : ExprContext {
+	internal sealed class ADDMINUTES_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1856,7 +1856,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitADDMINUTES_fun(this);
 		}
 	}
-	internal partial class SUMSQ_funContext : ExprContext {
+	internal sealed class SUMSQ_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1867,7 +1867,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSUMSQ_fun(this);
 		}
 	}
-	internal partial class SUM_funContext : ExprContext {
+	internal sealed class SUM_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1878,7 +1878,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSUM_fun(this);
 		}
 	}
-	internal partial class SECOND_funContext : ExprContext {
+	internal sealed class SECOND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1889,7 +1889,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSECOND_fun(this);
 		}
 	}
-	internal partial class GAMMADIST_funContext : ExprContext {
+	internal sealed class GAMMADIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1900,7 +1900,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGAMMADIST_fun(this);
 		}
 	}
-	internal partial class OCT2HEX_funContext : ExprContext {
+	internal sealed class OCT2HEX_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1911,7 +1911,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitOCT2HEX_fun(this);
 		}
 	}
-	internal partial class TODAY_funContext : ExprContext {
+	internal sealed class TODAY_funContext : ExprContext {
 		public TODAY_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -1919,7 +1919,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTODAY_fun(this);
 		}
 	}
-	internal partial class ERROR_funContext : ExprContext {
+	internal sealed class ERROR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1930,7 +1930,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitERROR_fun(this);
 		}
 	}
-	internal partial class ATAN_funContext : ExprContext {
+	internal sealed class ATAN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1941,7 +1941,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitATAN_fun(this);
 		}
 	}
-	internal partial class E_funContext : ExprContext {
+	internal sealed class E_funContext : ExprContext {
 		public E_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -1949,7 +1949,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitE_fun(this);
 		}
 	}
-	internal partial class TRIM_funContext : ExprContext {
+	internal sealed class TRIM_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1960,7 +1960,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTRIM_fun(this);
 		}
 	}
-	internal partial class RADIANS_funContext : ExprContext {
+	internal sealed class RADIANS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1971,7 +1971,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitRADIANS_fun(this);
 		}
 	}
-	internal partial class GAMMALN_funContext : ExprContext {
+	internal sealed class GAMMALN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1982,7 +1982,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGAMMALN_fun(this);
 		}
 	}
-	internal partial class TEXT_funContext : ExprContext {
+	internal sealed class TEXT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1993,7 +1993,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTEXT_fun(this);
 		}
 	}
-	internal partial class FISHER_funContext : ExprContext {
+	internal sealed class FISHER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2004,7 +2004,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFISHER_fun(this);
 		}
 	}
-	internal partial class AND_funContext : ExprContext {
+	internal sealed class AND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2015,7 +2015,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitAND_fun(this);
 		}
 	}
-	internal partial class ArrayJson_funContext : ExprContext {
+	internal sealed class ArrayJson_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ArrayJsonContext[] arrayJson() {
 			return GetRuleContexts<ArrayJsonContext>();
 		}
@@ -2029,7 +2029,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitArrayJson_fun(this);
 		}
 	}
-	internal partial class BIN2HEX_funContext : ExprContext {
+	internal sealed class BIN2HEX_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2040,7 +2040,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBIN2HEX_fun(this);
 		}
 	}
-	internal partial class MULTINOMIAL_funContext : ExprContext {
+	internal sealed class MULTINOMIAL_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2051,7 +2051,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMULTINOMIAL_fun(this);
 		}
 	}
-	internal partial class MONTH_funContext : ExprContext {
+	internal sealed class MONTH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2062,7 +2062,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMONTH_fun(this);
 		}
 	}
-	internal partial class URLENCODE_funContext : ExprContext {
+	internal sealed class URLENCODE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2073,7 +2073,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitURLENCODE_fun(this);
 		}
 	}
-	internal partial class NORMDIST_funContext : ExprContext {
+	internal sealed class NORMDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2084,7 +2084,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNORMDIST_fun(this);
 		}
 	}
-	internal partial class HMACSHA1_funContext : ExprContext {
+	internal sealed class HMACSHA1_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2095,7 +2095,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHMACSHA1_fun(this);
 		}
 	}
-	internal partial class ENDSWITH_funContext : ExprContext {
+	internal sealed class ENDSWITH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2106,7 +2106,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitENDSWITH_fun(this);
 		}
 	}
-	internal partial class Bracket_funContext : ExprContext {
+	internal sealed class Bracket_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2117,7 +2117,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBracket_fun(this);
 		}
 	}
-	internal partial class BETADIST_funContext : ExprContext {
+	internal sealed class BETADIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2128,7 +2128,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBETADIST_fun(this);
 		}
 	}
-	internal partial class ATANH_funContext : ExprContext {
+	internal sealed class ATANH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2139,7 +2139,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitATANH_fun(this);
 		}
 	}
-	internal partial class NOW_funContext : ExprContext {
+	internal sealed class NOW_funContext : ExprContext {
 		public NOW_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -2147,7 +2147,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNOW_fun(this);
 		}
 	}
-	internal partial class MEDIAN_funContext : ExprContext {
+	internal sealed class MEDIAN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2158,7 +2158,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMEDIAN_fun(this);
 		}
 	}
-	internal partial class POWER_funContext : ExprContext {
+	internal sealed class POWER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2169,7 +2169,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPOWER_fun(this);
 		}
 	}
-	internal partial class DEC2OCT_funContext : ExprContext {
+	internal sealed class DEC2OCT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2180,7 +2180,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDEC2OCT_fun(this);
 		}
 	}
-	internal partial class PROPER_funContext : ExprContext {
+	internal sealed class PROPER_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2191,7 +2191,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPROPER_fun(this);
 		}
 	}
-	internal partial class TRUNC_funContext : ExprContext {
+	internal sealed class TRUNC_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2202,7 +2202,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTRUNC_fun(this);
 		}
 	}
-	internal partial class GCD_funContext : ExprContext {
+	internal sealed class GCD_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2213,7 +2213,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitGCD_fun(this);
 		}
 	}
-	internal partial class TANH_funContext : ExprContext {
+	internal sealed class TANH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2224,7 +2224,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTANH_fun(this);
 		}
 	}
-	internal partial class HEX2BIN_funContext : ExprContext {
+	internal sealed class HEX2BIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2235,7 +2235,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitHEX2BIN_fun(this);
 		}
 	}
-	internal partial class SINH_funContext : ExprContext {
+	internal sealed class SINH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2246,7 +2246,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSINH_fun(this);
 		}
 	}
-	internal partial class SHA512_funContext : ExprContext {
+	internal sealed class SHA512_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2257,7 +2257,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSHA512_fun(this);
 		}
 	}
-	internal partial class MIN_funContext : ExprContext {
+	internal sealed class MIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2268,7 +2268,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMIN_fun(this);
 		}
 	}
-	internal partial class ADDDAYS_funContext : ExprContext {
+	internal sealed class ADDDAYS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2279,7 +2279,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitADDDAYS_fun(this);
 		}
 	}
-	internal partial class ISNONTEXT_funContext : ExprContext {
+	internal sealed class ISNONTEXT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2290,7 +2290,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISNONTEXT_fun(this);
 		}
 	}
-	internal partial class ABS_funContext : ExprContext {
+	internal sealed class ABS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2301,7 +2301,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitABS_fun(this);
 		}
 	}
-	internal partial class ROUNDDOWN_funContext : ExprContext {
+	internal sealed class ROUNDDOWN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2312,7 +2312,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitROUNDDOWN_fun(this);
 		}
 	}
-	internal partial class IF_funContext : ExprContext {
+	internal sealed class IF_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2323,7 +2323,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitIF_fun(this);
 		}
 	}
-	internal partial class JOIN_funContext : ExprContext {
+	internal sealed class JOIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2334,7 +2334,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitJOIN_fun(this);
 		}
 	}
-	internal partial class FIND_funContext : ExprContext {
+	internal sealed class FIND_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2345,7 +2345,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFIND_fun(this);
 		}
 	}
-	internal partial class SUBSTITUTE_funContext : ExprContext {
+	internal sealed class SUBSTITUTE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2356,7 +2356,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSUBSTITUTE_fun(this);
 		}
 	}
-	internal partial class Percentage_funContext : ExprContext {
+	internal sealed class Percentage_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2367,7 +2367,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitPercentage_fun(this);
 		}
 	}
-	internal partial class REPT_funContext : ExprContext {
+	internal sealed class REPT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2378,7 +2378,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitREPT_fun(this);
 		}
 	}
-	internal partial class ISNULL_funContext : ExprContext {
+	internal sealed class ISNULL_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2389,7 +2389,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISNULL_fun(this);
 		}
 	}
-	internal partial class ASIN_funContext : ExprContext {
+	internal sealed class ASIN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2400,7 +2400,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitASIN_fun(this);
 		}
 	}
-	internal partial class MulDiv_funContext : ExprContext {
+	internal sealed class MulDiv_funContext : ExprContext {
 		public IToken op;
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2412,7 +2412,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitMulDiv_fun(this);
 		}
 	}
-	internal partial class REMOVESTART_funContext : ExprContext {
+	internal sealed class REMOVESTART_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2423,7 +2423,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitREMOVESTART_fun(this);
 		}
 	}
-	internal partial class T_funContext : ExprContext {
+	internal sealed class T_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2434,7 +2434,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitT_fun(this);
 		}
 	}
-	internal partial class WEEKDAY_funContext : ExprContext {
+	internal sealed class WEEKDAY_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2445,7 +2445,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitWEEKDAY_fun(this);
 		}
 	}
-	internal partial class BIN2OCT_funContext : ExprContext {
+	internal sealed class BIN2OCT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2456,7 +2456,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBIN2OCT_fun(this);
 		}
 	}
-	internal partial class NULL_funContext : ExprContext {
+	internal sealed class NULL_funContext : ExprContext {
 		public NULL_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -2464,7 +2464,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNULL_fun(this);
 		}
 	}
-	internal partial class BASE64TOTEXT_funContext : ExprContext {
+	internal sealed class BASE64TOTEXT_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2475,7 +2475,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitBASE64TOTEXT_fun(this);
 		}
 	}
-	internal partial class TDIST_funContext : ExprContext {
+	internal sealed class TDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2486,7 +2486,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTDIST_fun(this);
 		}
 	}
-	internal partial class DATEVALUE_funContext : ExprContext {
+	internal sealed class DATEVALUE_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2497,7 +2497,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitDATEVALUE_fun(this);
 		}
 	}
-	internal partial class STARTSWITH_funContext : ExprContext {
+	internal sealed class STARTSWITH_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2508,7 +2508,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSTARTSWITH_fun(this);
 		}
 	}
-	internal partial class EVEN_funContext : ExprContext {
+	internal sealed class EVEN_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2519,7 +2519,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitEVEN_fun(this);
 		}
 	}
-	internal partial class LOGNORMDIST_funContext : ExprContext {
+	internal sealed class LOGNORMDIST_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2530,7 +2530,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitLOGNORMDIST_fun(this);
 		}
 	}
-	internal partial class ISNULLOREMPTY_funContext : ExprContext {
+	internal sealed class ISNULLOREMPTY_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2541,7 +2541,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitISNULLOREMPTY_fun(this);
 		}
 	}
-	internal partial class TRUE_funContext : ExprContext {
+	internal sealed class TRUE_funContext : ExprContext {
 		public TRUE_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -2549,7 +2549,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTRUE_fun(this);
 		}
 	}
-	internal partial class FISHERINV_funContext : ExprContext {
+	internal sealed class FISHERINV_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2560,7 +2560,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitFISHERINV_fun(this);
 		}
 	}
-	internal partial class SHA1_funContext : ExprContext {
+	internal sealed class SHA1_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2571,7 +2571,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitSHA1_fun(this);
 		}
 	}
-	internal partial class TIME_funContext : ExprContext {
+	internal sealed class TIME_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2582,7 +2582,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitTIME_fun(this);
 		}
 	}
-	internal partial class ATAN2_funContext : ExprContext {
+	internal sealed class ATAN2_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2593,7 +2593,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitATAN2_fun(this);
 		}
 	}
-	internal partial class ADDHOURS_funContext : ExprContext {
+	internal sealed class ADDHOURS_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -2604,7 +2604,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitADDHOURS_fun(this);
 		}
 	}
-	internal partial class Version_funContext : ExprContext {
+	internal sealed class Version_funContext : ExprContext {
 		public Version_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -2612,7 +2612,7 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitVersion_fun(this);
 		}
 	}
-	internal partial class RAND_funContext : ExprContext {
+	internal sealed class RAND_funContext : ExprContext {
 		public RAND_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
@@ -7983,7 +7983,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal partial class NumContext : ParserRuleContext {
+	internal sealed class NumContext : ParserRuleContext {
 		public NumContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -8022,7 +8022,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal partial class ArrayJsonContext : ParserRuleContext {
+	internal sealed class ArrayJsonContext : ParserRuleContext {
 		public IToken key;
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -8311,7 +8311,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal partial class Parameter2Context : ParserRuleContext {
+	internal sealed class Parameter2Context : ParserRuleContext {
 		
 		
 		
