@@ -29,12 +29,12 @@ namespace ToolGood.Algorithm
 		/// <summary>
 		/// One
 		/// </summary>
-		public static readonly Operand One = Operand.Create(1m);
+		public static readonly Operand One;
 
 		/// <summary>
 		/// Zero
 		/// </summary>
-		public static readonly Operand Zero = Operand.Create(0m);
+		public static readonly Operand Zero;
 		/// <summary>
 		/// Null
 		/// </summary>
@@ -48,6 +48,8 @@ namespace ToolGood.Algorithm
 		{
 			for (int i = 0; i < IntCacheSize; i++)
 				IntCache[i] = new OperandInt(i - IntCacheOffset);
+			One = Operand.Create(1);
+			Zero = Operand.Create(0);
 		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
