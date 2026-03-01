@@ -53,6 +53,7 @@ namespace Antlr4Helper.CSharpHelper
 			csText = csText.Replace("_prevctx = _localctx;", "");
 			csText = csText.Replace("internal partial class", "internal sealed class");
 			csText = csText.Replace("internal sealed class ExprContext", "internal class ExprContext");
+			csText = csText.Replace("public ExprContext expr() {\r\n\t\treturn expr(0);\r\n\t}", "");
 
 			//_prevctx = _localctx;
 

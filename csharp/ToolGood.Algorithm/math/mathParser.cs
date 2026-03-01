@@ -2620,9 +2620,6 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitRAND_fun(this);
 		}
 	}
-	public ExprContext expr() {
-		return expr(0);
-	}
 	private ExprContext expr(int _p) {
 		ParserRuleContext _parentctx = Context;
 		int _parentState = State;
