@@ -154,8 +154,8 @@ expr:
 	| SQRT '(' expr ')'										# SQRT_fun
 	| TRUNC '(' expr ')'									# TRUNC_fun
 	| INT '(' expr ')'										# INT_fun
-	| GCD '(' expr (',' expr)+ ')'							# GCD_fun
-	| LCM '(' expr (',' expr)+ ')'							# LCM_fun
+	| GCD '(' expr (',' expr)* ')'							# GCD_fun
+	| LCM '(' expr (',' expr)* ')'							# LCM_fun
 	| COMBIN '(' expr ',' expr ')'							# COMBIN_fun
 	| PERMUT '(' expr ',' expr ')'							# PERMUT_fun
 	| DEGREES '(' expr ')'									# DEGREES_fun
@@ -241,9 +241,9 @@ expr:
 	| NETWORKDAYS '(' expr ',' expr (',' expr)? ')'				# NETWORKDAYS_fun
 	| WORKDAY '(' expr ',' expr (',' expr)? ')'					# WORKDAY_fun
 	| WEEKNUM '(' expr (',' expr)? ')'							# WEEKNUM_fun
-	| MAX '(' expr (',' expr)+ ')'								# MAX_fun
-	| MEDIAN '(' expr (',' expr)+ ')'							# MEDIAN_fun
-	| MIN '(' expr (',' expr)+ ')'								# MIN_fun
+	| MAX '(' expr (',' expr)* ')'								# MAX_fun
+	| MEDIAN '(' expr (',' expr)* ')'							# MEDIAN_fun
+	| MIN '(' expr (',' expr)* ')'								# MIN_fun
 	| QUARTILE '(' expr ',' expr ')'							# QUARTILE_fun
 	| MODE '(' expr (',' expr)* ')'								# MODE_fun
 	| LARGE '(' expr ',' expr ')'								# LARGE_fun
