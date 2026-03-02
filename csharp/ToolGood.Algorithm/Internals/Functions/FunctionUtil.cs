@@ -59,6 +59,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return true;
 		}
 
+		public static bool F_base_GetList(List<Operand> args, List<Operand> list)
+		{
+			return F_base_GetList(args, list,
+				obj => obj,
+				obj => obj);
+		}
+
 		public static bool F_base_GetList(List<Operand> args, List<decimal> list)
 		{
 			return F_base_GetList(args, list, 

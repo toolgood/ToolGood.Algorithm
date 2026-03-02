@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm
 	/// </summary>
 	public static class AlgorithmEngineHelper
 	{
-		private static readonly Regex unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
+		private static readonly Regex unitRegex = new Regex(@"[\s\(\)（）\[\]<>]", RegexOptions.Compiled);
 
 		/// <summary>
 		/// 是不是参数
@@ -76,9 +76,26 @@ namespace ToolGood.Algorithm
 		public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
 		{
 			if(string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
-			oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
 			if(oldSrcUnit == oldTarUnit) { return src; }
 
+			if(DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
+				var c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+				return c.LeftToRight(src);
+			}
+			if(MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
+				var c = new MassConverter(oldSrcUnit, oldTarUnit);
+				return c.LeftToRight(src);
+			}
+			if(AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
+				var c = new AreaConverter(oldSrcUnit, oldTarUnit);
+				return c.LeftToRight(src);
+			}
+			if(VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
+				var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+				return c.LeftToRight(src);
+			}
+
+			oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
 			if(DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
 				var c = new DistanceConverter(oldSrcUnit, oldTarUnit);
 				return c.LeftToRight(src);
