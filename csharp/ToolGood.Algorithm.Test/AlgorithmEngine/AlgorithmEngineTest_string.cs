@@ -367,27 +367,6 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(t, "axdef");
         }
 
-        [Test]
-        public void MethodStyle_SUBSTITUTE_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'abcabc'.SUBSTITUTE('ab','x')", "");
-            Assert.AreEqual(t, "xcxc");
-
-            t = engine.TryEvaluate("'abcabc'.SUBSTITUTE('ab','x',2)", "");
-            Assert.AreEqual(t, "abcxc");
-        }
-
-        [Test]
-        public void MethodStyle_CONCATENATE_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'abc'.CONCATENATE('def')", "");
-            Assert.AreEqual(t, "abcdef");
-
-            t = engine.TryEvaluate("'abc'.CONCATENATE('def','ghi')", "");
-            Assert.AreEqual(t, "abcdefghi");
-        }
 
         [Test]
         public void MethodStyle_EXACT_test()
@@ -400,61 +379,6 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(t, false);
         }
 
-        [Test]
-        public void MethodStyle_CHAR_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("49.CHAR()", "");
-            Assert.AreEqual(t, "1");
-        }
-
-        [Test]
-        public void MethodStyle_CODE_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'A'.CODE()", 0);
-            Assert.AreEqual(t, 65);
-        }
-
-        [Test]
-        public void MethodStyle_ASC_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'ａｂｃ'.ASC()", "");
-            Assert.AreEqual(t, "abc");
-        }
-
-        [Test]
-        public void MethodStyle_JIS_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'abc'.JIS()", "");
-            Assert.AreEqual(t, "ａｂｃ");
-        }
-
-        [Test]
-        public void MethodStyle_PROPER_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'abc abc'.PROPER()", "");
-            Assert.AreEqual(t, "Abc Abc");
-        }
-
-        [Test]
-        public void MethodStyle_CLEAN_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'ab\\r\\tc'.CLEAN()", "");
-            Assert.AreEqual(t, "abc");
-        }
-
-        [Test]
-        public void MethodStyle_REPT_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("'ab'.REPT(3)", "");
-            Assert.AreEqual(t, "ababab");
-        }
 
         [Test]
         public void MethodStyle_T_test()

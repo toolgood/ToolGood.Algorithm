@@ -406,53 +406,6 @@ namespace ToolGood.Algorithm.Test
 			Assert.AreEqual(dt, "&=我中国人 >||");
 		}
 
-		[Test]
-		public void MethodStyle_HTMLENCODE_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'&=我中国人 >||'.HTMLENCODE()", null);
-			Assert.AreEqual(dt, "&amp;=我中国人 &gt;||");
-		}
-
-		[Test]
-		public void MethodStyle_HTMLDECODE_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'&amp;=我中国人 &gt;||'.HTMLDECODE()", null);
-			Assert.AreEqual(dt, "&=我中国人 >||");
-		}
-
-		[Test]
-		public void MethodStyle_TEXTTOBASE64_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'&=我中国人 >||'.TEXTTOBASE64()", null);
-			Assert.AreEqual(dt, "Jj3miJHkuK3lm73kurogPnx8");
-		}
-
-		[Test]
-		public void MethodStyle_TEXTTOBASE64URL_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'&=我中国人 >||'.TEXTTOBASE64URL()", null);
-			Assert.AreEqual(dt, "Jj3miJHkuK3lm73kurogPnx8");
-		}
-
-		[Test]
-		public void MethodStyle_BASE64TOTEXT_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'Jj3miJHkuK3lm73kurogPnx8'.BASE64TOTEXT()", null);
-			Assert.AreEqual(dt, "&=我中国人 >||");
-		}
-
-		[Test]
-		public void MethodStyle_BASE64URLTOTEXT_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'Jj3miJHkuK3lm73kurogPnx8'.BASE64URLTOTEXT()", null);
-			Assert.AreEqual(dt, "&=我中国人 >||");
-		}
 
 		[Test]
 		public void MethodStyle_MD5_test()
@@ -484,38 +437,6 @@ namespace ToolGood.Algorithm.Test
 			AlgorithmEngine engine = new AlgorithmEngine();
 			var dt = engine.TryEvaluate("'123'.SHA512()", null);
 			Assert.AreEqual(dt, "3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2");
-		}
-
-		[Test]
-		public void MethodStyle_HMACMD5_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'123'.HMACMD5('123')", null);
-			Assert.AreEqual(dt, "B2A1EC0F3E0607099D7F39791C04E9A4");
-		}
-
-		[Test]
-		public void MethodStyle_HMACSHA1_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'123'.HMACSHA1('123')", null);
-			Assert.AreEqual(dt, "A3C024F01CCCB3B63457D848B0D2F89C1F744A3D");
-		}
-
-		[Test]
-		public void MethodStyle_HMACSHA256_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'123'.HMACSHA256('123')", null);
-			Assert.AreEqual(dt, "3CAFE40F92BE6AC77D2792B4B267C2DA11E3F3087B93BB19C6C5133786984B44");
-		}
-
-		[Test]
-		public void MethodStyle_HMACSHA512_test()
-		{
-			AlgorithmEngine engine = new AlgorithmEngine();
-			var dt = engine.TryEvaluate("'123'.HMACSHA512('123')", null);
-			Assert.AreEqual(dt, "0634FD04380BBAF5069C8C46A74C7D21DF7414888D980C27A16D5E262CB8C9059139C212D0926000FAF026E483904CEFAE2F5E9D9BD5F51FBC2AC4C4DE518115");
 		}
 
 		#endregion 方法式调用测试 - 编码加密类

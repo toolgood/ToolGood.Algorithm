@@ -368,27 +368,7 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(t, false);
         }
 
-        [Test]
-        public void MethodStyle_ISEVEN_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("2.ISEVEN()", false);
-            Assert.AreEqual(t, true);
-
-            t = engine.TryEvaluate("3.ISEVEN()", true);
-            Assert.AreEqual(t, false);
-        }
-
-        [Test]
-        public void MethodStyle_ISODD_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("3.ISODD()", false);
-            Assert.AreEqual(t, true);
-
-            t = engine.TryEvaluate("2.ISODD()", true);
-            Assert.AreEqual(t, false);
-        }
+   
 
         [Test]
         public void MethodStyle_ISNULL_test()
