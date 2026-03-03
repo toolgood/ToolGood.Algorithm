@@ -471,10 +471,38 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 		<td>SqrtPi(3) <br>>>3.069980124</td>
 	</tr>
 	<tr>
-		<td>SUMSQ</td><td>sumQq(number, ...)<br>Returns the sum of squares of parameters</td>
-		<td>SUMSQ(1, 2) <br>>>5</td>
-	</tr>
-	<tr>
+        <td>SUMSQ</td><td>sumQq(number, ...)<br>Returns the sum of squares of parameters</td>
+        <td>SUMSQ(1, 2) <br>>>5</td>
+    </tr>
+    <tr>
+        <td>SUMPRODUCT</td><td>sumproduct(array1, array2, ...)<br>Returns the sum of products of corresponding array elements</td>
+        <td>SUMPRODUCT(array(1, 2, 3), array(4, 5, 6)) <br>>>32</td>
+    </tr>
+    <tr>
+        <td>SUMX2MY2</td><td>sumx2my2(arrayX, arrayY)<br>Returns the sum of the difference of squares of corresponding values in two arrays</td>
+        <td>SUMX2MY2(array(1, 2, 3), array(4, 5, 6)) <br>>>-63</td>
+    </tr>
+    <tr>
+        <td>SUMX2PY2</td><td>sumx2py2(arrayX, arrayY)<br>Returns the sum of the sum of squares of corresponding values in two arrays</td>
+        <td>SUMX2PY2(array(1, 2, 3), array(4, 5, 6)) <br>>>91</td>
+    </tr>
+    <tr>
+        <td>SUMXMY2</td><td>sumxmy2(arrayX, arrayY)<br>Returns the sum of squares of differences of corresponding values in two arrays</td>
+        <td>SUMXMY2(array(1, 2, 3), array(4, 5, 6)) <br>>>27</td>
+    </tr>
+    <tr>
+        <td>SERIESSUM</td><td>seriessum(X, N, M, coefficients)<br>Returns the sum of a power series</td>
+        <td>SERIESSUM(2, 0, 1, array(1, 1, 1, 1)) <br>>>15</td>
+    </tr>
+    <tr>
+        <td>ARABIC ★</td><td>arabic(romanText)<br>Converts a Roman numeral to Arabic numeral</td>
+        <td>ARABIC('MMXXIII') <br>>>2023</td>
+    </tr>
+    <tr>
+        <td>ROMAN ★</td><td>roman(number[, form])<br>Converts an Arabic numeral to Roman numeral</td>
+        <td>ROMAN(2023) <br>>>MMXXIII</td>
+    </tr>
+    <tr>
 		<td rowspan="12">Transformation</td>
 		<td>DEC2BIN ★</td><td>DEC2BIN(number[, digit])<br>Decimal to binary </td>
 		<td>DEC2BIN(100) <br>>> </td>
@@ -723,9 +751,13 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 		<td>WEEKNUM("2016-1-3") <br>>>2</td>
 	</tr>
 	<tr>
-		<td>DAYS</td><td>days(endDate, startDate)<br>Returns the number of days between two dates</td>
-		<td>DAYS("2017-1-7", "2017-1-1") <br>>>6</td>
-	</tr>
+        <td>DAYS</td><td>days(endDate, startDate)<br>Returns the number of days between two dates</td>
+        <td>DAYS("2017-1-7", "2017-1-1") <br>>>6</td>
+    </tr>
+    <tr>
+        <td>YEARFRAC</td><td>yearfrac(startDate, endDate[, basis:0-4])<br>Returns the fraction of the year represented by the number of whole days between two dates</td>
+        <td>YEARFRAC("2012-1-1", "2012-7-1") <br>>>0.5</td>
+    </tr>
 </table>
 
 ##### Extension function
@@ -768,9 +800,78 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 
 Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timestamp`. Set `true` to directly convert to local time.
 
+#### Financial function
+<table>
+    <tr><td>function name</td><td>description</td><td>Example</td></tr>
+    <tr>
+        <td>PMT</td><td>pmt(rate, nper, pv[, fv[, type]])<br>Calculate the periodic payment for a loan with fixed interest rate</td>
+        <td>PMT(0.08/12, 10, 10000) <br>>>-1037.03</td>
+    </tr>
+    <tr>
+        <td>PPMT</td><td>ppmt(rate, per, nper, pv[, fv[, type]])<br>Calculate the principal payment for a loan in a given period</td>
+        <td>PPMT(0.08/12, 1, 10, 10000) <br>>>-970.37</td>
+    </tr>
+    <tr>
+        <td>IPMT</td><td>ipmt(rate, per, nper, pv[, fv[, type]])<br>Calculate the interest payment for a loan in a given period</td>
+        <td>IPMT(0.08/12, 1, 10, 10000) <br>>>-66.67</td>
+    </tr>
+    <tr>
+        <td>PV</td><td>pv(rate, nper, pmt[, fv[, type]])<br>Calculate the present value of an investment</td>
+        <td>PV(0.08/12, 10, -1000) <br>>>9637.09</td>
+    </tr>
+    <tr>
+        <td>FV</td><td>fv(rate, nper, pmt[, pv[, type]])<br>Calculate the future value of an investment</td>
+        <td>FV(0.08/12, 10, -1000) <br>>>10413.84</td>
+    </tr>
+    <tr>
+        <td>NPER</td><td>nper(rate, pmt, pv[, fv[, type]])<br>Calculate the number of periods for an investment</td>
+        <td>NPER(0.08/12, -1000, 10000) <br>>>10.7</td>
+    </tr>
+    <tr>
+        <td>RATE</td><td>rate(nper, pmt, pv[, fv[, type[, guess]]])<br>Calculate the interest rate per period for an investment</td>
+        <td>RATE(4*12, -200, 8000) <br>>>0.0077</td>
+    </tr>
+    <tr>
+        <td>NPV</td><td>npv(rate, value1, ...)<br>Calculate the net present value of a series of periodic cash flows</td>
+        <td>NPV(0.1, -10000, 3000, 4200, 6800) <br>>>1188.44</td>
+    </tr>
+    <tr>
+        <td>XNPV</td><td>xnpv(rate, values, dates)<br>Calculate the net present value of a series of non-periodic cash flows</td>
+        <td>XNPV(0.09, array(-10000, 2750, 4250, 3250, 2750), array('2008-1-1', '2008-3-1', '2008-10-30', '2009-2-15', '2009-4-1')) <br>>>2086.65</td>
+    </tr>
+    <tr>
+        <td>IRR</td><td>irr(values[, guess])<br>Calculate the internal rate of return for a series of cash flows</td>
+        <td>IRR(array(-70000, 12000, 15000, 18000, 21000, 26000)) <br>>>0.0866</td>
+    </tr>
+    <tr>
+        <td>MIRR</td><td>mirr(values, finance_rate, reinvest_rate)<br>Calculate the modified internal rate of return</td>
+        <td>MIRR(array(-70000, 12000, 15000, 18000, 21000, 26000), 0.1, 0.12) <br>>>0.0797</td>
+    </tr>
+    <tr>
+        <td>XIRR</td><td>xirr(values, dates[, guess])<br>Calculate the internal rate of return for a series of non-periodic cash flows</td>
+        <td>XIRR(array(-10000, 2750, 4250, 3250, 2750), array('2008-1-1', '2008-3-1', '2008-10-30', '2009-2-15', '2009-4-1')) <br>>>0.3734</td>
+    </tr>
+    <tr>
+        <td>SLN</td><td>sln(cost, salvage, life)<br>Calculate the straight-line depreciation of an asset</td>
+        <td>SLN(30000, 7500, 10) <br>>>2250</td>
+    </tr>
+    <tr>
+        <td>DB</td><td>db(cost, salvage, life, period[, month])<br>Calculate the declining balance depreciation of an asset</td>
+        <td>DB(1000000, 100000, 6, 1) <br>>>319000</td>
+    </tr>
+    <tr>
+        <td>DDB</td><td>ddb(cost, salvage, life, period[, factor])<br>Calculate the double declining balance depreciation of an asset</td>
+        <td>DDB(2400, 300, 10, 2) <br>>>384</td>
+    </tr>
+    <tr>
+        <td>SYD</td><td>syd(cost, salvage, life, period)<br>Calculate the sum-of-years' digits depreciation of an asset</td>
+        <td>SYD(30000, 7500, 10, 1) <br>>>4090.91</td>
+    </tr>
+</table>
+
 #### Statistical function
 <table>
-	<tr><td>function name</td><td>description</td><td>Example</td></tr>
+    <tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
 		<td>MAX</td><td>max(number, ...)<br>Returns the maximum value in the parameter list</td>
 		<td>max(1, 2, 3, 4, 2, 2, 1, 4) <br>>>4</td>
@@ -960,9 +1061,33 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>COVAR(array(3,7,6,11),array(5,15,13,9)) <br>>>3.375</td>
 	</tr>
 	<tr>
-		<td>COVARIANCE.S</td><td>COVARIANCE.S(array1, array2)<br>Returns sample covariance</td>
-		<td>COVARIANCE.S(array(3,7,6,11),array(5,15,13,9)) <br>>>4.5</td>
-	</tr>
+        <td>COVARIANCE.S</td><td>COVARIANCE.S(array1, array2)<br>Returns sample covariance</td>
+        <td>COVARIANCE.S(array(3,7,6,11),array(5,15,13,9)) <br>>>4.5</td>
+    </tr>
+    <tr>
+        <td>RANK</td><td>rank(number, array[, order:0/1])<br>Returns the rank of a number in a list</td>
+        <td>RANK(3, array(1, 2, 3, 4, 5)) <br>>>3</td>
+    </tr>
+    <tr>
+        <td>FORECAST</td><td>forecast(X, Yarray, Xarray)<br>Returns a predicted value based on linear trend</td>
+        <td>FORECAST(30, array(6, 7, 9, 15, 21), array(20, 28, 31, 38, 40)) <br>>>10.61</td>
+    </tr>
+    <tr>
+        <td>INTERCEPT</td><td>intercept(Yarray, Xarray)<br>Returns the intercept of the linear regression line</td>
+        <td>INTERCEPT(array(2, 3, 9, 1, 8), array(6, 5, 11, 7, 5)) <br>>>0.05</td>
+    </tr>
+    <tr>
+        <td>SLOPE</td><td>slope(Yarray, Xarray)<br>Returns the slope of the linear regression line</td>
+        <td>SLOPE(array(2, 3, 9, 1, 8), array(6, 5, 11, 7, 5)) <br>>>0.67</td>
+    </tr>
+    <tr>
+        <td>CORREL</td><td>correl(array1, array2)<br>Returns the correlation coefficient between two arrays</td>
+        <td>CORREL(array(3, 2, 4, 5, 6), array(9, 7, 12, 15, 17)) <br>>>0.997</td>
+    </tr>
+    <tr>
+        <td>PEARSON</td><td>pearson(array1, array2)<br>Returns the Pearson product moment correlation coefficient</td>
+        <td>PEARSON(array(3, 2, 4, 5, 6), array(9, 7, 12, 15, 17)) <br>>>0.997</td>
+    </tr>
 </table>
 
 #### Find references
