@@ -364,8 +364,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_BIN2DEC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BIN2DEC(funcs);
 		}
 		public FunctionBase VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
 		{
@@ -379,8 +379,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_OCT2DEC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_OCT2DEC(funcs);
 		}
 		public FunctionBase VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
 		{
@@ -414,8 +414,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_HEX2DEC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_HEX2DEC(funcs);
 		}
 		#endregion transformation
 		#region rounding

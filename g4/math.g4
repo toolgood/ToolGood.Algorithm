@@ -16,13 +16,13 @@ expr:
 	| expr '.' DEC2HEX ('(' expr? ')')							# DEC2HEX_fun
 	| expr '.' DEC2OCT ('(' expr? ')')							# DEC2OCT_fun
 	| expr '.' HEX2BIN ('(' expr? ')')							# HEX2BIN_fun
-	| expr '.' HEX2DEC ('(' ')')								# HEX2DEC_fun
+	| expr '.' HEX2DEC ('(' expr?  ')')							# HEX2DEC_fun
 	| expr '.' HEX2OCT ('(' expr? ')')							# HEX2OCT_fun
 	| expr '.' OCT2BIN ('(' expr? ')')							# OCT2BIN_fun
-	| expr '.' OCT2DEC ('(' ')')								# OCT2DEC_fun
+	| expr '.' OCT2DEC ('(' expr?  ')')							# OCT2DEC_fun
 	| expr '.' OCT2HEX ('(' expr? ')')							# OCT2HEX_fun
 	| expr '.' BIN2OCT ('(' expr? ')')							# BIN2OCT_fun
-	| expr '.' BIN2DEC ('(' ')')								# BIN2DEC_fun
+	| expr '.' BIN2DEC ('(' expr? ')')							# BIN2DEC_fun
 	| expr '.' BIN2HEX ('(' expr? ')')							# BIN2HEX_fun
 	| expr '.' INT '(' ')'										# INT_fun
 	| expr '.' ASC '(' ')'										# ASC_fun
@@ -139,13 +139,13 @@ expr:
 	| DEC2HEX ('(' expr (',' expr)? ')')					# DEC2HEX_fun
 	| DEC2OCT ('(' expr (',' expr)? ')')					# DEC2OCT_fun
 	| HEX2BIN ('(' expr (',' expr)? ')')					# HEX2BIN_fun
-	| HEX2DEC ('(' expr ')')								# HEX2DEC_fun
+	| HEX2DEC ('(' expr (',' expr)? ')')					# HEX2DEC_fun
 	| HEX2OCT ('(' expr (',' expr)? ')')					# HEX2OCT_fun
 	| OCT2BIN ('(' expr (',' expr)? ')')					# OCT2BIN_fun
-	| OCT2DEC ('(' expr ')')								# OCT2DEC_fun
+	| OCT2DEC ('(' expr (',' expr)? ')')					# OCT2DEC_fun
 	| OCT2HEX ('(' expr (',' expr)? ')')					# OCT2HEX_fun
 	| BIN2OCT ('(' expr (',' expr)? ')')					# BIN2OCT_fun
-	| BIN2DEC ('(' expr ')')								# BIN2DEC_fun
+	| BIN2DEC ('(' expr (',' expr)? ')')					# BIN2DEC_fun
 	| BIN2HEX ('(' expr (',' expr)? ')')					# BIN2HEX_fun
 	| ABS '(' expr ')'										# ABS_fun
 	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun

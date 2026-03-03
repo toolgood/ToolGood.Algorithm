@@ -3,13 +3,13 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal sealed class Function_OCT2DEC : Function_1
+	internal sealed class Function_OCT2DEC : Function_2
     {
-        public Function_OCT2DEC(FunctionBase func1) : base(func1)
-        {
-        }
+		public Function_OCT2DEC(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override string Name => "Oct2Dec";
+		public override string Name => "Oct2Dec";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -18,7 +18,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 
             if (RegexHelper.OctRegex.IsMatch(args1.TextValue) == false) { return FunctionError(); }
             var num = Convert.ToInt32(args1.TextValue, 8);
-            return Operand.Create(num);
+			if(func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
+				if(args2.IsError) { return args2; }
+				var n = num.ToString();
+				if(n.Length < args2.IntValue) {
+					return Operand.Create(n.ToString().PadLeft(args2.IntValue, '0'));
+				}
+				return ParameterError(2);
+			}
+			return Operand.Create(num);
         }
     }
 
