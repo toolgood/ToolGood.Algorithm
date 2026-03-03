@@ -7,41 +7,18 @@ expr:
 	| expr '.' ISTEXT '(' ')'									# ISTEXT_fun
 	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
 	| expr '.' ISLOGICAL '(' ')'								# ISLOGICAL_fun
-	| expr '.' ISEVEN '(' ')'									# ISEVEN_fun
-	| expr '.' ISODD '(' ')'									# ISODD_fun
 	| expr '.' ISERROR '(' expr? ')'							# ISERROR_fun
 	| expr '.' ISNULL '(' expr? ')'								# ISNULL_fun
 	| expr '.' ISNULLORERROR '(' expr? ')'						# ISNULLORERROR_fun
-	| expr '.' DEC2BIN ('(' expr? ')')							# DEC2BIN_fun
-	| expr '.' DEC2HEX ('(' expr? ')')							# DEC2HEX_fun
-	| expr '.' DEC2OCT ('(' expr? ')')							# DEC2OCT_fun
-	| expr '.' HEX2BIN ('(' expr? ')')							# HEX2BIN_fun
-	| expr '.' HEX2DEC ('(' expr?  ')')							# HEX2DEC_fun
-	| expr '.' HEX2OCT ('(' expr? ')')							# HEX2OCT_fun
-	| expr '.' OCT2BIN ('(' expr? ')')							# OCT2BIN_fun
-	| expr '.' OCT2DEC ('(' expr?  ')')							# OCT2DEC_fun
-	| expr '.' OCT2HEX ('(' expr? ')')							# OCT2HEX_fun
-	| expr '.' BIN2OCT ('(' expr? ')')							# BIN2OCT_fun
-	| expr '.' BIN2DEC ('(' expr? ')')							# BIN2DEC_fun
-	| expr '.' BIN2HEX ('(' expr? ')')							# BIN2HEX_fun
 	| expr '.' INT '(' ')'										# INT_fun
-	| expr '.' ASC '(' ')'										# ASC_fun
-	| expr '.' JIS '(' ')'										# JIS_fun
-	| expr '.' CHAR '(' ')'										# CHAR_fun
-	| expr '.' CLEAN '(' ')'									# CLEAN_fun
-	| expr '.' CODE '(' ')'										# CODE_fun
-	| expr '.' CONCATENATE '(' (expr (',' expr)*)? ')'			# CONCATENATE_fun
 	| expr '.' EXACT '(' expr ')'								# EXACT_fun
 	| expr '.' LEFT '(' expr? ')'								# LEFT_fun
 	| expr '.' LEN '(' ')'										# LEN_fun
 	| expr '.' LOWER '(' ')'									# LOWER_fun
 	| expr '.' MID '(' expr ',' expr ')'						# MID_fun
-	| expr '.' PROPER '(' ')'									# PROPER_fun
 	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'		# REPLACE_fun
-	| expr '.' REPT '(' expr ')'								# REPT_fun
 	| expr '.' RIGHT '(' expr? ')'								# RIGHT_fun
 	| expr '.' RMB '(' ')'										# RMB_fun
-	| expr '.' SUBSTITUTE '(' expr ',' expr (',' expr)? ')'		# SUBSTITUTE_fun
 	| expr '.' T '(' ')'										# T_fun
 	| expr '.' TEXT '(' expr ')'								# TEXT_fun
 	| expr '.' TRIM '(' ')'										# TRIM_fun
@@ -57,12 +34,6 @@ expr:
 	| expr '.' SECOND ('(' ')')?								# SECOND_fun
 	| expr '.' URLENCODE '(' ')'								# URLENCODE_fun
 	| expr '.' URLDECODE '(' ')'								# URLDECODE_fun
-	| expr '.' HTMLENCODE '(' ')'								# HTMLENCODE_fun
-	| expr '.' HTMLDECODE '(' ')'								# HTMLDECODE_fun
-	| expr '.' BASE64TOTEXT '(' ')'								# BASE64TOTEXT_fun
-	| expr '.' BASE64URLTOTEXT '(' ')'							# BASE64URLTOTEXT_fun
-	| expr '.' TEXTTOBASE64 '(' ')'								# TEXTTOBASE64_fun
-	| expr '.' TEXTTOBASE64URL '(' ')'							# TEXTTOBASE64URL_fun
 	| expr '.' REGEX '(' expr ')'								# REGEX_fun
 	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
@@ -70,10 +41,6 @@ expr:
 	| expr '.' SHA1 '(' ')'										# SHA1_fun
 	| expr '.' SHA256 '(' ')'									# SHA256_fun
 	| expr '.' SHA512 '(' ')'									# SHA512_fun
-	| expr '.' HMACMD5 '(' expr ')'								# HMACMD5_fun
-	| expr '.' HMACSHA1 '(' expr ')'							# HMACSHA1_fun
-	| expr '.' HMACSHA256 '(' expr ')'							# HMACSHA256_fun
-	| expr '.' HMACSHA512 '(' expr ')'							# HMACSHA512_fun
 	| expr '.' TRIMSTART '(' expr? ')'							# TRIMSTART_fun
 	| expr '.' TRIMEND '(' expr? ')'							# TRIMEND_fun
 	| expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
