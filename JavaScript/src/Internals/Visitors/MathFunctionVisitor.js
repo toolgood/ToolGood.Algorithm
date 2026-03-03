@@ -15,6 +15,7 @@ import { Function_AND } from '../Functions/Operator/Function_AND.js';
 import { Function_OR } from '../Functions/Operator/Function_OR.js';
 import { Function_AND_N } from '../Functions/Operator/Function_AND_N.js';
 import { Function_OR_N } from '../Functions/Operator/Function_OR_N.js';
+import { Function_XOR } from '../Functions/Operator/Function_XOR.js';
 import { Function_NOT } from '../Functions/Flow/Function_NOT.js';
 import { Function_Value } from '../Functions/Value/Function_Value.js';
 
@@ -87,7 +88,45 @@ import { Function_LOG10 } from '../Functions/MathBase/Function_LOG10.js';
 import { Function_MULTINOMIAL } from '../Functions/MathBase/Function_MULTINOMIAL.js';
 import { Function_PRODUCT } from '../Functions/MathBase/Function_PRODUCT.js';
 import { Function_SQRTPI } from '../Functions/MathBase/Function_SQRTPI.js';
+import { Function_ERF } from '../Functions/MathBase/Function_ERF.js';
+import { Function_ERFC } from '../Functions/MathBase/Function_ERFC.js';
+import { Function_BESSELI } from '../Functions/MathBase/Function_BESSELI.js';
+import { Function_BESSELJ } from '../Functions/MathBase/Function_BESSELJ.js';
+import { Function_BESSELK } from '../Functions/MathBase/Function_BESSELK.js';
+import { Function_BESSELY } from '../Functions/MathBase/Function_BESSELY.js';
+import { Function_DELTA } from '../Functions/MathBase/Function_DELTA.js';
+import { Function_GESTEP } from '../Functions/MathBase/Function_GESTEP.js';
 import { Function_SUMSQ } from '../Functions/MathSum/Function_SUMSQ.js';
+import { Function_SUMPRODUCT } from '../Functions/MathSum/Function_SUMPRODUCT.js';
+import { Function_SUMX2MY2 } from '../Functions/MathSum/Function_SUMX2MY2.js';
+import { Function_SUMX2PY2 } from '../Functions/MathSum/Function_SUMX2PY2.js';
+import { Function_SUMXMY2 } from '../Functions/MathSum/Function_SUMXMY2.js';
+import { Function_SERIESSUM } from '../Functions/MathSum/Function_SERIESSUM.js';
+import { Function_ARABIC } from '../Functions/MathBase/Function_ARABIC.js';
+import { Function_ROMAN } from '../Functions/MathBase/Function_ROMAN.js';
+import { Function_RANK } from '../Functions/MathSum/Function_RANK.js';
+import { Function_FORECAST } from '../Functions/MathSum/Function_FORECAST.js';
+import { Function_INTERCEPT } from '../Functions/MathSum/Function_INTERCEPT.js';
+import { Function_SLOPE } from '../Functions/MathSum/Function_SLOPE.js';
+import { Function_CORREL } from '../Functions/MathSum/Function_CORREL.js';
+import { Function_PEARSON } from '../Functions/MathSum/Function_PEARSON.js';
+import { Function_YEARFRAC } from '../Functions/DateTimes/Function_YEARFRAC.js';
+import { Function_PMT } from '../Functions/Financial/Function_PMT.js';
+import { Function_PPMT } from '../Functions/Financial/Function_PPMT.js';
+import { Function_IPMT } from '../Functions/Financial/Function_IPMT.js';
+import { Function_PV } from '../Functions/Financial/Function_PV.js';
+import { Function_FV } from '../Functions/Financial/Function_FV.js';
+import { Function_NPER } from '../Functions/Financial/Function_NPER.js';
+import { Function_RATE } from '../Functions/Financial/Function_RATE.js';
+import { Function_NPV } from '../Functions/Financial/Function_NPV.js';
+import { Function_XNPV } from '../Functions/Financial/Function_XNPV.js';
+import { Function_IRR } from '../Functions/Financial/Function_IRR.js';
+import { Function_MIRR } from '../Functions/Financial/Function_MIRR.js';
+import { Function_XIRR } from '../Functions/Financial/Function_XIRR.js';
+import { Function_SLN } from '../Functions/Financial/Function_SLN.js';
+import { Function_SYD } from '../Functions/Financial/Function_SYD.js';
+import { Function_DDB } from '../Functions/Financial/Function_DDB.js';
+import { Function_DB } from '../Functions/Financial/Function_DB.js';
 import { Function_ASC } from '../Functions/String/Function_ASC.js';
 import { Function_JIS } from '../Functions/String/Function_JIS.js';
 import { Function_CHAR } from '../Functions/String/Function_CHAR.js';
@@ -223,6 +262,8 @@ import { Function_LOOKFLOOR } from '../Functions/Csharp/Function_LOOKFLOOR.js';
 import { Function_HAS } from '../Functions/Csharp/Function_HAS.js';
 import { Function_HASVALUE } from '../Functions/Csharp/Function_HASVALUE.js';
 import { Function_IF } from '../Functions/Flow/Function_IF.js';
+import { Function_IFS } from '../Functions/Flow/Function_IFS.js';
+import { Function_SWITCH } from '../Functions/Flow/Function_SWITCH.js';
 import { Function_IFERROR } from '../Functions/Flow/Function_IFERROR.js';
 import { Function_ISERROR } from '../Functions/Flow/Function_ISERROR.js';
 import { Function_ISNULL } from '../Functions/Flow/Function_ISNULL.js';
@@ -250,6 +291,8 @@ import { Operand } from '../../Operand.js';
 
 const funcDict = {
     "IF": (args) => new Function_IF(args),
+    "IFS": (args) => new Function_IFS(args),
+    "SWITCH": (args) => new Function_SWITCH(args),
     "IFERROR": (args) => new Function_IFERROR(args),
     "ISNUMBER": (args) => new Function_ISNUMBER(args),
     "ISTEXT": (args) => new Function_ISTEXT(args),
@@ -262,6 +305,7 @@ const funcDict = {
     "ISNULLORERROR": (args) => new Function_ISNULLORERROR(args),
     "AND": (args) => new Function_AND(args),
     "OR": (args) => new Function_OR(args),
+    "XOR": (args) => new Function_XOR(args),
     "NOT": (args) => new Function_NOT(args),
     "DEC2BIN": (args) => new Function_DEC2BIN(args),
     "DEC2HEX": (args) => new Function_DEC2HEX(args),
@@ -328,6 +372,14 @@ const funcDict = {
     "MULTINOMIAL": (args) => new Function_MULTINOMIAL(args),
     "PRODUCT": (args) => new Function_PRODUCT(args),
     "SQRTPI": (args) => new Function_SQRTPI(args),
+    "ERF": (args) => new Function_ERF(args),
+    "ERFC": (args) => new Function_ERFC(args),
+    "BESSELI": (args) => new Function_BESSELI(args),
+    "BESSELJ": (args) => new Function_BESSELJ(args),
+    "BESSELK": (args) => new Function_BESSELK(args),
+    "BESSELY": (args) => new Function_BESSELY(args),
+    "DELTA": (args) => new Function_DELTA(args),
+    "GESTEP": (args) => new Function_GESTEP(args),
     "SUMSQ": (args) => new Function_SUMSQ(args),
     "ASC": (args) => new Function_ASC(args),
     "JIS": (args) => new Function_JIS(args),
@@ -509,6 +561,36 @@ const funcDict = {
     "PARAMETER": (args) => new Function_PARAM(args),
     "GETPARAMETER": (args) => new Function_PARAM(args),
     "ERROR": (args) => new Function_ERROR(args),
+    "SUMPRODUCT": (args) => new Function_SUMPRODUCT(args),
+    "SUMX2MY2": (args) => new Function_SUMX2MY2(args),
+    "SUMX2PY2": (args) => new Function_SUMX2PY2(args),
+    "SUMXMY2": (args) => new Function_SUMXMY2(args),
+    "SERIESSUM": (args) => new Function_SERIESSUM(args),
+    "ARABIC": (args) => new Function_ARABIC(args),
+    "ROMAN": (args) => new Function_ROMAN(args),
+    "RANK": (args) => new Function_RANK(args),
+    "FORECAST": (args) => new Function_FORECAST(args),
+    "INTERCEPT": (args) => new Function_INTERCEPT(args),
+    "SLOPE": (args) => new Function_SLOPE(args),
+    "CORREL": (args) => new Function_CORREL(args),
+    "PEARSON": (args) => new Function_PEARSON(args),
+    "YEARFRAC": (args) => new Function_YEARFRAC(args),
+    "PMT": (args) => new Function_PMT(args),
+    "PPMT": (args) => new Function_PPMT(args),
+    "IPMT": (args) => new Function_IPMT(args),
+    "PV": (args) => new Function_PV(args),
+    "FV": (args) => new Function_FV(args),
+    "NPER": (args) => new Function_NPER(args),
+    "RATE": (args) => new Function_RATE(args),
+    "NPV": (args) => new Function_NPV(args),
+    "XNPV": (args) => new Function_XNPV(args),
+    "IRR": (args) => new Function_IRR(args),
+    "MIRR": (args) => new Function_MIRR(args),
+    "XIRR": (args) => new Function_XIRR(args),
+    "SLN": (args) => new Function_SLN(args),
+    "SYD": (args) => new Function_SYD(args),
+    "DDB": (args) => new Function_DDB(args),
+    "DB": (args) => new Function_DB(args),
 };
 
 function findFunction(funcName) {
@@ -732,6 +814,7 @@ class MathFunctionVisitor extends mathVisitor {
         let funcs = this.vN(context);
         return new Function_IF(funcs);
     }
+ 
 }
 
 export { MathFunctionVisitor, funcDict, findFunction };
