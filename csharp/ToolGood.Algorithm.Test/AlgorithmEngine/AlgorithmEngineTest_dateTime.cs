@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
 namespace ToolGood.Algorithm.Test
@@ -272,6 +272,32 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(dt, 1);
             dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\",2)", 0);
             Assert.AreEqual(dt, 1);
+        }
+
+        [Test]
+        public void YEARFRAC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1')", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.5, 3));
+
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2013-1-1')", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(1.0, 3));
+
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 0)", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.5, 3));
+
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 1)", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.504, 3));
+
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 2)", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.508, 3));
+
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 3)", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.501, 3));
+
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 4)", 0.0);
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.5, 3));
         }
 
         [Test]
