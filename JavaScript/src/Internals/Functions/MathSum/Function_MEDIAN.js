@@ -32,7 +32,11 @@ class Function_MEDIAN extends Function_N {
         }
 
         list.sort((a, b) => a - b);
-        return Operand.Create(list[Math.floor(list.length / 2)]);
+        let mid = Math.floor(list.length / 2);
+        if (list.length % 2 === 0) {
+            return Operand.Create((list[mid - 1] + list[mid]) / 2);
+        }
+        return Operand.Create(list[mid]);
     }
 }
 

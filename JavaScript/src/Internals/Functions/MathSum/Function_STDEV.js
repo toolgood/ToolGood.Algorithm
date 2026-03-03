@@ -26,7 +26,7 @@ class Function_STDEV extends Function_N {
         if (o == false) {
             return this.functionError();
         }
-        if (list.length == 0) {
+        if (list.length <= 1) {
             return this.functionError();
         }
 

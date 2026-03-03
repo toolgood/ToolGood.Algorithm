@@ -104,7 +104,10 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("FIND(\"11\",\"12221122\")", 0);
             Assert.AreEqual(t, 5);
-        }
+
+			t = engine.TryEvaluate("FIND(\"12\",\"123456789123456789\",6)", 0);
+			Assert.AreEqual(t, 10);
+		}
 
         [Test]
         public void FIXED_test()

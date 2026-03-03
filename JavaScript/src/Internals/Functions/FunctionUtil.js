@@ -39,8 +39,8 @@ export var FunctionUtil = {
             return a.NumberValue - b.NumberValue;
         } else if(a.IsText && b.IsText) {
             return a.TextValue.localeCompare(b.TextValue);
-        } else if(a.IsBool && b.IsBool) {
-            return a.BoolValue === b.BoolValue ? 0 : (a.BoolValue ? 1 : -1);
+        } else if(a.IsBoolean && b.IsBoolean) {
+            return a.BooleanValue === b.BooleanValue ? 0 : (a.BooleanValue ? 1 : -1);
         } else if(a.IsDate && b.IsDate) {
             return a.DateValue - b.DateValue;
         }

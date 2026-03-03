@@ -24,7 +24,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list.Count == 0) { return FunctionError(); }
 
             list.Sort();
-            return Operand.Create(list[list.Count / 2]);
+            var mid = list.Count / 2;
+            if (list.Count % 2 == 0) {
+                return Operand.Create((list[mid - 1] + list[mid]) / 2);
+            }
+            return Operand.Create(list[mid]);
         }
 
     }

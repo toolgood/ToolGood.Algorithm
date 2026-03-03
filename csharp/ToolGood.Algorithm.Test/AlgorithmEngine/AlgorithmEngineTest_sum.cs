@@ -22,7 +22,10 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("MEDIAN(1,2,3,4,2,2,1,4)", 0.0);
             Assert.AreEqual(t, 2.0);
-        }
+
+			t = engine.TryEvaluate("MEDIAN(1,1,2,2)", 0.0);
+			Assert.AreEqual(t, 1.5);
+		}
 
         [Test]
         public void MIN_test()

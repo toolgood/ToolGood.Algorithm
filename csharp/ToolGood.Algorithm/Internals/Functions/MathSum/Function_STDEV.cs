@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
-            if (list.Count == 0) { return FunctionError(); }
+            if (list.Count <= 1) { return FunctionError(); }
 
             double mean = 0, m2 = 0;
             for (int i = 0; i < list.Count; i++) {
