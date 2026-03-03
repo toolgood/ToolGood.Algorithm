@@ -166,12 +166,20 @@ expr:
 	| SINH '(' expr ')'										# SINH_fun
 	| TAN '(' expr ')'										# TAN_fun
 	| TANH '(' expr ')'										# TANH_fun
+	| COT '(' expr ')'										# COT_fun
+	| COTH '(' expr ')'										# COTH_fun
+	| CSC '(' expr ')'										# CSC_fun
+	| CSCH '(' expr ')'										# CSCH_fun
+	| SEC '(' expr ')'										# SEC_fun
+	| SECH '(' expr ')'										# SECH_fun
 	| ACOS '(' expr ')'										# ACOS_fun
 	| ACOSH '(' expr ')'									# ACOSH_fun
 	| ASIN '(' expr ')'										# ASIN_fun
 	| ASINH '(' expr ')'									# ASINH_fun
 	| ATAN '(' expr ')'										# ATAN_fun
 	| ATANH '(' expr ')'									# ATANH_fun
+	| ACOT '(' expr ')'										# ACOT_fun
+	| ACOTH '(' expr ')'									# ACOTH_fun
 	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
 	| ROUND '(' expr (',' expr)? ')'						# ROUND_fun
 	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun
@@ -199,7 +207,10 @@ expr:
 	| CHAR '(' expr ')'										# CHAR_fun
 	| CLEAN '(' expr ')'									# CLEAN_fun
 	| CODE '(' expr ')'										# CODE_fun
+	| UNICHAR '(' expr ')'									# UNICHAR_fun
+	| UNICODE '(' expr ')'									# UNICODE_fun
 	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun
+	| CONCAT '(' expr (',' expr)* ')'						# CONCAT_fun
 	| EXACT '(' expr ',' expr ')'							# EXACT_fun
 	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun
 	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun
@@ -235,6 +246,7 @@ expr:
 	| SECOND '(' expr ')'										# SECOND_fun
 	| WEEKDAY '(' expr (',' expr)? ')'							# WEEKDAY_fun
 	| DATEDIF '(' expr ',' expr ',' expr ')'					# DATEDIF_fun
+	| DAYS '(' expr ',' expr ')'								# DAYS_fun
 	| DAYS360 '(' expr ',' expr (',' expr)? ')'					# DAYS360_fun
 	| EDATE '(' expr ',' expr ')'								# EDATE_fun
 	| EOMONTH '(' expr ',' expr ')'								# EOMONTH_fun
@@ -401,12 +413,20 @@ parameter2:
 	| SINH
 	| TAN
 	| TANH
+	| COT
+	| COTH
+	| CSC
+	| CSCH
+	| SEC
+	| SECH
 	| ACOS
 	| ACOSH
 	| ASIN
 	| ASINH
 	| ATAN
 	| ATANH
+	| ACOT
+	| ACOTH
 	| ATAN2
 	| ROUND
 	| ROUNDDOWN
@@ -434,7 +454,10 @@ parameter2:
 	| CHAR
 	| CLEAN
 	| CODE
+	| UNICHAR
+	| UNICODE
 	| CONCATENATE
+	| CONCAT
 	| EXACT
 	| FIND
 	| FIXED
@@ -468,6 +491,7 @@ parameter2:
 	| SECOND
 	| WEEKDAY
 	| DATEDIF
+	| DAYS
 	| DAYS360
 	| EDATE
 	| EOMONTH
@@ -659,12 +683,20 @@ SIN: 'SIN';
 SINH: 'SINH';
 TAN: 'TAN';
 TANH: 'TANH';
+COT: 'COT';
+COTH: 'COTH';
+CSC: 'CSC';
+CSCH: 'CSCH';
+SEC: 'SEC';
+SECH: 'SECH';
 ACOS: 'ACOS';
 ACOSH: 'ACOSH';
 ASIN: 'ASIN';
 ASINH: 'ASINH';
 ATAN: 'ATAN';
 ATANH: 'ATANH';
+ACOT: 'ACOT';
+ACOTH: 'ACOTH';
 ATAN2: 'ATAN2';
 ROUND: 'ROUND';
 ROUNDDOWN: 'ROUNDDOWN';
@@ -693,7 +725,10 @@ JIS: 'JIS' | 'WIDECHAR';
 CHAR: 'CHAR';
 CLEAN: 'CLEAN';
 CODE: 'CODE';
+UNICHAR: 'UNICHAR';
+UNICODE: 'UNICODE';
 CONCATENATE: 'CONCATENATE';
+CONCAT: 'CONCAT';
 EXACT: 'EXACT';
 FIND: 'FIND';
 FIXED: 'FIXED';
@@ -728,6 +763,7 @@ MINUTE: 'MINUTE';
 SECOND: 'SECOND';
 WEEKDAY: 'WEEKDAY';
 DATEDIF: 'DATEDIF';
+DAYS: 'DAYS';
 DAYS360: 'DAYS360';
 EDATE: 'EDATE';
 EOMONTH: 'EOMONTH';
