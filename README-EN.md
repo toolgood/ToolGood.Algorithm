@@ -161,6 +161,14 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 		<td>if(1=1, 1, 2) <br>>>1</td>
 	</tr>
 	<tr>
+		<td>IFS</td><td>ifs(condition1, value1, condition2, value2, ...)<br>Check whether one or more conditions are met and return the value corresponding to the first TRUE condition.</td>
+		<td>IFS(1=1, 'a', 1=2, 'b') <br>>>a</td>
+	</tr>
+	<tr>
+		<td>SWITCH</td><td>switch(expression, value1, result1, value2, result2, ...)<br>Evaluate an expression against a list of values and return the corresponding result.</td>
+		<td>SWITCH(1, 1, 'one', 2, 'two') <br>>>one</td>
+	</tr>
+	<tr>
 		<td>ifError</td><td>ifError(condition, trueValue[, falseValue])<br>If the formula calculates incorrectly, the value you specify is returned; otherwise, the formula result is returned.</td>
 		<td>ifError(1/0, 1, 2) <br>>>1</td>
 	</tr>
@@ -219,6 +227,10 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 	<tr>
 		<td>OR</td><td>or(logic1, ...)<br>If any parameter is TRUE, return TRUE. If there is an error, report it first</td>
 		<td>or(1, 2=3) <br>>>true</td>
+	</tr>
+	<tr>
+		<td>XOR</td><td>xor(logic1, ...)<br>Return the exclusive OR of all parameters, odd number of TRUE returns TRUE</td>
+		<td>xor(true(), false()) <br>>>true</td>
 	</tr>
 	<tr>
 		<td>NOT</td><td>not(logic)<br>Negate the logical value of a parameter</td>
@@ -469,6 +481,38 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 	<tr>
 		<td>SqrtPi</td><td>SqrtPi(number)<br>Returns the square root of the product of a number and PI</td>
 		<td>SqrtPi(3) <br>>>3.069980124</td>
+	</tr>
+	<tr>
+		<td>ERF</td><td>erf(number)<br>Returns the error function value</td>
+		<td>ERF(1) <br>>>0.842701</td>
+	</tr>
+	<tr>
+		<td>ERFC</td><td>erfc(number)<br>Returns the complementary error function value</td>
+		<td>ERFC(1) <br>>>0.157299</td>
+	</tr>
+	<tr>
+		<td>BESSELI</td><td>besselI(x, n)<br>Returns the modified Bessel function In(x)</td>
+		<td>BESSELI(1.5, 1) <br>>>0.981666</td>
+	</tr>
+	<tr>
+		<td>BESSELJ</td><td>besselJ(x, n)<br>Returns the Bessel function Jn(x)</td>
+		<td>BESSELJ(1.5, 1) <br>>>0.557937</td>
+	</tr>
+	<tr>
+		<td>BESSELK</td><td>besselK(x, n)<br>Returns the modified Bessel function Kn(x)</td>
+		<td>BESSELK(1.5, 1) <br>>>0.277388</td>
+	</tr>
+	<tr>
+		<td>BESSELY</td><td>besselY(x, n)<br>Returns the Bessel function Yn(x)</td>
+		<td>BESSELY(1.5, 1) <br>>>-0.412309</td>
+	</tr>
+	<tr>
+		<td>DELTA</td><td>delta(number1[, number2])<br>Tests whether two numbers are equal, returns 1 if equal, otherwise 0</td>
+		<td>DELTA(5, 5) <br>>>1</td>
+	</tr>
+	<tr>
+		<td>GESTEP</td><td>gestep(number[, step])<br>Tests whether a number is greater than or equal to a threshold, returns 1 if yes, otherwise 0</td>
+		<td>GESTEP(5, 4) <br>>>1</td>
 	</tr>
 	<tr>
         <td>SUMSQ</td><td>sumQq(number, ...)<br>Returns the sum of squares of parameters</td>
