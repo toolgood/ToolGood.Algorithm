@@ -32,7 +32,6 @@ expr:
 	| expr '.' CODE '(' ')'										# CODE_fun
 	| expr '.' CONCATENATE '(' (expr (',' expr)*)? ')'			# CONCATENATE_fun
 	| expr '.' EXACT '(' expr ')'								# EXACT_fun
-	| expr '.' FIND '(' expr (',' expr)? ')'					# FIND_fun
 	| expr '.' LEFT '(' expr? ')'								# LEFT_fun
 	| expr '.' LEN '(' ')'										# LEN_fun
 	| expr '.' LOWER '(' ')'									# LOWER_fun
@@ -42,7 +41,6 @@ expr:
 	| expr '.' REPT '(' expr ')'								# REPT_fun
 	| expr '.' RIGHT '(' expr? ')'								# RIGHT_fun
 	| expr '.' RMB '(' ')'										# RMB_fun
-	| expr '.' SEARCH '(' expr (',' expr)? ')'					# SEARCH_fun
 	| expr '.' SUBSTITUTE '(' expr ',' expr (',' expr)? ')'		# SUBSTITUTE_fun
 	| expr '.' T '(' ')'										# T_fun
 	| expr '.' TEXT '(' expr ')'								# TEXT_fun

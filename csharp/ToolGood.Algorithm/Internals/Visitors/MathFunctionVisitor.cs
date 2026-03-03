@@ -1476,7 +1476,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 					else if(c2 == 'a') sb.Append('\a');
 					else if(c2 == 'b') sb.Append('\b');
 					else if(c2 == 'f') sb.Append('\f');
-					else sb.Append(opd[index++]);
+					else sb.Append(c2);
 				} else {
 					sb.Append(c);
 				}

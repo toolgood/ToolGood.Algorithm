@@ -317,5 +317,96 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("XOR(1, 1)", true);
             Assert.AreEqual(false, t);
         }
+
+        [Test]
+        public void MethodStyle_ISNUMBER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("123.ISNUMBER()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("'abc'.ISNUMBER()", true);
+            Assert.AreEqual(t, false);
+
+            t = engine.TryEvaluate("true.ISNUMBER()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISTEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.ISTEXT()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("123.ISTEXT()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISNONTEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("123.ISNONTEXT()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("'abc'.ISNONTEXT()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISLOGICAL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("true.ISLOGICAL()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("false.ISLOGICAL()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("123.ISLOGICAL()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISEVEN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("2.ISEVEN()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("3.ISEVEN()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISODD_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("3.ISODD()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("2.ISODD()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISNULL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("null.ISNULL()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("123.ISNULL()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISNULLORERROR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("null.ISNULLORERROR()", false);
+            Assert.AreEqual(t, true);
+        }
     }
 }

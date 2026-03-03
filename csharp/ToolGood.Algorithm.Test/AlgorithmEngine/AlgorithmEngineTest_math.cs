@@ -344,6 +344,20 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void ROUND_single_param_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ROUND(4.5)", 0.0);
+            Assert.AreEqual(5.0, t);
+
+            t = engine.TryEvaluate("ROUND(4.4)", 0.0);
+            Assert.AreEqual(4.0, t);
+
+            t = engine.TryEvaluate("ROUND(-4.5)", 0.0);
+            Assert.AreEqual(-5.0, t);
+        }
+
+        [Test]
         public void ROUNDDOWN_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -589,6 +603,119 @@ namespace ToolGood.Algorithm.Test
         }
 
         #endregion 转化 transformation
+
+        #region 进制转换方法式调用
+
+        [Test]
+        public void MethodStyle_DEC2BIN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("10.DEC2BIN()", "");
+            Assert.AreEqual(t, "1010");
+
+            t = engine.TryEvaluate("10.DEC2BIN(8)", "");
+            Assert.AreEqual(t, "00001010");
+        }
+
+        [Test]
+        public void MethodStyle_DEC2HEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("952.DEC2HEX()", "");
+            Assert.AreEqual(t, "3B8");
+        }
+
+        [Test]
+        public void MethodStyle_DEC2OCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("75.DEC2OCT()", "");
+            Assert.AreEqual(t, "113");
+        }
+
+        [Test]
+        public void MethodStyle_HEX2BIN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'fa'.HEX2BIN()", "");
+            Assert.AreEqual(t, "11111010");
+        }
+
+        [Test]
+        public void MethodStyle_HEX2DEC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'213adf'.HEX2DEC()", 0);
+            Assert.AreEqual(t, 2177759);
+        }
+
+        [Test]
+        public void MethodStyle_HEX2OCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'f5'.HEX2OCT()", "");
+            Assert.AreEqual(t, "365");
+        }
+
+        [Test]
+        public void MethodStyle_OCT2BIN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'721'.OCT2BIN()", "");
+            Assert.AreEqual(t, "111010001");
+        }
+
+        [Test]
+        public void MethodStyle_OCT2DEC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("12456.OCT2DEC()", 0);
+            Assert.AreEqual(t, 5422);
+        }
+
+        [Test]
+        public void MethodStyle_OCT2HEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("75212.OCT2HEX()", "");
+            Assert.AreEqual(t, "7A8A");
+        }
+
+        [Test]
+        public void MethodStyle_BIN2OCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("10.BIN2OCT()", "");
+            Assert.AreEqual(t, "2");
+        }
+
+        [Test]
+        public void MethodStyle_BIN2DEC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("10101.BIN2DEC()", 0);
+            Assert.AreEqual(t, 21);
+        }
+
+        [Test]
+        public void MethodStyle_BIN2HEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("101010100.BIN2HEX()", "");
+            Assert.AreEqual(t, "154");
+        }
+
+        [Test]
+        public void MethodStyle_INT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("9.222.INT()", 0.0);
+            Assert.AreEqual(t, 9.0);
+            t = engine.TryEvaluate("-9.222.INT()", 0.0);
+            Assert.AreEqual(t, -9.0);
+        }
+
+        #endregion 进制转换方法式调用
 
         #region 工程函数
 

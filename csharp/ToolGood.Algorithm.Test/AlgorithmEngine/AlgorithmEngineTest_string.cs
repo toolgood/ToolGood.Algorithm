@@ -80,6 +80,14 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void CONCATENATE_ALIAS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("CONCAT('tt','33')", "");
+            Assert.AreEqual(t, "tt33");
+        }
+
+        [Test]
         public void EXACT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -144,6 +152,14 @@ namespace ToolGood.Algorithm.Test
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("LOWER('ABC')", "");
+            Assert.AreEqual(t, "abc");
+        }
+
+        [Test]
+        public void LOWER_ALIAS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("TOLOWER('ABC')", "");
             Assert.AreEqual(t, "abc");
         }
 
@@ -260,11 +276,221 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void UPPER_ALIAS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("TOUPPER('abc')", "");
+            Assert.AreEqual(t, "ABC");
+        }
+
+        [Test]
         public void VALUE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("VALUE(\"123\")", 0);
             Assert.AreEqual(t, 123);
         }
+
+        #region 方法式调用测试
+
+        [Test]
+        public void MethodStyle_LEN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abcdef'.LEN()", 0);
+            Assert.AreEqual(t, 6);
+        }
+
+        [Test]
+        public void MethodStyle_LEFT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abcdef'.LEFT(3)", "");
+            Assert.AreEqual(t, "abc");
+
+            t = engine.TryEvaluate("'abcdef'.LEFT()", "");
+            Assert.AreEqual(t, "a");
+        }
+
+        [Test]
+        public void MethodStyle_RIGHT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abcdef'.RIGHT(3)", "");
+            Assert.AreEqual(t, "def");
+
+            t = engine.TryEvaluate("'abcdef'.RIGHT()", "");
+            Assert.AreEqual(t, "f");
+        }
+
+        [Test]
+        public void MethodStyle_MID_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abcdef'.MID(2,3)", "");
+            Assert.AreEqual(t, "bcd");
+        }
+
+        [Test]
+        public void MethodStyle_LOWER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'ABC'.LOWER()", "");
+            Assert.AreEqual(t, "abc");
+        }
+
+        [Test]
+        public void MethodStyle_UPPER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.UPPER()", "");
+            Assert.AreEqual(t, "ABC");
+        }
+
+        [Test]
+        public void MethodStyle_TRIM_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'  abc  '.TRIM()", "");
+            Assert.AreEqual(t, "abc");
+        }
+
+
+        [Test]
+        public void MethodStyle_REPLACE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abcdef'.REPLACE(2,3,'x')", "");
+            Assert.AreEqual(t, "axef");
+
+            t = engine.TryEvaluate("'abcdef'.REPLACE('bc','x')", "");
+            Assert.AreEqual(t, "axdef");
+        }
+
+        [Test]
+        public void MethodStyle_SUBSTITUTE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abcabc'.SUBSTITUTE('ab','x')", "");
+            Assert.AreEqual(t, "xcxc");
+
+            t = engine.TryEvaluate("'abcabc'.SUBSTITUTE('ab','x',2)", "");
+            Assert.AreEqual(t, "abcxc");
+        }
+
+        [Test]
+        public void MethodStyle_CONCATENATE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.CONCATENATE('def')", "");
+            Assert.AreEqual(t, "abcdef");
+
+            t = engine.TryEvaluate("'abc'.CONCATENATE('def','ghi')", "");
+            Assert.AreEqual(t, "abcdefghi");
+        }
+
+        [Test]
+        public void MethodStyle_EXACT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.EXACT('abc')", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("'abc'.EXACT('ABC')", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_CHAR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("49.CHAR()", "");
+            Assert.AreEqual(t, "1");
+        }
+
+        [Test]
+        public void MethodStyle_CODE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'A'.CODE()", 0);
+            Assert.AreEqual(t, 65);
+        }
+
+        [Test]
+        public void MethodStyle_ASC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'ａｂｃ'.ASC()", "");
+            Assert.AreEqual(t, "abc");
+        }
+
+        [Test]
+        public void MethodStyle_JIS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.JIS()", "");
+            Assert.AreEqual(t, "ａｂｃ");
+        }
+
+        [Test]
+        public void MethodStyle_PROPER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc abc'.PROPER()", "");
+            Assert.AreEqual(t, "Abc Abc");
+        }
+
+        [Test]
+        public void MethodStyle_CLEAN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'ab\\r\\tc'.CLEAN()", "");
+            Assert.AreEqual(t, "abc");
+        }
+
+        [Test]
+        public void MethodStyle_REPT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'ab'.REPT(3)", "");
+            Assert.AreEqual(t, "ababab");
+        }
+
+        [Test]
+        public void MethodStyle_T_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.T()", "");
+            Assert.AreEqual(t, "abc");
+
+            t = engine.TryEvaluate("123.T()", "default");
+            Assert.AreEqual(t, "");
+        }
+
+        [Test]
+        public void MethodStyle_TEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("123.456.TEXT('0.00')", "");
+            Assert.AreEqual(t, "123.46");
+        }
+
+        [Test]
+        public void MethodStyle_VALUE_test2()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'123'.VALUE()", 0);
+            Assert.AreEqual(t, 123);
+        }
+
+        [Test]
+        public void MethodStyle_RMB_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("123.45.RMB()", "");
+            Assert.AreEqual(t, "壹佰贰拾叁元肆角伍分");
+        }
+
+        #endregion 方法式调用测试
     }
 }

@@ -351,5 +351,133 @@ namespace ToolGood.Algorithm.Test
             //dt = engine.TryEvaluate("'24:05:06'.AddSeconds(1).Second()", 0);
             //Assert.AreEqual(dt, 0);
         }
+
+        #region 方法式调用测试
+
+        [Test]
+        public void MethodStyle_DATEVALUE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2016-01-01'.DATEVALUE()", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1));
+        }
+
+        [Test]
+        public void MethodStyle_TIMEVALUE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'12:12:12'.TIMEVALUE()", TimeSpan.MinValue);
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1, 12, 12, 12).TimeOfDay);
+        }
+
+        [Test]
+        public void MethodStyle_YEAR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2016-05-15'.YEAR()", 0);
+            Assert.AreEqual(dt, 2016);
+        }
+
+        [Test]
+        public void MethodStyle_MONTH_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2016-05-15'.MONTH()", 0);
+            Assert.AreEqual(dt, 5);
+        }
+
+        [Test]
+        public void MethodStyle_DAY_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2016-05-15'.DAY()", 0);
+            Assert.AreEqual(dt, 15);
+        }
+
+        [Test]
+        public void MethodStyle_HOUR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'12:30:45'.HOUR()", 0);
+            Assert.AreEqual(dt, 12);
+        }
+
+        [Test]
+        public void MethodStyle_MINUTE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'12:30:45'.MINUTE()", 0);
+            Assert.AreEqual(dt, 30);
+        }
+
+        [Test]
+        public void MethodStyle_SECOND_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'12:30:45'.SECOND()", 0);
+            Assert.AreEqual(dt, 45);
+        }
+
+        [Test]
+        public void MethodStyle_ADDYEARS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-01-01'.ADDYEARS(1).YEAR()", 0);
+            Assert.AreEqual(dt, 2001);
+        }
+
+        [Test]
+        public void MethodStyle_ADDMONTHS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-01-15'.ADDMONTHS(2).MONTH()", 0);
+            Assert.AreEqual(dt, 3);
+        }
+
+        [Test]
+        public void MethodStyle_ADDDAYS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-01-01'.ADDDAYS(10).DAY()", 0);
+            Assert.AreEqual(dt, 11);
+        }
+
+        [Test]
+        public void MethodStyle_ADDHOURS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-01-01 10:00:00'.ADDHOURS(5).HOUR()", 0);
+            Assert.AreEqual(dt, 15);
+        }
+
+        [Test]
+        public void MethodStyle_ADDMINUTES_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-01-01 10:30:00'.ADDMINUTES(45).MINUTE()", 0);
+            Assert.AreEqual(dt, 15);
+        }
+
+        [Test]
+        public void MethodStyle_ADDSECONDS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-01-01 10:00:30'.ADDSECONDS(45).SECOND()", 0);
+            Assert.AreEqual(dt, 15);
+        }
+
+        [Test]
+        public void MethodStyle_TIMESTAMP_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseLocalTime = true;
+            var dt = engine.TryEvaluate("'2016-01-01'.TIMESTAMP()", 0L);
+            Assert.AreEqual(dt, 1451577600000L);
+
+            dt = engine.TryEvaluate("'2016-01-01'.TIMESTAMP(1)", 0L);
+            Assert.AreEqual(dt, 1451577600L);
+        }
+
+        #endregion 方法式调用测试
     }
 }
