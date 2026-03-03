@@ -564,7 +564,9 @@ namespace ToolGood.Algorithm.Test
 
             var t = engine.TryEvaluate("DEC2BIN(10)", "");
             Assert.AreEqual(t, "1010");
-            t = engine.TryEvaluate("OCT2BIN('721')", "");
+			t = engine.TryEvaluate("DEC2BIN(10,8)", "");
+			Assert.AreEqual(t, "00001010");
+			t = engine.TryEvaluate("OCT2BIN('721')", "");
             Assert.AreEqual(t, "111010001");
             t = engine.TryEvaluate("HEX2BIN('fa')", "");
             Assert.AreEqual(t, "11111010");

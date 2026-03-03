@@ -19,7 +19,7 @@ class Function_HEX2OCT extends Function_2 {
         if (this.b != null) {
             let args2 = this.getNumber_2(work, tempParameter);
             if (args2.IsError) { return args2; }
-            if (num.length > args2.IntValue) {
+            if (num.length < args2.IntValue) {
                 return Operand.Create(num.padStart(args2.IntValue, '0'));
             }
             return this.parameterError(2);
