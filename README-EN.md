@@ -1,4 +1,4 @@
-﻿ToolGood.Algorithm
+ToolGood.Algorithm
 ===================
 [中文文档](README.md)
 
@@ -356,6 +356,38 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 		<td>atan2(1, 2) <br>>>1.10714871779</td>
 	</tr>
 	<tr>
+		<td>COT</td><td>cot(radian)<br>Returns the cotangent of a numeric value</td>
+		<td>cot(1) <br>>>0.64209261593</td>
+	</tr>
+	<tr>
+		<td>COTH</td><td>coth(radian)<br>Returns the hyperbolic cotangent of a value</td>
+		<td>coth(1) <br>>>1.31303528549</td>
+	</tr>
+	<tr>
+		<td>CSC</td><td>csc(radian)<br>Returns the cosecant of a numeric value</td>
+		<td>csc(1) <br>>>1.18839510578</td>
+	</tr>
+	<tr>
+		<td>CSCH</td><td>csch(radian)<br>Returns the hyperbolic cosecant of a value</td>
+		<td>csch(1) <br>>>0.85091812823</td>
+	</tr>
+	<tr>
+		<td>SEC</td><td>sec(radian)<br>Returns the secant of a numeric value</td>
+		<td>sec(1) <br>>>1.85081571768</td>
+	</tr>
+	<tr>
+		<td>SECH</td><td>sech(radian)<br>Returns the hyperbolic secant of a value</td>
+		<td>sech(1) <br>>>0.64805427366</td>
+	</tr>
+	<tr>
+		<td>ACOT</td><td>acot(number)<br>Returns the inverse cotangent of a numeric value</td>
+		<td>acot(1) <br>>>0.78539816339</td>
+	</tr>
+	<tr>
+		<td>ACOTH</td><td>acoth(number)<br>Returns the inverse hyperbolic cotangent of a value</td>
+		<td>acoth(2) <br>>>0.54930614433</td>
+	</tr>
+	<tr>
 		<td rowspan="8">Round off</td>
 		<td>ROUND</td><td>round(number, decimalDigit)<br>Returns the value of a value rounded by the specified number of digits.</td>
 		<td>ROUND(4.333, 2) <br>>>4.33</td>
@@ -597,6 +629,14 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 		<td>VALUE ★</td><td>value(text)<br>Convert text parameters to numeric values</td>
 		<td>VALUE("123") <br>>>123</td>
 	</tr>
+	<tr>
+		<td>UNICHAR ★</td><td>unichar(number)<br>Returns the character specified by the Unicode value</td>
+		<td>unichar(65) <br>>>A</td>
+	</tr>
+	<tr>
+		<td>UNICODE ★</td><td>unicode(text)<br>Returns the Unicode numeric code of the first character in the text string</td>
+		<td>UNICODE("A") <br>>>65</td>
+	</tr>
 </table>
 
 #### Date and time functions
@@ -681,6 +721,10 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 	<tr>
 		<td>WEEKNUM</td><td>weekNum(date[, type：1/2])<br>Returns week number</td>
 		<td>WEEKNUM("2016-1-3") <br>>>2</td>
+	</tr>
+	<tr>
+		<td>DAYS</td><td>days(endDate, startDate)<br>Returns the number of days between two dates</td>
+		<td>DAYS("2017-1-7", "2017-1-1") <br>>>6</td>
 	</tr>
 </table>
 
