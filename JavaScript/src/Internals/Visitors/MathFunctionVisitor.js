@@ -44,6 +44,14 @@ import { Function_ASINH } from '../Functions/MathTrigonometric/Function_ASINH.js
 import { Function_ATAN } from '../Functions/MathTrigonometric/Function_ATAN.js';
 import { Function_ATANH } from '../Functions/MathTrigonometric/Function_ATANH.js';
 import { Function_ATAN2 } from '../Functions/MathTrigonometric/Function_ATAN2.js';
+import { Function_COT } from '../Functions/MathTrigonometric/Function_COT.js';
+import { Function_COTH } from '../Functions/MathTrigonometric/Function_COTH.js';
+import { Function_CSC } from '../Functions/MathTrigonometric/Function_CSC.js';
+import { Function_CSCH } from '../Functions/MathTrigonometric/Function_CSCH.js';
+import { Function_SEC } from '../Functions/MathTrigonometric/Function_SEC.js';
+import { Function_SECH } from '../Functions/MathTrigonometric/Function_SECH.js';
+import { Function_ACOT } from '../Functions/MathTrigonometric/Function_ACOT.js';
+import { Function_ACOTH } from '../Functions/MathTrigonometric/Function_ACOTH.js';
 import { Function_FIXED } from '../Functions/MathBase/Function_FIXED.js';
 import { Function_BIN2OCT } from '../Functions/MathTransformation/Function_BIN2OCT.js';
 import { Function_BIN2DEC } from '../Functions/MathTransformation/Function_BIN2DEC.js';
@@ -103,6 +111,8 @@ import { Function_T } from '../Functions/String/Function_T.js';
 import { Function_TEXT } from '../Functions/String/Function_TEXT.js';
 import { Function_TRIM } from '../Functions/String/Function_TRIM.js';
 import { Function_UPPER } from '../Functions/String/Function_UPPER.js';
+import { Function_UNICHAR } from '../Functions/String/Function_UNICHAR.js';
+import { Function_UNICODE } from '../Functions/String/Function_UNICODE.js';
 import { Function_DATEVALUE } from '../Functions/DateTimes/Function_DATEVALUE.js';
 import { Function_TIMESTAMP } from '../Functions/DateTimes/Function_TIMESTAMP.js';
 import { Function_TIMEVALUE } from '../Functions/DateTimes/Function_TIMEVALUE.js';
@@ -124,6 +134,7 @@ import { Function_EOMONTH } from '../Functions/DateTimes/Function_EOMONTH.js';
 import { Function_NETWORKDAYS } from '../Functions/DateTimes/Function_NETWORKDAYS.js';
 import { Function_WORKDAY } from '../Functions/DateTimes/Function_WORKDAY.js';
 import { Function_WEEKNUM } from '../Functions/DateTimes/Function_WEEKNUM.js';
+import { Function_DAYS } from '../Functions/DateTimes/Function_DAYS.js';
 import { Function_ADDMONTHS } from '../Functions/DateTimes/Function_ADDMONTHS.js';
 import { Function_ADDYEARS } from '../Functions/DateTimes/Function_ADDYEARS.js';
 import { Function_ADDSECONDS } from '../Functions/DateTimes/Function_ADDSECONDS.js';
@@ -290,6 +301,14 @@ const funcDict = {
     "ATAN": (args) => new Function_ATAN(args),
     "ATANH": (args) => new Function_ATANH(args),
     "ATAN2": (args) => new Function_ATAN2(args),
+    "COT": (args) => new Function_COT(args),
+    "COTH": (args) => new Function_COTH(args),
+    "CSC": (args) => new Function_CSC(args),
+    "CSCH": (args) => new Function_CSCH(args),
+    "SEC": (args) => new Function_SEC(args),
+    "SECH": (args) => new Function_SECH(args),
+    "ACOT": (args) => new Function_ACOT(args),
+    "ACOTH": (args) => new Function_ACOTH(args),
     "ROUND": (args) => new Function_ROUND(args),
     "ROUNDDOWN": (args) => new Function_ROUNDDOWN(args),
     "ROUNDUP": (args) => new Function_ROUNDUP(args),
@@ -338,6 +357,8 @@ const funcDict = {
     "UPPER": (args) => new Function_UPPER(args),
     "TOUPPER": (args) => new Function_UPPER(args),
     "VALUE": (args) => new Function_VALUE(args),
+    "UNICHAR": (args) => new Function_UNICHAR(args),
+    "UNICODE": (args) => new Function_UNICODE(args),
     "DATEVALUE": (args) => new Function_DATEVALUE(args),
     "TIMEVALUE": (args) => new Function_TIMEVALUE(args),
     "DATE": (args) => new Function_DATE(args),
@@ -356,6 +377,7 @@ const funcDict = {
     "NETWORKDAYS": (args) => new Function_NETWORKDAYS(args),
     "WORKDAY": (args) => new Function_WORKDAY(args),
     "WEEKNUM": (args) => new Function_WEEKNUM(args),
+    "DAYS": (args) => new Function_DAYS(args),
     "MAX": (args) => new Function_MAX(args),
     "MEDIAN": (args) => new Function_MEDIAN(args),
     "MIN": (args) => new Function_MIN(args),

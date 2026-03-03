@@ -360,6 +360,110 @@ function testAtan2() {
   console.log('atan2 测试通过！');
 }
 
+function testCot() {
+  console.log('开始测试 cot...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let cot = engine.TryEvaluate_Double("cot(1)", 0.0);
+  cot = Math.round(cot * 1000000) / 1000000;
+  let expected = Math.round((1.0 / Math.tan(1)) * 1000000) / 1000000;
+  assert.strictEqual(cot, expected, "cot(1) 应该等于 1/tan(1)");
+  
+  console.log('cot 测试通过！');
+}
+
+function testCoth() {
+  console.log('开始测试 coth...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let coth = engine.TryEvaluate_Double("coth(1)", 0.0);
+  coth = Math.round(coth * 1000000) / 1000000;
+  let expected = Math.round((1.0 / Math.tanh(1)) * 1000000) / 1000000;
+  assert.strictEqual(coth, expected, "coth(1) 应该等于 1/tanh(1)");
+  
+  console.log('coth 测试通过！');
+}
+
+function testCsc() {
+  console.log('开始测试 csc...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let csc = engine.TryEvaluate_Double("csc(1)", 0.0);
+  csc = Math.round(csc * 1000000) / 1000000;
+  let expected = Math.round((1.0 / Math.sin(1)) * 1000000) / 1000000;
+  assert.strictEqual(csc, expected, "csc(1) 应该等于 1/sin(1)");
+  
+  console.log('csc 测试通过！');
+}
+
+function testCsch() {
+  console.log('开始测试 csch...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let csch = engine.TryEvaluate_Double("csch(1)", 0.0);
+  csch = Math.round(csch * 1000000) / 1000000;
+  let expected = Math.round((1.0 / Math.sinh(1)) * 1000000) / 1000000;
+  assert.strictEqual(csch, expected, "csch(1) 应该等于 1/sinh(1)");
+  
+  console.log('csch 测试通过！');
+}
+
+function testSec() {
+  console.log('开始测试 sec...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let sec = engine.TryEvaluate_Double("sec(1)", 0.0);
+  sec = Math.round(sec * 1000000) / 1000000;
+  let expected = Math.round((1.0 / Math.cos(1)) * 1000000) / 1000000;
+  assert.strictEqual(sec, expected, "sec(1) 应该等于 1/cos(1)");
+  
+  console.log('sec 测试通过！');
+}
+
+function testSech() {
+  console.log('开始测试 sech...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let sech = engine.TryEvaluate_Double("sech(1)", 0.0);
+  sech = Math.round(sech * 1000000) / 1000000;
+  let expected = Math.round((1.0 / Math.cosh(1)) * 1000000) / 1000000;
+  assert.strictEqual(sech, expected, "sech(1) 应该等于 1/cosh(1)");
+  
+  console.log('sech 测试通过！');
+}
+
+function testAcot() {
+  console.log('开始测试 acot...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let acot = engine.TryEvaluate_Double("acot(1)", 0.0);
+  acot = Math.round(acot * 1000000) / 1000000;
+  let expected = Math.round((Math.PI / 2 - Math.atan(1)) * 1000000) / 1000000;
+  assert.strictEqual(acot, expected, "acot(1) 应该等于 PI/2 - atan(1)");
+  
+  console.log('acot 测试通过！');
+}
+
+function testAcoth() {
+  console.log('开始测试 acoth...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let acoth = engine.TryEvaluate_Double("acoth(2)", 0.0);
+  acoth = Math.round(acoth * 1000000) / 1000000;
+  let expected = Math.round((0.5 * Math.log((2 + 1) / (2 - 1))) * 1000000) / 1000000;
+  assert.strictEqual(acoth, expected, "acoth(2) 应该等于 0.5 * ln((2+1)/(2-1))");
+  
+  console.log('acoth 测试通过！');
+}
+
 function testROUND() {
   console.log('开始测试 ROUND...');
   
@@ -706,6 +810,14 @@ function runAllTests() {
     testAtan();
     testAtanh();
     testAtan2();
+    testCot();
+    testCoth();
+    testCsc();
+    testCsch();
+    testSec();
+    testSech();
+    testAcot();
+    testAcoth();
     
     // 四舍五入
     testROUND();
@@ -782,6 +894,14 @@ export {
   testAtan,
   testAtanh,
   testAtan2,
+  testCot,
+  testCoth,
+  testCsc,
+  testCsch,
+  testSec,
+  testSech,
+  testAcot,
+  testAcoth,
   
   // 四舍五入
   testROUND,

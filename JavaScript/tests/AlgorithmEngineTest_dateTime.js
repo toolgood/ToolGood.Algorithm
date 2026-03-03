@@ -314,6 +314,20 @@ function testWEEKNUM() {
   console.log('WEEKNUM 测试通过！');
 }
 
+function testDAYS() {
+  console.log('开始测试 DAYS...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let days = engine.TryEvaluate("DAYS('2017-1-7', '2017-1-1')", 0);
+  assert.strictEqual(days, 6, "DAYS('2017-1-7', '2017-1-1') 应该是 6");
+  
+  days = engine.TryEvaluate("DAYS('2017-1-1', '2017-1-7')", 0);
+  assert.strictEqual(days, -6, "DAYS('2017-1-1', '2017-1-7') 应该是 -6");
+  
+  console.log('DAYS 测试通过！');
+}
+
 function testAdd() {
   console.log('开始测试 Add...');
   
@@ -358,6 +372,7 @@ function runAllTests() {
     testNETWORKDAYS();
     testWORKDAY();
     testWEEKNUM();
+    testDAYS();
     testAdd();
     console.log('所有测试通过！');
   } catch (error) {
@@ -394,6 +409,7 @@ export {
   testNETWORKDAYS,
   testWORKDAY,
   testWEEKNUM,
+  testDAYS,
   testAdd,
   runAllTests
 };
