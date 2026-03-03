@@ -558,6 +558,56 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_SUMXMY2(funcs);
 		}
+		public FunctionBase VisitARABIC_fun(mathParser.ARABIC_funContext context)
+		{
+			var func = Visit(context.expr());
+			return new Function_ARABIC(func);
+		}
+		public FunctionBase VisitROMAN_fun(mathParser.ROMAN_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_ROMAN(funcs);
+		}
+		public FunctionBase VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SERIESSUM(funcs);
+		}
+		public FunctionBase VisitRANK_fun(mathParser.RANK_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_RANK(funcs);
+		}
+		public FunctionBase VisitFORECAST_fun(mathParser.FORECAST_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_FORECAST(funcs);
+		}
+		public FunctionBase VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_INTERCEPT(funcs);
+		}
+		public FunctionBase VisitSLOPE_fun(mathParser.SLOPE_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SLOPE(funcs);
+		}
+		public FunctionBase VisitCORREL_fun(mathParser.CORREL_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_CORREL(funcs);
+		}
+		public FunctionBase VisitPEARSON_fun(mathParser.PEARSON_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PEARSON(funcs);
+		}
+		public FunctionBase VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_YEARFRAC(funcs);
+		}
 		#endregion
 		#endregion math
 		#region string

@@ -1376,5 +1376,45 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return Visit_fun(context);
 		}
+		public ConditionTree VisitARABIC_fun(mathParser.ARABIC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitROMAN_fun(mathParser.ROMAN_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitRANK_fun(mathParser.RANK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitFORECAST_fun(mathParser.FORECAST_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitSLOPE_fun(mathParser.SLOPE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitCORREL_fun(mathParser.CORREL_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitPEARSON_fun(mathParser.PEARSON_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
+		{
+			return Visit_fun(context);
+		}
 	}
 }

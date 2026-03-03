@@ -202,7 +202,21 @@ expr:
 	| PRODUCT '(' expr (',' expr)* ')'						# PRODUCT_fun
 	| SQRTPI '(' expr ')'									# SQRTPI_fun
 	| SUMSQ '(' expr (',' expr)* ')'						# SUMSQ_fun
-	| ASC '(' expr ')'										# ASC_fun
+	| SUMPRODUCT '(' expr (',' expr)* ')'				# SUMPRODUCT_fun
+	| SUMX2MY2 '(' expr ',' expr ')'					# SUMX2MY2_fun
+	| SUMX2PY2 '(' expr ',' expr ')'					# SUMX2PY2_fun
+	| SUMXMY2 '(' expr ',' expr ')'						# SUMXMY2_fun
+	| ARABIC '(' expr ')'								# ARABIC_fun
+	| ROMAN '(' expr (',' expr)? ')'					# ROMAN_fun
+	| SERIESSUM '(' expr ',' expr ',' expr ',' expr ')'	# SERIESSUM_fun
+	| RANK '(' expr ',' expr (',' expr)? ')'			# RANK_fun
+	| FORECAST '(' expr ',' expr ',' expr ')'			# FORECAST_fun
+	| INTERCEPT '(' expr ',' expr ')'					# INTERCEPT_fun
+	| SLOPE '(' expr ',' expr ')'						# SLOPE_fun
+	| CORREL '(' expr ',' expr ')'						# CORREL_fun
+	| PEARSON '(' expr ',' expr ')'						# PEARSON_fun
+	| YEARFRAC '(' expr ',' expr (',' expr)? ')'		# YEARFRAC_fun
+	| ASC '(' expr ')'									# ASC_fun
 	| JIS '(' expr ')'										# JIS_fun
 	| CHAR '(' expr ')'										# CHAR_fun
 	| CLEAN '(' expr ')'									# CLEAN_fun
@@ -300,6 +314,22 @@ expr:
 	| TDIST '(' expr ',' expr ',' expr ')'						# TDIST_fun
 	| TINV '(' expr ',' expr ')'								# TINV_fun
 	| WEIBULL '(' expr ',' expr ',' expr ',' expr ')'			# WEIBULL_fun
+	| PMT '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	# PMT_fun
+	| PPMT '(' expr ',' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	# PPMT_fun
+	| IPMT '(' expr ',' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	# IPMT_fun
+	| PV '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	# PV_fun
+	| FV '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	# FV_fun
+	| NPER '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	# NPER_fun
+	| RATE '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)?)? ')'	# RATE_fun
+	| NPV '(' expr ',' expr (',' expr)* ')'						# NPV_fun
+	| XNPV '(' expr ',' expr ',' expr ')'						# XNPV_fun
+	| IRR '(' expr (',' expr)? ')'								# IRR_fun
+	| MIRR '(' expr ',' expr ',' expr ')'						# MIRR_fun
+	| XIRR '(' expr ',' expr (',' expr)? ')'					# XIRR_fun
+	| SLN '(' expr ',' expr ',' expr ')'						# SLN_fun
+	| DB '(' expr ',' expr ',' expr ',' expr (',' expr)? ')'	# DB_fun
+	| DDB '(' expr ',' expr ',' expr ',' expr (',' expr)? ')'	# DDB_fun
+	| SYD '(' expr ',' expr ',' expr ',' expr ')'				# SYD_fun
 	| URLENCODE '(' expr ')'									# URLENCODE_fun
 	| URLDECODE '(' expr ')'									# URLDECODE_fun
 	| HTMLENCODE '(' expr ')'									# HTMLENCODE_fun
@@ -448,6 +478,20 @@ parameter2:
 	| PRODUCT
 	| SQRTPI
 	| SUMSQ
+	| SUMPRODUCT
+	| SUMX2MY2
+	| SUMX2PY2
+	| SUMXMY2
+	| ARABIC
+	| ROMAN
+	| SERIESSUM
+	| RANK
+	| FORECAST
+	| INTERCEPT
+	| SLOPE
+	| CORREL
+	| PEARSON
+	| YEARFRAC
 	| ASC
 	| JIS
 	| CHAR
@@ -587,6 +631,22 @@ parameter2:
 	| ADDMINUTES
 	| ADDSECONDS
 	| TIMESTAMP
+	| PMT
+	| PPMT
+	| IPMT
+	| PV
+	| FV
+	| NPER
+	| RATE
+	| NPV
+	| XNPV
+	| IRR
+	| MIRR
+	| XIRR
+	| SLN
+	| DB
+	| DDB
+	| SYD
 	| NULL
 	| ERROR
 	| UNIT
@@ -717,6 +777,20 @@ MULTINOMIAL: 'MULTINOMIAL';
 PRODUCT: 'PRODUCT';
 SQRTPI: 'SQRTPI';
 SUMSQ: 'SUMSQ';
+SUMPRODUCT: 'SUMPRODUCT';
+SUMX2MY2: 'SUMX2MY2';
+SUMX2PY2: 'SUMX2PY2';
+SUMXMY2: 'SUMXMY2';
+ARABIC: 'ARABIC';
+ROMAN: 'ROMAN';
+SERIESSUM: 'SERIESSUM';
+RANK: 'RANK';
+FORECAST: 'FORECAST';
+INTERCEPT: 'INTERCEPT';
+SLOPE: 'SLOPE';
+CORREL: 'CORREL';
+PEARSON: 'PEARSON';
+YEARFRAC: 'YEARFRAC';
 // 文本函数
 ASC: 'ASC';
 JIS: 'JIS' | 'WIDECHAR';
@@ -816,6 +890,23 @@ POISSON: 'POISSON'|'POISSON.DIST';
 TDIST: 'TDIST'|'T.DIST';
 TINV: 'TINV'|'T.INV';
 WEIBULL: 'WEIBULL';
+// 财务函数
+PMT: 'PMT';
+PPMT: 'PPMT';
+IPMT: 'IPMT';
+PV: 'PV';
+FV: 'FV';
+NPER: 'NPER';
+RATE: 'RATE';
+NPV: 'NPV';
+XNPV: 'XNPV';
+IRR: 'IRR';
+MIRR: 'MIRR';
+XIRR: 'XIRR';
+SLN: 'SLN';
+DB: 'DB';
+DDB: 'DDB';
+SYD: 'SYD';
 // 增加函数 类C# 方法
 URLENCODE: 'URLENCODE';
 URLDECODE: 'URLDECODE';
