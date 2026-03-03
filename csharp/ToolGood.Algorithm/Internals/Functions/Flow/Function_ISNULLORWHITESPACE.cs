@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         {
             var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNull) { return Operand.True; }
-            var textArg = GetText_1(engine, tempParameter);
+			var textArg = ConvertToText(args1, 1);
 			if (textArg.IsError) { return textArg; }
             return Operand.Create(string.IsNullOrWhiteSpace(textArg.TextValue));
         }

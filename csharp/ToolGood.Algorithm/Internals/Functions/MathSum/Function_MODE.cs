@@ -37,6 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                     modeKey = kvp.Key;
                 }
             }
+            if (maxCount == 0) { return FunctionError(); }
             return Operand.Create(modeKey);
         }
 
