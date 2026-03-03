@@ -24,6 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var total = args1.IntValue;
             var count = args2.IntValue;
 
+            if (total < 0 || count < 0 || total < count) {
+                return FunctionError();
+            }
+
             double sum = 1;
             for (int i = 0; i < count; i++) {
                 sum *= (total - i);
