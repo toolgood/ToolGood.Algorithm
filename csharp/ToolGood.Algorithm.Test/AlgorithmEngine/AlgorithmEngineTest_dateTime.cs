@@ -288,13 +288,13 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(Math.Round(t, 3), Math.Round(0.5, 3));
 
             t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.504, 3));
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.49726776, 3));
 
             t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 2)", 0.0);
-            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.508, 3));
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.505555556, 3));
 
             t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 3)", 0.0);
-            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.501, 3));
+            Assert.AreEqual(Math.Round(t, 3), Math.Round(0.498630137, 3));
 
             t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 4)", 0.0);
             Assert.AreEqual(Math.Round(t, 3), Math.Round(0.5, 3));
