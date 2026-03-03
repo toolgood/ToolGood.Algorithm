@@ -463,6 +463,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
+		public object VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSWITCH_fun(mathParser.SWITCH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
 		public object VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
 		{
 			return VisitChildren(context);
@@ -743,6 +753,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
+		public object VisitXOR_fun(mathParser.XOR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
 		public object VisitParameter2(mathParser.Parameter2Context context)
 		{
 			return VisitChildren(context);
@@ -929,6 +944,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitGESTEP_fun(mathParser.GESTEP_funContext context)
 		{
 			return VisitChildren(context);
 		}

@@ -118,6 +118,8 @@ expr:
 	// 运算符优先级 结束
 	| ARRAY '(' expr (',' expr)* ')'						# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
+	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'		# IFS_fun
+	| SWITCH '(' expr ',' expr ',' expr (',' expr ',' expr)* ')'			# SWITCH_fun
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
 	| ISTEXT '(' expr ')'									# ISTEXT_fun
 	| ISERROR '(' expr (',' expr)? ')'						# ISERROR_fun
@@ -130,6 +132,7 @@ expr:
 	| ISNULLORERROR '(' expr (',' expr)? ')'				# ISNULLORERROR_fun
 	| AND '(' expr (',' expr)* ')'							# AND_fun
 	| OR '(' expr (',' expr)* ')'							# OR_fun
+	| XOR '(' expr (',' expr)* ')'							# XOR_fun
 	| NOT '(' expr ')'										# NOT_fun
 	| TRUE ('(' ')')?										# TRUE_fun
 	| FALSE ('(' ')')?										# FALSE_fun
@@ -201,6 +204,14 @@ expr:
 	| MULTINOMIAL '(' expr (',' expr)* ')'					# MULTINOMIAL_fun
 	| PRODUCT '(' expr (',' expr)* ')'						# PRODUCT_fun
 	| SQRTPI '(' expr ')'									# SQRTPI_fun
+	| ERF '(' expr ')'										# ERF_fun
+	| ERFC '(' expr ')'										# ERFC_fun
+	| BESSELI '(' expr ',' expr ')'							# BESSELI_fun
+	| BESSELJ '(' expr ',' expr ')'							# BESSELJ_fun
+	| BESSELK '(' expr ',' expr ')'							# BESSELK_fun
+	| BESSELY '(' expr ',' expr ')'							# BESSELY_fun
+	| DELTA '(' expr (',' expr)? ')'						# DELTA_fun
+	| GESTEP '(' expr (',' expr)? ')'						# GESTEP_fun
 	| SUMSQ '(' expr (',' expr)* ')'						# SUMSQ_fun
 	| SUMPRODUCT '(' expr (',' expr)* ')'				# SUMPRODUCT_fun
 	| SUMX2MY2 '(' expr ',' expr ')'					# SUMX2MY2_fun
@@ -395,6 +406,8 @@ arrayJson: key=(NUM | STRING) ':' expr
 parameter2:
 	E
 	| IF
+	| IFS
+	| SWITCH
 	| IFERROR
 	| ISNUMBER
 	| ISTEXT
@@ -407,6 +420,7 @@ parameter2:
 	| ISNULLORERROR
 	| AND
 	| OR
+	| XOR
 	| NOT
 	| TRUE
 	| FALSE
@@ -477,6 +491,14 @@ parameter2:
 	| MULTINOMIAL
 	| PRODUCT
 	| SQRTPI
+	| ERF
+	| ERFC
+	| BESSELI
+	| BESSELJ
+	| BESSELK
+	| BESSELY
+	| DELTA
+	| GESTEP
 	| SUMSQ
 	| SUMPRODUCT
 	| SUMX2MY2
@@ -692,6 +714,8 @@ UNIT:
 
 // 逻辑函数
 IF: 'IF';
+IFS: 'IFS';
+SWITCH: 'SWITCH';
 IFERROR: 'IFERROR';
 ISNUMBER: 'ISNUMBER';
 ISTEXT: 'ISTEXT';
@@ -704,6 +728,7 @@ ISNULL: 'ISNULL';
 ISNULLORERROR: 'ISNULLORERROR';
 AND: 'AND';
 OR: 'OR';
+XOR: 'XOR';
 NOT: 'NOT';
 TRUE: 'TRUE' | 'YES';
 FALSE: 'FALSE' | 'NO';
@@ -776,6 +801,14 @@ LOG10: 'LOG10';
 MULTINOMIAL: 'MULTINOMIAL';
 PRODUCT: 'PRODUCT';
 SQRTPI: 'SQRTPI';
+ERF: 'ERF';
+ERFC: 'ERFC';
+BESSELI: 'BESSELI';
+BESSELJ: 'BESSELJ';
+BESSELK: 'BESSELK';
+BESSELY: 'BESSELY';
+DELTA: 'DELTA';
+GESTEP: 'GESTEP';
 SUMSQ: 'SUMSQ';
 SUMPRODUCT: 'SUMPRODUCT';
 SUMX2MY2: 'SUMX2MY2';

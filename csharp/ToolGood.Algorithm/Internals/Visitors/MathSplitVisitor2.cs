@@ -574,6 +574,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public CalculateTree VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSWITCH_fun(mathParser.SWITCH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public CalculateTree VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
 		{
 			return Visit_fun(context);
@@ -854,6 +864,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public CalculateTree VisitXOR_fun(mathParser.XOR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public CalculateTree VisitParameter2(mathParser.Parameter2Context context)
 		{
 			return Visit_fun(context);
@@ -1045,6 +1060,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitGESTEP_fun(mathParser.GESTEP_funContext context)
 		{
 			return Visit_fun(context);
 		}

@@ -90,6 +90,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_IF(funcs);
 		}
+		public FunctionBase VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_IFS(funcs);
+		}
+		public FunctionBase VisitSWITCH_fun(mathParser.SWITCH_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SWITCH(funcs);
+		}
 		public FunctionBase VisitIFERROR_fun(mathParser.IFERROR_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -149,6 +159,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_OR_N(funcs);
+		}
+		public FunctionBase VisitXOR_fun(mathParser.XOR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_XOR(funcs);
 		}
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
 		{
@@ -532,6 +547,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_SQRTPI(args1);
+		}
+		public FunctionBase VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ERF(args1);
+		}
+		public FunctionBase VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ERFC(args1);
+		}
+		public FunctionBase VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELI(funcs);
+		}
+		public FunctionBase VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELJ(funcs);
+		}
+		public FunctionBase VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELK(funcs);
+		}
+		public FunctionBase VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELY(funcs);
+		}
+		public FunctionBase VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DELTA(funcs);
+		}
+		public FunctionBase VisitGESTEP_fun(mathParser.GESTEP_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_GESTEP(funcs);
 		}
 		public FunctionBase VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
 		{

@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 
 namespace ToolGood.Algorithm.Test
 {
@@ -258,6 +258,64 @@ namespace ToolGood.Algorithm.Test
 
             //t = engine.TryEvaluate("1=1 or 2!=2", false);
             //Assert.AreEqual(true, t);
+        }
+
+        [Test]
+        public void IFS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("IFS(1=1, 'a', 1=2, 'b')", "");
+            Assert.AreEqual("a", t);
+
+            t = engine.TryEvaluate("IFS(1=2, 'a', 2=2, 'b')", "");
+            Assert.AreEqual("b", t);
+
+
+            var t2 = engine.TryEvaluate("IFS(1=1, 100, 1=2, 200)", 0);
+            Assert.AreEqual(100, t2);
+        }
+
+        [Test]
+        public void SWITCH_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SWITCH(1, 1, 'one', 2, 'two')", "");
+            Assert.AreEqual("one", t);
+
+            t = engine.TryEvaluate("SWITCH(2, 1, 'one', 2, 'two')", "");
+            Assert.AreEqual("two", t);
+
+            var t2 = engine.TryEvaluate("SWITCH('a', 'a', 1, 'b', 2)", 0);
+            Assert.AreEqual(1, t2);
+
+            t = engine.TryEvaluate("SWITCH(5, 1, 'one', 2, 'two')", "");
+            Assert.AreEqual("", t);
+        }
+
+        [Test]
+        public void XOR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("XOR(true(), false())", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(true(), true())", true);
+            Assert.AreEqual(false, t);
+
+            t = engine.TryEvaluate("XOR(false(), false())", true);
+            Assert.AreEqual(false, t);
+
+            t = engine.TryEvaluate("XOR(true(), true(), true())", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(true(), false(), false())", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(1, 0)", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(1, 1)", true);
+            Assert.AreEqual(false, t);
         }
     }
 }

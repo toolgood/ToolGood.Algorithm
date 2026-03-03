@@ -110,6 +110,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRIGHT_fun(mathParser.RIGHT_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>BESSELI_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBESSELI_fun(mathParser.BESSELI_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>CSCH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -389,6 +396,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLCM_fun(mathParser.LCM_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BESSELJ_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBESSELJ_fun(mathParser.BESSELJ_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>HARMEAN_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -726,6 +740,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCORREL_fun(mathParser.CORREL_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>GESTEP_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGESTEP_fun(mathParser.GESTEP_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>XNPV_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -746,6 +767,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFORECAST_fun(mathParser.FORECAST_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BESSELY_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBESSELY_fun(mathParser.BESSELY_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>OCT2DEC_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -943,6 +971,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitPARAMETER_fun(mathParser.PARAMETER_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>BESSELK_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBESSELK_fun(mathParser.BESSELK_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>SPLIT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1013,6 +1048,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitROMAN_fun(mathParser.ROMAN_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DELTA_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDELTA_fun(mathParser.DELTA_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>VALUE_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1068,6 +1110,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDEVSQ_fun(mathParser.DEVSQ_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ERFC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitERFC_fun(mathParser.ERFC_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>MODE_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1166,6 +1215,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSMALL_fun(mathParser.SMALL_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>IFS_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIFS_fun(mathParser.IFS_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ODD_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1412,6 +1468,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitATAN_fun(mathParser.ATAN_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>ERF_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitERF_fun(mathParser.ERF_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>SUMX2PY2_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1650,6 +1713,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>SWITCH_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSWITCH_fun(mathParser.SWITCH_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>ISNONTEXT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1761,6 +1831,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>XOR_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitXOR_fun(mathParser.XOR_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>T_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

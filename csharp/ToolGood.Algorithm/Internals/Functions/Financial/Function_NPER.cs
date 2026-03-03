@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			var nper = Math.Log((double)(-fv * rate + factor) / (double)(pv * rate + factor)) / Math.Log((double)(1 + rate));
-			return Operand.Create((decimal)nper);
+			return Operand.Create(nper);
 		}
 	}
 }

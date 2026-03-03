@@ -60,12 +60,27 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public ConditionTree VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSWITCH_fun(mathParser.SWITCH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public ConditionTree VisitAND_fun(mathParser.AND_funContext context)
 		{
 			return Visit_fun(context);
 		}
 
 		public ConditionTree VisitOR_fun(mathParser.OR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitXOR_fun(mathParser.XOR_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -952,6 +967,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public ConditionTree VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitGESTEP_fun(mathParser.GESTEP_funContext context)
 		{
 			return Visit_fun(context);
 		}

@@ -43,7 +43,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (npvNegative == 0) return Div0Error();
 
 			var mirr = Math.Pow((double)(-npvPositive / npvNegative), 1.0 / (n - 1)) - 1;
-			return Operand.Create((decimal)mirr);
+			return Operand.Create(mirr);
 		}
 	}
 }
