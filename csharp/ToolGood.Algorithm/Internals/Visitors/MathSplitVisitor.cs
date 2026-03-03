@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -205,6 +205,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public ConditionTree VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public ConditionTree VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			return Visit_fun(context);
@@ -237,6 +247,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 
 		public ConditionTree VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitDAYS_fun(mathParser.DAYS_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -992,6 +1007,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public ConditionTree VisitTANH_fun(mathParser.TANH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitACOTH_fun(mathParser.ACOTH_funContext context)
 		{
 			return Visit_fun(context);
 		}

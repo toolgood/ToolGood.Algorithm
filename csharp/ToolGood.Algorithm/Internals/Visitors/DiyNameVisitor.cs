@@ -176,6 +176,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
+		public object VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
 		public object VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			return VisitChildren(context);
@@ -207,6 +217,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDAYS_fun(mathParser.DAYS_funContext context)
 		{
 			return VisitChildren(context);
 		}
@@ -969,6 +984,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitTANH_fun(mathParser.TANH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitACOTH_fun(mathParser.ACOTH_funContext context)
 		{
 			return VisitChildren(context);
 		}

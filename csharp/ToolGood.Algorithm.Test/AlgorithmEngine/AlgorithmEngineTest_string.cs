@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 
 namespace ToolGood.Algorithm.Test
 {
@@ -45,6 +45,30 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("code('1')", 0);
             Assert.AreEqual(t, 49);
+        }
+
+        [Test]
+        public void unichar_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("unichar(65)", "");
+            Assert.AreEqual(t, "A");
+            t = engine.TryEvaluate("unichar(20013)", "");
+            Assert.AreEqual(t, "中");
+            t = engine.TryEvaluate("unichar(128512)", "");
+            Assert.AreEqual(t, "😀");
+        }
+
+        [Test]
+        public void unicode_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("unicode('A')", 0);
+            Assert.AreEqual(t, 65);
+            t = engine.TryEvaluate("unicode('中')", 0);
+            Assert.AreEqual(t, 20013);
+            t = engine.TryEvaluate("unicode('😀')", 0);
+            Assert.AreEqual(t, 128512);
         }
 
         [Test]

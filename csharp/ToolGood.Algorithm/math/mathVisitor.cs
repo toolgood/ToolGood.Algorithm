@@ -103,6 +103,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRIGHT_fun(mathParser.RIGHT_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>CSCH_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCSCH_fun(mathParser.CSCH_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>OCT2BIN_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -117,12 +124,26 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitQUARTILE_fun(mathParser.QUARTILE_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>UNICODE_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUNICODE_fun(mathParser.UNICODE_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>FINV_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFINV_fun(mathParser.FINV_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>SEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSEC_fun(mathParser.SEC_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>NOT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -137,6 +158,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDAYS360_fun(mathParser.DAYS360_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ACOTH_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitACOTH_fun(mathParser.ACOTH_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>LOOKCEILING_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -656,6 +684,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitSEARCH_fun(mathParser.SEARCH_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>ACOT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitACOT_fun(mathParser.ACOT_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>ROUNDUP_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -677,12 +712,26 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCODE_fun(mathParser.CODE_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>CSC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCSC_fun(mathParser.CSC_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>ASINH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitASINH_fun(mathParser.ASINH_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>COTH_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCOTH_fun(mathParser.COTH_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SIN_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1181,6 +1230,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitSECOND_fun(mathParser.SECOND_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DAYS_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDAYS_fun(mathParser.DAYS_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>GAMMADIST_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1635,6 +1691,27 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitATAN2_fun(mathParser.ATAN2_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>SECH_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSECH_fun(mathParser.SECH_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>COT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCOT_fun(mathParser.COT_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>UNICHAR_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUNICHAR_fun(mathParser.UNICHAR_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ADDHOURS_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

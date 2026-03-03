@@ -204,6 +204,20 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void DAYS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DAYS('2017-1-7','1975-1-30')", 0);
+            Assert.AreEqual(dt, 15318);
+
+            dt = engine.TryEvaluate("DAYS('2016-3-1','2016-2-28')", 0);
+            Assert.AreEqual(dt, 2);
+
+            dt = engine.TryEvaluate("DAYS('2016-2-28','2016-3-1')", 0);
+            Assert.AreEqual(dt, -2);
+        }
+
+        [Test]
         public void DAYS360_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();

@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -254,6 +254,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public CalculateTree VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public CalculateTree VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			return Visit_fun(context);
@@ -295,6 +305,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDAYS_fun(mathParser.DAYS_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -1085,6 +1100,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitTANH_fun(mathParser.TANH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitACOTH_fun(mathParser.ACOTH_funContext context)
 		{
 			return Visit_fun(context);
 		}

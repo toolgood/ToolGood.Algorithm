@@ -275,6 +275,36 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_TANH(args1);
 		}
+		public FunctionBase VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_COT(args1);
+		}
+		public FunctionBase VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_COTH(args1);
+		}
+		public FunctionBase VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_CSC(args1);
+		}
+		public FunctionBase VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_CSCH(args1);
+		}
+		public FunctionBase VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_SEC(args1);
+		}
+		public FunctionBase VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_SECH(args1);
+		}
 		public FunctionBase VisitACOS_fun(mathParser.ACOS_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
@@ -304,6 +334,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_ATANH(args1);
+		}
+		public FunctionBase VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ACOT(args1);
+		}
+		public FunctionBase VisitACOTH_fun(mathParser.ACOTH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ACOTH(args1);
 		}
 		public FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
 		{
@@ -525,6 +565,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_CODE(args1);
 		}
+		public FunctionBase VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_UNICHAR(args1);
+		}
+		public FunctionBase VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_UNICODE(args1);
+		}
 		public FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -694,6 +744,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_DATEDIF(funcs);
+		}
+		public FunctionBase VisitDAYS_fun(mathParser.DAYS_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DAYS(funcs);
 		}
 		public FunctionBase VisitDAYS360_fun(mathParser.DAYS360_funContext context)
 		{

@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
 namespace ToolGood.Algorithm.Test
@@ -257,6 +257,78 @@ namespace ToolGood.Algorithm.Test
             var t = engine.TryEvaluate("atan2(1,2)", 0.0);
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.107148718, 6), t);
+        }
+
+        [Test]
+        public void cot_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("cot(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.642092616, 6), t);
+        }
+
+        [Test]
+        public void coth_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("coth(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.313035285, 6), t);
+        }
+
+        [Test]
+        public void csc_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("csc(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.188395106, 6), t);
+        }
+
+        [Test]
+        public void csch_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("csch(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.850918128, 6), t);
+        }
+
+        [Test]
+        public void sec_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("sec(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.850815718, 6), t);
+        }
+
+        [Test]
+        public void sech_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("sech(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.648054274, 6), t);
+        }
+
+        [Test]
+        public void acot_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("acot(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.785398163, 6), t);
+        }
+
+        [Test]
+        public void acoth_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("acoth(2)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.549306144, 6), t);
         }
 
         #endregion 三角函数
