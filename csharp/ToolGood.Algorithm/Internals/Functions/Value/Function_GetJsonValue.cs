@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				op = ConvertToNumber(op, 2);
 				if(op.IsError) { return op; }
 				var index = op.IntValue - engine.ExcelIndex;
-				if(index < obj.ArrayValue.Count)
+				if(index < obj.ArrayValue.Count && index >= 0)
 					return obj.ArrayValue[index];
 				return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
 			}
@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					op = ConvertToNumber(op, 2);
 					if(op.IsError) { return op; }
 					var index = op.IntValue - engine.ExcelIndex;
-					if(index < json.Count) {
+					if(index < json.Count && index >= 0) {
 						var v = json[index];
 						if(v.IsString) return Operand.Create(v.StringValue);
 						if(v.IsBoolean) return Operand.Create(v.BooleanValue);
