@@ -13,9 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if(funcs.Length < 3) {
-				return Operand.Error("#VALUE!");
-			}
 			var exprValue = funcs[0].Evaluate(engine, tempParameter);
 			if(exprValue.IsError) { return exprValue; }
 
@@ -29,11 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 				}
 				i += 2;
 			}
-
-			if(funcs.Length % 2 == 0) {
-				return funcs[funcs.Length - 1].Evaluate(engine, tempParameter);
-			}
-			return Operand.Error("#N/A");
+			return FunctionError();
 		}
 
 		private bool EqualsOperand(Operand a, Operand b)

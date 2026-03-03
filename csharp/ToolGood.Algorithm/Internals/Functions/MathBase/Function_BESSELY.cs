@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			var n = (int)Math.Truncate(args2.DoubleValue);
 
 			if(x <= 0) {
-				return Operand.Error("#NUM!");
+				return FunctionError();
 			}
 
 			return Operand.Create(BesselY(n, x));

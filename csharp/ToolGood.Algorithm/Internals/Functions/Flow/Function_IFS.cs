@@ -20,10 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 					return funcs[i + 1].Evaluate(engine, tempParameter);
 				}
 			}
-			if(funcs.Length % 2 == 1) {
-				return funcs[funcs.Length - 1].Evaluate(engine, tempParameter);
-			}
-			return Operand.Error("#N/A");
+			return FunctionError();
 		}
 	}
 }
