@@ -210,7 +210,6 @@ expr:
 	| UNICHAR '(' expr ')'									# UNICHAR_fun
 	| UNICODE '(' expr ')'									# UNICODE_fun
 	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun
-	| CONCAT '(' expr (',' expr)* ')'						# CONCAT_fun
 	| EXACT '(' expr ',' expr ')'							# EXACT_fun
 	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun
 	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun
@@ -457,7 +456,6 @@ parameter2:
 	| UNICHAR
 	| UNICODE
 	| CONCATENATE
-	| CONCAT
 	| EXACT
 	| FIND
 	| FIXED
@@ -727,8 +725,7 @@ CLEAN: 'CLEAN';
 CODE: 'CODE';
 UNICHAR: 'UNICHAR';
 UNICODE: 'UNICODE';
-CONCATENATE: 'CONCATENATE';
-CONCAT: 'CONCAT';
+CONCATENATE: 'CONCATENATE'|'CONCAT';
 EXACT: 'EXACT';
 FIND: 'FIND';
 FIXED: 'FIXED';
