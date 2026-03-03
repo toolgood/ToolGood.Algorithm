@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -26,12 +27,26 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var dates = datesArg.ArrayValue;
 
 			if (values.Count != dates.Count) return FunctionError();
+			if (values.Count == 0) return FunctionError();
 
+			var dateList = new List<DateTime>();
+			foreach (var d in dates) {
+				if (d.IsDate) {
+					dateList.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
+				} else if (d.IsText) {
+					var myDate = MyDate.Parse(d.TextValue);
+					if (myDate == null) return FunctionError();
+					dateList.Add(myDate.ToDateTime(DateTimeKind.Utc));
+				} else {
+					return FunctionError();
+				}
+			}
+
+			var baseDate = dateList[0];
 			decimal xnpv = 0;
-			var baseDate = dates[0].DateValue.ToDateTime(DateTimeKind.Utc);
 
 			for (int i = 0; i < values.Count; i++) {
-				var days = (dates[i].DateValue.ToDateTime(DateTimeKind.Utc) - baseDate).TotalDays;
+				var days = (dateList[i] - baseDate).TotalDays;
 				xnpv += values[i].NumberValue / (decimal)Math.Pow((double)(1 + rate), days / 365.0);
 			}
 

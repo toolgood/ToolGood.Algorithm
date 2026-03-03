@@ -51,45 +51,41 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		private decimal NewtonRaphson(decimal nper, decimal pmt, decimal pv, decimal fv, int type, decimal guess)
 		{
-			var rate = guess;
+			double rate = (double)guess;
+			double n = (double)nper;
+			double p = (double)pmt;
+			double v = (double)pv;
+			double f = (double)fv;
+
 			for (int i = 0; i < 100; i++) {
-				var f = CalculateF(rate, nper, pmt, pv, fv, type);
-				var df = CalculateDF(rate, nper, pmt, pv, fv, type);
-				if (Math.Abs(df) < 1e-12m) break;
-				var newRate = rate - f / df;
-				if (Math.Abs(newRate - rate) < 1e-10m) {
-					return newRate;
+				double factor = Math.Pow(1 + rate, n);
+				double fn;
+				
+				if (type == 1) {
+					fn = v * factor + p * (1 + rate) * (factor - 1) / rate + f;
+				} else {
+					fn = v * factor + p * (factor - 1) / rate + f;
+				}
+
+				double dfn;
+				if (type == 1) {
+					dfn = v * n * Math.Pow(1 + rate, n - 1) + 
+						  p * (1 + rate) * (n * rate * Math.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate) +
+						  p * (factor - 1) / rate;
+				} else {
+					dfn = v * n * Math.Pow(1 + rate, n - 1) + 
+						  p * (n * rate * Math.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate);
+				}
+
+				if (Math.Abs(dfn) < 1e-12) break;
+				var newRate = rate - fn / dfn;
+
+				if (Math.Abs(newRate - rate) < 1e-10) {
+					return (decimal)newRate;
 				}
 				rate = newRate;
 			}
-			return rate;
-		}
-
-		private decimal CalculateF(decimal rate, decimal nper, decimal pmt, decimal pv, decimal fv, int type)
-		{
-			if (rate == 0) {
-				return pv + pmt * nper + fv;
-			}
-			var factor = (decimal)Math.Pow((double)(1 + rate), (double)nper);
-			var f = pv * factor + pmt * (factor - 1) / rate + fv;
-			if (type == 1) {
-				f = pv * factor + pmt * (1 + rate) * (factor - 1) / rate + fv;
-			}
-			return f;
-		}
-
-		private decimal CalculateDF(decimal rate, decimal nper, decimal pmt, decimal pv, decimal fv, int type)
-		{
-			if (rate == 0) return 0;
-			var factor = (decimal)Math.Pow((double)(1 + rate), (double)nper);
-			var n = nper;
-			var df = pv * n * (decimal)Math.Pow((double)(1 + rate), (double)n - 1) +
-					 pmt * (n * rate * (factor - 1) / rate - (factor - 1)) / (rate * rate);
-			if (type == 1) {
-				df = pv * n * (decimal)Math.Pow((double)(1 + rate), (double)n - 1) +
-					 pmt * ((n * rate * (factor - 1) / rate - (factor - 1)) / (rate * rate) * (1 + rate) + (factor - 1) / rate);
-			}
-			return df;
+			return (decimal)rate;
 		}
 	}
 }

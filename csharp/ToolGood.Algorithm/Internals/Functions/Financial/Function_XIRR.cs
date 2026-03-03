@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -24,10 +25,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (datesArg.IsError) return datesArg;
 			var dates = new List<DateTime>();
 			foreach (var d in datesArg.ArrayValue) {
-				dates.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
+				if (d.IsDate) {
+					dates.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
+				} else if (d.IsText) {
+					var myDate = MyDate.Parse(d.TextValue);
+					if (myDate == null) return FunctionError();
+					dates.Add(myDate.ToDateTime(DateTimeKind.Utc));
+				} else {
+					return FunctionError();
+				}
 			}
 
-			if (values.Count != dates.Count) return FunctionError();
+			if (values.Count != dates.Count || values.Count < 2) return FunctionError();
 
 			decimal guess = 0.1m;
 			if (funcs.Length > 2) {
@@ -42,29 +51,30 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal guess)
 		{
-			var rate = guess;
+			var rate = (double)guess;
 			var baseDate = dates[0];
 
 			for (int iter = 0; iter < 100; iter++) {
-				decimal npv = 0;
-				decimal dnpv = 0;
+				double npv = 0;
+				double dnpv = 0;
 
 				for (int i = 0; i < values.Count; i++) {
 					var days = (dates[i] - baseDate).TotalDays;
-					var factor = Math.Pow(1 + (double)rate, days / 365.0);
-					npv += values[i] / (decimal)factor;
-					dnpv -= values[i] * (decimal)(days / 365.0) / (decimal)(factor * (1 + (double)rate));
+					var exp = days / 365.0;
+					var factor = Math.Pow(1 + rate, exp);
+					npv += (double)values[i] / factor;
+					dnpv -= (double)values[i] * exp / (factor * (1 + rate));
 				}
 
-				if (Math.Abs(dnpv) < 1e-12m) break;
+				if (Math.Abs(dnpv) < 1e-12) break;
 				var newRate = rate - npv / dnpv;
 
-				if (Math.Abs(newRate - rate) < 1e-10m) {
-					return newRate;
+				if (Math.Abs(newRate - rate) < 1e-10) {
+					return (decimal)newRate;
 				}
 				rate = newRate;
 			}
-			return rate;
+			return (decimal)rate;
 		}
 	}
 }
