@@ -16,7 +16,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         {
 			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
 
-			if(args.Count == 1) { return Operand.Error("Function '{0}' parameter only one error!", "Var"); }
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
