@@ -8,6 +8,7 @@ using ToolGood.Algorithm.Internals.Functions.Csharp;
 using ToolGood.Algorithm.Internals.Functions.CsharpSecurity;
 using ToolGood.Algorithm.Internals.Functions.CsharpWeb;
 using ToolGood.Algorithm.Internals.Functions.DateTimes;
+using ToolGood.Algorithm.Internals.Functions.Financial;
 using ToolGood.Algorithm.Internals.Functions.Flow;
 using ToolGood.Algorithm.Internals.Functions.MathBase;
 using ToolGood.Algorithm.Internals.Functions.MathSum;
@@ -537,6 +538,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_SUMSQ(funcs);
 		}
+		public FunctionBase VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMPRODUCT(funcs);
+		}
+		public FunctionBase VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMX2MY2(funcs);
+		}
+		public FunctionBase VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMX2PY2(funcs);
+		}
+		public FunctionBase VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMXMY2(funcs);
+		}
 		#endregion
 		#endregion math
 		#region string
@@ -1043,6 +1064,88 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return new Function_WEIBULL(funcs);
 		}
 		#endregion sum
+		#region financial
+		public FunctionBase VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PMT(funcs);
+		}
+		public FunctionBase VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PPMT(funcs);
+		}
+		public FunctionBase VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_IPMT(funcs);
+		}
+		public FunctionBase VisitPV_fun(mathParser.PV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PV(funcs);
+		}
+		public FunctionBase VisitFV_fun(mathParser.FV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_FV(funcs);
+		}
+		public FunctionBase VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_NPER(funcs);
+		}
+		public FunctionBase VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_RATE(funcs);
+		}
+		public FunctionBase VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_NPV(funcs);
+		}
+		public FunctionBase VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_XNPV(funcs);
+		}
+		public FunctionBase VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_IRR(funcs);
+		}
+		public FunctionBase VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_MIRR(funcs);
+		}
+		public FunctionBase VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_XIRR(funcs);
+		}
+		public FunctionBase VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SLN(funcs);
+		}
+		public FunctionBase VisitDB_fun(mathParser.DB_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DB(funcs);
+		}
+		public FunctionBase VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DDB(funcs);
+		}
+		public FunctionBase VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SYD(funcs);
+		}
+		#endregion financial
 		#region csharp
 		public FunctionBase VisitURLENCODE_fun(mathParser.URLENCODE_funContext context)
 		{

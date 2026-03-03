@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using System;
 using ToolGood.Algorithm.math;
 
@@ -1250,6 +1250,106 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitPV_fun(mathParser.PV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitFV_fun(mathParser.FV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDB_fun(mathParser.DB_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
 		{
 			return VisitChildren(context);
 		}

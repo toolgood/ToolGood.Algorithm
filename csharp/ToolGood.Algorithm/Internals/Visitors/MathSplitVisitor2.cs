@@ -1294,5 +1294,105 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return Visit_fun(context);
 		}
+
+		public CalculateTree VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitPV_fun(mathParser.PV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitFV_fun(mathParser.FV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDB_fun(mathParser.DB_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
 	}
 }
