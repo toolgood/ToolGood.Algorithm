@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public CalculateTree VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(),
+				Nodes = new List<CalculateTree>(2),
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(),
+				Nodes = new List<CalculateTree>(2),
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;

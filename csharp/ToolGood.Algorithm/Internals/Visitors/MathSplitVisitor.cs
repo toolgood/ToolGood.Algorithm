@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
 			var tree = new ConditionTree {
-				Nodes = new List<ConditionTree>(),
+				Nodes = new List<ConditionTree>(2),
 				HasBracket=hasBracket,
 			};
 			hasBracket = false;
