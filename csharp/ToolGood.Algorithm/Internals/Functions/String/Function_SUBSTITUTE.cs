@@ -29,35 +29,36 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			string text = args1.TextValue;
 			string oldtext = args2.TextValue;
 			string newtext = args3.TextValue;
-			int index = args4.IntValue;
+			int replaceIndex = args4.IntValue;
 
-			int index2 = 0;
+			if (oldtext.Length == 0) {
+				return Operand.Create(text);
+			}
+
 			int estimatedCapacity = Math.Max(text.Length, text.Length + (newtext.Length - oldtext.Length));
 			var sb = new StringBuilder(estimatedCapacity);
-			for (int i = 0; i < text.Length; i++) {
-				bool b = true;
-				for (int j = 0; j < oldtext.Length; j++) {
-					if (i + j >= text.Length) {
-						b = false;
-						break;
-					}
-					var t = text[i + j];
-					var t2 = oldtext[j];
-					if (t != t2) {
-						b = false;
-						break;
-					}
-				}
-				if (b) {
-					index2++;
-				}
-				if (b && index2 == index) {
+			int currentIndex = 0;
+			int foundCount = 0;
+			int searchPos = 0;
+
+			while (searchPos <= text.Length - oldtext.Length) {
+				int foundPos = text.IndexOf(oldtext, searchPos, StringComparison.Ordinal);
+				if (foundPos < 0) break;
+
+				foundCount++;
+				if (foundCount == replaceIndex) {
+					sb.Append(text.AsSpan(currentIndex, foundPos - currentIndex));
 					sb.Append(newtext);
-					i += oldtext.Length - 1;
-				} else {
-					sb.Append(text[i]);
+					currentIndex = foundPos + oldtext.Length;
+					break;
 				}
+				searchPos = foundPos + oldtext.Length;
 			}
+
+			if (currentIndex == 0) {
+				return Operand.Create(text);
+			}
+			sb.Append(text.AsSpan(currentIndex));
 			return Operand.Create(sb.ToString());
 		}
 
