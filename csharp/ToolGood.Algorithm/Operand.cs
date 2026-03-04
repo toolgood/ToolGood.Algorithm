@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -406,7 +406,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Error(string msg, params object[] args)
 		{
-			return new OperandError(string.Format(msg, args));
+			return new OperandError(msg, args);
 		}
 
 		/// <summary>
@@ -431,7 +431,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToNumber(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToNumber(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转bool类型
@@ -445,7 +445,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToBoolean(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToBoolean(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 		/// <summary>
 		/// 转string类型
 		/// </summary>
@@ -458,7 +458,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToText(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToText(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转MyDate类型
@@ -472,7 +472,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToMyDate(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToMyDate(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转Array类型
@@ -487,7 +487,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToArray(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToArray(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转Json类型
