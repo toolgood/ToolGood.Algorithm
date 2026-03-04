@@ -88,11 +88,11 @@ namespace ToolGood.Algorithm
 		}
 		public override Operand ToJson(string errorMessage = null)
 		{
-			var span = TextValue.AsSpan().Trim();
+			var span = TextValue.Trim();
 			if ((span.Length > 0 && span[0] == '{' && span[span.Length - 1] == '}') || 
 				(span.Length > 0 && span[0] == '[' && span[span.Length - 1] == ']')) {
 				try {
-					var json = JsonMapper.ToObject(span.ToString());
+					var json = JsonMapper.ToObject(span);
 					return Operand.Create(json);
 				} catch { }
 			}
