@@ -44,7 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(n == 0) return BesselJ0(x);
 			if(n == 1) return BesselJ1(x);
 
-			if(ax > (double)n) {
+			if(ax > n) {
 				double J0 = BesselJ0(x);
 				double J1 = BesselJ1(x);
 				double Jn = 0;

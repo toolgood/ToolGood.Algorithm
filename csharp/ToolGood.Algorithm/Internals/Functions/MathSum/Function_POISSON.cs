@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (!(lambda > 0.0)) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.Poisson(k, (double)lambda, state));
+            return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
         }
 
     }

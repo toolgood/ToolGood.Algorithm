@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (z <= 0) {
                 return FunctionError();
             }
-            return Operand.Create(Math.Log((double)z));
+            return Operand.Create(Math.Log(z));
         }
 
     }

@@ -61,8 +61,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 					var days = (dates[i] - baseDate).TotalDays;
 					var exp = days / 365.0;
 					var factor = Math.Pow(1 + rate, exp);
-					npv += (double)values[i] / factor;
-					dnpv -= (double)values[i] * exp / (factor * (1 + rate));
+					npv += values[i] / factor;
+					dnpv -= values[i] * exp / (factor * (1 + rate));
 				}
 
 				if (Math.Abs(dnpv) < 1e-12) break;
