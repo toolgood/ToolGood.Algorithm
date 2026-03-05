@@ -15,34 +15,34 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var valuesArg = GetArray(engine, tempParameter, 0);
 			if (valuesArg.IsError) return valuesArg;
-			var values = new List<decimal>();
+			var values = new List<double>();
 			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.NumberValue);
+				values.Add(v.DoubleValue);
 			}
 
 			var financeRateArg = GetNumber(engine, tempParameter, 1);
 			if (financeRateArg.IsError) return financeRateArg;
-			var financeRate = financeRateArg.NumberValue;
+			var financeRate = financeRateArg.DoubleValue;
 
 			var reinvestRateArg = GetNumber(engine, tempParameter, 2);
 			if (reinvestRateArg.IsError) return reinvestRateArg;
-			var reinvestRate = reinvestRateArg.NumberValue;
+			var reinvestRate = reinvestRateArg.DoubleValue;
 
-			decimal npvNegative = 0;
-			decimal npvPositive = 0;
+			double npvNegative = 0;
+			double npvPositive = 0;
 			int n = values.Count;
 
 			for (int i = 0; i < n; i++) {
 				if (values[i] < 0) {
-					npvNegative += values[i] / (decimal)Math.Pow((double)(1 + financeRate), i);
+					npvNegative += values[i] / Math.Pow((1 + financeRate), i);
 				} else {
-					npvPositive += values[i] * (decimal)Math.Pow((double)(1 + reinvestRate), n - 1 - i);
+					npvPositive += values[i] * Math.Pow((1 + reinvestRate), n - 1 - i);
 				}
 			}
 
 			if (npvNegative == 0) return Div0Error();
 
-			var mirr = Math.Pow((double)(-npvPositive / npvNegative), 1.0 / (n - 1)) - 1;
+			var mirr = Math.Pow((-npvPositive / npvNegative), 1.0 / (n - 1)) - 1;
 			return Operand.Create(mirr);
 		}
 	}

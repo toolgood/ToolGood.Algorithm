@@ -14,35 +14,35 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsError) return rateArg;
-			var rate = rateArg.NumberValue;
+			var rate = rateArg.DoubleValue;
 
 			var nperArg = GetNumber(engine, tempParameter, 1);
 			if (nperArg.IsError) return nperArg;
-			var nper = nperArg.NumberValue;
+			var nper = nperArg.DoubleValue;
 
 			var pmtArg = GetNumber(engine, tempParameter, 2);
 			if (pmtArg.IsError) return pmtArg;
-			var pmt = pmtArg.NumberValue;
+			var pmt = pmtArg.DoubleValue;
 
-			decimal pv = 0;
+			double pv = 0;
 			if (funcs.Length > 3) {
 				var pvArg = GetNumber(engine, tempParameter, 3);
 				if (pvArg.IsError) return pvArg;
-				pv = pvArg.NumberValue;
+				pv = pvArg.DoubleValue;
 			}
 
 			int type = 0;
 			if (funcs.Length > 4) {
 				var typeArg = GetNumber(engine, tempParameter, 4);
 				if (typeArg.IsError) return typeArg;
-				type = (int)typeArg.NumberValue;
+				type = (int)typeArg.DoubleValue;
 			}
 
 			if (rate == 0) {
 				return Operand.Create(-pmt * nper - pv);
 			}
 
-			var factor = (decimal)Math.Pow((double)(1 + rate), (double)nper);
+			var factor = Math.Pow((1 + rate), nper);
 			var fv = -pv * factor - pmt * (factor - 1) / rate;
 			if (type == 1) {
 				fv = -pv * factor - pmt * (1 + rate) * (factor - 1) / rate;

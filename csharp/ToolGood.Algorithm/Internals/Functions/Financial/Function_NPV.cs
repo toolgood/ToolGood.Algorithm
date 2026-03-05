@@ -15,18 +15,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsError) return rateArg;
-			var rate = rateArg.NumberValue;
+			var rate = rateArg.DoubleValue;
 
-			var values = new List<decimal>();
+			var values = new List<double>();
 			for (int i = 1; i < funcs.Length; i++) {
 				var arg = GetNumber(engine, tempParameter, i);
 				if (arg.IsError) return arg;
-				values.Add(arg.NumberValue);
+				values.Add(arg.DoubleValue);
 			}
 
-			decimal npv = 0;
+			double npv = 0;
 			for (int i = 0; i < values.Count; i++) {
-				npv += values[i] / (decimal)System.Math.Pow((double)(1 + rate), i + 1);
+				npv += values[i] / System.Math.Pow((1 + rate), i + 1);
 			}
 
 			return Operand.Create(npv);

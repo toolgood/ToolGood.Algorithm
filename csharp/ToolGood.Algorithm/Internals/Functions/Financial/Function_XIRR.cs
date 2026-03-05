@@ -16,9 +16,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var valuesArg = GetArray(engine, tempParameter, 0);
 			if (valuesArg.IsError) return valuesArg;
-			var values = new List<decimal>();
+			var values = new List<double>();
 			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.NumberValue);
+				values.Add(v.DoubleValue);
 			}
 
 			var datesArg = GetArray(engine, tempParameter, 1);
@@ -38,20 +38,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			if (values.Count != dates.Count || values.Count < 2) return FunctionError();
 
-			decimal guess = 0.1m;
+			double guess = 0.1;
 			if (funcs.Length > 2) {
 				var guessArg = GetNumber(engine, tempParameter, 2);
 				if (guessArg.IsError) return guessArg;
-				guess = guessArg.NumberValue;
+				guess = guessArg.DoubleValue;
 			}
 
 			var xirr = NewtonRaphsonXIRR(values, dates, guess);
 			return Operand.Create(xirr);
 		}
 
-		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal guess)
+		private double NewtonRaphsonXIRR(List<double> values, List<DateTime> dates, double rate)
 		{
-			var rate = (double)guess;
 			var baseDate = dates[0];
 
 			for (int iter = 0; iter < 100; iter++) {
@@ -70,11 +69,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				var newRate = rate - npv / dnpv;
 
 				if (Math.Abs(newRate - rate) < 1e-10) {
-					return (decimal)newRate;
+					return newRate;
 				}
 				rate = newRate;
 			}
-			return (decimal)rate;
+			return rate;
 		}
 	}
 }

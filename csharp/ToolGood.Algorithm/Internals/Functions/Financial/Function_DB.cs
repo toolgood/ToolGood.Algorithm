@@ -14,55 +14,55 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var costArg = GetNumber(engine, tempParameter, 0);
 			if (costArg.IsError) return costArg;
-			var cost = costArg.NumberValue;
+			var cost = costArg.DoubleValue;
 
 			var salvageArg = GetNumber(engine, tempParameter, 1);
 			if (salvageArg.IsError) return salvageArg;
-			var salvage = salvageArg.NumberValue;
+			var salvage = salvageArg.DoubleValue;
 
 			var lifeArg = GetNumber(engine, tempParameter, 2);
 			if (lifeArg.IsError) return lifeArg;
-			var life = lifeArg.NumberValue;
+			var life = lifeArg.DoubleValue;
 
 			var periodArg = GetNumber(engine, tempParameter, 3);
 			if (periodArg.IsError) return periodArg;
-			var period = periodArg.NumberValue;
+			var period = periodArg.DoubleValue;
 
 			int month = 12;
 			if (funcs.Length > 4) {
 				var monthArg = GetNumber(engine, tempParameter, 4);
 				if (monthArg.IsError) return monthArg;
-				month = (int)monthArg.NumberValue;
+				month = (int)monthArg.DoubleValue;
 			}
 
 			if (life == 0 || cost == 0) return Div0Error();
 
-			var rate = 1 - Math.Pow((double)(salvage / cost), 1.0 / (double)life);
+			double rate = 1 - Math.Pow((salvage / cost), 1.0 / life);
 			rate = Math.Round(rate, 3);
 
-			decimal depreciation = 0;
+			double depreciation = 0;
 			if (period == 1) {
-				depreciation = cost * (decimal)rate * month / 12;
+				depreciation = cost * rate * month / 12;
 			} else if ((int)period == (int)life) {
 				var remainingCost = cost;
 				for (int i = 1; i < life; i++) {
 					remainingCost -= depreciation;
 					if (i == 1) {
-						depreciation = cost * (decimal)rate * month / 12;
+						depreciation = cost * rate * month / 12;
 					} else if (i < life) {
-						depreciation = remainingCost * (decimal)rate;
+						depreciation = remainingCost * rate;
 					}
 				}
 				remainingCost -= depreciation;
-				depreciation = remainingCost * (decimal)rate * (12 - month) / 12;
+				depreciation = remainingCost * rate * (12 - month) / 12;
 			} else {
 				var remainingCost = cost;
 				for (int i = 1; i <= period; i++) {
 					if (i == 1) {
-						depreciation = cost * (decimal)rate * month / 12;
+						depreciation = cost * rate * month / 12;
 					} else {
 						remainingCost -= depreciation;
-						depreciation = remainingCost * (decimal)rate;
+						depreciation = remainingCost * rate;
 					}
 				}
 			}

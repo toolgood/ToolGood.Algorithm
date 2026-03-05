@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsError) return rateArg;
-			var rate = rateArg.NumberValue;
+			var rate = rateArg.DoubleValue;
 
 			var valuesArg = GetArray(engine, tempParameter, 1);
 			if (valuesArg.IsError) return valuesArg;
@@ -43,11 +43,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			var baseDate = dateList[0];
-			decimal xnpv = 0;
+			double xnpv = 0;
 
 			for (int i = 0; i < values.Count; i++) {
 				var days = (dateList[i] - baseDate).TotalDays;
-				xnpv += values[i].NumberValue / (decimal)Math.Pow((double)(1 + rate), days / 365.0);
+				xnpv += values[i].DoubleValue / Math.Pow((1 + rate), days / 365.0);
 			}
 
 			return Operand.Create(xnpv);
