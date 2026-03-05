@@ -26,8 +26,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (total < 0 || count < 0 || total < count) {
                 return FunctionError();
             }
-            decimal sum = 1;
-            decimal sum2 = 1;
+            double sum = 1;
+			double sum2 = 1;
             for (int i = 0; i < count; i++) {
                 sum *= (total - i);
                 sum2 *= (i + 1);
