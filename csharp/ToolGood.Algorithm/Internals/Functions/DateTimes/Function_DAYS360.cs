@@ -21,8 +21,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var args2 = GetDate_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
-			var startMyDate = (DateTime)args1.DateValue;
-			var endMyDate = (DateTime)args2.DateValue;
+			var startMyDate = args1.DateValue.ToDateTime();
+			var endMyDate = args2.DateValue.ToDateTime();
 
 			var method = false;
 			if (func3 != null) {

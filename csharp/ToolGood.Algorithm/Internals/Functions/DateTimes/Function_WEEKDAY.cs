@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				type = args2.IntValue;
 			}
 
-            var t = ((DateTime)args1.DateValue).DayOfWeek;
+            var t = args1.DateValue.ToDateTime().DayOfWeek;
             if (type == 1) {
                 return Operand.Create((int)(t + 1));
             } else if (type == 2) {

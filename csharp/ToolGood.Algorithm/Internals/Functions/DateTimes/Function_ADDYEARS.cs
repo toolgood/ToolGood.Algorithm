@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
-            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddYears(args2.IntValue)));
+            return Operand.Create(args1.DateValue.AddYears(args2.IntValue));
         }
 
     }

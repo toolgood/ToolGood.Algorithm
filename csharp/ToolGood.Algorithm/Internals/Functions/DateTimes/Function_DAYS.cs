@@ -23,8 +23,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var args2 = GetDate_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
-			var endDate = (DateTime)args1.DateValue;
-			var startDate = (DateTime)args2.DateValue;
+			var endDate = args1.DateValue.ToDateTime();
+			var startDate = args2.DateValue.ToDateTime();
 
 			return Operand.Create((endDate.Date - startDate.Date).Days);
 		}

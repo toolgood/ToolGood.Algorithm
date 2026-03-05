@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var args2 = GetNumber(engine, tempParameter, 1);
 			if (args2.IsError) { return args2; }
 
-			var startMyDate = (DateTime)args1.DateValue;
+			var startMyDate = args1.DateValue.ToDateTime();
 			var days = args2.IntValue;
 			var list = new HashSet<DateTime>();
 			for (int i = 2; i < funcs.Length; i++) {

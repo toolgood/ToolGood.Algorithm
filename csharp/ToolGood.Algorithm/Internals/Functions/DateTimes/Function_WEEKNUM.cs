@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var startMyDate = (DateTime)args1.DateValue;
+			var startMyDate = args1.DateValue.ToDateTime();
 
 			var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
 			if (func2 != null) {

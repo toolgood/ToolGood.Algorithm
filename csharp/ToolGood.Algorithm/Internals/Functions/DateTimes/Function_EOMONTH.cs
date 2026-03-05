@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
+            var dt = args1.DateValue.ToDateTime().AddMonths(args2.IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }
