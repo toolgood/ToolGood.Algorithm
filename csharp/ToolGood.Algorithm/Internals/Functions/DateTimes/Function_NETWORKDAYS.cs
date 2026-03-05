@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			for (int i = 2; i < funcs.Length; i++) {
 				var ar = GetDate(engine, tempParameter, i);
 				if (ar.IsError) { return ar; }
-				list.Add(ar.DateValue);
+				list.Add(ar.DateValue.ToDateTime());
 			}
             var days = 0;
             while (startMyDate <= endMyDate) {

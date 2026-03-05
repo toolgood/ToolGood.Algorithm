@@ -435,7 +435,7 @@ namespace ToolGood.Algorithm
 						return def;
 					}
 				}
-				return (TimeSpan)obj.DateValue;
+				return obj.DateValue.ToTimeSpan();
 			} catch(Exception ex) {
 				LastError = ex.Message + "\r\n" + ex.StackTrace;
 			}

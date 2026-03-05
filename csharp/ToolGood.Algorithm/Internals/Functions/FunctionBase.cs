@@ -144,7 +144,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#region TryEvaluate
 
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="engine"></param>
@@ -170,7 +169,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -184,7 +182,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 		   
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -198,7 +195,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -212,7 +208,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -226,7 +221,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -245,7 +239,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ִ�к���,����쳣������Ĭ��ֵ
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -255,7 +248,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			return TryEvaluate(engine, def,
 				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
-				obj => (TimeSpan)obj.DateValue, tempParameter);
+				obj => obj.DateValue.ToTimeSpan(), tempParameter);
 		}
  
 		#endregion
