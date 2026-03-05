@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathBase
+namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_BESSELJ : Function_2
 	{
