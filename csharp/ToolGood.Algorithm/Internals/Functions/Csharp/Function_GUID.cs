@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 
-	internal class Function_GUID : FunctionBase
+	internal sealed class Function_GUID : FunctionBase
 	{
 		public Function_GUID()
 		{
@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override string Name => "Guid";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			return Operand.Create(System.Guid.NewGuid().ToString());
 		}

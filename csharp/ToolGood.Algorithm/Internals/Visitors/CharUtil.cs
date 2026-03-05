@@ -29,28 +29,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			return char.ToUpperInvariant(o);
 		}
-
-		public static string StandardString(string s)
-		{
-			// 快速路径：检查是否需要转换
-			bool needsConversion = false;
-			for(int i = 0; i < s.Length; i++) {
-				char c = s[i];
-				if(c != StandardChar(c)) {
-					needsConversion = true;
-					break;
-				}
-			}
-			if(!needsConversion) return s;
-
-			// 使用 string.Create 减少堆分配
-			return string.Create(s.Length, s, (span, str) => {
-				for(int i = 0; i < str.Length; i++) {
-					span[i] = StandardChar(str[i]);
-				}
-			});
-		}
-
+	 
 		public static bool Equals(string left, char right)
 		{
 			if(left.Length != 1) return false;
@@ -71,13 +50,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				}
 			}
 			return true;
-		}
-
-		public static bool Equals(string left, string arg1, string arg2)
-		{
-			if(Equals(left, arg1)) return true;
-			if(Equals(left, arg2)) return true;
-			return false;
 		}
 
 		public static bool Equals(string left, string arg1, string arg2, string arg3)

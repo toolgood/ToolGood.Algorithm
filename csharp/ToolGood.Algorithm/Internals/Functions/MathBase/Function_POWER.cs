@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_POWER : Function_2
+	internal sealed class Function_POWER : Function_2
     {
 		public Function_POWER(FunctionBase[] funcs) : base(funcs)
 		{
@@ -13,14 +13,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override string Name => "Power";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetNumber_1(work, tempParameter);
+            var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var args2 = GetNumber_2(work, tempParameter);
+			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            return Operand.Create(Math.Pow(args1.DoubleValue, args2.DoubleValue));
+
+			var baseValue = args1.DoubleValue;
+			var exponent = args2.DoubleValue;
+
+			if (baseValue == 0 && exponent < 0) {
+				return Div0Error();
+			}
+
+			return Operand.Create(Math.Pow(baseValue, exponent));
         }
 
     }

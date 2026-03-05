@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_NUM : FunctionBase
+	internal sealed class Function_NUM : FunctionBase
 	{
 		private readonly decimal d;
 		private readonly string unit;
@@ -16,10 +16,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "Num";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var dict = NumberUnitTypeHelper.GetUnitTypedict();
-			var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], work.DistanceUnit, work.AreaUnit, work.VolumeUnit, work.MassUnit);
+			var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
 			return Operand.Create(d2);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

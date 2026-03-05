@@ -1,9 +1,9 @@
-ï»¿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_TIMESTAMP : Function_2
+	internal sealed class Function_TIMESTAMP : Function_2
 	{
 		public Function_TIMESTAMP(FunctionBase[] funcs) : base(funcs)
 		{
@@ -13,17 +13,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override string Name => "Timestamp";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			int type = 0; // æ¯«ç§’
+			int type = 0; // ºÁÃë
 			if(func2 != null) {
-				var args2 = GetNumber_2(work, tempParameter);
+				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsError) { return args2; }
 				type = args2.IntValue;
 			}
-			var args0 = GetDate_1(work, tempParameter); if(args0.IsError) { return args0; }
+			var args0 = GetDate_1(engine, tempParameter); if(args0.IsError) { return args0; }
 			DateTime args1;
-			if(work.UseLocalTime) {
+			if(engine.UseLocalTime) {
 				args1 = args0.DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
 			} else {
 				args1 = args0.DateValue.ToDateTime(DateTimeKind.Utc);

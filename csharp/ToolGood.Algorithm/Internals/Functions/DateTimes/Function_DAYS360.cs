@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_DAYS360 : Function_3
+	internal sealed class Function_DAYS360 : Function_3
     {
 		public Function_DAYS360(FunctionBase[] funcs) : base(funcs)
 		{
@@ -13,20 +13,20 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override string Name => "Days360";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetDate_1(work, tempParameter);
+            var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var args2 = GetDate_2(work, tempParameter);
+			var args2 = GetDate_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
-			var startMyDate = (DateTime)args1.DateValue;
-			var endMyDate = (DateTime)args2.DateValue;
+			var startMyDate = args1.DateValue.ToDateTime();
+			var endMyDate = args2.DateValue.ToDateTime();
 
 			var method = false;
 			if (func3 != null) {
-				var args3 = GetBoolean_3(work, tempParameter);
+				var args3 = GetBoolean_3(engine, tempParameter);
 				if (args3.IsError) { return args3; }
 				method = args3.BooleanValue;
 			}

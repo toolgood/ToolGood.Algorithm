@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -8,18 +8,23 @@ namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
 	{
+		private bool hasBracket = false;
+
 		public ConditionTree VisitProg(mathParser.ProgContext context)
 		{
+			hasBracket = false;
 			return context.expr().Accept(this);
 		}
 
 		public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
 			var tree = new ConditionTree {
-				Nodes = new List<ConditionTree>()
+				Nodes = new List<ConditionTree>(2),
+				HasBracket=hasBracket,
 			};
+			hasBracket = false;
 			var t = context.op.Text;
-			if(CharUtil.Equals(t, "&&", "and")) {
+			if(CharUtil.Equals(t, "&&")) {
 				tree.Type = ConditionTreeType.And;
 			} else {
 				tree.Type = ConditionTreeType.Or;
@@ -30,12 +35,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.ConditionString = context.GetText();
+			tree.Text = context.GetText();
 			return tree;
 		}
 
 		public ConditionTree VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
+			hasBracket = true;
 			return context.expr().Accept(this);
 		}
 
@@ -44,12 +50,22 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new ConditionTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				ConditionString = context.GetText()
+				Text = context.GetText()
 			};
 			return tree;
 		}
 
 		public ConditionTree VisitIF_fun(mathParser.IF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSWITCH_fun(mathParser.SWITCH_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -60,6 +76,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public ConditionTree VisitOR_fun(mathParser.OR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitXOR_fun(mathParser.XOR_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -199,6 +220,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public ConditionTree VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public ConditionTree VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			return Visit_fun(context);
@@ -231,6 +262,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 
 		public ConditionTree VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitDAYS_fun(mathParser.DAYS_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -935,6 +971,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public ConditionTree VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitGESTEP_fun(mathParser.GESTEP_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public ConditionTree VisitSQRT_fun(mathParser.SQRT_funContext context)
 		{
 			return Visit_fun(context);
@@ -986,6 +1062,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public ConditionTree VisitTANH_fun(mathParser.TANH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitACOTH_fun(mathParser.ACOTH_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -1175,10 +1291,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
-		public ConditionTree VisitUnit(mathParser.UnitContext context)
-		{
-			return Visit_fun(context);
-		}
 
 		public ConditionTree VisitArrayJson(mathParser.ArrayJsonContext context)
 		{
@@ -1216,6 +1328,146 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public ConditionTree VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitPV_fun(mathParser.PV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitFV_fun(mathParser.FV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitDB_fun(mathParser.DB_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public ConditionTree VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitARABIC_fun(mathParser.ARABIC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitROMAN_fun(mathParser.ROMAN_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitRANK_fun(mathParser.RANK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitFORECAST_fun(mathParser.FORECAST_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitSLOPE_fun(mathParser.SLOPE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitCORREL_fun(mathParser.CORREL_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitPEARSON_fun(mathParser.PEARSON_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public ConditionTree VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
 		{
 			return Visit_fun(context);
 		}

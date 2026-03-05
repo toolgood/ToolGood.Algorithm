@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_TODAY : FunctionBase
+	internal sealed class Function_TODAY : FunctionBase
     {
         public override string Name => "Today";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             DateTime now;
-            if (work.UseLocalTime) {
+            if (engine.UseLocalTime) {
                 now = DateTime.Now;
             } else {
                 now = DateTime.UtcNow;

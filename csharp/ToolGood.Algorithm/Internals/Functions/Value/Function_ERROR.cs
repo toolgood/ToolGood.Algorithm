@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_ERROR : Function_1
+	internal sealed class Function_ERROR : Function_1
 	{
 		public Function_ERROR(FunctionBase func1) : base(func1)
 		{
@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "Error";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			return Operand.Error(args1.TextValue);
 		}

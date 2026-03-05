@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
-	internal class Function_ISEVEN : Function_1
+	internal sealed class Function_ISEVEN : Function_1
     {
         public Function_ISEVEN(FunctionBase func1) : base(func1)
         {
@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 
         public override string Name => "IsEven";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter);
+            var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNumber) {
                 if (args1.IntValue % 2 == 0) { return Operand.True; }
             }

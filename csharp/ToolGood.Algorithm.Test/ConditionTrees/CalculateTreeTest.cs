@@ -13,12 +13,12 @@ namespace ToolGood.Algorithm.Test.ConditionTrees
             var t1 = AlgorithmEngineHelper.ParseCalculate(txt);
             Assert.AreEqual(t1.Type, CalculateTreeType.Add);
             Assert.AreEqual("A1+1", txt.Substring(t1.Start, t1.End - t1.Start + 1));
-            Assert.AreEqual("A1+1", t1.ConditionString);
+            Assert.AreEqual("A1+1", t1.Text);
 
             txt = "A1-(1+1)";
             t1 = AlgorithmEngineHelper.ParseCalculate(txt);
             Assert.AreEqual(t1.Type, CalculateTreeType.Sub);
-            Assert.AreEqual("1+1", t1.Nodes[1].ConditionString);
+            Assert.AreEqual("1+1", t1.Nodes[1].Text);
 
             txt = "A1*(1+1)";
             t1 = AlgorithmEngineHelper.ParseCalculate(txt);

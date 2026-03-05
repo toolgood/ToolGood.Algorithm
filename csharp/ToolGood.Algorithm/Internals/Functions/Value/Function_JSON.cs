@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.LitJson;
@@ -6,7 +6,7 @@ using ToolGood.Algorithm.LitJson;
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 
-	internal class Function_JSON : Function_1
+	internal sealed class Function_JSON : Function_1
 	{
 		public Function_JSON(FunctionBase func1) : base(func1)
 		{
@@ -14,9 +14,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "Json";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 			if(args1.IsJson) { return args1; }
 			if(args1.IsArrayJson) { args1 = args1.ToText(); }

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_EOMONTH : Function_2
+	internal sealed class Function_EOMONTH : Function_2
     {
 		public Function_EOMONTH(FunctionBase[] funcs) : base(funcs)
 		{
@@ -13,14 +13,14 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override string Name => "EOMonth";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetDate_1(work, tempParameter);
+            var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var args2 = GetNumber_2(work, tempParameter);
+			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
+            var dt = args1.DateValue.ToDateTime().AddMonths(args2.IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }

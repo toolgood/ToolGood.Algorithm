@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
@@ -13,17 +13,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 	public abstract class FunctionBase
 	{
 		/// <summary>
-		/// 名称
+		/// ����
 		/// </summary>
 		public abstract string Name { get; }
 
 		/// <summary>
-		/// 进行计算
+		/// ���м���
 		/// </summary>
-		/// <param name="work"></param>
-		/// <param name="tempParameter">临时参数，未找到返回null</param>
+		/// <param name="engine"></param>
+		/// <param name="tempParameter">��ʱ������δ�ҵ�����null</param>
 		/// <returns></returns>
-		public abstract Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter = null);
+		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
 
 		#region ToString
 		/// <summary>
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		#region ConvertToText
 		/// <summary>
-		/// 转换参数为文本
+		/// ת������Ϊ�ı�
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 转换参数为布尔值
+		/// ת������Ϊ����ֵ
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -69,7 +69,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 转换参数为数字
+		/// ת������Ϊ����
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -80,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 转换参数为数组
+		/// ת������Ϊ����
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 转换参数为日期
+		/// ת������Ϊ����
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -144,100 +144,94 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#region TryEvaluate
 
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="converter"></param>
 		/// <param name="resultConverter"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		private T TryEvaluate<T>(AlgorithmEngine work, T def, Func<Operand, Operand> converter, Func<Operand, T> resultConverter, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		private T TryEvaluate<T>(AlgorithmEngine engine, T def, Func<Operand, Operand> converter, Func<Operand, T> resultConverter, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
 			try {
-				var obj = this.Evaluate(work, tempParameter);
+				var obj = this.Evaluate(engine, tempParameter);
 				var converted = converter(obj);
 				if(converted.IsError) {
-					work.LastError = converted.ErrorMsg;
+					engine.LastError = converted.ErrorMsg;
 					return def;
 				}
 				return resultConverter(converted);
 			} catch(Exception ex) {
-				work.LastError = ex.Message;
+				engine.LastError = ex.Message;
 			}
 			return def;
 		}
 
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		public int TryEvaluate(AlgorithmEngine work, int def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		public int TryEvaluate(AlgorithmEngine engine, int def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return TryEvaluate(work, def,
+			return TryEvaluate(engine, def,
 				obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
 				obj => obj.IntValue, tempParameter);
 		}
 		   
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		public decimal TryEvaluate(AlgorithmEngine work, decimal def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		public decimal TryEvaluate(AlgorithmEngine engine, decimal def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return TryEvaluate(work, def,
+			return TryEvaluate(engine, def,
 				obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
-				obj => (decimal)obj.NumberValue, tempParameter);
+				obj => obj.NumberValue, tempParameter);
 		}
 
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		public string TryEvaluate(AlgorithmEngine work, string def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		public string TryEvaluate(AlgorithmEngine engine, string def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return TryEvaluate(work, def,
+			return TryEvaluate(engine, def,
 				obj => obj.IsText ? obj : obj.ToText("It can't be converted to string!"),
 				obj => obj.TextValue, tempParameter);
 		}
 
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		public bool TryEvaluate(AlgorithmEngine work, bool def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		public bool TryEvaluate(AlgorithmEngine engine, bool def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return TryEvaluate(work, def,
+			return TryEvaluate(engine, def,
 				obj => obj.IsBoolean ? obj : obj.ToBoolean("It can't be converted to bool!"),
 				obj => obj.BooleanValue, tempParameter);
 		}
 
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		public DateTime TryEvaluate(AlgorithmEngine work, DateTime def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		public DateTime TryEvaluate(AlgorithmEngine engine, DateTime def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return TryEvaluate(work, def,
+			return TryEvaluate(engine, def,
 				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
 				obj => {
-					if(work.UseLocalTime) {
+					if(engine.UseLocalTime) {
 						return obj.DateValue.ToDateTime(DateTimeKind.Local);
 					}
 					return obj.DateValue.ToDateTime(DateTimeKind.Utc);
@@ -245,17 +239,16 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 执行函数,如果异常，返回默认值
 		/// </summary>
-		/// <param name="work"></param>
+		/// <param name="engine"></param>
 		/// <param name="def"></param>
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
-		public TimeSpan TryEvaluate(AlgorithmEngine work, TimeSpan def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
+		public TimeSpan TryEvaluate(AlgorithmEngine engine, TimeSpan def, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return TryEvaluate(work, def,
+			return TryEvaluate(engine, def,
 				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
-				obj => (TimeSpan)obj.DateValue, tempParameter);
+				obj => obj.DateValue.ToTimeSpan(), tempParameter);
 		}
  
 		#endregion

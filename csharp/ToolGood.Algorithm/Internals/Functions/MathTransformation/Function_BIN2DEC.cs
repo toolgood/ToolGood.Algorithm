@@ -1,28 +1,37 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_BIN2DEC : Function_1
-    {
-        public Function_BIN2DEC(FunctionBase func1) : base(func1)
-        {
-        }
+	internal sealed class Function_BIN2DEC : Function_2
+	{
+		public Function_BIN2DEC(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override string Name => "Bin2Dec";
+		public override string Name => "Bin2Dec";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = GetText_1(work, tempParameter);
-            if (args1.IsError) { return args1; }
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args1 = GetText_1(engine, tempParameter);
+			if(args1.IsError) { return args1; }
 
-            if (RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return FunctionError(); }
-            var num = Convert.ToInt32(args1.TextValue, 2);
-            return Operand.Create(num);
-        }
+			if(RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return FunctionError(); }
+			var num = Convert.ToInt32(args1.TextValue, 2);
+			if(func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
+				if(args2.IsError) { return args2; }
+				var n = num.ToString();
+				if(n.Length <= args2.IntValue) {
+					return Operand.Create(n.ToString().PadLeft(args2.IntValue, '0'));
+				}
+				return ParameterError(2);
+			}
+			return Operand.Create(num);
+		}
 
-    }
+	}
 
-    
+
 
 }

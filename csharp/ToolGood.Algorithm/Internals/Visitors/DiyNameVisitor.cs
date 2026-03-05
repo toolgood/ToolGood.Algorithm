@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using System;
 using ToolGood.Algorithm.math;
 
@@ -176,6 +176,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
+		public object VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
 		public object VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			return VisitChildren(context);
@@ -207,6 +217,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDAYS_fun(mathParser.DAYS_funContext context)
 		{
 			return VisitChildren(context);
 		}
@@ -444,6 +459,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitIF_fun(mathParser.IF_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSWITCH_fun(mathParser.SWITCH_funContext context)
 		{
 			return VisitChildren(context);
 		}
@@ -728,6 +753,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
+		public object VisitXOR_fun(mathParser.XOR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
 		public object VisitParameter2(mathParser.Parameter2Context context)
 		{
 			return VisitChildren(context);
@@ -918,6 +948,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
+		public object VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitGESTEP_fun(mathParser.GESTEP_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
 		public object VisitSQRT_fun(mathParser.SQRT_funContext context)
 		{
 			return VisitChildren(context);
@@ -969,6 +1039,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitTANH_fun(mathParser.TANH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitACOTH_fun(mathParser.ACOTH_funContext context)
 		{
 			return VisitChildren(context);
 		}
@@ -1159,11 +1269,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return VisitChildren(context);
 		}
 
-		public object VisitUnit(mathParser.UnitContext context)
-		{
-			return VisitChildren(context);
-		}
-
 		public object VisitArrayJson(mathParser.ArrayJsonContext context)
 		{
 			return VisitChildren(context);
@@ -1200,6 +1305,146 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public object VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitPV_fun(mathParser.PV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitFV_fun(mathParser.FV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDB_fun(mathParser.DB_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			return VisitChildren(context);
+		}
+
+		public object VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitARABIC_fun(mathParser.ARABIC_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitROMAN_fun(mathParser.ROMAN_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitRANK_fun(mathParser.RANK_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitFORECAST_fun(mathParser.FORECAST_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitSLOPE_fun(mathParser.SLOPE_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitCORREL_fun(mathParser.CORREL_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitPEARSON_fun(mathParser.PEARSON_funContext context)
+		{
+			return VisitChildren(context);
+		}
+		public object VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
 		{
 			return VisitChildren(context);
 		}

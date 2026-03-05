@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
 using System.Text;
@@ -8,9 +8,11 @@ using ToolGood.Algorithm.Internals.Functions.Csharp;
 using ToolGood.Algorithm.Internals.Functions.CsharpSecurity;
 using ToolGood.Algorithm.Internals.Functions.CsharpWeb;
 using ToolGood.Algorithm.Internals.Functions.DateTimes;
+using ToolGood.Algorithm.Internals.Functions.Financial;
 using ToolGood.Algorithm.Internals.Functions.Flow;
 using ToolGood.Algorithm.Internals.Functions.MathBase;
 using ToolGood.Algorithm.Internals.Functions.MathSum;
+using ToolGood.Algorithm.Internals.Functions.MathSum2;
 using ToolGood.Algorithm.Internals.Functions.MathTransformation;
 using ToolGood.Algorithm.Internals.Functions.MathTrigonometric;
 using ToolGood.Algorithm.Internals.Functions.Operator;
@@ -19,7 +21,7 @@ using ToolGood.Algorithm.Internals.Functions.Value;
 using ToolGood.Algorithm.math;
 namespace ToolGood.Algorithm.Internals.Visitors
 {
-	internal class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
+	internal sealed class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
 	{
 		private FunctionBase[] VisitExprs(mathParser.ExprContext[] exprs)
 		{
@@ -77,7 +79,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			var t = context.op.Text;
-			if(CharUtil.Equals(t, "&&", "AND")) {
+			if(CharUtil.Equals(t, "&&")) {
 				return new Function_AND(funcs);
 			}
 			return new Function_OR(funcs);
@@ -88,6 +90,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_IF(funcs);
+		}
+		public FunctionBase VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_IFS(funcs);
+		}
+		public FunctionBase VisitSWITCH_fun(mathParser.SWITCH_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SWITCH(funcs);
 		}
 		public FunctionBase VisitIFERROR_fun(mathParser.IFERROR_funContext context)
 		{
@@ -148,6 +160,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_OR_N(funcs);
+		}
+		public FunctionBase VisitXOR_fun(mathParser.XOR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_XOR(funcs);
 		}
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
 		{
@@ -275,6 +292,36 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_TANH(args1);
 		}
+		public FunctionBase VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_COT(args1);
+		}
+		public FunctionBase VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_COTH(args1);
+		}
+		public FunctionBase VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_CSC(args1);
+		}
+		public FunctionBase VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_CSCH(args1);
+		}
+		public FunctionBase VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_SEC(args1);
+		}
+		public FunctionBase VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_SECH(args1);
+		}
 		public FunctionBase VisitACOS_fun(mathParser.ACOS_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
@@ -305,6 +352,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_ATANH(args1);
 		}
+		public FunctionBase VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ACOT(args1);
+		}
+		public FunctionBase VisitACOTH_fun(mathParser.ACOTH_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ACOTH(args1);
+		}
 		public FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -324,8 +381,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_BIN2DEC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_BIN2DEC(funcs);
 		}
 		public FunctionBase VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
 		{
@@ -339,8 +396,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_OCT2DEC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_OCT2DEC(funcs);
 		}
 		public FunctionBase VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
 		{
@@ -374,8 +431,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_HEX2DEC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_HEX2DEC(funcs);
 		}
 		#endregion transformation
 		#region rounding
@@ -475,7 +532,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitLOG10_fun(mathParser.LOG10_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
-			return new Function_LOG(args1, null);
+			return new Function_LOG10(args1);
 		}
 		public FunctionBase VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
 		{
@@ -492,10 +549,120 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_SQRTPI(args1);
 		}
+		public FunctionBase VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ERF(args1);
+		}
+		public FunctionBase VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_ERFC(args1);
+		}
+		public FunctionBase VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELI(funcs);
+		}
+		public FunctionBase VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELJ(funcs);
+		}
+		public FunctionBase VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELK(funcs);
+		}
+		public FunctionBase VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_BESSELY(funcs);
+		}
+		public FunctionBase VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DELTA(funcs);
+		}
+		public FunctionBase VisitGESTEP_fun(mathParser.GESTEP_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_GESTEP(funcs);
+		}
 		public FunctionBase VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_SUMSQ(funcs);
+		}
+		public FunctionBase VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMPRODUCT(funcs);
+		}
+		public FunctionBase VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMX2MY2(funcs);
+		}
+		public FunctionBase VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMX2PY2(funcs);
+		}
+		public FunctionBase VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SUMXMY2(funcs);
+		}
+		public FunctionBase VisitARABIC_fun(mathParser.ARABIC_funContext context)
+		{
+			var func = Visit(context.expr());
+			return new Function_ARABIC(func);
+		}
+		public FunctionBase VisitROMAN_fun(mathParser.ROMAN_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_ROMAN(funcs);
+		}
+		public FunctionBase VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SERIESSUM(funcs);
+		}
+		public FunctionBase VisitRANK_fun(mathParser.RANK_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_RANK(funcs);
+		}
+		public FunctionBase VisitFORECAST_fun(mathParser.FORECAST_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_FORECAST(funcs);
+		}
+		public FunctionBase VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_INTERCEPT(funcs);
+		}
+		public FunctionBase VisitSLOPE_fun(mathParser.SLOPE_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SLOPE(funcs);
+		}
+		public FunctionBase VisitCORREL_fun(mathParser.CORREL_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_CORREL(funcs);
+		}
+		public FunctionBase VisitPEARSON_fun(mathParser.PEARSON_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PEARSON(funcs);
+		}
+		public FunctionBase VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_YEARFRAC(funcs);
 		}
 		#endregion
 		#endregion math
@@ -524,6 +691,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_CODE(args1);
+		}
+		public FunctionBase VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_UNICHAR(args1);
+		}
+		public FunctionBase VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			var args1 = context.expr().Accept(this);
+			return new Function_UNICODE(args1);
 		}
 		public FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
 		{
@@ -694,6 +871,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_DATEDIF(funcs);
+		}
+		public FunctionBase VisitDAYS_fun(mathParser.DAYS_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DAYS(funcs);
 		}
 		public FunctionBase VisitDAYS360_fun(mathParser.DAYS360_funContext context)
 		{
@@ -988,6 +1170,88 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return new Function_WEIBULL(funcs);
 		}
 		#endregion sum
+		#region financial
+		public FunctionBase VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PMT(funcs);
+		}
+		public FunctionBase VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PPMT(funcs);
+		}
+		public FunctionBase VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_IPMT(funcs);
+		}
+		public FunctionBase VisitPV_fun(mathParser.PV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_PV(funcs);
+		}
+		public FunctionBase VisitFV_fun(mathParser.FV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_FV(funcs);
+		}
+		public FunctionBase VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_NPER(funcs);
+		}
+		public FunctionBase VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_RATE(funcs);
+		}
+		public FunctionBase VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_NPV(funcs);
+		}
+		public FunctionBase VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_XNPV(funcs);
+		}
+		public FunctionBase VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_IRR(funcs);
+		}
+		public FunctionBase VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_MIRR(funcs);
+		}
+		public FunctionBase VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_XIRR(funcs);
+		}
+		public FunctionBase VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SLN(funcs);
+		}
+		public FunctionBase VisitDB_fun(mathParser.DB_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DB(funcs);
+		}
+		public FunctionBase VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_DDB(funcs);
+		}
+		public FunctionBase VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_SYD(funcs);
+		}
+		#endregion financial
 		#region csharp
 		public FunctionBase VisitURLENCODE_fun(mathParser.URLENCODE_funContext context)
 		{
@@ -1183,24 +1447,23 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
 		{
-			var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			if(context.unit() == null) { return new Function_Value(Operand.Create(d), context.num().GetText()); }
-			var unit = context.unit().GetText();
+			var text = context.num().GetText();
+			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
+			if(context.unit == null) { return new Function_Value(Operand.Create(d), text); }
+			var unit = context.unit.Text;
 			return new Function_NUM(d, unit);
 		}
 		public FunctionBase VisitNum(mathParser.NumContext context)
 		{
-			var d = decimal.Parse(context.GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			return new Function_Value(Operand.Create(d), context.GetText());
+			var text = context.GetText();
+			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
+			return new Function_Value(Operand.Create(d), text);
 		}
-		public FunctionBase VisitUnit(mathParser.UnitContext context)
-		{
-			return new Function_Value(Operand.Create(context.GetText()));
-		}
+ 
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
 		{
 			var opd = context.GetText();
-			var sb = new StringBuilder();
+			var sb = new StringBuilder(opd.Length);
 			int index = 1;
 			while(index < opd.Length - 1) {
 				var c = opd[index++];
@@ -1214,7 +1477,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 					else if(c2 == 'a') sb.Append('\a');
 					else if(c2 == 'b') sb.Append('\b');
 					else if(c2 == 'f') sb.Append('\f');
-					else sb.Append(opd[index++]);
+					else sb.Append(c2);
 				} else {
 					sb.Append(c);
 				}
@@ -1280,38 +1543,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitArrayJson(mathParser.ArrayJsonContext context)
 		{
 			string keyName = null;
-			//KeyValue keyValue = new KeyValue();
-			if(context.NUM() != null) {
-				if(int.TryParse(context.NUM().GetText(), out int key)) {
-					keyName = key.ToString();
-				} else {
-					return new Function_Value(Operand.Error("Json key '" + context.NUM().GetText() + "' is error!"));
-				}
-			}
-			if(context.STRING() != null) {
-				var opd = context.STRING().GetText();
-				var sb = new StringBuilder(opd.Length - 2);
-				int index = 1;
-				while(index < opd.Length - 1) {
-					var c = opd[index++];
-					if(c == '\\') {
-						var c2 = opd[index++];
-						if(c2 == 'n') sb.Append('\n');
-						else if(c2 == 'r') sb.Append('\r');
-						else if(c2 == 't') sb.Append('\t');
-						else if(c2 == '0') sb.Append('\0');
-						else if(c2 == 'v') sb.Append('\v');
-						else if(c2 == 'a') sb.Append('\a');
-						else if(c2 == 'b') sb.Append('\b');
-						else if(c2 == 'f') sb.Append('\f');
-						else sb.Append(opd[index++]);
-					} else {
-						sb.Append(c);
-					}
-				}
-				keyName = sb.ToString();
-			}
-			if(context.parameter2() != null) {
+			if(context.key != null) {
+				keyName = context.key.Text.Trim(new char[] { '"', '\'', ' ', '\t', '\r', '\n', '\f' });
+			} else if(context.parameter2() != null) {
 				keyName = context.parameter2().GetText();
 			}
 			var f = context.expr().Accept(this);

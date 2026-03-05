@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
 namespace ToolGood.Algorithm.Test
@@ -259,6 +259,78 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(Math.Round(1.107148718, 6), t);
         }
 
+        [Test]
+        public void cot_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("cot(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.642092616, 6), t);
+        }
+
+        [Test]
+        public void coth_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("coth(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.313035285, 6), t);
+        }
+
+        [Test]
+        public void csc_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("csc(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.188395106, 6), t);
+        }
+
+        [Test]
+        public void csch_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("csch(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.850918128, 6), t);
+        }
+
+        [Test]
+        public void sec_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("sec(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.850815718, 6), t);
+        }
+
+        [Test]
+        public void sech_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("sech(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.648054274, 6), t);
+        }
+
+        [Test]
+        public void acot_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("acot(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.785398163, 6), t);
+        }
+
+        [Test]
+        public void acoth_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("acoth(2)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(0.549306144, 6), t);
+        }
+
         #endregion 三角函数
 
         #region 四舍五入
@@ -269,6 +341,20 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("ROUND(4.333,2)", 0.0);
             Assert.AreEqual(4.33, t);
+        }
+
+        [Test]
+        public void ROUND_single_param_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ROUND(4.5)", 0.0);
+            Assert.AreEqual(5.0, t);
+
+            t = engine.TryEvaluate("ROUND(4.4)", 0.0);
+            Assert.AreEqual(4.0, t);
+
+            t = engine.TryEvaluate("ROUND(-4.5)", 0.0);
+            Assert.AreEqual(-5.0, t);
         }
 
         [Test]
@@ -492,11 +578,11 @@ namespace ToolGood.Algorithm.Test
 
             var t = engine.TryEvaluate("DEC2BIN(10)", "");
             Assert.AreEqual(t, "1010");
-            t = engine.TryEvaluate("OCT2BIN('721')", "");
+			t = engine.TryEvaluate("DEC2BIN(10,8)", "");
+			Assert.AreEqual(t, "00001010");
+			t = engine.TryEvaluate("OCT2BIN('721')", "");
             Assert.AreEqual(t, "111010001");
             t = engine.TryEvaluate("HEX2BIN('fa')", "");
-            Assert.AreEqual(t, "11111010");
-            t = engine.TryEvaluate("'fa'.HEX2BIN()", "");
             Assert.AreEqual(t, "11111010");
 
             t = engine.TryEvaluate("BIN2OCT(10)", "");
@@ -515,5 +601,126 @@ namespace ToolGood.Algorithm.Test
         }
 
         #endregion 转化 transformation
+
+        #region 工程函数
+
+        [Test]
+        public void ERF_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ERF(0)", 0.0);
+            Assert.AreEqual(0.0, Math.Round(t, 6));
+
+            t = engine.TryEvaluate("ERF(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(0.842701, t);
+
+            t = engine.TryEvaluate("ERF(-1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(-0.842701, t);
+        }
+
+        [Test]
+        public void ERFC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ERFC(0)", 0.0);
+            Assert.AreEqual(1.0, Math.Round(t, 6));
+
+            t = engine.TryEvaluate("ERFC(1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(0.157299, t);
+        }
+
+        [Test]
+        public void DELTA_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("DELTA(5, 5)", 0.0);
+            Assert.AreEqual(1.0, t);
+
+            t = engine.TryEvaluate("DELTA(5, 4)", 0.0);
+            Assert.AreEqual(0.0, t);
+
+            t = engine.TryEvaluate("DELTA(5)", 0.0);
+            Assert.AreEqual(0.0, t);
+
+            t = engine.TryEvaluate("DELTA(0)", 0.0);
+            Assert.AreEqual(1.0, t);
+        }
+
+        [Test]
+        public void GESTEP_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("GESTEP(5, 4)", 0.0);
+            Assert.AreEqual(1.0, t);
+
+            t = engine.TryEvaluate("GESTEP(5, 5)", 0.0);
+            Assert.AreEqual(1.0, t);
+
+            t = engine.TryEvaluate("GESTEP(5, 6)", 0.0);
+            Assert.AreEqual(0.0, t);
+
+            t = engine.TryEvaluate("GESTEP(5)", 0.0);
+            Assert.AreEqual(1.0, t);
+
+            t = engine.TryEvaluate("GESTEP(-1)", 0.0);
+            Assert.AreEqual(0.0, t);
+        }
+
+        [Test]
+        public void BESSELI_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("BESSELI(1.5, 1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(0.981666, t);
+
+            t = engine.TryEvaluate("BESSELI(1.5, 0)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(1.646723, t);
+        }
+
+        [Test]
+        public void BESSELJ_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("BESSELJ(1.5, 1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(0.557937, t);
+
+            t = engine.TryEvaluate("BESSELJ(1.5, 0)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(0.511828, t);
+        }
+
+        [Test]
+        public void BESSELK_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("BESSELK(1.5, 1)", 0.0);
+            t = Math.Round(t, 3);
+            Assert.AreEqual(0.277, t, 0.01);
+
+            t = engine.TryEvaluate("BESSELK(1.5, 0)", 0.0);
+            t = Math.Round(t, 3);
+            Assert.AreEqual(0.214, t, 0.01);
+        }
+
+        [Test]
+        public void BESSELY_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("BESSELY(1.5, 1)", 0.0);
+            t = Math.Round(t, 3);
+            Assert.AreEqual(-0.412, t, 0.01);
+
+            t = engine.TryEvaluate("BESSELY(2.5, 0)", 0.0);
+            t = Math.Round(t, 3);
+            Assert.AreEqual(0.498, t, 0.01);
+        }
+
+        #endregion 工程函数
     }
 }

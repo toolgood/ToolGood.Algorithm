@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_DEVSQ : Function_N
+	internal sealed class Function_DEVSQ : Function_N
     {
         public Function_DEVSQ(FunctionBase[] funcs) : base(funcs)
         {
@@ -13,20 +13,21 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "DevSq";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>(funcs.Length); foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return FunctionError(); }
-            var avg = list.Average();
-            decimal sum = 0;
+            decimal mean = 0, m2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                sum += (list[i] - avg) * (list[i] - avg);
+                decimal delta = list[i] - mean;
+                mean += delta / (i + 1);
+                m2 += delta * (list[i] - mean);
             }
-            return Operand.Create(sum);
+            return Operand.Create(m2);
         }
 
     }

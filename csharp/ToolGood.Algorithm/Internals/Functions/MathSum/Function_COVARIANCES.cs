@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_COVARIANCES : Function_2
+	internal sealed class Function_COVARIANCES : Function_2
     {
 		public Function_COVARIANCES(FunctionBase[] funcs) : base(funcs)
 		{
@@ -15,10 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "Covariances";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
+            var args1 = func1.Evaluate(engine, tempParameter); if (args1.IsError) { return args1; }
+            var args2 = func2.Evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
 
             var list1 = new List<decimal>();
             var list2 = new List<decimal>();
@@ -30,14 +30,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }
             if (list1.Count == 1) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }
 
-            var avg1 = list1.Average();
-            var avg2 = list2.Average();
-            decimal sum = 0;
+            decimal mean1 = 0, mean2 = 0, c = 0;
             for (int i = 0; i < list1.Count; i++) {
-                sum += (list1[i] - avg1) * (list2[i] - avg2);
+                decimal delta1 = list1[i] - mean1;
+                decimal delta2 = list2[i] - mean2;
+                mean1 += delta1 / (i + 1);
+                mean2 += delta2 / (i + 1);
+                c += delta1 * (list2[i] - mean2);
             }
-            var val = sum / (list1.Count - 1);
-            return Operand.Create(val);
+            return Operand.Create(c / (list1.Count - 1));
         }
 
     }

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
-	internal class Function_URLDECODE : Function_1
+	internal sealed class Function_URLDECODE : Function_1
 	{
 		public Function_URLDECODE(FunctionBase func1) : base(func1)
 		{
@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 
 		public override string Name => "UrlDecode";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 			var s = args1.TextValue;
 			var r = System.Web.HttpUtility.UrlDecode(s);

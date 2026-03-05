@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
 namespace ToolGood.Algorithm.Test
@@ -212,6 +212,55 @@ namespace ToolGood.Algorithm.Test
 			Assert.AreEqual(false, b);
 			b = engine.TryEvaluate("'1'!='2'", false);
 			Assert.AreEqual(true, b);
+		}
+
+		[Test]
+		public void strict_equality_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var b = engine.TryEvaluate("1===1", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("1===2", true);
+			Assert.AreEqual(false, b);
+
+			b = engine.TryEvaluate("'1'==='1'", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("'1'==='2'", true);
+			Assert.AreEqual(false, b);
+
+			b = engine.TryEvaluate("1!==2", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("1!==1", true);
+			Assert.AreEqual(false, b);
+
+			b = engine.TryEvaluate("'1'!=='2'", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("'1'!=='1'", true);
+			Assert.AreEqual(false, b);
+		}
+
+		[Test]
+		public void percentage_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var t = engine.TryEvaluate("100%", 0.0);
+			Assert.AreEqual(1.0, t);
+
+			t = engine.TryEvaluate("50%", 0.0);
+			Assert.AreEqual(0.5, t);
+
+			t = engine.TryEvaluate("200%", 0.0);
+			Assert.AreEqual(2.0, t);
+
+			t = engine.TryEvaluate("100*50%", 0.0);
+			Assert.AreEqual(50.0, t);
+
+			t = engine.TryEvaluate("100+50%", 0.0);
+			Assert.AreEqual(100.5, t);
 		}
 
 		[Test]

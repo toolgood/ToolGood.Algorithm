@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_ArrayJson : Function_N
+	internal sealed class Function_ArrayJson : Function_N
 	{
 		public Function_ArrayJson(FunctionBase[] funcs) : base(funcs)
 		{
@@ -12,11 +12,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override string Name => "ArrayJson";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var result = new OperandKeyValueList();
 			foreach (var item in funcs) {
-				var o = item.Evaluate(work, tempParameter);
+				var o = item.Evaluate(engine, tempParameter);
 				result.AddValue((KeyValue)((OperandKeyValue)o).Value);
 			}
 			return result;

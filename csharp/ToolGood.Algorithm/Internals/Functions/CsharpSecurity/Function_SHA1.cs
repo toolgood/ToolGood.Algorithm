@@ -1,10 +1,10 @@
-ï»¿using System;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
-	internal class Function_SHA1 : Function_1
+	internal sealed class Function_SHA1 : Function_1
 	{
 		public Function_SHA1(FunctionBase func1) : base(func1)
 		{
@@ -12,9 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		public override string Name => "SHA1";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 			try {
 				var t = GetSha1String(Encoding.UTF8.GetBytes(args1.TextValue));
@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 #if NETSTANDARD2_1
 			SHA1 sha512 = SHA1.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //è®¡ç®—æŒ‡å®šStream å¯¹è±¡çš„å“ˆå¸Œå€¼
+			byte[] retVal = sha512.ComputeHash(buffer); //¼ÆËãÖ¸¶¨Stream ¶ÔÏóµÄ¹þÏ£Öµ
 			sha512.Dispose();
 			return BitConverter.ToString(retVal).Replace("-", "");
 #else

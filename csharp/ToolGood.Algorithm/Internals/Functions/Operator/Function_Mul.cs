@@ -5,7 +5,7 @@ using System.Text;
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 
-	internal class Function_Mul : Function_2
+	internal sealed class Function_Mul : Function_2
 	{
 		public Function_Mul(FunctionBase[] funcs) : base(funcs)
 		{
@@ -17,10 +17,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override string Name => "*";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetNumber_1(work, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = GetNumber_2(work, tempParameter); if(args2.IsError) { return args2; }
+			var args1 = GetNumber_1(engine, tempParameter); if(args1.IsError) { return args1; }
+			var args2 = GetNumber_2(engine, tempParameter); if(args2.IsError) { return args2; }
 			 
 			if(args1.NumberValue == 1m) { return args2; }
 			if(args2.NumberValue == 1m) { return args1; }

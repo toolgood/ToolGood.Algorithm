@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_PERCENTILE : Function_2
+	internal sealed class Function_PERCENTILE : Function_2
     {
 		public Function_PERCENTILE(FunctionBase[] funcs) : base(funcs)
 		{
@@ -16,19 +16,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "Percentile";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetArray_1(work, tempParameter);
+            var args1 = GetArray_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
 
-            var args2 = GetNumber_2(work, tempParameter);
+            var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
 
             var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
             if (o == false) { return ParameterError(1); }
             var k = args2.DoubleValue;
-            return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
+            if (k < 0 || k > 1) {
+                return ParameterError(2);
+            }
+            return Operand.Create(ExcelFunctions.Percentile(list.ToArray(), k));
         }
 
     }

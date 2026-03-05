@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_ASC : Function_1
+	internal sealed class Function_ASC : Function_1
 	{
 		public Function_ASC(FunctionBase func1) : base(func1)
 		{
@@ -11,9 +11,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override string Name => "Asc";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			return Operand.Create(F_base_ToDBC(args1.TextValue));
 		}

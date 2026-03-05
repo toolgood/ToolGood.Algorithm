@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_COUNT : Function_N
+	internal sealed class Function_COUNT : Function_N
     {
         public Function_COUNT(FunctionBase[] funcs) : base(funcs)
         {
@@ -12,11 +12,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override string Name => "Count";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>(funcs.Length); foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var list = new List<decimal>();
+            var list = new List<Operand>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             return Operand.Create(list.Count);

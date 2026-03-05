@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
@@ -133,25 +134,25 @@ namespace ToolGood.Algorithm.LitJson
 
         private void ProcessNumber(string number)
         {
-            if (number.Contains('.') || number.Contains('e') || number.Contains('E')) {
-                if (decimal.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal n_double)) {
+            var span = number.AsSpan();
+            if (span.IndexOfAny('.', 'e', 'E') >= 0) {
+                if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal n_double)) {
                     token_value = n_double;
                     return;
                 }
             }
-            if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
+            if (int.TryParse(span, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
                 token_value = (decimal)n_int32;
                 return;
             }
-            if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
+            if (long.TryParse(span, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
                 token_value = (decimal)n_int64;
                 return;
             }
-            if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
+            if (ulong.TryParse(span, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
                 token_value = (decimal)n_uint64;
                 return;
             }
-            // Shouldn't happen, but just in case, return something
             token_value = 0;
         }
 

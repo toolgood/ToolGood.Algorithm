@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.Operands;
 
@@ -47,31 +48,40 @@ namespace ToolGood.Algorithm
             }
         }
 
-        #endregion 构造函数
+		#endregion 构造函数
 
-        /// <summary>
-        /// 自定义参数 请重写此方法
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        public override Operand GetParameter(string parameter)
+		/// <summary>
+		/// AlgorithmEngineEx 请重写 GetParameterEx
+		/// </summary>
+		/// <param name="parameter"></param>
+		/// <returns></returns>
+		public override Operand GetParameter(string parameter)
         {
             if (_tempdict.TryGetValue(parameter, out Operand operand)) {
                 return operand;
             }
-            var result = GetParameter(parameter);
+            var result = GetParameterEx(parameter);
             if (UseTempDict) {
                 _tempdict[parameter] = result;
             }
             return result;
         }
-
-        #region Parameter
-
         /// <summary>
-        /// 清理参数
+        /// 
         /// </summary>
-        public void ClearParameters()
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        public virtual Operand GetParameterEx(string parameter)
+        {
+			return Operand.Error($"Parameter [{parameter}] is missing.");
+		}
+
+		#region Parameter
+
+		/// <summary>
+		/// 清理参数
+		/// </summary>
+		public void ClearParameters()
         {
             _tempdict.Clear();
         }

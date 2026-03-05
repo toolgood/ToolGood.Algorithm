@@ -3,22 +3,31 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_HEX2DEC : Function_1
+	internal sealed class Function_HEX2DEC : Function_2
     {
-        public Function_HEX2DEC(FunctionBase func1) : base(func1)
-        {
-        }
+		public Function_HEX2DEC(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override string Name => "Hex2Dec";
+		public override string Name => "Hex2Dec";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetText_1(work, tempParameter);
+            var args1 = GetText_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
 
             if (RegexHelper.HexRegex.IsMatch(args1.TextValue) == false) { return FunctionError(); }
             var num = Convert.ToInt32(args1.TextValue, 16);
-            return Operand.Create(num);
+			if(func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
+				if(args2.IsError) { return args2; }
+				var n = num.ToString();
+				if(n.Length <= args2.IntValue) {
+					return Operand.Create(n.ToString().PadLeft(args2.IntValue, '0'));
+				}
+				return ParameterError(2);
+			}
+			return Operand.Create(num);
         }
 
     }

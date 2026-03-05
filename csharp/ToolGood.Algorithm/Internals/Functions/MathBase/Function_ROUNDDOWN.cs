@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_ROUNDDOWN : Function_2
+	internal sealed class Function_ROUNDDOWN : Function_2
     {
 		public Function_ROUNDDOWN(FunctionBase[] funcs) : base(funcs)
 		{
@@ -13,18 +13,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override string Name => "RoundDown";
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetNumber_1(work, tempParameter);
+            var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var args2 = GetNumber_2(work, tempParameter);
+			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            if (args1.NumberValue == 0.0m) {
+            if (args1.DoubleValue == 0.0) {
                 return args1;
             }
-            var a = (decimal)Math.Pow(10, args2.IntValue);
-            var b = args1.NumberValue;
+            var a = Math.Pow(10, args2.IntValue);
+            var b = args1.DoubleValue;
 
             b = ((int)(b * a)) / a;
             return Operand.Create(b);

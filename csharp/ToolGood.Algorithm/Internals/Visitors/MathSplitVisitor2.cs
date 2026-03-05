@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -6,22 +6,28 @@ using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
-	internal class MathSplitVisitor2 : AbstractParseTreeVisitor<CalculateTree>, ImathVisitor<CalculateTree>
+	internal sealed class MathSplitVisitor2 : AbstractParseTreeVisitor<CalculateTree>, ImathVisitor<CalculateTree>
 	{
+		private bool hasBracket = false;
+
 		public CalculateTree VisitProg(mathParser.ProgContext context)
 		{
+			hasBracket = false;
 			return context.expr().Accept(this);
 		}
 
 		public CalculateTree VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
+			hasBracket = true;
 			return context.expr().Accept(this);
 		}
 		public CalculateTree VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>()
+				Nodes = new List<CalculateTree>(2),
+				HasBracket = hasBracket,
 			};
+			hasBracket = false;
 			var exprs = context.expr();
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, '*')) {
@@ -35,14 +41,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.ConditionString = context.GetText();
+			tree.Text = context.GetText();
 			return tree;
 		}
 		public CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>()
+				Nodes = new List<CalculateTree>(2),
+				HasBracket = hasBracket,
 			};
+			hasBracket = false;
 			var exprs = context.expr();
 			var t = context.op.Text;
 			if(CharUtil.Equals(t, '+')) {
@@ -56,7 +64,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.ConditionString = context.GetText();
+			tree.Text = context.GetText();
 			return tree;
 		}
 
@@ -66,7 +74,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new CalculateTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				ConditionString = context.GetText()
+				Text = context.GetText()
 			};
 			return tree;
 		}
@@ -246,6 +254,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public CalculateTree VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitUNICODE_fun(mathParser.UNICODE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public CalculateTree VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			return Visit_fun(context);
@@ -287,6 +305,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDAYS_fun(mathParser.DAYS_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -547,6 +570,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitIF_fun(mathParser.IF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitIFS_fun(mathParser.IFS_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSWITCH_fun(mathParser.SWITCH_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -831,6 +864,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public CalculateTree VisitXOR_fun(mathParser.XOR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public CalculateTree VisitParameter2(mathParser.Parameter2Context context)
 		{
 			return Visit_fun(context);
@@ -885,7 +923,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return Visit_fun(context);
 		}
- 
+
 		public CalculateTree VisitPROPER_fun(mathParser.PROPER_funContext context)
 		{
 			return Visit_fun(context);
@@ -1026,6 +1064,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
+		public CalculateTree VisitERF_fun(mathParser.ERF_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitERFC_fun(mathParser.ERFC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELK_fun(mathParser.BESSELK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitBESSELY_fun(mathParser.BESSELY_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDELTA_fun(mathParser.DELTA_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitGESTEP_fun(mathParser.GESTEP_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
 		public CalculateTree VisitSQRT_fun(mathParser.SQRT_funContext context)
 		{
 			return Visit_fun(context);
@@ -1077,6 +1155,46 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitTANH_fun(mathParser.TANH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCOT_fun(mathParser.COT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCOTH_fun(mathParser.COTH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCSC_fun(mathParser.CSC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitCSCH_fun(mathParser.CSCH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSEC_fun(mathParser.SEC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSECH_fun(mathParser.SECH_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitACOT_fun(mathParser.ACOT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitACOTH_fun(mathParser.ACOTH_funContext context)
 		{
 			return Visit_fun(context);
 		}
@@ -1161,10 +1279,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return Visit_fun(context);
 		}
 
-		public CalculateTree VisitUnit(mathParser.UnitContext context)
-		{
-			return Visit_fun(context);
-		}
 
 		public CalculateTree VisitUPPER_fun(mathParser.UPPER_funContext context)
 		{
@@ -1232,6 +1346,146 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public CalculateTree VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitPMT_fun(mathParser.PMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitPPMT_fun(mathParser.PPMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitIPMT_fun(mathParser.IPMT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitPV_fun(mathParser.PV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitFV_fun(mathParser.FV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitNPER_fun(mathParser.NPER_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitRATE_fun(mathParser.RATE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitNPV_fun(mathParser.NPV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitXNPV_fun(mathParser.XNPV_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitIRR_fun(mathParser.IRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitMIRR_fun(mathParser.MIRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitXIRR_fun(mathParser.XIRR_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSLN_fun(mathParser.SLN_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDB_fun(mathParser.DB_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitDDB_fun(mathParser.DDB_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSYD_fun(mathParser.SYD_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+
+		public CalculateTree VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitARABIC_fun(mathParser.ARABIC_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitROMAN_fun(mathParser.ROMAN_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitRANK_fun(mathParser.RANK_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitFORECAST_fun(mathParser.FORECAST_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitSLOPE_fun(mathParser.SLOPE_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitCORREL_fun(mathParser.CORREL_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitPEARSON_fun(mathParser.PEARSON_funContext context)
+		{
+			return Visit_fun(context);
+		}
+		public CalculateTree VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
 		{
 			return Visit_fun(context);
 		}

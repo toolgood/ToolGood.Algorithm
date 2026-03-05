@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -29,12 +29,28 @@ namespace ToolGood.Algorithm
 		/// <summary>
 		/// One
 		/// </summary>
-		public static readonly Operand One = Operand.Create(1m);
+		public static readonly Operand One;
 
 		/// <summary>
 		/// Zero
 		/// </summary>
-		public static readonly Operand Zero = Operand.Create(0m);
+		public static readonly Operand Zero;
+		/// <summary>
+		/// Null
+		/// </summary>
+		public static readonly Operand Null = new OperandNull();
+
+		// 整数缓存范围: -1000 ~ 1000，共2001个值
+		private const int IntCacheOffset = 1000;
+		private const int IntCacheSize = 2001;
+		private static readonly Operand[] IntCache = new Operand[IntCacheSize];
+		static Operand()
+		{
+			for (int i = 0; i < IntCacheSize; i++)
+				IntCache[i] = new OperandInt(i - IntCacheOffset);
+			One = Operand.Create(1);
+			Zero = Operand.Create(0);
+		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
 		/// <summary>
@@ -161,6 +177,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(int obj)
 		{
+			if (obj >= -IntCacheOffset && obj <= IntCacheOffset)
+				return IntCache[obj + IntCacheOffset];
 			return new OperandInt(obj);
 		}
 
@@ -322,7 +340,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<string> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -336,7 +354,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<double> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -350,7 +368,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<int> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -364,7 +382,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ICollection<bool> obj)
 		{
-			var array = new List<Operand>();
+			var array = new List<Operand>(obj.Count);
 			foreach(var item in obj) {
 				array.Add(Create(item));
 			}
@@ -388,17 +406,14 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Error(string msg, params object[] args)
 		{
-			return new OperandError(string.Format(msg, args));
+			return new OperandError(msg, args);
 		}
 
 		/// <summary>
 		/// 创建操作数
 		/// </summary>
 		/// <returns></returns>
-		public static Operand CreateNull()
-		{
-			return new OperandNull();
-		}
+		public static Operand CreateNull() => Null;
 
 		#endregion Create
 
@@ -416,7 +431,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToNumber(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToNumber(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转bool类型
@@ -430,7 +445,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToBoolean(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToBoolean(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 		/// <summary>
 		/// 转string类型
 		/// </summary>
@@ -443,7 +458,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToText(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToText(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转MyDate类型
@@ -457,7 +472,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToMyDate(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToMyDate(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转Array类型
@@ -472,7 +487,7 @@ namespace ToolGood.Algorithm
 		/// <param name="errorMessage"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public virtual Operand ToArray(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+		public virtual Operand ToArray(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
 
 		/// <summary>
 		/// 转Json类型

@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+
+namespace ToolGood.Algorithm.Internals.Functions.MathSum
+{
+	internal sealed class Function_RANK : Function_N
+	{
+		public Function_RANK(FunctionBase[] funcs) : base(funcs) { }
+
+		public override string Name => "RANK";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			if (funcs.Length < 2) return ParameterError(1);
+
+			var numArg = GetNumber(engine, tempParameter, 0);
+			if (numArg.IsError) return numArg;
+			var num = numArg.NumberValue;
+
+			var arrayArg = GetArray(engine, tempParameter, 1);
+			if (arrayArg.IsError) return arrayArg;
+
+			int order = 0;
+			if (funcs.Length > 2) {
+				var orderArg = GetNumber(engine, tempParameter, 2);
+				if (orderArg.IsError) return orderArg;
+				order = orderArg.IntValue;
+			}
+
+			var values = new List<decimal>();
+			foreach (var item in arrayArg.ArrayValue) {
+				if (item.IsNumber) {
+					values.Add(item.NumberValue);
+				}
+			}
+
+			values.Sort();
+			int rank;
+			if (order == 0) {
+				values.Reverse();
+				rank = values.IndexOf(num) + 1;
+			} else {
+				rank = values.IndexOf(num) + 1;
+			}
+
+			return Operand.Create(rank);
+		}
+	}
+}

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_STARTSWITH : Function_3
+	internal sealed class Function_STARTSWITH : Function_3
 	{
 		public Function_STARTSWITH(FunctionBase[] funcs) : base(funcs)
 		{
@@ -13,12 +13,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override string Name => "StartsWith";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(work, tempParameter);
+			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = GetText_2(work, tempParameter);
+			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsError) { return args2; }
 
 			var text = args1.TextValue;
@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
 			}
 
-			var args3 = GetBoolean_3(work, tempParameter);
+			var args3 = GetBoolean_3(engine, tempParameter);
 			if(args3.IsError) { return args3; }
 
 			return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), FunctionUtil.GetStringComparison(args3.BooleanValue)));

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals
@@ -28,9 +28,13 @@ namespace ToolGood.Algorithm.Internals
 		public CalculateTreeType Type { get; internal set; }
 
 		/// <summary>
-		/// 条件
+		/// 文本
 		/// </summary>
-		public string ConditionString { get; internal set; }
+		public string Text { get; internal set; }
+		/// <summary>
+		/// 外面是否有括号
+		/// </summary>
+		public bool HasBracket { get; internal set; }
 
 		/// <summary>
 		/// 出错信息

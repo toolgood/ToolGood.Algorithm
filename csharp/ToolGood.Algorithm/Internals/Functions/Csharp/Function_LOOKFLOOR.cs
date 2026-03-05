@@ -15,18 +15,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 		public override string Name => "LookFloor";
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetNumber_1(work, tempParameter);
+			var args1 = GetNumber_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 
-			var args2 = GetArray_2(work, tempParameter);
+			var args2 = GetArray_2(engine, tempParameter);
 			if(args2.IsError) { return args2; }
 
 			List<decimal> list = new List<decimal>();
 			FunctionUtil.F_base_GetList(args2, list);
 			if(list.Count == 0) { return ParameterError(2); }
-			list = list.OrderBy(n => n).ToList();
+			list.Sort();
 			var value = args1.NumberValue;
 			var result = list[0];
 			if(result == value) { return args1; }
