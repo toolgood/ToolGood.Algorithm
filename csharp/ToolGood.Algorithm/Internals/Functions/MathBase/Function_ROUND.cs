@@ -19,11 +19,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsError) { return args1; }
 
 			if (func2 == null) {
-				return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
+				return Operand.Create(Math.Round(args1.NumberValue, 0, MidpointRounding.AwayFromZero));
 			}
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
+            return Operand.Create(Math.Round(args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
         }
 
     }

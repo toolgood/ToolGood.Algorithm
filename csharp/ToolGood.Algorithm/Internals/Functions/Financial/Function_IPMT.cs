@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length > 5) {
 				var typeArg = GetNumber(engine, tempParameter, 5);
 				if (typeArg.IsError) return typeArg;
-				type = (int)typeArg.DoubleValue;
+				type = typeArg.IntValue;
 			}
 
 			if (rate == 0) {

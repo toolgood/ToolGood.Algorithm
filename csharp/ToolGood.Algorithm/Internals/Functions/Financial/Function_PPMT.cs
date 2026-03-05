@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length > 5) {
 				var typeArg = GetNumber(engine, tempParameter, 5);
 				if (typeArg.IsError) return typeArg;
-				type = (int)typeArg.DoubleValue;
+				type = typeArg.IntValue;
 			}
 
 			var pmtResult = CalculatePMT(rate, nper, pv, fv, type);
@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (rate == 0) {
 				return -(pv + fv) / nper;
 			}
-			var factor = Math.Pow((double)(1 + rate), (double)nper);
+			var factor = Math.Pow((1 + rate), nper);
 			var pmt = -(pv * factor + fv) * rate / (factor - 1);
 			if (type == 1) {
 				pmt = pmt / (1 + rate);
@@ -66,7 +66,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				return 0;
 			}
 			var pmt = CalculatePMT(rate, nper, pv, fv, type);
-			var factor = Math.Pow((double)(1 + rate), (double)(per - 1));
+			var factor = Math.Pow((1 + rate), (per - 1));
 			var ipmt = -(pv * factor + pmt * (factor - 1) / rate) * rate;
 			if (type == 1 && per == 1) {
 				ipmt = 0;

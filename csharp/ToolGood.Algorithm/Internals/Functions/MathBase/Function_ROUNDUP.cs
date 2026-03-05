@@ -20,11 +20,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            if (args1.NumberValue == 0.0m) { return args1; }
+            if (args1.DoubleValue == 0.0) { return args1; }
             var a = Math.Pow(10, args2.IntValue);
             var b = args1.DoubleValue;
 
-            var t = (Math.Ceiling(Math.Abs((double)b) * a)) / a;
+            var t = (Math.Ceiling(Math.Abs(b) * a)) / a;
             if (b > 0) return Operand.Create(t);
             return Operand.Create(-t);
         }

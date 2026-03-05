@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			try {
-				return Operand.Create(char.ConvertFromUtf32((int)args1.DoubleValue));
+				return Operand.Create(char.ConvertFromUtf32(args1.IntValue));
 			} catch {
 				return FunctionError();
 			}

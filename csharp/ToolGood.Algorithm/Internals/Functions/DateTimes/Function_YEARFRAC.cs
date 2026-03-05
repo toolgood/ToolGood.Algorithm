@@ -24,14 +24,14 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			if (funcs.Length > 2) {
 				var basisArg = GetNumber(engine, tempParameter, 2);
 				if (basisArg.IsError) return basisArg;
-				basis = (int)basisArg.NumberValue;
+				basis = basisArg.IntValue;
 			}
 
 			var result = CalculateYearFrac(startDate, endDate, basis);
 			return Operand.Create(result);
 		}
 
-		private decimal CalculateYearFrac(DateTime startDate, DateTime endDate, int basis)
+		private double CalculateYearFrac(DateTime startDate, DateTime endDate, int basis)
 		{
 			if (startDate > endDate) {
 				var temp = startDate;
@@ -45,9 +45,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				case 1: // Actual/actual
 					return CalculateActualActual(startDate, endDate);
 				case 2: // Actual/360
-					return (decimal)(endDate - startDate).TotalDays / 360;
+					return (endDate - startDate).TotalDays / 360;
 				case 3: // Actual/365
-					return (decimal)(endDate - startDate).TotalDays / 365;
+					return (endDate - startDate).TotalDays / 365;
 				case 4: // European 30/360
 					return Calculate30_360E(startDate, endDate);
 				default:
@@ -55,32 +55,32 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 		}
 
-		private decimal Calculate30_360(DateTime startDate, DateTime endDate)
+		private double Calculate30_360(DateTime startDate, DateTime endDate)
 		{
 			int d1 = Math.Min(30, startDate.Day);
 			int d2 = endDate.Day;
 
 			if (d1 == 30) d2 = Math.Min(30, d2);
 
-			return (360 * (endDate.Year - startDate.Year) + 30 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360m;
+			return (360 * (endDate.Year - startDate.Year) + 30 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360.0;
 		}
 
-		private decimal Calculate30_360E(DateTime startDate, DateTime endDate)
+		private double Calculate30_360E(DateTime startDate, DateTime endDate)
 		{
 			int d1 = Math.Min(30, startDate.Day);
 			int d2 = Math.Min(30, endDate.Day);
 
-			return (360 * (endDate.Year - startDate.Year) + 30 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360m;
+			return (360 * (endDate.Year - startDate.Year) + 30 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360.0;
 		}
 
-		private decimal CalculateActualActual(DateTime startDate, DateTime endDate)
+		private double CalculateActualActual(DateTime startDate, DateTime endDate)
 		{
 			int startYear = startDate.Year;
 			int endYear = endDate.Year;
 
 			if (startYear == endYear) {
 				int daysInYear = DateTime.IsLeapYear(startYear) ? 366 : 365;
-				return (decimal)(endDate - startDate).TotalDays / daysInYear;
+				return (endDate - startDate).TotalDays / daysInYear;
 			}
 
 			double result = 0;
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			result += (endDate - new DateTime(endYear, 1, 1)).TotalDays / daysInEndYear;
 			result += endYear - startYear - 1;
 
-			return (decimal)result;
+			return result;
 		}
 	}
 }

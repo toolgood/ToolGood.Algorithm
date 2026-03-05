@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length > 4) {
 				var monthArg = GetNumber(engine, tempParameter, 4);
 				if (monthArg.IsError) return monthArg;
-				month = (int)monthArg.DoubleValue;
+				month = monthArg.IntValue;
 			}
 
 			if (life == 0 || cost == 0) return Div0Error();

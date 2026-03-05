@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			var numArg = GetNumber(engine, tempParameter, 0);
 			if (numArg.IsError) return numArg;
-			var num = (int)numArg.NumberValue;
+			var num = numArg.IntValue;
 
 			if (num < 0 || num > 3999) return Operand.Create(string.Empty);
 
@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (funcs.Length > 1) {
 				var formArg = GetNumber(engine, tempParameter, 1);
 				if (formArg.IsError) return formArg;
-				form = (int)formArg.NumberValue;
+				form = formArg.IntValue;
 			}
 
 			return Operand.Create(ArabicToRoman(num, form));
