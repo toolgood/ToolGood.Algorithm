@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                 return FunctionError();
             }
 
-            return Operand.Create(ExcelFunctions.Weibull((double)x, (double)shape, (double)scale, state));
+            return Operand.Create(ExcelFunctions.Weibull(x, shape, scale, state));
         }
 
     }

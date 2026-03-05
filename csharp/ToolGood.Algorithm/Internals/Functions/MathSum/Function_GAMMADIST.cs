@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (alpha < 0.0 || beta < 0.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
+            return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
         }
 
     }

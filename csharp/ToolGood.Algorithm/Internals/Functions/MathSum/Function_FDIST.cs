@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
+            return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
         }
 
     }

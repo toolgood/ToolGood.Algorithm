@@ -11,30 +11,30 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 2) return ParameterError(1);
+			if(funcs.Length < 2) return ParameterError(1);
 
 			var array1Arg = GetArray(engine, tempParameter, 0);
-			if (array1Arg.IsError) return array1Arg;
+			if(array1Arg.IsError) return array1Arg;
 
 			var array2Arg = GetArray(engine, tempParameter, 1);
-			if (array2Arg.IsError) return array2Arg;
+			if(array2Arg.IsError) return array2Arg;
 
-			var xValues = new List<decimal>();
-			foreach (var item in array1Arg.ArrayValue) {
-				if (item.IsNumber) xValues.Add(item.NumberValue);
+			var xValues = new List<double>();
+			foreach(var item in array1Arg.ArrayValue) {
+				if(item.IsNumber) xValues.Add(item.DoubleValue);
 			}
 
-			var yValues = new List<decimal>();
-			foreach (var item in array2Arg.ArrayValue) {
-				if (item.IsNumber) yValues.Add(item.NumberValue);
+			var yValues = new List<double>();
+			foreach(var item in array2Arg.ArrayValue) {
+				if(item.IsNumber) yValues.Add(item.DoubleValue);
 			}
 
-			if (xValues.Count != yValues.Count || xValues.Count < 2) return FunctionError();
+			if(xValues.Count != yValues.Count || xValues.Count < 2) return FunctionError();
 
 			int n = xValues.Count;
-			decimal sumX = 0, sumY = 0;
+			double sumX = 0, sumY = 0;
 
-			for (int i = 0; i < n; i++) {
+			for(int i = 0; i < n; i++) {
 				sumX += xValues[i];
 				sumY += yValues[i];
 			}
@@ -42,9 +42,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var meanX = sumX / n;
 			var meanY = sumY / n;
 
-			decimal numerator = 0, denomX = 0, denomY = 0;
+			double numerator = 0, denomX = 0, denomY = 0;
 
-			for (int i = 0; i < n; i++) {
+			for(int i = 0; i < n; i++) {
 				var dx = xValues[i] - meanX;
 				var dy = yValues[i] - meanY;
 				numerator += dx * dy;
@@ -52,9 +52,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				denomY += dy * dy;
 			}
 
-			if (denomX == 0 || denomY == 0) return Div0Error();
+			if(denomX == 0 || denomY == 0) return Div0Error();
 
-			return Operand.Create(numerator / (decimal)Math.Sqrt((double)(denomX * denomY)));
+			return Operand.Create(numerator / Math.Sqrt((denomX * denomY)));
 		}
 	}
 }

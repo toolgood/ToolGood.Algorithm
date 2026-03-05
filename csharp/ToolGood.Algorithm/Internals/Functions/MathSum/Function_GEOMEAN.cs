@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                 if (num <= 0) {
                     return FunctionError();
                 }
-                product *= (double)num;
+                product *= num;
             }
             double geoMean = Math.Pow(product, 1.0 / list.Count);
             return Operand.Create(geoMean);

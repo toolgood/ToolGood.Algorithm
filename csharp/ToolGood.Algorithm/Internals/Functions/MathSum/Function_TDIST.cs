@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (degreesFreedom <= 0.0m || tails < 1 || tails > 2) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
+            return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
         }
 
     }

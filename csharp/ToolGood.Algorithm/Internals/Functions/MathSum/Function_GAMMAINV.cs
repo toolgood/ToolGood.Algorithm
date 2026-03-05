@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
+            return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
         }
 
     }

@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length > 2) {
 				var orderArg = GetNumber(engine, tempParameter, 2);
 				if (orderArg.IsError) return orderArg;
-				order = (int)orderArg.NumberValue;
+				order = orderArg.IntValue;
 			}
 
 			var values = new List<decimal>();

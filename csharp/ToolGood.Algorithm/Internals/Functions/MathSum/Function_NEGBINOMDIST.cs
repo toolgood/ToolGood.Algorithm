@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
+            return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
         }
 
     }

@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var p = args1.DoubleValue;
             var avg = args2.DoubleValue;
             var STDEV = args3.DoubleValue;
-            return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
+            return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
         }
 
     }

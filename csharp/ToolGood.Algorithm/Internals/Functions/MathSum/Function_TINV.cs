@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.TInv((double)p, degreesFreedom));
+            return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
         }
 
     }

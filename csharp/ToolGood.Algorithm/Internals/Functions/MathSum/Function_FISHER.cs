@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (x >= 1 || x <= -1) {
                 return FunctionError();
             }
-            var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
+            var n = 0.5 * Math.Log(((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
 
