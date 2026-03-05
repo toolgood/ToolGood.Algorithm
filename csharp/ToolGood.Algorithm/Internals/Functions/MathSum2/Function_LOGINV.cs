@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_EXPONDIST : Function_3
+	internal sealed class Function_LOGINV : Function_3
     {
-		public Function_EXPONDIST(FunctionBase[] funcs) : base(funcs)
+		public Function_LOGINV(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "ExpOnDist";
+        public override string Name => "LogInv";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -22,14 +22,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) return args2;
 
-            var args3 = GetBoolean_3(engine, tempParameter);
+            var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
 
-            var n1 = args1.DoubleValue;
-            if (n1 < 0.0) {
+            var n3 = args3.DoubleValue;
+            if (n3 < 0.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
+            return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
         }
 
     }

@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
 	internal sealed class Function_TDIST : Function_3
     {

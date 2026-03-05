@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_NORMDIST : Function_4
+	internal sealed class Function_NORMINV : Function_3
     {
-		public Function_NORMDIST(FunctionBase[] funcs) : base(funcs)
+		public Function_NORMINV(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "NormDist";
+        public override string Name => "NormInv";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -24,15 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
-
-            var args4 = GetBoolean_4(engine, tempParameter);
-            if (args4.IsError) return args4;
-
-            var num = args1.DoubleValue;
+            var p = args1.DoubleValue;
             var avg = args2.DoubleValue;
             var STDEV = args3.DoubleValue;
-            var b = args4.BooleanValue;
-            return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
+            return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
         }
 
     }

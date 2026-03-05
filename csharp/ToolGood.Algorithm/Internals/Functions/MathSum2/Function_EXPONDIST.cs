@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_NEGBINOMDIST : Function_3
+	internal sealed class Function_EXPONDIST : Function_3
     {
-		public Function_NEGBINOMDIST(FunctionBase[] funcs) : base(funcs)
+		public Function_EXPONDIST(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "NegBinomDist";
+        public override string Name => "ExpOnDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -22,16 +22,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) return args2;
 
-            var args3 = GetNumber_3(engine, tempParameter);
+            var args3 = GetBoolean_3(engine, tempParameter);
             if (args3.IsError) return args3;
-            int k = args1.IntValue;
-            var r = args2.DoubleValue;
-            var p = args3.DoubleValue;
 
-            if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
+            var n1 = args1.DoubleValue;
+            if (n1 < 0.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
+            return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
         }
 
     }

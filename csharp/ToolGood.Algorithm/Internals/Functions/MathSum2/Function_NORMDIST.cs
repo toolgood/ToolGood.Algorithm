@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_WEIBULL : Function_4
+	internal sealed class Function_NORMDIST : Function_4
     {
-		public Function_WEIBULL(FunctionBase[] funcs) : base(funcs)
+		public Function_NORMDIST(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "Weibull";
+        public override string Name => "NormDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -27,15 +27,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var args4 = GetBoolean_4(engine, tempParameter);
             if (args4.IsError) return args4;
-            var x = args1.DoubleValue;
-            var shape = args2.DoubleValue;
-            var scale = args3.DoubleValue;
-            var state = args4.BooleanValue;
-            if (shape <= 0.0 || scale <= 0.0) {
-                return FunctionError();
-            }
 
-            return Operand.Create(ExcelFunctions.Weibull(x, shape, scale, state));
+            var num = args1.DoubleValue;
+            var avg = args2.DoubleValue;
+            var STDEV = args3.DoubleValue;
+            var b = args4.BooleanValue;
+            return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
         }
 
     }

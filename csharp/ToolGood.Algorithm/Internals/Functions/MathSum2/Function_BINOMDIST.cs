@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_BETAINV : Function_3
+	internal sealed class Function_BINOMDIST : Function_4
     {
-		public Function_BETAINV(FunctionBase[] funcs) : base(funcs)
+		public Function_BINOMDIST(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "BetaInv";
+        public override string Name => "BinomDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -25,13 +25,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
 
-            var p = args1.DoubleValue;
-            var alpha = args2.DoubleValue;
-            var beta = args3.DoubleValue;
-            if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
+            var args4 = GetBoolean_4(engine, tempParameter);
+            if (args4.IsError) return args4;
+
+            var n2 = args2.IntValue;
+            var n3 = args3.DoubleValue;
+            if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.BetaInv(p, alpha, beta));
+            return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
         }
 
     }

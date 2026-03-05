@@ -12,6 +12,7 @@ using ToolGood.Algorithm.Internals.Functions.Financial;
 using ToolGood.Algorithm.Internals.Functions.Flow;
 using ToolGood.Algorithm.Internals.Functions.MathBase;
 using ToolGood.Algorithm.Internals.Functions.MathSum;
+using ToolGood.Algorithm.Internals.Functions.MathSum2;
 using ToolGood.Algorithm.Internals.Functions.MathTransformation;
 using ToolGood.Algorithm.Internals.Functions.MathTrigonometric;
 using ToolGood.Algorithm.Internals.Functions.Operator;

@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_GAMMAINV : Function_3
+	internal sealed class Function_BETADIST : Function_3
     {
-		public Function_GAMMAINV(FunctionBase[] funcs) : base(funcs)
+		public Function_BETADIST(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "GammaInv";
+        public override string Name => "BetaDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -25,14 +25,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
 
-            var probability = args1.DoubleValue;
+            var x = args1.DoubleValue;
             var alpha = args2.DoubleValue;
             var beta = args3.DoubleValue;
-            if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
+
+            if (alpha < 0.0 || beta < 0.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
+            return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
         }
+
 
     }
 

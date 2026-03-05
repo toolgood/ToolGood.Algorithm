@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_LOGNORMDIST : Function_3
+	internal sealed class Function_GAMMAINV : Function_3
     {
-		public Function_LOGNORMDIST(FunctionBase[] funcs) : base(funcs)
+		public Function_GAMMAINV(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "LogNormDist";
+        public override string Name => "GammaInv";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -25,11 +25,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
 
-            var n3 = args3.DoubleValue;
-            if (n3 < 0.0) {
+            var probability = args1.DoubleValue;
+            var alpha = args2.DoubleValue;
+            var beta = args3.DoubleValue;
+            if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
+            return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
         }
 
     }

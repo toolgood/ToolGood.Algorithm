@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_BETADIST : Function_3
+	internal sealed class Function_WEIBULL : Function_4
     {
-		public Function_BETADIST(FunctionBase[] funcs) : base(funcs)
+		public Function_WEIBULL(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "BetaDist";
+        public override string Name => "Weibull";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -25,16 +25,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsError) return args3;
 
+            var args4 = GetBoolean_4(engine, tempParameter);
+            if (args4.IsError) return args4;
             var x = args1.DoubleValue;
-            var alpha = args2.DoubleValue;
-            var beta = args3.DoubleValue;
-
-            if (alpha < 0.0 || beta < 0.0) {
+            var shape = args2.DoubleValue;
+            var scale = args3.DoubleValue;
+            var state = args4.BooleanValue;
+            if (shape <= 0.0 || scale <= 0.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
-        }
 
+            return Operand.Create(ExcelFunctions.Weibull(x, shape, scale, state));
+        }
 
     }
 

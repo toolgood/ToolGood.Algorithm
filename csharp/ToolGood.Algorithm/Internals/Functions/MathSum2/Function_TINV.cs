@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_FINV : Function_3
+	internal sealed class Function_TINV : Function_2
     {
-		public Function_FINV(FunctionBase[] funcs) : base(funcs)
+		public Function_TINV(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
 		
 
-        public override string Name => "FInv";
+        public override string Name => "TInv";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
@@ -21,17 +21,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) return args2;
-
-            var args3 = GetNumber_3(engine, tempParameter);
-            if (args3.IsError) return args3;
-
             var p = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
-            var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
+            if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
                 return FunctionError();
             }
-            return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
+            return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
         }
 
     }
