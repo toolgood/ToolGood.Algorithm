@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 #else
             Random rand = Random.Shared;
 #endif
-            return Operand.Create(rand.NextDouble() * (args2.DoubleValue - args1.DoubleValue) + args1.DoubleValue);
+            return Operand.Create((decimal)rand.NextDouble() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
         }
 
     }

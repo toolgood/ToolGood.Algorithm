@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				}
 			}
 
-            var week = Math.Ceiling(days / 7.0);
+            var week = Math.Ceiling(days / 7.0m);
             return Operand.Create(week);
         }
 

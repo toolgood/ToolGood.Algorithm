@@ -73,25 +73,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 				obj => obj.NumberValue);
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<double> list)
-		{
-			return F_base_GetList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.DoubleValue);
-		}
-
 		public static bool F_base_GetList(Operand args, List<decimal> list)
 		{
 			return F_base_GetList(args, list, 
 				obj => obj.IsNumber ? obj : obj.ToNumber(null),
 				obj => obj.NumberValue);
-		}
-
-		public static bool F_base_GetList(Operand args, List<double> list)
-		{
-			return F_base_GetList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.DoubleValue);
 		}
 
 		public static bool F_base_GetList(Operand args, List<string> list)
@@ -133,9 +119,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(item == d) {
 					sum += sumdbs[i];
 				}
-				//if (Math.Round(item, 10, MidpointRounding.AwayFromZero) == d) {
-				//	sum += item;
-				//}
 			}
 			return sum;
 		}
@@ -155,22 +138,16 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			if(CharUtil.Equals(ss, '<')) {
 				return a < b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
 			} else if(CharUtil.Equals(ss, "<=")) {
 				return a <= b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
 			} else if(CharUtil.Equals(ss, '>')) {
 				return a > b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
 			} else if(CharUtil.Equals(ss, ">=")) {
 				return (a >= b);
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
 			} else if(CharUtil.Equals(ss, "=", "==", "===")) {
 				return a == b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
 			}
 			return a != b;
-			//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
 		}
 
 		public static int F_base_gcd(List<decimal> list)
@@ -290,7 +267,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static int Compare(decimal t1, decimal t2)
 		{
 			var b = t1 - t2;
-			//var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
 			if(b == 0) {
 				return 0;
 			} else if(b > 0) {
