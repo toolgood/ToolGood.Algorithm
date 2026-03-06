@@ -15,25 +15,25 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			var xArg = GetNumber(engine, tempParameter, 0);
 			if (xArg.IsError) return xArg;
-			var x = xArg.DoubleValue;
+			var x = xArg.NumberValue;
 
 			var nArg = GetNumber(engine, tempParameter, 1);
 			if (nArg.IsError) return nArg;
-			var n = nArg.DoubleValue;
+			var n = nArg.NumberValue;
 
 			var mArg = GetNumber(engine, tempParameter, 2);
 			if (mArg.IsError) return mArg;
-			var m = mArg.DoubleValue;
+			var m = mArg.NumberValue;
 
 			var coefficientsArg = GetArray(engine, tempParameter, 3);
 			if (coefficientsArg.IsError) return coefficientsArg;
 
-			double result = 0;
+			decimal result = 0;
 			int i = 0;
 			foreach (var coef in coefficientsArg.ArrayValue) {
 				if (coef.IsNumber) {
 					var power = n + i * m;
-					result += coef.DoubleValue * Math.Pow(x, power);
+					result += coef.NumberValue * MathEx.Pow(x, power);
 					i++;
 				}
 			}

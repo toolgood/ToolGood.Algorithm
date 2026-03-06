@@ -17,18 +17,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         {
             var args = new List<Operand>(funcs.Length); foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var list = new List<double>();
+            var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count <= 1) { return FunctionError(); }
 
-            double mean = 0, m2 = 0;
+            decimal mean = 0, m2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                double delta = list[i] - mean;
+				decimal delta = list[i] - mean;
                 mean += delta / (i + 1);
                 m2 += delta * (list[i] - mean);
             }
-            return Operand.Create(Math.Sqrt(m2 / (list.Count - 1)));
+            return Operand.Create(MathEx.Sqrt(m2 / (list.Count - 1)));
         }
 
     }
