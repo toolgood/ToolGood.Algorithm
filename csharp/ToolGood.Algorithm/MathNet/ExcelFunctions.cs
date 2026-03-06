@@ -198,13 +198,13 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 					return ArrayStatistics.Minimum(array);
 
 				case 1:
-					return QuantileCustom(array, 0.25m, QuantileDefinition.Excel);
+					return QuantileCustom(array, 0.25m);
 
 				case 2:
-					return QuantileCustom(array, 0.5m, QuantileDefinition.Excel);
+					return QuantileCustom(array, 0.5m);
 
 				case 3:
-					return QuantileCustom(array, 0.75m, QuantileDefinition.Excel);
+					return QuantileCustom(array, 0.75m);
 
 				case 4:
 					return ArrayStatistics.Maximum(array);
@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
 		public static decimal Percentile(decimal[] array, decimal k)
 		{
-			return QuantileCustom(array, k, QuantileDefinition.Excel);
+			return QuantileCustom(array, k);
 		}
 
 		public static decimal PercentRank(decimal[] array, decimal x)
@@ -225,9 +225,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 			return SortedArrayStatistics.QuantileRank(array, x);
 		}
 
-		private static decimal QuantileCustom(decimal[] data, decimal tau, QuantileDefinition definition)
+		private static decimal QuantileCustom(decimal[] data, decimal tau)
 		{
-			return ArrayStatistics.QuantileCustomInplace(data, tau, definition);
+			return ArrayStatistics.QuantileCustomInplace(data, tau);
 		}
 
 
