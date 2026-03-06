@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (z < 0) {
                 return FunctionError();
             }
-            double d = 1;
+            decimal d = 1;
             for (int i = 1; i <= z; i++) {
                 d *= i;
             }

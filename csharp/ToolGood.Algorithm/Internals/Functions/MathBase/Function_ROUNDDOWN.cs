@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-            if (args1.DoubleValue == 0.0) {
+            if (args1.NumberValue == 0) {
                 return args1;
             }
             var a = MathEx.Pow(10, args2.IntValue);
