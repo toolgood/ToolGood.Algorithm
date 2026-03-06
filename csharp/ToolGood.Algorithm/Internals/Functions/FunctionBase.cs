@@ -13,15 +13,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 	public abstract class FunctionBase
 	{
 		/// <summary>
-		/// ����
+		/// 
 		/// </summary>
 		public abstract string Name { get; }
 
 		/// <summary>
-		/// ���м���
+		/// 
 		/// </summary>
 		/// <param name="engine"></param>
-		/// <param name="tempParameter">��ʱ������δ�ҵ�����null</param>
+		/// <param name="tempParameter"></param>
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
 
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		#region ConvertToText
 		/// <summary>
-		/// ת������Ϊ�ı�
+		/// 
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����ֵ
+		/// 
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -69,7 +69,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����
+		/// 
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -80,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����
+		/// 
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����
+		/// 
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -180,7 +180,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
 				obj => obj.IntValue, tempParameter);
 		}
-		   
+
 		/// <summary>
 		/// </summary>
 		/// <param name="engine"></param>
@@ -235,7 +235,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 						return obj.DateValue.ToDateTime(DateTimeKind.Local);
 					}
 					return obj.DateValue.ToDateTime(DateTimeKind.Utc);
-				} , tempParameter);
+				}, tempParameter);
 		}
 
 		/// <summary>
@@ -250,7 +250,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
 				obj => obj.DateValue.ToTimeSpan(), tempParameter);
 		}
- 
+
 		#endregion
 	}
 }

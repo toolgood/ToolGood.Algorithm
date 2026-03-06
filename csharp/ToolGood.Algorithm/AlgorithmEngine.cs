@@ -113,107 +113,6 @@ namespace ToolGood.Algorithm
 		#endregion Parse Evaluate
 
 		#region TryEvaluate
-
-		/// <summary>
-		/// 执行函数,如果异常，返回默认值
-		/// </summary>
-		/// <param name="exp"></param>
-		/// <param name="def"></param>
-		/// <returns></returns>
-		public ushort TryEvaluate(string exp, ushort def)
-		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (ushort)obj.IntValue;
-			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
-		}
-
-		/// <summary>
-		/// 执行函数,如果异常，返回默认值
-		/// </summary>
-		/// <param name="exp"></param>
-		/// <param name="def"></param>
-		/// <returns></returns>
-		public uint TryEvaluate(string exp, uint def)
-		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (uint)obj.IntValue;
-			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
-		}
-
-		/// <summary>
-		/// 执行函数,如果异常，返回默认值
-		/// </summary>
-		/// <param name="exp"></param>
-		/// <param name="def"></param>
-		/// <returns></returns>
-		public ulong TryEvaluate(string exp, ulong def)
-		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (ulong)obj.IntValue;
-			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
-		}
-
-		/// <summary>
-		/// 执行函数,如果异常，返回默认值
-		/// </summary>
-		/// <param name="exp"></param>
-		/// <param name="def"></param>
-		/// <returns></returns>
-		public short TryEvaluate(string exp, short def)
-		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (short)obj.IntValue;
-			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
-		}
-
 		/// <summary>
 		/// 执行函数,如果异常，返回默认值
 		/// </summary>
@@ -258,31 +157,6 @@ namespace ToolGood.Algorithm
 					}
 				}
 				return obj.LongValue;
-			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
-			}
-			return def;
-		}
-
-		/// <summary>
-		/// 执行函数,如果异常，返回默认值
-		/// </summary>
-		/// <param name="exp"></param>
-		/// <param name="def"></param>
-		/// <returns></returns>
-		public float TryEvaluate(string exp, float def)
-		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
-				}
-				return (float)obj.DoubleValue;
 			} catch(Exception ex) {
 				LastError = ex.Message + "\r\n" + ex.StackTrace;
 			}
