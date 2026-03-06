@@ -9,18 +9,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             return SpecialFunctions.GammaLn(z);
         }
 
-        //public static double ChiDist(double x, double freedom)
-        //{
-        //    return Chi.PDF(x, freedom);//Is Error
-        //}
-
-        public static double ExponDist(double x, double rate, bool state)
-        {
-            if (state) {
-                return Exponential.CDF(rate, x);
-            }
-            return Exponential.PDF(rate, x);
-        }
 
         public static double HypgeomDist(int k, int draws, int success, int population)
         {
