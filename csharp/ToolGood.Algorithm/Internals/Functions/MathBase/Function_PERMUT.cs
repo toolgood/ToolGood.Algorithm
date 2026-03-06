@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
                 return FunctionError();
             }
 
-            double sum = 1;
+            decimal sum = 1;
             for (int i = 0; i < count; i++) {
                 sum *= (total - i);
             }

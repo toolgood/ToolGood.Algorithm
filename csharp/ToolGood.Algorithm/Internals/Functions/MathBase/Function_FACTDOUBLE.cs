@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var z = args1.IntValue;
             if (z < 0) { return FunctionError(); }
 
-            double d = 1;
+            decimal d = 1;
             for (int i = z; i > 0; i -= 2) {
                 d *= i;
             }

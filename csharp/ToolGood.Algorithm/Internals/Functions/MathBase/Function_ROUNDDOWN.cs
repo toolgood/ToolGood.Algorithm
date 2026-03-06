@@ -23,8 +23,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (args1.DoubleValue == 0.0) {
                 return args1;
             }
-            var a = Math.Pow(10, args2.IntValue);
-            var b = args1.DoubleValue;
+            var a = MathEx.Pow(10, args2.IntValue);
+            var b = args1.NumberValue;
 
             b = ((int)(b * a)) / a;
             return Operand.Create(b);

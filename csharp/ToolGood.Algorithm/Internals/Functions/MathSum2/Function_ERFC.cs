@@ -1,26 +1,31 @@
 using System;
 using System.Text;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathBase
+namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
-	internal sealed class Function_ERF : Function_1
+	internal sealed class Function_ERFC : Function_1
 	{
-		public Function_ERF(FunctionBase func) : base(func)
+		public Function_ERFC(FunctionBase func) : base(func)
 		{
 		}
 
-		public Function_ERF(FunctionBase[] funcs) : base(funcs)
+		public Function_ERFC(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override string Name => "Erf";
+		public override string Name => "Erfc";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if(args1.IsError) { return args1; }
 			var x = args1.DoubleValue;
-			return Operand.Create(Erf(x));
+			return Operand.Create(Erfc(x));
+		}
+
+		private static double Erfc(double x)
+		{
+			return 1.0 - Erf(x);
 		}
 
 		private static double Erf(double x)
