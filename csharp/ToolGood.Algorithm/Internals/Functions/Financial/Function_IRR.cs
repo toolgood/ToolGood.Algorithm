@@ -15,39 +15,39 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var valuesArg = GetArray(engine, tempParameter, 0);
 			if (valuesArg.IsError) return valuesArg;
-			var values = new List<double>();
+			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.DoubleValue);
+				values.Add(v.NumberValue);
 			}
 
-			double guess = 0.1;
+			decimal guess = 0.1m;
 			if (funcs.Length > 1) {
 				var guessArg = GetNumber(engine, tempParameter, 1);
 				if (guessArg.IsError) return guessArg;
-				guess = guessArg.DoubleValue;
+				guess = guessArg.NumberValue;
 			}
 
 			var irr = NewtonRaphsonIRR(values, guess);
 			return Operand.Create(irr);
 		}
 
-		private double NewtonRaphsonIRR(List<double> values, double guess)
+		private decimal NewtonRaphsonIRR(List<decimal> values, decimal guess)
 		{
 			var rate = guess;
 			for (int iter = 0; iter < 100; iter++) {
-				double npv = 0;
-				double dnpv = 0;
+				decimal npv = 0;
+				decimal dnpv = 0;
 
 				for (int i = 0; i < values.Count; i++) {
-					var factor = (double)Math.Pow((1 + rate), i);
+					var factor = (decimal)MathEx.Pow((1 + rate), i);
 					npv += values[i] / factor;
 					dnpv -= i * values[i] / (factor * (1 + rate));
 				}
 
-				if (Math.Abs(dnpv) < 1e-12) break;
+				if (Math.Abs(dnpv) < 1e-12m) break;
 				var newRate = rate - npv / dnpv;
 
-				if (Math.Abs(newRate - rate) < 1e-10) {
+				if (Math.Abs(newRate - rate) < 1e-10m) {
 					return newRate;
 				}
 				rate = newRate;

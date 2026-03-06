@@ -14,21 +14,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var nperArg = GetNumber(engine, tempParameter, 0);
 			if (nperArg.IsError) return nperArg;
-			var nper = nperArg.DoubleValue;
+			var nper = nperArg.NumberValue;
 
 			var pmtArg = GetNumber(engine, tempParameter, 1);
 			if (pmtArg.IsError) return pmtArg;
-			var pmt = pmtArg.DoubleValue;
+			var pmt = pmtArg.NumberValue;
 
 			var pvArg = GetNumber(engine, tempParameter, 2);
 			if (pvArg.IsError) return pvArg;
-			var pv = pvArg.DoubleValue;
+			var pv = pvArg.NumberValue;
 
-			double fv = 0;
+			decimal fv = 0;
 			if (funcs.Length > 3) {
 				var fvArg = GetNumber(engine, tempParameter, 3);
 				if (fvArg.IsError) return fvArg;
-				fv = fvArg.DoubleValue;
+				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
@@ -38,22 +38,22 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				type = typeArg.IntValue;
 			}
 
-			double guess = 0.1;
+			decimal guess = 0.1m;
 			if (funcs.Length > 5) {
 				var guessArg = GetNumber(engine, tempParameter, 5);
 				if (guessArg.IsError) return guessArg;
-				guess = guessArg.DoubleValue;
+				guess = guessArg.NumberValue;
 			}
 
 			var rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
 			return Operand.Create(rate);
 		}
 
-		private double NewtonRaphson(double n, double p, double v, double f, double type, double rate)
+		private decimal NewtonRaphson(decimal n, decimal p, decimal v, decimal f, decimal type, decimal rate)
 		{
 			for (int i = 0; i < 100; i++) {
-				double factor = Math.Pow(1 + rate, n);
-				double fn;
+				decimal factor = MathEx.Pow(1 + rate, n);
+				decimal fn;
 				
 				if (type == 1) {
 					fn = v * factor + p * (1 + rate) * (factor - 1) / rate + f;
@@ -61,20 +61,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 					fn = v * factor + p * (factor - 1) / rate + f;
 				}
 
-				double dfn;
+				decimal dfn;
 				if (type == 1) {
-					dfn = v * n * Math.Pow(1 + rate, n - 1) + 
-						  p * (1 + rate) * (n * rate * Math.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate) +
+					dfn = v * n * MathEx.Pow(1 + rate, n - 1) + 
+						  p * (1 + rate) * (n * rate * MathEx.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate) +
 						  p * (factor - 1) / rate;
 				} else {
-					dfn = v * n * Math.Pow(1 + rate, n - 1) + 
-						  p * (n * rate * Math.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate);
+					dfn = v * n * MathEx.Pow(1 + rate, n - 1) + 
+						  p * (n * rate * MathEx.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate);
 				}
 
-				if (Math.Abs(dfn) < 1e-12) break;
+				if (Math.Abs(dfn) < 1e-12m) break;
 				var newRate = rate - fn / dfn;
 
-				if (Math.Abs(newRate - rate) < 1e-10) {
+				if (Math.Abs(newRate - rate) < 1e-10m) {
 					return newRate;
 				}
 				rate = newRate;

@@ -16,9 +16,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var valuesArg = GetArray(engine, tempParameter, 0);
 			if (valuesArg.IsError) return valuesArg;
-			var values = new List<double>();
+			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.DoubleValue);
+				values.Add(v.NumberValue);
 			}
 
 			var datesArg = GetArray(engine, tempParameter, 1);
@@ -38,37 +38,37 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			if (values.Count != dates.Count || values.Count < 2) return FunctionError();
 
-			double guess = 0.1;
+			decimal guess = 0.1m;
 			if (funcs.Length > 2) {
 				var guessArg = GetNumber(engine, tempParameter, 2);
 				if (guessArg.IsError) return guessArg;
-				guess = guessArg.DoubleValue;
+				guess = guessArg.NumberValue;
 			}
 
 			var xirr = NewtonRaphsonXIRR(values, dates, guess);
 			return Operand.Create(xirr);
 		}
 
-		private double NewtonRaphsonXIRR(List<double> values, List<DateTime> dates, double rate)
+		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal rate)
 		{
 			var baseDate = dates[0];
 
 			for (int iter = 0; iter < 100; iter++) {
-				double npv = 0;
-				double dnpv = 0;
+				decimal npv = 0;
+				decimal dnpv = 0;
 
 				for (int i = 0; i < values.Count; i++) {
-					var days = (dates[i] - baseDate).TotalDays;
-					var exp = days / 365.0;
-					var factor = Math.Pow(1 + rate, exp);
+					var days = (decimal)(dates[i] - baseDate).TotalDays;
+					var exp = days / 365.0m;
+					var factor = MathEx.Pow(1 + rate, exp);
 					npv += values[i] / factor;
 					dnpv -= values[i] * exp / (factor * (1 + rate));
 				}
 
-				if (Math.Abs(dnpv) < 1e-12) break;
+				if (Math.Abs(dnpv) < 1e-12m) break;
 				var newRate = rate - npv / dnpv;
 
-				if (Math.Abs(newRate - rate) < 1e-10) {
+				if (Math.Abs(newRate - rate) < 1e-10m) {
 					return newRate;
 				}
 				rate = newRate;

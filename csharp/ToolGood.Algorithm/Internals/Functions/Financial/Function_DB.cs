@@ -14,19 +14,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var costArg = GetNumber(engine, tempParameter, 0);
 			if (costArg.IsError) return costArg;
-			var cost = costArg.DoubleValue;
+			var cost = costArg.NumberValue;
 
 			var salvageArg = GetNumber(engine, tempParameter, 1);
 			if (salvageArg.IsError) return salvageArg;
-			var salvage = salvageArg.DoubleValue;
+			var salvage = salvageArg.NumberValue;
 
 			var lifeArg = GetNumber(engine, tempParameter, 2);
 			if (lifeArg.IsError) return lifeArg;
-			var life = lifeArg.DoubleValue;
+			var life = lifeArg.NumberValue;
 
 			var periodArg = GetNumber(engine, tempParameter, 3);
 			if (periodArg.IsError) return periodArg;
-			var period = periodArg.DoubleValue;
+			var period = periodArg.NumberValue;
 
 			int month = 12;
 			if (funcs.Length > 4) {
@@ -37,10 +37,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			if (life == 0 || cost == 0) return Div0Error();
 
-			double rate = 1 - Math.Pow((salvage / cost), 1.0 / life);
+			decimal rate = 1 - MathEx.Pow((salvage / cost), 1.0m / life);
 			rate = Math.Round(rate, 3);
 
-			double depreciation = 0;
+			decimal depreciation = 0;
 			if (period == 1) {
 				depreciation = cost * rate * month / 12;
 			} else if ((int)period == (int)life) {

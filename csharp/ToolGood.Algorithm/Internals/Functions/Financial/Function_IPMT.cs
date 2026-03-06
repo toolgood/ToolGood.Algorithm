@@ -14,25 +14,25 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsError) return rateArg;
-			var rate = rateArg.DoubleValue;
+			var rate = rateArg.NumberValue;
 
 			var perArg = GetNumber(engine, tempParameter, 1);
 			if (perArg.IsError) return perArg;
-			var per = perArg.DoubleValue;
+			var per = perArg.NumberValue;
 
 			var nperArg = GetNumber(engine, tempParameter, 2);
 			if (nperArg.IsError) return nperArg;
-			var nper = nperArg.DoubleValue;
+			var nper = nperArg.NumberValue;
 
 			var pvArg = GetNumber(engine, tempParameter, 3);
 			if (pvArg.IsError) return pvArg;
-			var pv = pvArg.DoubleValue;
+			var pv = pvArg.NumberValue;
 
-			double fv = 0;
+			decimal fv = 0;
 			if (funcs.Length > 4) {
 				var fvArg = GetNumber(engine, tempParameter, 4);
 				if (fvArg.IsError) return fvArg;
-				fv = fvArg.DoubleValue;
+				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			var pmt = CalculatePMT(rate, nper, pv, fv, type);
-			var factor = Math.Pow((1 + rate), (per - 1));
+			var factor = MathEx.Pow((1 + rate), (per - 1));
 			var ipmt = -(pv * factor + pmt * (factor - 1) / rate) * rate;
 
 			if (type == 1 && per == 1) {
@@ -57,9 +57,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			return Operand.Create(ipmt);
 		}
 
-		private double CalculatePMT(double rate, double nper, double pv, double fv, int type)
+		private decimal CalculatePMT(decimal rate, decimal nper, decimal pv, decimal fv, int type)
 		{
-			var factor = Math.Pow((1 + rate), nper);
+			var factor = MathEx.Pow((1 + rate), nper);
 			var pmt = -(pv * factor + fv) * rate / (factor - 1);
 			if (type == 1) {
 				pmt = pmt / (1 + rate);

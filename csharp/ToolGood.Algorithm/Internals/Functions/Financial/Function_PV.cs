@@ -14,21 +14,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsError) return rateArg;
-			var rate = rateArg.DoubleValue;
+			var rate = rateArg.NumberValue;
 
 			var nperArg = GetNumber(engine, tempParameter, 1);
 			if (nperArg.IsError) return nperArg;
-			var nper = nperArg.DoubleValue;
+			var nper = nperArg.NumberValue;
 
 			var pmtArg = GetNumber(engine, tempParameter, 2);
 			if (pmtArg.IsError) return pmtArg;
-			var pmt = pmtArg.DoubleValue;
+			var pmt = pmtArg.NumberValue;
 
-			double fv = 0;
+			decimal fv = 0;
 			if (funcs.Length > 3) {
 				var fvArg = GetNumber(engine, tempParameter, 3);
 				if (fvArg.IsError) return fvArg;
-				fv = fvArg.DoubleValue;
+				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
@@ -42,7 +42,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				return Operand.Create(-pmt * nper - fv);
 			}
 
-			var factor = Math.Pow((1 + rate), nper);
+			var factor = MathEx.Pow((1 + rate), nper);
 			var pv = -(fv + pmt * (factor - 1) / rate) / factor;
 			if (type == 1) {
 				pv = pv - pmt / (1 + rate) * ((factor - 1) / rate) / factor * (1 + rate);
