@@ -45,13 +45,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
             return Distributions.Poisson.CDF(lambda, k);
         }
-
-        public static double Weibull(double x, double shape, double scale, bool state)
-        {
-            if (state == false) {
-                return Distributions.Weibull.PDF(shape, scale, x);
-            }
-            return Distributions.Weibull.CDF(shape, scale, x);
-        }
     }
 }

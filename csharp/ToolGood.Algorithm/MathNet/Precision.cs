@@ -63,42 +63,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             return BitConverter.Int64BitsToDouble(intValue);
         }
 
-        /// <summary>
-        /// Evaluates the minimum distance to the next distinguishable number near the argument value.
-        /// </summary>
-        /// <param name="value">The value used to determine the minimum distance.</param>
-        /// <returns>
-        /// Relative Epsilon (positive double or NaN).
-        /// </returns>
-        /// <remarks>Evaluates the <b>negative</b> epsilon. The more common positive epsilon is equal to two times this negative epsilon.</remarks>
-        ///// <seealso cref="PositiveEpsilonOf(double)"/>
-        public static double EpsilonOf(this double value)
-        {
-            if (double.IsInfinity(value) || double.IsNaN(value)) {
-                return double.NaN;
-            }
-
-            long signed64 = BitConverter.DoubleToInt64Bits(value);
-            if (signed64 == 0) {
-                signed64++;
-                return BitConverter.Int64BitsToDouble(signed64) - value;
-            }
-            if (signed64-- < 0) {
-                return BitConverter.Int64BitsToDouble(signed64) - value;
-            }
-            return value - BitConverter.Int64BitsToDouble(signed64);
-        }
-
-        /// <summary>
-        /// Evaluates the minimum distance to the next distinguishable number near the argument value.
-        /// </summary>
-        /// <param name="value">The value used to determine the minimum distance.</param>
-        /// <returns>Relative Epsilon (positive double or NaN)</returns>
-        /// <remarks>Evaluates the <b>positive</b> epsilon. See also <see cref="EpsilonOf(double)"/></remarks>
-        ///// <seealso cref="EpsilonOf(double)"/>
-        public static double PositiveEpsilonOf(this double value)
-        {
-            return 2 * EpsilonOf(value);
-        }
     }
 }

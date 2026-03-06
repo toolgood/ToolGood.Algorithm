@@ -14,28 +14,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return sum;
         }
-
-        internal static double Series(Func<double> nextSummand)
-        {
-            double compensation = 0.0;
-            double current;
-            const double factor = 1 << 16;
-
-            double sum = nextSummand();
-
-            do {
-                // Kahan Summation
-                // NOTE (ruegg): do NOT optimize. Now, how to tell that the compiler?
-                current = nextSummand();
-                double y = current - compensation;
-                double t = sum + y;
-                compensation = t - sum;
-                compensation -= y;
-                sum = t;
-            }
-            while (Math.Abs(sum) < Math.Abs(factor * current));
-
-            return sum;
-        }
     }
 }
