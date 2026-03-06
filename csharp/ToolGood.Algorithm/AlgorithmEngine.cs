@@ -181,7 +181,7 @@ namespace ToolGood.Algorithm
 						return def;
 					}
 				}
-				return (double)obj.DoubleValue;
+				return obj.DoubleValue;
 			} catch(Exception ex) {
 				LastError = ex.Message + "\r\n" + ex.StackTrace;
 			}
@@ -206,7 +206,7 @@ namespace ToolGood.Algorithm
 						return def;
 					}
 				}
-				return (decimal)obj.NumberValue;
+				return obj.NumberValue;
 			} catch(Exception ex) {
 				LastError = ex.Message + "\r\n" + ex.StackTrace;
 			}
