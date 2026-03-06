@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
             var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
-            var z = args1.DoubleValue;
+            var z = args1.NumberValue;
             if (z <= 0) {
                 return FunctionError();
             }
-            return Operand.Create(Math.Log(z));
+            return Operand.Create(MathEx.Log(z));
         }
 
     }

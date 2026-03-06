@@ -20,21 +20,21 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 
-			var z = args1.DoubleValue;
+			var z = args1.NumberValue;
 			if (z <= 0) {
 				return FunctionError();
 			}
 
 			if (func2 == null)
-				return Operand.Create(Math.Log10(z));
+				return Operand.Create(MathEx.Log10(z));
 
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
-			var baseValue = args2.DoubleValue;
+			var baseValue = args2.NumberValue;
 			if (baseValue <= 0 || baseValue == 1) {
 				return FunctionError();
 			}
-			return Operand.Create(Math.Log(z, baseValue));
+			return Operand.Create(MathEx.Log(z, baseValue));
         }
 
     }

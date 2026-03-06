@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (x >= 1 || x <= -1) {
                 return FunctionError();
             }
-            return Operand.Create(Math.Atanh((double)x));
+            return Operand.Create(Math.Atanh(x));
         }
 
     }

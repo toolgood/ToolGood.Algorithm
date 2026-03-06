@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
-            return Operand.Create(Math.Cosh(args1.DoubleValue));
+            return Operand.Create(MathEx.Cosh(args1.NumberValue));
         }
 
     }

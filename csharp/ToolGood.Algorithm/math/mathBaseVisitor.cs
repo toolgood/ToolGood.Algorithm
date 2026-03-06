@@ -32,9 +32,7 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 /// of the available methods.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
-[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
 [System.Diagnostics.DebuggerNonUserCode]
-[System.CLSCompliant(false)]
 partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, ImathVisitor<Result> {
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="mathParser.prog"/>.

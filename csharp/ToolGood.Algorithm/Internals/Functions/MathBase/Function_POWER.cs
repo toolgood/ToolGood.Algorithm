@@ -21,14 +21,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
-			var baseValue = args1.DoubleValue;
-			var exponent = args2.DoubleValue;
+			var baseValue = args1.NumberValue;
+			var exponent = args2.NumberValue;
 
 			if (baseValue == 0 && exponent < 0) {
 				return Div0Error();
 			}
 
-			return Operand.Create(Math.Pow(baseValue, exponent));
+			return Operand.Create(MathEx.Pow(baseValue, exponent));
         }
 
     }

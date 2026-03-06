@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
-            var r = args1.DoubleValue / 180 * Math.PI;
+            var r = args1.NumberValue / 180 * MathEx.PI;
             return Operand.Create(r);
         }
 

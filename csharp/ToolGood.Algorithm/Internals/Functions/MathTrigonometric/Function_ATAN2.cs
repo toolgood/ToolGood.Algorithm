@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
-            return Operand.Create(Math.Atan2(args2.DoubleValue, args1.DoubleValue));
+            return Operand.Create(MathEx.Atan2(args2.NumberValue, args1.NumberValue));
         }
 
     }

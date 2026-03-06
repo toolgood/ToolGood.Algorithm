@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (args1.NumberValue < 0) {
                 return FunctionError();
             }
-            return Operand.Create(Math.Sqrt(args1.DoubleValue));
+            return Operand.Create(MathEx.Sqrt(args1.NumberValue));
         }
 
     }

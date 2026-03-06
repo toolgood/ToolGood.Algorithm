@@ -184,11 +184,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		#region base
 		public FunctionBase VisitE_fun(mathParser.E_funContext context)
 		{
-			return new Function_Value(Operand.Create(Math.E), "E");
+			return new Function_Value(Operand.Create(MathEx.E), "E");
 		}
 		public FunctionBase VisitPI_fun(mathParser.PI_funContext context)
 		{
-			return new Function_Value(Operand.Create(Math.PI), "PI");
+			return new Function_Value(Operand.Create(MathEx.PI), "PI");
 		}
 		public FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
 		{

@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (z < 1) {
                 return FunctionError();
             }
-            return Operand.Create(Math.Acosh((double)z));
+            return Operand.Create(Math.Acosh(z));
         }
 
     }

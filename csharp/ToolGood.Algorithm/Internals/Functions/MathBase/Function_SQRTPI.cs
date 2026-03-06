@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
             var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
-            return Operand.Create(Math.Sqrt(args1.DoubleValue * Math.PI));
+            return Operand.Create(MathEx.Sqrt(args1.NumberValue * MathEx.PI));
         }
 
     }
