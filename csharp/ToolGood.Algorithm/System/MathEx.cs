@@ -88,6 +88,10 @@ namespace System
 			return HalfPi - Asin(x);
 		}
 
+		public static decimal Acosh(decimal x)
+		{
+			return Log(x + Sqrt(x * x - 1));
+		}
 		/// <summary>
 		///     Analogy of Math.Asin.
 		/// </summary>
@@ -138,6 +142,10 @@ namespace System
 			return y;
 		}
 
+		public static decimal Asinh(decimal x)
+		{
+			return Log(x + Sqrt(x * x + 1));
+		}
 		/// <summary>
 		///     Analogy of Math.Atan.
 		/// </summary>
