@@ -24,11 +24,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
 
-            var list = new List<double>();
+            var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
             if (o == false) { return FunctionError(); }
 
-            var k = args2.DoubleValue;
+            var k = args2.NumberValue;
             var v = ExcelFunctions.PercentRank(list.ToArray(), k);
             var d = 3;
             if (func3 != null) {

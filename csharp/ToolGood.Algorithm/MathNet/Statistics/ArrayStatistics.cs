@@ -1,18 +1,18 @@
-﻿using System;
+using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
     internal static partial class ArrayStatistics
     {
-        public static double Minimum(double[] data)
+        public static decimal Minimum(decimal[] data)
         {
             if (data.Length == 0) {
-                return double.NaN;
+                return decimal.MinValue;
             }
 
-            double min = double.PositiveInfinity;
+            decimal min = decimal.MaxValue;
             for (int i = 0; i < data.Length; i++) {
-                if (data[i] < min || double.IsNaN(data[i])) {
+                if (data[i] < min /*|| decimal.IsNaN(data[i])*/) {
                     min = data[i];
                 }
             }
@@ -20,15 +20,15 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
             return min;
         }
 
-        public static double Maximum(double[] data)
+        public static decimal Maximum(decimal[] data)
         {
             if (data.Length == 0) {
-                return double.NaN;
+                return decimal.MinValue;
             }
 
-            double max = double.NegativeInfinity;
+            decimal max = decimal.MinValue;
             for (int i = 0; i < data.Length; i++) {
-                if (data[i] > max || double.IsNaN(data[i])) {
+                if (data[i] > max /*|| decimal.IsNaN(data[i])*/) {
                     max = data[i];
                 }
             }
@@ -36,38 +36,38 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
             return max;
         }
 
-        public static double QuantileCustomInplace(double[] data, double tau, QuantileDefinition definition)
+        public static decimal QuantileCustomInplace(decimal[] data, decimal tau, QuantileDefinition definition)
         {
-            if (tau < 0d || tau > 1d || data.Length == 0) {
-                return double.NaN;
+            if (tau < 0m || tau > 1m || data.Length == 0) {
+                return decimal.MinValue;
             }
 
-            if (tau == 0d || data.Length == 1) {
+            if (tau == 0m || data.Length == 1) {
                 return Minimum(data);
             }
 
-            if (tau == 1d) {
+            if (tau == 1m) {
                 return Maximum(data);
             }
 
             switch (definition) {
                 case QuantileDefinition.R1: {
-                        double h = data.Length * tau + 0.5d;
-                        return SelectInplace(data, (int)Math.Ceiling(h - 0.5d) - 1);
+                        decimal h = data.Length * tau + 0.5m;
+                        return SelectInplace(data, (int)Math.Ceiling(h - 0.5m) - 1);
                     }
 
                 case QuantileDefinition.R2: {
-                        double h = data.Length * tau + 0.5d;
-                        return (SelectInplace(data, (int)Math.Ceiling(h - 0.5d) - 1) + SelectInplace(data, (int)(h + 0.5d) - 1)) * 0.5d;
+                        decimal h = data.Length * tau + 0.5m;
+                        return (SelectInplace(data, (int)Math.Ceiling(h - 0.5m) - 1) + SelectInplace(data, (int)(h + 0.5m) - 1)) * 0.5m;
                     }
 
                 case QuantileDefinition.R3: {
-                        double h = data.Length * tau;
-                        return SelectInplace(data, (int)Math.Round(h) - 1);
+                        decimal h = data.Length * tau;
+                        return SelectInplace(data, (int)Math.Floor(h + 0.5m) - 1);
                     }
 
                 case QuantileDefinition.R4: {
-                        double h = data.Length * tau;
+                        decimal h = data.Length * tau;
                         var hf = (int)h;
                         var lower = SelectInplace(data, hf - 1);
                         var upper = SelectInplace(data, hf);
@@ -75,7 +75,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     }
 
                 case QuantileDefinition.R5: {
-                        double h = data.Length * tau + 0.5d;
+                        decimal h = data.Length * tau + 0.5m;
                         var hf = (int)h;
                         var lower = SelectInplace(data, hf - 1);
                         var upper = SelectInplace(data, hf);
@@ -83,7 +83,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     }
 
                 case QuantileDefinition.R6: {
-                        double h = (data.Length + 1) * tau;
+                        decimal h = (data.Length + 1) * tau;
                         var hf = (int)h;
                         var lower = SelectInplace(data, hf - 1);
                         var upper = SelectInplace(data, hf);
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     }
 
                 case QuantileDefinition.R7: {
-                        double h = (data.Length - 1) * tau + 1d;
+                        decimal h = (data.Length - 1) * tau + 1m;
                         var hf = (int)h;
                         var lower = SelectInplace(data, hf - 1);
                         var upper = SelectInplace(data, hf);
@@ -99,7 +99,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     }
 
                 case QuantileDefinition.R8: {
-                        double h = (data.Length + 1 / 3d) * tau + 1 / 3d;
+                        decimal h = (data.Length + 1m / 3m) * tau + 1m / 3m;
                         var hf = (int)h;
                         var lower = SelectInplace(data, hf - 1);
                         var upper = SelectInplace(data, hf);
@@ -107,7 +107,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     }
 
                 case QuantileDefinition.R9: {
-                        double h = (data.Length + 0.25d) * tau + 0.375d;
+                        decimal h = (data.Length + 0.25m) * tau + 0.375m;
                         var hf = (int)h;
                         var lower = SelectInplace(data, hf - 1);
                         var upper = SelectInplace(data, hf);
@@ -119,10 +119,8 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
             }
         }
 
-        private static double SelectInplace(double[] workingData, int rank)
+        private static decimal SelectInplace(decimal[] workingData, int rank)
         {
-            // Numerical Recipes: select
-            // http://en.wikipedia.org/wiki/Selection_algorithm
             if (rank <= 0) {
                 return Minimum(workingData);
             }
@@ -131,7 +129,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                 return Maximum(workingData);
             }
 
-            double[] a = workingData;
+            decimal[] a = workingData;
             int low = 0;
             int high = a.Length - 1;
 
@@ -172,7 +170,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 
                 int begin = low + 1;
                 int end = high;
-                double pivot = a[begin];
+                decimal pivot = a[begin];
 
                 while (true) {
                     do {

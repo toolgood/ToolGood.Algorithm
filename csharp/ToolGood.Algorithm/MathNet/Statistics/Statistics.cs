@@ -10,15 +10,15 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
     /// </summary>
     internal static class Statistics
     {
-        public static double QuantileCustom(this IEnumerable<double> data, double tau, QuantileDefinition definition)
+        public static decimal QuantileCustom(this IEnumerable<decimal> data, decimal tau, QuantileDefinition definition)
         {
-            double[] array = data.ToArray();
+			decimal[] array = data.ToArray();
             return ArrayStatistics.QuantileCustomInplace(array, tau, definition);
         }
 
-        public static double QuantileRank(this IEnumerable<double> data, double x)
+        public static decimal QuantileRank(this IEnumerable<decimal> data, decimal x)
         {
-            double[] array = data.ToArray();
+			decimal[] array = data.ToArray();
             Array.Sort(array);
             return SortedArrayStatistics.QuantileRank(array, x);
         }

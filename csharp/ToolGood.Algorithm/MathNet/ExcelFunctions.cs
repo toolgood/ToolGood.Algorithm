@@ -148,20 +148,20 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             return Gamma.InvCDF(alpha, 1 / beta, probability);
         }
 
-        public static double Quartile(double[] array, int quant)
+        public static decimal Quartile(decimal[] array, int quant)
         {
             switch (quant) {
                 case 0:
                     return ArrayStatistics.Minimum(array);
 
                 case 1:
-                    return array.QuantileCustom(0.25, QuantileDefinition.Excel);
+                    return array.QuantileCustom(0.25m, QuantileDefinition.Excel);
 
                 case 2:
-                    return array.QuantileCustom(0.5, QuantileDefinition.Excel);
+                    return array.QuantileCustom(0.5m, QuantileDefinition.Excel);
 
                 case 3:
-                    return array.QuantileCustom(0.75, QuantileDefinition.Excel);
+                    return array.QuantileCustom(0.75m, QuantileDefinition.Excel);
 
                 case 4:
                     return ArrayStatistics.Maximum(array);
@@ -171,12 +171,12 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
         }
 
-        public static double Percentile(double[] array, double k)
+        public static decimal Percentile(decimal[] array, decimal k)
         {
             return array.QuantileCustom(k, QuantileDefinition.Excel);
         }
 
-        public static double PercentRank(double[] array, double x)
+        public static decimal PercentRank(decimal[] array, decimal x)
         {
             return array.QuantileRank(x);
         }
