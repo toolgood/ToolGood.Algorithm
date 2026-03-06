@@ -193,6 +193,11 @@ namespace System
 			}
 		}
 
+		public static decimal Atanh(decimal x)
+		{
+			return 0.5m * Log((1 + x) / (1 - x));
+		}
+
 		/// <summary>
 		///     Analogy of Math.Cos.
 		/// </summary>

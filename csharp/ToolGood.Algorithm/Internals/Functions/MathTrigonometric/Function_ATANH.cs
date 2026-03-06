@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
-            var x = args1.DoubleValue;
+            var x = args1.NumberValue;
             if (x >= 1 || x <= -1) {
                 return FunctionError();
             }
-            return Operand.Create(Math.Atanh(x));
+            return Operand.Create(MathEx.Atanh(x));
         }
 
     }
