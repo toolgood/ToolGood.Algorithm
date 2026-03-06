@@ -9,12 +9,16 @@ namespace ToolGood.Algorithm.Test
 {
     internal class Program
     {
-        private static void Main(string[] args)
+		public static readonly double DoublePrecision = Math.Pow(2, -53);
+
+		private static void Main(string[] args)
         {
             var t222 = Convert.ToString(122223, 16);
             AlgorithmEngine engine = new AlgorithmEngine();
 
-            var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && || and or
+
+
+			var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && || and or
             var c = engine.TryEvaluate("2+3", 0);
             var d = engine.TryEvaluate("count(array(1,2,3,4))", 0);//{} represents array, return: 4 {}代表数组,返回:4
             var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: AABB 字符串连接,返回:aabb
@@ -33,5 +37,34 @@ namespace ToolGood.Algorithm.Test
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             PetaTest.Runner.RunMain(args);
         }
-    }
+
+		public static double Increment(  double value, int count = 1)
+		{
+			if(double.IsInfinity(value) || double.IsNaN(value) || count == 0) {
+				return value;
+			}
+
+			// Translate the bit pattern of the double to an integer.
+			// Note that this leads to:
+			// double > 0 --> long > 0, growing as the double value grows
+			// double < 0 --> long < 0, increasing in absolute magnitude as the double
+			//                          gets closer to zero!
+			//                          i.e. 0 - double.epsilon will give the largest long value!
+			long intValue = BitConverter.DoubleToInt64Bits(value);
+			if(intValue < 0) {
+				intValue -= count;
+			} else {
+				intValue += count;
+			}
+
+			// Note that long.MinValue has the same bit pattern as -0.0.
+			if(intValue == long.MinValue) {
+				return 0;
+			}
+
+			// Note that not all long values can be translated into double values. There's a whole bunch of them
+			// which return weird values like infinity and NaN
+			return BitConverter.Int64BitsToDouble(intValue);
+		}
+	}
 }

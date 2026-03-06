@@ -51,44 +51,44 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
             }
 
             switch (definition) {
-                case QuantileDefinition.R1: {
-                        decimal h = data.Length * tau + 0.5m;
-                        return SelectInplace(data, (int)Math.Ceiling(h - 0.5m) - 1);
-                    }
+                //case QuantileDefinition.R1: {
+                //        decimal h = data.Length * tau + 0.5m;
+                //        return SelectInplace(data, (int)Math.Ceiling(h - 0.5m) - 1);
+                //    }
 
-                case QuantileDefinition.R2: {
-                        decimal h = data.Length * tau + 0.5m;
-                        return (SelectInplace(data, (int)Math.Ceiling(h - 0.5m) - 1) + SelectInplace(data, (int)(h + 0.5m) - 1)) * 0.5m;
-                    }
+                //case QuantileDefinition.R2: {
+                //        decimal h = data.Length * tau + 0.5m;
+                //        return (SelectInplace(data, (int)Math.Ceiling(h - 0.5m) - 1) + SelectInplace(data, (int)(h + 0.5m) - 1)) * 0.5m;
+                //    }
 
-                case QuantileDefinition.R3: {
-                        decimal h = data.Length * tau;
-                        return SelectInplace(data, (int)Math.Floor(h + 0.5m) - 1);
-                    }
+                //case QuantileDefinition.R3: {
+                //        decimal h = data.Length * tau;
+                //        return SelectInplace(data, (int)Math.Floor(h + 0.5m) - 1);
+                //    }
 
-                case QuantileDefinition.R4: {
-                        decimal h = data.Length * tau;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+                //case QuantileDefinition.R4: {
+                //        decimal h = data.Length * tau;
+                //        var hf = (int)h;
+                //        var lower = SelectInplace(data, hf - 1);
+                //        var upper = SelectInplace(data, hf);
+                //        return lower + (h - hf) * (upper - lower);
+                //    }
 
-                case QuantileDefinition.R5: {
-                        decimal h = data.Length * tau + 0.5m;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+                //case QuantileDefinition.R5: {
+                //        decimal h = data.Length * tau + 0.5m;
+                //        var hf = (int)h;
+                //        var lower = SelectInplace(data, hf - 1);
+                //        var upper = SelectInplace(data, hf);
+                //        return lower + (h - hf) * (upper - lower);
+                //    }
 
-                case QuantileDefinition.R6: {
-                        decimal h = (data.Length + 1) * tau;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+                //case QuantileDefinition.R6: {
+                //        decimal h = (data.Length + 1) * tau;
+                //        var hf = (int)h;
+                //        var lower = SelectInplace(data, hf - 1);
+                //        var upper = SelectInplace(data, hf);
+                //        return lower + (h - hf) * (upper - lower);
+                //    }
 
                 case QuantileDefinition.R7: {
                         decimal h = (data.Length - 1) * tau + 1m;
@@ -98,21 +98,21 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                         return lower + (h - hf) * (upper - lower);
                     }
 
-                case QuantileDefinition.R8: {
-                        decimal h = (data.Length + 1m / 3m) * tau + 1m / 3m;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+                //case QuantileDefinition.R8: {
+                //        decimal h = (data.Length + 1m / 3m) * tau + 1m / 3m;
+                //        var hf = (int)h;
+                //        var lower = SelectInplace(data, hf - 1);
+                //        var upper = SelectInplace(data, hf);
+                //        return lower + (h - hf) * (upper - lower);
+                //    }
 
-                case QuantileDefinition.R9: {
-                        decimal h = (data.Length + 0.25m) * tau + 0.375m;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+                //case QuantileDefinition.R9: {
+                //        decimal h = (data.Length + 0.25m) * tau + 0.375m;
+                //        var hf = (int)h;
+                //        var lower = SelectInplace(data, hf - 1);
+                //        var upper = SelectInplace(data, hf);
+                //        return lower + (h - hf) * (upper - lower);
+                //    }
 
                 default:
                     throw new NotSupportedException();
