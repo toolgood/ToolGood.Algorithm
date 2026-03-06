@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var x = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
             var tails = args3.IntValue;
-            if (degreesFreedom <= 0.0m || tails < 1 || tails > 2) {
+            if (degreesFreedom <= 0 || tails < 1 || tails > 2) {
                 return FunctionError();
             }
             return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
