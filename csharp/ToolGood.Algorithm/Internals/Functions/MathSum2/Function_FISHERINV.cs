@@ -15,8 +15,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
-            var x = args1.DoubleValue;
-            var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
+            var x = args1.NumberValue;
+            var n = (MathEx.Exp((2 * x)) - 1) / (MathEx.Exp((2 * x)) + 1);
             return Operand.Create(n);
         }
 

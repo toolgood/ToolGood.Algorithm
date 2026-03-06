@@ -15,11 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
-            var x = args1.DoubleValue;
+            var x = args1.NumberValue;
             if (x >= 1 || x <= -1) {
                 return FunctionError();
             }
-            var n = 0.5 * Math.Log(((1 + x) / (1 - x)));
+            var n = 0.5m * MathEx.Log(((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
 

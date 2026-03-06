@@ -17,18 +17,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
 
 
-			var list = new List<double>();
+			var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return FunctionError(); }
-            double product = 1.0;
+            decimal product = 1.0m;
             foreach (var num in list) {
                 if (num <= 0) {
                     return FunctionError();
                 }
                 product *= num;
             }
-            double geoMean = Math.Pow(product, 1.0 / list.Count);
+			decimal geoMean = MathEx.Pow(product, 1.0m / list.Count);
             return Operand.Create(geoMean);
         }
 
