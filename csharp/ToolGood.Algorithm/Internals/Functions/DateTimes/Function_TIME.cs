@@ -24,8 +24,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			var hour = args1.IntValue;
 			var minute = args2.IntValue;
-			if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+			if (hour < 0 || hour > 23) {
 				return ParameterError(1);
+			}
+			if (minute < 0 || minute > 59) {
+				return ParameterError(2);
 			}
 
 			MyDate d;

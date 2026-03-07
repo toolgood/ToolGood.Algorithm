@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan dt)) {
                 return Operand.Create(dt);
             }
-            return FunctionError();
+            return ParameterError(1);
         }
 
     }

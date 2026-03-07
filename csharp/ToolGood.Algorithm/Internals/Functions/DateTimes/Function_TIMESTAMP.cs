@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			int type = 0; // ºÁÃë
+			int type = 0; // ï¿½ï¿½ï¿½ï¿½
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsError) { return args2; }
@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				var s = (args1 - FunctionUtil.StartDateUtc).TotalSeconds;
 				return Operand.Create(s);
 			}
-			return FunctionError();
+			return ParameterError(2);
 		}
 
 	}

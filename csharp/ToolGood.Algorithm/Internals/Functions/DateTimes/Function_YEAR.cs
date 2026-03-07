@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
             if (args1.DateValue.Year == null) {
-                return FunctionError();
+                return ParameterError(1);
             }
             return Operand.Create(args1.DateValue.Year.Value);
         }

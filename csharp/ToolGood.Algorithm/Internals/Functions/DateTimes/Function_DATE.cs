@@ -27,8 +27,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var month = args2.IntValue;
 			var day = args3.IntValue;
 
-			if (month < 1 || month > 12 || day < 1 || day > 31) {
-				return ParameterError(1);
+			if (month < 1 || month > 12) {
+				return ParameterError(2);
+			}
+			if (day < 1 || day > 31) {
+				return ParameterError(3);
 			}
 
             MyDate d;
@@ -51,8 +54,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 				var hour = args4.IntValue;
 				var minute = args5.IntValue;
-				if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+				if (hour < 0 || hour > 23) {
 					return ParameterError(4);
+				}
+				if (minute < 0 || minute > 59) {
+					return ParameterError(5);
 				}
                 d = new MyDate(year, month, day, hour, minute, 0);
             } else {
@@ -68,8 +74,14 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				var hour = args4.IntValue;
 				var minute = args5.IntValue;
 				var second = args6.IntValue;
-				if (hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59) {
+				if (hour < 0 || hour > 23) {
 					return ParameterError(4);
+				}
+				if (minute < 0 || minute > 59) {
+					return ParameterError(5);
+				}
+				if (second < 0 || second > 59) {
+					return ParameterError(6);
 				}
                 d = new MyDate(year, month, day, hour, minute, second);
             }
