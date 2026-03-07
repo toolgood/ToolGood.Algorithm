@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var args1 = GetText_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
 
-            if (RegexHelper.HexRegex.IsMatch(args1.TextValue) == false) { return FunctionError(); }
+            if (RegexHelper.HexRegex.IsMatch(args1.TextValue) == false) { return ParameterError(1); }
             var num = Convert.ToInt32(args1.TextValue, 16);
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
