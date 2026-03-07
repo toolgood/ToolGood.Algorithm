@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return FunctionError(); }
+            if (o == false) { return ParameterError(1); }
 
             var k = args2.NumberValue;
             var v = ExcelFunctions.PercentRank(list.ToArray(), k);

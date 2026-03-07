@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			}
 
 			if (values.Count == 0) {
-				return FunctionError();
+				return ParameterError(2);
 			}
 
 			values.Sort();
@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			}
 
 			if (rank == 0) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 
 			return Operand.Create(rank);
