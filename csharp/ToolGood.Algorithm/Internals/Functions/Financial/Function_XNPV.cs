@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var dates = datesArg.ArrayValue;
 
 			if (values.Count != dates.Count) return FunctionError();
-			if (values.Count == 0) return FunctionError();
+			if (values.Count == 0) return ParameterError(1);
 
 			var dateList = new List<DateTime>();
 			foreach (var d in dates) {
@@ -35,10 +35,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 					dateList.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
 				} else if (d.IsText) {
 					var myDate = MyDate.Parse(d.TextValue);
-					if (myDate == null) return FunctionError();
+					if (myDate == null) return ParameterError(3);
 					dateList.Add(myDate.ToDateTime(DateTimeKind.Utc));
 				} else {
-					return FunctionError();
+					return ParameterError(3);
 				}
 			}
 

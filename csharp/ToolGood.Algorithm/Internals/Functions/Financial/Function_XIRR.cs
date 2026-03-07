@@ -29,10 +29,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 					dates.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
 				} else if (d.IsText) {
 					var myDate = MyDate.Parse(d.TextValue);
-					if (myDate == null) return FunctionError();
+					if (myDate == null) return ParameterError(2);
 					dates.Add(myDate.ToDateTime(DateTimeKind.Utc));
 				} else {
-					return FunctionError();
+					return ParameterError(2);
 				}
 			}
 

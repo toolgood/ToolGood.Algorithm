@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				if (v < 0) hasNegative = true;
 			}
 			if (!hasPositive || !hasNegative) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 
 			decimal guess = 0.1m;
