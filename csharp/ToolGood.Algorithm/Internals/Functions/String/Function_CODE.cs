@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
 			if (string.IsNullOrEmpty(args1.TextValue)) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 			char c = args1.TextValue[0];
 			return Operand.Create((int)c);

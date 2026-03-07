@@ -15,10 +15,14 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
+			var code = args1.IntValue;
+			if (code < 0 || code > 0x10FFFF || (code >= 0xD800 && code <= 0xDFFF)) {
+				return ParameterError(1);
+			}
 			try {
-				return Operand.Create(char.ConvertFromUtf32(args1.IntValue));
+				return Operand.Create(char.ConvertFromUtf32(code));
 			} catch {
-				return FunctionError();
+				return ParameterError(1);
 			}
 		}
 	}

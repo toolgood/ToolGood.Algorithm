@@ -26,8 +26,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var startIndex = args2.IntValue - engine.ExcelIndex;
 			var length = args3.IntValue;
 
-			if (startIndex < 0 || length < 0) {
+			if (startIndex < 0) {
 				return ParameterError(2);
+			}
+			if (length < 0) {
+				return ParameterError(3);
 			}
 			if (startIndex >= text.Length) {
 				return Operand.Create(string.Empty);
