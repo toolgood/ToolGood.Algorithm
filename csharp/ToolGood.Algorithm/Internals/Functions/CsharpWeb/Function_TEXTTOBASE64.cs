@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				var t = Convert.ToBase64String(bytes);
 				return Operand.Create(t);
 			} catch(Exception) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 		}
 
