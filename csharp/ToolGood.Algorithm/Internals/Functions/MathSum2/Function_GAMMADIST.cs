@@ -32,8 +32,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var alpha = args2.DoubleValue;
             var beta = args3.DoubleValue;
             var cumulative = args4.BooleanValue;
-            if (alpha < 0.0 || beta < 0.0) {
-                return FunctionError();
+            if (alpha < 0.0) {
+                return ParameterError(2);
+            }
+            if (beta < 0.0) {
+                return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
         }

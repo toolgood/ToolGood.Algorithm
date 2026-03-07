@@ -19,12 +19,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
 			var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return FunctionError(); }
-            if (list.Count == 0) { return FunctionError(); }
+            if (o == false) { return ParameterError(1); }
+            if (list.Count == 0) { return ParameterError(1); }
             decimal product = 1.0m;
             foreach (var num in list) {
                 if (num <= 0) {
-                    return FunctionError();
+                    return ParameterError(1);
                 }
                 product *= num;
             }

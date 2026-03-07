@@ -28,8 +28,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var probability = args1.DoubleValue;
             var alpha = args2.DoubleValue;
             var beta = args3.DoubleValue;
-            if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
-                return FunctionError();
+            if (probability < 0 || probability > 1.0) {
+                return ParameterError(1);
+            }
+            if (alpha < 0.0) {
+                return ParameterError(2);
+            }
+            if (beta < 0.0) {
+                return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
         }

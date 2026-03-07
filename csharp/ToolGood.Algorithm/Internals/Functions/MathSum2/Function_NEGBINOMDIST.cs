@@ -28,8 +28,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var r = args2.DoubleValue;
             var p = args3.DoubleValue;
 
-            if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
-                return FunctionError();
+            if (r < 0.0) {
+                return ParameterError(2);
+            }
+            if (p < 0.0 || p > 1.0) {
+                return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
         }

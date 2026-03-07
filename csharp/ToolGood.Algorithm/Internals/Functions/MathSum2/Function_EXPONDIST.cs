@@ -28,10 +28,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			var n1 = args1.NumberValue;
 			var rate = args2.NumberValue;
 			if(n1 < 0.0m) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 			if(rate <= 0.0m) {
-				return FunctionError();
+				return ParameterError(2);
 			}
 			return Operand.Create(ExponDist(n1, rate, args3.BooleanValue));
 		}

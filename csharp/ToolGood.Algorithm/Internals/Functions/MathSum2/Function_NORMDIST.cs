@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var b = args4.BooleanValue;
 
             if (STDEV < 0.0) {
-                return FunctionError();
+                return ParameterError(3);
             }
 
             return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));

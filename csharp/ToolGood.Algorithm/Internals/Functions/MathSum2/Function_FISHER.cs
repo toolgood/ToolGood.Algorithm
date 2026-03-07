@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args1.IsError) { return args1; }
             var x = args1.NumberValue;
             if (x >= 1 || x <= -1) {
-                return FunctionError();
+                return ParameterError(1);
             }
             var n = 0.5m * MathEx.Log(((1 + x) / (1 - x)));
             return Operand.Create(n);

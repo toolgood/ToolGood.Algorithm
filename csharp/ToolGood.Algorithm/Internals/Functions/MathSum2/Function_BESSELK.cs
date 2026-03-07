@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			var n = (int)Math.Truncate(args2.NumberValue);
 
 			if(x <= 0) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 
 			return Operand.Create(BesselK(n, x));

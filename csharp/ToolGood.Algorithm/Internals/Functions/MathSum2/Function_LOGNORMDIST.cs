@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             var n3 = args3.DoubleValue;
             if (n3 < 0.0) {
-                return FunctionError();
+                return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
         }

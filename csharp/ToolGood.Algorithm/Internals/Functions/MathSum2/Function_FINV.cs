@@ -28,8 +28,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var p = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
             var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
-                return FunctionError();
+            if (p < 0.0 || p > 1.0) {
+                return ParameterError(1);
+            }
+            if (degreesFreedom <= 0) {
+                return ParameterError(2);
+            }
+            if (degreesFreedom2 <= 0) {
+                return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
         }
