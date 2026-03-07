@@ -75,7 +75,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 					+ y1 * (0.2659732m + y1 * (0.0360768m + y1 * 0.0045813m)))));
 			}
 			decimal y2 = 3.75m / ax;
-			return (MathEx.Exp(ax / MathEx.E) / MathEx.Sqrt(ax)) * (0.39894228m + y2 * (0.01328592m
+			return (MathEx.Exp(ax) / MathEx.Sqrt(2.0m * MathEx.PI * ax)) * (0.39894228m + y2 * (0.01328592m
 				+ y2 * (0.00225319m + y2 * (-0.00157565m + y2 * (0.00916281m
 				+ y2 * (-0.02057706m + y2 * (0.02635537m + y2 * (-0.01647633m + y2 * 0.00392377m))))))));
 		}
@@ -90,7 +90,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 					+ y1 * (0.02658733m + y1 * (0.00301532m + y1 * 0.00032411m))))));
 			}
 			decimal y2 = 3.75m / ax;
-			decimal ans = (MathEx.Exp(ax / MathEx.E) / MathEx.Sqrt(ax)) * (0.39894228m + y2 * (-0.03988024m
+			decimal ans = (MathEx.Exp(ax) / MathEx.Sqrt(2.0m * MathEx.PI * ax)) * (0.39894228m + y2 * (-0.03988024m
 				+ y2 * (-0.00362018m + y2 * (0.00163801m + y2 * (-0.01031555m
 				+ y2 * (0.02282967m + y2 * (-0.02895312m + y2 * (0.01787654m - y2 * 0.00420059m))))))));
 			return (x < 0) ? -ans : ans;
