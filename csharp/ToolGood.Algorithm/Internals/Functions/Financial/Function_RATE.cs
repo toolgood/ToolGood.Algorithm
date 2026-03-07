@@ -24,6 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (pvArg.IsError) return pvArg;
 			var pv = pvArg.NumberValue;
 
+			if (nper <= 0) {
+				return ParameterError(1);
+			}
+
 			decimal fv = 0;
 			if (funcs.Length > 3) {
 				var fvArg = GetNumber(engine, tempParameter, 3);
@@ -36,6 +40,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				var typeArg = GetNumber(engine, tempParameter, 4);
 				if (typeArg.IsError) return typeArg;
 				type = typeArg.IntValue;
+				if (type != 0 && type != 1) {
+					return ParameterError(5);
+				}
 			}
 
 			decimal guess = 0.1m;

@@ -22,13 +22,23 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsError) { return args2; }
 
+			var hour = args1.IntValue;
+			var minute = args2.IntValue;
+			if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+				return ParameterError(1);
+			}
+
 			MyDate d;
 			if (func3 != null) {
 				var args3 = GetNumber_3(engine, tempParameter);
 				if (args3.IsError) { return args3; }
-				d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, args3.IntValue);
+				var second = args3.IntValue;
+				if (second < 0 || second > 59) {
+					return ParameterError(3);
+				}
+				d = new MyDate(0, 0, 0, hour, minute, second);
 			} else {
-				d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, 0);
+				d = new MyDate(0, 0, 0, hour, minute, 0);
 			}
             return Operand.Create(d);
         }

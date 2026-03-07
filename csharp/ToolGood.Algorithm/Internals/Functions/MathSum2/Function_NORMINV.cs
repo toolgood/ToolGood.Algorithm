@@ -27,6 +27,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var p = args1.DoubleValue;
             var avg = args2.DoubleValue;
             var STDEV = args3.DoubleValue;
+            if (p <= 0.0 || p >= 1.0) {
+                return FunctionError();
+            }
+            if (STDEV <= 0.0) {
+                return FunctionError();
+            }
             return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
         }
 

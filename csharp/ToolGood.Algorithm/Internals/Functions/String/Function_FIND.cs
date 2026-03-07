@@ -25,8 +25,15 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var count = GetNumber_3(engine, tempParameter);
 			if (count.IsError) { return count; }
-			var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + engine.ExcelIndex;
-			return Operand.Create(p2);
+			var startIndex = count.IntValue;
+			if (startIndex < 0 || startIndex > args2.TextValue.Length) {
+				return ParameterError(3);
+			}
+			var p2 = args2.TextValue.AsSpan(startIndex).IndexOf(args1.TextValue);
+			if (p2 < 0) {
+				return Operand.Create(0);
+			}
+			return Operand.Create(p2 + startIndex + engine.ExcelIndex);
 		}
 
 	}

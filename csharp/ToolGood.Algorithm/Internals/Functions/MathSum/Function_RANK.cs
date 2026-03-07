@@ -34,6 +34,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				}
 			}
 
+			if (values.Count == 0) {
+				return FunctionError();
+			}
+
 			values.Sort();
 			int rank;
 			if (order == 0) {
@@ -41,6 +45,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				rank = values.IndexOf(num) + 1;
 			} else {
 				rank = values.IndexOf(num) + 1;
+			}
+
+			if (rank == 0) {
+				return FunctionError();
 			}
 
 			return Operand.Create(rank);

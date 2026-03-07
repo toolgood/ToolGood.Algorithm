@@ -26,10 +26,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(args3.IsError) return args3;
 
 			var n1 = args1.NumberValue;
+			var rate = args2.NumberValue;
 			if(n1 < 0.0m) {
 				return FunctionError();
 			}
-			return Operand.Create(ExponDist(n1, args2.NumberValue, args3.BooleanValue));
+			if(rate <= 0.0m) {
+				return FunctionError();
+			}
+			return Operand.Create(ExponDist(n1, rate, args3.BooleanValue));
 		}
 
 		public decimal ExponDist(decimal x, decimal rate, bool state)

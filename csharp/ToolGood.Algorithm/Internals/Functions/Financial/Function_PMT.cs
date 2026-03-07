@@ -24,6 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (pvArg.IsError) return pvArg;
 			var pv = pvArg.NumberValue;
 
+			if (nper == 0) {
+				return Div0Error();
+			}
+
 			decimal fv = 0;
 			if (funcs.Length > 3) {
 				var fvArg = GetNumber(engine, tempParameter, 3);

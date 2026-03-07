@@ -22,6 +22,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsError) { return args2; }
 
+			if (string.IsNullOrEmpty(args2.TextValue)) {
+				return ParameterError(2);
+			}
+
 			return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
 		}
 

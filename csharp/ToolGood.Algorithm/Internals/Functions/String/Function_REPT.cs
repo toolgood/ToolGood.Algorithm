@@ -28,6 +28,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (length == 0) {
 				return Operand.Create("");
 			}
+			if (newtext.Length > 0 && length > 32767 / newtext.Length) {
+				return ParameterError(2);
+			}
 			var sb = new StringBuilder(newtext.Length * length);
 			for (int i = 0; i < length; i++) {
 				sb.Append(newtext);

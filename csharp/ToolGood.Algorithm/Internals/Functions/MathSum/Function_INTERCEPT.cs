@@ -44,7 +44,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var meanX = sumX / n;
 			var meanY = sumY / n;
 
-			var slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+			var denominator = n * sumX2 - sumX * sumX;
+			if (denominator == 0) {
+				return Div0Error();
+			}
+			var slope = (n * sumXY - sumX * sumY) / denominator;
 			var intercept = meanY - slope * meanX;
 
 			return Operand.Create(intercept);

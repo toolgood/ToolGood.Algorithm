@@ -20,6 +20,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				values.Add(v.NumberValue);
 			}
 
+			if (values.Count == 0) {
+				return ParameterError(1);
+			}
+
+			bool hasPositive = false;
+			bool hasNegative = false;
+			foreach (var v in values) {
+				if (v > 0) hasPositive = true;
+				if (v < 0) hasNegative = true;
+			}
+			if (!hasPositive || !hasNegative) {
+				return FunctionError();
+			}
+
 			decimal guess = 0.1m;
 			if (funcs.Length > 1) {
 				var guessArg = GetNumber(engine, tempParameter, 1);

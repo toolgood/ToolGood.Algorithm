@@ -17,16 +17,23 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsError) { return args1; }
-            var num = Convert.ToString(args1.IntValue, 2);
+            var num = args1.IntValue;
+            if (num < -512 || num > 511) {
+                return ParameterError(1);
+            }
+            var binaryStr = Convert.ToString(num, 2);
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsError) { return args2; }
-                if (num.Length <= args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                if (binaryStr.Length > args2.IntValue) {
+                    return ParameterError(2);
+                }
+                if (binaryStr.Length <= args2.IntValue) {
+                    return Operand.Create(binaryStr.PadLeft(args2.IntValue, '0'));
                 }
                 return ParameterError(2);
             }
-            return Operand.Create(num);
+            return Operand.Create(binaryStr);
         }
 
     }

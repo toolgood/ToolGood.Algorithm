@@ -22,14 +22,30 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args2.IsError) { return args2; }
 
 			var text = args1.TextValue;
+			var startIndex = args2.IntValue - engine.ExcelIndex;
+
+			if (startIndex < 0) {
+				return ParameterError(2);
+			}
+			if (startIndex >= text.Length) {
+				return Operand.Create(string.Empty);
+			}
+
 			if(func3 == null) {
-				return Operand.Create(text.AsSpan(args2.IntValue - engine.ExcelIndex).ToString());
+				return Operand.Create(text.AsSpan(startIndex).ToString());
 			}
 
 			var args3 = GetNumber_3(engine, tempParameter);
 			if(args3.IsError) { return args3; }
 
-			return Operand.Create(text.AsSpan(args2.IntValue - engine.ExcelIndex, args3.IntValue).ToString());
+			var length = args3.IntValue;
+			if (length < 0) {
+				return ParameterError(3);
+			}
+			if (startIndex + length > text.Length) {
+				length = text.Length - startIndex;
+			}
+			return Operand.Create(text.AsSpan(startIndex, length).ToString());
 		}
 
 	}

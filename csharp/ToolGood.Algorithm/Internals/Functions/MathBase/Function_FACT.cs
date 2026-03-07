@@ -20,6 +20,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (z < 0) {
                 return FunctionError();
             }
+            if (z > 170) {
+                return FunctionError();
+            }
             decimal d = 1;
             for (int i = 1; i <= z; i++) {
                 d *= i;

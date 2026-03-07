@@ -21,7 +21,21 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args2.IsError) { return args2; }
 			var args3 = GetNumber_3(engine, tempParameter);
 			if (args3.IsError) { return args3; }
-			return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - engine.ExcelIndex, args3.IntValue).ToString());
+
+			var text = args1.TextValue;
+			var startIndex = args2.IntValue - engine.ExcelIndex;
+			var length = args3.IntValue;
+
+			if (startIndex < 0 || length < 0) {
+				return ParameterError(2);
+			}
+			if (startIndex >= text.Length) {
+				return Operand.Create(string.Empty);
+			}
+			if (startIndex + length > text.Length) {
+				length = text.Length - startIndex;
+			}
+			return Operand.Create(text.AsSpan(startIndex, length).ToString());
 		}
 
 	}

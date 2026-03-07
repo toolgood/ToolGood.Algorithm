@@ -20,6 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return FunctionError(); }
+            if (list.Count == 0) { return FunctionError(); }
 
             var dict = new Dictionary<decimal, int>();
             foreach (var item in list) {
@@ -30,14 +31,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                 }
             }
             decimal modeKey = 0;
-            int maxCount = 0;
+            int maxCount = 1;
             foreach (var kvp in dict) {
                 if (kvp.Value > maxCount) {
                     maxCount = kvp.Value;
                     modeKey = kvp.Key;
                 }
             }
-            if (maxCount == 0) { return FunctionError(); }
+            if (maxCount == 1) { return FunctionError(); }
             return Operand.Create(modeKey);
         }
 

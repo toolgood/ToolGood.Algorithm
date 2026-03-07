@@ -15,7 +15,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
-			char c = (char)args1.IntValue;
+			var code = args1.IntValue;
+			if (code < 0 || code > 65535) {
+				return ParameterError(1);
+			}
+			char c = (char)code;
 			return Operand.Create(new string(c, 1));
 		}
 
