@@ -35,6 +35,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			int sign = x < 0 ? -1 : 1;
 			x = Math.Abs(x);
 
+			if(x > 6.0m) {
+				return sign * 1.0m;
+			}
+
 			decimal t = 1.0m / (1.0m + p * x);
 			decimal y = 1.0m - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * MathEx.Exp(-x * x);
 

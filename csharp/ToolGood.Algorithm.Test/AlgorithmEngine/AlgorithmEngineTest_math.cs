@@ -618,7 +618,19 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("ERF(-1)", 0.0);
             t = Math.Round(t, 6);
             Assert.AreEqual(-0.842701, t);
-        }
+
+			t = engine.TryEvaluate("ERF(0.5)", 0.0);
+			Assert.AreEqual(0.520499878, t, 6);
+
+			t = engine.TryEvaluate("ERF(4)", 0.0);
+			Assert.AreEqual(0.999999985, t, 6);
+
+			t = engine.TryEvaluate("ERF(5)", 0.0);
+			Assert.AreEqual(1, t, 6);
+
+			t = engine.TryEvaluate("ERF(7)", 0.0);
+			Assert.AreEqual(1, t, 6);
+		}
 
         [Test]
         public void ERFC_test()
@@ -630,7 +642,13 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("ERFC(1)", 0.0);
             t = Math.Round(t, 6);
             Assert.AreEqual(0.157299, t);
-        }
+
+			t = engine.TryEvaluate("ERFC(-3)", 0.0);
+			Assert.AreEqual(1.99997791, t,6);
+
+			t = engine.TryEvaluate("ERFC(1.5)", 0.0);
+			Assert.AreEqual(0.033894854, t,6);
+		}
 
         [Test]
         public void DELTA_test()

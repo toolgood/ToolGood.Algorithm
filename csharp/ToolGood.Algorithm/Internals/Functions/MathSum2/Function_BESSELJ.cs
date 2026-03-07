@@ -88,13 +88,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			}
 			decimal z = 8.0m / ax;
 			decimal y2 = z * z;
-			decimal xx = ax - 0.785398164m;
+			decimal xx = ax - 0.78539816339744830962m;
 			decimal ans3 = 1.0m + y2 * (-0.1098628627e-2m + y2 * (0.2734510407e-4m
 				+ y2 * (-0.2073370639e-5m + y2 * 0.2093887211e-6m)));
 			decimal ans4 = -0.1562499995e-1m + y2 * (0.1430488765e-3m
 				+ y2 * (-0.6911147651e-5m + y2 * (0.7621095161e-6m
 				- y2 * 0.934935152e-7m)));
-			return MathEx.Sqrt(0.636619772m / ax) * (MathEx.Cos(xx) * ans3 - z * MathEx.Sin(xx) * ans4);
+			return MathEx.Sqrt(0.63661977236758134308m / ax) * (MathEx.Cos(xx) * ans3 - z * MathEx.Sin(xx) * ans4);
 		}
 
 		private static decimal BesselJ1(decimal x)
@@ -110,13 +110,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			}
 			decimal z = 8.0m / ax;
 			decimal y2 = z * z;
-			decimal xx = ax - 2.356194491m;
+			decimal xx = ax - 2.35619449019234492885m;
 			decimal ans3 = 1.0m + y2 * (0.183105e-2m + y2 * (-0.3516396496e-4m
 				+ y2 * (0.2457520174e-5m + y2 * (-0.240337019e-6m))));
 			decimal ans4 = 0.04687499995m + y2 * (-0.2002690873e-3m
 				+ y2 * (0.8449199096e-5m + y2 * (-0.88228987e-6m
 				+ y2 * 0.105787412e-6m)));
-			decimal ans = MathEx.Sqrt(0.636619772m / ax) * (MathEx.Cos(xx) * ans3 - z * MathEx.Sin(xx) * ans4);
+			decimal ans = MathEx.Sqrt(0.63661977236758134308m / ax) * (MathEx.Cos(xx) * ans3 - z * MathEx.Sin(xx) * ans4);
 			return (x < 0) ? -ans : ans;
 		}
 	}
