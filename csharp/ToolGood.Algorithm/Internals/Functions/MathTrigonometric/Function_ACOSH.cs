@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             var z = args1.NumberValue;
             if (z < 1) {
-                return FunctionError();
+                return ParameterError(1);
             }
             return Operand.Create(MathEx.Acosh(z));
         }

@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 			if(args1.IsError) { return args1; }
 			var d = args1.NumberValue;
 			if(Math.Abs(d) <= 1) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 			return Operand.Create(0.5m * MathEx.Log((d + 1) / (d - 1)));
 		}
