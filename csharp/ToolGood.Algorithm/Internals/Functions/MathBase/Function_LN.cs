@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsError) { return args1; }
             var z = args1.NumberValue;
             if (z <= 0) {
-                return FunctionError();
+                return ParameterError(1);
             }
             return Operand.Create(MathEx.Log(z));
         }

@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsError) { return args1; }
             var z = args1.IntValue;
-            if (z < 0) { return FunctionError(); }
+            if (z < 0) { return ParameterError(1); }
 
             decimal d = 1;
             for (int i = z; i > 0; i -= 2) {

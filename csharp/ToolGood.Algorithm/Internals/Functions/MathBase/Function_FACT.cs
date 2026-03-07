@@ -18,10 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             var z = args1.IntValue;
             if (z < 0) {
-                return FunctionError();
+                return ParameterError(1);
             }
             if (z > 170) {
-                return FunctionError();
+                return ParameterError(1);
             }
             decimal d = 1;
             for (int i = 1; i <= z; i++) {

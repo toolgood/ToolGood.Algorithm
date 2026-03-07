@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			var z = args1.NumberValue;
 			if (z <= 0) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 			return Operand.Create(MathEx.Log10(z));
 		}

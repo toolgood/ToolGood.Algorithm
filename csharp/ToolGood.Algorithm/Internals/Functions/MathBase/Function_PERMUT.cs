@@ -24,8 +24,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var total = args1.IntValue;
             var count = args2.IntValue;
 
-            if (total < 0 || count < 0 || total < count) {
-                return FunctionError();
+            if (total < 0) {
+                return ParameterError(1);
+            }
+            if (count < 0) {
+                return ParameterError(2);
+            }
+            if (total < count) {
+                return ParameterError(2);
             }
 
             decimal sum = 1;

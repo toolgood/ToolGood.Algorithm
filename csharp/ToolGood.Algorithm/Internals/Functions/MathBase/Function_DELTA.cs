@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			if(funcs.Length < 1) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 
 			var args1 = GetNumber(engine, tempParameter, 0);

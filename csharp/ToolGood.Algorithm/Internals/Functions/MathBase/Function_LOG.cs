@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			var z = args1.NumberValue;
 			if (z <= 0) {
-				return FunctionError();
+				return ParameterError(1);
 			}
 
 			if (func2 == null)
@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args2.IsError) { return args2; }
 			var baseValue = args2.NumberValue;
 			if (baseValue <= 0 || baseValue == 1) {
-				return FunctionError();
+				return ParameterError(2);
 			}
 			return Operand.Create(MathEx.Log(z, baseValue));
         }
