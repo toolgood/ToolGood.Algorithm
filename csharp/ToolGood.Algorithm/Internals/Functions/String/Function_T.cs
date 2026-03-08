@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create("");
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.ARRARY;
 		}

@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return ParameterError(1);
 			}
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

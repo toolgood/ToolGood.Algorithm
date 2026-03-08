@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), FunctionUtil.GetStringComparison(args3.BooleanValue)));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

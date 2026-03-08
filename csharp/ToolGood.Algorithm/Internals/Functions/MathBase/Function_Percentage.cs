@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             func1.ToString(stringBuilder, false);
             stringBuilder.Append('%');
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

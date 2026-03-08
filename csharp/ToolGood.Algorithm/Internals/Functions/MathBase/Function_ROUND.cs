@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args2.IsError) { return args2; }
             return Operand.Create(Math.Round(args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

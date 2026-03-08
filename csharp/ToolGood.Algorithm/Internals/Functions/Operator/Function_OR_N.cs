@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			}
 			return b ? Operand.True : Operand.False;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 			}
 			return Operand.Create(num);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			if(func2 != null) {
 				return OperandType.TEXT;

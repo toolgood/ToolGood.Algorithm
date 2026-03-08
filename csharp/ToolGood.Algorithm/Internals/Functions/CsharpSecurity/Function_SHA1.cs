@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
             return Convert.ToHexString(retVal);
 #endif
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

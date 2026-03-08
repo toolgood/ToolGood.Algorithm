@@ -42,7 +42,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (maxCount == 1) { return FunctionError(); }
             return Operand.Create(modeKey);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

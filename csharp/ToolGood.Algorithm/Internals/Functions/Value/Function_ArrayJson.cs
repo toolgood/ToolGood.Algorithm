@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			}
 			stringBuilder.Append('}');
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.ARRARYJSON;
 		}

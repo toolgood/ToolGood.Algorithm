@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var n = 0.5m * MathEx.Log(((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

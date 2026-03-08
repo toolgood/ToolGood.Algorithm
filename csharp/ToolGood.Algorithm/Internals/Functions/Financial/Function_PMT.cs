@@ -55,7 +55,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			return Operand.Create(pmt);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

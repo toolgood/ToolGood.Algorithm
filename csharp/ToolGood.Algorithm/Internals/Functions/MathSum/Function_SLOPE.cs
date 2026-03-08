@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var slope = (n * sumXY - sumX * sumY) / denominator;
 			return Operand.Create(slope);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

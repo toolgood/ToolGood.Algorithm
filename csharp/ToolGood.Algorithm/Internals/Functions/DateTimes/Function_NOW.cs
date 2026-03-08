@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         {
             stringBuilder.Append("Now()");
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
 		}

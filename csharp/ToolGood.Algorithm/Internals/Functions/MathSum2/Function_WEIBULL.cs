@@ -142,7 +142,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			while(Math.Abs(sum) < Math.Abs(factor * current));
 			return sum;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

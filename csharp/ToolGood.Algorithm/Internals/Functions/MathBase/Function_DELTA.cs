@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			return Operand.Create(num1 == num2 ? 1 : 0);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

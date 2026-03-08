@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var d = Math.Ceiling(a / b) * b;
             return Operand.Create(d);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

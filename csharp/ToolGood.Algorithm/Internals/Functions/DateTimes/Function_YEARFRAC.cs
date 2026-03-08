@@ -94,7 +94,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			return result;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

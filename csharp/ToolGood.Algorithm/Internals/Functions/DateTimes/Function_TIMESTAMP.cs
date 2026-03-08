@@ -38,7 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 			return ParameterError(2);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

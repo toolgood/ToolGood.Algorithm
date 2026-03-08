@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 			if (textArg.IsError) { return textArg; }
             return Operand.Create(string.IsNullOrWhiteSpace(textArg.TextValue));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

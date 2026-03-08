@@ -53,7 +53,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			return Operand.Create(xnpv);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

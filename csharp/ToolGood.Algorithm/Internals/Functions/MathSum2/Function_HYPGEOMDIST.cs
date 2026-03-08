@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

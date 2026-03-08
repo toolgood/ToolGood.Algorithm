@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args2.IsError) { return args2; }
             return Operand.Create(MathEx.Atan2(args2.NumberValue, args1.NumberValue));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

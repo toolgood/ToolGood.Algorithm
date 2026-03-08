@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + engine.ExcelIndex;
 			return Operand.Create(p2);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

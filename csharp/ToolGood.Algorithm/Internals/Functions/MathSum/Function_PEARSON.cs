@@ -57,7 +57,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			return Operand.Create(numerator / MathEx.Sqrt((denomX * denomY)));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

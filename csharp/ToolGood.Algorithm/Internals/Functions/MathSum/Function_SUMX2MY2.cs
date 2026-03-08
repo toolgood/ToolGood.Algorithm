@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			return Operand.Create(result);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

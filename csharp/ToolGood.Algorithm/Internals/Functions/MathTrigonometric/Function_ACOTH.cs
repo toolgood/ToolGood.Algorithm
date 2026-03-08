@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 			}
 			return Operand.Create(0.5m * MathEx.Log((d + 1) / (d - 1)));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

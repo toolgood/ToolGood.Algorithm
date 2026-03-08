@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			char[] trimChars = args2.TextValue.ToCharArray();
 			return Operand.Create(args1.TextValue.TrimEnd(trimChars));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

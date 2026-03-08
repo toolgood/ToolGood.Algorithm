@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			decimal geoMean = MathEx.Pow(product, 1.0m / list.Count);
             return Operand.Create(geoMean);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

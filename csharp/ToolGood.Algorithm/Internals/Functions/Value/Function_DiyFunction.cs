@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 			AddFunction(stringBuilder, funName);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NONE;
 		}

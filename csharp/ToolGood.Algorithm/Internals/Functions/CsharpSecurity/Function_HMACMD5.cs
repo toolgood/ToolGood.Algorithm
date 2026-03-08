@@ -43,7 +43,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 #endif
 			}
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

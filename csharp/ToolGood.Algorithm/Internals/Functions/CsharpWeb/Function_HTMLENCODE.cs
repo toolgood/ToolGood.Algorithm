@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 			var r = System.Web.HttpUtility.HtmlEncode(s);
 			return Operand.Create(r);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

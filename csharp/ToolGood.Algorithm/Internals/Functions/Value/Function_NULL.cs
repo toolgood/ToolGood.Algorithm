@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			return Operand.Null;
 		}
 
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NULL;
 		}

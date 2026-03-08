@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				stringBuilder.Append(name);
 			}
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NONE;
 		}

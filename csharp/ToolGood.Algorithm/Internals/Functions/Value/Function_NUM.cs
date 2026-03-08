@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			stringBuilder.Append(d);
 			stringBuilder.Append(unit);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

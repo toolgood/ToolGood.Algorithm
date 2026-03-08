@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var nper = MathEx.Log((-fv * rate + factor) / (pv * rate + factor)) / MathEx.Log((1 + rate));
 			return Operand.Create(nper);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

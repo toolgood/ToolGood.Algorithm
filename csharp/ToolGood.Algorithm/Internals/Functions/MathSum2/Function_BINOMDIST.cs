@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			}
 			return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

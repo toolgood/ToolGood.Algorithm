@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             }
             return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

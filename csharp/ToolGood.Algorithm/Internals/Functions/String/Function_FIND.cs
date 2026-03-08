@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create(p2 + startIndex + engine.ExcelIndex);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

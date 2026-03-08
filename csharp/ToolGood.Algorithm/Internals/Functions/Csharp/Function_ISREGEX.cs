@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
 			return Operand.Create(b);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             if (args2.IsError) { return args2; }
             return Operand.Create(args1.DateValue.AddDays(args2.IntValue));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
 		}

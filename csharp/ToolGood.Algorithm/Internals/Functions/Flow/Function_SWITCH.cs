@@ -46,11 +46,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 			}
 			return false;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			int i = 1;
 			while(i < funcs.Length - 1) {
-				var t = funcs[i + 1].GetRestltType();
+				var t = funcs[i + 1].GetResultType();
 				if(t != OperandType.NONE) {
 					return t;
 				}

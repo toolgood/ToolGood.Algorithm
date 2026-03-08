@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (b > 0) return Operand.Create(t);
             return Operand.Create(-t);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

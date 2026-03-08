@@ -116,7 +116,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			return (x < 0) ? -ans : ans;
 		}
 
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

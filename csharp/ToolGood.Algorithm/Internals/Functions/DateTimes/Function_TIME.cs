@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
             return Operand.Create(d);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
 		}

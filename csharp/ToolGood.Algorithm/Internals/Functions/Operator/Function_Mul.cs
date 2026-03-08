@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			func2.ToString(stringBuilder, true);
 			if(addBrackets) stringBuilder.Append(')');
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

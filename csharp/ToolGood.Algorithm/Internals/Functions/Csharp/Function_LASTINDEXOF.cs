@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + engine.ExcelIndex);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

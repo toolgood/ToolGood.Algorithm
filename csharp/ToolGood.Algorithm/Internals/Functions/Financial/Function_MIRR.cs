@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var mirr = MathEx.Pow((-npvPositive / npvNegative), 1.0m / (n - 1)) - 1;
 			return Operand.Create(mirr);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

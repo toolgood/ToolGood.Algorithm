@@ -44,7 +44,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return new string(chars);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

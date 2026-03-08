@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var num = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSDist(num));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

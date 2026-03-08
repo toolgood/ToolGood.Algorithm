@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 			return sb.ToString();
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

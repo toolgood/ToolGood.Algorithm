@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var syd = (cost - salvage) * (life - period + 1) * 2 / (life * (life + 1));
 			return Operand.Create(syd);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

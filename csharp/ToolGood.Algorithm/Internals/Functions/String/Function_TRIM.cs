@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

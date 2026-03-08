@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             }
             return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

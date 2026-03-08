@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var r = FunctionUtil.F_base_Factorial(sum) / n;
             return Operand.Create(r);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

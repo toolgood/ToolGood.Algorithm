@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             var r = args1.NumberValue / 180 * MathEx.PI;
             return Operand.Create(r);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

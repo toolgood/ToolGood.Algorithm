@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 			return Operand.Create(args);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.ARRARY;
 		}

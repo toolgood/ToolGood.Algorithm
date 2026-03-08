@@ -43,7 +43,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 			return Operand.Create(args1.NumberValue == args2.NumberValue);
 		}
 
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

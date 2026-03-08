@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
 		}

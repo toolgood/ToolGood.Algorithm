@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var n = (MathEx.Exp((2 * x)) - 1) / (MathEx.Exp((2 * x)) + 1);
             return Operand.Create(n);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

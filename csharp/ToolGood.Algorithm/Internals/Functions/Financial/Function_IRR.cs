@@ -69,7 +69,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 			return rate;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

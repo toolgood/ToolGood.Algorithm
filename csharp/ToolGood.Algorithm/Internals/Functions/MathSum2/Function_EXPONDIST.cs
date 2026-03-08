@@ -54,7 +54,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			return x < 0.0m ? 0.0m : 1.0m - MathEx.Exp(-rate * x);
 		}
 
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

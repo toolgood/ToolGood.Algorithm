@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			char c = (char)code;
 			return Operand.Create(new string(c, 1));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

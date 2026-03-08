@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             }
 			return Operand.Create(MathEx.Asin(x));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

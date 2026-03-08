@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return args1;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

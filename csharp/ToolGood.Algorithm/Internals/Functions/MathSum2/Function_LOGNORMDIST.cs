@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             }
             return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

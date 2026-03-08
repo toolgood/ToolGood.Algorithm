@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			if (args1.IsError) { return args1; }
             return Operand.Create(args1.DateValue.Second);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

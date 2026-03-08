@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			return sign * y;
 		}
 
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

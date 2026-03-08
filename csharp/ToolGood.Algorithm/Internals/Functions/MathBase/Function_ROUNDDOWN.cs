@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             b = ((int)(b * a)) / a;
             return Operand.Create(b);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			return _value;
 		}
 
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

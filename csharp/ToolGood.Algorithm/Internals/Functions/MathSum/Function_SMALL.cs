@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			}
 			return Operand.Create(list[k - engine.ExcelIndex]);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

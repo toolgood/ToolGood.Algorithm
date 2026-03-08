@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsText && args1.TextValue == null) { return Operand.True; }
             return Operand.False;
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

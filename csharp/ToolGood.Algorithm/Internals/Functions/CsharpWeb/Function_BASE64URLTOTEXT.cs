@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				return ParameterError(1);
 			}
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

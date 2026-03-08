@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			if(args1.IsError) { return args1; }
 			return Operand.Error(args1.TextValue);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.ERROR;
 		}

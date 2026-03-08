@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 			stringBuilder.Append("GUID()");
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

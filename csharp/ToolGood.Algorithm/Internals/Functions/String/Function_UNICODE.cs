@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create(char.ConvertToUtf32(args1.TextValue, 0));
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

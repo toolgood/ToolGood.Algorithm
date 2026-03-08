@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
 			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

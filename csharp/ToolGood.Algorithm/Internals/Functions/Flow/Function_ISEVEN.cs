@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             }
             return Operand.False;
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

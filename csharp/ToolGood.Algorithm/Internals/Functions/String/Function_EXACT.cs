@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args2.IsError) { return args2; }
 			return Operand.Create(args1.TextValue == args2.TextValue);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
 		}

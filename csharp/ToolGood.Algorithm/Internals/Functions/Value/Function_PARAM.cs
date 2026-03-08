@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			}
 			return result;
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NONE;
 		}

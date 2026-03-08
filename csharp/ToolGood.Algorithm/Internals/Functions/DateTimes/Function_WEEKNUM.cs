@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var week = Math.Ceiling(days / 7.0m);
             return Operand.Create(week);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var date = args1.DateValue.AddHours(args2.IntValue);
             return Operand.Create(date);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
 		}

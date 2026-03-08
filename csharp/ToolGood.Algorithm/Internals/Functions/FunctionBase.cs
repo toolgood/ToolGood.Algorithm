@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public abstract OperandType GetRestltType();
+		public abstract OperandType GetResultType();
 
 		#region ToString
 		/// <summary>

@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			return Operand.Create((endDate.Date - startDate.Date).Days);
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
 		}

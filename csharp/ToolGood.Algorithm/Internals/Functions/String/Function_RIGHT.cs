@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			int start = args1.TextValue.Length - length;
 			return Operand.Create(args1.TextValue.AsSpan(start, length).ToString());
 		}
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}

@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             }
             return Operand.Create(binaryStr);
         }
-		public override OperandType GetRestltType()
+		public override OperandType GetResultType()
 		{
 			return OperandType.TEXT;
 		}
