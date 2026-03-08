@@ -4,16 +4,16 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_TextValue : FunctionBase
+	internal sealed class Function_ValueText : FunctionBase
 	{
 		private readonly Operand _value;
 		private readonly string _showName;
 
-		public Function_TextValue(Operand value)
+		public Function_ValueText(Operand value)
 		{
 			_value = value;
 		}
-		public Function_TextValue(Operand value, string showName)
+		public Function_ValueText(Operand value, string showName)
 		{
 			_value = value;
 			_showName = showName;

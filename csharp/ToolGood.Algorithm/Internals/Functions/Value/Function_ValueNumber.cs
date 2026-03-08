@@ -5,12 +5,12 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_ShowNumber : FunctionBase
+	internal sealed class Function_ValueNumber : FunctionBase
 	{
 		private readonly Operand _value;
 		private readonly string _showName;
 
-		public Function_ShowNumber(Operand value, string showName)
+		public Function_ValueNumber(Operand value, string showName)
 		{
 			_value = value;
 			_showName = showName;

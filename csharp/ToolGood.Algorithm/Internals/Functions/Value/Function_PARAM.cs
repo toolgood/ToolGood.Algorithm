@@ -4,9 +4,9 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_PARAM : Function_2
+	internal sealed class Function_Param : Function_2
 	{
-		public Function_PARAM(FunctionBase[] funcs) : base(funcs)
+		public Function_Param(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 

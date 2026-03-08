@@ -4,17 +4,17 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_PARAMETER : FunctionBase
+	internal sealed class Function_Parameter : FunctionBase
 	{
 		private readonly string name;
 		private readonly FunctionBase func1;
 
-		public Function_PARAMETER(string name)
+		public Function_Parameter(string name)
 		{
 			this.name = name;
 		}
 
-		public Function_PARAMETER(FunctionBase func1)
+		public Function_Parameter(FunctionBase func1)
 		{
 			this.func1 = func1;
 		}

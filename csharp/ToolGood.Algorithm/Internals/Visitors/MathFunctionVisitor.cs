@@ -173,22 +173,22 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitTRUE_fun(mathParser.TRUE_funContext context)
 		{
-			return new Function_BooleanValue(true);
+			return new Function_ValueBoolean(true);
 		}
 		public FunctionBase VisitFALSE_fun(mathParser.FALSE_funContext context)
 		{
-			return new Function_BooleanValue(false);
+			return new Function_ValueBoolean(false);
 		}
 		#endregion flow
 		#region math
 		#region base
 		public FunctionBase VisitE_fun(mathParser.E_funContext context)
 		{
-			return new Function_ShowNumber(Operand.Create(MathEx.E), "E");
+			return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
 		}
 		public FunctionBase VisitPI_fun(mathParser.PI_funContext context)
 		{
-			return new Function_ShowNumber(Operand.Create(MathEx.PI), "PI");
+			return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
 		}
 		public FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
 		{
@@ -1449,15 +1449,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var text = context.num().GetText();
 			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			if(context.unit == null) { return new Function_ShowNumber(Operand.Create(d), text); }
+			if(context.unit == null) { return new Function_ValueNumber(Operand.Create(d), text); }
 			var unit = context.unit.Text;
-			return new Function_NUM(d, unit);
+			return new Function_Number(d, unit);
 		}
 		public FunctionBase VisitNum(mathParser.NumContext context)
 		{
 			var text = context.GetText();
 			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			return new Function_ShowNumber(Operand.Create(d), text);
+			return new Function_ValueNumber(Operand.Create(d), text);
 		}
  
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
@@ -1482,7 +1482,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 					sb.Append(c);
 				}
 			}
-			return new Function_TextValue(Operand.Create(sb.ToString()));
+			return new Function_ValueText(Operand.Create(sb.ToString()));
 		}
 		public FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
 		{
@@ -1491,17 +1491,17 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
 		{
 			ITerminalNode node = context.PARAMETER();
-			return new Function_PARAMETER(node.GetText());
+			return new Function_Parameter(node.GetText());
 		}
 		public FunctionBase VisitParameter2(mathParser.Parameter2Context context)
 		{
-			return new Function_TextValue(Operand.Create(context.children[0].GetText()));
+			return new Function_ValueText(Operand.Create(context.children[0].GetText()));
 		}
 		public FunctionBase VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
 			if(context.PARAMETER() != null) {
-				var op = new Function_PARAMETER(context.PARAMETER().GetText());
+				var op = new Function_Parameter(context.PARAMETER().GetText());
 				return new Function_GetJsonValue(funcs[0], op);
 			}
 			if(context.parameter2() != null) {
@@ -1519,7 +1519,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitPARAM_fun(mathParser.PARAM_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			return new Function_PARAM(funcs);
+			return new Function_Param(funcs);
 		}
 		public FunctionBase VisitHAS_fun(mathParser.HAS_funContext context)
 		{
@@ -1559,7 +1559,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitVersion_fun(mathParser.Version_funContext context)
 		{
-			return new Function_TextValue(Operand.Version, "ALGORITHMVERSION");
+			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
 		#endregion getValue
 	}

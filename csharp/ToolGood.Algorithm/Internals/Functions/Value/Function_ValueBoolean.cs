@@ -5,10 +5,10 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_BooleanValue : FunctionBase
+	internal sealed class Function_ValueBoolean : FunctionBase
 	{
 		private readonly bool _value;
-		public Function_BooleanValue(bool value)
+		public Function_ValueBoolean(bool value)
 		{
 			_value = value;
 		}

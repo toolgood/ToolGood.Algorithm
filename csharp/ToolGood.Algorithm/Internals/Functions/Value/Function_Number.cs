@@ -4,12 +4,12 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_NUM : FunctionBase
+	internal sealed class Function_Number : FunctionBase
 	{
 		private readonly decimal d;
 		private readonly string unit;
 
-		public Function_NUM(decimal func1, string func2)
+		public Function_Number(decimal func1, string func2)
 		{
 			d = func1;
 			unit = func2;
