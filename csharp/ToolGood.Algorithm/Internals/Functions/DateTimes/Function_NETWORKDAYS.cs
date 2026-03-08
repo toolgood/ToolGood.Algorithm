@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -40,7 +41,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create(days);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

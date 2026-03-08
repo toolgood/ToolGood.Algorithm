@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -27,6 +28,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (life == 0) return Div0Error();
 
 			return Operand.Create((cost - salvage) / life);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

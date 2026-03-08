@@ -1,53 +1,58 @@
 ﻿namespace ToolGood.Algorithm.Enums
 {
-    /// <summary>
-    /// 操作数类型
-    /// </summary>
-    public enum OperandType : byte
-    {
-        /// <summary>
-        /// NULL
-        /// </summary>
-        NULL,
+	/// <summary>
+	/// 操作数类型
+	/// </summary>
+	public enum OperandType : byte
+	{
+		/// <summary>
+		/// 空，未指定
+		/// </summary>
+		NONE,
 
-        /// <summary>
-        /// 错误
-        /// </summary>
-        ERROR,
+		/// <summary>
+		/// NULL
+		/// </summary>
+		NULL,
 
-        /// <summary>
-        /// 日期
-        /// </summary>
-        DATE,
+		/// <summary>
+		/// 错误
+		/// </summary>
+		ERROR,
 
-        /// <summary>
-        /// 数组
-        /// </summary>
-        ARRARY,
+		/// <summary>
+		/// 日期
+		/// </summary>
+		DATE,
 
-        /// <summary>
-        /// 数字
-        /// </summary>
-        NUMBER,
+		/// <summary>
+		/// 数组
+		/// </summary>
+		ARRARY,
 
-        /// <summary>
-        /// 布尔
-        /// </summary>
-        BOOLEAN,
+		/// <summary>
+		/// 数字
+		/// </summary>
+		NUMBER,
 
-        /// <summary>
-        /// 字符串
-        /// </summary>
-        TEXT,
+		/// <summary>
+		/// 布尔
+		/// </summary>
+		BOOLEAN,
 
-        /// <summary>
-        /// JSON格式
-        /// </summary>
-        JSON,
+		/// <summary>
+		/// 字符串
+		/// </summary>
+		TEXT,
 
-        /// <summary>
-        /// JSON格式
-        /// </summary>
-        ARRARYJSON,
-    }
+		/// <summary>
+		/// JSON格式
+		/// </summary>
+		JSON,
+
+		/// <summary>
+		/// JSON格式
+		/// </summary>
+		ARRARYJSON,
+	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -41,7 +42,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             return Operand.Create(sum);
         }
 
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+
+	}
 
     
 

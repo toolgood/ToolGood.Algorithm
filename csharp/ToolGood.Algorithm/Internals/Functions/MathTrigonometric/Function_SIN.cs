@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
@@ -17,8 +18,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsError) { return args1; }
             return Operand.Create(MathEx.Sin(args1.NumberValue));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
     
 

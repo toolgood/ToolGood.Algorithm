@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
@@ -118,6 +119,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				+ y2 * 0.105787412e-6m)));
 			decimal ans = MathEx.Sqrt(0.63661977236758134308m / ax) * (MathEx.Cos(xx) * ans3 - z * MathEx.Sin(xx) * ans4);
 			return (x < 0) ? -ans : ans;
+		}
+
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -24,6 +25,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				return ParameterError(1);
 			}
 			return Operand.Create(MathEx.Log10(z));
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -29,6 +30,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			stringBuilder.Append(" & ");
 			func2.ToString(stringBuilder, false);
 			if(addBrackets) stringBuilder.Append(')');
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
 		}
 	}
 

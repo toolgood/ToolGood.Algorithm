@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -50,6 +51,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var nper = MathEx.Log((-fv * rate + factor) / (pv * rate + factor)) / MathEx.Log((1 + rate));
 			return Operand.Create(nper);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -8,8 +9,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public Function_ENDSWITH(FunctionBase[] funcs) : base(funcs)
 		{
 		}
-
-		
 
 		public override string Name => "EndsWith";
 
@@ -30,6 +29,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args3.IsError) { return args3; }
 
 			return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), FunctionUtil.GetStringComparison(args3.BooleanValue)));
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
 		}
 
 	}

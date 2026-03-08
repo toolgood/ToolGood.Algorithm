@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -28,8 +29,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 #endif
             return Operand.Create((decimal)rand.NextDouble() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
     
 

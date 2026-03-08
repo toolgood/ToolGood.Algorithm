@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -29,7 +30,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + engine.ExcelIndex;
 			return Operand.Create(p2);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
@@ -26,6 +27,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 			stringBuilder.Append(d);
 			stringBuilder.Append(unit);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 

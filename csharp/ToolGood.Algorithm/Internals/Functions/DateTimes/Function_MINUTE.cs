@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -17,7 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			if (args1.IsError) { return args1; }
             return Operand.Create(args1.DateValue.Minute);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
@@ -94,6 +95,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				+ y2 * (-0.003620182649157m + y2 * (0.001638105403528m + y2 * (-0.010315550635288m
 				+ y2 * (0.022829679456897m + y2 * (-0.028953129286367m + y2 * (0.017876545768998m - y2 * 0.004200596567986m))))))));
 			return (x < 0) ? -ans : ans;
+		}
+
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

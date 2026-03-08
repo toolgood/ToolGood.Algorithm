@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -44,6 +45,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 				return true;
 			}
 			return false;
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NONE;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
@@ -20,6 +21,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 				return Div0Error();
 			}
 			return Operand.Create(MathEx.Cosh(args1.NumberValue) / d);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

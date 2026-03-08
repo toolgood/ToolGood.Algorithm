@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -31,7 +32,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), FunctionUtil.GetStringComparison(args3.BooleanValue)));
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 	}
 
 

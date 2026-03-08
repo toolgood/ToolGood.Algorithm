@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -45,6 +46,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			}
 
 			return sb.ToString();
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

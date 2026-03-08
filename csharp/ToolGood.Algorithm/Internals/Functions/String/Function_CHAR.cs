@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -22,7 +23,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			char c = (char)code;
 			return Operand.Create(new string(c, 1));
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
 	}
 
 }

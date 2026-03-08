@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
@@ -43,6 +44,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			decimal y = 1.0m - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * MathEx.Exp(-x * x);
 
 			return sign * y;
+		}
+
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

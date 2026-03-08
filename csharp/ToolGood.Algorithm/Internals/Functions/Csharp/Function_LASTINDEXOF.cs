@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -8,8 +9,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public Function_LASTINDEXOF(FunctionBase[] funcs) : base(funcs)
 		{
 		}
-
-		
 
 		public override string Name => "LastIndexOf";
 
@@ -38,7 +37,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + engine.ExcelIndex);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 	}
 
 

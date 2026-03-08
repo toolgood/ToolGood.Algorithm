@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -17,7 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsBoolean) { return Operand.True; }
             return Operand.False;
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
+	}
 
 }

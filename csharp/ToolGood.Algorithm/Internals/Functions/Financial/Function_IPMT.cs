@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -65,6 +66,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				pmt = pmt / (1 + rate);
 			}
 			return pmt;
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

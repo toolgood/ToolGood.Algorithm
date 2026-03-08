@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -19,7 +20,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             }
             return Operand.False;
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
+	}
 
 }

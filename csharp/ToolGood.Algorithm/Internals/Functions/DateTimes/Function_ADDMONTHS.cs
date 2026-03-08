@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
@@ -23,7 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             if (args2.IsError) { return args2; }
             return Operand.Create(args1.DateValue.AddMonths(args2.IntValue));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.DATE;
+		}
+	}
 
 }

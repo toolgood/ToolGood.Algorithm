@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -30,7 +31,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			int start = args1.TextValue.Length - length;
 			return Operand.Create(args1.TextValue.AsSpan(start, length).ToString());
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
 	}
 
 }

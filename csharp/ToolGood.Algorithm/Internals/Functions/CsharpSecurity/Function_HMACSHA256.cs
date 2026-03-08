@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
@@ -40,6 +41,10 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
                 return Convert.ToHexString(hashmessage);
 #endif
 			}
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
 		}
 
 	}

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions
@@ -24,6 +25,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public abstract OperandType GetRestltType();
 
 		#region ToString
 		/// <summary>

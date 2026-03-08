@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -37,6 +38,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args4.IsError) { return args4; }
 
 			return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + engine.ExcelIndex);
+		}
+
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 
 	}

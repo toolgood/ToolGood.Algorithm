@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -49,6 +50,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			return Operand.Create(fv);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
@@ -22,7 +23,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var n = 0.5m * MathEx.Log(((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

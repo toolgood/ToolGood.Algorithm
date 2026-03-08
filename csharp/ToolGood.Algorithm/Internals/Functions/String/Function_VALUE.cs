@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -16,16 +17,19 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if (args1.IsNumber) { return args1; }
-			if (args1.IsBoolean) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
-			if (args1.IsError) { return args1; }
+			if(args1.IsNumber) { return args1; }
+			if(args1.IsBoolean) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
+			if(args1.IsError) { return args1; }
 
-			if (decimal.TryParse(args1.TextValue.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+			if(decimal.TryParse(args1.TextValue.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 				return Operand.Create(d);
 			}
 			return ParameterError(1);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
 	}
 
 }

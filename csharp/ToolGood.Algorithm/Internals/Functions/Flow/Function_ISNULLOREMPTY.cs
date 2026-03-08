@@ -1,6 +1,7 @@
 using Antlr4.Runtime.Misc;
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -20,7 +21,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 			if(textArg.IsError) { return textArg; }
 			return Operand.Create(string.IsNullOrEmpty(textArg.TextValue));
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 	}
 
 }

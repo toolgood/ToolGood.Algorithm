@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -51,6 +52,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		public decimal CDF(decimal rate, decimal x)
 		{
 			return x < 0.0m ? 0.0m : 1.0m - MathEx.Exp(-rate * x);
+		}
+
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 

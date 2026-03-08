@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -21,7 +22,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args2.IsError) { return args2; }
 			return Operand.Create(args1.TextValue == args2.TextValue);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 	}
 
 }

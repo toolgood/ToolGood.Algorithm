@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -69,7 +70,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 			return ParameterError(1);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.DATE;
+		}
 	}
 
 }

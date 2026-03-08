@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -19,6 +20,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return ParameterError(1);
 			}
 			return Operand.Create(char.ConvertToUtf32(args1.TextValue, 0));
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

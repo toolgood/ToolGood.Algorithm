@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -18,7 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args1.IsError) { return args1; }
             return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

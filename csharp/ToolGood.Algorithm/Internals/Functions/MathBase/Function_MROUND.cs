@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -27,8 +28,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;
             return Operand.Create(r);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
     
 

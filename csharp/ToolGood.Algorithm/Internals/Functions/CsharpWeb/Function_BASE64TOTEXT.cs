@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
@@ -22,7 +23,10 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				return ParameterError(1);
 			}
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
 	}
 
 

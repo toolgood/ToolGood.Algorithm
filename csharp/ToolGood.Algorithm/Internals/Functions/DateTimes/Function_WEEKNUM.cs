@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -32,7 +33,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var week = Math.Ceiling(days / 7.0m);
             return Operand.Create(week);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

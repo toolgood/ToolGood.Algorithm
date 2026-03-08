@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -29,6 +30,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			char[] trimChars = args2.TextValue.ToCharArray();
 			return Operand.Create(args1.TextValue.TrimEnd(trimChars));
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
 	}
 }

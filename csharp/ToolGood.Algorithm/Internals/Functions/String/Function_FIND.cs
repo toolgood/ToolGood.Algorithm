@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -35,7 +36,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create(p2 + startIndex + engine.ExcelIndex);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
 	}
 
 }

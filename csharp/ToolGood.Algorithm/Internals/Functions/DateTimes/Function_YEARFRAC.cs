@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -92,6 +93,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			result += endYear - startYear - 1;
 
 			return result;
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

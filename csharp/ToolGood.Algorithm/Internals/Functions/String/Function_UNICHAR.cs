@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -24,6 +25,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			} catch {
 				return ParameterError(1);
 			}
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
 		}
 	}
 }

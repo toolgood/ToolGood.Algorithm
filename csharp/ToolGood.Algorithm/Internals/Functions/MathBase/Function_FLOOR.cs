@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -31,8 +32,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var d = Math.Floor(a / b) * b;
             return Operand.Create(d);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
     
 

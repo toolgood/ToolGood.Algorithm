@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -56,6 +57,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var intercept = meanY - slope * meanX;
 
 			return Operand.Create(intercept + slope * x);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

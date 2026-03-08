@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -57,7 +58,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return ParameterError(1);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 	}
 
 

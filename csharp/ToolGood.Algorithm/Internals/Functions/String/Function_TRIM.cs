@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -17,7 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args1.IsError) { return args1; }
 			return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
 	}
 
 }

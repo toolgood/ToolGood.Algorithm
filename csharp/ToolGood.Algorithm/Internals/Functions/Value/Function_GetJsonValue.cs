@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
@@ -80,6 +81,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			stringBuilder.Append('[');
 			func2.ToString(stringBuilder, false);
 			stringBuilder.Append(']');
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NONE;
 		}
 	}
 

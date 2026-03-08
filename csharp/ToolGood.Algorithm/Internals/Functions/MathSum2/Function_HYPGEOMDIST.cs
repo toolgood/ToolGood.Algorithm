@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -46,7 +47,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

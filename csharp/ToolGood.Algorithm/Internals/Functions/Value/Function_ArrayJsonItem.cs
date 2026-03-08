@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
@@ -29,7 +30,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			stringBuilder.Append(':');
 			func1.ToString(stringBuilder, false);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.ARRARYJSON;
+		}
 	}
 
 }

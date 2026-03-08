@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -29,7 +30,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             }
             return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
         }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+	}
 
 }

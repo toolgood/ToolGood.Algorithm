@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
@@ -35,8 +36,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             }
             return Operand.Create(binaryStr);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
+	}
 
     
 

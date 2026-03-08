@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -23,7 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var date = args1.DateValue.AddMinutes(args2.IntValue);
             return Operand.Create(date);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.DATE;
+		}
+	}
 
 }

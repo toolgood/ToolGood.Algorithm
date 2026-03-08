@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -22,5 +23,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             return func3.Evaluate(engine, tempParameter);
         }
 
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NONE;
+		}
+
+	}
 }

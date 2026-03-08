@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
@@ -20,6 +21,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 				return ParameterError(1);
 			}
 			return Operand.Create(0.5m * MathEx.Log((d + 1) / (d - 1)));
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

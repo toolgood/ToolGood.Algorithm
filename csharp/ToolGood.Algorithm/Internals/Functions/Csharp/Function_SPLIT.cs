@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -28,7 +29,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.ARRARY;
+		}
 	}
 
 

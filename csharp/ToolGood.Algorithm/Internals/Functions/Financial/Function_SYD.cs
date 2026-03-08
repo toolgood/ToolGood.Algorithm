@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
@@ -32,6 +33,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var syd = (cost - salvage) * (life - period + 1) * 2 / (life * (life + 1));
 			return Operand.Create(syd);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

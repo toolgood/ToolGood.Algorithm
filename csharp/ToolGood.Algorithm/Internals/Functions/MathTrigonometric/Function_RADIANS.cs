@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
@@ -18,8 +19,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             var r = args1.NumberValue / 180 * MathEx.PI;
             return Operand.Create(r);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -24,7 +25,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.DATE;
+		}
+	}
 
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
@@ -18,7 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 			return Operand.Create(args);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.ARRARY;
+		}
 	}
 
 }

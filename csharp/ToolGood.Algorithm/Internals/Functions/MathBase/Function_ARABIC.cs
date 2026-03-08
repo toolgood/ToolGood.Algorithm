@@ -1,4 +1,5 @@
 using System;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -46,6 +47,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				case 'M': return 1000;
 				default: return 0;
 			}
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
 		}
 	}
 }

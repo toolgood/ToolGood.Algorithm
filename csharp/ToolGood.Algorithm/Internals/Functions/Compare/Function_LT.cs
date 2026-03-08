@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
@@ -47,6 +48,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 			return Operand.Create(args1.NumberValue < args2.NumberValue);
 		}
 
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			if(addBrackets) stringBuilder.Append('(');

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -34,6 +35,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				return ParameterError(2);
 			}
 			return Operand.Create(list[k - engine.ExcelIndex]);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 
 	}

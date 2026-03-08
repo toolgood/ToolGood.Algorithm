@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -43,6 +44,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				}
 				return Operand.Create(string.Join(args1.TextValue, list));
 			}
+		}
+
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
 		}
 
 	}

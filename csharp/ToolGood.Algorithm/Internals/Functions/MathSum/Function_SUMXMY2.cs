@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -40,6 +41,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			}
 
 			return Operand.Create(result);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

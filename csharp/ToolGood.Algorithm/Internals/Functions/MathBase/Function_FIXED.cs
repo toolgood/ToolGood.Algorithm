@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -37,8 +38,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(s.ToString(CultureInfo.InvariantCulture));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
+	}
 
     
 

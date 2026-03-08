@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
@@ -36,6 +37,10 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
             var retVal = MD5.HashData(buffer);
             return Convert.ToHexString(retVal);
 #endif
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
 		}
 	}
 

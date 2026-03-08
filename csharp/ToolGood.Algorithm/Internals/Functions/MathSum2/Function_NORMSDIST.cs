@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -19,7 +20,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var num = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSDist(num));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

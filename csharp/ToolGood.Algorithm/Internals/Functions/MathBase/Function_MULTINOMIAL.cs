@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -31,7 +32,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var r = FunctionUtil.F_base_Factorial(sum) / n;
             return Operand.Create(r);
         }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+	}
 
 }

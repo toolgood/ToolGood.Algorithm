@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -28,7 +29,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
 			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.TEXT;
+		}
 	}
 
 }

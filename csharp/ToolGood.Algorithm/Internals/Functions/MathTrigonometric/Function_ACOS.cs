@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
@@ -21,8 +22,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             }
             return Operand.Create(MathEx.Acos(x));
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 
 }

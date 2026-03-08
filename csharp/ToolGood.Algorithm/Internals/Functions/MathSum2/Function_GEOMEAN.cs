@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
@@ -31,7 +32,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			decimal geoMean = MathEx.Pow(product, 1.0m / list.Count);
             return Operand.Create(geoMean);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
+		}
+	}
 
 }

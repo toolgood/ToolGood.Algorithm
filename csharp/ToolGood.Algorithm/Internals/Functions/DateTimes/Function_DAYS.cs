@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -27,6 +28,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var startDate = args2.DateValue.ToDateTime();
 
 			return Operand.Create((endDate.Date - startDate.Date).Days);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

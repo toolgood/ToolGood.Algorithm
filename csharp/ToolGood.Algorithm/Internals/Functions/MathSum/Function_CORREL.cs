@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -55,6 +56,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if(denomX == 0 || denomY == 0) return Div0Error();
 
 			return Operand.Create(numerator / MathEx.Sqrt((denomX * denomY)));
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

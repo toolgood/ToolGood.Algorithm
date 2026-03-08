@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -29,6 +30,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			}
 
 			return Operand.Create(num1 == num2 ? 1 : 0);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NUMBER;
 		}
 	}
 }

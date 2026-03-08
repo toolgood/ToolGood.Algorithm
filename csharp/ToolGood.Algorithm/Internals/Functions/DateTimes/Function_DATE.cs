@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
@@ -87,7 +88,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create(d);
         }
-
-    }
+		public override OperandType GetRestltType()
+		{
+			return OperandType.DATE;
+		}
+	}
 
 }

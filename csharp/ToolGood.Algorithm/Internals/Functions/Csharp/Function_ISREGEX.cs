@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -25,7 +26,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
 			return Operand.Create(b);
 		}
-
+		public override OperandType GetRestltType()
+		{
+			return OperandType.BOOLEAN;
+		}
 	}
 
 

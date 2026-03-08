@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
@@ -24,6 +25,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			AddFunction(stringBuilder, funName);
+		}
+		public override OperandType GetRestltType()
+		{
+			return OperandType.NONE;
 		}
 	}
 
