@@ -18,8 +18,14 @@ namespace ToolGood.Algorithm.Internals
 		/// 
 		/// </summary>
 		public OperandType Type { get; internal set; }
+
 		/// <summary>
-		/// 
+		/// 操作符，可为空
+		/// </summary>
+		public string Operator { get; internal set; }
+
+		/// <summary>
+		/// 操作值，可为空
 		/// </summary>
 		public string Value { get; internal set; }
 	}

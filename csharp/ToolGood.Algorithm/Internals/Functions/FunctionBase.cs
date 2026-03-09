@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
@@ -25,11 +26,40 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <param name="tempParameter"></param>
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		/// <exception cref="NotImplementedException"></exception>
+		protected Operand EvaluateWithoutEngine() { throw new NotImplementedException(); }
+
+		#region GetResultType
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
 		public abstract OperandType GetResultType();
+		#endregion
+
+
+		#region GetParameterTypes
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public List<ParameterType> GetParameterTypes()
+		{
+			List<ParameterType> result = new List<ParameterType>();
+			GetParameterTypes(result);
+			return result;
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="result"></param>
+		protected virtual void GetParameterTypes(List<ParameterType> result) { } 
+		#endregion
 
 		#region ToString
 		/// <summary>
