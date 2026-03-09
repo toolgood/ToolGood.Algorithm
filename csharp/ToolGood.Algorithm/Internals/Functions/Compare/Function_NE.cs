@@ -62,8 +62,28 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
-			func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			var t1 = func1.GetResultType();
+			var t2 = func2.GetResultType();
+			if(t1 == OperandType.NONE) {
+				var p = noneEngine.Evaluate(func2).ToText();
+				if(t2 != OperandType.ERROR) {
+					func1.GetParameterTypes(noneEngine, result, t2, Name, p.TextValue);
+				} else {
+					func1.GetParameterTypes(noneEngine, result, t2, Name, p.TextValue);
+				}
+				func2.GetParameterTypes(noneEngine, result, t2);
+			} else if(t2 == OperandType.NONE) {
+				var p = noneEngine.Evaluate(func1).ToText();
+				if(t1 != OperandType.ERROR) {
+					func2.GetParameterTypes(noneEngine, result, t1, Name, p.TextValue);
+				} else {
+					func2.GetParameterTypes(noneEngine, result, t1, Name, p.TextValue);
+				}
+				func1.GetParameterTypes(noneEngine, result, t1);
+			} else {
+				func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+				func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			}
 		}
 	}
 }
