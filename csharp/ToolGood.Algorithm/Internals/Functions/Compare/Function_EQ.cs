@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
@@ -86,6 +88,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 			stringBuilder.Append(" == ");
 			func2.ToString(stringBuilder, false);
 			if(addBrackets) stringBuilder.Append(')');
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
 		}
 	}
 

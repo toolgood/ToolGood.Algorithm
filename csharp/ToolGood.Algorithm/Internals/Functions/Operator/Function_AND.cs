@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -19,10 +21,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			// ���� && and || or �� excel��  AND(x,y) OR(x,y) ������
-			// ��excel�� AND(x,y) OR(x,y) �ȱ�����
-			// �ڳ����У�&& and  ��true ֱ�ӷ���true �Ͳ�������һ���᲻�ᱨ��
-			// �ڳ����У�|| or  ��false ֱ�ӷ���false �Ͳ�������һ���᲻�ᱨ��
 			var args1 = GetBoolean_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
 			if(args1.BooleanValue == false) {
@@ -43,6 +41,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		public override OperandType GetResultType()
 		{
 			return OperandType.BOOLEAN;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+			func2.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
 		}
 	}
 
