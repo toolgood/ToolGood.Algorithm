@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// </summary>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		protected virtual Operand EvaluateWithoutEngine() { return Operand.None; }
+		internal virtual Operand EvaluateWithoutEngine() { return Operand.None; }
 
 		#region GetResultType
 		/// <summary>
