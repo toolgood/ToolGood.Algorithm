@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (func1 == null || func2 == null || func3 == null) return ParameterError(1);
-
 			var costArg = GetNumber_1(engine, tempParameter);
 			if (costArg.IsErrorOrNone) return costArg;
 			var cost = costArg.NumberValue;

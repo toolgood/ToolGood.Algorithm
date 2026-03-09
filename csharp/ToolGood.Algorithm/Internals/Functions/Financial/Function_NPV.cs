@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 2) return ParameterError(1);
-
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;

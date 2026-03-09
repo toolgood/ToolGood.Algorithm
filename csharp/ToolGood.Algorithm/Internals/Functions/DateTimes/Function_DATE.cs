@@ -7,7 +7,7 @@ using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_DATE : Function_N
+	internal sealed class Function_DATE : Function_6
     {
         public Function_DATE(FunctionBase[] funcs) : base(funcs)
         {
@@ -17,13 +17,13 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = GetNumber(engine, tempParameter, 0);
+            var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
 
-			var args2 = GetNumber(engine, tempParameter, 1);
+			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone) { return args2; }
 
-			var args3 = GetNumber(engine, tempParameter, 2);
+			var args3 = GetNumber_3(engine, tempParameter);
 			if (args3.IsErrorOrNone) { return args3; }
 
 			var year = args1.IntValue;
@@ -38,21 +38,21 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 
             MyDate d;
-            if (funcs.Length == 3) {
+            if (func4 == null) {
                 d = new MyDate(year, month, day, 0, 0, 0);
-            } else if (funcs.Length == 4) {
-                var args4 = GetNumber(engine, tempParameter, 3);
+            } else if (func5 == null) {
+                var args4 = GetNumber_4(engine, tempParameter);
                 if (args4.IsErrorOrNone) { return args4; }
 				var hour = args4.IntValue;
 				if (hour < 0 || hour > 23) {
 					return ParameterError(4);
 				}
                 d = new MyDate(year, month, day, hour, 0, 0);
-            } else if (funcs.Length == 5) {
-                var args4 = GetNumber(engine, tempParameter, 3);
+            } else if (func6 == null) {
+                var args4 = GetNumber_4(engine, tempParameter);
                 if (args4.IsErrorOrNone) { return args4; }
 
-                var args5 = GetNumber(engine, tempParameter, 4);
+                var args5 = GetNumber_5(engine, tempParameter);
                 if (args5.IsErrorOrNone) { return args5; }
 
 				var hour = args4.IntValue;
@@ -65,13 +65,13 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				}
                 d = new MyDate(year, month, day, hour, minute, 0);
             } else {
-                var args4 = GetNumber(engine, tempParameter, 3);
+                var args4 = GetNumber_4(engine, tempParameter);
                 if (args4.IsErrorOrNone) { return args4; }
 
-                var args5 = GetNumber(engine, tempParameter, 4);
+                var args5 = GetNumber_5(engine, tempParameter);
                 if (args5.IsErrorOrNone) { return args5; }
 
-                var args6 = GetNumber(engine, tempParameter, 5);
+                var args6 = GetNumber_6(engine, tempParameter);
                 if (args6.IsErrorOrNone) { return args6; }
 
 				var hour = args4.IntValue;
@@ -97,10 +97,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			foreach(var item in funcs) {
-				item.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func4 != null) func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
-
 }

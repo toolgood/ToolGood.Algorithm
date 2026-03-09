@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (func1 == null) return ParameterError(1);
-
 			var valuesArg = GetArray_1(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
