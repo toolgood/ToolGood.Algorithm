@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -73,6 +74,14 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			funcs[0].GetParameterTypes(noneEngine, result, OperandType.NONE);
+			if(funcs.Length > 1) {
+				funcs[1].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
 		}
 	}
 

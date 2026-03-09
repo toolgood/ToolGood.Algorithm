@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -32,6 +34,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 				}
 			}
 			return OperandType.NONE;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			for(int i = 0; i < funcs.Length - 1; i += 2) {
+				funcs[i].GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+				funcs[i + 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
+			}
 		}
 	}
 }

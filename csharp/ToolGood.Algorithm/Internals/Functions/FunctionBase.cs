@@ -48,17 +48,22 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public List<ParameterType> GetParameterTypes()
+		public List<ParameterType> GetParameterTypes(AlgorithmEngine engine)
 		{
+			NoneEngine noneEngine = new NoneEngine(engine);
 			List<ParameterType> result = new List<ParameterType>();
-			GetParameterTypes(result);
+			GetParameterTypes(noneEngine, result, OperandType.NONE);
 			return result;
 		}
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="noneEngine"></param>
 		/// <param name="result"></param>
-		protected virtual void GetParameterTypes(List<ParameterType> result) { } 
+		/// <param name="operandType"></param>
+		/// <param name="op"></param>
+		/// <param name="val"></param>
+		internal virtual void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,string op = null, string val=null) { }
 		#endregion
 
 		#region ToString
