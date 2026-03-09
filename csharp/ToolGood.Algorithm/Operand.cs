@@ -39,6 +39,11 @@ namespace ToolGood.Algorithm
 		/// Null
 		/// </summary>
 		public static readonly Operand Null = new OperandNull();
+		/// <summary>
+		/// NONE
+		/// </summary>
+		public static readonly Operand None = new OperandNone();
+
 
 		// 整数缓存范围: -1000 ~ 1000，共2001个值
 		private const int IntCacheOffset = 1000;
@@ -53,6 +58,10 @@ namespace ToolGood.Algorithm
 		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
+		/// <summary>
+		/// 是否未指定值
+		/// </summary>
+		public virtual bool IsNone => false;
 		/// <summary>
 		/// 是否为空值
 		/// </summary>
