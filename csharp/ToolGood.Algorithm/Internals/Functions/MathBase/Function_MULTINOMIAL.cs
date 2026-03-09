@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
+			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsErrorOrNone || aa.IsNone) { return aa; } args.Add(aa); }
 
 			var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             int sum = 0;
             int n = 1;
             for (int i = 0; i < list.Count; i++) {
-                var a = (int)list[i]; // Ð¡ÓÚµÈÓÚ0 Ê±£¬°´0´¦Àí
+                var a = (int)list[i]; // Ð¡ï¿½Úµï¿½ï¿½ï¿½0 Ê±ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½
                 n *= FunctionUtil.F_base_Factorial(a);
                 sum += a;
             }

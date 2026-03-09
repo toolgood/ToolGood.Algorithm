@@ -14,8 +14,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(engine, tempParameter); if(args2.IsError) { return args2; }
+			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
+			var args2 = func2.Evaluate(engine, tempParameter); if(args2.IsErrorOrNone) { return args2; }
 
 			if(args1.Type == args2.Type) {
 				if(args1.IsNumber) {
@@ -36,17 +36,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				return CompareError();
 			}
 			args1 = ConvertToNumber(args1, 1);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			args2 = ConvertToNumber(args2, 2);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			return Operand.Create(args1.NumberValue == args2.NumberValue);
 		}
 
 		internal override Operand EvaluateWithoutEngine()
 		{
-			var args1 = func1.EvaluateWithoutEngine(); if(args1.IsError || args1.IsNone) { return args1; }
-			var args2 = func2.EvaluateWithoutEngine(); if(args2.IsError || args1.IsNone) { return args2; }
+			var args1 = func1.EvaluateWithoutEngine(); if(args1.IsErrorOrNone || args1.IsNone) { return args1; }
+			var args2 = func2.EvaluateWithoutEngine(); if(args2.IsErrorOrNone || args1.IsNone) { return args2; }
 
 			if(args1.Type == args2.Type) {
 				if(args1.IsNumber) {
@@ -67,9 +67,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				return CompareError();
 			}
 			args1 = ConvertToNumber(args1, 1);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			args2 = ConvertToNumber(args2, 2);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			return Operand.Create(args1.NumberValue == args2.NumberValue);
 		}

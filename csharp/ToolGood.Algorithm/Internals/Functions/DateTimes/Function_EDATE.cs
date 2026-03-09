@@ -18,10 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetDate_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
             return Operand.Create(args1.DateValue.AddMonths(args2.IntValue));
         }
 		public override OperandType GetResultType()

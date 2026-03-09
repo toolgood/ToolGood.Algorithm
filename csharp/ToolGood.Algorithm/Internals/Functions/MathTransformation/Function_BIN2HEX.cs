@@ -17,13 +17,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			if(RegexHelper.BinRegex.IsMatch(args1.TextValue) == false) { return ParameterError(1); }
 			var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 16).ToUpper();
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
-				if(args2.IsError) { return args2; }
+				if(args2.IsErrorOrNone) { return args2; }
 				if(num.Length <= args2.IntValue) {
 					return Operand.Create(num.PadLeft(args2.IntValue, '0'));
 				}

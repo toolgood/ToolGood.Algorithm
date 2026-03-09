@@ -17,6 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(engine, tempParameter);
+			if(args1.IsNone) return args1;
             if (args1.IsError) { return func2.Evaluate(engine, tempParameter); }
             return func3.Evaluate(engine, tempParameter);
         }

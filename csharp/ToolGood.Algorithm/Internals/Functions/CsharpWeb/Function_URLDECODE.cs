@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			var s = args1.TextValue;
 			var r = System.Web.HttpUtility.UrlDecode(s);
 			return Operand.Create(r);

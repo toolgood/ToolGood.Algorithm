@@ -16,11 +16,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(funcs.Length);
-			foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
+			foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsErrorOrNone) { return aa; } args.Add(aa); }
 			var args1 = args[0];
 			if(args1.IsJson) {
 				var o = args1.ToArray(null);
-				if(o.IsError == false) {
+				if(o.IsErrorOrNone == false) {
 					args1 = o;
 				}
 			}
@@ -30,12 +30,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				if(o == false) return ParameterError(1);
 
 				var args2 = ConvertToText(args[1], 2);
-				if(args2.IsError) { return args2; }
+				if(args2.IsErrorOrNone) { return args2; }
 
 				return Operand.Create(string.Join(args2.TextValue, list));
 			} else {
 				args1 = ConvertToText(args1, 1);
-				if(args1.IsError) { return args1; }
+				if(args1.IsErrorOrNone) { return args1; }
 
 				var list = new List<string>(args.Count);
 				for(int i = 1; i < args.Count; i++) {

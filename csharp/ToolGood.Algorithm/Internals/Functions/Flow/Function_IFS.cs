@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 		{
 			for(int i = 0; i < funcs.Length - 1; i += 2) {
 				var condition = GetBoolean(engine, tempParameter, i);
-				if(condition.IsError) { return condition; }
+				if(condition.IsErrorOrNone) { return condition; }
 				if(condition.BooleanValue) {
 					return funcs[i + 1].Evaluate(engine, tempParameter);
 				}

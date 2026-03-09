@@ -15,16 +15,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length < 2) return ParameterError(1);
 
 			var numArg = GetNumber(engine, tempParameter, 0);
-			if (numArg.IsError) return numArg;
+			if (numArg.IsErrorOrNone) return numArg;
 			var num = numArg.NumberValue;
 
 			var arrayArg = GetArray(engine, tempParameter, 1);
-			if (arrayArg.IsError) return arrayArg;
+			if (arrayArg.IsErrorOrNone) return arrayArg;
 
 			int order = 0;
 			if (funcs.Length > 2) {
 				var orderArg = GetNumber(engine, tempParameter, 2);
-				if (orderArg.IsError) return orderArg;
+				if (orderArg.IsErrorOrNone) return orderArg;
 				order = orderArg.IntValue;
 			}
 

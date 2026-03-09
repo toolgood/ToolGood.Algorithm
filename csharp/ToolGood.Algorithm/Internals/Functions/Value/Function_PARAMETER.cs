@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			if(string.IsNullOrEmpty(name)) {
 				var args1 = func1.Evaluate(engine, tempParameter);
 				args1 = ConvertToText(args1, 1);
-				if(args1.IsError) { return args1; }
+				if(args1.IsErrorOrNone) { return args1; }
 				txt = args1.TextValue;
 			} else {
 				txt = name;

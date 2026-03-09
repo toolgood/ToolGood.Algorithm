@@ -15,19 +15,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length < 4) return ParameterError(1);
 
 			var xArg = GetNumber(engine, tempParameter, 0);
-			if (xArg.IsError) return xArg;
+			if (xArg.IsErrorOrNone) return xArg;
 			var x = xArg.NumberValue;
 
 			var nArg = GetNumber(engine, tempParameter, 1);
-			if (nArg.IsError) return nArg;
+			if (nArg.IsErrorOrNone) return nArg;
 			var n = nArg.NumberValue;
 
 			var mArg = GetNumber(engine, tempParameter, 2);
-			if (mArg.IsError) return mArg;
+			if (mArg.IsErrorOrNone) return mArg;
 			var m = mArg.NumberValue;
 
 			var coefficientsArg = GetArray(engine, tempParameter, 3);
-			if (coefficientsArg.IsError) return coefficientsArg;
+			if (coefficientsArg.IsErrorOrNone) return coefficientsArg;
 
 			decimal result = 0;
 			int i = 0;

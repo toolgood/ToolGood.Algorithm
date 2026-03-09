@@ -15,12 +15,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var obj = func1.Evaluate(engine, tempParameter); if(obj.IsError) { return obj; }
-			var op = func2.Evaluate(engine, tempParameter); if(op.IsError) { return op; }
+			var obj = func1.Evaluate(engine, tempParameter); if(obj.IsErrorOrNone) { return obj; }
+			var op = func2.Evaluate(engine, tempParameter); if(op.IsErrorOrNone) { return op; }
 
 			if(obj.IsArray) {
 				op = ConvertToNumber(op, 2);
-				if(op.IsError) { return op; }
+				if(op.IsErrorOrNone) { return op; }
 				var index = op.IntValue - engine.ExcelIndex;
 				if(index < obj.ArrayValue.Count && index >= 0)
 					return obj.ArrayValue[index];
@@ -45,7 +45,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				var json = obj.JsonValue;
 				if(json.IsArray) {
 					op = ConvertToNumber(op, 2);
-					if(op.IsError) { return op; }
+					if(op.IsErrorOrNone) { return op; }
 					var index = op.IntValue - engine.ExcelIndex;
 					if(index < json.Count && index >= 0) {
 						var v = json[index];
@@ -60,7 +60,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
 				} else {
 					op = ConvertToText(op, 2);
-					if(op.IsError) { return op; }
+					if(op.IsErrorOrNone) { return op; }
 					var v = json[op.TextValue];
 					if(v != null) {
 						if(v.IsString) return Operand.Create(v.StringValue);

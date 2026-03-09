@@ -15,13 +15,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 2) return ParameterError(1);
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
-			if (rateArg.IsError) return rateArg;
+			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
 
 			var values = new List<decimal>();
 			for (int i = 1; i < funcs.Length; i++) {
 				var arg = GetNumber(engine, tempParameter, i);
-				if (arg.IsError) return arg;
+				if (arg.IsErrorOrNone) return arg;
 				values.Add(arg.NumberValue);
 			}
 

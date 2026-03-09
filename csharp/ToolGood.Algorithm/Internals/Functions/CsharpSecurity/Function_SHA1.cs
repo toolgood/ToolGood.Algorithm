@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			try {
 				var t = GetSha1String(Encoding.UTF8.GetBytes(args1.TextValue));
 				return Operand.Create(t);
@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 #if NETSTANDARD2_1
 			SHA1 sha512 = SHA1.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //¼ÆËãÖ¸¶¨Stream ¶ÔÏóµÄ¹þÏ£Öµ
+			byte[] retVal = sha512.ComputeHash(buffer); //ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Stream ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½Ï£Öµ
 			sha512.Dispose();
 			return BitConverter.ToString(retVal).Replace("-", "");
 #else

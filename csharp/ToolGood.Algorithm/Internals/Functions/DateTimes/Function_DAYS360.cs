@@ -17,10 +17,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetDate_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetDate_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 
 			var startMyDate = args1.DateValue.ToDateTime();
 			var endMyDate = args2.DateValue.ToDateTime();
@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var method = false;
 			if (func3 != null) {
 				var args3 = GetBoolean_3(engine, tempParameter);
-				if (args3.IsError) { return args3; }
+				if (args3.IsErrorOrNone) { return args3; }
 				method = args3.BooleanValue;
 			}
             var days = endMyDate.Year * 360 + (endMyDate.Month - 1) * 30

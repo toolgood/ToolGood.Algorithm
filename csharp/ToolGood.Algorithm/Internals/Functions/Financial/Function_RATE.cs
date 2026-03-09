@@ -14,15 +14,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var nperArg = GetNumber(engine, tempParameter, 0);
-			if (nperArg.IsError) return nperArg;
+			if (nperArg.IsErrorOrNone) return nperArg;
 			var nper = nperArg.NumberValue;
 
 			var pmtArg = GetNumber(engine, tempParameter, 1);
-			if (pmtArg.IsError) return pmtArg;
+			if (pmtArg.IsErrorOrNone) return pmtArg;
 			var pmt = pmtArg.NumberValue;
 
 			var pvArg = GetNumber(engine, tempParameter, 2);
-			if (pvArg.IsError) return pvArg;
+			if (pvArg.IsErrorOrNone) return pvArg;
 			var pv = pvArg.NumberValue;
 
 			if (nper <= 0) {
@@ -32,14 +32,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			decimal fv = 0;
 			if (funcs.Length > 3) {
 				var fvArg = GetNumber(engine, tempParameter, 3);
-				if (fvArg.IsError) return fvArg;
+				if (fvArg.IsErrorOrNone) return fvArg;
 				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
 			if (funcs.Length > 4) {
 				var typeArg = GetNumber(engine, tempParameter, 4);
-				if (typeArg.IsError) return typeArg;
+				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
 				if (type != 0 && type != 1) {
 					return ParameterError(5);
@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			decimal guess = 0.1m;
 			if (funcs.Length > 5) {
 				var guessArg = GetNumber(engine, tempParameter, 5);
-				if (guessArg.IsError) return guessArg;
+				if (guessArg.IsErrorOrNone) return guessArg;
 				guess = guessArg.NumberValue;
 			}
 

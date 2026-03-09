@@ -14,15 +14,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var costArg = GetNumber(engine, tempParameter, 0);
-			if (costArg.IsError) return costArg;
+			if (costArg.IsErrorOrNone) return costArg;
 			var cost = costArg.NumberValue;
 
 			var salvageArg = GetNumber(engine, tempParameter, 1);
-			if (salvageArg.IsError) return salvageArg;
+			if (salvageArg.IsErrorOrNone) return salvageArg;
 			var salvage = salvageArg.NumberValue;
 
 			var lifeArg = GetNumber(engine, tempParameter, 2);
-			if (lifeArg.IsError) return lifeArg;
+			if (lifeArg.IsErrorOrNone) return lifeArg;
 			var life = lifeArg.NumberValue;
 
 			if (life == 0) return Div0Error();

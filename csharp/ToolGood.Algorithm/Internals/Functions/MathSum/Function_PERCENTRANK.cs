@@ -20,10 +20,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetArray_1(engine, tempParameter);
-            if (args1.IsError) { return args1; }
+            if (args1.IsErrorOrNone) { return args1; }
 
             var args2 = GetNumber_2(engine, tempParameter);
-            if (args2.IsError) { return args2; }
+            if (args2.IsErrorOrNone) { return args2; }
 
             var list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args1, list);
@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var d = 3;
             if (func3 != null) {
                 var args3 = GetNumber_3(engine, tempParameter);
-                if (args3.IsError) { return args3; }
+                if (args3.IsErrorOrNone) { return args3; }
                 d = args3.IntValue;
             }
             return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));

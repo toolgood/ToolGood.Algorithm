@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var arg = GetText_1(engine, tempParameter);
-			if (arg.IsError) return arg;
+			if (arg.IsErrorOrNone) return arg;
 			var text = arg.TextValue.ToUpperInvariant();
 			return Operand.Create(RomanToArabic(text));
 		}

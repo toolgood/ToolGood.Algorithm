@@ -17,9 +17,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsError) { return args1; }
+			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
 			var args2 = GetText_2(engine, tempParameter);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			if(args1.IsText) {
 				return args1;
@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return Operand.Create(args1.DateValue.ToString(args2.TextValue));
 			}
 			args1 = ConvertToText(args1, 1);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			return Operand.Create(args1.TextValue.ToString());
 		}
 		public override OperandType GetResultType()

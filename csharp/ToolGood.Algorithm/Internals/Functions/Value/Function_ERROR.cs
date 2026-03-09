@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 			if(func1 == null) { return Operand.Error(""); }
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			return Operand.Error(args1.TextValue);
 		}
 		public override OperandType GetResultType()

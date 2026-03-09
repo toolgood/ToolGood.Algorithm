@@ -17,15 +17,15 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 			var args2 = GetText_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 			if (func3 == null) {
 				var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + engine.ExcelIndex;
 				return Operand.Create(p);
 			}
 			var count = GetNumber_3(engine, tempParameter);
-			if (count.IsError) { return count; }
+			if (count.IsErrorOrNone) { return count; }
 			var startIndex = count.IntValue;
 			if (startIndex < 0 || startIndex > args2.TextValue.Length) {
 				return ParameterError(3);

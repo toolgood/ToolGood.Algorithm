@@ -15,10 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if(funcs.Length < 2) return ParameterError(1);
 
 			var array1Arg = GetArray(engine, tempParameter, 0);
-			if(array1Arg.IsError) return array1Arg;
+			if(array1Arg.IsErrorOrNone) return array1Arg;
 
 			var array2Arg = GetArray(engine, tempParameter, 1);
-			if(array2Arg.IsError) return array2Arg;
+			if(array2Arg.IsErrorOrNone) return array2Arg;
 
 			var xValues = new List<decimal>();
 			foreach(var item in array1Arg.ArrayValue) {

@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length < 2) return ParameterError(1);
 
 			var arrayXArg = GetArray(engine, tempParameter, 0);
-			if (arrayXArg.IsError) return arrayXArg;
+			if (arrayXArg.IsErrorOrNone) return arrayXArg;
 			var arrayX = new List<decimal>();
 			foreach (var item in arrayXArg.ArrayValue) {
 				if (item.IsNumber) {
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			}
 
 			var arrayYArg = GetArray(engine, tempParameter, 1);
-			if (arrayYArg.IsError) return arrayYArg;
+			if (arrayYArg.IsErrorOrNone) return arrayYArg;
 			var arrayY = new List<decimal>();
 			foreach (var item in arrayYArg.ArrayValue) {
 				if (item.IsNumber) {

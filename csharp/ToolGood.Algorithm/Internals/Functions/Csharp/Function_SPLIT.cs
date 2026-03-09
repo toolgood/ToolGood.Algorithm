@@ -18,10 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetText_2(engine, tempParameter);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			if (string.IsNullOrEmpty(args2.TextValue)) {
 				return ParameterError(2);

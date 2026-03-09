@@ -15,18 +15,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var valuesArg = GetArray(engine, tempParameter, 0);
-			if (valuesArg.IsError) return valuesArg;
+			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
 				values.Add(v.NumberValue);
 			}
 
 			var financeRateArg = GetNumber(engine, tempParameter, 1);
-			if (financeRateArg.IsError) return financeRateArg;
+			if (financeRateArg.IsErrorOrNone) return financeRateArg;
 			var financeRate = financeRateArg.NumberValue;
 
 			var reinvestRateArg = GetNumber(engine, tempParameter, 2);
-			if (reinvestRateArg.IsError) return reinvestRateArg;
+			if (reinvestRateArg.IsErrorOrNone) return reinvestRateArg;
 			var reinvestRate = reinvestRateArg.NumberValue;
 
 			decimal npvNegative = 0;

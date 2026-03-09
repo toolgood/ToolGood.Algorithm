@@ -14,17 +14,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			if (funcs.Length < 2) return ParameterError(1);
 
 			var startDateArg = GetDate(engine, tempParameter, 0);
-			if (startDateArg.IsError) return startDateArg;
+			if (startDateArg.IsErrorOrNone) return startDateArg;
 			var startDate = startDateArg.DateValue.ToDateTime(DateTimeKind.Utc);
 
 			var endDateArg = GetDate(engine, tempParameter, 1);
-			if (endDateArg.IsError) return endDateArg;
+			if (endDateArg.IsErrorOrNone) return endDateArg;
 			var endDate = endDateArg.DateValue.ToDateTime(DateTimeKind.Utc);
 
 			int basis = 0;
 			if (funcs.Length > 2) {
 				var basisArg = GetNumber(engine, tempParameter, 2);
-				if (basisArg.IsError) return basisArg;
+				if (basisArg.IsErrorOrNone) return basisArg;
 				basis = basisArg.IntValue;
 			}
 

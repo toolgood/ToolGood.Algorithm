@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-            if (args1.IsError) { return args1; }
+            if (args1.IsErrorOrNone) { return args1; }
             var num = args1.IntValue;
             if (num < -512 || num > 511) {
                 return ParameterError(1);
@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var binaryStr = Convert.ToString(num, 2);
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
-                if (args2.IsError) { return args2; }
+                if (args2.IsErrorOrNone) { return args2; }
                 if (binaryStr.Length > args2.IntValue) {
                     return ParameterError(2);
                 }

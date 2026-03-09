@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			bool b = false;
 			for(int i = 0; i < funcs.Length; i++) {
 				var a = GetBoolean(engine, tempParameter, i);
-				if(a.IsError) { return a; }
+				if(a.IsErrorOrNone) { return a; }
 				if(a.BooleanValue) b = true;
 			}
 			return b ? Operand.True : Operand.False;

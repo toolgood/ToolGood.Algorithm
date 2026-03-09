@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 1) return ParameterError(1);
 
 			var valuesArg = GetArray(engine, tempParameter, 0);
-			if (valuesArg.IsError) return valuesArg;
+			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
 				values.Add(v.NumberValue);
@@ -38,7 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			decimal guess = 0.1m;
 			if (funcs.Length > 1) {
 				var guessArg = GetNumber(engine, tempParameter, 1);
-				if (guessArg.IsError) return guessArg;
+				if (guessArg.IsErrorOrNone) return guessArg;
 				guess = guessArg.NumberValue;
 			}
 

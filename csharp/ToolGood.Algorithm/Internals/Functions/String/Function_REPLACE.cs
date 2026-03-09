@@ -17,13 +17,13 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 			var oldtext = args1.TextValue;
 			if (func4 == null) {
 				var args22 = GetText_2(engine, tempParameter);
-				if (args22.IsError) { return args22; }
+				if (args22.IsErrorOrNone) { return args22; }
 				var args32 = GetText_3(engine, tempParameter);
-				if (args32.IsError) { return args32; }
+				if (args32.IsErrorOrNone) { return args32; }
 
 				var old = args22.TextValue;
 				var newstr = args32.TextValue;
@@ -31,11 +31,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 			var args3 = GetNumber_3(engine, tempParameter);
-			if (args3.IsError) { return args3; }
+			if (args3.IsErrorOrNone) { return args3; }
 			var args4 = GetText_4(engine, tempParameter);
-			if (args4.IsError) { return args4; }
+			if (args4.IsErrorOrNone) { return args4; }
 
 			var start = args2.IntValue - engine.ExcelIndex;
 			var length = args3.IntValue;

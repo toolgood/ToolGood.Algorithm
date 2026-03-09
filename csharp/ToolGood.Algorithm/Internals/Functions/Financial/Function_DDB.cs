@@ -14,25 +14,25 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 4) return ParameterError(1);
 
 			var costArg = GetNumber(engine, tempParameter, 0);
-			if (costArg.IsError) return costArg;
+			if (costArg.IsErrorOrNone) return costArg;
 			var cost = costArg.NumberValue;
 
 			var salvageArg = GetNumber(engine, tempParameter, 1);
-			if (salvageArg.IsError) return salvageArg;
+			if (salvageArg.IsErrorOrNone) return salvageArg;
 			var salvage = salvageArg.NumberValue;
 
 			var lifeArg = GetNumber(engine, tempParameter, 2);
-			if (lifeArg.IsError) return lifeArg;
+			if (lifeArg.IsErrorOrNone) return lifeArg;
 			var life = lifeArg.NumberValue;
 
 			var periodArg = GetNumber(engine, tempParameter, 3);
-			if (periodArg.IsError) return periodArg;
+			if (periodArg.IsErrorOrNone) return periodArg;
 			var period = periodArg.NumberValue;
 
 			decimal factor = 2;
 			if (funcs.Length > 4) {
 				var factorArg = GetNumber(engine, tempParameter, 4);
-				if (factorArg.IsError) return factorArg;
+				if (factorArg.IsErrorOrNone) return factorArg;
 				factor = factorArg.NumberValue;
 			}
 

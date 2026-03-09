@@ -15,13 +15,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetNumber(engine, tempParameter, 0);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			var number = args1.NumberValue;
 
 			decimal step = 0;
 			if(funcs.Length >= 2) {
 				var args2 = GetNumber(engine, tempParameter, 1);
-				if(args2.IsError) { return args2; }
+				if(args2.IsErrorOrNone) { return args2; }
 				step = args2.NumberValue;
 			}
 

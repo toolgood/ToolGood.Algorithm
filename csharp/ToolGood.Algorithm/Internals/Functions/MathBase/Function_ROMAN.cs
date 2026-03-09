@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (funcs.Length < 1) return ParameterError(1);
 
 			var numArg = GetNumber(engine, tempParameter, 0);
-			if (numArg.IsError) return numArg;
+			if (numArg.IsErrorOrNone) return numArg;
 			var num = numArg.IntValue;
 
 			if (num < 0 || num > 3999) return Operand.Create(string.Empty);
@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			int form = 0;
 			if (funcs.Length > 1) {
 				var formArg = GetNumber(engine, tempParameter, 1);
-				if (formArg.IsError) return formArg;
+				if (formArg.IsErrorOrNone) return formArg;
 				form = formArg.IntValue;
 			}
 

@@ -20,11 +20,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 		{
 			var args1 = func1.Evaluate(engine, tempParameter);
 			args1 = ConvertToArray(args1, 1);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			var args2 = func2.Evaluate(engine, tempParameter);
 			args2 = ConvertToNumber(args2, 2);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args1, list);

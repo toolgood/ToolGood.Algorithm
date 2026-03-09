@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsNumber) { return args1; }
 			if(args1.IsBoolean) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			if(decimal.TryParse(args1.TextValue.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 				return Operand.Create(d);

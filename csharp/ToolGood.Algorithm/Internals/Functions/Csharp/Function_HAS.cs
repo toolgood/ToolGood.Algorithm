@@ -18,10 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetText_2(engine, tempParameter);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			if(args1.IsArrayJson) {
 				return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				var ar = ((OperandArray)args1);
 				foreach(var item in ar.ArrayValue) {
 					var t = item.ToText();
-					if(t.IsError) { continue; }
+					if(t.IsErrorOrNone) { continue; }
 					if(t.TextValue == args2.TextValue) {
 						return Operand.True;
 					}

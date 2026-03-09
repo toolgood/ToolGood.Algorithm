@@ -16,15 +16,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
-			if (rateArg.IsError) return rateArg;
+			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
 
 			var valuesArg = GetArray(engine, tempParameter, 1);
-			if (valuesArg.IsError) return valuesArg;
+			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = valuesArg.ArrayValue;
 
 			var datesArg = GetArray(engine, tempParameter, 2);
-			if (datesArg.IsError) return datesArg;
+			if (datesArg.IsErrorOrNone) return datesArg;
 			var dates = datesArg.ArrayValue;
 
 			if (values.Count != dates.Count) return FunctionError();

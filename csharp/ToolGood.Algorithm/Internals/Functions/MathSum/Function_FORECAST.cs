@@ -15,14 +15,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var xArg = GetNumber(engine, tempParameter, 0);
-			if (xArg.IsError) return xArg;
+			if (xArg.IsErrorOrNone) return xArg;
 			var x = xArg.NumberValue;
 
 			var yArrayArg = GetArray(engine, tempParameter, 1);
-			if (yArrayArg.IsError) return yArrayArg;
+			if (yArrayArg.IsErrorOrNone) return yArrayArg;
 
 			var xArrayArg = GetArray(engine, tempParameter, 2);
-			if (xArrayArg.IsError) return xArrayArg;
+			if (xArrayArg.IsErrorOrNone) return xArrayArg;
 
 			var yValues = new List<decimal>();
 			foreach (var item in yArrayArg.ArrayValue) {

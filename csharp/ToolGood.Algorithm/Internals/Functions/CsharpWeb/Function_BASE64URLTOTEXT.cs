@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			try {
 				var base64Url = args1.TextValue.Replace('-', '+').Replace('_', '/');
 				var padding = 4 - (base64Url.Length % 4);

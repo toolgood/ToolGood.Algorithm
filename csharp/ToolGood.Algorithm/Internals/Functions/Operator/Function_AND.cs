@@ -19,15 +19,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			// ³ÌÐò && and || or Óë excelµÄ  AND(x,y) OR(x,y) ÓÐÇø±ð
-			// ÔÚexcelÄÚ AND(x,y) OR(x,y) ÏÈ±¨´í£¬
-			// ÔÚ³ÌÐòÖÐ£¬&& and  ÓÐtrue Ö±½Ó·µ»Øtrue ¾Í²»»á¼ì²âÏÂÒ»¸ö»á²»»á±¨´í
-			// ÔÚ³ÌÐòÖÐ£¬|| or  ÓÐfalse Ö±½Ó·µ»Øfalse ¾Í²»»á¼ì²âÏÂÒ»¸ö»á²»»á±¨´í
+			// ï¿½ï¿½ï¿½ï¿½ && and || or ï¿½ï¿½ excelï¿½ï¿½  AND(x,y) OR(x,y) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ï¿½ï¿½excelï¿½ï¿½ AND(x,y) OR(x,y) ï¿½È±ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ï¿½Ú³ï¿½ï¿½ï¿½ï¿½Ð£ï¿½&& and  ï¿½ï¿½true Ö±ï¿½Ó·ï¿½ï¿½ï¿½true ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½á²»ï¿½á±¨ï¿½ï¿½
+			// ï¿½Ú³ï¿½ï¿½ï¿½ï¿½Ð£ï¿½|| or  ï¿½ï¿½false Ö±ï¿½Ó·ï¿½ï¿½ï¿½false ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½á²»ï¿½á±¨ï¿½ï¿½
 			var args1 = GetBoolean_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 			if(args1.BooleanValue == false) {
 				var args2 = GetBoolean_2(engine, tempParameter);
-				if(args2.IsError) { return args2; }
+				if(args2.IsErrorOrNone) { return args2; }
 				return Operand.False;
 			}
 			return GetBoolean_2(engine, tempParameter);

@@ -14,28 +14,28 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var rateArg = GetNumber(engine, tempParameter, 0);
-			if (rateArg.IsError) return rateArg;
+			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
 
 			var nperArg = GetNumber(engine, tempParameter, 1);
-			if (nperArg.IsError) return nperArg;
+			if (nperArg.IsErrorOrNone) return nperArg;
 			var nper = nperArg.NumberValue;
 
 			var pmtArg = GetNumber(engine, tempParameter, 2);
-			if (pmtArg.IsError) return pmtArg;
+			if (pmtArg.IsErrorOrNone) return pmtArg;
 			var pmt = pmtArg.NumberValue;
 
 			decimal fv = 0;
 			if (funcs.Length > 3) {
 				var fvArg = GetNumber(engine, tempParameter, 3);
-				if (fvArg.IsError) return fvArg;
+				if (fvArg.IsErrorOrNone) return fvArg;
 				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
 			if (funcs.Length > 4) {
 				var typeArg = GetNumber(engine, tempParameter, 4);
-				if (typeArg.IsError) return typeArg;
+				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
 			}
 

@@ -15,12 +15,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var exprValue = funcs[0].Evaluate(engine, tempParameter);
-			if(exprValue.IsError) { return exprValue; }
+			if(exprValue.IsErrorOrNone) { return exprValue; }
 
 			int i = 1;
 			while(i < funcs.Length - 1) {
 				var compareValue = funcs[i].Evaluate(engine, tempParameter);
-				if(compareValue.IsError) { return compareValue; }
+				if(compareValue.IsErrorOrNone) { return compareValue; }
 
 				if(EqualsOperand(exprValue, compareValue)) {
 					return funcs[i + 1].Evaluate(engine, tempParameter);

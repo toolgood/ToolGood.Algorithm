@@ -18,10 +18,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 
 			var hour = args1.IntValue;
 			var minute = args2.IntValue;
@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			MyDate d;
 			if (func3 != null) {
 				var args3 = GetNumber_3(engine, tempParameter);
-				if (args3.IsError) { return args3; }
+				if (args3.IsErrorOrNone) { return args3; }
 				var second = args3.IntValue;
 				if (second < 0 || second > 59) {
 					return ParameterError(3);

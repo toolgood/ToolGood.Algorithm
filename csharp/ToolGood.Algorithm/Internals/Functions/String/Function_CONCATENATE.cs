@@ -19,13 +19,13 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			if (funcs.Length == 1) {
 				var a = GetText(engine, tempParameter, 0);
-				if (a.IsError) { return a; }
-				return a; // 只有一�?
+				if (a.IsErrorOrNone) { return a; }
+				return a; // 只有一�?
 			}
 			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {
 				var a = GetText(engine, tempParameter, i);
-				if (a.IsError) { return a; }
+				if (a.IsErrorOrNone) { return a; }
 				sb.Append(a.TextValue);
 			}
 			return Operand.Create(sb.ToString());

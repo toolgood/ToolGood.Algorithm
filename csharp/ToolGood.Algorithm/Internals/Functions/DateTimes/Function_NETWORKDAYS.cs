@@ -16,10 +16,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetDate(engine, tempParameter, 0);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetDate(engine, tempParameter, 1);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 
 			var startMyDate = args1.DateValue.ToDateTime();
 			var endMyDate = args2.DateValue.ToDateTime();
@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var list = new HashSet<DateTime>();
 			for (int i = 2; i < funcs.Length; i++) {
 				var ar = GetDate(engine, tempParameter, i);
-				if (ar.IsError) { return ar; }
+				if (ar.IsErrorOrNone) { return ar; }
 				list.Add(ar.DateValue.ToDateTime());
 			}
             var days = 0;

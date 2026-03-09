@@ -17,10 +17,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetNumber_2(engine, tempParameter);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			var text = args1.TextValue;
 			var startIndex = args2.IntValue - engine.ExcelIndex;
@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 
 			var args3 = GetNumber_3(engine, tempParameter);
-			if(args3.IsError) { return args3; }
+			if(args3.IsErrorOrNone) { return args3; }
 
 			var length = args3.IntValue;
 			if (length < 0) {

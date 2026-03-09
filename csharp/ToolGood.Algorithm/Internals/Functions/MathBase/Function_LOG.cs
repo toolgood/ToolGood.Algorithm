@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 
 			var z = args1.NumberValue;
 			if (z <= 0) {
@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				return Operand.Create(MathEx.Log10(z));
 
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 			var baseValue = args2.NumberValue;
 			if (baseValue <= 0 || baseValue == 1) {
 				return ParameterError(2);

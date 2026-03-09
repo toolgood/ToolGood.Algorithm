@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			var x = args1.NumberValue;
 			return Operand.Create(Erf(x));
 		}

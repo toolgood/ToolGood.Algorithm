@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var arrays = new List<List<decimal>>();
 			for (int i = 0; i < funcs.Length; i++) {
 				var arg = GetArray(engine, tempParameter, i);
-				if (arg.IsError) return arg;
+				if (arg.IsErrorOrNone) return arg;
 				var list = new List<decimal>();
 				foreach (var item in arg.ArrayValue) {
 					if (item.IsNumber) {
