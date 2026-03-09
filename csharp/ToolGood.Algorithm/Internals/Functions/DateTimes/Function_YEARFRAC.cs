@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_YEARFRAC : Function_N
+	internal sealed class Function_YEARFRAC : Function_3
 	{
 		public Function_YEARFRAC(FunctionBase[] funcs) : base(funcs) { }
 
@@ -13,19 +13,19 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 2) return ParameterError(1);
+			if (func1 == null || func2 == null) return ParameterError(1);
 
-			var startDateArg = GetDate(engine, tempParameter, 0);
+			var startDateArg = GetDate_1(engine, tempParameter);
 			if (startDateArg.IsErrorOrNone) return startDateArg;
 			var startDate = startDateArg.DateValue.ToDateTime(DateTimeKind.Utc);
 
-			var endDateArg = GetDate(engine, tempParameter, 1);
+			var endDateArg = GetDate_2(engine, tempParameter);
 			if (endDateArg.IsErrorOrNone) return endDateArg;
 			var endDate = endDateArg.DateValue.ToDateTime(DateTimeKind.Utc);
 
 			int basis = 0;
-			if (funcs.Length > 2) {
-				var basisArg = GetNumber(engine, tempParameter, 2);
+			if (func3 != null) {
+				var basisArg = GetNumber_3(engine, tempParameter);
 				if (basisArg.IsErrorOrNone) return basisArg;
 				basis = basisArg.IntValue;
 			}
@@ -43,15 +43,15 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 
 			switch (basis) {
-				case 0: // US (NASD) 30/360
+				case 0:
 					return Calculate30_360(startDate, endDate);
-				case 1: // Actual/actual
+				case 1:
 					return CalculateActualActual(startDate, endDate);
-				case 2: // Actual/360
+				case 2:
 					return (decimal)(endDate - startDate).TotalDays / 360;
-				case 3: // Actual/365
+				case 3:
 					return (decimal)(endDate - startDate).TotalDays / 365;
-				case 4: // European 30/360
+				case 4:
 					return Calculate30_360E(startDate, endDate);
 				default:
 					return Calculate30_360(startDate, endDate);
@@ -103,11 +103,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			funcs[0].GetParameterTypes(noneEngine, result, OperandType.DATE);
-			funcs[1].GetParameterTypes(noneEngine, result, OperandType.DATE);
-			if(funcs.Length > 2) {
-				funcs[2].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

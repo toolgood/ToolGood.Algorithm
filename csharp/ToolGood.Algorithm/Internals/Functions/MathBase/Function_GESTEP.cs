@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal sealed class Function_GESTEP : Function_N
+	internal sealed class Function_GESTEP : Function_2
 	{
 		public Function_GESTEP(FunctionBase[] funcs) : base(funcs)
 		{
@@ -16,13 +16,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetNumber(engine, tempParameter, 0);
+			if (func1 == null) return ParameterError(1);
+
+			var args1 = GetNumber_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
 			var number = args1.NumberValue;
 
 			decimal step = 0;
-			if(funcs.Length >= 2) {
-				var args2 = GetNumber(engine, tempParameter, 1);
+			if(func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsErrorOrNone) { return args2; }
 				step = args2.NumberValue;
 			}
@@ -36,9 +38,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			for(int i = 0; i < funcs.Length; i++) {
-				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }
