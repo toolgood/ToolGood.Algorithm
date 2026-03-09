@@ -9,31 +9,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 	internal sealed class Function_Parameter : FunctionBase
 	{
 		private readonly string name;
-		private readonly FunctionBase func1;
 
 		public Function_Parameter(string name)
 		{
 			this.name = name;
 		}
 
-		public Function_Parameter(FunctionBase func1)
-		{
-			this.func1 = func1;
-		}
+
 
 		public override string Name => "Parameter";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var txt = name;
-			if(string.IsNullOrEmpty(name)) {
-				var args1 = func1.Evaluate(engine, tempParameter);
-				args1 = ConvertToText(args1, 1);
-				if(args1.IsErrorOrNone) { return args1; }
-				txt = args1.TextValue;
-			} else {
-				txt = name;
-			}
 			if(tempParameter != null) {
 				var r = tempParameter(engine, txt);
 				if(r != null) return r;
@@ -42,11 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			if(string.IsNullOrEmpty(name)) {
-				func1.ToString(stringBuilder, false);
-			} else {
-				stringBuilder.Append(name);
-			}
+			stringBuilder.Append(name);
 		}
 		public override OperandType GetResultType()
 		{
@@ -55,9 +39,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			if(func1 != null) {
-				func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
-			}
+			result.Add(new ParameterType() {
+				Name = name,
+				Type = operandType,
+				Operator = op,
+				Value = val
+			});
 		}
 	}
 
