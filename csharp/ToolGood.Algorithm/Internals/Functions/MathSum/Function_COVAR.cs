@@ -44,6 +44,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 		{
 			return OperandType.NUMBER;
 		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+		}
 	}
 
     

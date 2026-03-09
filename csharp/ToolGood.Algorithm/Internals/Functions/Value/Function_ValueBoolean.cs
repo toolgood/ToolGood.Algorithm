@@ -30,5 +30,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		{
 			stringBuilder.Append(Name);
 		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+		}
 	}
 }

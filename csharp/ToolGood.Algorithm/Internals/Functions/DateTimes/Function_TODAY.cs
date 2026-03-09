@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
@@ -26,6 +27,10 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		public override OperandType GetResultType()
 		{
 			return OperandType.DATE;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
 		}
 	}
 

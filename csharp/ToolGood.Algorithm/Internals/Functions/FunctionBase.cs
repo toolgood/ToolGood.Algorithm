@@ -63,7 +63,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <param name="operandType"></param>
 		/// <param name="op"></param>
 		/// <param name="val"></param>
-		internal virtual void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,string op = null, string val=null) { }
+		internal abstract void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null);
 		#endregion
 
 		#region ToString
