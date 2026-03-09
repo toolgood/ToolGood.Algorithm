@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
@@ -23,14 +25,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
 			return Operand.Create(d2);
 		}
+
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			stringBuilder.Append(d);
 			stringBuilder.Append(unit);
 		}
+
 		public override OperandType GetResultType()
 		{
 			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
 		}
 	}
 
