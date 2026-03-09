@@ -75,9 +75,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
 			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			if(func4 != null) func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 			if(func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
