@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_PV : Function_N
+	internal sealed class Function_PV : Function_5
 	{
 		public Function_PV(FunctionBase[] funcs) : base(funcs) { }
 
@@ -13,30 +13,30 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 3) return ParameterError(1);
+			if (func1 == null || func2 == null || func3 == null) return ParameterError(1);
 
-			var rateArg = GetNumber(engine, tempParameter, 0);
+			var rateArg = GetNumber_1(engine, tempParameter);
 			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
 
-			var nperArg = GetNumber(engine, tempParameter, 1);
+			var nperArg = GetNumber_2(engine, tempParameter);
 			if (nperArg.IsErrorOrNone) return nperArg;
 			var nper = nperArg.NumberValue;
 
-			var pmtArg = GetNumber(engine, tempParameter, 2);
+			var pmtArg = GetNumber_3(engine, tempParameter);
 			if (pmtArg.IsErrorOrNone) return pmtArg;
 			var pmt = pmtArg.NumberValue;
 
 			decimal fv = 0;
-			if (funcs.Length > 3) {
-				var fvArg = GetNumber(engine, tempParameter, 3);
+			if (func4 != null) {
+				var fvArg = GetNumber_4(engine, tempParameter);
 				if (fvArg.IsErrorOrNone) return fvArg;
 				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
-			if (funcs.Length > 4) {
-				var typeArg = GetNumber(engine, tempParameter, 4);
+			if (func5 != null) {
+				var typeArg = GetNumber_5(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
 			}
@@ -61,9 +61,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			for(int i = 0; i < funcs.Length; i++) {
-				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func4 != null) func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

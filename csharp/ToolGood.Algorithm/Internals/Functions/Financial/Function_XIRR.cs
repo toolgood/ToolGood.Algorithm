@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_XIRR : Function_N
+	internal sealed class Function_XIRR : Function_3
 	{
 		public Function_XIRR(FunctionBase[] funcs) : base(funcs) { }
 
@@ -14,16 +14,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 2) return ParameterError(1);
+			if (func1 == null || func2 == null) return ParameterError(1);
 
-			var valuesArg = GetArray(engine, tempParameter, 0);
+			var valuesArg = GetArray_1(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
 				values.Add(v.NumberValue);
 			}
 
-			var datesArg = GetArray(engine, tempParameter, 1);
+			var datesArg = GetArray_2(engine, tempParameter);
 			if (datesArg.IsErrorOrNone) return datesArg;
 			var dates = new List<DateTime>();
 			foreach (var d in datesArg.ArrayValue) {
@@ -41,8 +41,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (values.Count != dates.Count || values.Count < 2) return FunctionError();
 
 			decimal guess = 0.1m;
-			if (funcs.Length > 2) {
-				var guessArg = GetNumber(engine, tempParameter, 2);
+			if (func3 != null) {
+				var guessArg = GetNumber_3(engine, tempParameter);
 				if (guessArg.IsErrorOrNone) return guessArg;
 				guess = guessArg.NumberValue;
 			}
@@ -84,11 +84,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
-			funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
-			if(funcs.Length > 2) {
-				funcs[2].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

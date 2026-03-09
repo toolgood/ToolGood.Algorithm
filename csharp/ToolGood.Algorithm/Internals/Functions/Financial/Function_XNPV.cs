@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_XNPV : Function_N
+	internal sealed class Function_XNPV : Function_3
 	{
 		public Function_XNPV(FunctionBase[] funcs) : base(funcs) { }
 
@@ -14,17 +14,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 3) return ParameterError(1);
+			if (func1 == null || func2 == null || func3 == null) return ParameterError(1);
 
-			var rateArg = GetNumber(engine, tempParameter, 0);
+			var rateArg = GetNumber_1(engine, tempParameter);
 			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
 
-			var valuesArg = GetArray(engine, tempParameter, 1);
+			var valuesArg = GetArray_2(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = valuesArg.ArrayValue;
 
-			var datesArg = GetArray(engine, tempParameter, 2);
+			var datesArg = GetArray_3(engine, tempParameter);
 			if (datesArg.IsErrorOrNone) return datesArg;
 			var dates = datesArg.ArrayValue;
 
@@ -61,9 +61,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			funcs[0].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
-			funcs[2].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
 		}
 	}
 }

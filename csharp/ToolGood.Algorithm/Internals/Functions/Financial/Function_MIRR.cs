@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_MIRR : Function_N
+	internal sealed class Function_MIRR : Function_3
 	{
 		public Function_MIRR(FunctionBase[] funcs) : base(funcs) { }
 
@@ -13,20 +13,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 3) return ParameterError(1);
+			if (func1 == null || func2 == null || func3 == null) return ParameterError(1);
 
-			var valuesArg = GetArray(engine, tempParameter, 0);
+			var valuesArg = GetArray_1(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
 				values.Add(v.NumberValue);
 			}
 
-			var financeRateArg = GetNumber(engine, tempParameter, 1);
+			var financeRateArg = GetNumber_2(engine, tempParameter);
 			if (financeRateArg.IsErrorOrNone) return financeRateArg;
 			var financeRate = financeRateArg.NumberValue;
 
-			var reinvestRateArg = GetNumber(engine, tempParameter, 2);
+			var reinvestRateArg = GetNumber_3(engine, tempParameter);
 			if (reinvestRateArg.IsErrorOrNone) return reinvestRateArg;
 			var reinvestRate = reinvestRateArg.NumberValue;
 
@@ -54,9 +54,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
-			funcs[1].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			funcs[2].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

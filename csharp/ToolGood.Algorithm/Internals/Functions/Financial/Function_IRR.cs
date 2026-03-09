@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_IRR : Function_N
+	internal sealed class Function_IRR : Function_2
 	{
 		public Function_IRR(FunctionBase[] funcs) : base(funcs) { }
 
@@ -13,9 +13,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 1) return ParameterError(1);
+			if (func1 == null) return ParameterError(1);
 
-			var valuesArg = GetArray(engine, tempParameter, 0);
+			var valuesArg = GetArray_1(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
@@ -37,8 +37,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			decimal guess = 0.1m;
-			if (funcs.Length > 1) {
-				var guessArg = GetNumber(engine, tempParameter, 1);
+			if (func2 != null) {
+				var guessArg = GetNumber_2(engine, tempParameter);
 				if (guessArg.IsErrorOrNone) return guessArg;
 				guess = guessArg.NumberValue;
 			}
@@ -77,10 +77,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
-			if(funcs.Length > 1) {
-				funcs[1].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

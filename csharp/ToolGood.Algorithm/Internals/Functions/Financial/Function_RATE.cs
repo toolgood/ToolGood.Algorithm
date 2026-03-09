@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_RATE : Function_N
+	internal sealed class Function_RATE : Function_6
 	{
 		public Function_RATE(FunctionBase[] funcs) : base(funcs) { }
 
@@ -13,17 +13,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 3) return ParameterError(1);
+			if (func1 == null || func2 == null || func3 == null) return ParameterError(1);
 
-			var nperArg = GetNumber(engine, tempParameter, 0);
+			var nperArg = GetNumber_1(engine, tempParameter);
 			if (nperArg.IsErrorOrNone) return nperArg;
 			var nper = nperArg.NumberValue;
 
-			var pmtArg = GetNumber(engine, tempParameter, 1);
+			var pmtArg = GetNumber_2(engine, tempParameter);
 			if (pmtArg.IsErrorOrNone) return pmtArg;
 			var pmt = pmtArg.NumberValue;
 
-			var pvArg = GetNumber(engine, tempParameter, 2);
+			var pvArg = GetNumber_3(engine, tempParameter);
 			if (pvArg.IsErrorOrNone) return pvArg;
 			var pv = pvArg.NumberValue;
 
@@ -32,15 +32,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			decimal fv = 0;
-			if (funcs.Length > 3) {
-				var fvArg = GetNumber(engine, tempParameter, 3);
+			if (func4 != null) {
+				var fvArg = GetNumber_4(engine, tempParameter);
 				if (fvArg.IsErrorOrNone) return fvArg;
 				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
-			if (funcs.Length > 4) {
-				var typeArg = GetNumber(engine, tempParameter, 4);
+			if (func5 != null) {
+				var typeArg = GetNumber_5(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
 				if (type != 0 && type != 1) {
@@ -49,8 +49,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			decimal guess = 0.1m;
-			if (funcs.Length > 5) {
-				var guessArg = GetNumber(engine, tempParameter, 5);
+			if (func6 != null) {
+				var guessArg = GetNumber_6(engine, tempParameter);
 				if (guessArg.IsErrorOrNone) return guessArg;
 				guess = guessArg.NumberValue;
 			}
@@ -98,9 +98,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			for(int i = 0; i < funcs.Length; i++) {
-				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func4 != null) func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

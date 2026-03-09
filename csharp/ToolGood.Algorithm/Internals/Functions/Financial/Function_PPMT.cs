@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_PPMT : Function_N
+	internal sealed class Function_PPMT : Function_6
 	{
 		public Function_PPMT(FunctionBase[] funcs) : base(funcs) { }
 
@@ -13,34 +13,34 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 4) return ParameterError(1);
+			if (func1 == null || func2 == null || func3 == null || func4 == null) return ParameterError(1);
 
-			var rateArg = GetNumber(engine, tempParameter, 0);
+			var rateArg = GetNumber_1(engine, tempParameter);
 			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
 
-			var perArg = GetNumber(engine, tempParameter, 1);
+			var perArg = GetNumber_2(engine, tempParameter);
 			if (perArg.IsErrorOrNone) return perArg;
 			var per = perArg.NumberValue;
 
-			var nperArg = GetNumber(engine, tempParameter, 2);
+			var nperArg = GetNumber_3(engine, tempParameter);
 			if (nperArg.IsErrorOrNone) return nperArg;
 			var nper = nperArg.NumberValue;
 
-			var pvArg = GetNumber(engine, tempParameter, 3);
+			var pvArg = GetNumber_4(engine, tempParameter);
 			if (pvArg.IsErrorOrNone) return pvArg;
 			var pv = pvArg.NumberValue;
 
 			decimal fv = 0;
-			if (funcs.Length > 4) {
-				var fvArg = GetNumber(engine, tempParameter, 4);
+			if (func5 != null) {
+				var fvArg = GetNumber_5(engine, tempParameter);
 				if (fvArg.IsErrorOrNone) return fvArg;
 				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
-			if (funcs.Length > 5) {
-				var typeArg = GetNumber(engine, tempParameter, 5);
+			if (func6 != null) {
+				var typeArg = GetNumber_6(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
 			}
@@ -83,9 +83,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			for(int i = 0; i < funcs.Length; i++) {
-				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func4 != null) func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }
