@@ -38,6 +38,15 @@ namespace ToolGood.Algorithm.Test.ParameterTypes
 			Assert.AreEqual(">=", list[0].Operator);
 			Assert.AreEqual("1", list[0].Value);
 
+			fb = AlgorithmEngineHelper.ParseFormula("if(test>=1+1,2,3)");
+			list = fb.GetParameterTypes(new AlgorithmEngine());
+			Assert.IsNotNull(list);
+			Assert.AreEqual(1, list.Count);
+			Assert.AreEqual("test", list[0].Name);
+			Assert.AreEqual(Enums.OperandType.NUMBER, list[0].Type);
+			Assert.AreEqual(">=", list[0].Operator);
+			Assert.AreEqual("2", list[0].Value);
+
 
 
 			fb = AlgorithmEngineHelper.ParseFormula("if(test,2,3)");

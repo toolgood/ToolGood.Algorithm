@@ -66,24 +66,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 			var t2 = func2.GetResultType();
 			if(t1 == OperandType.NONE) {
 				var p = noneEngine.Evaluate(func2).ToText();
-				if(t2 != OperandType.ERROR) {
+				if(t2 != OperandType.ERROR && p.IsErrorOrNone == false) {
 					func1.GetParameterTypes(noneEngine, result, t2, Name, p.TextValue);
-				} else {
-					func1.GetParameterTypes(noneEngine, result, t2, Name, p.TextValue);
+					func2.GetParameterTypes(noneEngine, result, t2);
+					return;
 				}
-				func2.GetParameterTypes(noneEngine, result, t2);
 			} else if(t2 == OperandType.NONE) {
 				var p = noneEngine.Evaluate(func1).ToText();
-				if(t1 != OperandType.ERROR) {
+				if(t1 != OperandType.ERROR && p.IsErrorOrNone == false) {
 					func2.GetParameterTypes(noneEngine, result, t1, Name, p.TextValue);
-				} else {
-					func2.GetParameterTypes(noneEngine, result, t1, Name, p.TextValue);
+					func1.GetParameterTypes(noneEngine, result, t1);
+					return;
 				}
-				func1.GetParameterTypes(noneEngine, result, t1);
-			} else {
-				func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
-				func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
 			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
 		}
 	}
 }

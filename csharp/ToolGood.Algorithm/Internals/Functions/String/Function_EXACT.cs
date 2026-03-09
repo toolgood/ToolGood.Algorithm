@@ -31,6 +31,23 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
+			var t1 = func1.GetResultType();
+			var t2 = func2.GetResultType();
+			if(t1 == OperandType.NONE) {
+				var p = noneEngine.Evaluate(func2).ToText();
+				if(t2 != OperandType.ERROR && p.IsErrorOrNone == false) {
+					func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue);
+					func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+					return;
+				}
+			} else if(t2 == OperandType.NONE) {
+				var p = noneEngine.Evaluate(func1).ToText();
+				if(t1 != OperandType.ERROR && p.IsErrorOrNone == false) {
+					func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue);
+					func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+					return;
+				}
+			}
 			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 			func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
