@@ -58,6 +58,7 @@ namespace ToolGood.Algorithm
 		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
+		internal virtual bool IsErrorOrNone => false;
 		/// <summary>
 		/// 是否未指定值
 		/// </summary>

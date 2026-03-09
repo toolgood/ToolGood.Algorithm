@@ -11,6 +11,7 @@ namespace ToolGood.Algorithm.Operands
 	internal class OperandNone : Operand
 	{
 		public override OperandType Type => OperandType.NONE;
+		internal override bool IsErrorOrNone => true;
 		public override bool IsNone => true;
 	}
 }
