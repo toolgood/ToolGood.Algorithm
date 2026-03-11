@@ -225,6 +225,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static Tuple<string, decimal> sumifMatch(string s)
 		{
+			if(s.Length == 0) { return null; }
 			var span = s.AsSpan();
 			var c = span[0];
 			if(c == '>' || c == '＞') {
