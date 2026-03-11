@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			return char.ToUpperInvariant(o);
 		}
-	 
+ 
 		public static bool Equals(string left, char right)
 		{
 			if(left.Length != 1) return false;
@@ -42,6 +42,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public static bool Equals(string left, string right)
 		{
+			return Equals(left.AsSpan(), right.AsSpan());
+		}
+
+		public static bool Equals(ReadOnlySpan<char> left, ReadOnlySpan<char> right)
+		{
 			if(left.Length != right.Length) return false;
 			for(int i = 0; i < left.Length; i++) {
 				if(left[i] != right[i]) {
@@ -53,6 +58,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 
 		public static bool Equals(string left, string arg1, string arg2, string arg3)
+		{
+			if(Equals(left, arg1)) return true;
+			if(Equals(left, arg2)) return true;
+			if(Equals(left, arg3)) return true;
+			return false;
+		}
+
+		public static bool Equals(ReadOnlySpan<char> left, ReadOnlySpan<char> arg1, ReadOnlySpan<char> arg2, ReadOnlySpan<char> arg3)
 		{
 			if(Equals(left, arg1)) return true;
 			if(Equals(left, arg2)) return true;
