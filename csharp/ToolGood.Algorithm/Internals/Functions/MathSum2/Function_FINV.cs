@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		{
 		}
 
-		
-
         public override string Name => "FInv";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

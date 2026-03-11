@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		
-
 		public override string Name => "TrimStart";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -44,6 +42,5 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 		}
 	}
-
 
 }

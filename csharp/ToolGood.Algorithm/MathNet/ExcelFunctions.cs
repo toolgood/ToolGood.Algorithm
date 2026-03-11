@@ -154,7 +154,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 			return SpecialFunctions.GammaLn(z);
 		}
 
-
 		public static double HypgeomDist(int k, int draws, int success, int population)
 		{
 			return Hypergeometric.PMF(population, success, draws, k);
@@ -229,7 +228,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 		{
 			return ArrayStatistics.QuantileCustomInplace(data, tau);
 		}
-
 
 	}
 }

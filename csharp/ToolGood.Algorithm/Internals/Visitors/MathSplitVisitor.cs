@@ -57,7 +57,5 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return tree;
 		}
 
-
-
 	}
 }

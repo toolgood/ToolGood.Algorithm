@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		
-
 		public override string Name => "Has";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -71,6 +69,5 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
-
 
 }

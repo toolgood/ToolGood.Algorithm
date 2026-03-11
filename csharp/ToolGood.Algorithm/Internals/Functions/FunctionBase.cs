@@ -42,7 +42,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public abstract OperandType GetResultType();
 		#endregion
 
-
 		#region GetParameterTypes
 		/// <summary>
 		/// 

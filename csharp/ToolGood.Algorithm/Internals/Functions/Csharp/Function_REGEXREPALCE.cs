@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		
-
 		public override string Name => "RegexReplace";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -43,6 +41,5 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			func3.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
-
 
 }

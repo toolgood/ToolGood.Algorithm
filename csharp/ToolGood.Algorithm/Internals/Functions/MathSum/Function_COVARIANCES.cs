@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 		{
 		}
 
-		
-
         public override string Name => "Covariances";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -53,7 +51,5 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
 		}
 	}
-
-    
 
 }

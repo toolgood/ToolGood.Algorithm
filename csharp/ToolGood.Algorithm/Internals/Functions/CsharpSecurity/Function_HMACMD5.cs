@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		{
 		}
 
-		
-
 		public override string Name => "HmacMD5";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -31,7 +29,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 				return FunctionError();
 			}
 		}
-
 
 		private string GetHmacMd5String(byte[] buffer, string secret)
 		{
@@ -56,6 +53,5 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 			func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
-
 
 }

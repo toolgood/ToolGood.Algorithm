@@ -35,5 +35,4 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 		}
 	}
 
-
 }

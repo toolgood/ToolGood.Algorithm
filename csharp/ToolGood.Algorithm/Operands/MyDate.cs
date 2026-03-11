@@ -388,6 +388,5 @@ namespace ToolGood.Algorithm.Operands
             return d;
 		}
 
-
 	}
 }

@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 		{
 		}
 
-		
-
 		public override string Name => "!=";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

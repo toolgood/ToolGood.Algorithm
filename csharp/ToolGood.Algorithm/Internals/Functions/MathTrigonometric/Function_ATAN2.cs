@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 		{
 		}
 
-		
-
         public override string Name => "Atan2";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -35,7 +33,5 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
-
-    
 
 }

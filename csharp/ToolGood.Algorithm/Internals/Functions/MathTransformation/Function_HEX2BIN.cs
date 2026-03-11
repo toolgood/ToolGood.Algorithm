@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		{
 		}
 
-		
-
         public override string Name => "Hex2Bin";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -47,7 +45,5 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		}
 
 	}
-
-    
 
 }

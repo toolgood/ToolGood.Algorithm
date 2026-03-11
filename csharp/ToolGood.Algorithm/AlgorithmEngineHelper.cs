@@ -253,7 +253,6 @@ namespace ToolGood.Algorithm
 			return tree;
 		}
 
-
 		/// <summary>
 		/// Creates a function that represents the sum of two specified functions.
 		/// </summary>

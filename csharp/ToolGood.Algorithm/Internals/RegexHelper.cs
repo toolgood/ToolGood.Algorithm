@@ -31,7 +31,6 @@ namespace ToolGood.Algorithm.Internals
         /// </summary>
         public static Regex BinRegex = BinRegex_();
 
-
         [GeneratedRegex("^[0-9A-Fa-f]+$", RegexOptions.Compiled)]
         private static partial Regex HexRegex_();
         [GeneratedRegex("^[0-7]+$", RegexOptions.Compiled)]
@@ -91,11 +90,6 @@ namespace ToolGood.Algorithm.Internals
         private static partial Regex timeRegex2_();
 
 #endif
-
-
-
-
-
 
     }
 }

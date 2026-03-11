@@ -23,7 +23,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			IsError = true;
 			ErrorMsg = value;
 		}
-		 
 
 	}
 }

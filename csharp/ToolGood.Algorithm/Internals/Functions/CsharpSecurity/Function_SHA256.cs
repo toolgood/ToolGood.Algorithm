@@ -50,5 +50,4 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		}
 	}
 
-
 }

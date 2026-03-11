@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		{
 		}
 
-		
-
         public override string Name => "Permut";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -56,7 +54,5 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		}
 
 	}
-
-    
 
 }

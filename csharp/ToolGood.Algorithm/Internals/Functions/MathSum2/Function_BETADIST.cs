@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		{
 		}
 
-		
-
         public override string Name => "BetaDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

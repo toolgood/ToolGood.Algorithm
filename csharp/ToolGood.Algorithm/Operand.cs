@@ -44,7 +44,6 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		public static readonly Operand None = new OperandNone();
 
-
 		// 整数缓存范围: -1000 ~ 1000，共2001个值
 		private const int IntCacheOffset = 1000;
 		private const int IntCacheSize = 2001;

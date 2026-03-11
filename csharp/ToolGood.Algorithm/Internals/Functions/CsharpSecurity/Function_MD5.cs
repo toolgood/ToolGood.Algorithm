@@ -27,7 +27,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 			} 
 		}
 
-
 		private string GetMd5String(byte[] buffer)
 		{
 #if NETSTANDARD2_1
@@ -50,6 +49,5 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
-
 
 }

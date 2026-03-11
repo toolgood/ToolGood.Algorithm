@@ -57,5 +57,4 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		}
 	}
 
-
 }

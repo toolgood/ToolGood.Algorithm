@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		
-
 		public override string Name => "LookFloor";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

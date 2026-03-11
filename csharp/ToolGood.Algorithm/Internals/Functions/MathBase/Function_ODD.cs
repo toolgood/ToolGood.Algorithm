@@ -36,6 +36,4 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		}
 	}
 
-    
-
 }

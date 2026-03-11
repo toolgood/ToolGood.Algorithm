@@ -9471,11 +9471,7 @@ partial class mathParser : Parser {
 		return _localctx;
 	}
 	internal sealed class Parameter2Context : ParserRuleContext {
-		
-		
-		
-		
-		
+
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(305, 0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)

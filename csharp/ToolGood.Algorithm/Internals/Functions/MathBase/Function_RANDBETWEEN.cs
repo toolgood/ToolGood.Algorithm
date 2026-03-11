@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		{
 		}
 
-		
-
         public override string Name => "RandBetween";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -42,7 +40,5 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
-
-    
 
 }

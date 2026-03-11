@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 		{
 		}
 
-		
-
         public override string Name => "IfError";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

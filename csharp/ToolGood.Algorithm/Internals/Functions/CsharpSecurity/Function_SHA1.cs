@@ -27,7 +27,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 			}
 		}
 
-
 		private string GetSha1String(byte[] buffer)
 		{
 
@@ -51,6 +50,5 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
-
 
 }

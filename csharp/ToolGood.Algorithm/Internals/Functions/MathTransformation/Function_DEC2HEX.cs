@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		{
 		}
 
-		
-
         public override string Name => "Dec2Hex";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

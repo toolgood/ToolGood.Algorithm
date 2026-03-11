@@ -33,5 +33,4 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		}
 	}
 
-
 }

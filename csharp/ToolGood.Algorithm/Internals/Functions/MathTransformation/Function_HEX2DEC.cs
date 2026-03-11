@@ -49,6 +49,4 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		}
 	}
 
-    
-
 }

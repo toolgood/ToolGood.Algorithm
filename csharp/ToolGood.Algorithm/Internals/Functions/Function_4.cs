@@ -71,5 +71,4 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#endregion
 	}
 
-
 }

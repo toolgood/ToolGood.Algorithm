@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		{
 		}
 
-		
-
         public override string Name => "Time";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

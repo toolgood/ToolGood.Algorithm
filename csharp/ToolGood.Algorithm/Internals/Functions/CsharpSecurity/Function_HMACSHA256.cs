@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		{
 		}
 
-		
-
 		public override string Name => "HmacSHA256";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -56,6 +54,5 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		}
 
 	}
-
 
 }

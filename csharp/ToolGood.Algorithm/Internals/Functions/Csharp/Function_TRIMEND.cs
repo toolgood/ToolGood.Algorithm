@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		
-
 		public override string Name => "TrimEnd";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -27,7 +25,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
-
 
 			char[] trimChars = args2.TextValue.ToCharArray();
 			return Operand.Create(args1.TextValue.TrimEnd(trimChars));

@@ -66,7 +66,6 @@ namespace System
 		/// </summary>
 		private const decimal TwoPi = 6.28318530717958647692528676655900576839433879875021M;
 
-
 		/// <summary>
 		///     Analogy of Math.Acos.
 		/// </summary>
@@ -337,7 +336,6 @@ namespace System
 			return count - result;
 		}
 
-
 		/// <summary>
 		/// Returns the logarithm of a specified number in a specified base.
 		/// </summary>
@@ -463,7 +461,6 @@ namespace System
 				return prod;
 			}
 		}
-
 
 		/// <summary>
 		///     Analogy of Math.Sin.

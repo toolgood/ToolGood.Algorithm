@@ -12,8 +12,6 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 		}
 
-		
-
 		public override string Name => "Rept";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
