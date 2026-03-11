@@ -22,15 +22,26 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static bool F_base_GetList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
-			foreach(var item in args) {
+			var queue = new Queue<Operand>();
+			for(int i = 0; i < args.Count; i++) {
+				queue.Enqueue(args[i]);
+			}
+
+			while(queue.Count > 0) {
+				var item = queue.Dequeue();
+
 				if(item.IsArray) {
-					var o = F_base_GetList(item.ArrayValue, list, converter, valueGetter);
-					if(o == false) { return false; }
+					var array = item.ArrayValue;
+					for(int i = 0; i < array.Count; i++) {
+						queue.Enqueue(array[i]);
+					}
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
 					if(i.IsError) { return false; }
-					var o = F_base_GetList(i.ArrayValue, list, converter, valueGetter);
-					if(o == false) { return false; }
+					var array = i.ArrayValue;
+					for(int j = 0; j < array.Count; j++) {
+						queue.Enqueue(array[j]);
+					}
 				} else {
 					var converted = converter(item);
 					if(converted.IsError) { return false; }
@@ -44,13 +55,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			if(args.IsError) { return false; }
 			if(args.IsArray) {
-				var o = F_base_GetList(args.ArrayValue, list, converter, valueGetter);
-				if(o == false) { return false; }
+				return F_base_GetList(args.ArrayValue, list, converter, valueGetter);
 			} else if(args.IsJson) {
 				var i = args.ToArray(null);
 				if(i.IsError) { return false; }
-				var o = F_base_GetList(i.ArrayValue, list, converter, valueGetter);
-				if(o == false) { return false; }
+				return F_base_GetList(i.ArrayValue, list, converter, valueGetter);
 			} else {
 				var converted = converter(args);
 				if(converted.IsError) { return false; }
