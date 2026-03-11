@@ -24,10 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
 
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args, list);
+            var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
 
-            return Operand.Create(FunctionUtil.F_base_lgm(list));
+            return Operand.Create(FunctionUtil.GetLcm(list));
         }
 		public override OperandType GetResultType()
 		{

@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
 
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args, list);
+            var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
 
             decimal d = 1;

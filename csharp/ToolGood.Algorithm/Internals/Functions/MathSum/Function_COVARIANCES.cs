@@ -23,8 +23,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list1 = new List<decimal>();
             var list2 = new List<decimal>();
 
-            var o1 = FunctionUtil.F_base_GetList(args1, list1);
-            var o2 = FunctionUtil.F_base_GetList(args2, list2);
+            var o1 = FunctionUtil.FlattenToList(args1, list1);
+            var o2 = FunctionUtil.FlattenToList(args2, list2);
             if (o1 == false) { return ParameterError(1); }
             if (o2 == false) { return ParameterError(2); }
             if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }

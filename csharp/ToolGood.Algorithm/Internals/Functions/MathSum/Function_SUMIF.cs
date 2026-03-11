@@ -21,14 +21,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args2 = func2.Evaluate(engine, tempParameter); if (args2.IsErrorOrNone) { return args2; }
 
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args1, list);
+            var o = FunctionUtil.FlattenToList(args1, list);
             if (o == false) { return ParameterError(1); }
 
             List<decimal> sumdbs;
             if (func3 != null) {
                 var args3 = GetArray_3(engine, tempParameter); if (args3.IsErrorOrNone) { return args3; }
                 sumdbs = new List<decimal>();
-                var o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
+                var o2 = FunctionUtil.FlattenToList(args3, sumdbs);
                 if (o2 == false) { return ParameterError(3); }
             } else {
                 sumdbs = list;
@@ -36,15 +36,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             decimal sum;
             if (args2.IsNumber) {
-                sum = FunctionUtil.F_base_countif(list, args2.NumberValue) * args2.NumberValue;
+                sum = FunctionUtil.GetCountIf(list, args2.NumberValue) * args2.NumberValue;
             } else {
                 var span = args2.TextValue.AsSpan().Trim();
                 if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    sum = FunctionUtil.F_base_sumif(list, d, sumdbs);
+                    sum = FunctionUtil.GetSumIf(list, d, sumdbs);
                 } else {
-                    var m2 = FunctionUtil.sumifMatch(args2.TextValue.Trim());
+                    var m2 = FunctionUtil.ParseSumIfMatch(args2.TextValue.Trim());
                     if (m2 != null) {
-                        sum = FunctionUtil.F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
+                        sum = FunctionUtil.GetSumIf(list, m2.Item1, m2.Item2, sumdbs);
                     } else {
                         return ParameterError(2);
                     }

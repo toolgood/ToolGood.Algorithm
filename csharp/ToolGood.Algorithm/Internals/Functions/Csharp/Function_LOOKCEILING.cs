@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args2.IsErrorOrNone) { return args2; }
 
 			List<decimal> list = new List<decimal>();
-			FunctionUtil.F_base_GetList(args2, list);
+			FunctionUtil.FlattenToList(args2, list);
 			if(list.Count == 0) { return ParameterError(2); }
 			list.Sort();
 			var value = args1.NumberValue;

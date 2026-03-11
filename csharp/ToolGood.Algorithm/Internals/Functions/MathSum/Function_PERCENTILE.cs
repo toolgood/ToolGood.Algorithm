@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (args2.IsErrorOrNone) { return args2; }
 
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args1, list);
+            var o = FunctionUtil.FlattenToList(args1, list);
             if (o == false) { return ParameterError(1); }
             var k = args2.NumberValue;
             if (k < 0 || k > 1) {

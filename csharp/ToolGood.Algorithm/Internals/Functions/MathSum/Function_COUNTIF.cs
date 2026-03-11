@@ -24,19 +24,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (args2.IsErrorOrNone) { return args2; }
 
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args1, list);
+            var o = FunctionUtil.FlattenToList(args1, list);
             if (o == false) { return ParameterError(1); }
             int count;
             if (args2.IsNumber) {
-                count = FunctionUtil.F_base_countif(list, args2.NumberValue);
+                count = FunctionUtil.GetCountIf(list, args2.NumberValue);
             } else {
                 var span = args2.TextValue.AsSpan().Trim();
                 if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    count = FunctionUtil.F_base_countif(list, d);
+                    count = FunctionUtil.GetCountIf(list, d);
                 } else {
-                    var m2 = FunctionUtil.sumifMatch(args2.TextValue.Trim());
+                    var m2 = FunctionUtil.ParseSumIfMatch(args2.TextValue.Trim());
                     if (m2 != null) {
-                        count = FunctionUtil.F_base_countif(list, m2.Item1, m2.Item2);
+                        count = FunctionUtil.GetCountIf(list, m2.Item1, m2.Item2);
                     } else {
                         return ParameterError(2);
                     }

@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 		}
 
-		private static bool F_base_GetList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
+		private static bool FlattenToList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
 			var queue = new Queue<Operand>();
 			for(int i = 0; i < args.Count; i++) {
@@ -51,15 +51,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return true;
 		}
 
-		private static bool F_base_GetList<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
+		private static bool FlattenToList<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
 			if(args.IsError) { return false; }
 			if(args.IsArray) {
-				return F_base_GetList(args.ArrayValue, list, converter, valueGetter);
+				return FlattenToList(args.ArrayValue, list, converter, valueGetter);
 			} else if(args.IsJson) {
 				var i = args.ToArray(null);
 				if(i.IsError) { return false; }
-				return F_base_GetList(i.ArrayValue, list, converter, valueGetter);
+				return FlattenToList(i.ArrayValue, list, converter, valueGetter);
 			} else {
 				var converted = converter(args);
 				if(converted.IsError) { return false; }
@@ -68,35 +68,35 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return true;
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<Operand> list)
+		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
-			return F_base_GetList(args, list,
+			return FlattenToList(args, list,
 				obj => obj,
 				obj => obj);
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<decimal> list)
+		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
-			return F_base_GetList(args, list, 
+			return FlattenToList(args, list, 
 				obj => obj.IsNumber ? obj : obj.ToNumber(null),
 				obj => obj.NumberValue);
 		}
 
-		public static bool F_base_GetList(Operand args, List<decimal> list)
+		public static bool FlattenToList(Operand args, List<decimal> list)
 		{
-			return F_base_GetList(args, list, 
+			return FlattenToList(args, list, 
 				obj => obj.IsNumber ? obj : obj.ToNumber(null),
 				obj => obj.NumberValue);
 		}
 
-		public static bool F_base_GetList(Operand args, List<string> list)
+		public static bool FlattenToList(Operand args, List<string> list)
 		{
-			return F_base_GetList(args, list, 
+			return FlattenToList(args, list, 
 				obj => obj.ToText(null),
 				obj => obj.TextValue);
 		}
 
-		public static int F_base_countif(List<decimal> dbs, decimal d)
+		public static int GetCountIf(List<decimal> dbs, decimal d)
 		{
 			int count = 0;
 			for(int i = 0; i < dbs.Count; i++) {
@@ -108,19 +108,19 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return count;
 		}
 
-		public static int F_base_countif(List<decimal> dbs, string s, decimal d)
+		public static int GetCountIf(List<decimal> dbs, string s, decimal d)
 		{
 			int count = 0;
 			for(int i = 0; i < dbs.Count; i++) {
 				var item = dbs[i];
-				if(F_base_compare(item, d, s)) {
+				if(CompareValues(item, d, s)) {
 					count++;
 				}
 			}
 			return count;
 		}
 
-		public static decimal F_base_sumif(List<decimal> dbs, decimal d, List<decimal> sumdbs)
+		public static decimal GetSumIf(List<decimal> dbs, decimal d, List<decimal> sumdbs)
 		{
 			decimal sum = 0;
 			for(int i = 0; i < dbs.Count; i++) {
@@ -132,18 +132,18 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return sum;
 		}
 
-		public static decimal F_base_sumif(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
+		public static decimal GetSumIf(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
 		{
 			decimal sum = 0;
 			for(int i = 0; i < dbs.Count; i++) {
-				if(F_base_compare(dbs[i], d, s)) {
+				if(CompareValues(dbs[i], d, s)) {
 					sum += sumdbs[i];
 				}
 			}
 			return sum;
 		}
 
-		public static bool F_base_compare(decimal a, decimal b, string ss)
+		public static bool CompareValues(decimal a, decimal b, string ss)
 		{
 			if(CharUtil.Equals(ss, '<')) {
 				return a < b;
@@ -159,7 +159,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return a != b;
 		}
 
-		public static int F_base_gcd(List<decimal> list)
+		public static int GetGcd(List<decimal> list)
 		{
 			if(list.Count < 2) return list.Count == 1 ? (int)list[0] : 1;
 			
@@ -172,24 +172,24 @@ namespace ToolGood.Algorithm.Internals.Functions
 				else if(val < min2) { min2 = val; }
 			}
 			
-			var g = F_base_gcd(min2, min1);
+			var g = GetGcd(min2, min1);
 			for(int i = 0; i < list.Count; i++) {
 				int val = (int)list[i];
 				if(val != min1 && val != min2) {
-					g = F_base_gcd(val > g ? val : g, val > g ? g : val);
+					g = GetGcd(val > g ? val : g, val > g ? g : val);
 				}
 			}
 			return g;
 		}
 
-		public static int F_base_gcd(int a, int b)
+		public static int GetGcd(int a, int b)
 		{
 			if(b == 1) { return 1; }
 			if(b == 0) { return a; }
-			return F_base_gcd(b, a % b);
+			return GetGcd(b, a % b);
 		}
 
-		public static int F_base_lgm(List<decimal> list)
+		public static int GetLcm(List<decimal> list)
 		{
 			if(list.Count == 0) return 1;
 			
@@ -207,13 +207,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 				}
 				
 				int b = val;
-				int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
+				int g = b > a ? GetGcd(b, a) : GetGcd(a, b);
 				a = a / g * b;
 			}
 			return foundFirst ? a : 1;
 		}
 
-		public static int F_base_Factorial(int a)
+		public static int GetFactorial(int a)
 		{
 			if(a <= 0) { return 1; }
 			int r = 1;
@@ -223,7 +223,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return r;
 		}
 
-		public static Tuple<string, decimal> sumifMatch(string s)
+		public static Tuple<string, decimal> ParseSumIfMatch(string s)
 		{
 			if(s.Length == 0) { return null; }
 			var span = s.AsSpan();
