@@ -20,9 +20,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 		}
 
-		private static bool FlattenToList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
+		private static bool FlattenToListCore<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
-			var queue = new Queue<Operand>();
+			var queue = new Queue<Operand>(args.Count);
 			for(int i = 0; i < args.Count; i++) {
 				queue.Enqueue(args[i]);
 			}
@@ -51,15 +51,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return true;
 		}
 
-		private static bool FlattenToList<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
+		private static bool FlattenToListCore<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
 			if(args.IsError) { return false; }
 			if(args.IsArray) {
-				return FlattenToList(args.ArrayValue, list, converter, valueGetter);
+				return FlattenToListCore(args.ArrayValue, list, converter, valueGetter);
 			} else if(args.IsJson) {
 				var i = args.ToArray(null);
 				if(i.IsError) { return false; }
-				return FlattenToList(i.ArrayValue, list, converter, valueGetter);
+				return FlattenToListCore(i.ArrayValue, list, converter, valueGetter);
 			} else {
 				var converted = converter(args);
 				if(converted.IsError) { return false; }
@@ -70,30 +70,68 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
-			return FlattenToList(args, list,
-				obj => obj,
-				obj => obj);
+			return FlattenToListCore(args, list, obj => obj, obj => obj);
 		}
 
 		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
-			return FlattenToList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.NumberValue);
+			var queue = new Queue<Operand>(args.Count);
+			for(int i = 0; i < args.Count; i++) {
+				queue.Enqueue(args[i]);
+			}
+
+			while(queue.Count > 0) {
+				var item = queue.Dequeue();
+
+				if(item.IsArray) {
+					var array = item.ArrayValue;
+					for(int i = 0; i < array.Count; i++) {
+						queue.Enqueue(array[i]);
+					}
+				} else if(item.IsJson) {
+					var i = item.ToArray(null);
+					if(i.IsError) { return false; }
+					var array = i.ArrayValue;
+					for(int j = 0; j < array.Count; j++) {
+						queue.Enqueue(array[j]);
+					}
+				} else {
+					if(item.IsNumber) {
+						list.Add(item.NumberValue);
+					} else {
+						var converted = item.ToNumber(null);
+						if(converted.IsError) { return false; }
+						list.Add(converted.NumberValue);
+					}
+				}
+			}
+			return true;
 		}
 
 		public static bool FlattenToList(Operand args, List<decimal> list)
 		{
-			return FlattenToList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.NumberValue);
+			if(args.IsError) { return false; }
+			if(args.IsArray) {
+				return FlattenToList(args.ArrayValue, list);
+			} else if(args.IsJson) {
+				var i = args.ToArray(null);
+				if(i.IsError) { return false; }
+				return FlattenToList(i.ArrayValue, list);
+			} else {
+				if(args.IsNumber) {
+					list.Add(args.NumberValue);
+				} else {
+					var converted = args.ToNumber(null);
+					if(converted.IsError) { return false; }
+					list.Add(converted.NumberValue);
+				}
+			}
+			return true;
 		}
 
 		public static bool FlattenToList(Operand args, List<string> list)
 		{
-			return FlattenToList(args, list, 
-				obj => obj.ToText(null),
-				obj => obj.TextValue);
+			return FlattenToListCore(args, list, obj => obj.ToText(null), obj => obj.TextValue);
 		}
 
 		public static int GetCountIf(List<decimal> dbs, decimal d)
