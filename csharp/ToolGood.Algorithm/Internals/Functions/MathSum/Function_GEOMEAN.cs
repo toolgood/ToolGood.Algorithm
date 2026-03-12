@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathSum2
+namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_GEOMEAN : Function_N
     {
