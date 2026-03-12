@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -56,7 +56,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 						if(v.IsDouble) return Operand.Create(v.NumberValue);
 						if(v.IsObject) return Operand.Create(v);
 						if(v.IsArray) return Operand.Create(v);
-						if(v.IsNull) return Operand.CreateNull();
+						if(v.IsNull) return Operand.Null;
 						return Operand.Create(v);
 					}
 					return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
@@ -70,7 +70,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 						if(v.IsDouble) return Operand.Create(v.NumberValue);
 						if(v.IsObject) return Operand.Create(v);
 						if(v.IsArray) return Operand.Create(v);
-						if(v.IsNull) return Operand.CreateNull();
+						if(v.IsNull) return Operand.Null;
 						return Operand.Create(v);
 					}
 				}

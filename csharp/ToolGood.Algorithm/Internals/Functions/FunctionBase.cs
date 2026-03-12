@@ -203,7 +203,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				}
 				return resultConverter(converted);
 			} catch(Exception ex) {
-				engine.LastError = ex.Message;
+				engine.LastError = ex.ToString();
 			}
 			return def;
 		}

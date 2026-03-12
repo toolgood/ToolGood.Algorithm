@@ -133,7 +133,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.IntValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -158,7 +158,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.LongValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -183,7 +183,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.DoubleValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -208,7 +208,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.NumberValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -233,7 +233,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.TextValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -258,7 +258,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.BooleanValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -286,7 +286,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.DateValue.ToDateTime(DateTimeKind.Utc);
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -311,7 +311,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.DateValue.ToTimeSpan();
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}
@@ -337,7 +337,7 @@ namespace ToolGood.Algorithm
 				}
 				return obj.DateValue;
 			} catch(Exception ex) {
-				LastError = ex.Message + "\r\n" + ex.StackTrace;
+				LastError = ex.ToString();
 			}
 			return def;
 		}

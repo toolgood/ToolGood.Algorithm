@@ -270,10 +270,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(string obj)
 		{
-			if(object.Equals(null, obj)) {
-				return Operand.CreateNull();
-			}
-			return new OperandString(obj);
+			return obj is null ? Null : new OperandString(obj);
 		}
 
 		/// <summary>
@@ -417,12 +414,6 @@ namespace ToolGood.Algorithm
 		{
 			return new OperandError(msg, args);
 		}
-
-		/// <summary>
-		/// 创建操作数
-		/// </summary>
-		/// <returns></returns>
-		public static Operand CreateNull() => Null;
 
 		#endregion Create
 

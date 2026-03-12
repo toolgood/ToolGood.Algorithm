@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 
@@ -45,7 +45,7 @@ namespace ToolGood.Algorithm
 					else if (v.IsDouble)
 						list.Add(Operand.Create(v.NumberValue));
 					else if (v.IsNull)
-						list.Add(Operand.CreateNull());
+						list.Add(Operand.Null);
 					else
 						list.Add(Operand.Create(v));
 				}

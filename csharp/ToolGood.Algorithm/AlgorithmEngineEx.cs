@@ -320,7 +320,7 @@ namespace ToolGood.Algorithm
                         else if (v.IsArray)
                             _tempdict[item.Key] = Operand.Create(v);
                         else if (v.IsNull)
-                            _tempdict[item.Key] = Operand.CreateNull();
+                            _tempdict[item.Key] = Operand.Null;
                     }
                     return;
                 }
