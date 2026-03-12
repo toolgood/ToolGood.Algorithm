@@ -30,10 +30,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(args4.IsErrorOrNone) return args4;
 
 			var n2 = args2.IntValue;
-			var n3 = args3.DoubleValue;
 			if(n2 < 0) {
 				return ParameterError(2);
 			}
+			var n3 = args3.DoubleValue;
 			if(n3 < 0.0 || n3 > 1.0) {
 				return ParameterError(3);
 			}

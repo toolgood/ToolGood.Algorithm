@@ -31,14 +31,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             var x = args1.DoubleValue;
             var alpha = args2.DoubleValue;
-            var beta = args3.DoubleValue;
-            var cumulative = args4.BooleanValue;
             if (alpha < 0.0) {
                 return ParameterError(2);
             }
+            var beta = args3.DoubleValue;
             if (beta < 0.0) {
                 return ParameterError(3);
             }
+            var cumulative = args4.BooleanValue;
             return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
         }
 		public override OperandType GetResultType()

@@ -27,11 +27,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
             int k = args1.IntValue;
             var r = args2.DoubleValue;
-            var p = args3.DoubleValue;
-
             if (r < 0.0) {
                 return ParameterError(2);
             }
+            var p = args3.DoubleValue;
             if (p < 0.0 || p > 1.0) {
                 return ParameterError(3);
             }

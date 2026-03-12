@@ -28,11 +28,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             var x = args1.DoubleValue;
             var alpha = args2.DoubleValue;
-            var beta = args3.DoubleValue;
-
             if (alpha < 0.0) {
                 return ParameterError(2);
             }
+            var beta = args3.DoubleValue;
             if (beta < 0.0) {
                 return ParameterError(3);
             }

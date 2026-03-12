@@ -31,14 +31,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             int k = args1.IntValue;
             int draws = args2.IntValue;
-            int success = args3.IntValue;
-            int population = args4.IntValue;
             if (draws < 0) {
                 return ParameterError(2);
             }
+            int success = args3.IntValue;
             if (success < 0) {
                 return ParameterError(3);
             }
+            int population = args4.IntValue;
             if (population < 0) {
                 return ParameterError(4);
             }

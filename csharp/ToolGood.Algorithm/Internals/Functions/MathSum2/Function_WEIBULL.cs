@@ -30,14 +30,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(args4.IsErrorOrNone) return args4;
 			var x = args1.NumberValue;
 			var shape = args2.NumberValue;
-			var scale = args3.NumberValue;
-			var state = args4.BooleanValue;
 			if(shape <= 0.0m) {
 				return ParameterError(2);
 			}
+			var scale = args3.NumberValue;
 			if(scale <= 0.0m) {
 				return ParameterError(3);
 			}
+			var state = args4.BooleanValue;
 
 			return Operand.Create(Weibull(x, shape, scale, state));
 		}

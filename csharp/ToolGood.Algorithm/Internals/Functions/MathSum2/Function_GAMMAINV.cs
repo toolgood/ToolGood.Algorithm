@@ -27,14 +27,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
 
             var probability = args1.DoubleValue;
-            var alpha = args2.DoubleValue;
-            var beta = args3.DoubleValue;
             if (probability < 0 || probability > 1.0) {
                 return ParameterError(1);
             }
+            var alpha = args2.DoubleValue;
             if (alpha < 0.0) {
                 return ParameterError(2);
             }
+            var beta = args3.DoubleValue;
             if (beta < 0.0) {
                 return ParameterError(3);
             }

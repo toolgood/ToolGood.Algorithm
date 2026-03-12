@@ -26,11 +26,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
             var p = args1.DoubleValue;
-            var avg = args2.DoubleValue;
-            var STDEV = args3.DoubleValue;
             if (p <= 0.0 || p >= 1.0) {
                 return ParameterError(1);
             }
+            var avg = args2.DoubleValue;
+            var STDEV = args3.DoubleValue;
             if (STDEV <= 0.0) {
                 return ParameterError(3);
             }

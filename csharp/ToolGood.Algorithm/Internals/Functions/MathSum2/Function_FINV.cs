@@ -27,14 +27,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
 
             var p = args1.DoubleValue;
-            var degreesFreedom = args2.IntValue;
-            var degreesFreedom2 = args3.IntValue;
             if (p < 0.0 || p > 1.0) {
                 return ParameterError(1);
             }
+            var degreesFreedom = args2.IntValue;
             if (degreesFreedom <= 0) {
                 return ParameterError(2);
             }
+            var degreesFreedom2 = args3.IntValue;
             if (degreesFreedom2 <= 0) {
                 return ParameterError(3);
             }
