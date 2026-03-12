@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Enums;
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 
-	internal sealed class Function_GUID : FunctionBase
+	internal sealed class Function_GUID : Function_0
 	{
 		public Function_GUID()
 		{

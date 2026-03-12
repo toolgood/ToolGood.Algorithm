@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal sealed class Function_RAND : FunctionBase
+	internal sealed class Function_RAND : Function_0
     {
         public Function_RAND()
         {

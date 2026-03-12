@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_Parameter : FunctionBase
+	internal sealed class Function_Parameter : Function_0
 	{
 		private readonly string name;
 

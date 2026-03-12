@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_NOW : FunctionBase
+	internal sealed class Function_NOW : Function_0
     {
         public override string Name => "Now";
 

@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_TODAY : FunctionBase
+	internal sealed class Function_TODAY : Function_0
     {
         public override string Name => "Today";
 

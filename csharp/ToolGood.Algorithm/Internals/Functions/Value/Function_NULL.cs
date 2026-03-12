@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_NULL : FunctionBase
+	internal sealed class Function_NULL : Function_0
 	{
 		public Function_NULL()
 		{

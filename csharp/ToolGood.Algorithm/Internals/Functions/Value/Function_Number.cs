@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_Number : FunctionBase
+	internal sealed class Function_Number : Function_0
 	{
 		private readonly decimal d;
 		private readonly string unit;

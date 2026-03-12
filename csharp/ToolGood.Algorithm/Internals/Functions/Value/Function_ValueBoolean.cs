@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_ValueBoolean : FunctionBase
+	internal sealed class Function_ValueBoolean : Function_0
 	{
 		private readonly bool _value;
 		public Function_ValueBoolean(bool value)
