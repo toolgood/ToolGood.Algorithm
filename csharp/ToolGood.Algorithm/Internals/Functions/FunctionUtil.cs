@@ -325,29 +325,33 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static bool TryParseBoolean(string TextValue, out bool boolValue)
 		{
-			if(TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = true;
-				return true;
-			}
-			if(TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = false;
-				return true;
-			}
-			if(TextValue.Equals("yes", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = true; 
-				return true;
-			}
-			if(TextValue.Equals("no", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = false; 
-				return true;
-			}
-			if(TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) {
-				boolValue = true;
-				return true;
-			}
-			if(TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) {
-				boolValue = false;
-				return true;
+			var span = TextValue.AsSpan();
+			var len = span.Length;
+			switch(len) {
+				case 1: {
+					var c = span[0];
+					if(c == '1' || c == '是' || c == '有') { boolValue = true; return true; }
+					if(c == '0' || c == '否' || c == '无') { boolValue = false; return true; }
+					break;
+				}
+				case 2: {
+					if(span.Equals("no", StringComparison.OrdinalIgnoreCase)) { boolValue = false; return true; }
+					if(span.SequenceEqual("不是".AsSpan())) { boolValue = false; return true; }
+					if(span.SequenceEqual("没有".AsSpan())) { boolValue = false; return true; }
+					break;
+				}
+				case 3: {
+					if(span.Equals("yes", StringComparison.OrdinalIgnoreCase)) { boolValue = true; return true; }
+					break;
+				}
+				case 4: {
+					if(span.Equals("true", StringComparison.OrdinalIgnoreCase)) { boolValue = true; return true; }
+					break;
+				}
+				case 5: {
+					if(span.Equals("false", StringComparison.OrdinalIgnoreCase)) { boolValue = false; return true; }
+					break;
+				}
 			}
 			boolValue = false;
 			return false;
