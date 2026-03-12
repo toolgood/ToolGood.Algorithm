@@ -176,7 +176,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(short obj)
 		{
-			return new OperandInt(obj);
+			return IntCache[obj + IntCacheOffset];
 		}
 
 		/// <summary>
@@ -198,6 +198,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(long obj)
 		{
+			if (obj >= -IntCacheOffset && obj <= IntCacheOffset)
+				return IntCache[(int)obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -208,6 +210,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ushort obj)
 		{
+			if (obj <= IntCacheOffset)
+				return IntCache[obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -218,6 +222,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(uint obj)
 		{
+			if (obj <= IntCacheOffset)
+				return IntCache[(int)obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -228,6 +234,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ulong obj)
 		{
+			if (obj <= (ulong)IntCacheOffset)
+				return IntCache[(int)obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -238,6 +246,9 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(float obj)
 		{
+			if(obj == MathF.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+				return IntCache[(int)obj + IntCacheOffset];
+			}
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -248,6 +259,9 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(double obj)
 		{
+			if(obj == Math.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+				return IntCache[(int)obj + IntCacheOffset];
+			}
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -258,7 +272,10 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(decimal obj)
 		{
-			return new OperandDecimal((decimal)obj);
+			if(obj == decimal.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+				return IntCache[(int)obj + IntCacheOffset];
+			}
+			return new OperandDecimal(obj);
 		}
 
 		#endregion number
