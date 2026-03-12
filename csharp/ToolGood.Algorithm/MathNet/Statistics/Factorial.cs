@@ -1,44 +1,14 @@
-using System;
+﻿using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
     internal partial class SpecialFunctions
     {
-        private static double[] _factorialCache;
-
-        static SpecialFunctions()
-        {
-            InitializeFactorial();
-        }
-
-        private static void InitializeFactorial()
-        {
-            _factorialCache = new double[171];
-            _factorialCache[0] = 1.0;
-            for (int i = 1; i < _factorialCache.Length; i++) {
-                _factorialCache[i] = _factorialCache[i - 1] * i;
-            }
-        }
-
-        public static decimal Binomial(int n, int k)
-        {
-            if (k < 0 || n < 0 || k > n) {
-                return 0.0m;
-            }
-
-            return Math.Floor(0.5m + MathEx.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
-        }
-
         public static decimal FactorialLn(int x)
         {
             if (x <= 1) {
                 return 0m;
             }
-
-            if (x < _factorialCache.Length) {
-                return (decimal)Math.Log(_factorialCache[x]);
-            }
-
             return GammaLn(x + 1);
         }
 
