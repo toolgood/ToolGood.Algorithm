@@ -124,12 +124,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsNumber) return obj.IntValue;
+				obj = obj.ToNumber("It can't be converted to number!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.IntValue;
 			} catch(Exception ex) {
@@ -149,12 +148,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsNumber) return obj.LongValue;
+				obj = obj.ToNumber("It can't be converted to number!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.LongValue;
 			} catch(Exception ex) {
@@ -174,12 +172,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsNumber) return obj.DoubleValue;
+				obj = obj.ToNumber("It can't be converted to number!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.DoubleValue;
 			} catch(Exception ex) {
@@ -199,12 +196,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsNumber == false) {
-					obj = obj.ToNumber("It can't be converted to number!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsNumber) return obj.NumberValue;
+				obj = obj.ToNumber("It can't be converted to number!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.NumberValue;
 			} catch(Exception ex) {
@@ -224,12 +220,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsText == false) {
-					obj = obj.ToText("It can't be converted to string!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsText) return obj.TextValue;
+				obj = obj.ToText("It can't be converted to string!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.TextValue;
 			} catch(Exception ex) {
@@ -249,12 +244,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsBoolean == false) {
-					obj = obj.ToBoolean("It can't be converted to bool!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsBoolean) return obj.BooleanValue;
+				obj = obj.ToBoolean("It can't be converted to bool!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.BooleanValue;
 			} catch(Exception ex) {
@@ -274,17 +268,13 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsDate == false) {
-					obj = obj.ToMyDate("It can't be converted to DateTime!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsDate) return obj.DateValue.ToDateTime(UseLocalTime ? DateTimeKind.Local : DateTimeKind.Utc);
+				obj = obj.ToMyDate("It can't be converted to DateTime!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
-				if(UseLocalTime) {
-					return obj.DateValue.ToDateTime(DateTimeKind.Local);
-				}
-				return obj.DateValue.ToDateTime(DateTimeKind.Utc);
+				return obj.DateValue.ToDateTime(UseLocalTime ? DateTimeKind.Local : DateTimeKind.Utc);
 			} catch(Exception ex) {
 				LastError = ex.ToString();
 			}
@@ -302,12 +292,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsDate == false) {
-					obj = obj.ToMyDate("It can't be converted to DateTime!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsDate) return obj.DateValue.ToTimeSpan();
+				obj = obj.ToMyDate("It can't be converted to DateTime!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.DateValue.ToTimeSpan();
 			} catch(Exception ex) {
@@ -328,12 +317,11 @@ namespace ToolGood.Algorithm
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsDate == false) {
-					obj = obj.ToMyDate("It can't be converted to DateTime!");
-					if(obj.IsError) {
-						LastError = obj.ErrorMsg;
-						return def;
-					}
+				if(obj.IsDate) return obj.DateValue;
+				obj = obj.ToMyDate("It can't be converted to DateTime!");
+				if(obj.IsError) {
+					LastError = obj.ErrorMsg;
+					return def;
 				}
 				return obj.DateValue;
 			} catch(Exception ex) {

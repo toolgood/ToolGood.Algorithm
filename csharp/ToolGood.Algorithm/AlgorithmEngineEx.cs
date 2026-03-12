@@ -309,18 +309,16 @@ namespace ToolGood.Algorithm
                 if (jo.IsObject) {
                     foreach (var item in jo.inst_object) {
                         var v = item.Value;
-                        if (v.IsString)
-                            _tempdict[item.Key] = Operand.Create(v.StringValue);
-                        else if (v.IsBoolean)
-                            _tempdict[item.Key] = Operand.Create(v.BooleanValue);
-                        else if (v.IsDouble)
-                            _tempdict[item.Key] = Operand.Create(v.NumberValue);
-                        else if (v.IsObject)
-                            _tempdict[item.Key] = Operand.Create(v);
-                        else if (v.IsArray)
-                            _tempdict[item.Key] = Operand.Create(v);
-                        else if (v.IsNull)
-                            _tempdict[item.Key] = Operand.Null;
+                        _tempdict[item.Key] = v switch
+                        {
+                            _ when v.IsString => Operand.Create(v.StringValue),
+                            _ when v.IsBoolean => Operand.Create(v.BooleanValue),
+                            _ when v.IsDouble => Operand.Create(v.NumberValue),
+                            _ when v.IsObject => Operand.Create(v),
+                            _ when v.IsArray => Operand.Create(v),
+                            _ when v.IsNull => Operand.Null,
+                            _ => Operand.Create(v)
+                        };
                     }
                     return;
                 }

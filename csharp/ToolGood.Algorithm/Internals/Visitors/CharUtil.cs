@@ -76,18 +76,12 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public static bool Equals(string left, string arg1, string arg2, string arg3)
 		{
-			if(Equals(left, arg1)) return true;
-			if(Equals(left, arg2)) return true;
-			if(Equals(left, arg3)) return true;
-			return false;
+			return Equals(left, arg1) || Equals(left, arg2) || Equals(left, arg3);
 		}
 
 		public static bool Equals(ReadOnlySpan<char> left, ReadOnlySpan<char> arg1, ReadOnlySpan<char> arg2, ReadOnlySpan<char> arg3)
 		{
-			if(Equals(left, arg1)) return true;
-			if(Equals(left, arg2)) return true;
-			if(Equals(left, arg3)) return true;
-			return false;
+			return Equals(left, arg1) || Equals(left, arg2) || Equals(left, arg3);
 		}
 
 	}
