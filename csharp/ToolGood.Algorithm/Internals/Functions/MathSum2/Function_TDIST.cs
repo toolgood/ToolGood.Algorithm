@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
-            var x = args1.DoubleValue;
+            var x = args1.NumberValue;
             var degreesFreedom = args2.IntValue;
             if (degreesFreedom <= 0) {
                 return ParameterError(2);

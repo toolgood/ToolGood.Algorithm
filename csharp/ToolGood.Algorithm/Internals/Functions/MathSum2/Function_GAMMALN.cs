@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
+            return Operand.Create(ExcelFunctions.GAMMALN(args1.NumberValue));
         }
 		public override OperandType GetResultType()
 		{

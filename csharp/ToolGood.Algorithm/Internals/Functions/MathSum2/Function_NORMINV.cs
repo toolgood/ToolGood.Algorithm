@@ -25,13 +25,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
-            var p = args1.DoubleValue;
-            if (p <= 0.0 || p >= 1.0) {
+            var p = args1.NumberValue;
+            if (p <= 0m || p >= 1m) {
                 return ParameterError(1);
             }
-            var avg = args2.DoubleValue;
-            var STDEV = args3.DoubleValue;
-            if (STDEV <= 0.0) {
+            var avg = args2.NumberValue;
+            var STDEV = args3.NumberValue;
+            if (STDEV <= 0m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.NormInv(p, avg, STDEV));

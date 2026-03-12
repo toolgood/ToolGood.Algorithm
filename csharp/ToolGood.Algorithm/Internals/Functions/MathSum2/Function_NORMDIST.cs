@@ -29,10 +29,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args4 = GetBoolean_4(engine, tempParameter);
             if (args4.IsErrorOrNone) return args4;
 
-            var num = args1.DoubleValue;
-            var avg = args2.DoubleValue;
-            var STDEV = args3.DoubleValue;
-            if (STDEV < 0.0) {
+            var num = args1.NumberValue;
+            var avg = args2.NumberValue;
+            var STDEV = args3.NumberValue;
+            if (STDEV < 0m) {
                 return ParameterError(3);
             }
             var b = args4.BooleanValue;

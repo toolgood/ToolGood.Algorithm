@@ -33,8 +33,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(n2 < 0) {
 				return ParameterError(2);
 			}
-			var n3 = args3.DoubleValue;
-			if(n3 < 0.0 || n3 > 1.0) {
+			var n3 = args3.NumberValue;
+			if(n3 < 0m || n3 > 1m) {
 				return ParameterError(3);
 			}
 			return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));

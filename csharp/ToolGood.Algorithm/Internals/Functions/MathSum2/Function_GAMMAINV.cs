@@ -26,16 +26,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
 
-            var probability = args1.DoubleValue;
-            if (probability < 0 || probability > 1.0) {
+            var probability = args1.NumberValue;
+            if (probability < 0 || probability > 1m) {
                 return ParameterError(1);
             }
-            var alpha = args2.DoubleValue;
-            if (alpha < 0.0) {
+            var alpha = args2.NumberValue;
+            if (alpha < 0m) {
                 return ParameterError(2);
             }
-            var beta = args3.DoubleValue;
-            if (beta < 0.0) {
+            var beta = args3.NumberValue;
+            if (beta < 0m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));

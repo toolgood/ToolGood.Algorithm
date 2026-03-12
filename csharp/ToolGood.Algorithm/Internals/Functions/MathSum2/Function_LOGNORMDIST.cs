@@ -26,11 +26,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
 
-            var n3 = args3.DoubleValue;
-            if (n3 < 0.0) {
+            var n3 = args3.NumberValue;
+            if (n3 < 0m) {
                 return ParameterError(3);
             }
-            return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
+            return Operand.Create(ExcelFunctions.LognormDist(args1.NumberValue, args2.NumberValue, n3));
         }
 		public override OperandType GetResultType()
 		{

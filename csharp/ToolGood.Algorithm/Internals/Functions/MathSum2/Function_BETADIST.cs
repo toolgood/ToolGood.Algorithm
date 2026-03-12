@@ -26,13 +26,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
 
-            var x = args1.DoubleValue;
-            var alpha = args2.DoubleValue;
-            if (alpha < 0.0) {
+            var x = args1.NumberValue;
+            var alpha = args2.NumberValue;
+            if (alpha < 0m) {
                 return ParameterError(2);
             }
-            var beta = args3.DoubleValue;
-            if (beta < 0.0) {
+            var beta = args3.NumberValue;
+            if (beta < 0m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));

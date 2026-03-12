@@ -26,11 +26,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args3 = GetBoolean_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
             int k = args1.IntValue;
-            var lambda = args2.DoubleValue;
-            bool state = args3.BooleanValue;
-            if (!(lambda > 0.0)) {
+            var lambda = args2.NumberValue;
+            if (!(lambda > 0m)) {
                 return ParameterError(2);
             }
+            bool state = args3.BooleanValue;
             return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
         }
 		public override OperandType GetResultType()

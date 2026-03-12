@@ -1,120 +1,41 @@
-﻿using System;
+using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    /// <summary>
-    /// Precision
-    /// </summary>
     internal static partial class Precision
     {
-        /// <summary>
-        /// Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
-        /// According to the definition of Prof. Demmel and used in LAPACK and Scilab.
-        /// </summary>
-        public static readonly double DoublePrecision = Math.Pow(2, -53);
+        public static readonly decimal DecimalPrecision = 0.0000000000000000000000000001M;
 
-        /// <summary>
-        /// Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
-        /// According to the definition of Prof. Higham and used in the ISO C standard and MATLAB.
-        /// </summary>
-        public static readonly double PositiveDoublePrecision = 2 * DoublePrecision;
+        public static readonly decimal PositiveDecimalPrecision = 2M * DecimalPrecision;
 
-        /// <summary>
-        /// Value representing 10 * 2^(-53) = 1.11022302462516E-15
-        /// </summary>
-        private static readonly double DefaultDoubleAccuracy = DoublePrecision * 10;
+        private static readonly decimal DefaultDecimalAccuracy = DecimalPrecision * 10M;
 
-        /// <summary>
-        /// Increments a floating point number to the next bigger number representable by the data type.
-        /// </summary>
-        /// <param name="value">The value which needs to be incremented.</param>
-        /// <param name="count">How many times the number should be incremented.</param>
-        /// <remarks>
-        /// The incrementation step length depends on the provided value.
-        /// Increment(double.MaxValue) will return positive infinity.
-        /// </remarks>
-        /// <returns>The next larger floating point value.</returns>
-        public static double Increment(this double value, int count = 1)
+        public static bool AlmostEqualNormRelative(this decimal a, decimal b, decimal diff, decimal maximumError)
         {
-            if (double.IsInfinity(value) || double.IsNaN(value) || count == 0) {
-                return value;
+            if(Math.Abs(a) < DecimalPrecision || Math.Abs(b) < DecimalPrecision) {
+                return Math.Abs(diff) < maximumError;
             }
 
-            // Translate the bit pattern of the double to an integer.
-            // Note that this leads to:
-            // double > 0 --> long > 0, growing as the double value grows
-            // double < 0 --> long < 0, increasing in absolute magnitude as the double
-            //                          gets closer to zero!
-            //                          i.e. 0 - double.epsilon will give the largest long value!
-            long intValue = BitConverter.DoubleToInt64Bits(value);
-            if (intValue < 0) {
-                intValue -= count;
-            } else {
-                intValue += count;
+            if((a == 0 && Math.Abs(b) < maximumError) || (b == 0 && Math.Abs(a) < maximumError)) {
+                return true;
             }
 
-            // Note that long.MinValue has the same bit pattern as -0.0.
-            if (intValue == long.MinValue) {
-                return 0;
-            }
-
-            // Note that not all long values can be translated into double values. There's a whole bunch of them
-            // which return weird values like infinity and NaN
-            return BitConverter.Int64BitsToDouble(intValue);
+            return Math.Abs(diff) < maximumError * Math.Max(Math.Abs(a), Math.Abs(b));
         }
-		public static bool AlmostEqualNormRelative(this double a, double b, double diff, double maximumError)
-		{
-			// If A or B are infinity (positive or negative) then
-			// only return true if they are exactly equal to each other -
-			// that is, if they are both infinities of the same sign.
-			if(double.IsInfinity(a) || double.IsInfinity(b)) {
-				return a == b;
-			}
 
-			// If A or B are a NAN, return false. NANs are equal to nothing,
-			// not even themselves.
-			if(double.IsNaN(a) || double.IsNaN(b)) {
-				return false;
-			}
+        public static bool AlmostEqualRelative(this decimal a, decimal b)
+        {
+            return AlmostEqualNormRelative(a, b, a - b, DefaultDecimalAccuracy);
+        }
 
-			// If one is almost zero, fall back to absolute equality
-			if(Math.Abs(a) < DoublePrecision || Math.Abs(b) < DoublePrecision) {
-				return Math.Abs(diff) < maximumError;
-			}
+        public static bool AlmostEqual(this decimal a, decimal b)
+        {
+            return AlmostEqualNorm(a, b, a - b, DefaultDecimalAccuracy);
+        }
 
-			if((a == 0 && Math.Abs(b) < maximumError) || (b == 0 && Math.Abs(a) < maximumError)) {
-				return true;
-			}
-
-			return Math.Abs(diff) < maximumError * Math.Max(Math.Abs(a), Math.Abs(b));
-		}
-
-		public static bool AlmostEqualRelative(this double a, double b)
-		{
-			return AlmostEqualNormRelative(a, b, a - b, DefaultDoubleAccuracy);
-		}
-
-		public static bool AlmostEqual(this double a, double b)
-		{
-			return AlmostEqualNorm(a, b, a - b, DefaultDoubleAccuracy);
-		}
-
-		public static bool AlmostEqualNorm(this double a, double b, double diff, double maximumAbsoluteError)
-		{
-			// If A or B are infinity (positive or negative) then
-			// only return true if they are exactly equal to each other -
-			// that is, if they are both infinities of the same sign.
-			if(double.IsInfinity(a) || double.IsInfinity(b)) {
-				return a == b;
-			}
-
-			// If A or B are a NAN, return false. NANs are equal to nothing,
-			// not even themselves.
-			if(double.IsNaN(a) || double.IsNaN(b)) {
-				return false;
-			}
-
-			return Math.Abs(diff) < maximumAbsoluteError;
-		}
-	}
+        public static bool AlmostEqualNorm(this decimal a, decimal b, decimal diff, decimal maximumAbsoluteError)
+        {
+            return Math.Abs(diff) < maximumAbsoluteError;
+        }
+    }
 }

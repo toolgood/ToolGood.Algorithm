@@ -26,12 +26,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
             int k = args1.IntValue;
-            var r = args2.DoubleValue;
-            if (r < 0.0) {
+            var r = args2.NumberValue;
+            if (r < 0m) {
                 return ParameterError(2);
             }
-            var p = args3.DoubleValue;
-            if (p < 0.0 || p > 1.0) {
+            var p = args3.NumberValue;
+            if (p < 0m || p > 1m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));

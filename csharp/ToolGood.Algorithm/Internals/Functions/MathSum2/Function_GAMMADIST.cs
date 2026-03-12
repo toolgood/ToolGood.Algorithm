@@ -29,13 +29,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args4 = GetBoolean_4(engine, tempParameter);
             if (args4.IsErrorOrNone) return args4;
 
-            var x = args1.DoubleValue;
-            var alpha = args2.DoubleValue;
-            if (alpha < 0.0) {
+            var x = args1.NumberValue;
+            var alpha = args2.NumberValue;
+            if (alpha < 0m) {
                 return ParameterError(2);
             }
-            var beta = args3.DoubleValue;
-            if (beta < 0.0) {
+            var beta = args3.NumberValue;
+            if (beta < 0m) {
                 return ParameterError(3);
             }
             var cumulative = args4.BooleanValue;

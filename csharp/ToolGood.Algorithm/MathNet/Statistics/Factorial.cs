@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
@@ -6,9 +6,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
     {
         private static double[] _factorialCache;
 
-        /// <summary>
-        /// Initializes static members of the SpecialFunctions class.
-        /// </summary>
         static SpecialFunctions()
         {
             InitializeFactorial();
@@ -23,36 +20,32 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
         }
 
-        public static double Binomial(int n, int k)
+        public static decimal Binomial(int n, int k)
         {
             if (k < 0 || n < 0 || k > n) {
-                return 0.0;
+                return 0.0m;
             }
 
-            return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
+            return Math.Floor(0.5m + MathEx.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
         }
 
-        public static double FactorialLn(int x)
+        public static decimal FactorialLn(int x)
         {
-            //if (x < 0) {
-            //    throw new ArgumentOutOfRangeException("x", "ArgumentPositive");
-            //}
-
             if (x <= 1) {
-                return 0d;
+                return 0m;
             }
 
             if (x < _factorialCache.Length) {
-                return Math.Log(_factorialCache[x]);
+                return (decimal)Math.Log(_factorialCache[x]);
             }
 
-            return GammaLn(x + 1.0);
+            return GammaLn(x + 1);
         }
 
-        public static double BinomialLn(int n, int k)
+        public static decimal BinomialLn(int n, int k)
         {
             if (k < 0 || n < 0 || k > n) {
-                return double.NegativeInfinity;
+                return decimal.MinValue;
             }
 
             return FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k);

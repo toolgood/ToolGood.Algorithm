@@ -19,8 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) return args1;
-            var p = args1.DoubleValue;
-            if (p <= 0.0 || p >= 1.0) {
+            var p = args1.NumberValue;
+            if (p <= 0m || p >= 1m) {
                 return ParameterError(1);
             }
             return Operand.Create(ExcelFunctions.NormSInv(p));
