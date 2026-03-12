@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -238,7 +238,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(float obj)
 		{
-			return new OperandDouble((double)obj);
+			return new OperandDecimal((decimal)obj);
 		}
 
 		/// <summary>
@@ -248,7 +248,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(double obj)
 		{
-			return new OperandDouble((double)obj);
+			return new OperandDecimal((decimal)obj);
 		}
 
 		/// <summary>
@@ -535,7 +535,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int64 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
@@ -544,7 +544,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt16 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
@@ -553,7 +553,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt32 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
@@ -562,7 +562,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt64 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
@@ -571,7 +571,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(float obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
