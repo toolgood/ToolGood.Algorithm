@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		}
 		public override OperandType GetResultType()
 		{
-			return OperandType.ARRARY;
+			return OperandType.ARRAY;
 		}
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)

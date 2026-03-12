@@ -1176,7 +1176,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>Regex ★ ▲</td><td>Regex(text, matchText)<br> returns a matching string.</td> <td></td>
 	</tr>
 	<tr>
-		<td>RegexRepalce ★</td><td>RegexRepalce(text, matchText, replaceString)<br>  Matches the replacement string.</td> <td></td>
+		<td>REGEXREPLACE ★</td><td>REGEXREPLACE(text, matchText, replaceString)<br>  Matches the replacement string.</td> <td></td>
 	</tr>
 	<tr>
 		<td>IsRegex ★<br>IsMatch ★</td><td>IsRegex(text, matchText)<br>IsMatch(text, matchText)<br>  To determine if there is a match.</td> <td></td>

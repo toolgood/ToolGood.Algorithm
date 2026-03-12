@@ -54,13 +54,6 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNPV_fun(mathParser.NPV_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>REGEXREPALCE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>LOOKFLOOR_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -984,6 +977,13 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSPLIT_fun(mathParser.SPLIT_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>REGEXREPLACE_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>COVAR_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

@@ -1,4 +1,4 @@
-using PetaTest;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm.Test
 {
@@ -83,16 +83,16 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
-        public void REGEXREPALCE_test()
+        public void REGEXREPLACE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var r = engine.TryEvaluate("REGEXREPALCE('abc123def', '\\\\d+', 'X')", "");
+            var r = engine.TryEvaluate("REGEXREPLACE('abc123def', '\\\\d+', 'X')", "");
             Assert.AreEqual(r, "abcXdef");
 
-            r = engine.TryEvaluate("REGEXREPALCE('hello world', 'world', 'there')", "");
+            r = engine.TryEvaluate("REGEXREPLACE('hello world', 'world', 'there')", "");
             Assert.AreEqual(r, "hello there");
 
-            r = engine.TryEvaluate("REGEXREPALCE('123-456-789', '-', '')", "");
+            r = engine.TryEvaluate("REGEXREPLACE('123-456-789', '-', '')", "");
             Assert.AreEqual(r, "123456789");
         }
 
@@ -105,10 +105,10 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
-        public void MethodStyle_REGEXREPALCE_test()
+        public void MethodStyle_REGEXREPLACE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var r = engine.TryEvaluate("'abc123def'.REGEXREPALCE('\\\\d+', 'X')", "");
+            var r = engine.TryEvaluate("'abc123def'.REGEXREPLACE('\\\\d+', 'X')", "");
             Assert.AreEqual(r, "abcXdef");
         }
 

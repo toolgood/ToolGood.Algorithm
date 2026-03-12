@@ -123,17 +123,6 @@ partial class mathParser : Parser {
 			return typedVisitor.VisitNPV_fun(this);
 		}
 	}
-	internal sealed class REGEXREPALCE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
-			return GetRuleContexts<ExprContext>();
-		}
-		public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREGEXREPALCE_fun(this);
-		}
-	}
 	internal sealed class LOOKFLOOR_funContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1581,6 +1570,17 @@ partial class mathParser : Parser {
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 			return typedVisitor.VisitSPLIT_fun(this);
+		}
+	}
+	internal sealed class REGEXREPLACE_funContext : ExprContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+			return GetRuleContexts<ExprContext>();
+		}
+		public REGEXREPLACE_funContext(ExprContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitREGEXREPLACE_fun(this);
 		}
 	}
 	internal sealed class COVAR_funContext : ExprContext {
@@ -7215,7 +7215,7 @@ partial class mathParser : Parser {
 				break;
 			case 235:
 				{
-				_localctx = new REGEXREPALCE_funContext(_localctx);
+				_localctx = new REGEXREPLACE_funContext(_localctx);
 				Context = _localctx;
 				Match(266);
 				Match(2);
@@ -8559,7 +8559,7 @@ partial class mathParser : Parser {
 						break;
 					case 40:
 						{
-						_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new REGEXREPLACE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, 1);
 						Match(1);
 						Match(266);
@@ -9471,7 +9471,11 @@ partial class mathParser : Parser {
 		return _localctx;
 	}
 	internal sealed class Parameter2Context : ParserRuleContext {
-
+		
+		
+		
+		
+		
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(305, 0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)

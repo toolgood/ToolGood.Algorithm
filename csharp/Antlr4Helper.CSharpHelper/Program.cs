@@ -146,6 +146,26 @@ namespace Antlr4Helper.CSharpHelper
 			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
 			File.WriteAllText(@"..\..\..\..\..\csharp\ToolGood.Algorithm\math\mathVisitor.cs", csText);
 
+
+
+			filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathBaseVisitor.cs");
+			csText = File.ReadAllText(filePath);
+
+			csText = csText.Replace("[System.CLSCompliant(false)]", "");
+			csText = csText.Replace("[System.CodeDom.Compiler.GeneratedCode(\"ANTLR\", \"4.13.2\")]", "");
+			csText = csText.Replace("public partial class mathBaseVisitor<Result>", "partial class mathBaseVisitor<Result>");
+			csText = csText.Replace("[NotNull] ", "");
+
+
+
+			csText = Regex.Replace(csText, @"[\r\n]+[ \t]*[\r\n]+", "\r\n");
+			csText = Regex.Replace(csText, @"[\r\n]+[ \t]*[\r\n]+", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
+			File.WriteAllText(@"..\..\..\..\..\csharp\ToolGood.Algorithm\math\mathBaseVisitor.cs", csText);
 		}
 	}
 

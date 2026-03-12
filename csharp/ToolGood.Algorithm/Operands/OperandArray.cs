@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsArray => true;
-		public override OperandType Type => OperandType.ARRARY;
+		public override OperandType Type => OperandType.ARRAY;
 		public override List<Operand> ArrayValue => _value;
 
 		public override Operand ToText(string errorMessage = null)

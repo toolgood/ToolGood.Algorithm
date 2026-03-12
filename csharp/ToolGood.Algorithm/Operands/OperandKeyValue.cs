@@ -1,4 +1,4 @@
-using ToolGood.Algorithm.Enums;
+﻿using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm
@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm
 			_value = obj;
 		}
 		public override bool IsArrayJson => true;
-		public override OperandType Type => OperandType.ARRARYJSON;
+		public override OperandType Type => OperandType.ARRAYJSON;
 		public KeyValue Value => _value;
 	}
 }

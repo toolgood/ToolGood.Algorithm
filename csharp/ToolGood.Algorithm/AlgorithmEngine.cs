@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm
 		internal int ExcelIndex = 1;
 
 		/// <summary>
-		/// 使用 本地时间， 影响 时间截转化
+		/// 使用 本地时间， 影响 时间戳转化
 		/// </summary>
 		public bool UseLocalTime = true;
 

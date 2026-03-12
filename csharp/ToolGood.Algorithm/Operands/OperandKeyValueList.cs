@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm
 		}
 
 		public override bool IsArrayJson => true;
-		public override OperandType Type => OperandType.ARRARYJSON;
+		public override OperandType Type => OperandType.ARRAYJSON;
 		public override List<Operand> ArrayValue => _keyValueList.Select(q => q.Value).ToList();
 
 		public override Operand ToText(string errorMessage = null)

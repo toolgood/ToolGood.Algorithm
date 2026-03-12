@@ -198,7 +198,7 @@ namespace System
 		public static decimal Atanh(decimal x)
 		{
 			if(Math.Abs(x) >= 1) {
-				throw new ArgumentOutOfRangeException(nameof(x), "x mest be |x|<1");
+				throw new ArgumentOutOfRangeException(nameof(x), "x must be |x|<1");
 			}
 			return 0.5m * Log((1 + x) / (1 - x));
 		}

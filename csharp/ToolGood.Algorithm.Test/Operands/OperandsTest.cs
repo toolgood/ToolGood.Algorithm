@@ -599,7 +599,7 @@ namespace ToolGood.Algorithm.Test.Operands
         {
             var list = new List<Operand> { Operand.Create(1), Operand.Create(2), Operand.Create(3) };
             var op = Operand.Create(list);
-            Assert.AreEqual(OperandType.ARRARY, op.Type);
+            Assert.AreEqual(OperandType.ARRAY, op.Type);
             Assert.IsTrue(op.IsArray);
             Assert.IsFalse(op.IsNumber);
             Assert.IsFalse(op.IsText);

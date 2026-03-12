@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
 			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			func2.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
 		}
 
 	}

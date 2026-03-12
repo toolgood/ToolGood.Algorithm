@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -63,7 +63,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
 			funcs[0].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-			funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+			funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
 			if(funcs.Length > 2) {
 				funcs[2].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 			}

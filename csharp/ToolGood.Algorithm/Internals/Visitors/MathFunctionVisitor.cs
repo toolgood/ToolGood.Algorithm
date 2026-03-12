@@ -1,4 +1,4 @@
-using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
 using System.Text;
@@ -1298,10 +1298,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_REGEX(funcs);
 		}
-		public FunctionBase VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
+		public FunctionBase VisitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			return new Function_REGEXREPALCE(funcs);
+			return new Function_REGEXREPLACE(funcs);
 		}
 		public FunctionBase VisitISREGEX_fun(mathParser.ISREGEX_funContext context)
 		{
@@ -1561,6 +1561,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
+
+
 		#endregion getValue
 	}
 }

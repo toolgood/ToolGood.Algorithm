@@ -28,7 +28,7 @@
 		/// <summary>
 		/// 数组
 		/// </summary>
-		ARRARY,
+		ARRAY,
 
 		/// <summary>
 		/// 数字
@@ -53,6 +53,6 @@
 		/// <summary>
 		/// JSON格式
 		/// </summary>
-		ARRARYJSON,
+		ARRAYJSON,
 	}
 }

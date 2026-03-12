@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -7,9 +7,9 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal sealed class Function_REGEXREPALCE : Function_3
+	internal sealed class Function_REGEXREPLACE : Function_3
 	{
-		public Function_REGEXREPALCE(FunctionBase[] funcs) : base(funcs)
+		public Function_REGEXREPLACE(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
