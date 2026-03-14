@@ -29,19 +29,27 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			var args3 = GetNumber_3(engine, tempParameter);
 			if(args3.IsErrorOrNone) { return args3; }
+			var startIndex = args3.IntValue;
+			if (startIndex < 0 || startIndex > text.Length) {
+				return ParameterError(3);
+			}
 
 			if(func4 == null) {
-				return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + engine.ExcelIndex);
+				return Operand.Create(text.AsSpan(0, startIndex).LastIndexOf(args2.TextValue) + engine.ExcelIndex);
 			}
 
 			var args4 = GetNumber_4(engine, tempParameter);
 			if(args4.IsErrorOrNone) { return args4; }
+			var count = args4.IntValue;
+			if (count < 0 || count > startIndex + 1) {
+				return ParameterError(4);
+			}
 
-			return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + engine.ExcelIndex);
+			return Operand.Create(text.LastIndexOf(args2.TextValue, startIndex, count) + engine.ExcelIndex);
 		}
 		public override OperandType GetResultType()
 		{
-			return OperandType.BOOLEAN;
+			return OperandType.NUMBER;
 		}
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)

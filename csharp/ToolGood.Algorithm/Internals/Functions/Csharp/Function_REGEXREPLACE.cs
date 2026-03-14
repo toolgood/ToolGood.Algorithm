@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,8 +26,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var args3 = GetText_3(engine, tempParameter);
 			if(args3.IsErrorOrNone) { return args3; }
 
-			var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
-			return Operand.Create(b);
+			try {
+				var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
+				return Operand.Create(b);
+			} catch (ArgumentException) {
+				return ParameterError(2);
+			}
 		}
 		public override OperandType GetResultType()
 		{

@@ -23,11 +23,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
 
-			var b = Regex.Match(args1.TextValue, args2.TextValue);
-			if(b.Success == false) {
-				return FunctionError();
+			try {
+				var b = Regex.Match(args1.TextValue, args2.TextValue);
+				if(b.Success == false) {
+					return FunctionError();
+				}
+				return Operand.Create(b.Value);
+			} catch (ArgumentException) {
+				return ParameterError(2);
 			}
-			return Operand.Create(b.Value);
 		}
 		public override OperandType GetResultType()
 		{
