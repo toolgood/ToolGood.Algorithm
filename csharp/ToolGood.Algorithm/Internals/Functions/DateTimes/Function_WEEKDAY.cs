@@ -27,6 +27,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsErrorOrNone) { return args2; }
 				type = args2.IntValue;
+				if (type != 1 && type != 2 && type != 3) {
+					return ParameterError(2);
+				}
 			}
 
             var t = args1.DateValue.ToDateTime().DayOfWeek;

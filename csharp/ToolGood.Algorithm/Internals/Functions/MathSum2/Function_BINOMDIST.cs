@@ -33,6 +33,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(n2 < 0) {
 				return ParameterError(2);
 			}
+			var k = args1.IntValue;
+			if(k < 0 || k > n2) {
+				return ParameterError(1);
+			}
 			var n3 = args3.NumberValue;
 			if(n3 < 0m || n3 > 1m) {
 				return ParameterError(3);

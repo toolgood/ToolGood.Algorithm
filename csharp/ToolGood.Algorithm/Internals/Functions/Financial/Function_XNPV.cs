@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -17,6 +17,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var rateArg = GetNumber_1(engine, tempParameter);
 			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
+			if (rate == -1) {
+				return Div0Error();
+			}
 
 			var valuesArg = GetArray_2(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;

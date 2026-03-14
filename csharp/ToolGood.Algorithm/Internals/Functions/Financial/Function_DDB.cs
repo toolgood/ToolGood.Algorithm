@@ -38,6 +38,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			if (life == 0 || factor == 0) return Div0Error();
+			if (period < 1 || period > life) {
+				return ParameterError(4);
+			}
+			if (life < 1) {
+				return ParameterError(3);
+			}
 
 			decimal depreciation = 0;
 			decimal remainingCost = cost;

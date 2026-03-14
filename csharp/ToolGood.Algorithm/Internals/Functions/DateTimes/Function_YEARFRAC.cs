@@ -28,6 +28,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				var basisArg = GetNumber_3(engine, tempParameter);
 				if (basisArg.IsErrorOrNone) return basisArg;
 				basis = basisArg.IntValue;
+				if (basis < 0 || basis > 4) {
+					return ParameterError(3);
+				}
 			}
 
 			var result = CalculateYearFrac(startDate, endDate, basis);

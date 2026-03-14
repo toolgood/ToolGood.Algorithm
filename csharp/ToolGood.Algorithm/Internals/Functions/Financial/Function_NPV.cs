@@ -16,6 +16,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var rateArg = GetNumber(engine, tempParameter, 0);
 			if (rateArg.IsErrorOrNone) return rateArg;
 			var rate = rateArg.NumberValue;
+			if (rate == -1) {
+				return Div0Error();
+			}
 
 			var values = new List<decimal>();
 			for (int i = 1; i < funcs.Length; i++) {

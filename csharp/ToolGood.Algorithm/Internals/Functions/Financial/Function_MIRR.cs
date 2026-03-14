@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -31,6 +31,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			decimal npvNegative = 0;
 			decimal npvPositive = 0;
 			int n = values.Count;
+
+			if (n == 0) {
+				return ParameterError(1);
+			}
+			if (n == 1) {
+				return Div0Error();
+			}
 
 			for (int i = 0; i < n; i++) {
 				if (values[i] < 0) {

@@ -30,6 +30,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var period = periodArg.NumberValue;
 
 			if (life == 0) return Div0Error();
+			if (period < 1 || period > life) {
+				return ParameterError(4);
+			}
+			if (life < 1) {
+				return ParameterError(3);
+			}
 
 			var syd = (cost - salvage) * (life - period + 1) * 2 / (life * (life + 1));
 			return Operand.Create(syd);

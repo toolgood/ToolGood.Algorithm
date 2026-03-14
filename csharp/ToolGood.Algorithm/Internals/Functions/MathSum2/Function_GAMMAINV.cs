@@ -31,11 +31,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
                 return ParameterError(1);
             }
             var alpha = args2.NumberValue;
-            if (alpha < 0m) {
+            if (alpha <= 0m) {
                 return ParameterError(2);
             }
             var beta = args3.NumberValue;
-            if (beta < 0m) {
+            if (beta <= 0m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));

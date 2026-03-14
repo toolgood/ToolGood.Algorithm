@@ -34,9 +34,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				var monthArg = GetNumber_5(engine, tempParameter);
 				if (monthArg.IsErrorOrNone) return monthArg;
 				month = monthArg.IntValue;
+				if (month < 1 || month > 12) {
+					return ParameterError(5);
+				}
 			}
 
 			if (life == 0 || cost == 0) return Div0Error();
+			if (period < 1 || period > life + 1) {
+				return ParameterError(4);
+			}
+			if (life < 1) {
+				return ParameterError(3);
+			}
 
 			decimal rate = 1 - MathEx.Pow((salvage / cost), 1.0m / life);
 			rate = Math.Round(rate, 3);

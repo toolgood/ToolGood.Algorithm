@@ -37,6 +37,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				var typeArg = GetNumber_5(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
+				if (type != 0 && type != 1) {
+					return ParameterError(5);
+				}
 			}
 
 			if (rate == 0) {

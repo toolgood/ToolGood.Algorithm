@@ -25,6 +25,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			if (func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsErrorOrNone) { return args2; }
+				if (args2.IntValue != 1 && args2.IntValue != 2) {
+					return ParameterError(2);
+				}
 				if (args2.IntValue == 2) {
 					days--;
 				}

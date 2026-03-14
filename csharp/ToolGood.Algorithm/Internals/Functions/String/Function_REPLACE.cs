@@ -41,6 +41,16 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var length = args3.IntValue;
 			var newtext = args4.TextValue;
 
+			if (start < 0) {
+				return ParameterError(2);
+			}
+			if (length < 0) {
+				return ParameterError(3);
+			}
+			if (start >= oldtext.Length) {
+				return Operand.Create(oldtext + newtext);
+			}
+
 			var sb = new StringBuilder(oldtext.Length - length + newtext.Length);
 			for (int i = 0; i < oldtext.Length; i++) {
 				if (i < start) {
