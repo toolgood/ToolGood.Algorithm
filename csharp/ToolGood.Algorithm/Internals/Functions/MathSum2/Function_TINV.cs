@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone) return args2;
             var p = args1.NumberValue;
-            if (p < 0m || p > 1m) {
+            if (p <= 0m || p >= 1m) {
                 return ParameterError(1);
             }
             var degreesFreedom = args2.IntValue;

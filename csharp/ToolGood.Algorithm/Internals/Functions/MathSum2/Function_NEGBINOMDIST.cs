@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
                 return ParameterError(1);
             }
             var r = args2.NumberValue;
-            if (r < 0m) {
+            if (r <= 0m) {
                 return ParameterError(2);
             }
             var p = args3.NumberValue;

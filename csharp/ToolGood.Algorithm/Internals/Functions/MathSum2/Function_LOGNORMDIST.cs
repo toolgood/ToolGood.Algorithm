@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
 
             var n3 = args3.NumberValue;
-            if (n3 < 0m) {
+            if (n3 <= 0m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.LognormDist(args1.NumberValue, args2.NumberValue, n3));

@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) return args1;
             var probability = args1.NumberValue;
-            if (probability < 0 || probability > 1) {
+            if (probability <= 0 || probability >= 1) {
                 return ParameterError(1);
             }
 
@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
 
             var n3 = args3.NumberValue;
-            if (n3 < 0m) {
+            if (n3 <= 0m) {
                 return ParameterError(3);
             }
             return Operand.Create(ExcelFunctions.LogInv(args1.NumberValue, args2.NumberValue, n3));
