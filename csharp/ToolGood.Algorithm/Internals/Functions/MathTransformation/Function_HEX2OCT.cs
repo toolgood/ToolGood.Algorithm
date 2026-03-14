@@ -23,6 +23,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
+                if (args2.IntValue < 0) {
+                    return ParameterError(2);
+                }
                 if (num.Length <= args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
