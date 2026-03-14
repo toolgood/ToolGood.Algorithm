@@ -18,11 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			var d = MathEx.Cosh(args1.NumberValue);
-			if (d == 0) {
-				return Div0Error();
-			}
-			return Operand.Create(1.0m / d);
+			return Operand.Create(1.0m / MathEx.Cosh(args1.NumberValue));
 		}
 		public override OperandType GetResultType()
 		{

@@ -27,6 +27,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
 
+            for (int i = 0; i < list.Count; i++) {
+                if (list[i] < 0) {
+                    return ParameterError(i + 1);
+                }
+            }
+
             return Operand.Create(FunctionUtil.GetGcd(list));
         }
 		public override OperandType GetResultType()

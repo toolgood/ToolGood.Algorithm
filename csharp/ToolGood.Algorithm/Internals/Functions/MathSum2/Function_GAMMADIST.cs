@@ -30,6 +30,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args4.IsErrorOrNone) return args4;
 
             var x = args1.NumberValue;
+            if (x < 0) {
+                return ParameterError(1);
+            }
             var alpha = args2.NumberValue;
             if (alpha < 0m) {
                 return ParameterError(2);

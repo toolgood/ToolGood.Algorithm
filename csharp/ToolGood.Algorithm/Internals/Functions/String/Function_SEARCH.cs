@@ -26,9 +26,13 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return Operand.Create(p);
 			}
 			var args3 = GetNumber_3(engine, tempParameter);
-			if (args3.IsErrorOrNone) { return args3; }
-			var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + engine.ExcelIndex;
-			return Operand.Create(p2);
+            if (args3.IsErrorOrNone) { return args3; }
+            var startIndex = args3.IntValue;
+            if (startIndex < 0 || startIndex > args2.TextValue.Length) {
+                return ParameterError(3);
+            }
+            var p2 = args2.TextValue.AsSpan(startIndex).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + startIndex + engine.ExcelIndex;
+            return Operand.Create(p2);
 		}
 		public override OperandType GetResultType()
 		{

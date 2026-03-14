@@ -26,6 +26,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             int n = 1;
             for (int i = 0; i < list.Count; i++) {
                 var a = (int)list[i];
+                if (a < 0) {
+                    return ParameterError(i + 1);
+                }
                 n *= FunctionUtil.GetFactorial(a);
                 sum += a;
             }

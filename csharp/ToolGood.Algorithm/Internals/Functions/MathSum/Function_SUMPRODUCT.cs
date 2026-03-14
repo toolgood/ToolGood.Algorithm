@@ -35,6 +35,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				}
 			}
 
+			if (minLength == 0) {
+				return Operand.Zero;
+			}
+
 			decimal result = 0;
 			for (int i = 0; i < minLength; i++) {
 				decimal product = 1;

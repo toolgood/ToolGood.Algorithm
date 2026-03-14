@@ -20,6 +20,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.IsErrorOrNone) { return args1; }
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone) { return args2; }
+            if (args1.NumberValue == 0 && args2.NumberValue == 0) {
+                return Div0Error();
+            }
             return Operand.Create(MathEx.Atan2(args2.NumberValue, args1.NumberValue));
         }
 		public override OperandType GetResultType()
