@@ -21,6 +21,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone || args2.IsNone) { return args2; }
+
+            var bottom = args1.NumberValue;
+            var top = args2.NumberValue;
+            if (bottom > top) {
+                return ParameterError(1);
+            }
 #if NETSTANDARD2_1
             var tick = DateTime.Now.Ticks;
             Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));

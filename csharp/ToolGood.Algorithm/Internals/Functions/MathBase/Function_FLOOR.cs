@@ -25,7 +25,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone) { return args2; }
             var b = args2.NumberValue;
-            if (b >= 1) { return Operand.Create(args1.IntValue); }
             if (b <= 0) { return ParameterError(2); }
 
             var a = args1.NumberValue;

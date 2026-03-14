@@ -22,6 +22,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsErrorOrNone) { return args2; }
 				num = args2.IntValue;
+				if (num < 0 || num > 15) {
+					return ParameterError(2);
+				}
 			}
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }

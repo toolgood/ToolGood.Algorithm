@@ -28,6 +28,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (baseValue == 0 && exponent < 0) {
 				return Div0Error();
 			}
+			if (baseValue < 0 && exponent != Math.Floor(exponent)) {
+				return ParameterError(1);
+			}
 
 			return Operand.Create(MathEx.Pow(baseValue, exponent));
         }
