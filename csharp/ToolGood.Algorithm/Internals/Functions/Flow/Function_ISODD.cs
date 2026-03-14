@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         {
             var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNumber) {
-                if (args1.IntValue % 2 == 1) { return Operand.True; }
+                if (Math.Abs(args1.IntValue) % 2 == 1) { return Operand.True; }
             }
             return Operand.False;
         }
