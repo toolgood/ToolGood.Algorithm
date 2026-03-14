@@ -50,6 +50,11 @@ namespace ToolGood.Algorithm
 		/// 使用EXCEL索引
 		/// </summary>
 		public bool UseExcelIndex { set { ExcelIndex = value ? 1 : 0; } }
+		/// <summary>
+		/// 使用缓存
+		/// </summary>
+		public bool UseParseCache = false;
+		private Dictionary<string, FunctionBase> _parseCache = new Dictionary<string, FunctionBase>();
 
 		/// <summary>
 		/// 自定义参数 请重写此方法
@@ -86,6 +91,18 @@ namespace ToolGood.Algorithm
 				LastError = "Parameter exp invalid !";
 				throw new Exception(LastError);
 			}
+			if(UseParseCache) {
+				if(_parseCache.TryGetValue(exp.Trim(), out var function)) {
+					return function;
+				}
+				function = ParseInternal(exp);
+				_parseCache[exp.Trim()] = function;
+				return function;
+			}
+			return ParseInternal(exp);
+		}
+		private FunctionBase ParseInternal(string exp)
+		{
 			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
 			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
