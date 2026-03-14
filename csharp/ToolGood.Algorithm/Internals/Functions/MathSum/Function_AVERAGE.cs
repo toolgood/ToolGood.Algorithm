@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
-            if (list.Count == 0) { return Operand.Zero; }
+            if (list.Count == 0) { return Div0Error(); }
             decimal sum = 0;
             foreach (var item in list) { sum += item; }
             return Operand.Create(sum / list.Count);

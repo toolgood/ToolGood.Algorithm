@@ -36,6 +36,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                 var args3 = GetNumber_3(engine, tempParameter);
                 if (args3.IsErrorOrNone) { return args3; }
                 d = args3.IntValue;
+                if (d < 0) {
+                    return ParameterError(3);
+                }
             }
             return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));
         }

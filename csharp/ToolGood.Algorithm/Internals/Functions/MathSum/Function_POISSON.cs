@@ -26,6 +26,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var args3 = GetBoolean_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
             int k = args1.IntValue;
+            if (k < 0) {
+                return ParameterError(1);
+            }
             var lambda = args2.NumberValue;
             if (!(lambda > 0m)) {
                 return ParameterError(2);
