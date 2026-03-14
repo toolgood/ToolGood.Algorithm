@@ -18,7 +18,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            return Operand.Create(MathEx.Tan(args1.NumberValue));
+            var cos = MathEx.Cos(args1.NumberValue);
+            if (cos == 0) {
+                return Div0Error();
+            }
+            return Operand.Create(MathEx.Sin(args1.NumberValue) / cos);
         }
 		public override OperandType GetResultType()
 		{

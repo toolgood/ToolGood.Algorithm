@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args1, list);
             if (o == false) { return ParameterError(1); }
+            if (list.Count == 0) { return ParameterError(1); }
 
             var quant = args2.IntValue;
             if (quant < 0 || quant > 4) {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -21,6 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
+            if (list.Count == 0) { return FunctionError(); }
 
             decimal sum = 0;
             foreach (var db in list) {

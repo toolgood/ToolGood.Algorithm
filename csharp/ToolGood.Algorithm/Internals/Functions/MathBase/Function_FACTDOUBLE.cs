@@ -20,6 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsErrorOrNone) { return args1; }
             var z = args1.IntValue;
             if (z < 0) { return ParameterError(1); }
+            if (z > 300) { return ParameterError(1); }
 
             decimal d = 1;
             for (int i = z; i > 0; i -= 2) {

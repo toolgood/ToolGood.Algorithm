@@ -18,6 +18,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
             var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
+            if (args1.NumberValue > 700) {
+                return ParameterError(1);
+            }
             return Operand.Create(MathEx.Exp(args1.NumberValue));
         }
 		public override OperandType GetResultType()

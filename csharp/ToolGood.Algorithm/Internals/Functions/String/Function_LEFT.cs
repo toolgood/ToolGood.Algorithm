@@ -26,6 +26,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone) { return args2; }
+			if (args2.IntValue < 0) {
+				return ParameterError(2);
+			}
 			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
 			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());
 		}

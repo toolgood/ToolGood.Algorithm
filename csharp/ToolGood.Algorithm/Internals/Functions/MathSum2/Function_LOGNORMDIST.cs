@@ -19,6 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) return args1;
+            var x = args1.NumberValue;
+            if (x <= 0) {
+                return ParameterError(1);
+            }
 
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone) return args2;

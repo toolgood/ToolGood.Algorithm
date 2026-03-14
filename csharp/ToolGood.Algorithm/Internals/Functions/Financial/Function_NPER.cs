@@ -43,6 +43,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				if (pmt == 0) return Div0Error();
 				return Operand.Create(-(pv + fv) / pmt);
 			}
+			if (rate == -1) {
+				return Div0Error();
+			}
 
 			var factor = pmt;
 			if (type == 1) {

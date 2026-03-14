@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var num = args1.NumberValue;
             var avg = args2.NumberValue;
             var STDEV = args3.NumberValue;
-            if (STDEV < 0m) {
+            if (STDEV <= 0m) {
                 return ParameterError(3);
             }
             var b = args4.BooleanValue;
