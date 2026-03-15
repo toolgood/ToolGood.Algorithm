@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -15,9 +15,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override string Name => "Array";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
-		{
+        {
 			var args = new List<Operand>(funcs.Length);
-			foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsErrorOrNone) { return aa; } args.Add(aa); }
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
 			return Operand.Create(args);
 		}
 		public override OperandType GetResultType()

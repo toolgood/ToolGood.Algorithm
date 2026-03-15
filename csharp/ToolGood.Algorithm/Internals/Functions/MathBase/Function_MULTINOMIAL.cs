@@ -16,7 +16,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsErrorOrNone || aa.IsNone) { return aa; } args.Add(aa); }
+			var args = new List<Operand>(funcs.Length);
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
 
 			var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args, list);

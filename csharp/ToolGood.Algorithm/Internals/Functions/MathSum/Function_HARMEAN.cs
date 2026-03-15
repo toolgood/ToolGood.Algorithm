@@ -16,7 +16,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsErrorOrNone) { return aa; } args.Add(aa); }
+			var args = new List<Operand>(funcs.Length);
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
 
             var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args, list);
@@ -24,11 +26,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (list.Count == 0) { return FunctionError(); }
 
             decimal sum = 0;
-            foreach (var db in list) {
-                if (db == 0) {
+            for(int i = 0; i < list.Count; i++) {
+                if (list[i] == 0) {
                     return FunctionError();
                 }
-                sum += 1 / db;
+                sum += 1 / list[i];
             }
             if (sum == 0) {
                 return FunctionError();

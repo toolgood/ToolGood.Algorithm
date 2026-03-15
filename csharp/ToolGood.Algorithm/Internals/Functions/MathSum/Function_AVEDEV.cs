@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -17,18 +16,20 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length); foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if (aa.IsErrorOrNone) { return aa; } args.Add(aa); }
+            var args = new List<Operand>(funcs.Length);
+            var error = TryEvaluateAll(engine, tempParameter, args);
+            if(error != null) { return error; }
 
             var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
             if (list.Count == 0) { return Operand.Zero; }
             decimal sum = 0;
-            foreach (var item in list) { sum += item; }
+            for(int i = 0; i < list.Count; i++) { sum += list[i]; }
             var avg = sum / list.Count;
             decimal sum2 = 0;
-            foreach (var item in list) {
-                sum2 += Math.Abs(item - avg);
+            for(int i = 0; i < list.Count; i++) {
+                sum2 += Math.Abs(list[i] - avg);
             }
             return Operand.Create(sum2 / list.Count);
         }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -16,18 +16,20 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-			var args = new List<Operand>(funcs.Length); foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsErrorOrNone) { return aa; } args.Add(aa); }
+			var args = new List<Operand>(funcs.Length);
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
 
 			var list = new List<decimal>();
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return ParameterError(1); }
             if (list.Count == 0) { return ParameterError(1); }
             decimal product = 1.0m;
-            foreach (var num in list) {
-                if (num <= 0) {
+            for(int i = 0; i < list.Count; i++) {
+                if (list[i] <= 0) {
                     return ParameterError(1);
                 }
-                product *= num;
+                product *= list[i];
             }
 			decimal geoMean = MathEx.Pow(product, 1.0m / list.Count);
             return Operand.Create(geoMean);
