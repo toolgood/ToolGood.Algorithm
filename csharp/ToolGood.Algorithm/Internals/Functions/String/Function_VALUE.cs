@@ -18,9 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(engine, tempParameter);
-			if(args1.IsNumber) { return args1; }
-			if(args1.IsBoolean) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
+			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
 
 			if(decimal.TryParse(args1.TextValue.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
@@ -35,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
-			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
 		}
 	}
 
