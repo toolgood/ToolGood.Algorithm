@@ -101,11 +101,25 @@ namespace ToolGood.Algorithm
 
 		public override string ToString()
 		{
-			var sb = new StringBuilder(_value.Length + 2);
+			var len = _value.Length;
+			for (int i = 0; i < len; i++) {
+				var c = _value[i];
+				if (c == '"' || c == '\\' || c == '\n' || c == '\r' || c == '\t'
+					|| c == '\0' || c == '\v' || c == '\a' || c == '\b' || c == '\f') {
+					return ToStringInternal();
+				}
+			}
+			return "\"" + _value + "\"";
+		}
+
+		private string ToStringInternal()
+		{
+			var sb = new StringBuilder(_value.Length + 16);
 			sb.Append('"');
 			foreach (var c in _value) {
 				switch (c) {
 					case '"': sb.Append("\\\""); break;
+					case '\\': sb.Append("\\\\"); break;
 					case '\n': sb.Append("\\n"); break;
 					case '\r': sb.Append("\\r"); break;
 					case '\t': sb.Append("\\t"); break;

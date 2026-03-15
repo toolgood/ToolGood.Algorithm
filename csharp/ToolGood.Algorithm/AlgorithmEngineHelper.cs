@@ -1,6 +1,7 @@
 ﻿﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -51,9 +52,9 @@ namespace ToolGood.Algorithm
 			}
 			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
+			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
+			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
 
 			var context = parser.prog();
 			if(antlrErrorTextWriter.IsError) {
@@ -130,9 +131,9 @@ namespace ToolGood.Algorithm
 			}
 			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
+			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
+			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
 
 			var context = parser.prog();
 			if(antlrErrorTextWriter.IsError) {
@@ -152,9 +153,9 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
 			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
+			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
+			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
 
 			var context = parser.prog();
 			if(antlrErrorTextWriter.IsError) {
@@ -179,9 +180,9 @@ namespace ToolGood.Algorithm
 			try {
 				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 				var stream = new AntlrCharStream(new AntlrInputStream(condition));
-				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
+				var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
 				var tokens = new CommonTokenStream(lexer);
-				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
+				var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
 
 				var context = parser.prog();
 				if(antlrErrorTextWriter.IsError) {

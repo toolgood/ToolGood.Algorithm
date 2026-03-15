@@ -1,7 +1,8 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Visitors;
@@ -101,9 +102,9 @@ namespace ToolGood.Algorithm
 		{
 			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
 			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
+			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
+			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
 
 			var context = parser.prog();
 			if(antlrErrorTextWriter.IsError) {
