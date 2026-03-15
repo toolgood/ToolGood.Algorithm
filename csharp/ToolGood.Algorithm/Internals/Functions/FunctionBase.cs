@@ -27,14 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		/// <exception cref="NotImplementedException"></exception>
-		internal virtual Operand EvaluateWithoutEngine() { return Operand.None; }
-
-		#region GetResultType
+	#region GetResultType
 		/// <summary>
 		/// 
 		/// </summary>

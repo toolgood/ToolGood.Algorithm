@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			_showName = showName;
 		}
 
-		public override string Name => throw new NotImplementedException();
+		public override string Name => _showName;
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
@@ -32,10 +32,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			stringBuilder.Append(_showName);
-		}
-
-		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
-		{
 		}
 	}
 }
