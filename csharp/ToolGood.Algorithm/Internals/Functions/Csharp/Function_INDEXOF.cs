@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			var args3 = GetNumber_3(engine, tempParameter);
 			if(args3.IsErrorOrNone) { return args3; }
-			var startIndex = args3.IntValue;
+			var startIndex = args3.IntValue - engine.ExcelIndex;
 			if (startIndex < 0 || startIndex > text.Length) {
 				return ParameterError(3);
 			}

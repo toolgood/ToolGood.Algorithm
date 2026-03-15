@@ -30,11 +30,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if(o == false) { return ParameterError(1); }
 			if(list.Count == 0) { return ParameterError(1); }
 			list.Sort();
-			int k = args2.IntValue;
-			if(k < 1 - engine.ExcelIndex || k > list.Count - engine.ExcelIndex) {
+			int k = args2.IntValue - engine.ExcelIndex;
+			if(k < 0 || k >= list.Count) {
 				return ParameterError(2);
 			}
-			return Operand.Create(list[k - engine.ExcelIndex]);
+			return Operand.Create(list[k]);
 		}
 		public override OperandType GetResultType()
 		{
