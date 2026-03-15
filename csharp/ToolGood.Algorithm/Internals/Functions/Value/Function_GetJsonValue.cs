@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
@@ -50,17 +51,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					if(op.IsErrorOrNone) { return op; }
 					var index = op.IntValue - engine.ExcelIndex;
 					if(index < json.Count && index >= 0) {
-						var v = json[index];
-					return v switch
-					{
-						_ when v.IsString => Operand.Create(v.StringValue),
-						_ when v.IsBoolean => Operand.Create(v.BooleanValue),
-						_ when v.IsDouble => Operand.Create(v.NumberValue),
-						_ when v.IsObject => Operand.Create(v),
-						_ when v.IsArray => Operand.Create(v),
-						_ when v.IsNull => Operand.Null,
-						_ => Operand.Create(v)
-					};
+						return ConvertJsonDataToOperand(json[index]);
 					}
 					return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
 				} else {
@@ -68,21 +59,26 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					if(op.IsErrorOrNone) { return op; }
 					var v = json[op.TextValue];
 					if(v != null) {
-						return v switch
-						{
-							_ when v.IsString => Operand.Create(v.StringValue),
-							_ when v.IsBoolean => Operand.Create(v.BooleanValue),
-							_ when v.IsDouble => Operand.Create(v.NumberValue),
-							_ when v.IsObject => Operand.Create(v),
-							_ when v.IsArray => Operand.Create(v),
-							_ when v.IsNull => Operand.Null,
-							_ => Operand.Create(v)
-						};
+						return ConvertJsonDataToOperand(v);
 					}
 				}
 			}
 			return Operand.Error("Function '{0}' Operator is error!", "GetJsonValue");
 		}
+
+		private static Operand ConvertJsonDataToOperand(JsonData v)
+		{
+			return v switch {
+				_ when v.IsString => Operand.Create(v.StringValue),
+				_ when v.IsBoolean => Operand.Create(v.BooleanValue),
+				_ when v.IsDouble => Operand.Create(v.NumberValue),
+				_ when v.IsObject => Operand.Create(v),
+				_ when v.IsArray => Operand.Create(v),
+				_ when v.IsNull => Operand.Null,
+				_ => Operand.Create(v)
+			};
+		}
+
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			func1.ToString(stringBuilder, false);
