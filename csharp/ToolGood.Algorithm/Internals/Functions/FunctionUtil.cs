@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -75,58 +75,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
-			var queue = new Queue<Operand>(args.Count);
-			for(int i = 0; i < args.Count; i++) {
-				queue.Enqueue(args[i]);
-			}
-
-			while(queue.Count > 0) {
-				var item = queue.Dequeue();
-
-				if(item.IsArray) {
-					var array = item.ArrayValue;
-					for(int i = 0; i < array.Count; i++) {
-						queue.Enqueue(array[i]);
-					}
-				} else if(item.IsJson) {
-					var i = item.ToArray(null);
-					if(i.IsError) { return false; }
-					var array = i.ArrayValue;
-					for(int j = 0; j < array.Count; j++) {
-						queue.Enqueue(array[j]);
-					}
-				} else {
-					if(item.IsNumber) {
-						list.Add(item.NumberValue);
-					} else {
-						var converted = item.ToNumber(null);
-						if(converted.IsError) { return false; }
-						list.Add(converted.NumberValue);
-					}
-				}
-			}
-			return true;
+			return FlattenToListCore(args, list, obj => obj.IsNumber ? obj : obj.ToNumber(null), obj => obj.NumberValue);
 		}
 
 		public static bool FlattenToList(Operand args, List<decimal> list)
 		{
-			if(args.IsError) { return false; }
-			if(args.IsArray) {
-				return FlattenToList(args.ArrayValue, list);
-			} else if(args.IsJson) {
-				var i = args.ToArray(null);
-				if(i.IsError) { return false; }
-				return FlattenToList(i.ArrayValue, list);
-			} else {
-				if(args.IsNumber) {
-					list.Add(args.NumberValue);
-				} else {
-					var converted = args.ToNumber(null);
-					if(converted.IsError) { return false; }
-					list.Add(converted.NumberValue);
-				}
-			}
-			return true;
+			return FlattenToListCore(args, list, obj => obj.IsNumber ? obj : obj.ToNumber(null), obj => obj.NumberValue);
 		}
 
 		public static bool FlattenToList(Operand args, List<string> list)
