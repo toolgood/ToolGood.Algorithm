@@ -1,4 +1,4 @@
-using PetaTest;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm.Test
 {
@@ -115,6 +115,13 @@ namespace ToolGood.Algorithm.Test
 
 			t = engine.TryEvaluate("FIND(\"12\",\"123456789123456789\",6)", 0);
 			Assert.AreEqual(t, 10);
+
+
+			t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",5)", -1);
+			Assert.AreEqual(t, -1);
+
+			t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",4)", -1);
+			Assert.AreEqual(t, 4);
 		}
 
         [Test]
