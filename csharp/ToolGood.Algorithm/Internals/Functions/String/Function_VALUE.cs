@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = GetText_1(engine, tempParameter);
+			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsNumber) { return args1; }
 			if(args1.IsBoolean) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
 			if(args1.IsErrorOrNone) { return args1; }
