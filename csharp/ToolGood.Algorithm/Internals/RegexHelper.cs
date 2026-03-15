@@ -1,43 +1,54 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ToolGood.Algorithm.Internals
 {
     internal sealed partial class RegexHelper
     {
-#if NETSTANDARD2_1
-        /// <summary>
-        /// new Regex("^[0-9A-Fa-f]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex HexRegex = new Regex("^[0-9A-Fa-f]+$", RegexOptions.Compiled);
-        /// <summary>
-        /// new Regex("^[0-7]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex OctRegex = new Regex("^[0-7]+$", RegexOptions.Compiled);
-        /// <summary>
-        /// new Regex("^[01]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex BinRegex = new Regex("^[01]+$", RegexOptions.Compiled);
-#else
-        /// <summary>
-        /// new Regex("^[0-9A-Fa-f]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex HexRegex = HexRegex_();
-        /// <summary>
-        /// new Regex("^[0-7]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex OctRegex = OctRegex_();
-        /// <summary>
-        /// new Regex("^[01]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex BinRegex = BinRegex_();
+        public static bool IsHex(string value)
+        {
+            if(string.IsNullOrEmpty(value)) return false;
+            foreach(var c in value) {
+                if(!IsHexChar(c)) return false;
+            }
+            return true;
+        }
 
-        [GeneratedRegex("^[0-9A-Fa-f]+$", RegexOptions.Compiled)]
-        private static partial Regex HexRegex_();
-        [GeneratedRegex("^[0-7]+$", RegexOptions.Compiled)]
-        private static partial Regex OctRegex_();
-        [GeneratedRegex("^[01]+$", RegexOptions.Compiled)]
-        private static partial Regex BinRegex_();
-#endif
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        private static bool IsHexChar(char c)
+        {
+            return (uint)(c - '0') <= 9 || (uint)(c - 'A') <= 5 || (uint)(c - 'a') <= 5;
+        }
+
+        public static bool IsOct(string value)
+        {
+            if(string.IsNullOrEmpty(value)) return false;
+            foreach(var c in value) {
+                if(!IsOctChar(c)) return false;
+            }
+            return true;
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        private static bool IsOctChar(char c)
+        {
+            return (uint)(c - '0') <= 7;
+        }
+
+        public static bool IsBin(string value)
+        {
+            if(string.IsNullOrEmpty(value)) return false;
+            foreach(var c in value) {
+                if(!IsBinChar(c)) return false;
+            }
+            return true;
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        private static bool IsBinChar(char c)
+        {
+            return c == '0' || c == '1';
+        }
 
 #if NETSTANDARD2_1
         public static readonly Regex dateTimeRegex = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
