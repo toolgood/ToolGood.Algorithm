@@ -29,15 +29,13 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetSha1String(byte[] buffer)
 		{
-
 #if NETSTANDARD2_1
-			SHA1 sha512 = SHA1.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //����ָ��Stream ����Ĺ�ϣֵ
-			sha512.Dispose();
+			using var sha1 = SHA1.Create();
+			var retVal = sha1.ComputeHash(buffer);
 			return BitConverter.ToString(retVal).Replace("-", "");
 #else
-            var retVal = SHA1.HashData(buffer);
-            return Convert.ToHexString(retVal);
+			var retVal = SHA1.HashData(buffer);
+			return Convert.ToHexString(retVal);
 #endif
 		}
 		public override OperandType GetResultType()

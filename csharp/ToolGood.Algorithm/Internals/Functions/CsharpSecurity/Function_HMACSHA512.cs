@@ -32,15 +32,14 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetHmacSha512String(byte[] buffer, string secret)
 		{
-			byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-			using(var hmacsha256 = new HMACSHA512(keyByte)) {
-				byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+			var keyByte = Encoding.UTF8.GetBytes(secret ?? "");
+			using var hmacSha512 = new HMACSHA512(keyByte);
+			var hashMessage = hmacSha512.ComputeHash(buffer);
 #if NETSTANDARD2_1
-				return BitConverter.ToString(hashmessage).Replace("-", "");
+			return BitConverter.ToString(hashMessage).Replace("-", "");
 #else
-                return Convert.ToHexString(hashmessage);
+			return Convert.ToHexString(hashMessage);
 #endif
-			}
 		}
 		public override OperandType GetResultType()
 		{

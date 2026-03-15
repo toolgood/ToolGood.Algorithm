@@ -32,15 +32,14 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetHmacMd5String(byte[] buffer, string secret)
 		{
-			byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-			using(var hmacsha256 = new HMACMD5(keyByte)) {
-				byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+			var keyByte = Encoding.UTF8.GetBytes(secret ?? "");
+			using var hmacMd5 = new HMACMD5(keyByte);
+			var hashMessage = hmacMd5.ComputeHash(buffer);
 #if NETSTANDARD2_1
-				return BitConverter.ToString(hashmessage).Replace("-", "");
+			return BitConverter.ToString(hashMessage).Replace("-", "");
 #else
-				return Convert.ToHexString(hashmessage);
+			return Convert.ToHexString(hashMessage);
 #endif
-			}
 		}
 		public override OperandType GetResultType()
 		{

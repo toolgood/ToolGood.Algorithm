@@ -30,13 +30,12 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		private string GetSha512String(byte[] buffer)
 		{
 #if NETSTANDARD2_1
-			SHA512 sha512 = SHA512.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希�?
-			sha512.Dispose();
+			using var sha512 = SHA512.Create();
+			var retVal = sha512.ComputeHash(buffer);
 			return BitConverter.ToString(retVal).Replace("-", "");
 #else
-            var retVal = SHA512.HashData(buffer);
-            return Convert.ToHexString(retVal);
+			var retVal = SHA512.HashData(buffer);
+			return Convert.ToHexString(retVal);
 #endif
 		}
 		public override OperandType GetResultType()

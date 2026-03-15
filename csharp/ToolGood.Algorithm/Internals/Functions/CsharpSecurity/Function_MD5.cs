@@ -30,13 +30,12 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		private string GetMd5String(byte[] buffer)
 		{
 #if NETSTANDARD2_1
-			System.Security.Cryptography.MD5 md5 = MD5.Create();
-			byte[] retVal = md5.ComputeHash(buffer);
-			md5.Dispose();
+			using var md5 = MD5.Create();
+			var retVal = md5.ComputeHash(buffer);
 			return BitConverter.ToString(retVal).Replace("-", "");
 #else
-            var retVal = MD5.HashData(buffer);
-            return Convert.ToHexString(retVal);
+			var retVal = MD5.HashData(buffer);
+			return Convert.ToHexString(retVal);
 #endif
 		}
 		public override OperandType GetResultType()

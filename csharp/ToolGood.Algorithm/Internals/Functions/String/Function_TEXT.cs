@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			args1 = ConvertToText(args1, 1);
 			if(args1.IsErrorOrNone) { return args1; }
-			return Operand.Create(args1.TextValue.ToString());
+			return Operand.Create(args1.TextValue);
 		}
 		public override OperandType GetResultType()
 		{
