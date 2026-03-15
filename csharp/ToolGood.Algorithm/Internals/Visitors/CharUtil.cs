@@ -62,10 +62,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			if(left.Length != right.Length) return false;
 			for(int i = 0; i < left.Length; i++) {
-				if(left[i] != right[i]) {
-					var a = StandardChar(left[i]);
-					if(a != right[i]) return false;
-				}
+				var l = left[i];
+				var r = right[i];
+				if(l == r) continue;
+				l = StandardChar(l);
+				if(l != r) return false;
 			}
 			return true;
 		}

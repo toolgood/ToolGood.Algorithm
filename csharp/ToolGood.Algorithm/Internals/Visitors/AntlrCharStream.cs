@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 
 namespace ToolGood.Algorithm.Internals.Visitors
@@ -29,29 +29,17 @@ namespace ToolGood.Algorithm.Internals.Visitors
         /// <summary>
         ///
         /// </summary>
-        public int Index {
-            get {
-                return stream.Index;
-            }
-        }
+        public int Index => stream.Index;
 
         /// <summary>
         ///
         /// </summary>
-        public int Size {
-            get {
-                return stream.Size;
-            }
-        }
+        public int Size => stream.Size;
 
         /// <summary>
         ///
         /// </summary>
-        public string SourceName {
-            get {
-                return stream.SourceName;
-            }
-        }
+        public string SourceName => stream.SourceName;
 
         /// <summary>
         ///
