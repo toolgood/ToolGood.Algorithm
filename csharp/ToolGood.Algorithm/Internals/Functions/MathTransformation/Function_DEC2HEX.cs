@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if(args1.IsErrorOrNone) { return args1; }
-            var num = Convert.ToString(args1.IntValue, 16).ToUpper();
+            var num = Convert.ToString(args1.IntValue, 16).ToUpperInvariant();
             if(func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if(args2.IsErrorOrNone) { return args2; }

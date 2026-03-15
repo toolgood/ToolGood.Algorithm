@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (args1.IsErrorOrNone) { return args1; }
 
             if(RegexHelper.IsOct(args1.TextValue) == false) { return ParameterError(1); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpper();
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpperInvariant();
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
