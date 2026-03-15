@@ -50,11 +50,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public static bool Equals(string left, char right)
 		{
 			if(left.Length != 1) return false;
-			if(left[0] != right) {
-				var a = StandardChar(left[0]);
-				if(a != right) return false;
-			}
-			return true;
+			return left[0] == right || StandardChar(left[0]) == right;
 		}
 
 		public static bool Equals(string left, string right)
