@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals.Functions;
@@ -54,7 +55,7 @@ namespace ToolGood.Algorithm
 		/// 使用缓存
 		/// </summary>
 		public bool UseParseCache = false;
-		private Dictionary<string, FunctionBase> _parseCache = new Dictionary<string, FunctionBase>();
+		private readonly ConcurrentDictionary<string, FunctionBase> _parseCache = new ConcurrentDictionary<string, FunctionBase>();
 
 		/// <summary>
 		/// 自定义参数 请重写此方法
@@ -92,12 +93,7 @@ namespace ToolGood.Algorithm
 				throw new Exception(LastError);
 			}
 			if(UseParseCache) {
-				if(_parseCache.TryGetValue(exp.Trim(), out var function)) {
-					return function;
-				}
-				function = ParseInternal(exp);
-				_parseCache[exp.Trim()] = function;
-				return function;
+				return _parseCache.GetOrAdd(exp.Trim(), _ => ParseInternal(exp));
 			}
 			return ParseInternal(exp);
 		}

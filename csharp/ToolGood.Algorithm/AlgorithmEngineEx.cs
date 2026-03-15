@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Common;
 using ToolGood.Algorithm.LitJson;
@@ -12,7 +13,7 @@ namespace ToolGood.Algorithm
     /// </summary>
     public class AlgorithmEngineEx : AlgorithmEngine
     {
-        private readonly Dictionary<string, Operand> _tempdict;
+        private readonly ConcurrentDictionary<string, Operand> _tempdict;
 
         /// <summary>
         /// 是否忽略大小写
@@ -31,7 +32,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         public AlgorithmEngineEx()
         {
-            _tempdict = new Dictionary<string, Operand>();
+            _tempdict = new ConcurrentDictionary<string, Operand>();
         }
 
         /// <summary>
@@ -42,9 +43,9 @@ namespace ToolGood.Algorithm
         {
             IgnoreCase = ignoreCase;
             if (ignoreCase) {
-                _tempdict = new Dictionary<string, Operand>(StringComparer.OrdinalIgnoreCase);
+                _tempdict = new ConcurrentDictionary<string, Operand>(StringComparer.OrdinalIgnoreCase);
             } else {
-                _tempdict = new Dictionary<string, Operand>();
+                _tempdict = new ConcurrentDictionary<string, Operand>();
             }
         }
 
@@ -62,7 +63,7 @@ namespace ToolGood.Algorithm
             }
             var result = GetParameterEx(parameter);
             if (UseTempDict) {
-                _tempdict[parameter] = result;
+                _tempdict.TryAdd(parameter, result);
             }
             return result;
         }
