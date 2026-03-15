@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
@@ -28,6 +29,18 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			stringBuilder.Append(')');
 		}
+
+		#region TryEvaluateAll
+		protected Operand TryEvaluateAll(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, List<Operand> args)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				var aa = funcs[i].Evaluate(engine, tempParameter);
+				if(aa.IsErrorOrNone) { return aa; }
+				args.Add(aa);
+			}
+			return null;
+		}
+		#endregion
 
 		#region Get
 		protected Operand GetText(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
