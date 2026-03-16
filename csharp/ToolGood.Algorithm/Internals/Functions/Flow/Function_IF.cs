@@ -26,11 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 		public override OperandType GetResultType()
 		{
 			var t2 = func2.GetResultType();
-			if(t2 != OperandType.NONE) return t2;
-			if(func3 != null) {
-				return func3.GetResultType();
-			}
-			return OperandType.NONE;
+			return t2 != OperandType.NONE ? t2 : func3?.GetResultType() ?? OperandType.NONE;
 		}
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
