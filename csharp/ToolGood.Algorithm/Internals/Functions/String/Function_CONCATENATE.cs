@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (funcs.Length == 1) {
 				var a = GetText(engine, tempParameter, 0);
 				if (a.IsErrorOrNone) { return a; }
-				return a; // 只有一�?
+				return a; // 只有一个参数
 			}
 			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {

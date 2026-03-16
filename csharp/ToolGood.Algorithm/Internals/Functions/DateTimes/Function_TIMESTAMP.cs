@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			int type = 0; // ����
+			int type = 0; // 类型
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsErrorOrNone) { return args2; }
