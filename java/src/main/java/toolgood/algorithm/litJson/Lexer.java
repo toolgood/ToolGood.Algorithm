@@ -1,31 +1,28 @@
 package toolgood.algorithm.litJson;
 
-import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
 
 public class Lexer {
-    // private delegate boolean
+    private interface StateHandler {
+        boolean run(FsmContext ctx);
+    }
 
-    // StateHandler(FsmContext ctx);
+    private static final int[] fsm_return_table;
+    private static final StateHandler[] fsm_handler_table;
 
-    private static int[] fsm_return_table;
-    private static List<Function<FsmContext, Boolean>> fsm_handler_table;
-
-    private boolean allow_comments;
-    private boolean allow_single_quoted_strings;
-    private boolean end_of_input;
-    private FsmContext fsm_context;
-    private int input_buffer;
-    private int input_char;
-    private StringReader reader;
-    private int state;
-    private StringBuilder string_buffer;
-    private String string_value;
-    private int token;
-    private int unichar;
+    private boolean allow_comments = true;
+    private boolean allow_single_quoted_strings = true;
+    private boolean end_of_input = false;
+    private final FsmContext fsm_context = new FsmContext();
+    private int input_buffer = 0;
+    private int input_char = 0;
+    private final Reader reader;
+    private int state = 1;
+    private final StringBuilder string_buffer = new StringBuilder(128);
+    private String string_value = "";
+    private int token = 0;
+    private int unichar = 0;
 
     public boolean EndOfInput() {
         return end_of_input;
@@ -39,22 +36,76 @@ public class Lexer {
         return string_value;
     }
 
-    static {
-        PopulateFsmTables();
+    public Lexer(Reader reader) {
+        this.reader = reader;
     }
 
-    public Lexer(StringReader _reader) {
-        allow_comments = true;
-        allow_single_quoted_strings = true;
+    public Lexer(String input) {
+        this.reader = new StringReader(input);
+    }
 
-        input_buffer = 0;
-        string_buffer = new StringBuilder(128);
-        state = 1;
-        end_of_input = false;
-        reader = _reader;
+    static {
+        fsm_handler_table = new StateHandler[]{
+            Lexer::State1,
+            Lexer::State2,
+            Lexer::State3,
+            Lexer::State4,
+            Lexer::State5,
+            Lexer::State6,
+            Lexer::State7,
+            Lexer::State8,
+            Lexer::State9,
+            Lexer::State10,
+            Lexer::State11,
+            Lexer::State12,
+            Lexer::State13,
+            Lexer::State14,
+            Lexer::State15,
+            Lexer::State16,
+            Lexer::State17,
+            Lexer::State18,
+            Lexer::State19,
+            Lexer::State20,
+            Lexer::State21,
+            Lexer::State22,
+            Lexer::State23,
+            Lexer::State24,
+            Lexer::State25,
+            Lexer::State26,
+            Lexer::State27,
+            Lexer::State28
+        };
 
-        fsm_context = new FsmContext();
-        fsm_context.L = this;
+        fsm_return_table = new int[]{
+            (int) ParserToken.Char,
+            0,
+            (int) ParserToken.Number,
+            (int) ParserToken.Number,
+            0,
+            (int) ParserToken.Number,
+            0,
+            (int) ParserToken.Number,
+            0,
+            0,
+            (int) ParserToken.True,
+            0,
+            0,
+            0,
+            (int) ParserToken.False,
+            0,
+            0,
+            (int) ParserToken.Null,
+            (int) ParserToken.CharSeq,
+            (int) ParserToken.Char,
+            0,
+            0,
+            (int) ParserToken.CharSeq,
+            (int) ParserToken.Char,
+            0,
+            0,
+            0,
+            0
+        };
     }
 
     private static int HexValue(int digit) {
@@ -62,97 +113,24 @@ public class Lexer {
             case 'a':
             case 'A':
                 return 10;
-
             case 'b':
             case 'B':
                 return 11;
-
             case 'c':
             case 'C':
                 return 12;
-
             case 'd':
             case 'D':
                 return 13;
-
             case 'e':
             case 'E':
                 return 14;
-
             case 'f':
             case 'F':
                 return 15;
-
             default:
                 return digit - '0';
         }
-    }
-
-    private static void PopulateFsmTables() {
-        // See section A.1. of the manual for details of the finite state machine.
-        fsm_handler_table = new ArrayList<Function<FsmContext, Boolean>>();//
-        Function<FsmContext, Boolean> state1 = ctx -> State1(ctx);
-        fsm_handler_table.add(state1);
-        Function<FsmContext, Boolean> state2 = ctx -> State2(ctx);
-        fsm_handler_table.add(state2);
-        Function<FsmContext, Boolean> state3 = ctx -> State3(ctx);
-        fsm_handler_table.add(state3);
-        Function<FsmContext, Boolean> state4 = ctx -> State4(ctx);
-        fsm_handler_table.add(state4);
-        Function<FsmContext, Boolean> state5 = ctx -> State5(ctx);
-        fsm_handler_table.add(state5);
-        Function<FsmContext, Boolean> state6 = ctx -> State6(ctx);
-        fsm_handler_table.add(state6);
-        Function<FsmContext, Boolean> state7 = ctx -> State7(ctx);
-        fsm_handler_table.add(state7);
-        Function<FsmContext, Boolean> state8 = ctx -> State8(ctx);
-        fsm_handler_table.add(state8);
-        Function<FsmContext, Boolean> state9 = ctx -> State9(ctx);
-        fsm_handler_table.add(state9);
-        Function<FsmContext, Boolean> state10 = ctx -> State10(ctx);
-        fsm_handler_table.add(state10);
-        Function<FsmContext, Boolean> state11 = ctx -> State11(ctx);
-        fsm_handler_table.add(state11);
-        Function<FsmContext, Boolean> state12 = ctx -> State12(ctx);
-        fsm_handler_table.add(state12);
-        Function<FsmContext, Boolean> state13 = ctx -> State13(ctx);
-        fsm_handler_table.add(state13);
-        Function<FsmContext, Boolean> state14 = ctx -> State14(ctx);
-        fsm_handler_table.add(state14);
-        Function<FsmContext, Boolean> state15 = ctx -> State15(ctx);
-        fsm_handler_table.add(state15);
-        Function<FsmContext, Boolean> state16 = ctx -> State16(ctx);
-        fsm_handler_table.add(state16);
-        Function<FsmContext, Boolean> state17 = ctx -> State17(ctx);
-        fsm_handler_table.add(state17);
-        Function<FsmContext, Boolean> state18 = ctx -> State18(ctx);
-        fsm_handler_table.add(state18);
-        Function<FsmContext, Boolean> state19 = ctx -> State19(ctx);
-        fsm_handler_table.add(state19);
-        Function<FsmContext, Boolean> state20 = ctx -> State20(ctx);
-        fsm_handler_table.add(state20);
-        Function<FsmContext, Boolean> state21 = ctx -> State21(ctx);
-        fsm_handler_table.add(state21);
-        Function<FsmContext, Boolean> state22 = ctx -> State22(ctx);
-        fsm_handler_table.add(state22);
-        Function<FsmContext, Boolean> state23 = ctx -> State23(ctx);
-        fsm_handler_table.add(state23);
-        Function<FsmContext, Boolean> state24 = ctx -> State24(ctx);
-        fsm_handler_table.add(state24);
-        Function<FsmContext, Boolean> state25 = ctx -> State25(ctx);
-        fsm_handler_table.add(state25);
-        Function<FsmContext, Boolean> state26 = ctx -> State26(ctx);
-        fsm_handler_table.add(state26);
-        Function<FsmContext, Boolean> state27 = ctx -> State27(ctx);
-        fsm_handler_table.add(state27);
-        Function<FsmContext, Boolean> state28 = ctx -> State28(ctx);
-        fsm_handler_table.add(state28);
-
-        fsm_return_table = new int[] { (int) ParserToken.Char.value, 0, (int) ParserToken.Number.value,
-                (int) ParserToken.Number.value, 0, (int) ParserToken.Number.value, 0, (int) ParserToken.Number.value, 0,
-                0, (int) ParserToken.True.value, 0, 0, 0, (int) ParserToken.False.value, 0, 0,
-                (int) ParserToken.Null.value, (int) ParserToken.CharSeq.value, (int) ParserToken.Char.value, 0, 0,
-                (int) ParserToken.CharSeq.value, (int) ParserToken.Char.value, 0, 0, 0, 0 };
     }
 
     private static char ProcessEscChar(int esc_char) {
@@ -161,7 +139,7 @@ public class Lexer {
             case '\'':
             case '\\':
             case '/':
-                return (char) esc_char;// Convert.ToChar(esc_char);
+                return (char) esc_char;
             case 'n':
                 return '\n';
             case 't':
@@ -179,7 +157,7 @@ public class Lexer {
 
     private static boolean State1(FsmContext ctx) {
         while (ctx.L.GetChar()) {
-            if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')
+            if (ctx.L.input_char == ' ' || (ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r'))
                 continue;
 
             if (ctx.L.input_char >= '1' && ctx.L.input_char <= '9') {
@@ -227,8 +205,7 @@ public class Lexer {
                     return true;
 
                 case '\'':
-                    if (!ctx.L.allow_single_quoted_strings)
-                        return false;
+                    if (!ctx.L.allow_single_quoted_strings) return false;
 
                     ctx.L.input_char = '"';
                     ctx.NextState = 23;
@@ -236,8 +213,7 @@ public class Lexer {
                     return true;
 
                 case '/':
-                    if (!ctx.L.allow_comments)
-                        return false;
+                    if (!ctx.L.allow_comments) return false;
 
                     ctx.NextState = 25;
                     return true;
@@ -277,7 +253,8 @@ public class Lexer {
                 continue;
             }
 
-            if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+            if (ctx.L.input_char == ' ' ||
+                (ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')) {
                 ctx.Return = true;
                 ctx.NextState = 1;
                 return true;
@@ -313,7 +290,7 @@ public class Lexer {
     private static boolean State4(FsmContext ctx) {
         ctx.L.GetChar();
 
-        if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+        if (ctx.L.input_char == ' ' || (ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')) {
             ctx.Return = true;
             ctx.NextState = 1;
             return true;
@@ -363,7 +340,7 @@ public class Lexer {
                 continue;
             }
 
-            if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+            if (ctx.L.input_char == ' ' || (ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')) {
                 ctx.Return = true;
                 ctx.NextState = 1;
                 return true;
@@ -420,7 +397,7 @@ public class Lexer {
                 continue;
             }
 
-            if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+            if (ctx.L.input_char == ' ' || (ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')) {
                 ctx.Return = true;
                 ctx.NextState = 1;
                 return true;
@@ -646,17 +623,16 @@ public class Lexer {
         ctx.L.unichar = 0;
 
         while (ctx.L.GetChar()) {
-
-            if (ctx.L.input_char >= '0' && ctx.L.input_char <= '9' || ctx.L.input_char >= 'A' && ctx.L.input_char <= 'F'
-                    || ctx.L.input_char >= 'a' && ctx.L.input_char <= 'f') {
-
+            if ((ctx.L.input_char >= '0' && ctx.L.input_char <= '9') ||
+                (ctx.L.input_char >= 'A' && ctx.L.input_char <= 'F') ||
+                (ctx.L.input_char >= 'a' && ctx.L.input_char <= 'f')) {
                 ctx.L.unichar += HexValue(ctx.L.input_char) * mult;
 
                 counter++;
                 mult /= 16;
 
                 if (counter == 4) {
-                    ctx.L.string_buffer.append((char) (ctx.L.unichar));
+                    ctx.L.string_buffer.append((char) ctx.L.unichar);
                     ctx.NextState = ctx.StateStack;
                     return true;
                 }
@@ -749,8 +725,7 @@ public class Lexer {
 
     private static boolean State28(FsmContext ctx) {
         while (ctx.L.GetChar()) {
-            if (ctx.L.input_char == '*')
-                continue;
+            if (ctx.L.input_char == '*') continue;
 
             if (ctx.L.input_char == '/') {
                 ctx.NextState = 1;
@@ -765,16 +740,13 @@ public class Lexer {
     }
 
     private boolean GetChar() {
-        try {
-            if ((input_char = NextChar()) != -1)
-            return true;
-        } catch (Exception e) {
-        }
+        if ((input_char = NextChar()) != -1) return true;
+
         end_of_input = true;
         return false;
     }
 
-    private int NextChar() throws IOException {
+    private int NextChar() {
         if (input_buffer != 0) {
             int tmp = input_buffer;
             input_buffer = 0;
@@ -782,30 +754,31 @@ public class Lexer {
             return tmp;
         }
 
-        return reader.read();
+        try {
+            return reader.read();
+        } catch (java.io.IOException e) {
+            return -1;
+        }
     }
 
-    public boolean NextToken() throws JsonException {
-        Function<FsmContext,Boolean> handler;
+    public boolean NextToken() {
+        StateHandler handler;
         fsm_context.Return = false;
+        fsm_context.L = this;
 
         while (true) {
-            handler =(Function<FsmContext,Boolean>) fsm_handler_table.get(state - 1);// [state - 1];
-            
-            if (!handler.apply(fsm_context))
-                throw new JsonException(input_char);
+            handler = fsm_handler_table[state - 1];
 
-            if (end_of_input)
-                return false;
+            if (!handler.run(fsm_context)) throw new JsonException(input_char);
+
+            if (end_of_input) return false;
 
             if (fsm_context.Return) {
                 string_value = string_buffer.toString();
-                string_buffer.delete(0, string_buffer.length());
-                // string_buffer.Remove(0, string_buffer.length());
+                string_buffer.setLength(0);
                 token = fsm_return_table[state - 1];
 
-                if (token == (int) ParserToken.Char.value)
-                    token = input_char;
+                if (token == (int) ParserToken.Char) token = input_char;
 
                 state = fsm_context.NextState;
 

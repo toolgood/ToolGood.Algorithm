@@ -1,25 +1,24 @@
 package toolgood.algorithm.litJson;
 
 import java.io.StringReader;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 public class JsonReader {
-    private static Map<Integer, Map<Integer, int[]>> parse_table;
+    private static final Map<Integer, Map<Integer, int[]>> parse_table = new HashMap<>();
 
-    private Stack<Integer> automaton_stack;
+    private final Stack<Integer> automaton_stack = new Stack<>();
     private int current_input;
     private int current_symbol;
-    private boolean end_of_json;
-    private boolean end_of_input;
-    private Lexer lexer;
-    private boolean parser_in_string;
-    private boolean parser_return;
-    private boolean read_started;
-    private Object token_value;
-    private JsonToken token;
+    private boolean end_of_json = false;
+    private boolean end_of_input = false;
+    private final Lexer lexer;
+    private boolean parser_in_string = false;
+    private boolean parser_return = false;
+    private boolean read_started = false;
+    private Object token_value = null;
+    private JsonToken token = JsonToken.None;
 
     public JsonToken Token() {
         return token;
@@ -29,10 +28,6 @@ public class JsonReader {
         return token_value;
     }
 
-    static {
-        parse_table = PopulateParseTable();
-    }
-
     public JsonReader(String json_text) {
         StringReader reader = new StringReader(json_text);
 
@@ -40,205 +35,153 @@ public class JsonReader {
         parser_return = false;
 
         read_started = false;
-        automaton_stack = new Stack<Integer>();
-        automaton_stack.push((int) ParserToken.End.value);
-        automaton_stack.push((int) ParserToken.Text.value);
+        automaton_stack.clear();
+        automaton_stack.push((int) ParserToken.End);
+        automaton_stack.push((int) ParserToken.Text);
 
         lexer = new Lexer(reader);
 
         end_of_input = false;
         end_of_json = false;
-
     }
 
-    private static Map<Integer, Map<Integer, int[]>> PopulateParseTable() {
-        // See section A.2. of the manual for details
-        Map<Integer, Map<Integer, int[]>> parse_table = new HashMap<Integer, Map<Integer, int[]>>();
+    static {
+        PopulateParseTable();
+    }
 
+    private static void PopulateParseTable() {
         TableAddRow(parse_table, ParserToken.Array);
-        TableAddCol(parse_table, ParserToken.Array, '[', new int[] { '[', (int) ParserToken.ArrayPrime.value });
+        TableAddCol(parse_table, ParserToken.Array, '[', '[', (int) ParserToken.ArrayPrime);
 
         TableAddRow(parse_table, ParserToken.ArrayPrime);
-        TableAddCol(parse_table, ParserToken.ArrayPrime, '"',
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, '[',
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, ']', new int[] { ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, '{',
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.Number.value,
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.True.value,
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.False.value,
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
-        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.Null.value,
-                new int[] { (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value, ']' });
+        TableAddCol(parse_table, ParserToken.ArrayPrime, '"', (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, '[', (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, ']', ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, '{', (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.Number, (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.True, (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.False, (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
+        TableAddCol(parse_table, ParserToken.ArrayPrime, (int) ParserToken.Null, (int) ParserToken.Value, (int) ParserToken.ValueRest, ']');
 
         TableAddRow(parse_table, ParserToken.Object);
-        TableAddCol(parse_table, ParserToken.Object, '{', new int[] { '{', (int) ParserToken.ObjectPrime.value });
+        TableAddCol(parse_table, ParserToken.Object, '{', '{', (int) ParserToken.ObjectPrime);
 
         TableAddRow(parse_table, ParserToken.ObjectPrime);
-        TableAddCol(parse_table, ParserToken.ObjectPrime, '"',
-                new int[] { (int) ParserToken.Pair.value, (int) ParserToken.PairRest.value, '}' });
-        TableAddCol(parse_table, ParserToken.ObjectPrime, '}', new int[] { '}' });
+        TableAddCol(parse_table, ParserToken.ObjectPrime, '"', (int) ParserToken.Pair, (int) ParserToken.PairRest, '}');
+        TableAddCol(parse_table, ParserToken.ObjectPrime, '}', '}');
 
         TableAddRow(parse_table, ParserToken.Pair);
-        TableAddCol(parse_table, ParserToken.Pair, '"',
-                new int[] { (int) ParserToken.String.value, ':', (int) ParserToken.Value.value });
+        TableAddCol(parse_table, ParserToken.Pair, '"', (int) ParserToken.String, ':', (int) ParserToken.Value);
 
         TableAddRow(parse_table, ParserToken.PairRest);
-        TableAddCol(parse_table, ParserToken.PairRest, ',',
-                new int[] { ',', (int) ParserToken.Pair.value, (int) ParserToken.PairRest.value });
-        TableAddCol(parse_table, ParserToken.PairRest, '}', new int[] { (int) ParserToken.Epsilon.value });
+        TableAddCol(parse_table, ParserToken.PairRest, ',', ',', (int) ParserToken.Pair, (int) ParserToken.PairRest);
+        TableAddCol(parse_table, ParserToken.PairRest, '}', (int) ParserToken.Epsilon);
 
         TableAddRow(parse_table, ParserToken.String);
-        TableAddCol(parse_table, ParserToken.String, '"', new int[] { '"', (int) ParserToken.CharSeq.value, '"' });
+        TableAddCol(parse_table, ParserToken.String, '"', '"', (int) ParserToken.CharSeq, '"');
 
         TableAddRow(parse_table, ParserToken.Text);
-        TableAddCol(parse_table, ParserToken.Text, '[', new int[] { (int) ParserToken.Array.value });
-        TableAddCol(parse_table, ParserToken.Text, '{', new int[] { (int) ParserToken.Object.value });
+        TableAddCol(parse_table, ParserToken.Text, '[', (int) ParserToken.Array);
+        TableAddCol(parse_table, ParserToken.Text, '{', (int) ParserToken.Object);
 
         TableAddRow(parse_table, ParserToken.Value);
-        TableAddCol(parse_table, ParserToken.Value, '"', new int[] { (int) ParserToken.String.value });
-        TableAddCol(parse_table, ParserToken.Value, '[', new int[] { (int) ParserToken.Array.value });
-        TableAddCol(parse_table, ParserToken.Value, '{', new int[] { (int) ParserToken.Object.value });
-        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.Number.value,
-                new int[] { (int) ParserToken.Number.value });
-        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.True.value,
-                new int[] { (int) ParserToken.True.value });
-        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.False.value,
-                new int[] { (int) ParserToken.False.value });
-        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.Null.value,
-                new int[] { (int) ParserToken.Null.value });
+        TableAddCol(parse_table, ParserToken.Value, '"', (int) ParserToken.String);
+        TableAddCol(parse_table, ParserToken.Value, '[', (int) ParserToken.Array);
+        TableAddCol(parse_table, ParserToken.Value, '{', (int) ParserToken.Object);
+        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.Number, (int) ParserToken.Number);
+        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.True, (int) ParserToken.True);
+        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.False, (int) ParserToken.False);
+        TableAddCol(parse_table, ParserToken.Value, (int) ParserToken.Null, (int) ParserToken.Null);
 
         TableAddRow(parse_table, ParserToken.ValueRest);
-        TableAddCol(parse_table, ParserToken.ValueRest, ',',
-                new int[] { ',', (int) ParserToken.Value.value, (int) ParserToken.ValueRest.value });
-        TableAddCol(parse_table, ParserToken.ValueRest, ']', new int[] { (int) ParserToken.Epsilon.value });
-
-        return parse_table;
+        TableAddCol(parse_table, ParserToken.ValueRest, ',', ',', (int) ParserToken.Value, (int) ParserToken.ValueRest);
+        TableAddCol(parse_table, ParserToken.ValueRest, ']', (int) ParserToken.Epsilon);
     }
 
-    private static void TableAddCol(Map<Integer, Map<Integer, int[]>> parse_table, ParserToken row, int col,
-            int[] symbols) {
-        parse_table.get((int) row.value).put(col, symbols);
+    private static void TableAddCol(Map<Integer, Map<Integer, int[]>> parse_table, ParserToken row, int col, int... symbols) {
+        Map<Integer, int[]> rowMap = parse_table.get((int) row);
+        if (rowMap == null) {
+            rowMap = new HashMap<>();
+            parse_table.put((int) row, rowMap);
+        }
+        rowMap.put(col, symbols);
     }
 
     private static void TableAddRow(Map<Integer, Map<Integer, int[]>> parse_table, ParserToken rule) {
-        parse_table.put((int) rule.value, new HashMap<Integer, int[]>());
+        parse_table.put((int) rule, new HashMap<>());
     }
 
-    private void ProcessNumber(String number)
-    {
-        try {
-            BigDecimal n_double=new BigDecimal(number);
-            token_value = n_double;
-            return;
-        }catch (Exception e){
-
+    private void ProcessNumber(String number) {
+        if (number.indexOf('.') >= 0 || number.indexOf('e') >= 0 || number.indexOf('E') >= 0) {
+            try {
+                token_value = Double.parseDouble(number);
+                return;
+            } catch (NumberFormatException e) {
+            }
         }
-//        Double n_double=Double.valueOf(number);
-//        if (n_double.isNaN()==false) {
-//            token_value = n_double.doubleValue();
-//            return;
-//        }
-        // if (number.indexOf('.') != -1 || number.indexOf('e') != -1 || number.indexOf('E') != -1) {
-        //     Double n_double=Double.valueOf(number);
-        //     if (n_double.isNaN()==false) {
-        //         token_value = n_double.doubleValue();
-        //         return;
-        //     }
-        // }
-        // if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
-        //     token_value = (double)n_int32;
-        //     return;
-        // }
-        // if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
-        //     token_value = (double)n_int64;
-        //     return;
-        // }
-
-        // Shouldn't happen, but just in case, return something
-        token_value =new BigDecimal(0);
+        try {
+            token_value = Long.parseLong(number);
+            return;
+        } catch (NumberFormatException e) {
+        }
+        try {
+            token_value = new java.math.BigDecimal(number);
+            return;
+        } catch (NumberFormatException e) {
+        }
+        token_value = 0;
     }
 
     private void ProcessSymbol() {
         if (current_symbol == '[') {
             token = JsonToken.ArrayStart;
             parser_return = true;
-
         } else if (current_symbol == ']') {
             token = JsonToken.ArrayEnd;
             parser_return = true;
-
         } else if (current_symbol == '{') {
             token = JsonToken.ObjectStart;
             parser_return = true;
-
         } else if (current_symbol == '}') {
             token = JsonToken.ObjectEnd;
             parser_return = true;
-
         } else if (current_symbol == '"') {
             if (parser_in_string) {
                 parser_in_string = false;
-
                 parser_return = true;
-
             } else {
-                if (token == JsonToken.None)
-                    token = JsonToken.String;
-
+                if (token == JsonToken.None) token = JsonToken.String;
                 parser_in_string = true;
             }
-
-        } else if (current_symbol == (int) ParserToken.CharSeq.value) {
+        } else if (current_symbol == (int) ParserToken.CharSeq) {
             token_value = lexer.StringValue();
-
-        } else if (current_symbol == (int) ParserToken.False.value) {
+        } else if (current_symbol == (int) ParserToken.False) {
             token = JsonToken.Boolean;
             token_value = false;
             parser_return = true;
-
-        } else if (current_symbol == (int) ParserToken.Null.value) {
+        } else if (current_symbol == (int) ParserToken.Null) {
             token = JsonToken.Null;
             parser_return = true;
-
-        } else if (current_symbol == (int) ParserToken.Number.value) {
+        } else if (current_symbol == (int) ParserToken.Number) {
             ProcessNumber(lexer.StringValue());
             token = JsonToken.Double;
-            // if (double.TryParse(lexer.StringValue, NumberStyles.Any,
-            // CultureInfo.InvariantCulture, out double n_double))
-            // {
-            // token_value = n_double;
-            // }
-            // else
-            // {
-            // token_value = 0;
-            // }
             parser_return = true;
-
-        } else if (current_symbol == (int) ParserToken.Pair.value) {
+        } else if (current_symbol == (int) ParserToken.Pair) {
             token = JsonToken.PropertyName;
-
-        } else if (current_symbol == (int) ParserToken.True.value) {
+        } else if (current_symbol == (int) ParserToken.True) {
             token = JsonToken.Boolean;
             token_value = true;
             parser_return = true;
-
         }
     }
 
-    private boolean ReadToken() throws JsonException {
-        if (end_of_input)
-            return false;
+    private boolean ReadToken() {
+        if (end_of_input) return false;
 
         lexer.NextToken();
 
         if (lexer.EndOfInput()) {
             Close();
-
             return false;
         }
 
@@ -255,15 +198,15 @@ public class JsonReader {
         end_of_json = true;
     }
 
-    public boolean Read() throws JsonException {
+    public boolean Read() {
         if (end_of_input)
             return false;
 
         if (end_of_json) {
             end_of_json = false;
             automaton_stack.clear();
-            automaton_stack.push((int) ParserToken.End.value);
-            automaton_stack.push((int) ParserToken.Text.value);
+            automaton_stack.push((int) ParserToken.End);
+            automaton_stack.push((int) ParserToken.Text);
         }
 
         parser_in_string = false;
@@ -283,8 +226,7 @@ public class JsonReader {
 
         while (true) {
             if (parser_return) {
-                if (automaton_stack.peek() == (int) ParserToken.End.value)
-                    end_of_json = true;
+                if (automaton_stack.peek() == (int) ParserToken.End) end_of_json = true;
 
                 return true;
             }
@@ -295,13 +237,10 @@ public class JsonReader {
 
             if (current_symbol == current_input) {
                 if (!ReadToken()) {
-                    if (automaton_stack.peek() != (int) ParserToken.End.value) {
+                    if (automaton_stack.peek() != (int) ParserToken.End)
                         throw new JsonException("Input doesn't evaluate to proper JSON text");
 
-                    }
-
-                    if (parser_return)
-                        return true;
+                    if (parser_return) return true;
 
                     return false;
                 }
@@ -310,18 +249,22 @@ public class JsonReader {
             }
 
             try {
-                entry_symbols =  parse_table.get(current_symbol).get(current_input);
-
+                Map<Integer, int[]> row = parse_table.get(current_symbol);
+                if (row == null) {
+                    throw new JsonException((ParserToken) current_input, new Exception("Parse error"));
+                }
+                entry_symbols = row.get(current_input);
+                if (entry_symbols == null) {
+                    throw new JsonException((ParserToken) current_input, new Exception("Parse error"));
+                }
             } catch (Exception e) {
-                throw new JsonException(ParserToken.values()[current_input], e);
+                throw new JsonException((ParserToken) current_input, e);
             }
 
-            if (entry_symbols[0] == (int) ParserToken.Epsilon.value)
-                continue;
+            if (entry_symbols[0] == (int) ParserToken.Epsilon) continue;
 
             for (int i = entry_symbols.length - 1; i >= 0; i--)
                 automaton_stack.push(entry_symbols[i]);
         }
     }
-
 }

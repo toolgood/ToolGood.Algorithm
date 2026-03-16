@@ -1,24 +1,22 @@
 package toolgood.algorithm.litJson;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class JsonData implements IJsonWrapper {
-
-    public ArrayList<JsonData> inst_array;
+public class JsonData implements Iterable<JsonData> {
+    private List<JsonData> inst_array;
     private boolean inst_boolean;
-    private BigDecimal inst_double;
-    public Map<String, JsonData> inst_object;
+    private double inst_double;
+    private Map<String, JsonData> inst_object;
     private String inst_string;
     private JsonType type;
-    // private IList<KeyValuePair<string, JsonData>> object_list;
 
     public int Count() {
-        return EnsureCollection().size();
+        if (type == JsonType.Array) return inst_array.size();
+        return inst_object.size();
     }
 
     public boolean IsArray() {
@@ -45,16 +43,15 @@ public class JsonData implements IJsonWrapper {
         return type == JsonType.Null;
     }
 
-    public JsonData GetChild(final String prop_name) {
-        EnsureDictionary();
-        if (inst_object.containsKey(prop_name)) {
-            return inst_object.get(prop_name);
+    public JsonData get(String prop_name) {
+        if (inst_object != null) {
+            JsonData data = inst_object.get(prop_name);
+            return data;
         }
         return null;
     }
 
-    public JsonData GetChild(final int index) {
-        EnsureCollection();
+    public JsonData get(int index) {
         if (type == JsonType.Array)
             return inst_array.get(index);
         return null;
@@ -63,17 +60,17 @@ public class JsonData implements IJsonWrapper {
     public JsonData() {
     }
 
-    public void SetBoolean(final boolean val) {
+    public void SetBoolean(boolean val) {
         type = JsonType.Boolean;
         inst_boolean = val;
     }
 
-    public void SetDouble(final BigDecimal val) {
+    public void SetDouble(double val) {
         type = JsonType.Double;
         inst_double = val;
     }
 
-    public void SetString(final String val) {
+    public void SetString(String val) {
         type = JsonType.String;
         inst_string = val;
     }
@@ -82,43 +79,29 @@ public class JsonData implements IJsonWrapper {
         type = JsonType.Null;
     }
 
-    public void Add(final IJsonWrapper val) {
-        EnsureList().add((JsonData) val);
+    public void Add(JsonData val) {
+        EnsureList().add(val);
     }
 
-    public void Set(final String key, final IJsonWrapper val) {
-        final JsonData data = (JsonData) val;
-        EnsureDictionary().put(key, data);
-        // KeyValuePair<string, JsonData> entry = new KeyValuePair<string,
-        // JsonData>((string)key, data);
-        // object_list.Add(entry);
-    }
-
-    @SuppressWarnings("rawtypes") 
-    private Collection EnsureCollection() {
-        if (type == JsonType.Array)
-            return (Collection) inst_array;
-        return (Collection) inst_object;
+    public void Set(String key, JsonData val) {
+        EnsureDictionary().put(key, val);
     }
 
     private Map<String, JsonData> EnsureDictionary() {
-        if (type == JsonType.Object)
-            return inst_object;
+        if (type == JsonType.Object) return inst_object;
         type = JsonType.Object;
-        inst_object = new HashMap<String, JsonData>();
-        // object_list = new List<KeyValuePair<string, JsonData>>();
+        inst_object = new HashMap<>();
         return inst_object;
     }
 
     private List<JsonData> EnsureList() {
-        if (type == JsonType.Array)
-            return inst_array;
+        if (type == JsonType.Array) return inst_array;
         type = JsonType.Array;
-        inst_array = new ArrayList<JsonData>();
+        inst_array = new ArrayList<>();
         return inst_array;
     }
 
-    public void SetJsonType(final JsonType type) {
+    public void SetJsonType(JsonType type) {
         if (this.type == type)
             return;
 
@@ -127,11 +110,11 @@ public class JsonData implements IJsonWrapper {
                 break;
 
             case Object:
-                inst_object = new HashMap<String, JsonData>();
+                inst_object = new HashMap<>();
                 break;
 
             case Array:
-                inst_array = new ArrayList<JsonData>();
+                inst_array = new ArrayList<>();
                 break;
 
             case String:
@@ -139,24 +122,26 @@ public class JsonData implements IJsonWrapper {
                 break;
 
             case Double:
-                inst_double = new BigDecimal(0);
+                inst_double = 0;
                 break;
 
             case Boolean:
                 inst_boolean = false;
                 break;
-            default:
         }
+
         this.type = type;
     }
 
- 
+    public Iterator<JsonData> iterator() {
+        return EnsureList().iterator();
+    }
 
     public boolean BooleanValue() {
         return inst_boolean;
     }
 
-    public BigDecimal NumberValue() {
+    public double NumberValue() {
         return inst_double;
     }
 
@@ -164,4 +149,57 @@ public class JsonData implements IJsonWrapper {
         return inst_string;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        ToString(stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    private void ToString(StringBuilder stringBuilder) {
+        if (IsNull()) {
+            stringBuilder.append("null");
+        } else if (IsBoolean()) {
+            stringBuilder.append(inst_boolean ? "true" : "false");
+        } else if (IsArray()) {
+            stringBuilder.append("[");
+            for (int i = 0; i < inst_array.size(); i++) {
+                if (i > 0) {
+                    stringBuilder.append(",");
+                }
+                inst_array.get(i).ToString(stringBuilder);
+            }
+            stringBuilder.append("]");
+        } else if (IsObject()) {
+            stringBuilder.append("{");
+            boolean first = true;
+            for (Map.Entry<String, JsonData> kv : inst_object.entrySet()) {
+                if (!first) {
+                    stringBuilder.append(",");
+                }
+                first = false;
+                stringBuilder.append("\"");
+                stringBuilder.append(kv.getKey().replace("\"", "\\\"")
+                        .replace("\n", "\\n").replace("\r", "\\r")
+                        .replace("\t", "\\t").replace("\0", "\\0")
+                        .replace("\u000b", "\\v")
+                        .replace("\u0007", "\\a")
+                        .replace("\b", "\\b").replace("\f", "\\f"));
+                stringBuilder.append("\":");
+                kv.getValue().ToString(stringBuilder);
+            }
+            stringBuilder.append("}");
+        } else if (IsString()) {
+            stringBuilder.append("\"");
+            stringBuilder.append(inst_string.replace("\"", "\\\"")
+                    .replace("\n", "\\n").replace("\r", "\\r")
+                    .replace("\t", "\\t").replace("\0", "\\0")
+                    .replace("\u000b", "\\v")
+                    .replace("\u0007", "\\a")
+                    .replace("\b", "\\b").replace("\f", "\\f"));
+            stringBuilder.append("\"");
+        } else if (IsDouble()) {
+            stringBuilder.append(inst_double);
+        }
+    }
 }

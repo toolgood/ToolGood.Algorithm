@@ -1,26 +1,19 @@
 package toolgood.algorithm.litJson;
 
 public enum JsonToken {
-    None(1),
+    None,
 
-    ObjectStart(2),
-    PropertyName(3),
-    ObjectEnd(4),
+    ObjectStart,
+    PropertyName,
+    ObjectEnd,
 
-    ArrayStart(5),
-    ArrayEnd(6),
+    ArrayStart,
+    ArrayEnd,
 
-    Double(7),
+    Double,
 
-    String(8),
+    String,
 
-    Boolean(9),
-    Null(10);
-
-
-    public int value;  
-    // 构造方�? 
-    private JsonToken( int index) {  
-         this.value = index;  
-    }  
+    Boolean,
+    Null
 }
