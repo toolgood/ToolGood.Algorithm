@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals;
 
 /**
- * 关键字信息
+ * 关键字信�?
  */
 public class DiyNameKeyInfo {
     /**
@@ -10,7 +10,7 @@ public class DiyNameKeyInfo {
     public String Name;
 
     /**
-     * 开始位置
+     * 开始位�?
      */
     public int Start;
 

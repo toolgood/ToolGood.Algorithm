@@ -19,7 +19,7 @@ public enum JsonToken {
 
 
     public int value;  
-    // 构造方法  
+    // 构造方�? 
     private JsonToken( int index) {  
          this.value = index;  
     }  

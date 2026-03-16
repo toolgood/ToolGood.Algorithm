@@ -23,7 +23,7 @@ public class Function_CONCATENATE extends Function_N {
                     return a;
                 }
             }
-            return a; // 只有一个
+            return a; // 只有一�?
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < funcs.length; i++) {

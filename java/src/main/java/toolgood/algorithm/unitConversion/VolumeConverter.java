@@ -8,8 +8,8 @@ public class VolumeConverter extends BaseUnitConverter {
 
     static {
         units = new UnitFactors();
-        units.put(new UnitFactorSynonyms(new String[]{"l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre","cubic decimeter", "升", "立方分米"}), new BigDecimal("1"));
-        units.put(new UnitFactorSynonyms(new String[]{"m³", "m3", "cubic metre","cubic meter", "立方米"}), new BigDecimal("0.001"));
+        units.put(new UnitFactorSynonyms(new String[]{"l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre","cubic decimeter", "�?, "立方分米"}), new BigDecimal("1"));
+        units.put(new UnitFactorSynonyms(new String[]{"m³", "m3", "cubic metre","cubic meter", "立方�?}), new BigDecimal("0.001"));
         units.put(new UnitFactorSynonyms(new String[]{"km³", "km3", "cubic kilometre","cubic kilometer", "立方千米"}), new BigDecimal("0.000000000001"));
         units.put(new UnitFactorSynonyms(new String[]{"cm³", "cm3", "cubic centimetre","cubic centimeter", "立方厘米", "毫升"}), new BigDecimal("1000"));
         units.put(new UnitFactorSynonyms(new String[]{"mm³", "mm3", "cubic millimetre","cubic millimeter", "立方毫米"}), new BigDecimal("1000000"));

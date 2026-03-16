@@ -7,8 +7,8 @@ public class NegativeBinomial {
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).
         /// </summary>
         /// <param name="k">The location in the domain where we want to Evaluate the probability mass function.</param>
-        /// <param name="r">The number of failures (r) until the experiment stopped. Range: r â‰¥ 0.</param>
-        /// <param name="p">The probability (p) of a trial resulting in success. Range: 0 â‰¤ p â‰¤ 1.</param>
+        /// <param name="r">The number of failures (r) until the experiment stopped. Range: r â‰?0.</param>
+        /// <param name="p">The probability (p) of a trial resulting in success. Range: 0 â‰?p â‰?1.</param>
         /// <returns>the probability mass at location <paramref name="k"/>.</returns>
         public static double PMF(double r, double p, int k)
         {
@@ -19,8 +19,8 @@ public class NegativeBinomial {
         /// Computes the log probability mass (lnPMF) at k, i.e. ln(P(X = k)).
         /// </summary>
         /// <param name="k">The location in the domain where we want to Evaluate the log probability mass function.</param>
-        /// <param name="r">The number of failures (r) until the experiment stopped. Range: r â‰¥ 0.</param>
-        /// <param name="p">The probability (p) of a trial resulting in success. Range: 0 â‰¤ p â‰¤ 1.</param>
+        /// <param name="r">The number of failures (r) until the experiment stopped. Range: r â‰?0.</param>
+        /// <param name="p">The probability (p) of a trial resulting in success. Range: 0 â‰?p â‰?1.</param>
         /// <returns>the log probability mass at location <paramref name="k"/>.</returns>
         public static double PMFLn(double r, double p, int k)
         {

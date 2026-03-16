@@ -20,7 +20,7 @@ public enum DistanceUnitType {
     DM(3),
 
     /**
-     * ç±³
+     * ç±?
      */
     M(4),
 

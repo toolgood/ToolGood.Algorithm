@@ -8,8 +8,8 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import java.util.regex.Pattern;
 
-public class Function_REGEXREPALCE extends Function_3 {
-    public Function_REGEXREPALCE(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
+public class Function_REGEXREPLACE extends Function_3 {
+    public Function_REGEXREPLACE(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
         super(func1, func2, func3);
     }
 

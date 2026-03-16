@@ -49,11 +49,11 @@ public class Function_WORKDAY extends Function_N {
         while (days > 0) {
             startMyDate = startMyDate.AddDays(1);
             int dayOfWeek = startMyDate.DayOfWeek();
-            // 检查是否是周末（1 是星期日，7 是星期六）
+            // 检查是否是周末�? 是星期日�? 是星期六�?
             if (dayOfWeek == 1 || dayOfWeek == 7) {
                 continue;
             }
-            // 检查是否是节假日
+            // 检查是否是节假�?
             String dateStr = startMyDate.Year + "-" + startMyDate.Month + "-" + startMyDate.Day;
             if (holidaySet.contains(dateStr)) {
                 continue;

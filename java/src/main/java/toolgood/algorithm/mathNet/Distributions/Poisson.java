@@ -19,7 +19,7 @@ public class Poisson {
         }
 
         /// <summary>
-        /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
+        /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X �?x).
         /// </summary>
         /// <param name="x">The location at which to compute the cumulative distribution function.</param>
         /// <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>

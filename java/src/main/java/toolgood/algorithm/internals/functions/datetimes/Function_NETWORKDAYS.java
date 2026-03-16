@@ -49,7 +49,7 @@ public class Function_NETWORKDAYS extends Function_N {
         toolgood.algorithm.internals.MyDate currentDate = startMyDate;
         while (currentDate.ToDateTime().isBefore(endMyDate.ToDateTime()) || currentDate.ToDateTime().isEqual(endMyDate.ToDateTime())) {
             int dayOfWeek = currentDate.DayOfWeek();
-            // 1-7，其中 1 是周日，7 是周六
+            // 1-7，其�?1 是周日，7 是周�?
             if (dayOfWeek != 1 && dayOfWeek != 7) {
                 String dateStr = currentDate.Year + "-" + currentDate.Month + "-" + currentDate.Day;
                 if (!list.contains(dateStr)) {

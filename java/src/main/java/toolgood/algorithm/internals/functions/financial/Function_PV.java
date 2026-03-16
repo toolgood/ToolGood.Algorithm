@@ -8,7 +8,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_5;
 
 /**
- * PV: 返回投资的现值
+ * PV: 返回投资的现�?
  * PV(rate, nper, pmt, [fv], [type])
  */
 public class Function_PV extends Function_5 {

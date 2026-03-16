@@ -1,5 +1,5 @@
 /**
- * 条件树
+ * 条件�?
  */
 package toolgood.algorithm.internals;
 
@@ -9,11 +9,11 @@ import toolgood.algorithm.enums.ConditionTreeType;
 
 public final class ConditionTree {
     /**
-     * 子节点
+     * 子节�?
      */
     public List<ConditionTree> Nodes;
     /**
-     * 开始位置
+     * 开始位�?
      */
     public int Start;
 

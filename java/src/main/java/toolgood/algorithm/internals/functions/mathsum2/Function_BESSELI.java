@@ -42,12 +42,12 @@ public class Function_BESSELI extends Function_2 {
     }
 
     private static BigDecimal besselI(int n, BigDecimal x) {
-        // 处理 x < 0 的情况
+        // 处理 x < 0 的情�?
         if (x.compareTo(BigDecimal.ZERO) < 0) {
             int sign = (n % 2 == 0) ? 1 : -1;
             return besselI(n, x.negate()).multiply(BigDecimal.valueOf(sign));
         }
-        // x == 0 的情况
+        // x == 0 的情�?
         if (x.compareTo(BigDecimal.ZERO) == 0) {
             return n == 0 ? BigDecimal.ONE : BigDecimal.ZERO;
         }
@@ -60,7 +60,7 @@ public class Function_BESSELI extends Function_2 {
 
         if (n < 0) n = -n;
 
-        // x > 700 时使用近似公式
+        // x > 700 时使用近似公�?
         if (ax.compareTo(new BigDecimal("700")) > 0) {
             BigDecimal exp = new BigDecimal(Math.exp(ax.doubleValue()));
             BigDecimal sqrtTerm = new BigDecimal(Math.sqrt(2 * Math.PI * ax.doubleValue()));

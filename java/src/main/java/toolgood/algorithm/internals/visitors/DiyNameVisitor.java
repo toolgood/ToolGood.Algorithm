@@ -71,7 +71,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitREGEXREPALCE_fun(REGEXREPALCE_funContext context) {
+    public Object visitREGEXREPLACE_fun(REGEXREPLACE_funContext context) {
 
         return visitChildren(context);
     }
@@ -253,7 +253,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitIsError_fun(IsError_funContext context) {
+    public Object visitIsError_fun(ISERROR_funContext context) {
 
         return visitChildren(context);
     }
@@ -403,7 +403,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitIsText_fun(IsText_funContext context) {
+    public Object visitIsText_fun(ISTEXT_funContext context) {
 
         return visitChildren(context);
     }
@@ -862,7 +862,7 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
-    public Object visitIsNumber_fun(IsNumber_funContext context) {
+    public Object visitIsNumber_fun(ISNUMBER_funContext context) {
 
         return visitChildren(context);
     }

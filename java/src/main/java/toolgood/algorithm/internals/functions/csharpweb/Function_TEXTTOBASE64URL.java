@@ -39,7 +39,7 @@ public class Function_TEXTTOBASE64URL extends Function_2 {
             String t = Base64.ToBase64ForUrlString(bytes);
             return Operand.Create(t);
         } catch (Exception e) {
-            // 捕获所有异常
+            // 捕获所有异�?
         }
         return Operand.Error("Function '{0}' is error!", "TextToBase64url");
     }

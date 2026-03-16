@@ -31,23 +31,23 @@ public class Function_RMB extends Function_1 {
     private static String F_base_ToChineseRMB(double x) {
         String s = String.format(Locale.US, "%#.2f", x);
         // 这里需要实现与 C# 相同的转换逻辑
-        // 由于 Java 正则表达式不支持命名捕获组的条件替换，需要使用其他方法实现
+        // 由于 Java 正则表达式不支持命名捕获组的条件替换，需要使用其他方法实�?
         // 简化实现，直接返回数字的人民币大写形式
         return convertToChineseRMB(x);
     }
 
     private static String convertToChineseRMB(double x) {
         if (x == 0) {
-            return "零元整";
+            return "零元�?;
         }
-        String[] digits = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
-        String[] units = {"", "拾", "佰", "仟"};
-        String[] bigUnits = {"", "万", "亿"};
-        String[] decimalUnits = {"角", "分"};
+        String[] digits = {"�?, "�?, "�?, "�?, "�?, "�?, "�?, "�?, "�?, "�?};
+        String[] units = {"", "�?, "�?, "�?};
+        String[] bigUnits = {"", "�?, "�?};
+        String[] decimalUnits = {"�?, "�?};
         
         StringBuilder result = new StringBuilder();
         if (x < 0) {
-            result.append("负");
+            result.append("�?);
             x = -x;
         }
         
@@ -63,7 +63,7 @@ public class Function_RMB extends Function_1 {
                 long section = integerPart % 10000;
                 if (section > 0) {
                     if (needZero) {
-                        result.insert(0, "零");
+                        result.insert(0, "�?);
                     }
                     StringBuilder sectionResult = new StringBuilder();
                     int sectionUnitIndex = 0;
@@ -72,7 +72,7 @@ public class Function_RMB extends Function_1 {
                         if (digit > 0) {
                             sectionResult.insert(0, digits[digit] + units[sectionUnitIndex]);
                         } else if (sectionResult.length() > 0) {
-                            sectionResult.insert(0, "零");
+                            sectionResult.insert(0, "�?);
                         }
                         section /= 10;
                         sectionUnitIndex++;
@@ -84,7 +84,7 @@ public class Function_RMB extends Function_1 {
                 integerPart /= 10000;
                 bigUnitIndex++;
             }
-            result.append("元");
+            result.append("�?);
         }
         
         if (decimalPart > 0) {
@@ -97,7 +97,7 @@ public class Function_RMB extends Function_1 {
                 result.append(digits[fen]).append(decimalUnits[1]);
             }
         } else {
-            result.append("整");
+            result.append("�?);
         }
         
         return result.toString();

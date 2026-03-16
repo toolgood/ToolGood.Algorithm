@@ -34,7 +34,7 @@ public class Function_ADDYEARS extends Function_2 {
             toolgood.algorithm.internals.MyDate result = date.AddYears(years);
             return Operand.Create(result);
         } catch (Exception e) {
-            // 捕获所有异常
+            // 捕获所有异�?
         }
         return Operand.Error("Function '{0}' is error!", "AddYears");
     }

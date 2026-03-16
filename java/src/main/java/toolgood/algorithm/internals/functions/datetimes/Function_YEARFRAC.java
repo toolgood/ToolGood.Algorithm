@@ -102,11 +102,11 @@ public class Function_YEARFRAC extends Function_3 {
         int daysInStartYear = isLeapYear(startYear) ? 366 : 365;
         int daysInEndYear = isLeapYear(endYear) ? 366 : 365;
 
-        // 从 startDate 到当年年底
+        // �?startDate 到当年年�?
         MyDate endOfStartYear = new MyDate(startYear, 12, 31, 0, 0, 0);
         double result = daysBetween(startDate, endOfStartYear) / (double) daysInStartYear;
 
-        // 从 endYear 年初到 endDate
+        // �?endYear 年初�?endDate
         MyDate startOfEndYear = new MyDate(endYear, 1, 1, 0, 0, 0);
         result += daysBetween(startOfEndYear, endDate) / (double) daysInEndYear;
 

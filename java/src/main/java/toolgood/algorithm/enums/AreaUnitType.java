@@ -20,7 +20,7 @@ public enum AreaUnitType {
     DM2(13),
 
     /**
-     * 平方米
+     * 平方�?
      */
     M2(14),
 

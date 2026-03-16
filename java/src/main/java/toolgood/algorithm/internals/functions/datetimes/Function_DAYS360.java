@@ -62,7 +62,7 @@ public class Function_DAYS360 extends Function_3 {
                     days -= startMyDate.Day;
                 }
             } else {
-                // 获取当月的天数
+                // 获取当月的天�?
                 int daysInMonth = getDaysInMonth(startMyDate.Year, startMyDate.Month);
                 if (startMyDate.Day == daysInMonth) {
                     days -= 30;
@@ -83,7 +83,7 @@ public class Function_DAYS360 extends Function_3 {
                     days += endMyDate.Day;
                 }
             } else {
-                // 获取当月的天数
+                // 获取当月的天�?
                 int daysInMonth = getDaysInMonth(endMyDate.Year, endMyDate.Month);
                 if (endMyDate.Day == daysInMonth) {
                     if (startMyDate.Day < 30) {

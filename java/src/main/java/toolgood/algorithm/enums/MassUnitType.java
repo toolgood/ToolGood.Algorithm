@@ -5,7 +5,7 @@ package toolgood.algorithm.enums;
 
 public enum MassUnitType {
     /**
-     * å…‹
+     * å…?
      */
     G(31),
 
@@ -15,7 +15,7 @@ public enum MassUnitType {
     KG(32),
 
     /**
-     * å¨
+     * å?
      */
     T(33);
 

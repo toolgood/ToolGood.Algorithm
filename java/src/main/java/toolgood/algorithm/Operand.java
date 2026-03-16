@@ -1,5 +1,5 @@
 /**
- * 操作数
+ * 閹垮秳缍旈弫?
  */
 package toolgood.algorithm;
 
@@ -13,7 +13,7 @@ import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
     /**
-     * 版本号
+     * 閻楀牊婀伴崣?
      */
     public static final Operand VERSION = new OperandString("ToolGood.Algorithm 6.1");
 
@@ -43,11 +43,11 @@ public abstract class Operand {
     public static final Operand NULL_OPERAND = new OperandNull();
 
     /**
-     * None（用于参数类型推断，NoneEngine 返回此值）
+     * None閿涘牏鏁ゆ禍搴″棘閺佹壆琚崹瀣腹閺傤叏绱漀oneEngine 鏉╂柨娲栧銈咃拷纭风礆
      */
     public static final Operand None = new OperandNone();
 
-    // 整数缓存范围: -1000 ~ 1000，共2001个值
+    // 閺佸瓨鏆熺紓鎾崇摠閼煎啫娲�: -1000 ~ 1000閿涘苯鍙�2001娑擃亜锟�?
     private static final int INT_CACHE_OFFSET = 1000;
     private static final int INT_CACHE_SIZE = 2001;
     private static final Operand[] INT_CACHE = new Operand[INT_CACHE_SIZE];
@@ -56,143 +56,143 @@ public abstract class Operand {
         for (int i = 0; i < INT_CACHE_SIZE; i++) {
             INT_CACHE[i] = new OperandInt(i - INT_CACHE_OFFSET);
         }
-        // ONE和ZERO已经在初始化时设置，不需要在这里重新设置
+        // ONE閸滃ERO瀹歌尙绮￠崷銊ュ灥婵瀵查弮鎯邦啎缂冾噯绱濇稉宥夋付鐟曚礁婀潻娆撳櫡闁插秵鏌婄拋鍓х枂
     }
 
     /**
-     * 是否为空值
+     * 閺勵垰鎯佹稉铏光敄閸�?
      */
     public boolean IsNull() { return false; }
     /**
-     * 是否为非空值
+     * 閺勵垰鎯佹稉娲姜缁屽搫锟�?
      */
     public boolean IsNotNull() { return true; }
 
     /**
-     * 是否数字
+     * 閺勵垰鎯侀弫鏉跨摟
      */
     public boolean IsNumber() { return false; }
     /**
-     * 是否非数字
+     * 閺勵垰鎯侀棃鐐存殶鐎�?
      */
     public boolean IsNotNumber() { return true; }
 
     /**
-     * 是否字符串
+     * 閺勵垰鎯佺�涙顑佹稉?
      */
     public boolean IsText() { return false; }
     /**
-     * 是否非字符串
+     * 閺勵垰鎯侀棃鐐茬摟缁楋缚瑕�
      */
     public boolean IsNotText() { return true; }
 
     /**
-     * 是否布尔值
+     * 閺勵垰鎯佺敮鍐ㄧ毜閸�?
      */
     public boolean IsBoolean() { return false; }
     /**
-     * 是否非布尔值
+     * 閺勵垰鎯侀棃鐐茬鐏忔柨锟�?
      */
     public boolean IsNotBoolean() { return true; }
     /**
-     * 是否数组
+     * 閺勵垰鎯侀弫鎵矋
      */
     public boolean IsArray() { return false; }
     /**
-     * 是否非数组
+     * 閺勵垰鎯侀棃鐐存殶缂�?
      */
     public boolean IsNotArray() { return true; }
     /**
-     * 是否日期
+     * 閺勵垰鎯侀弮銉︽埂
      */
     public boolean IsDate() { return false; }
     /**
-     * 是否非日期
+     * 閺勵垰鎯侀棃鐐存）閺�?
      */
     public boolean IsNotDate() { return true; }
     /**
-     * 是否Json对象
+     * 閺勵垰鎯丣son鐎电钖�
      */
     public boolean IsJson() { return false; }
     /**
-     * 是否非Json对象
+     * 閺勵垰鎯侀棃婵瞫on鐎电钖�
      */
     public boolean IsNotJson() { return true; }
     /**
-     * 是否Json数组
+     * 閺勵垰鎯丣son閺佹壆绮�
      */
     public boolean IsArrayJson() { return false; }
     /**
-     * 是否非Json数组
+     * 閺勵垰鎯侀棃婵瞫on閺佹壆绮�
      */
     public boolean IsNotArrayJson() { return true; }
 
     /**
-     * 是否出错
+     * 閺勵垰鎯侀崙娲晩
      */
     public boolean IsError() { return false; }
 
     /**
-     * 错误信息
+     * 闁挎瑨顕ゆ穱鈩冧紖
      */
     public String ErrorMsg() { return null; }
     
     /**
-     * 操作数类型
+     * 閹垮秳缍旈弫鎵閸�?
      */
     public abstract OperandType Type();
 
     
 
     /**
-     * 数字值
+     * 閺佹澘鐡ч崐?
      */
     public BigDecimal NumberValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * double值
+     * double閸�?
      */
     public double DoubleValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * int值
+     * int閸�?
      */
     public int IntValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * long值
+     * long閸�?
      */
     public long LongValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * 字符串值
+     * 鐎涙顑佹稉鎻掞拷?
      */
     public String TextValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * 布尔值
+     * 鐢啫鐨甸崐?
      */
     public boolean BooleanValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * 数组值
+     * 閺佹壆绮嶉崐?
      */
     public List<Operand> ArrayValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * Json值
+     * Json閸�?
      */
     JsonData JsonValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * 时间值
+     * 閺冨爼妫块崐?
      */
     public MyDate DateValue() { throw new UnsupportedOperationException(); }
 
     
     
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(boolean obj) {
         return obj ? TRUE : FALSE;
@@ -201,7 +201,7 @@ public abstract class Operand {
     
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(short obj) {
         if (obj >= -INT_CACHE_OFFSET && obj <= INT_CACHE_OFFSET) {
@@ -211,7 +211,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(int obj) {
         if (obj >= -INT_CACHE_OFFSET && obj <= INT_CACHE_OFFSET) {
@@ -221,7 +221,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(long obj) {
         if (obj >= -INT_CACHE_OFFSET && obj <= INT_CACHE_OFFSET) {
@@ -231,21 +231,21 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(float obj) {
         return new OperandBigDecimal(new BigDecimal(obj));
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(double obj) {
         return new OperandBigDecimal(new BigDecimal(obj));
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(BigDecimal obj) {
         return new OperandBigDecimal(obj);
@@ -254,7 +254,7 @@ public abstract class Operand {
     
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(String obj) {
         if (obj == null) {
@@ -264,7 +264,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand CreateJson(String txt) {
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
@@ -278,7 +278,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(MyDate obj) {
         return new OperandMyDate(obj);
@@ -287,21 +287,21 @@ public abstract class Operand {
 
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(JsonData obj) {
         return new OperandJson(obj);
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(List<Operand> obj) {
         return new OperandArray(obj);
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(String[] obj) {
         List<Operand> array = new ArrayList<>();
@@ -312,7 +312,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(Double[] obj) {
         List<Operand> array = new ArrayList<>();
@@ -323,7 +323,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(BigDecimal[] obj) {
         List<Operand> array = new ArrayList<>();
@@ -334,7 +334,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(Integer[] obj) {
         List<Operand> array = new ArrayList<>();
@@ -345,7 +345,7 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Create(Boolean[] obj) {
         List<Operand> array = new ArrayList<>();
@@ -356,21 +356,21 @@ public abstract class Operand {
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Error(String msg) {
         return new OperandError(msg);
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand Error(String msg, Object... args) {
         return new OperandError(String.format(msg, args));
     }
 
     /**
-     * 创建操作数
+     * 閸掓稑缂撻幙宥勭稊閺�?
      */
     public static Operand CreateNull() {
         return new OperandNull();
@@ -381,77 +381,77 @@ public abstract class Operand {
     
 
     /**
-     * 转数值类型
+     * 鏉烆剚鏆熼崐鑲╄閸�?
      */
     public Operand ToNumber(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to number Error!");
     }
 
     /**
-     * 转数值类型
+     * 鏉烆剚鏆熼崐鑲╄閸�?
      */
     public Operand ToNumber(String errorMessage, Object... args) {
         return Error(String.format(errorMessage, args));
     }
 
     /**
-     * 转bool类型
+     * 鏉炵悿ool缁鐎�
      */
     public Operand ToBoolean(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to bool Error!");
     }
 
     /**
-     * 转bool类型
+     * 鏉炵悿ool缁鐎�
      */
     public Operand ToBoolean(String errorMessage, Object... args) {
         return Error(String.format(errorMessage, args));
     }
 
     /**
-     * 转string类型
+     * 鏉炵憘tring缁鐎�
      */
     public Operand ToText(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to string Error!");
     }
 
     /**
-     * 转string类型
+     * 鏉炵憘tring缁鐎�
      */
     public Operand ToText(String errorMessage, Object... args) {
         return Error(String.format(errorMessage, args));
     }
 
     /**
-     * 转MyDate类型
+     * 鏉炵悎yDate缁鐎�
      */
     public Operand ToMyDate(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to date Error!");
     }
 
     /**
-     * 转MyDate类型
+     * 鏉炵悎yDate缁鐎�
      */
     public Operand ToMyDate(String errorMessage, Object... args) {
         return Error(String.format(errorMessage, args));
     }
 
     /**
-     * 转Array类型
+     * 鏉炵徆rray缁鐎�
      */
     public Operand ToArray(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to array Error!");
     }
 
     /**
-     * 转Array类型
+     * 鏉炵徆rray缁鐎�
      */
     public Operand ToArray(String errorMessage, Object... args) {
         return Error(String.format(errorMessage, args));
     }
 
     /**
-     * 转Json类型
+     * 鏉炵悅son缁鐎�
      */
     public Operand ToJson(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to json Error!");

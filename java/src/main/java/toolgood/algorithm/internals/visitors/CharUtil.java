@@ -8,29 +8,29 @@ public class CharUtil {
         if (c <= 0)
             return c;
         char o = (char) c;
-        if (o == 'â€˜')
+        if (o == 'â€?)
             return '\'';
-        if (o == 'â€™')
+        if (o == 'â€?)
             return '\'';
-        if (o == 'â€œ')
+        if (o == 'â€?)
             return '"';
-        if (o == 'â€')
+        if (o == 'â€?)
             return '"';
-        if (o == 'ã€”')
+        if (o == 'ã€?)
             return '(';
-        if (o == 'ã€•')
+        if (o == 'ã€?)
             return ')';
-        if (o == 'ï¼')
+        if (o == 'ï¼?)
             return '=';
-        if (o == 'ï¼‹')
+        if (o == 'ï¼?)
             return '+';
-        if (o == 'ï¼')
+        if (o == 'ï¼?)
             return '-';
         if (o == 'Ã—')
             return '*';
         if (o == 'Ã·')
             return '/';
-        if (o == 'ï¼')
+        if (o == 'ï¼?)
             return '/';
 
         if (c == 12288) {

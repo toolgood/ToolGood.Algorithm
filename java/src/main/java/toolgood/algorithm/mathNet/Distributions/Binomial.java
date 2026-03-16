@@ -17,9 +17,9 @@ public class Binomial {
     /// </summary>
     /// <param name="k">The location in the domain where we want to Evaluate the
     /// probability mass function.</param>
-    /// <param name="p">The success probability (p) in each trial. Range: 0 â‰¤ p â‰¤
+    /// <param name="p">The success probability (p) in each trial. Range: 0 â‰?p â‰?
     /// 1.</param>
-    /// <param name="n">The number of trials (n). Range: n â‰¥ 0.</param>
+    /// <param name="n">The number of trials (n). Range: n â‰?0.</param>
     /// <returns>the probability mass at location <paramref name="k"/>.</returns>
     public static double PMF(double p, int n, int k) {
         // if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
@@ -43,13 +43,13 @@ public class Binomial {
 
     /// <summary>
     /// Computes the cumulative distribution (CDF) of the distribution at x, i.e.
-    /// P(X â‰¤ x).
+    /// P(X â‰?x).
     /// </summary>
     /// <param name="x">The location at which to compute the cumulative distribution
     /// function.</param>
-    /// <param name="p">The success probability (p) in each trial. Range: 0 â‰¤ p â‰¤
+    /// <param name="p">The success probability (p) in each trial. Range: 0 â‰?p â‰?
     /// 1.</param>
-    /// <param name="n">The number of trials (n). Range: n â‰¥ 0.</param>
+    /// <param name="n">The number of trials (n). Range: n â‰?0.</param>
     /// <returns>the cumulative distribution at location <paramref
     /// name="x"/>.</returns>
     ///// <seealso cref="CumulativeDistribution"/>

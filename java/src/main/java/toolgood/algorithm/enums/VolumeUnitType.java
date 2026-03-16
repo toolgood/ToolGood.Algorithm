@@ -20,7 +20,7 @@ public enum VolumeUnitType {
     DM3(23),
 
     /**
-     * 立方米
+     * 立方�?
      */
     M3(24),
 

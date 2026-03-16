@@ -29,7 +29,7 @@ import toolgood.algorithm.internals.functions.csharp.Function_LASTINDEXOF;
 import toolgood.algorithm.internals.functions.csharp.Function_LOOKCEILING;
 import toolgood.algorithm.internals.functions.csharp.Function_LOOKFLOOR;
 import toolgood.algorithm.internals.functions.csharp.Function_REGEX;
-import toolgood.algorithm.internals.functions.csharp.Function_REGEXREPALCE;
+import toolgood.algorithm.internals.functions.csharp.Function_REGEXREPLACE;
 import toolgood.algorithm.internals.functions.csharp.Function_REMOVEEND;
 import toolgood.algorithm.internals.functions.csharp.Function_REMOVESTART;
 import toolgood.algorithm.internals.functions.csharp.Function_SPLIT;
@@ -220,7 +220,7 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 			return new Function_ISNUMBER(args1);
 		}
 
-		public FunctionBase visitIsText_fun(mathParser.IsText_funContext context)
+		public FunctionBase visitIsText_fun(mathParser.ISTEXT_funContext context)
 		{
 			FunctionBase args1 = this.visit(context.expr());
 			return new Function_IsText(args1);
@@ -2034,13 +2034,13 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 			return new Function_REGEX(args1, args2);
 		}
 
-		public FunctionBase visitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
+		public FunctionBase visitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext context)
 		{
 			List<ExprContext> exprs = context.expr();
 			FunctionBase args1 = exprs.get(0).accept(this);
 			FunctionBase args2 = exprs.get(1).accept(this);
 			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_REGEXREPALCE(args1, args2, args3);
+			return new Function_REGEXREPLACE(args1, args2, args3);
 		}
 
 		public FunctionBase visitISREGEX_fun(mathParser.ISREGEX_funContext context)

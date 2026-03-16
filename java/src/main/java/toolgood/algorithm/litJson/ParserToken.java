@@ -30,7 +30,7 @@ public enum ParserToken {
 
 
     public int value;  
-    // 构造方法  
+    // 构造方�? 
     private ParserToken( int index) {  
          this.value = index;  
     }  

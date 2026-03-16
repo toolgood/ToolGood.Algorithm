@@ -26,7 +26,7 @@ public class Function_URLENCODE extends Function_1 {
             String r = java.net.URLEncoder.encode(s, "UTF-8");
             return Operand.Create(r);
         } catch (Exception e) {
-            // 捕获所有异常
+            // 捕获所有异�?
         }
         return Operand.Error("Function '{0}' is error!", "UrlEncode");
     }

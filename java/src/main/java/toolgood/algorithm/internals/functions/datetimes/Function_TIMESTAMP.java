@@ -36,11 +36,11 @@ public class Function_TIMESTAMP extends Function_2 {
         }
         toolgood.algorithm.internals.MyDate myDate = dateOperand.DateValue();
         
-        // 计算时间戳
+        // 计算时间�?
         long timestamp = myDate.ToDateTime().getMillis();
         
         if (type == 0) {
-            // 返回毫秒时间戳
+            // 返回毫秒时间�?
             return Operand.Create(timestamp);
         } else if (type == 1) {
             // 返回秒时间戳

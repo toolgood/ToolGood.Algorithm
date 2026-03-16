@@ -620,7 +620,7 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     }
 
     @Override
-    public CalculateTree visitIsText_fun(mathParser.IsText_funContext context) {
+    public CalculateTree visitIsText_fun(mathParser.ISTEXT_funContext context) {
         return visit_fun(context);
     }
 
@@ -920,7 +920,7 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
     }
 
     @Override
-    public CalculateTree visitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context) {
+    public CalculateTree visitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext context) {
         return visit_fun(context);
     }
 

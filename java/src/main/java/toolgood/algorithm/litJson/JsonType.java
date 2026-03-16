@@ -14,7 +14,7 @@ public enum JsonType {
     Null(7);
     
     public int value;  
-    // 构造方法  
+    // 构造方�? 
     private JsonType( int index) {  
          this.value = index;  
     }  
