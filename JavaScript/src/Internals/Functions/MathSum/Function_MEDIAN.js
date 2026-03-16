@@ -1,17 +1,20 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_MEDIAN extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "Median";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -21,15 +24,19 @@ class Function_MEDIAN extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
 
-        if (!o) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Median');
+        if (o == false) {
+            return this.functionError();
         }
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'Median');
+        if (list.length == 0) {
+            return this.functionError();
         }
 
-        list.sort((a, b) => a - b); // 升序排序
-        return Operand.Create(list[Math.floor(list.length / 2)]);
+        list.sort((a, b) => a - b);
+        let mid = Math.floor(list.length / 2);
+        if (list.length % 2 === 0) {
+            return Operand.Create((list[mid - 1] + list[mid]) / 2);
+        }
+        return Operand.Create(list[mid]);
     }
 }
 

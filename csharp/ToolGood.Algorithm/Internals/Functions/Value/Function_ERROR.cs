@@ -1,24 +1,38 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_ERROR : Function_1
+	internal sealed class Function_ERROR : Function_1
 	{
 		public Function_ERROR(FunctionBase func1) : base(func1)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "Error";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Error", 1); if (args1.IsError) return args1; }
+			if(func1 == null) { return Operand.Error(""); }
+			var args1 = GetText_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
 			return Operand.Error(args1.TextValue);
 		}
-
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "Error");
+			return OperandType.ERROR;
 		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			if(func1 != null) {
+				func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			}
+		}
+
 	}
 
 }

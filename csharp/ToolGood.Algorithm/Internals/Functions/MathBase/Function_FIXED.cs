@@ -1,41 +1,61 @@
-﻿using System;
+using System;
 using System.Globalization;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_FIXED : Function_3
+	internal sealed class Function_FIXED : Function_3
     {
-        public Function_FIXED(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
-        {
-        }
+		public Function_FIXED(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Fixed";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var num = 2;
-            if (func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 2); if (args2.IsError) { return args2; } }
-                num = args2.IntValue;
-            }
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 1); if (args1.IsError) { return args1; } }
+			if (func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
+				if (args2.IsErrorOrNone) { return args2; }
+				num = args2.IntValue;
+				if (num < 0 || num > 15) {
+					return ParameterError(2);
+				}
+			}
+			var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 
-            var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
-            var no = false;
-            if (func3 != null) {
-                var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Fixed", 3); if (args3.IsError) { return args3; } }
-                no = args3.BooleanValue;
-            }
+			var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
+			var no = false;
+			if (func3 != null) {
+				var args3 = GetBoolean_3(engine, tempParameter);
+				if (args3.IsErrorOrNone) { return args3; }
+				no = args3.BooleanValue;
+			}
             if (no == false) {
                 return Operand.Create(s.ToString('N' + num.ToString(), CultureInfo.InvariantCulture));
             }
             return Operand.Create(s.ToString(CultureInfo.InvariantCulture));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Fixed");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
 
-    
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+			if(func3 != null) {
+				func3.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+			}
+		}
+	}
 
 }

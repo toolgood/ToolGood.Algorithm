@@ -88,10 +88,10 @@ export default class DFAState {
 	 * DFA state.
 	 */
 	getAltSet() {
-		const alts = new HashSet();
+		let alts = new HashSet();
 		if (this.configs !== null) {
 			for (let i = 0; i < this.configs.length; i++) {
-				const c = this.configs[i];
+				let c = this.configs[i];
 				alts.add(c.alt);
 			}
 		}
@@ -135,7 +135,7 @@ export default class DFAState {
 	}
 
 	hashCode() {
-		const hash = new HashCode();
+		let hash = new HashCode();
 		hash.update(this.configs);
 		return hash.finish();
 	}

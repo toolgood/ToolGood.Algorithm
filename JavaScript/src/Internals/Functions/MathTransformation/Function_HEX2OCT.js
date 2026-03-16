@@ -1,45 +1,32 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_HEX2OCT extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "Hex2Oct";
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'HEX2OCT', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(z) {
+        super(z);
+    }
 
-        if (!RegexHelper.HexRegex.test(args1.TextValue)) {
-            return Operand.Error(StringCache.Function_parameter_error, 'HEX2OCT', 1);
-        }
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        if (!/^[0-9A-Fa-f]+$/.test(args1.TextValue)) { return this.parameterError(1); }
         let num = parseInt(args1.TextValue, 16).toString(8);
-        if (this.func2 !== null) {
-            let args2 = this.func2.Evaluate(work, tempParameter);
-            if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error, 'HEX2OCT', 2);
-                if (args2.IsError) {
-                    return args2;
-                }
+        if (this.b != null) {
+            let args2 = this.getNumber_2(work, tempParameter);
+            if (args2.IsError) { return args2; }
+            if (num.length < args2.IntValue) {
+                return Operand.Create(num.padStart(args2.IntValue, '0'));
             }
-            if (num.length > args2.IntValue) {
-                return Operand.Create(num.padLeft(args2.IntValue, '0'));
-            }
-            return Operand.Error(StringCache.Function_parameter_error, 'HEX2OCT', 2);
+            return this.parameterError(2);
         }
         return Operand.Create(num);
     }
 }
-
-let RegexHelper = {
-    HexRegex: /^[0-9A-Fa-f]+$/
-};
 
 export { Function_HEX2OCT };
 

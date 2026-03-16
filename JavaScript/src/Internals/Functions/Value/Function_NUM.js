@@ -3,17 +3,26 @@ import { Operand } from '../../../Operand.js';
 import { NumberUnitTypeHelper } from '../../NumberUnitTypeHelper.js';
 
 class Function_NUM extends FunctionBase {
-    constructor(func1, func2) {
-        super();
-        this.d = func1;
-        this.unit = func2;
+    get Name() {
+        return "Num";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(a, b) {
+        super();
+        this.d = a;
+        this.unit = b;
+    }
+
+    evaluate(work, tempParameter) {
         let dict = NumberUnitTypeHelper.getUnitTypedict();
         let unitKey = this.unit.toUpperCase();
-        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[unitKey], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
+        let d2 = NumberUnitTypeHelper.transformationUnit(this.d, dict[unitKey], work.DistanceUnit, work.AreaUnit, work.VolumeUnit, work.MassUnit);
         return Operand.Create(d2);
+    }
+
+    toString2(stringBuilder, addBrackets) {
+        stringBuilder.append(this.d);
+        stringBuilder.append(this.unit);
     }
 
 

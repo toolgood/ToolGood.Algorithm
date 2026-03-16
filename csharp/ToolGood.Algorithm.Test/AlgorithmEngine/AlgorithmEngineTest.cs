@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
 namespace ToolGood.Algorithm.Test
@@ -74,10 +74,11 @@ namespace ToolGood.Algorithm.Test
 			r = engine.TryEvaluate("(1=2)*9+2", 0);
 			Assert.AreEqual(2, r); ;
 
-			var dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue);
-			Assert.AreEqual(DateTime.Parse("2016-1-2"), dt); ;
-			dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);
-			Assert.AreEqual(DateTime.Parse("2016-1-1 9:0"), dt); ;
+			// 防止 有误解，不允许时间相加减
+			//var dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue);
+			//Assert.AreEqual(DateTime.Parse("2016-1-2"), dt); ;
+			//dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);
+			//Assert.AreEqual(DateTime.Parse("2016-1-1 9:0"), dt); ;
 
 			var value = engine.TryEvaluate("1 > (-2)", false);
 			Assert.AreEqual(value, true);
@@ -214,6 +215,55 @@ namespace ToolGood.Algorithm.Test
 		}
 
 		[Test]
+		public void strict_equality_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var b = engine.TryEvaluate("1===1", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("1===2", true);
+			Assert.AreEqual(false, b);
+
+			b = engine.TryEvaluate("'1'==='1'", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("'1'==='2'", true);
+			Assert.AreEqual(false, b);
+
+			b = engine.TryEvaluate("1!==2", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("1!==1", true);
+			Assert.AreEqual(false, b);
+
+			b = engine.TryEvaluate("'1'!=='2'", false);
+			Assert.AreEqual(true, b);
+
+			b = engine.TryEvaluate("'1'!=='1'", true);
+			Assert.AreEqual(false, b);
+		}
+
+		[Test]
+		public void percentage_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var t = engine.TryEvaluate("100%", 0.0);
+			Assert.AreEqual(1.0, t);
+
+			t = engine.TryEvaluate("50%", 0.0);
+			Assert.AreEqual(0.5, t);
+
+			t = engine.TryEvaluate("200%", 0.0);
+			Assert.AreEqual(2.0, t);
+
+			t = engine.TryEvaluate("100*50%", 0.0);
+			Assert.AreEqual(50.0, t);
+
+			t = engine.TryEvaluate("100+50%", 0.0);
+			Assert.AreEqual(100.5, t);
+		}
+
+		[Test]
 		public void base_test2()
 		{
 			AlgorithmEngine engine = new AlgorithmEngine();
@@ -304,9 +354,9 @@ namespace ToolGood.Algorithm.Test
 		{
 			AlgorithmEngine engine = new AlgorithmEngine();
 			String t25 = engine.TryEvaluate("Engineversion", "");
-			Assert.AreEqual("ToolGood.Algorithm 6.1", t25);
+			Assert.AreEqual("ToolGood.Algorithm 6.2", t25);
 			String t26 = engine.TryEvaluate("Algorithmversion", "");
-			Assert.AreEqual("ToolGood.Algorithm 6.1", t26);
+			Assert.AreEqual("ToolGood.Algorithm 6.2", t26);
 		}
 
 

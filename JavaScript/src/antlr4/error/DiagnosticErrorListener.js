@@ -39,7 +39,7 @@ export default class DiagnosticErrorListener extends ErrorListener {
 		if (this.exactOnly && !exact) {
 			return;
 		}
-		const msg = "reportAmbiguity d=" +
+		let msg = "reportAmbiguity d=" +
 			this.getDecisionDescription(recognizer, dfa) +
 			": ambigAlts=" +
 			this.getConflictingAlts(ambigAlts, configs) +
@@ -49,7 +49,7 @@ export default class DiagnosticErrorListener extends ErrorListener {
 	}
 
 	reportAttemptingFullContext(recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs) {
-		const msg = "reportAttemptingFullContext d=" +
+		let msg = "reportAttemptingFullContext d=" +
 			this.getDecisionDescription(recognizer, dfa) +
 			", input='" +
 			recognizer.getTokenStream().getText(new Interval(startIndex, stopIndex)) + "'"
@@ -57,7 +57,7 @@ export default class DiagnosticErrorListener extends ErrorListener {
 	}
 
 	reportContextSensitivity(recognizer, dfa, startIndex, stopIndex, prediction, configs) {
-		const msg = "reportContextSensitivity d=" +
+		let msg = "reportContextSensitivity d=" +
 			this.getDecisionDescription(recognizer, dfa) +
 			", input='" +
 			recognizer.getTokenStream().getText(new Interval(startIndex, stopIndex)) + "'"
@@ -65,14 +65,14 @@ export default class DiagnosticErrorListener extends ErrorListener {
 	}
 
 	getDecisionDescription(recognizer, dfa) {
-		const decision = dfa.decision
-		const ruleIndex = dfa.atnStartState.ruleIndex
+		let decision = dfa.decision
+		let ruleIndex = dfa.atnStartState.ruleIndex
 
-		const ruleNames = recognizer.ruleNames
+		let ruleNames = recognizer.ruleNames
 		if (ruleIndex < 0 || ruleIndex >= ruleNames.length) {
 			return "" + decision;
 		}
-		const ruleName = ruleNames[ruleIndex] || null
+		let ruleName = ruleNames[ruleIndex] || null
 		if (ruleName === null || ruleName.length === 0) {
 			return "" + decision;
 		}
@@ -94,7 +94,7 @@ export default class DiagnosticErrorListener extends ErrorListener {
 		if (reportedAlts !== null) {
 			return reportedAlts;
 		}
-		const result = new BitSet()
+		let result = new BitSet()
 		for (let i = 0; i < configs.items.length; i++) {
 			result.set(configs.items[i].alt);
 		}

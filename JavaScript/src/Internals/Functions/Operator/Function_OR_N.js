@@ -1,24 +1,24 @@
-import { Operand } from '../../../Operand.js';
 import { Function_N } from '../Function_N.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import { Operand } from '../../../Operand.js';
 
 class Function_OR_N extends Function_N {
-  constructor(funcs) {
-    super(funcs);
+  get Name() {
+    return 'OrN';
   }
 
-  Evaluate(engine, tempParameter) {
-    let index = 1;
+  constructor(z) {
+    super(z);
+  }
+
+  evaluate(work, tempParameter) {
     let b = false;
-    for (let item of this.funcs) {
-      let a = item.Evaluate(engine, tempParameter);
+    for (let i = 0; i < this.z.length; i++) {
+      let a = this.getBoolean(work, tempParameter, i);
       if (a.IsError) { return a; }
-      if (a.IsNotBoolean) { a = a.ToBoolean(StringCache.Function_parameter_error, 'OR', index++); if (a.IsError) { return a; } }
-      if (a.BooleanValue) { b = true; }
+      if (a.BooleanValue) b = true;
     }
     return b ? Operand.True : Operand.False;
   }
- 
 }
 
 export { Function_OR_N };

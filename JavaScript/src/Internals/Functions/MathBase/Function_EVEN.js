@@ -1,24 +1,26 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_EVEN extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "Even";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Even");
-            if (args1.IsError) { return args1; }
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        let n = args1.NumberValue;
+        if (n == 0) {
+            return Operand.Zero;
         }
-        let z = args1.NumberValue;
-        if (z % 2 == 0) { return args1; }
-        z = Math.ceil(z);
-        if (z % 2 == 0) { return Operand.Create(z); }
-        z++;
-        return Operand.Create(z);
+        if (n > 0) {
+            return Operand.Create(Math.ceil(n / 2) * 2);
+        }
+        return Operand.Create(Math.floor(n / 2) * 2);
     }
 }
 

@@ -27,6 +27,6 @@ export class AntlrCharStream extends CharStream {
              return Token.EOF;
          }
          let c=this.data[pos];
-        return CharUtil.StandardChar(String.fromCharCode(c)).charCodeAt(0);
+        return CharUtil.standardChar(String.fromCharCode(c)).charCodeAt(0);
      }
 }

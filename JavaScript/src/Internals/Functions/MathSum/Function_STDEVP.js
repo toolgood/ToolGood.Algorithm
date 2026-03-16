@@ -1,17 +1,20 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_STDEVP extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "StDevP";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -21,10 +24,10 @@ class Function_STDEVP extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error, "StdevP");
+            return this.functionError();
         }
         if (list.length == 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "StdevP");
+            return this.functionError();
         }
 
         let avg = list.reduce((sum, val) => sum + val, 0) / list.length;

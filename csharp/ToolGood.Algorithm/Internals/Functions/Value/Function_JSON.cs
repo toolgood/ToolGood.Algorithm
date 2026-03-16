@@ -1,36 +1,45 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 
-	internal class Function_JSON : Function_1
+	internal sealed class Function_JSON : Function_1
 	{
 		public Function_JSON(FunctionBase func1) : base(func1)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "Json";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter);
-			if (args1.IsError) { return args1; }
-			if (args1.IsJson) { return args1; }
-			if (args1.IsArrayJson) { args1 = args1.ToText(); }
-			if (args1.IsNotText) { return Operand.Error("Function '{0}' parameter is error!", "Json"); }
+			var args1 = func1.Evaluate(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
+			if(args1.IsJson) { return args1; }
+			if(args1.IsArrayJson) { args1 = args1.ToText(); }
+			if(args1.IsText == false) { return ParameterError(1); }
 			var txt = args1.TextValue;
-			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+			if((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch (Exception) { }
+				} catch(Exception) { }
 			}
-			return Operand.Error("Function '{0}' parameter is error!", "Json");
+			return ParameterError(1);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "Json");
+			return OperandType.JSON;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
 		}
 	}
 

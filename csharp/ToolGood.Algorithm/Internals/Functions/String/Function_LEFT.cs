@@ -1,30 +1,48 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_LEFT : Function_2
+	internal sealed class Function_LEFT : Function_2
 	{
-		public Function_LEFT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_LEFT(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "Left";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Left", 1); if (args1.IsError) { return args1; } }
+			var args1 = GetText_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 			if (args1.TextValue.Length == 0) {
 				return Operand.Create("");
 			}
 			if (func2 == null) {
-				return Operand.Create(args1.TextValue.AsSpan(0, 1).ToString());
+				return Operand.Create(args1.TextValue.Substring(0, 1));
 			}
-			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Left", 2); if (args2.IsError) { return args2; } }
+			var args2 = GetNumber_2(engine, tempParameter);
+			if (args2.IsErrorOrNone) { return args2; }
+			if (args2.IntValue < 0) {
+				return ParameterError(2);
+			}
 			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
-			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());
+			return Operand.Create(args1.TextValue.Substring(0, length));
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "Left");
+			return OperandType.TEXT;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
 		}
 	}
 

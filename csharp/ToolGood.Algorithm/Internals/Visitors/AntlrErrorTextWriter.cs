@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
-	internal class AntlrErrorTextWriter : TextWriter
+	internal sealed class AntlrErrorTextWriter : TextWriter
 	{
 		public bool IsError { get; set; }
 		public string ErrorMsg { get; private set; }
@@ -23,7 +23,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			IsError = true;
 			ErrorMsg = value;
 		}
-		 
 
 	}
 }

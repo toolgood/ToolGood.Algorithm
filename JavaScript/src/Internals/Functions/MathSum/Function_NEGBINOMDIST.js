@@ -1,43 +1,33 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 import { ExcelFunctions } from '../../../MathNet/ExcelFunctions.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_NEGBINOMDIST extends Function_3 {
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
+    get Name() {
+        return "NegBinomDist";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'NegbinomDist', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'NegbinomDist', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        }
-        let args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.IsNotNumber) {
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'NegbinomDist', 3);
-            if (args3.IsError) {
-                return args3;
-            }
-        }
-        let k = Math.round(args1.NumberValue);
-        let r = args2.NumberValue;
-        let p = args3.NumberValue;
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
+        if (args1.IsError) return args1;
+
+        let args2 = this.getNumber_2(engine, tempParameter);
+        if (args2.IsError) return args2;
+
+        let args3 = this.getNumber_3(engine, tempParameter);
+        if (args3.IsError) return args3;
+        let k = args1.IntValue;
+        let r = args2.DoubleValue;
+        let p = args3.DoubleValue;
 
         if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'NegbinomDist');
+            return this.functionError();
         }
-        return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
+        return Operand.Create(ExcelFunctions.negbinomDist(k, r, p));
     }
 }
 

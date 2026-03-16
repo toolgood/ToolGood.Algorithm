@@ -51,7 +51,7 @@ export default class ATN {
      * restricted to tokens reachable staying within {@code s}'s rule
      */
     nextTokensInContext(s, ctx) {
-        const anal = new LL1Analyzer(this);
+        let anal = new LL1Analyzer(this);
         return anal.LOOK(s, null, ctx);
     }
 
@@ -128,17 +128,17 @@ export default class ATN {
         if ( stateNumber < 0 || stateNumber >= this.states.length ) {
             throw("Invalid state number.");
         }
-        const s = this.states[stateNumber];
+        let s = this.states[stateNumber];
         let following = this.nextTokens(s);
         if (!following.contains(Token.EPSILON)) {
             return following;
         }
-        const expected = new IntervalSet();
+        let expected = new IntervalSet();
         expected.addSet(following);
         expected.removeOne(Token.EPSILON);
         while (ctx !== null && ctx.invokingState >= 0 && following.contains(Token.EPSILON)) {
-            const invokingState = this.states[ctx.invokingState];
-            const rt = invokingState.transitions[0];
+            let invokingState = this.states[ctx.invokingState];
+            let rt = invokingState.transitions[0];
             following = this.nextTokens(rt.followState);
             expected.addSet(following);
             expected.removeOne(Token.EPSILON);

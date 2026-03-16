@@ -1,71 +1,55 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_REMOVESTART
  */
 export class Function_REMOVESTART extends Function_3 {
     /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
-     * @param {FunctionBase} func3
+     * @param {FunctionBase[]} funcs
      */
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
+    constructor(funcs) {
+        super(funcs);
+    }
+    
+    get Name() {
+        return "RemoveStart";
     }
     
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'RemoveStart', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.IsNotText) {
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'RemoveStart', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        }
-        
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.getText_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+
         let ignoreCase = false;
-        if (this.func3 !== null) {
-            let args3 = this.func3.Evaluate(engine, tempParameter);
-            if (args3.IsNotBoolean) {
-                args3 = args3.ToBoolean(StringCache.Function_parameter_error, 'RemoveStart', 3);
-                if (args3.IsError) {
-                    return args3;
-                }
-            }
+        if (this.c) {
+            let args3 = this.getBoolean_3(engine, tempParameter);
+            if (args3.IsError) { return args3; }
             ignoreCase = args3.BooleanValue;
         }
-        
+
         let text = args1.TextValue;
         let prefix = args2.TextValue;
         let startsWith = false;
-        
+
         if (ignoreCase) {
             startsWith = text.toLowerCase().startsWith(prefix.toLowerCase());
         } else {
             startsWith = text.startsWith(prefix);
         }
-        
+
         if (startsWith) {
             return Operand.Create(text.substring(prefix.length));
         }
         return args1;
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

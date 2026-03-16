@@ -23,9 +23,9 @@ export function predictionContextFromRuleContext(atn, outerContext) {
         return PredictionContext.EMPTY;
     }
     // If we have a parent, convert it to a PredictionContext graph
-    const parent = predictionContextFromRuleContext(atn, outerContext.parentCtx);
-    const state = atn.states[outerContext.invokingState];
-    const transition = state.transitions[0];
+    let parent = predictionContextFromRuleContext(atn, outerContext.parentCtx);
+    let state = atn.states[outerContext.invokingState];
+    let transition = state.transitions[0];
     return SingletonPredictionContext.create(parent, transition.followState.stateNumber);
 }
 
@@ -46,7 +46,7 @@ export function getCachedPredictionContext(context, contextCache, visited) {
     let changed = false;
     let parents = [];
     for (let i = 0; i < parents.length; i++) {
-        const parent = getCachedPredictionContext(context.getParent(i), contextCache, visited);
+        let parent = getCachedPredictionContext(context.getParent(i), contextCache, visited);
         if (changed || parent !== context.getParent(i)) {
             if (!changed) {
                 parents = [];
@@ -150,15 +150,15 @@ function mergeArrays(a, b, rootIsWildcard, mergeCache) {
     let mergedParents = new Array(a.returnStates.length + b.returnStates.length).fill(null);
     // walk and merge to yield mergedParents, mergedReturnStates
     while (i < a.returnStates.length && j < b.returnStates.length) {
-        const a_parent = a.parents[i];
-        const b_parent = b.parents[j];
+        let a_parent = a.parents[i];
+        let b_parent = b.parents[j];
         if (a.returnStates[i] === b.returnStates[j]) {
             // same payload (stack tops are equal), must yield merged singleton
-            const payload = a.returnStates[i];
+            let payload = a.returnStates[i];
             // $+$ = $
-            const bothDollars = payload === PredictionContext.EMPTY_RETURN_STATE &&
+            let bothDollars = payload === PredictionContext.EMPTY_RETURN_STATE &&
                 a_parent === null && b_parent === null;
-            const ax_ax = (a_parent !== null && b_parent !== null && a_parent === b_parent); // ax+ax
+            let ax_ax = (a_parent !== null && b_parent !== null && a_parent === b_parent); // ax+ax
             // ->
             // ax
             if (bothDollars || ax_ax) {
@@ -198,7 +198,7 @@ function mergeArrays(a, b, rootIsWildcard, mergeCache) {
     // trim merged if we combined a few that had same stack tops
     if (k < mergedParents.length) { // write index < last position; trim
         if (k === 1) { // for just one merged element, return singleton top
-            const a_ = SingletonPredictionContext.create(mergedParents[0],
+            let a_ = SingletonPredictionContext.create(mergedParents[0],
                 mergedReturnStates[0]);
             if (mergeCache !== null) {
                 mergeCache.set(a, b, a_);
@@ -209,7 +209,7 @@ function mergeArrays(a, b, rootIsWildcard, mergeCache) {
         mergedReturnStates = mergedReturnStates.slice(0, k);
     }
 
-    const M = new ArrayPredictionContext(mergedParents, mergedReturnStates);
+    let M = new ArrayPredictionContext(mergedParents, mergedReturnStates);
 
     // if we created same array as a or b, return that instead
     // TODO: track whether this is possible above during merge sort for speed
@@ -244,10 +244,10 @@ function mergeArrays(a, b, rootIsWildcard, mergeCache) {
  * ones.
  */
 function combineCommonParents(parents) {
-    const uniqueParents = new HashMap();
+    let uniqueParents = new HashMap();
 
     for (let p = 0; p < parents.length; p++) {
-        const parent = parents[p];
+        let parent = parents[p];
         if (!(uniqueParents.containsKey(parent))) {
             uniqueParents.set(parent, parent);
         }
@@ -301,7 +301,7 @@ function mergeSingletons(a, b, rootIsWildcard, mergeCache) {
         }
     }
 
-    const rootMerge = mergeRoot(a, b, rootIsWildcard);
+    let rootMerge = mergeRoot(a, b, rootIsWildcard);
     if (rootMerge !== null) {
         if (mergeCache !== null) {
             mergeCache.set(a, b, rootMerge);
@@ -309,7 +309,7 @@ function mergeSingletons(a, b, rootIsWildcard, mergeCache) {
         return rootMerge;
     }
     if (a.returnState === b.returnState) {
-        const parent = merge(a.parentCtx, b.parentCtx, rootIsWildcard, mergeCache);
+        let parent = merge(a.parentCtx, b.parentCtx, rootIsWildcard, mergeCache);
         // if parent is same as existing a or b parent or reduced to a parent,
         // return it
         if (parent === a.parentCtx) {
@@ -322,7 +322,7 @@ function mergeSingletons(a, b, rootIsWildcard, mergeCache) {
         // merge parents x and y, giving array node with x,y then remainders
         // of those graphs. dup a, a' points at merged array
         // new joined parent so create new singleton pointing to it, a'
-        const spc = SingletonPredictionContext.create(parent, a.returnState);
+        let spc = SingletonPredictionContext.create(parent, a.returnState);
         if (mergeCache !== null) {
             mergeCache.set(a, b, spc);
         }
@@ -337,13 +337,13 @@ function mergeSingletons(a, b, rootIsWildcard, mergeCache) {
         }
         if (singleParent !== null) { // parents are same
             // sort payloads and use same parent
-            const payloads = [ a.returnState, b.returnState ];
+            let payloads = [ a.returnState, b.returnState ];
             if (a.returnState > b.returnState) {
                 payloads[0] = b.returnState;
                 payloads[1] = a.returnState;
             }
-            const parents = [ singleParent, singleParent ];
-            const apc = new ArrayPredictionContext(parents, payloads);
+            let parents = [ singleParent, singleParent ];
+            let apc = new ArrayPredictionContext(parents, payloads);
             if (mergeCache !== null) {
                 mergeCache.set(a, b, apc);
             }
@@ -352,14 +352,14 @@ function mergeSingletons(a, b, rootIsWildcard, mergeCache) {
         // parents differ and can't merge them. Just pack together
         // into array; can't merge.
         // ax + by = [ax,by]
-        const payloads = [ a.returnState, b.returnState ];
+        let payloads = [ a.returnState, b.returnState ];
         let parents = [ a.parentCtx, b.parentCtx ];
         if (a.returnState > b.returnState) { // sort by payload
             payloads[0] = b.returnState;
             payloads[1] = a.returnState;
             parents = [ b.parentCtx, a.parentCtx ];
         }
-        const a_ = new ArrayPredictionContext(parents, payloads);
+        let a_ = new ArrayPredictionContext(parents, payloads);
         if (mergeCache !== null) {
             mergeCache.set(a, b, a_);
         }
@@ -418,13 +418,13 @@ function mergeRoot(a, b, rootIsWildcard) {
         if (a === PredictionContext.EMPTY && b === PredictionContext.EMPTY) {
             return PredictionContext.EMPTY; // $ + $ = $
         } else if (a === PredictionContext.EMPTY) { // $ + x = [$,x]
-            const payloads = [ b.returnState,
+            let payloads = [ b.returnState,
                 PredictionContext.EMPTY_RETURN_STATE ];
-            const parents = [ b.parentCtx, null ];
+            let parents = [ b.parentCtx, null ];
             return new ArrayPredictionContext(parents, payloads);
         } else if (b === PredictionContext.EMPTY) { // x + $ = [$,x] ($ is always first if present)
-            const payloads = [ a.returnState, PredictionContext.EMPTY_RETURN_STATE ];
-            const parents = [ a.parentCtx, null ];
+            let payloads = [ a.returnState, PredictionContext.EMPTY_RETURN_STATE ];
+            let parents = [ a.parentCtx, null ];
             return new ArrayPredictionContext(parents, payloads);
         }
     }

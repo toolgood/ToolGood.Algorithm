@@ -1,50 +1,40 @@
 import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_ENDSWITH
  */
 export class Function_ENDSWITH extends Function_3 {
     /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
-     * @param {FunctionBase} func3
+     * @param {FunctionBase[]} funcs
      */
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
+    constructor(funcs) {
+        super(funcs);
+    }
+    
+    get Name() {
+        return "EndsWith";
     }
     
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'EndsWith', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.IsNotText) {
-            args2 = args2.ToText(StringCache.Function_parameter_error, 'EndsWith', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        }
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.getText_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+
         let text = args1.TextValue;
-        if (this.func3 === null) {
+        if (!this.c) {
             return Operand.Create(text.endsWith(args2.TextValue));
         }
-        let args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.IsNotBoolean) {
-            args3 = args3.ToBoolean(StringCache.Function_parameter_error, 'EndsWith', 3);
-            if (args3.IsError) {
-                return args3;
-            }
-        }
+
+        let args3 = this.getBoolean_3(engine, tempParameter);
+        if (args3.IsError) { return args3; }
+
         let ignoreCase = args3.BooleanValue;
         if (ignoreCase) {
             return Operand.Create(text.toLowerCase().endsWith(args2.TextValue.toLowerCase()));

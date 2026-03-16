@@ -1,32 +1,42 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_FACTDOUBLE : Function_1
+	internal sealed class Function_FACTDOUBLE : Function_1
     {
         public Function_FACTDOUBLE(FunctionBase func1) : base(func1)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "FactDouble"); if (args1.IsError) { return args1; } }
-            var z = args1.IntValue;
-            if (z < 0) { return Operand.Error("Function '{0}' parameter is error!", "FactDouble"); }
+        public override string Name => "FactDouble";
 
-            double d = 1;
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
+            var z = args1.IntValue;
+            if (z < 0) { return ParameterError(1); }
+            if (z > 300) { return ParameterError(1); }
+
+            decimal d = 1;
             for (int i = z; i > 0; i -= 2) {
                 d *= i;
             }
             return Operand.Create(d);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "FactDouble");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

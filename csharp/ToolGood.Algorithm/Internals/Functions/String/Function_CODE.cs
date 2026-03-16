@@ -1,26 +1,37 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_CODE : Function_1
+	internal sealed class Function_CODE : Function_1
 	{
 		public Function_CODE(FunctionBase func1) : base(func1)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "Code";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "CODE"); if (args1.IsError) { return args1; } }
+			var args1 = GetText_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 			if (string.IsNullOrEmpty(args1.TextValue)) {
-				return Operand.Error("Function '{0}' parameter is error!", "CODE");
+				return ParameterError(1);
 			}
 			char c = args1.TextValue[0];
 			return Operand.Create((int)c);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "CODE");
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
 

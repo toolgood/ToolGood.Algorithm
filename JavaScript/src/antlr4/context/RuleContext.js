@@ -143,8 +143,8 @@ export default class RuleContext extends RuleNode {
                     s += p.invokingState;
                 }
             } else {
-                const ri = p.ruleIndex;
-                const ruleName = (ri >= 0 && ri < ruleNames.length) ? ruleNames[ri]
+                let ri = p.ruleIndex;
+                let ruleName = (ri >= 0 && ri < ruleNames.length) ? ruleNames[ri]
                     : "" + ri;
                 s += ruleName;
             }

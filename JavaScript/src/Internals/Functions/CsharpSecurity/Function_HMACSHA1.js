@@ -1,61 +1,38 @@
-import { Function_3 } from '../Function_3.js';
+import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import CryptoJS from 'crypto-js';
-import iconv from 'iconv-lite';
-import { StringCache } from '../../../Internals/StringCache.js';
+
+import HmacSHA1 from 'crypto-js/hmac-sha1.js';
 
 /**
  * Represents the HMACSHA1 encryption function
  */
-export class Function_HMACSHA1 extends Function_3 {
-    /**
-     * @param {FunctionBase} func1
-     * @param {FunctionBase} func2
-     * @param {FunctionBase} func3
-     */
-    constructor(func1, func2, func3) {
-        super(func1, func2, func3);
+export class Function_HMACSHA1 extends Function_2 {
+
+    get Name() {
+        return "HmacSHA1";
     }
+
+    constructor(z) {
+    super(z);
+  }
 
     /**
      * @param {AlgorithmEngine} work
      * @param {Function} tempParameter
      */
-    Evaluate(work, tempParameter = null) {
-        const args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            const errorArgs1 = args1.ToText(StringCache.Function_parameter_error, "HMACSHA1", 1);
-            if (errorArgs1.IsError) return errorArgs1;
-            return errorArgs1;
-        }
+    evaluate(work, tempParameter = null) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
 
-        const args2 = this.func2.Evaluate(work, tempParameter);
-        if (args2.IsNotText) {
-            const errorArgs2 = args2.ToText(StringCache.Function_parameter_error, "HMACSHA1", 2);
-            if (errorArgs2.IsError) return errorArgs2;
-            return errorArgs2;
-        }
+        let args2 = this.getText_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
 
         try {
-            let encoding = 'utf8';
-            if (this.func3 !== null) {
-                const args3 = this.func3.Evaluate(work, tempParameter);
-                if (args3.IsNotText) {
-                    const errorArgs3 = args3.ToText(StringCache.Function_parameter_error, "HMACSHA1", 3);
-                    if (errorArgs3.IsError) return errorArgs3;
-                    return errorArgs3;
-                }
-                encoding = args3.TextValue;
-            }
-
-            const bytes = iconv.encode(args1.TextValue, encoding);
-            const key = args2.TextValue || '';
-            const keyBytes = iconv.encode(key, 'utf8');
-            const hmacHash = CryptoJS.HmacSHA1(CryptoJS.lib.WordArray.create(bytes), CryptoJS.lib.WordArray.create(keyBytes));
-            const result = hmacHash.toString().toUpperCase();
+            let hmacHash = HmacSHA1(args1.TextValue,args2.TextValue || '');
+            let result = hmacHash.toString().toUpperCase();
             return Operand.Create(result);
         } catch (ex) {
-            return Operand.Error(StringCache.Function_error, "HMACSHA1");
+            return this.functionError();
         }
     }
 }

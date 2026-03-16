@@ -1,30 +1,46 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_ROUND : Function_2
+	internal sealed class Function_ROUND : Function_2
     {
-        public Function_ROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		public Function_ROUND(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Round", 1); if (args1.IsError) { return args1; } }
+        public override string Name => "Round";
 
-            if (func2 == null) {
-                return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
-            }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Round", 2); if (args2.IsError) { return args2; } }
-            return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            AddFunction(stringBuilder, "Round");
-        }
-    }
+            var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 
-    
+			if (func2 == null) {
+				return Operand.Create(Math.Round(args1.NumberValue, 0, MidpointRounding.AwayFromZero));
+			}
+			var args2 = GetNumber_2(engine, tempParameter);
+			if (args2.IsErrorOrNone) { return args2; }
+			if (args2.IntValue < -15 || args2.IntValue > 15) {
+				return ParameterError(2);
+			}
+            return Operand.Create(Math.Round(args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
+        }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+		}
+	}
 
 }

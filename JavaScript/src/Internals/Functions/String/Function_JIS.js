@@ -1,20 +1,18 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_JIS extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "JIS";
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'JIS');
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
         return Operand.Create(this.F_base_ToSBC(args1.TextValue));
     }
 

@@ -15,7 +15,7 @@ export default class Recognizer {
     }
 
     checkVersion(toolVersion) {
-        const runtimeVersion = "4.13.2";
+        let runtimeVersion = "4.13.2";
         if (runtimeVersion!==toolVersion) {
             console.log("ANTLR runtime and generated code versions disagree: "+runtimeVersion+"!="+toolVersion);
         }
@@ -39,9 +39,9 @@ export default class Recognizer {
 
     getTokenNames() {
         if(!this.tokenNames) {
-            const literalNames = this.getLiteralNames();
-            const symbolicNames = this.getSymbolicNames();
-            const length = literalNames.length > symbolicNames.length ? literalNames.length : symbolicNames.length;
+            let literalNames = this.getLiteralNames();
+            let symbolicNames = this.getSymbolicNames();
+            let length = literalNames.length > symbolicNames.length ? literalNames.length : symbolicNames.length;
             this.tokenNames = [];
             for(let i=0; i<length; i++) {
                 this.tokenNames[i] = literalNames[i] || symbolicNames[i] || "<INVALID";
@@ -51,7 +51,7 @@ export default class Recognizer {
     }
 
     getTokenTypeMap() {
-        const tokenNames = this.getTokenNames();
+        let tokenNames = this.getTokenNames();
         if (tokenNames===null) {
             throw("The current recognizer does not provide a list of token names.");
         }
@@ -69,7 +69,7 @@ export default class Recognizer {
      * <p>Used for XPath and tree pattern compilation.</p>
      */
     getRuleIndexMap() {
-        const ruleNames = this.ruleNames;
+        let ruleNames = this.ruleNames;
         if (ruleNames===null) {
             throw("The current recognizer does not provide a list of rule names.");
         }
@@ -82,7 +82,7 @@ export default class Recognizer {
     }
 
     getTokenType(tokenName) {
-        const ttype = this.getTokenTypeMap()[tokenName];
+        let ttype = this.getTokenTypeMap()[tokenName];
         if (ttype !==undefined) {
             return ttype;
         } else {
@@ -92,8 +92,8 @@ export default class Recognizer {
 
     // What is the error header, normally line/character position information?
     getErrorHeader(e) {
-        const line = e.getOffendingToken().line;
-        const column = e.getOffendingToken().column;
+        let line = e.getOffendingToken().line;
+        let column = e.getOffendingToken().column;
         return "line " + line + ":" + column;
     }
 

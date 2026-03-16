@@ -1,29 +1,38 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_LN : Function_1
+	internal sealed class Function_LN : Function_1
     {
         public Function_LN(FunctionBase func1) : base(func1)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Ln"); if (args1.IsError) { return args1; } }
-            var z = args1.DoubleValue;
-            if (z <= 0) {
-                return Operand.Error("Function '{0}' parameter is error!", "Ln");
-            }
-            return Operand.Create(Math.Log((double)z));
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Ln");
-        }
-    }
+        public override string Name => "Ln";
 
-    
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
+            var z = args1.NumberValue;
+            if (z <= 0) {
+                return ParameterError(1);
+            }
+            return Operand.Create(MathEx.Log(z));
+        }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

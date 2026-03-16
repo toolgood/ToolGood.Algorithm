@@ -1,32 +1,28 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+import { FunctionUtil } from '../FunctionUtil.js';
 
 class Function_AVEDEV extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "AveDev";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
 
         let list = [];
-        for (let arg of args) {
-            if (arg.IsNotNumber) {
-                return Operand.Error(StringCache.Function_parameter_error, "AveDev");
-            }
-            list.push(arg.NumberValue);
-        }
-
-        if (list.length === 0) {
-            return Operand.Create(0);
-        }
-
+        let o = FunctionUtil.F_base_GetList(args, list);
+        if (o == false) { return this.functionError(); }
+        if (list.length == 0) { return Operand.Zero; }
         let avg = list.reduce((sum, value) => sum + value, 0) / list.length;
         let sum = 0;
         for (let item of list) {

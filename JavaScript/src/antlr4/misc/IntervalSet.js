@@ -35,7 +35,7 @@ export default class IntervalSet {
 		} else {
 			// find insert pos
 			for (let pos = 0; pos < this.intervals.length; pos++) {
-				const existing = this.intervals[pos];
+				let existing = this.intervals[pos];
 				// distinct range -> insert
 				if (toAdd.stop < existing.start) {
 					this.intervals.splice(pos, 0, toAdd);
@@ -68,8 +68,8 @@ export default class IntervalSet {
 	reduce(pos) {
 		// only need to reduce if pos is not the last
 		if (pos < this.intervals.length - 1) {
-			const current = this.intervals[pos];
-			const next = this.intervals[pos + 1];
+			let current = this.intervals[pos];
+			let next = this.intervals[pos + 1];
 			// if next contained in current
 			if (current.stop >= next.stop) {
 				this.intervals.splice(pos + 1, 1);
@@ -82,7 +82,7 @@ export default class IntervalSet {
 	}
 
 	complement(start, stop) {
-		const result = new IntervalSet();
+		let result = new IntervalSet();
 		result.addInterval(new Interval(start, stop + 1));
 		if(this.intervals !== null)
 			this.intervals.forEach(toRemove => result.removeRange(toRemove));
@@ -108,7 +108,7 @@ export default class IntervalSet {
 		} else if (this.intervals !== null) {
 			let pos = 0;
 			for(let n=0; n<this.intervals.length; n++) {
-				const existing = this.intervals[pos];
+				let existing = this.intervals[pos];
 				// intervals are ordered
 				if (toRemove.stop<=existing.start) {
 					return;
@@ -116,7 +116,7 @@ export default class IntervalSet {
 				// check for including range, split it
 				else if(toRemove.start>existing.start && toRemove.stop<existing.stop) {
 					this.intervals[pos] = new Interval(existing.start, toRemove.start);
-					const x = new Interval(toRemove.stop, existing.stop);
+					let x = new Interval(toRemove.stop, existing.stop);
 					this.intervals.splice(pos, 0, x);
 					return;
 				}
@@ -141,7 +141,7 @@ export default class IntervalSet {
 	removeOne(value) {
 		if (this.intervals !== null) {
 			for (let i = 0; i < this.intervals.length; i++) {
-				const existing = this.intervals[i];
+				let existing = this.intervals[i];
 				// intervals are ordered
 				if (value < existing.start) {
 					return;
@@ -163,7 +163,7 @@ export default class IntervalSet {
 				}
 				// split existing range
 				else if (value < existing.stop - 1) {
-					const replace = new Interval(existing.start, value);
+					let replace = new Interval(existing.start, value);
 					existing.start = value + 1;
 					this.intervals.splice(i, 0, replace);
 					return;
@@ -188,9 +188,9 @@ export default class IntervalSet {
 	}
 
 	toCharString() {
-		const names = [];
+		let names = [];
 		for (let i = 0; i < this.intervals.length; i++) {
-			const existing = this.intervals[i];
+			let existing = this.intervals[i];
 			if(existing.stop===existing.start+1) {
 				if ( existing.start===Token.EOF ) {
 					names.push("<EOF>");
@@ -209,9 +209,9 @@ export default class IntervalSet {
 	}
 
 	toIndexString() {
-		const names = [];
+		let names = [];
 		for (let i = 0; i < this.intervals.length; i++) {
-			const existing = this.intervals[i];
+			let existing = this.intervals[i];
 			if(existing.stop===existing.start+1) {
 				if ( existing.start===Token.EOF ) {
 					names.push("<EOF>");
@@ -230,9 +230,9 @@ export default class IntervalSet {
 	}
 
 	toTokenString(literalNames, symbolicNames) {
-		const names = [];
+		let names = [];
 		for (let i = 0; i < this.intervals.length; i++) {
-			const existing = this.intervals[i];
+			let existing = this.intervals[i];
 			for (let j = existing.start; j < existing.stop; j++) {
 				names.push(this.elementName(literalNames, symbolicNames, j));
 			}

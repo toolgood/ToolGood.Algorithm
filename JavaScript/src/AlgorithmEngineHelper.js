@@ -21,7 +21,6 @@ import { ConditionTreeType } from './Enums/ConditionTreeType.js';
 import { CalculateTreeType } from './Enums/CalculateTreeType.js';
 
 // 导入ANTLR生成的文件
-import InputStream from './antlr4/InputStream.js';
 import mathLexer from './math/mathLexer.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
 import mathParser from './math/mathParser.js';
@@ -30,246 +29,21 @@ import mathParser from './math/mathParser.js';
  * 算法引擎助手
  */
 export class AlgorithmEngineHelper {
-    static _lexerSet = null;
     static unitRegex = null;
-
-    static GetLexerSet() {
-        if (!this._lexerSet) {
-            this._lexerSet = new Set([
-                "NULL",
-                "IF",
-                "IFERROR",
-                "ISNUMBER",
-                "ISTEXT",
-                "ISERROR",
-                "ISNONTEXT",
-                "ISLOGICAL",
-                "ISEVEN",
-                "ISODD",
-                "ISNULL",
-                "ISNULLORERROR",
-                "AND",
-                "OR",
-                "NOT",
-                "TRUE",
-                "FALSE",
-                "E",
-                "PI",
-                "DEC2BIN",
-                "DEC2HEX",
-                "DEC2OCT",
-                "HEX2BIN",
-                "HEX2DEC",
-                "HEX2OCT",
-                "OCT2BIN",
-                "OCT2DEC",
-                "OCT2HEX",
-                "BIN2OCT",
-                "BIN2DEC",
-                "BIN2HEX",
-                "ABS",
-                "QUOTIENT",
-                "MOD",
-                "SIGN",
-                "SQRT",
-                "TRUNC",
-                "INT",
-                "GCD",
-                "LCM",
-                "COMBIN",
-                "PERMUT",
-                "DEGREES",
-                "RADIANS",
-                "COS",
-                "COSH",
-                "SIN",
-                "SINH",
-                "TAN",
-                "TANH",
-                "ACOS",
-                "ACOSH",
-                "ASIN",
-                "ASINH",
-                "ATAN",
-                "ATANH",
-                "ATAN2",
-                "ROUND",
-                "ROUNDDOWN",
-                "ROUNDUP",
-                "CEILING",
-                "FLOOR",
-                "EVEN",
-                "ODD",
-                "MROUND",
-                "RAND",
-                "RANDBETWEEN",
-                "FACT",
-                "FACTDOUBLE",
-                "POWER",
-                "EXP",
-                "LN",
-                "LOG",
-                "LOG10",
-                "MULTINOMIAL",
-                "PRODUCT",
-                "SQRTPI",
-                "SUMSQ",
-                "ASC",
-                "JIS",
-                "WIDECHAR",
-                "CHAR",
-                "CLEAN",
-                "CODE",
-                "CONCATENATE",
-                "EXACT",
-                "FIND",
-                "FIXED",
-                "LEFT",
-                "LEN",
-                "LOWER", "TOLOWER",
-                "MID",
-                "PROPER",
-                "REPLACE",
-                "REPT",
-                "RIGHT",
-                "RMB",
-                "SEARCH",
-                "SUBSTITUTE",
-                "T",
-                "TEXT",
-                "TRIM",
-                "UPPER", "TOUPPER",
-                "VALUE",
-                "DATEVALUE",
-                "TIMEVALUE",
-                "DATE",
-                "TIME",
-                "NOW",
-                "TODAY",
-                "YEAR",
-                "MONTH",
-                "DAY",
-                "HOUR",
-                "MINUTE",
-                "SECOND",
-                "WEEKDAY",
-                "DATEDIF",
-                "DAYS360",
-                "EDATE",
-                "EOMONTH",
-                "NETWORKDAYS",
-                "WORKDAY",
-                "WEEKNUM",
-                "MAX",
-                "MEDIAN",
-                "MIN",
-                "QUARTILE",
-                "MODE",
-                "LARGE",
-                "SMALL",
-                "PERCENTILE", "PERCENTILE.INC",
-                "PERCENTRANK", "PERCENTRANK.INC",
-                "AVERAGE",
-                "AVERAGEIF",
-                "GEOMEAN",
-                "HARMEAN",
-                "COUNT",
-                "COUNTIF",
-                "SUM",
-                "SUMIF",
-                "AVEDEV",
-                "STDEV", "STDEV.S",
-                "STDEVP", "STDEV.P",
-                "COVAR",
-                "COVARIANCE.P",
-                "COVARIANCE.S",
-                "DEVSQ",
-                "VAR", "VAR.S",
-                "VARP", "VAR.P",
-                "NORMDIST", "NORM.DIST",
-                "NORMINV", "NORM.INV",
-                "NORMSDIST", "NORM.S.DIST",
-                "NORMSINV", "NORM.S.INV",
-                "BETADIST", "BETA.DIST",
-                "BETAINV", "BETA.INV",
-                "BINOMDIST", "BINOM.DIST",
-                "EXPONDIST", "EXPON.DIST",
-                "FDIST", "F.DIST",
-                "FINV", "F.INV",
-                "FISHER",
-                "FISHERINV",
-                "GAMMADIST", "GAMMA.DIST",
-                "GAMMAINV", "GAMMA.INV",
-                "GAMMALN", "GAMMALN.PRECISE",
-                "HYPGEOMDIST", "HYPGEOM.DIST",
-                "LOGINV", "LOGNORM.INV",
-                "LOGNORMDIST", "LOGNORM.DIST",
-                "NEGBINOMDIST", "NEGBINOM.DIST",
-                "POISSON", "POISSON.DIST",
-                "TDIST", "T.DIST",
-                "TINV", "T.INV",
-                "WEIBULL",
-                "URLENCODE",
-                "URLDECODE",
-                "HTMLENCODE",
-                "HTMLDECODE",
-                "BASE64TOTEXT",
-                "BASE64URLTOTEXT",
-                "TEXTTOBASE64",
-                "TEXTTOBASE64URL",
-                "REGEX",
-                "REGEXREPALCE",
-                "ISREGEX", "ISMATCH",
-                "GUID",
-                "MD5",
-                "SHA1",
-                "SHA256",
-                "SHA512",
-                "CRC32",
-                "HMACMD5",
-                "HMACSHA1",
-                "HMACSHA256",
-                "HMACSHA512",
-                "TRIMSTART", "LTRIM",
-                "TRIMEND", "RTRIM",
-                "INDEXOF",
-                "LASTINDEXOF",
-                "SPLIT",
-                "JOIN",
-                "SUBSTRING",
-                "STARTSWITH",
-                "ENDSWITH",
-                "ISNULLOREMPTY",
-                "ISNULLORWHITESPACE",
-                "REMOVESTART",
-                "REMOVEEND",
-                "JSON",
-                "ARRAY",
-                "LOOKFLOOR",
-                "LOOKCEILING",
-                "ADDYEARS",
-                "ADDMONTHS",
-                "ADDDAYS",
-                "ADDHOURS",
-                "ADDMINUTES",
-                "ADDSECONDS",
-                "TIMESTAMP",
-                "HAS", "HASKEY",
-                "CONTAINS", "CONTAINSKEY",
-                "HASVALUE", "CONTAINSVALUE",
-                "PARAM", "PARAMETER", "GetParameter",
-                "ERROR"
-            ]);
-        }
-        return this._lexerSet;
-    }
-
     /**
-     * 是否与内置关键字相同
+     * 是不是参数
      */
-    static IsKeywords(parameter) {
-        const lexerSet = this.GetLexerSet();
-        return lexerSet.has(CharUtil.StandardString(parameter));
+    static IsParameter(parameter) {
+        if (!parameter || parameter.trim() === '') { return false; }
+        try {
+            let diy = this.GetDiyNames(parameter);
+            if (diy.Functions && diy.Functions.length > 0) { return false; }
+            if (diy.Parameters && diy.Parameters.length === 1) {
+                let p = diy.Parameters[0];
+                return p.Name === parameter;
+            }
+        } catch (ex) { }
+        return false;
     }
 
     /**
@@ -279,21 +53,21 @@ export class AlgorithmEngineHelper {
         if (!exp || exp.trim() === '') {
             throw new Error("Parameter exp invalid !");
         }
-        const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream =new AntlrCharStream(exp);
-        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        let stream =new AntlrCharStream(exp);
+        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
-        const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let tokens = new CommonTokenStream(lexer);
+        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
 
-        const context = parser.prog();
+        let context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             throw new Error(antlrErrorTextWriter.ErrorMsg);
         }
-        const visitor = new DiyNameVisitor();
+        let visitor = new DiyNameVisitor();
         visitor.visit(context);
         return visitor.diy;
     }
@@ -309,21 +83,21 @@ export class AlgorithmEngineHelper {
         oldSrcUnit = oldSrcUnit.replace(this.unitRegex, "");
         if (oldSrcUnit === oldTarUnit) { return src; }
 
-        if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new DistanceConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+        if (DistanceConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
         }
-        if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new MassConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+        if (MassConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new MassConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
         }
-        if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new AreaConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+        if (AreaConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new AreaConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
         }
-        if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            const c = new VolumeConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+        if (VolumeConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
         }
         if (!name) {
             throw new Error(`The input item has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
@@ -338,26 +112,26 @@ export class AlgorithmEngineHelper {
         if (!exp || exp.trim() === '') {
             throw new Error("Parameter exp invalid !");
         }
-        const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream =new AntlrCharStream(exp);
-        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        let stream =new AntlrCharStream(exp);
+        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
-        const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let tokens = new CommonTokenStream(lexer);
+        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
         if (errorListener) {
             parser.addErrorListener(errorListener);
-            const context = parser.prog();
-            const visitor = new MathFunctionVisitor();
+            let context = parser.prog();
+            let visitor = new MathFunctionVisitor();
             return visitor.visit(context);
         }
-        const context = parser.prog();
+        let context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             throw new Error(antlrErrorTextWriter.ErrorMsg);
         }
-        const visitor = new MathFunctionVisitor();
+        let visitor = new MathFunctionVisitor();
         return visitor.visit(context);
     }
 
@@ -366,17 +140,17 @@ export class AlgorithmEngineHelper {
      */
     static CheckFormula(exp) {
         if (!exp || exp.trim() === '') { return false; }
-        const antlrErrorTextWriter = new AntlrErrorTextWriter();
-        const stream =new AntlrCharStream(exp);
-        const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        let stream =new AntlrCharStream(exp);
+        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
         lexer.removeErrorListeners();
         lexer.addErrorListener(antlrErrorTextWriter);
-        const tokens = new CommonTokenStream(lexer);
-        const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let tokens = new CommonTokenStream(lexer);
+        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorTextWriter);
 
-        const context = parser.prog();
+        let context = parser.prog();
         if (antlrErrorTextWriter.IsError) {
             return false;
         }
@@ -387,7 +161,7 @@ export class AlgorithmEngineHelper {
      * 解析条件
      */
     static ParseCondition(condition) {
-        const tree = {
+        let tree = {
             Type: null,
             ErrorMessage: null
         };
@@ -397,23 +171,23 @@ export class AlgorithmEngineHelper {
             return tree;
         }
         try {
-            const antlrErrorTextWriter = new AntlrErrorTextWriter();
-            const stream =new AntlrCharStream(condition);
-            const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+            let antlrErrorTextWriter = new AntlrErrorTextWriter();
+            let stream =new AntlrCharStream(condition);
+            let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
             lexer.addErrorListener(antlrErrorTextWriter);
-            const tokens = new CommonTokenStream(lexer);
-            const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+            let tokens = new CommonTokenStream(lexer);
+            let parser = new mathParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorTextWriter);
 
-            const context = parser.prog();
+            let context = parser.prog();
             if (antlrErrorTextWriter.IsError) {
                 tree.Type = ConditionTreeType.Error;
                 tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
                 return tree;
             }
-            const visitor = new MathSplitVisitor();
+            let visitor = new MathSplitVisitor();
             return visitor.visit(context);
         } catch (ex) {
             tree.Type = ConditionTreeType.Error;
@@ -440,7 +214,7 @@ export class AlgorithmEngineHelper {
      * 解析计算表达式
      */
     static ParseCalculate(exp) {
-        const tree = {
+        let tree = {
             Type: null,
             ErrorMessage: null
         };
@@ -450,23 +224,23 @@ export class AlgorithmEngineHelper {
             return tree;
         }
         try {
-            const antlrErrorTextWriter = new AntlrErrorTextWriter();
-            const stream =new AntlrCharStream(exp);
-            const lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+            let antlrErrorTextWriter = new AntlrErrorTextWriter();
+            let stream =new AntlrCharStream(exp);
+            let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
             lexer.removeErrorListeners();
             lexer.addErrorListener(antlrErrorTextWriter);
-            const tokens = new CommonTokenStream(lexer);
-            const parser = new mathParser(tokens, null, antlrErrorTextWriter);
+            let tokens = new CommonTokenStream(lexer);
+            let parser = new mathParser(tokens, null, antlrErrorTextWriter);
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorTextWriter);
 
-            const context = parser.prog();
+            let context = parser.prog();
             if (antlrErrorTextWriter.IsError) {
                 tree.Type = CalculateTreeType.Error;
                 tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
                 return tree;
             }
-            const visitor = new MathSplitVisitor2();
+            let visitor = new MathSplitVisitor2();
             return visitor.visit(context);
         } catch (ex) {
             tree.Type = CalculateTreeType.Error;

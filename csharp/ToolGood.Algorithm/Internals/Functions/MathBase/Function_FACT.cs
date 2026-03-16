@@ -1,35 +1,46 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_FACT : Function_1
+	internal sealed class Function_FACT : Function_1
     {
         public Function_FACT(FunctionBase func1) : base(func1)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Fact";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Fact"); if (args1.IsError) { return args1; } }
-            if (args1.IsError) { return args1; }
+            var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 
             var z = args1.IntValue;
             if (z < 0) {
-                return Operand.Error("Function '{0}' parameter is error!", "Fact");
+                return ParameterError(1);
             }
-            double d = 1;
+            if (z > 170) {
+                return ParameterError(1);
+            }
+            decimal d = 1;
             for (int i = 1; i <= z; i++) {
                 d *= i;
             }
             return Operand.Create(d);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Fact");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

@@ -5,6 +5,11 @@ export var FunctionUtil = {
     StartDateUtc: new Date(Date.UTC(1970, 0, 1, 0, 0, 0, 0)),
 
     F_base_GetList: function(args, list) {
+        // 检查 args 是否是 OperandArray 对象
+        if (args.IsArray) {
+            args = args.ArrayValue;
+        }
+        
         for(var i = 0; i < args.length; i++) {
             var item = args[i];
             if(item.IsNumber) {
@@ -34,8 +39,8 @@ export var FunctionUtil = {
             return a.NumberValue - b.NumberValue;
         } else if(a.IsText && b.IsText) {
             return a.TextValue.localeCompare(b.TextValue);
-        } else if(a.IsBool && b.IsBool) {
-            return a.BoolValue === b.BoolValue ? 0 : (a.BoolValue ? 1 : -1);
+        } else if(a.IsBoolean && b.IsBoolean) {
+            return a.BooleanValue === b.BooleanValue ? 0 : (a.BooleanValue ? 1 : -1);
         } else if(a.IsDate && b.IsDate) {
             return a.DateValue - b.DateValue;
         }
@@ -180,16 +185,16 @@ export var FunctionUtil = {
         for (let i = 0; i < list.length; i++) {
             if (arguments.length === 3) {
                 // 三个参数的情况：list, value, sumdbs
-                const value = arg1;
-                const sumdbs = arg2;
+                let value = arg1;
+                let sumdbs = arg2;
                 if (list[i] === value) {
                     sum += sumdbs[i];
                 }
             } else {
                 // 四个参数的情况：list, operator, value, sumdbs
-                const operator = arg1;
-                const value = arg2;
-                const sumdbs = arg3;
+                let operator = arg1;
+                let value = arg2;
+                let sumdbs = arg3;
                 if (this.F_base_compare(list[i], value, operator)) {
                     sum += sumdbs[i];
                 }

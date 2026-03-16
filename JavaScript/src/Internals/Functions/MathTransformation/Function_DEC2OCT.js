@@ -1,33 +1,26 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_DEC2OCT extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "Dec2Oct";
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, 'DEC2OCT', 1);
-            if (args1.IsError) {
-                return args1;
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(work, tempParameter) {
+        let args1 = this.getNumber_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+        let num = args1.IntValue.toString(8);
+        if (this.b != null) {
+            let args2 = this.getNumber_2(work, tempParameter);
+            if (args2.IsError) { return args2; }
+            if (num.length < args2.IntValue) {
+                return Operand.Create(num.padStart(args2.IntValue, '0'));
             }
-        }
-        let num = parseInt(args1.IntValue).toString(8);
-        if (this.func2 !== null) {
-            let args2 = this.func2.Evaluate(work, tempParameter);
-            if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error, 'DEC2OCT', 2);
-                if (args2.IsError) {
-                    return args2;
-                }
-            }
-            if (num.length > args2.IntValue) {
-                return Operand.Error(StringCache.Function_parameter_error, 'DEC2OCT', 2);
-            }
-            return Operand.Create(num.padLeft(args2.IntValue, '0'));
+            return this.parameterError(2);
         }
         return Operand.Create(num);
     }

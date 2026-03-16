@@ -10,7 +10,7 @@ import RuleNode from './RuleNode.js';
 import escapeWhitespace from "../utils/escapeWhitespace.js";
 
 /** A set of utility routines useful for all kinds of ANTLR trees. */
-const Trees = {
+let Trees = {
     /**
      * Print out a whole tree in LISP form. {@link //getNodeText} is used on the
      *  node payloads to get the text for the nodes.  Detect
@@ -24,7 +24,7 @@ const Trees = {
         }
         let s = Trees.getNodeText(tree, ruleNames);
         s = escapeWhitespace(s, false);
-        const c = tree.getChildCount();
+        let c = tree.getChildCount();
         if(c===0) {
             return s;
         }
@@ -49,9 +49,9 @@ const Trees = {
         }
         if(ruleNames!==null) {
             if (t instanceof RuleNode) {
-                const context = t.ruleContext;
-                const altNumber = context.getAltNumber();
-                // use const value of ATN.INVALID_ALT_NUMBER to avoid circular dependency
+                let context = t.ruleContext;
+                let altNumber = context.getAltNumber();
+                // use let value of ATN.INVALID_ALT_NUMBER to avoid circular dependency
                 if ( altNumber != 0 ) {
                     return ruleNames[t.ruleIndex]+":"+altNumber;
                 }
@@ -65,7 +65,7 @@ const Trees = {
             }
         }
         // no recog for rule names
-        const payload = t.getPayload();
+        let payload = t.getPayload();
         if (payload instanceof Token ) {
             return payload.text;
         }
@@ -76,7 +76,7 @@ const Trees = {
      * Return ordered list of all children of this node
      */
     getChildren: function(t) {
-        const list = [];
+        let list = [];
         for(let i=0;i<t.getChildCount();i++) {
             list.push(t.getChild(i));
         }
@@ -106,7 +106,7 @@ const Trees = {
     },
 
     findAllNodes: function(t, index, findTokens) {
-        const nodes = [];
+        let nodes = [];
         Trees._findAllNodes(t, index, findTokens, nodes);
         return nodes;
     },

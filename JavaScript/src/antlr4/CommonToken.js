@@ -31,7 +31,7 @@ export default class CommonToken extends Token {
      * @param oldToken The token to copy.
      */
     clone() {
-        const t = new CommonToken(this.source, this.type, this.channel, this.start, this.stop);
+        let t = new CommonToken(this.source, this.type, this.channel, this.start, this.stop);
         t.tokenIndex = this.tokenIndex;
         t.line = this.line;
         t.column = this.column;
@@ -40,7 +40,7 @@ export default class CommonToken extends Token {
     }
 
     cloneWithType(type) {
-        const t = new CommonToken(this.source, type, this.channel, this.start, this.stop);
+        let t = new CommonToken(this.source, type, this.channel, this.start, this.stop);
         t.tokenIndex = this.tokenIndex;
         t.line = this.line;
         t.column = this.column;
@@ -66,11 +66,11 @@ export default class CommonToken extends Token {
         if (this._text !== null) {
             return this._text;
         }
-        const input = this.getInputStream();
+        let input = this.getInputStream();
         if (input === null) {
             return null;
         }
-        const n = input.size;
+        let n = input.size;
         if (this.start < n && this.stop < n) {
             return input.getText(this.start, this.stop);
         } else {

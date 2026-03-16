@@ -1,6 +1,3 @@
-/**
- * MathFunctionvisitor - 数学函数访问者
- */
 import mathVisitor from '../../math/mathVisitor.js';
 import { Function_Mul } from '../Functions/Operator/Function_Mul.js';
 import { Function_Div } from '../Functions/Operator/Function_Div.js';
@@ -18,6 +15,7 @@ import { Function_AND } from '../Functions/Operator/Function_AND.js';
 import { Function_OR } from '../Functions/Operator/Function_OR.js';
 import { Function_AND_N } from '../Functions/Operator/Function_AND_N.js';
 import { Function_OR_N } from '../Functions/Operator/Function_OR_N.js';
+import { Function_XOR } from '../Functions/Operator/Function_XOR.js';
 import { Function_NOT } from '../Functions/Flow/Function_NOT.js';
 import { Function_Value } from '../Functions/Value/Function_Value.js';
 
@@ -47,6 +45,14 @@ import { Function_ASINH } from '../Functions/MathTrigonometric/Function_ASINH.js
 import { Function_ATAN } from '../Functions/MathTrigonometric/Function_ATAN.js';
 import { Function_ATANH } from '../Functions/MathTrigonometric/Function_ATANH.js';
 import { Function_ATAN2 } from '../Functions/MathTrigonometric/Function_ATAN2.js';
+import { Function_COT } from '../Functions/MathTrigonometric/Function_COT.js';
+import { Function_COTH } from '../Functions/MathTrigonometric/Function_COTH.js';
+import { Function_CSC } from '../Functions/MathTrigonometric/Function_CSC.js';
+import { Function_CSCH } from '../Functions/MathTrigonometric/Function_CSCH.js';
+import { Function_SEC } from '../Functions/MathTrigonometric/Function_SEC.js';
+import { Function_SECH } from '../Functions/MathTrigonometric/Function_SECH.js';
+import { Function_ACOT } from '../Functions/MathTrigonometric/Function_ACOT.js';
+import { Function_ACOTH } from '../Functions/MathTrigonometric/Function_ACOTH.js';
 import { Function_FIXED } from '../Functions/MathBase/Function_FIXED.js';
 import { Function_BIN2OCT } from '../Functions/MathTransformation/Function_BIN2OCT.js';
 import { Function_BIN2DEC } from '../Functions/MathTransformation/Function_BIN2DEC.js';
@@ -78,10 +84,49 @@ import { Function_POWER } from '../Functions/MathBase/Function_POWER.js';
 import { Function_EXP } from '../Functions/MathBase/Function_EXP.js';
 import { Function_LN } from '../Functions/MathBase/Function_LN.js';
 import { Function_LOG } from '../Functions/MathBase/Function_LOG.js';
+import { Function_LOG10 } from '../Functions/MathBase/Function_LOG10.js';
 import { Function_MULTINOMIAL } from '../Functions/MathBase/Function_MULTINOMIAL.js';
 import { Function_PRODUCT } from '../Functions/MathBase/Function_PRODUCT.js';
 import { Function_SQRTPI } from '../Functions/MathBase/Function_SQRTPI.js';
+import { Function_ERF } from '../Functions/MathBase/Function_ERF.js';
+import { Function_ERFC } from '../Functions/MathBase/Function_ERFC.js';
+import { Function_BESSELI } from '../Functions/MathBase/Function_BESSELI.js';
+import { Function_BESSELJ } from '../Functions/MathBase/Function_BESSELJ.js';
+import { Function_BESSELK } from '../Functions/MathBase/Function_BESSELK.js';
+import { Function_BESSELY } from '../Functions/MathBase/Function_BESSELY.js';
+import { Function_DELTA } from '../Functions/MathBase/Function_DELTA.js';
+import { Function_GESTEP } from '../Functions/MathBase/Function_GESTEP.js';
 import { Function_SUMSQ } from '../Functions/MathSum/Function_SUMSQ.js';
+import { Function_SUMPRODUCT } from '../Functions/MathSum/Function_SUMPRODUCT.js';
+import { Function_SUMX2MY2 } from '../Functions/MathSum/Function_SUMX2MY2.js';
+import { Function_SUMX2PY2 } from '../Functions/MathSum/Function_SUMX2PY2.js';
+import { Function_SUMXMY2 } from '../Functions/MathSum/Function_SUMXMY2.js';
+import { Function_SERIESSUM } from '../Functions/MathSum/Function_SERIESSUM.js';
+import { Function_ARABIC } from '../Functions/MathBase/Function_ARABIC.js';
+import { Function_ROMAN } from '../Functions/MathBase/Function_ROMAN.js';
+import { Function_RANK } from '../Functions/MathSum/Function_RANK.js';
+import { Function_FORECAST } from '../Functions/MathSum/Function_FORECAST.js';
+import { Function_INTERCEPT } from '../Functions/MathSum/Function_INTERCEPT.js';
+import { Function_SLOPE } from '../Functions/MathSum/Function_SLOPE.js';
+import { Function_CORREL } from '../Functions/MathSum/Function_CORREL.js';
+import { Function_PEARSON } from '../Functions/MathSum/Function_PEARSON.js';
+import { Function_YEARFRAC } from '../Functions/DateTimes/Function_YEARFRAC.js';
+import { Function_PMT } from '../Functions/Financial/Function_PMT.js';
+import { Function_PPMT } from '../Functions/Financial/Function_PPMT.js';
+import { Function_IPMT } from '../Functions/Financial/Function_IPMT.js';
+import { Function_PV } from '../Functions/Financial/Function_PV.js';
+import { Function_FV } from '../Functions/Financial/Function_FV.js';
+import { Function_NPER } from '../Functions/Financial/Function_NPER.js';
+import { Function_RATE } from '../Functions/Financial/Function_RATE.js';
+import { Function_NPV } from '../Functions/Financial/Function_NPV.js';
+import { Function_XNPV } from '../Functions/Financial/Function_XNPV.js';
+import { Function_IRR } from '../Functions/Financial/Function_IRR.js';
+import { Function_MIRR } from '../Functions/Financial/Function_MIRR.js';
+import { Function_XIRR } from '../Functions/Financial/Function_XIRR.js';
+import { Function_SLN } from '../Functions/Financial/Function_SLN.js';
+import { Function_SYD } from '../Functions/Financial/Function_SYD.js';
+import { Function_DDB } from '../Functions/Financial/Function_DDB.js';
+import { Function_DB } from '../Functions/Financial/Function_DB.js';
 import { Function_ASC } from '../Functions/String/Function_ASC.js';
 import { Function_JIS } from '../Functions/String/Function_JIS.js';
 import { Function_CHAR } from '../Functions/String/Function_CHAR.js';
@@ -105,6 +150,8 @@ import { Function_T } from '../Functions/String/Function_T.js';
 import { Function_TEXT } from '../Functions/String/Function_TEXT.js';
 import { Function_TRIM } from '../Functions/String/Function_TRIM.js';
 import { Function_UPPER } from '../Functions/String/Function_UPPER.js';
+import { Function_UNICHAR } from '../Functions/String/Function_UNICHAR.js';
+import { Function_UNICODE } from '../Functions/String/Function_UNICODE.js';
 import { Function_DATEVALUE } from '../Functions/DateTimes/Function_DATEVALUE.js';
 import { Function_TIMESTAMP } from '../Functions/DateTimes/Function_TIMESTAMP.js';
 import { Function_TIMEVALUE } from '../Functions/DateTimes/Function_TIMEVALUE.js';
@@ -126,6 +173,7 @@ import { Function_EOMONTH } from '../Functions/DateTimes/Function_EOMONTH.js';
 import { Function_NETWORKDAYS } from '../Functions/DateTimes/Function_NETWORKDAYS.js';
 import { Function_WORKDAY } from '../Functions/DateTimes/Function_WORKDAY.js';
 import { Function_WEEKNUM } from '../Functions/DateTimes/Function_WEEKNUM.js';
+import { Function_DAYS } from '../Functions/DateTimes/Function_DAYS.js';
 import { Function_ADDMONTHS } from '../Functions/DateTimes/Function_ADDMONTHS.js';
 import { Function_ADDYEARS } from '../Functions/DateTimes/Function_ADDYEARS.js';
 import { Function_ADDSECONDS } from '../Functions/DateTimes/Function_ADDSECONDS.js';
@@ -214,6 +262,8 @@ import { Function_LOOKFLOOR } from '../Functions/Csharp/Function_LOOKFLOOR.js';
 import { Function_HAS } from '../Functions/Csharp/Function_HAS.js';
 import { Function_HASVALUE } from '../Functions/Csharp/Function_HASVALUE.js';
 import { Function_IF } from '../Functions/Flow/Function_IF.js';
+import { Function_IFS } from '../Functions/Flow/Function_IFS.js';
+import { Function_SWITCH } from '../Functions/Flow/Function_SWITCH.js';
 import { Function_IFERROR } from '../Functions/Flow/Function_IFERROR.js';
 import { Function_ISERROR } from '../Functions/Flow/Function_ISERROR.js';
 import { Function_ISNULL } from '../Functions/Flow/Function_ISNULL.js';
@@ -239,1965 +289,460 @@ import { Function_ERROR } from '../Functions/Value/Function_ERROR.js';
 import { CharUtil } from './CharUtil.js';
 import { Operand } from '../../Operand.js';
 
-class MathFunctionVisitor extends mathVisitor  {
-    /**
-     * 访问程序节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitProg(context) {
+const funcDict = {
+    "IF": (args) => new Function_IF(args),
+    "IFS": (args) => new Function_IFS(args),
+    "SWITCH": (args) => new Function_SWITCH(args),
+    "IFERROR": (args) => new Function_IFERROR(args),
+    "ISNUMBER": (args) => new Function_ISNUMBER(args),
+    "ISTEXT": (args) => new Function_ISTEXT(args),
+    "ISERROR": (args) => new Function_ISERROR(args),
+    "ISNONTEXT": (args) => new Function_ISNONTEXT(args),
+    "ISLOGICAL": (args) => new Function_ISLOGICAL(args),
+    "ISEVEN": (args) => new Function_ISEVEN(args),
+    "ISODD": (args) => new Function_ISODD(args),
+    "ISNULL": (args) => new Function_ISNULL(args),
+    "ISNULLORERROR": (args) => new Function_ISNULLORERROR(args),
+    "AND": (args) => new Function_AND(args),
+    "OR": (args) => new Function_OR(args),
+    "XOR": (args) => new Function_XOR(args),
+    "NOT": (args) => new Function_NOT(args),
+    "DEC2BIN": (args) => new Function_DEC2BIN(args),
+    "DEC2HEX": (args) => new Function_DEC2HEX(args),
+    "DEC2OCT": (args) => new Function_DEC2OCT(args),
+    "HEX2BIN": (args) => new Function_HEX2BIN(args),
+    "HEX2DEC": (args) => new Function_HEX2DEC(args),
+    "HEX2OCT": (args) => new Function_HEX2OCT(args),
+    "OCT2BIN": (args) => new Function_OCT2BIN(args),
+    "OCT2DEC": (args) => new Function_OCT2DEC(args),
+    "OCT2HEX": (args) => new Function_OCT2HEX(args),
+    "BIN2OCT": (args) => new Function_BIN2OCT(args),
+    "BIN2DEC": (args) => new Function_BIN2DEC(args),
+    "BIN2HEX": (args) => new Function_BIN2HEX(args),
+    "ABS": (args) => new Function_ABS(args),
+    "QUOTIENT": (args) => new Function_QUOTIENT(args),
+    "MOD": (args) => new Function_Mod(args),
+    "SIGN": (args) => new Function_SIGN(args),
+    "SQRT": (args) => new Function_SQRT(args),
+    "TRUNC": (args) => new Function_TRUNC(args),
+    "INT": (args) => new Function_TRUNC(args),
+    "GCD": (args) => new Function_GCD(args),
+    "LCM": (args) => new Function_LCM(args),
+    "COMBIN": (args) => new Function_COMBIN(args),
+    "PERMUT": (args) => new Function_PERMUT(args),
+    "DEGREES": (args) => new Function_DEGREES(args),
+    "RADIANS": (args) => new Function_RADIANS(args),
+    "COS": (args) => new Function_COS(args),
+    "COSH": (args) => new Function_COSH(args),
+    "SIN": (args) => new Function_SIN(args),
+    "SINH": (args) => new Function_SINH(args),
+    "TAN": (args) => new Function_TAN(args),
+    "TANH": (args) => new Function_TANH(args),
+    "ACOS": (args) => new Function_ACOS(args),
+    "ACOSH": (args) => new Function_ACOSH(args),
+    "ASIN": (args) => new Function_ASIN(args),
+    "ASINH": (args) => new Function_ASINH(args),
+    "ATAN": (args) => new Function_ATAN(args),
+    "ATANH": (args) => new Function_ATANH(args),
+    "ATAN2": (args) => new Function_ATAN2(args),
+    "COT": (args) => new Function_COT(args),
+    "COTH": (args) => new Function_COTH(args),
+    "CSC": (args) => new Function_CSC(args),
+    "CSCH": (args) => new Function_CSCH(args),
+    "SEC": (args) => new Function_SEC(args),
+    "SECH": (args) => new Function_SECH(args),
+    "ACOT": (args) => new Function_ACOT(args),
+    "ACOTH": (args) => new Function_ACOTH(args),
+    "ROUND": (args) => new Function_ROUND(args),
+    "ROUNDDOWN": (args) => new Function_ROUNDDOWN(args),
+    "ROUNDUP": (args) => new Function_ROUNDUP(args),
+    "CEILING": (args) => new Function_CEILING(args),
+    "FLOOR": (args) => new Function_FLOOR(args),
+    "EVEN": (args) => new Function_EVEN(args),
+    "ODD": (args) => new Function_ODD(args),
+    "MROUND": (args) => new Function_MROUND(args),
+    "RANDBETWEEN": (args) => new Function_RANDBETWEEN(args),
+    "FACT": (args) => new Function_FACT(args),
+    "FACTDOUBLE": (args) => new Function_FACTDOUBLE(args),
+    "POWER": (args) => new Function_POWER(args),
+    "EXP": (args) => new Function_EXP(args),
+    "LN": (args) => new Function_LN(args),
+    "LOG": (args) => new Function_LOG(args),
+    "LOG10": (args) => new Function_LOG10(args),
+    "MULTINOMIAL": (args) => new Function_MULTINOMIAL(args),
+    "PRODUCT": (args) => new Function_PRODUCT(args),
+    "SQRTPI": (args) => new Function_SQRTPI(args),
+    "ERF": (args) => new Function_ERF(args),
+    "ERFC": (args) => new Function_ERFC(args),
+    "BESSELI": (args) => new Function_BESSELI(args),
+    "BESSELJ": (args) => new Function_BESSELJ(args),
+    "BESSELK": (args) => new Function_BESSELK(args),
+    "BESSELY": (args) => new Function_BESSELY(args),
+    "DELTA": (args) => new Function_DELTA(args),
+    "GESTEP": (args) => new Function_GESTEP(args),
+    "SUMSQ": (args) => new Function_SUMSQ(args),
+    "ASC": (args) => new Function_ASC(args),
+    "JIS": (args) => new Function_JIS(args),
+    "WIDECHAR": (args) => new Function_JIS(args),
+    "CHAR": (args) => new Function_CHAR(args),
+    "CLEAN": (args) => new Function_CLEAN(args),
+    "CODE": (args) => new Function_CODE(args),
+    "CONCATENATE": (args) => new Function_CONCATENATE(args),
+    "EXACT": (args) => new Function_EXACT(args),
+    "FIND": (args) => new Function_FIND(args),
+    "FIXED": (args) => new Function_FIXED(args),
+    "LEFT": (args) => new Function_LEFT(args),
+    "LEN": (args) => new Function_LEN(args),
+    "LOWER": (args) => new Function_LOWER(args),
+    "TOLOWER": (args) => new Function_LOWER(args),
+    "MID": (args) => new Function_MID(args),
+    "PROPER": (args) => new Function_PROPER(args),
+    "REPLACE": (args) => new Function_REPLACE(args),
+    "REPT": (args) => new Function_REPT(args),
+    "RIGHT": (args) => new Function_RIGHT(args),
+    "RMB": (args) => new Function_RMB(args),
+    "SEARCH": (args) => new Function_SEARCH(args),
+    "SUBSTITUTE": (args) => new Function_SUBSTITUTE(args),
+    "T": (args) => new Function_T(args),
+    "TEXT": (args) => new Function_TEXT(args),
+    "TRIM": (args) => new Function_TRIM(args),
+    "UPPER": (args) => new Function_UPPER(args),
+    "TOUPPER": (args) => new Function_UPPER(args),
+    "VALUE": (args) => new Function_VALUE(args),
+    "UNICHAR": (args) => new Function_UNICHAR(args),
+    "UNICODE": (args) => new Function_UNICODE(args),
+    "DATEVALUE": (args) => new Function_DATEVALUE(args),
+    "TIMEVALUE": (args) => new Function_TIMEVALUE(args),
+    "DATE": (args) => new Function_DATE(args),
+    "TIME": (args) => new Function_TIME(args),
+    "YEAR": (args) => new Function_YEAR(args),
+    "MONTH": (args) => new Function_MONTH(args),
+    "DAY": (args) => new Function_DAY(args),
+    "HOUR": (args) => new Function_HOUR(args),
+    "MINUTE": (args) => new Function_MINUTE(args),
+    "SECOND": (args) => new Function_SECOND(args),
+    "WEEKDAY": (args) => new Function_WEEKDAY(args),
+    "DATEDIF": (args) => new Function_DATEDIF(args),
+    "DAYS360": (args) => new Function_DAYS360(args),
+    "EDATE": (args) => new Function_EDATE(args),
+    "EOMONTH": (args) => new Function_EOMONTH(args),
+    "NETWORKDAYS": (args) => new Function_NETWORKDAYS(args),
+    "WORKDAY": (args) => new Function_WORKDAY(args),
+    "WEEKNUM": (args) => new Function_WEEKNUM(args),
+    "DAYS": (args) => new Function_DAYS(args),
+    "MAX": (args) => new Function_MAX(args),
+    "MEDIAN": (args) => new Function_MEDIAN(args),
+    "MIN": (args) => new Function_MIN(args),
+    "QUARTILE": (args) => new Function_QUARTILE(args),
+    "MODE": (args) => new Function_MODE(args),
+    "LARGE": (args) => new Function_LARGE(args),
+    "SMALL": (args) => new Function_SMALL(args),
+    "PERCENTILE": (args) => new Function_PERCENTILE(args),
+    "PERCENTILE.INC": (args) => new Function_PERCENTILE(args),
+    "PERCENTRANK": (args) => new Function_PERCENTRANK(args),
+    "PERCENTRANK.INC": (args) => new Function_PERCENTRANK(args),
+    "AVERAGE": (args) => new Function_AVERAGE(args),
+    "AVERAGEIF": (args) => new Function_AVERAGEIF(args),
+    "GEOMEAN": (args) => new Function_GEOMEAN(args),
+    "HARMEAN": (args) => new Function_HARMEAN(args),
+    "COUNT": (args) => new Function_COUNT(args),
+    "COUNTIF": (args) => new Function_COUNTIF(args),
+    "SUM": (args) => new Function_SUM(args),
+    "SUMIF": (args) => new Function_SUMIF(args),
+    "AVEDEV": (args) => new Function_AVEDEV(args),
+    "STDEV": (args) => new Function_STDEV(args),
+    "STDEV.S": (args) => new Function_STDEV(args),
+    "STDEVP": (args) => new Function_STDEVP(args),
+    "STDEV.P": (args) => new Function_STDEVP(args),
+    "COVAR": (args) => new Function_COVAR(args),
+    "COVARIANCE.P": (args) => new Function_COVAR(args),
+    "COVARIANCE.S": (args) => new Function_COVARIANCES(args),
+    "DEVSQ": (args) => new Function_DEVSQ(args),
+    "VAR": (args) => new Function_VAR(args),
+    "VAR.S": (args) => new Function_VAR(args),
+    "VARP": (args) => new Function_VARP(args),
+    "VAR.P": (args) => new Function_VARP(args),
+    "NORMDIST": (args) => new Function_NORMDIST(args),
+    "NORM.DIST": (args) => new Function_NORMDIST(args),
+    "NORMINV": (args) => new Function_NORMINV(args),
+    "NORM.INV": (args) => new Function_NORMINV(args),
+    "NORMSDIST": (args) => new Function_NORMSDIST(args),
+    "NORM.S.DIST": (args) => new Function_NORMSDIST(args),
+    "NORMSINV": (args) => new Function_NORMSINV(args),
+    "NORM.S.INV": (args) => new Function_NORMSINV(args),
+    "BETADIST": (args) => new Function_BETADIST(args),
+    "BETA.DIST": (args) => new Function_BETADIST(args),
+    "BETAINV": (args) => new Function_BETAINV(args),
+    "BETA.INV": (args) => new Function_BETAINV(args),
+    "BINOMDIST": (args) => new Function_BINOMDIST(args),
+    "BINOM.DIST": (args) => new Function_BINOMDIST(args),
+    "EXPONDIST": (args) => new Function_EXPONDIST(args),
+    "EXPON.DIST": (args) => new Function_EXPONDIST(args),
+    "FDIST": (args) => new Function_FDIST(args),
+    "F.DIST": (args) => new Function_FDIST(args),
+    "FINV": (args) => new Function_FINV(args),
+    "F.INV": (args) => new Function_FINV(args),
+    "FISHER": (args) => new Function_FISHER(args),
+    "FISHERINV": (args) => new Function_FISHERINV(args),
+    "GAMMADIST": (args) => new Function_GAMMADIST(args),
+    "GAMMA.DIST": (args) => new Function_GAMMADIST(args),
+    "GAMMAINV": (args) => new Function_GAMMAINV(args),
+    "GAMMA.INV": (args) => new Function_GAMMAINV(args),
+    "GAMMALN": (args) => new Function_GAMMALN(args),
+    "GAMMALN.PRECISE": (args) => new Function_GAMMALN(args),
+    "HYPGEOMDIST": (args) => new Function_HYPGEOMDIST(args),
+    "HYPGEOM.DIST": (args) => new Function_HYPGEOMDIST(args),
+    "LOGINV": (args) => new Function_LOGINV(args),
+    "LOGNORM.INV": (args) => new Function_LOGINV(args),
+    "LOGNORMDIST": (args) => new Function_LOGNORMDIST(args),
+    "LOGNORM.DIST": (args) => new Function_LOGNORMDIST(args),
+    "NEGBINOMDIST": (args) => new Function_NEGBINOMDIST(args),
+    "NEGBINOM.DIST": (args) => new Function_NEGBINOMDIST(args),
+    "POISSON": (args) => new Function_POISSON(args),
+    "POISSON.DIST": (args) => new Function_POISSON(args),
+    "TDIST": (args) => new Function_TDIST(args),
+    "T.DIST": (args) => new Function_TDIST(args),
+    "TINV": (args) => new Function_TINV(args),
+    "T.INV": (args) => new Function_TINV(args),
+    "WEIBULL": (args) => new Function_WEIBULL(args),
+    "URLENCODE": (args) => new Function_URLENCODE(args),
+    "URLDECODE": (args) => new Function_URLDECODE(args),
+    "HTMLENCODE": (args) => new Function_HTMLENCODE(args),
+    "HTMLDECODE": (args) => new Function_HTMLDECODE(args),
+    "BASE64TOTEXT": (args) => new Function_BASE64TOTEXT(args),
+    "BASE64URLTOTEXT": (args) => new Function_BASE64URLTOTEXT(args),
+    "TEXTTOBASE64": (args) => new Function_TEXTTOBASE64(args),
+    "TEXTTOBASE64URL": (args) => new Function_TEXTTOBASE64URL(args),
+    "REGEX": (args) => new Function_REGEX(args),
+    "REGEXREPALCE": (args) => new Function_REGEXREPALCE(args),
+    "ISREGEX": (args) => new Function_ISREGEX(args),
+    "ISMATCH": (args) => new Function_ISREGEX(args),
+    "MD5": (args) => new Function_MD5(args),
+    "SHA1": (args) => new Function_SHA1(args),
+    "SHA256": (args) => new Function_SHA256(args),
+    "SHA512": (args) => new Function_SHA512(args),
+    "HMACMD5": (args) => new Function_HMACMD5(args),
+    "HMACSHA1": (args) => new Function_HMACSHA1(args),
+    "HMACSHA256": (args) => new Function_HMACSHA256(args),
+    "HMACSHA512": (args) => new Function_HMACSHA512(args),
+    "TRIMSTART": (args) => new Function_TRIMSTART(args),
+    "LTRIM": (args) => new Function_TRIMSTART(args),
+    "TRIMEND": (args) => new Function_TRIMEND(args),
+    "RTRIM": (args) => new Function_TRIMEND(args),
+    "INDEXOF": (args) => new Function_INDEXOF(args),
+    "LASTINDEXOF": (args) => new Function_LASTINDEXOF(args),
+    "SPLIT": (args) => new Function_SPLIT(args),
+    "JOIN": (args) => new Function_JOIN(args),
+    "SUBSTRING": (args) => new Function_SUBSTRING(args),
+    "STARTSWITH": (args) => new Function_STARTSWITH(args),
+    "ENDSWITH": (args) => new Function_ENDSWITH(args),
+    "ISNULLOREMPTY": (args) => new Function_ISNULLOREMPTY(args),
+    "ISNULLORWHITESPACE": (args) => new Function_ISNULLORWHITESPACE(args),
+    "REMOVESTART": (args) => new Function_REMOVESTART(args),
+    "REMOVEEND": (args) => new Function_REMOVEEND(args),
+    "JSON": (args) => new Function_JSON(args),
+    "LOOKCEILING": (args) => new Function_LOOKCEILING(args),
+    "LOOKFLOOR": (args) => new Function_LOOKFLOOR(args),
+    "ARRAY": (args) => new Function_Array(args),
+    "ADDYEARS": (args) => new Function_ADDYEARS(args),
+    "ADDMONTHS": (args) => new Function_ADDMONTHS(args),
+    "ADDDAYS": (args) => new Function_ADDDAYS(args),
+    "ADDHOURS": (args) => new Function_ADDHOURS(args),
+    "ADDMINUTES": (args) => new Function_ADDMINUTES(args),
+    "ADDSECONDS": (args) => new Function_ADDSECONDS(args),
+    "TIMESTAMP": (args) => new Function_TIMESTAMP(args),
+    "HAS": (args) => new Function_HAS(args),
+    "HASKEY": (args) => new Function_HAS(args),
+    "CONTAINS": (args) => new Function_HAS(args),
+    "CONTAINSKEY": (args) => new Function_HAS(args),
+    "HASVALUE": (args) => new Function_HASVALUE(args),
+    "CONTAINSVALUE": (args) => new Function_HASVALUE(args),
+    "PARAM": (args) => new Function_PARAM(args),
+    "PARAMETER": (args) => new Function_PARAM(args),
+    "GETPARAMETER": (args) => new Function_PARAM(args),
+    "ERROR": (args) => new Function_ERROR(args),
+    "SUMPRODUCT": (args) => new Function_SUMPRODUCT(args),
+    "SUMX2MY2": (args) => new Function_SUMX2MY2(args),
+    "SUMX2PY2": (args) => new Function_SUMX2PY2(args),
+    "SUMXMY2": (args) => new Function_SUMXMY2(args),
+    "SERIESSUM": (args) => new Function_SERIESSUM(args),
+    "ARABIC": (args) => new Function_ARABIC(args),
+    "ROMAN": (args) => new Function_ROMAN(args),
+    "RANK": (args) => new Function_RANK(args),
+    "FORECAST": (args) => new Function_FORECAST(args),
+    "INTERCEPT": (args) => new Function_INTERCEPT(args),
+    "SLOPE": (args) => new Function_SLOPE(args),
+    "CORREL": (args) => new Function_CORREL(args),
+    "PEARSON": (args) => new Function_PEARSON(args),
+    "YEARFRAC": (args) => new Function_YEARFRAC(args),
+    "PMT": (args) => new Function_PMT(args),
+    "PPMT": (args) => new Function_PPMT(args),
+    "IPMT": (args) => new Function_IPMT(args),
+    "PV": (args) => new Function_PV(args),
+    "FV": (args) => new Function_FV(args),
+    "NPER": (args) => new Function_NPER(args),
+    "RATE": (args) => new Function_RATE(args),
+    "NPV": (args) => new Function_NPV(args),
+    "XNPV": (args) => new Function_XNPV(args),
+    "IRR": (args) => new Function_IRR(args),
+    "MIRR": (args) => new Function_MIRR(args),
+    "XIRR": (args) => new Function_XIRR(args),
+    "SLN": (args) => new Function_SLN(args),
+    "SYD": (args) => new Function_SYD(args),
+    "DDB": (args) => new Function_DDB(args),
+    "DB": (args) => new Function_DB(args),
+};
+
+function findFunction(funcName) {
+    return funcDict[funcName];
+}
+
+class MathFunctionVisitor extends mathVisitor {
+    static getFuncDict() {
+        return funcDict;
+    }
+
+    vN(context) {
+        let exprs = context.expr();
+        let args = new Array(exprs.length);
+        for (let i = 0; i < exprs.length; i++) {
+            args[i] = exprs[i].accept(this);
+        }
+        return args;
+    }
+
+    v1(context) {
         return context.expr().accept(this);
     }
 
-    /**
-     * 访问乘除函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
+    visitProg(context) {
+        return this.v1(context);
+    }
+
     visitMulDiv_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
+        let funcs = this.vN(context);
         let t = context.op.text;
-        if (CharUtil.Equals(t, '*')) {
-            return new Function_Mul(args1, args2);
-        } else if (CharUtil.Equals(t, '/')) {
-            return new Function_Div(args1, args2);
+        if (CharUtil.equals(t, '*')) {
+            return new Function_Mul(funcs);
+        } else if (CharUtil.equals(t, '/')) {
+            return new Function_Div(funcs);
         }
-        return new Function_Mod(args1, args2);
+        return new Function_Mod(funcs);
     }
 
-    /**
-     * 访问加减函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitAddSub_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
+        let funcs = this.vN(context);
         let t = context.op.text;
-        if (CharUtil.Equals(t, '&')) {
-            return new Function_Connect(args1, args2);
-        } else if (CharUtil.Equals(t, '+')) {
-            return new Function_Add(args1, args2);
+        if (CharUtil.equals(t, '&')) {
+            return new Function_Connect(funcs);
+        } else if (CharUtil.equals(t, '+')) {
+            return new Function_Add(funcs);
         }
-        return new Function_Sub(args1, args2);
+        return new Function_Sub(funcs);
     }
 
-    /**
-     * 访问判断函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitJudge_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-
+        let funcs = this.vN(context);
         let Type = context.op.text;
-        if (CharUtil.Equals4(Type, "=", "==", "===")) {
-            return new Function_EQ(args1, args2);
-        } else if (CharUtil.Equals(Type, "<")) {
-            return new Function_LT(args1, args2);
-        } else if (CharUtil.Equals(Type, "<=")) {
-            return new Function_LE(args1, args2);
-        } else if (CharUtil.Equals(Type, ">")) {
-            return new Function_GT(args1, args2);
-        } else if (CharUtil.Equals(Type, ">=")) {
-            return new Function_GE(args1, args2);
+        if (CharUtil.equals4(Type, "=", "==", "===")) {
+            return new Function_EQ(funcs);
+        } else if (CharUtil.equals(Type, "<")) {
+            return new Function_LT(funcs);
+        } else if (CharUtil.equals(Type, "<=")) {
+            return new Function_LE(funcs);
+        } else if (CharUtil.equals(Type, ">")) {
+            return new Function_GT(funcs);
+        } else if (CharUtil.equals(Type, ">=")) {
+            return new Function_GE(funcs);
         }
-        return new Function_NE(args1, args2);
+        return new Function_NE(funcs);
     }
 
-    /**
-     * 访问与或函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitAndOr_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
+        let funcs = this.vN(context);
         let t = context.op.text;
-        if (CharUtil.Equals3(t, "&&", "AND")) {
-            return new Function_AND(args1, args2);
+        if (CharUtil.equals(t, "&&")) {
+            return new Function_AND(funcs);
         }
-        return new Function_OR(args1, args2);
+        return new Function_OR(funcs);
     }
 
-    /**
-     * 访问IF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitIF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 3) {
-            let args3 = exprs[2].accept(this);
-            return new Function_IF(args1, args2, args3);
+    visitDiyFunction_fun(context) {
+        let t = CharUtil.standardString(context.f.text);
+        if (t === "E") {
+            return new Function_Value(Operand.Create(Math.E), "E");
+        } else if (t === "PI") {
+            return new Function_Value(Operand.Create(Math.PI), "PI");
+        } else if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
+            return new Function_Value(Operand.True, t);
+        } else if (t === "FALSE" || t === "NO" || t === "不是" || t === "否" || t === "没有" || t === "无") {
+            return new Function_Value(Operand.False, t);
+        } else if (t === "ALGORITHMVERSION" || t === "ENGINEVERSION") {
+            return new Function_Value(Operand.Version, t);
+        } else if (t === "RAND") {
+            return new Function_RAND();
+        } else if (t === "GUID") {
+            return new Function_GUID();
+        } else if (t === "NOW") {
+            return new Function_NOW();
+        } else if (t === "TODAY") {
+            return new Function_TODAY();
         }
-        return new Function_IF(args1, args2, null);
-    }
 
-    /**
-     * 访问IFERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitIFERROR_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_IFERROR(args1, args2, args3);
-    }
-
-    /**
-     * 访问ISNUMBER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNUMBER_fun(context) {
-        let args1 = this.visit(context.expr());
-        return new Function_ISNUMBER(args1);
-    }
-
-    /**
-     * 访问ISTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISTEXT_fun(context) {
-        let args1 = this.visit(context.expr());
-        return new Function_ISTEXT(args1);
-    }
-
-    /**
-     * 访问ISERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISERROR_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 2) {
-            let args2 = exprs[1].accept(this);
-            return new Function_ISERROR(args1, args2);
+        let funcs = this.vN(context);
+        let func = findFunction(t);
+        if (func) {
+            return func(funcs);
         }
-        return new Function_ISERROR(args1, null);
+        return new Function_DiyFunction(t, funcs);
     }
 
-    /**
-     * 访问ISNULL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULL_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 2) {
-            let args2 = exprs[1].accept(this);
-            return new Function_ISNULL(args1, args2);
+    visitPARAMETER_fun(context) {
+        let node = context.PARAMETER();
+        let t = CharUtil.standardString(node.getText());
+        if (t === "E") {
+            return new Function_Value(Operand.Create(Math.E), "E");
+        } else if (t === "PI") {
+            return new Function_Value(Operand.Create(Math.PI), "PI");
+        } else if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
+            return new Function_Value(Operand.True, t);
+        } else if (t === "FALSE" || t === "NO" || t === "不是" || t === "否" || t === "没有" || t === "无") {
+            return new Function_Value(Operand.False, t);
+        } else if (t === "ALGORITHMVERSION" || t === "ENGINEVERSION") {
+            return new Function_Value(Operand.Version, t);
         }
-        return new Function_ISNULL(args1, null);
+        return new Function_PARAMETER(node.getText());
     }
 
-    /**
-     * 访问ISNULLORERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULLORERROR_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 2) {
-            let args2 = exprs[1].accept(this);
-            return new Function_ISNULLORERROR(args1, args2);
-        }
-        return new Function_ISNULLORERROR(args1, null);
-    }
-
-    /**
-     * 访问ISEVEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISEVEN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ISEVEN(args1);
-    }
-
-    /**
-     * 访问ISLOGICAL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISLOGICAL_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ISLOGICAL(args1);
-    }
-
-    /**
-     * 访问ISODD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISODD_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ISODD(args1);
-    }
-
-    /**
-     * 访问ISNONTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNONTEXT_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ISNONTEXT(args1);
-    }
-
-    /**
-     * 访问AND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAND_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_AND_N(args);
-    }
-
-    /**
-     * 访问OR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOR_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_OR_N(args);
-    }
-
-    /**
-     * 访问NOT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNOT_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_NOT(args1);
-    }
-
-    /**
-     * 访问TRUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRUE_fun(context) {
-        return new Function_Value(Operand.True);
-    }
-
-    /**
-     * 访问FALSE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFALSE_fun(context) {
-        return new Function_Value(Operand.False);
-    }
-
-    /**
-     * 访问E函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitE_fun(context) {
-        return new Function_Value(Operand.Create(Math.E), "E");
-    }
-
-    /**
-     * 访问PI函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPI_fun(context) {
-        return new Function_Value(Operand.Create(Math.PI), "PI");
-    }
-
-    /**
-     * 访问ABS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitABS_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ABS(args1);
-    }
-
-    /**
-     * 访问QUOTIENT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitQUOTIENT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_QUOTIENT(args1, args2);
-    }
-
-    /**
-     * 访问MOD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMOD_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_Mod(args1, args2);
-    }
-
-    /**
-     * 访问SIGN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSIGN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_SIGN(args1);
-    }
-
-    /**
-     * 访问SQRT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSQRT_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_SQRT(args1);
-    }
-
-    /**
-     * 访问TRUNC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRUNC_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TRUNC(args1);
-    }
-
-    /**
-     * 访问INT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitINT_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TRUNC(args1);
-    }
-
-    /**
-     * 访问GCD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGCD_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_GCD(args);
-    }
-
-    /**
-     * 访问LCM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLCM_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_LCM(args);
-    }
-
-    /**
-     * 访问COMBIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOMBIN_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_COMBIN(args1, args2);
-    }
-
-    /**
-     * 访问PERMUT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPERMUT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_PERMUT(args1, args2);
-    }
-
-    /**
-     * 访问Percentage函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitPercentage_fun(context) {
-        let args1 = context.expr().accept(this);
+        let args1 = this.v1(context);
         return new Function_Percentage(args1);
     }
 
-    /**
-     * 访问DEGREES函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEGREES_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_DEGREES(args1);
-    }
-
-    /**
-     * 访问RADIANS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRADIANS_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_RADIANS(args1);
-    }
-
-    /**
-     * 访问COS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOS_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_COS(args1);
-    }
-
-    /**
-     * 访问COSH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOSH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_COSH(args1);
-    }
-
-    /**
-     * 访问SIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSIN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_SIN(args1);
-    }
-
-    /**
-     * 访问SINH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSINH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_SINH(args1);
-    }
-
-    /**
-     * 访问TAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTAN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TAN(args1);
-    }
-
-    /**
-     * 访问TANH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTANH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TANH(args1);
-    }
-
-    /**
-     * 访问ACOS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitACOS_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ACOS(args1);
-    }
-
-    /**
-     * 访问ACOSH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitACOSH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ACOSH(args1);
-    }
-
-    /**
-     * 访问ASIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitASIN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ASIN(args1);
-    }
-
-    /**
-     * 访问ASINH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitASINH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ASINH(args1);
-    }
-
-    /**
-     * 访问ATAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitATAN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ATAN(args1);
-    }
-
-    /**
-     * 访问ATANH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitATANH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ATANH(args1);
-    }
-
-    /**
-     * 访问ATAN2函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitATAN2_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ATAN2(args1, args2);
-    }
-
-    /**
-     * 访问FIXED函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFIXED_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_FIXED(args1, null, null);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_FIXED(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_FIXED(args1, args2, args3);
-    }
-
-    /**
-     * 访问BIN2OCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBIN2OCT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_BIN2OCT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_BIN2OCT(args1, args2);
-    }
-
-    /**
-     * 访问BIN2DEC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBIN2DEC_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_BIN2DEC(args1);
-    }
-
-    /**
-     * 访问BIN2HEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBIN2HEX_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_BIN2HEX(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_BIN2HEX(args1, args2);
-    }
-
-    /**
-     * 访问OCT2BIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOCT2BIN_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_OCT2BIN(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_OCT2BIN(args1, args2);
-    }
-
-    /**
-     * 访问OCT2DEC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOCT2DEC_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_OCT2DEC(args1);
-    }
-
-    /**
-     * 访问OCT2HEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitOCT2HEX_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_OCT2HEX(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_OCT2HEX(args1, args2);
-    }
-
-    /**
-     * 访问DEC2BIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEC2BIN_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_DEC2BIN(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_DEC2BIN(args1, args2);
-    }
-
-    /**
-     * 访问DEC2OCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEC2OCT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_DEC2OCT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_DEC2OCT(args1, args2);
-    }
-
-    /**
-     * 访问DEC2HEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEC2HEX_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_DEC2HEX(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_DEC2HEX(args1, args2);
-    }
-
-    /**
-     * 访问HEX2BIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHEX2BIN_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_HEX2BIN(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_HEX2BIN(args1, args2);
-    }
-
-    /**
-     * 访问HEX2OCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHEX2OCT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_HEX2OCT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_HEX2OCT(args1, args2);
-    }
-
-    /**
-     * 访问HEX2DEC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHEX2DEC_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_HEX2DEC(args1);
-    }
-
-    /**
-     * 访问ROUND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitROUND_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) {
-            return new Function_ROUND(args1, null);
+    visitSTRING_fun(context) {
+        let opd = context.getText();
+        let sb = [];
+        let index = 1;
+        while (index < opd.length - 1) {
+            let c = opd[index++];
+            if (c === '\\') {
+                let c2 = opd[index++];
+                if (c2 === 'n') sb.push('\n');
+                else if (c2 === 'r') sb.push('\r');
+                else if (c2 === 't') sb.push('\t');
+                else if (c2 === '0') sb.push('\0');
+                else if (c2 === 'v') sb.push('\v');
+                else if (c2 === 'a') sb.push('\a');
+                else if (c2 === 'b') sb.push('\b');
+                else if (c2 === 'f') sb.push('\f');
+                else sb.push(opd[index++]);
+            } else {
+                sb.push(c);
+            }
         }
-        let args2 = exprs[1].accept(this);
-        return new Function_ROUND(args1, args2);
+        return new Function_Value(Operand.Create(sb.join('')));
     }
 
-    /**
-     * 访问ROUNDDOWN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitROUNDDOWN_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ROUNDDOWN(args1, args2);
-    }
-
-    /**
-     * 访问ROUNDUP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitROUNDUP_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ROUNDUP(args1, args2);
-    }
-
-    /**
-     * 访问CEILING函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCEILING_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1)
-            return new Function_CEILING(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_CEILING(args1, args2);
-    }
-
-    /**
-     * 访问FLOOR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFLOOR_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1)
-            return new Function_FLOOR(args1, null);
-
-        let args2 = exprs[1].accept(this);
-        return new Function_FLOOR(args1, args2);
-    }
-
-    /**
-     * 访问EVEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEVEN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_EVEN(args1);
-    }
-
-    /**
-     * 访问ODD函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitODD_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ODD(args1);
-    }
-
-    /**
-     * 访问MROUND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMROUND_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_MROUND(args1, args2);
-    }
-
-    /**
-     * 访问RAND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRAND_fun(context) {
-        return new Function_RAND();
-    }
-
-    /**
-     * 访问RANDBETWEEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRANDBETWEEN_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_RANDBETWEEN(args1, args2);
-    }
-
-    /**
-     * 访问COVARIANCES函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOVARIANCES_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_COVARIANCES(args1, args2);
-    }
-
-    /**
-     * 访问COVAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOVAR_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_COVAR(args1, args2);
-    }
-
-    /**
-     * 访问FACT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFACT_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_FACT(args1);
-    }
-
-    /**
-     * 访问FACTDOUBLE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFACTDOUBLE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_FACTDOUBLE(args1);
-    }
-
-    /**
-     * 访问POWER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPOWER_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_POWER(args1, args2);
-    }
-
-    /**
-     * 访问EXP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEXP_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_EXP(args1);
-    }
-
-    /**
-     * 访问LN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_LN(args1);
-    }
-
-    /**
-     * 访问LOG函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOG_fun(context) {
-        let exprs = context.expr();
-
-        let args1 = exprs[0].accept(this);
-        if (exprs.length > 1) {
-            let args2 = exprs[1].accept(this);
-            return new Function_LOG(args1, args2);
-        }
-        return new Function_LOG(args1, null);
-    }
-
-    /**
-     * 访问LOG10函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOG10_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_LOG(args1, null);
-    }
-
-    /**
-     * 访问MULTINOMIAL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMULTINOMIAL_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MULTINOMIAL(args);
-    }
-
-    /**
-     * 访问PRODUCT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPRODUCT_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_PRODUCT(args);
-    }
-
-    /**
-     * 访问SQRTPI函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSQRTPI_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_SQRTPI(args1);
-    }
-
-    /**
-     * 访问SUMSQ函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUMSQ_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_SUMSQ(args);
-    }
-
-    /**
-     * 访问ASC函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitASC_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ASC(args1);
-    }
-
-    /**
-     * 访问JIS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitJIS_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_JIS(args1);
-    }
-
-    /**
-     * 访问CHAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCHAR_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_CHAR(args1);
-    }
-
-    /**
-     * 访问CLEAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCLEAN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_CLEAN(args1);
-    }
-
-    /**
-     * 访问CODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCODE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_CODE(args1);
-    }
-
-    /**
-     * 访问CONCATENATE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCONCATENATE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_CONCATENATE(args);
-    }
-
-    /**
-     * 访问EXACT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEXACT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_EXACT(args1, args2);
-    }
-
-    /**
-     * 访问FIND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFIND_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-
-        if (exprs.length === 2) {
-            return new Function_FIND(args1, args2, null);
-        }
-        let count = exprs[2].accept(this);
-        return new Function_FIND(args1, args2, count);
-    }
-
-    /**
-     * 访问LEFT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLEFT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) {
-            return new Function_LEFT(args1, null);
-        }
-        return new Function_LEFT(args1, exprs[1].accept(this));
-    }
-
-    /**
-     * 访问LEN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLEN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_LEN(args1);
-    }
-
-    /**
-     * 访问LOWER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOWER_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_LOWER(args1);
-    }
-
-    /**
-     * 访问MID函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMID_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_MID(args1, args2, args3);
-    }
-
-    /**
-     * 访问PROPER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPROPER_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_PROPER(args1);
-    }
-
-    /**
-     * 访问REPLACE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREPLACE_fun(context) {
-        let exprs = context.expr();
-
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 3) {
-            let args22 = exprs[1].accept(this);
-            let args32 = exprs[2].accept(this);
-            return new Function_REPLACE(args1, args22, args32, null);
-        }
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        let args4 = exprs[3].accept(this);
-        return new Function_REPLACE(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问REPT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREPT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_REPT(args1, args2);
-    }
-
-    /**
-     * 访问RIGHT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRIGHT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-
-        if (exprs.length === 1) {
-            return new Function_RIGHT(args1);
-        }
-        let args2 = exprs[1].accept(this);
-        return new Function_RIGHT(args1, args2);
-    }
-
-    /**
-     * 访问RMB函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitRMB_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_RMB(args1);
-    }
-
-    /**
-     * 访问SEARCH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSEARCH_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-
-        if (exprs.length === 2) {
-            return new Function_SEARCH(args1, args2, null);
-        }
-        let args3 = exprs[2].accept(this);
-        return new Function_SEARCH(args1, args2, args3);
-    }
-
-    /**
-     * 访问SUBSTITUTE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUBSTITUTE_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        if (exprs.length === 3) {
-            return new Function_SUBSTITUTE(args1, args2, args3, null);
-        }
-        let args4 = exprs[3].accept(this);
-        return new Function_SUBSTITUTE(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问T函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitT_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_T(args1);
-    }
-
-    /**
-     * 访问TEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTEXT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_TEXT(args1, args2);
-    }
-
-    /**
-     * 访问TRIM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRIM_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TRIM(args1);
-    }
-
-    /**
-     * 访问UPPER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitUPPER_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_UPPER(args1);
-    }
-
-    /**
-     * 访问VALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitVALUE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_VALUE(args1);
-    }
-
-    /**
-     * 访问DATEVALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDATEVALUE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_DATEVALUE(args);
-    }
-
-    /**
-     * 访问TIMESTAMP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTIMESTAMP_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TIMESTAMP(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_TIMESTAMP(args1, args2);
-    }
-
-    /**
-     * 访问TIMEVALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTIMEVALUE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_TIMEVALUE(args1);
-    }
-
-    /**
-     * 访问DATE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDATE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_DATE(args);
-    }
-
-    /**
-     * 访问TIME函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTIME_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_TIME(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_TIME(args1, args2, args3);
-    }
-
-    /**
-     * 访问NOW函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNOW_fun(context) {
-        return new Function_NOW();
-    }
-
-    /**
-     * 访问TODAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTODAY_fun(context) {
-        return new Function_TODAY();
-    }
-
-    /**
-     * 访问YEAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitYEAR_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_YEAR(args1);
-    }
-
-    /**
-     * 访问MONTH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMONTH_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_MONTH(args1);
-    }
-
-    /**
-     * 访问DAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDAY_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_DAY(args1);
-    }
-
-    /**
-     * 访问HOUR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHOUR_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_HOUR(args1);
-    }
-
-    /**
-     * 访问MINUTE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMINUTE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_MINUTE(args1);
-    }
-
-    /**
-     * 访问SECOND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSECOND_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_SECOND(args1);
-    }
-
-    /**
-     * 访问WEEKDAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWEEKDAY_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_WEEKDAY(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_WEEKDAY(args1, args2);
-    }
-
-    /**
-     * 访问DATEDIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDATEDIF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_DATEDIF(args1, args2, args3);
-    }
-
-    /**
-     * 访问DAYS360函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDAYS360_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 3) {
-            let args3 = exprs[2].accept(this);
-            return new Function_DAYS360(args1, args2, args3);
-        }
-        return new Function_DAYS360(args1, args2, null);
-    }
-
-    /**
-     * 访问EDATE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEDATE_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_EDATE(args1, args2);
-    }
-
-    /**
-     * 访问EOMONTH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEOMONTH_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_EOMONTH(args1, args2);
-    }
-
-    /**
-     * 访问NETWORKDAYS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNETWORKDAYS_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_NETWORKDAYS(args);
-    }
-
-    /**
-     * 访问WORKDAY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWORKDAY_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_WORKDAY(args);
-    }
-
-    /**
-     * 访问WEEKNUM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWEEKNUM_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_WEEKNUM(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_WEEKNUM(args1, args2);
-    }
-
-    /**
-     * 访问ADDMONTHS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDMONTHS_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ADDMONTHS(args1, args2);
-    }
-
-    /**
-     * 访问ADDYEARS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDYEARS_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ADDYEARS(args1, args2);
-    }
-
-    /**
-     * 访问ADDSECONDS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDSECONDS_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ADDSECONDS(args1, args2);
-    }
-
-    /**
-     * 访问ADDMINUTES函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDMINUTES_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ADDMINUTES(args1, args2);
-    }
-
-    /**
-     * 访问ADDDAYS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDDAYS_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ADDDAYS(args1, args2);
-    }
-
-    /**
-     * 访问ADDHOURS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitADDHOURS_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ADDHOURS(args1, args2);
-    }
-
-    /**
-     * 访问MAX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMAX_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MAX(args);
-    }
-
-    /**
-     * 访问MEDIAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMEDIAN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MEDIAN(args);
-    }
-
-    /**
-     * 访问MIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMIN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_MIN(args);
-    }
-
-    /**
-     * 访问HMACSHA1函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACSHA1_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACSHA1(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACSHA1(args1, args2, args3);
-    }
-
-    /**
-     * 访问HMACSHA256函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACSHA256_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACSHA256(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACSHA256(args1, args2, args3);
-    }
-
-    /**
-     * 访问HMACSHA512函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACSHA512_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACSHA512(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACSHA512(args1, args2, args3);
-    }
-
-    /**
-     * 访问STARTSWITH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSTARTSWITH_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_STARTSWITH(args1, args2);
-    }
-
-    /**
-     * 访问ENDSWITH函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitENDSWITH_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_ENDSWITH(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_ENDSWITH(args1, args2, args3);
-    }
-
-    /**
-     * 访问INDEXOF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitINDEXOF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_INDEXOF(args1, args2);
-    }
-
-    /**
-     * 访问LASTINDEXOF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLASTINDEXOF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_LASTINDEXOF(args1, args2);
-    }
-
-    /**
-     * 访问SPLIT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSPLIT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_SPLIT(args1, args2);
-    }
-
-    /**
-     * 访问SUBSTRING函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUBSTRING_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_SUBSTRING(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_SUBSTRING(args1, args2, args3);
-    }
-
-    /**
-     * 访问TRIMSTART函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRIMSTART_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TRIMSTART(args1);
-        let args2 = exprs[1].accept(this);
-        return new Function_TRIMSTART(args1, args2);
-    }
-
-    /**
-     * 访问TRIMEND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTRIMEND_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TRIMEND(args1);
-        let args2 = exprs[1].accept(this);
-        return new Function_TRIMEND(args1, args2);
-    }
-
-    /**
-     * 访问REMOVESTART函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREMOVESTART_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_REMOVESTART(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_REMOVESTART(args1, args2, args3);
-    }
-
-    /**
-     * 访问REMOVEEND函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREMOVEEND_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_REMOVEEND(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_REMOVEEND(args1, args2, args3);
-    }
-
-    /**
-     * 访问JOIN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitJOIN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_JOIN(args);
-    }
-
-    /**
-     * 访问LOOKCEILING函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOOKCEILING_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_LOOKCEILING(args1, args2);
-    }
-
-    /**
-     * 访问LOOKFLOOR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOOKFLOOR_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_LOOKFLOOR(args1, args2);
-    }
-
-    /**
-     * 访问HAS函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHAS_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_HAS(args1, args2);
-    }
-
-    /**
-     * 访问HASVALUE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHASVALUE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_HASVALUE(args1);
-    }
-
-    /**
-     * 访问ISNULLOREMPTY函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULLOREMPTY_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ISNULLOREMPTY(args1);
-    }
-
-    /**
-     * 访问ISNULLORWHITESPACE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISNULLORWHITESPACE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ISNULLORWHITESPACE(args1);
-    }
-
-    /**
-     * 访问Array函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitArray_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_Array(args);
-    }
-
-    /**
-     * 访问JSON函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitJSON_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_JSON(args1);
-    }
-
-    /**
-     * 访问ArrayJson函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitArrayJson_fun(context) {
         let exprs = context.arrayJson();
         let args = new Array(exprs.length);
@@ -2206,957 +751,70 @@ class MathFunctionVisitor extends mathVisitor  {
         }
         return new Function_ArrayJson(args);
     }
-    visitArrayJson(context) {
-        let keyName = null;
-        if (context.NUM) {
-            let numContext = context.NUM();
-            if (numContext) {
-                let numText = numContext.getText ? numContext.getText() : numContext.text;
-                let key = parseInt(numText);
-                if (!isNaN(key)) {
-                    keyName = key.toString();
-                } else {
-                    return new Function_Value(Operand.Error(`Json key '${numText}' is error!`));
-                }
-            }
-        }
-        if (context.STRING) {
-            let stringContext = context.STRING();
-            if (stringContext) {
-                let opd = stringContext.getText ? stringContext.getText() : stringContext.text;
-                let sb = [];
-                let index = 1;
-                while (index < opd.length - 1) {
-                    let c = opd[index++];
-                    if (c === '\\') {
-                        let c2 = opd[index++];
-                        if (c2 === 'n') sb.push('\n');
-                        else if (c2 === 'r') sb.push('\r');
-                        else if (c2 === 't') sb.push('\t');
-                        else if (c2 === '0') sb.push('\0');
-                        else if (c2 === 'v') sb.push('\v');
-                        else if (c2 === 'a') sb.push('\a');
-                        else if (c2 === 'b') sb.push('\b');
-                        else if (c2 === 'f') sb.push('\f');
-                        else sb.push(opd[index++]);
-                    } else {
-                        sb.push(c);
-                    }
-                }
-                keyName = sb.join('');
-            }
-        }
-        if (context.parameter2) {
-            let paramContext = context.parameter2();
-            if (paramContext) {
-                keyName = paramContext.getText ? paramContext.getText() : paramContext.text;
-            }
-        }
-        let f = context.expr().accept(this);
-        return new Function_ArrayJsonItem(keyName, f);
-    }
 
-    /**
-     * 访问ArrayJsonItem函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitArrayJsonItem_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ArrayJsonItem(args2, args1);
-    }
-
-    /**
-     * 访问GetJsonValue函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitGetJsonValue_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
+        let funcs = this.vN(context);
+        if (context.p != null) {
+            let keyName = context.p.text.trim().replace(/^["'"\s\t\r\n\f]+|["'"\s\t\r\n\f]+$/g, '');
+            let op = new Function_Value(Operand.Create(keyName), keyName);
+            return new Function_GetJsonValue(funcs[0], op);
+        }
         if (context.PARAMETER() != null) {
-            let op = new Function_PARAMETER(context.PARAMETER().getText ? context.PARAMETER().getText() : context.PARAMETER().text);
-            return new Function_GetJsonValue(args1, op);
+            let param = context.PARAMETER();
+            let op = new Function_PARAMETER(param.getText ? param.getText() : param.text);
+            return new Function_GetJsonValue(funcs[0], op);
         }
-        if (context.parameter2() != null) {
-            let op = context.parameter2().accept(this);
-            return new Function_GetJsonValue(args1, op);
-        }
-        if (exprs.length > 1) {
-            let op2 = exprs[1].accept(this);
-            return new Function_GetJsonValue(args1, op2);
-        }
-        return new Function_GetJsonValue(args1, null);
+        return new Function_GetJsonValue(funcs[0], funcs[1]);
     }
-    visitParameter2( context)
-	{
-		return new Function_Value(Operand.Create(context.children[0].getText()));
-	}
 
-    /**
-     * 访问NUM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
+    visitArray_fun(context) {
+        let funcs = this.vN(context);
+        return new Function_Array(funcs);
+    }
+
+    visitNOT_fun(context) {
+        let args1 = this.v1(context);
+        return new Function_NOT(args1);
+    }
+
+    visitBracket_fun(context) {
+        return this.v1(context);
+    }
+
     visitNUM_fun(context) {
-        let numText = context.num().getText ? context.num().getText() : context.num().text;
+        let numText = context.num().getText();
         let d = parseFloat(numText);
-		if (!context.unit()) { return new Function_Value(Operand.Create(d), numText); }
-		let unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
-		return new Function_NUM(d, unitText);
+        if (context.unit == null) {
+            return new Function_Value(Operand.Create(d), numText);
+        }
+        let unit = context.unit.text;
+        return new Function_NUM(d, unit);
     }
 
-    /**
-     * 访问PARAM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPARAM_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_PARAM(args1);
-    }
-
-    /**
-     * 访问PARAMETER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPARAMETER_fun(context) {
-        let node = context.PARAMETER();
-        return new Function_PARAMETER(node.getText());
-    }
-
-    /**
-     * 访问NULL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
     visitNULL_fun(context) {
         return new Function_Value(Operand.CreateNull(), "NULL");
     }
 
-    /**
-     * 访问DiyFunction函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDiyFunction_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_DiyFunction(args1, args2);
+    visitNum(context) {
+        let d = parseFloat(context.getText());
+        return new Function_Value(Operand.Create(d), context.getText());
     }
 
-    /**
-     * 访问ERROR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitERROR_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_ERROR(args1);
-    }
-
-    /**
-     * 访问QUARTILE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitQUARTILE_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_QUARTILE(args1, args2);
-    }
-
-    /**
-     * 访问MODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMODE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
+    visitArrayJson(context) {
+        let keyName = null;
+        if (context.key) {
+            let stringContext = context.key.text.replace(/^["'"\s\t\r\n\f]+|["'"\s\t\r\n\f]+$/g, '');
+            keyName = stringContext;
         }
-        return new Function_MODE(args);
+        let f = this.v1(context);
+        return new Function_ArrayJsonItem(keyName, f);
     }
 
-    /**
-     * 访问LARGE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLARGE_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_LARGE(args1, args2);
+    visitIF_fun(context) {
+        let funcs = this.vN(context);
+        return new Function_IF(funcs);
     }
-
-    /**
-     * 访问SMALL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSMALL_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_SMALL(args1, args2);
-    }
-
-    /**
-     * 访问PERCENTILE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPERCENTILE_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_PERCENTILE(args1, args2);
-    }
-
-    /**
-     * 访问PERCENTRANK函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPERCENTRANK_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_PERCENTRANK(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_PERCENTRANK(args1, args2, args3);
-    }
-
-    /**
-     * 访问AVERAGE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAVERAGE_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_AVERAGE(args);
-    }
-
-    /**
-     * 访问AVERAGEIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAVERAGEIF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_AVERAGEIF(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_AVERAGEIF(args1, args2, args3);
-    }
-
-    /**
-     * 访问GEOMEAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGEOMEAN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_GEOMEAN(args);
-    }
-
-    /**
-     * 访问HARMEAN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHARMEAN_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_HARMEAN(args);
-    }
-
-    /**
-     * 访问COUNT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOUNT_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_COUNT(args);
-    }
-
-    /**
-     * 访问COUNTIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitCOUNTIF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_COUNTIF(args1, args2);
-    }
-
-    /**
-     * 访问SUM函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUM_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_SUM(args);
-    }
-
-    /**
-     * 访问SUMIF函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSUMIF_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_SUMIF(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_SUMIF(args1, args2, args3);
-    }
-
-    /**
-     * 访问AVEDEV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitAVEDEV_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_AVEDEV(args);
-    }
-
-    /**
-     * 访问STDEV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSTDEV_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_STDEV(args);
-    }
-
-    /**
-     * 访问STDEVP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSTDEVP_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_STDEVP(args);
-    }
-
-    /**
-     * 访问DEVSQ函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitDEVSQ_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_DEVSQ(args);
-    }
-
-    /**
-     * 访问VAR函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitVAR_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_VAR(args);
-    }
-
-    /**
-     * 访问VARP函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitVARP_fun(context) {
-        let exprs = context.expr();
-        let args = new Array(exprs.length);
-        for (let i = 0; i < exprs.length; i++) {
-            args[i] = exprs[i].accept(this);
-        }
-        return new Function_VARP(args);
-    }
-
-    /**
-     * 访问NORMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        let args4 = exprs[3].accept(this);
-        return new Function_NORMDIST(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问NORMINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMINV_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_NORMINV(args1, args2, args3);
-    }
-
-    /**
-     * 访问NORMSDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMSDIST_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_NORMSDIST(args1);
-    }
-
-    /**
-     * 访问NORMSINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNORMSINV_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_NORMSINV(args1);
-    }
-
-    /**
-     * 访问BETADIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBETADIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_BETADIST(args1, args2, args3);
-    }
-
-    /**
-     * 访问BETAINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBETAINV_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_BETAINV(args1, args2, args3);
-    }
-
-    /**
-     * 访问BINOMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBINOMDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        let args4 = exprs[3].accept(this);
-        return new Function_BINOMDIST(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问EXPONDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitEXPONDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_EXPONDIST(args1, args2, args3);
-    }
-
-    /**
-     * 访问FDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_FDIST(args1, args2, args3);
-    }
-
-    /**
-     * 访问FINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFINV_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_FINV(args1, args2, args3);
-    }
-
-    /**
-     * 访问FISHER函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFISHER_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_FISHER(args1);
-    }
-
-    /**
-     * 访问FISHERINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitFISHERINV_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_FISHERINV(args1);
-    }
-
-    /**
-     * 访问GAMMADIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGAMMADIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        let args4 = exprs[3].accept(this);
-        return new Function_GAMMADIST(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问GAMMAINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGAMMAINV_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_GAMMAINV(args1, args2, args3);
-    }
-
-    /**
-     * 访问GAMMALN函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGAMMALN_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_GAMMALN(args1);
-    }
-
-    /**
-     * 访问HYPGEOMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHYPGEOMDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        let args4 = exprs[3].accept(this);
-        return new Function_HYPGEOMDIST(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问LOGINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOGINV_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_LOGINV(args1, args2, args3);
-    }
-
-    /**
-     * 访问LOGNORMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitLOGNORMDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_LOGNORMDIST(args1, args2, args3);
-    }
-
-    /**
-     * 访问NEGBINOMDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitNEGBINOMDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_NEGBINOMDIST(args1, args2, args3);
-    }
-
-    /**
-     * 访问POISSON函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitPOISSON_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_POISSON(args1, args2, args3);
-    }
-
-    /**
-     * 访问TDIST函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTDIST_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_TDIST(args1, args2, args3);
-    }
-
-    /**
-     * 访问TINV函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTINV_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_TINV(args1, args2);
-    }
-
-    /**
-     * 访问WEIBULL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitWEIBULL_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        let args4 = exprs[3].accept(this);
-        return new Function_WEIBULL(args1, args2, args3, args4);
-    }
-
-    /**
-     * 访问URLENCODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitURLENCODE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_URLENCODE(args1);
-    }
-
-    /**
-     * 访问URLDECODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitURLDECODE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_URLDECODE(args1);
-    }
-
-    /**
-     * 访问HTMLENCODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHTMLENCODE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_HTMLENCODE(args1);
-    }
-
-    /**
-     * 访问HTMLDECODE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHTMLDECODE_fun(context) {
-        let args1 = context.expr().accept(this);
-        return new Function_HTMLDECODE(args1);
-    }
-
-    /**
-     * 访问BASE64TOTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBASE64TOTEXT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_BASE64TOTEXT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_BASE64TOTEXT(args1, args2);
-    }
-
-    /**
-     * 访问BASE64URLTOTEXT函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitBASE64URLTOTEXT_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_BASE64URLTOTEXT(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_BASE64URLTOTEXT(args1, args2);
-    }
-
-    /**
-     * 访问TEXTTOBASE64函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTEXTTOBASE64_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TEXTTOBASE64(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_TEXTTOBASE64(args1, args2);
-    }
-
-    /**
-     * 访问TEXTTOBASE64URL函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitTEXTTOBASE64URL_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_TEXTTOBASE64URL(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_TEXTTOBASE64URL(args1, args2);
-    }
-
-    /**
-     * 访问REGEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREGEX_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_REGEX(args1, args2);
-    }
-
-    /**
-     * 访问REGEXREPALCE函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitREGEXREPALCE_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        let args3 = exprs[2].accept(this);
-        return new Function_REGEXREPALCE(args1, args2, args3);
-    }
-
-    /**
-     * 访问ISREGEX函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitISREGEX_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        return new Function_ISREGEX(args1, args2);
-    }
-
-    /**
-     * 访问GUID函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitGUID_fun(context) {
-        return new Function_GUID();
-    }
-
-    /**
-     * 访问MD5函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitMD5_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_MD5(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_MD5(args1, args2);
-    }
-
-    /**
-     * 访问SHA1函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSHA1_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_SHA1(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_SHA1(args1, args2);
-    }
-
-    /**
-     * 访问SHA256函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSHA256_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_SHA256(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_SHA256(args1, args2);
-    }
-
-    /**
-     * 访问SHA512函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitSHA512_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        if (exprs.length === 1) return new Function_SHA512(args1, null);
-        let args2 = exprs[1].accept(this);
-        return new Function_SHA512(args1, args2);
-    }
-
-
-    /**
-     * 访问HMACMD5函数节点
-     * @param {Object} context - 上下文
-     * @returns {FunctionBase}
-     */
-    visitHMACMD5_fun(context) {
-        let exprs = context.expr();
-        let args1 = exprs[0].accept(this);
-        let args2 = exprs[1].accept(this);
-        if (exprs.length === 2) return new Function_HMACMD5(args1, args2, null);
-        let args3 = exprs[2].accept(this);
-        return new Function_HMACMD5(args1, args2, args3);
-    }
-    visitBracket_fun(context) {
-        return context.expr().accept(this);
-    }
-
-    visitSTRING_fun(context) {
-        var opd = context.getText();
-        var sb = [];
-        let index = 1;
-        while (index < opd.length - 1) {
-            var c = opd[index++];
-            if (c == '\\') {
-                var c2 = opd[index++];
-                if (c2 == 'n') sb.push('\n');
-                else if (c2 == 'r') sb.push('\r');
-                else if (c2 == 't') sb.push('\t');
-                else if (c2 == '0') sb.push('\0');
-                else if (c2 == 'v') sb.push('\v');
-                else if (c2 == 'a') sb.push('\a');
-                else if (c2 == 'b') sb.push('\b');
-                else if (c2 == 'f') sb.push('\f');
-                else sb.push(opd[index++]);
-            } else {
-                sb.push(c);
-            }
-        }
-        return new Function_Value(Operand.Create(sb.join('')));
-    }
-    visitDiyFunction_fun(context) {
-        let funName = context.PARAMETER().getText();
-        let exprs = context.expr();
-        let args = [];
-        for (let i = 0; i < exprs.length; i++) {
-            args.push(exprs[i].accept(this));
-        }
-        return new Function_DiyFunction(funName, args);
-    }
+ 
 }
 
-export { MathFunctionVisitor };
+export { MathFunctionVisitor, funcDict, findFunction };

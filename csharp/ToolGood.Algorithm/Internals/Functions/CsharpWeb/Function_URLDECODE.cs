@@ -1,26 +1,36 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
-	internal class Function_URLDECODE : Function_1
+	internal sealed class Function_URLDECODE : Function_1
 	{
 		public Function_URLDECODE(FunctionBase func1) : base(func1)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "UrlDecode";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "UrlDecode"); if(args1.IsError) { return args1; } }
+			var args1 = GetText_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
 			var s = args1.TextValue;
 			var r = System.Web.HttpUtility.UrlDecode(s);
 			return Operand.Create(r);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "UrlDecode");
+			return OperandType.TEXT;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 	}
-
 
 }

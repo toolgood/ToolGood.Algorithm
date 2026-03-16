@@ -18,7 +18,7 @@ import HashSet from "../misc/HashSet.js";
 export default class SemanticContext {
 
 	hashCode() {
-		const hash = new HashCode();
+		let hash = new HashCode();
 		this.updateHashCode(hash);
 		return hash.finish();
 	}
@@ -67,7 +67,7 @@ export default class SemanticContext {
 		if (b === null || b === SemanticContext.NONE) {
 			return a;
 		}
-		const result = new AND(a, b);
+		let result = new AND(a, b);
 		if (result.opnds.length === 1) {
 			return result.opnds[0];
 		} else {
@@ -85,7 +85,7 @@ export default class SemanticContext {
 		if (a === SemanticContext.NONE || b === SemanticContext.NONE) {
 			return SemanticContext.NONE;
 		}
-		const result = new OR(a, b);
+		let result = new OR(a, b);
 		if (result.opnds.length === 1) {
 			return result.opnds[0];
 		} else {
@@ -103,7 +103,7 @@ class AND extends SemanticContext {
 	 */
 	constructor(a, b) {
 		super();
-		const operands = new HashSet();
+		let operands = new HashSet();
 		if (a instanceof AND) {
 			a.opnds.map(function(o) {
 				operands.add(o);
@@ -118,7 +118,7 @@ class AND extends SemanticContext {
 		} else {
 			operands.add(b);
 		}
-		const precedencePredicates = filterPrecedencePredicates(operands);
+		let precedencePredicates = filterPrecedencePredicates(operands);
 		if (precedencePredicates.length > 0) {
 			// interested in the transition with the lowest precedence
 			let reduced = null;
@@ -164,10 +164,10 @@ class AND extends SemanticContext {
 
 	evalPrecedence(parser, outerContext) {
 		let differs = false;
-		const operands = [];
+		let operands = [];
 		for (let i = 0; i < this.opnds.length; i++) {
-			const context = this.opnds[i];
-			const evaluated = context.evalPrecedence(parser, outerContext);
+			let context = this.opnds[i];
+			let evaluated = context.evalPrecedence(parser, outerContext);
 			differs |= (evaluated !== context);
 			if (evaluated === null) {
 				// The AND context is false if any element is false
@@ -192,7 +192,7 @@ class AND extends SemanticContext {
 	}
 
 	toString() {
-		const s = this.opnds.map(o => o.toString());
+		let s = this.opnds.map(o => o.toString());
 		return (s.length > 3 ? s.slice(3) : s).join("&&");
 	}
 }
@@ -205,7 +205,7 @@ class OR extends SemanticContext {
 	 */
 	constructor(a, b) {
 		super();
-		const operands = new HashSet();
+		let operands = new HashSet();
 		if (a instanceof OR) {
 			a.opnds.map(function(o) {
 				operands.add(o);
@@ -221,13 +221,13 @@ class OR extends SemanticContext {
 			operands.add(b);
 		}
 
-		const precedencePredicates = filterPrecedencePredicates(operands);
+		let precedencePredicates = filterPrecedencePredicates(operands);
 		if (precedencePredicates.length > 0) {
 			// interested in the transition with the highest precedence
-			const s = precedencePredicates.sort(function(a, b) {
+			let s = precedencePredicates.sort(function(a, b) {
 				return a.compareTo(b);
 			});
-			const reduced = s[s.length-1];
+			let reduced = s[s.length-1];
 			operands.add(reduced);
 		}
 		this.opnds = Array.from(operands.values());
@@ -263,10 +263,10 @@ class OR extends SemanticContext {
 
 	evalPrecedence(parser, outerContext) {
 		let differs = false;
-		const operands = [];
+		let operands = [];
 		for (let i = 0; i < this.opnds.length; i++) {
-			const context = this.opnds[i];
-			const evaluated = context.evalPrecedence(parser, outerContext);
+			let context = this.opnds[i];
+			let evaluated = context.evalPrecedence(parser, outerContext);
 			differs |= (evaluated !== context);
 			if (evaluated === SemanticContext.NONE) {
 				// The OR context is true if any element is true
@@ -283,7 +283,7 @@ class OR extends SemanticContext {
 			// all elements were false, so the OR context is false
 			return null;
 		}
-		const result = null;
+		let result = null;
 		operands.map(function(o) {
 			return result === null ? o : SemanticContext.orContext(result, o);
 		});
@@ -291,13 +291,13 @@ class OR extends SemanticContext {
 	}
 
 	toString() {
-		const s = this.opnds.map(o => o.toString());
+		let s = this.opnds.map(o => o.toString());
 		return (s.length > 3 ? s.slice(3) : s).join("||");
 	}
 }
 
 function filterPrecedencePredicates(set) {
-	const result = [];
+	let result = [];
 	set.values().map( function(context) {
 		if (context instanceof SemanticContext.PrecedencePredicate) {
 			result.push(context);

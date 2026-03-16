@@ -13,7 +13,7 @@ import { Exponential } from './Distributions/Exponential.js';
 import { Hypergeometric } from './Distributions/Hypergeometric.js';
 import { NegativeBinomial } from './Distributions/NegativeBinomial.js';
 import { LogNormal } from './Distributions/LogNormal.js';
-import { Binomial } from './Distributions/Binomial.js';
+import { binomial } from './Distributions/binomial.js';
 import { Poisson } from './Distributions/Poisson.js';
 import { Weibull } from './Distributions/Weibull.js';
 import { ArrayStatistics } from './Statistics/ArrayStatistics.js';
@@ -21,14 +21,14 @@ import { Statistics } from './Statistics/Statistics.js';
 import { QuantileDefinition } from './Statistics/QuantileDefinition.js';
 import { SpecialFunctions } from './SpecialFunctions/SpecialFunctions.js';
 
-const ExcelFunctions = {
+let ExcelFunctions = {
     /**
      * NormSDist
      * @param {number} z
      * @returns {number}
      */
-    NormSDist: function(z) {
-        return Normal.CDF(0, 1, z);
+    normSDist: function(z) {
+        return Normal.cdf(0, 1, z);
     },
 
     /**
@@ -36,8 +36,8 @@ const ExcelFunctions = {
      * @param {number} probability
      * @returns {number}
      */
-    NormSInv: function(probability) {
-        return Normal.InvCDF(0, 1, probability);
+    normSInv: function(probability) {
+        return Normal.invCdf(0, 1, probability);
     },
 
     /**
@@ -48,8 +48,8 @@ const ExcelFunctions = {
      * @param {boolean} cumulative
      * @returns {number}
      */
-    NormDist: function(x, mean, standardDev, cumulative) {
-        return cumulative ? Normal.CDF(mean, standardDev, x) : Normal.PDF(mean, standardDev, x);
+    normDist: function(x, mean, standardDev, cumulative) {
+        return cumulative ? Normal.cdf(mean, standardDev, x) : Normal.pdf(mean, standardDev, x);
     },
 
     /**
@@ -59,8 +59,8 @@ const ExcelFunctions = {
      * @param {number} standardDev
      * @returns {number}
      */
-    NormInv: function(probability, mean, standardDev) {
-        return Normal.InvCDF(mean, standardDev, probability);
+    normInv: function(probability, mean, standardDev) {
+        return Normal.invCdf(mean, standardDev, probability);
     },
 
     /**
@@ -71,13 +71,13 @@ const ExcelFunctions = {
      * @returns {number}
      * @throws {Error}
      */
-    TDist: function(x, degreesFreedom, tails) {
+    tDist: function(x, degreesFreedom, tails) {
         switch (tails) {
             case 1:
-                return 1 - StudentT.CDF(0, 1, degreesFreedom, x);
+                return 1 - StudentT.cdf(0, 1, degreesFreedom, x);
 
             case 2:
-                return 1 - StudentT.CDF(0, 1, degreesFreedom, x) + StudentT.CDF(0, 1, degreesFreedom, -x);
+                return 1 - StudentT.cdf(0, 1, degreesFreedom, x) + StudentT.cdf(0, 1, degreesFreedom, -x);
 
             default:
                 throw new Error('tails must be 1 or 2');
@@ -90,8 +90,8 @@ const ExcelFunctions = {
      * @param {number} degreesFreedom
      * @returns {number}
      */
-    TInv: function(probability, degreesFreedom) {
-        return -StudentT.InvCDF(0, 1, degreesFreedom, probability / 2);
+    tInv: function(probability, degreesFreedom) {
+        return -StudentT.invCdf(0, 1, degreesFreedom, probability / 2);
     },
 
     /**
@@ -101,8 +101,8 @@ const ExcelFunctions = {
      * @param {number} degreesFreedom2
      * @returns {number}
      */
-    FDist: function(x, degreesFreedom1, degreesFreedom2) {
-        return 1 - FisherSnedecor.CDF(degreesFreedom1, degreesFreedom2, x);
+    fDist: function(x, degreesFreedom1, degreesFreedom2) {
+        return 1 - FisherSnedecor.cdf(degreesFreedom1, degreesFreedom2, x);
     },
 
     /**
@@ -112,8 +112,8 @@ const ExcelFunctions = {
      * @param {number} degreesFreedom2
      * @returns {number}
      */
-    FInv: function(probability, degreesFreedom1, degreesFreedom2) {
-        return FisherSnedecor.InvCDF(degreesFreedom1, degreesFreedom2, 1 - probability);
+    fInv: function(probability, degreesFreedom1, degreesFreedom2) {
+        return FisherSnedecor.invCdf(degreesFreedom1, degreesFreedom2, 1 - probability);
     },
 
     /**
@@ -123,8 +123,8 @@ const ExcelFunctions = {
      * @param {number} beta
      * @returns {number}
      */
-    BetaDist: function(x, alpha, beta) {
-        return Beta.CDF(alpha, beta, x);
+    betaDist: function(x, alpha, beta) {
+        return Beta.cdf(alpha, beta, x);
     },
 
     /**
@@ -134,8 +134,8 @@ const ExcelFunctions = {
      * @param {number} beta
      * @returns {number}
      */
-    BetaInv: function(probability, alpha, beta) {
-        return Beta.InvCDF(alpha, beta, probability);
+    betaInv: function(probability, alpha, beta) {
+        return Beta.invCdf(alpha, beta, probability);
     },
 
     /**
@@ -146,8 +146,8 @@ const ExcelFunctions = {
      * @param {boolean} cumulative
      * @returns {number}
      */
-    GammaDist: function(x, alpha, beta, cumulative) {
-        return cumulative ? Gamma.CDF(alpha, 1 / beta, x) : Gamma.PDF(alpha, 1 / beta, x);
+    gammaDist: function(x, alpha, beta, cumulative) {
+        return cumulative ? Gamma.cdf(alpha, 1 / beta, x) : Gamma.pdf(alpha, 1 / beta, x);
     },
 
     /**
@@ -157,8 +157,8 @@ const ExcelFunctions = {
      * @param {number} beta
      * @returns {number}
      */
-    GammaInv: function(probability, alpha, beta) {
-        return Gamma.InvCDF(alpha, 1 / beta, probability);
+    gammaInv: function(probability, alpha, beta) {
+        return Gamma.invCdf(alpha, 1 / beta, probability);
     },
 
     /**
@@ -168,22 +168,22 @@ const ExcelFunctions = {
      * @returns {number}
      * @throws {Error}
      */
-    Quartile: function(array, quant) {
+    quartile: function(array, quant) {
         switch (quant) {
             case 0:
-                return ArrayStatistics.Minimum(array);
+                return ArrayStatistics.minimum(array);
 
             case 1:
-                return Statistics.QuantileCustom(array, 0.25, QuantileDefinition.R7);
+                return Statistics.quantileCustom(array, 0.25, QuantileDefinition.R7);
 
             case 2:
-                return Statistics.QuantileCustom(array, 0.5, QuantileDefinition.R7);
+                return Statistics.quantileCustom(array, 0.5, QuantileDefinition.R7);
 
             case 3:
-                return Statistics.QuantileCustom(array, 0.75, QuantileDefinition.R7);
+                return Statistics.quantileCustom(array, 0.75, QuantileDefinition.R7);
 
             case 4:
-                return ArrayStatistics.Maximum(array);
+                return ArrayStatistics.maximum(array);
 
             default:
                 throw new Error('quant must be between 0 and 4');
@@ -196,8 +196,8 @@ const ExcelFunctions = {
      * @param {number} k
      * @returns {number}
      */
-    Percentile: function(array, k) {
-        return Statistics.QuantileCustom(array, k, QuantileDefinition.R7);
+    percentile: function(array, k) {
+        return Statistics.quantileCustom(array, k, QuantileDefinition.R7);
     },
 
     /**
@@ -206,8 +206,8 @@ const ExcelFunctions = {
      * @param {number} x
      * @returns {number}
      */
-    PercentRank: function(array, x) {
-        return Statistics.QuantileRank(array, x);
+    percentRank: function(array, x) {
+        return Statistics.quantileRank(array, x);
     },
 
     /**
@@ -215,8 +215,8 @@ const ExcelFunctions = {
      * @param {number} z
      * @returns {number}
      */
-    GAMMALN: function(z) {
-        return SpecialFunctions.GammaLn(z);
+    gammaln: function(z) {
+        return SpecialFunctions.gammaLn(z);
     },
 
     /**
@@ -226,11 +226,11 @@ const ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    ExponDist: function(x, rate, state) {
+    exponDist: function(x, rate, state) {
         if (state) {
-            return Exponential.CDF(rate, x);
+            return Exponential.cdf(rate, x);
         }
-        return Exponential.PDF(rate, x);
+        return Exponential.pdf(rate, x);
     },
 
     /**
@@ -241,8 +241,8 @@ const ExcelFunctions = {
      * @param {number} population
      * @returns {number}
      */
-    HypgeomDist: function(k, draws, success, population) {
-        return Hypergeometric.PMF(population, success, draws, k);
+    hypgeomDist: function(k, draws, success, population) {
+        return Hypergeometric.pmf(population, success, draws, k);
     },
 
     /**
@@ -252,8 +252,8 @@ const ExcelFunctions = {
      * @param {number} p
      * @returns {number}
      */
-    NegbinomDist: function(k, r, p) {
-        return NegativeBinomial.PMF(r, p, k);
+    negbinomDist: function(k, r, p) {
+        return NegativeBinomial.pmf(r, p, k);
     },
 
     /**
@@ -263,8 +263,8 @@ const ExcelFunctions = {
      * @param {number} sigma
      * @returns {number}
      */
-    LognormDist: function(x, mu, sigma) {
-        return LogNormal.CDF(mu, sigma, x);
+    lognormDist: function(x, mu, sigma) {
+        return LogNormal.cdf(mu, sigma, x);
     },
 
     /**
@@ -274,8 +274,8 @@ const ExcelFunctions = {
      * @param {number} sigma
      * @returns {number}
      */
-    LogInv: function(p, mu, sigma) {
-        return LogNormal.InvCDF(mu, sigma, p);
+    logInv: function(p, mu, sigma) {
+        return LogNormal.invCdf(mu, sigma, p);
     },
 
     /**
@@ -286,11 +286,11 @@ const ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    BinomDist: function(k, n, p, state) {
+    binomDist: function(k, n, p, state) {
         if (state === false) {
-            return Binomial.PMF(p, n, k);
+            return binomial.pmf(p, n, k);
         }
-        return Binomial.CDF(p, n, k);
+        return binomial.cdf(p, n, k);
     },
 
     /**
@@ -300,11 +300,11 @@ const ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    Poisson: function(k, lambda, state) {
+    poisson: function(k, lambda, state) {
         if (state === false) {
-            return Poisson.PMF(lambda, k);
+            return Poisson.pmf(lambda, k);
         }
-        return Poisson.CDF(lambda, k);
+        return Poisson.cdf(lambda, k);
     },
 
     /**
@@ -315,11 +315,11 @@ const ExcelFunctions = {
      * @param {boolean} state
      * @returns {number}
      */
-    Weibull: function(x, shape, scale, state) {
+    weibull: function(x, shape, scale, state) {
         if (state === false) {
-            return Weibull.PDF(shape, scale, x);
+            return Weibull.pdf(shape, scale, x);
         }
-        return Weibull.CDF(shape, scale, x);
+        return Weibull.cdf(shape, scale, x);
     }
 };
 

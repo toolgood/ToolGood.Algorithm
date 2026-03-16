@@ -2,28 +2,27 @@ import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_PARAM extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "Param";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText();
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
         if (tempParameter !== null) {
-            let r = tempParameter(engine, args1.TextValue);
+            let r = tempParameter(work, args1.TextValue);
             if (r !== null) {
                 return r;
             }
         }
-        let result = engine.GetParameter(args1.TextValue);
+        let result = work.GetParameter(args1.TextValue);
         if (result.IsError) {
-            if (this.func2 !== null) {
-                return this.func2.Evaluate(engine, tempParameter);
+            if (this.b !== null) {
+                return this.b.evaluate(work, tempParameter);
             }
         }
         return result;

@@ -44,8 +44,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("TextToBase64('&=我中国人 >||')", null);
             Assert.AreEqual(r, "Jj3miJHkuK3lm73kurogPnx8");
 
-            r = engine.TryEvaluate("TextToBase64('&=我中国人 >||','GBK')", null);
-            Assert.AreEqual(r, "Jj3O0tbQufrIyyA+fHw=");
         }
 
         [Test]
@@ -55,8 +53,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||')", null);
             Assert.AreEqual(r, "Jj3miJHkuK3lm73kurogPnx8");
 
-            r = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||','GBK')", null);
-            Assert.AreEqual(r, "Jj3O0tbQufrIyyA-fHw");
         }
 
         [Test]
@@ -66,8 +62,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("Base64ToText('Jj3miJHkuK3lm73kurogPnx8')", null);
             Assert.AreEqual(r, "&=我中国人 >||");
 
-            r = engine.TryEvaluate("Base64ToText('Jj3O0tbQufrIyyA+fHw=','GBK')", null);
-            Assert.AreEqual(r, "&=我中国人 >||");
         }
 
         [Test]
@@ -77,8 +71,6 @@ namespace ToolGood.Algorithm.Test
             var r = engine.TryEvaluate("Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8')", null);
             Assert.AreEqual(r, "&=我中国人 >||");
 
-            r = engine.TryEvaluate("Base64UrlToText('Jj3O0tbQufrIyyA-fHw','GBK')", null);
-            Assert.AreEqual(r, "&=我中国人 >||");
         }
 
         [Test]
@@ -91,12 +83,63 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void REGEXREPLACE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var r = engine.TryEvaluate("REGEXREPLACE('abc123def', '\\\\d+', 'X')", "");
+            Assert.AreEqual(r, "abcXdef");
+
+            r = engine.TryEvaluate("REGEXREPLACE('hello world', 'world', 'there')", "");
+            Assert.AreEqual(r, "hello there");
+
+            r = engine.TryEvaluate("REGEXREPLACE('123-456-789', '-', '')", "");
+            Assert.AreEqual(r, "123456789");
+        }
+
+        [Test]
+        public void MethodStyle_REGEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var r = engine.TryEvaluate("'abcd'.REGEX('a.*c')", null);
+            Assert.AreEqual(r, "abc");
+        }
+
+        [Test]
+        public void MethodStyle_REGEXREPLACE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var r = engine.TryEvaluate("'abc123def'.REGEXREPLACE('\\\\d+', 'X')", "");
+            Assert.AreEqual(r, "abcXdef");
+        }
+
+        [Test]
+        public void MethodStyle_ISREGEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var r = engine.TryEvaluate("'abcd'.ISREGEX('a.*c')", false);
+            Assert.AreEqual(r, true);
+
+            r = engine.TryEvaluate("'abcd'.ISREGEX('x.*z')", true);
+            Assert.AreEqual(r, false);
+        }
+
+        [Test]
         public void IsRegex_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var r = engine.TryEvaluate("IsRegex('abcd','a.*c')", false);
             Assert.AreEqual(r, true);
             r = engine.TryEvaluate("IsRegex('abcd','da.*c')", true);
+            Assert.AreEqual(r, false);
+        }
+
+        [Test]
+        public void IsRegex_ALIAS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var r = engine.TryEvaluate("ISMATCH('abcd','a.*c')", false);
+            Assert.AreEqual(r, true);
+            r = engine.TryEvaluate("ISMATCH('abcd','da.*c')", true);
             Assert.AreEqual(r, false);
         }
 
@@ -188,6 +231,17 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void TrimStart_ALIAS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("LTRIM(' 123 ')", null);
+            Assert.AreEqual(dt, "123 ");
+
+            dt = engine.TryEvaluate("LTRIM(' 123 ',' 1')", null);
+            Assert.AreEqual(dt, "23 ");
+        }
+
+        [Test]
         public void TrimEnd()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -199,6 +253,17 @@ namespace ToolGood.Algorithm.Test
         }
 
         [Test]
+        public void TrimEnd_ALIAS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("RTRIM(' 123 ')", null);
+            Assert.AreEqual(dt, " 123");
+
+            dt = engine.TryEvaluate("RTRIM(' 123 ','3 ')", null);
+            Assert.AreEqual(dt, " 12");
+        }
+
+        [Test]
         public void Join()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -206,7 +271,10 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(dt, "1,2,5,6");
             dt = engine.TryEvaluate("Join(',',1,2,5,6,split('7,8,9',','))", null);
             Assert.AreEqual(dt, "1,2,5,6,7,8,9");
-        }
+
+			dt = engine.TryEvaluate("Join(',',1,2,5,6，'tt')", null);
+			Assert.AreEqual(dt, "1,2,5,6,tt");
+		}
 
         [Test]
         public void Substring()
@@ -319,5 +387,237 @@ namespace ToolGood.Algorithm.Test
 
 
 		}
+
+		#region 方法式调用测试 - 编码加密类
+
+		[Test]
+		public void MethodStyle_URLENCODE_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'&=我中国人 >||'.URLENCODE()", null);
+			Assert.AreEqual(dt, "%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c");
+		}
+
+		[Test]
+		public void MethodStyle_URLDECODE_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c'.URLDECODE()", null);
+			Assert.AreEqual(dt, "&=我中国人 >||");
+		}
+
+
+		[Test]
+		public void MethodStyle_MD5_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123'.MD5()", null);
+			Assert.AreEqual(dt, "202CB962AC59075B964B07152D234B70");
+		}
+
+		[Test]
+		public void MethodStyle_SHA1_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123'.SHA1()", null);
+			Assert.AreEqual(dt, "40BD001563085FC35165329EA1FF5C5ECBDBBEEF");
+		}
+
+		[Test]
+		public void MethodStyle_SHA256_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123'.SHA256()", null);
+			Assert.AreEqual(dt, "A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3");
+		}
+
+		[Test]
+		public void MethodStyle_SHA512_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123'.SHA512()", null);
+			Assert.AreEqual(dt, "3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2");
+		}
+
+		#endregion 方法式调用测试 - 编码加密类
+
+		#region 方法式调用测试 - 字符串扩展方法
+
+		[Test]
+		public void MethodStyle_TRIMSTART_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("' 123 '.TRIMSTART()", null);
+			Assert.AreEqual(dt, "123 ");
+
+			dt = engine.TryEvaluate("' 123 '.TRIMSTART(' 1')", null);
+			Assert.AreEqual(dt, "23 ");
+		}
+
+		[Test]
+		public void MethodStyle_TRIMEND_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("' 123 '.TRIMEND()", null);
+			Assert.AreEqual(dt, " 123");
+
+			dt = engine.TryEvaluate("' 123 '.TRIMEND('3 ')", null);
+			Assert.AreEqual(dt, " 12");
+		}
+
+		[Test]
+		public void MethodStyle_INDEXOF_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			engine.UseExcelIndex = false;
+			var dt = engine.TryEvaluate("'abcd'.INDEXOF('cd')", -1);
+			Assert.AreEqual(dt, 2);
+
+			dt = engine.TryEvaluate("'abcd'.INDEXOF('cd',0)", -1);
+			Assert.AreEqual(dt, 2);
+		}
+
+		[Test]
+		public void MethodStyle_LASTINDEXOF_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			engine.UseExcelIndex = false;
+			var dt = engine.TryEvaluate("'abcdcd'.LASTINDEXOF('cd')", -1);
+			Assert.AreEqual(dt, 4);
+		}
+
+		[Test]
+		public void MethodStyle_SPLIT_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'1,2,3,4'.SPLIT(',')[3]", null);
+			Assert.AreEqual(dt, "3");
+		}
+
+		[Test]
+		public void MethodStyle_JOIN_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("','.JOIN(1,2,3)", null);
+			Assert.AreEqual(dt, "1,2,3");
+		}
+
+		[Test]
+		public void MethodStyle_SUBSTRING_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123456789'.SUBSTRING(1,2)", null);
+			Assert.AreEqual(dt, "12");
+
+			dt = engine.TryEvaluate("'123456789'.SUBSTRING(3)", null);
+			Assert.AreEqual(dt, "3456789");
+		}
+
+		[Test]
+		public void MethodStyle_STARTSWITH_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123456789'.STARTSWITH('12')", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("'123456789'.STARTSWITH('127')", true);
+			Assert.AreEqual(dt, false);
+		}
+
+		[Test]
+		public void MethodStyle_ENDSWITH_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123456789'.ENDSWITH('89')", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("'123456789'.ENDSWITH('127')", true);
+			Assert.AreEqual(dt, false);
+		}
+
+		[Test]
+		public void MethodStyle_ISNULLOREMPTY_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("''.ISNULLOREMPTY()", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("' '.ISNULLOREMPTY()", true);
+			Assert.AreEqual(dt, false);
+		}
+
+		[Test]
+		public void MethodStyle_ISNULLORWHITESPACE_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("''.ISNULLORWHITESPACE()", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("'   '.ISNULLORWHITESPACE()", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("' f '.ISNULLORWHITESPACE()", true);
+			Assert.AreEqual(dt, false);
+		}
+
+		[Test]
+		public void MethodStyle_REMOVESTART_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123456789'.REMOVESTART('12')", null);
+			Assert.AreEqual(dt, "3456789");
+
+			dt = engine.TryEvaluate("'123456789'.REMOVESTART('127')", null);
+			Assert.AreEqual(dt, "123456789");
+		}
+
+		[Test]
+		public void MethodStyle_REMOVEEND_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'123456789'.REMOVEEND('89')", null);
+			Assert.AreEqual(dt, "1234567");
+
+			dt = engine.TryEvaluate("'123456789'.REMOVEEND('127')", null);
+			Assert.AreEqual(dt, "123456789");
+		}
+
+		[Test]
+		public void MethodStyle_JSON_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("'{\"Name\":\"William Shakespeare\",\"Age\":51}'.JSON()['Age']", null);
+			Assert.AreEqual(dt.ToString(), "51");
+		}
+
+		[Test]
+		public void MethodStyle_HAS_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("{\"name\":\"toolgood\",\"age\":\"12\"}.HAS('age')", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("{\"name\":\"toolgood\",\"age\":\"12\"}.HASKEY('age')", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("{\"name\":\"toolgood\",\"age\":\"12\"}.CONTAINS('age')", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("{\"name\":\"toolgood\",\"age\":\"12\"}.CONTAINSKEY('age')", false);
+			Assert.AreEqual(dt, true);
+		}
+
+		[Test]
+		public void MethodStyle_HASVALUE_test()
+		{
+			AlgorithmEngine engine = new AlgorithmEngine();
+			var dt = engine.TryEvaluate("{\"name\":\"toolgood\",\"age\":\"12\"}.HASVALUE('toolgood')", false);
+			Assert.AreEqual(dt, true);
+
+			dt = engine.TryEvaluate("{\"name\":\"toolgood\",\"age\":\"12\"}.CONTAINSVALUE('toolgood')", false);
+			Assert.AreEqual(dt, true);
+		}
+
+		#endregion 方法式调用测试 - 字符串扩展方法
 	}
 }

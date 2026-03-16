@@ -1,65 +1,44 @@
 import { Function_4 } from '../Function_4.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_REPLACE extends Function_4 {
-    constructor(func1, func2, func3, func4) {
-        super(func1, func2, func3, func4);
+    get Name() {
+        return "Replace";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Replace', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
         let oldtext = args1.TextValue;
-        if (this.func4 === null) {
-            let args22 = this.func2.Evaluate(engine, tempParameter);
-            if (args22.IsNotText) {
-                args22.ToText(StringCache.Function_parameter_error, 'Replace', 2);
-                if (args22.IsError) {
-                    return args22;
-                }
+        if (this.d === null || this.d === undefined) {
+            let args22 = this.b.evaluate(work, tempParameter);
+            let converted22 = args22.ToText("Function '{0}' parameter {1} is error!", this.Name, 2);
+            if (converted22.IsError) {
+                return converted22;
             }
-            let args32 = this.func3.Evaluate(engine, tempParameter);
-            if (args32.IsNotText) {
-                args32.ToText(StringCache.Function_parameter_error, 'Replace', 3);
-                if (args32.IsError) {
-                    return args32;
-                }
+            let args32 = this.c.evaluate(work, tempParameter);
+            let converted32 = args32.ToText("Function '{0}' parameter {1} is error!", this.Name, 3);
+            if (converted32.IsError) {
+                return converted32;
             }
 
-            let oldStr = args22.TextValue;
-            let newstr = args32.TextValue;
+            let oldStr = converted22.TextValue;
+            let newstr = converted32.TextValue;
             return Operand.Create(oldtext.replace(new RegExp(oldStr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newstr));
         }
 
-        let args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, 'Replace', 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        }
-        let args3 = this.func3.Evaluate(engine, tempParameter);
-        if (args3.IsNotNumber) {
-            args3 = args3.ToNumber(StringCache.Function_parameter_error, 'Replace', 3);
-            if (args3.IsError) {
-                return args3;
-            }
-        }
-        let args4 = this.func4.Evaluate(engine, tempParameter);
-        if (args4.IsNotText) {
-            args4 = args4.ToText(StringCache.Function_parameter_error, 'Replace', 4);
-            if (args4.IsError) {
-                return args4;
-            }
-        }
+        let args2 = this.getNumber_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
+        let args3 = this.getNumber_3(work, tempParameter);
+        if (args3.IsError) { return args3; }
+        let args4 = this.getText_4(work, tempParameter);
+        if (args4.IsError) { return args4; }
 
-        let start = args2.IntValue - engine.ExcelIndex;
+        let start = args2.IntValue - work.ExcelIndex;
         let length = args3.IntValue;
         let newtext = args4.TextValue;
 

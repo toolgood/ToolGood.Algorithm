@@ -1,31 +1,31 @@
 /**
  * Precision
  */
-const Precision = {
+let Precision = {
     /**
      * Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
      * According to the definition of Prof. Demmel and used in LAPACK and Scilab.
      */
-    DoublePrecision: Math.pow(2, -53),
+    doublePrecision: Math.pow(2, -53),
 
     /**
      * Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
      * According to the definition of Prof. Higham and used in the ISO C standard and MATLAB.
      */
-    PositiveDoublePrecision: 2 * Math.pow(2, -53),
+    positiveDoublePrecision: 2 * Math.pow(2, -53),
 
     /**
      * Value representing 10 * 2^(-53) = 1.11022302462516E-15
      */
-    DefaultDoubleAccuracy: Math.pow(2, -53) * 10,
+    defaultDoubleAccuracy: Math.pow(2, -53) * 10,
 
     /**
      * Converts a double to a 64-bit integer representation
      */
     doubleToInt64Bits: function(value) {
-        const buffer = new ArrayBuffer(8);
-        const float64Array = new Float64Array(buffer);
-        const int64Array = new BigInt64Array(buffer);
+        let buffer = new ArrayBuffer(8);
+        let float64Array = new Float64Array(buffer);
+        let int64Array = new BigInt64Array(buffer);
         float64Array[0] = value;
         return int64Array[0];
     },
@@ -34,9 +34,9 @@ const Precision = {
      * Converts a 64-bit integer representation to a double
      */
     int64BitsToDouble: function(bits) {
-        const buffer = new ArrayBuffer(8);
-        const int64Array = new BigInt64Array(buffer);
-        const float64Array = new Float64Array(buffer);
+        let buffer = new ArrayBuffer(8);
+        let int64Array = new BigInt64Array(buffer);
+        let float64Array = new Float64Array(buffer);
         int64Array[0] = bits;
         return float64Array[0];
     },
@@ -47,7 +47,7 @@ const Precision = {
      * @param {number} count - How many times the number should be incremented.
      * @returns {number} The next larger floating point value.
      */
-    Increment: function(value, count = 1) {
+    increment: function(value, count = 1) {
         if (isNaN(value) || !isFinite(value) || count === 0) {
             return value;
         }
@@ -73,7 +73,7 @@ const Precision = {
      * @param {number} value - The value used to determine the minimum distance.
      * @returns {number} Relative Epsilon (positive double or NaN).
      */
-    EpsilonOf: function(value) {
+    epsilonOf: function(value) {
         if (isNaN(value) || !isFinite(value)) {
             return NaN;
         }
@@ -96,8 +96,8 @@ const Precision = {
      * @param {number} value - The value used to determine the minimum distance.
      * @returns {number} Relative Epsilon (positive double or NaN).
      */
-    PositiveEpsilonOf: function(value) {
-        return 2 * this.EpsilonOf(value);
+    positiveEpsilonOf: function(value) {
+        return 2 * this.epsilonOf(value);
     },
 
     /**
@@ -107,7 +107,7 @@ const Precision = {
      * @param {number} maximumError
      * @returns {boolean}
      */
-    AlmostEqualNormRelative: function(a, b, diff, maximumError) {
+    almostEqualNormRelative: function(a, b, diff, maximumError) {
         // If A or B are infinity (positive or negative) then
         // only return true if they are exactly equal to each other -
         // that is, if they are both infinities of the same sign.
@@ -122,7 +122,7 @@ const Precision = {
         }
 
         // If one is almost zero, fall back to absolute equality
-        if (Math.abs(a) < this.DoublePrecision || Math.abs(b) < this.DoublePrecision) {
+        if (Math.abs(a) < this.doublePrecision || Math.abs(b) < this.doublePrecision) {
             return Math.abs(diff) < maximumError;
         }
 
@@ -138,8 +138,8 @@ const Precision = {
      * @param {number} b
      * @returns {boolean}
      */
-    AlmostEqualRelative: function(a, b) {
-        return this.AlmostEqualNormRelative(a, b, a - b, this.DefaultDoubleAccuracy);
+    almostEqualRelative: function(a, b) {
+        return this.almostEqualNormRelative(a, b, a - b, this.defaultDoubleAccuracy);
     },
 
     /**
@@ -147,8 +147,8 @@ const Precision = {
      * @param {number} b
      * @returns {boolean}
      */
-    AlmostEqual: function(a, b) {
-        return this.AlmostEqualNorm(a, b, a - b, this.DefaultDoubleAccuracy);
+    almostEqual: function(a, b) {
+        return this.almostEqualNorm(a, b, a - b, this.defaultDoubleAccuracy);
     },
 
     /**
@@ -158,7 +158,7 @@ const Precision = {
      * @param {number} maximumAbsoluteError
      * @returns {boolean}
      */
-    AlmostEqualNorm: function(a, b, diff, maximumAbsoluteError) {
+    almostEqualNorm: function(a, b, diff, maximumAbsoluteError) {
         // If A or B are infinity (positive or negative) then
         // only return true if they are exactly equal to each other -
         // that is, if they are both infinities of the same sign.
@@ -174,27 +174,6 @@ const Precision = {
 
         return Math.abs(diff) < maximumAbsoluteError;
     }
-};
-
-// 添加方法到 Number.prototype
-Number.prototype.Increment = function(count = 1) {
-    return Precision.Increment(this, count);
-};
-
-Number.prototype.EpsilonOf = function() {
-    return Precision.EpsilonOf(this);
-};
-
-Number.prototype.PositiveEpsilonOf = function() {
-    return Precision.PositiveEpsilonOf(this);
-};
-
-Number.prototype.AlmostEqualRelative = function(other) {
-    return Precision.AlmostEqualRelative(this, other);
-};
-
-Number.prototype.AlmostEqual = function(other) {
-    return Precision.AlmostEqual(this, other);
 };
 
 export { Precision };

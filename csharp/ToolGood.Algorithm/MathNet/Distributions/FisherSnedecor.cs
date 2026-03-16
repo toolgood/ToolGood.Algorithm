@@ -1,27 +1,19 @@
-﻿using ToolGood.Algorithm.MathNet.Numerics.RootFinding;
+using ToolGood.Algorithm.MathNet.Numerics.RootFinding;
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
     internal sealed class FisherSnedecor
     {
-        public static double CDF(double d1, double d2, double x)
+        public static decimal CDF(int d1, int d2, decimal x)
         {
-            //if (d1 <= 0.0 || d2 <= 0.0) {
-            //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-            //}
-
-            return SpecialFunctions.BetaRegularized(d1 / 2.0, d2 / 2.0, d1 * x / (d1 * x + d2));
+            return SpecialFunctions.BetaRegularized(d1 / 2.0m, d2 / 2.0m, d1 * x / (d1 * x + d2));
         }
 
-        public static double InvCDF(double d1, double d2, double p)
+        public static decimal InvCDF(int d1, int d2, decimal p)
         {
-            //if (d1 <= 0.0 || d2 <= 0.0) {
-            //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-            //}
-
             return Brent.FindRoot(
-                x => SpecialFunctions.BetaRegularized(d1 / 2.0, d2 / 2.0, d1 * x / (d1 * x + d2)) - p,
-                0, 1000, accuracy: 1e-12);
+                x => SpecialFunctions.BetaRegularized(d1 / 2.0m, d2 / 2.0m, d1 * x / (d1 * x + d2)) - p,
+                0, 1000, accuracy: 1e-12m);
         }
     }
 }

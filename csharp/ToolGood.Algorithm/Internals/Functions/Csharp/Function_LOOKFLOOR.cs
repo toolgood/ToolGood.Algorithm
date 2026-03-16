@@ -2,24 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 	class Function_LOOKFLOOR : Function_2
 	{
-		public Function_LOOKFLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_LOOKFLOOR(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "LookFloor";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "LookFloor", 1); if(args1.IsError) return args1; }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotArray) { args2 = args2.ToArray("Function '{0}' parameter {1} is error!", "LookFloor", 2); if(args2.IsError) return args2; }
+			var args1 = GetNumber_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
+
+			var args2 = GetArray_2(engine, tempParameter);
+			if(args2.IsErrorOrNone) { return args2; }
 
 			List<decimal> list = new List<decimal>();
-			FunctionUtil.F_base_GetList(args2, list);
-			if(list.Count == 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "LookFloor", 2); }
-			list = list.OrderBy(n => n).ToList();
+			FunctionUtil.FlattenToList(args2, list);
+			if(list.Count == 0) { return ParameterError(2); }
+			list.Sort();
 			var value = args1.NumberValue;
 			var result = list[0];
 			if(result == value) { return args1; }
@@ -35,10 +42,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 			return Operand.Create(result);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "LookFloor");
+			return OperandType.NUMBER;
 		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+		}
+
 	}
 
 }

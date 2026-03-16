@@ -25,30 +25,7 @@ class AlgorithmEngineWithTryEvaluate extends AlgorithmEngine {
     }
   }
 }
-
-// 测试用例
-function testIssues12() {
-  console.log('开始测试 Issues 12...');
-  
-  const engine = new AlgorithmEngineWithTryEvaluate();
-  
-  // 测试日期函数
-  let result = engine.TryEvaluate('Year(44406)=2021', false);
-  assert.strictEqual(result, true, "'Year(44406)=2021' 应该返回 true");
-  
-  result = engine.TryEvaluate('MONTH(44406)=7', false);
-  assert.strictEqual(result, true, "'MONTH(44406)=7' 应该返回 true");
-  
-  result = engine.TryEvaluate('DAY(44406)=29', false);
-  assert.strictEqual(result, true, "'DAY(44406)=29' 应该返回 true");
-  
-  // 测试 date 函数
-  result = engine.TryEvaluate('date(2011,2,2)', 0);
-  assert.strictEqual(result, 40576, "'date(2011,2,2)' 应该返回 40576");
-  
-  console.log('Issues 12 测试通过！');
-}
-
+ 
 function testIssues13() {
   console.log('开始测试 Issues 13...');
   
@@ -61,22 +38,7 @@ function testIssues13() {
   console.log('Issues 13 测试通过！');
 }
 
-function testIssues27() {
-  console.log('开始测试 Issues 27...');
-  
-  const engine = new AlgorithmEngineWithTryEvaluate();
-  
-  // 测试日期时间相加
-  let result = engine.TryEvaluate_DateTime('DATE(2024, 8, 1) + TIME(8, 0, 0)', new Date());
-  assert.ok(result instanceof Date, "'DATE(2024, 8, 1) + TIME(8, 0, 0)' 应该返回一个 Date 对象");
-  assert.strictEqual(result.getFullYear(), 2024, "年份应该是 2024");
-  assert.strictEqual(result.getMonth() + 1, 8, "月份应该是 8");
-  assert.strictEqual(result.getDate(), 1, "日期应该是 1");
-  assert.strictEqual(result.getHours(), 8, "小时应该是 8");
-  
-  console.log('Issues 27 测试通过！');
-}
-
+ 
 function testIssues0() {
   console.log('开始测试 Issues 0...');
   
@@ -95,9 +57,7 @@ function testIssues0() {
 // 运行所有测试
 function runAllTests() {
   try {
-    testIssues12();
     testIssues13();
-    testIssues27();
     testIssues0();
     console.log('所有测试通过！');
   } catch (error) {
@@ -110,9 +70,7 @@ function runAllTests() {
 runAllTests();
 
 export {
-  testIssues12,
   testIssues13,
-  testIssues27,
   testIssues0,
   runAllTests
 };

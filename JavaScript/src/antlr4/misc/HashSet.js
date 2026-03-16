@@ -6,8 +6,8 @@ import standardHashCodeFunction from "../utils/standardHashCodeFunction.js";
 import standardEqualsFunction from "../utils/standardEqualsFunction.js";
 import arrayToString from "../utils/arrayToString.js";
 
-const DEFAULT_LOAD_FACTOR = 0.75;
-const INITIAL_CAPACITY = 16
+let DEFAULT_LOAD_FACTOR = 0.75;
+let INITIAL_CAPACITY = 16
 
 export default class HashSet {
 
@@ -23,11 +23,11 @@ export default class HashSet {
         if(value == null) {
             return value;
         }
-        const bucket = this._getBucket(value)
+        let bucket = this._getBucket(value)
         if (!bucket) {
             return null;
         }
-        for (const e of bucket) {
+        for (let e of bucket) {
             if (this.equalsFunction(e, value)) {
                 return e;
             }
@@ -36,13 +36,13 @@ export default class HashSet {
     }
 
     add(value) {
-        const existing = this.getOrAdd(value);
+        let existing = this.getOrAdd(value);
         return existing === value;
     }
 
     getOrAdd(value) {
         this._expand();
-        const slot = this._getSlot(value);
+        let slot = this._getSlot(value);
         let bucket = this.buckets[slot];
         if (!bucket) {
             bucket = [value];
@@ -50,7 +50,7 @@ export default class HashSet {
             this.itemCount++;
             return value;
         }
-        for (const existing of bucket) {
+        for (let existing of bucket) {
             if (this.equalsFunction(existing, value)) {
                 return existing;
             }
@@ -79,7 +79,7 @@ export default class HashSet {
     }
 
     _getSlot(value) {
-        const hash = this.hashFunction(value);
+        let hash = this.hashFunction(value);
         return hash & this.buckets.length - 1;
     }
     _getBucket(value) {
@@ -90,16 +90,16 @@ export default class HashSet {
         if (this.itemCount <= this.threshold) {
             return;
         }
-        const old_buckets = this.buckets;
-        const newCapacity = this.buckets.length * 2;
+        let old_buckets = this.buckets;
+        let newCapacity = this.buckets.length * 2;
         this.buckets = new Array(newCapacity);
         this.threshold = Math.floor(newCapacity * DEFAULT_LOAD_FACTOR);
-        for (const bucket of old_buckets) {
+        for (let bucket of old_buckets) {
             if (!bucket) {
                 continue;
             }
-            for (const o of bucket) {
-                const slot = this._getSlot(o);
+            for (let o of bucket) {
+                let slot = this._getSlot(o);
                 let newBucket = this.buckets[slot];
                 if (!newBucket) {
                     newBucket = [];

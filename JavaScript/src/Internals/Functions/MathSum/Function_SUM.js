@@ -1,17 +1,20 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_SUM extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "Sum";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -21,7 +24,7 @@ class Function_SUM extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error, "Sum");
+            return this.functionError();
         }
         return Operand.Create(list.reduce((sum, val) => sum + val, 0));
     }

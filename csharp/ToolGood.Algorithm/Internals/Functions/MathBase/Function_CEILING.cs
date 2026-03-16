@@ -1,36 +1,49 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_CEILING : Function_2
+	internal sealed class Function_CEILING : Function_2
     {
-        public Function_CEILING(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_CEILING(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+        public override string Name => "Ceiling";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-        }
+            var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 1); if (args1.IsError) { return args1; } }
+			if (func2 == null)
+				return Operand.Create(Math.Ceiling(args1.NumberValue));
 
-            if (func2 == null)
-                return Operand.Create(Math.Ceiling(args1.NumberValue));
-
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 2); if (args2.IsError) { return args2; } }
+			var args2 = GetNumber_2(engine, tempParameter);
+			if (args2.IsErrorOrNone) { return args2; }
             var b = args2.NumberValue;
-            if (b == 0) { return Operand.Create(0); }
-            if (b < 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "Ceiling", 2); }
+            if (b == 0) { return Operand.Zero; }
+            if (b < 0) { return ParameterError(2); }
 
             var a = args1.NumberValue;
             var d = Math.Ceiling(a / b) * b;
             return Operand.Create(d);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Ceiling");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+		}
+	}
 
 }

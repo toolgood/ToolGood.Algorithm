@@ -1,25 +1,38 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
-	internal class Function_TAN : Function_1
+	internal sealed class Function_TAN : Function_1
     {
         public Function_TAN(FunctionBase func1) : base(func1)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Tan"); if (args1.IsError) { return args1; } }
-            return Operand.Create(Math.Tan(args1.DoubleValue));
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Tan");
-        }
-    }
+        public override string Name => "Tan";
 
-    
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = GetNumber_1(engine, tempParameter);
+            if (args1.IsErrorOrNone) { return args1; }
+            var cos = MathEx.Cos(args1.NumberValue);
+            if (cos == 0) {
+                return Div0Error();
+            }
+            return Operand.Create(MathEx.Sin(args1.NumberValue) / cos);
+        }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

@@ -1,45 +1,32 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_OCT2BIN extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "Oct2Bin";
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'OCT2BIN', 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(z) {
+        super(z);
+    }
 
-        if (!RegexHelper.OctRegex.test(args1.TextValue)) {
-            return Operand.Error(StringCache.Function_parameter_error, 'OCT2BIN', 1);
-        }
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        if (!/^[0-7]+$/.test(args1.TextValue)) { return this.parameterError(1); }
         let num = parseInt(args1.TextValue, 8).toString(2);
-        if (this.func2 !== null) {
-            let args2 = this.func2.Evaluate(work, tempParameter);
-            if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error, 'OCT2BIN', 2);
-                if (args2.IsError) {
-                    return args2;
-                }
+        if (this.b != null) {
+            let args2 = this.getNumber_2(work, tempParameter);
+            if (args2.IsError) { return args2; }
+            if (num.length < args2.IntValue) {
+                return Operand.Create(num.padStart(args2.IntValue, '0'));
             }
-            if (num.length > args2.IntValue) {
-                return Operand.Create(num.padLeft(args2.IntValue, '0'));
-            }
-            return Operand.Error(StringCache.Function_parameter_error, 'OCT2BIN', 2);
+            return this.parameterError(2);
         }
         return Operand.Create(num);
     }
 }
-
-let RegexHelper = {
-    OctRegex: /^[0-7]+$/
-};
 
 export { Function_OCT2BIN };
 

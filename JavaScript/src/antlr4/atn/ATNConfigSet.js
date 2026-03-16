@@ -101,15 +101,15 @@ export default class ATNConfigSet {
 		if (config.reachesIntoOuterContext > 0) {
 			this.dipsIntoOuterContext = true;
 		}
-		const existing = this.configLookup.getOrAdd(config);
+		let existing = this.configLookup.getOrAdd(config);
 		if (existing === config) {
 			this.cachedHashCode = -1;
 			this.configs.push(config); // track order here
 			return true;
 		}
 		// a previous (s,i,pi,_), merge with it and save result
-		const rootIsWildcard = !this.fullCtx;
-		const merged = merge(existing.context, config.context, rootIsWildcard, mergeCache);
+		let rootIsWildcard = !this.fullCtx;
+		let merged = merge(existing.context, config.context, rootIsWildcard, mergeCache);
 		/**
 		 * no need to check for existing.context, config.context in cache
 		 * since only way to create new graphs is "call rule" and here. We
@@ -125,7 +125,7 @@ export default class ATNConfigSet {
 	}
 
 	getStates() {
-		const states = new HashSet();
+		let states = new HashSet();
 		for (let i = 0; i < this.configs.length; i++) {
 			states.add(this.configs[i].state);
 		}
@@ -133,9 +133,9 @@ export default class ATNConfigSet {
 	}
 
 	getPredicates() {
-		const preds = [];
+		let preds = [];
 		for (let i = 0; i < this.configs.length; i++) {
-			const c = this.configs[i].semanticContext;
+			let c = this.configs[i].semanticContext;
 			if (c !== SemanticContext.NONE) {
 				preds.push(c.semanticContext);
 			}
@@ -151,7 +151,7 @@ export default class ATNConfigSet {
 			return;
 		}
 		for (let i = 0; i < this.configs.length; i++) {
-			const config = this.configs[i];
+			let config = this.configs[i];
 			config.context = interpreter.getCachedContext(config.context);
 		}
 	}
@@ -175,7 +175,7 @@ export default class ATNConfigSet {
 	}
 
 	hashCode() {
-		const hash = new HashCode();
+		let hash = new HashCode();
 		hash.update(this.configs);
 		return hash.finish();
 	}

@@ -1,25 +1,34 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
-using ToolGood.Algorithm.Internals.Visitors;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_DATEDIF : Function_3
+	internal sealed class Function_DATEDIF : Function_3
     {
-        public Function_DATEDIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
-        {
-        }
+		public Function_DATEDIF(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2); if (args2.IsError) { return args2; } }
-            var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotText) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3); if (args3.IsError) { return args3; } }
-            var startMyDate = (DateTime)args1.DateValue;
-            var endMyDate = (DateTime)args2.DateValue;
-            var t = args3.TextValue.ToLower();
+        public override string Name => "DateDif";
 
-            if (CharUtil.Equals(t, 'Y')) {
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = GetDate_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
+
+			var args2 = GetDate_2(engine, tempParameter);
+			if (args2.IsErrorOrNone) { return args2; }
+
+			var args3 = GetText_3(engine, tempParameter);
+			if (args3.IsErrorOrNone) { return args3; }
+            var startMyDate = args1.DateValue.ToDateTime();
+            var endMyDate = args2.DateValue.ToDateTime();
+            var t = args3.TextValue;
+
+            if (t.Equals("Y", StringComparison.OrdinalIgnoreCase)) {
 
                 #region y
 
@@ -36,7 +45,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 }
 
                 #endregion y
-            } else if (CharUtil.Equals(t, 'M')) {
+            } else if (t.Equals("M", StringComparison.OrdinalIgnoreCase)) {
 
                 #region m
 
@@ -49,9 +58,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 }
 
                 #endregion m
-            } else if (CharUtil.Equals(t, 'D')) {
+            } else if (t.Equals("D", StringComparison.OrdinalIgnoreCase)) {
                 return Operand.Create((endMyDate - startMyDate).Days);
-            } else if (CharUtil.Equals(t, "YD")) {
+            } else if (t.Equals("YD", StringComparison.OrdinalIgnoreCase)) {
 
                 #region yd
 
@@ -63,7 +72,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 return Operand.Create((day));
 
                 #endregion yd
-            } else if (CharUtil.Equals(t, "MD")) {
+            } else if (t.Equals("MD", StringComparison.OrdinalIgnoreCase)) {
 
                 #region md
 
@@ -80,7 +89,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 return Operand.Create((mo));
 
                 #endregion md
-            } else if (CharUtil.Equals(t, "YM")) {
+            } else if (t.Equals("YM", StringComparison.OrdinalIgnoreCase)) {
 
                 #region ym
 
@@ -91,13 +100,20 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
                 #endregion ym
             }
-            return Operand.Error("Function '{0}' parameter {1} is error!", "DateDif", 3);
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "DateDif");
+            return ParameterError(3);
         }
 
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			func3.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+		}
+	}
 
 }

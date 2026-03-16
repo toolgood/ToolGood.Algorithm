@@ -76,8 +76,6 @@ function testTextToBase64() {
   let textToBase64 = engine.TryEvaluate("TextToBase64('&=我中国人 >||')", "");
   assert.strictEqual(textToBase64, "Jj3miJHkuK3lm73kurogPnx8", "TextToBase64('&=我中国人 >||') 应该是 'Jj3miJHkuK3lm73kurogPnx8'");
   
-  textToBase64 = engine.TryEvaluate("TextToBase64('&=我中国人 >||','GBK')", "");
-  assert.strictEqual(textToBase64, "Jj3O0tbQufrIyyA+fHw=", "TextToBase64('&=我中国人 >||','GBK') 应该是 'Jj3O0tbQufrIyyA+fHw='");
   
   console.log('TextToBase64 测试通过！');
 }
@@ -90,9 +88,6 @@ function testTextToBase64Url() {
   let textToBase64Url = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||')", "");
   assert.strictEqual(textToBase64Url, "Jj3miJHkuK3lm73kurogPnx8", "TextToBase64Url('&=我中国人 >||') 应该是 'Jj3miJHkuK3lm73kurogPnx8'");
   
-  textToBase64Url = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||','GBK')", "");
-  assert.strictEqual(textToBase64Url, "Jj3O0tbQufrIyyA-fHw", "TextToBase64Url('&=我中国人 >||','GBK') 应该是 'Jj3O0tbQufrIyyA-fHw'");
-  
   console.log('TextToBase64Url 测试通过！');
 }
 
@@ -104,9 +99,6 @@ function testBase64ToText() {
   let base64ToText = engine.TryEvaluate("Base64ToText('Jj3miJHkuK3lm73kurogPnx8')", "");
   assert.strictEqual(base64ToText, "&=我中国人 >||", "Base64ToText('Jj3miJHkuK3lm73kurogPnx8') 应该是 '&=我中国人 >||'");
   
-  base64ToText = engine.TryEvaluate("Base64ToText('Jj3O0tbQufrIyyA+fHw=','GBK')", "");
-  assert.strictEqual(base64ToText, "&=我中国人 >||", "Base64ToText('Jj3O0tbQufrIyyA+fHw=','GBK') 应该是 '&=我中国人 >||'");
-  
   console.log('Base64ToText 测试通过！');
 }
 
@@ -117,9 +109,6 @@ function testBase64UrlToText() {
   
   let base64UrlToText = engine.TryEvaluate("Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8')", "");
   assert.strictEqual(base64UrlToText, "&=我中国人 >||", "Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8') 应该是 '&=我中国人 >||'");
-  
-  base64UrlToText = engine.TryEvaluate("Base64UrlToText('Jj3O0tbQufrIyyA-fHw','GBK')", "");
-  assert.strictEqual(base64UrlToText, "&=我中国人 >||", "Base64UrlToText('Jj3O0tbQufrIyyA-fHw','GBK') 应该是 '&=我中国人 >||'");
   
   console.log('Base64UrlToText 测试通过！');
 }

@@ -1,4 +1,3 @@
-import { Brent } from '../RootFinding/Brent.js';
 import { SpecialFunctions } from '../SpecialFunctions/SpecialFunctions.js';
 
 class Beta {
@@ -9,7 +8,7 @@ class Beta {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(a, b, x) {
+    static cdf(a, b, x) {
         if (x < 0) {
             return 0;
         }
@@ -49,7 +48,7 @@ class Beta {
             return x;
         }
 
-        return SpecialFunctions.BetaRegularized(a, b, x);
+        return SpecialFunctions.betaRegularized(a, b, x);
     }
 
     /**
@@ -59,8 +58,30 @@ class Beta {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(a, b, p) {
-        return Brent.FindRoot(x => SpecialFunctions.BetaRegularized(a, b, x) - p, 0, 1, 1e-12);
+    static invCdf(a, b, p) {
+        // 使用二分法寻找根
+        let left = 0;
+        let right = 1;
+        let mid;
+        let tolerance = 1e-15;
+        let maxIterations = 100;
+        
+        for (let i = 0; i < maxIterations; i++) {
+            mid = (left + right) / 2;
+            let value = SpecialFunctions.betaRegularized(a, b, mid) - p;
+            
+            if (Math.abs(value) < tolerance) {
+                return mid;
+            }
+            
+            if (value < 0) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        
+        return mid;
     }
 }
 

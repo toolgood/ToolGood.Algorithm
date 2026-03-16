@@ -1,20 +1,18 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_CLEAN extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "Clean";
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Clean');
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
         let t = args1.TextValue;
         let needClean = false;
         for (let i = 0; i < t.length; i++) {

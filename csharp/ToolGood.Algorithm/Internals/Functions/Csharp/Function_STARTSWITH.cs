@@ -1,31 +1,50 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	internal class Function_STARTSWITH : Function_3
+	internal sealed class Function_STARTSWITH : Function_3
 	{
-		public Function_STARTSWITH(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+		public Function_STARTSWITH(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "StartsWith";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "StartsWith", 1); if(args1.IsError) { return args1; } }
-			var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "StartsWith", 2); if(args2.IsError) { return args2; } }
+			var args1 = GetText_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
+
+			var args2 = GetText_2(engine, tempParameter);
+			if(args2.IsErrorOrNone) { return args2; }
 
 			var text = args1.TextValue;
 			if(func3 == null) {
 				return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
 			}
-			var args3 = func3.Evaluate(work, tempParameter); if(args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "StartsWith", 3); if(args3.IsError) { return args3; } }
-			return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+
+			var args3 = GetBoolean_3(engine, tempParameter);
+			if(args3.IsErrorOrNone) { return args3; }
+
+			return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), FunctionUtil.GetStringComparison(args3.BooleanValue)));
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "StartsWith");
+			return OperandType.BOOLEAN;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			if(func3 != null) {
+				func3.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+			}
 		}
 	}
-
 
 }

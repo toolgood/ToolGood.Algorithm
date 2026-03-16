@@ -341,6 +341,34 @@ function testVALUE() {
   console.log('VALUE 测试通过！');
 }
 
+function testUNICHAR() {
+  console.log('开始测试 UNICHAR...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let unichar = engine.TryEvaluate("unichar(65)", "");
+  assert.strictEqual(unichar, "A", "unichar(65) 应该是 'A'");
+  
+  unichar = engine.TryEvaluate("unichar(20013)", "");
+  assert.strictEqual(unichar, "中", "unichar(20013) 应该是 '中'");
+  
+  console.log('UNICHAR 测试通过！');
+}
+
+function testUNICODE() {
+  console.log('开始测试 UNICODE...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let unicode = engine.TryEvaluate("unicode('A')", 0);
+  assert.strictEqual(unicode, 65, "unicode('A') 应该是 65");
+  
+  unicode = engine.TryEvaluate("unicode('中')", 0);
+  assert.strictEqual(unicode, 20013, "unicode('中') 应该是 20013");
+  
+  console.log('UNICODE 测试通过！');
+}
+
 // 运行所有测试
 function runAllTests() {
   try {
@@ -369,6 +397,8 @@ function runAllTests() {
     testTRIM();
     testUPPER();
     testVALUE();
+    testUNICHAR();
+    testUNICODE();
     console.log('所有测试通过！');
   } catch (error) {
     console.error('测试失败:', error.message);
@@ -407,5 +437,7 @@ export {
   testTRIM,
   testUPPER,
   testVALUE,
+  testUNICHAR,
+  testUNICODE,
   runAllTests
 };

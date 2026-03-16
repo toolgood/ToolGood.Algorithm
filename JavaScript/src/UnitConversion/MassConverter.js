@@ -5,12 +5,12 @@ import { UnitFactorSynonyms } from './UnitFactorSynonyms.js';
 class MassConverter extends BaseUnitConverter {
     constructor(leftUnit, rightUnit) {
         super();
-        this.Instantiate(MassConverter.units, leftUnit, rightUnit);
+        this.instantiate(MassConverter.units, leftUnit, rightUnit);
     }
 
-    static Exists(leftSynonym, rightSynonym) {
-        if (MassConverter.units.FindUnit(leftSynonym) != null) {
-            return MassConverter.units.FindUnit(rightSynonym) != null;
+    static exists(leftSynonym, rightSynonym) {
+        if (MassConverter.units.findUnit(leftSynonym) != null) {
+            return MassConverter.units.findUnit(rightSynonym) != null;
         }
         return false;
     }

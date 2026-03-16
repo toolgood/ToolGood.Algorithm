@@ -5,12 +5,12 @@ import { UnitFactorSynonyms } from './UnitFactorSynonyms.js';
 class DistanceConverter extends BaseUnitConverter {
     constructor(leftUnit, rightUnit) {
         super();
-        this.Instantiate(DistanceConverter.units, leftUnit, rightUnit);
+        this.instantiate(DistanceConverter.units, leftUnit, rightUnit);
     }
 
-    static Exists(leftSynonym, rightSynonym) {
-        if (DistanceConverter.units.FindUnit(leftSynonym) != null) {
-            return DistanceConverter.units.FindUnit(rightSynonym) != null;
+    static exists(leftSynonym, rightSynonym) {
+        if (DistanceConverter.units.findUnit(leftSynonym) != null) {
+            return DistanceConverter.units.findUnit(rightSynonym) != null;
         }
         return false;
     }

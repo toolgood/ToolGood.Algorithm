@@ -17,7 +17,7 @@ export default class LexerAction {
     }
 
     hashCode() {
-        const hash = new HashCode();
+        let hash = new HashCode();
         this.updateHashCode(hash);
         return hash.finish()
     }

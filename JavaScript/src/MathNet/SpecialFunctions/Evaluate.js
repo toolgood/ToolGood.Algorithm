@@ -5,7 +5,7 @@ class Evaluate {
      * @param {Array<number>} coefficients - The coefficients of the polynomial, in order from the highest degree to the lowest.
      * @returns {number} The value of the polynomial at the given point.
      */
-    static Polynomial(z, coefficients) {
+    static polynomial(z, coefficients) {
         if (!coefficients || coefficients.length === 0) {
             return 0;
         }
@@ -24,9 +24,9 @@ class Evaluate {
      * @param {Function} nextSummand - A function that returns the next term in the series.
      * @returns {number} The sum of the series.
      */
-    static Series(nextSummand) {
+    static series(nextSummand) {
         let compensation = 0;
-        const factor = 1 << 16;
+        let factor = 1 << 16;
 
         let sum = nextSummand();
         let current;
@@ -34,8 +34,8 @@ class Evaluate {
         do {
             // Kahan Summation
             current = nextSummand();
-            const y = current - compensation;
-            const t = sum + y;
+            let y = current - compensation;
+            let t = sum + y;
             compensation = t - sum;
             compensation -= y;
             sum = t;

@@ -1,28 +1,39 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
-	internal class Function_CSC : Function_1
+	internal sealed class Function_CSC : Function_1
     {
         public Function_CSC(FunctionBase func1) : base(func1)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Csc"); if (args1.IsError) { return args1; } }
-            var d = Math.Sin(args1.DoubleValue);
-            if (d == 0) {
-                return Operand.Error("Function '{0}' div 0 error!", "Csc");
-            }
-            return Operand.Create(1.0 / d);
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Csc");
-        }
-    }
+        public override string Name => "Csc";
 
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = GetNumber_1(engine, tempParameter);
+            if (args1.IsErrorOrNone) { return args1; }
+            var d = MathEx.Sin(args1.NumberValue);
+            if (d == 0) {
+                return Div0Error();
+            }
+            return Operand.Create(1.0m / d);
+        }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+
+	}
 
 }

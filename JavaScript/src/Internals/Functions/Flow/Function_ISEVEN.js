@@ -2,18 +2,22 @@ import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_ISEVEN extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "IsEven";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
         if (args1.IsNumber) {
             if (args1.IntValue % 2 == 0) {
-                return Operand.Create(true);
+                return Operand.True;
             }
         }
-        return Operand.Create(false);
+        return Operand.False;
     }
 }
 

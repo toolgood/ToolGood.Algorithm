@@ -36,12 +36,12 @@ export default class LL1Analyzer {
         if (s === null) {
             return null;
         }
-        const count = s.transitions.length;
-        const look = [];
+        let count = s.transitions.length;
+        let look = [];
         for(let alt=0; alt< count; alt++) {
             look[alt] = new IntervalSet();
-            const lookBusy = new HashSet();
-            const seeThruPreds = false; // fail to get lookahead upon pred
+            let lookBusy = new HashSet();
+            let seeThruPreds = false; // fail to get lookahead upon pred
             this._LOOK(s.transition(alt).target, null, PredictionContext.EMPTY,
                   look[alt], lookBusy, new BitSet(), seeThruPreds, false);
             // Wipe out lookahead for this alternative if we found nothing
@@ -72,10 +72,10 @@ export default class LL1Analyzer {
      * specified {@code ctx}.
      */
     LOOK(s, stopState, ctx) {
-        const r = new IntervalSet();
-        const seeThruPreds = true; // ignore preds; get all lookahead
+        let r = new IntervalSet();
+        let seeThruPreds = true; // ignore preds; get all lookahead
         ctx = ctx || null;
-        const lookContext = ctx!==null ? predictionContextFromRuleContext(s.atn, ctx) : null;
+        let lookContext = ctx!==null ? predictionContextFromRuleContext(s.atn, ctx) : null;
         this._LOOK(s, stopState, lookContext, r, new HashSet(), new BitSet(), seeThruPreds, true);
         return r;
     }
@@ -111,7 +111,7 @@ export default class LL1Analyzer {
      * is {@code null}.
      */
     _LOOK(s, stopState , ctx, look, lookBusy, calledRuleStack, seeThruPreds, addEOF) {
-        const c = new ATNConfig({state:s, alt:0, context: ctx}, null);
+        let c = new ATNConfig({state:s, alt:0, context: ctx}, null);
         if (lookBusy.has(c)) {
             return;
         }
@@ -134,12 +134,12 @@ export default class LL1Analyzer {
                 return;
             }
             if (ctx !== PredictionContext.EMPTY) {
-                const removed = calledRuleStack.get(s.ruleIndex);
+                let removed = calledRuleStack.get(s.ruleIndex);
                 try {
                     calledRuleStack.clear(s.ruleIndex);
                     // run thru all possible stack tops in ctx
                     for (let i = 0; i < ctx.length; i++) {
-                        const returnState = this.atn.states[ctx.getReturnState(i)];
+                        let returnState = this.atn.states[ctx.getReturnState(i)];
                         this._LOOK(returnState, stopState, ctx.getParent(i), look, lookBusy, calledRuleStack, seeThruPreds, addEOF);
                     }
                 }finally {
@@ -151,12 +151,12 @@ export default class LL1Analyzer {
             }
         }
         for(let j=0; j<s.transitions.length; j++) {
-            const t = s.transitions[j];
+            let t = s.transitions[j];
             if (t.constructor === RuleTransition) {
                 if (calledRuleStack.get(t.target.ruleIndex)) {
                     continue;
                 }
-                const newContext = SingletonPredictionContext.create(ctx, t.followState.stateNumber);
+                let newContext = SingletonPredictionContext.create(ctx, t.followState.stateNumber);
                 try {
                     calledRuleStack.set(t.target.ruleIndex);
                     this._LOOK(t.target, stopState, newContext, look, lookBusy, calledRuleStack, seeThruPreds, addEOF);

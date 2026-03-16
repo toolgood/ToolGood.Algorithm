@@ -1,31 +1,49 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_PERCENTILE : Function_2
+	internal sealed class Function_PERCENTILE : Function_2
     {
-        public Function_PERCENTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		public Function_PERCENTILE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Percentile";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Percentile", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Percentile", 2); if (args2.IsError) { return args2; } }
-            var list = new List<double>();
-            var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1); }
-            var k = args2.DoubleValue;
-            return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
+            var args1 = GetArray_1(engine, tempParameter);
+            if (args1.IsErrorOrNone) { return args1; }
+
+            var args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone) { return args2; }
+
+            var list = new List<decimal>();
+            var o = FunctionUtil.FlattenToList(args1, list);
+            if (o == false) { return ParameterError(1); }
+            if (list.Count == 0) { return ParameterError(1); }
+            var k = args2.NumberValue;
+            if (k < 0 || k > 1) {
+                return ParameterError(2);
+            }
+            return Operand.Create(ExcelFunctions.Percentile(list.ToArray(), k));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Percentile");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

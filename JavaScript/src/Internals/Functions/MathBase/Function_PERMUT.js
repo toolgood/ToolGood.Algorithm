@@ -1,32 +1,41 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_PERMUT extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "Permut";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Permut", 1);
-            if (args1.IsError) { return args1; }
+    constructor(z) {
+    super(z);
+  }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        let args2 = this.getNumber_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+
+        let n = args1.NumberValue;
+        let k = args2.NumberValue;
+
+        if (n < 0 || k < 0) {
+            return this.parameterError(1);
         }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, "Permut", 2);
-            if (args2.IsError) { return args2; }
+        if (n < k) {
+            return this.parameterError(2);
         }
 
-        let total = args1.IntValue;
-        let count = args2.IntValue;
-
-        let sum = 1;
-        for (let i = 0; i < count; i++) {
-            sum *= (total - i);
+        if (k == 0) {
+            return Operand.Create(1);
         }
-        return Operand.Create(sum);
+
+        let result = 1;
+        for (let i = 0; i < k; i++) {
+            result *= (n - i);
+        }
+
+        return Operand.Create(result);
     }
 }
 

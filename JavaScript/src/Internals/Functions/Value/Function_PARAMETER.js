@@ -1,7 +1,11 @@
 import { FunctionBase } from '../FunctionBase.js';
 
 class Function_PARAMETER extends FunctionBase {
-    constructor(name, func1) {
+    get Name() {
+        return "Parameter";
+    }
+
+    constructor(name, a) {
         super();
         if (typeof name === 'string') {
             this.name = name;
@@ -10,25 +14,31 @@ class Function_PARAMETER extends FunctionBase {
         }
     }
 
-    Evaluate(engine, tempParameter) {
+    evaluate(work, tempParameter) {
         let txt = this.name;
         if (txt === undefined || txt === null) {
-            let args1 = this.func1.Evaluate(engine, tempParameter);
-            if (args1.IsNotText) {
+            let args1 = this.func1.evaluate(work, tempParameter);
                 args1 = args1.ToText();
                 if (args1.IsError) {
                     return args1;
                 }
-            }
             txt = args1.TextValue;
         }
-        if (tempParameter &&tempParameter !== null) {
-            let r = tempParameter(engine, txt);
+        if (tempParameter && tempParameter !== null) {
+            let r = tempParameter(work, txt);
             if (r !== null) {
                 return r;
             }
         }
-        return engine.GetParameter(txt);
+        return work.GetParameter(txt);
+    }
+
+    toString2(stringBuilder, addBrackets) {
+        if (this.name === undefined || this.name === null) {
+            this.func1.toString2(stringBuilder, false);
+        } else {
+            stringBuilder.append(this.name);
+        }
     }
 
 }

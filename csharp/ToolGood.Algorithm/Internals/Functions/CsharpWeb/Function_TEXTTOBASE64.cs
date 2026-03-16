@@ -1,36 +1,41 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
-	internal class Function_TEXTTOBASE64 : Function_2
+	internal sealed class Function_TEXTTOBASE64 : Function_1
 	{
-		public Function_TEXTTOBASE64(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_TEXTTOBASE64(FunctionBase func1) : base(func1)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "TextToBase64";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 1); if(args1.IsError) return args1; }
+			var args1 = GetText_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
 			try {
-				Encoding encoding;
-				if(func2 == null) {
-					encoding = Encoding.UTF8;
-				} else {
-					var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 2); if(args2.IsError) return args2; }
-					encoding = Encoding.GetEncoding(args2.TextValue);
-				}
-				var bytes = encoding.GetBytes(args1.TextValue);
-				var t = Base64.ToBase64String(bytes);
+				var bytes = Encoding.UTF8.GetBytes(args1.TextValue);
+				var t = Convert.ToBase64String(bytes);
 				return Operand.Create(t);
-			} catch(Exception) { }
-			return Operand.Error("Function '{0}' is error!", "TextToBase64");
+			} catch(Exception) {
+				return ParameterError(1);
+			}
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "TextToBase64");
+			return OperandType.TEXT;
 		}
-	}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+		}
+
+	}
 
 }

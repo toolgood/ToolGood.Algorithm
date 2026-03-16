@@ -1,17 +1,21 @@
 import { Function_N } from '../Function_N.js';
 import { MyDate } from '../../MyDate.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 
 class Function_DATEVALUE extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "DateValue";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -62,7 +66,7 @@ class Function_DATEVALUE extends Function_N {
             if (engine.UseLocalTime) { return Operand.Create(new MyDate(new Date(time.getTime() + time.getTimezoneOffset() * 60000))); }
             return Operand.Create(new MyDate(time));
         }
-        return Operand.Error(StringCache.Function_parameter_error, "DateValue");
+        return this.functionError();
     }
 }
 

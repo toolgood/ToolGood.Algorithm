@@ -33,7 +33,7 @@ export default class CommonTokenFactory extends TokenFactory {
     }
 
     create(source, type, text, channel, start, stop, line, column) {
-        const t = new CommonToken(source, type, channel, start, stop);
+        let t = new CommonToken(source, type, channel, start, stop);
         t.line = line;
         t.column = column;
         if (text !==null) {
@@ -45,7 +45,7 @@ export default class CommonTokenFactory extends TokenFactory {
     }
 
     createThin(type, text) {
-        const t = new CommonToken(null, type);
+        let t = new CommonToken(null, type);
         t.text = text;
         return t;
     }

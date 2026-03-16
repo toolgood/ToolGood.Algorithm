@@ -1,32 +1,52 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_POISSON : Function_3
+	internal sealed class Function_POISSON : Function_3
     {
-        public Function_POISSON(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
-        {
-        }
+		public Function_POISSON(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Poisson";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Poisson", 1); if (args1.IsError) return args1; }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Poisson", 2); if (args2.IsError) return args2; }
-            var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3); if (args3.IsError) return args3; }
+            var args1 = GetNumber_1(engine, tempParameter);
+            if (args1.IsErrorOrNone) return args1;
+
+            var args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone) return args2;
+
+            var args3 = GetBoolean_3(engine, tempParameter);
+            if (args3.IsErrorOrNone) return args3;
             int k = args1.IntValue;
-            var lambda = args2.DoubleValue;
-            bool state = args3.BooleanValue;
-            if (!(lambda > 0.0)) {
-                return Operand.Error("Function '{0}' parameter is error!", "Poisson");
+            if (k < 0) {
+                return ParameterError(1);
             }
-            return Operand.Create(ExcelFunctions.Poisson(k, (double)lambda, state));
+            var lambda = args2.NumberValue;
+            if (!(lambda > 0m)) {
+                return ParameterError(2);
+            }
+            bool state = args3.BooleanValue;
+            return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Poisson");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+		}
+	}
 
 }

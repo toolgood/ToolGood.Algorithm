@@ -1,5 +1,6 @@
 import { OperandType } from './Enums/index.js';
-import { JsonMapper, JsonData } from './LitJson/index.js';
+import { JsonMapper } from './LitJson/JsonMapper.js';
+import { JsonData } from './LitJson/JsonData.js';
 import { FunctionUtil } from './Internals/Functions/FunctionUtil.js';
 import { MyDate } from './Internals/MyDate.js';
 
@@ -36,69 +37,41 @@ export class Operand {
      * 是否为空值
      */
     get IsNull() { return false; }
-    /**
-     * 是否为非空值
-     */
-    get IsNotNull() { return true; }
 
     /**
      * 是否数字
      */
     get IsNumber() { return false; }
-    /**
-     * 是否非数字
-     */
-    get IsNotNumber() { return true; }
 
     /**
      * 是否字符串
      */
     get IsText() { return false; }
-    /**
-     * 是否非字符串
-     */
-    get IsNotText() { return true; }
 
     /**
      * 是否布尔值
      */
     get IsBoolean() { return false; }
-    /**
-     * 是否非布尔值
-     */
-    get IsNotBoolean() { return true; }
+
     /**
      * 是否数组
      */
     get IsArray() { return false; }
-    /**
-     * 是否非数组
-     */
-    get IsNotArray() { return true; }
+
     /**
      * 是否日期
      */
     get IsDate() { return false; }
-    /**
-     * 是否非日期
-     */
-    get IsNotDate() { return true; }
+
     /**
      * 是否Json对象
      */
     get IsJson() { return false; }
-    /**
-     * 是否非Json对象
-     */
-    get IsNotJson() { return true; }
+
     /**
      * 是否Json数组
      */
     get IsArrayJson() { return false; }
-    /**
-     * 是否非Json数组
-     */
-    get IsNotArrayJson() { return true; }
 
     /**
      * 是否出错
@@ -113,38 +86,49 @@ export class Operand {
     /**
      * 操作数类型
      */
-    get Type() { throw new Error('Not implemented'); }
+    get Type() { throw new Error('FIXME'); }
 
     /**
      * 数字值
      */
-    get NumberValue() { throw new Error('Not implemented'); }
+    get NumberValue() { throw new Error('FIXME'); }
+    
+    /**
+     * double值
+     */
+    get DoubleValue() { throw new Error('FIXME'); }
+
     /**
      * int值
      */
-    get IntValue() { throw new Error('Not implemented'); }
+    get IntValue() { throw new Error('FIXME'); }
+
+    /**
+     * long值
+     */
+    get LongValue() { throw new Error('FIXME'); }
 
     /**
      * 字符串值
      */
-    get TextValue() { throw new Error('Not implemented'); }
+    get TextValue() { throw new Error('FIXME'); }
 
     /**
      * 布尔值
      */
-    get BooleanValue() { throw new Error('Not implemented'); }
+    get BooleanValue() { throw new Error('FIXME'); }
 
     /**
      * 数组值
      */
-    get ArrayValue() { throw new Error('Not implemented'); }
+    get ArrayValue() { throw new Error('FIXME'); }
 
-    get JsonValue() { throw new Error('Not implemented'); }
+    get JsonValue() { throw new Error('FIXME'); }
 
     /**
      * 时间值
      */
-    get DateValue() { throw new Error('Not implemented'); }
+    get DateValue() { throw new Error('FIXME'); }
 
     /**
      * 创建操作数
@@ -168,7 +152,7 @@ export class Operand {
         } else if (Array.isArray(obj)) {
             let arr=[];
             for (let index = 0; index < obj.length; index++) {
-                const element =Operand.Create(obj[index]);
+                let element =Operand.Create(obj[index]);
                 arr.push(element);
             }
             return new OperandArray(arr);
@@ -182,7 +166,7 @@ export class Operand {
     static CreateJson(txt) {
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                const json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.toObject(txt);
                 return Operand.Create(json);
             } catch (e) { }
         }
@@ -195,7 +179,7 @@ export class Operand {
     static Error(msg, ...args) {
         if (args.length > 0) {
             msg = msg.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -215,7 +199,7 @@ export class Operand {
     ToNumber(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -228,7 +212,7 @@ export class Operand {
     ToBoolean(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -241,7 +225,7 @@ export class Operand {
     ToText(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -254,7 +238,7 @@ export class Operand {
     ToMyDate(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -267,7 +251,7 @@ export class Operand {
     ToArray(errorMessage = null, ...args) {
         if (args.length > 0) {
             errorMessage = errorMessage.replace(/\{\d+\}/g, (match, index) => {
-                const i = parseInt(match.substring(1, match.length - 1));
+                let i = parseInt(match.substring(1, match.length - 1));
                 return args[i] !== undefined ? args[i] : match;
             });
         }
@@ -288,24 +272,36 @@ class OperandDouble extends Operand {
         this._value = obj;
     }
     get IsNumber() { return true; }
-    get IsNotNumber() { return false; }
     get Type() { return OperandType.NUMBER; }
     get IntValue() { return Math.floor(this._value); }
     get NumberValue() { return this._value; }
+    get LongValue() { return Math.floor(this._value); }
+    get DoubleValue() { return this._value; }
 
     ToNumber(errorMessage) { return this; }
     ToNumber(errorMessage, ...args) { return this; }
 
-    ToBoolean(errorMessage) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
-    ToBoolean(errorMessage, ...args) { return this.NumberValue !== 0 ? Operand.True : Operand.False; }
+    ToBoolean(errorMessage) {
+        if (this._value === 0) {
+            return Operand.False;
+        } else if (this._value === 1) {
+            return Operand.True;
+        }
+        return super.ToBoolean(errorMessage);
+    }
+    ToBoolean(errorMessage, ...args) {
+        if (this._value === 0) {
+            return Operand.False;
+        } else if (this._value === 1) {
+            return Operand.True;
+        }
+        return super.ToBoolean(errorMessage, ...args);
+    }
 
-    ToText(errorMessage) { return Operand.Create(this.NumberValue.toString()); }
-    ToText(errorMessage, ...args) { return Operand.Create(this.NumberValue.toString()); }
+    ToText(errorMessage) { return Operand.Create(this.DoubleValue.toString()); }
+    ToText(errorMessage, ...args) { return Operand.Create(this.DoubleValue.toString()); }
 
-    ToMyDate(errorMessage) { return Operand.Create(new MyDate(this.NumberValue)); }
-    ToMyDate(errorMessage, ...args) { return Operand.Create(new MyDate(this.NumberValue)); }
-
-    toString() { return this.NumberValue.toString(); }
+    toString() { return this.DoubleValue.toString(); }
 }
 
 class OperandBoolean extends Operand {
@@ -314,7 +310,6 @@ class OperandBoolean extends Operand {
         this._value = obj;
     }
     get IsBoolean() { return true; }
-    get IsNotBoolean() { return false; }
     get Type() { return OperandType.BOOLEAN; }
     get BooleanValue() { return this._value; }
 
@@ -339,18 +334,17 @@ class OperandString extends Operand {
     }
 
     get IsText() { return true; }
-    get IsNotText() { return false; }
     get Type() { return OperandType.TEXT; }
     get TextValue() { return this._value; }
 
     ToNumber(errorMessage) {
         if (this.TextValue.indexOf('.') === -1) {
-            const num = parseInt(this.TextValue);
+            let num = parseInt(this.TextValue);
             if (!isNaN(num)) {
                 return Operand.Create(num);
             }
         }
-        const d = parseFloat(this.TextValue);
+        let d = parseFloat(this.TextValue);
         if (!isNaN(d)) {
             return Operand.Create(d);
         }
@@ -361,12 +355,12 @@ class OperandString extends Operand {
     }
     ToNumber(errorMessage, ...args) {
         if (this.TextValue.indexOf('.') === -1) {
-            const num = parseInt(this.TextValue);
+            let num = parseInt(this.TextValue);
             if (!isNaN(num)) {
                 return Operand.Create(num);
             }
         }
-        const d = parseFloat(this.TextValue);
+        let d = parseFloat(this.TextValue);
         if (!isNaN(d)) {
             return Operand.Create(d);
         }
@@ -380,7 +374,7 @@ class OperandString extends Operand {
     ToText(errorMessage, ...args) { return this; }
 
     ToBoolean(errorMessage) {
-        const b = FunctionUtil.TryParseBoolean(this.TextValue);
+        let b = FunctionUtil.TryParseBoolean(this.TextValue);
         if (b !== null) {
             return b ? Operand.True : Operand.False;
         }
@@ -390,7 +384,7 @@ class OperandString extends Operand {
         return Operand.Error(errorMessage);
     }
     ToBoolean(errorMessage, ...args) {
-        const b = FunctionUtil.TryParseBoolean(this.TextValue);
+        let b = FunctionUtil.TryParseBoolean(this.TextValue);
         if (b !== null) {
             return b ? Operand.True : Operand.False;
         }
@@ -402,7 +396,7 @@ class OperandString extends Operand {
 
     ToMyDate(errorMessage) {
         try {
-            const date = new Date(this.TextValue);
+            let date = new Date(this.TextValue.replaceAll("/","-"));
             if (!isNaN(date.getTime())) {
                 return Operand.Create(new MyDate(date));
             }
@@ -414,7 +408,7 @@ class OperandString extends Operand {
     }
     ToMyDate(errorMessage, ...args) {
         try {
-            const date = new Date(this.TextValue);
+            let date = new Date(this.TextValue.replaceAll("/","-"));
             if (!isNaN(date.getTime())) {
                 return Operand.Create(new MyDate(date));
             }
@@ -429,10 +423,10 @@ class OperandString extends Operand {
         return Operand.Error(errorMessage ?? "Convert to array error!");
     }
     ToJson(errorMessage = null) {
-        const txt = this.TextValue.trim();
+        let txt = this.TextValue.trim();
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
             try {
-                const json = JsonMapper.ToObject(txt);
+                let json = JsonMapper.toObject(txt);
                 return Operand.Create(json);
             } catch (e) { }
         }
@@ -441,7 +435,7 @@ class OperandString extends Operand {
 
     toString() {
         let result = '"';
-        for (const c of this._value) {
+        for (let c of this._value) {
             switch (c) {
                 case '"': result += '\\"'; break;
                 case '\n': result += '\\n'; break;
@@ -466,7 +460,6 @@ class OperandMyDate extends Operand {
         this._value = obj;
     }
     get IsDate() { return true; }
-    get IsNotDate() { return false; }
     get Type() { return OperandType.DATE; }
     get DateValue() { return this._value; }
 
@@ -491,11 +484,9 @@ class OperandJson extends Operand {
         this._value = obj;
     }
     get IsJson() { return true; }
-    get IsNotJson() { return false; }
     get Type() { return OperandType.JSON; }
     get JsonValue() { return this._value; }
     get IsArrayJson() { return false; }
-    get IsNotArrayJson() { return true; }
 
     ToText(errorMessage = null) {
         return Operand.Create(this._value.toString());
@@ -506,8 +497,8 @@ class OperandJson extends Operand {
 
     ToArray(errorMessage) {
         if (this.JsonValue.IsArray) {
-            const list = [];
-            for (const v of this.JsonValue) {
+            let list = [];
+            for (let v of this.JsonValue) {
                 if (v.IsString) {
                     list.push(Operand.Create(v.StringValue));
                 } else if (v.IsBoolean) {
@@ -526,8 +517,8 @@ class OperandJson extends Operand {
     }
     ToArray(errorMessage, ...args) {
         if (this.JsonValue.IsArray) {
-            const list = [];
-            for (const v of this.JsonValue) {
+            let list = [];
+            for (let v of this.JsonValue) {
                 if (v.IsString) {
                     list.push(Operand.Create(v.StringValue));
                 } else if (v.IsBoolean) {
@@ -550,7 +541,7 @@ class OperandJson extends Operand {
     
     TryGetValue(key) {
         if (this.JsonValue.IsObject) {
-            const value = this.JsonValue.inst_object[key];
+            let value = this.JsonValue.inst_object[key];
             if (value) {
                 if (value.IsString) {
                     return Operand.Create(value.StringValue);
@@ -579,7 +570,6 @@ class OperandArray extends Operand {
         this._value = obj;
     }
     get IsArray() { return true; }
-    get IsNotArray() { return false; }
     get Type() { return OperandType.ARRARY; }
     get ArrayValue() { return this._value; }
 
@@ -594,16 +584,16 @@ class OperandArray extends Operand {
     ToArray(errorMessage, ...args) { return this; }
 
     ToJson(errorMessage = null) {
-        const txt = this.toString();
+        let txt = this.toString();
         try {
-            const json = JsonMapper.ToObject(txt);
+            let json = JsonMapper.toObject(txt);
             return Operand.Create(json);
         } catch (e) { }
         return Operand.Error(errorMessage ?? "Convert to json error!");
     }
 
     toString() {
-        const elements = this.ArrayValue.map(item => item.toString());
+        let elements = this.ArrayValue.map(item => item.toString());
         return '[' + elements.join(',') + ']';
     }
 }
@@ -654,7 +644,6 @@ class OperandKeyValueList extends Operand {
     }
 
     get IsArrayJson() { return true; }
-    get IsNotArrayJson() { return false; }
     get Type() { return OperandType.ARRARYJSON; }
     get ArrayValue() { return this.TextList.map(q => q.Value); }
 
@@ -673,9 +662,9 @@ class OperandKeyValueList extends Operand {
     }
 
     ToJson(errorMessage = null) {
-        const txt = this.toString();
+        let txt = this.toString();
         try {
-            const json = JsonMapper.ToObject(txt);
+            let json = JsonMapper.toObject(txt);
             return Operand.Create(json);
         } catch (e) { }
         return Operand.Error(errorMessage ?? "Convert to json error!");
@@ -686,7 +675,7 @@ class OperandKeyValueList extends Operand {
     }
 
     TryGetValue(key) {
-        for (const item of this.TextList) {
+        for (let item of this.TextList) {
             if (item.key === key.toString()) {
                 return item.value;
             }
@@ -695,7 +684,7 @@ class OperandKeyValueList extends Operand {
     }
 
     ContainsKey(value) {
-        for (const item of this.TextList) {
+        for (let item of this.TextList) {
             if (value.TextValue === item.value) {
                 return true;
             }
@@ -704,8 +693,8 @@ class OperandKeyValueList extends Operand {
     }
 
     ContainsValue(value) {
-        for (const item of this.TextList) {
-            const op = item.Value;
+        for (let item of this.TextList) {
+            let op = item.Value;
             if (value.Type !== op.Type) { continue; }
             if (value.IsText) {
                 if (value.TextValue === op.TextValue) {
@@ -717,7 +706,7 @@ class OperandKeyValueList extends Operand {
     }
 
     toString() {
-        const elements = this.TextList.map(item => '"' + item.Key + '":' + item.Value.toString());
+        let elements = this.TextList.map(item => '"' + item.Key + '":' + item.Value.toString());
         return '{' + elements.join(',') + '}';
     }
 }
@@ -728,16 +717,15 @@ class OperandKeyValue extends Operand {
         this._value = obj;
     }
     get IsArrayJson() { return true; }
-    get IsNotArrayJson() { return false; }
     get Type() { return OperandType.ARRARYJSON; }
     get Value() { return this._value; }
 }
 
 // 导出所有类
-export {  OperandDouble,  OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
+export {  OperandDouble,   OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
 
 // 初始化静态属性
-Operand.Version = new OperandString("ToolGood.Algorithm 6.1");
+Operand.Version = new OperandString("ToolGood.Algorithm 6.2");
 Operand.True = new OperandBoolean(true);
 Operand.False = new OperandBoolean(false);
 Operand.One = Operand.Create(1);

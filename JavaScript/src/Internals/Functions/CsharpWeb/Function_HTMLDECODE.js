@@ -1,20 +1,19 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 
 class Function_HTMLDECODE extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "HtmlDecode";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, "HtmlDecode");
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
         let s = args1.TextValue;
         let r = Function_HTMLDECODE.HtmlDecode(s);
         return Operand.Create(r);

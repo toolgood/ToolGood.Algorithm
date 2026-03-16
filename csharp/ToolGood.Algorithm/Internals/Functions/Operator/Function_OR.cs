@@ -1,27 +1,33 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
-	internal class Function_OR : Function_2
+	internal sealed class Function_OR : Function_2
 	{
+		public Function_OR(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
 		public Function_OR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "Or";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			// 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
-			// 在excel内 AND(x,y) OR(x,y) 先报错，
-			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
-			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotBoolean) { args1 = args1.ToBoolean(); if(args1.IsError) { return args1; } }
+			var args1 = GetBoolean_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 			if(args1.BooleanValue) {
-				var args2 = func2.Evaluate(work, tempParameter).ToBoolean();
-				if(args2.IsError) { return args2; }
+				var args2 = GetBoolean_2(engine, tempParameter);
+				if(args2.IsErrorOrNone) { return args2; }
 				return Operand.True;
 			}
-			return func2.Evaluate(work, tempParameter).ToBoolean();
+			return GetBoolean_2(engine, tempParameter);
 		}
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -31,6 +37,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			stringBuilder.Append(" || ");
 			func2.ToString(stringBuilder, false);
 			if(addBrackets) stringBuilder.Append(')');
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.BOOLEAN;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+			func2.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
 		}
 	}
 }

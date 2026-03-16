@@ -1,32 +1,24 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_HEX2DEC extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "Hex2Dec";
     }
 
-    Evaluate(work, tempParameter) {
-        let args1 = this.func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'HEX2DEC');
-            if (args1.IsError) {
-                return args1;
-            }
-        }
+    constructor(a) {
+        super(a);
+    }
 
-        if (!RegexHelper.HexRegex.test(args1.TextValue)) {
-            return Operand.Error(StringCache.Function_parameter_error, 'HEX2DEC');
-        }
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        if (!/^[0-9A-Fa-f]+$/.test(args1.TextValue)) { return this.functionError(); }
         let num = parseInt(args1.TextValue, 16);
         return Operand.Create(num);
     }
 }
-
-let RegexHelper = {
-    HexRegex: /^[0-9A-Fa-f]+$/
-};
 
 export { Function_HEX2DEC };
 

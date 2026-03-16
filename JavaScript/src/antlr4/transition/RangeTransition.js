@@ -15,7 +15,7 @@ export default class RangeTransition extends Transition {
     }
 
     makeLabel() {
-        const s = new IntervalSet();
+        let s = new IntervalSet();
         s.addRange(this.start, this.stop);
         return s;
     }

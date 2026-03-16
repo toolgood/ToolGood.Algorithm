@@ -1,31 +1,41 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
 
-	internal class Function_OR_N : Function_N
+	internal sealed class Function_OR_N : Function_N
 	{
 		public Function_OR_N(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "OrN";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var index = 1;
 			bool b = false;
-			foreach(var item in funcs) {
-				var a = item.Evaluate(work, tempParameter);
-				if(a.IsNotBoolean) { a = a.ToBoolean("Function '{0}' parameter {1} is error!", "OR", index++); if(a.IsError) { return a; } }
+			for(int i = 0; i < funcs.Length; i++) {
+				var a = GetBoolean(engine, tempParameter, i);
+				if(a.IsErrorOrNone) { return a; }
 				if(a.BooleanValue) b = true;
 			}
 			return b ? Operand.True : Operand.False;
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "OR");
+			return OperandType.BOOLEAN;
 		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				funcs[i].GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+			}
+		}
+
 	}
-
-
 }

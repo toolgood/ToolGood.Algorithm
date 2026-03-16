@@ -1,28 +1,36 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_NETWORKDAYS : Function_N
+	internal sealed class Function_NETWORKDAYS : Function_N
     {
         public Function_NETWORKDAYS(FunctionBase[] funcs) : base(funcs)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "NetworkDays";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = funcs[0].Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Evaluate(work, tempParameter); if (args2.IsNotDate) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2); if (args2.IsError) { return args2; } }
+            var args1 = GetDate(engine, tempParameter, 0);
+			if (args1.IsErrorOrNone) { return args1; }
 
-            var startMyDate = (DateTime)args1.DateValue;
-            var endMyDate = (DateTime)args2.DateValue;
+			var args2 = GetDate(engine, tempParameter, 1);
+			if (args2.IsErrorOrNone) { return args2; }
 
-            var list = new HashSet<DateTime>();
-            for (int i = 2; i < funcs.Length; i++) {
-                var ar = funcs[i].Evaluate(work, tempParameter); if (ar.IsNotDate) { ar = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1); if (ar.IsError) { return ar; } }
-                list.Add(ar.DateValue);
-            }
+			var startMyDate = args1.DateValue.ToDateTime();
+			var endMyDate = args2.DateValue.ToDateTime();
+
+			var list = new HashSet<DateTime>();
+			for (int i = 2; i < funcs.Length; i++) {
+				var ar = GetDate(engine, tempParameter, i);
+				if (ar.IsErrorOrNone) { return ar; }
+				list.Add(ar.DateValue.ToDateTime());
+			}
             var days = 0;
             while (startMyDate <= endMyDate) {
                 if (startMyDate.DayOfWeek != DayOfWeek.Sunday && startMyDate.DayOfWeek != DayOfWeek.Saturday) {
@@ -34,10 +42,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create(days);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "NetWorkdays");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			foreach(var item in funcs) {
+				item.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			}
+		}
+	}
 
 }

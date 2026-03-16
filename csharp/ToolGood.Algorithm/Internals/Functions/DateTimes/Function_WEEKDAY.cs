@@ -1,28 +1,38 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	#region second minute hour month year day
 
 	#endregion
-	internal class Function_WEEKDAY : Function_2
+	internal sealed class Function_WEEKDAY : Function_2
     {
-        public Function_WEEKDAY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_WEEKDAY(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+
+        public override string Name => "Weekday";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-        }
+            var args1 = GetDate_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1); if (args1.IsError) { return args1; } }
+			var type = 1;
+			if (func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
+				if (args2.IsErrorOrNone) { return args2; }
+				type = args2.IntValue;
+				if (type != 1 && type != 2 && type != 3) {
+					return ParameterError(2);
+				}
+			}
 
-            var type = 1;
-            if (func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekDay", 2); if (args2.IsError) { return args2; } }
-                type = args2.IntValue;
-            }
-
-            var t = ((DateTime)args1.DateValue).DayOfWeek;
+            var t = args1.DateValue.ToDateTime().DayOfWeek;
             if (type == 1) {
                 return Operand.Create((int)(t + 1));
             } else if (type == 2) {
@@ -34,10 +44,18 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             }
             return Operand.Create((int)(t - 1));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "WeekDay");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+		}
+	}
 
 }

@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -17,254 +18,36 @@ namespace ToolGood.Algorithm
 	/// </summary>
 	public static class AlgorithmEngineHelper
 	{
-		private static HashSet<string> _lexerSet;
-		private static Regex unitRegex;
+		private static readonly Regex unitRegex = new Regex(@"[\s\(\)（）\[\]<>]", RegexOptions.Compiled);
 
-		private static HashSet<string> GetLexerSet()
+		internal static (AntlrErrorTextWriter errorWriter, mathParser.ProgContext context) CreateParserContext(string exp)
 		{
-			if(_lexerSet == null) {
-				var lexerSet = new HashSet<string> {
-					"NULL",
-					"IF",
-					"IFERROR",
-					"ISNUMBER",
-					"ISTEXT",
-					"ISERROR",
-					"ISNONTEXT",
-					"ISLOGICAL",
-					"ISEVEN",
-					"ISODD",
-					"ISNULL",
-					"ISNULLORERROR",
-					"AND",
-					"OR",
-					"NOT",
-					"TRUE",
-					"FALSE",
-					"E",
-					"PI",
-					"DEC2BIN",
-					"DEC2HEX",
-					"DEC2OCT",
-					"HEX2BIN",
-					"HEX2DEC",
-					"HEX2OCT",
-					"OCT2BIN",
-					"OCT2DEC",
-					"OCT2HEX",
-					"BIN2OCT",
-					"BIN2DEC",
-					"BIN2HEX",
-					"ABS",
-					"QUOTIENT",
-					"MOD",
-					"SIGN",
-					"SQRT",
-					"TRUNC",
-					"INT",
-					"GCD",
-					"LCM",
-					"COMBIN",
-					"PERMUT",
-					"DEGREES",
-					"RADIANS",
-					"COS",
-					"COSH",
-					"SIN",
-					"SINH",
-					"TAN",
-					"TANH",
-					"ACOS",
-					"ACOSH",
-					"ASIN",
-					"ASINH",
-					"ATAN",
-					"ATANH",
-					"ATAN2",
-					"ROUND",
-					"ROUNDDOWN",
-					"ROUNDUP",
-					"CEILING",
-					"FLOOR",
-					"EVEN",
-					"ODD",
-					"MROUND",
-					"RAND",
-					"RANDBETWEEN",
-					"FACT",
-					"FACTDOUBLE",
-					"POWER",
-					"EXP",
-					"LN",
-					"LOG",
-					"LOG10",
-					"MULTINOMIAL",
-					"PRODUCT",
-					"SQRTPI",
-					"SUMSQ",
-					"ASC",
-					"JIS",
-					"WIDECHAR",
-					"CHAR",
-					"CLEAN",
-					"CODE",
-					"CONCATENATE",
-					"EXACT",
-					"FIND",
-					"FIXED",
-					"LEFT",
-					"LEN",
-					"LOWER", "TOLOWER",
-					"MID",
-					"PROPER",
-					"REPLACE",
-					"REPT",
-					"RIGHT",
-					"RMB",
-					"SEARCH",
-					"SUBSTITUTE",
-					"T",
-					"TEXT",
-					"TRIM",
-					"UPPER", "TOUPPER",
-					"VALUE",
-					"DATEVALUE",
-					"TIMEVALUE",
-					"DATE",
-					"TIME",
-					"NOW",
-					"TODAY",
-					"YEAR",
-					"MONTH",
-					"DAY",
-					"HOUR",
-					"MINUTE",
-					"SECOND",
-					"WEEKDAY",
-					"DATEDIF",
-					"DAYS360",
-					"EDATE",
-					"EOMONTH",
-					"NETWORKDAYS",
-					"WORKDAY",
-					"WEEKNUM",
-					"MAX",
-					"MEDIAN",
-					"MIN",
-					"QUARTILE",
-					"MODE",
-					"LARGE",
-					"SMALL",
-					"PERCENTILE", "PERCENTILE.INC",
-					"PERCENTRANK", "PERCENTRANK.INC",
-					"AVERAGE",
-					"AVERAGEIF",
-					"GEOMEAN",
-					"HARMEAN",
-					"COUNT",
-					"COUNTIF",
-					"SUM",
-					"SUMIF",
-					"AVEDEV",
-					"STDEV", "STDEV.S",
-					"STDEVP", "STDEV.P",
-					"COVAR",
-					"COVARIANCE.P",
-					"COVARIANCE.S'",
-					"DEVSQ",
-					"VAR", "VAR.S",
-					"VARP", "VAR.P",
-					"NORMDIST", "NORM.DIST",
-					"NORMINV", "NORM.INV",
-					"NORMSDIST", "NORM.S.DIST",
-					"NORMSINV", "NORM.S.INV",
-					"BETADIST", "BETA.DIST",
-					"BETAINV", "BETA.INV",
-					"BINOMDIST", "BINOM.DIST",
-					"EXPONDIST","EXPON.DIST",
-					"FDIST","F.DIST",
-					"FINV","F.INV",
-					"FISHER",
-					"FISHERINV",
-					"GAMMADIST", "GAMMA.DIST",
-					"GAMMAINV", "GAMMA.INV",
-					"GAMMALN", "GAMMALN.PRECISE",
-					"HYPGEOMDIST", "HYPGEOM.DIST",
-					"LOGINV", "LOGNORM.INV",
-					"LOGNORMDIST", "LOGNORM.DIST",
-					"NEGBINOMDIST", "NEGBINOM.DIST",
-					"POISSON", "POISSON.DIST",
-					"TDIST", "T.DIST",
-					"TINV", "T.INV",
-					"WEIBULL",
-					"URLENCODE",
-					"URLDECODE",
-					"HTMLENCODE",
-					"HTMLDECODE",
-					"BASE64TOTEXT",
-					"BASE64URLTOTEXT",
-					"TEXTTOBASE64",
-					"TEXTTOBASE64URL",
-					"REGEX",
-					"REGEXREPALCE",
-					"ISREGEX", "ISMATCH",
-					"GUID",
-					"MD5",
-					"SHA1",
-					"SHA256",
-					"SHA512",
-					"HMACMD5",
-					"HMACSHA1",
-					"HMACSHA256",
-					"HMACSHA512",
-					"TRIMSTART", "LTRIM",
-					"TRIMEND", "RTRIM",
-					"INDEXOF",
-					"LASTINDEXOF",
-					"SPLIT",
-					"JOIN",
-					"SUBSTRING",
-					"STARTSWITH",
-					"ENDSWITH",
-					"ISNULLOREMPTY",
-					"ISNULLORWHITESPACE",
-					"REMOVESTART",
-					"REMOVEEND",
-					"JSON",
-					"ARRAY",
-					"LOOKFLOOR",
-					"LOOKCEILING",
-
-
-					"ADDYEARS",
-					"ADDMONTHS",
-					"ADDDAYS",
-					"ADDHOURS",
-					"ADDMINUTES",
-					"ADDSECONDS",
-					"TIMESTAMP",
-
-					"HAS", "HASKEY", 
-					"CONTAINS", "CONTAINSKEY",
-					"HASVALUE", "CONTAINSVALUE",
-					"PARAM", "PARAMETER", "GETPARAMETER",
-					"ERROR"
-				};
-
-				_lexerSet = lexerSet;
-			}
-			return _lexerSet;
+			var errorWriter = new AntlrErrorTextWriter();
+			var stream = new AntlrCharStream(new AntlrInputStream(exp));
+			var lexer = new mathLexer(stream, TextWriter.Null, errorWriter);
+			var tokens = new CommonTokenStream(lexer);
+			var parser = new mathParser(tokens, TextWriter.Null, errorWriter);
+			var context = parser.prog();
+			return (errorWriter, context);
 		}
 
 		/// <summary>
-		/// 是否与内置关键字相同
+		/// 是不是参数
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
-		public static bool IsKeywords(string parameter)
+		public static bool IsParameter(string parameter)
 		{
-			var lexerSet = GetLexerSet();
-			return lexerSet.Contains(CharUtil.StandardString(parameter));
+			if(string.IsNullOrWhiteSpace(parameter)) { return false; }
+			try {
+				var diy = GetDiyNames(parameter);
+				if(diy.Functions.Count > 0) { return false; }
+				if(diy.Parameters.Count == 1) {
+					var p = diy.Parameters[0];
+					return p.Name == parameter;
+				}
+			} catch(Exception) { }
+			return false;
 		}
 
 		/// <summary>
@@ -278,15 +61,9 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				throw new Exception(antlrErrorTextWriter.ErrorMsg);
+			var (errorWriter, context) = CreateParserContext(exp);
+			if(errorWriter.IsError) {
+				throw new Exception(errorWriter.ErrorMsg);
 			}
 			var visitor = new DiyNameVisitor();
 			visitor.Visit(context);
@@ -305,32 +82,36 @@ namespace ToolGood.Algorithm
 		public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
 		{
 			if(string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
-			if(unitRegex == null) {
-				unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
-			}
-			oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
 			if(oldSrcUnit == oldTarUnit) { return src; }
 
-			if(DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new DistanceConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new MassConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new AreaConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
+			var result = TryConvert(src, oldSrcUnit, oldTarUnit);
+			if(result.HasValue) { return result.Value; }
+
+			oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
+			result = TryConvert(src, oldSrcUnit, oldTarUnit);
+			if(result.HasValue) { return result.Value; }
+
 			if(string.IsNullOrEmpty(name)) {
 				throw new Exception($"The input item has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
 			}
 			throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
+		}
+
+		private static decimal? TryConvert(decimal src, string srcUnit, string tarUnit)
+		{
+			if(DistanceConverter.Exists(srcUnit, tarUnit)) {
+				return new DistanceConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			if(MassConverter.Exists(srcUnit, tarUnit)) {
+				return new MassConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			if(AreaConverter.Exists(srcUnit, tarUnit)) {
+				return new AreaConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			if(VolumeConverter.Exists(srcUnit, tarUnit)) {
+				return new VolumeConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			return null;
 		}
 
 		/// <summary>
@@ -343,15 +124,9 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				throw new Exception(antlrErrorTextWriter.ErrorMsg);
+			var (errorWriter, context) = CreateParserContext(exp);
+			if(errorWriter.IsError) {
+				throw new Exception(errorWriter.ErrorMsg);
 			}
 			var visitor = new MathFunctionVisitor();
 			return visitor.Visit(context);
@@ -365,17 +140,8 @@ namespace ToolGood.Algorithm
 		public static bool CheckFormula(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				return false;
-			}
-			return true;
+			var (errorWriter, _) = CreateParserContext(exp);
+			return !errorWriter.IsError;
 		}
 
 		/// <summary>
@@ -392,16 +158,10 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-				var stream = new AntlrCharStream(new AntlrInputStream(condition));
-				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-				var tokens = new CommonTokenStream(lexer);
-				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-				var context = parser.prog();
-				if(antlrErrorTextWriter.IsError) {
+				var (errorWriter, context) = CreateParserContext(condition);
+				if(errorWriter.IsError) {
 					tree.Type = ConditionTreeType.Error;
-					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
+					tree.ErrorMessage = errorWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor();
@@ -447,16 +207,10 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-				var stream = new AntlrCharStream(new AntlrInputStream(exp));
-				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-				var tokens = new CommonTokenStream(lexer);
-				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-				var context = parser.prog();
-				if(antlrErrorTextWriter.IsError) {
+				var (errorWriter, context) = CreateParserContext(exp);
+				if(errorWriter.IsError) {
 					tree.Type = CalculateTreeType.Error;
-					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
+					tree.ErrorMessage = errorWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor2();
@@ -467,7 +221,6 @@ namespace ToolGood.Algorithm
 			}
 			return tree;
 		}
-
 
 		/// <summary>
 		/// Creates a function that represents the sum of two specified functions.

@@ -1,5 +1,5 @@
 export var SortedArrayStatistics = {
-    QuantileRank: function(data, x) {
+    quantileRank: function(data, x) {
         if (x < data[0]) {
             return 0.0;
         }

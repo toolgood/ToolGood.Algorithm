@@ -5,8 +5,8 @@ class JsonException extends Error {
     }
 
     static createWithToken(token, innerException) {
-        const message = `Invalid token '${token}' in input string`;
-        const exception = new JsonException(message);
+        let message = `Invalid token '${token}' in input string`;
+        let exception = new JsonException(message);
         if (innerException) {
             exception.innerException = innerException;
         }
@@ -14,7 +14,7 @@ class JsonException extends Error {
     }
 
     static createWithChar(c) {
-        const message = `Invalid character '${String.fromCharCode(c)}' in input string`;
+        let message = `Invalid character '${String.fromCharCode(c)}' in input string`;
         return new JsonException(message);
     }
 }

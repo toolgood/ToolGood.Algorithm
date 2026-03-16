@@ -1,34 +1,58 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_PERMUT : Function_2
+	internal sealed class Function_PERMUT : Function_2
     {
-        public Function_PERMUT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		public Function_PERMUT(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Permut";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 2); if (args2.IsError) { return args2; } }
+            var args1 = GetNumber_1(engine, tempParameter);
+            if (args1.IsErrorOrNone || args1.IsNone) { return args1; }
+
+            var args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone || args2.IsNone) { return args2; }
 
             var total = args1.IntValue;
             var count = args2.IntValue;
 
-            double sum = 1;
+            if (total < 0) {
+                return ParameterError(1);
+            }
+            if (count < 0) {
+                return ParameterError(2);
+            }
+            if (total < count) {
+                return ParameterError(2);
+            }
+
+            decimal sum = 1;
             for (int i = 0; i < count; i++) {
                 sum *= (total - i);
             }
             return Operand.Create(sum);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Permut");
-        }
-    }
 
-    
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+
+	}
 
 }

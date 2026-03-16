@@ -1,49 +1,47 @@
-import { IJsonWrapper } from './IJsonWrapper.js';
 import { JsonType } from './JsonType.js';
 
-class JsonData extends IJsonWrapper {
+class JsonData  {
     constructor() {
-        super();
         this.inst_array = null;
         this.inst_boolean = false;
         this.inst_double = 0;
         this.inst_object = null;
         this.inst_string = null;
-        this.type = JsonType.None;
+        this.type = JsonType.none;
     }
 
     get Count() {
-        if (this.type === JsonType.Array) {
+        if (this.type === JsonType.array) {
             return this.inst_array.length;
         }
-        if (this.type === JsonType.Object) {
+        if (this.type === JsonType.object) {
             return Object.keys(this.inst_object).length;
         }
         return 0;
     }
 
     get IsArray() {
-        return this.type === JsonType.Array;
+        return this.type === JsonType.array;
     }
 
     get IsBoolean() {
-        return this.type === JsonType.Boolean;
+        return this.type === JsonType.boolean;
     }
 
     get IsDouble() {
-        return this.type === JsonType.Double;
+        return this.type === JsonType.double;
     }
 
     get IsObject() {
-        return this.type === JsonType.Object;
+        return this.type === JsonType.object;
     }
 
     get IsString() {
-        return this.type === JsonType.String;
+        return this.type === JsonType.string;
     }
 
     get IsNull() {
-        return this.type === JsonType.Null;
+        return this.type === JsonType.null;
     }
 
     get BooleanValue() {
@@ -59,88 +57,88 @@ class JsonData extends IJsonWrapper {
     }
 
     getEnumerator() {
-        return this.EnsureList().values();
+        return this.ensureList().values();
     }
 
     *[Symbol.iterator]() {
-        if (this.type === JsonType.Array) {
-            for (const item of this.inst_array) {
+        if (this.type === JsonType.array) {
+            for (let item of this.inst_array) {
                 yield item;
             }
         }
     }
 
-    EnsureDictionary() {
-        if (this.type === JsonType.Object) {
+    ensureDictionary() {
+        if (this.type === JsonType.object) {
             return this.inst_object;
         }
-        this.type = JsonType.Object;
+        this.type = JsonType.object;
         this.inst_object = {};
         return this.inst_object;
     }
 
-    EnsureList() {
-        if (this.type === JsonType.Array) {
+    ensureList() {
+        if (this.type === JsonType.array) {
             return this.inst_array;
         }
-        this.type = JsonType.Array;
+        this.type = JsonType.array;
         this.inst_array = [];
         return this.inst_array;
     }
 
-    SetBoolean(val) {
-        this.type = JsonType.Boolean;
+    setBoolean(val) {
+        this.type = JsonType.boolean;
         this.inst_boolean = val;
     }
 
-    SetDouble(val) {
-        this.type = JsonType.Double;
+    setDouble(val) {
+        this.type = JsonType.double;
         this.inst_double = val;
     }
 
-    SetString(val) {
-        this.type = JsonType.String;
+    setString(val) {
+        this.type = JsonType.string;
         this.inst_string = val;
     }
 
-    SetNull() {
-        this.type = JsonType.Null;
+    setNull() {
+        this.type = JsonType.null;
     }
 
-    Add(val) {
-        this.EnsureList().push(val);
+    add(val) {
+        this.ensureList().push(val);
     }
 
-    Set(key, val) {
-        this.EnsureDictionary()[key] = val;
+    set(key, val) {
+        this.ensureDictionary()[key] = val;
     }
 
-    SetJsonType(type) {
+    setJsonType(type) {
         if (this.type === type) {
             return;
         }
 
         switch (type) {
-            case JsonType.None:
+            case JsonType.none:
                 break;
 
-            case JsonType.Object:
+            case JsonType.object:
                 this.inst_object = {};
                 break;
 
-            case JsonType.Array:
+            case JsonType.array:
                 this.inst_array = [];
                 break;
 
-            case JsonType.String:
+            case JsonType.string:
                 this.inst_string = '';
                 break;
 
-            case JsonType.Double:
+            case JsonType.double:
                 this.inst_double = 0;
                 break;
 
-            case JsonType.Boolean:
+            case JsonType.boolean:
                 this.inst_boolean = false;
                 break;
         }
@@ -149,7 +147,7 @@ class JsonData extends IJsonWrapper {
     }
 
     toString() {
-        const stringBuilder = [];
+        let stringBuilder = [];
         this.toStringBuilder(stringBuilder);
         return stringBuilder.join('');
     }
@@ -171,7 +169,7 @@ class JsonData extends IJsonWrapper {
         } else if (this.IsObject) {
             stringBuilder.push('{');
             let first = true;
-            for (const key in this.inst_object) {
+            for (let key in this.inst_object) {
                 if (!first) {
                     stringBuilder.push(',');
                 }

@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import webpack from 'webpack';
+import TerserPlugin from 'terser-webpack-plugin';
 import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,6 +13,7 @@ const licenseContent = fs.readFileSync(licensePath, 'utf8');
 const licenseComment = `/*!\n${licenseContent.split('\n').map(line => ` * ${line}`).join('\n')}\n */`;
 
 export default {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -88,7 +90,27 @@ export default {
   optimization: {
     minimize: true,
     usedExports: true,
-    sideEffects: false
+    sideEffects: false,
+    concatenateModules: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          mangle: {
+            toplevel: true,
+            safari10: false,
+            properties: {
+              regex: /^[a-z_][a-zA-Z0-9—_]*$|^(Get|Set|Next|F_|State)[a-zA-Z0-9—_]*$|^[A-Z]+_[A-Z0-9_]+$/,// 小写字母开头都替换
+              keep_quoted: false,
+            }
+          },
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            passes: 3,
+          }
+        }
+      })
+    ]
   },
   performance: {
     hints: false,

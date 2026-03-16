@@ -2,16 +2,20 @@ import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
 
 class Function_ISNONTEXT extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "IsNonText";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            return Operand.Create(true);
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
+        if (!args1.IsText) {
+            return Operand.True;
         }
-        return Operand.Create(false);
+        return Operand.False;
     }
 }
 

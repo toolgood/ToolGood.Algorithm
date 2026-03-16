@@ -40,7 +40,7 @@ export default class ATNSimulator {
         if (this.sharedContextCache ===null) {
             return context;
         }
-        const visited = new HashMap();
+        let visited = new HashMap();
         return getCachedPredictionContext(context, this.sharedContextCache, visited);
     }
 }

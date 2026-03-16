@@ -1,33 +1,56 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
-	internal class Function_DEC2BIN : Function_2
+	internal sealed class Function_DEC2BIN : Function_2
     {
-        public Function_DEC2BIN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		public Function_DEC2BIN(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Dec2Bin";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2BIN", 1); if (args1.IsError) { return args1; } }
-            var num = Convert.ToString(args1.IntValue, 2);
-            if (func2 != null) {
-                var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2BIN", 2); if (args2.IsError) { return args2; } }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function '{0}' parameter {1} is error!", "DEC2BIN", 2);
+            var args1 = GetNumber_1(engine, tempParameter);
+            if (args1.IsErrorOrNone) { return args1; }
+            var num = args1.IntValue;
+            if (num < -512 || num > 511) {
+                return ParameterError(1);
             }
-            return Operand.Create(num);
+            var binaryStr = Convert.ToString(num, 2);
+            if (func2 != null) {
+                var args2 = GetNumber_2(engine, tempParameter);
+                if (args2.IsErrorOrNone) { return args2; }
+                if (args2.IntValue < 0) {
+                    return ParameterError(2);
+                }
+                if (binaryStr.Length > args2.IntValue) {
+                    return ParameterError(2);
+                }
+                if (binaryStr.Length <= args2.IntValue) {
+                    return Operand.Create(binaryStr.PadLeft(args2.IntValue, '0'));
+                }
+                return ParameterError(2);
+            }
+            return Operand.Create(binaryStr);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "DEC2BIN");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
 
-    
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+		}
+	}
 
 }

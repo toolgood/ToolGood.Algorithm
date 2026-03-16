@@ -1,24 +1,36 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_Array : Function_N
+	internal sealed class Function_Array : Function_N
 	{
 		public Function_Array(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-		{
-			var args = new List<Operand>();
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
+		public override string Name => "Array";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+			var args = new List<Operand>(funcs.Length);
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
 			return Operand.Create(args);
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "Array");
+			return OperandType.ARRAY;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NONE);
+			}
 		}
 	}
 

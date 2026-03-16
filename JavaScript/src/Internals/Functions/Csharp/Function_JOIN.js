@@ -1,27 +1,52 @@
 import { Function_N } from '../Function_N.js';
 import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 /**
  * Function_JOIN
  */
 export class Function_JOIN extends Function_N {
     /**
-     * @param {FunctionBase[]} funcs
+     * @param {FunctionBase[]} z
      */
-    constructor(funcs) {
-        super(funcs);
+    constructor(z) {
+        super(z);
     }
     
+    get Name() {
+        return "Join";
+    }
+    F_base_GetList(item, list){
+            if(item.IsError){
+                return false;
+            } else if(item.IsArray) {
+                for (let i = 0; i < item.ArrayValue.length; i++) {
+                    let o = this.F_base_GetList(item.ArrayValue[i], list);
+                    if (!o) { return false}
+                }
+            } else if(item.IsJson) {
+                var array = item.ToArray(null);
+                if(array.IsError) { return false; }
+                for (let i = 0; i < item.ArrayValue.length; i++) {
+                    let o = this.F_base_GetList(item.ArrayValue[i], list);
+                    if (!o) { return false }
+                }
+            } else if(item.IsNull) {
+            } else {
+                var o = item.ToText(null);
+                if(o.IsError) { return false; }
+                list.push(o.TextValue);
+            }
+        return true;
+    }
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -38,55 +63,26 @@ export class Function_JOIN extends Function_N {
         
         if (args1.IsArray) {
             let list = [];
-            let o = FunctionUtil.f_base_GetList(args1, list);
-            if (!o) {
-                return Operand.Error(StringCache.Function_parameter_error, 'Join', 1);
-            }
+            let o = this.F_base_GetList(args1, list);
+            if (!o) { return this.parameterError(1); }
             
-            let args2 = args[1].ToText(StringCache.Function_parameter_error, 'Join', 2);
-            if (args2.IsError) {
-                return args2;
-            }
+            let args2 = this.convertToText(args[1], 2);
+            if (args2.IsError) { return args2; }
             
             return Operand.Create(list.join(args2.TextValue));
         } else {
-            args1 = args1.ToText(StringCache.Function_parameter_error, 'Join', 1);
-            if (args1.IsError) {
-                return args1;
-            }
+            args1 = this.convertToText(args1, 1);
+            if (args1.IsError) { return args1; }
             
             let list = [];
             for (let i = 1; i < args.length; i++) {
-                let item = args[i];
-                if (item.IsNumber) {
-                    list.push(item.NumberValue);
-                } else if (item.IsText) {
-                    list.push(item.TextValue);
-                } else if (item.IsBoolean) {
-                    list.push(item.BooleanValue);
-                } else if (item.IsArray) {
-                    for (let arrItem of item.ArrayValue) {
-                        if (arrItem.IsNumber) {
-                            list.push(arrItem.NumberValue);
-                        } else if (arrItem.IsText) {
-                            list.push(arrItem.TextValue);
-                        } else if (arrItem.IsBoolean) {
-                            list.push(arrItem.BooleanValue);
-                        } else {
-                            // 处理原始�?
-                            list.push(arrItem);
-                        }
-                    }
-                }
+                let o = this.F_base_GetList(args[i], list);
+                if (!o) { return this.parameterError(i + 1); }
             }
             
             return Operand.Create(list.join(args1.TextValue));
         }
     }
-    
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
 }
 

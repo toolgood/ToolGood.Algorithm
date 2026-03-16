@@ -8,7 +8,7 @@ class Gamma {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(shape, rate, x) {
+    static cdf(shape, rate, x) {
         if (!isFinite(rate)) {
             return x >= shape ? 1 : 0;
         }
@@ -17,7 +17,7 @@ class Gamma {
             return 0;
         }
 
-        return SpecialFunctions.GammaLowerRegularized(shape, x * rate);
+        return SpecialFunctions.gammaLowerRegularized(shape, x * rate);
     }
 
     /**
@@ -27,7 +27,7 @@ class Gamma {
      * @param {number} x
      * @returns {number}
      */
-    static PDF(shape, rate, x) {
+    static pdf(shape, rate, x) {
         if (!isFinite(rate)) {
             return x === shape ? Infinity : 0;
         }
@@ -41,10 +41,10 @@ class Gamma {
         }
 
         if (shape > 160) {
-            return Math.exp(Gamma.PDFLn(shape, rate, x));
+            return Math.exp(Gamma.pdfLn(shape, rate, x));
         }
 
-        return Math.pow(rate, shape) * Math.pow(x, shape - 1) * Math.exp(-rate * x) / SpecialFunctions.Gamma(shape);
+        return Math.pow(rate, shape) * Math.pow(x, shape - 1) * Math.exp(-rate * x) / SpecialFunctions.gamma(shape);
     }
 
     /**
@@ -54,7 +54,7 @@ class Gamma {
      * @param {number} x
      * @returns {number}
      */
-    static PDFLn(shape, rate, x) {
+    static pdfLn(shape, rate, x) {
         if (!isFinite(rate)) {
             return x === shape ? Infinity : -Infinity;
         }
@@ -67,7 +67,7 @@ class Gamma {
             return Math.log(rate) - (rate * x);
         }
 
-        return (shape * Math.log(rate)) + ((shape - 1) * Math.log(x)) - (rate * x) - SpecialFunctions.GammaLn(shape);
+        return (shape * Math.log(rate)) + ((shape - 1) * Math.log(x)) - (rate * x) - SpecialFunctions.gammaLn(shape);
     }
 
     /**
@@ -77,8 +77,8 @@ class Gamma {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(shape, rate, p) {
-        return SpecialFunctions.GammaLowerRegularizedInv(shape, p) / rate;
+    static invCdf(shape, rate, p) {
+        return SpecialFunctions.gammaLowerRegularizedInv(shape, p) / rate;
     }
 }
 

@@ -1,19 +1,20 @@
 import { Function_1 } from '../Function_1.js';
 import { MyDate } from '../../MyDate.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 import { Operand } from '../../../Operand.js';
 
 class Function_TIMEVALUE extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "TimeValue";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotText) {
-            args1 = args1.ToText(StringCache.Function_parameter_error, "TimeValue");
-            if (args1.IsError) { return args1; }
-        }
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
 
         try {
             // 尝试解析时间字符�?
@@ -36,7 +37,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return Operand.Error(StringCache.Function_parameter_error, "TimeValue");
+        return this.functionError();
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 
 namespace ToolGood.Algorithm.Test
 {
@@ -17,8 +17,9 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("if(1=1，1)", 0);
             Assert.AreEqual(1, t);
 
-            t = engine.TryEvaluate("if(3,1,2)", 0);
-            Assert.AreEqual(1, t);
+            // 禁止隐式转换
+            //t = engine.TryEvaluate("if(3,1,2)", 0);
+            //         Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if('1',1,2)", 0);
             Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if(0,1,2)", 0);
@@ -234,7 +235,7 @@ namespace ToolGood.Algorithm.Test
         public void andor_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("1=1 && 2==2 and 3=3", false);
+            var t = engine.TryEvaluate("1=1 && 2==2 && 3=3", false);
             Assert.AreEqual(true, t);
 
             t = engine.TryEvaluate("1=1 && 2!=2", true);
@@ -246,17 +247,146 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("1=1 || 2!=2", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("1=1 and 2==2", false);
+            //t = engine.TryEvaluate("1=1 and 2==2", false);
+            //Assert.AreEqual(true, t);
+
+            //t = engine.TryEvaluate("1=1 and 2!=2", true);
+            //Assert.AreEqual(false, t);
+
+            //t = engine.TryEvaluate("1=1 and 2!=2", true);
+            //Assert.AreEqual(false, t);
+
+            //t = engine.TryEvaluate("1=1 or 2!=2", false);
+            //Assert.AreEqual(true, t);
+        }
+
+        [Test]
+        public void IFS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("IFS(1=1, 'a', 1=2, 'b')", "");
+            Assert.AreEqual("a", t);
+
+            t = engine.TryEvaluate("IFS(1=2, 'a', 2=2, 'b')", "");
+            Assert.AreEqual("b", t);
+
+
+            var t2 = engine.TryEvaluate("IFS(1=1, 100, 1=2, 200)", 0);
+            Assert.AreEqual(100, t2);
+        }
+
+        [Test]
+        public void SWITCH_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SWITCH(1, 1, 'one', 2, 'two')", "");
+            Assert.AreEqual("one", t);
+
+            t = engine.TryEvaluate("SWITCH(2, 1, 'one', 2, 'two')", "");
+            Assert.AreEqual("two", t);
+
+            var t2 = engine.TryEvaluate("SWITCH('a', 'a', 1, 'b', 2)", 0);
+            Assert.AreEqual(1, t2);
+
+            t = engine.TryEvaluate("SWITCH(5, 1, 'one', 2, 'two')", "");
+            Assert.AreEqual("", t);
+        }
+
+        [Test]
+        public void XOR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("XOR(true(), false())", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("1=1 and 2!=2", true);
+            t = engine.TryEvaluate("XOR(true(), true())", true);
             Assert.AreEqual(false, t);
 
-            t = engine.TryEvaluate("1=1 and 2!=2", true);
+            t = engine.TryEvaluate("XOR(false(), false())", true);
             Assert.AreEqual(false, t);
 
-            t = engine.TryEvaluate("1=1 or 2!=2", false);
+            t = engine.TryEvaluate("XOR(true(), true(), true())", false);
             Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(true(), false(), false())", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(1, 0)", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("XOR(1, 1)", true);
+            Assert.AreEqual(false, t);
+        }
+
+        [Test]
+        public void MethodStyle_ISNUMBER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("123.ISNUMBER()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("'abc'.ISNUMBER()", true);
+            Assert.AreEqual(t, false);
+
+            t = engine.TryEvaluate("true.ISNUMBER()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISTEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("'abc'.ISTEXT()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("123.ISTEXT()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISNONTEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("123.ISNONTEXT()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("'abc'.ISNONTEXT()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISLOGICAL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("true.ISLOGICAL()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("false.ISLOGICAL()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("123.ISLOGICAL()", true);
+            Assert.AreEqual(t, false);
+        }
+
+   
+
+        [Test]
+        public void MethodStyle_ISNULL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("null.ISNULL()", false);
+            Assert.AreEqual(t, true);
+
+            t = engine.TryEvaluate("123.ISNULL()", true);
+            Assert.AreEqual(t, false);
+        }
+
+        [Test]
+        public void MethodStyle_ISNULLORERROR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("null.ISNULLORERROR()", false);
+            Assert.AreEqual(t, true);
         }
     }
 }

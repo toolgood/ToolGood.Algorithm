@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Test.ConditionTrees
             var t1 = AlgorithmEngineHelper.ParseCondition(txt);
             Assert.AreEqual(t1.Type, ConditionTreeType.String);
             Assert.AreEqual("AA.IsText() = bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
-            Assert.AreEqual("AA.IsText()=bb", t1.ConditionString);
+            Assert.AreEqual("AA.IsText()=bb", t1.Text);
 
             txt = "[bbb]=bb";
             t1 = AlgorithmEngineHelper.ParseCondition(txt);

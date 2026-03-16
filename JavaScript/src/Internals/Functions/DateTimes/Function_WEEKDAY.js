@@ -1,39 +1,37 @@
 import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 
 class Function_WEEKDAY extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "Weekday";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "WeekDay", 1);
-            if (args1.IsError) { return args1; }
+    constructor(z) {
+    super(z);
+  }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let type = 1;
+        if (this.b != null) {
+            let args2 = this.getNumber_2(engine, tempParameter);
+            if (args2.IsError) { return args2; }
+            type = args2.IntValue;
         }
 
-        let Type = 1;
-        if (this.func2 !== null) {
-            let args2 = this.func2.Evaluate(engine, tempParameter);
-            if (args2.IsNotNumber) {
-                args2 = args2.ToNumber(StringCache.Function_parameter_error, "WeekDay", 2);
-                if (args2.IsError) { return args2; }
-            }
-            Type = args2.IntValue;
-        }
-
-        let t = args1.DateValue.ToDateTime().getDay(); // JavaScript中，0表示星期日，6表示星期�?
-        if (Type == 1) {
-            // 类型1：返�?-7�?表示星期日，7表示星期�?
+        let t = args1.DateValue.ToDateTime().getDay(); // JavaScript中，0表示星期日，6表示星期六
+        if (type == 1) {
+            // 类型1：返回1-7，1表示星期日，7表示星期六
             return Operand.Create(t + 1);
-        } else if (Type == 2) {
-            // 类型2：返�?-7�?表示星期一�?表示星期�?
+        } else if (type == 2) {
+            // 类型2：返回1-7，1表示星期一，7表示星期日
             if (t == 0) return Operand.Create(7);
             return Operand.Create(t);
         }
-        // 其他类型：返�?-6�?表示星期一�?表示星期�?
+        // 其他类型：返回0-6，0表示星期一，6表示星期日
         if (t == 0) {
             return Operand.Create(6);
         }

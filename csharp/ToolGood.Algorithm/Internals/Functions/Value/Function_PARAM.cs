@@ -1,32 +1,48 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_PARAM : Function_2
+	internal sealed class Function_Param : Function_2
 	{
-		public Function_PARAM(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_Param(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		
+
+		public override string Name => "Param";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Param", 1); if (args1.IsError) return args1; }
+			var args1 = GetText_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
 			if (tempParameter != null) {
-				var r = tempParameter(work, args1.TextValue);
+				var r = tempParameter(engine, args1.TextValue);
 				if (r != null) return r;
 			}
-			var result = work.GetParameter(args1.TextValue);
-			if (result.IsError) {
+			var result = engine.GetParameter(args1.TextValue);
+			if (result.IsErrorOrNone) {
 				if (func2 != null) {
-					return func2.Evaluate(work, tempParameter);
+					return func2.Evaluate(engine, tempParameter);
 				}
 			}
 			return result;
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "Param");
+			return OperandType.NONE;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			}
 		}
 	}
 

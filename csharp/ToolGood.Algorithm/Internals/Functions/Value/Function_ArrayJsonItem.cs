@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_ArrayJsonItem : Function_1
+	internal sealed class Function_ArrayJsonItem : Function_1
 	{
 		private readonly string key;
 
@@ -12,11 +16,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			this.key = key;
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "ArrayJsonItem";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var keyValue = new KeyValue {
 				Key = key,
-				Value = func1.Evaluate(work, tempParameter)
+				Value = func1.Evaluate(engine, tempParameter)
 			};
 			return new OperandKeyValue(keyValue);
 		}
@@ -26,7 +32,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			stringBuilder.Append(':');
 			func1.ToString(stringBuilder, false);
 		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.ARRAYJSON;
+		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+		}
 	}
-
 }

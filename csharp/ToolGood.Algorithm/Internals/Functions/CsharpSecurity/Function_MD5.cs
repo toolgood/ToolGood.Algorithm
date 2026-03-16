@@ -1,50 +1,52 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
-	internal class Function_MD5 : Function_2
+	internal sealed class Function_MD5 : Function_1
 	{
-		public Function_MD5(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_MD5(FunctionBase func1) : base(func1)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "MD5";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if(args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "MD5", 1); if(args1.IsError) return args1; }
+			var args1 = GetText_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
 			try {
-				Encoding encoding;
-				if(func2 == null) {
-					encoding = Encoding.UTF8;
-				} else {
-					var args2 = func2.Evaluate(work, tempParameter); if(args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "MD5", 2); if(args2.IsError) return args2; }
-					encoding = Encoding.GetEncoding(args2.TextValue);
-				}
-				var t = GetMd5String(encoding.GetBytes(args1.TextValue));
+				var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
 				return Operand.Create(t);
-			} catch(Exception ex) {
-				return Operand.Error("Function '{0}' is error!{1}", "MD5", ex.Message);
-			}
-		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "MD5");
+			} catch(Exception) {
+				return FunctionError();
+			} 
 		}
 
 		private string GetMd5String(byte[] buffer)
 		{
 #if NETSTANDARD2_1
-			System.Security.Cryptography.MD5 md5 = MD5.Create();
-			byte[] retVal = md5.ComputeHash(buffer);
-			md5.Dispose();
+			using var md5 = MD5.Create();
+			var retVal = md5.ComputeHash(buffer);
 			return BitConverter.ToString(retVal).Replace("-", "");
 #else
-            var retVal = MD5.HashData(buffer);
-            return Convert.ToHexString(retVal);
+			var retVal = MD5.HashData(buffer);
+			return Convert.ToHexString(retVal);
 #endif
 		}
-	}
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+		}
+	}
 
 }

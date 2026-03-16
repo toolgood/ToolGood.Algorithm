@@ -1,26 +1,49 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_POWER : Function_2
+	internal sealed class Function_POWER : Function_2
     {
-        public Function_POWER(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		public Function_POWER(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Power", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Power", 2); if (args2.IsError) { return args2; } }
-            return Operand.Create(Math.Pow(args1.DoubleValue, args2.DoubleValue));
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Power");
-        }
-    }
+        public override string Name => "Power";
 
-    
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+            var args1 = GetNumber_1(engine, tempParameter);
+            if (args1.IsErrorOrNone || args1.IsNone) { return args1; }
+
+            var args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone || args2.IsNone) { return args2; }
+
+			var baseValue = args1.NumberValue;
+			var exponent = args2.NumberValue;
+
+			if (baseValue == 0 && exponent < 0) {
+				return Div0Error();
+			}
+			if (baseValue < 0 && exponent != Math.Floor(exponent)) {
+				return ParameterError(1);
+			}
+
+			return Operand.Create(MathEx.Pow(baseValue, exponent));
+        }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

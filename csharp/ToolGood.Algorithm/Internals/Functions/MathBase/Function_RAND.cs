@@ -1,15 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal class Function_RAND : FunctionBase
+	internal sealed class Function_RAND : Function_0
     {
         public Function_RAND()
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Rand";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
 #if NETSTANDARD2_1
             var tick = DateTime.Now.Ticks;
@@ -23,8 +28,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
             stringBuilder.Append("Rand()");
         }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    
+	}
 
 }

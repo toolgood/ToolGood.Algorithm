@@ -15,7 +15,7 @@ export default class AtomTransition extends Transition {
     }
 
     makeLabel() {
-        const s = new IntervalSet();
+        let s = new IntervalSet();
         s.addOne(this.label_);
         return s;
     }

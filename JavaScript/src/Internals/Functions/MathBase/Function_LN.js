@@ -1,23 +1,23 @@
 import { Function_1 } from '../Function_1.js';
 import { Operand } from '../../../Operand.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_LN extends Function_1 {
-    constructor(func1) {
-        super(func1);
+    get Name() {
+        return "Ln";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotNumber) {
-            args1 = args1.ToNumber(StringCache.Function_parameter_error, "Ln");
-            if (args1.IsError) { return args1; }
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        let n = args1.NumberValue;
+        if (n <= 0) {
+            return this.parameterError(1);
         }
-        let z = args1.NumberValue;
-        if (z <= 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "Ln");
-        }
-        return Operand.Create(Math.log(z));
+        return Operand.Create(Math.log(n));
     }
 }
 

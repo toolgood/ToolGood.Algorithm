@@ -1,24 +1,39 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_EDATE : Function_2
+	internal sealed class Function_EDATE : Function_2
     {
-        public Function_EDATE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+		public Function_EDATE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "EDate";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotDate) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EDate", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EDate", 2); if (args2.IsError) { return args2; } }
-            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
+            var args1 = GetDate_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
+
+			var args2 = GetNumber_2(engine, tempParameter);
+			if (args2.IsErrorOrNone) { return args2; }
+            return Operand.Create(args1.DateValue.AddMonths(args2.IntValue));
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "EDate");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.DATE;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

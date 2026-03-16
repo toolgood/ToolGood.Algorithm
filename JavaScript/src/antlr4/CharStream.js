@@ -22,7 +22,7 @@ export default class CharStream {
         this.data = [];
         if (this.decodeToUnicodeCodePoints) {
             for (let i = 0; i < this.strdata.length; ) {
-                const codePoint = this.strdata.codePointAt(i);
+                let codePoint = this.strdata.codePointAt(i);
                 this.data.push(codePoint);
                 i += codePoint <= 0xFFFF ? 1 : 2;
             }
@@ -59,7 +59,7 @@ export default class CharStream {
         if (offset < 0) {
             offset += 1; // e.g., translate LA(-1) to use offset=0
         }
-        const pos = this._index + offset - 1;
+        let pos = this._index + offset - 1;
         if (pos < 0 || pos >= this._size) { // invalid
             return Token.EOF;
         }

@@ -10,24 +10,24 @@ class Gamma {
      * @param {number} x
      * @returns {number}
      */
-    static GammaLowerRegularized(a, x) {
-        const epsilon = 0.000000000000001;
-        const big = 4503599627370496.0;
-        const bigInv = 2.22044604925031308085e-16;
+    static gammaLowerRegularized(a, x) {
+        let epsilon = 0.000000000000001;
+        let big = 4503599627370496.0;
+        let bigInv = 2.22044604925031308085e-16;
 
-        if (Precision.AlmostEqual(a, 0)) {
-            if (Precision.AlmostEqual(x, 0)) {
+        if (Precision.almostEqual(a, 0)) {
+            if (Precision.almostEqual(x, 0)) {
                 //use right hand limit value because so that regularized upper/lower gamma definition holds.
                 return 1;
             }
             return 1;
         }
 
-        if (Precision.AlmostEqual(x, 0)) {
+        if (Precision.almostEqual(x, 0)) {
             return 0;
         }
 
-        const ax = (a * Math.log(x)) - x - Beta.GammaLn(a);
+        let ax = (a * Math.log(x)) - x - Beta.gammaLn(a);
         if (ax < -709.78271289338399) {
             return a < x ? 1 : 0;
         }
@@ -62,13 +62,13 @@ class Gamma {
             c++;
             y += 1;
             z += 2;
-            const yc = y * c;
+            let yc = y * c;
 
-            const p = (p2 * z) - (p3 * yc);
-            const q = (q2 * z) - (q3 * yc);
+            let p = (p2 * z) - (p3 * yc);
+            let q = (q2 * z) - (q3 * yc);
 
             if (q !== 0) {
-                const nextans = p / q;
+                let nextans = p / q;
                 error = Math.abs((ans - nextans) / nextans);
                 ans = nextans;
             } else {
@@ -100,20 +100,20 @@ class Gamma {
      * @param {number} y0
      * @returns {number}
      */
-    static GammaLowerRegularizedInv(a, y0) {
-        const epsilon = 0.000000000000001;
-        const big = 4503599627370496.0;
-        const threshold = 5 * epsilon;
+    static gammaLowerRegularizedInv(a, y0) {
+        let epsilon = 0.000000000000001;
+        let big = 4503599627370496.0;
+        let threshold = 5 * epsilon;
 
         if (isNaN(a) || isNaN(y0)) {
             return NaN;
         }
 
-        if (Precision.AlmostEqual(y0, 0)) {
+        if (Precision.almostEqual(y0, 0)) {
             return 0;
         }
 
-        if (Precision.AlmostEqual(y0, 1)) {
+        if (Precision.almostEqual(y0, 1)) {
             return Infinity;
         }
 
@@ -126,9 +126,9 @@ class Gamma {
 
         // Initial Guess
         let d = 1 / (9 * a);
-        let y = 1 - d - (0.98 * Constants.Sqrt2 * SpecialFunctions.ErfInv((2 * transformedY0) - 1) * Math.sqrt(d));
+        let y = 1 - d - (0.98 * Constants.sqrt2 * SpecialFunctions.erfInv((2 * transformedY0) - 1) * Math.sqrt(d));
         let x = a * y * y * y;
-        let lgm = Beta.GammaLn(a);
+        let lgm = Beta.gammaLn(a);
 
         for (let i = 0; i < 10; i++) {
             if (x < xLower || x > xUpper) {
@@ -136,7 +136,7 @@ class Gamma {
                 break;
             }
 
-            y = 1 - Gamma.GammaLowerRegularized(a, x);
+            y = 1 - Gamma.gammaLowerRegularized(a, x);
             if (y < yLower || y > yUpper) {
                 d = 0.0625;
                 break;
@@ -177,7 +177,7 @@ class Gamma {
 
             while (xUpper === big) {
                 x = (1 + d) * x;
-                y = 1 - Gamma.GammaLowerRegularized(a, x);
+                y = 1 - Gamma.gammaLowerRegularized(a, x);
                 if (y < transformedY0) {
                     xUpper = x;
                     yLower = y;
@@ -192,7 +192,7 @@ class Gamma {
         d = 0.5;
         for (let i = 0; i < 400; i++) {
             x = xLower + (d * (xUpper - xLower));
-            y = 1 - Gamma.GammaLowerRegularized(a, x);
+            y = 1 - Gamma.gammaLowerRegularized(a, x);
             lgm = (xUpper - xLower) / (xLower + xUpper);
             if (Math.abs(lgm) < threshold) {
                 return x;
@@ -248,9 +248,9 @@ class Gamma {
      * @param {number} z
      * @returns {number}
      */
-    static Gamma(z) {
+    static gamma(z) {
         // GammaDk coefficients from Beta.js
-        const GammaDk = [
+        let GammaDk = [
             2.48574089138753565546e-5,
             1.05142378581721974210,
             -3.45687097222016235469,
@@ -263,8 +263,8 @@ class Gamma {
             4.63399473359905636708e-6,
             0.0
         ];
-        const GammaN = 10;
-        const GammaR = 10.900511;
+        let GammaN = 10;
+        let GammaR = 10.900511;
 
         if (z < 0.5) {
             let s = GammaDk[0];
@@ -275,7 +275,7 @@ class Gamma {
             return Math.PI / (
                 Math.sin(Math.PI * z) *
                 s *
-                Constants.TwoSqrtEOverPi *
+                Constants.twoSqrtEOverPi *
                 Math.pow((0.5 - z + GammaR) / Math.E, 0.5 - z)
             );
         } else {
@@ -284,7 +284,7 @@ class Gamma {
                 s += GammaDk[i] / (z + i - 1);
             }
 
-            return s * Constants.TwoSqrtEOverPi * Math.pow((z - 0.5 + GammaR) / Math.E, z - 0.5);
+            return s * Constants.twoSqrtEOverPi * Math.pow((z - 0.5 + GammaR) / Math.E, z - 0.5);
         }
     }
 }

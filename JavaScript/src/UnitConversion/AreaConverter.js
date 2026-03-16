@@ -5,12 +5,12 @@ import { UnitFactorSynonyms } from './UnitFactorSynonyms.js';
 class AreaConverter extends BaseUnitConverter {
     constructor(leftUnit, rightUnit) {
         super();
-        this.Instantiate(AreaConverter.units, leftUnit, rightUnit);
+        this.instantiate(AreaConverter.units, leftUnit, rightUnit);
     }
 
-    static Exists(leftSynonym, rightSynonym) {
-        if (AreaConverter.units.FindUnit(leftSynonym) != null) {
-            return AreaConverter.units.FindUnit(rightSynonym) != null;
+    static exists(leftSynonym, rightSynonym) {
+        if (AreaConverter.units.findUnit(leftSynonym) != null) {
+            return AreaConverter.units.findUnit(rightSynonym) != null;
         }
         return false;
     }

@@ -1,17 +1,20 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_VARP extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "VarP";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -19,15 +22,15 @@ class Function_VARP extends Function_N {
         }
 
         if (args.length == 1) {
-            return Operand.Error(StringCache.Function_error, "VarP");
+            return Operand.Error("Function '{0}' parameter only one error!", "VarP");
         }
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
-            return Operand.Error(StringCache.Function_parameter_error, "VarP");
+            return this.functionError();
         }
         if (list.length == 0) {
-            return Operand.Error(StringCache.Function_parameter_error, "VarP");
+            return this.functionError();
         }
         if (list.length == 1) {
             return Operand.Zero;

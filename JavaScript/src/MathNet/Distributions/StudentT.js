@@ -1,5 +1,4 @@
 import { Normal } from './Normal.js';
-import { Brent } from '../RootFinding/Brent.js';
 import { SpecialFunctions } from '../SpecialFunctions/SpecialFunctions.js';
 
 class StudentT {
@@ -11,14 +10,14 @@ class StudentT {
      * @param {number} x
      * @returns {number}
      */
-    static CDF(location, scale, freedom, x) {
+    static cdf(location, scale, freedom, x) {
         if (!isFinite(freedom)) {
-            return Normal.CDF(location, scale, x);
+            return Normal.cdf(location, scale, x);
         }
 
-        const k = (x - location) / scale;
-        const h = freedom / (freedom + (k * k));
-        const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+        let k = (x - location) / scale;
+        let h = freedom / (freedom + (k * k));
+        let ib = 0.5 * SpecialFunctions.betaRegularized(freedom / 2, 0.5, h);
         return x <= location ? ib : 1 - ib;
     }
 
@@ -30,49 +29,37 @@ class StudentT {
      * @param {number} p
      * @returns {number}
      */
-    static InvCDF(location, scale, freedom, p) {
+    static invCdf(location, scale, freedom, p) {
         if (!isFinite(freedom)) {
-            return Normal.InvCDF(location, scale, p);
+            return Normal.invCdf(location, scale, p);
         }
 
         if (p === 0.5) {
             return location;
         }
 
-        // Try Brent's method first
-        const brentResult = Brent.TryFindRoot(x => {
-            const k = (x - location) / scale;
-            const h = freedom / (freedom + (k * k));
-            const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
-            return x <= location ? ib - p : 1 - ib - p;
-        }, -800, 800, 1e-12, 100);
-
-        if (brentResult.success) {
-            return brentResult.root;
-        }
-
-        // Fallback to binary search if Brent's method fails
+        // 使用二分查找
         let lower = -100;
         let upper = 100;
         let mid;
         let fmid;
 
-        // Expand search interval if necessary
-        while (Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, upper))) {
+        // 扩展搜索区间如果需要
+        while (Math.sign(StudentT.invCdfHelper(location, scale, freedom, p, lower)) === Math.sign(StudentT.invCdfHelper(location, scale, freedom, p, upper))) {
             lower *= 2;
             upper *= 2;
         }
 
-        // Binary search
+        // 二分查找
         for (let i = 0; i < 100; i++) {
             mid = (lower + upper) / 2;
-            fmid = StudentT.InvCDFHelper(location, scale, freedom, p, mid);
+            fmid = StudentT.invCdfHelper(location, scale, freedom, p, mid);
 
             if (Math.abs(fmid) < 1e-12) {
                 return mid;
             }
 
-            if (Math.sign(fmid) === Math.sign(StudentT.InvCDFHelper(location, scale, freedom, p, lower))) {
+            if (Math.sign(fmid) === Math.sign(StudentT.invCdfHelper(location, scale, freedom, p, lower))) {
                 lower = mid;
             } else {
                 upper = mid;
@@ -87,7 +74,7 @@ class StudentT {
     }
 
     /**
-     * Helper function for InvCDF
+     * Helper function for invCdf
      * @param {number} location
      * @param {number} scale
      * @param {number} freedom
@@ -95,10 +82,10 @@ class StudentT {
      * @param {number} x
      * @returns {number}
      */
-    static InvCDFHelper(location, scale, freedom, p, x) {
-        const k = (x - location) / scale;
-        const h = freedom / (freedom + (k * k));
-        const ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2, 0.5, h);
+    static invCdfHelper(location, scale, freedom, p, x) {
+        let k = (x - location) / scale;
+        let h = freedom / (freedom + (k * k));
+        let ib = 0.5 * SpecialFunctions.betaRegularized(freedom / 2, 0.5, h);
         return x <= location ? ib - p : 1 - ib - p;
     }
 }

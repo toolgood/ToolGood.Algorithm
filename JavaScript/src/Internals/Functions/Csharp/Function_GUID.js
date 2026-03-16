@@ -12,11 +12,15 @@ export class Function_GUID extends FunctionBase {
         super();
     }
     
+    get Name() {
+        return "Guid";
+    }
+    
     /**
      * @param {AlgorithmEngine} engine
      * @returns {Operand}
      */
-    Evaluate(engine, tempParameter) {
+    evaluate(engine, tempParameter) {
         return Operand.Create(this.generateGuid());
     }
     
@@ -32,9 +36,9 @@ export class Function_GUID extends FunctionBase {
         });
     }
     
-    /**
-     * @param {string[]} stringBuilder
-     * @param {boolean} addBrackets
-     */
+
+    toString2(stringBuilder, addBrackets) {
+        stringBuilder.push("GUID()");
+    }
 }
 

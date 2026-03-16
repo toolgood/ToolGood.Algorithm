@@ -16,7 +16,7 @@ export default class ParseTreeWalker {
      * @param t The parse tree to be walked on
      */
     walk(listener, t) {
-        const errorNode = t instanceof ErrorNode ||
+        let errorNode = t instanceof ErrorNode ||
             (t.isErrorNode !== undefined && t.isErrorNode());
         if (errorNode) {
             listener.visitErrorNode(t);
@@ -25,7 +25,7 @@ export default class ParseTreeWalker {
         } else {
             this.enterRule(listener, t);
             for (let i = 0; i < t.getChildCount(); i++) {
-                const child = t.getChild(i);
+                let child = t.getChild(i);
                 this.walk(listener, child);
             }
             this.exitRule(listener, t);
@@ -39,7 +39,7 @@ export default class ParseTreeWalker {
      * @param r The grammar rule containing the rule context
      */
     enterRule(listener, r) {
-        const ctx = r.ruleContext;
+        let ctx = r.ruleContext;
         listener.enterEveryRule(ctx);
         ctx.enterRule(listener);
     }
@@ -51,7 +51,7 @@ export default class ParseTreeWalker {
      * @param r The grammar rule containing the rule context
      */
     exitRule(listener, r) {
-        const ctx = r.ruleContext;
+        let ctx = r.ruleContext;
         ctx.exitRule(listener);
         listener.exitEveryRule(ctx);
     }

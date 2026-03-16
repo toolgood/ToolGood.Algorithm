@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using ToolGood.Algorithm.Internals;
+using System.Data.Common;
 using ToolGood.Algorithm.LitJson;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm
 {
@@ -11,7 +13,7 @@ namespace ToolGood.Algorithm
     /// </summary>
     public class AlgorithmEngineEx : AlgorithmEngine
     {
-        private readonly Dictionary<string, Operand> _tempdict;
+        private readonly ConcurrentDictionary<string, Operand> _tempdict;
 
         /// <summary>
         /// 是否忽略大小写
@@ -30,7 +32,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         public AlgorithmEngineEx()
         {
-            _tempdict = new Dictionary<string, Operand>();
+            _tempdict = new ConcurrentDictionary<string, Operand>();
         }
 
         /// <summary>
@@ -41,37 +43,46 @@ namespace ToolGood.Algorithm
         {
             IgnoreCase = ignoreCase;
             if (ignoreCase) {
-                _tempdict = new Dictionary<string, Operand>(StringComparer.OrdinalIgnoreCase);
+                _tempdict = new ConcurrentDictionary<string, Operand>(StringComparer.OrdinalIgnoreCase);
             } else {
-                _tempdict = new Dictionary<string, Operand>();
+                _tempdict = new ConcurrentDictionary<string, Operand>();
             }
         }
 
-        #endregion 构造函数
+		#endregion 构造函数
 
-        /// <summary>
-        /// 自定义参数 请重写此方法
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        public override Operand GetParameter(string parameter)
+		/// <summary>
+		/// AlgorithmEngineEx 请重写 GetParameterEx
+		/// </summary>
+		/// <param name="parameter"></param>
+		/// <returns></returns>
+		public override Operand GetParameter(string parameter)
         {
             if (_tempdict.TryGetValue(parameter, out Operand operand)) {
                 return operand;
             }
-            var result = GetParameter(parameter);
+            var result = GetParameterEx(parameter);
             if (UseTempDict) {
-                _tempdict[parameter] = result;
+                _tempdict.TryAdd(parameter, result);
             }
             return result;
         }
-
-        #region Parameter
-
         /// <summary>
-        /// 清理参数
+        /// 获取参数扩展方法
         /// </summary>
-        public void ClearParameters()
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        public virtual Operand GetParameterEx(string parameter)
+        {
+			return Operand.Error($"Parameter [{parameter}] is missing.");
+		}
+
+		#region Parameter
+
+		/// <summary>
+		/// 清理参数
+		/// </summary>
+		public void ClearParameters()
         {
             _tempdict.Clear();
         }
@@ -299,18 +310,16 @@ namespace ToolGood.Algorithm
                 if (jo.IsObject) {
                     foreach (var item in jo.inst_object) {
                         var v = item.Value;
-                        if (v.IsString)
-                            _tempdict[item.Key] = Operand.Create(v.StringValue);
-                        else if (v.IsBoolean)
-                            _tempdict[item.Key] = Operand.Create(v.BooleanValue);
-                        else if (v.IsDouble)
-                            _tempdict[item.Key] = Operand.Create(v.NumberValue);
-                        else if (v.IsObject)
-                            _tempdict[item.Key] = Operand.Create(v);
-                        else if (v.IsArray)
-                            _tempdict[item.Key] = Operand.Create(v);
-                        else if (v.IsNull)
-                            _tempdict[item.Key] = Operand.CreateNull();
+                        _tempdict[item.Key] = v switch
+                        {
+                            _ when v.IsString => Operand.Create(v.StringValue),
+                            _ when v.IsBoolean => Operand.Create(v.BooleanValue),
+                            _ when v.IsDouble => Operand.Create(v.NumberValue),
+                            _ when v.IsObject => Operand.Create(v),
+                            _ when v.IsArray => Operand.Create(v),
+                            _ when v.IsNull => Operand.Null,
+                            _ => Operand.Create(v)
+                        };
                     }
                     return;
                 }

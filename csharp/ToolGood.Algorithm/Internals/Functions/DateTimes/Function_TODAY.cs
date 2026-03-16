@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal class Function_TODAY : FunctionBase
+	internal sealed class Function_TODAY : Function_0
     {
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+        public override string Name => "Today";
+
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             DateTime now;
-            if (work.UseLocalTime) {
+            if (engine.UseLocalTime) {
                 now = DateTime.Now;
             } else {
                 now = DateTime.UtcNow;
@@ -19,6 +24,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         {
             stringBuilder.Append("Today()");
         }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.DATE;
+		}
+
+	
+	}
 
 }

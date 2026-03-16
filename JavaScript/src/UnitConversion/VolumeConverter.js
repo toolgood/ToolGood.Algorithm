@@ -5,12 +5,12 @@ import { UnitFactorSynonyms } from './UnitFactorSynonyms.js';
 class VolumeConverter extends BaseUnitConverter {
     constructor(leftUnit, rightUnit) {
         super();
-        this.Instantiate(VolumeConverter.units, leftUnit, rightUnit);
+        this.instantiate(VolumeConverter.units, leftUnit, rightUnit);
     }
 
-    static Exists(leftSynonym, rightSynonym) {
-        if (VolumeConverter.units.FindUnit(leftSynonym) != null) {
-            return VolumeConverter.units.FindUnit(rightSynonym) != null;
+    static exists(leftSynonym, rightSynonym) {
+        if (VolumeConverter.units.findUnit(leftSynonym) != null) {
+            return VolumeConverter.units.findUnit(rightSynonym) != null;
         }
         return false;
     }

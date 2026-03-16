@@ -1,26 +1,36 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
-	internal class Function_REPT : Function_2
+	internal sealed class Function_REPT : Function_2
 	{
-		public Function_REPT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		public Function_REPT(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
-		public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
+		public override string Name => "Rept";
+
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Rept", 1); if (args1.IsError) { return args1; } }
-			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Rept", 2); if (args2.IsError) { return args2; } }
+			var args1 = GetText_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
+			var args2 = GetNumber_2(engine, tempParameter);
+			if (args2.IsErrorOrNone) { return args2; }
 
 			var newtext = args1.TextValue;
 			var length = args2.IntValue;
 			if (length < 0) {
-				return Operand.Error("Function '{0}' parameter {1} is error!", "Rept", 2);
+				return ParameterError(2);
 			}
 			if (length == 0) {
 				return Operand.Create("");
+			}
+			if (newtext.Length > 0 && length > 32767 / newtext.Length) {
+				return ParameterError(2);
 			}
 			var sb = new StringBuilder(newtext.Length * length);
 			for (int i = 0; i < length; i++) {
@@ -28,10 +38,15 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			return Operand.Create(sb.ToString());
 		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+		public override OperandType GetResultType()
 		{
-			AddFunction(stringBuilder, "Rept");
+			return OperandType.TEXT;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
-
 }

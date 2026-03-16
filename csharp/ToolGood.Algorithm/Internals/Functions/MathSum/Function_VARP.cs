@@ -1,38 +1,55 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_VARP : Function_N
+	internal sealed class Function_VARP : Function_N
     {
         public Function_VARP(FunctionBase[] funcs) : base(funcs)
         {
         }
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
+        public override string Name => "VarP";
 
-            if (args.Count == 1) { return Operand.Error("Function '{0}' parameter only one error!", "VarP"); }
+        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+        {
+			var args = new List<Operand>(funcs.Length);
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
+
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "VarP"); }
-            if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "VarP"); }
+            var o = FunctionUtil.FlattenToList(args, list);
+            if (o == false) { return FunctionError(); }
+            if (list.Count == 0) { return FunctionError(); }
             if (list.Count == 1) { return Operand.Zero; }
 
-            decimal sum = 0;
-            decimal avg = list.Average();
+            decimal mean = 0, m2 = 0;
             for (int i = 0; i < list.Count; i++) {
-                sum += (avg - list[i]) * (avg - list[i]);
+                decimal delta = list[i] - mean;
+                mean += delta / (i + 1);
+                m2 += delta * (list[i] - mean);
             }
-            return Operand.Create(sum / list.Count);
+            return Operand.Create(m2 / list.Count);
         }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "VarP");
-        }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			if(funcs.Length == 1) {
+				funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			} else {
+				for(int i = 0; i < funcs.Length; i++) {
+					funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+				}
+			}
+		}
+
+	}
 
 }

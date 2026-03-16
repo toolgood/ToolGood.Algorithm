@@ -1,35 +1,49 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
-	internal class Function_LARGE : Function_2
-    {
-        public Function_LARGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
+	internal sealed class Function_LARGE : Function_2
+	{
+		public Function_LARGE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Large", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Large", 2); if (args2.IsError) { return args2; } }
-            var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Large", 1); }
+		public override string Name => "Large";
 
-            list = list.OrderByDescending(q => q).ToList();
-            int k = args2.IntValue;
-            if (k < 1 - work.ExcelIndex || k > list.Count - work.ExcelIndex) {
-                return Operand.Error("Function '{0}' parameter {1} is error!", "Large", 2);
-            }
-            return Operand.Create(list[k - work.ExcelIndex]);
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Large");
-        }
-    }
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args1 = func1.Evaluate(engine, tempParameter);
+			args1 = ConvertToArray(args1, 1);
+			if(args1.IsErrorOrNone) { return args1; }
+
+			var args2 = func2.Evaluate(engine, tempParameter);
+			args2 = ConvertToNumber(args2, 2);
+			if(args2.IsErrorOrNone) { return args2; }
+
+			var list = new List<decimal>();
+			var o = FunctionUtil.FlattenToList(args1, list);
+			if(o == false) { return ParameterError(1); }
+			if(list.Count == 0) { return ParameterError(1); }
+
+			int k = args2.IntValue - engine.ExcelIndex;
+			if(k < 0 || k >= list.Count) {
+				return ParameterError(2);
+			}
+			return Operand.Create(FunctionUtil.QuickSelect(list, k, true));
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

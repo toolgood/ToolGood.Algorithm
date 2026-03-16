@@ -1,29 +1,24 @@
 import { Function_2 } from '../Function_2.js';
 import { MyDate } from '../../MyDate.js';
-import { StringCache } from '../../../Internals/StringCache.js';
+
 import { Operand } from '../../../Operand.js';
 
 class Function_ADDMINUTES extends Function_2 {
-    constructor(func1, func2) {
-        super(func1, func2);
+    get Name() {
+        return "AddMinutes";
     }
 
-    Evaluate(engine, tempParameter) {
-        let args1 = this.func1.Evaluate(engine, tempParameter);
-        if (args1.IsNotDate) {
-            args1 = args1.ToMyDate(StringCache.Function_parameter_error, "AddMinutes", 1);
-            if (args1.IsError) {
-                return args1;
-            }
-        }
-        let args2 = this.func2.Evaluate(engine, tempParameter);
-        if (args2.IsNotNumber) {
-            args2 = args2.ToNumber(StringCache.Function_parameter_error, "AddMinutes", 2);
-            if (args2.IsError) {
-                return args2;
-            }
-        }
-        let date = new Date(args1.DateValue.getTime());
+    constructor(z) {
+    super(z);
+  }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getDate_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.getNumber_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+        let date = new Date(args1.DateValue.ToDateTime().getTime());
         date.setMinutes(date.getMinutes() + args2.IntValue);
         return Operand.Create(new MyDate(date));
     }

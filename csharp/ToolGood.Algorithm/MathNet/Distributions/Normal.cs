@@ -1,35 +1,23 @@
-﻿using System;
+using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
     internal sealed class Normal
     {
-        public static double CDF(double mean, double stddev, double x)
+        public static decimal CDF(decimal mean, decimal stddev, decimal x)
         {
-            //if (stddev < 0.0) {
-            //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-            //}
-
-            return 0.5 * SpecialFunctions.Erfc((mean - x) / (stddev * Constants.Sqrt2));
+            return 0.5m * SpecialFunctions.Erfc((mean - x) / (stddev * Constants.Sqrt2));
         }
 
-        public static double InvCDF(double mean, double stddev, double p)
+        public static decimal InvCDF(decimal mean, decimal stddev, decimal p)
         {
-            //if (stddev < 0.0) {
-            //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-            //}
-
-            return mean - (stddev * Constants.Sqrt2 * SpecialFunctions.ErfcInv(2.0 * p));
+            return mean - (stddev * Constants.Sqrt2 * SpecialFunctions.ErfcInv(2.0m * p));
         }
 
-        public static double PDF(double mean, double stddev, double x)
+        public static decimal PDF(decimal mean, decimal stddev, decimal x)
         {
-            //if (stddev < 0.0) {
-            //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-            //}
-
             var d = (x - mean) / stddev;
-            return Math.Exp(-0.5 * d * d) / (Constants.Sqrt2Pi * stddev);
+            return MathEx.Exp(-0.5m * d * d) / (Constants.Sqrt2Pi * stddev);
         }
     }
 }

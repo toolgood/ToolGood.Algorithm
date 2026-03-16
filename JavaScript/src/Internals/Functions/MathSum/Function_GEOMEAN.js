@@ -1,17 +1,20 @@
 import { Function_N } from '../Function_N.js';
 import { Operand } from '../../../Operand.js';
 import { FunctionUtil } from '../FunctionUtil.js';
-import { StringCache } from '../../../Internals/StringCache.js';
 
 class Function_GEOMEAN extends Function_N {
-    constructor(funcs) {
-        super(funcs);
+    get Name() {
+        return "GeoMean";
     }
 
-    Evaluate(engine, tempParameter) {
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.funcs) {
-            let aa = item.Evaluate(engine, tempParameter);
+        for (let item of this.z) {
+            let aa = item.evaluate(engine, tempParameter);
             if (aa.IsError) {
                 return aa;
             }
@@ -20,16 +23,16 @@ class Function_GEOMEAN extends Function_N {
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
-        if (!o) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'GeoMean');
+        if (o == false) {
+            return this.functionError();
         }
-        if (list.length === 0) {
-            return Operand.Error(StringCache.Function_parameter_1_error, 'GeoMean');
+        if (list.length == 0) {
+            return this.functionError();
         }
         let product = 1.0;
         for (let num of list) {
             if (num <= 0) {
-                return Operand.Error(StringCache.Function_parameter_1_error, 'GeoMean');
+                return this.functionError();
             }
             product *= num;
         }
