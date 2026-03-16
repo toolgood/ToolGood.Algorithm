@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
@@ -71,14 +71,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return true;
 		}
 
-		public static bool Equals(string left, string arg1, string arg2, string arg3)
+		public static bool Equals(string left, string option1, string option2, string option3)
 		{
-			return Equals(left, arg1) || Equals(left, arg2) || Equals(left, arg3);
-		}
-
-		public static bool Equals(ReadOnlySpan<char> left, ReadOnlySpan<char> arg1, ReadOnlySpan<char> arg2, ReadOnlySpan<char> arg3)
-		{
-			return Equals(left, arg1) || Equals(left, arg2) || Equals(left, arg3);
+			return Equals(left, option1) || Equals(left, option2) || Equals(left, option3);
 		}
 
 	}
