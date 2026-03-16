@@ -1,25 +1,22 @@
 package toolgood.algorithm.unitConversion;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class UnitFactorSynonyms {
-    public List<String> Synonyms = new ArrayList<>();
+    private final List<String> synonyms = new ArrayList<>();
 
     public UnitFactorSynonyms() {
     }
 
-    public UnitFactorSynonyms(String item) {
-        Synonyms.add(item);
-    }
-
-    public UnitFactorSynonyms(String[] items) {
-        Collections.addAll(Synonyms, items);
+    public UnitFactorSynonyms(String... items) {
+        for (String item : items) {
+            synonyms.add(item);
+        }
     }
 
     public boolean Contains(UnitFactorSynonyms synonyms) {
-        for (String syn : synonyms.Synonyms) {
+        for (String syn : synonyms.synonyms) {
             if (this.Contains(syn)) {
                 return true;
             }
@@ -27,8 +24,8 @@ public class UnitFactorSynonyms {
         return false;
     }
 
-    private boolean Contains(String synonym) {
-        for (String str : Synonyms) {
+    public boolean Contains(String synonym) {
+        for (String str : synonyms) {
             if (str.equalsIgnoreCase(synonym)) {
                 return true;
             }
@@ -36,5 +33,8 @@ public class UnitFactorSynonyms {
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        return String.join(", ", synonyms);
+    }
 }
