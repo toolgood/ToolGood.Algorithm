@@ -53,7 +53,7 @@ public class SpecialFunctions {
         BigDecimal bt = (x.compareTo(zero) == 0 || x.compareTo(one) == 0)
                 ? zero
                 : MathEx.Exp(GammaLn(a.add(b)).subtract(GammaLn(a)).subtract(GammaLn(b))
-                        .add(a.multiply(MathEx.Log(x))).add(b.multiply(MathEx.Log(one.subtract(x))))));
+                        .add(a.multiply(MathEx.Log(x))).add(b.multiply(MathEx.Log(one.subtract(x)))));
 
         boolean symmetryTransformation = x.compareTo(a.add(one).divide(a.add(b).add(new BigDecimal("2")), MathContext.DECIMAL128)) >= 0;
 
@@ -451,7 +451,7 @@ public class SpecialFunctions {
         x = x.abs();
 
         BigDecimal t = one.divide(one.add(p.multiply(x)), MathContext.DECIMAL128);
-        BigDecimal y = one.subtract(((((a5.multiply(t).add(a4.multiply(t))).multiply(t)).add(a3.multiply(t))).multiply(t)).add(a2.multiply(t))).multiply(t)).add(a1.multiply(t)).multiply(MathEx.Expi(-x.multiply(x)));
+        BigDecimal y = one.subtract(((((a5.multiply(t).add(a4.multiply(t))).multiply(t)).add(a3.multiply(t))).multiply(t)).add(a2.multiply(t)).multiply(t)).add(a1.multiply(t)).multiply(MathEx.Expi(-x.multiply(x)));
 
         return sign.multiply(y);
     }
