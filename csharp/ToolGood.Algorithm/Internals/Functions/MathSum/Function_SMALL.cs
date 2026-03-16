@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 
@@ -29,12 +27,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var o = FunctionUtil.FlattenToList(args1, list);
 			if(o == false) { return ParameterError(1); }
 			if(list.Count == 0) { return ParameterError(1); }
-			list.Sort();
+
 			int k = args2.IntValue - engine.ExcelIndex;
 			if(k < 0 || k >= list.Count) {
 				return ParameterError(2);
 			}
-			return Operand.Create(list[k]);
+			return Operand.Create(FunctionUtil.QuickSelect(list, k, false));
 		}
 		public override OperandType GetResultType()
 		{

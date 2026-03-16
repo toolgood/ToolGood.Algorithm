@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -309,6 +309,67 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			boolValue = false;
 			return false;
+		}
+
+		public static decimal QuickSelect(List<decimal> list, int k, bool largest)
+		{
+			if(list.Count == 1) return list[0];
+			
+			var arr = list.ToArray();
+			int targetIndex = largest ? arr.Length - 1 - k : k;
+			return QuickSelectCore(arr, 0, arr.Length - 1, targetIndex);
+		}
+
+		private static decimal QuickSelectCore(decimal[] arr, int left, int right, int k)
+		{
+			while(left < right) {
+				int pivotIndex = Partition(arr, left, right);
+				if(k == pivotIndex) {
+					return arr[k];
+				} else if(k < pivotIndex) {
+					right = pivotIndex - 1;
+				} else {
+					left = pivotIndex + 1;
+				}
+			}
+			return arr[left];
+		}
+
+		private static int Partition(decimal[] arr, int left, int right)
+		{
+			decimal pivot = arr[right];
+			int i = left;
+			for(int j = left; j < right; j++) {
+				if(arr[j] <= pivot) {
+					Swap(arr, i, j);
+					i++;
+				}
+			}
+			Swap(arr, i, right);
+			return i;
+		}
+
+		private static void Swap(decimal[] arr, int i, int j)
+		{
+			if(i != j) {
+				decimal temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+
+		public static int GetRank(List<decimal> values, decimal num, bool descending)
+		{
+			int rank = 1;
+			int count = 0;
+			for(int i = 0; i < values.Count; i++) {
+				if(values[i] == num) {
+					count++;
+				} else if((descending && values[i] > num) || (!descending && values[i] < num)) {
+					rank++;
+				}
+			}
+			return count > 0 ? rank : 0;
 		}
 	}
 }

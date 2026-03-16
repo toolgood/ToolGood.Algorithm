@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -40,14 +40,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				return ParameterError(2);
 			}
 
-			values.Sort();
-			int rank;
-			if (order == 0) {
-				values.Reverse();
-				rank = values.IndexOf(num) + 1;
-			} else {
-				rank = values.IndexOf(num) + 1;
-			}
+			bool descending = (order == 0);
+			int rank = FunctionUtil.GetRank(values, num, descending);
 
 			if (rank == 0) {
 				return ParameterError(1);
