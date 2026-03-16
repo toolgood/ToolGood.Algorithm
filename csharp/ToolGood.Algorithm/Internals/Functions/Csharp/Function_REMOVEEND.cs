@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 
 			var text = args1.TextValue;
 			if(text.EndsWith(args2.TextValue, comparison)) {
-				return Operand.Create(text.AsSpan(0, text.Length - args2.TextValue.Length).ToString());
+				return Operand.Create(text.Substring(0, text.Length - args2.TextValue.Length));
 			}
 			return args1;
 		}

@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
+			return Operand.Create(args1.TextValue.Trim());
 		}
 		public override OperandType GetResultType()
 		{

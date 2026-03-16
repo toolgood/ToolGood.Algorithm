@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 
 			if(func3 == null) {
-				return Operand.Create(text.AsSpan(startIndex).ToString());
+				return Operand.Create(text.Substring(startIndex));
 			}
 
 			var args3 = GetNumber_3(engine, tempParameter);
@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if (startIndex + length > text.Length) {
 				length = text.Length - startIndex;
 			}
-			return Operand.Create(text.AsSpan(startIndex, length).ToString());
+			return Operand.Create(text.Substring(startIndex, length));
 		}
 		public override OperandType GetResultType()
 		{

@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return Operand.Create("");
 			}
 			if (func2 == null) {
-				return Operand.Create(args1.TextValue.AsSpan(0, 1).ToString());
+				return Operand.Create(args1.TextValue.Substring(0, 1));
 			}
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone) { return args2; }
@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return ParameterError(2);
 			}
 			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
-			return Operand.Create(args1.TextValue.AsSpan(0, length).ToString());
+			return Operand.Create(args1.TextValue.Substring(0, length));
 		}
 		public override OperandType GetResultType()
 		{

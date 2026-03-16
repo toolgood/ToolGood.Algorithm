@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (startIndex + length > text.Length) {
 				length = text.Length - startIndex;
 			}
-			return Operand.Create(text.AsSpan(startIndex, length).ToString());
+			return Operand.Create(text.Substring(startIndex, length));
 		}
 		public override OperandType GetResultType()
 		{
