@@ -443,27 +443,5 @@ public class FunctionUtil {
         return count > 0 ? rank : 0;
     }
 
-    /**
-     * 获取 num 在 values 列表中的 F_base_GetList 辅助（BigDecimal 单个 Operand）
-     */
-    public static boolean F_base_GetList(List<Operand> args, List<BigDecimal> list) {
-        for (Operand item : args) {
-            if (item.IsNumber()) {
-                list.add(item.NumberValue());
-            } else if (item.IsArray()) {
-                boolean o = F_base_GetList(item.ArrayValue(), list);
-                if (!o) return false;
-            } else if (item.IsJson()) {
-                Operand i = item.ToArray(null);
-                if (i.IsError()) return false;
-                boolean o = F_base_GetList(i.ArrayValue(), list);
-                if (!o) return false;
-            } else {
-                Operand o = item.ToNumber(null);
-                if (o.IsError()) return false;
-                list.add(o.NumberValue());
-            }
-        }
-        return true;
-    }
+
 }
