@@ -52,14 +52,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 
 			var sb = new StringBuilder(oldtext.Length - length + newtext.Length);
-			for (int i = 0; i < oldtext.Length; i++) {
-				if (i < start) {
-					sb.Append(oldtext[i]);
-				} else if (i == start) {
-					sb.Append(newtext);
-				} else if (i >= start + length) {
-					sb.Append(oldtext[i]);
-				}
+			sb.Append(oldtext, 0, start);
+			sb.Append(newtext);
+			int endIndex = start + length;
+			if (endIndex < oldtext.Length) {
+				sb.Append(oldtext, endIndex, oldtext.Length - endIndex);
 			}
 			return Operand.Create(sb.ToString());
 		}
