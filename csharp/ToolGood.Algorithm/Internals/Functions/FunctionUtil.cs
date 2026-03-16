@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -257,18 +257,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			return null;
 		}
-
-		public static int Compare(decimal t1, decimal t2)
-		{
-			var b = t1 - t2;
-			if(b == 0) {
-				return 0;
-			} else if(b > 0) {
-				return 1;
-			}
-			return -1;
-		}
-
+	
 		public static bool TryParseBoolean(string TextValue, out bool boolValue)
 		{
 			var span = TextValue.AsSpan();
