@@ -47,6 +47,17 @@ public abstract class Operand {
      */
     public static final Operand None = new OperandNone();
 
+    // 整数缓存范围: -1000 ~ 1000，共2001个值
+    private static final int INT_CACHE_OFFSET = 1000;
+    private static final int INT_CACHE_SIZE = 2001;
+    private static final Operand[] INT_CACHE = new Operand[INT_CACHE_SIZE];
+    
+    static {
+        for (int i = 0; i < INT_CACHE_SIZE; i++) {
+            INT_CACHE[i] = new OperandInt(i - INT_CACHE_OFFSET);
+        }
+        // ONE和ZERO已经在初始化时设置，不需要在这里重新设置
+    }
 
     /**
      * 是否为空值
@@ -144,11 +155,6 @@ public abstract class Operand {
     public double DoubleValue() { throw new UnsupportedOperationException(); }
 
     /**
-     * BigDecimal值
-     */
-    public Double DoubleValue() { throw new UnsupportedOperationException(); }
-
-    /**
      * int值
      */
     public int IntValue() { throw new UnsupportedOperationException(); }
@@ -198,6 +204,9 @@ public abstract class Operand {
      * 创建操作数
      */
     public static Operand Create(short obj) {
+        if (obj >= -INT_CACHE_OFFSET && obj <= INT_CACHE_OFFSET) {
+            return INT_CACHE[obj + INT_CACHE_OFFSET];
+        }
         return new OperandInt(obj);
     }
 
@@ -205,6 +214,9 @@ public abstract class Operand {
      * 创建操作数
      */
     public static Operand Create(int obj) {
+        if (obj >= -INT_CACHE_OFFSET && obj <= INT_CACHE_OFFSET) {
+            return INT_CACHE[obj + INT_CACHE_OFFSET];
+        }
         return new OperandInt(obj);
     }
 
@@ -212,6 +224,9 @@ public abstract class Operand {
      * 创建操作数
      */
     public static Operand Create(long obj) {
+        if (obj >= -INT_CACHE_OFFSET && obj <= INT_CACHE_OFFSET) {
+            return INT_CACHE[(int)obj + INT_CACHE_OFFSET];
+        }
         return new OperandBigDecimal(new BigDecimal(obj));
     }
 
@@ -269,12 +284,7 @@ public abstract class Operand {
         return new OperandMyDate(obj);
     }
 
-    /**
-     * 创建操作数
-     */
-    public static Operand Create(long timestamp) {
-        return new OperandMyDate(new MyDate(timestamp));
-    }
+
 
     /**
      * 创建操作数
