@@ -135,20 +135,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public int TryEvaluate(string exp, int def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber) return obj.IntValue;
-				obj = obj.ToNumber("It can't be converted to number!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.IntValue;
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.IntValue);
 		}
 
 		/// <summary>
@@ -159,20 +146,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public long TryEvaluate(string exp, long def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber) return obj.LongValue;
-				obj = obj.ToNumber("It can't be converted to number!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.LongValue;
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.LongValue);
 		}
 
 		/// <summary>
@@ -183,20 +157,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public double TryEvaluate(string exp, double def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber) return obj.DoubleValue;
-				obj = obj.ToNumber("It can't be converted to number!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.DoubleValue;
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.DoubleValue);
 		}
 
 		/// <summary>
@@ -207,20 +168,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public decimal TryEvaluate(string exp, decimal def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsNumber) return obj.NumberValue;
-				obj = obj.ToNumber("It can't be converted to number!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.NumberValue;
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.NumberValue);
 		}
 
 		/// <summary>
@@ -231,20 +179,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public string TryEvaluate(string exp, string def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsText) return obj.TextValue;
-				obj = obj.ToText("It can't be converted to string!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.TextValue;
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def, o => o.IsText ? o : o.ToText("It can't be converted to string!"), o => o.TextValue);
 		}
 
 		/// <summary>
@@ -255,20 +190,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public bool TryEvaluate(string exp, bool def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsBoolean) return obj.BooleanValue;
-				obj = obj.ToBoolean("It can't be converted to bool!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.BooleanValue;
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def, o => o.IsBoolean ? o : o.ToBoolean("It can't be converted to bool!"), o => o.BooleanValue);
 		}
 
 		/// <summary>
@@ -279,20 +201,9 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public DateTime TryEvaluate(string exp, DateTime def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsDate) return obj.DateValue.ToDateTime(UseLocalTime ? DateTimeKind.Local : DateTimeKind.Utc);
-				obj = obj.ToMyDate("It can't be converted to DateTime!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.DateValue.ToDateTime(UseLocalTime ? DateTimeKind.Local : DateTimeKind.Utc);
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def,
+				o => o.IsDate ? o : o.ToMyDate("It can't be converted to DateTime!"),
+				o => o.DateValue.ToDateTime(UseLocalTime ? DateTimeKind.Local : DateTimeKind.Utc));
 		}
 
 		/// <summary>
@@ -303,20 +214,9 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public TimeSpan TryEvaluate(string exp, TimeSpan def)
 		{
-			try {
-				var function = Parse(exp);
-				var obj = function.Evaluate(this);
-				if(obj.IsDate) return obj.DateValue.ToTimeSpan();
-				obj = obj.ToMyDate("It can't be converted to DateTime!");
-				if(obj.IsError) {
-					LastError = obj.ErrorMsg;
-					return def;
-				}
-				return obj.DateValue.ToTimeSpan();
-			} catch(Exception ex) {
-				LastError = ex.ToString();
-			}
-			return def;
+			return TryEvaluateCore(exp, def,
+				o => o.IsDate ? o : o.ToMyDate("It can't be converted to DateTime!"),
+				o => o.DateValue.ToTimeSpan());
 		}
 
 		/// <summary>
@@ -328,16 +228,22 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public MyDate TryEvaluate_MyDate(string exp, MyDate def)
 		{
+			return TryEvaluateCore(exp, def,
+				o => o.IsDate ? o : o.ToMyDate("It can't be converted to DateTime!"),
+				o => o.DateValue);
+		}
+
+		private T TryEvaluateCore<T>(string exp, T def, Func<Operand, Operand> convert, Func<Operand, T> getValue)
+		{
 			try {
 				var function = Parse(exp);
 				var obj = function.Evaluate(this);
-				if(obj.IsDate) return obj.DateValue;
-				obj = obj.ToMyDate("It can't be converted to DateTime!");
+				obj = convert(obj);
 				if(obj.IsError) {
 					LastError = obj.ErrorMsg;
 					return def;
 				}
-				return obj.DateValue;
+				return getValue(obj);
 			} catch(Exception ex) {
 				LastError = ex.ToString();
 			}
