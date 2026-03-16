@@ -1,4 +1,4 @@
-﻿﻿using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +19,17 @@ namespace ToolGood.Algorithm
 	public static class AlgorithmEngineHelper
 	{
 		private static readonly Regex unitRegex = new Regex(@"[\s\(\)（）\[\]<>]", RegexOptions.Compiled);
+
+		internal static (AntlrErrorTextWriter errorWriter, mathParser.ProgContext context) CreateParserContext(string exp)
+		{
+			var errorWriter = new AntlrErrorTextWriter();
+			var stream = new AntlrCharStream(new AntlrInputStream(exp));
+			var lexer = new mathLexer(stream, TextWriter.Null, errorWriter);
+			var tokens = new CommonTokenStream(lexer);
+			var parser = new mathParser(tokens, TextWriter.Null, errorWriter);
+			var context = parser.prog();
+			return (errorWriter, context);
+		}
 
 		/// <summary>
 		/// 是不是参数
@@ -50,15 +61,9 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
-
-			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				throw new Exception(antlrErrorTextWriter.ErrorMsg);
+			var (errorWriter, context) = CreateParserContext(exp);
+			if(errorWriter.IsError) {
+				throw new Exception(errorWriter.ErrorMsg);
 			}
 			var visitor = new DiyNameVisitor();
 			visitor.Visit(context);
@@ -79,44 +84,34 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
 			if(oldSrcUnit == oldTarUnit) { return src; }
 
-			if(DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new DistanceConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new MassConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new AreaConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
+			var result = TryConvert(src, oldSrcUnit, oldTarUnit);
+			if(result.HasValue) { return result.Value; }
 
 			oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
-			if(DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new DistanceConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new MassConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new AreaConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
-			if(VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
-				var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
-				return c.LeftToRight(src);
-			}
+			result = TryConvert(src, oldSrcUnit, oldTarUnit);
+			if(result.HasValue) { return result.Value; }
+
 			if(string.IsNullOrEmpty(name)) {
 				throw new Exception($"The input item has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
 			}
 			throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
+		}
+
+		private static decimal? TryConvert(decimal src, string srcUnit, string tarUnit)
+		{
+			if(DistanceConverter.Exists(srcUnit, tarUnit)) {
+				return new DistanceConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			if(MassConverter.Exists(srcUnit, tarUnit)) {
+				return new MassConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			if(AreaConverter.Exists(srcUnit, tarUnit)) {
+				return new AreaConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			if(VolumeConverter.Exists(srcUnit, tarUnit)) {
+				return new VolumeConverter(srcUnit, tarUnit).LeftToRight(src);
+			}
+			return null;
 		}
 
 		/// <summary>
@@ -129,15 +124,9 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
-
-			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				throw new Exception(antlrErrorTextWriter.ErrorMsg);
+			var (errorWriter, context) = CreateParserContext(exp);
+			if(errorWriter.IsError) {
+				throw new Exception(errorWriter.ErrorMsg);
 			}
 			var visitor = new MathFunctionVisitor();
 			return visitor.Visit(context);
@@ -151,17 +140,8 @@ namespace ToolGood.Algorithm
 		public static bool CheckFormula(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
-
-			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				return false;
-			}
-			return true;
+			var (errorWriter, _) = CreateParserContext(exp);
+			return !errorWriter.IsError;
 		}
 
 		/// <summary>
@@ -178,16 +158,10 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-				var stream = new AntlrCharStream(new AntlrInputStream(condition));
-				var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
-				var tokens = new CommonTokenStream(lexer);
-				var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
-
-				var context = parser.prog();
-				if(antlrErrorTextWriter.IsError) {
+				var (errorWriter, context) = CreateParserContext(condition);
+				if(errorWriter.IsError) {
 					tree.Type = ConditionTreeType.Error;
-					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
+					tree.ErrorMessage = errorWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor();
@@ -233,16 +207,10 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-				var stream = new AntlrCharStream(new AntlrInputStream(exp));
-				var lexer = new mathLexer(stream, Console.Out, antlrErrorTextWriter);
-				var tokens = new CommonTokenStream(lexer);
-				var parser = new mathParser(tokens, Console.Out, antlrErrorTextWriter);
-
-				var context = parser.prog();
-				if(antlrErrorTextWriter.IsError) {
+				var (errorWriter, context) = CreateParserContext(exp);
+				if(errorWriter.IsError) {
 					tree.Type = CalculateTreeType.Error;
-					tree.ErrorMessage = antlrErrorTextWriter.ErrorMsg;
+					tree.ErrorMessage = errorWriter.ErrorMsg;
 					return tree;
 				}
 				var visitor = new MathSplitVisitor2();
