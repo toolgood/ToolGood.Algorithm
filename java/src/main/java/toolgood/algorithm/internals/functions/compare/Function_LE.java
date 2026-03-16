@@ -1,73 +1,107 @@
 package toolgood.algorithm.internals.functions.compare;
 
-import toolgood.algorithm.Operand;
+import java.lang.StringBuilder;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_LE extends Function_2 {
-    public Function_LE(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_LE extends Function_2 {
+    public Function_LE(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter); if(args1.IsError()) { return args1; }
-        Operand args2 = func2.Evaluate(work, tempParameter); if(args2.IsError()) { return args2; }
+    public String Name() {
+        return "<=";
+    }
 
-        if(args1.Type() == args2.Type()) {
-            if(args1.IsNumber()) {
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(engine, tempParameter);
+        if (args1.IsError() || args1.IsNone()) {
+            return args1;
+        }
+        Operand args2 = func2.Evaluate(engine, tempParameter);
+        if (args2.IsError() || args2.IsNone()) {
+            return args2;
+        }
+
+        if (args1.Type() == args2.Type()) {
+            if (args1.IsNumber()) {
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) <= 0);
-            } else if(args1.IsText()) {
+            } else if (args1.IsText()) {
                 int r = args1.TextValue().compareTo(args2.TextValue());
                 return r <= 0 ? Operand.TRUE : Operand.FALSE;
-            } else if(args1.IsDate() || args1.IsBoolean()) {
+            } else if (args1.IsDate()) {
+                return Operand.Create(args1.DateValue().ToLong() <= args2.DateValue().ToLong());
+            } else if (args1.IsBoolean()) {
                 args1 = args1.ToNumber(null);
                 args2 = args2.ToNumber(null);
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) <= 0);
-            } else if(args1.IsJson()) {
-                args1 = args1.ToText(null);
-                args2 = args2.ToText(null);
-                int r = args1.TextValue().compareTo(args2.TextValue());
-                return r <= 0 ? Operand.TRUE : Operand.FALSE;
-            } else if(args1.IsNull()) {
+            } else if (args1.IsNull()) {
                 return Operand.TRUE;
-            } else {
-                return Operand.Error("Function '{0}' compare is error.", "<=");
             }
-        } else if(args1.IsNull() || args2.IsNull()) {
+            return CompareError();
+        } else if (args1.IsNull() || args2.IsNull()) {
             return Operand.FALSE;
-        } else if(args2.IsText()) {
-            if(args1.IsBoolean()) {
-                Operand a = args2.ToBoolean(null);
-                if(!a.IsError()) {
-                    return a.BooleanValue() != args1.BooleanValue() ? Operand.TRUE : Operand.FALSE;
-                }
-                args1 = args1.ToText(null);
-                int r = args1.TextValue().compareTo(args2.TextValue());
-                return r <= 0 ? Operand.TRUE : Operand.FALSE;
-            } else if(args1.IsDate() || args1.IsNumber() || args1.IsJson()) {
-                args1 = args1.ToText(null);
-                int r = args1.TextValue().compareTo(args2.TextValue());
-                return r <= 0 ? Operand.TRUE : Operand.FALSE;
-            } else {
-                return Operand.Error("Function '{0}' compare is error.", "<=");
-            }
-        } else if(args1.IsJson() || args2.IsJson() || args1.IsArray() || args2.IsArray() || args1.IsArrayJson() || args2.IsArrayJson()) {
-            return Operand.Error("Function '{0}' compare is error.", "<=");
+        } else if (args1.IsDate() || args2.IsDate() || args1.IsJson() || args2.IsJson()
+                || args1.IsArray() || args2.IsArray() || args1.IsArrayJson() || args2.IsArrayJson()) {
+            return CompareError();
         }
-        if(args1.IsNotNumber()) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<=", 1); if(args1.IsError()) { return args1; } }
-        if(args2.IsNotNumber()) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "<=", 2); if(args2.IsError()) { return args2; } }
+        args1 = ConvertToNumber(args1, 1);
+        if (args1.IsError() || args1.IsNone()) {
+            return args1;
+        }
+        args2 = ConvertToNumber(args2, 2);
+        if (args2.IsError() || args2.IsNone()) {
+            return args2;
+        }
 
         return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) <= 0);
     }
 
     @Override
+    public OperandType GetResultType() {
+        return OperandType.BOOLEAN;
+    }
+
+    @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        if(addBrackets) stringBuilder.append('(');
+        if (addBrackets) stringBuilder.append('(');
         func1.toString(stringBuilder, false);
         stringBuilder.append(" <= ");
         func2.toString(stringBuilder, false);
-        if(addBrackets) stringBuilder.append(')');
+        if (addBrackets) stringBuilder.append(')');
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
+            OperandType operandType, String op, String val) {
+        OperandType t1 = func1.GetResultType();
+        OperandType t2 = func2.GetResultType();
+        if (t1 == OperandType.NONE) {
+            Operand p = noneEngine.Evaluate(func2).ToText(null);
+            if (t2 != OperandType.ERROR && !(p.IsError() || p.IsNone())) {
+                func1.GetParameterTypes(noneEngine, result, t2, Name(), p.TextValue());
+                func2.GetParameterTypes(noneEngine, result, t2, null, null);
+                return;
+            }
+        } else if (t2 == OperandType.NONE) {
+            Operand p = noneEngine.Evaluate(func1).ToText(null);
+            if (t1 != OperandType.ERROR && !(p.IsError() || p.IsNone())) {
+                func2.GetParameterTypes(noneEngine, result, t1, Name(), p.TextValue());
+                func1.GetParameterTypes(noneEngine, result, t1, null, null);
+                return;
+            }
+        }
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE, null, null);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NONE, null, null);
     }
 }
