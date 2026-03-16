@@ -1,72 +1,49 @@
 package toolgood.algorithm.mathNet.Distributions;
 
-
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 import toolgood.algorithm.mathNet.SpecialFunctions;
 import toolgood.algorithm.mathNet.RootFinding.Brent;
 
 public class Beta {
-    
-    public static double CDF(double a, double b, double x)
-    {
-        //if (a < 0.0 || b < 0.0) {
-        //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-        //}
 
-        if (x < 0.0) {
-            return 0.0;
+    public static BigDecimal CDF(BigDecimal a, BigDecimal b, BigDecimal x) {
+        BigDecimal zero = BigDecimal.ZERO;
+        BigDecimal one = BigDecimal.ONE;
+
+        if (x.compareTo(zero) < 0) {
+            return zero;
         }
 
-        if (x >= 1.0) {
-            return 1.0;
-        }
-        
-        if (Double.isInfinite(a) && Double.isInfinite(b)) {
-            return x < 0.5 ? 0.0 : 1.0;
+        if (x.compareTo(one) >= 0) {
+            return one;
         }
 
-        if (Double.isInfinite(a)) {
-            return x < 1.0 ? 0.0 : 1.0;
-        }
-
-        if (Double.isInfinite(b)) {
-            return x >= 0.0 ? 1.0 : 0.0;
-        }
-
-        if (a == 0.0 && b == 0.0) {
-            if (x >= 0.0 && x < 1.0) {
-                return 0.5;
+        if (a.compareTo(zero) == 0 && b.compareTo(zero) == 0) {
+            if (x.compareTo(zero) >= 0 && x.compareTo(one) < 0) {
+                return new BigDecimal("0.5");
             }
-
-            return 1.0;
+            return one;
         }
 
-        if (a == 0.0) {
-            return 1.0;
+        if (a.compareTo(zero) == 0) {
+            return one;
         }
 
-        if (b == 0.0) {
-            return x >= 1.0 ? 1.0 : 0.0;
+        if (b.compareTo(zero) == 0) {
+            return x.compareTo(one) >= 0 ? one : zero;
         }
 
-        if (a == 1.0 && b == 1.0) {
+        if (a.compareTo(one) == 0 && b.compareTo(one) == 0) {
             return x;
         }
 
         return SpecialFunctions.BetaRegularized(a, b, x);
     }
 
-    public static double InvCDF(double a, double b, double p) throws Exception
-    {
-
-        //if (a < 0.0 || b < 0.0 || p < 0.0 || p > 1.0) {
-        //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-        //}
-        Function<Double,Double> f= x->{
-            return SpecialFunctions.BetaRegularized(a, b, x) - p;
-        };
-
-        return Brent.FindRoot(f, 0.0, 1.0,   1e-12);
+    public static BigDecimal InvCDF(BigDecimal a, BigDecimal b, BigDecimal p) throws Exception {
+        return Brent.FindRoot(x -> SpecialFunctions.BetaRegularized(a, b, x).subtract(p), 
+                BigDecimal.ZERO, BigDecimal.ONE, new BigDecimal("1e-12"));
     }
- 
 }

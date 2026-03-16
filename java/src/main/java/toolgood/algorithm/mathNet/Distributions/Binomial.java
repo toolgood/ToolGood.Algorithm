@@ -1,73 +1,44 @@
 package toolgood.algorithm.mathNet.Distributions;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
+import toolgood.algorithm.system.MathEx;
 import toolgood.algorithm.mathNet.SpecialFunctions;
 
-/// <summary>
-/// Discrete Univariate Binomial distribution.
-/// For details about this distribution, see
-/// <a href="http://en.wikipedia.org/wiki/Binomial_distribution">Wikipedia - Binomial distribution</a>.
-/// </summary>
-/// <remarks>
-/// The distribution is parameterized by a probability (between 0.0 and 1.0).
-/// </remarks>
 public class Binomial {
-
-    /// <summary>
-    /// Computes the probability mass (PMF) at k, i.e. P(X = k).
-    /// </summary>
-    /// <param name="k">The location in the domain where we want to Evaluate the
-    /// probability mass function.</param>
-    /// <param name="p">The success probability (p) in each trial. Range: 0 â‰?p â‰?
-    /// 1.</param>
-    /// <param name="n">The number of trials (n). Range: n â‰?0.</param>
-    /// <returns>the probability mass at location <paramref name="k"/>.</returns>
-    public static double PMF(double p, int n, int k) {
-        // if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
-        // throw new ArgumentException("InvalidDistributionParameters");
-        // }
-
+    public static BigDecimal PMF(BigDecimal p, int n, int k) {
         if (k < 0 || k > n) {
-            return 0.0;
+            return BigDecimal.ZERO;
         }
 
-        if (p == 0.0) {
-            return k == 0 ? 1.0 : 0.0;
+        if (p.compareTo(BigDecimal.ZERO) == 0) {
+            return k == 0 ? BigDecimal.ONE : BigDecimal.ZERO;
         }
 
-        if (p == 1.0) {
-            return k == n ? 1.0 : 0.0;
+        if (p.compareTo(BigDecimal.ONE) == 0) {
+            return k == n ? BigDecimal.ONE : BigDecimal.ZERO;
         }
 
-        return Math.exp(SpecialFunctions.BinomialLn(n, k) + (k * Math.log(p)) + ((n - k) * Math.log(1.0 - p)));
+        BigDecimal binomialLn = SpecialFunctions.GammaLn(new BigDecimal(n + 1))
+                .subtract(SpecialFunctions.GammaLn(new BigDecimal(k + 1)))
+                .subtract(SpecialFunctions.GammaLn(new BigDecimal(n - k + 1)));
+
+        return MathEx.Exp(binomialLn
+                .add(new BigDecimal(k).multiply(MathEx.Log(p)))
+                .add(new BigDecimal(n - k).multiply(MathEx.Log(BigDecimal.ONE.subtract(p)))));
     }
 
-    /// <summary>
-    /// Computes the cumulative distribution (CDF) of the distribution at x, i.e.
-    /// P(X â‰?x).
-    /// </summary>
-    /// <param name="x">The location at which to compute the cumulative distribution
-    /// function.</param>
-    /// <param name="p">The success probability (p) in each trial. Range: 0 â‰?p â‰?
-    /// 1.</param>
-    /// <param name="n">The number of trials (n). Range: n â‰?0.</param>
-    /// <returns>the cumulative distribution at location <paramref
-    /// name="x"/>.</returns>
-    ///// <seealso cref="CumulativeDistribution"/>
-    public static double CDF(double p, int n, double x) {
-        // if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
-        // throw new ArgumentException("InvalidDistributionParameters");
-        // }
-
-        if (x < 0.0) {
-            return 0.0;
+    public static BigDecimal CDF(BigDecimal p, int n, BigDecimal x) {
+        if (x.compareTo(BigDecimal.ZERO) < 0) {
+            return BigDecimal.ZERO;
         }
 
-        if (x > n) {
-            return 1.0;
+        if (x.compareTo(new BigDecimal(n)) > 0) {
+            return BigDecimal.ONE;
         }
 
-        double k = Math.floor(x);
-        return SpecialFunctions.BetaRegularized(n - k, k + 1, 1 - p);
+        BigDecimal k = new BigDecimal(Math.floor(x.doubleValue()));
+        return SpecialFunctions.BetaRegularized(n - k.intValue(), k.intValue() + 1, BigDecimal.ONE.subtract(p));
     }
-
 }

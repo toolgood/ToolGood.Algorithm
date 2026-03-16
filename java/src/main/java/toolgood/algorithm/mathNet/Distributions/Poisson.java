@@ -1,36 +1,17 @@
 package toolgood.algorithm.mathNet.Distributions;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
+import toolgood.algorithm.system.MathEx;
 import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public class Poisson {
-        /// <summary>
-        /// Computes the probability mass (PMF) at k, i.e. P(X = k).
-        /// </summary>
-        /// <param name="k">The location in the domain where we want to Evaluate the probability mass function.</param>
-        /// <param name="lambda">The lambda (位) parameter of the Poisson distribution. Range: 位 > 0.</param>
-        /// <returns>the probability mass at location <paramref name="k"/>.</returns>
-        public static double PMF(double lambda, int k)
-        {
-            //if (!(lambda > 0.0)) {
-            //    throw new ArgumentException("InvalidDistributionParameters");
-            //}
+    public static BigDecimal PMF(BigDecimal lambda, int k) {
+        return SpecialFunctions.Expi(lambda.negate().add(new BigDecimal(k).multiply(MathEx.Log(lambda)).subtract(SpecialFunctions.GammaLn(new BigDecimal(k + 1)))));
+    }
 
-            return Math.exp(-lambda + (k * Math.log(lambda)) - SpecialFunctions.FactorialLn(k));
-        }
-
-        /// <summary>
-        /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X 鈮?x).
-        /// </summary>
-        /// <param name="x">The location at which to compute the cumulative distribution function.</param>
-        /// <param name="lambda">The lambda (位) parameter of the Poisson distribution. Range: 位 > 0.</param>
-        /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-        ///// <seealso cref="CumulativeDistribution"/>
-        public static double CDF(double lambda, double x)
-        {
-            //if (!(lambda > 0.0)) {
-            //    throw new ArgumentException("InvalidDistributionParameters");
-            //}
-
-            return 1.0 - SpecialFunctions.GammaLowerRegularized(x + 1, lambda);
-        }
+    public static BigDecimal CDF(BigDecimal lambda, BigDecimal x) {
+        return BigDecimal.ONE.subtract(SpecialFunctions.GammaLowerRegularized(x.add(BigDecimal.ONE), lambda));
+    }
 }

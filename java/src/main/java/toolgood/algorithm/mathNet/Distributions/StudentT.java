@@ -1,47 +1,39 @@
 package toolgood.algorithm.mathNet.Distributions;
 
-
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 import toolgood.algorithm.mathNet.SpecialFunctions;
 import toolgood.algorithm.mathNet.RootFinding.Brent;
 
 public class StudentT {
-    public static double CDF(double location, double scale, double freedom, double x)
-    {
-        //if (scale <= 0.0 || freedom <= 0.0) {
-        //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-        //}
-
-        if (Double.isInfinite(freedom)) {
-            return Normal.CDF(location, scale, x);
-        }
-
-        double k = (x - location) / scale;
-        double h = freedom / (freedom + (k * k));
-        double ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2.0, 0.5, h);
-        return x <= location ? ib : 1.0 - ib;
+    public static BigDecimal CDF(BigDecimal location, BigDecimal scale, int freedom, BigDecimal x) throws Exception {
+        BigDecimal k = x.subtract(location).divide(scale, MathContext.DECIMAL128);
+        BigDecimal h = new BigDecimal(freedom).divide(freedom + k.multiply(k), MathContext.DECIMAL128);
+        BigDecimal ib = new BigDecimal("0.5").multiply(SpecialFunctions.BetaRegularized(
+                new BigDecimal(freedom).divide(new BigDecimal("2"), MathContext.DECIMAL128),
+                new BigDecimal("0.5"),
+                h));
+        return x.compareTo(location) <= 0 ? ib : BigDecimal.ONE.subtract(ib);
     }
-    public static double InvCDF(double location, double scale, double freedom, double p) throws Exception
-    {
-        //if (scale <= 0.0 || freedom <= 0.0) {
-        //    throw new ArgumentException(Resources.InvalidDistributionParameters);
-        //}
 
-        if (Double.isInfinite(freedom)) {
-            return Normal.InvCDF(location, scale, p);
-        }
-
-        if (p == 0.5d) {
+    public static BigDecimal InvCDF(BigDecimal location, BigDecimal scale, int freedom, BigDecimal p) throws Exception {
+        if (p.compareTo(new BigDecimal("0.5")) == 0) {
             return location;
         }
-        Function<Double,Double> f=x->{
-            double k = (x - location) / scale;
-            double h = freedom / (freedom + (k * k));
-            double ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2.0, 0.5, h);
-            return x <= location ? ib - p : 1.0 - ib - p;
-        };
 
-        return Brent.FindRoot(f, -800, 800,  1e-12);
+        return Brent.FindRoot(x -> {
+            BigDecimal k = x.subtract(location).divide(scale, MathContext.DECIMAL128);
+            BigDecimal h = new BigDecimal(freedom).divide(freedom + k.multiply(k), MathContext.DECIMAL128);
+            try {
+                BigDecimal ib = new BigDecimal("0.5").multiply(SpecialFunctions.BetaRegularized(
+                        new BigDecimal(freedom).divide(new BigDecimal("2"), MathContext.DECIMAL128),
+                        new BigDecimal("0.5"),
+                        h));
+                return x.compareTo(location) <= 0 ? ib.subtract(p) : BigDecimal.ONE.subtract(ib).subtract(p);
+            } catch (Exception e) {
+                return BigDecimal.ZERO;
+            }
+        }, new BigDecimal("-800"), new BigDecimal("800"), new BigDecimal("1e-12"));
     }
-
 }

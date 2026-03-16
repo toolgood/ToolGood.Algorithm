@@ -1,137 +1,127 @@
 package toolgood.algorithm.mathNet.RootFinding;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.function.Function;
+
 import toolgood.algorithm.mathNet.Precision;
 
- 
 public class Brent {
-    public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy)
-            throws Exception {
+    public static BigDecimal FindRoot(Function<BigDecimal, BigDecimal> f, BigDecimal lowerBound, BigDecimal upperBound, BigDecimal accuracy) throws Exception {
         return FindRoot(f, lowerBound, upperBound, accuracy, 100);
     }
 
-    public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
-            int maxIterations) throws Exception
-    {
-        RootNumber root=new RootNumber();
-        if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations,root)) {
-            return root.root;
+    public static BigDecimal FindRoot(Function<BigDecimal, BigDecimal> f, BigDecimal lowerBound, BigDecimal upperBound, BigDecimal accuracy, int maxIterations) throws Exception {
+        BigDecimal[] root = new BigDecimal[1];
+        if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations, root)) {
+            return root[0];
         }
         throw new Exception("RootFindingFailed");
     }
 
+    public static boolean TryFindRoot(Function<BigDecimal, BigDecimal> f, BigDecimal lowerBound, BigDecimal upperBound, BigDecimal accuracy, int maxIterations, BigDecimal[] root) {
+        BigDecimal fmin = f.apply(lowerBound);
+        BigDecimal fmax = f.apply(upperBound);
+        BigDecimal froot = fmax;
+        BigDecimal d = BigDecimal.ZERO, e = BigDecimal.ZERO;
 
-    public static boolean TryFindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
-            int maxIterations, RootNumber root)
-    {
-        double fmin = f.apply(lowerBound);
-        double fmax = f.apply(upperBound);
-        double froot = fmax;
-        double d = 0.0, e = 0.0;
+        root[0] = upperBound;
+        BigDecimal xMid = null;
 
-        root.root = upperBound;
-        double xMid = Double.NaN;
-
-        // Root must be bracketed.
         if (sign(fmin) == sign(fmax)) {
             return false;
         }
 
         for (int i = 0; i <= maxIterations; i++) {
-            // adjust bounds
             if (sign(froot) == sign(fmax)) {
                 upperBound = lowerBound;
                 fmax = fmin;
-                e = d = root.root - lowerBound;
+                e = d = root[0].subtract(lowerBound);
             }
 
-            if (Math.abs(fmax) < Math.abs(froot)) {
-                lowerBound = root.root;
-                root.root = upperBound;
+            if (fmax.abs().compareTo(froot.abs()) < 0) {
+                lowerBound = root[0];
+                root[0] = upperBound;
                 upperBound = lowerBound;
                 fmin = froot;
                 froot = fmax;
                 fmax = fmin;
             }
 
-            // convergence check
-            double xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root.root) + 0.5 * accuracy;
-            double xMidOld = xMid;
-            xMid = (upperBound - root.root) / 2.0;
+            BigDecimal xAcc1 = Precision.PositiveDecimalPrecision.multiply(root[0].abs()).add(new BigDecimal("0.5").multiply(accuracy));
+            BigDecimal xMidOld = xMid;
+            xMid = upperBound.subtract(root[0]).divide(new BigDecimal("2"), MathContext.DECIMAL128);
 
-            if (Math.abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot,0, froot, accuracy)) {
+            if (xMid.abs().compareTo(xAcc1) <= 0 || Precision.AlmostEqualNormRelative(BigDecimal.ZERO, froot, froot, accuracy)) {
                 return true;
             }
 
-            if (xMid == xMidOld) {
-                // accuracy not sufficient, but cannot be improved further
+            if (xMidOld != null && xMid.compareTo(xMidOld) == 0) {
                 return false;
             }
 
-            if (Math.abs(e) >= xAcc1 && Math.abs(fmin) > Math.abs(froot)) {
-                // Attempt inverse quadratic interpolation
-                double s = froot / fmin;
-                double p;
-                double q;
-                if (Precision.AlmostEqualRelative(lowerBound,upperBound)) {
-                    p = 2.0 * xMid * s;
-                    q = 1.0 - s;
+            if (e.abs().compareTo(xAcc1) >= 0 && fmin.abs().compareTo(froot.abs()) > 0) {
+                BigDecimal s = froot.divide(fmin, MathContext.DECIMAL128);
+                BigDecimal p;
+                BigDecimal q;
+                if (Precision.AlmostEqualRelative(lowerBound, upperBound)) {
+                    p = new BigDecimal("2").multiply(xMid).multiply(s);
+                    q = BigDecimal.ONE.subtract(s);
                 } else {
-                    q = fmin / fmax;
-                    double r = froot / fmax;
-                    p = s * (2.0 * xMid * q * (q - r) - (root.root - lowerBound) * (r - 1.0));
-                    q = (q - 1.0) * (r - 1.0) * (s - 1.0);
+                    q = fmin.divide(fmax, MathContext.DECIMAL128);
+                    BigDecimal r = froot.divide(fmax, MathContext.DECIMAL128);
+                    p = s.multiply(new BigDecimal("2").multiply(xMid).multiply(q).multiply(q.subtract(r))
+                            .subtract(root[0].subtract(lowerBound).multiply(r.subtract(BigDecimal.ONE))));
+                    q = q.subtract(BigDecimal.ONE).multiply(r.subtract(BigDecimal.ONE)).multiply(s.subtract(BigDecimal.ONE));
                 }
 
-                if (p > 0.0) {
-                    // Check whether in bounds
-                    q = -q;
+                if (p.compareTo(BigDecimal.ZERO) > 0) {
+                    q = q.negate();
                 }
 
-                p = Math.abs(p);
-                if (2.0 * p < Math.min(3.0 * xMid * q - Math.abs(xAcc1 * q), Math.abs(e * q))) {
-                    // Accept interpolation
+                p = p.abs();
+                if (new BigDecimal("2").multiply(p).compareTo(xAcc1.multiply(new BigDecimal("3").multiply(xMid).multiply(q).abs())
+                        .min(e.multiply(q).abs())) < 0) {
                     e = d;
-                    d = p / q;
+                    d = p.divide(q, MathContext.DECIMAL128);
                 } else {
-                    // Interpolation failed, use bisection
                     d = xMid;
                     e = d;
                 }
             } else {
-                // Bounds decreasing too slowly, use bisection
                 d = xMid;
                 e = d;
             }
 
-            lowerBound = root.root;
+            lowerBound = root[0];
             fmin = froot;
-            if (Math.abs(d) > xAcc1) {
-                root.root += d;
+            if (d.abs().compareTo(xAcc1) > 0) {
+                root[0] = root[0].add(d);
             } else {
-                root.root += Sign(xAcc1, xMid);
+                root[0] = root[0].add(Sign(xAcc1, xMid));
             }
 
-            froot = f.apply(root.root);
+            froot = f.apply(root[0]);
         }
 
         return false;
     }
-    static int sign(double a){
-        if(a==0.0){
+
+    static int sign(BigDecimal a) {
+        if (a.compareTo(BigDecimal.ZERO) == 0) {
             return 0;
         }
-        if(a<0){
+        if (a.compareTo(BigDecimal.ZERO) < 0) {
             return -1;
         }
         return 1;
     }
 
-    /// <summary>Helper method useful for preventing rounding errors.</summary>
-    /// <returns>a*sign(b)</returns>
-    static double Sign(double a, double b)
-    {
-        return b >= 0 ? (a >= 0 ? a : -a) : (a >= 0 ? -a : a);
+    static BigDecimal Sign(BigDecimal a, BigDecimal b) {
+        if (b.compareTo(BigDecimal.ZERO) >= 0) {
+            return a.compareTo(BigDecimal.ZERO) >= 0 ? a : a.negate();
+        } else {
+            return a.compareTo(BigDecimal.ZERO) >= 0 ? a.negate() : a;
+        }
     }
-
 }
