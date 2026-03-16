@@ -3,6 +3,7 @@ package toolgood.algorithm.internals.functions.csharp;
 import java.lang.StringBuilder;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.regex.Pattern;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -12,14 +13,14 @@ import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-public final class Function_ENDSWITH extends Function_3 {
-    public Function_ENDSWITH(FunctionBase[] funcs) {
+public final class Function_REGEXREPLACE extends Function_3 {
+    public Function_REGEXREPLACE(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
     public String Name() {
-        return "EndsWith";
+        return "RegexReplace";
     }
 
     @Override
@@ -34,25 +35,22 @@ public final class Function_ENDSWITH extends Function_3 {
             return args2;
         }
 
-        String text = args1.TextValue();
-        if (func3 == null) {
-            return Operand.Create(text.endsWith(args2.TextValue()));
-        }
-
-        Operand args3 = GetBoolean_3(engine, tempParameter);
+        Operand args3 = GetText_3(engine, tempParameter);
         if (args3.IsError() || args3.IsNone()) {
             return args3;
         }
 
-        if (args3.BooleanValue()) {
-            return Operand.Create(text.toLowerCase().endsWith(args2.TextValue().toLowerCase()));
+        try {
+            String result = Pattern.compile(args2.TextValue()).matcher(args1.TextValue()).replaceAll(args3.TextValue());
+            return Operand.Create(result);
+        } catch (Exception e) {
+            return ParameterError(2);
         }
-        return Operand.Create(text.endsWith(args2.TextValue()));
     }
 
     @Override
     public OperandType GetResultType() {
-        return OperandType.BOOLEAN;
+        return OperandType.TEXT;
     }
 
     @Override
@@ -60,8 +58,6 @@ public final class Function_ENDSWITH extends Function_3 {
             OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
         func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
-        if (func3 != null) {
-            func3.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN, null, null);
-        }
+        func3.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
     }
 }
