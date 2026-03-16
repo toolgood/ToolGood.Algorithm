@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -20,7 +20,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			var result = new OperandKeyValueList();
 			foreach (var item in funcs) {
 				var o = item.Evaluate(engine, tempParameter);
-				result.AddValue((KeyValue)((OperandKeyValue)o).Value);
+				if(o.IsErrorOrNone) { return o; }
+				if(o is OperandKeyValue kv) {
+					result.AddValue(kv.Value);
+				} else {
+					return ParameterError(1);
+				}
 			}
 			return result;
 		}
