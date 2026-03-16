@@ -315,46 +315,45 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			if(list.Count == 1) return list[0];
 			
-			var arr = list.ToArray();
-			int targetIndex = largest ? arr.Length - 1 - k : k;
-			return QuickSelectCore(arr, 0, arr.Length - 1, targetIndex);
+			int targetIndex = largest ? list.Count - 1 - k : k;
+			return QuickSelectCore(list, 0, list.Count - 1, targetIndex);
 		}
 
-		private static decimal QuickSelectCore(decimal[] arr, int left, int right, int k)
+		private static decimal QuickSelectCore(List<decimal> list, int left, int right, int k)
 		{
 			while(left < right) {
-				int pivotIndex = Partition(arr, left, right);
+				int pivotIndex = Partition(list, left, right);
 				if(k == pivotIndex) {
-					return arr[k];
+					return list[k];
 				} else if(k < pivotIndex) {
 					right = pivotIndex - 1;
 				} else {
 					left = pivotIndex + 1;
 				}
 			}
-			return arr[left];
+			return list[left];
 		}
 
-		private static int Partition(decimal[] arr, int left, int right)
+		private static int Partition(List<decimal> list, int left, int right)
 		{
-			decimal pivot = arr[right];
+			decimal pivot = list[right];
 			int i = left;
 			for(int j = left; j < right; j++) {
-				if(arr[j] <= pivot) {
-					Swap(arr, i, j);
+				if(list[j] <= pivot) {
+					Swap(list, i, j);
 					i++;
 				}
 			}
-			Swap(arr, i, right);
+			Swap(list, i, right);
 			return i;
 		}
 
-		private static void Swap(decimal[] arr, int i, int j)
+		private static void Swap(List<decimal> list, int i, int j)
 		{
 			if(i != j) {
-				decimal temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				decimal temp = list[i];
+				list[i] = list[j];
+				list[j] = temp;
 			}
 		}
 
