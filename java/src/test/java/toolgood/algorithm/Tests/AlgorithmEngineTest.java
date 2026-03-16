@@ -83,7 +83,7 @@ public class AlgorithmEngineTest {
         boolean value = engine.TryEvaluate("1 > (-2)", false);
         assertEquals(value, true);
 
-        value = engine.TryEvaluate("(-1) > (-2）", false);
+        value = engine.TryEvaluate("(-1) > (-2�?, false);
         assertEquals(value, true);
 
         value = engine.TryEvaluate("-1 > (-2)", false);
@@ -202,12 +202,12 @@ public class AlgorithmEngineTest {
         double t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0); // 圆底面积
 
         double t2 = c.TryEvaluate("半径*半径*pi()", 0.0); // 圆底面积
-        // 3.5版本 取消了这种设置
+        // 3.5版本 取消了这种设�?
         //double t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0); // 圆底面积
         double t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0); // 圆底面积
         double t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0); // 圆底面积
-        double t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0); // 圆底面积
-        double t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0); // 圆底面积
+        double t6 = c.TryEvaluate("【半径�?【半径�?pi()", 0.0); // 圆底面积
+        double t7 = c.TryEvaluate("【半径�?【半径�?pi（）", 0.0); // 圆底面积
 
         assertEquals(t, t2, 0.001);
         //assertEquals(t, t3, 0.001);
@@ -217,7 +217,7 @@ public class AlgorithmEngineTest {
         assertEquals(t, t7, 0.001);
 
         assertEquals(3 * 3 * Math.PI, t, 0.001);
-        t = c.TryEvaluate("[直径]*pi()", 0.0); // 圆的长
+        t = c.TryEvaluate("[直径]*pi()", 0.0); // 圆的�?
         assertEquals(2 * 3 * Math.PI, t, 0.001);
         t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); // 圆的体积
         assertEquals(3 * 3 * Math.PI * 10, t, 0.001);
@@ -229,7 +229,7 @@ public class AlgorithmEngineTest {
         t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); // 圆的体积
         assertEquals(3 * 3 * Math.PI * 10, t, 0.001);
 
-        t = c.TryEvaluate("求面积（10）", 0.0); // 圆的体积
+        t = c.TryEvaluate("求面积（10�?, 0.0); // 圆的体积
         assertEquals(10 * 10 * Math.PI, t, 0.001);
 
         String json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
@@ -238,8 +238,8 @@ public class AlgorithmEngineTest {
         String tt = c.TryEvaluate("['灰色']", ""); // 圆的体积
         assertEquals("L", tt);
 
-        String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
-        assertEquals("圆-3-10", tt2);
+        String tt2 = c.EvaluateFormula("'�?-[半径]-�?, '-');
+        assertEquals("�?3-10", tt2);
 
     }
 

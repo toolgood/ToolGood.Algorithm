@@ -56,14 +56,14 @@ public class AlgorithmEngineTest_sum {
     @Test
     public void PERCENTILE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
-        double t = engine.TryEvaluate("PERCENTILE(array(1,2,3,4,2,2,1,4)ï¼Œ0.4)", 0.0);
+        double t = engine.TryEvaluate("PERCENTILE(array(1,2,3,4,2,2,1,4)ï¼?.4)", 0.0);
         assertEquals(t, 2.0, 0.001);
     }
 
     @Test
     public void PERCENTRANK_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
-        double t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4)ï¼Œ3)", 0.0);
+        double t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4)ï¼?)", 0.0);
         assertEquals(t, 0.714, 0.001);
     }
 

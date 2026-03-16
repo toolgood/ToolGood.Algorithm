@@ -24,7 +24,7 @@ public class Cylinder extends AlgorithmEngine {
         {
             return Operand.Create(_radius * 2);
         }
-        if (parameter.Name.equals("高"))
+        if (parameter.Name.equals("�?))
         {
             return Operand.Create(_height);
         }
@@ -34,7 +34,7 @@ public class Cylinder extends AlgorithmEngine {
     @Override
     protected Operand ExecuteDiyFunction(String funcName, List<Operand> operands)
     {
-        if (funcName.equals("求面积"))
+        if (funcName.equals("求面�?))
         {
             if (operands.size() == 1)
             {

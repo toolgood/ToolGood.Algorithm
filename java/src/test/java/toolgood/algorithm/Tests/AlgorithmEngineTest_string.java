@@ -11,7 +11,7 @@ public class AlgorithmEngineTest_string {
         public void ASC_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            String t = engine.TryEvaluate("asc('ａｂｃＡＢＣ１２３')", "");
+            String t = engine.TryEvaluate("asc('ａｂｃＡＢＣ１２�?)", "");
             assertEquals(t, "abcABC123");
         }
         @Test
@@ -19,9 +19,9 @@ public class AlgorithmEngineTest_string {
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             String t = engine.TryEvaluate("jis('abcABC123')", "");
-            assertEquals(t, "ａｂｃＡＢＣ１２３");
+            assertEquals(t, "ａｂｃＡＢＣ１２�?);
             t = engine.TryEvaluate("WIDECHAR('abcABC123')", "");
-            assertEquals(t, "ａｂｃＡＢＣ１２３");
+            assertEquals(t, "ａｂｃＡＢＣ１２�?);
         }
 
         @Test

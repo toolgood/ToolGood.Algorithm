@@ -90,7 +90,7 @@ public class AlgorithmEngineTest_csharp {
         String r = engine.TryEvaluate("Regex('abcd','a.*c')", "");
         assertEquals(r, "abc");
 
-        // 下面代码不支持
+        // 下面代码不支�?
         // r = engine.TryEvaluate("Regex('abcd,abbcd','a.*?c',1)", "");
         // assertEquals(r, "abbc");
         // r = engine.TryEvaluate("Regex('abcd,abbcd','a(.*?)c',1,1)", "");
