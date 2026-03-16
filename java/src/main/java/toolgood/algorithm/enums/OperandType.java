@@ -5,6 +5,11 @@ package toolgood.algorithm.enums;
 
 public enum OperandType {
     /**
+     * NONE（用于参数类型推断）
+     */
+    NONE,
+
+    /**
      * NULL
      */
     NULL,

@@ -37,6 +37,16 @@ public abstract class Operand {
      */
     public static final Operand ZERO = Operand.Create(new BigDecimal("0"));
 
+    /**
+     * Null
+     */
+    public static final Operand NULL_OPERAND = new OperandNull();
+
+    /**
+     * None（用于参数类型推断，NoneEngine 返回此值）
+     */
+    public static final Operand None = new OperandNone();
+
 
     /**
      * 是否为空值

@@ -8,13 +8,24 @@
 package toolgood.algorithm.internals.functions;
 
 import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiFunction;
 
 import toolgood.algorithm.internals.MyDate;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 
 public abstract class FunctionBase {
+    /**
+     * 获取函数名称，默认返回类名（子类可覆盖）
+     */
+    public String Name() {
+        return getClass().getSimpleName();
+    }
+
     /**
      * 进行计算
      * 
@@ -23,6 +34,112 @@ public abstract class FunctionBase {
      * @return
      */
     public abstract Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter);
+
+    /**
+     * 进行计算（无临时参数）
+     */
+    public Operand Evaluate(AlgorithmEngine work) {
+        return Evaluate(work, null);
+    }
+
+    /**
+     * 获取结果类型（默认返回 NONE，子类可覆盖）
+     */
+    public OperandType GetResultType() {
+        return OperandType.NONE;
+    }
+
+    // region GetParameterTypes
+
+    /**
+     * 获取参数类型列表
+     */
+    public List<ParameterType> GetParameterTypes(AlgorithmEngine engine) {
+        NoneEngine noneEngine = new NoneEngine(engine);
+        List<ParameterType> result = new ArrayList<>();
+        GetParameterTypes(noneEngine, result, OperandType.NONE, null, null);
+        return result;
+    }
+
+    /**
+     * 内部方法，获取参数类型（默认空实现，子类可覆盖）
+     */
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
+            OperandType operandType, String op, String val) {
+    }
+
+    // endregion GetParameterTypes
+
+    // region ConvertToXxx helpers
+
+    /**
+     * 转换为文本类型
+     */
+    protected Operand ConvertToText(Operand arg, int paramIndex) {
+        return arg.ToText("Function '%s' parameter %d is error!", Name(), paramIndex);
+    }
+
+    /**
+     * 转换为布尔类型
+     */
+    protected Operand ConvertToBoolean(Operand arg, int paramIndex) {
+        return arg.ToBoolean("Function '%s' parameter %d is error!", Name(), paramIndex);
+    }
+
+    /**
+     * 转换为数字类型
+     */
+    protected Operand ConvertToNumber(Operand arg, int paramIndex) {
+        return arg.ToNumber("Function '%s' parameter %d is error!", Name(), paramIndex);
+    }
+
+    /**
+     * 转换为数组类型
+     */
+    protected Operand ConvertToArray(Operand arg, int paramIndex) {
+        return arg.ToArray("Function '%s' parameter %d is error!", Name(), paramIndex);
+    }
+
+    /**
+     * 转换为日期类型
+     */
+    protected Operand ConvertToDate(Operand arg, int paramIndex) {
+        return arg.ToMyDate("Function '%s' parameter %d is error!", Name(), paramIndex);
+    }
+
+    // endregion
+
+    // region Error helpers
+
+    /**
+     * 参数错误
+     */
+    protected Operand ParameterError(int paramIndex) {
+        return Operand.Error("Function '%s' parameter %d is error!", Name(), paramIndex);
+    }
+
+    /**
+     * 函数错误
+     */
+    protected Operand FunctionError() {
+        return Operand.Error("Function '%s' parameter is error!", Name());
+    }
+
+    /**
+     * 比较错误
+     */
+    protected Operand CompareError() {
+        return Operand.Error("Function '%s' compare is error.", Name());
+    }
+
+    /**
+     * 除零错误
+     */
+    protected Operand Div0Error() {
+        return Operand.Error("Function '%s' Div 0 error!", Name());
+    }
+
+    // endregion
 
     //region TryEvaluate
 

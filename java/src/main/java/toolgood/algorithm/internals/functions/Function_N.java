@@ -1,6 +1,10 @@
 package toolgood.algorithm.internals.functions;
 
 import java.lang.StringBuilder;
+import java.util.List;
+
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 
 public abstract class Function_N extends FunctionBase {
     protected FunctionBase[] funcs;
@@ -19,5 +23,15 @@ public abstract class Function_N extends FunctionBase {
             funcs[i].toString(stringBuilder, false);
         }
         stringBuilder.append(')');
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NONE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
+            OperandType operandType, String op, String val) {
     }
 }
