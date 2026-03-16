@@ -4,222 +4,228 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Predicate;
+
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.visitors.CharUtil;
 
 public class FunctionUtil {
-    public static final long START_DATE_UTC = 0; // 1970-01-01 00:00:00 UTC in milliseconds
+    public static final long START_DATE_UTC = 0;
 
-    public static boolean F_base_GetList_BigDecimal(List<Operand> args, List<BigDecimal> list) {
-        for (Operand item : args) {
-            if (item.IsNumber()) {
-                list.add(item.NumberValue());
-            } else if (item.IsArray()) {
-                boolean o = F_base_GetList(item.ArrayValue(), list);
-                if (!o) {
-                    return false;
-                }
-            } else if (item.IsJson()) {
-                Operand i = item.ToArray(null);
-                if (i.IsError()) {
-                    return false;
-                }
-                boolean o = F_base_GetList(i.ArrayValue(), list);
-                if (!o) {
-                    return false;
-                }
-            } else {
-                Operand o = item.ToNumber(null);
-                if (o.IsError()) {
-                    return false;
-                }
-                list.add(o.DoubleValue());
-            }
-        }
-        return true;
+    public static StringComparison GetStringComparison(boolean ignoreCase) {
+        return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
     }
 
-    public static boolean F_base_GetList_Double(Operand args, List<Double> list) {
-        if (args.IsError()) {
-            return false;
-        }
-        if (args.IsNumber()) {
-            list.add(args.DoubleValue());
-        } else if (args.IsArray()) {
-            boolean o = F_base_GetList(args.ArrayValue(), list);
-            if (!o) {
-                return false;
-            }
-        } else if (args.IsJson()) {
-            Operand i = args.ToArray(null);
-            if (i.IsError()) {
-                return false;
-            }
-            boolean o = F_base_GetList(i.ArrayValue(), list);
-            if (!o) {
-                return false;
-            }
-        } else {
-            Operand o = args.ToNumber(null);
-            if (o.IsError()) {
-                return false;
-            }
-            list.add(o.DoubleValue());
-        }
-        return true;
-    }
-
-    public static boolean F_base_GetList(List<Operand> args, List<String> list) {
-        for (Operand item : args) {
+    private static boolean FlattenToListCore(List<Operand> args, List<Operand> list) {
+        for (int i = 0; i < args.size(); i++) {
+            Operand item = args.get(i);
             if (item.IsArray()) {
-                boolean o = F_base_GetList(item.ArrayValue(), list);
-                if (!o) {
-                    return false;
+                List<Operand> array = item.ArrayValue();
+                for (int j = 0; j < array.size(); j++) {
+                    List<Operand> tempList = new ArrayList<>();
+                    tempList.add(array.get(j));
+                    if (!FlattenToListCore(tempList, list)) return false;
                 }
             } else if (item.IsJson()) {
                 Operand i = item.ToArray(null);
-                if (i.IsError()) {
-                    return false;
-                }
-                boolean o = F_base_GetList(i.ArrayValue(), list);
-                if (!o) {
-                    return false;
+                if (i.IsError()) return false;
+                List<Operand> array = i.ArrayValue();
+                for (int j = 0; j < array.size(); j++) {
+                    List<Operand> tempList = new ArrayList<>();
+                    tempList.add(array.get(j));
+                    if (!FlattenToListCore(tempList, list)) return false;
                 }
             } else {
-                Operand o = item.ToText(null);
-                if (o.IsError()) {
-                    return false;
-                }
-                list.add(o.TextValue());
+                list.add(item);
             }
         }
         return true;
     }
 
-    public static boolean F_base_GetList_String(Operand args, List<String> list) {
-        if (args.IsError()) {
-            return false;
+    private static boolean FlattenToListCoreDecimal(List<Operand> args, List<BigDecimal> list) {
+        for (int i = 0; i < args.size(); i++) {
+            Operand item = args.get(i);
+            if (item.IsArray()) {
+                List<Operand> array = item.ArrayValue();
+                for (int j = 0; j < array.size(); j++) {
+                    List<Operand> tempList = new ArrayList<>();
+                    tempList.add(array.get(j));
+                    if (!FlattenToListCoreDecimal(tempList, list)) return false;
+                }
+            } else if (item.IsJson()) {
+                Operand ii = item.ToArray(null);
+                if (ii.IsError()) return false;
+                List<Operand> array = ii.ArrayValue();
+                for (int j = 0; j < array.size(); j++) {
+                    List<Operand> tempList = new ArrayList<>();
+                    tempList.add(array.get(j));
+                    if (!FlattenToListCoreDecimal(tempList, list)) return false;
+                }
+            } else {
+                Operand converted = item.IsNumber() ? item : item.ToNumber(null);
+                if (converted.IsError()) return false;
+                list.add(converted.NumberValue());
+            }
         }
+        return true;
+    }
+
+    private static boolean FlattenToListCoreDecimal(Operand args, List<BigDecimal> list) {
+        if (args.IsError()) return false;
         if (args.IsArray()) {
-            boolean o = F_base_GetList(args.ArrayValue(), list);
-            if (!o) {
-                return false;
+            return FlattenToListCoreDecimal(args.ArrayValue(), list);
+        } else if (args.IsJson()) {
+            Operand i = args.ToArray(null);
+            if (i.IsError()) return false;
+            return FlattenToListCoreDecimal(i.ArrayValue(), list);
+        } else {
+            Operand converted = args.IsNumber() ? args : args.ToNumber(null);
+            if (converted.IsError()) return false;
+            list.add(converted.NumberValue());
+        }
+        return true;
+    }
+
+    private static boolean FlattenToListCoreString(Operand args, List<String> list) {
+        if (args.IsError()) return false;
+        if (args.IsArray()) {
+            List<Operand> array = args.ArrayValue();
+            for (int i = 0; i < array.size(); i++) {
+                if (!FlattenToListCoreString(array.get(i), list)) return false;
             }
         } else if (args.IsJson()) {
             Operand i = args.ToArray(null);
-            if (i.IsError()) {
-                return false;
-            }
-            boolean o = F_base_GetList(i.ArrayValue(), list);
-            if (!o) {
-                return false;
+            if (i.IsError()) return false;
+            List<Operand> array = i.ArrayValue();
+            for (int j = 0; j < array.size(); j++) {
+                if (!FlattenToListCoreString(array.get(j), list)) return false;
             }
         } else {
-            Operand o = args.ToText(null);
-            if (o.IsError()) {
-                return false;
-            }
-            list.add(o.TextValue());
+            Operand converted = args.ToText(null);
+            if (converted.IsError()) return false;
+            list.add(converted.TextValue());
         }
         return true;
     }
 
-    public static int F_base_countif(List<Double> dbs, double d) {
+    public static boolean FlattenToList(List<Operand> args, List<Operand> list) {
+        return FlattenToListCore(args, list);
+    }
+
+    public static boolean FlattenToList(List<Operand> args, List<BigDecimal> list) {
+        return FlattenToListCoreDecimal(args, list);
+    }
+
+    public static boolean FlattenToList(Operand args, List<BigDecimal> list) {
+        return FlattenToListCoreDecimal(args, list);
+    }
+
+    public static boolean FlattenToList(Operand args, List<String> list) {
+        return FlattenToListCoreString(args, list);
+    }
+
+    public static int GetCountIf(List<BigDecimal> dbs, BigDecimal d) {
         int count = 0;
-        for (double item : dbs) {
-            if (item == d) {
+        for (int i = 0; i < dbs.size(); i++) {
+            BigDecimal item = dbs.get(i);
+            if (item.compareTo(d) == 0) {
                 count++;
             }
         }
         return count;
     }
 
-    public static int F_base_countif(List<Double> dbs, String s, double d) {
+    public static int GetCountIf(List<BigDecimal> dbs, String s, BigDecimal d) {
         int count = 0;
-        for (double item : dbs) {
-            if (F_base_compare(item, d, s)) {
+        for (int i = 0; i < dbs.size(); i++) {
+            BigDecimal item = dbs.get(i);
+            if (CompareValues(item, d, s)) {
                 count++;
             }
         }
         return count;
     }
 
-    public static double F_base_sumif(List<Double> dbs, double d, List<Double> sumdbs) {
-        double sum = 0;
+    public static BigDecimal GetSumIf(List<BigDecimal> dbs, BigDecimal d, List<BigDecimal> sumdbs) {
+        BigDecimal sum = BigDecimal.ZERO;
         for (int i = 0; i < dbs.size(); i++) {
-            double item = dbs.get(i);
-            if (item == d) {
-                sum += sumdbs.get(i);
+            BigDecimal item = dbs.get(i);
+            if (item.compareTo(d) == 0) {
+                sum = sum.add(sumdbs.get(i));
             }
         }
         return sum;
     }
 
-    public static double F_base_sumif(List<Double> dbs, String s, double d, List<Double> sumdbs) {
-        double sum = 0;
+    public static BigDecimal GetSumIf(List<BigDecimal> dbs, String s, BigDecimal d, List<BigDecimal> sumdbs) {
+        BigDecimal sum = BigDecimal.ZERO;
         for (int i = 0; i < dbs.size(); i++) {
-            if (F_base_compare(dbs.get(i), d, s)) {
-                sum += sumdbs.get(i);
+            if (CompareValues(dbs.get(i), d, s)) {
+                sum = sum.add(sumdbs.get(i));
             }
         }
         return sum;
     }
 
-    public static boolean F_base_compare(double a, double b, String ss) {
-        if (CharUtil.Equals(ss, "<")) {
-            return a < b;
+    public static boolean CompareValues(BigDecimal a, BigDecimal b, String ss) {
+        if (CharUtil.Equals(ss, '<')) {
+            return a.compareTo(b) < 0;
         } else if (CharUtil.Equals(ss, "<=")) {
-            return a <= b;
-        } else if (CharUtil.Equals(ss, ">")) {
-            return a > b;
+            return a.compareTo(b) <= 0;
+        } else if (CharUtil.Equals(ss, '>')) {
+            return a.compareTo(b) > 0;
         } else if (CharUtil.Equals(ss, ">=")) {
-            return a >= b;
-        } else if (CharUtil.Equals(ss, "=") || CharUtil.Equals(ss, "==") || CharUtil.Equals(ss, "===")) {
-            return a == b;
+            return a.compareTo(b) >= 0;
+        } else if (CharUtil.Equals(ss, "=", "==", "===")) {
+            return a.compareTo(b) == 0;
         }
-        return a != b;
+        return a.compareTo(b) != 0;
     }
 
-    public static int F_base_gcd(List<Double> list) {
-        List<Double> sortedList = new ArrayList<>(list);
-        Collections.sort(sortedList);
-        int g = F_base_gcd((int) sortedList.get(1).doubleValue(), (int) sortedList.get(0).doubleValue());
-        for (int i = 2; i < sortedList.size(); i++) {
-            g = F_base_gcd((int) sortedList.get(i).doubleValue(), g);
+    public static int GetGcd(List<BigDecimal> list) {
+        if (list.size() == 0) return 1;
+        
+        int g = list.get(0).intValue();
+        for (int i = 1; i < list.size(); i++) {
+            g = GetGcd(g, list.get(i).intValue());
+            if (g == 1) break;
         }
         return g;
     }
 
-    public static int F_base_gcd(int a, int b) {
-        if (b == 1) {
-            return 1;
-        }
-        if (b == 0) {
-            return a;
-        }
-        return F_base_gcd(b, a % b);
-    }
-
-    public static int F_base_lcm(List<Double> list) {
-        List<Double> sortedList = new ArrayList<>(list);
-        Collections.sort(sortedList);
-        sortedList.removeIf(d -> d <= 1);
-
-        int a = (int) sortedList.get(0).doubleValue();
-        for (int i = 1; i < sortedList.size(); i++) {
-            int b = (int) sortedList.get(i).doubleValue();
-            int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
-            a = a / g * b;
+    public static int GetGcd(int a, int b) {
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
         }
         return a;
     }
 
-    public static int F_base_Factorial(int a) {
-        if (a <= 0) {
-            return 1;
+    public static int GetLcm(List<BigDecimal> list) {
+        if (list.size() == 0) return 1;
+        
+        int a = 0;
+        boolean foundFirst = false;
+        
+        for (int i = 0; i < list.size(); i++) {
+            int val = list.get(i).intValue();
+            if (val <= 1) continue;
+            
+            if (!foundFirst) {
+                a = val;
+                foundFirst = true;
+                continue;
+            }
+            
+            int b = val;
+            int g = b > a ? GetGcd(b, a) : GetGcd(a, b);
+            a = a / g * b;
         }
+        return foundFirst ? a : 1;
+    }
+
+    public static int GetFactorial(int a) {
+        if (a <= 0) return 1;
         int r = 1;
         for (int i = a; i > 0; i--) {
             r *= i;
@@ -227,74 +233,73 @@ public class FunctionUtil {
         return r;
     }
 
-    public static Pair<String, Double> sumifMatch(String s) {
-        if (s == null || s.isEmpty()) {
-            return null;
-        }
+    public static Pair<String, BigDecimal> ParseSumIfMatch(String s) {
+        if (s == null || s.length() == 0) return null;
+        
         char c = s.charAt(0);
-        if (c == '>' || c == '�?) {
-            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '�?)) {
+        if (c == '>' || c == '\uff1e') {
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
                 try {
-                    double d = Double.parseDouble(s.substring(2).trim());
+                    BigDecimal d = new BigDecimal(s.substring(2).trim());
                     return new Pair<>(">=", d);
                 } catch (NumberFormatException e) {
                     return null;
                 }
             } else {
                 try {
-                    double d = Double.parseDouble(s.substring(1).trim());
+                    BigDecimal d = new BigDecimal(s.substring(1).trim());
                     return new Pair<>(">", d);
                 } catch (NumberFormatException e) {
                     return null;
                 }
             }
-        } else if (c == '<' || c == '�?) {
-            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '�?)) {
+        } else if (c == '<' || c == '\uff1c') {
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
                 try {
-                    double d = Double.parseDouble(s.substring(2).trim());
+                    BigDecimal d = new BigDecimal(s.substring(2).trim());
                     return new Pair<>("<=", d);
                 } catch (NumberFormatException e) {
                     return null;
                 }
-            } else if (s.length() > 1 && (s.charAt(1) == '>' || s.charAt(1) == '�?)) {
+            } else if (s.length() > 1 && (s.charAt(1) == '>' || s.charAt(1) == '\uff1e')) {
                 try {
-                    double d = Double.parseDouble(s.substring(2).trim());
+                    BigDecimal d = new BigDecimal(s.substring(2).trim());
                     return new Pair<>("!=", d);
                 } catch (NumberFormatException e) {
                     return null;
                 }
             } else {
                 try {
-                    double d = Double.parseDouble(s.substring(1).trim());
+                    BigDecimal d = new BigDecimal(s.substring(1).trim());
                     return new Pair<>("<", d);
                 } catch (NumberFormatException e) {
                     return null;
                 }
             }
-        } else if (c == '=' || c == '�?) {
+        } else if (c == '=' || c == '\uff1d') {
             int index = 1;
-            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '�?)) {
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
                 index = 2;
-                if (s.length() > 2 && (s.charAt(2) == '=' || s.charAt(2) == '�?)) {
+                if (s.length() > 2 && (s.charAt(2) == '=' || s.charAt(2) == '\uff1d')) {
                     index = 3;
                 }
             }
             try {
-                double d = Double.parseDouble(s.substring(index).trim());
+                BigDecimal d = new BigDecimal(s.substring(index).trim());
                 return new Pair<>("=", d);
             } catch (NumberFormatException e) {
                 return null;
             }
-        } else if (c == '!' || c == '�?) {
+        } else if (c == '!' || c == '\uff01') {
             int index = 1;
-            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '�?)) {
+            if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
                 index = 2;
-                if (s.length() > 2 && (s.charAt(2) == '=' || s.charAt(2) == '�?)) {
+                if (s.length() > 2 && (s.charAt(2) == '=' || s.charAt(2) == '\uff1d')) {
                     index = 3;
                 }
             }
             try {
-                double d = Double.parseDouble(s.substring(index).trim());
+                BigDecimal d = new BigDecimal(s.substring(index).trim());
                 return new Pair<>("!=", d);
             } catch (NumberFormatException e) {
                 return null;
@@ -303,51 +308,121 @@ public class FunctionUtil {
         return null;
     }
 
-    public static int Compare(double t1, double t2) {
-        double b = t1 - t2;
-        if (b == 0) {
-            return 0;
-        } else if (b > 0) {
-            return 1;
-        }
-        return -1;
-    }
-
-    public static boolean tryParseBoolean(String textValue, BooleanHolder boolValue) {
-        if (textValue.equalsIgnoreCase("true")) {
-            boolValue.value = true;
-            return true;
-        }
-        if (textValue.equalsIgnoreCase("false")) {
-            boolValue.value = false;
-            return true;
-        }
-        if (textValue.equalsIgnoreCase("yes")) {
-            boolValue.value = true;
-            return true;
-        }
-        if (textValue.equalsIgnoreCase("no")) {
-            boolValue.value = false;
-            return true;
-        }
-        if (textValue.equals("1") || textValue.equals("�?) || textValue.equals("�?)) {
-            boolValue.value = true;
-            return true;
-        }
-        if (textValue.equals("0") || textValue.equals("�?) || textValue.equals("不是") || textValue.equals("�?) || textValue.equals("没有")) {
-            boolValue.value = false;
-            return true;
+    public static boolean TryParseBoolean(String textValue, BooleanHolder boolValue) {
+        int len = textValue.length();
+        switch (len) {
+            case 1: {
+                char c = textValue.charAt(0);
+                if (c == '1' || c == '\u662f' || c == '\u6709') {
+                    boolValue.value = true;
+                    return true;
+                }
+                if (c == '0' || c == '\u5426' || c == '\u65e0') {
+                    boolValue.value = false;
+                    return true;
+                }
+                break;
+            }
+            case 2: {
+                if (textValue.equalsIgnoreCase("no")) {
+                    boolValue.value = false;
+                    return true;
+                }
+                if (textValue.equals("\u4e0d\u662f")) {
+                    boolValue.value = false;
+                    return true;
+                }
+                if (textValue.equals("\u6ca1\u6709")) {
+                    boolValue.value = false;
+                    return true;
+                }
+                break;
+            }
+            case 3: {
+                if (textValue.equalsIgnoreCase("yes")) {
+                    boolValue.value = true;
+                    return true;
+                }
+                break;
+            }
+            case 4: {
+                if (textValue.equalsIgnoreCase("true")) {
+                    boolValue.value = true;
+                    return true;
+                }
+                break;
+            }
+            case 5: {
+                if (textValue.equalsIgnoreCase("false")) {
+                    boolValue.value = false;
+                    return true;
+                }
+                break;
+            }
         }
         boolValue.value = false;
         return false;
     }
 
-    // 辅助类，用于在tryParseBoolean中返回布尔�?
+    public static BigDecimal QuickSelect(List<BigDecimal> list, int k, boolean largest) {
+        if (list.size() == 1) return list.get(0);
+        
+        int targetIndex = largest ? list.size() - 1 - k : k;
+        return QuickSelectCore(list, 0, list.size() - 1, targetIndex);
+    }
+
+    private static BigDecimal QuickSelectCore(List<BigDecimal> list, int left, int right, int k) {
+        while (left < right) {
+            int pivotIndex = Partition(list, left, right);
+            if (k == pivotIndex) {
+                return list.get(k);
+            } else if (k < pivotIndex) {
+                right = pivotIndex - 1;
+            } else {
+                left = pivotIndex + 1;
+            }
+        }
+        return list.get(left);
+    }
+
+    private static int Partition(List<BigDecimal> list, int left, int right) {
+        BigDecimal pivot = list.get(right);
+        int i = left;
+        for (int j = left; j < right; j++) {
+            if (list.get(j).compareTo(pivot) <= 0) {
+                Swap(list, i, j);
+                i++;
+            }
+        }
+        Swap(list, i, right);
+        return i;
+    }
+
+    private static void Swap(List<BigDecimal> list, int i, int j) {
+        if (i != j) {
+            BigDecimal temp = list.get(i);
+            list.set(i, list.get(j));
+            list.set(j, temp);
+        }
+    }
+
+    public static int GetRank(List<BigDecimal> values, BigDecimal num, boolean descending) {
+        int rank = 1;
+        int count = 0;
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i).compareTo(num) == 0) {
+                count++;
+            } else if ((descending && values.get(i).compareTo(num) > 0) || (!descending && values.get(i).compareTo(num) < 0)) {
+                rank++;
+            }
+        }
+        return count > 0 ? rank : 0;
+    }
+
     public static class BooleanHolder {
         public boolean value;
     }
 
-    // 辅助类，用于替代Tuple
     public static class Pair<F, S> {
         private final F first;
         private final S second;
@@ -366,82 +441,8 @@ public class FunctionUtil {
         }
     }
 
-    // -----------------------------------------------------------------------
-    // BigDecimal 版统计辅助方法（�?RANK / LARGE / SMALL 等函数使用）
-    // -----------------------------------------------------------------------
-
-    /**
-     * 快速选择：从 BigDecimal 列表中找�?k 小（largest=false）或�?k 大（largest=true）的值�?
-     * k �?0 开始计数（�?largest=true,k=0 表示最大值）�?
-     *
-     * @param list    输入列表（会被修改，调用方应传副本）
-     * @param k       目标位次�?-based�?
-     * @param largest true=找第k大，false=找第k�?
-     * @return 目标�?
-     */
-    public static BigDecimal QuickSelect(List<BigDecimal> list, int k, boolean largest) {
-        if (list.size() == 1) return list.get(0);
-        int targetIndex = largest ? list.size() - 1 - k : k;
-        return quickSelectCore(list, 0, list.size() - 1, targetIndex);
+    public enum StringComparison {
+        Ordinal,
+        OrdinalIgnoreCase
     }
-
-    private static BigDecimal quickSelectCore(List<BigDecimal> list, int left, int right, int k) {
-        while (left < right) {
-            int pivotIndex = partition(list, left, right);
-            if (k == pivotIndex) {
-                return list.get(k);
-            } else if (k < pivotIndex) {
-                right = pivotIndex - 1;
-            } else {
-                left = pivotIndex + 1;
-            }
-        }
-        return list.get(left);
-    }
-
-    private static int partition(List<BigDecimal> list, int left, int right) {
-        BigDecimal pivot = list.get(right);
-        int i = left;
-        for (int j = left; j < right; j++) {
-            if (list.get(j).compareTo(pivot) <= 0) {
-                swap(list, i, j);
-                i++;
-            }
-        }
-        swap(list, i, right);
-        return i;
-    }
-
-    private static void swap(List<BigDecimal> list, int i, int j) {
-        if (i != j) {
-            BigDecimal temp = list.get(i);
-            list.set(i, list.get(j));
-            list.set(j, temp);
-        }
-    }
-
-    /**
-     * 获取 num �?values 中的排名�?
-     * descending=true 表示降序排名（最大值排名第1）�?
-     *
-     * @param values     数值列�?
-     * @param num        待排名的�?
-     * @param descending true=降序，false=升序
-     * @return 排名�?-based），�?num 不在列表中返�?0
-     */
-    public static int GetRank(List<BigDecimal> values, BigDecimal num, boolean descending) {
-        int rank = 1;
-        int count = 0;
-        for (BigDecimal v : values) {
-            int cmp = v.compareTo(num);
-            if (cmp == 0) {
-                count++;
-            } else if ((descending && cmp > 0) || (!descending && cmp < 0)) {
-                rank++;
-            }
-        }
-        return count > 0 ? rank : 0;
-    }
-
-
 }
