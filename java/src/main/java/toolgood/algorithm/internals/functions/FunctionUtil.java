@@ -365,4 +365,105 @@ public class FunctionUtil {
             return second;
         }
     }
+
+    // -----------------------------------------------------------------------
+    // BigDecimal 版统计辅助方法（供 RANK / LARGE / SMALL 等函数使用）
+    // -----------------------------------------------------------------------
+
+    /**
+     * 快速选择：从 BigDecimal 列表中找第 k 小（largest=false）或第 k 大（largest=true）的值。
+     * k 从 0 开始计数（即 largest=true,k=0 表示最大值）。
+     *
+     * @param list    输入列表（会被修改，调用方应传副本）
+     * @param k       目标位次（0-based）
+     * @param largest true=找第k大，false=找第k小
+     * @return 目标值
+     */
+    public static BigDecimal QuickSelect(List<BigDecimal> list, int k, boolean largest) {
+        if (list.size() == 1) return list.get(0);
+        int targetIndex = largest ? list.size() - 1 - k : k;
+        return quickSelectCore(list, 0, list.size() - 1, targetIndex);
+    }
+
+    private static BigDecimal quickSelectCore(List<BigDecimal> list, int left, int right, int k) {
+        while (left < right) {
+            int pivotIndex = partition(list, left, right);
+            if (k == pivotIndex) {
+                return list.get(k);
+            } else if (k < pivotIndex) {
+                right = pivotIndex - 1;
+            } else {
+                left = pivotIndex + 1;
+            }
+        }
+        return list.get(left);
+    }
+
+    private static int partition(List<BigDecimal> list, int left, int right) {
+        BigDecimal pivot = list.get(right);
+        int i = left;
+        for (int j = left; j < right; j++) {
+            if (list.get(j).compareTo(pivot) <= 0) {
+                swap(list, i, j);
+                i++;
+            }
+        }
+        swap(list, i, right);
+        return i;
+    }
+
+    private static void swap(List<BigDecimal> list, int i, int j) {
+        if (i != j) {
+            BigDecimal temp = list.get(i);
+            list.set(i, list.get(j));
+            list.set(j, temp);
+        }
+    }
+
+    /**
+     * 获取 num 在 values 中的排名。
+     * descending=true 表示降序排名（最大值排名第1）。
+     *
+     * @param values     数值列表
+     * @param num        待排名的值
+     * @param descending true=降序，false=升序
+     * @return 排名（1-based），若 num 不在列表中返回 0
+     */
+    public static int GetRank(List<BigDecimal> values, BigDecimal num, boolean descending) {
+        int rank = 1;
+        int count = 0;
+        for (BigDecimal v : values) {
+            int cmp = v.compareTo(num);
+            if (cmp == 0) {
+                count++;
+            } else if ((descending && cmp > 0) || (!descending && cmp < 0)) {
+                rank++;
+            }
+        }
+        return count > 0 ? rank : 0;
+    }
+
+    /**
+     * 获取 num 在 values 列表中的 F_base_GetList 辅助（BigDecimal 单个 Operand）
+     */
+    public static boolean F_base_GetList(List<Operand> args, List<BigDecimal> list) {
+        for (Operand item : args) {
+            if (item.IsNumber()) {
+                list.add(item.NumberValue());
+            } else if (item.IsArray()) {
+                boolean o = F_base_GetList(item.ArrayValue(), list);
+                if (!o) return false;
+            } else if (item.IsJson()) {
+                Operand i = item.ToArray(null);
+                if (i.IsError()) return false;
+                boolean o = F_base_GetList(i.ArrayValue(), list);
+                if (!o) return false;
+            } else {
+                Operand o = item.ToNumber(null);
+                if (o.IsError()) return false;
+                list.add(o.NumberValue());
+            }
+        }
+        return true;
+    }
 }

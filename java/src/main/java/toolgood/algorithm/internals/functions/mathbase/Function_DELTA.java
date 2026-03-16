@@ -9,24 +9,25 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
 /**
- * Percentage 函数：将数值除以 100（百分比运算），对应 C# 中的 % 运算符。
- * 参数：number%  → Percentage(number)
+ * DELTA 函数：若两数相等返回 1，否则返回 0。第二参数省略时默认为 0。
+ * 参数：DELTA(number1 [, number2])
  */
-public class Function_Percentage extends Function_1 {
+public class Function_DELTA extends Function_2 {
 
-    private static final BigDecimal HUNDRED = new BigDecimal("100");
-
-    public Function_Percentage(FunctionBase func1) {
-        super(func1);
+    public Function_DELTA(FunctionBase func1, FunctionBase func2) {
+        super(func1, func2);
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine work,
             BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        if (func1 == null) {
+            return ParameterError(1);
+        }
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
             args1 = ConvertToNumber(args1, 1);
@@ -34,7 +35,21 @@ public class Function_Percentage extends Function_1 {
                 return args1;
             }
         }
-        return Operand.Create(args1.NumberValue().divide(HUNDRED));
+        BigDecimal num1 = args1.NumberValue();
+
+        BigDecimal num2 = BigDecimal.ZERO;
+        if (func2 != null) {
+            Operand args2 = func2.Evaluate(work, tempParameter);
+            if (args2.IsNotNumber()) {
+                args2 = ConvertToNumber(args2, 2);
+                if (args2.IsError()) {
+                    return args2;
+                }
+            }
+            num2 = args2.NumberValue();
+        }
+
+        return Operand.Create(num1.compareTo(num2) == 0 ? 1 : 0);
     }
 
     @Override
@@ -46,12 +61,13 @@ public class Function_Percentage extends Function_1 {
     public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
             OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER, op, val);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER, op, val);
+        }
     }
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        // 百分比的 toString 格式：原参数后加 %，不加括号
-        func1.toString(stringBuilder, false);
-        stringBuilder.append('%');
+        AddFunction(stringBuilder, "DELTA");
     }
 }
