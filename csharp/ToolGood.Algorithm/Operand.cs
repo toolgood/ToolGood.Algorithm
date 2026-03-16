@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -520,7 +520,7 @@ namespace ToolGood.Algorithm
 		#region number
 
 		/// <summary>
-		///
+		/// 从 Int16 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int16 obj)
@@ -529,7 +529,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 Int32 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int32 obj)
@@ -538,7 +538,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 Int64 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int64 obj)
@@ -547,7 +547,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 UInt16 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt16 obj)
@@ -556,7 +556,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 UInt32 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt32 obj)
@@ -565,7 +565,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 UInt64 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt64 obj)
@@ -574,7 +574,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 float 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(float obj)
@@ -583,7 +583,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 double 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(double obj)
@@ -592,7 +592,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 decimal 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(decimal obj)
@@ -603,7 +603,7 @@ namespace ToolGood.Algorithm
 		#endregion number
 
 		/// <summary>
-		///
+		/// 从 bool 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(bool obj)
@@ -612,7 +612,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 string 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(string obj)
@@ -621,7 +621,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 DateTime 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(DateTime obj)
@@ -630,7 +630,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 TimeSpan 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(TimeSpan obj)
@@ -639,7 +639,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;string&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<string> obj)
@@ -648,7 +648,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;bool&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<bool> obj)
@@ -657,7 +657,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;int&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<int> obj)
@@ -666,7 +666,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;double&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<double> obj)

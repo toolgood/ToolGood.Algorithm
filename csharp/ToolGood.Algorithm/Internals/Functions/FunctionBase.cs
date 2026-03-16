@@ -15,12 +15,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 	public abstract class FunctionBase
 	{
 		/// <summary>
-		/// 
+		/// 获取函数名称
 		/// </summary>
 		public abstract string Name { get; }
 
 		/// <summary>
-		/// 
+		/// 执行函数计算
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="tempParameter"></param>
@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 	#region GetResultType
 		/// <summary>
-		/// 
+		/// 获取结果类型
 		/// </summary>
 		/// <returns></returns>
 		public abstract OperandType GetResultType();
@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		#region GetParameterTypes
 		/// <summary>
-		/// 
+		/// 获取参数类型列表
 		/// </summary>
 		/// <returns></returns>
 		public List<ParameterType> GetParameterTypes(AlgorithmEngine engine)
@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return result;
 		}
 		/// <summary>
-		/// 
+		/// 内部方法，获取参数类型
 		/// </summary>
 		/// <param name="noneEngine"></param>
 		/// <param name="result"></param>
@@ -80,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		#region ConvertToText
 		/// <summary>
-		/// 
+		/// 转换为文本类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 
+		/// 转换为布尔类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -102,7 +102,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 
+		/// 转换为数字类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -113,7 +113,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 
+		/// 转换为数组类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -124,7 +124,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 
+		/// 转换为日期类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -156,7 +156,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 
+		/// 创建比较错误
 		/// </summary>
 		/// <returns></returns>
 
@@ -165,7 +165,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return Operand.Error("Function '{0}' compare is error.", Name);
 		}
 		/// <summary>
-		/// 
+		/// 创建除零错误
 		/// </summary>
 		/// <returns></returns>
 		protected Operand Div0Error()
@@ -177,6 +177,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#region TryEvaluate
 
 		/// <summary>
+		/// 尝试执行计算，如果出错返回默认值
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="engine"></param>
@@ -202,6 +203,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 int 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -215,6 +217,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 decimal 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -228,6 +231,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 string 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -241,6 +245,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 bool 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -254,6 +259,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 DateTime 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -272,6 +278,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 TimeSpan 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>

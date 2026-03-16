@@ -27,22 +27,22 @@ namespace ToolGood.Algorithm.Internals.Visitors
         }
 
         /// <summary>
-        ///
+        /// 获取当前字符流位置
         /// </summary>
         public int Index => stream.Index;
 
         /// <summary>
-        ///
+        /// 获取字符流大小
         /// </summary>
         public int Size => stream.Size;
 
         /// <summary>
-        ///
+        /// 获取源名称
         /// </summary>
         public string SourceName => stream.SourceName;
 
         /// <summary>
-        ///
+        /// 消费字符
         /// </summary>
         public void Consume()
         {
@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
         }
 
         /// <summary>
-        ///
+        /// 获取指定区间的文本
         /// </summary>
         /// <param name="interval"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
         }
 
         /// <summary>
-        ///
+        /// 查看当前位置的字符
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
         }
 
         /// <summary>
-        ///
+        /// 标记当前位置
         /// </summary>
         /// <returns></returns>
         public int Mark()
@@ -84,7 +84,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
         }
 
         /// <summary>
-        ///
+        /// 释放标记
         /// </summary>
         /// <param name="marker"></param>
         public void Release(int marker)
@@ -93,7 +93,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
         }
 
         /// <summary>
-        ///
+        /// 设置读取位置
         /// </summary>
         /// <param name="index"></param>
         public void Seek(int index)

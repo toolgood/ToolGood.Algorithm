@@ -12,36 +12,36 @@ using ToolGood.Algorithm.Operands;
 namespace ToolGood.Algorithm
 {
 	/// <summary>
-	///
+	/// 算法引擎类
 	/// </summary>
 	public class AlgorithmEngine
 	{
 		internal int ExcelIndex = 1;
 
 		/// <summary>
-		/// 使用 本地时间， 影响 时间戳转化
+		/// 使用 本地时间，影响 时间戳转化
 		/// </summary>
-		public bool UseLocalTime = true;
+		public bool UseLocalTime { get; set; } = true;
 
 		/// <summary>
 		/// 长度单位
 		/// </summary>
-		public DistanceUnitType DistanceUnit = DistanceUnitType.M;
+		public DistanceUnitType DistanceUnit { get; set; } = DistanceUnitType.M;
 
 		/// <summary>
 		/// 面积单位
 		/// </summary>
-		public AreaUnitType AreaUnit = AreaUnitType.M2;
+		public AreaUnitType AreaUnit { get; set; } = AreaUnitType.M2;
 
 		/// <summary>
 		/// 体积单位
 		/// </summary>
-		public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
+		public VolumeUnitType VolumeUnit { get; set; } = VolumeUnitType.M3;
 
 		/// <summary>
 		/// 重量单位
 		/// </summary>
-		public MassUnitType MassUnit = MassUnitType.KG;
+		public MassUnitType MassUnit { get; set; } = MassUnitType.KG;
 
 		/// <summary>
 		/// 最后一个错误
@@ -55,7 +55,7 @@ namespace ToolGood.Algorithm
 		/// <summary>
 		/// 使用缓存
 		/// </summary>
-		public bool UseParseCache = false;
+		public bool UseParseCache { get; set; } = false;
 		private readonly ConcurrentDictionary<string, FunctionBase> _parseCache = new ConcurrentDictionary<string, FunctionBase>();
 
 		/// <summary>

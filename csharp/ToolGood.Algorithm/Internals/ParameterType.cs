@@ -6,16 +6,16 @@ using ToolGood.Algorithm.Enums;
 namespace ToolGood.Algorithm.Internals
 {
 	/// <summary>
-	/// 
+	/// 参数类型类
 	/// </summary>
 	public class ParameterType
 	{
 		/// <summary>
-		/// 
+		/// 参数名称
 		/// </summary>
 		public string Name { get; internal set; }
 		/// <summary>
-		/// 
+		/// 参数类型
 		/// </summary>
 		public OperandType Type { get; internal set; }
 

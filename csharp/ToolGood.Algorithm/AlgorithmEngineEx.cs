@@ -68,7 +68,7 @@ namespace ToolGood.Algorithm
             return result;
         }
         /// <summary>
-        /// 
+        /// 获取参数扩展方法
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
