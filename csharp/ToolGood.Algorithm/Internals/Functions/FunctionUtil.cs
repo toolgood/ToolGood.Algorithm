@@ -153,32 +153,24 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public static int GetGcd(List<decimal> list)
 		{
-			if(list.Count < 2) return list.Count == 1 ? (int)list[0] : 1;
+			if(list.Count == 0) return 1;
 			
-			int min1 = (int)list[0], min2 = (int)list[1];
-			if(min1 > min2) { var t = min1; min1 = min2; min2 = t; }
-			
-			for(int i = 2; i < list.Count; i++) {
-				int val = (int)list[i];
-				if(val < min1) { min2 = min1; min1 = val; }
-				else if(val < min2) { min2 = val; }
-			}
-			
-			var g = GetGcd(min2, min1);
-			for(int i = 0; i < list.Count; i++) {
-				int val = (int)list[i];
-				if(val != min1 && val != min2) {
-					g = GetGcd(val > g ? val : g, val > g ? g : val);
-				}
+			int g = (int)list[0];
+			for(int i = 1; i < list.Count; i++) {
+				g = GetGcd(g, (int)list[i]);
+				if(g == 1) break;
 			}
 			return g;
 		}
 
 		public static int GetGcd(int a, int b)
 		{
-			if(b == 1) { return 1; }
-			if(b == 0) { return a; }
-			return GetGcd(b, a % b);
+			while(b != 0) {
+				int t = b;
+				b = a % b;
+				a = t;
+			}
+			return a;
 		}
 
 		public static int GetLcm(List<decimal> list)
