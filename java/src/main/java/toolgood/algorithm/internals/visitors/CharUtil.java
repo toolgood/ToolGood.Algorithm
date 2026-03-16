@@ -5,40 +5,28 @@ import java.util.List;
 
 public class CharUtil {
     public static char StandardChar(char c) {
-        if (c <= 0)
-            return c;
-        char o = (char) c;
-        if (o == 'â€?)
-            return '\'';
-        if (o == 'â€?)
-            return '\'';
-        if (o == 'â€?)
-            return '"';
-        if (o == 'â€?)
-            return '"';
-        if (o == 'ã€?)
-            return '(';
-        if (o == 'ã€?)
-            return ')';
-        if (o == 'ï¼?)
-            return '=';
-        if (o == 'ï¼?)
-            return '+';
-        if (o == 'ï¼?)
-            return '-';
-        if (o == 'Ã—')
-            return '*';
-        if (o == 'Ã·')
-            return '/';
-        if (o == 'ï¼?)
-            return '/';
+        if (c < 'a') return c;
+        if (c <= 'z') return (char) (c - 32);
+        if (c < 127) return c;
 
-        if (c == 12288) {
-            o = (char) 32;
-        } else if (c > 65280 && c < 65375) {
-            o = (char) (c - 65248);
+        switch (c) {
+            case '\u00D7': return '*';
+            case '\u00F7': return '/';
+            case '\u2018':
+            case '\u2019': return '\'';
+            case '\u201C':
+            case '\u201D': return '"';
+            case '\u3000': return ' ';
+            case '\u3010': return '[';
+            case '\u3011': return ']';
+            case '\uFF08': return '(';
+            case '\uFF09': return ')';
         }
-        return Character.toUpperCase(o);
+
+        if (c > 65280 && c < 65375) {
+            return (char) (c - 65248);
+        }
+        return Character.toUpperCase(c);
     }
 
     public static String StandardString(String s) {
