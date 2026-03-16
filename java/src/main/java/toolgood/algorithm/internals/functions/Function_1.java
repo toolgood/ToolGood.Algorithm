@@ -16,6 +16,15 @@ public abstract class Function_1 extends FunctionBase {
         this.func1 = func1;
     }
 
+    protected Function_1(FunctionBase[] funcs) {
+        this.func1 = funcs[0];
+    }
+
+    @Override
+    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
+        AddFunction(stringBuilder, Name());
+    }
+
     protected void AddFunction(StringBuilder stringBuilder, String functionName) {
         stringBuilder.append(functionName);
         stringBuilder.append('(');
@@ -32,8 +41,6 @@ public abstract class Function_1 extends FunctionBase {
     public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
             OperandType operandType, String op, String val) {
     }
-
-    // region Get_1 helpers
 
     protected Operand GetText_1(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(engine, tempParameter);
@@ -64,6 +71,4 @@ public abstract class Function_1 extends FunctionBase {
         if (args1.IsArray()) return args1;
         return ConvertToArray(args1, 1);
     }
-
-    // endregion
 }

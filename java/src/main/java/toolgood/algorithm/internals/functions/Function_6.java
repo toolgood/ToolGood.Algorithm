@@ -9,9 +9,6 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 
-/**
- * 6参函数抽象基类，继承 Function_5
- */
 public abstract class Function_6 extends Function_5 {
     protected FunctionBase func6;
 
@@ -50,18 +47,6 @@ public abstract class Function_6 extends Function_5 {
         stringBuilder.append(')');
     }
 
-    @Override
-    public OperandType GetResultType() {
-        return OperandType.NONE;
-    }
-
-    @Override
-    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
-            OperandType operandType, String op, String val) {
-    }
-
-    // region Get_6 helpers
-
     protected Operand GetText_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args6 = func6.Evaluate(engine, tempParameter);
         if (args6.IsText()) return args6;
@@ -91,6 +76,4 @@ public abstract class Function_6 extends Function_5 {
         if (args6.IsArray()) return args6;
         return ConvertToArray(args6, 6);
     }
-
-    // endregion
 }

@@ -9,15 +9,22 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 
-public abstract class Function_2 extends FunctionBase {
-    protected FunctionBase func1;
+public abstract class Function_2 extends Function_1 {
     protected FunctionBase func2;
 
     public Function_2(FunctionBase func1, FunctionBase func2) {
-        this.func1 = func1;
+        super(func1);
         this.func2 = func2;
     }
 
+    protected Function_2(FunctionBase[] funcs) {
+        super(funcs);
+        if (funcs.length >= 2) {
+            this.func2 = funcs[1];
+        }
+    }
+
+    @Override
     protected void AddFunction(StringBuilder stringBuilder, String functionName) {
         stringBuilder.append(functionName);
         stringBuilder.append('(');
@@ -27,48 +34,6 @@ public abstract class Function_2 extends FunctionBase {
             func2.toString(stringBuilder, false);
         }
         stringBuilder.append(')');
-    }
-
-    @Override
-    public OperandType GetResultType() {
-        return OperandType.NONE;
-    }
-
-    @Override
-    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
-            OperandType operandType, String op, String val) {
-    }
-
-    // region Get_1/2 helpers
-
-    protected Operand GetText_1(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(engine, tempParameter);
-        if (args1.IsText()) return args1;
-        return ConvertToText(args1, 1);
-    }
-
-    protected Operand GetNumber_1(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(engine, tempParameter);
-        if (args1.IsNumber()) return args1;
-        return ConvertToNumber(args1, 1);
-    }
-
-    protected Operand GetDate_1(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(engine, tempParameter);
-        if (args1.IsDate()) return args1;
-        return ConvertToDate(args1, 1);
-    }
-
-    protected Operand GetBoolean_1(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(engine, tempParameter);
-        if (args1.IsBoolean()) return args1;
-        return ConvertToBoolean(args1, 1);
-    }
-
-    protected Operand GetArray_1(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(engine, tempParameter);
-        if (args1.IsArray()) return args1;
-        return ConvertToArray(args1, 1);
     }
 
     protected Operand GetText_2(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
@@ -100,6 +65,4 @@ public abstract class Function_2 extends FunctionBase {
         if (args2.IsArray()) return args2;
         return ConvertToArray(args2, 2);
     }
-
-    // endregion
 }
