@@ -1,43 +1,55 @@
 package toolgood.algorithm.internals.functions.mathtransformation;
 
-import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.FunctionBase;
+import java.util.List;
 
-public class Function_DEC2OCT extends Function_2 {
-    public Function_DEC2OCT(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_DEC2OCT extends Function_2 {
+    public Function_DEC2OCT(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2OCT", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
+    public String Name() {
+        return "Dec2Oct";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+
         String num = Integer.toOctalString(args1.IntValue());
         if (func2 != null) {
-            Operand args2 = func2.Evaluate(work, tempParameter);
-            if (args2.IsNotNumber()) {
-                args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2OCT", 2);
-                if (args2.IsError()) {
-                    return args2;
-                }
+            Operand args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone()) { return args2; }
+            if (args2.IntValue() < 0) {
+                return ParameterError(2);
             }
             if (num.length() <= args2.IntValue()) {
                 return Operand.Create(num);
             }
-            return Operand.Error("Function '{0}' parameter {1} is error!", "DEC2OCT", 2);
+            return ParameterError(2);
         }
         return Operand.Create(num);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "DEC2OCT");
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        }
     }
 }
