@@ -11,35 +11,30 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-/**
- * ARABIC 函数：将罗马数字字符串转换为阿拉伯数字�?
- * 参数：ARABIC(text)
- */
-public class Function_ARABIC extends Function_1 {
-
+public final class Function_ARABIC extends Function_1 {
     public Function_ARABIC(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work,
-            BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand arg = func1.Evaluate(work, tempParameter);
-        if (arg.IsNotText()) {
-            arg = ConvertToText(arg, 1);
-            if (arg.IsError()) {
-                return arg;
-            }
-        }
-        String text = arg.TextValue().toUpperCase();
-        return Operand.Create(romanToArabic(text));
+    public String Name() {
+        return "ARABIC";
     }
 
-    private int romanToArabic(String roman) {
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand arg = GetText_1(engine, tempParameter);
+        if (arg.IsErrorOrNone()) return arg;
+        String text = arg.TextValue().toUpperCase();
+        return Operand.Create(RomanToArabic(text));
+    }
+
+    private int RomanToArabic(String roman) {
         int result = 0;
         int prevValue = 0;
+
         for (int i = roman.length() - 1; i >= 0; i--) {
-            int value = getRomanValue(roman.charAt(i));
+            int value = GetRomanValue(roman.charAt(i));
             if (value < prevValue) {
                 result -= value;
             } else {
@@ -47,10 +42,11 @@ public class Function_ARABIC extends Function_1 {
             }
             prevValue = value;
         }
+
         return result;
     }
 
-    private int getRomanValue(char c) {
+    private int GetRomanValue(char c) {
         switch (c) {
             case 'I': return 1;
             case 'V': return 5;
@@ -59,7 +55,7 @@ public class Function_ARABIC extends Function_1 {
             case 'C': return 100;
             case 'D': return 500;
             case 'M': return 1000;
-            default:  return 0;
+            default: return 0;
         }
     }
 
@@ -69,13 +65,8 @@ public class Function_ARABIC extends Function_1 {
     }
 
     @Override
-    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
-            OperandType operandType, String op, String val) {
-        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, op, val);
-    }
-
-    @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "ARABIC");
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
     }
 }

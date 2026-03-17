@@ -1,39 +1,58 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import toolgood.algorithm.Operand;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Random;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-import java.util.Random;
-
-public class Function_RANDBETWEEN extends Function_2 {
-    public Function_RANDBETWEEN(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_RANDBETWEEN extends Function_2 {
+    public Function_RANDBETWEEN(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "RandBetween";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+
+        BigDecimal bottom = args1.NumberValue();
+        BigDecimal top = args2.NumberValue();
+        if (bottom.compareTo(top) > 0) {
+            return ParameterError(1);
         }
         Random rand = new Random();
-        return Operand.Create(rand.nextDouble() * (args2.DoubleValue() - args1.DoubleValue()) + args1.DoubleValue());
+        return Operand.Create(BigDecimal.valueOf(rand.nextDouble()).multiply(args2.NumberValue().subtract(args1.NumberValue())).add(args1.NumberValue()));
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "RandBetween");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

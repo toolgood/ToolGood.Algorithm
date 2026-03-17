@@ -1,32 +1,52 @@
 package toolgood.algorithm.internals.functions.flow;
 
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_ISERROR extends Function_2 {
-    public Function_ISERROR(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_ISERROR extends Function_2 {
+    public Function_ISERROR(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
+    public String Name() {
+        return "IsError";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(engine, tempParameter);
         if (func2 != null) {
-            if (args1.IsError()) {
-                return func2.Evaluate(work, tempParameter);
+            if (args1.IsErrorOrNone()) {
+                return func2.Evaluate(engine, tempParameter);
             }
             return args1;
         }
-        if (args1.IsError()) {
-            return Operand.TRUE;
+        if (args1.IsErrorOrNone()) {
+            return Operand.True;
         }
-        return Operand.FALSE;
+        return Operand.False;
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IsError");
+    public OperandType GetResultType() {
+        return OperandType.BOOLEAN;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        }
     }
 }

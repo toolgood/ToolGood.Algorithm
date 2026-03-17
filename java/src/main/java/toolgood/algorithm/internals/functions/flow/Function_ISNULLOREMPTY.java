@@ -1,32 +1,47 @@
 package toolgood.algorithm.internals.functions.flow;
 
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_ISNULLOREMPTY extends Function_1 {
+public final class Function_ISNULLOREMPTY extends Function_1 {
     public Function_ISNULLOREMPTY(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNull()) {
-            return Operand.TRUE;
-        }
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IsNullOrEmpty", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        return Operand.Create(args1.TextValue() == null || args1.TextValue().isEmpty());
+    public String Name() {
+        return "IsNullOrEmpty";
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IsNullOrEmpty");
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(engine, tempParameter);
+        if (args1.IsNull()) {
+            return Operand.True;
+        }
+        Operand textArg = ConvertToText(args1, 1);
+        if (textArg.IsErrorOrNone()) {
+            return textArg;
+        }
+        return Operand.Create(textArg.TextValue() == null || textArg.TextValue().isEmpty());
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.BOOLEAN;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
     }
 }

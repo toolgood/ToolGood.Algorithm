@@ -11,30 +11,25 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-/**
- * IFS 函数：依次检测多个条件，返回第一个为 true 的条件对应的值�?
- * 参数格式：IFS(condition1, value1, condition2, value2, ...)
- */
-public class Function_IFS extends Function_N {
-
+public final class Function_IFS extends Function_N {
     public Function_IFS(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work,
-            BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public String Name() {
+        return "IFS";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         for (int i = 0; i < funcs.length - 1; i += 2) {
-            Operand condition = funcs[i].Evaluate(work, tempParameter);
-            if (condition.IsNotBoolean()) {
-                condition = condition.ToBoolean(
-                        "Function '%s' parameter %d is error!", Name(), i + 1);
-            }
-            if (condition.IsError()) {
+            Operand condition = funcs[i].Evaluate(engine, tempParameter);
+            if (condition.IsErrorOrNone()) {
                 return condition;
             }
             if (condition.BooleanValue()) {
-                return funcs[i + 1].Evaluate(work, tempParameter);
+                return funcs[i + 1].Evaluate(engine, tempParameter);
             }
         }
         return FunctionError();
@@ -52,16 +47,11 @@ public class Function_IFS extends Function_N {
     }
 
     @Override
-    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
-            OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
         for (int i = 0; i < funcs.length - 1; i += 2) {
-            funcs[i].GetParameterTypes(noneEngine, result, OperandType.BOOLEAN, op, val);
-            funcs[i + 1].GetParameterTypes(noneEngine, result, OperandType.NONE, op, val);
+            funcs[i].GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+            funcs[i + 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
         }
-    }
-
-    @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IFS");
     }
 }

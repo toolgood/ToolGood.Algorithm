@@ -1,44 +1,59 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import toolgood.algorithm.Operand;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_ROUND extends Function_2 {
-    public Function_ROUND(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_ROUND extends Function_2 {
+    public Function_ROUND(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Round", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "Round";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
 
         if (func2 == null) {
-            return Operand.Create(Math.round(args1.DoubleValue()));
+            return Operand.Create(args1.NumberValue().setScale(0, RoundingMode.HALF_UP));
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Round", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
         }
-        int decimalPlaces = args2.IntValue();
-        double value = args1.DoubleValue();
-        double factor = Math.pow(10, decimalPlaces);
-        double roundedValue = Math.round(value * factor) / factor;
-        return Operand.Create(roundedValue);
+        if (args2.IntValue() < -15 || args2.IntValue() > 15) {
+            return ParameterError(2);
+        }
+        return Operand.Create(args1.NumberValue().setScale(args2.IntValue(), RoundingMode.HALF_UP));
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Round");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        }
     }
 }

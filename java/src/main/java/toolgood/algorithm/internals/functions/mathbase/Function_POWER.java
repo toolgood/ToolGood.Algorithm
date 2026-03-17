@@ -1,36 +1,62 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import toolgood.algorithm.Operand;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.system.MathEx;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_POWER extends Function_2 {
-    public Function_POWER(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_POWER extends Function_2 {
+    public Function_POWER(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Power", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Power", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
-        return Operand.Create(Math.pow(args1.DoubleValue(), args2.DoubleValue()));
+    public String Name() {
+        return "Power";
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Power");
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+
+        BigDecimal baseValue = args1.NumberValue();
+        BigDecimal exponent = args2.NumberValue();
+
+        if (baseValue.compareTo(BigDecimal.ZERO) == 0 && exponent.compareTo(BigDecimal.ZERO) < 0) {
+            return Div0Error();
+        }
+        if (baseValue.compareTo(BigDecimal.ZERO) < 0 && exponent.stripTrailingZeros().scale() > 0) {
+            return ParameterError(1);
+        }
+
+        return Operand.Create(MathEx.Pow(baseValue, exponent));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

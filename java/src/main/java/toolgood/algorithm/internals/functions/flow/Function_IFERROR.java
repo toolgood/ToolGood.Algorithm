@@ -1,26 +1,56 @@
 package toolgood.algorithm.internals.functions.flow;
 
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_IFERROR extends Function_3 {
-    public Function_IFERROR(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_IFERROR extends Function_3 {
+    public Function_IFERROR(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsError()) {
-            return func2.Evaluate(work, tempParameter);
+    public String Name() {
+        return "IfError";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = func1.Evaluate(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return func2.Evaluate(engine, tempParameter);
         }
-        return func3.Evaluate(work, tempParameter);
+        return func3.Evaluate(engine, tempParameter);
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IfError");
+    public OperandType GetResultType() {
+        if (func2 != null) {
+            OperandType t = func2.GetResultType();
+            if (t != OperandType.NONE) {
+                return t;
+            }
+        }
+        if (func3 != null) {
+            return func3.GetResultType();
+        }
+        return OperandType.NONE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        }
     }
 }
