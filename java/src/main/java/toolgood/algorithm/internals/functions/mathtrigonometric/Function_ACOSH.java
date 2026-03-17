@@ -1,32 +1,44 @@
 package toolgood.algorithm.internals.functions.mathtrigonometric;
 
-import java.lang.StringBuilder;
-import java.util.function.BiFunction;
+import java.util.List;
 
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
-class Function_ACOSH extends Function_1 {
+public final class Function_ACOSH extends Function_1 {
     public Function_ACOSH(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (!args1.IsNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Acosh");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        return Operand.Create(Math.acosh(args1.DoubleValue()));
+    public String Name() {
+        return "Acosh";
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Acosh");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+        java.math.BigDecimal z = args1.NumberValue();
+        if (z.compareTo(java.math.BigDecimal.ONE) < 0) {
+            return ParameterError(1);
+        }
+        return Operand.Create(MathEx.Acosh(z));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

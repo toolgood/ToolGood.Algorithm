@@ -1,39 +1,47 @@
 package toolgood.algorithm.internals.functions.mathtrigonometric;
 
-import java.lang.StringBuilder;
-import java.util.function.BiFunction;
+import java.math.BigDecimal;
+import java.util.List;
 
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
-class Function_ATAN2 extends Function_2 {
-    public Function_ATAN2(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_ATAN2 extends Function_2 {
+    public Function_ATAN2(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (!args1.IsNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Atan2");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (!args2.IsNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter is error!", "Atan2");
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
-        return Operand.Create(Math.atan2(args1.DoubleValue(), args2.DoubleValue()));
+    public String Name() {
+        return "Atan2";
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Atan2");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) { return args2; }
+        if (args1.NumberValue().compareTo(BigDecimal.ZERO) == 0 && args2.NumberValue().compareTo(BigDecimal.ZERO) == 0) {
+            return Div0Error();
+        }
+        return Operand.Create(MathEx.Atan2(args2.NumberValue(), args1.NumberValue()));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

@@ -72,7 +72,7 @@ public final class FunctionUtil {
         return FlattenToListCore(args, list, obj -> obj.IsNumber() ? obj : obj.ToNumber(null), obj -> obj.NumberValue());
     }
 
-    public static boolean FlattenToList_String(Operand args, List<String> list) {
+    public static boolean FlattenToList_Operand_String(Operand args, List<String> list) {
         return FlattenToListCore(args, list, obj -> obj.ToText(null), obj -> obj.TextValue());
     }
 

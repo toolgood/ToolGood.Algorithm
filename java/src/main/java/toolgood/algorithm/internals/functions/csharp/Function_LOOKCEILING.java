@@ -15,7 +15,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_LOOKCEILING extends Function_2 {
+public final class Function_LOOKCEILING extends Function_2 {
     public Function_LOOKCEILING(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -34,7 +34,7 @@ final class Function_LOOKCEILING extends Function_2 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
-        FunctionUtil.FlattenToList(args2, list);
+        FunctionUtil.FlattenToList_Operand_BigDecimal(args2, list);
         if (list.isEmpty()) {
             return ParameterError(2);
         }

@@ -39,7 +39,7 @@ public final class Function_JOIN extends Function_N {
         }
         if (args1.IsArray()) {
             List<String> list = new ArrayList<>(args1.ArrayValue().size());
-            boolean o = FunctionUtil.FlattenToList(args1, list);
+            boolean o = FunctionUtil.FlattenToList_Operand_String(args1, list);
             if (!o) {
                 return ParameterError(1);
             }
@@ -58,7 +58,7 @@ public final class Function_JOIN extends Function_N {
 
             List<String> list = new ArrayList<>(args.size());
             for (int i = 1; i < args.size(); i++) {
-                boolean o = FunctionUtil.FlattenToList(args.get(i), list);
+                boolean o = FunctionUtil.FlattenToList_Operand_String(args.get(i), list);
                 if (!o) {
                     return ParameterError(i + 1);
                 }

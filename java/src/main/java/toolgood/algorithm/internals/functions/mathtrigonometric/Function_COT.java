@@ -1,37 +1,45 @@
 package toolgood.algorithm.internals.functions.mathtrigonometric;
 
-import java.lang.StringBuilder;
-import java.util.function.BiFunction;
+import java.math.BigDecimal;
+import java.util.List;
 
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
-class Function_COT extends Function_1 {
+public final class Function_COT extends Function_1 {
     public Function_COT(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (!args1.IsNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cot");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        double value = args1.DoubleValue();
-        double tanValue = Math.tan(value);
-        if (tanValue == 0) {
-            return Operand.Create(Double.POSITIVE_INFINITY);
-        }
-        return Operand.Create(1.0 / tanValue);
+    public String Name() {
+        return "Cot";
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Cot");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+        BigDecimal d = MathEx.Tan(args1.NumberValue());
+        if (d.compareTo(BigDecimal.ZERO) == 0) {
+            return Div0Error();
+        }
+        return Operand.Create(BigDecimal.ONE.divide(d, java.math.MathContext.DECIMAL128));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }
