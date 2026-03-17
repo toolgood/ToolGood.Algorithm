@@ -1,19 +1,18 @@
 /**
- * 条件�?
+ * 条件�?
  */
 package toolgood.algorithm.internals;
 
-import java.util.ArrayList;
 import java.util.List;
 import toolgood.algorithm.enums.ConditionTreeType;
 
 public final class ConditionTree {
     /**
-     * 子节�?
+     * 子节�?
      */
     public List<ConditionTree> Nodes;
     /**
-     * 开始位�?
+     * 开始位�?
      */
     public int Start;
 

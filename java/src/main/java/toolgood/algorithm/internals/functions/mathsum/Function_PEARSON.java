@@ -3,7 +3,6 @@ package toolgood.algorithm.internals.functions.mathsum;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -11,9 +10,10 @@ import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
+import toolgood.algorithm.system.MathEx;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_PEARSON extends Function_N {
+public final class Function_PEARSON extends Function_N {
     public Function_PEARSON(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -24,14 +24,14 @@ public class Function_PEARSON extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         if (funcs.length < 2) return ParameterError(1);
 
         Operand array1Arg = GetArray(engine, tempParameter, 0);
-        if (array1Arg.IsError()) return array1Arg;
+        if (array1Arg.IsErrorOrNone()) return array1Arg;
 
         Operand array2Arg = GetArray(engine, tempParameter, 1);
-        if (array2Arg.IsError()) return array2Arg;
+        if (array2Arg.IsErrorOrNone()) return array2Arg;
 
         List<BigDecimal> xValues = new ArrayList<>();
         for (Operand item : array1Arg.ArrayValue()) {
@@ -53,8 +53,8 @@ public class Function_PEARSON extends Function_N {
             sumY = sumY.add(yValues.get(i));
         }
 
-        BigDecimal meanX = sumX.divide(new BigDecimal(n), 20, java.math.RoundingMode.HALF_UP);
-        BigDecimal meanY = sumY.divide(new BigDecimal(n), 20, java.math.RoundingMode.HALF_UP);
+        BigDecimal meanX = sumX.divide(new BigDecimal(n), java.math.MathContext.DECIMAL128);
+        BigDecimal meanY = sumY.divide(new BigDecimal(n), java.math.MathContext.DECIMAL128);
 
         BigDecimal numerator = BigDecimal.ZERO, denomX = BigDecimal.ZERO, denomY = BigDecimal.ZERO;
 
@@ -68,9 +68,7 @@ public class Function_PEARSON extends Function_N {
 
         if (denomX.compareTo(BigDecimal.ZERO) == 0 || denomY.compareTo(BigDecimal.ZERO) == 0) return Div0Error();
 
-        double denomD = Math.sqrt(denomX.multiply(denomY).doubleValue());
-        BigDecimal result = numerator.divide(new BigDecimal(denomD), 20, java.math.RoundingMode.HALF_UP);
-        return Operand.Create(result);
+        return Operand.Create(numerator.divide(MathEx.Sqrt(denomX.multiply(denomY)), java.math.MathContext.DECIMAL128));
     }
 
     @Override
@@ -79,8 +77,8 @@ public class Function_PEARSON extends Function_N {
     }
 
     @Override
-    public void getParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
-        funcs[0].getParameterTypes(noneEngine, result, OperandType.ARRAY, null, null);
-        funcs[1].getParameterTypes(noneEngine, result, OperandType.ARRAY, null, null);
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
     }
 }

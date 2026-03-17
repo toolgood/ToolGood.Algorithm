@@ -3,7 +3,6 @@ package toolgood.algorithm.internals.functions.mathsum;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -13,7 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_SLOPE extends Function_N {
+public final class Function_SLOPE extends Function_N {
     public Function_SLOPE(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -24,14 +23,14 @@ public class Function_SLOPE extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         if (funcs.length < 2) return ParameterError(1);
 
         Operand yArrayArg = GetArray(engine, tempParameter, 0);
-        if (yArrayArg.IsError()) return yArrayArg;
+        if (yArrayArg.IsErrorOrNone()) return yArrayArg;
 
         Operand xArrayArg = GetArray(engine, tempParameter, 1);
-        if (xArrayArg.IsError()) return xArrayArg;
+        if (xArrayArg.IsErrorOrNone()) return xArrayArg;
 
         List<BigDecimal> yValues = new ArrayList<>();
         for (Operand item : yArrayArg.ArrayValue()) {
@@ -45,8 +44,7 @@ public class Function_SLOPE extends Function_N {
 
         if (yValues.size() != xValues.size() || yValues.size() < 2) return FunctionError();
 
-        BigDecimal sumX = BigDecimal.ZERO, sumY = BigDecimal.ZERO;
-        BigDecimal sumXY = BigDecimal.ZERO, sumX2 = BigDecimal.ZERO;
+        BigDecimal sumX = BigDecimal.ZERO, sumY = BigDecimal.ZERO, sumXY = BigDecimal.ZERO, sumX2 = BigDecimal.ZERO;
         int n = yValues.size();
 
         for (int i = 0; i < n; i++) {
@@ -56,13 +54,11 @@ public class Function_SLOPE extends Function_N {
             sumX2 = sumX2.add(xValues.get(i).multiply(xValues.get(i)));
         }
 
-        BigDecimal bn = new BigDecimal(n);
-        // denominator = n * sumX2 - sumX * sumX
-        BigDecimal denominator = bn.multiply(sumX2).subtract(sumX.multiply(sumX));
-        if (denominator.compareTo(BigDecimal.ZERO) == 0) return Div0Error();
-
-        BigDecimal slope = bn.multiply(sumXY).subtract(sumX.multiply(sumY))
-                .divide(denominator, 20, java.math.RoundingMode.HALF_UP);
+        BigDecimal denominator = new BigDecimal(n).multiply(sumX2).subtract(sumX.multiply(sumX));
+        if (denominator.compareTo(BigDecimal.ZERO) == 0) {
+            return Div0Error();
+        }
+        BigDecimal slope = new BigDecimal(n).multiply(sumXY).subtract(sumX.multiply(sumY)).divide(denominator, java.math.MathContext.DECIMAL128);
         return Operand.Create(slope);
     }
 
@@ -72,8 +68,8 @@ public class Function_SLOPE extends Function_N {
     }
 
     @Override
-    public void getParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
-        funcs[0].getParameterTypes(noneEngine, result, OperandType.ARRAY, null, null);
-        funcs[1].getParameterTypes(noneEngine, result, OperandType.ARRAY, null, null);
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
     }
 }

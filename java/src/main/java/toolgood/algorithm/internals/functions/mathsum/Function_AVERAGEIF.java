@@ -1,82 +1,98 @@
 package toolgood.algorithm.internals.functions.mathsum;
 
-import toolgood.algorithm.internals.functions.Function_3;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.FunctionUtil;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Function_AVERAGEIF extends Function_3 {
-    public Function_AVERAGEIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionUtil;
+import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_AVERAGEIF extends Function_3 {
+    public Function_AVERAGEIF(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsError()) {
+    public String Name() {
+        return "AverageIf";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetArray_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
             return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsError()) {
+        Operand args2 = func2.Evaluate(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
             return args2;
         }
 
-        List<Double> list = new ArrayList<>();
-        boolean o = FunctionUtil.F_base_GetList(args1, list);
-        if (!o) {
-            return Operand.Error("Function '{0}' parameter {1} is error!", "AverageIf", 1);
+        List<BigDecimal> list = new ArrayList<>();
+        boolean o = FunctionUtil.FlattenToList_Operand_BigDecimal(args1, list);
+        if (o == false) {
+            return ParameterError(1);
         }
 
-        List<Double> sumdbs;
+        List<BigDecimal> sumdbs;
         if (func3 != null) {
-            Operand args3 = func3.Evaluate(work, tempParameter);
-            if (args3.IsError()) {
+            Operand args3 = GetArray_3(engine, tempParameter);
+            if (args3.IsErrorOrNone()) {
                 return args3;
             }
             sumdbs = new ArrayList<>();
-            boolean o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
-            if (!o2) {
-                return Operand.Error("Function '{0}' parameter {1} is error!", "AverageIf", 3);
+            boolean o2 = FunctionUtil.FlattenToList_Operand_BigDecimal(args3, sumdbs);
+            if (o2 == false) {
+                return ParameterError(3);
             }
         } else {
             sumdbs = list;
         }
 
-        double sum;
+        BigDecimal sum;
         int count;
         if (args2.IsNumber()) {
-            count = FunctionUtil.F_base_countif(list, args2.DoubleValue());
-            sum = count * args2.DoubleValue();
+            count = FunctionUtil.GetCountIf(list, args2.NumberValue());
+            sum = new BigDecimal(count).multiply(args2.NumberValue());
         } else {
+            String text = args2.TextValue().trim();
             try {
-                double d = Double.parseDouble(args2.TextValue().trim());
-                count = FunctionUtil.F_base_countif(list, d);
-                sum = FunctionUtil.F_base_sumif(list, d, sumdbs);
+                BigDecimal d = new BigDecimal(text);
+                count = FunctionUtil.GetCountIf(list, d);
+                sum = FunctionUtil.GetSumIf(list, d, sumdbs);
             } catch (NumberFormatException e) {
-                String sunif = args2.TextValue().trim();
-                FunctionUtil.Pair<String, Double> m2 = FunctionUtil.sumifMatch(sunif);
+                Object[] m2 = FunctionUtil.ParseSumIfMatch(text);
                 if (m2 != null) {
-                    String operator = m2.getFirst();
-                    double value = m2.getSecond();
-                    count = FunctionUtil.F_base_countif(list, operator, value);
-                    sum = FunctionUtil.F_base_sumif(list, operator, value, sumdbs);
+                    count = FunctionUtil.GetCountIf(list, (String) m2[0], (BigDecimal) m2[1]);
+                    sum = FunctionUtil.GetSumIf(list, (String) m2[0], (BigDecimal) m2[1], sumdbs);
                 } else {
-                    return Operand.Error("Function '{0}' parameter {1} is error!", "AverageIf", 2);
+                    return ParameterError(2);
                 }
             }
         }
         if (count == 0) {
-            return Operand.Error("Function '{0}' div 0 error!", "AverageIf");
+            return Div0Error();
         }
-        return Operand.Create(sum / count);
+        return Operand.Create(sum.divide(new BigDecimal(count), java.math.MathContext.DECIMAL128));
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "AverageIf");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        }
     }
 }

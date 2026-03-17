@@ -1,75 +1,74 @@
 package toolgood.algorithm.internals.functions.mathsum;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
-import toolgood.algorithm.internals.functions.FunctionUtil.Pair;
+import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_SUMIF extends Function_3 {
-    public Function_SUMIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_SUMIF extends Function_3 {
+    public Function_SUMIF(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsError()) {
+    public String Name() {
+        return "SumIf";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetArray_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
             return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsError()) {
+        Operand args2 = func2.Evaluate(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
             return args2;
         }
 
-        List<Double> list = new ArrayList<>();
-        boolean o = FunctionUtil.F_base_GetList(args1, list);
-        if (!o) {
-            return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 1);
+        List<BigDecimal> list = new ArrayList<>();
+        boolean o = FunctionUtil.FlattenToList_Operand_BigDecimal(args1, list);
+        if (o == false) {
+            return ParameterError(1);
         }
 
-        List<Double> sumdbs;
+        List<BigDecimal> sumdbs;
         if (func3 != null) {
-            Operand args3 = func3.Evaluate(work, tempParameter);
-            if (args3.IsError()) {
+            Operand args3 = GetArray_3(engine, tempParameter);
+            if (args3.IsErrorOrNone()) {
                 return args3;
             }
             sumdbs = new ArrayList<>();
-            boolean o2 = FunctionUtil.F_base_GetList(args3, sumdbs);
-            if (!o2) {
-                return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 3);
+            boolean o2 = FunctionUtil.FlattenToList_Operand_BigDecimal(args3, sumdbs);
+            if (o2 == false) {
+                return ParameterError(3);
             }
         } else {
             sumdbs = list;
         }
 
-        double sum = 0;
+        BigDecimal sum;
         if (args2.IsNumber()) {
-            // 处理数字条件
-            double value = args2.DoubleValue();
-            long count = FunctionUtil.F_base_countif(list, value);
-            sum = count * value;
+            sum = new BigDecimal(FunctionUtil.GetCountIf(list, args2.NumberValue())).multiply(args2.NumberValue());
         } else {
-            // 处理文本条件
-            String textValue = args2.TextValue().trim();
+            String text = args2.TextValue().trim();
             try {
-                // 尝试解析为数�?
-                double d = Double.parseDouble(textValue);
-                sum = FunctionUtil.F_base_sumif(list, d, sumdbs);
+                BigDecimal d = new BigDecimal(text);
+                sum = FunctionUtil.GetSumIf(list, d, sumdbs);
             } catch (NumberFormatException e) {
-                // 处理通配符条�?
-                String sunif = textValue;
-                Pair<String,Double> matchResult = FunctionUtil.sumifMatch(sunif);
-                if (matchResult != null) {
-                    sum = FunctionUtil.F_base_sumif(list, matchResult.getFirst(), matchResult.getSecond(), sumdbs);
+                Object[] m2 = FunctionUtil.ParseSumIfMatch(text);
+                if (m2 != null) {
+                    sum = FunctionUtil.GetSumIf(list, (String) m2[0], (BigDecimal) m2[1], sumdbs);
                 } else {
-                    return Operand.Error("Function '{0}' parameter {1} is error!", "SumIf", 2);
+                    return ParameterError(2);
                 }
             }
         }
@@ -77,7 +76,16 @@ public class Function_SUMIF extends Function_3 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "SumIf");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        }
     }
 }

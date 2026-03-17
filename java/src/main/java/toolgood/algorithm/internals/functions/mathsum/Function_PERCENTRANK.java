@@ -1,64 +1,78 @@
 package toolgood.algorithm.internals.functions.mathsum;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
-
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
+import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-
-public class Function_PERCENTRANK extends Function_3 {
-    public Function_PERCENTRANK(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_PERCENTRANK extends Function_3 {
+    public Function_PERCENTRANK(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotArray()) {
-            args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "PercentRank", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+    public String Name() {
+        return "PercentRank";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetArray_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
 
-        List<Double> list = new java.util.ArrayList<>();
-        boolean o = FunctionUtil.F_base_GetList(args1, list);
-        if (!o) {
-            return Operand.Error("Function '{0}' parameter is error!", "PercentRank");
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
         }
 
-        double k = args2.DoubleValue();
-        double[] array = list.stream().mapToDouble(Double::doubleValue).toArray();
-        double v = ExcelFunctions.PercentRank(array, k);
+        List<BigDecimal> list = new ArrayList<>();
+        boolean o = FunctionUtil.FlattenToList_Operand_BigDecimal(args1, list);
+        if (o == false) {
+            return ParameterError(1);
+        }
+        if (list.size() == 0) {
+            return ParameterError(1);
+        }
+
+        BigDecimal k = args2.NumberValue();
+        BigDecimal v = ExcelFunctions.PercentRank(list.toArray(new BigDecimal[0]), k);
         int d = 3;
         if (func3 != null) {
-            Operand args3 = func3.Evaluate(work, tempParameter);
-            if (args3.IsNotNumber()) {
-                args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 3);
-                if (args3.IsError()) {
-                    return args3;
-                }
+            Operand args3 = GetNumber_3(engine, tempParameter);
+            if (args3.IsErrorOrNone()) {
+                return args3;
             }
             d = args3.IntValue();
+            if (d < 0) {
+                return ParameterError(3);
+            }
         }
-        return Operand.Create(Math.round(v * Math.pow(10, d)) / Math.pow(10, d));
+        return Operand.Create(v.setScale(d, RoundingMode.HALF_UP));
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "PercentRank");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        }
     }
 }

@@ -1,47 +1,66 @@
 package toolgood.algorithm.internals.functions.mathsum;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
+import toolgood.algorithm.internals.functions.Function_N;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_SUMSQ extends Function_N {
+public final class Function_SUMSQ extends Function_N {
     public Function_SUMSQ(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public String Name() {
+        return "SumSq";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         List<Operand> args = new ArrayList<>(funcs.length);
         for (int i = 0; i < funcs.length; i++) {
-            Operand aa = funcs[i].Evaluate(work, tempParameter);
-            if (aa.IsError()) {
+            Operand aa = funcs[i].Evaluate(engine, tempParameter);
+            if (aa.IsErrorOrNone()) {
                 return aa;
             }
             args.add(aa);
         }
 
-        List<Double> list = new ArrayList<>();
-        boolean o = FunctionUtil.F_base_GetList(args, list);
-        if (!o) {
-            return Operand.Error("Function '{0}' parameter is error!", "SumSQ");
+        List<BigDecimal> list = new ArrayList<>();
+        boolean o = FunctionUtil.FlattenToList_BigDecimal(args, list);
+        if (o == false) {
+            return FunctionError();
         }
 
-        double d = 0;
+        BigDecimal d = BigDecimal.ZERO;
         for (int i = 0; i < list.size(); i++) {
-            double a = list.get(i);
-            d += a * a;
+            BigDecimal a = list.get(i);
+            d = d.add(a.multiply(a));
         }
         return Operand.Create(d);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "SumSQ");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        if (funcs.length == 1) {
+            funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        } else {
+            for (int i = 0; i < funcs.length; i++) {
+                funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+            }
+        }
     }
 }

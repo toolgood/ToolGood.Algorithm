@@ -3,7 +3,6 @@ package toolgood.algorithm.internals.functions.mathsum;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -13,7 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_SUMPRODUCT extends Function_N {
+public final class Function_SUMPRODUCT extends Function_N {
     public Function_SUMPRODUCT(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -24,13 +23,13 @@ public class Function_SUMPRODUCT extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         if (funcs.length < 2) return ParameterError(1);
 
         List<List<BigDecimal>> arrays = new ArrayList<>();
         for (int i = 0; i < funcs.length; i++) {
             Operand arg = GetArray(engine, tempParameter, i);
-            if (arg.IsError()) return arg;
+            if (arg.IsErrorOrNone()) return arg;
             List<BigDecimal> list = new ArrayList<>();
             for (Operand item : arg.ArrayValue()) {
                 if (item.IsNumber()) {
@@ -47,7 +46,9 @@ public class Function_SUMPRODUCT extends Function_N {
             }
         }
 
-        if (minLength == 0) return Operand.Zero;
+        if (minLength == 0) {
+            return Operand.Zero;
+        }
 
         BigDecimal result = BigDecimal.ZERO;
         for (int i = 0; i < minLength; i++) {
@@ -67,9 +68,9 @@ public class Function_SUMPRODUCT extends Function_N {
     }
 
     @Override
-    public void getParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         for (int i = 0; i < funcs.length; i++) {
-            funcs[i].getParameterTypes(noneEngine, result, OperandType.ARRAY, null, null);
+            funcs[i].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
         }
     }
 }
