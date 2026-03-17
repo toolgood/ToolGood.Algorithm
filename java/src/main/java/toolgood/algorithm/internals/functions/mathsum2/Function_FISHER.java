@@ -1,34 +1,47 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.util.List;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_FISHER extends Function_1 {
+public final class Function_FISHER extends Function_1 {
     public Function_FISHER(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "Fisher");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        double x = args1.DoubleValue();
-        if (x >= 1 || x <= -1) {
-            return Operand.Error("Function '{0}' parameter is error!", "Fisher");
-        }
-        double n = 0.5 * Math.log((1 + x) / (1 - x));
-        return Operand.Create(n);
+    public String Name() {
+        return "Fisher";
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Fisher");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        double x = args1.DoubleValue();
+        if (x <= -1 || x >= 1) {
+            return Operand.Error("Function '{0}' parameter is error!", "Fisher");
+        }
+        double result = 0.5 * Math.log((1 + x) / (1 - x));
+        return Operand.Create(result);
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

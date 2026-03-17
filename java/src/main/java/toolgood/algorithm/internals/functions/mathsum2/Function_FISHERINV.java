@@ -1,31 +1,44 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.util.List;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_FISHERINV extends Function_1 {
+public final class Function_FISHERINV extends Function_1 {
     public Function_FISHERINV(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "FisherInv");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        double x = args1.DoubleValue();
-        double n = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
-        return Operand.Create(n);
+    public String Name() {
+        return "FisherInv";
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "FisherInv");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        double x = args1.DoubleValue();
+        double result = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
+        return Operand.Create(result);
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

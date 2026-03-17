@@ -1,31 +1,48 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-
-public class Function_GAMMALN extends Function_1 {
+public final class Function_GAMMALN extends Function_1 {
     public Function_GAMMALN(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "GammaLn");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue()));
+    public String Name() {
+        return "GammaLn";
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "GammaLn");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        double x = args1.DoubleValue();
+        if (x <= 0) {
+            return Operand.Error("Function '{0}' parameter is error!", "GammaLn");
+        }
+        return Operand.Create(ExcelFunctions.GAMMALN(x));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

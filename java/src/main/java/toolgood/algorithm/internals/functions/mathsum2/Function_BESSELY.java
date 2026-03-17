@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -9,11 +9,16 @@ import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.MathEx;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_BESSELY extends Function_2 {
+public final class Function_BESSELY extends Function_2 {
     public Function_BESSELY(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
+    }
+
+    public Function_BESSELY(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
@@ -22,123 +27,128 @@ public class Function_BESSELY extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsError()) return args1;
-
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsError()) return args2;
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
 
-        double x = args1.DoubleValue();
-        int n = (int) args2.DoubleValue();
+        BigDecimal x = args1.NumberValue();
+        int n = args2.IntValue();
 
-        if (x <= 0) {
+        if (x.compareTo(BigDecimal.ZERO) <= 0) {
             return ParameterError(1);
         }
 
-        return Operand.Create(besselY(n, x));
+        return Operand.Create(BesselY(n, x));
     }
 
-    private static double besselY(int n, double x) {
+    private static BigDecimal BesselY(int n, BigDecimal x) {
         if (n < 0) n = -n;
 
-        if (n == 0) return besselY0(x);
-        if (n == 1) return besselY1(x);
+        if (n == 0) return BesselY0(x);
+        if (n == 1) return BesselY1(x);
 
-        double Y0 = besselY0(x);
-        double Y1 = besselY1(x);
-        double Yn = 0.0;
+        BigDecimal Y0 = BesselY0(x);
+        BigDecimal Y1 = BesselY1(x);
+        BigDecimal Yn = BigDecimal.ZERO;
+
         for (int k = 1; k < n; k++) {
-            Yn = (2.0 * k / x) * Y1 - Y0;
+            Yn = new BigDecimal("2").multiply(new BigDecimal(k)).divide(x, java.math.MathContext.DECIMAL128).multiply(Y1).subtract(Y0);
             Y0 = Y1;
             Y1 = Yn;
         }
+
         return Y1;
     }
 
-    private static double besselY0(double x) {
-        if (x < 8.0) {
-            double y1 = x * x;
-            double ans1 = -2957821389.0 + y1 * (7062834065.0 + y1 * (-512359803.6
-                    + y1 * (10879881.29 + y1 * (-86327.92757 + y1 * 228.4622733))));
-            double ans2 = 40076544269.0 + y1 * (745249964.8 + y1 * (7189466.438
-                    + y1 * (47447.2647 + y1 * (226.1030244 + y1 * 1.0))));
-            return (ans1 / ans2) + 0.6366197723675814 * besselJ0(x) * Math.log(x);
+    private static BigDecimal BesselY0(BigDecimal x) {
+        if (x.compareTo(new BigDecimal("8")) < 0) {
+            BigDecimal y1 = x.multiply(x);
+            BigDecimal ans1 = new BigDecimal("-2957821389").add(y1.multiply(new BigDecimal("7062834065").add(y1.multiply(new BigDecimal("-512359803.6")
+                .add(y1.multiply(new BigDecimal("10879881.29").add(y1.multiply(new BigDecimal("-86327.92757").add(y1.multiply(new BigDecimal("228.4622733")))))))))));
+            BigDecimal ans2 = new BigDecimal("40076544269").add(y1.multiply(new BigDecimal("745249964.8").add(y1.multiply(new BigDecimal("7189466.438")
+                .add(y1.multiply(new BigDecimal("47447.26470").add(y1.multiply(new BigDecimal("226.1030244").add(y1.multiply(BigDecimal.ONE))))))))));
+            return ans1.divide(ans2, java.math.MathContext.DECIMAL128).add(new BigDecimal("0.63661977236758134308").multiply(BesselJ0(x)).multiply(MathEx.Log(x)));
         }
-        double z = 8.0 / x;
-        double y2 = z * z;
-        double xx = x - 0.7853981633974483;
-        double ans3 = 1.0 + y2 * (-0.1098628627e-2 + y2 * (0.2734510407e-4
-                + y2 * (-0.2073370639e-5 + y2 * 0.2093887211e-6)));
-        double ans4 = -0.1562499995e-1 + y2 * (0.1430488765e-3
-                + y2 * (-0.6911147651e-5 + y2 * (0.7621095161e-6
-                + y2 * (-0.934935152e-7))));
-        return Math.sqrt(0.6366197723675814 / x) * (Math.sin(xx) * ans3 + z * Math.cos(xx) * ans4);
+        BigDecimal z = new BigDecimal("8").divide(x, java.math.MathContext.DECIMAL128);
+        BigDecimal y2 = z.multiply(z);
+        BigDecimal xx = x.subtract(new BigDecimal("0.78539816339744830962"));
+        BigDecimal ans3 = BigDecimal.ONE.add(y2.multiply(new BigDecimal("-0.001098628627").add(y2.multiply(new BigDecimal("0.00002734510407")
+            .add(y2.multiply(new BigDecimal("-0.000002073370639").add(y2.multiply(new BigDecimal("0.0000002093887211"))))))));
+        BigDecimal ans4 = new BigDecimal("-0.01562499995").add(y2.multiply(new BigDecimal("0.0001430488765")
+            .add(y2.multiply(new BigDecimal("-0.000006911147651").add(y2.multiply(new BigDecimal("0.0000007621095161")
+            .add(y2.multiply(new BigDecimal("-0.0000000934935152"))))))));
+        return MathEx.Sqrt(new BigDecimal("0.63661977236758134308").divide(x, java.math.MathContext.DECIMAL128)).multiply(MathEx.Sin(xx).multiply(ans3).add(z.multiply(MathEx.Cos(xx)).multiply(ans4)));
     }
 
-    private static double besselY1(double x) {
-        if (x < 8.0) {
-            double y1 = x * x;
-            double ans1 = x * (-0.4900604943e13 + y1 * (0.127527439e13
-                    + y1 * (-0.5153438139e11 + y1 * (0.7349264551e9
-                    + y1 * (-0.4237922726e7 + y1 * 0.8511937935e4)))));
-            double ans2 = 0.249958057e14 + y1 * (0.4244419664e12
-                    + y1 * (0.3733650367e10 + y1 * (0.2245904002e8
-                    + y1 * (0.1020426050e6 + y1 * (0.3549632885e3 + y1)))));
-            return (ans1 / ans2) + 0.6366197723675814 * (besselJ1(x) * Math.log(x) - 1.0 / x);
+    private static BigDecimal BesselY1(BigDecimal x) {
+        if (x.compareTo(new BigDecimal("8")) < 0) {
+            BigDecimal y1 = x.multiply(x);
+            BigDecimal ans1 = x.multiply(new BigDecimal("-4900604943000").add(y1.multiply(new BigDecimal("1275274390000")
+                .add(y1.multiply(new BigDecimal("-51534381390").add(y1.multiply(new BigDecimal("734926455.1")
+                .add(y1.multiply(new BigDecimal("-4237922.726").add(y1.multiply(new BigDecimal("8511.937935")))))))))));
+            BigDecimal ans2 = new BigDecimal("24995805700000").add(y1.multiply(new BigDecimal("424441966400")
+                .add(y1.multiply(new BigDecimal("3733650367").add(y1.multiply(new BigDecimal("224590400.2")
+                .add(y1.multiply(new BigDecimal("1020426.050").add(y1.multiply(new BigDecimal("354.9632885").add(y1.multiply(BigDecimal.ONE)))))))))));
+            return ans1.divide(ans2, java.math.MathContext.DECIMAL128).add(new BigDecimal("0.63661977236758134308").multiply(BesselJ1(x).multiply(MathEx.Log(x)).subtract(BigDecimal.ONE.divide(x, java.math.MathContext.DECIMAL128))));
         }
-        double z = 8.0 / x;
-        double y2 = z * z;
-        double xx = x - 2.356194490192345;
-        double ans3 = 1.0 + y2 * (0.183105e-2 + y2 * (-0.3516396496e-4
-                + y2 * (0.2457520174e-5 + y2 * (-0.240337019e-6))));
-        double ans4 = 0.04687499995 + y2 * (-0.2002690873e-3
-                + y2 * (0.8449199096e-5 + y2 * (-0.88228987e-6
-                + y2 * 0.105787412e-6)));
-        return Math.sqrt(0.6366197723675814 / x) * (Math.sin(xx) * ans3 + z * Math.cos(xx) * ans4);
+        BigDecimal z = new BigDecimal("8").divide(x, java.math.MathContext.DECIMAL128);
+        BigDecimal y2 = z.multiply(z);
+        BigDecimal xx = x.subtract(new BigDecimal("2.35619449019234492885"));
+        BigDecimal ans3 = BigDecimal.ONE.add(y2.multiply(new BigDecimal("0.00183105").add(y2.multiply(new BigDecimal("-0.00003516396496")
+            .add(y2.multiply(new BigDecimal("0.000002457520174").add(y2.multiply(new BigDecimal("-0.000000240337019"))))))));
+        BigDecimal ans4 = new BigDecimal("0.04687499995").add(y2.multiply(new BigDecimal("-0.0002002690873")
+            .add(y2.multiply(new BigDecimal("0.000008449199096").add(y2.multiply(new BigDecimal("-0.00000088228987")
+            .add(y2.multiply(new BigDecimal("0.000000105787412"))))))));
+        return MathEx.Sqrt(new BigDecimal("0.63661977236758134308").divide(x, java.math.MathContext.DECIMAL128)).multiply(MathEx.Sin(xx).multiply(ans3).add(z.multiply(MathEx.Cos(xx)).multiply(ans4)));
     }
 
-    private static double besselJ0(double x) {
-        double ax = Math.abs(x);
-        if (ax < 8.0) {
-            double y1 = x * x;
-            double ans1 = 57568490574.0 + y1 * (-13362590354.0 + y1 * (651619640.7
-                    + y1 * (-11214424.18 + y1 * (77392.33017 + y1 * (-184.9052456)))));
-            double ans2 = 57568490411.0 + y1 * (1029532985.0 + y1 * (9494680.718
-                    + y1 * (59272.64853 + y1 * (267.8532712 + y1 * 1.0))));
-            return ans1 / ans2;
+    private static BigDecimal BesselJ0(BigDecimal x) {
+        BigDecimal ax = x.abs();
+        if (ax.compareTo(new BigDecimal("8")) < 0) {
+            BigDecimal y1 = x.multiply(x);
+            BigDecimal ans1 = new BigDecimal("57568490574").add(y1.multiply(new BigDecimal("-13362590354").add(y1.multiply(new BigDecimal("651619640.7")
+                .add(y1.multiply(new BigDecimal("-11214424.18").add(y1.multiply(new BigDecimal("77392.33017").add(y1.multiply(new BigDecimal("-184.9052456")))))))))));
+            BigDecimal ans2 = new BigDecimal("57568490411").add(y1.multiply(new BigDecimal("1029532985").add(y1.multiply(new BigDecimal("9494680.718")
+                .add(y1.multiply(new BigDecimal("59272.64853").add(y1.multiply(new BigDecimal("267.8532712").add(y1.multiply(BigDecimal.ONE))))))))));
+            return ans1.divide(ans2, java.math.MathContext.DECIMAL128);
         }
-        double z = 8.0 / ax;
-        double y2 = z * z;
-        double xx = ax - 0.7853981633974483;
-        double ans3 = 1.0 + y2 * (-0.1098628627e-2 + y2 * (0.2734510407e-4
-                + y2 * (-0.2073370639e-5 + y2 * 0.2093887211e-6)));
-        double ans4 = -0.1562499995e-1 + y2 * (0.1430488765e-3
-                + y2 * (-0.6911147651e-5 + y2 * (0.7621095161e-6
-                - y2 * 0.934935152e-7)));
-        return Math.sqrt(0.6366197723675814 / ax) * (Math.cos(xx) * ans3 - z * Math.sin(xx) * ans4);
+        BigDecimal z = new BigDecimal("8").divide(ax, java.math.MathContext.DECIMAL128);
+        BigDecimal y2 = z.multiply(z);
+        BigDecimal xx = ax.subtract(new BigDecimal("0.78539816339744830962"));
+        BigDecimal ans3 = BigDecimal.ONE.add(y2.multiply(new BigDecimal("-0.001098628627").add(y2.multiply(new BigDecimal("0.00002734510407")
+            .add(y2.multiply(new BigDecimal("-0.000002073370639").add(y2.multiply(new BigDecimal("0.0000002093887211"))))))));
+        BigDecimal ans4 = new BigDecimal("-0.01562499995").add(y2.multiply(new BigDecimal("0.0001430488765")
+            .add(y2.multiply(new BigDecimal("-0.000006911147651").add(y2.multiply(new BigDecimal("0.0000007621095161")
+            .subtract(y2.multiply(new BigDecimal("0.0000000934935152"))))))));
+        return MathEx.Sqrt(new BigDecimal("0.63661977236758134308").divide(ax, java.math.MathContext.DECIMAL128)).multiply(MathEx.Cos(xx).multiply(ans3).subtract(z.multiply(MathEx.Sin(xx)).multiply(ans4)));
     }
 
-    private static double besselJ1(double x) {
-        double ax = Math.abs(x);
-        if (ax < 8.0) {
-            double y1 = x * x;
-            double ans1 = x * (72362614232.0 + y1 * (-7895059235.0 + y1 * (242396853.1
-                    + y1 * (-2972611.439 + y1 * (15704.4826 + y1 * (-30.16036606))))));
-            double ans2 = 144725228442.0 + y1 * (2300535178.0 + y1 * (18583304.74
-                    + y1 * (99447.43394 + y1 * (376.9991397 + y1 * 1.0))));
-            return ans1 / ans2;
+    private static BigDecimal BesselJ1(BigDecimal x) {
+        BigDecimal ax = x.abs();
+        if (ax.compareTo(new BigDecimal("8")) < 0) {
+            BigDecimal y1 = x.multiply(x);
+            BigDecimal ans1 = x.multiply(new BigDecimal("72362614232").add(y1.multiply(new BigDecimal("-7895059235").add(y1.multiply(new BigDecimal("242396853.1")
+                .add(y1.multiply(new BigDecimal("-2972611.439").add(y1.multiply(new BigDecimal("15704.48260").add(y1.multiply(new BigDecimal("-30.16036606")))))))))));
+            BigDecimal ans2 = new BigDecimal("144725228442").add(y1.multiply(new BigDecimal("2300535178").add(y1.multiply(new BigDecimal("18583304.74")
+                .add(y1.multiply(new BigDecimal("99447.43394").add(y1.multiply(new BigDecimal("376.9991397").add(y1.multiply(BigDecimal.ONE))))))))));
+            return ans1.divide(ans2, java.math.MathContext.DECIMAL128);
         }
-        double z = 8.0 / ax;
-        double y2 = z * z;
-        double xx = ax - 2.356194490192345;
-        double ans3 = 1.0 + y2 * (0.183105e-2 + y2 * (-0.3516396496e-4
-                + y2 * (0.2457520174e-5 + y2 * (-0.240337019e-6))));
-        double ans4 = 0.04687499995 + y2 * (-0.2002690873e-3
-                + y2 * (0.8449199096e-5 + y2 * (-0.88228987e-6
-                + y2 * 0.105787412e-6)));
-        double ans = Math.sqrt(0.6366197723675814 / ax) * (Math.cos(xx) * ans3 - z * Math.sin(xx) * ans4);
-        return (x < 0) ? -ans : ans;
+        BigDecimal z = new BigDecimal("8").divide(ax, java.math.MathContext.DECIMAL128);
+        BigDecimal y2 = z.multiply(z);
+        BigDecimal xx = ax.subtract(new BigDecimal("2.35619449019234492885"));
+        BigDecimal ans3 = BigDecimal.ONE.add(y2.multiply(new BigDecimal("0.00183105").add(y2.multiply(new BigDecimal("-0.00003516396496")
+            .add(y2.multiply(new BigDecimal("0.000002457520174").add(y2.multiply(new BigDecimal("-0.000000240337019"))))))));
+        BigDecimal ans4 = new BigDecimal("0.04687499995").add(y2.multiply(new BigDecimal("-0.0002002690873")
+            .add(y2.multiply(new BigDecimal("0.000008449199096").add(y2.multiply(new BigDecimal("-0.00000088228987")
+            .add(y2.multiply(new BigDecimal("0.000000105787412"))))))));
+        BigDecimal ans = MathEx.Sqrt(new BigDecimal("0.63661977236758134308").divide(ax, java.math.MathContext.DECIMAL128)).multiply(MathEx.Cos(xx).multiply(ans3).subtract(z.multiply(MathEx.Sin(xx)).multiply(ans4)));
+        return (x.compareTo(BigDecimal.ZERO) < 0) ? ans.negate() : ans;
     }
 
     @Override
@@ -148,7 +158,7 @@ public class Function_BESSELY extends Function_2 {
 
     @Override
     public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
-        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
-        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

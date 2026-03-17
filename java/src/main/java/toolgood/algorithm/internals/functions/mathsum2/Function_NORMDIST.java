@@ -1,57 +1,71 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_4;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-
-public class Function_NORMDIST extends Function_4 {
+public final class Function_NORMDIST extends Function_4 {
     public Function_NORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
         super(func1, func2, func3, func4);
     }
 
-    @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
-        Operand args3 = func3.Evaluate(work, tempParameter);
-        if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 3);
-            if (args3.IsError()) {
-                return args3;
-            }
-        }
-        Operand args4 = func4.Evaluate(work, tempParameter);
-        if (args4.IsNotBoolean()) {
-            args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "NormDist", 4);
-            if (args4.IsError()) {
-                return args4;
-            }
-        }
-
-        double num = args1.DoubleValue();
-        double avg = args2.DoubleValue();
-        double STDEV = args3.DoubleValue();
-        boolean b = args4.BooleanValue();
-        return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
+    public Function_NORMDIST(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "NormDist");
+    public String Name() {
+        return "NormDist";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+        Operand args3 = GetNumber_3(engine, tempParameter);
+        if (args3.IsErrorOrNone()) {
+            return args3;
+        }
+        Operand args4 = GetBoolean_4(engine, tempParameter);
+        if (args4.IsErrorOrNone()) {
+            return args4;
+        }
+
+        double x = args1.DoubleValue();
+        double mean = args2.DoubleValue();
+        double standardDev = args3.DoubleValue();
+        boolean cumulative = args4.BooleanValue();
+
+        if (standardDev <= 0.0) {
+            return Operand.Error("Function '{0}' parameter is error!", "NormDist");
+        }
+        return Operand.Create(ExcelFunctions.NormDist(x, mean, standardDev, cumulative));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func4.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
     }
 }

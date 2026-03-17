@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -9,11 +9,16 @@ import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.MathEx;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_BESSELJ extends Function_2 {
+public final class Function_BESSELJ extends Function_2 {
     public Function_BESSELJ(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
+    }
+
+    public Function_BESSELJ(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
@@ -22,40 +27,44 @@ public class Function_BESSELJ extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsError()) return args1;
-
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsError()) return args2;
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
 
-        double x = args1.DoubleValue();
-        int n = (int) args2.DoubleValue();
+        BigDecimal x = args1.NumberValue();
+        int n = args2.IntValue();
 
-        return Operand.Create(besselJ(n, x));
+        return Operand.Create(BesselJ(n, x));
     }
 
-    private static double besselJ(int n, double x) {
-        if (x == 0.0) {
-            return (n == 0) ? 1.0 : 0.0;
+    private static BigDecimal BesselJ(int n, BigDecimal x) {
+        if (x.compareTo(BigDecimal.ZERO) == 0) {
+            return (n == 0) ? BigDecimal.ONE : BigDecimal.ZERO;
         }
 
         if (n < 0) n = -n;
 
-        double ax = Math.abs(x);
-        if (ax < 1e-10) {
-            return (n == 0) ? 1.0 : 0.0;
+        BigDecimal ax = x.abs();
+        if (ax.compareTo(new BigDecimal("1e-10")) < 0) {
+            return (n == 0) ? BigDecimal.ONE : BigDecimal.ZERO;
         }
 
-        if (n == 0) return besselJ0(x);
-        if (n == 1) return besselJ1(x);
+        if (n == 0) return BesselJ0(x);
+        if (n == 1) return BesselJ1(x);
 
-        if (ax > n) {
-            double J0 = besselJ0(x);
-            double J1 = besselJ1(x);
-            double Jn = 0.0;
+        if (ax.compareTo(new BigDecimal(n)) > 0) {
+            BigDecimal J0 = BesselJ0(x);
+            BigDecimal J1 = BesselJ1(x);
+            BigDecimal Jn = BigDecimal.ZERO;
+
             for (int k = 1; k < n; k++) {
-                Jn = (2.0 * k / x) * J1 - J0;
+                Jn = new BigDecimal("2").multiply(new BigDecimal(k)).divide(x, java.math.MathContext.DECIMAL128).multiply(J1).subtract(J0);
                 J0 = J1;
                 J1 = Jn;
             }
@@ -63,61 +72,64 @@ public class Function_BESSELJ extends Function_2 {
         }
 
         int m = (int) (1.5 * n + 10);
-        double[] J = new double[m + 2];
-        J[m + 1] = 0.0;
-        J[m] = 1.0;
+        BigDecimal[] J = new BigDecimal[m + 2];
+        J[m + 1] = BigDecimal.ZERO;
+        J[m] = BigDecimal.ONE;
+
         for (int k = m; k >= 1; k--) {
-            J[k - 1] = (2.0 * k / x) * J[k] - J[k + 1];
+            J[k - 1] = new BigDecimal("2").multiply(new BigDecimal(k)).divide(x, java.math.MathContext.DECIMAL128).multiply(J[k]).subtract(J[k + 1]);
         }
-        double sum = 0.0;
+
+        BigDecimal sum = BigDecimal.ZERO;
         for (int k = 0; k <= m; k += 2) {
-            sum += 2.0 * J[k];
+            sum = sum.add(new BigDecimal("2").multiply(J[k]));
         }
-        sum -= J[0];
-        return J[n] / sum;
+        sum = sum.subtract(J[0]);
+
+        return J[n].divide(sum, java.math.MathContext.DECIMAL128);
     }
 
-    private static double besselJ0(double x) {
-        double ax = Math.abs(x);
-        if (ax < 8.0) {
-            double y1 = x * x;
-            double ans1 = 57568490574.0 + y1 * (-13362590354.0 + y1 * (651619640.7
-                    + y1 * (-11214424.18 + y1 * (77392.33017 + y1 * (-184.9052456)))));
-            double ans2 = 57568490411.0 + y1 * (1029532985.0 + y1 * (9494680.718
-                    + y1 * (59272.64853 + y1 * (267.8532712 + y1 * 1.0))));
-            return ans1 / ans2;
+    private static BigDecimal BesselJ0(BigDecimal x) {
+        BigDecimal ax = x.abs();
+        if (ax.compareTo(new BigDecimal("8")) < 0) {
+            BigDecimal y1 = x.multiply(x);
+            BigDecimal ans1 = new BigDecimal("57568490574").add(y1.multiply(new BigDecimal("-13362590354").add(y1.multiply(new BigDecimal("651619640.7")
+                .add(y1.multiply(new BigDecimal("-11214424.18").add(y1.multiply(new BigDecimal("77392.33017").add(y1.multiply(new BigDecimal("-184.9052456")))))))))));
+            BigDecimal ans2 = new BigDecimal("57568490411").add(y1.multiply(new BigDecimal("1029532985").add(y1.multiply(new BigDecimal("9494680.718")
+                .add(y1.multiply(new BigDecimal("59272.64853").add(y1.multiply(new BigDecimal("267.8532712").add(y1.multiply(BigDecimal.ONE))))))))));
+            return ans1.divide(ans2, java.math.MathContext.DECIMAL128);
         }
-        double z = 8.0 / ax;
-        double y2 = z * z;
-        double xx = ax - 0.7853981633974483;
-        double ans3 = 1.0 + y2 * (-0.1098628627e-2 + y2 * (0.2734510407e-4
-                + y2 * (-0.2073370639e-5 + y2 * 0.2093887211e-6)));
-        double ans4 = -0.1562499995e-1 + y2 * (0.1430488765e-3
-                + y2 * (-0.6911147651e-5 + y2 * (0.7621095161e-6
-                - y2 * 0.934935152e-7)));
-        return Math.sqrt(0.6366197723675814 / ax) * (Math.cos(xx) * ans3 - z * Math.sin(xx) * ans4);
+        BigDecimal z = new BigDecimal("8").divide(ax, java.math.MathContext.DECIMAL128);
+        BigDecimal y2 = z.multiply(z);
+        BigDecimal xx = ax.subtract(new BigDecimal("0.78539816339744830962"));
+        BigDecimal ans3 = BigDecimal.ONE.add(y2.multiply(new BigDecimal("-0.001098628627").add(y2.multiply(new BigDecimal("0.00002734510407")
+            .add(y2.multiply(new BigDecimal("-0.000002073370639").add(y2.multiply(new BigDecimal("0.0000002093887211"))))))));
+        BigDecimal ans4 = new BigDecimal("-0.01562499995").add(y2.multiply(new BigDecimal("0.0001430488765")
+            .add(y2.multiply(new BigDecimal("-0.000006911147651").add(y2.multiply(new BigDecimal("0.0000007621095161")
+            .subtract(y2.multiply(new BigDecimal("0.0000000934935152"))))))));
+        return MathEx.Sqrt(new BigDecimal("0.63661977236758134308").divide(ax, java.math.MathContext.DECIMAL128)).multiply(MathEx.Cos(xx).multiply(ans3).subtract(z.multiply(MathEx.Sin(xx)).multiply(ans4)));
     }
 
-    private static double besselJ1(double x) {
-        double ax = Math.abs(x);
-        if (ax < 8.0) {
-            double y1 = x * x;
-            double ans1 = x * (72362614232.0 + y1 * (-7895059235.0 + y1 * (242396853.1
-                    + y1 * (-2972611.439 + y1 * (15704.48260 + y1 * (-30.16036606))))));
-            double ans2 = 144725228442.0 + y1 * (2300535178.0 + y1 * (18583304.74
-                    + y1 * (99447.43394 + y1 * (376.9991397 + y1 * 1.0))));
-            return ans1 / ans2;
+    private static BigDecimal BesselJ1(BigDecimal x) {
+        BigDecimal ax = x.abs();
+        if (ax.compareTo(new BigDecimal("8")) < 0) {
+            BigDecimal y1 = x.multiply(x);
+            BigDecimal ans1 = x.multiply(new BigDecimal("72362614232").add(y1.multiply(new BigDecimal("-7895059235").add(y1.multiply(new BigDecimal("242396853.1")
+                .add(y1.multiply(new BigDecimal("-2972611.439").add(y1.multiply(new BigDecimal("15704.48260").add(y1.multiply(new BigDecimal("-30.16036606")))))))))));
+            BigDecimal ans2 = new BigDecimal("144725228442").add(y1.multiply(new BigDecimal("2300535178").add(y1.multiply(new BigDecimal("18583304.74")
+                .add(y1.multiply(new BigDecimal("99447.43394").add(y1.multiply(new BigDecimal("376.9991397").add(y1.multiply(BigDecimal.ONE))))))))));
+            return ans1.divide(ans2, java.math.MathContext.DECIMAL128);
         }
-        double z = 8.0 / ax;
-        double y2 = z * z;
-        double xx = ax - 2.356194490192345;
-        double ans3 = 1.0 + y2 * (0.183105e-2 + y2 * (-0.3516396496e-4
-                + y2 * (0.2457520174e-5 + y2 * (-0.240337019e-6))));
-        double ans4 = 0.04687499995 + y2 * (-0.2002690873e-3
-                + y2 * (0.8449199096e-5 + y2 * (-0.88228987e-6
-                + y2 * 0.105787412e-6)));
-        double ans = Math.sqrt(0.6366197723675814 / ax) * (Math.cos(xx) * ans3 - z * Math.sin(xx) * ans4);
-        return (x < 0) ? -ans : ans;
+        BigDecimal z = new BigDecimal("8").divide(ax, java.math.MathContext.DECIMAL128);
+        BigDecimal y2 = z.multiply(z);
+        BigDecimal xx = ax.subtract(new BigDecimal("2.35619449019234492885"));
+        BigDecimal ans3 = BigDecimal.ONE.add(y2.multiply(new BigDecimal("0.00183105").add(y2.multiply(new BigDecimal("-0.00003516396496")
+            .add(y2.multiply(new BigDecimal("0.000002457520174").add(y2.multiply(new BigDecimal("-0.000000240337019"))))))));
+        BigDecimal ans4 = new BigDecimal("0.04687499995").add(y2.multiply(new BigDecimal("-0.0002002690873")
+            .add(y2.multiply(new BigDecimal("0.000008449199096").add(y2.multiply(new BigDecimal("-0.00000088228987")
+            .add(y2.multiply(new BigDecimal("0.000000105787412"))))))));
+        BigDecimal ans = MathEx.Sqrt(new BigDecimal("0.63661977236758134308").divide(ax, java.math.MathContext.DECIMAL128)).multiply(MathEx.Cos(xx).multiply(ans3).subtract(z.multiply(MathEx.Sin(xx)).multiply(ans4)));
+        return (x.compareTo(BigDecimal.ZERO) < 0) ? ans.negate() : ans;
     }
 
     @Override
@@ -127,7 +139,7 @@ public class Function_BESSELJ extends Function_2 {
 
     @Override
     public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
-        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
-        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }
