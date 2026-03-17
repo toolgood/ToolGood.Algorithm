@@ -55,7 +55,7 @@ public final class Function_DATEVALUE extends Function_2 {
                 return arg1;
             }
             if (arg1.LongValue() <= 2958465L) {
-                return arg1.ToMyDate();
+                return Operand.Create(new MyDate(arg1.LongValue()));
             }
             if (arg1.LongValue() <= 253402232399L) {
                 return Operand.Create(new MyDate(arg1.LongValue() / 86400.0));
@@ -75,7 +75,7 @@ public final class Function_DATEVALUE extends Function_2 {
             if (arg1.IsErrorOrNone()) {
                 return arg1;
             }
-            return arg1.ToMyDate();
+            return Operand.Create(new MyDate(arg1.LongValue()));
         } else if (type == 3) {
             Operand arg1 = ConvertToNumber(args1, 1);
             if (arg1.IsErrorOrNone()) {

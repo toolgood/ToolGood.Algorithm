@@ -39,6 +39,6 @@ public class Binomial {
         }
 
         BigDecimal k = new BigDecimal(Math.floor(x.doubleValue()));
-        return SpecialFunctions.BetaRegularized(n - k.intValue(), k.intValue() + 1, BigDecimal.ONE.subtract(p));
+        return SpecialFunctions.BetaRegularized(new BigDecimal(n - k.intValue()), new BigDecimal(k.intValue() + 1), BigDecimal.ONE.subtract(p));
     }
 }

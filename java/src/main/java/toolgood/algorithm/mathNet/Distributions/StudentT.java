@@ -9,7 +9,7 @@ import toolgood.algorithm.mathNet.RootFinding.Brent;
 public class StudentT {
     public static BigDecimal CDF(BigDecimal location, BigDecimal scale, int freedom, BigDecimal x) throws Exception {
         BigDecimal k = x.subtract(location).divide(scale, MathContext.DECIMAL128);
-        BigDecimal h = new BigDecimal(freedom).divide(freedom + k.multiply(k), MathContext.DECIMAL128);
+        BigDecimal h = new BigDecimal(freedom).divide(new BigDecimal(freedom).add(k.multiply(k)), MathContext.DECIMAL128);
         BigDecimal ib = new BigDecimal("0.5").multiply(SpecialFunctions.BetaRegularized(
                 new BigDecimal(freedom).divide(new BigDecimal("2"), MathContext.DECIMAL128),
                 new BigDecimal("0.5"),
@@ -24,7 +24,7 @@ public class StudentT {
 
         return Brent.FindRoot(x -> {
             BigDecimal k = x.subtract(location).divide(scale, MathContext.DECIMAL128);
-            BigDecimal h = new BigDecimal(freedom).divide(freedom + k.multiply(k), MathContext.DECIMAL128);
+            BigDecimal h = new BigDecimal(freedom).divide(new BigDecimal(freedom).add(k.multiply(k)), MathContext.DECIMAL128);
             try {
                 BigDecimal ib = new BigDecimal("0.5").multiply(SpecialFunctions.BetaRegularized(
                         new BigDecimal(freedom).divide(new BigDecimal("2"), MathContext.DECIMAL128),

@@ -195,7 +195,7 @@ public final class MyDate {
         return stringBuffer.toString();
     }
 
-    String toString(String f) {
+    public String toString(String f) {
         if (Year == null || Year == 0) {
             return this.toString();
         }

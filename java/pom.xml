@@ -93,7 +93,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                        <encoding>GBK</encoding>
+                        <encoding>UTF-8</encoding>
                         <source>1.8</source>
                         <target>1.8</target>
                     </configuration>

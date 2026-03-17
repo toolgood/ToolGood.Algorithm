@@ -100,14 +100,14 @@ public class ExcelFunctions {
         if (state == false) {
             return Binomial.PMF(p, n, k);
         }
-        return Binomial.CDF(p, n, k);
+        return Binomial.CDF(p, n, new BigDecimal(k));
     }
 
     public static BigDecimal Poisson(int k, BigDecimal lambda, boolean state) {
         if (state == false) {
             return Poisson.PMF(lambda, k);
         }
-        return Poisson.CDF(lambda, k);
+        return Poisson.CDF(lambda, new BigDecimal(k));
     }
 
     public static BigDecimal Quartile(BigDecimal[] array, int quant) throws Exception {

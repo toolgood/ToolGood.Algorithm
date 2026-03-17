@@ -34,7 +34,7 @@ public final class Function_SPLIT extends Function_2 {
         }
 
         String[] parts = args1.TextValue().split("[" + java.util.regex.Pattern.quote(args2.TextValue()) + "]");
-        return Operand.Create(parts);
+        return Operand.CreateStringCollection(parts);
     }
 
     @Override

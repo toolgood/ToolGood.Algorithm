@@ -234,7 +234,7 @@ public final class MathFunctionVisitor extends AbstractParseTreeVisitor<Function
     @Override
     public FunctionBase visitMOD_fun(mathParser.MOD_funContext ctx) {
         FunctionBase[] funcs = VisitExprs(ctx.expr());
-        return new Function_MOD(funcs);
+        return new Function_Mod(funcs[0], funcs[1]);
     }
 
     @Override
@@ -1568,25 +1568,25 @@ public final class MathFunctionVisitor extends AbstractParseTreeVisitor<Function
     @Override
     public FunctionBase visitHMACMD5_fun(mathParser.HMACMD5_funContext ctx) {
         FunctionBase[] funcs = VisitExprs(ctx.expr());
-        return new Function_HMACMD5(funcs);
+        return new Function_HMACMD5(funcs[0], funcs[1]);
     }
 
     @Override
     public FunctionBase visitHMACSHA1_fun(mathParser.HMACSHA1_funContext ctx) {
         FunctionBase[] funcs = VisitExprs(ctx.expr());
-        return new Function_HMACSHA1(funcs);
+        return new Function_HMACSHA1(funcs[0], funcs[1]);
     }
 
     @Override
     public FunctionBase visitHMACSHA256_fun(mathParser.HMACSHA256_funContext ctx) {
         FunctionBase[] funcs = VisitExprs(ctx.expr());
-        return new Function_HMACSHA256(funcs);
+        return new Function_HMACSHA256(funcs[0], funcs[1]);
     }
 
     @Override
     public FunctionBase visitHMACSHA512_fun(mathParser.HMACSHA512_funContext ctx) {
         FunctionBase[] funcs = VisitExprs(ctx.expr());
-        return new Function_HMACSHA512(funcs);
+        return new Function_HMACSHA512(funcs[0], funcs[1]);
     }
 
     @Override

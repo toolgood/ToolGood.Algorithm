@@ -39,11 +39,11 @@ public final class Function_XIRR extends Function_3 {
         List<Long> dateMillis = new ArrayList<>();
         for (Operand d : datesArg.ArrayValue()) {
             if (d.IsDate()) {
-                dateMillis.add(d.DateValue().ToDateTime().getMillis());
+                dateMillis.add(d.DateValue().ToDateTime().getTime());
             } else if (d.IsText()) {
                 MyDate myDate = MyDate.parse(d.TextValue());
                 if (myDate == null) return ParameterError(2);
-                dateMillis.add(myDate.ToDateTime().getMillis());
+                dateMillis.add(myDate.ToDateTime().getTime());
             } else {
                 return ParameterError(2);
             }
