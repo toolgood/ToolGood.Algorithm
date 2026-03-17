@@ -1,10 +1,10 @@
 using PetaTest;
 using System;
 
-namespace ToolGood.Algorithm.Test
+namespace ToolGood.Algorithm.Test.Financial
 {
     [TestFixture]
-    internal class AlgorithmEngineTest_financial
+    internal class FinancialTest
     {
         [Test]
         public void PMT_test()
@@ -43,7 +43,7 @@ namespace ToolGood.Algorithm.Test
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("FV(0.08/12, 10, -1000)", 0.0);
-            Assert.AreEqual(Math.Round(t, 2), Math.Round(10305.40 , 2));
+            Assert.AreEqual(Math.Round(t, 2), Math.Round(10305.40, 2));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace ToolGood.Algorithm.Test
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("NPER(0.08/12, -1000, 10000)", 0.0);
-            Assert.AreEqual(Math.Round(t, 2), Math.Round(10.38 , 2));
+            Assert.AreEqual(Math.Round(t, 2), Math.Round(10.38, 2));
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace ToolGood.Algorithm.Test
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("RATE(12,-100,400,0,0,0.1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 4), Math.Round(0.2289 , 4));
+            Assert.AreEqual(Math.Round(t, 4), Math.Round(0.2289, 4));
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace ToolGood.Algorithm.Test
         [Test]
         public void XIRR_test()
         {
-			AlgorithmEngineEx engine = new AlgorithmEngineEx();
+            AlgorithmEngineEx engine = new AlgorithmEngineEx();
             engine.AddParameter("values", new double[] { -10000, 2750, 4250, 3250, 2750 });
             engine.AddParameter("dates2", new string[] { "2008-1-1", "2008-3-1", "2008-10-30", "2009-2-15", "2009-4-1" });
             var t = engine.TryEvaluate("XIRR(values, dates2)", 0.0);

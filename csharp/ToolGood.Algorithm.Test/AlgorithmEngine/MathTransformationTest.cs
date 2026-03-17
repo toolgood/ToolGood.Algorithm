@@ -1,11 +1,45 @@
 using PetaTest;
-using System;
 
-namespace ToolGood.Algorithm.Test
+namespace ToolGood.Algorithm.Test.MathTransformation
 {
     [TestFixture]
-    internal class AlgorithmEngineTest_math2
+    internal class MathTransformationTest
     {
+        [Test]
+        public void transformation_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var num = engine.TryEvaluate("BIN2DEC(10101)", 0);
+            Assert.AreEqual(num, 21);
+            num = engine.TryEvaluate("OCT2DEC(12456)", 0);
+            Assert.AreEqual(num, 5422);
+            num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
+            Assert.AreEqual(num, 2177759);
+
+            var t = engine.TryEvaluate("DEC2BIN(10)", "");
+            Assert.AreEqual(t, "1010");
+            t = engine.TryEvaluate("DEC2BIN(10,8)", "");
+            Assert.AreEqual(t, "00001010");
+            t = engine.TryEvaluate("OCT2BIN('721')", "");
+            Assert.AreEqual(t, "111010001");
+            t = engine.TryEvaluate("HEX2BIN('fa')", "");
+            Assert.AreEqual(t, "11111010");
+
+            t = engine.TryEvaluate("BIN2OCT(10)", "");
+            Assert.AreEqual(t, "2");
+            t = engine.TryEvaluate("DEC2OCT('75')", "");
+            Assert.AreEqual(t, "113");
+            t = engine.TryEvaluate("HEX2OCT('f5')", "");
+            Assert.AreEqual(t, "365");
+
+            t = engine.TryEvaluate("BIN2HEX(101010100)", "");
+            Assert.AreEqual(t, "154");
+            t = engine.TryEvaluate("OCT2HEX(75212)", "");
+            Assert.AreEqual(t, "7A8A");
+            t = engine.TryEvaluate("DEC2HEX(952)", "");
+            Assert.AreEqual(t, "3B8");
+        }
+
         [Test]
         public void ARABIC_test()
         {
@@ -92,46 +126,6 @@ namespace ToolGood.Algorithm.Test
 
             t = engine.TryEvaluate("ROMAN(2023)", "");
             Assert.AreEqual(t, "MMXXIII");
-        }
-
-        [Test]
-        public void SERIESSUM_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("SERIESSUM(2, 0, 1, array(1, 1, 1, 1))", 0.0);
-            Assert.AreEqual(t, 15.0);
-        }
-
-        [Test]
-        public void SUMPRODUCT_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("SUMPRODUCT(array(1, 2, 3), array(4, 5, 6))", 0.0);
-            Assert.AreEqual(t, 32.0);
-        }
-
-        [Test]
-        public void SUMX2MY2_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("SUMX2MY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
-            Assert.AreEqual(t, -63.0);
-        }
-
-        [Test]
-        public void SUMX2PY2_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("SUMX2PY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
-            Assert.AreEqual(t, 91.0);
-        }
-
-        [Test]
-        public void SUMXMY2_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("SUMXMY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
-            Assert.AreEqual(t, 27.0);
         }
     }
 }

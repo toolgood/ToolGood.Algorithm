@@ -1,16 +1,72 @@
 ﻿using PetaTest;
 using System;
-using ToolGood.Algorithm;
 
-namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
+namespace ToolGood.Algorithm.Test.Value
 {
     [TestFixture]
-    public class AlgorithmEngineTest_v3
+    internal class ValueTest
     {
         [Test]
+        public void constant_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var e = engine.TryEvaluate("e", 0.0);
+            Assert.AreEqual(Math.E, e, 10);
+            e = engine.TryEvaluate("pi", 0.0);
+            Assert.AreEqual(Math.PI, e, 10);
+
+            var b = engine.TryEvaluate("true", false);
+            Assert.AreEqual(true, b);
+            b = engine.TryEvaluate("false", true);
+            Assert.AreEqual(false, b);
+        }
+
+        [Test]
+        public void boolean_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var b1 = engine.TryEvaluate("if(true,1,2)", 0);
+            Assert.AreEqual(1, b1);
+
+            b1 = engine.TryEvaluate("if(false,1,2)", 0);
+            Assert.AreEqual(2, b1);
+        }
+
+        [Test]
+        public void array_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var r = engine.TryEvaluate("count(Array(1,2,3,4))", 0);
+            Assert.AreEqual(4, r);
+
+            r = engine.TryEvaluate("(1=1)*9+2", 0);
+            Assert.AreEqual(11, r);
+            r = engine.TryEvaluate("(1=2)*9+2", 0);
+            Assert.AreEqual(2, r);
+        }
+
+        [Test]
+        public void TestVersion()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            string t25 = engine.TryEvaluate("Engineversion", "");
+            Assert.AreEqual("ToolGood.Algorithm 6.2", t25);
+			string t26 = engine.TryEvaluate("Algorithmversion", "");
+            Assert.AreEqual("ToolGood.Algorithm 6.2", t26);
+        }
+
+        [Test]
+        public void Test_Json()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.Parse(@"{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}");
+            var c = engine.Evaluate(t).ToString();
+            Assert.AreEqual("{\"灰色\":\"L\",\"canBookCount\":905,\"saleCount\":91,\"specId\":\"43b0e72e98731aed69e1f0cc7d64bf4d\"}", c);
+        }
+
+           [Test]
         public void PARAM_test()
         {
-            // PARAM 动态获取参数
             Cylinder engine = new Cylinder(10, 15);
             var num = engine.TryEvaluate("PARAM('半径')", 0);
             Assert.AreEqual(num, 10);
@@ -19,7 +75,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             num = engine.TryEvaluate("GETPARAMETER('半径')", 0);
             Assert.AreEqual(num, 10);
 
-            // 参数没有限制了
             num = engine.TryEvaluate("半径", 0);
             Assert.AreEqual(num, 10);
         }
@@ -43,14 +98,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             str = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}['other']['work']", "");
             Assert.AreEqual(str, "IT");
 
-            // 使用json 方法 使用比较标准的 json格式， 不然会出错
             str = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\")['name']", "");
             Assert.AreEqual(str, "toolgood");
 
             str = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\")['other']['work']", "");
             Assert.AreEqual(str, "IT");
 
-            // 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY' 指向同一函数  只支持数组与json类型
             bool b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.has('age')", false);
             Assert.AreEqual(b, true);
             b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.hasKey('age')", false);
@@ -62,11 +115,9 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             b = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\").has('age')", false);
             Assert.AreEqual(b, true);
 
-            // 注意只能获取第一层
             b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.has('work')", true);
             Assert.AreEqual(b, false);
 
-            // 'HASVALUE' | 'CONTAINSVALUE' 指向同一函数   只支持数组与json类型
             b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.hasValue('toolgood')", false);
             Assert.AreEqual(b, true);
 
@@ -75,18 +126,16 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         }
 
         [Test]
-        public void array_test()
+        public void array_test2()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             engine.UseExcelIndex = true;
             int num = engine.TryEvaluate("[1,2,3,4,][2]", 0);
             Assert.AreEqual(num, 2);
 
-            String str = engine.TryEvaluate("[1,2,3,4,'555'][5]", "");
+            string str = engine.TryEvaluate("[1,2,3,4,'555'][5]", "");
             Assert.AreEqual(str, "555");
 
-            // 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY' 指向同一函数
-            // 'HASVALUE' | 'CONTAINSVALUE' 指向同一函数 与上面的逻辑相同
             bool b = engine.TryEvaluate("[1,2,3,4,].has('1')", false);
             Assert.AreEqual(b, true);
             b = engine.TryEvaluate("['abc','age'].hasKey('age')", false);
@@ -444,7 +493,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         [Test]
         public void Unit_Error_Test()
         {
-            // 下面是错误 演示， 因为计算时不会考虑单位，所以下面是正常通过的
             AlgorithmEngine engine = new AlgorithmEngine();
             bool b = engine.TryEvaluate("1m=1kg", false);
             Assert.AreEqual(b, true);

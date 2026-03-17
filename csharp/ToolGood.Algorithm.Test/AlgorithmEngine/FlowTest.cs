@@ -1,9 +1,9 @@
 using PetaTest;
 
-namespace ToolGood.Algorithm.Test
+namespace ToolGood.Algorithm.Test.Flow
 {
     [TestFixture]
-    internal class AlgorithmEngineTest_flow
+    internal class FlowTest
     {
         [Test]
         public void If_Test()
@@ -17,9 +17,6 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("if(1=1，1)", 0);
             Assert.AreEqual(1, t);
 
-            // 禁止隐式转换
-            //t = engine.TryEvaluate("if(3,1,2)", 0);
-            //         Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if('1',1,2)", 0);
             Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if(0,1,2)", 0);
@@ -246,18 +243,6 @@ namespace ToolGood.Algorithm.Test
 
             t = engine.TryEvaluate("1=1 || 2!=2", false);
             Assert.AreEqual(true, t);
-
-            //t = engine.TryEvaluate("1=1 and 2==2", false);
-            //Assert.AreEqual(true, t);
-
-            //t = engine.TryEvaluate("1=1 and 2!=2", true);
-            //Assert.AreEqual(false, t);
-
-            //t = engine.TryEvaluate("1=1 and 2!=2", true);
-            //Assert.AreEqual(false, t);
-
-            //t = engine.TryEvaluate("1=1 or 2!=2", false);
-            //Assert.AreEqual(true, t);
         }
 
         [Test]
@@ -269,7 +254,6 @@ namespace ToolGood.Algorithm.Test
 
             t = engine.TryEvaluate("IFS(1=2, 'a', 2=2, 'b')", "");
             Assert.AreEqual("b", t);
-
 
             var t2 = engine.TryEvaluate("IFS(1=1, 100, 1=2, 200)", 0);
             Assert.AreEqual(100, t2);
@@ -367,8 +351,6 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("123.ISLOGICAL()", true);
             Assert.AreEqual(t, false);
         }
-
-   
 
         [Test]
         public void MethodStyle_ISNULL_test()
