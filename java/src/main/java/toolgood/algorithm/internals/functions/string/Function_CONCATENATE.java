@@ -1,46 +1,53 @@
 package toolgood.algorithm.internals.functions.string;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_N;
+import java.util.List;
 
-public class Function_CONCATENATE extends Function_N {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_N;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_CONCATENATE extends Function_N {
     public Function_CONCATENATE(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public String Name() {
+        return "Concatenate";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         if (funcs.length == 0) {
             return Operand.Create("");
         }
         if (funcs.length == 1) {
-            Operand a = funcs[0].Evaluate(work, tempParameter);
-            if (a.IsNotText()) {
-                a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", 1);
-                if (a.IsError()) {
-                    return a;
-                }
-            }
-            return a; // 只有一�?
+            Operand a = GetText(engine, tempParameter, 0);
+            if (a.IsErrorOrNone()) { return a; }
+            return a;
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < funcs.length; i++) {
-            Operand a = funcs[i].Evaluate(work, tempParameter);
-            if (a.IsNotText()) {
-                a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", i + 1);
-                if (a.IsError()) {
-                    return a;
-                }
-            }
+            Operand a = GetText(engine, tempParameter, i);
+            if (a.IsErrorOrNone()) { return a; }
             sb.append(a.TextValue());
         }
         return Operand.Create(sb.toString());
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Concatenate");
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        for (int i = 0; i < funcs.length; i++) {
+            funcs[i].GetParameterTypes(noneEngine, result, OperandType.TEXT);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package toolgood.algorithm.internals.functions;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import toolgood.algorithm.Operand;

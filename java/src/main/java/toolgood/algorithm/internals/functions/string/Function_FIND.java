@@ -1,48 +1,59 @@
 package toolgood.algorithm.internals.functions.string;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_3;
+import java.util.List;
 
-public class Function_FIND extends Function_3 {
-    public Function_FIND(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_FIND extends Function_3 {
+    public Function_FIND(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Find", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotText()) {
-            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "Find", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
+    public String Name() {
+        return "Find";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+        Operand args2 = GetText_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) { return args2; }
         if (func3 == null) {
-            int p = args2.TextValue().indexOf(args1.TextValue()) + work.ExcelIndex;
+            int p = args2.TextValue().indexOf(args1.TextValue()) + engine.ExcelIndex();
             return Operand.Create(p);
         }
-        Operand count = func3.Evaluate(work, tempParameter);
-        if (count.IsNotNumber()) {
-            count = count.ToNumber("Function '{0}' parameter {1} is error!", "Find", 3);
-            if (count.IsError()) {
-                return count;
-            }
+        Operand count = GetNumber_3(engine, tempParameter);
+        if (count.IsErrorOrNone()) { return count; }
+        int startIndex = count.IntValue() - engine.ExcelIndex();
+        if (startIndex < 0 || startIndex >= args2.TextValue().length()) {
+            return ParameterError(3);
         }
-        int p2 = args2.TextValue().substring(count.IntValue()).indexOf(args1.TextValue()) + count.IntValue() + work.ExcelIndex;
-        return Operand.Create(p2);
+        int p2 = args2.TextValue().substring(startIndex).indexOf(args1.TextValue());
+        if (p2 < 0) {
+            return FunctionError();
+        }
+        return Operand.Create(p2 + startIndex + engine.ExcelIndex());
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Find");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+        func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        }
     }
 }

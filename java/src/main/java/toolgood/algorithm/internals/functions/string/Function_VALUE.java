@@ -1,46 +1,46 @@
 package toolgood.algorithm.internals.functions.string;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.math.BigDecimal;
+import java.util.List;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
-
-public class Function_VALUE extends Function_1 {
+public final class Function_VALUE extends Function_1 {
     public Function_VALUE(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNumber()) {
-            return args1;
-        }
-        if (args1.IsBoolean()) {
-            return args1.BooleanValue() ? Operand.ONE : Operand.ZERO;
-        }
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter is error!", "Value");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
+    public String Name() {
+        return "Value";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
 
         try {
-            NumberFormat format = NumberFormat.getInstance(Locale.US);
-            Number number = format.parse(args1.TextValue());
-            return Operand.Create(number.doubleValue());
-        } catch (ParseException e) {
-            return Operand.Error("Function '{0}' parameter is error!", "Value");
+            BigDecimal d = new BigDecimal(args1.TextValue().trim());
+            return Operand.Create(d);
+        } catch (NumberFormatException e) {
+            return ParameterError(1);
         }
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Value");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
     }
 }

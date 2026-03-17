@@ -1,29 +1,39 @@
 package toolgood.algorithm.internals.functions.string;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_1;
+import java.util.List;
 
-public class Function_LEN extends Function_1 {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_LEN extends Function_1 {
     public Function_LEN(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter is error!", "Len");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
+    public String Name() {
+        return "Len";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
         return Operand.Create(args1.TextValue().length());
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Len");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
     }
 }
