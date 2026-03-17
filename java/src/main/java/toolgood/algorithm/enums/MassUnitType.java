@@ -5,7 +5,7 @@ package toolgood.algorithm.enums;
 
 public enum MassUnitType {
     /**
-     * ÂÖ?
+     * ÔøΩ?
      */
     G(31),
 
@@ -15,17 +15,17 @@ public enum MassUnitType {
     KG(32),
 
     /**
-     * Âê?
+     * ÔøΩ?
      */
     T(33);
 
-    private final byte value;
+    private final int value;
 
-    MassUnitType(byte value) {
+    MassUnitType(int value) {
         this.value = value;
     }
 
-    public byte getValue() {
+    public int getValue() {
         return value;
     }
 }

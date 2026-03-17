@@ -1,7 +1,6 @@
 package toolgood.algorithm.mathNet.Distributions;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import toolgood.algorithm.system.MathEx;
 import toolgood.algorithm.mathNet.SpecialFunctions;

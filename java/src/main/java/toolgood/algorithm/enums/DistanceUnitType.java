@@ -20,7 +20,7 @@ public enum DistanceUnitType {
     DM(3),
 
     /**
-     * ç±?
+     * ï¿½?
      */
     M(4),
 
@@ -29,13 +29,13 @@ public enum DistanceUnitType {
      */
     KM(5);
 
-    private final byte value;
+    private final int value;
 
-    DistanceUnitType(byte value) {
+    DistanceUnitType(int value) {
         this.value = value;
     }
 
-    public byte getValue() {
+    public int getValue() {
         return value;
     }
 }

@@ -20,7 +20,7 @@ public enum AreaUnitType {
     DM2(13),
 
     /**
-     * 平方�?
+     * 平方�?
      */
     M2(14),
 
@@ -29,13 +29,13 @@ public enum AreaUnitType {
      */
     KM2(15);
 
-    private final byte value;
+    private final int value;
 
-    AreaUnitType(byte value) {
+    AreaUnitType(int value) {
         this.value = value;
     }
 
-    public byte getValue() {
+    public int getValue() {
         return value;
     }
 }

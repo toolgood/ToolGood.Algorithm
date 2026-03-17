@@ -20,7 +20,7 @@ public enum VolumeUnitType {
     DM3(23),
 
     /**
-     * 立方�?
+     * 立方�?
      */
     M3(24),
 
@@ -29,13 +29,13 @@ public enum VolumeUnitType {
      */
     KM3(25);
 
-    private final byte value;
+    private final int value;
 
-    VolumeUnitType(byte value) {
+    VolumeUnitType(int value) {
         this.value = value;
     }
 
-    public byte getValue() {
+    public int getValue() {
         return value;
     }
 }
