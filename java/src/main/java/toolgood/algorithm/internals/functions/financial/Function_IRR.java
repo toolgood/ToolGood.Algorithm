@@ -6,22 +6,26 @@ import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-/**
- * IRR: 返回一组现金流的内部收益率
- * IRR(values, [guess])
- */
-public class Function_IRR extends Function_2 {
-    public Function_IRR(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_IRR extends Function_2 {
+    public Function_IRR(FunctionBase[] funcs) {
+        super(funcs);
+    }
+
+    @Override
+    public String Name() {
+        return "IRR";
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand valuesArg = GetArray_1(engine, tempParameter);
-        if (valuesArg.IsError()) return valuesArg;
+        if (valuesArg.IsErrorOrNone()) return valuesArg;
 
         List<Double> values = new ArrayList<>();
         for (Operand v : valuesArg.ArrayValue()) {
@@ -29,7 +33,7 @@ public class Function_IRR extends Function_2 {
                 values.add(v.DoubleValue());
             } else {
                 Operand v2 = v.ToNumber("Function 'IRR' parameter 1 is error!");
-                if (v2.IsError()) return v2;
+                if (v2.IsErrorOrNone()) return v2;
                 values.add(v2.DoubleValue());
             }
         }
@@ -47,7 +51,7 @@ public class Function_IRR extends Function_2 {
         double guess = 0.1;
         if (func2 != null) {
             Operand guessArg = GetNumber_2(engine, tempParameter);
-            if (guessArg.IsError()) return guessArg;
+            if (guessArg.IsErrorOrNone()) return guessArg;
             guess = guessArg.DoubleValue();
         }
 
@@ -79,7 +83,14 @@ public class Function_IRR extends Function_2 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IRR");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        if (func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

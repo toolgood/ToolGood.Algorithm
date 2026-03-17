@@ -1,50 +1,55 @@
 package toolgood.algorithm.internals.functions.financial;
 
+import java.util.List;
 import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_6;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-/**
- * IPMT: 返回在给定期数内对投资的利息偿还�?
- * IPMT(rate, per, nper, pv, [fv], [type])
- */
-public class Function_IPMT extends Function_6 {
+public final class Function_IPMT extends Function_6 {
     public Function_IPMT(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
+    public String Name() {
+        return "IPMT";
+    }
+
+    @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand rateArg = GetNumber_1(engine, tempParameter);
-        if (rateArg.IsError()) return rateArg;
+        if (rateArg.IsErrorOrNone()) return rateArg;
         double rate = rateArg.DoubleValue();
 
         Operand perArg = GetNumber_2(engine, tempParameter);
-        if (perArg.IsError()) return perArg;
+        if (perArg.IsErrorOrNone()) return perArg;
         double per = perArg.DoubleValue();
 
         Operand nperArg = GetNumber_3(engine, tempParameter);
-        if (nperArg.IsError()) return nperArg;
+        if (nperArg.IsErrorOrNone()) return nperArg;
         double nper = nperArg.DoubleValue();
 
         Operand pvArg = GetNumber_4(engine, tempParameter);
-        if (pvArg.IsError()) return pvArg;
+        if (pvArg.IsErrorOrNone()) return pvArg;
         double pv = pvArg.DoubleValue();
 
         double fv = 0;
         if (func5 != null) {
             Operand fvArg = GetNumber_5(engine, tempParameter);
-            if (fvArg.IsError()) return fvArg;
+            if (fvArg.IsErrorOrNone()) return fvArg;
             fv = fvArg.DoubleValue();
         }
 
         int type = 0;
         if (func6 != null) {
             Operand typeArg = GetNumber_6(engine, tempParameter);
-            if (typeArg.IsError()) return typeArg;
+            if (typeArg.IsErrorOrNone()) return typeArg;
             type = typeArg.IntValue();
             if (type != 0 && type != 1) return ParameterError(6);
         }
@@ -74,7 +79,18 @@ public class Function_IPMT extends Function_6 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IPMT");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

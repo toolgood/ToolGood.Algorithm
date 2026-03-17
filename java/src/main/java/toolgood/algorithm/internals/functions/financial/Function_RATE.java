@@ -1,33 +1,38 @@
 package toolgood.algorithm.internals.functions.financial;
 
+import java.util.List;
 import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_6;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-/**
- * RATE: 返回年金的各期利�?
- * RATE(nper, pmt, pv, [fv], [type], [guess])
- */
-public class Function_RATE extends Function_6 {
+public final class Function_RATE extends Function_6 {
     public Function_RATE(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
+    public String Name() {
+        return "RATE";
+    }
+
+    @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand nperArg = GetNumber_1(engine, tempParameter);
-        if (nperArg.IsError()) return nperArg;
+        if (nperArg.IsErrorOrNone()) return nperArg;
         double nper = nperArg.DoubleValue();
 
         Operand pmtArg = GetNumber_2(engine, tempParameter);
-        if (pmtArg.IsError()) return pmtArg;
+        if (pmtArg.IsErrorOrNone()) return pmtArg;
         double pmt = pmtArg.DoubleValue();
 
         Operand pvArg = GetNumber_3(engine, tempParameter);
-        if (pvArg.IsError()) return pvArg;
+        if (pvArg.IsErrorOrNone()) return pvArg;
         double pv = pvArg.DoubleValue();
 
         if (nper <= 0) return ParameterError(1);
@@ -35,14 +40,14 @@ public class Function_RATE extends Function_6 {
         double fv = 0;
         if (func4 != null) {
             Operand fvArg = GetNumber_4(engine, tempParameter);
-            if (fvArg.IsError()) return fvArg;
+            if (fvArg.IsErrorOrNone()) return fvArg;
             fv = fvArg.DoubleValue();
         }
 
         int type = 0;
         if (func5 != null) {
             Operand typeArg = GetNumber_5(engine, tempParameter);
-            if (typeArg.IsError()) return typeArg;
+            if (typeArg.IsErrorOrNone()) return typeArg;
             type = typeArg.IntValue();
             if (type != 0 && type != 1) return ParameterError(5);
         }
@@ -50,7 +55,7 @@ public class Function_RATE extends Function_6 {
         double guess = 0.1;
         if (func6 != null) {
             Operand guessArg = GetNumber_6(engine, tempParameter);
-            if (guessArg.IsError()) return guessArg;
+            if (guessArg.IsErrorOrNone()) return guessArg;
             guess = guessArg.DoubleValue();
         }
 
@@ -62,6 +67,7 @@ public class Function_RATE extends Function_6 {
         for (int i = 0; i < 100; i++) {
             double factor = Math.pow(1 + rate, n);
             double fn;
+
             if (type == 1) {
                 fn = v * factor + p * (1 + rate) * (factor - 1) / rate + f;
             } else {
@@ -71,11 +77,11 @@ public class Function_RATE extends Function_6 {
             double dfn;
             if (type == 1) {
                 dfn = v * n * Math.pow(1 + rate, n - 1)
-                    + p * (1 + rate) * (n * rate * Math.pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate)
-                    + p * (factor - 1) / rate;
+                        + p * (1 + rate) * (n * rate * Math.pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate)
+                        + p * (factor - 1) / rate;
             } else {
                 dfn = v * n * Math.pow(1 + rate, n - 1)
-                    + p * (n * rate * Math.pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate);
+                        + p * (n * rate * Math.pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate);
             }
 
             if (Math.abs(dfn) < 1e-12) break;
@@ -90,7 +96,18 @@ public class Function_RATE extends Function_6 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "RATE");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func4 != null) func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

@@ -6,38 +6,42 @@ import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.operands.MyDate;
 
-/**
- * XIRR: 返回一组不定期发生的现金流的内部收益率
- * XIRR(values, dates, [guess])
- */
-public class Function_XIRR extends Function_3 {
-    public Function_XIRR(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_XIRR extends Function_3 {
+    public Function_XIRR(FunctionBase[] funcs) {
+        super(funcs);
+    }
+
+    @Override
+    public String Name() {
+        return "XIRR";
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand valuesArg = GetArray_1(engine, tempParameter);
-        if (valuesArg.IsError()) return valuesArg;
+        if (valuesArg.IsErrorOrNone()) return valuesArg;
 
         List<Double> values = new ArrayList<>();
         for (Operand v : valuesArg.ArrayValue()) {
-            values.add(v.IsNumber() ? v.DoubleValue() : 0.0);
+            values.add(v.DoubleValue());
         }
 
         Operand datesArg = GetArray_2(engine, tempParameter);
-        if (datesArg.IsError()) return datesArg;
+        if (datesArg.IsErrorOrNone()) return datesArg;
 
         List<Long> dateMillis = new ArrayList<>();
         for (Operand d : datesArg.ArrayValue()) {
             if (d.IsDate()) {
                 dateMillis.add(d.DateValue().ToDateTime().getMillis());
             } else if (d.IsText()) {
-                MyDate myDate = MyDate.Parse(d.TextValue());
+                MyDate myDate = MyDate.parse(d.TextValue());
                 if (myDate == null) return ParameterError(2);
                 dateMillis.add(myDate.ToDateTime().getMillis());
             } else {
@@ -50,7 +54,7 @@ public class Function_XIRR extends Function_3 {
         double guess = 0.1;
         if (func3 != null) {
             Operand guessArg = GetNumber_3(engine, tempParameter);
-            if (guessArg.IsError()) return guessArg;
+            if (guessArg.IsErrorOrNone()) return guessArg;
             guess = guessArg.DoubleValue();
         }
 
@@ -86,7 +90,15 @@ public class Function_XIRR extends Function_3 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "XIRR");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        func2.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        if (func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

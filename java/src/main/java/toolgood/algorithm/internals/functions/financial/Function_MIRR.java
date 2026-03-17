@@ -6,34 +6,38 @@ import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-/**
- * MIRR: 返回一组定期现金流的修正内部收益率
- * MIRR(values, finance_rate, reinvest_rate)
- */
-public class Function_MIRR extends Function_3 {
-    public Function_MIRR(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_MIRR extends Function_3 {
+    public Function_MIRR(FunctionBase[] funcs) {
+        super(funcs);
+    }
+
+    @Override
+    public String Name() {
+        return "MIRR";
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand valuesArg = GetArray_1(engine, tempParameter);
-        if (valuesArg.IsError()) return valuesArg;
+        if (valuesArg.IsErrorOrNone()) return valuesArg;
 
         List<Double> values = new ArrayList<>();
         for (Operand v : valuesArg.ArrayValue()) {
-            values.add(v.IsNumber() ? v.DoubleValue() : 0.0);
+            values.add(v.DoubleValue());
         }
 
         Operand financeRateArg = GetNumber_2(engine, tempParameter);
-        if (financeRateArg.IsError()) return financeRateArg;
+        if (financeRateArg.IsErrorOrNone()) return financeRateArg;
         double financeRate = financeRateArg.DoubleValue();
 
         Operand reinvestRateArg = GetNumber_3(engine, tempParameter);
-        if (reinvestRateArg.IsError()) return reinvestRateArg;
+        if (reinvestRateArg.IsErrorOrNone()) return reinvestRateArg;
         double reinvestRate = reinvestRateArg.DoubleValue();
 
         int n = values.size();
@@ -58,7 +62,15 @@ public class Function_MIRR extends Function_3 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "MIRR");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }
