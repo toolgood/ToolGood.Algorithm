@@ -238,9 +238,6 @@ namespace ToolGood.Algorithm.Test.Flow
             t = engine.TryEvaluate("1=1 && 2!=2", true);
             Assert.AreEqual(false, t);
 
-            t = engine.TryEvaluate("1=1 && 2!=2", true);
-            Assert.AreEqual(false, t);
-
             t = engine.TryEvaluate("1=1 || 2!=2", false);
             Assert.AreEqual(true, t);
         }

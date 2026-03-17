@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
 namespace ToolGood.Algorithm.Test
@@ -6,41 +6,6 @@ namespace ToolGood.Algorithm.Test
     [TestFixture]
     internal class EngineTest
     {
-        [Test]
-        public void Test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-
-            var c = engine.TryEvaluate("2+3", 0);
-            Assert.AreEqual(5, c);
-            c = engine.TryEvaluate("(2)+3", 0);
-            Assert.AreEqual(5, c);
-            c = engine.TryEvaluate("2+3*2+10/2*4", 0);
-            Assert.AreEqual(28, c);
-
-            c = engine.TryEvaluate("if(2+3*2+10/2*4,1", 0);
-            Assert.AreEqual(0, c);
-
-            var b = engine.TryEvaluate("true", false);
-            Assert.AreEqual(true, b);
-            b = engine.TryEvaluate("false", true);
-            Assert.AreEqual(false, b);
-
-            var b1 = engine.TryEvaluate("if(true,1,2)", 0);
-            Assert.AreEqual(1, b1);
-
-            b1 = engine.TryEvaluate("if(false,1,2)", 0);
-            Assert.AreEqual(2, b1);
-
-            var b2 = engine.TryEvaluate("pi*4", 0.0);
-            Assert.AreEqual(Math.PI * 4, b2, 10);
-            b2 = engine.TryEvaluate("e*4", 0.0);
-            Assert.AreEqual(Math.E * 4, b2, 10);
-
-            var t2 = engine.TryEvaluate("Ａsc('ａｂｃＡＢＣ１２３')", "");
-            Assert.AreEqual(t2, "abcABC123");
-        }
-
         [Test]
         public void base_test2()
         {

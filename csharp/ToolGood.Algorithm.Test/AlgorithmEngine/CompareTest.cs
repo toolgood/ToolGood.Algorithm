@@ -124,9 +124,6 @@ namespace ToolGood.Algorithm.Test.Compare
             value = engine.TryEvaluate("-1 > -2", false);
             Assert.AreEqual(value, true);
 
-            var value2 = engine.TryEvaluate("-1 > -2", false);
-            Assert.AreEqual(value2, true);
-
             var value3 = engine.TryEvaluate("-7 < -2", false);
             Assert.AreEqual(value3, true);
 
