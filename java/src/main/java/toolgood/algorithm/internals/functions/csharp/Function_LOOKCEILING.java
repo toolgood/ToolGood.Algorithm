@@ -15,7 +15,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-class Function_LOOKCEILING extends Function_2 {
+final class Function_LOOKCEILING extends Function_2 {
     public Function_LOOKCEILING(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -28,14 +28,10 @@ class Function_LOOKCEILING extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsError() || args1.IsNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) { return args1; }
 
         Operand args2 = GetArray_2(engine, tempParameter);
-        if (args2.IsError() || args2.IsNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
         FunctionUtil.FlattenToList(args2, list);

@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.csharp;
 
-import java.lang.StringBuilder;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -25,14 +24,10 @@ public final class Function_STARTSWITH extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetText_1(engine, tempParameter);
-        if (args1.IsError() || args1.IsNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) { return args1; }
 
         Operand args2 = GetText_2(engine, tempParameter);
-        if (args2.IsError() || args2.IsNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) { return args2; }
 
         String text = args1.TextValue();
         if (func3 == null) {
@@ -40,9 +35,7 @@ public final class Function_STARTSWITH extends Function_3 {
         }
 
         Operand args3 = GetBoolean_3(engine, tempParameter);
-        if (args3.IsError() || args3.IsNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) { return args3; }
 
         if (args3.BooleanValue()) {
             return Operand.Create(text.toLowerCase().startsWith(args2.TextValue().toLowerCase()));
@@ -56,8 +49,7 @@ public final class Function_STARTSWITH extends Function_3 {
     }
 
     @Override
-    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
-            OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
         func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
         if (func3 != null) {

@@ -24,18 +24,14 @@ public final class Function_TRIMEND extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetText_1(engine, tempParameter);
-        if (args1.IsError() || args1.IsNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) { return args1; }
 
         if (func2 == null) {
             return Operand.Create(trimEnd(args1.TextValue()));
         }
 
         Operand args2 = GetText_2(engine, tempParameter);
-        if (args2.IsError() || args2.IsNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) { return args2; }
 
         char[] trimChars = args2.TextValue().toCharArray();
         return Operand.Create(trimEnd(args1.TextValue(), trimChars));

@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.csharp;
 
-import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -34,7 +33,7 @@ public final class Function_JOIN extends Function_N {
         Operand args1 = args.get(0);
         if (args1.IsJson()) {
             Operand o = args1.ToArray(null);
-            if (!o.IsError() && !o.IsNone()) {
+            if (!o.IsErrorOrNone()) {
                 args1 = o;
             }
         }
@@ -46,14 +45,14 @@ public final class Function_JOIN extends Function_N {
             }
 
             Operand args2 = ConvertToText(args.get(1), 2);
-            if (args2.IsError() || args2.IsNone()) {
+            if (args2.IsErrorOrNone()) {
                 return args2;
             }
 
             return Operand.Create(String.join(args2.TextValue(), list));
         } else {
             args1 = ConvertToText(args1, 1);
-            if (args1.IsError() || args1.IsNone()) {
+            if (args1.IsErrorOrNone()) {
                 return args1;
             }
 

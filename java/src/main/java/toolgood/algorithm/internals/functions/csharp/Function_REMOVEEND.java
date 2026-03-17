@@ -24,21 +24,15 @@ public final class Function_REMOVEEND extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetText_1(engine, tempParameter);
-        if (args1.IsError() || args1.IsNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) { return args1; }
 
         Operand args2 = GetText_2(engine, tempParameter);
-        if (args2.IsError() || args2.IsNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) { return args2; }
 
         boolean ignoreCase = false;
         if (func3 != null) {
             Operand args3 = GetBoolean_3(engine, tempParameter);
-            if (args3.IsError() || args3.IsNone()) {
-                return args3;
-            }
+            if (args3.IsErrorOrNone()) { return args3; }
             ignoreCase = args3.BooleanValue();
         }
 

@@ -24,14 +24,10 @@ public final class Function_SUBSTRING extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetText_1(engine, tempParameter);
-        if (args1.IsError() || args1.IsNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) { return args1; }
 
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsError() || args2.IsNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) { return args2; }
 
         String text = args1.TextValue();
         int startIndex = args2.IntValue() - engine.ExcelIndex;
@@ -48,9 +44,7 @@ public final class Function_SUBSTRING extends Function_3 {
         }
 
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsError() || args3.IsNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) { return args3; }
 
         int length = args3.IntValue();
         if (length < 0) {

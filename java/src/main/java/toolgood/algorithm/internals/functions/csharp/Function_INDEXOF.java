@@ -24,14 +24,10 @@ public final class Function_INDEXOF extends Function_4 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetText_1(engine, tempParameter);
-        if (args1.IsError() || args1.IsNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) { return args1; }
 
         Operand args2 = GetText_2(engine, tempParameter);
-        if (args2.IsError() || args2.IsNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) { return args2; }
 
         String text = args1.TextValue();
         if (func3 == null) {
@@ -39,9 +35,7 @@ public final class Function_INDEXOF extends Function_4 {
         }
 
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsError() || args3.IsNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) { return args3; }
         int startIndex = args3.IntValue() - engine.ExcelIndex;
         if (startIndex < 0 || startIndex > text.length()) {
             return ParameterError(3);
@@ -52,9 +46,7 @@ public final class Function_INDEXOF extends Function_4 {
         }
 
         Operand args4 = GetNumber_4(engine, tempParameter);
-        if (args4.IsError() || args4.IsNone()) {
-            return args4;
-        }
+        if (args4.IsErrorOrNone()) { return args4; }
         int count = args4.IntValue();
         if (count < 0 || startIndex + count > text.length()) {
             return ParameterError(4);
