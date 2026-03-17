@@ -12,6 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.internals.functions.Tuple;
 
 public final class Function_SUMIF extends Function_3 {
     public Function_SUMIF(FunctionBase[] funcs) {
@@ -64,9 +65,9 @@ public final class Function_SUMIF extends Function_3 {
                 BigDecimal d = new BigDecimal(text);
                 sum = FunctionUtil.GetSumIf(list, d, sumdbs);
             } catch (NumberFormatException e) {
-                Object[] m2 = FunctionUtil.ParseSumIfMatch(text);
+                Tuple<String, BigDecimal> m2 = FunctionUtil.ParseSumIfMatch(text);
                 if (m2 != null) {
-                    sum = FunctionUtil.GetSumIf(list, (String) m2[0], (BigDecimal) m2[1], sumdbs);
+                    sum = FunctionUtil.GetSumIf(list, m2.getItem1(), m2.getItem2(), sumdbs);
                 } else {
                     return ParameterError(2);
                 }

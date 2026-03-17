@@ -32,13 +32,15 @@ public abstract class FunctionBase {
      * @param work
      * @param tempParameter 临时参数，未找到返回null
      * @return
+     * @throws Exception 
      */
-    public abstract Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter);
+    public abstract Operand Evaluate(AlgorithmEngine work, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception;
 
     /**
      * 进行计算（无临时参数�?
+     * @throws Exception 
      */
-    public Operand Evaluate(AlgorithmEngine work) {
+    public Operand Evaluate(AlgorithmEngine work) throws Exception {
         return Evaluate(work, null);
     }
 

@@ -1,13 +1,10 @@
 package toolgood.algorithm.internals.functions;
 
 import java.lang.StringBuilder;
-import java.util.List;
 import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.ParameterType;
 
 public abstract class Function_6 extends Function_5 {
     protected FunctionBase func6;
@@ -47,31 +44,31 @@ public abstract class Function_6 extends Function_5 {
         stringBuilder.append(')');
     }
 
-    protected Operand GetText_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    protected Operand GetText_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args6 = func6.Evaluate(engine, tempParameter);
         if (args6.IsText()) return args6;
         return ConvertToText(args6, 6);
     }
 
-    protected Operand GetNumber_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    protected Operand GetNumber_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args6 = func6.Evaluate(engine, tempParameter);
         if (args6.IsNumber()) return args6;
         return ConvertToNumber(args6, 6);
     }
 
-    protected Operand GetDate_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    protected Operand GetDate_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args6 = func6.Evaluate(engine, tempParameter);
         if (args6.IsDate()) return args6;
         return ConvertToDate(args6, 6);
     }
 
-    protected Operand GetBoolean_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    protected Operand GetBoolean_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args6 = func6.Evaluate(engine, tempParameter);
         if (args6.IsBoolean()) return args6;
         return ConvertToBoolean(args6, 6);
     }
 
-    protected Operand GetArray_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    protected Operand GetArray_6(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args6 = func6.Evaluate(engine, tempParameter);
         if (args6.IsArray()) return args6;
         return ConvertToArray(args6, 6);

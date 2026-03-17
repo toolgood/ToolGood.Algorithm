@@ -31,7 +31,7 @@ public final class Function_COUNT extends Function_N {
         }
 
         List<Operand> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args, list);
+        boolean o = FunctionUtil.FlattenToList_Operand(args, list);
         if (o == false) {
             return FunctionError();
         }

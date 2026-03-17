@@ -12,6 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.internals.functions.Tuple;
 
 public final class Function_COUNTIF extends Function_2 {
     public Function_COUNTIF(FunctionBase[] funcs) {
@@ -36,7 +37,7 @@ public final class Function_COUNTIF extends Function_2 {
         }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args1, list);
+        boolean o = FunctionUtil.FlattenToList_Operand_BigDecimal(args1, list);
         if (o == false) {
             return ParameterError(1);
         }
@@ -49,9 +50,9 @@ public final class Function_COUNTIF extends Function_2 {
                 BigDecimal d = new BigDecimal(text);
                 count = FunctionUtil.GetCountIf(list, d);
             } catch (NumberFormatException e) {
-                Object[] m2 = FunctionUtil.ParseSumIfMatch(text);
+                Tuple<String, BigDecimal> m2 = FunctionUtil.ParseSumIfMatch(text);
                 if (m2 != null) {
-                    count = FunctionUtil.GetCountIf(list, (String) m2[0], (BigDecimal) m2[1]);
+                    count = FunctionUtil.GetCountIf(list, m2.getItem1(), m2.getItem2());
                 } else {
                     return ParameterError(2);
                 }
