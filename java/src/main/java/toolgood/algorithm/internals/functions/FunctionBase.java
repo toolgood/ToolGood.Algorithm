@@ -67,7 +67,12 @@ public abstract class FunctionBase {
     public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result,
             OperandType operandType, String op, String val) {
     }
-
+    /**
+     * 内部方法，获取参数类型（默认空实现，子类可覆盖）
+     */
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType) {
+        GetParameterTypes(noneEngine, result, operandType, null, null);
+    }
     // endregion GetParameterTypes
 
     // region ConvertToXxx helpers

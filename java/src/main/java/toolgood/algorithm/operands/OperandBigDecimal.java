@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-final class OperandBigDecimal extends Operand {
+public final class OperandBigDecimal extends Operand {
     private final BigDecimal _value;
 
     public OperandBigDecimal(BigDecimal obj) {

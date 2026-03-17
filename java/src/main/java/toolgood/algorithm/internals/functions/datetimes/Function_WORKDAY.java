@@ -30,7 +30,7 @@ public class Function_WORKDAY extends Function_N {
             }
         }
 
-        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
+        toolgood.algorithm.operands.MyDate startMyDate = args1.DateValue();
         int days = args2.IntValue();
         HashSet<String> holidaySet = new HashSet<>();
         
@@ -42,18 +42,18 @@ public class Function_WORKDAY extends Function_N {
                     return ar;
                 }
             }
-            toolgood.algorithm.internals.MyDate holiday = ar.DateValue();
+            toolgood.algorithm.operands.MyDate holiday = ar.DateValue();
             holidaySet.add(holiday.Year + "-" + holiday.Month + "-" + holiday.Day);
         }
         
         while (days > 0) {
             startMyDate = startMyDate.AddDays(1);
             int dayOfWeek = startMyDate.DayOfWeek();
-            // 检查是否是周末�? 是星期日�? 是星期六�?
+            // 检查是否是周末�? 是星期日�? 是星期六�?
             if (dayOfWeek == 1 || dayOfWeek == 7) {
                 continue;
             }
-            // 检查是否是节假�?
+            // 检查是否是节假�?
             String dateStr = startMyDate.Year + "-" + startMyDate.Month + "-" + startMyDate.Day;
             if (holidaySet.contains(dateStr)) {
                 continue;

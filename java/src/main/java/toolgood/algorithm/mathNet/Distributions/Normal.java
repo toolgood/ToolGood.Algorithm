@@ -21,7 +21,7 @@ public class Normal {
             throw new IllegalArgumentException("standardDev must be greater than zero");
         }
 
-        BigDecimal num = MathEx.Expi(
+        BigDecimal num = MathEx.Exp(
                 x.subtract(mean)
                         .pow(2)
                         .divide(

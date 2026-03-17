@@ -1,25 +1,31 @@
 package toolgood.algorithm.internals.functions.csharpweb;
 
-import toolgood.algorithm.internals.functions.Function_1;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-
-
-public class Function_HTMLDECODE extends Function_1 {
+public final class Function_HTMLDECODE extends Function_1 {
     public Function_HTMLDECODE(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter is error!", "HtmlDecode");
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "HtmlDecode";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
         String s = args1.TextValue();
         String r = HtmlDecode(s);
@@ -27,8 +33,14 @@ public class Function_HTMLDECODE extends Function_1 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "HtmlDecode");
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
     }
 
     private String HtmlDecode(String value) {
@@ -36,9 +48,9 @@ public class Function_HTMLDECODE extends Function_1 {
             return "";
         }
         return value.replace("&lt;", "<")
-                   .replace("&gt;", ">")
-                   .replace("&amp;", "&")
-                   .replace("&quot;", "\"")
-                   .replace("&#39;", "'");
+                .replace("&gt;", ">")
+                .replace("&amp;", "&")
+                .replace("&quot;", "\"")
+                .replace("&#39;", "'");
     }
 }

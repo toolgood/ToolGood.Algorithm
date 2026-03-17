@@ -6,9 +6,9 @@ import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.operands.MyDate;
 
 /**
  * XIRR: 返回一组不定期发生的现金流的内部收益率

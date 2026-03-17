@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
 import toolgood.algorithm.internals.functions.Function_3;
-import toolgood.algorithm.internals.MyDate;
+import toolgood.algorithm.operands.MyDate;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
@@ -102,11 +102,11 @@ public class Function_YEARFRAC extends Function_3 {
         int daysInStartYear = isLeapYear(startYear) ? 366 : 365;
         int daysInEndYear = isLeapYear(endYear) ? 366 : 365;
 
-        // �?startDate 到当年年�?
+        // �?startDate 到当年年�?
         MyDate endOfStartYear = new MyDate(startYear, 12, 31, 0, 0, 0);
         double result = daysBetween(startDate, endOfStartYear) / (double) daysInStartYear;
 
-        // �?endYear 年初�?endDate
+        // �?endYear 年初�?endDate
         MyDate startOfEndYear = new MyDate(endYear, 1, 1, 0, 0, 0);
         result += daysBetween(startOfEndYear, endDate) / (double) daysInEndYear;
 
