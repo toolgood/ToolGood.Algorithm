@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,10 +12,6 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_TINV extends Function_2 {
-    public Function_TINV(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
-    }
-
     public Function_TINV(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -29,25 +24,20 @@ public final class Function_TINV extends Function_2 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
 
-        double probability = args1.DoubleValue();
+        java.math.BigDecimal p = args1.NumberValue();
+        if (p.compareTo(java.math.BigDecimal.ZERO) <= 0 || p.compareTo(java.math.BigDecimal.ONE) >= 0) {
+            return ParameterError(1);
+        }
         int degreesFreedom = args2.IntValue();
-
-        if (degreesFreedom < 1 || probability <= 0.0 || probability > 1.0) {
-            return Operand.Error("Function '{0}' parameter is error!", "TInv");
+        if (degreesFreedom <= 0) {
+            return ParameterError(2);
         }
-        try {
-            return Operand.Create(ExcelFunctions.TInv(probability, degreesFreedom));
-        } catch (Exception e) {
-            return Operand.Error("Function '{0}' parameter is error!", "TInv");
-        }
+        return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
     }
 
     @Override

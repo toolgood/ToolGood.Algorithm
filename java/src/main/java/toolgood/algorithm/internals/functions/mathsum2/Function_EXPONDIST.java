@@ -10,45 +10,53 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
-import toolgood.algorithm.mathNet.ExcelFunctions;
+import toolgood.algorithm.system.MathEx;
 
 public final class Function_EXPONDIST extends Function_3 {
-    public Function_EXPONDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
-    }
-
     public Function_EXPONDIST(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
     public String Name() {
-        return "ExponDist";
+        return "ExpOnDist";
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetBoolean_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
 
-        double x = args1.DoubleValue();
-        double lambda = args2.DoubleValue();
-        boolean cumulative = args3.BooleanValue();
-
-        if (x < 0.0 || lambda <= 0.0) {
-            return Operand.Error("Function '{0}' parameter is error!", "ExponDist");
+        BigDecimal n1 = args1.NumberValue();
+        if (n1.compareTo(BigDecimal.ZERO) < 0) {
+            return ParameterError(1);
         }
-        return Operand.Create(ExcelFunctions.ExponDist(x, lambda, cumulative));
+        BigDecimal rate = args2.NumberValue();
+        if (rate.compareTo(BigDecimal.ZERO) <= 0) {
+            return ParameterError(2);
+        }
+        return Operand.Create(ExponDist(n1, rate, args3.BooleanValue()));
+    }
+
+    public BigDecimal ExponDist(BigDecimal x, BigDecimal rate, boolean state) {
+        if (state) {
+            return CDF(rate, x);
+        }
+        return PDF(rate, x);
+    }
+
+    public BigDecimal PDF(BigDecimal rate, BigDecimal x) {
+        return x.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : rate.multiply(MathEx.Exp(rate.negate().multiply(x)));
+    }
+
+    public BigDecimal CDF(BigDecimal rate, BigDecimal x) {
+        return x.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : BigDecimal.ONE.subtract(MathEx.Exp(rate.negate().multiply(x)));
     }
 
     @Override

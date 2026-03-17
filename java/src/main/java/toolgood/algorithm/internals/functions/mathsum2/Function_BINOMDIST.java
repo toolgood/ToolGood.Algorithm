@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,10 +12,6 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_BINOMDIST extends Function_4 {
-    public Function_BINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
-        super(func1, func2, func3, func4);
-    }
-
     public Function_BINOMDIST(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -29,31 +24,30 @@ public final class Function_BINOMDIST extends Function_4 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
+
         Operand args4 = GetBoolean_4(engine, tempParameter);
-        if (args4.IsErrorOrNone()) {
-            return args4;
-        }
+        if (args4.IsErrorOrNone()) return args4;
 
-        int numberS = args1.IntValue();
-        int trials = args2.IntValue();
-        double probabilityS = args3.DoubleValue();
-        boolean cumulative = args4.BooleanValue();
-
-        if (probabilityS < 0.0 || probabilityS > 1.0 || trials < 0 || numberS < 0 || numberS > trials) {
-            return Operand.Error("Function '{0}' parameter is error!", "BinomDist");
+        int n2 = args2.IntValue();
+        if (n2 < 0) {
+            return ParameterError(2);
         }
-        return Operand.Create(ExcelFunctions.BinomDist(numberS, trials, probabilityS, cumulative));
+        int k = args1.IntValue();
+        if (k < 0 || k > n2) {
+            return ParameterError(1);
+        }
+        java.math.BigDecimal n3 = args3.NumberValue();
+        if (n3.compareTo(java.math.BigDecimal.ZERO) < 0 || n3.compareTo(java.math.BigDecimal.ONE) > 0) {
+            return ParameterError(3);
+        }
+        return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue(), n2, n3, args4.BooleanValue()));
     }
 
     @Override

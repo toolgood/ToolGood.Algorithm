@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,10 +12,6 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_GAMMADIST extends Function_4 {
-    public Function_GAMMADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
-        super(func1, func2, func3, func4);
-    }
-
     public Function_GAMMADIST(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -29,30 +24,30 @@ public final class Function_GAMMADIST extends Function_4 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
+
         Operand args4 = GetBoolean_4(engine, tempParameter);
-        if (args4.IsErrorOrNone()) {
-            return args4;
-        }
+        if (args4.IsErrorOrNone()) return args4;
 
-        double x = args1.DoubleValue();
-        double alpha = args2.DoubleValue();
-        double beta = args3.DoubleValue();
+        java.math.BigDecimal x = args1.NumberValue();
+        if (x.compareTo(java.math.BigDecimal.ZERO) < 0) {
+            return ParameterError(1);
+        }
+        java.math.BigDecimal alpha = args2.NumberValue();
+        if (alpha.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(2);
+        }
+        java.math.BigDecimal beta = args3.NumberValue();
+        if (beta.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(3);
+        }
         boolean cumulative = args4.BooleanValue();
-
-        if (alpha <= 0.0 || beta <= 0.0 || x < 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "GammaDist");
-        }
         return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
     }
 

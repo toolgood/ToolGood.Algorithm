@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -25,12 +24,9 @@ public final class Function_NORMSDIST extends Function_1 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
-
-        double z = args1.DoubleValue();
-        return Operand.Create(ExcelFunctions.NormSDist(z));
+        if (args1.IsErrorOrNone()) return args1;
+        java.math.BigDecimal num = args1.NumberValue();
+        return Operand.Create(ExcelFunctions.NormSDist(num));
     }
 
     @Override

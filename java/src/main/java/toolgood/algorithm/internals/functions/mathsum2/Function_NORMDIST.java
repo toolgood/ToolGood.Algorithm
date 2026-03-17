@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,10 +12,6 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_NORMDIST extends Function_4 {
-    public Function_NORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
-        super(func1, func2, func3, func4);
-    }
-
     public Function_NORMDIST(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -29,31 +24,26 @@ public final class Function_NORMDIST extends Function_4 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
+
         Operand args4 = GetBoolean_4(engine, tempParameter);
-        if (args4.IsErrorOrNone()) {
-            return args4;
-        }
+        if (args4.IsErrorOrNone()) return args4;
 
-        double x = args1.DoubleValue();
-        double mean = args2.DoubleValue();
-        double standardDev = args3.DoubleValue();
-        boolean cumulative = args4.BooleanValue();
-
-        if (standardDev <= 0.0) {
-            return Operand.Error("Function '{0}' parameter is error!", "NormDist");
+        java.math.BigDecimal num = args1.NumberValue();
+        java.math.BigDecimal avg = args2.NumberValue();
+        java.math.BigDecimal STDEV = args3.NumberValue();
+        if (STDEV.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(3);
         }
-        return Operand.Create(ExcelFunctions.NormDist(x, mean, standardDev, cumulative));
+        boolean b = args4.BooleanValue();
+
+        return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
     }
 
     @Override

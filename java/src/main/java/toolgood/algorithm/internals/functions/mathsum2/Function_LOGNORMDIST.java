@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,42 +12,35 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_LOGNORMDIST extends Function_3 {
-    public Function_LOGNORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
-    }
-
     public Function_LOGNORMDIST(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
     public String Name() {
-        return "LognormDist";
+        return "LogNormDist";
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
+        if (args1.IsErrorOrNone()) return args1;
+        java.math.BigDecimal x = args1.NumberValue();
+        if (x.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(1);
         }
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
 
-        double x = args1.DoubleValue();
-        double mean = args2.DoubleValue();
-        double standardDev = args3.DoubleValue();
-
-        if (standardDev <= 0.0 || x <= 0.0) {
-            return Operand.Error("Function '{0}' parameter is error!", "LognormDist");
+        java.math.BigDecimal n3 = args3.NumberValue();
+        if (n3.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(3);
         }
-        return Operand.Create(ExcelFunctions.LognormDist(x, mean, standardDev));
+        return Operand.Create(ExcelFunctions.LognormDist(args1.NumberValue(), args2.NumberValue(), n3));
     }
 
     @Override

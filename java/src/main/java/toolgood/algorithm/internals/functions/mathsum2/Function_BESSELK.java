@@ -9,8 +9,8 @@ import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.functions.MathEx;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
 public final class Function_BESSELK extends Function_2 {
     public Function_BESSELK(FunctionBase func1, FunctionBase func2) {
@@ -38,7 +38,7 @@ public final class Function_BESSELK extends Function_2 {
         }
 
         BigDecimal x = args1.NumberValue();
-        int n = args2.IntValue();
+        int n = (int) Math.floor(args2.NumberValue().doubleValue());
 
         if (x.compareTo(BigDecimal.ZERO) <= 0) {
             return ParameterError(1);
@@ -71,13 +71,13 @@ public final class Function_BESSELK extends Function_2 {
             BigDecimal y1 = x.multiply(x).divide(new BigDecimal("4"), java.math.MathContext.DECIMAL128);
             BigDecimal ans = MathEx.Log(x.divide(new BigDecimal("2"), java.math.MathContext.DECIMAL128)).negate().multiply(BesselI0(x)).add(new BigDecimal("-0.57721566490153286061")
                 .add(y1.multiply(new BigDecimal("0.42278433509846713939").add(y1.multiply(new BigDecimal("0.230697567077446").add(y1.multiply(new BigDecimal("0.034885890266341")
-                .add(y1.multiply(new BigDecimal("0.002626979711643").add(y1.multiply(new BigDecimal("0.000107502176243").add(y1.multiply(new BigDecimal("0.000007400456812")))))))))))));
+                .add(y1.multiply(new BigDecimal("0.002626979711643").add(y1.multiply(new BigDecimal("0.000107502176243").add(y1.multiply(new BigDecimal("0.000007400456812"))))))))))));
             return ans;
         }
         BigDecimal y2 = new BigDecimal("2").divide(x, java.math.MathContext.DECIMAL128);
         BigDecimal ans2 = MathEx.Exp(x.negate()).divide(MathEx.Sqrt(x), java.math.MathContext.DECIMAL128).multiply(new BigDecimal("1.253314137315500")
             .add(y2.multiply(new BigDecimal("-0.078323582855262").add(y2.multiply(new BigDecimal("0.021895687854228").add(y2.multiply(new BigDecimal("-0.010624628097740")
-            .add(y2.multiply(new BigDecimal("0.005878072214632").add(y2.multiply(new BigDecimal("-0.002515401617640").add(y2.multiply(new BigDecimal("0.000532080305632")))))))))))));
+            .add(y2.multiply(new BigDecimal("0.005878072214632").add(y2.multiply(new BigDecimal("-0.002515401617640").add(y2.multiply(new BigDecimal("0.000532080305632"))))))))))));
         return ans2;
     }
 
@@ -86,13 +86,13 @@ public final class Function_BESSELK extends Function_2 {
             BigDecimal y1 = x.multiply(x).divide(new BigDecimal("4"), java.math.MathContext.DECIMAL128);
             BigDecimal ans = MathEx.Log(x.divide(new BigDecimal("2"), java.math.MathContext.DECIMAL128)).multiply(BesselI1(x)).add(BigDecimal.ONE.divide(x, java.math.MathContext.DECIMAL128).multiply(BigDecimal.ONE
                 .add(y1.multiply(new BigDecimal("0.154431442036717").add(y1.multiply(new BigDecimal("-0.672785797513523").add(y1.multiply(new BigDecimal("-0.181568943578864")
-                .add(y1.multiply(new BigDecimal("-0.019194020400716").add(y1.multiply(new BigDecimal("0.001104044918568").add(y1.multiply(new BigDecimal("0.000046862429868")))))))))))))));
+                .add(y1.multiply(new BigDecimal("-0.019194020400716").add(y1.multiply(new BigDecimal("0.001104044918568").add(y1.multiply(new BigDecimal("0.000046862429868")))))))))))));
             return ans;
         }
         BigDecimal y2 = new BigDecimal("2").divide(x, java.math.MathContext.DECIMAL128);
         BigDecimal ans2 = MathEx.Exp(x.negate()).divide(MathEx.Sqrt(x), java.math.MathContext.DECIMAL128).multiply(new BigDecimal("1.253314137315500")
             .add(y2.multiply(new BigDecimal("0.234986192707248").add(y2.multiply(new BigDecimal("-0.036556202034020").add(y2.multiply(new BigDecimal("0.015042680553908")
-            .add(y2.multiply(new BigDecimal("-0.007803534366237").add(y2.multiply(new BigDecimal("0.003256142832609").add(y2.multiply(new BigDecimal("-0.000682450383692")))))))))))));
+            .add(y2.multiply(new BigDecimal("-0.007803534366237").add(y2.multiply(new BigDecimal("0.003256142832609").add(y2.multiply(new BigDecimal("-0.000682450383692"))))))))))));
         return ans2;
     }
 

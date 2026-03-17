@@ -1,5 +1,6 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -9,6 +10,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
 public final class Function_FISHERINV extends Function_1 {
     public Function_FISHERINV(FunctionBase func1) {
@@ -26,10 +28,9 @@ public final class Function_FISHERINV extends Function_1 {
         if (args1.IsErrorOrNone()) {
             return args1;
         }
-
-        double x = args1.DoubleValue();
-        double result = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
-        return Operand.Create(result);
+        BigDecimal x = args1.NumberValue();
+        BigDecimal n = MathEx.Exp(new BigDecimal("2").multiply(x)).subtract(BigDecimal.ONE).divide(MathEx.Exp(new BigDecimal("2").multiply(x)).add(BigDecimal.ONE), java.math.MathContext.DECIMAL128);
+        return Operand.Create(n);
     }
 
     @Override

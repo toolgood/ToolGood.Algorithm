@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,10 +12,6 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_HYPGEOMDIST extends Function_4 {
-    public Function_HYPGEOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
-        super(func1, func2, func3, func4);
-    }
-
     public Function_HYPGEOMDIST(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -29,32 +24,40 @@ public final class Function_HYPGEOMDIST extends Function_4 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
+
         Operand args4 = GetNumber_4(engine, tempParameter);
-        if (args4.IsErrorOrNone()) {
-            return args4;
-        }
+        if (args4.IsErrorOrNone()) return args4;
 
-        int sampleS = args1.IntValue();
-        int numberSample = args2.IntValue();
-        int populationS = args3.IntValue();
-        int numberPop = args4.IntValue();
-
-        if (sampleS < 0 || numberSample < 0 || populationS < 0 || numberPop < 0 ||
-            sampleS > numberSample || sampleS > populationS || numberSample > numberPop || populationS > numberPop) {
-            return Operand.Error("Function '{0}' parameter is error!", "HypgeomDist");
+        int k = args1.IntValue();
+        if (k < 0) {
+            return ParameterError(1);
         }
-        return Operand.Create(ExcelFunctions.HypgeomDist(sampleS, numberSample, populationS, numberPop));
+        int draws = args2.IntValue();
+        if (draws < 0) {
+            return ParameterError(2);
+        }
+        int success = args3.IntValue();
+        if (success < 0) {
+            return ParameterError(3);
+        }
+        int population = args4.IntValue();
+        if (population < 0) {
+            return ParameterError(4);
+        }
+        if (k > draws) {
+            return ParameterError(1);
+        }
+        if (success > population || draws > population) {
+            return FunctionError();
+        }
+        return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }
 
     @Override

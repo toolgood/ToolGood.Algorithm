@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -28,12 +27,10 @@ public final class Function_GAMMALN extends Function_1 {
         if (args1.IsErrorOrNone()) {
             return args1;
         }
-
-        double x = args1.DoubleValue();
-        if (x <= 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "GammaLn");
+        if (args1.NumberValue().compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(1);
         }
-        return Operand.Create(ExcelFunctions.GAMMALN(x));
+        return Operand.Create(ExcelFunctions.GAMMALN(args1.NumberValue()));
     }
 
     @Override

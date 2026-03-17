@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -13,10 +12,6 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_FDIST extends Function_3 {
-    public Function_FDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
-    }
-
     public Function_FDIST(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -29,26 +24,27 @@ public final class Function_FDIST extends Function_3 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
-        }
+        if (args1.IsErrorOrNone()) return args1;
+
         Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) {
-            return args2;
-        }
+        if (args2.IsErrorOrNone()) return args2;
+
         Operand args3 = GetNumber_3(engine, tempParameter);
-        if (args3.IsErrorOrNone()) {
-            return args3;
-        }
+        if (args3.IsErrorOrNone()) return args3;
 
-        double x = args1.DoubleValue();
-        int degreesFreedom1 = args2.IntValue();
+        java.math.BigDecimal x = args1.NumberValue();
+        if (x.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            return ParameterError(1);
+        }
+        int degreesFreedom = args2.IntValue();
+        if (degreesFreedom <= 0) {
+            return ParameterError(2);
+        }
         int degreesFreedom2 = args3.IntValue();
-
-        if (degreesFreedom1 <= 0 || degreesFreedom2 <= 0 || x < 0) {
-            return Operand.Error("Function '{0}' parameter is error!", "FDist");
+        if (degreesFreedom2 <= 0) {
+            return ParameterError(3);
         }
-        return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom1, degreesFreedom2));
+        return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathsum2;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -25,15 +24,12 @@ public final class Function_NORMSINV extends Function_1 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) {
-            return args1;
+        if (args1.IsErrorOrNone()) return args1;
+        java.math.BigDecimal p = args1.NumberValue();
+        if (p.compareTo(java.math.BigDecimal.ZERO) <= 0 || p.compareTo(java.math.BigDecimal.ONE) >= 0) {
+            return ParameterError(1);
         }
-
-        double probability = args1.DoubleValue();
-        if (probability <= 0.0 || probability >= 1.0) {
-            return Operand.Error("Function '{0}' parameter is error!", "NormSInv");
-        }
-        return Operand.Create(ExcelFunctions.NormSInv(probability));
+        return Operand.Create(ExcelFunctions.NormSInv(p));
     }
 
     @Override

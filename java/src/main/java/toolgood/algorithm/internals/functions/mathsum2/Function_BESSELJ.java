@@ -9,8 +9,8 @@ import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.functions.MathEx;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
 public final class Function_BESSELJ extends Function_2 {
     public Function_BESSELJ(FunctionBase func1, FunctionBase func2) {
@@ -38,7 +38,7 @@ public final class Function_BESSELJ extends Function_2 {
         }
 
         BigDecimal x = args1.NumberValue();
-        int n = args2.IntValue();
+        int n = (int) Math.floor(args2.NumberValue().doubleValue());
 
         return Operand.Create(BesselJ(n, x));
     }

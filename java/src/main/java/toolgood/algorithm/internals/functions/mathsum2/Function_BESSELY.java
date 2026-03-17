@@ -9,8 +9,8 @@ import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.functions.MathEx;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.system.MathEx;
 
 public final class Function_BESSELY extends Function_2 {
     public Function_BESSELY(FunctionBase func1, FunctionBase func2) {
@@ -38,7 +38,7 @@ public final class Function_BESSELY extends Function_2 {
         }
 
         BigDecimal x = args1.NumberValue();
-        int n = args2.IntValue();
+        int n = (int) Math.floor(args2.NumberValue().doubleValue());
 
         if (x.compareTo(BigDecimal.ZERO) <= 0) {
             return ParameterError(1);
@@ -70,7 +70,7 @@ public final class Function_BESSELY extends Function_2 {
         if (x.compareTo(new BigDecimal("8")) < 0) {
             BigDecimal y1 = x.multiply(x);
             BigDecimal ans1 = new BigDecimal("-2957821389").add(y1.multiply(new BigDecimal("7062834065").add(y1.multiply(new BigDecimal("-512359803.6")
-                .add(y1.multiply(new BigDecimal("10879881.29").add(y1.multiply(new BigDecimal("-86327.92757").add(y1.multiply(new BigDecimal("228.4622733")))))))))));
+                .add(y1.multiply(new BigDecimal("10879881.29").add(y1.multiply(new BigDecimal("-86327.92757").add(y1.multiply(new BigDecimal("228.4622733"))))))))));
             BigDecimal ans2 = new BigDecimal("40076544269").add(y1.multiply(new BigDecimal("745249964.8").add(y1.multiply(new BigDecimal("7189466.438")
                 .add(y1.multiply(new BigDecimal("47447.26470").add(y1.multiply(new BigDecimal("226.1030244").add(y1.multiply(BigDecimal.ONE))))))))));
             return ans1.divide(ans2, java.math.MathContext.DECIMAL128).add(new BigDecimal("0.63661977236758134308").multiply(BesselJ0(x)).multiply(MathEx.Log(x)));
@@ -90,11 +90,11 @@ public final class Function_BESSELY extends Function_2 {
         if (x.compareTo(new BigDecimal("8")) < 0) {
             BigDecimal y1 = x.multiply(x);
             BigDecimal ans1 = x.multiply(new BigDecimal("-4900604943000").add(y1.multiply(new BigDecimal("1275274390000")
-                .add(y1.multiply(new BigDecimal("-51534381390").add(y1.multiply(new BigDecimal("734926455.1")
-                .add(y1.multiply(new BigDecimal("-4237922.726").add(y1.multiply(new BigDecimal("8511.937935")))))))))));
+                .add(y1.multiply(new BigDecimal("-51534381390").add(y1.multiply(new BigDecimal("7349264551")
+                .add(y1.multiply(new BigDecimal("-4237922726").add(y1.multiply(new BigDecimal("8511937.935")))))))))));
             BigDecimal ans2 = new BigDecimal("24995805700000").add(y1.multiply(new BigDecimal("424441966400")
                 .add(y1.multiply(new BigDecimal("3733650367").add(y1.multiply(new BigDecimal("224590400.2")
-                .add(y1.multiply(new BigDecimal("1020426.050").add(y1.multiply(new BigDecimal("354.9632885").add(y1.multiply(BigDecimal.ONE)))))))))));
+                .add(y1.multiply(new BigDecimal("102042605").add(y1.multiply(new BigDecimal("354963.2885").add(y1))))))))));
             return ans1.divide(ans2, java.math.MathContext.DECIMAL128).add(new BigDecimal("0.63661977236758134308").multiply(BesselJ1(x).multiply(MathEx.Log(x)).subtract(BigDecimal.ONE.divide(x, java.math.MathContext.DECIMAL128))));
         }
         BigDecimal z = new BigDecimal("8").divide(x, java.math.MathContext.DECIMAL128);
