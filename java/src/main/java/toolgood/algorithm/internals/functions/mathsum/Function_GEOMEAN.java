@@ -25,7 +25,7 @@ public final class Function_GEOMEAN extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         List<Operand> args = new ArrayList<>(funcs.length);
         Operand error = TryEvaluateAll(engine, tempParameter, args);
         if (error != null) {

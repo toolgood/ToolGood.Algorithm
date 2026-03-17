@@ -17,7 +17,7 @@ public final class Function_RAND extends Function_0 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Random rand = new Random();
         return Operand.Create(rand.nextDouble());
     }

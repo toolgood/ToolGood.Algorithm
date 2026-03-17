@@ -20,7 +20,7 @@ public class Function_ValueNumber extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         return _value;
     }
 

@@ -1,36 +1,45 @@
 package toolgood.algorithm.internals.functions.operator;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_N;
+import java.util.List;
 
-public class Function_AND_N extends Function_N {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_N;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_AND_N extends Function_N {
     public Function_AND_N(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        int index = 1;
-        boolean b = true;
-        for (FunctionBase item : funcs) {
-            Operand a = item.Evaluate(work, tempParameter);
-            if (a.IsNotBoolean()) {
-                a = a.ToBoolean("Function '{0}' parameter {1} is error!", "AND", index++);
-                if (a.IsError()) {
-                    return a;
-                }
-            }
-            if (a.BooleanValue() == false) {
-                b = false;
-            }
-        }
-        return b ? Operand.TRUE : Operand.FALSE;
+    public String Name() {
+        return "AndN";
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "AND");
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        boolean b = true;
+        for (int i = 0; i < funcs.length; i++) {
+            Operand a = GetBoolean(engine, tempParameter, i);
+            if (a.IsErrorOrNone()) { return a; }
+            if (a.BooleanValue() == false) b = false;
+        }
+        return b ? Operand.True : Operand.False;
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.BOOLEAN;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        for (int i = 0; i < funcs.length; i++) {
+            funcs[i].GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+        }
     }
 }

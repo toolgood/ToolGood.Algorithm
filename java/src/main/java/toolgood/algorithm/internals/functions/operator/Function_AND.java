@@ -1,48 +1,58 @@
 package toolgood.algorithm.internals.functions.operator;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_2;
+import java.util.List;
 
-public class Function_AND extends Function_2 {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_AND extends Function_2 {
+    public Function_AND(FunctionBase[] funcs) {
+        super(funcs);
+    }
+
     public Function_AND(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        // 程序 && and || or �?excel�? AND(x,y) OR(x,y) 有区�?
-        // 在excel�?AND(x,y) OR(x,y) 先报错，
-        // 在程序中�?& and  有true 直接返回true 就不会检测下一个会不会报错
-        // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotBoolean()) {
-            args1 = args1.ToBoolean();
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
+    public String Name() {
+        return "And";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand args1 = GetBoolean_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
         if (args1.BooleanValue() == false) {
-            Operand args2 = func2.Evaluate(work, tempParameter).ToBoolean();
-            if (args2.IsError()) {
-                return args2;
-            }
+            Operand args2 = GetBoolean_2(engine, tempParameter);
+            if (args2.IsErrorOrNone()) { return args2; }
             return Operand.False;
         }
-        return func2.Evaluate(work, tempParameter).ToBoolean();
+        return GetBoolean_2(engine, tempParameter);
     }
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        if (addBrackets) {
-            stringBuilder.append('(');
-        }
+        if (addBrackets) stringBuilder.append('(');
         func1.toString(stringBuilder, false);
         stringBuilder.append(" && ");
         func2.toString(stringBuilder, false);
-        if (addBrackets) {
-            stringBuilder.append(')');
-        }
+        if (addBrackets) stringBuilder.append(')');
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.BOOLEAN;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+        func2.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
     }
 }

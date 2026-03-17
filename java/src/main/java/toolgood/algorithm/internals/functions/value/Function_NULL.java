@@ -16,7 +16,7 @@ public class Function_NULL extends FunctionBase {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         return Operand.NULL_OPERAND;
     }
 

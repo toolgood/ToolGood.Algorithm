@@ -22,7 +22,7 @@ public final class Function_ACOS extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
         java.math.BigDecimal x = args1.NumberValue();

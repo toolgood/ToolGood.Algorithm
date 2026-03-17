@@ -22,7 +22,7 @@ public final class Function_RADIANS extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
         java.math.BigDecimal r = args1.NumberValue().divide(new java.math.BigDecimal("180"), java.math.MathContext.DECIMAL128).multiply(MathEx.PI);

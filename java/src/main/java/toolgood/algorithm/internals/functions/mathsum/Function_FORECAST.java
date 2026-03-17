@@ -23,7 +23,7 @@ public final class Function_FORECAST extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         if (funcs.length < 3) return ParameterError(1);
 
         Operand xArg = GetNumber(engine, tempParameter, 0);

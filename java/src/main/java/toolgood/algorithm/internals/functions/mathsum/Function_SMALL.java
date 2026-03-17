@@ -24,7 +24,7 @@ public final class Function_SMALL extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = func1.Evaluate(engine, tempParameter);
         args1 = ConvertToArray(args1, 1);
         if (args1.IsErrorOrNone()) {

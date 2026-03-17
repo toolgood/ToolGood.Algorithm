@@ -24,7 +24,7 @@ public final class Function_RANK extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         if (funcs.length < 2) return ParameterError(1);
 
         Operand numArg = GetNumber(engine, tempParameter, 0);

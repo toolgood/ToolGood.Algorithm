@@ -23,7 +23,7 @@ public final class Function_ATAN2 extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
         Operand args2 = GetNumber_2(engine, tempParameter);

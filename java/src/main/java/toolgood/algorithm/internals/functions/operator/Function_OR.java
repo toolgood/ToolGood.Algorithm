@@ -25,13 +25,13 @@ public final class Function_OR extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetBoolean_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
         if (args1.BooleanValue()) {
             Operand args2 = GetBoolean_2(engine, tempParameter);
             if (args2.IsErrorOrNone()) { return args2; }
-            return Operand.True();
+            return Operand.True;
         }
         return GetBoolean_2(engine, tempParameter);
     }

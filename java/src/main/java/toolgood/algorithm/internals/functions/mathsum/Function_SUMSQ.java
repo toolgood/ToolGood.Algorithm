@@ -24,7 +24,7 @@ public final class Function_SUMSQ extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         List<Operand> args = new ArrayList<>(funcs.length);
         for (int i = 0; i < funcs.length; i++) {
             Operand aa = funcs[i].Evaluate(engine, tempParameter);

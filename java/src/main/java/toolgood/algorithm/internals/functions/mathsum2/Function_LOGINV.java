@@ -22,7 +22,7 @@ public final class Function_LOGINV extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) return args1;
         java.math.BigDecimal probability = args1.NumberValue();

@@ -25,11 +25,9 @@ public final class Function_Add extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = GetNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone()) { return args1; }
-        Operand args2 = GetNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone()) { return args2; }
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand args1 = GetNumber_1(engine, tempParameter); if (args1.IsErrorOrNone()) { return args1; }
+        Operand args2 = GetNumber_2(engine, tempParameter); if (args2.IsErrorOrNone()) { return args2; }
 
         return Operand.Create(args1.NumberValue().add(args2.NumberValue()));
     }

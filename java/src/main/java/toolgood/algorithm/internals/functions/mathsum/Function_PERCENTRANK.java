@@ -26,7 +26,7 @@ public final class Function_PERCENTRANK extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetArray_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) {
             return args1;

@@ -22,7 +22,7 @@ public final class Function_OCT2BIN extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetText_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
 
