@@ -1,84 +1,107 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_N;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
 
-public class Function_DATEVALUE extends Function_N {
+public final class Function_DATEVALUE extends Function_2 {
     public Function_DATEVALUE(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>();
-        for (FunctionBase item : funcs) {
-            Operand aa = item.Evaluate(work, tempParameter);
-            if (aa.IsError()) {
-                return aa;
-            }
-            args.add(aa);
+    public String Name() {
+        return "DateValue";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        if (func1 == null)
+            return ParameterError(1);
+
+        Operand args1 = func1.Evaluate(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
-        if (args.get(0).IsDate()) {
-            return args.get(0);
+        if (args1.IsDate()) {
+            return args1;
         }
+
         int type = 0;
-        if (args.size() == 2) {
-            Operand args2 = args.get(1).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 2);
-            if (args2.IsError()) {
+        if (func2 != null) {
+            Operand args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone()) {
                 return args2;
             }
             type = args2.IntValue();
         }
         if (type == 0) {
-            if (args.get(0).IsText()) {
-                toolgood.algorithm.internals.MyDate date = toolgood.algorithm.internals.MyDate.parse(args.get(0).TextValue());
+            if (args1.IsText()) {
+                MyDate date = MyDate.parse(args1.TextValue());
                 if (date != null) {
                     return Operand.Create(date);
                 }
             }
-            Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
-            if (args1.LongValue() <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
-                return args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateValue", 1);
+            Operand arg1 = ConvertToNumber(args1, 1);
+            if (arg1.IsErrorOrNone()) {
+                return arg1;
             }
-            if (args1.LongValue() <= 253402232399L) { // 9999-12-31 12:59:59 日时�?�?时间�?�?253402232399L
-                // 这里需要实现类�?FunctionUtil.StartDateUtc.AddSeconds 的功�?
-                // 暂时使用 MyDate 的构造函数来处理
-                return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / 86400.0));
+            if (arg1.LongValue() <= 2958465L) {
+                return arg1.ToMyDate();
             }
-            // 注：时间�?253402232399 ms 转时�?�?1978-01-12 05:30:32
-            // 这里需要实现类�?FunctionUtil.StartDateUtc.AddMilliseconds 的功�?
-            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / (86400.0 * 1000.0)));
+            if (arg1.LongValue() <= 253402232399L) {
+                return Operand.Create(new MyDate(arg1.LongValue() / 86400.0));
+            }
+            return Operand.Create(new MyDate(arg1.LongValue() / (86400.0 * 1000.0)));
         } else if (type == 1) {
-            Operand args1 = args.get(0).ToText("Function '{0}' parameter {1} is error!", "DateValue", 1);
-            if (args1.IsError()) {
-                return args1;
+            Operand arg1 = ConvertToText(args1, 1);
+            if (arg1.IsErrorOrNone()) {
+                return arg1;
             }
-            toolgood.algorithm.internals.MyDate date = toolgood.algorithm.internals.MyDate.parse(args1.TextValue());
+            MyDate date = MyDate.parse(arg1.TextValue());
             if (date != null) {
                 return Operand.Create(date);
             }
         } else if (type == 2) {
-            return args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1).ToMyDate("Function '{0}' parameter {1} is error!", "DateValue", 1);
+            Operand arg1 = ConvertToNumber(args1, 1);
+            if (arg1.IsErrorOrNone()) {
+                return arg1;
+            }
+            return arg1.ToMyDate();
         } else if (type == 3) {
-            Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
-            // 这里需要实现类�?FunctionUtil.StartDateUtc.AddMilliseconds 的功�?
-            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / (86400.0 * 1000.0)));
+            Operand arg1 = ConvertToNumber(args1, 1);
+            if (arg1.IsErrorOrNone()) {
+                return arg1;
+            }
+            return Operand.Create(new MyDate(arg1.LongValue() / (86400.0 * 1000.0)));
         } else if (type == 4) {
-            Operand args1 = args.get(0).ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
-            // 这里需要实现类�?FunctionUtil.StartDateUtc.AddSeconds 的功�?
-            return Operand.Create(new toolgood.algorithm.internals.MyDate(args1.LongValue() / 86400.0));
+            Operand arg1 = ConvertToNumber(args1, 1);
+            if (arg1.IsErrorOrNone()) {
+                return arg1;
+            }
+            return Operand.Create(new MyDate(arg1.LongValue() / 86400.0));
         }
-        return Operand.Error("Function '{0}' parameter is error!", "DateValue");
+        return ParameterError(1);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "DateValue");
+    public OperandType GetResultType() {
+        return OperandType.DATE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        if (func2 != null)
+            func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

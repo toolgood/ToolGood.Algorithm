@@ -1,55 +1,58 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_N;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-
 import java.util.HashSet;
+import java.util.List;
+import java.util.function.BiFunction;
 
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_N;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
 
-public class Function_NETWORKDAYS extends Function_N {
+public final class Function_NETWORKDAYS extends Function_N {
     public Function_NETWORKDAYS(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = funcs[0].Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = funcs[1].Evaluate(work, tempParameter);
-        if (args2.IsNotDate()) {
-            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+    public String Name() {
+        return "NetworkDays";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetDate(engine, tempParameter, 0);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
 
-        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
-        toolgood.algorithm.internals.MyDate endMyDate = args2.DateValue();
+        Operand args2 = GetDate(engine, tempParameter, 1);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+
+        MyDate startMyDate = args1.DateValue();
+        MyDate endMyDate = args2.DateValue();
 
         HashSet<String> list = new HashSet<>();
         for (int i = 2; i < funcs.length; i++) {
-            Operand ar = funcs[i].Evaluate(work, tempParameter);
-            if (ar.IsNotDate()) {
-                ar = ar.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
-                if (ar.IsError()) {
-                    return ar;
-                }
+            Operand ar = GetDate(engine, tempParameter, i);
+            if (ar.IsErrorOrNone()) {
+                return ar;
             }
-            toolgood.algorithm.internals.MyDate holiday = ar.DateValue();
+            MyDate holiday = ar.DateValue();
             list.add(holiday.Year + "-" + holiday.Month + "-" + holiday.Day);
         }
+
         int days = 0;
-        toolgood.algorithm.internals.MyDate currentDate = startMyDate;
-        while (currentDate.ToDateTime().isBefore(endMyDate.ToDateTime()) || currentDate.ToDateTime().isEqual(endMyDate.ToDateTime())) {
+        MyDate currentDate = startMyDate;
+        while (currentDate.ToDateTime().isBefore(endMyDate.ToDateTime())
+                || currentDate.ToDateTime().isEqual(endMyDate.ToDateTime())) {
             int dayOfWeek = currentDate.DayOfWeek();
-            // 1-7，其�?1 是周日，7 是周�?
             if (dayOfWeek != 1 && dayOfWeek != 7) {
                 String dateStr = currentDate.Year + "-" + currentDate.Month + "-" + currentDate.Day;
                 if (!list.contains(dateStr)) {
@@ -62,7 +65,15 @@ public class Function_NETWORKDAYS extends Function_N {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "NetWorkdays");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        for (FunctionBase item : funcs) {
+            item.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        }
     }
 }

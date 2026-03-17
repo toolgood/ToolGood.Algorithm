@@ -1,56 +1,65 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
 
-
-
-public class Function_TIMESTAMP extends Function_2 {
-    public Function_TIMESTAMP(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_TIMESTAMP extends Function_2 {
+    public Function_TIMESTAMP(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args0 = func1.Evaluate(work, tempParameter);
-        if (args0.IsError()) {
-            return args0;
-        }
+    public String Name() {
+        return "Timestamp";
+    }
 
-        int type = 0; // 毫秒
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        int type = 0;
         if (func2 != null) {
-            Operand args2 = func2.Evaluate(work, tempParameter);
-            if (args2.IsNotNumber()) {
-                args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2);
-                if (args2.IsError()) {
-                    return args2;
-                }
+            Operand args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone()) {
+                return args2;
             }
             type = args2.IntValue();
         }
-        Operand dateOperand = args0.ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1);
-        if (dateOperand.IsError()) {
-            return dateOperand;
+
+        Operand args0 = GetDate_1(engine, tempParameter);
+        if (args0.IsErrorOrNone()) {
+            return args0;
         }
-        toolgood.algorithm.internals.MyDate myDate = dateOperand.DateValue();
-        
-        // 计算时间�?
+
+        MyDate myDate = args0.DateValue();
         long timestamp = myDate.ToDateTime().getMillis();
-        
+
         if (type == 0) {
-            // 返回毫秒时间�?
             return Operand.Create(timestamp);
         } else if (type == 1) {
-            // 返回秒时间戳
             return Operand.Create((double) timestamp / 1000);
         }
-        return Operand.Error("Function '{0}' parameter is error!", "TimeStamp");
+        return ParameterError(2);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "TimeStamp");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        }
     }
 }

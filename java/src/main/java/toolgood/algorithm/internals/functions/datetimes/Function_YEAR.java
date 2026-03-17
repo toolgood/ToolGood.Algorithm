@@ -1,32 +1,46 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_YEAR extends Function_1 {
+public final class Function_YEAR extends Function_1 {
     public Function_YEAR(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter is error!", "Year");
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        if (args1.DateValue().Year == null) {
-            return Operand.Error("Function '{0}' is error!", "Year");
-        }
-        return Operand.Create((int)args1.DateValue().Year);
+    public String Name() {
+        return "Year";
     }
 
     @Override
-    public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Year");
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetDate_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+        if (args1.DateValue().Year == null) {
+            return ParameterError(1);
+        }
+        return Operand.Create(args1.DateValue().Year);
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
     }
 }

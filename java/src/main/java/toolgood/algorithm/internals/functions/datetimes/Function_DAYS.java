@@ -1,46 +1,58 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import java.util.List;
+import java.util.function.BiFunction;
 
-public class Function_DAYS extends Function_2 {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_DAYS extends Function_2 {
     public Function_DAYS(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }
 
+    public Function_DAYS(FunctionBase[] funcs) {
+        super(funcs);
+    }
+
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotDate()) {
-            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+    public String Name() {
+        return "Days";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetDate_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
 
-        MyDate endMyDate = args1.DateValue();
-        MyDate startMyDate = args2.DateValue();
+        Operand args2 = GetDate_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
 
-        // 计算两个日期之间的天数差（仅比较日期部分�?
-        long endMillis = endMyDate.ToDateTime().withTimeAtStartOfDay().getMillis();
-        long startMillis = startMyDate.ToDateTime().withTimeAtStartOfDay().getMillis();
+        long endMillis = args1.DateValue().ToDateTime().withTimeAtStartOfDay().getMillis();
+        long startMillis = args2.DateValue().ToDateTime().withTimeAtStartOfDay().getMillis();
         long days = (endMillis - startMillis) / (1000L * 60 * 60 * 24);
 
         return Operand.Create((int) days);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Days");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
     }
 }

@@ -1,42 +1,44 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
 
-
-
-public class Function_WEEKNUM extends Function_2 {
-    public Function_WEEKNUM(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_WEEKNUM extends Function_2 {
+    public Function_WEEKNUM(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
+    public String Name() {
+        return "Weeknum";
+    }
 
-        int dayOfYear = startMyDate.DayOfYear();
-        // 计算当年第一天是星期几（1-7�? 是星期日�?
-        toolgood.algorithm.internals.MyDate firstDayOfYear = new toolgood.algorithm.internals.MyDate(startMyDate.Year, 1, 1, 0, 0, 0);
-        int firstDayOfWeek = firstDayOfYear.DayOfWeek();
-        
-        int days = dayOfYear + (firstDayOfWeek - 1); // �?1 是因�?DayOfWeek 返回 1-7，而我们需�?0-6
-        
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetDate_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        MyDate startMyDate = args1.DateValue();
+
+        int days = startMyDate.DayOfYear() + (int) (new MyDate(startMyDate.Year, 1, 1, 0, 0, 0).DayOfWeek());
         if (func2 != null) {
-            Operand args2 = func2.Evaluate(work, tempParameter);
-            if (args2.IsNotNumber()) {
-                args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekNum", 2);
-                if (args2.IsError()) {
-                    return args2;
-                }
+            Operand args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone()) {
+                return args2;
+            }
+            if (args2.IntValue() != 1 && args2.IntValue() != 2) {
+                return ParameterError(2);
             }
             if (args2.IntValue() == 2) {
                 days--;
@@ -48,7 +50,16 @@ public class Function_WEEKNUM extends Function_2 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "WeekNum");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        }
     }
 }

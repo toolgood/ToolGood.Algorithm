@@ -1,56 +1,56 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_3;
-import toolgood.algorithm.operands.MyDate;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import java.util.List;
+import java.util.function.BiFunction;
 
-public class Function_YEARFRAC extends Function_3 {
-    public Function_YEARFRAC(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
+
+public final class Function_YEARFRAC extends Function_3 {
+    public Function_YEARFRAC(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        if (func1 == null || func2 == null) {
+    public String Name() {
+        return "YEARFRAC";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        if (func1 == null || func2 == null)
             return ParameterError(1);
-        }
 
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "YEARFRAC", 1);
-            if (args1.IsError()) return args1;
-        }
+        Operand startDateArg = GetDate_1(engine, tempParameter);
+        if (startDateArg.IsErrorOrNone())
+            return startDateArg;
 
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotDate()) {
-            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "YEARFRAC", 2);
-            if (args2.IsError()) return args2;
-        }
+        Operand endDateArg = GetDate_2(engine, tempParameter);
+        if (endDateArg.IsErrorOrNone())
+            return endDateArg;
 
         int basis = 0;
         if (func3 != null) {
-            Operand args3 = func3.Evaluate(work, tempParameter);
-            if (!args3.IsNumber()) {
-                args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "YEARFRAC", 3);
-                if (args3.IsError()) return args3;
-            }
-            basis = (int) args3.DoubleValue();
+            Operand basisArg = GetNumber_3(engine, tempParameter);
+            if (basisArg.IsErrorOrNone())
+                return basisArg;
+            basis = basisArg.IntValue();
             if (basis < 0 || basis > 4) {
                 return ParameterError(3);
             }
         }
 
-        MyDate startMyDate = args1.DateValue();
-        MyDate endMyDate = args2.DateValue();
-
-        double result = calculateYearFrac(startMyDate, endMyDate, basis);
+        double result = calculateYearFrac(startDateArg.DateValue(), endDateArg.DateValue(), basis);
         return Operand.Create(result);
     }
 
     private double calculateYearFrac(MyDate startDate, MyDate endDate, int basis) {
-        // 确保 startDate <= endDate
         if (startDate.ToDateTime().isAfter(endDate.ToDateTime())) {
             MyDate temp = startDate;
             startDate = endDate;
@@ -76,18 +76,15 @@ public class Function_YEARFRAC extends Function_3 {
     private double calculate30_360(MyDate startDate, MyDate endDate) {
         int d1 = Math.min(30, startDate.Day);
         int d2 = endDate.Day;
-        if (d1 == 30) d2 = Math.min(30, d2);
-        return (360.0 * (endDate.Year - startDate.Year)
-                + 30.0 * (endDate.Month - startDate.Month)
-                + (d2 - d1)) / 360.0;
+        if (d1 == 30)
+            d2 = Math.min(30, d2);
+        return (360.0 * (endDate.Year - startDate.Year) + 30.0 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360.0;
     }
 
     private double calculate30_360E(MyDate startDate, MyDate endDate) {
         int d1 = Math.min(30, startDate.Day);
         int d2 = Math.min(30, endDate.Day);
-        return (360.0 * (endDate.Year - startDate.Year)
-                + 30.0 * (endDate.Month - startDate.Month)
-                + (d2 - d1)) / 360.0;
+        return (360.0 * (endDate.Year - startDate.Year) + 30.0 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360.0;
     }
 
     private double calculateActualActual(MyDate startDate, MyDate endDate) {
@@ -102,15 +99,12 @@ public class Function_YEARFRAC extends Function_3 {
         int daysInStartYear = isLeapYear(startYear) ? 366 : 365;
         int daysInEndYear = isLeapYear(endYear) ? 366 : 365;
 
-        // �?startDate 到当年年�?
         MyDate endOfStartYear = new MyDate(startYear, 12, 31, 0, 0, 0);
         double result = daysBetween(startDate, endOfStartYear) / (double) daysInStartYear;
 
-        // �?endYear 年初�?endDate
         MyDate startOfEndYear = new MyDate(endYear, 1, 1, 0, 0, 0);
         result += daysBetween(startOfEndYear, endDate) / (double) daysInEndYear;
 
-        // 中间完整年份
         result += endYear - startYear - 1;
 
         return result;
@@ -127,7 +121,17 @@ public class Function_YEARFRAC extends Function_3 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "YEARFRAC");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        if (func2 != null)
+            func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        if (func3 != null)
+            func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

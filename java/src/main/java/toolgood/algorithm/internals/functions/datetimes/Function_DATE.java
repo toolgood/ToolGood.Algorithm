@@ -1,98 +1,137 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_N;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_6;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
 
-
-
-public class Function_DATE extends Function_N {
+public final class Function_DATE extends Function_6 {
     public Function_DATE(FunctionBase[] funcs) {
         super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = funcs[0].Evaluate(work, tempParameter);
-        if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Date", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = funcs[1].Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Date", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
-        Operand args3 = funcs[2].Evaluate(work, tempParameter);
-        if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Date", 3);
-            if (args3.IsError()) {
-                return args3;
-            }
+    public String Name() {
+        return "Date";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
         }
 
-        toolgood.algorithm.internals.MyDate d;
-        if (funcs.length == 3) {
-            d = new toolgood.algorithm.internals.MyDate(args1.IntValue(), args2.IntValue(), args3.IntValue(), 0, 0, 0);
-        } else if (funcs.length == 4) {
-            Operand args4 = funcs[3].Evaluate(work, tempParameter);
-            if (args4.IsNotNumber()) {
-                args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4);
-                if (args4.IsError()) {
-                    return args4;
-                }
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+
+        Operand args3 = GetNumber_3(engine, tempParameter);
+        if (args3.IsErrorOrNone()) {
+            return args3;
+        }
+
+        int year = args1.IntValue();
+        int month = args2.IntValue();
+        int day = args3.IntValue();
+
+        if (month < 1 || month > 12) {
+            return ParameterError(2);
+        }
+        if (day < 1 || day > 31) {
+            return ParameterError(3);
+        }
+
+        MyDate d;
+        if (func4 == null) {
+            d = new MyDate(year, month, day, 0, 0, 0);
+        } else if (func5 == null) {
+            Operand args4 = GetNumber_4(engine, tempParameter);
+            if (args4.IsErrorOrNone()) {
+                return args4;
             }
-            d = new toolgood.algorithm.internals.MyDate(args1.IntValue(), args2.IntValue(), args3.IntValue(), args4.IntValue(), 0, 0);
-        } else if (funcs.length == 5) {
-            Operand args4 = funcs[3].Evaluate(work, tempParameter);
-            if (args4.IsNotNumber()) {
-                args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4);
-                if (args4.IsError()) {
-                    return args4;
-                }
+            int hour = args4.IntValue();
+            if (hour < 0 || hour > 23) {
+                return ParameterError(4);
             }
-            Operand args5 = funcs[4].Evaluate(work, tempParameter);
-            if (args5.IsNotNumber()) {
-                args5 = args5.ToNumber("Function '{0}' parameter {1} is error!", "Date", 5);
-                if (args5.IsError()) {
-                    return args5;
-                }
+            d = new MyDate(year, month, day, hour, 0, 0);
+        } else if (func6 == null) {
+            Operand args4 = GetNumber_4(engine, tempParameter);
+            if (args4.IsErrorOrNone()) {
+                return args4;
             }
-            d = new toolgood.algorithm.internals.MyDate(args1.IntValue(), args2.IntValue(), args3.IntValue(), args4.IntValue(), args5.IntValue(), 0);
+
+            Operand args5 = GetNumber_5(engine, tempParameter);
+            if (args5.IsErrorOrNone()) {
+                return args5;
+            }
+
+            int hour = args4.IntValue();
+            int minute = args5.IntValue();
+            if (hour < 0 || hour > 23) {
+                return ParameterError(4);
+            }
+            if (minute < 0 || minute > 59) {
+                return ParameterError(5);
+            }
+            d = new MyDate(year, month, day, hour, minute, 0);
         } else {
-            Operand args4 = funcs[3].Evaluate(work, tempParameter);
-            if (args4.IsNotNumber()) {
-                args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4);
-                if (args4.IsError()) {
-                    return args4;
-                }
+            Operand args4 = GetNumber_4(engine, tempParameter);
+            if (args4.IsErrorOrNone()) {
+                return args4;
             }
-            Operand args5 = funcs[4].Evaluate(work, tempParameter);
-            if (args5.IsNotNumber()) {
-                args5 = args5.ToNumber("Function '{0}' parameter {1} is error!", "Date", 5);
-                if (args5.IsError()) {
-                    return args5;
-                }
+
+            Operand args5 = GetNumber_5(engine, tempParameter);
+            if (args5.IsErrorOrNone()) {
+                return args5;
             }
-            Operand args6 = funcs[5].Evaluate(work, tempParameter);
-            if (args6.IsNotNumber()) {
-                args6 = args6.ToNumber("Function '{0}' parameter {1} is error!", "Date", 6);
-                if (args6.IsError()) {
-                    return args6;
-                }
+
+            Operand args6 = GetNumber_6(engine, tempParameter);
+            if (args6.IsErrorOrNone()) {
+                return args6;
             }
-            d = new toolgood.algorithm.internals.MyDate(args1.IntValue(), args2.IntValue(), args3.IntValue(), args4.IntValue(), args5.IntValue(), args6.IntValue());
+
+            int hour = args4.IntValue();
+            int minute = args5.IntValue();
+            int second = args6.IntValue();
+            if (hour < 0 || hour > 23) {
+                return ParameterError(4);
+            }
+            if (minute < 0 || minute > 59) {
+                return ParameterError(5);
+            }
+            if (second < 0 || second > 59) {
+                return ParameterError(6);
+            }
+            d = new MyDate(year, month, day, hour, minute, second);
         }
         return Operand.Create(d);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Date");
+    public OperandType GetResultType() {
+        return OperandType.DATE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func4 != null)
+            func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func5 != null)
+            func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        if (func6 != null)
+            func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

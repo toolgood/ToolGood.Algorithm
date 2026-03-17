@@ -1,46 +1,49 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_2;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-
-
-public class Function_ADDYEARS extends Function_2 {
-    public Function_ADDYEARS(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+public final class Function_ADDYEARS extends Function_2 {
+    public Function_ADDYEARS(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddYears", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddYears", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
-        try {
-            toolgood.algorithm.internals.MyDate date = args1.DateValue();
-            int years = args2.IntValue();
-            toolgood.algorithm.internals.MyDate result = date.AddYears(years);
-            return Operand.Create(result);
-        } catch (Exception e) {
-            // 捕获所有异�?
-        }
-        return Operand.Error("Function '{0}' is error!", "AddYears");
+    public String Name() {
+        return "AddYears";
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "AddYears");
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetDate_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+        return Operand.Create(args1.DateValue().AddYears(args2.IntValue()));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.DATE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

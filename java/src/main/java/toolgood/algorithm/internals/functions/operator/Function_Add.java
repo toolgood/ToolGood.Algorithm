@@ -4,11 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.operands.MyDate;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
 public class Function_Add extends Function_2 {

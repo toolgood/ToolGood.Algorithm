@@ -1,84 +1,84 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
-import toolgood.algorithm.internals.functions.Function_3;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
+import java.util.List;
+import java.util.function.BiFunction;
+
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.operands.MyDate;
 
-
-
-public class Function_DATEDIF extends Function_3 {
-    public Function_DATEDIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_DATEDIF extends Function_3 {
+    public Function_DATEDIF(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotDate()) {
-            args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
-        }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotDate()) {
-            args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
-        }
-        Operand args3 = func3.Evaluate(work, tempParameter);
-        if (args3.IsNotText()) {
-            args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3);
-            if (args3.IsError()) {
-                return args3;
-            }
-        }
-        toolgood.algorithm.internals.MyDate startMyDate = args1.DateValue();
-        toolgood.algorithm.internals.MyDate endMyDate = args2.DateValue();
-        String t = args3.TextValue().toLowerCase();
+    public String Name() {
+        return "DateDif";
+    }
 
-        if (t.equals("y")) {
-            // 计算年差
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetDate_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        Operand args2 = GetDate_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+
+        Operand args3 = GetText_3(engine, tempParameter);
+        if (args3.IsErrorOrNone()) {
+            return args3;
+        }
+
+        MyDate startMyDate = args1.DateValue();
+        MyDate endMyDate = args2.DateValue();
+        String t = args3.TextValue();
+
+        if (t.equalsIgnoreCase("Y")) {
             boolean b = false;
             if (startMyDate.Month < endMyDate.Month) {
                 b = true;
             } else if (startMyDate.Month == endMyDate.Month) {
-                if (startMyDate.Day <= endMyDate.Day) b = true;
+                if (startMyDate.Day <= endMyDate.Day)
+                    b = true;
             }
             if (b) {
                 return Operand.Create(endMyDate.Year - startMyDate.Year);
             } else {
                 return Operand.Create(endMyDate.Year - startMyDate.Year - 1);
             }
-        } else if (t.equals("m")) {
-            // 计算月差
+        } else if (t.equalsIgnoreCase("M")) {
             boolean b = false;
-            if (startMyDate.Day <= endMyDate.Day) b = true;
+            if (startMyDate.Day <= endMyDate.Day)
+                b = true;
             if (b) {
                 return Operand.Create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month);
             } else {
                 return Operand.Create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1);
             }
-        } else if (t.equals("d")) {
-            // 计算日差
+        } else if (t.equalsIgnoreCase("D")) {
             long days = endMyDate.ToDateTime().getMillis() - startMyDate.ToDateTime().getMillis();
             days = days / (1000 * 60 * 60 * 24);
             return Operand.Create((int) days);
-        } else if (t.equals("yd")) {
-            // 计算年内日差
+        } else if (t.equalsIgnoreCase("YD")) {
             int startDayOfYear = startMyDate.DayOfYear();
             int endDayOfYear = endMyDate.DayOfYear();
             int day = endDayOfYear - startDayOfYear;
             if (endMyDate.Year > startMyDate.Year && day < 0) {
-                // 获取 startMyDate 所在年份的天数
                 int days = startMyDate.ToDateTime().dayOfYear().withMaximumValue().getDayOfYear();
                 day = days + day;
             }
             return Operand.Create(day);
-        } else if (t.equals("md")) {
-            // 计算月内日差
+        } else if (t.equalsIgnoreCase("MD")) {
             int mo = endMyDate.Day - startMyDate.Day;
             if (mo < 0) {
                 int days;
@@ -90,18 +90,27 @@ public class Function_DATEDIF extends Function_3 {
                 mo += days;
             }
             return Operand.Create(mo);
-        } else if (t.equals("ym")) {
-            // 计算年内地差
+        } else if (t.equalsIgnoreCase("YM")) {
             int mo = endMyDate.Month - startMyDate.Month;
-            if (endMyDate.Day < startMyDate.Day) mo--;
-            if (mo < 0) mo += 12;
+            if (endMyDate.Day < startMyDate.Day)
+                mo--;
+            if (mo < 0)
+                mo += 12;
             return Operand.Create(mo);
         }
-        return Operand.Error("Function '{0}' parameter {1} is error!", "DateDif", 3);
+        return ParameterError(3);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "DateDif");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType,
+            String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        func3.GetParameterTypes(noneEngine, result, OperandType.TEXT);
     }
 }
