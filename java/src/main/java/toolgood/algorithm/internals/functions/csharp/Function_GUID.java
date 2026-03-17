@@ -18,7 +18,7 @@ public final class Function_GUID extends Function_0 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         return Operand.Create(UUID.randomUUID().toString());
     }
 

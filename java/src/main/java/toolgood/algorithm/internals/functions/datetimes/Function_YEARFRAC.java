@@ -23,7 +23,7 @@ public final class Function_YEARFRAC extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         if (func1 == null || func2 == null)
             return ParameterError(1);
 

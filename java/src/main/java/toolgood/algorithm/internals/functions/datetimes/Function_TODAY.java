@@ -17,7 +17,7 @@ public final class Function_TODAY extends Function_0 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         MyDate now = MyDate.now();
         return Operand.Create(new MyDate(now.Year, now.Month, now.Day, 0, 0, 0));
     }

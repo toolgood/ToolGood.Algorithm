@@ -22,7 +22,7 @@ public class Function_XOR extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         int trueCount = 0;
         for (int i = 0; i < funcs.length; i++) {
             Operand a = GetBoolean(engine, tempParameter, i);

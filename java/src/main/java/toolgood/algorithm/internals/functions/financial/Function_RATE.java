@@ -22,7 +22,7 @@ public final class Function_RATE extends Function_6 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand nperArg = GetNumber_1(engine, tempParameter);
         if (nperArg.IsErrorOrNone()) return nperArg;
         double nper = nperArg.DoubleValue();

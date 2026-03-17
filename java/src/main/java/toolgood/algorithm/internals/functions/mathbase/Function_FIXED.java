@@ -27,7 +27,7 @@ public final class Function_FIXED extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         int num = 2;
         if (func2 != null) {
             Operand args2 = GetNumber_2(engine, tempParameter);

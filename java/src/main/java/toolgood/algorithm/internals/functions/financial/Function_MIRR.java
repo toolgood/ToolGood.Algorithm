@@ -23,7 +23,7 @@ public final class Function_MIRR extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand valuesArg = GetArray_1(engine, tempParameter);
         if (valuesArg.IsErrorOrNone()) return valuesArg;
 

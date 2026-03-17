@@ -23,7 +23,7 @@ public final class Function_NPV extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand rateArg = GetNumber(engine, tempParameter, 0);
         if (rateArg.IsErrorOrNone()) return rateArg;
         double rate = rateArg.DoubleValue();

@@ -22,7 +22,7 @@ public final class Function_YEAR extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetDate_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) {
             return args1;

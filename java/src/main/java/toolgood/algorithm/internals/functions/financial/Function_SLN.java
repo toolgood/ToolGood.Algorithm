@@ -22,7 +22,7 @@ public final class Function_SLN extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand costArg = GetNumber_1(engine, tempParameter);
         if (costArg.IsErrorOrNone()) return costArg;
         double cost = costArg.DoubleValue();

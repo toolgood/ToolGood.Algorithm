@@ -23,7 +23,7 @@ public final class Function_TIMESTAMP extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         int type = 0;
         if (func2 != null) {
             Operand args2 = GetNumber_2(engine, tempParameter);

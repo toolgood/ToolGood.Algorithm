@@ -22,7 +22,7 @@ public final class Function_ISODD extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = func1.Evaluate(engine, tempParameter);
         if (args1.IsNumber()) {
             if (Math.abs(args1.IntValue()) % 2 == 1) {

@@ -22,7 +22,7 @@ public final class Function_IFERROR extends Function_3 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = func1.Evaluate(engine, tempParameter);
         if (args1.IsErrorOrNone()) {
             return func2.Evaluate(engine, tempParameter);

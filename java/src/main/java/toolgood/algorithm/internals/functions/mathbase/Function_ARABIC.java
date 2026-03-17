@@ -22,7 +22,7 @@ public final class Function_ARABIC extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand arg = GetText_1(engine, tempParameter);
         if (arg.IsErrorOrNone()) return arg;
         String text = arg.TextValue().toUpperCase();

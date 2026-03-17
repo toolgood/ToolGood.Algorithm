@@ -25,7 +25,7 @@ public final class Function_SHA512 extends Function_1 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetText_1(engine, tempParameter);
         if (args1.IsError() || args1.IsNone()) {
             return args1;

@@ -22,7 +22,7 @@ public final class Function_ISNULL extends Function_2 {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = func1.Evaluate(engine, tempParameter);
         if (func2 != null) {
             if (args1.IsNull()) {

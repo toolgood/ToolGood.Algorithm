@@ -22,7 +22,7 @@ public final class Function_SWITCH extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand exprValue = funcs[0].Evaluate(engine, tempParameter);
         if (exprValue.IsErrorOrNone()) {
             return exprValue;

@@ -24,7 +24,7 @@ public final class Function_WORKDAY extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         Operand args1 = GetDate(engine, tempParameter, 0);
         if (args1.IsErrorOrNone()) {
             return args1;

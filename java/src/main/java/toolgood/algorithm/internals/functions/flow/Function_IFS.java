@@ -22,7 +22,7 @@ public final class Function_IFS extends Function_N {
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         for (int i = 0; i < funcs.length - 1; i += 2) {
             Operand condition = funcs[i].Evaluate(engine, tempParameter);
             if (condition.IsErrorOrNone()) {
