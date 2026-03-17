@@ -30,7 +30,7 @@ public final class Function_MID extends Function_3 {
         if (args3.IsErrorOrNone()) { return args3; }
 
         String text = args1.TextValue();
-        int startIndex = args2.IntValue() - engine.ExcelIndex();
+        int startIndex = args2.IntValue() - engine.ExcelIndex;
         int length = args3.IntValue();
 
         if (startIndex < 0) {

@@ -27,12 +27,12 @@ public final class Function_FIND extends Function_3 {
         Operand args2 = GetText_2(engine, tempParameter);
         if (args2.IsErrorOrNone()) { return args2; }
         if (func3 == null) {
-            int p = args2.TextValue().indexOf(args1.TextValue()) + engine.ExcelIndex();
+            int p = args2.TextValue().indexOf(args1.TextValue()) + engine.ExcelIndex;
             return Operand.Create(p);
         }
         Operand count = GetNumber_3(engine, tempParameter);
         if (count.IsErrorOrNone()) { return count; }
-        int startIndex = count.IntValue() - engine.ExcelIndex();
+        int startIndex = count.IntValue() - engine.ExcelIndex;
         if (startIndex < 0 || startIndex >= args2.TextValue().length()) {
             return ParameterError(3);
         }
@@ -40,7 +40,7 @@ public final class Function_FIND extends Function_3 {
         if (p2 < 0) {
             return FunctionError();
         }
-        return Operand.Create(p2 + startIndex + engine.ExcelIndex());
+        return Operand.Create(p2 + startIndex + engine.ExcelIndex);
     }
 
     @Override

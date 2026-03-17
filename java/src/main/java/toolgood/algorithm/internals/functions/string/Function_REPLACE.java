@@ -43,7 +43,7 @@ public final class Function_REPLACE extends Function_4 {
         Operand args4 = GetText_4(engine, tempParameter);
         if (args4.IsErrorOrNone()) { return args4; }
 
-        int start = args2.IntValue() - engine.ExcelIndex();
+        int start = args2.IntValue() - engine.ExcelIndex;
         int length = args3.IntValue();
         String newtext = args4.TextValue();
 

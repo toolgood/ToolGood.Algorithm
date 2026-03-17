@@ -28,12 +28,12 @@ public final class Function_SEARCH extends Function_3 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         if (func3 == null) {
-            int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + engine.ExcelIndex();
+            int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + engine.ExcelIndex;
             return Operand.Create(p);
         }
         Operand args3 = GetNumber_3(engine, tempParameter);
         if (args3.IsErrorOrNone()) { return args3; }
-        int startIndex = args3.IntValue() - engine.ExcelIndex();
+        int startIndex = args3.IntValue() - engine.ExcelIndex;
         if (startIndex < 0 || startIndex >= args2.TextValue().length()) {
             return FunctionError();
         }
@@ -41,7 +41,7 @@ public final class Function_SEARCH extends Function_3 {
         if (p2 < 0) {
             return FunctionError();
         }
-        return Operand.Create(p2 + startIndex + engine.ExcelIndex());
+        return Operand.Create(p2 + startIndex + engine.ExcelIndex);
     }
 
     @Override
