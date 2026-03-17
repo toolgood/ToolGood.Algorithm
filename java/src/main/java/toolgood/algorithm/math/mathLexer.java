@@ -1,4 +1,3 @@
-// Generated from math.g4 by ANTLR 4.13.2
 package toolgood.algorithm.math;
 
 import org.antlr.v4.runtime.Lexer;

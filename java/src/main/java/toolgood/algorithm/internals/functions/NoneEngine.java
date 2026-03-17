@@ -13,19 +13,18 @@ public class NoneEngine extends AlgorithmEngine {
     public NoneEngine(AlgorithmEngine engine) {
         this.AreaUnit = engine.AreaUnit;
         this.DistanceUnit = engine.DistanceUnit;
-        this.SetLastError(engine.getLastError());
         this.MassUnit = engine.MassUnit;
         this.UseLocalTime = engine.UseLocalTime;
         this.ExcelIndex = engine.ExcelIndex;
     }
 
     @Override
-    public Operand getParameter(String parameter) {
+    public Operand GetParameter(String parameter) {
         return Operand.None;
     }
 
     @Override
-    public Operand executeDiyFunction(String parameter, List<Operand> args) {
+    public Operand ExecuteDiyFunction(String parameter, List<Operand> args) {
         return Operand.None;
     }
 }

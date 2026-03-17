@@ -1,6 +1,8 @@
 package toolgood.algorithm;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -9,95 +11,68 @@ import toolgood.algorithm.enums.AreaUnitType;
 import toolgood.algorithm.enums.DistanceUnitType;
 import toolgood.algorithm.enums.MassUnitType;
 import toolgood.algorithm.enums.VolumeUnitType;
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.visitors.AntlrErrorTextWriter;
+import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.operands.MyDate;
-import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
 
 public class AlgorithmEngine {
     public int ExcelIndex = 1;
 
-    /**
-     * 使用 本地时间�?影响 时间截转�?
-     */
     public boolean UseLocalTime = true;
 
-    /**
-     * 长度单位
-     */
     public DistanceUnitType DistanceUnit = DistanceUnitType.M;
 
-    /**
-     * 面积单位
-     */
     public AreaUnitType AreaUnit = AreaUnitType.M2;
 
-    /**
-     * 体积单位
-     */
     public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
 
-    /**
-     * 重量单位
-     */
     public MassUnitType MassUnit = MassUnitType.KG;
 
-    /**
-     * 最后一个错�?
-     */
-    private String LastError;
+    public String LastError;
 
-    /**
-     * 获取最后一个错�?
-     */
-    public String getLastError() {
-        return LastError;
-    }
+    public boolean UseParseCache = false;
+    private final ConcurrentHashMap<String, FunctionBase> _parseCache = new ConcurrentHashMap<>();
 
-    /**
-     * 设置最后一个错�?
-     */
-    public void SetLastError(String error) {
-        LastError = error;
-    }
-
-    /**
-     * 使用EXCEL索引
-     */
     public void setUseExcelIndex(boolean value) {
         ExcelIndex = value ? 1 : 0;
     }
 
-    /**
-     * 自定义参�?请重写此方法
-     */
-    public Operand getParameter(String parameter) {
+    public Operand GetParameter(String parameter) {
         return Operand.Error("Parameter [" + parameter + "] is missing.");
     }
 
-    /**
-     * 自定义函�?请重写此方法
-     */
-    public Operand executeDiyFunction(String parameter, List<Operand> args) {
+    public Operand ExecuteDiyFunction(String parameter, List<Operand> args) {
         return Operand.Error("DiyFunction [" + parameter + "] is missing.");
     }
 
-    /**
-     * 编译公式，默�?
-     */
     public FunctionBase Parse(String exp) throws Exception {
         LastError = null;
         if (exp == null || exp.trim().isEmpty()) {
             LastError = "Parameter exp invalid !";
             throw new Exception(LastError);
         }
+        if (UseParseCache) {
+            return _parseCache.computeIfAbsent(exp.trim(), e -> {
+                try {
+                    return ParseInternal(e);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                return null;
+            });
+        }
+        return ParseInternal(exp);
+    }
+
+    private FunctionBase ParseInternal(String exp) throws Exception {
         AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-        org.antlr.v4.runtime.CharStream stream = org.antlr.v4.runtime.CharStreams.fromString(exp);
+        org.antlr.v4.runtime.CharStream stream = CharStreams.fromString(exp);
         mathLexer lexer = new mathLexer(stream);
-        org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
         mathParser parser = new mathParser(tokens);
 
         mathParser.ProgContext context = parser.prog();
@@ -109,177 +84,52 @@ public class AlgorithmEngine {
         return visitor.visit(context);
     }
 
-    /**
-     * 执行函数
-     */
-    public Operand Evaluate(FunctionBase function) {
+    public Operand Evaluate(FunctionBase function) throws Exception {
         return function.Evaluate(this);
     }
 
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
-    public short TryEvaluate(String exp, short def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotNumber()) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return (short) obj.IntValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
-    }
-
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
     public int TryEvaluate(String exp, int def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotNumber()) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return obj.IntValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.IntValue());
     }
 
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
     public long TryEvaluate(String exp, long def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotNumber()) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return obj.LongValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.LongValue());
     }
 
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
-    public float TryEvaluate(String exp, float def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotNumber()) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return (float) obj.DoubleValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
-    }
-
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
     public double TryEvaluate(String exp, double def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotNumber()) {
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return obj.DoubleValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.DoubleValue());
     }
 
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
+    public BigDecimal TryEvaluate(String exp, BigDecimal def) {
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.NumberValue());
+    }
+
     public String TryEvaluate(String exp, String def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotText()) {
-                obj = obj.ToText("It can't be converted to string!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return obj.TextValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
+        return TryEvaluateCore(exp, def, o -> o.IsText() ? o : o.ToText("It can't be converted to string!"), o -> o.TextValue());
     }
 
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
     public boolean TryEvaluate(String exp, boolean def) {
-        try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotBoolean()) {
-                obj = obj.ToBoolean("It can't be converted to bool!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
-            }
-            return obj.BooleanValue;
-        } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
-        }
-        return def;
+        return TryEvaluateCore(exp, def, o -> o.IsBoolean() ? o : o.ToBoolean("It can't be converted to bool!"), o -> o.BooleanValue());
     }
 
-    /**
-     * 执行函数,如果异常，返回默认�?
-     */
     public MyDate TryEvaluate_MyDate(String exp, MyDate def) {
+        return TryEvaluateCore(exp, def,
+                o -> o.IsDate() ? o : o.ToMyDate("It can't be converted to DateTime!"),
+                o -> o.DateValue());
+    }
+
+    private <T> T TryEvaluateCore(String exp, T def, java.util.function.Function<Operand, Operand> convert, java.util.function.Function<Operand, T> getValue) {
         try {
-            var function = Parse(exp);
-            var obj = function.Evaluate(this);
-            if (obj.IsNotDate()) {
-                obj = obj.ToMyDate("It can't be converted to DateTime!");
-                if (obj.IsError()) {
-                    SetLastError(obj.ErrorMsg);
-                    return def;
-                }
+            FunctionBase function = Parse(exp);
+            Operand obj = function.Evaluate(this);
+            obj = convert.apply(obj);
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return def;
             }
-            return obj.DateValue;
+            return getValue.apply(obj);
         } catch (Exception ex) {
-            SetLastError(ex.getMessage() + "\r\n" + ex.getStackTrace());
+            LastError = ex.toString();
         }
         return def;
     }
