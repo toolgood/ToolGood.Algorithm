@@ -52,7 +52,7 @@ public final class Function_LASTINDEXOF extends Function_4 {
             return ParameterError(4);
         }
 
-        return Operand.Create(text.lastIndexOf(args2.TextValue(), startIndex, startIndex - count + 1) + engine.ExcelIndex);
+        return Operand.Create(text.substring(startIndex - count + 1, startIndex + 1).lastIndexOf(args2.TextValue()) + startIndex - count + 1 + engine.ExcelIndex);
     }
 
     @Override

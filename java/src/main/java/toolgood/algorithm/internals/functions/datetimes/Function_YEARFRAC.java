@@ -51,7 +51,7 @@ public final class Function_YEARFRAC extends Function_3 {
     }
 
     private double calculateYearFrac(MyDate startDate, MyDate endDate, int basis) {
-        if (startDate.ToDateTime().isAfter(endDate.ToDateTime())) {
+        if (startDate.ToDateTime().after(endDate.ToDateTime())) {
             MyDate temp = startDate;
             startDate = endDate;
             endDate = temp;
@@ -111,9 +111,19 @@ public final class Function_YEARFRAC extends Function_3 {
     }
 
     private long daysBetween(MyDate d1, MyDate d2) {
-        long millis1 = d1.ToDateTime().withTimeAtStartOfDay().getMillis();
-        long millis2 = d2.ToDateTime().withTimeAtStartOfDay().getMillis();
+        long millis1 = getStartOfDayMillis(d1.ToDateTime());
+        long millis2 = getStartOfDayMillis(d2.ToDateTime());
         return (millis2 - millis1) / (1000L * 60 * 60 * 24);
+    }
+
+    private long getStartOfDayMillis(java.util.Date date) {
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        cal.set(java.util.Calendar.MINUTE, 0);
+        cal.set(java.util.Calendar.SECOND, 0);
+        cal.set(java.util.Calendar.MILLISECOND, 0);
+        return cal.getTimeInMillis();
     }
 
     private boolean isLeapYear(int year) {

@@ -46,18 +46,15 @@ public final class Function_GetJsonValue extends Function_2 {
             return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
         }
         if (obj.IsArrayJson()) {
+            Operand[] operandArr = new Operand[1];
             if (op.IsNumber()) {
-                Operand operand;
-                if (((OperandKeyValueList) obj).TryGetValue(op.NumberValue().toString())) {
-                    operand = ((OperandKeyValueList) obj).getOperand();
-                    return operand;
+                if (((OperandKeyValueList) obj).TryGetValue(op.NumberValue().toString(), operandArr)) {
+                    return operandArr[0];
                 }
                 return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
             } else if (op.IsText()) {
-                Operand operand;
-                if (((OperandKeyValueList) obj).TryGetValue(op.TextValue())) {
-                    operand = ((OperandKeyValueList) obj).getOperand();
-                    return operand;
+                if (((OperandKeyValueList) obj).TryGetValue(op.TextValue(), operandArr)) {
+                    return operandArr[0];
                 }
                 return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
             }

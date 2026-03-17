@@ -19,8 +19,10 @@ import toolgood.algorithm.internals.functions.datetimes.*;
 import toolgood.algorithm.internals.functions.financial.*; 
 import toolgood.algorithm.internals.functions.flow.*; 
 import toolgood.algorithm.internals.functions.mathbase.*; 
-import toolgood.algorithm.internals.functions.mathsum2.*; 
-import toolgood.algorithm.internals.functions.mathsum.*; 
+import toolgood.algorithm.internals.functions.mathsum2.*;
+import toolgood.algorithm.internals.functions.mathsum.*;
+import toolgood.algorithm.internals.functions.mathtransformation.*;
+import toolgood.algorithm.internals.functions.mathtrigonometric.*;
 import toolgood.algorithm.internals.functions.operator.*; 
 import toolgood.algorithm.internals.functions.string.*; 
 import toolgood.algorithm.internals.functions.value.*;
@@ -1702,7 +1704,7 @@ public final class MathFunctionVisitor extends AbstractParseTreeVisitor<Function
             return new Function_ValueNumber(Operand.Create(d), text);
         }
         String unit = ctx.unit.getText();
-        return new Function_NUMBER(d, unit);
+        return new Function_Number(d, unit);
     }
 
     @Override

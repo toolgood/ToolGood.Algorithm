@@ -37,11 +37,21 @@ public final class Function_DAYS extends Function_2 {
             return args2;
         }
 
-        long endMillis = args1.DateValue().ToDateTime().withTimeAtStartOfDay().getMillis();
-        long startMillis = args2.DateValue().ToDateTime().withTimeAtStartOfDay().getMillis();
+        long endMillis = getStartOfDayMillis(args1.DateValue().ToDateTime());
+        long startMillis = getStartOfDayMillis(args2.DateValue().ToDateTime());
         long days = (endMillis - startMillis) / (1000L * 60 * 60 * 24);
 
         return Operand.Create((int) days);
+    }
+
+    private long getStartOfDayMillis(java.util.Date date) {
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        cal.set(java.util.Calendar.MINUTE, 0);
+        cal.set(java.util.Calendar.SECOND, 0);
+        cal.set(java.util.Calendar.MILLISECOND, 0);
+        return cal.getTimeInMillis();
     }
 
     @Override

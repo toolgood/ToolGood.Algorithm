@@ -50,8 +50,7 @@ public final class Function_NETWORKDAYS extends Function_N {
 
         int days = 0;
         MyDate currentDate = startMyDate;
-        while (currentDate.ToDateTime().isBefore(endMyDate.ToDateTime())
-                || currentDate.ToDateTime().isEqual(endMyDate.ToDateTime())) {
+        while (!currentDate.ToDateTime().after(endMyDate.ToDateTime())) {
             int dayOfWeek = currentDate.DayOfWeek();
             if (dayOfWeek != 1 && dayOfWeek != 7) {
                 String dateStr = currentDate.Year + "-" + currentDate.Month + "-" + currentDate.Day;

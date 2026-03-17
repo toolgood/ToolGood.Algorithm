@@ -46,6 +46,18 @@ public final class MyDate {
         Second = (int) (dt.getSeconds() % 60);
     }
 
+    public MyDate(double totalDays) {
+        Year = null;
+        Month = null;
+        long totalSeconds = (long) (totalDays * 86400);
+        Day = (int) (totalSeconds / 86400);
+        long remaining = totalSeconds % 86400;
+        Hour = (int) (remaining / 3600);
+        remaining = remaining % 3600;
+        Minute = (int) (remaining / 60);
+        Second = (int) (remaining % 60);
+    }
+
     public static MyDate Parse(String txt) {
         String t = txt.trim();
         Matcher m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$").matcher(t);
@@ -145,6 +157,14 @@ public final class MyDate {
         return null;
     }
 
+    public static MyDate parse(String txt) {
+        return Parse(txt);
+    }
+
+    public static MyDate now() {
+        return new MyDate(new Date());
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuffer = new StringBuilder(20);
@@ -192,6 +212,23 @@ public final class MyDate {
                       .plusHours(Hour)
                       .plusMinutes(Minute)
                       .plusSeconds(Second);
+    }
+
+    public int DayOfWeek() {
+        if (Year != null && Year > 0) {
+            Calendar cal = new GregorianCalendar(Year, Month != null ? Month - 1 : 0, Day != null ? Day : 1);
+            int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+            return dayOfWeek == Calendar.SUNDAY ? 7 : dayOfWeek - 1;
+        }
+        return 0;
+    }
+
+    public int DayOfYear() {
+        if (Year != null && Year > 0) {
+            Calendar cal = new GregorianCalendar(Year, Month != null ? Month - 1 : 0, Day != null ? Day : 1);
+            return cal.get(Calendar.DAY_OF_YEAR);
+        }
+        return 0;
     }
 
     public long ToLong() {

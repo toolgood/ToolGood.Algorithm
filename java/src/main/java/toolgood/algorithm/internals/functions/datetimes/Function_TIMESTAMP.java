@@ -39,7 +39,7 @@ public final class Function_TIMESTAMP extends Function_2 {
         }
 
         MyDate myDate = args0.DateValue();
-        long timestamp = myDate.ToDateTime().getMillis();
+        long timestamp = myDate.ToDateTime().getTime();
 
         if (type == 0) {
             return Operand.Create(timestamp);

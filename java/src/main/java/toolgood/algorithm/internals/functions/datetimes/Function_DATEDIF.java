@@ -1,5 +1,7 @@
 package toolgood.algorithm.internals.functions.datetimes;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -66,7 +68,7 @@ public final class Function_DATEDIF extends Function_3 {
                 return Operand.Create(endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1);
             }
         } else if (t.equalsIgnoreCase("D")) {
-            long days = endMyDate.ToDateTime().getMillis() - startMyDate.ToDateTime().getMillis();
+            long days = endMyDate.ToDateTime().getTime() - startMyDate.ToDateTime().getTime();
             days = days / (1000 * 60 * 60 * 24);
             return Operand.Create((int) days);
         } else if (t.equalsIgnoreCase("YD")) {
@@ -74,19 +76,14 @@ public final class Function_DATEDIF extends Function_3 {
             int endDayOfYear = endMyDate.DayOfYear();
             int day = endDayOfYear - startDayOfYear;
             if (endMyDate.Year > startMyDate.Year && day < 0) {
-                int days = startMyDate.ToDateTime().dayOfYear().withMaximumValue().getDayOfYear();
+                int days = isLeapYear(startMyDate.Year) ? 366 : 365;
                 day = days + day;
             }
             return Operand.Create(day);
         } else if (t.equalsIgnoreCase("MD")) {
             int mo = endMyDate.Day - startMyDate.Day;
             if (mo < 0) {
-                int days;
-                if (startMyDate.Month == 12) {
-                    days = startMyDate.ToDateTime().withMonthOfYear(12).dayOfMonth().withMaximumValue().getDayOfMonth();
-                } else {
-                    days = startMyDate.ToDateTime().withMonthOfYear(startMyDate.Month).dayOfMonth().withMaximumValue().getDayOfMonth();
-                }
+                int days = getDaysInMonth(startMyDate.Year, startMyDate.Month);
                 mo += days;
             }
             return Operand.Create(mo);
@@ -99,6 +96,15 @@ public final class Function_DATEDIF extends Function_3 {
             return Operand.Create(mo);
         }
         return ParameterError(3);
+    }
+
+    private boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    private int getDaysInMonth(int year, int month) {
+        Calendar cal = new GregorianCalendar(year, month - 1, 1);
+        return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
     @Override

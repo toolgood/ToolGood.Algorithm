@@ -3,6 +3,8 @@ package toolgood.algorithm.mathNet;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import toolgood.algorithm.system.MathEx;
+
 public class SpecialFunctions {
     private static final int GammaN = 10;
     private static final BigDecimal GammaR = new BigDecimal("10.900511");

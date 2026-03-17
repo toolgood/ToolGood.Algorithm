@@ -47,11 +47,11 @@ public final class Function_XNPV extends Function_3 {
         final long MILLIS_PER_DAY = 1000L * 60 * 60 * 24;
         for (Operand d : dates) {
             if (d.IsDate()) {
-                dateMillis.add(d.DateValue().ToDateTime().getMillis());
+                dateMillis.add(d.DateValue().ToDateTime().getTime());
             } else if (d.IsText()) {
-                MyDate myDate = MyDate.parse(d.TextValue());
+                MyDate myDate = MyDate.Parse(d.TextValue());
                 if (myDate == null) return ParameterError(3);
-                dateMillis.add(myDate.ToDateTime().getMillis());
+                dateMillis.add(myDate.ToDateTime().getTime());
             } else {
                 return ParameterError(3);
             }
