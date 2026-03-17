@@ -1,9 +1,8 @@
 package toolgood.algorithm.litJson;
 
 import java.io.Reader;
-import java.io.StringReader;
 
-public class Lexer {
+final class Lexer {
     private interface StateHandler {
         boolean run(FsmContext ctx);
     }
@@ -11,18 +10,18 @@ public class Lexer {
     private static final int[] fsm_return_table;
     private static final StateHandler[] fsm_handler_table;
 
-    private boolean allow_comments = true;
-    private boolean allow_single_quoted_strings = true;
-    private boolean end_of_input = false;
-    private final FsmContext fsm_context = new FsmContext();
-    private int input_buffer = 0;
-    private int input_char = 0;
+    private boolean allow_comments;
+    private boolean allow_single_quoted_strings;
+    private boolean end_of_input;
+    private final FsmContext fsm_context;
+    private int input_buffer;
+    private int input_char;
     private final Reader reader;
-    private int state = 1;
-    private final StringBuilder string_buffer = new StringBuilder(128);
-    private String string_value = "";
-    private int token = 0;
-    private int unichar = 0;
+    private int state;
+    private final StringBuilder string_buffer;
+    private String string_value;
+    private int token;
+    private int unichar;
 
     public boolean EndOfInput() {
         return end_of_input;
@@ -34,14 +33,6 @@ public class Lexer {
 
     public String StringValue() {
         return string_value;
-    }
-
-    public Lexer(Reader reader) {
-        this.reader = reader;
-    }
-
-    public Lexer(String input) {
-        this.reader = new StringReader(input);
     }
 
     static {
@@ -77,35 +68,49 @@ public class Lexer {
         };
 
         fsm_return_table = new int[]{
-            (int) ParserToken.Char,
+            ParserToken.Char.value,
             0,
-            (int) ParserToken.Number,
-            (int) ParserToken.Number,
+            ParserToken.Number.value,
+            ParserToken.Number.value,
             0,
-            (int) ParserToken.Number,
+            ParserToken.Number.value,
             0,
-            (int) ParserToken.Number,
-            0,
-            0,
-            (int) ParserToken.True,
+            ParserToken.Number.value,
             0,
             0,
-            0,
-            (int) ParserToken.False,
-            0,
-            0,
-            (int) ParserToken.Null,
-            (int) ParserToken.CharSeq,
-            (int) ParserToken.Char,
+            ParserToken.True.value,
             0,
             0,
-            (int) ParserToken.CharSeq,
-            (int) ParserToken.Char,
+            0,
+            ParserToken.False.value,
+            0,
+            0,
+            ParserToken.Null.value,
+            ParserToken.CharSeq.value,
+            ParserToken.Char.value,
+            0,
+            0,
+            ParserToken.CharSeq.value,
+            ParserToken.Char.value,
             0,
             0,
             0,
             0
         };
+    }
+
+    public Lexer(Reader reader) {
+        allow_comments = true;
+        allow_single_quoted_strings = true;
+
+        input_buffer = 0;
+        string_buffer = new StringBuilder(128);
+        state = 1;
+        end_of_input = false;
+        this.reader = reader;
+
+        fsm_context = new FsmContext();
+        fsm_context.L = this;
     }
 
     private static int HexValue(int digit) {
@@ -764,7 +769,6 @@ public class Lexer {
     public boolean NextToken() {
         StateHandler handler;
         fsm_context.Return = false;
-        fsm_context.L = this;
 
         while (true) {
             handler = fsm_handler_table[state - 1];
@@ -778,7 +782,7 @@ public class Lexer {
                 string_buffer.setLength(0);
                 token = fsm_return_table[state - 1];
 
-                if (token == (int) ParserToken.Char) token = input_char;
+                if (token == ParserToken.Char.value) token = input_char;
 
                 state = fsm_context.NextState;
 

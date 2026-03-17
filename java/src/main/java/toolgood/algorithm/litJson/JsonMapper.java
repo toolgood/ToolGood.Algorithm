@@ -1,6 +1,8 @@
 package toolgood.algorithm.litJson;
 
-public class JsonMapper {
+import java.math.BigDecimal;
+
+final class JsonMapper {
     private static JsonData ReadValue(JsonReader reader) throws Exception {
         reader.Read();
 
@@ -15,10 +17,12 @@ public class JsonMapper {
 
         if (reader.Token() == JsonToken.Double) {
             Object value = reader.Value();
-            if (value instanceof Number) {
-                instance.SetDouble(((Number) value).doubleValue());
+            if (value instanceof BigDecimal) {
+                instance.SetDouble((BigDecimal) value);
+            } else if (value instanceof Number) {
+                instance.SetDouble(new BigDecimal(value.toString()));
             } else {
-                instance.SetDouble(0);
+                instance.SetDouble(BigDecimal.ZERO);
             }
             return instance;
         }

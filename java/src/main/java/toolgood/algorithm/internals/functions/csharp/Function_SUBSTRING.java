@@ -1,62 +1,78 @@
 package toolgood.algorithm.internals.functions.csharp;
 
+import java.util.List;
+import java.util.function.BiFunction;
+
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-
-
-public class Function_SUBSTRING extends Function_3 {
-    public Function_SUBSTRING(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_SUBSTRING extends Function_3 {
+    public Function_SUBSTRING(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Substring", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "Substring";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsError() || args1.IsNone()) {
+            return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Substring", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsError() || args2.IsNone()) {
+            return args2;
         }
 
         String text = args1.TextValue();
-        int startIndex = args2.IntValue() - work.ExcelIndex;
+        int startIndex = args2.IntValue() - engine.ExcelIndex;
+
         if (startIndex < 0) {
-            startIndex = 0;
+            return ParameterError(2);
         }
         if (startIndex >= text.length()) {
             return Operand.Create("");
         }
+
         if (func3 == null) {
             return Operand.Create(text.substring(startIndex));
         }
-        Operand args3 = func3.Evaluate(work, tempParameter);
-        if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Substring", 3);
-            if (args3.IsError()) {
-                return args3;
-            }
+
+        Operand args3 = GetNumber_3(engine, tempParameter);
+        if (args3.IsError() || args3.IsNone()) {
+            return args3;
         }
+
         int length = args3.IntValue();
-        int endIndex = startIndex + length;
-        if (endIndex > text.length()) {
-            endIndex = text.length();
+        if (length < 0) {
+            return ParameterError(3);
         }
-        return Operand.Create(text.substring(startIndex, endIndex));
+        if (startIndex + length > text.length()) {
+            length = text.length() - startIndex;
+        }
+        return Operand.Create(text.substring(startIndex, startIndex + length));
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Substring");
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
+        }
     }
 }

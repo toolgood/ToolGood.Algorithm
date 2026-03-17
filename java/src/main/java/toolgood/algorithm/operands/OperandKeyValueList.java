@@ -1,104 +1,95 @@
 package toolgood.algorithm.operands;
 
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.internals.functions.FunctionUtil;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-class OperandKeyValueList extends Operand {
-    private final List<KeyValue> textList;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.litJson.JsonData;
+
+final class OperandKeyValueList extends Operand {
+    private final List<KeyValue> _keyValueList;
 
     public OperandKeyValueList() {
-        textList = new ArrayList<>();
+        _keyValueList = new ArrayList<>();
     }
 
     @Override
     public boolean IsArrayJson() { return true; }
 
     @Override
-    public boolean IsNotArrayJson() { return false; }
-
-    @Override
-    public OperandType Type() { return OperandType.ARRARYJSON; }
+    public OperandType Type() { return OperandType.ARRAYJSON; }
 
     @Override
     public List<Operand> ArrayValue() {
-        List<Operand> result = new ArrayList<>();
-        for (KeyValue kv : textList) {
-            result.add(kv.value);
+        List<Operand> result = new ArrayList<>(_keyValueList.size());
+        for (KeyValue kv : _keyValueList) {
+            result.add(kv.Value);
         }
         return result;
     }
 
     @Override
     public Operand ToText(String errorMessage) {
-        return Create(this.toString());
+        return Create(toString());
     }
 
     @Override
-    public Operand ToText(String errorMessage, Object... args) {
-        return Create(this.toString());
+    public Operand ToText(String errorMessage, Object[] args) {
+        return Create(toString());
     }
 
     @Override
     public Operand ToArray(String errorMessage) {
-        return Create(this.ArrayValue());
+        return Create(ArrayValue());
     }
 
     @Override
-    public Operand ToArray(String errorMessage, Object... args) {
-        return Create(this.ArrayValue());
+    public Operand ToArray(String errorMessage, Object[] args) {
+        return Create(ArrayValue());
     }
 
     @Override
     public Operand ToJson(String errorMessage) {
-        String txt = this.toString();
+        String txt = toString();
         try {
-            JsonData json = JsonData.Parse(txt);
+            JsonData json = JsonData.parse(txt);
             return Operand.Create(json);
-        } catch (Exception e) {
-            return Error(errorMessage != null ? errorMessage : "Convert to json error!");
-        }
+        } catch (Exception e) { }
+        return Error(errorMessage != null ? errorMessage : "Convert to json error!");
     }
 
-    public void addValue(KeyValue keyValue) {
-        textList.add(keyValue);
+    public void AddValue(KeyValue keyValue) {
+        _keyValueList.add(keyValue);
     }
 
-    public boolean tryGetValue(String key, Operand[] value) {
-        for (KeyValue item : textList) {
-            if (item.key.equals(key)) {
-                value[0] = item.value;
+    public boolean TryGetValue(String key, Operand[] value) {
+        for (KeyValue item : _keyValueList) {
+            if (item.Key.equals(key)) {
+                value[0] = item.Value;
                 return true;
             }
         }
         return false;
     }
 
-    public boolean containsKey(Operand value) {
-        for (KeyValue item : textList) {
-            if (value.TextValue().equals(item.key)) {
+    public boolean ContainsKey(Operand value) {
+        for (KeyValue item : _keyValueList) {
+            if (item.Key.equals(value.TextValue())) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean containsValue(Operand value) {
-        for (KeyValue item : textList) {
-            Operand op = item.value;
+    public boolean ContainsValue(Operand value) {
+        for (KeyValue item : _keyValueList) {
+            Operand op = item.Value;
             if (value.Type() != op.Type()) {
                 continue;
             }
-            if (value.IsText()) {
-                if (value.TextValue().equals(op.TextValue())) {
-                    return true;
-                }
+            if (value.IsText() && value.TextValue().equals(op.TextValue())) {
+                return true;
             }
         }
         return false;
@@ -106,17 +97,15 @@ class OperandKeyValueList extends Operand {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(_keyValueList.size() * 32);
         stringBuilder.append('{');
-        for (int i = 0; i < textList.size(); i++) {
-            if (i > 0) {
-                stringBuilder.append(',');
-            }
+        for (int i = 0; i < _keyValueList.size(); i++) {
+            if (i > 0) stringBuilder.append(',');
             stringBuilder.append('"');
-            stringBuilder.append(textList.get(i).key);
+            stringBuilder.append(_keyValueList.get(i).Key);
             stringBuilder.append('"');
             stringBuilder.append(':');
-            stringBuilder.append(textList.get(i).value.toString());
+            stringBuilder.append(_keyValueList.get(i).Value.toString());
         }
         stringBuilder.append('}');
         return stringBuilder.toString();

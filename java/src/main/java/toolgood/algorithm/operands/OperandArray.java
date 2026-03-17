@@ -2,69 +2,57 @@ package toolgood.algorithm.operands;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.MyDate;
 import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.internals.functions.FunctionUtil;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
-class OperandArray extends Operand {
-    private final List<Operand> value;
+final class OperandArray extends Operand {
+    private final List<Operand> _value;
 
     public OperandArray(List<Operand> obj) {
-        value = obj;
+        _value = obj;
     }
 
     @Override
     public boolean IsArray() { return true; }
 
     @Override
-    public boolean IsNotArray() { return false; }
+    public OperandType Type() { return OperandType.ARRAY; }
 
     @Override
-    public OperandType Type() { return OperandType.ARRARY; }
-
-    @Override
-    public List<Operand> ArrayValue() { return value; }
+    public List<Operand> ArrayValue() { return _value; }
 
     @Override
     public Operand ToText(String errorMessage) {
-        return Create(this.toString());
+        return Create(toString());
     }
 
     @Override
-    public Operand ToText(String errorMessage, Object... args) {
-        return Create(this.toString());
+    public Operand ToText(String errorMessage, Object[] args) {
+        return Create(toString());
     }
 
     @Override
     public Operand ToArray(String errorMessage) { return this; }
 
     @Override
-    public Operand ToArray(String errorMessage, Object... args) { return this; }
+    public Operand ToArray(String errorMessage, Object[] args) { return this; }
 
     @Override
     public Operand ToJson(String errorMessage) {
-        String txt = this.toString();
+        String txt = toString();
         try {
-            JsonData json = JsonData.Parse(txt);
+            JsonData json = JsonData.parse(txt);
             return Operand.Create(json);
-        } catch (Exception e) {
-            return Error(errorMessage != null ? errorMessage : "Convert to json error!");
-        }
+        } catch (Exception e) { }
+        return Error(errorMessage != null ? errorMessage : "Convert to json error!");
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(_value.size() * 16);
         stringBuilder.append('[');
-        for (int i = 0; i < value.size(); i++) {
-            if (i > 0) {
-                stringBuilder.append(',');
-            }
-            stringBuilder.append(value.get(i).toString());
+        for (int i = 0; i < _value.size(); i++) {
+            if (i > 0) stringBuilder.append(',');
+            stringBuilder.append(_value.get(i).toString());
         }
         stringBuilder.append(']');
         return stringBuilder.toString();

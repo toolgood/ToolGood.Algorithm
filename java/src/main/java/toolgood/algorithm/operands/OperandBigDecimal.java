@@ -1,68 +1,67 @@
 package toolgood.algorithm.operands;
 
+import java.math.BigDecimal;
+
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.internals.functions.FunctionUtil;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
-class OperandBigDecimal extends Operand {
-    private final BigDecimal value;
+final class OperandBigDecimal extends Operand {
+    private final BigDecimal _value;
 
     public OperandBigDecimal(BigDecimal obj) {
-        value = obj;
+        _value = obj;
     }
 
     @Override
     public boolean IsNumber() { return true; }
 
     @Override
-    public boolean IsNotNumber() { return false; }
-
-    @Override
     public OperandType Type() { return OperandType.NUMBER; }
 
     @Override
-    public int IntValue() { return value.intValue(); }
+    public int IntValue() { return _value.intValue(); }
 
     @Override
-    public BigDecimal NumberValue() { return value; }
+    public BigDecimal NumberValue() { return _value; }
 
     @Override
-    public long LongValue() { return value.longValue(); }
+    public long LongValue() { return _value.longValue(); }
 
     @Override
-    public double DoubleValue() { return value.doubleValue(); }
-
+    public double DoubleValue() { return _value.doubleValue(); }
 
     @Override
     public Operand ToNumber(String errorMessage) { return this; }
 
     @Override
-    public Operand ToNumber(String errorMessage, Object... args) { return this; }
+    public Operand ToNumber(String errorMessage, Object[] args) { return this; }
 
     @Override
-    public Operand ToBoolean(String errorMessage) { return value.compareTo(BigDecimal.ZERO) != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage) {
+        if (_value.compareTo(BigDecimal.ZERO) == 0) {
+            return False;
+        } else if (_value.compareTo(BigDecimal.ONE) == 0) {
+            return True;
+        }
+        return super.ToBoolean(errorMessage);
+    }
 
     @Override
-    public Operand ToBoolean(String errorMessage, Object... args) { return value.compareTo(BigDecimal.ZERO) != 0 ? TRUE : FALSE; }
+    public Operand ToBoolean(String errorMessage, Object[] args) {
+        if (_value.compareTo(BigDecimal.ZERO) == 0) {
+            return False;
+        } else if (_value.compareTo(BigDecimal.ONE) == 0) {
+            return True;
+        }
+        return super.ToBoolean(errorMessage);
+    }
 
     @Override
-    public Operand ToText(String errorMessage) { return Create(value.toString()); }
+    public Operand ToText(String errorMessage) { return Create(_value.toString()); }
 
     @Override
-    public Operand ToText(String errorMessage, Object... args) { return Create(value.toString()); }
+    public Operand ToText(String errorMessage, Object[] args) { return Create(_value.toString()); }
 
     @Override
-    public Operand ToMyDate(String errorMessage) { return Create(new MyDate(value.longValue())); }
-
-    @Override
-    public Operand ToMyDate(String errorMessage, Object... args) { return Create(new MyDate(value.longValue())); }
-
-    @Override
-    public String toString() { return NumberValue().toString(); }
+    public String toString() { return _value.toString(); }
 }

@@ -1,74 +1,82 @@
 package toolgood.algorithm.internals.functions.csharp;
 
+import java.util.List;
+import java.util.function.BiFunction;
+
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.Function_4;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-
-
-public class Function_INDEXOF extends Function_4 {
-    public Function_INDEXOF(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) {
-        super(func1, func2, func3, func4);
+public final class Function_INDEXOF extends Function_4 {
+    public Function_INDEXOF(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "IndexOf";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsError() || args1.IsNone()) {
+            return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotText()) {
-            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+
+        Operand args2 = GetText_2(engine, tempParameter);
+        if (args2.IsError() || args2.IsNone()) {
+            return args2;
         }
+
         String text = args1.TextValue();
         if (func3 == null) {
-            return Operand.Create(text.indexOf(args2.TextValue()) + work.ExcelIndex);
+            return Operand.Create(text.indexOf(args2.TextValue()) + engine.ExcelIndex);
         }
-        Operand args3 = func3.Evaluate(work, tempParameter);
-        if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 3);
-            if (args3.IsError()) {
-                return args3;
-            }
+
+        Operand args3 = GetNumber_3(engine, tempParameter);
+        if (args3.IsError() || args3.IsNone()) {
+            return args3;
         }
+        int startIndex = args3.IntValue() - engine.ExcelIndex;
+        if (startIndex < 0 || startIndex > text.length()) {
+            return ParameterError(3);
+        }
+
         if (func4 == null) {
-            int startIndex = args3.IntValue();
-            if (startIndex >= text.length()) {
-                return Operand.Create(-1 + work.ExcelIndex);
-            }
-            return Operand.Create(text.substring(startIndex).indexOf(args2.TextValue()) + startIndex + work.ExcelIndex);
+            return Operand.Create(text.substring(startIndex).indexOf(args2.TextValue()) + startIndex + engine.ExcelIndex);
         }
-        Operand args4 = func4.Evaluate(work, tempParameter);
-        if (args4.IsNotNumber()) {
-            args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 4);
-            if (args4.IsError()) {
-                return args4;
-            }
+
+        Operand args4 = GetNumber_4(engine, tempParameter);
+        if (args4.IsError() || args4.IsNone()) {
+            return args4;
         }
-        int startIndex = args3.IntValue();
         int count = args4.IntValue();
-        if (startIndex >= text.length()) {
-            return Operand.Create(-1 + work.ExcelIndex);
+        if (count < 0 || startIndex + count > text.length()) {
+            return ParameterError(4);
         }
-        int endIndex = Math.min(startIndex + count, text.length());
-        String substring = text.substring(startIndex, endIndex);
-        int result = substring.indexOf(args2.TextValue());
-        if (result == -1) {
-            return Operand.Create(-1 + work.ExcelIndex);
-        }
-        return Operand.Create(result + startIndex + work.ExcelIndex);
+
+        return Operand.Create(text.indexOf(args2.TextValue(), startIndex, startIndex + count) + engine.ExcelIndex);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "IndexOf");
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+        func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
+        }
+        if (func4 != null) {
+            func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER, null, null);
+        }
     }
 }

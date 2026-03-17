@@ -1,6 +1,6 @@
 package toolgood.algorithm.litJson;
 
-public class FsmContext {
+final class FsmContext {
     public boolean Return;
     public int NextState;
     public Lexer L;

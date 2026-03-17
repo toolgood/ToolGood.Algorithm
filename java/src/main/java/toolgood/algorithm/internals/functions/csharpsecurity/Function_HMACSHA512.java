@@ -1,79 +1,77 @@
 package toolgood.algorithm.internals.functions.csharpsecurity;
 
-import toolgood.algorithm.internals.functions.Function_3;
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import java.lang.StringBuilder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.function.BiFunction;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-public class Function_HMACSHA512 extends Function_3 {
-    public Function_HMACSHA512(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_HMACSHA512 extends Function_2 {
+    public Function_HMACSHA512(FunctionBase func1, FunctionBase func2) {
+        super(func1, func2);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "HmacSHA512";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsError() || args1.IsNone()) {
+            return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotText()) {
-            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+
+        Operand args2 = GetText_2(engine, tempParameter);
+        if (args2.IsError() || args2.IsNone()) {
+            return args2;
         }
+
         try {
-            java.nio.charset.Charset charset;
-            if (func3 == null) {
-                charset = java.nio.charset.StandardCharsets.UTF_8;
-            } else {
-                Operand args3 = func3.Evaluate(work, tempParameter);
-                if (args3.IsNotText()) {
-                    args3 = args3.ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", 3);
-                    if (args3.IsError()) {
-                        return args3;
-                    }
-                }
-                charset = java.nio.charset.Charset.forName(args3.TextValue());
-            }
-            byte[] buffer = args1.TextValue().getBytes(charset);
-            String secret = args2.TextValue();
-            String t = getHmacSha512String(buffer, secret);
+            byte[] buffer = args1.TextValue().getBytes(StandardCharsets.UTF_8);
+            String t = getHmacSha512String(buffer, args2.TextValue());
             return Operand.Create(t);
         } catch (Exception ex) {
-            return Operand.Error("Function '{0}' is error!{1}", "HmacSHA512", ex.getMessage());
+            return FunctionError();
         }
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "HmacSHA512");
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
     }
 
-    private String getHmacSha512String(byte[] buffer, String secret) throws NoSuchAlgorithmException, InvalidKeyException {
-        byte[] keyByte = (secret != null ? secret : "").getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+        func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+    }
+
+    private String getHmacSha512String(byte[] buffer, String secret) throws Exception {
+        byte[] keyByte = secret != null ? secret.getBytes(StandardCharsets.UTF_8) : new byte[0];
+        SecretKeySpec keySpec = new SecretKeySpec(keyByte, "HmacSHA512");
         Mac mac = Mac.getInstance("HmacSHA512");
-        SecretKeySpec secretKeySpec = new SecretKeySpec(keyByte, "HmacSHA512");
-        mac.init(secretKeySpec);
-        byte[] hashmessage = mac.doFinal(buffer);
-        return bytesToHex(hashmessage);
+        mac.init(keySpec);
+        byte[] hashMessage = mac.doFinal(buffer);
+        return bytesToHex(hashMessage);
     }
 
     private String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
+            sb.append(String.format("%02X", b));
         }
-        return sb.toString().toUpperCase();
+        return sb.toString();
     }
 }

@@ -1,16 +1,18 @@
 package toolgood.algorithm.litJson;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class JsonData implements Iterable<JsonData> {
+final class JsonData implements Iterable<JsonData> {
     private List<JsonData> inst_array;
     private boolean inst_boolean;
-    private double inst_double;
-    private Map<String, JsonData> inst_object;
+    private BigDecimal inst_double;
+    Map<String, JsonData> inst_object;
     private String inst_string;
     private JsonType type;
 
@@ -19,34 +21,18 @@ public class JsonData implements Iterable<JsonData> {
         return inst_object.size();
     }
 
-    public boolean IsArray() {
-        return type == JsonType.Array;
-    }
-
-    public boolean IsBoolean() {
-        return type == JsonType.Boolean;
-    }
-
-    public boolean IsDouble() {
-        return type == JsonType.Double;
-    }
-
-    public boolean IsObject() {
-        return type == JsonType.Object;
-    }
-
-    public boolean IsString() {
-        return type == JsonType.String;
-    }
-
-    public boolean IsNull() {
-        return type == JsonType.Null;
-    }
+    public boolean IsArray() { return type == JsonType.Array; }
+    public boolean IsBoolean() { return type == JsonType.Boolean; }
+    public boolean IsDouble() { return type == JsonType.Double; }
+    public boolean IsObject() { return type == JsonType.Object; }
+    public boolean IsString() { return type == JsonType.String; }
+    public boolean IsNull() { return type == JsonType.Null; }
 
     public JsonData get(String prop_name) {
         if (inst_object != null) {
-            JsonData data = inst_object.get(prop_name);
-            return data;
+            if (inst_object.containsKey(prop_name)) {
+                return inst_object.get(prop_name);
+            }
         }
         return null;
     }
@@ -60,30 +46,30 @@ public class JsonData implements Iterable<JsonData> {
     public JsonData() {
     }
 
-    public void SetBoolean(boolean val) {
+    void SetBoolean(boolean val) {
         type = JsonType.Boolean;
         inst_boolean = val;
     }
 
-    public void SetDouble(double val) {
+    void SetDouble(BigDecimal val) {
         type = JsonType.Double;
         inst_double = val;
     }
 
-    public void SetString(String val) {
+    void SetString(String val) {
         type = JsonType.String;
         inst_string = val;
     }
 
-    public void SetNull() {
+    void SetNull() {
         type = JsonType.Null;
     }
 
-    public void Add(JsonData val) {
+    void Add(JsonData val) {
         EnsureList().add(val);
     }
 
-    public void Set(String key, JsonData val) {
+    void Set(String key, JsonData val) {
         EnsureDictionary().put(key, val);
     }
 
@@ -101,7 +87,7 @@ public class JsonData implements Iterable<JsonData> {
         return inst_array;
     }
 
-    public void SetJsonType(JsonType type) {
+    void SetJsonType(JsonType type) {
         if (this.type == type)
             return;
 
@@ -122,7 +108,7 @@ public class JsonData implements Iterable<JsonData> {
                 break;
 
             case Double:
-                inst_double = 0;
+                inst_double = BigDecimal.ZERO;
                 break;
 
             case Boolean:
@@ -137,16 +123,12 @@ public class JsonData implements Iterable<JsonData> {
         return EnsureList().iterator();
     }
 
-    public boolean BooleanValue() {
-        return inst_boolean;
-    }
+    public boolean BooleanValue() { return inst_boolean; }
+    public BigDecimal NumberValue() { return inst_double; }
+    public String StringValue() { return inst_string; }
 
-    public double NumberValue() {
-        return inst_double;
-    }
-
-    public String StringValue() {
-        return inst_string;
+    public List<JsonData> getArray() {
+        return inst_array;
     }
 
     @Override
@@ -179,7 +161,7 @@ public class JsonData implements Iterable<JsonData> {
                 }
                 first = false;
                 stringBuilder.append("\"");
-                stringBuilder.append(kv.getKey().replace("\"", "\\\"")
+                stringBuilder.append(kv.getKey().replace("\\", "\\\\").replace("\"", "\\\"")
                         .replace("\n", "\\n").replace("\r", "\\r")
                         .replace("\t", "\\t").replace("\0", "\\0")
                         .replace("\u000b", "\\v")
@@ -191,7 +173,7 @@ public class JsonData implements Iterable<JsonData> {
             stringBuilder.append("}");
         } else if (IsString()) {
             stringBuilder.append("\"");
-            stringBuilder.append(inst_string.replace("\"", "\\\"")
+            stringBuilder.append(inst_string.replace("\\", "\\\\").replace("\"", "\\\"")
                     .replace("\n", "\\n").replace("\r", "\\r")
                     .replace("\t", "\\t").replace("\0", "\\0")
                     .replace("\u000b", "\\v")
@@ -199,7 +181,7 @@ public class JsonData implements Iterable<JsonData> {
                     .replace("\b", "\\b").replace("\f", "\\f"));
             stringBuilder.append("\"");
         } else if (IsDouble()) {
-            stringBuilder.append(inst_double);
+            stringBuilder.append(inst_double.toPlainString());
         }
     }
 }

@@ -1,49 +1,50 @@
 package toolgood.algorithm.internals.functions.csharp;
 
+import java.util.List;
+import java.util.function.BiFunction;
+
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 
-
-
-public class Function_REMOVESTART extends Function_3 {
-    public Function_REMOVESTART(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
+public final class Function_REMOVESTART extends Function_3 {
+    public Function_REMOVESTART(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsNotText()) {
-            args1 = args1.ToText("Function '{0}' parameter {1} is error!", "RemoveStart", 1);
-            if (args1.IsError()) {
-                return args1;
-            }
+    public String Name() {
+        return "RemoveStart";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsError() || args1.IsNone()) {
+            return args1;
         }
-        Operand args2 = func2.Evaluate(work, tempParameter);
-        if (args2.IsNotText()) {
-            args2 = args2.ToText("Function '{0}' parameter {1} is error!", "RemoveStart", 2);
-            if (args2.IsError()) {
-                return args2;
-            }
+
+        Operand args2 = GetText_2(engine, tempParameter);
+        if (args2.IsError() || args2.IsNone()) {
+            return args2;
         }
+
         boolean ignoreCase = false;
         if (func3 != null) {
-            Operand args3 = func3.Evaluate(work, tempParameter);
-            if (args3.IsNotBoolean()) {
-                args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "RemoveStart", 3);
-                if (args3.IsError()) {
-                    return args3;
-                }
+            Operand args3 = GetBoolean_3(engine, tempParameter);
+            if (args3.IsError() || args3.IsNone()) {
+                return args3;
             }
-            if (args3.BooleanValue()) {
-                ignoreCase = true;
-            }
+            ignoreCase = args3.BooleanValue();
         }
+
         String text = args1.TextValue();
         String prefix = args2.TextValue();
-        boolean startsWith = false;
+        boolean startsWith;
         if (ignoreCase) {
             startsWith = text.toLowerCase().startsWith(prefix.toLowerCase());
         } else {
@@ -56,7 +57,16 @@ public class Function_REMOVESTART extends Function_3 {
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "RemoveStart");
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+        func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, null, null);
+        if (func3 != null) {
+            func3.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN, null, null);
+        }
     }
 }

@@ -1,86 +1,67 @@
 package toolgood.algorithm.operands;
 
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.MyDate;
-import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.internals.functions.FunctionUtil;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-class OperandJson extends Operand {
-    private final JsonData value;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.litJson.JsonData;
+
+final class OperandJson extends Operand {
+    private final JsonData _value;
 
     public OperandJson(JsonData obj) {
-        value = obj;
+        _value = obj;
     }
 
     @Override
     public boolean IsJson() { return true; }
 
     @Override
-    public boolean IsNotJson() { return false; }
-
-    @Override
     public OperandType Type() { return OperandType.JSON; }
 
     @Override
-    JsonData JsonValue() { return value; }
+    public JsonData JsonValue() { return _value; }
 
     @Override
     public Operand ToText(String errorMessage) {
-        return Create(value.toString());
+        return Create(_value.toString());
     }
 
     @Override
-    public Operand ToText(String errorMessage, Object... args) {
-        return Create(value.toString());
+    public Operand ToText(String errorMessage, Object[] args) {
+        return Create(_value.toString());
     }
 
     @Override
     public Operand ToArray(String errorMessage) {
-        if (value.IsArray()) {
-            List<Operand> list = new ArrayList<>();
-            for (JsonData v : value.getArray()) {
-                if (v.IsString()) {
-                    list.add(Operand.Create(v.getString()));
-                } else if (v.IsBoolean()) {
-                    list.add(Operand.Create(v.getBoolean()));
-                } else if (v.IsNumber()) {
-                    list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));
-                } else if (v.IsNull()) {
-                    list.add(Operand.CreateNull());
-                } else {
-                    list.add(Operand.Create(v));
-                }
-            }
-            return Operand.Create(list);
-        }
-        return Error(errorMessage != null ? errorMessage : "Convert to array error!");
+        return ToArrayInternal(errorMessage);
     }
 
     @Override
-    public Operand ToArray(String errorMessage, Object... args) {
-        if (value.IsArray()) {
-            List<Operand> list = new ArrayList<>();
-            for (JsonData v : value.getArray()) {
+    public Operand ToArray(String errorMessage, Object[] args) {
+        return ToArrayInternal(String.format(errorMessage, args));
+    }
+
+    private Operand ToArrayInternal(String errorMessage) {
+        if (JsonValue().IsArray()) {
+            List<Operand> list = new ArrayList<>(JsonValue().Count());
+            for (JsonData v : JsonValue().getArray()) {
                 if (v.IsString()) {
                     list.add(Operand.Create(v.getString()));
                 } else if (v.IsBoolean()) {
                     list.add(Operand.Create(v.getBoolean()));
-                } else if (v.IsNumber()) {
-                    list.add(Operand.Create(new BigDecimal(v.getNumber().toString())));
+                } else if (v.IsDouble()) {
+                    list.add(Operand.Create(v.getNumber()));
                 } else if (v.IsNull()) {
-                    list.add(Operand.CreateNull());
+                    list.add(Operand.Null);
                 } else {
                     list.add(Operand.Create(v));
                 }
             }
-            return Operand.Create(list);
+            return Create(list);
         }
-        return Error(String.format(errorMessage, args));
+        return Error(errorMessage != null ? errorMessage : "Convert to array error!");
     }
 
     @Override
@@ -90,6 +71,6 @@ class OperandJson extends Operand {
 
     @Override
     public String toString() {
-        return value.toString();
+        return _value.toString();
     }
 }
