@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals.functions.mathsum;
+package toolgood.algorithm.internals.functions.mathsum2;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
@@ -7,8 +7,8 @@ import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 
-public class Function_GAMMAINV extends Function_3 {
-    public Function_GAMMAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
+public class Function_NEGBINOMDIST extends Function_3 {
+    public Function_NEGBINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
         super(func1, func2, func3);
     }
 
@@ -16,36 +16,37 @@ public class Function_GAMMAINV extends Function_3 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "GammaInv", 1);
+            args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "NegbinomDist", 1);
             if (args1.IsError()) {
                 return args1;
             }
         }
         Operand args2 = func2.Evaluate(work, tempParameter);
         if (args2.IsNotNumber()) {
-            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "GammaInv", 2);
+            args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "NegbinomDist", 2);
             if (args2.IsError()) {
                 return args2;
             }
         }
         Operand args3 = func3.Evaluate(work, tempParameter);
         if (args3.IsNotNumber()) {
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "GammaInv", 3);
+            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "NegbinomDist", 3);
             if (args3.IsError()) {
                 return args3;
             }
         }
-        double probability = args1.DoubleValue();
-        double alpha = args2.DoubleValue();
-        double beta = args3.DoubleValue();
-        if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
-            return Operand.Error("Function '{0}' parameter is error!", "GammaInv");
+        int k = args1.IntValue();
+        double r = args2.DoubleValue();
+        double p = args3.DoubleValue();
+
+        if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
+            return Operand.Error("Function '{0}' parameter is error!", "NegbinomDist");
         }
-        return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
+        return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
     }
 
     @Override
     public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "GammaInv");
+        AddFunction(stringBuilder, "NegbinomDist");
     }
 }

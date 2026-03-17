@@ -60,19 +60,19 @@ public final class FunctionUtil {
         return true;
     }
 
-    public static boolean FlattenToList(List<Operand> args, List<Operand> list) {
+    public static boolean FlattenToList_Operand(List<Operand> args, List<Operand> list) {
         return FlattenToListCore(args, list, obj -> obj, obj -> obj);
     }
 
-    public static boolean FlattenToList(List<Operand> args, List<BigDecimal> list) {
+    public static boolean FlattenToList_BigDecimal(List<Operand> args, List<BigDecimal> list) {
         return FlattenToListCore(args, list, obj -> obj.IsNumber() ? obj : obj.ToNumber(null), obj -> obj.NumberValue());
     }
 
-    public static boolean FlattenToList(Operand args, List<BigDecimal> list) {
+    public static boolean FlattenToList_Operand_BigDecimal(Operand args, List<BigDecimal> list) {
         return FlattenToListCore(args, list, obj -> obj.IsNumber() ? obj : obj.ToNumber(null), obj -> obj.NumberValue());
     }
 
-    public static boolean FlattenToList(Operand args, List<String> list) {
+    public static boolean FlattenToList_String(Operand args, List<String> list) {
         return FlattenToListCore(args, list, obj -> obj.ToText(null), obj -> obj.TextValue());
     }
 

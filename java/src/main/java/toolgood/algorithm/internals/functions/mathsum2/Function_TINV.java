@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals.functions.mathsum;
+package toolgood.algorithm.internals.functions.mathsum2;
 
 
 

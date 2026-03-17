@@ -34,7 +34,7 @@ public final class Function_MULTINOMIAL extends Function_N {
         }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args, list);
+        boolean o = FunctionUtil.FlattenToList_BigDecimal(args, list);
         if (o == false) {
             return FunctionError();
         }

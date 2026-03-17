@@ -1,14 +1,12 @@
-package toolgood.algorithm.internals.functions.mathsum;
+package toolgood.algorithm.internals.functions.mathsum2;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.mathNet.ExcelFunctions;
 
-
-public class Function_GAMMALN extends Function_1 {
-    public Function_GAMMALN(FunctionBase func1) {
+public class Function_FISHERINV extends Function_1 {
+    public Function_FISHERINV(FunctionBase func1) {
         super(func1);
     }
 
@@ -16,16 +14,18 @@ public class Function_GAMMALN extends Function_1 {
     public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(work, tempParameter);
         if (args1.IsNotNumber()) {
-            args1 = args1.ToNumber("Function '{0}' parameter is error!", "GammaLn");
+            args1 = args1.ToNumber("Function '{0}' parameter is error!", "FisherInv");
             if (args1.IsError()) {
                 return args1;
             }
         }
-        return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue()));
+        double x = args1.DoubleValue();
+        double n = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
+        return Operand.Create(n);
     }
 
     @Override
     public void toString(java.lang.StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "GammaLn");
+        AddFunction(stringBuilder, "FisherInv");
     }
 }

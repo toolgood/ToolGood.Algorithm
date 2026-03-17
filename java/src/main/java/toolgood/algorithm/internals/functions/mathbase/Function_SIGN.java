@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.BiFunction;
 
