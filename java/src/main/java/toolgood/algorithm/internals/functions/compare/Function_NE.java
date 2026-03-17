@@ -84,18 +84,28 @@ public final class Function_NE extends Function_2 {
         OperandType t1 = func1.GetResultType();
         OperandType t2 = func2.GetResultType();
         if (t1 == OperandType.NONE) {
-            Operand p = noneEngine.Evaluate(func2).ToText(null);
-            if (t2 != OperandType.ERROR && !(p.IsError() || p.IsNone())) {
-                func1.GetParameterTypes(noneEngine, result, t2, Name(), p.TextValue());
-                func2.GetParameterTypes(noneEngine, result, t2, null, null);
-                return;
+            try {
+                Operand p = noneEngine.Evaluate(func2).ToText(null);
+                if (t2 != OperandType.ERROR && !(p.IsError() || p.IsNone())) {
+                    func1.GetParameterTypes(noneEngine, result, t2, Name(), p.TextValue());
+                    func2.GetParameterTypes(noneEngine, result, t2, null, null);
+                    return;
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         } else if (t2 == OperandType.NONE) {
-            Operand p = noneEngine.Evaluate(func1).ToText(null);
-            if (t1 != OperandType.ERROR && !(p.IsError() || p.IsNone())) {
-                func2.GetParameterTypes(noneEngine, result, t1, Name(), p.TextValue());
-                func1.GetParameterTypes(noneEngine, result, t1, null, null);
-                return;
+            try {
+                Operand p = noneEngine.Evaluate(func1).ToText(null);
+                if (t1 != OperandType.ERROR && !(p.IsError() || p.IsNone())) {
+                    func2.GetParameterTypes(noneEngine, result, t1, Name(), p.TextValue());
+                    func1.GetParameterTypes(noneEngine, result, t1, null, null);
+                    return;
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
         func1.GetParameterTypes(noneEngine, result, OperandType.NONE, null, null);

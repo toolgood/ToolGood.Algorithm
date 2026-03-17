@@ -3,7 +3,6 @@ package toolgood.algorithm;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import toolgood.algorithm.enums.OperandType;
@@ -176,32 +175,32 @@ public abstract class Operand {
         return new OperandArray(obj);
     }
 
-    public static Operand Create(Collection<String> obj) {
-        List<Operand> array = new ArrayList<>(obj.size());
+    public static Operand CreateStringCollection(String[] obj) {
+        List<Operand> array = new ArrayList<>(obj.length);
         for (String item : obj) {
             array.add(Create(item));
         }
         return new OperandArray(array);
     }
 
-    public static Operand CreateDoubleCollection(Collection<Double> obj) {
-        List<Operand> array = new ArrayList<>(obj.size());
+    public static Operand CreateDoubleCollection(Double[] obj) {
+        List<Operand> array = new ArrayList<>(obj.length);
         for (Double item : obj) {
             array.add(Create(item));
         }
         return new OperandArray(array);
     }
 
-    public static Operand CreateIntCollection(Collection<Integer> obj) {
-        List<Operand> array = new ArrayList<>(obj.size());
+    public static Operand CreateIntCollection(Integer[] obj) {
+        List<Operand> array = new ArrayList<>(obj.length);
         for (Integer item : obj) {
             array.add(Create(item));
         }
         return new OperandArray(array);
     }
 
-    public static Operand CreateBooleanCollection(Collection<Boolean> obj) {
-        List<Operand> array = new ArrayList<>(obj.size());
+    public static Operand CreateBooleanCollection(Boolean[] obj) {
+        List<Operand> array = new ArrayList<>(obj.length);
         for (Boolean item : obj) {
             array.add(Create(item));
         }

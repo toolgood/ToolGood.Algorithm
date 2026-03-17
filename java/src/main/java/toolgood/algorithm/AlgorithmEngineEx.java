@@ -1,7 +1,6 @@
 package toolgood.algorithm;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -96,20 +95,20 @@ public class AlgorithmEngineEx extends AlgorithmEngine {
         _tempdict.put(normalizeKey(key), Operand.Create(obj));
     }
 
-    public void AddParameter(String key, Collection<String> obj) {
-        _tempdict.put(normalizeKey(key), Operand.Create(obj.toArray(new String[0])));
+    public void AddParameter(String key, String[] obj) {
+        _tempdict.put(normalizeKey(key), Operand.CreateStringCollection(obj));
     }
 
-    public void AddParameterDoubles(String key, Collection<Double> obj) {
-        _tempdict.put(normalizeKey(key), Operand.Create(obj.toArray(new Double[0])));
+    public void AddParameterDoubles(String key, Double[] obj) {
+        _tempdict.put(normalizeKey(key), Operand.CreateDoubleCollection(obj));
     }
 
-    public void AddParameterIntegers(String key, Collection<Integer> obj) {
-        _tempdict.put(normalizeKey(key), Operand.Create(obj.toArray(new Integer[0])));
+    public void AddParameterIntegers(String key, Integer[] obj) {
+        _tempdict.put(normalizeKey(key), Operand.CreateIntCollection(obj));
     }
 
-    public void AddParameterBooleans(String key, Collection<Boolean> obj) {
-        _tempdict.put(normalizeKey(key), Operand.Create(obj.toArray(new Boolean[0])));
+    public void AddParameterBooleans(String key, Boolean[] obj) {
+        _tempdict.put(normalizeKey(key), Operand.CreateBooleanCollection(obj));
     }
 
     public void AddParameterFromJson(String json) throws Exception {
@@ -134,7 +133,7 @@ public class AlgorithmEngineEx extends AlgorithmEngine {
                     } else if (v.IsArray()) {
                         operand = Operand.Create(v);
                     } else if (v.IsNull()) {
-                        operand = Operand.Null();
+                        operand = Operand.Null;
                     } else {
                         operand = Operand.Create(v);
                     }
