@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -30,7 +31,7 @@ public final class Function_Percentage extends Function_1 {
         if (args1.IsErrorOrNone()) {
             return args1;
         }
-        return Operand.Create(args1.NumberValue().divide(HUNDRED));
+        return Operand.Create(args1.NumberValue().divide(HUNDRED, MathContext.DECIMAL128));
     }
 
     @Override

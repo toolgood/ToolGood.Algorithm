@@ -1,6 +1,7 @@
 package toolgood.algorithm.internals.functions.mathbase;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -43,7 +44,7 @@ public final class Function_ROUNDUP extends Function_2 {
         BigDecimal a = MathEx.Pow(BigDecimal.TEN, args2.NumberValue());
         BigDecimal b = args1.NumberValue();
 
-        BigDecimal t = b.abs().multiply(a).setScale(0, java.math.RoundingMode.CEILING).divide(a);
+        BigDecimal t = b.abs().multiply(a).setScale(0, java.math.RoundingMode.CEILING).divide(a, MathContext.DECIMAL128);
         if (b.compareTo(BigDecimal.ZERO) > 0) {
             return Operand.Create(t);
         }
