@@ -13,7 +13,7 @@ public class NumberUnitTypeHelper {
     /// 获取 单位字典
     /// </summary>
     /// <returns></returns>
-    static Map<String, NumberUnitType> GetUnitTypedict() {
+   public static Map<String, NumberUnitType> GetUnitTypedict() {
         if (unitTypedict == null) {
             unitTypedict = new HashMap<>();
             unitTypedict.put("KM", NumberUnitType.KM);

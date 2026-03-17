@@ -1,33 +1,46 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_2;
+import java.util.List;
 
-public class Function_GetJsonValue extends Function_2 {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.operands.OperandKeyValueList;
+
+public final class Function_GetJsonValue extends Function_2 {
+
     public Function_GetJsonValue(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand obj = func1.Evaluate(work, tempParameter);
-        if (obj.IsError()) {
+    public String Name() {
+        return "GetJsonValue";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand obj = func1.Evaluate(engine, tempParameter);
+        if (obj.IsErrorOrNone()) {
             return obj;
         }
-        Operand op = func2.Evaluate(work, tempParameter);
-        if (op.IsError()) {
+        Operand op = func2.Evaluate(engine, tempParameter);
+        if (op.IsErrorOrNone()) {
             return op;
         }
 
         if (obj.IsArray()) {
-            op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
-            if (op.IsError()) {
+            op = ConvertToNumber(op, 2);
+            if (op.IsErrorOrNone()) {
                 return op;
             }
-            int index = op.IntValue() - work.ExcelIndex;
-            if (index < obj.ArrayValue().size()) {
+            int index = op.IntValue() - engine.ExcelIndex;
+            if (index < obj.ArrayValue().size() && index >= 0) {
                 return obj.ArrayValue().get(index);
             }
             return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
@@ -35,13 +48,15 @@ public class Function_GetJsonValue extends Function_2 {
         if (obj.IsArrayJson()) {
             if (op.IsNumber()) {
                 Operand operand;
-                if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue().toString(), operand)) {
+                if (((OperandKeyValueList) obj).TryGetValue(op.NumberValue().toString())) {
+                    operand = ((OperandKeyValueList) obj).getOperand();
                     return operand;
                 }
                 return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
             } else if (op.IsText()) {
                 Operand operand;
-                if (((OperandKeyValueList)obj).TryGetValue(op.TextValue(), operand)) {
+                if (((OperandKeyValueList) obj).TryGetValue(op.TextValue())) {
+                    operand = ((OperandKeyValueList) obj).getOperand();
                     return operand;
                 }
                 return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue());
@@ -52,64 +67,49 @@ public class Function_GetJsonValue extends Function_2 {
         if (obj.IsJson()) {
             JsonData json = obj.JsonValue();
             if (json.IsArray()) {
-                op = op.ToNumber("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
-                if (op.IsError()) {
+                op = ConvertToNumber(op, 2);
+                if (op.IsErrorOrNone()) {
                     return op;
                 }
-                int index = op.IntValue() - work.ExcelIndex;
-                if (index < json.size()) {
-                    JsonData v = json.get(index);
-                    if (v.isString()) {
-                        return Operand.Create(v.getStringValue());
-                    }
-                    if (v.IsBoolean()) {
-                        return Operand.Create(v.BooleanValue());
-                    }
-                    if (v.isDouble()) {
-                        return Operand.Create(v.NumberValue());
-                    }
-                    if (v.isObject()) {
-                        return Operand.Create(v);
-                    }
-                    if (v.IsArray()) {
-                        return Operand.Create(v);
-                    }
-                    if (v.IsNull()) {
-                        return Operand.CreateNull();
-                    }
-                    return Operand.Create(v);
+                int index = op.IntValue() - engine.ExcelIndex;
+                if (index < json.size() && index >= 0) {
+                    return ConvertJsonDataToOperand(json.get(index));
                 }
                 return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
             } else {
-                op = op.ToText("Function '{0}' parameter {1} is error!", "GetJsonValue", 2);
-                if (op.IsError()) {
+                op = ConvertToText(op, 2);
+                if (op.IsErrorOrNone()) {
                     return op;
                 }
                 JsonData v = json.get(op.TextValue());
                 if (v != null) {
-                    if (v.isString()) {
-                        return Operand.Create(v.getStringValue());
-                    }
-                    if (v.IsBoolean()) {
-                        return Operand.Create(v.BooleanValue());
-                    }
-                    if (v.isDouble()) {
-                        return Operand.Create(v.NumberValue());
-                    }
-                    if (v.isObject()) {
-                        return Operand.Create(v);
-                    }
-                    if (v.IsArray()) {
-                        return Operand.Create(v);
-                    }
-                    if (v.IsNull()) {
-                        return Operand.CreateNull();
-                    }
-                    return Operand.Create(v);
+                    return ConvertJsonDataToOperand(v);
                 }
             }
         }
         return Operand.Error("Function '{0}' Operator is error!", "GetJsonValue");
+    }
+
+    private static Operand ConvertJsonDataToOperand(JsonData v) {
+        if (v.isString()) {
+            return Operand.Create(v.getStringValue());
+        }
+        if (v.IsBoolean()) {
+            return Operand.Create(v.BooleanValue());
+        }
+        if (v.isDouble()) {
+            return Operand.Create(v.NumberValue());
+        }
+        if (v.isObject()) {
+            return Operand.Create(v);
+        }
+        if (v.IsArray()) {
+            return Operand.Create(v);
+        }
+        if (v.IsNull()) {
+            return Operand.Null();
+        }
+        return Operand.Create(v);
     }
 
     @Override
@@ -118,5 +118,16 @@ public class Function_GetJsonValue extends Function_2 {
         stringBuilder.append('[');
         func2.toString(stringBuilder, false);
         stringBuilder.append(']');
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NONE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
     }
 }

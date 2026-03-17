@@ -1,11 +1,11 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.functions.Function_0;
 
-public class Function_ValueText extends FunctionBase {
+public final class Function_ValueText extends Function_0 {
     private final Operand _value;
     private final String _showName;
 
@@ -20,7 +20,7 @@ public class Function_ValueText extends FunctionBase {
     }
 
     @Override
-    public String getName() {
+    public String Name() {
         return "Value";
     }
 
@@ -30,13 +30,8 @@ public class Function_ValueText extends FunctionBase {
     }
 
     @Override
-    public OperandType GetResultType() {
-        return OperandType.TEXT;
-    }
-
-    @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        if (_showName != null && !_showName.isEmpty()) {
+        if (_showName != null && _showName.isEmpty() == false) {
             stringBuilder.append(_showName);
             return;
         }
@@ -54,5 +49,10 @@ public class Function_ValueText extends FunctionBase {
         stringValue = stringValue.replace("\"", "\\\"");
         stringBuilder.append(stringValue);
         stringBuilder.append('"');
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
     }
 }

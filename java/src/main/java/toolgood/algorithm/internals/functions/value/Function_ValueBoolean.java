@@ -1,11 +1,11 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.functions.Function_0;
 
-public class Function_ValueBoolean extends FunctionBase {
+public final class Function_ValueBoolean extends Function_0 {
     private final boolean _value;
 
     public Function_ValueBoolean(boolean value) {
@@ -13,7 +13,7 @@ public class Function_ValueBoolean extends FunctionBase {
     }
 
     @Override
-    public String getName() {
+    public String Name() {
         return _value ? "True" : "False";
     }
 
@@ -29,6 +29,6 @@ public class Function_ValueBoolean extends FunctionBase {
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        stringBuilder.append(getName());
+        stringBuilder.append(Name());
     }
 }

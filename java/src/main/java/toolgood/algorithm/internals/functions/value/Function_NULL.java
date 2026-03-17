@@ -1,23 +1,22 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.functions.Function_0;
 
-public class Function_NULL extends FunctionBase {
-
+public final class Function_NULL extends Function_0 {
     public Function_NULL() {
     }
 
     @Override
-    public String getName() {
+    public String Name() {
         return "NULL";
     }
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
-        return Operand.NULL_OPERAND;
+        return Operand.Null;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.functions.Function_0;
 
-public class Function_ValueNumber extends FunctionBase {
+public final class Function_ValueNumber extends Function_0 {
     private final Operand _value;
     private final String _showName;
 
@@ -15,7 +15,7 @@ public class Function_ValueNumber extends FunctionBase {
     }
 
     @Override
-    public String getName() {
+    public String Name() {
         return _showName;
     }
 

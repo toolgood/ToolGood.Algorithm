@@ -94,7 +94,7 @@ import toolgood.algorithm.internals.functions.flow.Function_ISNULLOREMPTY;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULLORERROR;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULLORWHITESPACE;
 import toolgood.algorithm.internals.functions.flow.Function_ISODD;
-import toolgood.algorithm.internals.functions.flow.Function_IsText;
+import toolgood.algorithm.internals.functions.flow.Function_ISTEXT;
 import toolgood.algorithm.internals.functions.flow.Function_NOT;
 import toolgood.algorithm.internals.functions.operator.Function_OR;
 import toolgood.algorithm.internals.functions.operator.Function_OR_N;
@@ -117,7 +117,26 @@ import toolgood.algorithm.internals.functions.value.Function_PARAM;
 import toolgood.algorithm.internals.functions.value.Function_PARAMETER;
 import toolgood.algorithm.internals.functions.value.Function_Value;
 import toolgood.algorithm.math.mathParser;
+import toolgood.algorithm.math.mathParser.ARABIC_funContext;
+import toolgood.algorithm.math.mathParser.CORREL_funContext;
+import toolgood.algorithm.math.mathParser.DELTA_funContext;
 import toolgood.algorithm.math.mathParser.ExprContext;
+import toolgood.algorithm.math.mathParser.FORECAST_funContext;
+import toolgood.algorithm.math.mathParser.GESTEP_funContext;
+import toolgood.algorithm.math.mathParser.IFS_funContext;
+import toolgood.algorithm.math.mathParser.INTERCEPT_funContext;
+import toolgood.algorithm.math.mathParser.ISTEXT_funContext;
+import toolgood.algorithm.math.mathParser.PEARSON_funContext;
+import toolgood.algorithm.math.mathParser.RANK_funContext;
+import toolgood.algorithm.math.mathParser.ROMAN_funContext;
+import toolgood.algorithm.math.mathParser.SERIESSUM_funContext;
+import toolgood.algorithm.math.mathParser.SLOPE_funContext;
+import toolgood.algorithm.math.mathParser.SUMPRODUCT_funContext;
+import toolgood.algorithm.math.mathParser.SUMX2MY2_funContext;
+import toolgood.algorithm.math.mathParser.SUMX2PY2_funContext;
+import toolgood.algorithm.math.mathParser.SUMXMY2_funContext;
+import toolgood.algorithm.math.mathParser.SWITCH_funContext;
+import toolgood.algorithm.math.mathParser.XOR_funContext;
 import toolgood.algorithm.math.mathVisitor;
 
 public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> implements mathVisitor<FunctionBase> {
@@ -2473,6 +2492,120 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 		public FunctionBase visitVersion_fun(mathParser.Version_funContext context)
 		{
 			return new Function_Value(Operand.Version);
+		}
+
+		@Override
+		public FunctionBase visitSLOPE_fun(SLOPE_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSLOPE_fun'");
+		}
+
+		@Override
+		public FunctionBase visitISTEXT_fun(ISTEXT_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitISTEXT_fun'");
+		}
+
+		@Override
+		public FunctionBase visitCORREL_fun(CORREL_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitCORREL_fun'");
+		}
+
+		@Override
+		public FunctionBase visitGESTEP_fun(GESTEP_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitGESTEP_fun'");
+		}
+
+		@Override
+		public FunctionBase visitFORECAST_fun(FORECAST_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitFORECAST_fun'");
+		}
+
+		@Override
+		public FunctionBase visitSUMXMY2_fun(SUMXMY2_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSUMXMY2_fun'");
+		}
+
+		@Override
+		public FunctionBase visitSERIESSUM_fun(SERIESSUM_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSERIESSUM_fun'");
+		}
+
+		@Override
+		public FunctionBase visitRANK_fun(RANK_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitRANK_fun'");
+		}
+
+		@Override
+		public FunctionBase visitROMAN_fun(ROMAN_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitROMAN_fun'");
+		}
+
+		@Override
+		public FunctionBase visitDELTA_fun(DELTA_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitDELTA_fun'");
+		}
+
+		@Override
+		public FunctionBase visitPEARSON_fun(PEARSON_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitPEARSON_fun'");
+		}
+
+		@Override
+		public FunctionBase visitIFS_fun(IFS_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitIFS_fun'");
+		}
+
+		@Override
+		public FunctionBase visitSUMPRODUCT_fun(SUMPRODUCT_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSUMPRODUCT_fun'");
+		}
+
+		@Override
+		public FunctionBase visitSUMX2PY2_fun(SUMX2PY2_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSUMX2PY2_fun'");
+		}
+
+		@Override
+		public FunctionBase visitSWITCH_fun(SWITCH_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSWITCH_fun'");
+		}
+
+		@Override
+		public FunctionBase visitSUMX2MY2_fun(SUMX2MY2_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitSUMX2MY2_fun'");
+		}
+
+		@Override
+		public FunctionBase visitXOR_fun(XOR_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitXOR_fun'");
+		}
+
+		@Override
+		public FunctionBase visitINTERCEPT_fun(INTERCEPT_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitINTERCEPT_fun'");
+		}
+
+		@Override
+		public FunctionBase visitARABIC_fun(ARABIC_funContext ctx) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'visitARABIC_fun'");
 		}
 
 

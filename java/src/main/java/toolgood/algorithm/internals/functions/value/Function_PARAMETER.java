@@ -1,51 +1,55 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
+import java.util.List;
 
-public class Function_PARAMETER extends FunctionBase {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.Function_0;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+public final class Function_PARAMETER extends Function_0 {
     private final String name;
-    private final FunctionBase func1;
 
     public Function_PARAMETER(String name) {
         this.name = name;
-        this.func1 = null;
-    }
-
-    public Function_PARAMETER(FunctionBase func1) {
-        this.name = null;
-        this.func1 = func1;
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+    public String Name() {
+        return "Parameter";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         String txt = name;
-        if (txt == null || txt.isEmpty()) {
-            Operand args1 = func1.Evaluate(work, tempParameter);
-            if (args1.IsNotText()) {
-                args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Parameter", 1);
-                if (args1.IsError()) {
-                    return args1;
-                }
-            }
-            txt = args1.TextValue();
-        }
         if (tempParameter != null) {
-            Operand r = tempParameter.apply(work, txt);
+            Operand r = tempParameter.apply(engine, txt);
             if (r != null) {
                 return r;
             }
         }
-        return work.getParameter(txt);
+        return engine.GetParameter(txt);
     }
 
     @Override
     public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        if (name == null || name.isEmpty()) {
-            func1.toString(stringBuilder, false);
-        } else {
-            stringBuilder.append(name);
-        }
+        stringBuilder.append(name);
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NONE;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        ParameterType pt = new ParameterType();
+        pt.Name = name;
+        pt.Type = operandType;
+        pt.Operator = op;
+        pt.Value = val;
+        result.add(pt);
     }
 }

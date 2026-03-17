@@ -1,19 +1,30 @@
 package toolgood.algorithm.internals.functions.value;
 
-import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.internals.functions.Function_1;
+import java.util.List;
 
-public class Function_JSON extends Function_1 {
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.litJson.JsonMapper;
+
+public final class Function_JSON extends Function_1 {
     public Function_JSON(FunctionBase func1) {
         super(func1);
     }
 
     @Override
-    public Operand Evaluate(AlgorithmEngine work, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        Operand args1 = func1.Evaluate(work, tempParameter);
-        if (args1.IsError()) {
+    public String Name() {
+        return "Json";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
+        Operand args1 = func1.Evaluate(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
             return args1;
         }
         if (args1.IsJson()) {
@@ -22,8 +33,8 @@ public class Function_JSON extends Function_1 {
         if (args1.IsArrayJson()) {
             args1 = args1.ToText();
         }
-        if (args1.IsNotText()) {
-            return Operand.Error("Function '{0}' parameter is error!", "Json");
+        if (args1.IsText() == false) {
+            return ParameterError(1);
         }
         String txt = args1.TextValue();
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
@@ -33,11 +44,16 @@ public class Function_JSON extends Function_1 {
             } catch (Exception e) {
             }
         }
-        return Operand.Error("Function '{0}' parameter is error!", "Json");
+        return ParameterError(1);
     }
 
     @Override
-    public void toString(StringBuilder stringBuilder, boolean addBrackets) {
-        AddFunction(stringBuilder, "Json");
+    public OperandType GetResultType() {
+        return OperandType.JSON;
+    }
+
+    @Override
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
     }
 }
