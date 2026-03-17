@@ -1,8 +1,7 @@
-package toolgood.algorithm.mathNet;
+package toolgood.algorithm.system;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 
 public class MathEx {
     public static final BigDecimal E = new BigDecimal("2.7182818284590452353602874713526624977572470936999595749");

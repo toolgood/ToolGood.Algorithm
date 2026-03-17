@@ -7,7 +7,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 
-final class OperandJson extends Operand {
+public final class OperandJson extends Operand {
     private final JsonData _value;
 
     public OperandJson(JsonData obj) {

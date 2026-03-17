@@ -43,11 +43,11 @@ public final class Function_EQ extends Function_2 {
             } else if (args1.IsDate()) {
                 return Operand.Create(args1.DateValue().ToLong() == args2.DateValue().ToLong());
             } else if (args1.IsNull()) {
-                return Operand.TRUE;
+                return Operand.True;
             }
             return CompareError();
         } else if (args1.IsNull() || args2.IsNull()) {
-            return Operand.FALSE;
+            return Operand.False;
         } else if (args1.IsDate() || args2.IsDate() || args1.IsJson() || args2.IsJson()
                 || args1.IsArray() || args2.IsArray() || args1.IsArrayJson() || args2.IsArrayJson()) {
             return CompareError();

@@ -38,7 +38,7 @@ public final class Function_LT extends Function_2 {
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) < 0);
             } else if (args1.IsText()) {
                 int r = args1.TextValue().compareTo(args2.TextValue());
-                return r < 0 ? Operand.TRUE : Operand.FALSE;
+                return r < 0 ? Operand.True : Operand.False;
             } else if (args1.IsDate()) {
                 return Operand.Create(args1.DateValue().ToLong() < args2.DateValue().ToLong());
             } else if (args1.IsBoolean()) {
@@ -46,11 +46,11 @@ public final class Function_LT extends Function_2 {
                 args2 = args2.ToNumber(null);
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) < 0);
             } else if (args1.IsNull()) {
-                return Operand.TRUE;
+                return Operand.True;
             }
             return CompareError();
         } else if (args1.IsNull() || args2.IsNull()) {
-            return Operand.FALSE;
+            return Operand.False;
         } else if (args1.IsDate() || args2.IsDate() || args1.IsJson() || args2.IsJson()
                 || args1.IsArray() || args2.IsArray() || args1.IsArrayJson() || args2.IsArrayJson()) {
             return CompareError();

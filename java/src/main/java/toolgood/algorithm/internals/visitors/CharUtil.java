@@ -1,15 +1,11 @@
 package toolgood.algorithm.internals.visitors;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class CharUtil {
-    public static char StandardChar(char c) {
-        if (c < 'a') return c;
-        if (c <= 'z') return (char) (c - 32);
-        if (c < 127) return c;
-
-        switch (c) {
+public final class CharUtil {
+    public static char StandardChar(char o) {
+        if (o < 'a') return o;
+        if (o <= 'z') return (char) (o - 32);
+        if (o < 127) return o;
+        switch (o) {
             case '\u00D7': return '*';
             case '\u00F7': return '/';
             case '\u2018':
@@ -22,191 +18,30 @@ public class CharUtil {
             case '\uFF08': return '(';
             case '\uFF09': return ')';
         }
-
-        if (c > 65280 && c < 65375) {
-            return (char) (c - 65248);
+        if (o > 65280 && o < 65375) {
+            o = (char) (o - 65248);
         }
-        return Character.toUpperCase(c);
+        return Character.toUpperCase(o);
     }
 
-    public static String StandardString(String s) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            sb.append(StandardChar(c));
-        }
-        return sb.toString();
+    public static boolean Equals(String left, char right) {
+        if (left.length() != 1) return false;
+        return left.charAt(0) == right || StandardChar(left.charAt(0)) == right;
     }
 
-    private static boolean EqualsOnce(String left, String right) {
-        if (left.length() != right.length())
-            return false;
+    public static boolean Equals(String left, String right) {
+        if (left.length() != right.length()) return false;
         for (int i = 0; i < left.length(); i++) {
-            if (left.charAt(i) != right.charAt(i)) {
-                char a = StandardChar(left.charAt(i));
-                char b = StandardChar(right.charAt(i));
-                if (a != b)
-                    return false;
-            }
+            char l = left.charAt(i);
+            char r = right.charAt(i);
+            if (l == r) continue;
+            l = StandardChar(l);
+            if (l != r) return false;
         }
         return true;
     }
 
-    public static boolean Equals(String left, String right) {
-        if (left == null)
-            return false;
-        if (right == null)
-            return false;
-        return EqualsOnce(left, right);
+    public static boolean Equals(String left, String option1, String option2, String option3) {
+        return Equals(left, option1) || Equals(left, option2) || Equals(left, option3);
     }
-
-    public static boolean Equals(String left, String arg1, String arg2) {
-        if (left == null)
-            return false;
-        if (arg1 != null && EqualsOnce(left, arg1))
-            return true;
-        if (arg2 != null && EqualsOnce(left, arg2))
-            return true;
-        return false;
-    }
-
-    public static boolean Equals(String left, String arg1, String arg2, String arg3) {
-        if (left == null)
-            return false;
-        if (arg1 != null && EqualsOnce(left, arg1))
-            return true;
-        if (arg2 != null && EqualsOnce(left, arg2))
-            return true;
-        if (arg3 != null && EqualsOnce(left, arg3))
-            return true;
-        return false;
-    }
-
-    public static List<String> SplitFormula(String formula, List<Character> splitChars) {
-        List<String> result = new ArrayList<>();
-        boolean inSquareBrackets = false;
-        boolean inBraceBrackets = false;
-        int inBracketsCount = 0;
-        boolean inText = false;
-        char textChar = (char) 0;
-
-        StringBuilder str = new StringBuilder();
-        Integer i = 0;
-        while (i < formula.length()) {
-            char c = formula.charAt(i);
-            if (inSquareBrackets) {
-                str.append(c);
-                if (c == ']')
-                    inSquareBrackets = false;
-            } else if (inBraceBrackets) {
-                str.append(c);
-                if (c == '}')
-                    inBraceBrackets = false;
-            } else if (inText) {
-                str.append(c);
-                if (c == '\\') {
-                    i++;
-                    if (i < formula.length()) {
-                        str.append(formula.charAt(i));
-                    }
-                } else if (c == textChar) {
-                    inText = false;
-                }
-            } else if (splitChars.contains(c) && inBracketsCount == 0) {
-                result.add(str.toString());
-                result.add(((Character) c).toString());
-                str = new StringBuilder();
-            } else {
-                str.append(c);
-                if (c == '\'' || c == '"' || c == '`') {
-                    textChar = c;
-                    inText = true;
-                } else if (c == '[') {
-                    inSquareBrackets = true;
-                } else if (c == '{') {
-                    inBraceBrackets = true;
-                } else if (c == '(') {
-                    inBracketsCount++;
-                } else if (c == ')') {
-                    inBracketsCount--;
-                }
-            }
-            i++;
-        }
-        if (str.length() > 0)
-            result.add(str.toString());
-        return result;
-    }
-
-    public static List<String> SplitFormulaForAnd(String formula) {
-        List<String> result = new ArrayList<>();
-        boolean inSquareBrackets = false;
-        boolean inBraceBrackets = false;
-        int inBracketsCount = 0;
-        boolean inText = false;
-        char textChar = (char) 0;
-
-        StringBuilder str = new StringBuilder();
-        Integer i = 0;
-        while (i < formula.length()) {
-            char c = formula.charAt(i);
-            if (inSquareBrackets) {
-                str.append(c);
-                if (c == ']')
-                    inSquareBrackets = false;
-            } else if (inBraceBrackets) {
-                str.append(c);
-                if (c == '}')
-                    inBraceBrackets = false;
-            } else if (inText) {
-                str.append(c);
-                if (c == '\\') {
-                    i++;
-                    if (i < formula.length()) {
-                        str.append(formula.charAt(i));
-                    }
-                } else if (c == textChar) {
-                    inText = false;
-                }
-            } else if (c == '&' && inBracketsCount == 0) {
-                if (i + 1 < formula.length() && formula.charAt(i + 1) == '&') {
-                    i++;
-                    result.add(str.toString());
-                    str = new StringBuilder();
-                } else {
-                    result.add(str.toString());
-                }
-            } else if (c == '|' && inBracketsCount == 0) {
-                if (i + 1 < formula.length() && formula.charAt(i + 1) == '|') {
-                    i++;
-                    result.add(str.toString());
-                    str = new StringBuilder();
-                    str.append(String.join("&&", result));
-                    str.append("||");
-                    result.clear();
-                } else {
-                    result.add(str.toString());
-                }
-            } else {
-                str.append(c);
-                if (c == '\'' || c == '"' || c == '`') {
-                    textChar = c;
-                    inText = true;
-                } else if (c == '[') {
-                    inSquareBrackets = true;
-                } else if (c == '{') {
-                    inBraceBrackets = true;
-                } else if (c == '(') {
-                    inBracketsCount++;
-                } else if (c == ')') {
-                    inBracketsCount--;
-                }
-            }
-            i++;
-        }
-        if (str.length() > 0)
-            result.add(str.toString());
-        return result;
-    }
-
 }

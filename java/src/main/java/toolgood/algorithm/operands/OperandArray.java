@@ -6,7 +6,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonMapper;
 
-final class OperandArray extends Operand {
+public final class OperandArray extends Operand {
     private final List<Operand> _value;
 
     public OperandArray(List<Operand> obj) {

@@ -2,125 +2,78 @@ package toolgood.algorithm.internals.functions;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.visitors.CharUtil;
 
-public class FunctionUtil {
-    public static final long START_DATE_UTC = 0;
+public final class FunctionUtil {
+    public static final long StartDateUtc = 0;
 
     public static StringComparison GetStringComparison(boolean ignoreCase) {
         return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
     }
 
-    private static boolean FlattenToListCore(List<Operand> args, List<Operand> list) {
+    private static <T> boolean FlattenToListCore(List<Operand> args, List<T> list, java.util.function.Function<Operand, Operand> converter, java.util.function.Function<Operand, T> valueGetter) {
+        java.util.Queue<Operand> queue = new java.util.LinkedList<>();
         for (int i = 0; i < args.size(); i++) {
-            Operand item = args.get(i);
+            queue.add(args.get(i));
+        }
+
+        while (queue.size() > 0) {
+            Operand item = queue.poll();
+
             if (item.IsArray()) {
                 List<Operand> array = item.ArrayValue();
-                for (int j = 0; j < array.size(); j++) {
-                    List<Operand> tempList = new ArrayList<>();
-                    tempList.add(array.get(j));
-                    if (!FlattenToListCore(tempList, list)) return false;
+                for (int i = 0; i < array.size(); i++) {
+                    queue.add(array.get(i));
                 }
             } else if (item.IsJson()) {
                 Operand i = item.ToArray(null);
-                if (i.IsError()) return false;
+                if (i.IsError()) { return false; }
                 List<Operand> array = i.ArrayValue();
                 for (int j = 0; j < array.size(); j++) {
-                    List<Operand> tempList = new ArrayList<>();
-                    tempList.add(array.get(j));
-                    if (!FlattenToListCore(tempList, list)) return false;
+                    queue.add(array.get(j));
                 }
             } else {
-                list.add(item);
+                Operand converted = converter.apply(item);
+                if (converted.IsError()) { return false; }
+                list.add(valueGetter.apply(converted));
             }
         }
         return true;
     }
 
-    private static boolean FlattenToListCoreDecimal(List<Operand> args, List<BigDecimal> list) {
-        for (int i = 0; i < args.size(); i++) {
-            Operand item = args.get(i);
-            if (item.IsArray()) {
-                List<Operand> array = item.ArrayValue();
-                for (int j = 0; j < array.size(); j++) {
-                    List<Operand> tempList = new ArrayList<>();
-                    tempList.add(array.get(j));
-                    if (!FlattenToListCoreDecimal(tempList, list)) return false;
-                }
-            } else if (item.IsJson()) {
-                Operand ii = item.ToArray(null);
-                if (ii.IsError()) return false;
-                List<Operand> array = ii.ArrayValue();
-                for (int j = 0; j < array.size(); j++) {
-                    List<Operand> tempList = new ArrayList<>();
-                    tempList.add(array.get(j));
-                    if (!FlattenToListCoreDecimal(tempList, list)) return false;
-                }
-            } else {
-                Operand converted = item.IsNumber() ? item : item.ToNumber(null);
-                if (converted.IsError()) return false;
-                list.add(converted.NumberValue());
-            }
-        }
-        return true;
-    }
-
-    private static boolean FlattenToListCoreDecimal(Operand args, List<BigDecimal> list) {
-        if (args.IsError()) return false;
+    private static <T> boolean FlattenToListCore(Operand args, List<T> list, java.util.function.Function<Operand, Operand> converter, java.util.function.Function<Operand, T> valueGetter) {
+        if (args.IsError()) { return false; }
         if (args.IsArray()) {
-            return FlattenToListCoreDecimal(args.ArrayValue(), list);
+            return FlattenToListCore(args.ArrayValue(), list, converter, valueGetter);
         } else if (args.IsJson()) {
             Operand i = args.ToArray(null);
-            if (i.IsError()) return false;
-            return FlattenToListCoreDecimal(i.ArrayValue(), list);
+            if (i.IsError()) { return false; }
+            return FlattenToListCore(i.ArrayValue(), list, converter, valueGetter);
         } else {
-            Operand converted = args.IsNumber() ? args : args.ToNumber(null);
-            if (converted.IsError()) return false;
-            list.add(converted.NumberValue());
-        }
-        return true;
-    }
-
-    private static boolean FlattenToListCoreString(Operand args, List<String> list) {
-        if (args.IsError()) return false;
-        if (args.IsArray()) {
-            List<Operand> array = args.ArrayValue();
-            for (int i = 0; i < array.size(); i++) {
-                if (!FlattenToListCoreString(array.get(i), list)) return false;
-            }
-        } else if (args.IsJson()) {
-            Operand i = args.ToArray(null);
-            if (i.IsError()) return false;
-            List<Operand> array = i.ArrayValue();
-            for (int j = 0; j < array.size(); j++) {
-                if (!FlattenToListCoreString(array.get(j), list)) return false;
-            }
-        } else {
-            Operand converted = args.ToText(null);
-            if (converted.IsError()) return false;
-            list.add(converted.TextValue());
+            Operand converted = converter.apply(args);
+            if (converted.IsError()) { return false; }
+            list.add(valueGetter.apply(converted));
         }
         return true;
     }
 
     public static boolean FlattenToList(List<Operand> args, List<Operand> list) {
-        return FlattenToListCore(args, list);
+        return FlattenToListCore(args, list, obj -> obj, obj -> obj);
     }
 
     public static boolean FlattenToList(List<Operand> args, List<BigDecimal> list) {
-        return FlattenToListCoreDecimal(args, list);
+        return FlattenToListCore(args, list, obj -> obj.IsNumber() ? obj : obj.ToNumber(null), obj -> obj.NumberValue());
     }
 
     public static boolean FlattenToList(Operand args, List<BigDecimal> list) {
-        return FlattenToListCoreDecimal(args, list);
+        return FlattenToListCore(args, list, obj -> obj.IsNumber() ? obj : obj.ToNumber(null), obj -> obj.NumberValue());
     }
 
     public static boolean FlattenToList(Operand args, List<String> list) {
-        return FlattenToListCoreString(args, list);
+        return FlattenToListCore(args, list, obj -> obj.ToText(null), obj -> obj.TextValue());
     }
 
     public static int GetCountIf(List<BigDecimal> dbs, BigDecimal d) {
@@ -183,7 +136,7 @@ public class FunctionUtil {
 
     public static int GetGcd(List<BigDecimal> list) {
         if (list.size() == 0) return 1;
-        
+
         int g = list.get(0).intValue();
         for (int i = 1; i < list.size(); i++) {
             g = GetGcd(g, list.get(i).intValue());
@@ -203,20 +156,20 @@ public class FunctionUtil {
 
     public static int GetLcm(List<BigDecimal> list) {
         if (list.size() == 0) return 1;
-        
+
         int a = 0;
         boolean foundFirst = false;
-        
+
         for (int i = 0; i < list.size(); i++) {
             int val = list.get(i).intValue();
             if (val <= 1) continue;
-            
+
             if (!foundFirst) {
                 a = val;
                 foundFirst = true;
                 continue;
             }
-            
+
             int b = val;
             int g = b > a ? GetGcd(b, a) : GetGcd(a, b);
             a = a / g * b;
@@ -225,7 +178,7 @@ public class FunctionUtil {
     }
 
     public static int GetFactorial(int a) {
-        if (a <= 0) return 1;
+        if (a <= 0) { return 1; }
         int r = 1;
         for (int i = a; i > 0; i--) {
             r *= i;
@@ -233,48 +186,37 @@ public class FunctionUtil {
         return r;
     }
 
-    public static Pair<String, BigDecimal> ParseSumIfMatch(String s) {
-        if (s == null || s.length() == 0) return null;
-        
+    public static Tuple<String, BigDecimal> ParseSumIfMatch(String s) {
+        if (s == null || s.length() == 0) { return null; }
         char c = s.charAt(0);
         if (c == '>' || c == '\uff1e') {
             if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
                 try {
                     BigDecimal d = new BigDecimal(s.substring(2).trim());
-                    return new Pair<>(">=", d);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                    return new Tuple<>(">=", d);
+                } catch (NumberFormatException e) { }
             } else {
                 try {
                     BigDecimal d = new BigDecimal(s.substring(1).trim());
-                    return new Pair<>(">", d);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                    return new Tuple<>(">", d);
+                } catch (NumberFormatException e) { }
             }
         } else if (c == '<' || c == '\uff1c') {
             if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
                 try {
                     BigDecimal d = new BigDecimal(s.substring(2).trim());
-                    return new Pair<>("<=", d);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                    return new Tuple<>("<=", d);
+                } catch (NumberFormatException e) { }
             } else if (s.length() > 1 && (s.charAt(1) == '>' || s.charAt(1) == '\uff1e')) {
                 try {
                     BigDecimal d = new BigDecimal(s.substring(2).trim());
-                    return new Pair<>("!=", d);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                    return new Tuple<>("!=", d);
+                } catch (NumberFormatException e) { }
             } else {
                 try {
                     BigDecimal d = new BigDecimal(s.substring(1).trim());
-                    return new Pair<>("<", d);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                    return new Tuple<>("<", d);
+                } catch (NumberFormatException e) { }
             }
         } else if (c == '=' || c == '\uff1d') {
             int index = 1;
@@ -286,10 +228,8 @@ public class FunctionUtil {
             }
             try {
                 BigDecimal d = new BigDecimal(s.substring(index).trim());
-                return new Pair<>("=", d);
-            } catch (NumberFormatException e) {
-                return null;
-            }
+                return new Tuple<>("=", d);
+            } catch (NumberFormatException e) { }
         } else if (c == '!' || c == '\uff01') {
             int index = 1;
             if (s.length() > 1 && (s.charAt(1) == '=' || s.charAt(1) == '\uff1d')) {
@@ -300,73 +240,47 @@ public class FunctionUtil {
             }
             try {
                 BigDecimal d = new BigDecimal(s.substring(index).trim());
-                return new Pair<>("!=", d);
-            } catch (NumberFormatException e) {
-                return null;
-            }
+                return new Tuple<>("!=", d);
+            } catch (NumberFormatException e) { }
         }
         return null;
     }
 
-    public static boolean TryParseBoolean(String textValue, BooleanHolder boolValue) {
-        int len = textValue.length();
+    public static boolean TryParseBoolean(String TextValue, boolean[] boolValue) {
+        int len = TextValue.length();
         switch (len) {
             case 1: {
-                char c = textValue.charAt(0);
-                if (c == '1' || c == '\u662f' || c == '\u6709') {
-                    boolValue.value = true;
-                    return true;
-                }
-                if (c == '0' || c == '\u5426' || c == '\u65e0') {
-                    boolValue.value = false;
-                    return true;
-                }
+                char c = TextValue.charAt(0);
+                if (c == '1' || c == '\u662f' || c == '\u6709') { boolValue[0] = true; return true; }
+                if (c == '0' || c == '\u5426' || c == '\u65e0') { boolValue[0] = false; return true; }
                 break;
             }
             case 2: {
-                if (textValue.equalsIgnoreCase("no")) {
-                    boolValue.value = false;
-                    return true;
-                }
-                if (textValue.equals("\u4e0d\u662f")) {
-                    boolValue.value = false;
-                    return true;
-                }
-                if (textValue.equals("\u6ca1\u6709")) {
-                    boolValue.value = false;
-                    return true;
-                }
+                if (TextValue.equalsIgnoreCase("no")) { boolValue[0] = false; return true; }
+                if (TextValue.equals("\u4e0d\u662f")) { boolValue[0] = false; return true; }
+                if (TextValue.equals("\u6ca1\u6709")) { boolValue[0] = false; return true; }
                 break;
             }
             case 3: {
-                if (textValue.equalsIgnoreCase("yes")) {
-                    boolValue.value = true;
-                    return true;
-                }
+                if (TextValue.equalsIgnoreCase("yes")) { boolValue[0] = true; return true; }
                 break;
             }
             case 4: {
-                if (textValue.equalsIgnoreCase("true")) {
-                    boolValue.value = true;
-                    return true;
-                }
+                if (TextValue.equalsIgnoreCase("true")) { boolValue[0] = true; return true; }
                 break;
             }
             case 5: {
-                if (textValue.equalsIgnoreCase("false")) {
-                    boolValue.value = false;
-                    return true;
-                }
+                if (TextValue.equalsIgnoreCase("false")) { boolValue[0] = false; return true; }
                 break;
             }
         }
-        boolValue.value = false;
+        boolValue[0] = false;
         return false;
     }
 
     public static BigDecimal QuickSelect(List<BigDecimal> list, int k, boolean largest) {
         if (list.size() == 1) return list.get(0);
-        
+
         int targetIndex = largest ? list.size() - 1 - k : k;
         return QuickSelectCore(list, 0, list.size() - 1, targetIndex);
     }
@@ -417,32 +331,5 @@ public class FunctionUtil {
             }
         }
         return count > 0 ? rank : 0;
-    }
-
-    public static class BooleanHolder {
-        public boolean value;
-    }
-
-    public static class Pair<F, S> {
-        private final F first;
-        private final S second;
-
-        public Pair(F first, S second) {
-            this.first = first;
-            this.second = second;
-        }
-
-        public F getFirst() {
-            return first;
-        }
-
-        public S getSecond() {
-            return second;
-        }
-    }
-
-    public enum StringComparison {
-        Ordinal,
-        OrdinalIgnoreCase
     }
 }
