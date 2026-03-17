@@ -36,6 +36,10 @@ public class AlgorithmEngine {
     public boolean UseParseCache = false;
     private final ConcurrentHashMap<String, FunctionBase> _parseCache = new ConcurrentHashMap<>();
 
+    public void SetLastError(String value) {
+        LastError = value;
+    }
+
     public void setUseExcelIndex(boolean value) {
         ExcelIndex = value ? 1 : 0;
     }

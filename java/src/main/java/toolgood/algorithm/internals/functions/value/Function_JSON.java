@@ -9,6 +9,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.NoneEngine;
+import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 
 public final class Function_JSON extends Function_1 {
@@ -31,7 +32,7 @@ public final class Function_JSON extends Function_1 {
             return args1;
         }
         if (args1.IsArrayJson()) {
-            args1 = args1.ToText();
+            args1 = args1.ToText("");
         }
         if (args1.IsText() == false) {
             return ParameterError(1);
@@ -39,7 +40,7 @@ public final class Function_JSON extends Function_1 {
         String txt = args1.TextValue();
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
-                var json = JsonMapper.ToObject(txt);
+                JsonData json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
             } catch (Exception e) {
             }

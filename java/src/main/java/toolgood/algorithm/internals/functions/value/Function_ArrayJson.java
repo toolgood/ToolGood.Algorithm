@@ -31,7 +31,7 @@ public final class Function_ArrayJson extends Function_N {
                 return o;
             }
             if (o instanceof OperandKeyValue) {
-                result.AddValue(((OperandKeyValue) o).getValue());
+                result.AddValue(((OperandKeyValue) o).Value());
             } else {
                 return ParameterError(1);
             }

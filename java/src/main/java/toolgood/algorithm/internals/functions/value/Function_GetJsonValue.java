@@ -72,8 +72,8 @@ public final class Function_GetJsonValue extends Function_2 {
                     return op;
                 }
                 int index = op.IntValue() - engine.ExcelIndex;
-                if (index < json.size() && index >= 0) {
-                    return ConvertJsonDataToOperand(json.get(index));
+                if (index < json.inst_array.size() && index >= 0) {
+                    return ConvertJsonDataToOperand(json.inst_array.get(index));
                 }
                 return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
             } else {
@@ -91,23 +91,23 @@ public final class Function_GetJsonValue extends Function_2 {
     }
 
     private static Operand ConvertJsonDataToOperand(JsonData v) {
-        if (v.isString()) {
-            return Operand.Create(v.getStringValue());
+        if (v.IsString()) {
+            return Operand.Create(v.StringValue());
         }
         if (v.IsBoolean()) {
             return Operand.Create(v.BooleanValue());
         }
-        if (v.isDouble()) {
+        if (v.IsDouble()) {
             return Operand.Create(v.NumberValue());
         }
-        if (v.isObject()) {
+        if (v.IsObject()) {
             return Operand.Create(v);
         }
         if (v.IsArray()) {
             return Operand.Create(v);
         }
         if (v.IsNull()) {
-            return Operand.Null();
+            return Operand.Null;
         }
         return Operand.Create(v);
     }

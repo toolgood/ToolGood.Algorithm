@@ -28,8 +28,8 @@ public final class Function_ArrayJsonItem extends Function_1 {
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
         KeyValue keyValue = new KeyValue();
-        keyValue.setKey(key);
-        keyValue.setValue(func1.Evaluate(engine, tempParameter));
+        keyValue.Key = key;
+        keyValue.Value = func1.Evaluate(engine, tempParameter);
         return new OperandKeyValue(keyValue);
     }
 

@@ -1,23 +1,23 @@
 package toolgood.algorithm.internals.visitors;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.FunctionUtil;
-import toolgood.algorithm.internals.functions.operator.Function_Add;
-import toolgood.algorithm.internals.functions.operator.Function_Div;
-import toolgood.algorithm.internals.functions.operator.Function_Mod;
-import toolgood.algorithm.internals.functions.operator.Function_Mul;
-import toolgood.algorithm.internals.functions.operator.Function_Sub;
 import toolgood.algorithm.internals.functions.compare.Function_EQ;
 import toolgood.algorithm.internals.functions.compare.Function_GE;
 import toolgood.algorithm.internals.functions.compare.Function_GT;
 import toolgood.algorithm.internals.functions.compare.Function_LE;
 import toolgood.algorithm.internals.functions.compare.Function_LT;
 import toolgood.algorithm.internals.functions.compare.Function_NE;
+import toolgood.algorithm.internals.functions.csharp.Function_ARABIC;
 import toolgood.algorithm.internals.functions.csharp.Function_ENDSWITH;
 import toolgood.algorithm.internals.functions.csharp.Function_GUID;
 import toolgood.algorithm.internals.functions.csharp.Function_HAS;
@@ -32,6 +32,7 @@ import toolgood.algorithm.internals.functions.csharp.Function_REGEX;
 import toolgood.algorithm.internals.functions.csharp.Function_REGEXREPLACE;
 import toolgood.algorithm.internals.functions.csharp.Function_REMOVEEND;
 import toolgood.algorithm.internals.functions.csharp.Function_REMOVESTART;
+import toolgood.algorithm.internals.functions.csharp.Function_ROMAN;
 import toolgood.algorithm.internals.functions.csharp.Function_SPLIT;
 import toolgood.algorithm.internals.functions.csharp.Function_STARTSWITH;
 import toolgood.algorithm.internals.functions.csharp.Function_SUBSTRING;
@@ -65,7 +66,6 @@ import toolgood.algorithm.internals.functions.datetimes.Function_DATEVALUE;
 import toolgood.algorithm.internals.functions.datetimes.Function_DAY;
 import toolgood.algorithm.internals.functions.datetimes.Function_DAYS;
 import toolgood.algorithm.internals.functions.datetimes.Function_DAYS360;
-import toolgood.algorithm.internals.functions.datetimes.Function_YEARFRAC;
 import toolgood.algorithm.internals.functions.datetimes.Function_EDATE;
 import toolgood.algorithm.internals.functions.datetimes.Function_EOMONTH;
 import toolgood.algorithm.internals.functions.datetimes.Function_HOUR;
@@ -80,2535 +80,2035 @@ import toolgood.algorithm.internals.functions.datetimes.Function_TIMEVALUE;
 import toolgood.algorithm.internals.functions.datetimes.Function_TODAY;
 import toolgood.algorithm.internals.functions.datetimes.Function_WEEKDAY;
 import toolgood.algorithm.internals.functions.datetimes.Function_WEEKNUM;
-import toolgood.algorithm.internals.functions.datetimes.Function_WORKDAY;
 import toolgood.algorithm.internals.functions.datetimes.Function_YEAR;
-import toolgood.algorithm.internals.functions.operator.Function_AND;
-import toolgood.algorithm.internals.functions.operator.Function_AND_N;
+import toolgood.algorithm.internals.functions.datetimes.Function_YEARFRAC;
+import toolgood.algorithm.internals.functions.datetimes.Function_WORKDAY;
+import toolgood.algorithm.internals.functions.financial.Function_DB;
+import toolgood.algorithm.internals.functions.financial.Function_DDB;
+import toolgood.algorithm.internals.functions.financial.Function_FV;
+import toolgood.algorithm.internals.functions.financial.Function_IPMT;
+import toolgood.algorithm.internals.functions.financial.Function_IRR;
+import toolgood.algorithm.internals.functions.financial.Function_MIRR;
+import toolgood.algorithm.internals.functions.financial.Function_NPER;
+import toolgood.algorithm.internals.functions.financial.Function_NPV;
+import toolgood.algorithm.internals.functions.financial.Function_PMT;
+import toolgood.algorithm.internals.functions.financial.Function_PPMT;
+import toolgood.algorithm.internals.functions.financial.Function_PV;
+import toolgood.algorithm.internals.functions.financial.Function_RATE;
+import toolgood.algorithm.internals.functions.financial.Function_SLN;
+import toolgood.algorithm.internals.functions.financial.Function_SYD;
+import toolgood.algorithm.internals.functions.financial.Function_XIRR;
+import toolgood.algorithm.internals.functions.financial.Function_XNPV;
+import toolgood.algorithm.internals.functions.flow.Function_AND_N;
 import toolgood.algorithm.internals.functions.flow.Function_IF;
 import toolgood.algorithm.internals.functions.flow.Function_IFERROR;
+import toolgood.algorithm.internals.functions.flow.Function_IFS;
 import toolgood.algorithm.internals.functions.flow.Function_ISEVEN;
+import toolgood.algorithm.internals.functions.flow.Function_ISERROR;
 import toolgood.algorithm.internals.functions.flow.Function_ISLOGICAL;
 import toolgood.algorithm.internals.functions.flow.Function_ISNONTEXT;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULL;
-import toolgood.algorithm.internals.functions.flow.Function_ISNULLOREMPTY;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULLORERROR;
+import toolgood.algorithm.internals.functions.flow.Function_ISNULLOREMPTY;
 import toolgood.algorithm.internals.functions.flow.Function_ISNULLORWHITESPACE;
+import toolgood.algorithm.internals.functions.flow.Function_ISNUMBER;
 import toolgood.algorithm.internals.functions.flow.Function_ISODD;
 import toolgood.algorithm.internals.functions.flow.Function_ISTEXT;
 import toolgood.algorithm.internals.functions.flow.Function_NOT;
-import toolgood.algorithm.internals.functions.operator.Function_OR;
-import toolgood.algorithm.internals.functions.operator.Function_OR_N;
-import toolgood.algorithm.internals.functions.financial.*;
-import toolgood.algorithm.internals.functions.mathbase.*;
-import toolgood.algorithm.internals.functions.mathsum.*;
-import toolgood.algorithm.internals.functions.mathsum2.*;
-import toolgood.algorithm.internals.functions.mathtransformation.*;
-import toolgood.algorithm.internals.functions.mathtrigonometric.*;
+import toolgood.algorithm.internals.functions.flow.Function_OR_N;
+import toolgood.algorithm.internals.functions.flow.Function_SWITCH;
+import toolgood.algorithm.internals.functions.mathbase.Function_ABS;
+import toolgood.algorithm.internals.functions.mathbase.Function_ACOS;
+import toolgood.algorithm.internals.functions.mathbase.Function_ACOSH;
+import toolgood.algorithm.internals.functions.mathbase.Function_ACOT;
+import toolgood.algorithm.internals.functions.mathbase.Function_ACOTH;
+import toolgood.algorithm.internals.functions.mathbase.Function_ASIN;
+import toolgood.algorithm.internals.functions.mathbase.Function_ASINH;
+import toolgood.algorithm.internals.functions.mathbase.Function_ATAN;
+import toolgood.algorithm.internals.functions.mathbase.Function_ATAN2;
+import toolgood.algorithm.internals.functions.mathbase.Function_ATANH;
+import toolgood.algorithm.internals.functions.mathbase.Function_BESSELI;
+import toolgood.algorithm.internals.functions.mathbase.Function_BESSELJ;
+import toolgood.algorithm.internals.functions.mathbase.Function_BESSELK;
+import toolgood.algorithm.internals.functions.mathbase.Function_BESSELY;
+import toolgood.algorithm.internals.functions.mathbase.Function_BIN2DEC;
+import toolgood.algorithm.internals.functions.mathbase.Function_BIN2HEX;
+import toolgood.algorithm.internals.functions.mathbase.Function_BIN2OCT;
+import toolgood.algorithm.internals.functions.mathbase.Function_CEILING;
+import toolgood.algorithm.internals.functions.mathbase.Function_COMBIN;
+import toolgood.algorithm.internals.functions.mathbase.Function_COS;
+import toolgood.algorithm.internals.functions.mathbase.Function_COSH;
+import toolgood.algorithm.internals.functions.mathbase.Function_COT;
+import toolgood.algorithm.internals.functions.mathbase.Function_COTH;
+import toolgood.algorithm.internals.functions.mathbase.Function_CSC;
+import toolgood.algorithm.internals.functions.mathbase.Function_CSCH;
+import toolgood.algorithm.internals.functions.mathbase.Function_DEC2BIN;
+import toolgood.algorithm.internals.functions.mathbase.Function_DEC2HEX;
+import toolgood.algorithm.internals.functions.mathbase.Function_DEC2OCT;
+import toolgood.algorithm.internals.functions.mathbase.Function_DEGREES;
+import toolgood.algorithm.internals.functions.mathbase.Function_DELTA;
+import toolgood.algorithm.internals.functions.mathbase.Function_EVEN;
+import toolgood.algorithm.internals.functions.mathbase.Function_EXP;
+import toolgood.algorithm.internals.functions.mathbase.Function_ERF;
+import toolgood.algorithm.internals.functions.mathbase.Function_ERFC;
+import toolgood.algorithm.internals.functions.mathbase.Function_FACT;
+import toolgood.algorithm.internals.functions.mathbase.Function_FACTDOUBLE;
+import toolgood.algorithm.internals.functions.mathbase.Function_FIXED;
+import toolgood.algorithm.internals.functions.mathbase.Function_FLOOR;
+import toolgood.algorithm.internals.functions.mathbase.Function_GCD;
+import toolgood.algorithm.internals.functions.mathbase.Function_GESTEP;
+import toolgood.algorithm.internals.functions.mathbase.Function_HEX2BIN;
+import toolgood.algorithm.internals.functions.mathbase.Function_HEX2DEC;
+import toolgood.algorithm.internals.functions.mathbase.Function_HEX2OCT;
+import toolgood.algorithm.internals.functions.mathbase.Function_LCM;
+import toolgood.algorithm.internals.functions.mathbase.Function_LN;
+import toolgood.algorithm.internals.functions.mathbase.Function_LOG;
+import toolgood.algorithm.internals.functions.mathbase.Function_LOG10;
+import toolgood.algorithm.internals.functions.mathbase.Function_MOD;
+import toolgood.algorithm.internals.functions.mathbase.Function_MROUND;
+import toolgood.algorithm.internals.functions.mathbase.Function_MULTINOMIAL;
+import toolgood.algorithm.internals.functions.mathbase.Function_Number;
+import toolgood.algorithm.internals.functions.mathbase.Function_OCT2BIN;
+import toolgood.algorithm.internals.functions.mathbase.Function_OCT2DEC;
+import toolgood.algorithm.internals.functions.mathbase.Function_OCT2HEX;
+import toolgood.algorithm.internals.functions.mathbase.Function_ODD;
+import toolgood.algorithm.internals.functions.mathbase.Function_PERMUT;
+import toolgood.algorithm.internals.functions.mathbase.Function_POWER;
+import toolgood.algorithm.internals.functions.mathbase.Function_PRODUCT;
+import toolgood.algorithm.internals.functions.mathbase.Function_QUOTIENT;
+import toolgood.algorithm.internals.functions.mathbase.Function_RADIANS;
+import toolgood.algorithm.internals.functions.mathbase.Function_RAND;
+import toolgood.algorithm.internals.functions.mathbase.Function_RANDBETWEEN;
+import toolgood.algorithm.internals.functions.mathbase.Function_ROUND;
+import toolgood.algorithm.internals.functions.mathbase.Function_ROUNDDOWN;
+import toolgood.algorithm.internals.functions.mathbase.Function_ROUNDUP;
+import toolgood.algorithm.internals.functions.mathbase.Function_SEC;
+import toolgood.algorithm.internals.functions.mathbase.Function_SECH;
+import toolgood.algorithm.internals.functions.mathbase.Function_SIGN;
+import toolgood.algorithm.internals.functions.mathbase.Function_SIN;
+import toolgood.algorithm.internals.functions.mathbase.Function_SINH;
+import toolgood.algorithm.internals.functions.mathbase.Function_SQRT;
+import toolgood.algorithm.internals.functions.mathbase.Function_SQRTPI;
+import toolgood.algorithm.internals.functions.mathbase.Function_TAN;
+import toolgood.algorithm.internals.functions.mathbase.Function_TANH;
+import toolgood.algorithm.internals.functions.mathbase.Function_TRUNC;
+import toolgood.algorithm.internals.functions.mathbase.Function_Percentage;
+import toolgood.algorithm.internals.functions.mathsum.Function_AVEDEV;
+import toolgood.algorithm.internals.functions.mathsum.Function_AVERAGE;
+import toolgood.algorithm.internals.functions.mathsum.Function_AVERAGEIF;
+import toolgood.algorithm.internals.functions.mathsum.Function_CORREL;
+import toolgood.algorithm.internals.functions.mathsum.Function_COUNT;
+import toolgood.algorithm.internals.functions.mathsum.Function_COUNTIF;
+import toolgood.algorithm.internals.functions.mathsum.Function_DEVSQ;
+import toolgood.algorithm.internals.functions.mathsum.Function_FORECAST;
+import toolgood.algorithm.internals.functions.mathsum.Function_GEOMEAN;
+import toolgood.algorithm.internals.functions.mathsum.Function_HARMEAN;
+import toolgood.algorithm.internals.functions.mathsum.Function_INTERCEPT;
+import toolgood.algorithm.internals.functions.mathsum.Function_LARGE;
+import toolgood.algorithm.internals.functions.mathsum.Function_MAX;
+import toolgood.algorithm.internals.functions.mathsum.Function_MEDIAN;
+import toolgood.algorithm.internals.functions.mathsum.Function_MIN;
+import toolgood.algorithm.internals.functions.mathsum.Function_MODE;
+import toolgood.algorithm.internals.functions.mathsum.Function_PEARSON;
+import toolgood.algorithm.internals.functions.mathsum.Function_PERCENTILE;
+import toolgood.algorithm.internals.functions.mathsum.Function_PERCENTRANK;
+import toolgood.algorithm.internals.functions.mathsum.Function_QUARTILE;
+import toolgood.algorithm.internals.functions.mathsum.Function_RANK;
+import toolgood.algorithm.internals.functions.mathsum.Function_SERIESSUM;
+import toolgood.algorithm.internals.functions.mathsum.Function_SLOPE;
+import toolgood.algorithm.internals.functions.mathsum.Function_SMALL;
+import toolgood.algorithm.internals.functions.mathsum.Function_STDEV;
+import toolgood.algorithm.internals.functions.mathsum.Function_STDEVP;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUM;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUMIF;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUMPRODUCT;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUMSQ;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUMX2MY2;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUMX2PY2;
+import toolgood.algorithm.internals.functions.mathsum.Function_SUMXMY2;
+import toolgood.algorithm.internals.functions.mathsum.Function_VAR;
+import toolgood.algorithm.internals.functions.mathsum.Function_VARP;
+import toolgood.algorithm.internals.functions.mathsum2.Function_BETADIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_BETAINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_BINOMDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_COVAR;
+import toolgood.algorithm.internals.functions.mathsum2.Function_COVARIANCES;
+import toolgood.algorithm.internals.functions.mathsum2.Function_EXPONDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_FDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_FINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_FISHER;
+import toolgood.algorithm.internals.functions.mathsum2.Function_FISHERINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_GAMMADIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_GAMMAINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_GAMMALN;
+import toolgood.algorithm.internals.functions.mathsum2.Function_HYPGEOMDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_LOGINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_LOGNORMDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_NEGBINOMDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_NORMDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_NORMINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_NORMSDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_NORMSINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_POISSON;
+import toolgood.algorithm.internals.functions.mathsum2.Function_TDIST;
+import toolgood.algorithm.internals.functions.mathsum2.Function_TINV;
+import toolgood.algorithm.internals.functions.mathsum2.Function_WEIBULL;
+import toolgood.algorithm.internals.functions.operator.Function_Add;
+import toolgood.algorithm.internals.functions.operator.Function_AND;
 import toolgood.algorithm.internals.functions.operator.Function_Connect;
-import toolgood.algorithm.internals.functions.string.*;
+import toolgood.algorithm.internals.functions.operator.Function_Div;
+import toolgood.algorithm.internals.functions.operator.Function_Mod;
+import toolgood.algorithm.internals.functions.operator.Function_Mul;
+import toolgood.algorithm.internals.functions.operator.Function_OR;
+import toolgood.algorithm.internals.functions.operator.Function_Sub;
+import toolgood.algorithm.internals.functions.operator.Function_XOR;
+import toolgood.algorithm.internals.functions.string.Function_ASC;
+import toolgood.algorithm.internals.functions.string.Function_CHAR;
+import toolgood.algorithm.internals.functions.string.Function_CLEAN;
+import toolgood.algorithm.internals.functions.string.Function_CODE;
+import toolgood.algorithm.internals.functions.string.Function_CONCATENATE;
+import toolgood.algorithm.internals.functions.string.Function_EXACT;
+import toolgood.algorithm.internals.functions.string.Function_FIND;
+import toolgood.algorithm.internals.functions.string.Function_JIS;
+import toolgood.algorithm.internals.functions.string.Function_LEFT;
+import toolgood.algorithm.internals.functions.string.Function_LEN;
+import toolgood.algorithm.internals.functions.string.Function_LOWER;
+import toolgood.algorithm.internals.functions.string.Function_MID;
+import toolgood.algorithm.internals.functions.string.Function_PROPER;
+import toolgood.algorithm.internals.functions.string.Function_REPLACE;
+import toolgood.algorithm.internals.functions.string.Function_REPT;
+import toolgood.algorithm.internals.functions.string.Function_RIGHT;
+import toolgood.algorithm.internals.functions.string.Function_RMB;
+import toolgood.algorithm.internals.functions.string.Function_SEARCH;
+import toolgood.algorithm.internals.functions.string.Function_SUBSTITUTE;
+import toolgood.algorithm.internals.functions.string.Function_T;
+import toolgood.algorithm.internals.functions.string.Function_TEXT;
+import toolgood.algorithm.internals.functions.string.Function_TRIM;
+import toolgood.algorithm.internals.functions.string.Function_UNICHAR;
+import toolgood.algorithm.internals.functions.string.Function_UNICODE;
+import toolgood.algorithm.internals.functions.string.Function_UPPER;
+import toolgood.algorithm.internals.functions.string.Function_VALUE;
 import toolgood.algorithm.internals.functions.value.Function_Array;
 import toolgood.algorithm.internals.functions.value.Function_ArrayJson;
+import toolgood.algorithm.internals.functions.value.Function_ArrayJsonItem;
 import toolgood.algorithm.internals.functions.value.Function_DiyFunction;
 import toolgood.algorithm.internals.functions.value.Function_ERROR;
 import toolgood.algorithm.internals.functions.value.Function_GetJsonValue;
 import toolgood.algorithm.internals.functions.value.Function_JSON;
-import toolgood.algorithm.internals.functions.value.Function_NUM;
-import toolgood.algorithm.internals.functions.value.Function_PARAM;
+import toolgood.algorithm.internals.functions.value.Function_NULL;
+import toolgood.algorithm.internals.functions.value.Function_NUMBER;
 import toolgood.algorithm.internals.functions.value.Function_PARAMETER;
-import toolgood.algorithm.internals.functions.value.Function_Value;
+import toolgood.algorithm.internals.functions.value.Function_PARAM;
+import toolgood.algorithm.internals.functions.value.Function_ValueBoolean;
+import toolgood.algorithm.internals.functions.value.Function_ValueNumber;
+import toolgood.algorithm.internals.functions.value.Function_ValueText;
 import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser.ARABIC_funContext;
-import toolgood.algorithm.math.mathParser.CORREL_funContext;
-import toolgood.algorithm.math.mathParser.DELTA_funContext;
 import toolgood.algorithm.math.mathParser.ExprContext;
-import toolgood.algorithm.math.mathParser.FORECAST_funContext;
-import toolgood.algorithm.math.mathParser.GESTEP_funContext;
-import toolgood.algorithm.math.mathParser.IFS_funContext;
-import toolgood.algorithm.math.mathParser.INTERCEPT_funContext;
-import toolgood.algorithm.math.mathParser.ISTEXT_funContext;
-import toolgood.algorithm.math.mathParser.PEARSON_funContext;
-import toolgood.algorithm.math.mathParser.RANK_funContext;
-import toolgood.algorithm.math.mathParser.ROMAN_funContext;
-import toolgood.algorithm.math.mathParser.SERIESSUM_funContext;
-import toolgood.algorithm.math.mathParser.SLOPE_funContext;
-import toolgood.algorithm.math.mathParser.SUMPRODUCT_funContext;
-import toolgood.algorithm.math.mathParser.SUMX2MY2_funContext;
-import toolgood.algorithm.math.mathParser.SUMX2PY2_funContext;
-import toolgood.algorithm.math.mathParser.SUMXMY2_funContext;
-import toolgood.algorithm.math.mathParser.SWITCH_funContext;
-import toolgood.algorithm.math.mathParser.XOR_funContext;
 import toolgood.algorithm.math.mathVisitor;
-
-public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> implements mathVisitor<FunctionBase> {
-//#region base
-
-		public FunctionBase visitProg(mathParser.ProgContext context)
-		{
-			return context.expr().accept(this);
-		}
-
-		public FunctionBase visitMulDiv_fun(mathParser.MulDiv_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			String t = context.op.getText();
-			if (CharUtil.Equals(t, '*')) {
-				return new Function_Mul(args1, args2);
-			} else if (CharUtil.Equals(t, '/')) {
-				return new Function_Div(args1, args2);
-			}
-			return new Function_Mod(args1, args2);
-		}
-
-		public FunctionBase visitAddSub_fun(mathParser.AddSub_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			String t = context.op.getText();
-			if (CharUtil.Equals(t, '&')) {
-				return new Function_Connect(args1, args2);
-			} else if (CharUtil.Equals(t, '+')) {
-				return new Function_Add(args1, args2);
-			}
-			return new Function_Sub(args1, args2);
-		}
-
-		public FunctionBase visitJudge_fun(mathParser.Judge_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-
-			String type = context.op.getText();
-			if (CharUtil.Equals(type, "=", "==", "===")) {
-				return new Function_EQ(args1, args2);
-			} else if (CharUtil.Equals(type, "<")) {
-				return new Function_LT(args1, args2);
-			} else if (CharUtil.Equals(type, "<=")) {
-				return new Function_LE(args1, args2);
-			} else if (CharUtil.Equals(type, ">")) {
-				return new Function_GT(args1, args2);
-			} else if (CharUtil.Equals(type, ">=")) {
-				return new Function_GE(args1, args2);
-			}
-			return new Function_NE(args1, args2);
-		}
-
-		public FunctionBase visitAndOr_fun(mathParser.AndOr_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			String t = context.op.getText();
-			if (CharUtil.Equals(t, "&&", "AND")) {
-				return new Function_AND(args1, args2);
-			}
-			return new Function_OR(args1, args2);
-		}
-
-		//#endregion base
-
-		//#region flow
-
-		public FunctionBase visitIF_fun(mathParser.IF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 3) {
-				FunctionBase args3 = exprs.get(2).accept(this);
-				return new Function_IF(args1, args2, args3);
-			}
-			return new Function_IF(args1, args2, null);
-		}
-
-		public FunctionBase visitIFERROR_fun(mathParser.IFERROR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_IFERROR(args1, args2, args3);
-		}
-
-		public FunctionBase visitISNUMBER_fun(mathParser.ISNUMBER_funContext context)
-		{
-			FunctionBase args1 = this.visit(context.expr());
-			return new Function_ISNUMBER(args1);
-		}
-
-		public FunctionBase visitIsText_fun(mathParser.ISTEXT_funContext context)
-		{
-			FunctionBase args1 = this.visit(context.expr());
-			return new Function_IsText(args1);
-		}
-
-		public FunctionBase visitISERROR_fun(mathParser.ISERROR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 2) {
-				FunctionBase args2 = exprs.get(1).accept(this);
-				return new Function_ISERROR(args1, args2);
-			}
-			return new Function_ISERROR(args1, null);
-		}
-
-		public FunctionBase visitISNULL_fun(mathParser.ISNULL_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 2) {
-				FunctionBase args2 = exprs.get(1).accept(this);
-				return new Function_ISNULL(args1, args2);
-			}
-			return new Function_ISNULL(args1, null);
-		}
-
-		public FunctionBase visitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 2) {
-				FunctionBase args2 = exprs.get(1).accept(this);
-				return new Function_ISNULLORERROR(args1, args2);
-			}
-			return new Function_ISNULLORERROR(args1, null);
-		}
-
-		public FunctionBase visitISEVEN_fun(mathParser.ISEVEN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ISEVEN(args1);
-		}
-
-		public FunctionBase visitISLOGICAL_fun(mathParser.ISLOGICAL_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ISLOGICAL(args1);
-		}
-
-		public FunctionBase visitISODD_fun(mathParser.ISODD_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ISODD(args1);
-		}
-
-		public FunctionBase visitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ISNONTEXT(args1);
-		}
-
-		public FunctionBase visitAND_fun(mathParser.AND_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_AND_N(args);
-		}
-
-		public FunctionBase visitOR_fun(mathParser.OR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_OR_N(args);
-		}
-
-		public FunctionBase visitNOT_fun(mathParser.NOT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_NOT(args1);
-		}
-
-		public FunctionBase visitTRUE_fun(mathParser.TRUE_funContext context)
-		{
-			return new Function_Value(Operand.True);
-		}
-
-		public FunctionBase visitFALSE_fun(mathParser.FALSE_funContext context)
-		{
-			return new Function_Value(Operand.False);
-		}
-
-		//#endregion flow
-
-		//#region math
-
-		//#region base
-
-		public FunctionBase visitE_fun(mathParser.E_funContext context)
-		{
-			return new Function_Value(Operand.Create(Math.E), "E");
-		}
-
-		public FunctionBase visitPI_fun(mathParser.PI_funContext context)
-		{
-			return new Function_Value(Operand.Create(Math.PI), "PI");
-		}
-
-		public FunctionBase visitABS_fun(mathParser.ABS_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ABS(args1);
-		}
-
-		public FunctionBase visitQUOTIENT_fun(mathParser.QUOTIENT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_QUOTIENT(args1, args2);
-		}
-
-		public FunctionBase visitMOD_fun(mathParser.MOD_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_Mod(args1, args2);
-		}
-
-		public FunctionBase visitSIGN_fun(mathParser.SIGN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SIGN(args1);
-		}
-
-		public FunctionBase visitSQRT_fun(mathParser.SQRT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SQRT(args1);
-		}
-
-		public FunctionBase visitTRUNC_fun(mathParser.TRUNC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_TRUNC(args1);
-		}
-
-		public FunctionBase visitINT_fun(mathParser.INT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_TRUNC(args1);
-		}
-
-		public FunctionBase visitGCD_fun(mathParser.GCD_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_GCD(args);
-		}
-
-		public FunctionBase visitLCM_fun(mathParser.LCM_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_LCM(args);
-		}
-
-		public FunctionBase visitCOMBIN_fun(mathParser.COMBIN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_COMBIN(args1, args2);
-		}
-
-		public FunctionBase visitPERMUT_fun(mathParser.PERMUT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_PERMUT(args1, args2);
-		}
-
-		public FunctionBase visitPercentage_fun(mathParser.Percentage_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_Percentage(args1);
-		}
-
-		//#endregion base
-
-		//#region trigonometric functions
-
-		public FunctionBase visitDEGREES_fun(mathParser.DEGREES_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_DEGREES(args1);
-		}
-
-		public FunctionBase visitRADIANS_fun(mathParser.RADIANS_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_RADIANS(args1);
-		}
-
-		public FunctionBase visitCOS_fun(mathParser.COS_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_COS(args1);
-		}
-
-		public FunctionBase visitCOSH_fun(mathParser.COSH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_COSH(args1);
-		}
-
-		public FunctionBase visitSIN_fun(mathParser.SIN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SIN(args1);
-		}
-
-		public FunctionBase visitSINH_fun(mathParser.SINH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SINH(args1);
-		}
-
-		public FunctionBase visitTAN_fun(mathParser.TAN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_TAN(args1);
-		}
-
-		public FunctionBase visitTANH_fun(mathParser.TANH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_TANH(args1);
-		}
-
-		public FunctionBase visitACOS_fun(mathParser.ACOS_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ACOS(args1);
-		}
-
-		public FunctionBase visitACOSH_fun(mathParser.ACOSH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ACOSH(args1);
-		}
-
-		public FunctionBase visitASIN_fun(mathParser.ASIN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ASIN(args1);
-		}
-
-		public FunctionBase visitASINH_fun(mathParser.ASINH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ASINH(args1);
-		}
-
-		public FunctionBase visitATAN_fun(mathParser.ATAN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ATAN(args1);
-		}
-
-		public FunctionBase visitATANH_fun(mathParser.ATANH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ATANH(args1);
-		}
-
-		public FunctionBase visitATAN2_fun(mathParser.ATAN2_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ATAN2(args1, args2);
-		}
-
-		public FunctionBase visitCOT_fun(mathParser.COT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_COT(args1);
-		}
-
-		public FunctionBase visitCSC_fun(mathParser.CSC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_CSC(args1);
-		}
-
-		public FunctionBase visitSEC_fun(mathParser.SEC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SEC(args1);
-		}
-
-		public FunctionBase visitACOT_fun(mathParser.ACOT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ACOT(args1);
-		}
-
-		public FunctionBase visitACOTH_fun(mathParser.ACOTH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ACOTH(args1);
-		}
-
-		public FunctionBase visitCOTH_fun(mathParser.COTH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_COTH(args1);
-		}
-
-		public FunctionBase visitCSCH_fun(mathParser.CSCH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_CSCH(args1);
-		}
-
-		public FunctionBase visitSECH_fun(mathParser.SECH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SECH(args1);
-		}
-
-		public FunctionBase visitFIXED_fun(mathParser.FIXED_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_FIXED(args1, null, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_FIXED(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_FIXED(args1, args2, args3);
-		}
-
-		//#endregion trigonometric functions
-
-		//#region transformation
-
-		public FunctionBase visitBIN2OCT_fun(mathParser.BIN2OCT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_BIN2OCT(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BIN2OCT(args1, args2);
-		}
-
-		public FunctionBase visitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_BIN2DEC(args1);
-		}
-
-		public FunctionBase visitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_BIN2HEX(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BIN2HEX(args1, args2);
-		}
-
-		public FunctionBase visitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_OCT2BIN(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_OCT2BIN(args1, args2);
-		}
-
-		public FunctionBase visitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_OCT2DEC(args1);
-		}
-
-		public FunctionBase visitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_OCT2HEX(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_OCT2HEX(args1, args2);
-		}
-
-		public FunctionBase visitDEC2BIN_fun(mathParser.DEC2BIN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_DEC2BIN(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_DEC2BIN(args1, args2);
-		}
-
-		public FunctionBase visitDEC2OCT_fun(mathParser.DEC2OCT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_DEC2OCT(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_DEC2OCT(args1, args2);
-		}
-
-		public FunctionBase visitDEC2HEX_fun(mathParser.DEC2HEX_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_DEC2HEX(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_DEC2HEX(args1, args2);
-		}
-
-		public FunctionBase visitHEX2BIN_fun(mathParser.HEX2BIN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_HEX2BIN(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_HEX2BIN(args1, args2);
-		}
-
-		public FunctionBase visitHEX2OCT_fun(mathParser.HEX2OCT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_HEX2OCT(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_HEX2OCT(args1, args2);
-		}
-
-		public FunctionBase visitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_HEX2DEC(args1);
-		}
-
-		//#endregion transformation
-
-		//#region rounding
-
-		public FunctionBase visitROUND_fun(mathParser.ROUND_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) {
-				return new Function_ROUND(args1, null);
-			}
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ROUND(args1, args2);
-		}
-
-		public FunctionBase visitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ROUNDDOWN(args1, args2);
-		}
-
-		public FunctionBase visitROUNDUP_fun(mathParser.ROUNDUP_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ROUNDUP(args1, args2);
-		}
-
-		public FunctionBase visitCEILING_fun(mathParser.CEILING_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1)
-				return new Function_CEILING(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_CEILING(args1, args2);
-		}
-
-		public FunctionBase visitFLOOR_fun(mathParser.FLOOR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1)
-				return new Function_FLOOR(args1, null);
-
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_FLOOR(args1, args2);
-		}
-
-		public FunctionBase visitEVEN_fun(mathParser.EVEN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_EVEN(args1);
-		}
-
-		public FunctionBase visitODD_fun(mathParser.ODD_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ODD(args1);
-		}
-
-		public FunctionBase visitMROUND_fun(mathParser.MROUND_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_MROUND(args1, args2);
-		}
-
-		//#endregion rounding
-
-		//#region RAND
-
-		public FunctionBase visitRAND_fun(mathParser.RAND_funContext context)
-		{
-			return new Function_RAND();
-		}
-
-		public FunctionBase visitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_RANDBETWEEN(args1, args2);
-		}
-
-		//#endregion RAND
-
-		//#region power logarithm factorial
-
-		public FunctionBase visitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_COVARIANCES(args1, args2);
-		}
-
-		public FunctionBase visitCOVAR_fun(mathParser.COVAR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_COVAR(args1, args2);
-		}
-
-		public FunctionBase visitFACT_fun(mathParser.FACT_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_FACT(args1);
-		}
-
-		public FunctionBase visitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_FACTDOUBLE(args1);
-		}
-
-		public FunctionBase visitPOWER_fun(mathParser.POWER_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_POWER(args1, args2);
-		}
-
-		public FunctionBase visitEXP_fun(mathParser.EXP_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_EXP(args1);
-		}
-
-		public FunctionBase visitLN_fun(mathParser.LN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_LN(args1);
-		}
-
-		public FunctionBase visitLOG_fun(mathParser.LOG_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() > 1) {
-				FunctionBase args2 = exprs.get(1).accept(this);
-				return new Function_LOG(args1, args2);
-			}
-			return new Function_LOG(args1, null);
-		}
-
-		public FunctionBase visitLOG10_fun(mathParser.LOG10_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_LOG10(args1);
-		}
-
-		public FunctionBase visitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_MULTINOMIAL(args);
-		}
-
-		public FunctionBase visitPRODUCT_fun(mathParser.PRODUCT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_PRODUCT(args);
-		}
-
-		public FunctionBase visitSQRTPI_fun(mathParser.SQRTPI_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SQRTPI(args1);
-		}
-
-		public FunctionBase visitSUMSQ_fun(mathParser.SUMSQ_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_SUMSQ(args);
-		}
-
-		//#endregion
-
-		//#endregion math
-
-		//#region string
-
-		public FunctionBase visitASC_fun(mathParser.ASC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ASC(args1);
-		}
-
-		public FunctionBase visitJIS_fun(mathParser.JIS_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_JIS(args1);
-		}
-
-		public FunctionBase visitCHAR_fun(mathParser.CHAR_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_CHAR(args1);
-		}
-
-		public FunctionBase visitCLEAN_fun(mathParser.CLEAN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_CLEAN(args1);
-		}
-
-		public FunctionBase visitCODE_fun(mathParser.CODE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_CODE(args1);
-		}
-
-		public FunctionBase visitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_CONCATENATE(args);
-		}
-
-		public FunctionBase visitEXACT_fun(mathParser.EXACT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_EXACT(args1, args2);
-		}
-
-		public FunctionBase visitFIND_fun(mathParser.FIND_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-
-			if (exprs.size() == 2) {
-				return new Function_FIND(args1, args2, null);
-			}
-			FunctionBase count = exprs.get(2).accept(this);
-			return new Function_FIND(args1, args2, count);
-		}
-
-		public FunctionBase visitLEFT_fun(mathParser.LEFT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) {
-				return new Function_LEFT(args1, null);
-			}
-			return new Function_LEFT(args1, exprs.get(1).accept(this));
-		}
-
-		public FunctionBase visitLEN_fun(mathParser.LEN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_LEN(args1);
-		}
-
-		public FunctionBase visitLOWER_fun(mathParser.LOWER_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_LOWER(args1);
-		}
-
-		public FunctionBase visitMID_fun(mathParser.MID_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_MID(args1, args2, args3);
-		}
-
-		public FunctionBase visitPROPER_fun(mathParser.PROPER_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_PROPER(args1);
-		}
-
-		public FunctionBase visitREPLACE_fun(mathParser.REPLACE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 3) {
-				FunctionBase args22 = exprs.get(1).accept(this);
-				FunctionBase args32 = exprs.get(2).accept(this);
-				return new Function_REPLACE(args1, args22, args32, null);
-			}
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_REPLACE(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitREPT_fun(mathParser.REPT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_REPT(args1, args2);
-		}
-
-		public FunctionBase visitRIGHT_fun(mathParser.RIGHT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-
-			if (exprs.size() == 1) {
-				return new Function_RIGHT(args1);
-			}
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_RIGHT(args1, args2);
-		}
-
-		public FunctionBase visitRMB_fun(mathParser.RMB_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_RMB(args1);
-		}
-
-		public FunctionBase visitSEARCH_fun(mathParser.SEARCH_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-
-			if (exprs.size() == 2) {
-				return new Function_SEARCH(args1, args2, null);
-			}
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_SEARCH(args1, args2, args3);
-		}
-
-		public FunctionBase visitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			if (exprs.size() == 3) {
-				return new Function_SUBSTITUTE(args1, args2, args3, null);
-			}
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_SUBSTITUTE(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitT_fun(mathParser.T_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_T(args1);
-		}
-
-		public FunctionBase visitTEXT_fun(mathParser.TEXT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TEXT(args1, args2);
-		}
-
-		public FunctionBase visitTRIM_fun(mathParser.TRIM_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_TRIM(args1);
-		}
-
-		public FunctionBase visitUPPER_fun(mathParser.UPPER_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_UPPER(args1);
-		}
-
-		public FunctionBase visitVALUE_fun(mathParser.VALUE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_VALUE(args1);
-		}
-
-		public FunctionBase visitUNICHAR_fun(mathParser.UNICHAR_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_UNICHAR(args1);
-		}
-
-		public FunctionBase visitUNICODE_fun(mathParser.UNICODE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_UNICODE(args1);
-		}
-
-		//#endregion string
-
-		//#region MyDate time
-
-		public FunctionBase visitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_DATEVALUE(args);
-		}
-
-		public FunctionBase visitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_TIMESTAMP(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TIMESTAMP(args1, args2);
-		}
-
-		public FunctionBase visitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_TIMEVALUE(args1);
-		}
-
-		public FunctionBase visitDATE_fun(mathParser.DATE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_DATE(args);
-		}
-
-		public FunctionBase visitTIME_fun(mathParser.TIME_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_TIME(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_TIME(args1, args2, args3);
-		}
-
-		public FunctionBase visitNOW_fun(mathParser.NOW_funContext context)
-		{
-			return new Function_NOW();
-		}
-
-		public FunctionBase visitTODAY_fun(mathParser.TODAY_funContext context)
-		{
-			return new Function_TODAY();
-		}
-
-		public FunctionBase visitYEAR_fun(mathParser.YEAR_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_YEAR(args1);
-		}
-
-		public FunctionBase visitMONTH_fun(mathParser.MONTH_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_MONTH(args1);
-		}
-
-		public FunctionBase visitDAY_fun(mathParser.DAY_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_DAY(args1);
-		}
-
-		public FunctionBase visitHOUR_fun(mathParser.HOUR_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_HOUR(args1);
-		}
-
-		public FunctionBase visitMINUTE_fun(mathParser.MINUTE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_MINUTE(args1);
-		}
-
-		public FunctionBase visitSECOND_fun(mathParser.SECOND_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_SECOND(args1);
-		}
-
-		public FunctionBase visitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_WEEKDAY(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_WEEKDAY(args1, args2);
-		}
-
-		public FunctionBase visitDATEDIF_fun(mathParser.DATEDIF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_DATEDIF(args1, args2, args3);
-		}
-
-		public FunctionBase visitDAYS360_fun(mathParser.DAYS360_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 3) {
-				FunctionBase args3 = exprs.get(2).accept(this);
-				return new Function_DAYS360(args1, args2, args3);
-			}
-			return new Function_DAYS360(args1, args2, null);
-		}
-
-		public FunctionBase visitDAYS_fun(mathParser.DAYS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_DAYS(args1, args2);
-		}
-
-		public FunctionBase visitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 3) {
-				FunctionBase args3 = exprs.get(2).accept(this);
-				return new Function_YEARFRAC(args1, args2, args3);
-			}
-			return new Function_YEARFRAC(args1, args2, null);
-		}
-
-		public FunctionBase visitEDATE_fun(mathParser.EDATE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_EDATE(args1, args2);
-		}
-
-		public FunctionBase visitEOMONTH_fun(mathParser.EOMONTH_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_EOMONTH(args1, args2);
-		}
-
-		public FunctionBase visitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_NETWORKDAYS(args);
-		}
-
-		public FunctionBase visitWORKDAY_fun(mathParser.WORKDAY_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_WORKDAY(args);
-		}
-
-		public FunctionBase visitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_WEEKNUM(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_WEEKNUM(args1, args2);
-		}
-
-		public FunctionBase visitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ADDMONTHS(args1, args2);
-		}
-
-		public FunctionBase visitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ADDYEARS(args1, args2);
-		}
-
-		public FunctionBase visitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ADDSECONDS(args1, args2);
-		}
-
-		public FunctionBase visitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ADDMINUTES(args1, args2);
-		}
-
-		public FunctionBase visitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ADDDAYS(args1, args2);
-		}
-
-		public FunctionBase visitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ADDHOURS(args1, args2);
-		}
-
-		//#endregion MyDate time
-
-		//#region sum
-
-		public FunctionBase visitMAX_fun(mathParser.MAX_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_MAX(args);
-		}
-
-		public FunctionBase visitMEDIAN_fun(mathParser.MEDIAN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_MEDIAN(args);
-		}
-
-		public FunctionBase visitMIN_fun(mathParser.MIN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_MIN(args);
-		}
-
-		public FunctionBase visitQUARTILE_fun(mathParser.QUARTILE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_QUARTILE(args1, args2);
-		}
-
-		public FunctionBase visitMODE_fun(mathParser.MODE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_MODE(args);
-		}
-
-		public FunctionBase visitLARGE_fun(mathParser.LARGE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_LARGE(args1, args2);
-		}
-
-		public FunctionBase visitSMALL_fun(mathParser.SMALL_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_SMALL(args1, args2);
-		}
-
-		public FunctionBase visitPERCENTILE_fun(mathParser.PERCENTILE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_PERCENTILE(args1, args2);
-		}
-
-		public FunctionBase visitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_PERCENTRANK(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_PERCENTRANK(args1, args2, args3);
-		}
-
-		public FunctionBase visitAVERAGE_fun(mathParser.AVERAGE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_AVERAGE(args);
-		}
-
-		public FunctionBase visitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_AVERAGEIF(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_AVERAGEIF(args1, args2, args3);
-		}
-
-		public FunctionBase visitGEOMEAN_fun(mathParser.GEOMEAN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_GEOMEAN(args);
-		}
-
-		public FunctionBase visitHARMEAN_fun(mathParser.HARMEAN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_HARMEAN(args);
-		}
-
-		public FunctionBase visitCOUNT_fun(mathParser.COUNT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_COUNT(args);
-		}
-
-		public FunctionBase visitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_COUNTIF(args1, args2);
-		}
-
-		public FunctionBase visitSUM_fun(mathParser.SUM_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_SUM(args);
-		}
-
-		public FunctionBase visitSUMIF_fun(mathParser.SUMIF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_SUMIF(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_SUMIF(args1, args2, args3);
-		}
-
-		public FunctionBase visitAVEDEV_fun(mathParser.AVEDEV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_AVEDEV(args);
-		}
-
-		public FunctionBase visitSTDEV_fun(mathParser.STDEV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_STDEV(args);
-		}
-
-		public FunctionBase visitSTDEVP_fun(mathParser.STDEVP_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_STDEVP(args);
-		}
-
-		public FunctionBase visitDEVSQ_fun(mathParser.DEVSQ_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_DEVSQ(args);
-		}
-
-		public FunctionBase visitVAR_fun(mathParser.VAR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_VAR(args);
-		}
-
-		public FunctionBase visitVARP_fun(mathParser.VARP_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_VARP(args);
-		}
-
-		public FunctionBase visitNORMDIST_fun(mathParser.NORMDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_NORMDIST(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitNORMINV_fun(mathParser.NORMINV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_NORMINV(args1, args2, args3);
-		}
-
-		public FunctionBase visitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_NORMSDIST(args1);
-		}
-
-		public FunctionBase visitNORMSINV_fun(mathParser.NORMSINV_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_NORMSINV(args1);
-		}
-
-		public FunctionBase visitBETADIST_fun(mathParser.BETADIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_BETADIST(args1, args2, args3);
-		}
-
-		public FunctionBase visitBETAINV_fun(mathParser.BETAINV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_BETAINV(args1, args2, args3);
-		}
-
-		public FunctionBase visitBINOMDIST_fun(mathParser.BINOMDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_BINOMDIST(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitEXPONDIST_fun(mathParser.EXPONDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_EXPONDIST(args1, args2, args3);
-		}
-
-		public FunctionBase visitFDIST_fun(mathParser.FDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_FDIST(args1, args2, args3);
-		}
-
-		public FunctionBase visitFINV_fun(mathParser.FINV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_FINV(args1, args2, args3);
-		}
-
-		public FunctionBase visitFISHER_fun(mathParser.FISHER_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_FISHER(args1);
-		}
-
-		public FunctionBase visitFISHERINV_fun(mathParser.FISHERINV_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_FISHERINV(args1);
-		}
-
-		public FunctionBase visitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_GAMMADIST(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitGAMMAINV_fun(mathParser.GAMMAINV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_GAMMAINV(args1, args2, args3);
-		}
-
-		public FunctionBase visitGAMMALN_fun(mathParser.GAMMALN_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_GAMMALN(args1);
-		}
-
-		public FunctionBase visitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_HYPGEOMDIST(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitLOGINV_fun(mathParser.LOGINV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_LOGINV(args1, args2, args3);
-		}
-
-		public FunctionBase visitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_LOGNORMDIST(args1, args2, args3);
-		}
-
-		public FunctionBase visitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_NEGBINOMDIST(args1, args2, args3);
-		}
-
-		public FunctionBase visitPOISSON_fun(mathParser.POISSON_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_POISSON(args1, args2, args3);
-		}
-
-		public FunctionBase visitTDIST_fun(mathParser.TDIST_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_TDIST(args1, args2, args3);
-		}
-
-		public FunctionBase visitTINV_fun(mathParser.TINV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TINV(args1, args2);
-		}
-
-		public FunctionBase visitWEIBULL_fun(mathParser.WEIBULL_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_WEIBULL(args1, args2, args3, args4);
-		}
-
-		//#endregion sum
-
-		//#region mathsum2
-
-		public FunctionBase visitBESSELI_fun(mathParser.BESSELI_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BESSELI(args1, args2);
-		}
-
-		public FunctionBase visitBESSELJ_fun(mathParser.BESSELJ_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BESSELJ(args1, args2);
-		}
-
-		public FunctionBase visitBESSELK_fun(mathParser.BESSELK_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BESSELK(args1, args2);
-		}
-
-		public FunctionBase visitBESSELY_fun(mathParser.BESSELY_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BESSELY(args1, args2);
-		}
-
-		public FunctionBase visitERF_fun(mathParser.ERF_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ERF(args1);
-		}
-
-		public FunctionBase visitERFC_fun(mathParser.ERFC_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ERFC(args1);
-		}
-
-		//#endregion mathsum2
-
-		//#region financial
-
-		public FunctionBase visitDB_fun(mathParser.DB_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_DB(args);
-		}
-
-		public FunctionBase visitDDB_fun(mathParser.DDB_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_DDB(args);
-		}
-
-		public FunctionBase visitFV_fun(mathParser.FV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_FV(args);
-		}
-
-		public FunctionBase visitIPMT_fun(mathParser.IPMT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_IPMT(args);
-		}
-
-		public FunctionBase visitIRR_fun(mathParser.IRR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) {
-				return new Function_IRR(args1, null);
-			}
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_IRR(args1, args2);
-		}
-
-		public FunctionBase visitMIRR_fun(mathParser.MIRR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_MIRR(args1, args2, args3);
-		}
-
-		public FunctionBase visitNPER_fun(mathParser.NPER_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_NPER(args);
-		}
-
-		public FunctionBase visitNPV_fun(mathParser.NPV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_NPV(args);
-		}
-
-		public FunctionBase visitPMT_fun(mathParser.PMT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_PMT(args);
-		}
-
-		public FunctionBase visitPPMT_fun(mathParser.PPMT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_PPMT(args);
-		}
-
-		public FunctionBase visitPV_fun(mathParser.PV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_PV(args);
-		}
-
-		public FunctionBase visitRATE_fun(mathParser.RATE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_RATE(args);
-		}
-
-		public FunctionBase visitSLN_fun(mathParser.SLN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_SLN(args1, args2, args3);
-		}
-
-		public FunctionBase visitSYD_fun(mathParser.SYD_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_SYD(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitXIRR_fun(mathParser.XIRR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) {
-				return new Function_XIRR(args1, args2, null);
-			}
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_XIRR(args1, args2, args3);
-		}
-
-		public FunctionBase visitXNPV_fun(mathParser.XNPV_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_XNPV(args1, args2, args3);
-		}
-
-		//#endregion financial
-
-		//#region csharp
-
-		public FunctionBase visitURLENCODE_fun(mathParser.URLENCODE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_URLENCODE(args1);
-		}
-
-		public FunctionBase visitURLDECODE_fun(mathParser.URLDECODE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_URLDECODE(args1);
-		}
-
-		public FunctionBase visitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_HTMLENCODE(args1);
-		}
-
-		public FunctionBase visitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_HTMLDECODE(args1);
-		}
-
-		public FunctionBase visitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_BASE64TOTEXT(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BASE64TOTEXT(args1, args2);
-		}
-
-		public FunctionBase visitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_BASE64URLTOTEXT(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_BASE64URLTOTEXT(args1, args2);
-		}
-
-		public FunctionBase visitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_TEXTTOBASE64(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TEXTTOBASE64(args1, args2);
-		}
-
-		public FunctionBase visitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_TEXTTOBASE64URL(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TEXTTOBASE64URL(args1, args2);
-		}
-
-		public FunctionBase visitREGEX_fun(mathParser.REGEX_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_REGEX(args1, args2);
-		}
-
-		public FunctionBase visitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_REGEXREPLACE(args1, args2, args3);
-		}
-
-		public FunctionBase visitISREGEX_fun(mathParser.ISREGEX_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_ISREGEX(args1, args2);
-		}
-
-		public FunctionBase visitGUID_fun(mathParser.GUID_funContext context)
-		{
-			return new Function_GUID();
-		}
-
-		public FunctionBase visitMD5_fun(mathParser.MD5_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_MD5(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_MD5(args1, args2);
-		}
-
-		public FunctionBase visitSHA1_fun(mathParser.SHA1_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_SHA1(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_SHA1(args1, args2);
-		}
-
-		public FunctionBase visitSHA256_fun(mathParser.SHA256_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_SHA256(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_SHA256(args1, args2);
-		}
-
-		public FunctionBase visitSHA512_fun(mathParser.SHA512_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_SHA512(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_SHA512(args1, args2);
-		}
-
-		public FunctionBase visitHMACMD5_fun(mathParser.HMACMD5_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_HMACMD5(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_HMACMD5(args1, args2, args3);
-		}
-
-		public FunctionBase visitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_HMACSHA1(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_HMACSHA1(args1, args2, args3);
-		}
-
-		public FunctionBase visitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_HMACSHA256(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_HMACSHA256(args1, args2, args3);
-		}
-
-		public FunctionBase visitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_HMACSHA512(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_HMACSHA512(args1, args2, args3);
-		}
-
-		public FunctionBase visitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_TRIMSTART(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TRIMSTART(args1, args2);
-		}
-
-		public FunctionBase visitTRIMEND_fun(mathParser.TRIMEND_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) return new Function_TRIMEND(args1, null);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_TRIMEND(args1, args2);
-		}
-
-		public FunctionBase visitINDEXOF_fun(mathParser.INDEXOF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_INDEXOF(args1, args2, null, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			if (exprs.size() == 3) return new Function_INDEXOF(args1, args2, args3, null);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_INDEXOF(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_LASTINDEXOF(args1, args2, null, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			if (exprs.size() == 3) return new Function_LASTINDEXOF(args1, args2, args3, null);
-			FunctionBase args4 = exprs.get(3).accept(this);
-			return new Function_LASTINDEXOF(args1, args2, args3, args4);
-		}
-
-		public FunctionBase visitSPLIT_fun(mathParser.SPLIT_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_SPLIT(args1, args2);
-		}
-
-		public FunctionBase visitJOIN_fun(mathParser.JOIN_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_JOIN(args);
-		}
-
-		public FunctionBase visitSUBSTRING_fun(mathParser.SUBSTRING_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_SUBSTRING(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_SUBSTRING(args1, args2, args3);
-		}
-
-		public FunctionBase visitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_STARTSWITH(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_STARTSWITH(args1, args2, args3);
-		}
-
-		public FunctionBase visitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_ENDSWITH(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_ENDSWITH(args1, args2, args3);
-		}
-
-		public FunctionBase visitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ISNULLOREMPTY(args1);
-		}
-
-		public FunctionBase visitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_ISNULLORWHITESPACE(args1);
-		}
-
-		public FunctionBase visitREMOVESTART_fun(mathParser.REMOVESTART_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_REMOVESTART(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_REMOVESTART(args1, args2, args3);
-		}
-
-		public FunctionBase visitREMOVEEND_fun(mathParser.REMOVEEND_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			if (exprs.size() == 2) return new Function_REMOVEEND(args1, args2, null);
-			FunctionBase args3 = exprs.get(2).accept(this);
-			return new Function_REMOVEEND(args1, args2, args3);
-		}
-
-		public FunctionBase visitJSON_fun(mathParser.JSON_funContext context)
-		{
-			FunctionBase args1 = context.expr().accept(this);
-			return new Function_JSON(args1);
-		}
-
-		//#endregion csharp
-
-		//#region LOOKFLOOR LOOKCEILING
-		public FunctionBase visitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_LOOKFLOOR(args1, args2);
-		}
-
-		public FunctionBase visitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase args1 = exprs.get(0).accept(this);
-			FunctionBase args2 = exprs.get(1).accept(this);
-			return new Function_LOOKCEILING(args1, args2);
-		} 
-		//#endregion
-
-		//#region getValue
-
-		public FunctionBase visitArray_fun(mathParser.Array_funContext context)
-		{
-			List<ExprContext> exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_Array(args);
-		}
-
-		public FunctionBase visitBracket_fun(mathParser.Bracket_funContext context)
-		{
-			return context.expr().accept(this);
-		}
-
-		public FunctionBase visitNUM_fun(mathParser.NUM_funContext context)
-		{
-			double d = Double.parseDouble(context.num().getText());
-			if (context.unit() == null) { return new Function_Value(Operand.Create(d), context.num().getText()); }
-			String unit = context.unit().getText();
-			return new Function_NUM(d, unit);
-		}
-
-		public FunctionBase visitNum(mathParser.NumContext context)
-		{
-			double d = Double.parseDouble(context.getText());
-			return new Function_Value(Operand.Create(d), context.getText());
-		}
-
-		public FunctionBase visitUnit(mathParser.UnitContext context)
-		{
-			return new Function_Value(Operand.Create(context.getText()));
-		}
-
-		public FunctionBase visitSTRING_fun(mathParser.STRING_funContext context)
-		{
-			String opd = context.getText();
-			StringBuilder sb = new StringBuilder();
-			int index = 1;
-			while (index < opd.length() - 1) {
-				char c = opd.charAt(index++);
-				if (c == '\\') {
-					char c2 = opd.charAt(index++);
-					switch (c2) {
-						case 'b': sb.append('\b'); break;
-						case 'f': sb.append('\f'); break;
-						case 'n': sb.append('\n'); break;
-						case 'r': sb.append('\r'); break;
-						case 't': sb.append('\t'); break;
-						case '0': sb.append('\0'); break;
-						default: sb.append(c2); break;
-					}
-				} else {
-					sb.append(c);
-				}
-			}
-			return new Function_Value(Operand.Create(sb.toString()));
-		}
-
-		public FunctionBase visitNULL_fun(mathParser.NULL_funContext context)
-		{
-			return new Function_Value(Operand.CreateNull(), "NULL");
-		}
-
-		public FunctionBase visitPARAMETER_fun(mathParser.PARAMETER_funContext context)
-		{
-			ITerminalNode node = context.PARAMETER();
-			return new Function_PARAMETER(node.GetText());
-		}
-
-		public FunctionBase visitParameter2(mathParser.Parameter2Context context)
-		{
-			return new Function_Value(Operand.Create(context.children[0].GetText()));
-		}
-
-		public FunctionBase visitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
-		{
-			var exprs = context.expr();
-			var args1 = exprs.get(0).accept(this);
-			if (context.PARAMETER()!=null) {
-				var op = new Function_PARAMETER(context.PARAMETER().GetText());
-				return new Function_GetJsonValue(args1, op);
-			}
-			if (context.parameter2() != null) {
-				var op = context.parameter2().accept(this);
-				return new Function_GetJsonValue(args1, op);
-			}
-			var op2 = exprs.get(1).accept(this);
-			return new Function_GetJsonValue(args1, op2);
-		}
-
-		public FunctionBase visitDiyFunction_fun(mathParser.DiyFunction_funContext context)
-		{
-			var funName = context.PARAMETER().GetText();
-			var exprs = context.expr();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_DiyFunction(funName, args);
-		}
-
-		public FunctionBase visitPARAM_fun(mathParser.PARAM_funContext context)
-		{
-			var exprs = context.expr();
-			var args1 = exprs.get(0).accept(this);
-			if (exprs.size() == 1) {
-				return new Function_PARAM(args1, null);
-			}
-			var args2 = exprs.get(1).accept(this);
-			return new Function_PARAM(args1, args2);
-		}
-
-		public FunctionBase visitHAS_fun(mathParser.HAS_funContext context)
-		{
-			var exprs = context.expr();
-			var args1 = exprs.get(0).accept(this);
-			var args2 = exprs.get(1).accept(this);
-			return new Function_HAS(args1, args2);
-		}
-
-		public FunctionBase visitHASVALUE_fun(mathParser.HASVALUE_funContext context)
-		{
-			var exprs = context.expr();
-			var args1 = exprs.get(0).accept(this);
-			var args2 = exprs.get(1).accept(this);
-			return new Function_HASVALUE(args1, args2);
-		}
-
-		public FunctionBase visitArrayJson_fun(mathParser.ArrayJson_funContext context)
-		{
-			var exprs = context.arrayJson();
-			FunctionBase[] args = new FunctionBase[exprs.size()];
-			for (int i = 0; i < exprs.size(); i++) {
-				args[i] = exprs.get(i).accept(this);
-			}
-			return new Function_ArrayJson(args);
-		}
-
-		public FunctionBase visitArrayJson(mathParser.ArrayJsonContext context)
-		{
-			String keyName = null;
-		//KeyValue keyValue = new KeyValue();
-		if (context.NUM() != null) {
-			try {
-				int key = Integer.parseInt(context.NUM().getText());
-				keyName = String.valueOf(key);
-			} catch (NumberFormatException e) {
-				return new Function_Value(Operand.Error("Json key '" + context.NUM().getText() + "' is error!"));
-			}
-		}
-		if (context.STRING() != null) {
-			String opd = context.STRING().getText();
-			StringBuilder sb = new StringBuilder(opd.length() - 2);
-			int index = 1;
-			while (index < opd.length() - 1) {
-				char c = opd.charAt(index++);
-				if (c == '\\') {
-					char c2 = opd.charAt(index++);
-					switch (c2) {
-						case 'b': sb.append('\b'); break;
-						case 'f': sb.append('\f'); break;
-						case 'n': sb.append('\n'); break;
-						case 'r': sb.append('\r'); break;
-						case 't': sb.append('\t'); break;
-						case '0': sb.append('\0'); break;
-						default: sb.append(c2); break;
-					}
-				} else {
-					sb.append(c);
-				}
-			}
-			keyName = sb.toString();
-		}
-		if (context.parameter2() != null) {
-			keyName = context.parameter2().getText();
-		}
-			var f = context.expr().accept(this);
-			return new Function_ArrayJsonItem(keyName, f);
-		}
-
-		public FunctionBase visitERROR_fun(mathParser.ERROR_funContext context)
-		{
-			if (context.expr() == null) { return new Function_Value(Operand.Error("")); }
-			var args1 = context.expr().accept(this);
-			return new Function_ERROR(args1);
-		}
-
-		public FunctionBase visitVersion_fun(mathParser.Version_funContext context)
-		{
-			return new Function_Value(Operand.Version);
-		}
-
-		@Override
-		public FunctionBase visitSLOPE_fun(SLOPE_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSLOPE_fun'");
-		}
-
-		@Override
-		public FunctionBase visitISTEXT_fun(ISTEXT_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitISTEXT_fun'");
-		}
-
-		@Override
-		public FunctionBase visitCORREL_fun(CORREL_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitCORREL_fun'");
-		}
-
-		@Override
-		public FunctionBase visitGESTEP_fun(GESTEP_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitGESTEP_fun'");
-		}
-
-		@Override
-		public FunctionBase visitFORECAST_fun(FORECAST_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitFORECAST_fun'");
-		}
-
-		@Override
-		public FunctionBase visitSUMXMY2_fun(SUMXMY2_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSUMXMY2_fun'");
-		}
-
-		@Override
-		public FunctionBase visitSERIESSUM_fun(SERIESSUM_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSERIESSUM_fun'");
-		}
-
-		@Override
-		public FunctionBase visitRANK_fun(RANK_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitRANK_fun'");
-		}
-
-		@Override
-		public FunctionBase visitROMAN_fun(ROMAN_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitROMAN_fun'");
-		}
-
-		@Override
-		public FunctionBase visitDELTA_fun(DELTA_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitDELTA_fun'");
-		}
-
-		@Override
-		public FunctionBase visitPEARSON_fun(PEARSON_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitPEARSON_fun'");
-		}
-
-		@Override
-		public FunctionBase visitIFS_fun(IFS_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitIFS_fun'");
-		}
-
-		@Override
-		public FunctionBase visitSUMPRODUCT_fun(SUMPRODUCT_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSUMPRODUCT_fun'");
-		}
-
-		@Override
-		public FunctionBase visitSUMX2PY2_fun(SUMX2PY2_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSUMX2PY2_fun'");
-		}
-
-		@Override
-		public FunctionBase visitSWITCH_fun(SWITCH_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSWITCH_fun'");
-		}
-
-		@Override
-		public FunctionBase visitSUMX2MY2_fun(SUMX2MY2_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitSUMX2MY2_fun'");
-		}
-
-		@Override
-		public FunctionBase visitXOR_fun(XOR_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitXOR_fun'");
-		}
-
-		@Override
-		public FunctionBase visitINTERCEPT_fun(INTERCEPT_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitINTERCEPT_fun'");
-		}
-
-		@Override
-		public FunctionBase visitARABIC_fun(ARABIC_funContext ctx) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'visitARABIC_fun'");
-		}
-
-
-
-		//#endregion getValue
-	}
+import toolgood.algorithm.system.MathEx;
+
+public final class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> implements mathVisitor<FunctionBase> {
+    private FunctionBase[] VisitExprs(List<ExprContext> exprs) {
+        FunctionBase[] list = new FunctionBase[exprs.size()];
+        for (int i = 0; i < exprs.size(); i++) {
+            list[i] = exprs.get(i).accept(this);
+        }
+        return list;
+    }
+
+    @Override
+    public FunctionBase visitProg(mathParser.ProgContext ctx) {
+        return ctx.expr().accept(this);
+    }
+
+    @Override
+    public FunctionBase visitMulDiv_fun(mathParser.MulDiv_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        Token t = ctx.op;
+        if (CharUtil.Equals(t.getText(), '*')) {
+            return new Function_Mul(funcs);
+        } else if (CharUtil.Equals(t.getText(), '/')) {
+            return new Function_Div(funcs);
+        }
+        return new Function_Mod(funcs);
+    }
+
+    @Override
+    public FunctionBase visitAddSub_fun(mathParser.AddSub_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        Token t = ctx.op;
+        if (CharUtil.Equals(t.getText(), '&')) {
+            return new Function_Connect(funcs);
+        } else if (CharUtil.Equals(t.getText(), '+')) {
+            return new Function_Add(funcs);
+        }
+        return new Function_Sub(funcs);
+    }
+
+    @Override
+    public FunctionBase visitJudge_fun(mathParser.Judge_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        String type = ctx.op.getText();
+        if (CharUtil.Equals(type, "=", "==", "===")) {
+            return new Function_EQ(funcs);
+        } else if (CharUtil.Equals(type, "<")) {
+            return new Function_LT(funcs);
+        } else if (CharUtil.Equals(type, "<=")) {
+            return new Function_LE(funcs);
+        } else if (CharUtil.Equals(type, ">")) {
+            return new Function_GT(funcs);
+        } else if (CharUtil.Equals(type, ">=")) {
+            return new Function_GE(funcs);
+        }
+        return new Function_NE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitAndOr_fun(mathParser.AndOr_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        Token t = ctx.op;
+        if (CharUtil.Equals(t.getText(), "&&")) {
+            return new Function_AND(funcs);
+        }
+        return new Function_OR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitIF_fun(mathParser.IF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_IF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitIFS_fun(mathParser.IFS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_IFS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSWITCH_fun(mathParser.SWITCH_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SWITCH(funcs);
+    }
+
+    @Override
+    public FunctionBase visitIFERROR_fun(mathParser.IFERROR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_IFERROR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitISNUMBER_fun(mathParser.ISNUMBER_funContext ctx) {
+        FunctionBase args1 = this.visit(ctx.expr());
+        return new Function_ISNUMBER(args1);
+    }
+
+    @Override
+    public FunctionBase visitISTEXT_fun(mathParser.ISTEXT_funContext ctx) {
+        FunctionBase args1 = this.visit(ctx.expr());
+        return new Function_ISTEXT(args1);
+    }
+
+    @Override
+    public FunctionBase visitISERROR_fun(mathParser.ISERROR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ISERROR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitISNULL_fun(mathParser.ISNULL_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ISNULL(funcs);
+    }
+
+    @Override
+    public FunctionBase visitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ISNULLORERROR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitISEVEN_fun(mathParser.ISEVEN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ISEVEN(args1);
+    }
+
+    @Override
+    public FunctionBase visitISLOGICAL_fun(mathParser.ISLOGICAL_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ISLOGICAL(args1);
+    }
+
+    @Override
+    public FunctionBase visitISODD_fun(mathParser.ISODD_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ISODD(args1);
+    }
+
+    @Override
+    public FunctionBase visitISNONTEXT_fun(mathParser.ISNONTEXT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ISNONTEXT(args1);
+    }
+
+    @Override
+    public FunctionBase visitAND_fun(mathParser.AND_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_AND_N(funcs);
+    }
+
+    @Override
+    public FunctionBase visitOR_fun(mathParser.OR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_OR_N(funcs);
+    }
+
+    @Override
+    public FunctionBase visitXOR_fun(mathParser.XOR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_XOR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNOT_fun(mathParser.NOT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_NOT(args1);
+    }
+
+    @Override
+    public FunctionBase visitTRUE_fun(mathParser.TRUE_funContext ctx) {
+        return new Function_ValueBoolean(true);
+    }
+
+    @Override
+    public FunctionBase visitFALSE_fun(mathParser.FALSE_funContext ctx) {
+        return new Function_ValueBoolean(false);
+    }
+
+    @Override
+    public FunctionBase visitE_fun(mathParser.E_funContext ctx) {
+        return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
+    }
+
+    @Override
+    public FunctionBase visitPI_fun(mathParser.PI_funContext ctx) {
+        return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
+    }
+
+    @Override
+    public FunctionBase visitABS_fun(mathParser.ABS_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ABS(args1);
+    }
+
+    @Override
+    public FunctionBase visitQUOTIENT_fun(mathParser.QUOTIENT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_QUOTIENT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitMOD_fun(mathParser.MOD_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MOD(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSIGN_fun(mathParser.SIGN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SIGN(args1);
+    }
+
+    @Override
+    public FunctionBase visitSQRT_fun(mathParser.SQRT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SQRT(args1);
+    }
+
+    @Override
+    public FunctionBase visitTRUNC_fun(mathParser.TRUNC_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TRUNC(args1);
+    }
+
+    @Override
+    public FunctionBase visitINT_fun(mathParser.INT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TRUNC(args1);
+    }
+
+    @Override
+    public FunctionBase visitGCD_fun(mathParser.GCD_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_GCD(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLCM_fun(mathParser.LCM_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LCM(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCOMBIN_fun(mathParser.COMBIN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_COMBIN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPERMUT_fun(mathParser.PERMUT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PERMUT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPercentage_fun(mathParser.Percentage_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_Percentage(args1);
+    }
+
+    @Override
+    public FunctionBase visitDEGREES_fun(mathParser.DEGREES_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_DEGREES(args1);
+    }
+
+    @Override
+    public FunctionBase visitRADIANS_fun(mathParser.RADIANS_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_RADIANS(args1);
+    }
+
+    @Override
+    public FunctionBase visitCOS_fun(mathParser.COS_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_COS(args1);
+    }
+
+    @Override
+    public FunctionBase visitCOSH_fun(mathParser.COSH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_COSH(args1);
+    }
+
+    @Override
+    public FunctionBase visitSIN_fun(mathParser.SIN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SIN(args1);
+    }
+
+    @Override
+    public FunctionBase visitSINH_fun(mathParser.SINH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SINH(args1);
+    }
+
+    @Override
+    public FunctionBase visitTAN_fun(mathParser.TAN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TAN(args1);
+    }
+
+    @Override
+    public FunctionBase visitTANH_fun(mathParser.TANH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TANH(args1);
+    }
+
+    @Override
+    public FunctionBase visitCOT_fun(mathParser.COT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_COT(args1);
+    }
+
+    @Override
+    public FunctionBase visitCOTH_fun(mathParser.COTH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_COTH(args1);
+    }
+
+    @Override
+    public FunctionBase visitCSC_fun(mathParser.CSC_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_CSC(args1);
+    }
+
+    @Override
+    public FunctionBase visitCSCH_fun(mathParser.CSCH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_CSCH(args1);
+    }
+
+    @Override
+    public FunctionBase visitSEC_fun(mathParser.SEC_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SEC(args1);
+    }
+
+    @Override
+    public FunctionBase visitSECH_fun(mathParser.SECH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SECH(args1);
+    }
+
+    @Override
+    public FunctionBase visitACOS_fun(mathParser.ACOS_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ACOS(args1);
+    }
+
+    @Override
+    public FunctionBase visitACOSH_fun(mathParser.ACOSH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ACOSH(args1);
+    }
+
+    @Override
+    public FunctionBase visitASIN_fun(mathParser.ASIN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ASIN(args1);
+    }
+
+    @Override
+    public FunctionBase visitASINH_fun(mathParser.ASINH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ASINH(args1);
+    }
+
+    @Override
+    public FunctionBase visitATAN_fun(mathParser.ATAN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ATAN(args1);
+    }
+
+    @Override
+    public FunctionBase visitATANH_fun(mathParser.ATANH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ATANH(args1);
+    }
+
+    @Override
+    public FunctionBase visitACOT_fun(mathParser.ACOT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ACOT(args1);
+    }
+
+    @Override
+    public FunctionBase visitACOTH_fun(mathParser.ACOTH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ACOTH(args1);
+    }
+
+    @Override
+    public FunctionBase visitATAN2_fun(mathParser.ATAN2_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ATAN2(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFIXED_fun(mathParser.FIXED_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FIXED(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBIN2OCT_fun(mathParser.BIN2OCT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BIN2OCT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBIN2DEC_fun(mathParser.BIN2DEC_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BIN2DEC(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBIN2HEX_fun(mathParser.BIN2HEX_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BIN2HEX(funcs);
+    }
+
+    @Override
+    public FunctionBase visitOCT2BIN_fun(mathParser.OCT2BIN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_OCT2BIN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitOCT2DEC_fun(mathParser.OCT2DEC_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_OCT2DEC(funcs);
+    }
+
+    @Override
+    public FunctionBase visitOCT2HEX_fun(mathParser.OCT2HEX_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_OCT2HEX(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDEC2BIN_fun(mathParser.DEC2BIN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DEC2BIN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDEC2OCT_fun(mathParser.DEC2OCT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DEC2OCT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDEC2HEX_fun(mathParser.DEC2HEX_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DEC2HEX(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHEX2BIN_fun(mathParser.HEX2BIN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HEX2BIN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHEX2OCT_fun(mathParser.HEX2OCT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HEX2OCT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHEX2DEC_fun(mathParser.HEX2DEC_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HEX2DEC(funcs);
+    }
+
+    @Override
+    public FunctionBase visitROUND_fun(mathParser.ROUND_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ROUND(funcs);
+    }
+
+    @Override
+    public FunctionBase visitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ROUNDDOWN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitROUNDUP_fun(mathParser.ROUNDUP_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ROUNDUP(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCEILING_fun(mathParser.CEILING_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_CEILING(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFLOOR_fun(mathParser.FLOOR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FLOOR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitEVEN_fun(mathParser.EVEN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_EVEN(args1);
+    }
+
+    @Override
+    public FunctionBase visitODD_fun(mathParser.ODD_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ODD(args1);
+    }
+
+    @Override
+    public FunctionBase visitMROUND_fun(mathParser.MROUND_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MROUND(funcs);
+    }
+
+    @Override
+    public FunctionBase visitRAND_fun(mathParser.RAND_funContext ctx) {
+        return new Function_RAND();
+    }
+
+    @Override
+    public FunctionBase visitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_RANDBETWEEN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCOVARIANCES_fun(mathParser.COVARIANCES_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_COVARIANCES(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCOVAR_fun(mathParser.COVAR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_COVAR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFACT_fun(mathParser.FACT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_FACT(args1);
+    }
+
+    @Override
+    public FunctionBase visitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_FACTDOUBLE(args1);
+    }
+
+    @Override
+    public FunctionBase visitPOWER_fun(mathParser.POWER_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_POWER(funcs);
+    }
+
+    @Override
+    public FunctionBase visitEXP_fun(mathParser.EXP_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_EXP(args1);
+    }
+
+    @Override
+    public FunctionBase visitLN_fun(mathParser.LN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_LN(args1);
+    }
+
+    @Override
+    public FunctionBase visitLOG_fun(mathParser.LOG_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LOG(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLOG10_fun(mathParser.LOG10_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_LOG10(args1);
+    }
+
+    @Override
+    public FunctionBase visitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MULTINOMIAL(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPRODUCT_fun(mathParser.PRODUCT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PRODUCT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSQRTPI_fun(mathParser.SQRTPI_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SQRTPI(args1);
+    }
+
+    @Override
+    public FunctionBase visitERF_fun(mathParser.ERF_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ERF(args1);
+    }
+
+    @Override
+    public FunctionBase visitERFC_fun(mathParser.ERFC_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ERFC(args1);
+    }
+
+    @Override
+    public FunctionBase visitBESSELI_fun(mathParser.BESSELI_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BESSELI(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBESSELJ_fun(mathParser.BESSELJ_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BESSELJ(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBESSELK_fun(mathParser.BESSELK_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BESSELK(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBESSELY_fun(mathParser.BESSELY_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BESSELY(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDELTA_fun(mathParser.DELTA_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DELTA(funcs);
+    }
+
+    @Override
+    public FunctionBase visitGESTEP_fun(mathParser.GESTEP_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_GESTEP(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUMSQ_fun(mathParser.SUMSQ_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUMSQ(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUMPRODUCT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUMX2MY2(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUMX2PY2(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUMXMY2_fun(mathParser.SUMXMY2_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUMXMY2(funcs);
+    }
+
+    @Override
+    public FunctionBase visitARABIC_fun(mathParser.ARABIC_funContext ctx) {
+        FunctionBase func = visit(ctx.expr());
+        return new Function_ARABIC(func);
+    }
+
+    @Override
+    public FunctionBase visitROMAN_fun(mathParser.ROMAN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ROMAN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSERIESSUM_fun(mathParser.SERIESSUM_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SERIESSUM(funcs);
+    }
+
+    @Override
+    public FunctionBase visitRANK_fun(mathParser.RANK_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_RANK(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFORECAST_fun(mathParser.FORECAST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FORECAST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitINTERCEPT_fun(mathParser.INTERCEPT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_INTERCEPT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSLOPE_fun(mathParser.SLOPE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SLOPE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCORREL_fun(mathParser.CORREL_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_CORREL(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPEARSON_fun(mathParser.PEARSON_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PEARSON(funcs);
+    }
+
+    @Override
+    public FunctionBase visitYEARFRAC_fun(mathParser.YEARFRAC_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_YEARFRAC(funcs);
+    }
+
+    @Override
+    public FunctionBase visitASC_fun(mathParser.ASC_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ASC(args1);
+    }
+
+    @Override
+    public FunctionBase visitJIS_fun(mathParser.JIS_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_JIS(args1);
+    }
+
+    @Override
+    public FunctionBase visitCHAR_fun(mathParser.CHAR_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_CHAR(args1);
+    }
+
+    @Override
+    public FunctionBase visitCLEAN_fun(mathParser.CLEAN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_CLEAN(args1);
+    }
+
+    @Override
+    public FunctionBase visitCODE_fun(mathParser.CODE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_CODE(args1);
+    }
+
+    @Override
+    public FunctionBase visitUNICHAR_fun(mathParser.UNICHAR_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_UNICHAR(args1);
+    }
+
+    @Override
+    public FunctionBase visitUNICODE_fun(mathParser.UNICODE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_UNICODE(args1);
+    }
+
+    @Override
+    public FunctionBase visitCONCATENATE_fun(mathParser.CONCATENATE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_CONCATENATE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitEXACT_fun(mathParser.EXACT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_EXACT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFIND_fun(mathParser.FIND_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FIND(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLEFT_fun(mathParser.LEFT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LEFT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLEN_fun(mathParser.LEN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_LEN(args1);
+    }
+
+    @Override
+    public FunctionBase visitLOWER_fun(mathParser.LOWER_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_LOWER(args1);
+    }
+
+    @Override
+    public FunctionBase visitMID_fun(mathParser.MID_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MID(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPROPER_fun(mathParser.PROPER_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_PROPER(args1);
+    }
+
+    @Override
+    public FunctionBase visitREPLACE_fun(mathParser.REPLACE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_REPLACE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitREPT_fun(mathParser.REPT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_REPT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitRIGHT_fun(mathParser.RIGHT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_RIGHT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitRMB_fun(mathParser.RMB_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_RMB(args1);
+    }
+
+    @Override
+    public FunctionBase visitSEARCH_fun(mathParser.SEARCH_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SEARCH(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUBSTITUTE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitT_fun(mathParser.T_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_T(args1);
+    }
+
+    @Override
+    public FunctionBase visitTEXT_fun(mathParser.TEXT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TEXT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTRIM_fun(mathParser.TRIM_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TRIM(args1);
+    }
+
+    @Override
+    public FunctionBase visitUPPER_fun(mathParser.UPPER_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_UPPER(args1);
+    }
+
+    @Override
+    public FunctionBase visitVALUE_fun(mathParser.VALUE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_VALUE(args1);
+    }
+
+    @Override
+    public FunctionBase visitDATEVALUE_fun(mathParser.DATEVALUE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DATEVALUE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TIMESTAMP(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TIMEVALUE(args1);
+    }
+
+    @Override
+    public FunctionBase visitDATE_fun(mathParser.DATE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DATE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTIME_fun(mathParser.TIME_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TIME(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNOW_fun(mathParser.NOW_funContext ctx) {
+        return new Function_NOW();
+    }
+
+    @Override
+    public FunctionBase visitTODAY_fun(mathParser.TODAY_funContext ctx) {
+        return new Function_TODAY();
+    }
+
+    @Override
+    public FunctionBase visitYEAR_fun(mathParser.YEAR_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_YEAR(args1);
+    }
+
+    @Override
+    public FunctionBase visitMONTH_fun(mathParser.MONTH_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_MONTH(args1);
+    }
+
+    @Override
+    public FunctionBase visitDAY_fun(mathParser.DAY_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_DAY(args1);
+    }
+
+    @Override
+    public FunctionBase visitHOUR_fun(mathParser.HOUR_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_HOUR(args1);
+    }
+
+    @Override
+    public FunctionBase visitMINUTE_fun(mathParser.MINUTE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_MINUTE(args1);
+    }
+
+    @Override
+    public FunctionBase visitSECOND_fun(mathParser.SECOND_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SECOND(args1);
+    }
+
+    @Override
+    public FunctionBase visitWEEKDAY_fun(mathParser.WEEKDAY_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_WEEKDAY(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDATEDIF_fun(mathParser.DATEDIF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DATEDIF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDAYS_fun(mathParser.DAYS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DAYS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDAYS360_fun(mathParser.DAYS360_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DAYS360(funcs);
+    }
+
+    @Override
+    public FunctionBase visitEDATE_fun(mathParser.EDATE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_EDATE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitEOMONTH_fun(mathParser.EOMONTH_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_EOMONTH(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_NETWORKDAYS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitWORKDAY_fun(mathParser.WORKDAY_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_WORKDAY(funcs);
+    }
+
+    @Override
+    public FunctionBase visitWEEKNUM_fun(mathParser.WEEKNUM_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_WEEKNUM(funcs);
+    }
+
+    @Override
+    public FunctionBase visitADDMONTHS_fun(mathParser.ADDMONTHS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ADDMONTHS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitADDYEARS_fun(mathParser.ADDYEARS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ADDYEARS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitADDSECONDS_fun(mathParser.ADDSECONDS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ADDSECONDS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitADDMINUTES_fun(mathParser.ADDMINUTES_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ADDMINUTES(funcs);
+    }
+
+    @Override
+    public FunctionBase visitADDDAYS_fun(mathParser.ADDDAYS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ADDDAYS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitADDHOURS_fun(mathParser.ADDHOURS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ADDHOURS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitMAX_fun(mathParser.MAX_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MAX(funcs);
+    }
+
+    @Override
+    public FunctionBase visitMEDIAN_fun(mathParser.MEDIAN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MEDIAN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitMIN_fun(mathParser.MIN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MIN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitQUARTILE_fun(mathParser.QUARTILE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_QUARTILE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitMODE_fun(mathParser.MODE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MODE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLARGE_fun(mathParser.LARGE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LARGE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSMALL_fun(mathParser.SMALL_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SMALL(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPERCENTILE_fun(mathParser.PERCENTILE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PERCENTILE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PERCENTRANK(funcs);
+    }
+
+    @Override
+    public FunctionBase visitAVERAGE_fun(mathParser.AVERAGE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_AVERAGE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_AVERAGEIF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitGEOMEAN_fun(mathParser.GEOMEAN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_GEOMEAN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHARMEAN_fun(mathParser.HARMEAN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HARMEAN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCOUNT_fun(mathParser.COUNT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_COUNT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitCOUNTIF_fun(mathParser.COUNTIF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_COUNTIF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUM_fun(mathParser.SUM_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUM(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUMIF_fun(mathParser.SUMIF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUMIF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitAVEDEV_fun(mathParser.AVEDEV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_AVEDEV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSTDEV_fun(mathParser.STDEV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_STDEV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSTDEVP_fun(mathParser.STDEVP_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_STDEVP(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDEVSQ_fun(mathParser.DEVSQ_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DEVSQ(funcs);
+    }
+
+    @Override
+    public FunctionBase visitVAR_fun(mathParser.VAR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_VAR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitVARP_fun(mathParser.VARP_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_VARP(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNORMDIST_fun(mathParser.NORMDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_NORMDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNORMINV_fun(mathParser.NORMINV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_NORMINV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNORMSDIST_fun(mathParser.NORMSDIST_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_NORMSDIST(args1);
+    }
+
+    @Override
+    public FunctionBase visitNORMSINV_fun(mathParser.NORMSINV_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_NORMSINV(args1);
+    }
+
+    @Override
+    public FunctionBase visitBETADIST_fun(mathParser.BETADIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BETADIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBETAINV_fun(mathParser.BETAINV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BETAINV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBINOMDIST_fun(mathParser.BINOMDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_BINOMDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitEXPONDIST_fun(mathParser.EXPONDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_EXPONDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFDIST_fun(mathParser.FDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFINV_fun(mathParser.FINV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FINV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFISHER_fun(mathParser.FISHER_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_FISHER(args1);
+    }
+
+    @Override
+    public FunctionBase visitFISHERINV_fun(mathParser.FISHERINV_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_FISHERINV(args1);
+    }
+
+    @Override
+    public FunctionBase visitGAMMADIST_fun(mathParser.GAMMADIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_GAMMADIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitGAMMAINV_fun(mathParser.GAMMAINV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_GAMMAINV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitGAMMALN_fun(mathParser.GAMMALN_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_GAMMALN(args1);
+    }
+
+    @Override
+    public FunctionBase visitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HYPGEOMDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLOGINV_fun(mathParser.LOGINV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LOGINV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LOGNORMDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_NEGBINOMDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPOISSON_fun(mathParser.POISSON_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_POISSON(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTDIST_fun(mathParser.TDIST_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TDIST(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTINV_fun(mathParser.TINV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TINV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitWEIBULL_fun(mathParser.WEIBULL_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_WEIBULL(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPMT_fun(mathParser.PMT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PMT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPPMT_fun(mathParser.PPMT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PPMT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitIPMT_fun(mathParser.IPMT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_IPMT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitPV_fun(mathParser.PV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitFV_fun(mathParser.FV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_FV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNPER_fun(mathParser.NPER_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_NPER(funcs);
+    }
+
+    @Override
+    public FunctionBase visitRATE_fun(mathParser.RATE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_RATE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitNPV_fun(mathParser.NPV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_NPV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitXNPV_fun(mathParser.XNPV_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_XNPV(funcs);
+    }
+
+    @Override
+    public FunctionBase visitIRR_fun(mathParser.IRR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_IRR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitMIRR_fun(mathParser.MIRR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_MIRR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitXIRR_fun(mathParser.XIRR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_XIRR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSLN_fun(mathParser.SLN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SLN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDB_fun(mathParser.DB_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DB(funcs);
+    }
+
+    @Override
+    public FunctionBase visitDDB_fun(mathParser.DDB_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DDB(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSYD_fun(mathParser.SYD_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SYD(funcs);
+    }
+
+    @Override
+    public FunctionBase visitURLENCODE_fun(mathParser.URLENCODE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_URLENCODE(args1);
+    }
+
+    @Override
+    public FunctionBase visitURLDECODE_fun(mathParser.URLDECODE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_URLDECODE(args1);
+    }
+
+    @Override
+    public FunctionBase visitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_HTMLENCODE(args1);
+    }
+
+    @Override
+    public FunctionBase visitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_HTMLDECODE(args1);
+    }
+
+    @Override
+    public FunctionBase visitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_BASE64TOTEXT(args1);
+    }
+
+    @Override
+    public FunctionBase visitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_BASE64URLTOTEXT(args1);
+    }
+
+    @Override
+    public FunctionBase visitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TEXTTOBASE64(args1);
+    }
+
+    @Override
+    public FunctionBase visitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_TEXTTOBASE64URL(args1);
+    }
+
+    @Override
+    public FunctionBase visitREGEX_fun(mathParser.REGEX_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_REGEX(funcs);
+    }
+
+    @Override
+    public FunctionBase visitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_REGEXREPLACE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitISREGEX_fun(mathParser.ISREGEX_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ISREGEX(funcs);
+    }
+
+    @Override
+    public FunctionBase visitGUID_fun(mathParser.GUID_funContext ctx) {
+        return new Function_GUID();
+    }
+
+    @Override
+    public FunctionBase visitMD5_fun(mathParser.MD5_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_MD5(args1);
+    }
+
+    @Override
+    public FunctionBase visitSHA1_fun(mathParser.SHA1_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SHA1(args1);
+    }
+
+    @Override
+    public FunctionBase visitSHA256_fun(mathParser.SHA256_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SHA256(args1);
+    }
+
+    @Override
+    public FunctionBase visitSHA512_fun(mathParser.SHA512_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_SHA512(args1);
+    }
+
+    @Override
+    public FunctionBase visitHMACMD5_fun(mathParser.HMACMD5_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HMACMD5(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHMACSHA1_fun(mathParser.HMACSHA1_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HMACSHA1(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHMACSHA256_fun(mathParser.HMACSHA256_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HMACSHA256(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHMACSHA512_fun(mathParser.HMACSHA512_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HMACSHA512(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTRIMSTART_fun(mathParser.TRIMSTART_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TRIMSTART(funcs);
+    }
+
+    @Override
+    public FunctionBase visitTRIMEND_fun(mathParser.TRIMEND_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_TRIMEND(funcs);
+    }
+
+    @Override
+    public FunctionBase visitINDEXOF_fun(mathParser.INDEXOF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_INDEXOF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LASTINDEXOF(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSPLIT_fun(mathParser.SPLIT_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SPLIT(funcs);
+    }
+
+    @Override
+    public FunctionBase visitJOIN_fun(mathParser.JOIN_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_JOIN(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSUBSTRING_fun(mathParser.SUBSTRING_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_SUBSTRING(funcs);
+    }
+
+    @Override
+    public FunctionBase visitSTARTSWITH_fun(mathParser.STARTSWITH_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_STARTSWITH(funcs);
+    }
+
+    @Override
+    public FunctionBase visitENDSWITH_fun(mathParser.ENDSWITH_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_ENDSWITH(funcs);
+    }
+
+    @Override
+    public FunctionBase visitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ISNULLOREMPTY(args1);
+    }
+
+    @Override
+    public FunctionBase visitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ISNULLORWHITESPACE(args1);
+    }
+
+    @Override
+    public FunctionBase visitREMOVESTART_fun(mathParser.REMOVESTART_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_REMOVESTART(funcs);
+    }
+
+    @Override
+    public FunctionBase visitREMOVEEND_fun(mathParser.REMOVEEND_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_REMOVEEND(funcs);
+    }
+
+    @Override
+    public FunctionBase visitJSON_fun(mathParser.JSON_funContext ctx) {
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_JSON(args1);
+    }
+
+    @Override
+    public FunctionBase visitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LOOKFLOOR(funcs);
+    }
+
+    @Override
+    public FunctionBase visitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_LOOKCEILING(funcs);
+    }
+
+    @Override
+    public FunctionBase visitArray_fun(mathParser.Array_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_Array(funcs);
+    }
+
+    @Override
+    public FunctionBase visitBracket_fun(mathParser.Bracket_funContext ctx) {
+        return ctx.expr().accept(this);
+    }
+
+    @Override
+    public FunctionBase visitNUM_fun(mathParser.NUM_funContext ctx) {
+        String text = ctx.num().getText();
+        BigDecimal d = new BigDecimal(text);
+        if (ctx.unit == null) {
+            return new Function_ValueNumber(Operand.Create(d), text);
+        }
+        String unit = ctx.unit.getText();
+        return new Function_NUMBER(d, unit);
+    }
+
+    @Override
+    public FunctionBase visitNum(mathParser.NumContext ctx) {
+        String text = ctx.getText();
+        BigDecimal d = new BigDecimal(text);
+        return new Function_ValueNumber(Operand.Create(d), text);
+    }
+
+    @Override
+    public FunctionBase visitSTRING_fun(mathParser.STRING_funContext ctx) {
+        String opd = ctx.getText();
+        StringBuilder sb = new StringBuilder(opd.length());
+        int index = 1;
+        while (index < opd.length() - 1) {
+            char c = opd.charAt(index++);
+            if (c == '\\') {
+                char c2 = opd.charAt(index++);
+                if (c2 == 'n') sb.append('\n');
+                else if (c2 == 'r') sb.append('\r');
+                else if (c2 == 't') sb.append('\t');
+                else if (c2 == '0') sb.append('\0');
+                else if (c2 == 'v') sb.append('\u000B');
+                else if (c2 == 'a') sb.append('\u0007');
+                else if (c2 == 'b') sb.append('\b');
+                else if (c2 == 'f') sb.append('\f');
+                else sb.append(c2);
+            } else {
+                sb.append(c);
+            }
+        }
+        return new Function_ValueText(Operand.Create(sb.toString()));
+    }
+
+    @Override
+    public FunctionBase visitNULL_fun(mathParser.NULL_funContext ctx) {
+        return new Function_NULL();
+    }
+
+    @Override
+    public FunctionBase visitPARAMETER_fun(mathParser.PARAMETER_funContext ctx) {
+        TerminalNode node = ctx.PARAMETER();
+        return new Function_PARAMETER(node.getText());
+    }
+
+    @Override
+    public FunctionBase visitParameter2(mathParser.Parameter2Context ctx) {
+        return new Function_ValueText(Operand.Create(ctx.getChild(0).getText()));
+    }
+
+    @Override
+    public FunctionBase visitGetJsonValue_fun(mathParser.GetJsonValue_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        if (ctx.PARAMETER() != null) {
+            FunctionBase op = new Function_PARAMETER(ctx.PARAMETER().getText());
+            return new Function_GetJsonValue(funcs[0], op);
+        }
+        if (ctx.parameter2() != null) {
+            FunctionBase op = ctx.parameter2().accept(this);
+            return new Function_GetJsonValue(funcs[0], op);
+        }
+        return new Function_GetJsonValue(funcs[0], funcs[1]);
+    }
+
+    @Override
+    public FunctionBase visitDiyFunction_fun(mathParser.DiyFunction_funContext ctx) {
+        String funName = ctx.PARAMETER().getText();
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_DiyFunction(funName, funcs);
+    }
+
+    @Override
+    public FunctionBase visitPARAM_fun(mathParser.PARAM_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_PARAM(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHAS_fun(mathParser.HAS_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HAS(funcs);
+    }
+
+    @Override
+    public FunctionBase visitHASVALUE_fun(mathParser.HASVALUE_funContext ctx) {
+        FunctionBase[] funcs = VisitExprs(ctx.expr());
+        return new Function_HASVALUE(funcs);
+    }
+
+    @Override
+    public FunctionBase visitArrayJson_fun(mathParser.ArrayJson_funContext ctx) {
+        mathParser.ArrayJsonContext[] exprs = ctx.arrayJson();
+        FunctionBase[] args = new FunctionBase[exprs.length];
+        for (int i = 0; i < exprs.length; i++) {
+            args[i] = exprs[i].accept(this);
+        }
+        return new Function_ArrayJson(args);
+    }
+
+    @Override
+    public FunctionBase visitArrayJson(mathParser.ArrayJsonContext ctx) {
+        String keyName = null;
+        if (ctx.key != null) {
+            keyName = ctx.key.getText().trim();
+            if (keyName.length() >= 2) {
+                char firstChar = keyName.charAt(0);
+                if ((firstChar == '"' || firstChar == '\'') && keyName.charAt(keyName.length() - 1) == firstChar) {
+                    keyName = keyName.substring(1, keyName.length() - 1);
+                }
+            }
+        } else if (ctx.parameter2() != null) {
+            keyName = ctx.parameter2().getText();
+        }
+        FunctionBase f = ctx.expr().accept(this);
+        return new Function_ArrayJsonItem(keyName, f);
+    }
+
+    @Override
+    public FunctionBase visitERROR_fun(mathParser.ERROR_funContext ctx) {
+        if (ctx.expr() == null) {
+            return new Function_ERROR(null);
+        }
+        FunctionBase args1 = ctx.expr().accept(this);
+        return new Function_ERROR(args1);
+    }
+
+    @Override
+    public FunctionBase visitVersion_fun(mathParser.Version_funContext ctx) {
+        return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
+    }
+}

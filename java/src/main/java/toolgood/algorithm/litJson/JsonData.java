@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class JsonData implements Iterable<JsonData> {
-    private List<JsonData> inst_array;
+    public List<JsonData> inst_array;
     private boolean inst_boolean;
     private BigDecimal inst_double;
     public Map<String, JsonData> inst_object;
@@ -121,7 +121,6 @@ public final class JsonData implements Iterable<JsonData> {
     public Iterator<JsonData> iterator() {
         return EnsureList().iterator();
     }
-
     public boolean BooleanValue() { return inst_boolean; }
     public BigDecimal NumberValue() { return inst_double; }
     public String StringValue() { return inst_string; }
