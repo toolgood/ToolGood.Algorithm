@@ -12,10 +12,7 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public final class Function_TDIST extends Function_3 {
-    public Function_TDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) {
-        super(func1, func2, func3);
-    }
-
+ 
     public Function_TDIST(FunctionBase[] funcs) {
         super(funcs);
     }

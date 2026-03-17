@@ -39,18 +39,28 @@ public final class Function_EXACT extends Function_2 {
         OperandType t1 = func1.GetResultType();
         OperandType t2 = func2.GetResultType();
         if (t1 == OperandType.NONE) {
-            Operand p = noneEngine.Evaluate(func2).ToText();
-            if (t2 != OperandType.ERROR && p.IsErrorOrNone() == false) {
-                func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue());
-                func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
-                return;
+            try {
+                Operand p = noneEngine.Evaluate(func2).ToText("");
+                if (t2 != OperandType.ERROR && p.IsErrorOrNone() == false) {
+                    func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue());
+                    func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+                    return;
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         } else if (t2 == OperandType.NONE) {
-            Operand p = noneEngine.Evaluate(func1).ToText();
-            if (t1 != OperandType.ERROR && p.IsErrorOrNone() == false) {
-                func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue());
-                func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
-                return;
+            try {
+                Operand p = noneEngine.Evaluate(func1).ToText("");
+                if (t1 != OperandType.ERROR && p.IsErrorOrNone() == false) {
+                    func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue());
+                    func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+                    return;
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
