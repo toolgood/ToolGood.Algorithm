@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm
 {
-    //定义圆柱信息
     public class Cylinder : AlgorithmEngineEx
     {
         private int _radius;
@@ -15,19 +14,19 @@ namespace ToolGood.Algorithm
             _radius = radius;
             _height = height;
         }
-		public override Operand GetParameterEx(string parameter)
-		{
-			if(parameter == "半径") {
-				return Operand.Create(_radius);
-			}
-			if(parameter == "直径") {
-				return Operand.Create(_radius * 2);
-			}
-			if(parameter == "高") {
-				return Operand.Create(_height);
-			}
-			return base.GetParameter(parameter);
-		}
+        public override Operand GetParameterEx(string parameter)
+        {
+            if(parameter == "半径") {
+                return Operand.Create(_radius);
+            }
+            if(parameter == "直径") {
+                return Operand.Create(_radius * 2);
+            }
+            if(parameter == "高") {
+                return Operand.Create(_height);
+            }
+            return base.GetParameter(parameter);
+        }
 
         public override Operand ExecuteDiyFunction( string funcName, List<Operand> operands)
         {

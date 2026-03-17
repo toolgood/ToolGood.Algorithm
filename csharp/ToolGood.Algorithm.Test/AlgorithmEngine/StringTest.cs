@@ -1,9 +1,9 @@
-﻿using PetaTest;
+using PetaTest;
 
-namespace ToolGood.Algorithm.Test
+namespace ToolGood.Algorithm.Test.String
 {
     [TestFixture]
-    internal class AlgorithmEngineTest_string
+    internal class StringTest
     {
         [Test]
         public void ASC_test()
@@ -113,16 +113,15 @@ namespace ToolGood.Algorithm.Test
             var t = engine.TryEvaluate("FIND(\"11\",\"12221122\")", 0);
             Assert.AreEqual(t, 5);
 
-			t = engine.TryEvaluate("FIND(\"12\",\"123456789123456789\",6)", 0);
-			Assert.AreEqual(t, 10);
+            t = engine.TryEvaluate("FIND(\"12\",\"123456789123456789\",6)", 0);
+            Assert.AreEqual(t, 10);
 
+            t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",5)", -1);
+            Assert.AreEqual(t, -1);
 
-			t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",5)", -1);
-			Assert.AreEqual(t, -1);
-
-			t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",4)", -1);
-			Assert.AreEqual(t, 4);
-		}
+            t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",4)", -1);
+            Assert.AreEqual(t, 4);
+        }
 
         [Test]
         public void FIXED_test()
@@ -130,8 +129,6 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("FIXED(4567.89,1)", "");
             Assert.AreEqual(t, "4,567.9");
-            //t = engine.TryEvaluate(" FIXED(4567.89,-1)", "");//iserror
-            //Assert.AreEqual(t, "4,570.0");
             t = engine.TryEvaluate("FIXED(-4567.89, 1, TRUE())", "");
             Assert.AreEqual(t, "-4567.9");
             t = engine.TryEvaluate("FIXED(77.888)", "");
@@ -362,7 +359,6 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(t, "abc");
         }
 
-
         [Test]
         public void MethodStyle_REPLACE_test()
         {
@@ -374,7 +370,6 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(t, "axdef");
         }
 
-
         [Test]
         public void MethodStyle_EXACT_test()
         {
@@ -385,7 +380,6 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("'abc'.EXACT('ABC')", true);
             Assert.AreEqual(t, false);
         }
-
 
         [Test]
         public void MethodStyle_T_test()

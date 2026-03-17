@@ -1,10 +1,10 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 
-namespace ToolGood.Algorithm.Test
+namespace ToolGood.Algorithm.Test.MathSum
 {
     [TestFixture]
-    internal class AlgorithmEngineTest_sum
+    internal class MathSumTest
     {
         #region 简单统计
 
@@ -23,9 +23,9 @@ namespace ToolGood.Algorithm.Test
             var t = engine.TryEvaluate("MEDIAN(1,2,3,4,2,2,1,4)", 0.0);
             Assert.AreEqual(t, 2.0);
 
-			t = engine.TryEvaluate("MEDIAN(1,1,2,2)", 0.0);
-			Assert.AreEqual(t, 1.5);
-		}
+            t = engine.TryEvaluate("MEDIAN(1,1,2,2)", 0.0);
+            Assert.AreEqual(t, 1.5);
+        }
 
         [Test]
         public void MIN_test()
@@ -157,208 +157,66 @@ namespace ToolGood.Algorithm.Test
 
         #endregion 简单统计
 
-        #region 统计
+        #region 统计函数
 
         [Test]
-        public void NORMSDIST_test()
+        public void RANK_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("NORMSDIST(1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.841344746, 6));
+            var t = engine.TryEvaluate("RANK(3, array(1, 2, 3, 4, 5))", 0);
+            Assert.AreEqual(t, 3);
+
+            t = engine.TryEvaluate("RANK(3, array(1, 2, 3, 4, 5), 0)", 0);
+            Assert.AreEqual(t, 3);
+
+            t = engine.TryEvaluate("RANK(3, array(1, 2, 3, 4, 5), 1)", 0);
+            Assert.AreEqual(t, 3);
+
+            t = engine.TryEvaluate("RANK(5, array(1, 2, 3, 4, 5))", 0);
+            Assert.AreEqual(t, 1);
+
+            t = engine.TryEvaluate("RANK(1, array(1, 2, 3, 4, 5))", 0);
+            Assert.AreEqual(t, 5);
         }
 
         [Test]
-        public void NORMDIST_test()
+        public void FORECAST_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("NORMDIST(3,8,4,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.105649774, 6));
-            t = engine.TryEvaluate("NORMDIST(3,8,4,0)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.045662271, 6));
+            var t = engine.TryEvaluate("FORECAST(30, array(6, 7, 9, 15, 21), array(20, 28, 31, 38, 40))", 0.0);
+            Assert.AreEqual(Math.Round(t, 4), Math.Round(10.6073, 4));
         }
 
         [Test]
-        public void NORMINV_test()
+        public void INTERCEPT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("NORMINV(0.8,8,3)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(10.5248637, 6));
+            var t = engine.TryEvaluate("INTERCEPT(array(2, 3, 9, 1, 8), array(6, 5, 11, 7, 5))", 0.0);
+            Assert.AreEqual(Math.Round(t, 4), Math.Round(0.0484, 4));
         }
 
         [Test]
-        public void NORMSINV_test()
+        public void SLOPE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("NORMSINV(0.3)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(-0.524400513, 6));
+            var t = engine.TryEvaluate("SLOPE(array(2, 3, 9, 1, 8), array(6, 5, 11, 7, 5))", 0.0);
+            Assert.AreEqual(Math.Round(t, 4), Math.Round(0.6694, 4));
         }
 
         [Test]
-        public void BETADIST_test()
+        public void CORREL_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("BETADIST(0.5,11,22)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.97494877, 6));
+            var t = engine.TryEvaluate("CORREL(array(3, 2, 4, 5, 6), array(9, 7, 12, 15, 17))", 0.0);
+            Assert.AreEqual(Math.Round(t, 4), Math.Round(0.9971, 4));
         }
 
         [Test]
-        public void BETAINV_test()
+        public void PEARSON_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("BETAINV(0.5,23,45)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.336640759, 6));
-        }
-
-        [Test]
-        public void BINOMDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("BINOMDIST(12,45,0.5,0)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.000817409, 6));
-            t = engine.TryEvaluate("BINOMDIST(12,45,0.5,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.00122945, 6));
-        }
-
-        [Test]
-        public void EXPONDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("EXPONDIST(3,1,0)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.049787068, 6));
-            t = engine.TryEvaluate("EXPONDIST(3,1,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.950212932, 6));
-        }
-
-        [Test]
-        public void FDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("FDIST(0.4,2,3)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.701465776, 6));
-        }
-
-        [Test]
-        public void FINV_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("FINV(0.7,2,3)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.402651432, 6));
-        }
-
-        [Test]
-        public void GAMMADIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("GAMMADIST(0.5,3,4,0)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.001723627, 6));
-            t = engine.TryEvaluate("GAMMADIST(0.5,3,4,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.000296478, 6));
-        }
-
-        [Test]
-        public void GAMMAINV_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("GAMMAINV(0.2,3,4)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(6.140176811, 6));
-        }
-
-        [Test]
-        public void GAMMALN_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("GAMMALN(4)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(1.791759469, 6));
-        }
-
-        [Test]
-        public void HYPGEOMDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("HYPGEOMDIST(23,45,45,100)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.08715016, 6));
-        }
-
-        [Test]
-        public void LOGINV_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("LOGINV(0.1,45,33)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(15.01122624, 6));
-        }
-
-        [Test]
-        public void LOGNORMDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("LOGNORMDIST(15,23,45)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.326019201, 6));
-        }
-
-        [Test]
-        public void NEGBINOMDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("NEGBINOMDIST(23,45,0.7)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.053463314, 6));
-        }
-
-        [Test]
-        public void POISSON_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("POISSON(23,23,0)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.082884384, 6));
-            t = engine.TryEvaluate("POISSON(23,23,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.555149936, 6));
-        }
-
-        [Test]
-        public void TDIST_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("TDIST(1.2,24,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.120925677, 6));
-            t = engine.TryEvaluate("TDIST(1.2,24,2)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.241851353, 6));
-        }
-
-        [Test]
-        public void TINV_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("TINV(0.12,23)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(1.614756561, 6));
-        }
-
-        [Test]
-        public void WEIBULL_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("WEIBULL(1,2,3,1)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.105160683, 6));
-            t = engine.TryEvaluate("WEIBULL(1,2,3,0)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.198853182, 6));
-            t = engine.TryEvaluate("WEIBULL(-1,2,3,0)", 0.0);
-            t = engine.TryEvaluate("WEIBULL(-1,-2,3,0)", 0.0);
-            t = engine.TryEvaluate("WEIBULL(-1,-2,-3,0)", 0.0);
-            t = engine.TryEvaluate("WEIBULL(-1,-2,-3,-1)", 0.0);
-        }
-
-        [Test]
-        public void FISHER_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("FISHER(0.68)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.8291140383, 6));
-        }
-
-        [Test]
-        public void FISHERINV_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("FISHERINV(0.6)", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.537049567, 6));
+            var t = engine.TryEvaluate("PEARSON(array(3, 2, 4, 5, 6), array(9, 7, 12, 15, 17))", 0.0);
+            Assert.AreEqual(Math.Round(t, 4), Math.Round(0.9971, 4));
         }
 
         [Test]
@@ -386,6 +244,7 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(Math.Round(t, 6), Math.Round(3.375, 6));
             Assert.AreEqual(Math.Round(t1, 6), Math.Round(3.375, 6));
         }
+
         [Test]
         public void COVARIANCES_test()
         {
@@ -394,10 +253,9 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(Math.Round(t, 6), Math.Round(4.5, 6));
         }
 
+        #endregion 统计函数
 
-        #endregion 统计
-
-        #region if
+        #region 条件统计
 
         [Test]
         public void COUNTIF_test()
@@ -444,6 +302,50 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(t, 1);
         }
 
-        #endregion if
+        #endregion 条件统计
+
+        #region 数组运算
+
+        [Test]
+        public void SERIESSUM_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SERIESSUM(2, 0, 1, array(1, 1, 1, 1))", 0.0);
+            Assert.AreEqual(t, 15.0);
+        }
+
+        [Test]
+        public void SUMPRODUCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUMPRODUCT(array(1, 2, 3), array(4, 5, 6))", 0.0);
+            Assert.AreEqual(t, 32.0);
+        }
+
+        [Test]
+        public void SUMX2MY2_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUMX2MY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
+            Assert.AreEqual(t, -63.0);
+        }
+
+        [Test]
+        public void SUMX2PY2_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUMX2PY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
+            Assert.AreEqual(t, 91.0);
+        }
+
+        [Test]
+        public void SUMXMY2_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUMXMY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
+            Assert.AreEqual(t, 27.0);
+        }
+
+        #endregion 数组运算
     }
 }
