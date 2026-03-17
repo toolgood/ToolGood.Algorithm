@@ -294,7 +294,7 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         [Test]
-        public void Add_test()
+        public void AddYears_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
@@ -302,20 +302,45 @@ namespace ToolGood.Algorithm.Test.DateTimes
 
             dt = engine.TryEvaluate("'2000/02/01'.addYears(1).year()", 0);
             Assert.AreEqual(dt, 2001);
+        }
 
-            dt = engine.TryEvaluate("'2000-02-01'.AddMonths(1).Month()", 0);
+        [Test]
+        public void AddMonths_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-02-01'.AddMonths(1).Month()", 0);
             Assert.AreEqual(dt, 3);
+        }
 
-            dt = engine.TryEvaluate("'2000-02-01'.AddDays(1).Day()", 0);
+        [Test]
+        public void AddDays_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-02-01'.AddDays(1).Day()", 0);
             Assert.AreEqual(dt, 2);
+        }
 
-            dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddHours(1).Hour()", 0);
+        [Test]
+        public void AddHours_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddHours(1).Hour()", 0);
             Assert.AreEqual(dt, 13);
+        }
 
-            dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddMinutes(1).Minute()", 0);
+        [Test]
+        public void AddMinutes_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddMinutes(1).Minute()", 0);
             Assert.AreEqual(dt, 6);
+        }
 
-            dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddSeconds(1).Second()", 0);
+        [Test]
+        public void AddSeconds_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddSeconds(1).Second()", 0);
             Assert.AreEqual(dt, 7);
 
             dt = engine.TryEvaluate("'2000-02-01 10:05:06'.AddSeconds(1).Second()", 0);

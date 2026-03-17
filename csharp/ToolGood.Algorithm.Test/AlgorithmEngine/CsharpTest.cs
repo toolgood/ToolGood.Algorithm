@@ -222,24 +222,39 @@ namespace ToolGood.Algorithm.Test.Csharp
         }
 
         [Test]
-        public void Json()
+        public void Json_Object_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
             Assert.AreEqual(dt.ToString(), "51");
             dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Birthday']", null);
             Assert.AreEqual(dt, "04/26/1564 00:00:00");
+        }
 
-            dt = engine.TryEvaluate("json('[1,2,3]')[1]", null);
+        [Test]
+        public void Json_Array_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("json('[1,2,3]')[1]", null);
             Assert.AreEqual(dt, "1");
+        }
 
-            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);
+        [Test]
+        public void Json_MethodChain_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);
             Assert.AreEqual(dt, "William Shakespeare");
 
             dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
             Assert.AreEqual(dt, "ill");
+        }
 
-            dt = engine.TryEvaluate("json('12346{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
+        [Test]
+        public void Json_Invalid_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("json('12346{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
             Assert.AreEqual(dt, null);
 
             dt = engine.TryEvaluate("json('[1,2,3,4,5,6]')[1].Trim()", null);
@@ -250,10 +265,20 @@ namespace ToolGood.Algorithm.Test.Csharp
 
             dt = engine.TryEvaluate("json('22[1,2,3,4,5,6]')[1].Trim()", null);
             Assert.AreEqual(dt, null);
+        }
 
+        [Test]
+        public void Json_Boolean_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
             var dt2 = engine.TryEvaluate("json('{\"w11\":true}')['w11']", false);
             Assert.AreEqual(dt2, true);
+        }
 
+        [Test]
+        public void Json_Raw_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
             var dt3 = engine.TryEvaluate("{\"w11\":false}", "");
             Assert.AreEqual(dt3.ToString(), "{\"w11\":false}");
 
