@@ -8,6 +8,7 @@ import java.util.List;
 
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.operands.MyDate;
 import toolgood.algorithm.operands.OperandArray;
 import toolgood.algorithm.operands.OperandBigDecimal;
@@ -155,7 +156,7 @@ public abstract class Operand {
     public static Operand CreateJson(String txt) {
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
-                JsonData json = JsonData.parse(txt);
+                JsonData json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
             } catch (Exception e) {
             }

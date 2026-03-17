@@ -1,5 +1,6 @@
 package toolgood.algorithm.operands;
 
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -34,6 +35,15 @@ public final class MyDate {
         Hour = cal.get(Calendar.HOUR_OF_DAY);
         Minute = cal.get(Calendar.MINUTE);
         Second = cal.get(Calendar.SECOND);
+    }
+
+    public MyDate(Duration dt) {
+        Year = null;
+        Month = null;
+        Day = (int) dt.toDays();
+        Hour = (int) (dt.toHours() % 24);
+        Minute = (int) (dt.toMinutes() % 60);
+        Second = (int) (dt.getSeconds() % 60);
     }
 
     public static MyDate Parse(String txt) {
@@ -177,6 +187,13 @@ public final class MyDate {
         return new GregorianCalendar(Year != null ? Year : 0, Month != null ? Month - 1 : 0, Day != null ? Day : 0, Hour, Minute, Second).getTime();
     }
 
+    public Duration ToTimeSpan() {
+        return Duration.ofDays(Day != null ? Day : 0)
+                      .plusHours(Hour)
+                      .plusMinutes(Minute)
+                      .plusSeconds(Second);
+    }
+
     public long ToLong() {
         long d = 0;
         if (Year != null) {
@@ -219,8 +236,8 @@ public final class MyDate {
             cal.add(Calendar.DAY_OF_MONTH, day);
             return new MyDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
         }
-        int newDay = (Day != null ? Day : 0) + day;
-        return new MyDate(null, null, newDay, Hour, Minute, Second);
+        Duration duration = ToTimeSpan().plusDays(day);
+        return new MyDate(duration);
     }
 
     public MyDate AddHours(int hour) {
@@ -233,8 +250,8 @@ public final class MyDate {
             cal.add(Calendar.HOUR_OF_DAY, hour);
             return new MyDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
         }
-        int newHour = Hour + hour;
-        return new MyDate(null, null, Day, newHour, Minute, Second);
+        Duration duration = ToTimeSpan().plusHours(hour);
+        return new MyDate(duration);
     }
 
     public MyDate AddMinutes(int minute) {
@@ -247,8 +264,8 @@ public final class MyDate {
             cal.add(Calendar.MINUTE, minute);
             return new MyDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
         }
-        int newMinute = Minute + minute;
-        return new MyDate(null, null, Day, Hour, newMinute, Second);
+        Duration duration = ToTimeSpan().plusMinutes(minute);
+        return new MyDate(duration);
     }
 
     public MyDate AddSeconds(int second) {
@@ -261,7 +278,7 @@ public final class MyDate {
             cal.add(Calendar.SECOND, second);
             return new MyDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
         }
-        int newSecond = Second + second;
-        return new MyDate(null, null, Day, Hour, Minute, newSecond);
+        Duration duration = ToTimeSpan().plusSeconds(second);
+        return new MyDate(duration);
     }
 }

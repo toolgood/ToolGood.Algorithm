@@ -5,9 +5,9 @@ import java.util.List;
 
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.litJson.JsonMapper;
 
-final class OperandKeyValueList extends Operand {
+public final class OperandKeyValueList extends Operand {
     private final List<KeyValue> _keyValueList;
 
     public OperandKeyValueList() {
@@ -53,8 +53,7 @@ final class OperandKeyValueList extends Operand {
     public Operand ToJson(String errorMessage) {
         String txt = toString();
         try {
-            JsonData json = JsonData.parse(txt);
-            return Operand.Create(json);
+            return Operand.Create(JsonMapper.ToObject(txt));
         } catch (Exception e) { }
         return Error(errorMessage != null ? errorMessage : "Convert to json error!");
     }

@@ -3,7 +3,7 @@ package toolgood.algorithm.operands;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-class OperandNone extends Operand {
+public final class OperandNone extends Operand {
     @Override
     public OperandType Type() { return OperandType.NONE; }
 

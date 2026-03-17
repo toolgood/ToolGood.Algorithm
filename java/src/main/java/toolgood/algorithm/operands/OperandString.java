@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.FunctionUtil;
-import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.litJson.JsonMapper;
 
-final class OperandString extends Operand {
+public final class OperandString extends Operand {
     private final String _value;
 
     public OperandString(String obj) {
@@ -101,8 +101,7 @@ final class OperandString extends Operand {
         if ((span.length() > 0 && span.charAt(0) == '{' && span.charAt(span.length() - 1) == '}') ||
             (span.length() > 0 && span.charAt(0) == '[' && span.charAt(span.length() - 1) == ']')) {
             try {
-                JsonData json = JsonData.parse(span);
-                return Operand.Create(json);
+                return Operand.Create(JsonMapper.ToObject(span));
             } catch (Exception e) { }
         }
         return Error(errorMessage != null ? errorMessage : "Convert to json error!");

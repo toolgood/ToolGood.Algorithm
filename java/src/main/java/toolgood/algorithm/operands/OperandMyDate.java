@@ -3,7 +3,7 @@ package toolgood.algorithm.operands;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-final class OperandMyDate extends Operand {
+public final class OperandMyDate extends Operand {
     private final MyDate _value;
 
     public OperandMyDate(MyDate obj) {

@@ -46,13 +46,13 @@ final class OperandJson extends Operand {
     private Operand ToArrayInternal(String errorMessage) {
         if (JsonValue().IsArray()) {
             List<Operand> list = new ArrayList<>(JsonValue().Count());
-            for (JsonData v : JsonValue().getArray()) {
+            for (JsonData v : JsonValue()) {
                 if (v.IsString()) {
-                    list.add(Operand.Create(v.getString()));
+                    list.add(Operand.Create(v.StringValue()));
                 } else if (v.IsBoolean()) {
-                    list.add(Operand.Create(v.getBoolean()));
+                    list.add(Operand.Create(v.BooleanValue()));
                 } else if (v.IsDouble()) {
-                    list.add(Operand.Create(v.getNumber()));
+                    list.add(Operand.Create(v.NumberValue()));
                 } else if (v.IsNull()) {
                     list.add(Operand.Null);
                 } else {

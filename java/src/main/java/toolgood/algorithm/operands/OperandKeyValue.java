@@ -3,7 +3,7 @@ package toolgood.algorithm.operands;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-final class OperandKeyValue extends Operand {
+public final class OperandKeyValue extends Operand {
     private final KeyValue _value;
 
     public OperandKeyValue(KeyValue obj) {

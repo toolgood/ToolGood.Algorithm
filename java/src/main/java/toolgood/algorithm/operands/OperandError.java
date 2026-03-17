@@ -3,7 +3,7 @@ package toolgood.algorithm.operands;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-final class OperandError extends Operand {
+public final class OperandError extends Operand {
     private final String _errorMsg;
     private final Object[] _args;
     private String _formattedMsg;

@@ -2,7 +2,7 @@ package toolgood.algorithm.litJson;
 
 import java.math.BigDecimal;
 
-final class JsonMapper {
+public final class JsonMapper {
     private static JsonData ReadValue(JsonReader reader) throws Exception {
         reader.Read();
 

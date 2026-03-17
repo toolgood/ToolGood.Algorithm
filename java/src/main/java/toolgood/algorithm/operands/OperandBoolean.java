@@ -1,11 +1,9 @@
 package toolgood.algorithm.operands;
 
-import java.util.List;
-
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-final class OperandBoolean extends Operand {
+public final class OperandBoolean extends Operand {
     private final boolean _value;
 
     public OperandBoolean(boolean obj) {

@@ -3,7 +3,7 @@ package toolgood.algorithm.operands;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 
-final class OperandNull extends Operand {
+public final class OperandNull extends Operand {
     @Override
     public boolean IsNull() { return true; }
 
