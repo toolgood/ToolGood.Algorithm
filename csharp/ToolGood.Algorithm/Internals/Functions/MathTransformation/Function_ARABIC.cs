@@ -1,9 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 
-namespace ToolGood.Algorithm.Internals.Functions.MathBase
+namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
 	internal sealed class Function_ARABIC : Function_1
 	{
