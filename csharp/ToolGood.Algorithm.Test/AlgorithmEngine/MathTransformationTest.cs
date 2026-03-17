@@ -6,37 +6,100 @@ namespace ToolGood.Algorithm.Test.MathTransformation
     internal class MathTransformationTest
     {
         [Test]
-        public void transformation_test()
+        public void BIN2DEC_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var num = engine.TryEvaluate("BIN2DEC(10101)", 0);
             Assert.AreEqual(num, 21);
-            num = engine.TryEvaluate("OCT2DEC(12456)", 0);
-            Assert.AreEqual(num, 5422);
-            num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
-            Assert.AreEqual(num, 2177759);
+        }
 
+        [Test]
+        public void OCT2DEC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var num = engine.TryEvaluate("OCT2DEC(12456)", 0);
+            Assert.AreEqual(num, 5422);
+        }
+
+        [Test]
+        public void HEX2DEC_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
+            Assert.AreEqual(num, 2177759);
+        }
+
+        [Test]
+        public void DEC2BIN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("DEC2BIN(10)", "");
             Assert.AreEqual(t, "1010");
             t = engine.TryEvaluate("DEC2BIN(10,8)", "");
             Assert.AreEqual(t, "00001010");
-            t = engine.TryEvaluate("OCT2BIN('721')", "");
+        }
+
+        [Test]
+        public void OCT2BIN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("OCT2BIN('721')", "");
             Assert.AreEqual(t, "111010001");
-            t = engine.TryEvaluate("HEX2BIN('fa')", "");
+        }
+
+        [Test]
+        public void HEX2BIN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("HEX2BIN('fa')", "");
             Assert.AreEqual(t, "11111010");
+        }
 
-            t = engine.TryEvaluate("BIN2OCT(10)", "");
+        [Test]
+        public void BIN2OCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("BIN2OCT(10)", "");
             Assert.AreEqual(t, "2");
-            t = engine.TryEvaluate("DEC2OCT('75')", "");
-            Assert.AreEqual(t, "113");
-            t = engine.TryEvaluate("HEX2OCT('f5')", "");
-            Assert.AreEqual(t, "365");
+        }
 
-            t = engine.TryEvaluate("BIN2HEX(101010100)", "");
+        [Test]
+        public void DEC2OCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("DEC2OCT('75')", "");
+            Assert.AreEqual(t, "113");
+        }
+
+        [Test]
+        public void HEX2OCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("HEX2OCT('f5')", "");
+            Assert.AreEqual(t, "365");
+        }
+
+        [Test]
+        public void BIN2HEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("BIN2HEX(101010100)", "");
             Assert.AreEqual(t, "154");
-            t = engine.TryEvaluate("OCT2HEX(75212)", "");
+        }
+
+        [Test]
+        public void OCT2HEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("OCT2HEX(75212)", "");
             Assert.AreEqual(t, "7A8A");
-            t = engine.TryEvaluate("DEC2HEX(952)", "");
+        }
+
+        [Test]
+        public void DEC2HEX_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("DEC2HEX(952)", "");
             Assert.AreEqual(t, "3B8");
         }
 
