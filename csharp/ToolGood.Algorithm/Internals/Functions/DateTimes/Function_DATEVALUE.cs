@@ -17,8 +17,6 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (func1 == null) return ParameterError(1);
-
 			var args1 = func1.Evaluate(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
 			if(args1.IsDate) { return args1; }

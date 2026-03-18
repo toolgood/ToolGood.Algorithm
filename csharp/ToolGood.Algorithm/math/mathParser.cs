@@ -1,4 +1,4 @@
-namespace ToolGood.Algorithm.math
+﻿namespace ToolGood.Algorithm.math
 {
 #pragma warning disable 0162
 #pragma warning disable 0219
@@ -28,7 +28,7 @@ partial class mathParser : Parser {
 			return DefaultVocabulary;
 		}
 	}
-	public override string GrammarFileName { get { return ""; } }
+	public override string GrammarFileName { get { return string.Empty; } }
 	public override string[] RuleNames { get { return ruleNames; } }
 	public override int[] SerializedAtn { get { return _serializedATN; } }
 	static mathParser() {

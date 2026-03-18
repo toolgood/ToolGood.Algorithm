@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,21 +22,17 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
-			try {
-				var t = GetHmacMd5String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			}
+			var t = GetHmacMd5String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);
+			return Operand.Create(t);
 		}
 
 		private string GetHmacMd5String(byte[] buffer, string secret)
 		{
-			var keyByte = Encoding.UTF8.GetBytes(secret ?? "");
+			var keyByte = Encoding.UTF8.GetBytes(secret ?? string.Empty);
 			using var hmacMd5 = new HMACMD5(keyByte);
 			var hashMessage = hmacMd5.ComputeHash(buffer);
 #if NETSTANDARD2_1
-			return BitConverter.ToString(hashMessage).Replace("-", "");
+			return BitConverter.ToString(hashMessage).Replace("-", string.Empty);
 #else
 			return Convert.ToHexString(hashMessage);
 #endif

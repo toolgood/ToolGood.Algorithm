@@ -19,12 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
-			try {
-				var t = GetSha1String(Encoding.UTF8.GetBytes(args1.TextValue));
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			}
+			var t = GetSha1String(Encoding.UTF8.GetBytes(args1.TextValue));
+			return Operand.Create(t);
 		}
 
 		private string GetSha1String(byte[] buffer)
@@ -32,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 #if NETSTANDARD2_1
 			using var sha1 = SHA1.Create();
 			var retVal = sha1.ComputeHash(buffer);
-			return BitConverter.ToString(retVal).Replace("-", "");
+			return BitConverter.ToString(retVal).Replace("-", string.Empty);
 #else
 			var retVal = SHA1.HashData(buffer);
 			return Convert.ToHexString(retVal);

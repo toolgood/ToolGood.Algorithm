@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				return ParameterError(2);
 			}
 			if (length == 0) {
-				return Operand.Create("");
+				return Operand.Create(string.Empty);
 			}
 			if (newtext.Length > 0 && length > 32767 / newtext.Length) {
 				return ParameterError(2);

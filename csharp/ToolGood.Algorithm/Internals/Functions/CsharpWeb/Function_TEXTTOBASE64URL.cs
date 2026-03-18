@@ -18,13 +18,9 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
-			try {
-				var bytes = Encoding.UTF8.GetBytes(args1.TextValue);
-				var t = Convert.ToBase64String(bytes).Replace('+', '-').Replace('/', '_').TrimEnd('=');
-				return Operand.Create(t);
-			} catch(Exception) {
-				return ParameterError(1);
-			}
+			var bytes = Encoding.UTF8.GetBytes(args1.TextValue);
+			var t = Convert.ToBase64String(bytes).Replace('+', '-').Replace('/', '_').TrimEnd('=');
+			return Operand.Create(t);
 		}
 		public override OperandType GetResultType()
 		{

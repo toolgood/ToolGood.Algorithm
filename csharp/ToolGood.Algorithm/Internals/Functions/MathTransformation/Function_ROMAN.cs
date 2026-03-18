@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (func1 == null) return ParameterError(1);
-
 			var numArg = GetNumber_1(engine, tempParameter);
 			if (numArg.IsErrorOrNone) return numArg;
 			var num = numArg.IntValue;

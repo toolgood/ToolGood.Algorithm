@@ -492,5 +492,71 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         #endregion 方法式调用测试
+
+        #region 边界值测试
+
+        [Test]
+        public void LeapYear_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DATE(2020,2,29)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2020, 2, 29));
+
+            dt = engine.TryEvaluate("DATE(2024,2,29)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 2, 29));
+
+            dt = engine.TryEvaluate("DATE(2019,2,28)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2019, 2, 28));
+
+            var year = engine.TryEvaluate("'2020-02-29'.YEAR()", 0);
+            Assert.AreEqual(year, 2020);
+            var month = engine.TryEvaluate("'2020-02-29'.MONTH()", 0);
+            Assert.AreEqual(month, 2);
+            var day = engine.TryEvaluate("'2020-02-29'.DAY()", 0);
+            Assert.AreEqual(day, 29);
+        }
+
+        [Test]
+        public void LeapYear_AddDays_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("'2020-02-28'.ADDDAYS(1).DAY()", 0);
+            Assert.AreEqual(dt, 29);
+
+            dt = engine.TryEvaluate("'2020-03-01'.ADDDAYS(-1).DAY()", 0);
+            Assert.AreEqual(dt, 29);
+        }
+
+        [Test]
+        public void MonthBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DATE(2020,1,31).ADDMONTHS(1).MONTH()", 0);
+            Assert.AreEqual(dt, 2);
+
+            dt = engine.TryEvaluate("DATE(2020,3,31).ADDMONTHS(-1).MONTH()", 0);
+            Assert.AreEqual(dt, 2);
+        }
+
+        [Test]
+        public void YearBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DATE(2020,12,31).ADDDAYS(1).YEAR()", 0);
+            Assert.AreEqual(dt, 2021);
+            dt = engine.TryEvaluate("DATE(2020,12,31).ADDDAYS(1).MONTH()", 0);
+            Assert.AreEqual(dt, 1);
+            dt = engine.TryEvaluate("DATE(2020,12,31).ADDDAYS(1).DAY()", 0);
+            Assert.AreEqual(dt, 1);
+
+            dt = engine.TryEvaluate("DATE(2021,1,1).ADDDAYS(-1).YEAR()", 0);
+            Assert.AreEqual(dt, 2020);
+            dt = engine.TryEvaluate("DATE(2021,1,1).ADDDAYS(-1).MONTH()", 0);
+            Assert.AreEqual(dt, 12);
+            dt = engine.TryEvaluate("DATE(2021,1,1).ADDDAYS(-1).DAY()", 0);
+            Assert.AreEqual(dt, 31);
+        }
+
+        #endregion 边界值测试
     }
 }

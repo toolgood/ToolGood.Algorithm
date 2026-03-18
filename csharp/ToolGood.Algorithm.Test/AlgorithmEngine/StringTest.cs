@@ -417,5 +417,74 @@ namespace ToolGood.Algorithm.Test.String
         }
 
         #endregion 方法式调用测试
+
+        #region 边界值测试
+
+        [Test]
+        public void EmptyString_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("LEN('')", 0);
+            Assert.AreEqual(t, 0);
+
+            var t2 = engine.TryEvaluate("LEFT('', 1)", "");
+            Assert.AreEqual(t2, "");
+
+            t2 = engine.TryEvaluate("RIGHT('', 1)", "");
+            Assert.AreEqual(t2, "");
+
+            t2 = engine.TryEvaluate("MID('', 1, 1)", "");
+            Assert.AreEqual(t2, "");
+        }
+
+        [Test]
+        public void UnicodeBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("LEN('中文')", 0);
+            Assert.AreEqual(t, 2);
+
+            var t2 = engine.TryEvaluate("LEFT('中文测试', 2)", "");
+            Assert.AreEqual(t2, "中文");
+
+            t2 = engine.TryEvaluate("MID('中文测试', 1, 2)", "");
+            Assert.AreEqual(t2, "中文");
+        }
+
+        [Test]
+        public void SubstringBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("LEFT('ABC', 100)", "");
+            Assert.AreEqual(t, "ABC");
+
+            var t2 = engine.TryEvaluate("RIGHT('ABC', 100)", "");
+            Assert.AreEqual(t2, "ABC");
+
+            t2 = engine.TryEvaluate("MID('ABC', 1, 100)", "");
+            Assert.AreEqual(t2, "ABC");
+
+            t2 = engine.TryEvaluate("MID('ABC', 5, 2)", "");
+            Assert.AreEqual(t2, "");
+        }
+
+        [Test]
+        public void SubstituteBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUBSTITUTE('aaa', 'a', 'b')", "");
+            Assert.AreEqual(t, "bbb");
+
+            var t2 = engine.TryEvaluate("SUBSTITUTE('aaa', 'x', 'b')", "");
+            Assert.AreEqual(t2, "aaa");
+
+            t2 = engine.TryEvaluate("SUBSTITUTE('aabaa', 'a', 'b', 1)", "");
+            Assert.AreEqual(t2, "babaa");
+
+            t2 = engine.TryEvaluate("SUBSTITUTE('aabaa', 'a', 'b', 2)", "");
+            Assert.AreEqual(t2, "abbaa");
+        }
+
+        #endregion 边界值测试
     }
 }

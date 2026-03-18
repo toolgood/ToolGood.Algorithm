@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,12 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
-			try {
-				var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			} 
+			var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
+			return Operand.Create(t);
 		}
 
 		private string GetMd5String(byte[] buffer)
@@ -32,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 #if NETSTANDARD2_1
 			using var md5 = MD5.Create();
 			var retVal = md5.ComputeHash(buffer);
-			return BitConverter.ToString(retVal).Replace("-", "");
+			return BitConverter.ToString(retVal).Replace("-", string.Empty);
 #else
 			var retVal = MD5.HashData(buffer);
 			return Convert.ToHexString(retVal);

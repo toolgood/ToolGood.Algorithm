@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			if (funcs.Length == 0) {
-				return Operand.Create("");
+				return Operand.Create(string.Empty);
 			}
 			if (funcs.Length == 1) {
 				var a = GetText(engine, tempParameter, 0);
