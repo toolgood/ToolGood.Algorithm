@@ -463,5 +463,61 @@ namespace ToolGood.Algorithm.Test.MathBase
         }
 
         #endregion 百分比
+
+        #region 边界值测试
+
+        [Test]
+        public void DivisionByZero_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("1/0", 0.0);
+            Assert.AreEqual(t, 0);
+
+            t = engine.TryEvaluate("0/0", 0.0);
+            Assert.AreEqual(t, 0);
+        }
+
+        [Test]
+        public void Overflow_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("99999999999999999999*99999999999999999999", 0.0);
+            Assert.AreEqual(t, 0);
+        }
+
+        [Test]
+        public void NullOperation_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("null+1", 0.0);
+            Assert.AreEqual(t, 0);
+
+            t = engine.TryEvaluate("null*100", 0.0);
+            Assert.AreEqual(t, 0);
+
+            t = engine.TryEvaluate("null-null", 0.0);
+            Assert.AreEqual(t, 0);
+        }
+
+        [Test]
+        public void SquareRootNegative_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("sqrt(-1)", 0.0);
+            Assert.AreEqual(t, 0);
+        }
+
+        [Test]
+        public void LogNegative_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("log(-1)", 0.0);
+            Assert.AreEqual(t, 0);
+
+            t = engine.TryEvaluate("ln(0)", 0.0);
+            Assert.AreEqual(t, 0);
+        }
+
+        #endregion 边界值测试
     }
 }
