@@ -24,9 +24,6 @@ public final class Function_YEARFRAC extends Function_3 {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
-        if (func1 == null || func2 == null)
-            return ParameterError(1);
-
         Operand startDateArg = GetDate_1(engine, tempParameter);
         if (startDateArg.IsErrorOrNone())
             return startDateArg;

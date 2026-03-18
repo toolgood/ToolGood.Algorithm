@@ -22,9 +22,6 @@ public final class Function_ERROR extends Function_1 {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, java.util.function.BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
-        if (func1 == null) {
-            return Operand.Error("");
-        }
         Operand args1 = GetText_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) {
             return args1;

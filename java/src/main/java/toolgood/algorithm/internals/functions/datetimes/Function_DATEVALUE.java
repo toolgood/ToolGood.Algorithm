@@ -24,9 +24,6 @@ public final class Function_DATEVALUE extends Function_2 {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
-        if (func1 == null)
-            return ParameterError(1);
-
         Operand args1 = func1.Evaluate(engine, tempParameter);
         if (args1.IsErrorOrNone()) {
             return args1;

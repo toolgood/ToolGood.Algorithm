@@ -24,8 +24,6 @@ public final class Function_DELTA extends Function_2 {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
-        if (func1 == null) return ParameterError(1);
-
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) {
             return args1;

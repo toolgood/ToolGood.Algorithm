@@ -29,16 +29,9 @@ public final class Function_TEXTTOBASE64URL extends Function_1 {
         if (args1.IsErrorOrNone()) {
             return args1;
         }
-        try {
-            byte[] bytes = args1.TextValue().getBytes(StandardCharsets.UTF_8);
-            String t = Base64.getEncoder().encodeToString(bytes).replace('+', '-').replace('/', '_');
-            while (t.endsWith("=")) {
-                t = t.substring(0, t.length() - 1);
-            }
-            return Operand.Create(t);
-        } catch (Exception e) {
-            return ParameterError(1);
-        }
+        byte[] bytes = args1.TextValue().getBytes(StandardCharsets.UTF_8);
+        String t = Base64.getEncoder().encodeToString(bytes).replace('+', '-').replace('/', '_').replaceAll("=+$", "");
+        return Operand.Create(t);
     }
 
     @Override
