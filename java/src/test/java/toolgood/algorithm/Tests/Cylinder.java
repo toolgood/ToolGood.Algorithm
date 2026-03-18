@@ -1,44 +1,36 @@
 package toolgood.algorithm.Tests;
 
 import java.util.List;
-
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.AlgorithmEngineEx;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.MyParameter;
 
-public class Cylinder extends AlgorithmEngine {
-    private int _radius;
-    private int _height;
+public class Cylinder extends AlgorithmEngineEx {
+    private double _radius;
+    private double _height;
 
-    public Cylinder(int radius, int height) {
+    public Cylinder(double radius, double height) {
         _radius = radius;
         _height = height;
     }
-
     @Override
-    protected Operand GetParameter(MyParameter parameter) {
-        if (parameter.Name.equals("半径")) {
+    public Operand GetParameterEx(String parameter) {
+        if(parameter.equals("半径")) {
             return Operand.Create(_radius);
         }
-        if (parameter.Name.equals("直径"))
-        {
+        if(parameter.equals("直径")) {
             return Operand.Create(_radius * 2);
         }
-        if (parameter.Name.equals("�?))
-        {
+        if(parameter.equals("高")) {
             return Operand.Create(_height);
         }
         return super.GetParameter(parameter);
     }
 
     @Override
-    protected Operand ExecuteDiyFunction(String funcName, List<Operand> operands)
-    {
-        if (funcName.equals("求面�?))
-        {
-            if (operands.size() == 1)
-            {
-                int r =(int) operands.get(0).ToNumber(null).NumberValue().intValue();
+    public Operand ExecuteDiyFunction(String funcName, List<Operand> operands) {
+        if (funcName.equals("求面积")) {
+            if (operands.size() == 1) {
+                double r = operands.get(0).ToNumber("").DoubleValue();
                 return Operand.Create(r * r * Math.PI);
             }
         }
