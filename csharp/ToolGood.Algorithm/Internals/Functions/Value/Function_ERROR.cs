@@ -16,7 +16,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if(func1 == null) { return Operand.Error(string.Empty); }
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
 			return Operand.Error(args1.TextValue);
