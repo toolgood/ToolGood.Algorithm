@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args1.IsText) {
 				return args1;
 			}
-			return Operand.Create("");
+			return Operand.Create(string.Empty);
 		}
 		public override OperandType GetResultType()
 		{

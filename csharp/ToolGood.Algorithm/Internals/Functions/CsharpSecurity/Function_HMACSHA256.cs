@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,11 +32,11 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetHmacSha256String(byte[] buffer, string secret)
 		{
-			var keyByte = Encoding.UTF8.GetBytes(secret ?? "");
+			var keyByte = Encoding.UTF8.GetBytes(secret ?? string.Empty);
 			using var hmacSha256 = new HMACSHA256(keyByte);
 			var hashMessage = hmacSha256.ComputeHash(buffer);
 #if NETSTANDARD2_1
-			return BitConverter.ToString(hashMessage).Replace("-", "");
+			return BitConverter.ToString(hashMessage).Replace("-", string.Empty);
 #else
 			return Convert.ToHexString(hashMessage);
 #endif

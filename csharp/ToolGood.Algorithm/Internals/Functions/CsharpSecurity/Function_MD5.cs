@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 #if NETSTANDARD2_1
 			using var md5 = MD5.Create();
 			var retVal = md5.ComputeHash(buffer);
-			return BitConverter.ToString(retVal).Replace("-", "");
+			return BitConverter.ToString(retVal).Replace("-", string.Empty);
 #else
 			var retVal = MD5.HashData(buffer);
 			return Convert.ToHexString(retVal);

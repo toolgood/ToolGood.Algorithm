@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 #if NETSTANDARD2_1
 			using var sha512 = SHA512.Create();
 			var retVal = sha512.ComputeHash(buffer);
-			return BitConverter.ToString(retVal).Replace("-", "");
+			return BitConverter.ToString(retVal).Replace("-", string.Empty);
 #else
 			var retVal = SHA512.HashData(buffer);
 			return Convert.ToHexString(retVal);

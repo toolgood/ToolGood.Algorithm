@@ -87,7 +87,7 @@ namespace ToolGood.Algorithm
 			var result = TryConvert(src, oldSrcUnit, oldTarUnit);
 			if(result.HasValue) { return result.Value; }
 
-			oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
+			oldSrcUnit = unitRegex.Replace(oldSrcUnit, string.Empty);
 			result = TryConvert(src, oldSrcUnit, oldTarUnit);
 			if(result.HasValue) { return result.Value; }
 
