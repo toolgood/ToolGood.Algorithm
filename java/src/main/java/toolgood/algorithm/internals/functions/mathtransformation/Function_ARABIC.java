@@ -12,8 +12,8 @@ import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
 public final class Function_ARABIC extends Function_1 {
-    public Function_ARABIC(FunctionBase func1) {
-        super(func1);
+    public Function_ARABIC(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override

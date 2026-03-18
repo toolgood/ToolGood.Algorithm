@@ -15,8 +15,8 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
 public final class Function_SHA512 extends Function_1 {
-    public Function_SHA512(FunctionBase func1) {
-        super(func1);
+    public Function_SHA512(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override

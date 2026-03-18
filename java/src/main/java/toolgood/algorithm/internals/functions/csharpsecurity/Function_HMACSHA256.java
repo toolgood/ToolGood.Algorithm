@@ -17,8 +17,8 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
 public final class Function_HMACSHA256 extends Function_2 {
-    public Function_HMACSHA256(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
+    public Function_HMACSHA256(FunctionBase[] funcs) {
+        super(funcs);
     }
 
     @Override
