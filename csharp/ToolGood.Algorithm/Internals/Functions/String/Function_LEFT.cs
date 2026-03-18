@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
 			if (args1.TextValue.Length == 0) {
-				return Operand.Create("");
+				return Operand.Create(string.Empty);
 			}
 			if (func2 == null) {
 				return Operand.Create(args1.TextValue.Substring(0, 1));
