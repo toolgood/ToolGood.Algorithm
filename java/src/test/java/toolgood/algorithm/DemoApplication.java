@@ -1,5 +1,6 @@
 package toolgood.algorithm;
 
+import toolgood.algorithm.operands.MyDate;
 
 import toolgood.algorithm.Tests3.AlgorithmEngineHelperTest;
 
@@ -7,10 +8,10 @@ public class DemoApplication {
 	public static void main(String[] args) throws Exception {
 
         AlgorithmEngine engine = new AlgorithmEngine();
-        MyDate dt2 = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", MyDate.now());
+        MyDate dt2 = engine.TryEvaluate_MyDate("DATE(2024, 8, 1) + TIME(8, 0, 0)", MyDate.now());
         System.out.println(dt2);
 
-        MyDate dt3 = engine.TryEvaluate("DATE(2024, 8, 1,1,2,3)", MyDate.now());
+        MyDate dt3 = engine.TryEvaluate_MyDate("DATE(2024, 8, 1,1,2,3)", MyDate.now());
         System.out.println(dt3);
 
 

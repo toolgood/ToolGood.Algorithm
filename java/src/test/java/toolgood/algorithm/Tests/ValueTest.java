@@ -52,7 +52,7 @@ public class ValueTest {
     }
 
     @Test
-    public void Test_Json() {
+    public void Test_Json() throws Exception {
         AlgorithmEngine engine = new AlgorithmEngine();
         toolgood.algorithm.internals.functions.FunctionBase t = engine.Parse("{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}");
         String c = engine.Evaluate(t).toString();
