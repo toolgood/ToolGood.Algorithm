@@ -22,12 +22,8 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
-			try {
-				var t = GetHmacMd5String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			}
+			var t = GetHmacMd5String(Encoding.UTF8.GetBytes(args1.TextValue), args2.TextValue);
+			return Operand.Create(t);
 		}
 
 		private string GetHmacMd5String(byte[] buffer, string secret)

@@ -19,12 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
-			try {
-				var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			} 
+			var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
+			return Operand.Create(t);
 		}
 
 		private string GetMd5String(byte[] buffer)
