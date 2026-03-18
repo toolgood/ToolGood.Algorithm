@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals.functions.mathbase;
+package toolgood.algorithm.internals.functions.mathtransformation;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -26,10 +26,6 @@ public final class Function_ROMAN extends Function_2 {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) throws Exception {
-        if (func1 == null) {
-            return ParameterError(1);
-        }
-
         Operand numArg = GetNumber_1(engine, tempParameter);
         if (numArg.IsErrorOrNone()) {
             return numArg;

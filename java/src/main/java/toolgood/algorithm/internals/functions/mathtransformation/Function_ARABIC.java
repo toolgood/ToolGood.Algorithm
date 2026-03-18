@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals.functions.mathbase;
+package toolgood.algorithm.internals.functions.mathtransformation;
 
 import java.util.List;
 import java.util.function.BiFunction;

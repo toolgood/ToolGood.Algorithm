@@ -38,13 +38,9 @@ public final class Function_HMACSHA1 extends Function_2 {
             return args2;
         }
 
-        try {
-            byte[] buffer = args1.TextValue().getBytes(StandardCharsets.UTF_8);
-            String t = getHmacSha1String(buffer, args2.TextValue());
-            return Operand.Create(t);
-        } catch (Exception ex) {
-            return FunctionError();
-        }
+        byte[] buffer = args1.TextValue().getBytes(StandardCharsets.UTF_8);
+        String t = getHmacSha1String(buffer, args2.TextValue());
+        return Operand.Create(t);
     }
 
     @Override

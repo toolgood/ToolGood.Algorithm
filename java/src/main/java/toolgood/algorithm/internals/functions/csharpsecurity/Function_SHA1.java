@@ -30,13 +30,9 @@ public final class Function_SHA1 extends Function_1 {
         if (args1.IsError() || args1.IsNone()) {
             return args1;
         }
-        try {
-            byte[] buffer = args1.TextValue().getBytes(StandardCharsets.UTF_8);
-            String t = getSha1String(buffer);
-            return Operand.Create(t);
-        } catch (Exception ex) {
-            return FunctionError();
-        }
+        byte[] buffer = args1.TextValue().getBytes(StandardCharsets.UTF_8);
+        String t = getSha1String(buffer);
+        return Operand.Create(t);
     }
 
     @Override
