@@ -15,9 +15,10 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
 public final class Function_MD5 extends Function_1 {
-    public Function_MD5(FunctionBase[] funcs) {
-        super(funcs);
-    }
+		public Function_MD5(FunctionBase func1)  
+		{
+            super(func1);
+		}
 
     @Override
     public String Name() {
