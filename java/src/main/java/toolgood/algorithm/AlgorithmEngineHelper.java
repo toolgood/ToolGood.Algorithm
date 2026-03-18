@@ -1,25 +1,22 @@
+/**
+ * 算法引擎助手
+ */
 package toolgood.algorithm;
 
-import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import java.math.BigDecimal;
 import toolgood.algorithm.enums.CalculateTreeType;
 import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.internals.CalculateTree;
 import toolgood.algorithm.internals.ConditionTree;
 import toolgood.algorithm.internals.DiyNameInfo;
+import toolgood.algorithm.internals.DiyNameKeyInfo;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.functions.operator.Function_AND;
-import toolgood.algorithm.internals.functions.operator.Function_OR;
-import toolgood.algorithm.internals.functions.operator.Function_Add;
-import toolgood.algorithm.internals.functions.operator.Function_Sub;
-import toolgood.algorithm.internals.functions.operator.Function_Mul;
-import toolgood.algorithm.internals.functions.operator.Function_Div;
-import toolgood.algorithm.internals.functions.operator.Function_Mod;
-import toolgood.algorithm.internals.functions.operator.Function_Connect;
+import toolgood.algorithm.internals.visitors.AntlrCharStream;
 import toolgood.algorithm.internals.visitors.AntlrErrorTextWriter;
 import toolgood.algorithm.internals.visitors.DiyNameVisitor;
 import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
@@ -32,199 +29,149 @@ import toolgood.algorithm.unitConversion.DistanceConverter;
 import toolgood.algorithm.unitConversion.MassConverter;
 import toolgood.algorithm.unitConversion.VolumeConverter;
 
-/**
- * 算法引擎助手（静态工具类�?
- */
-public final class AlgorithmEngineHelper {
+public class AlgorithmEngineHelper {
+    private static final Pattern unitRegex = Pattern.compile("[\\s\\(\\)（）\\[\\]<>]");
 
-    private static final Pattern UNIT_REGEX = Pattern.compile("[\\s\\(\\)（）\\[\\]<>]");
-
-    /** 工具类，不可实例�?*/
-    private AlgorithmEngineHelper() {
-    }
-
-    // -------------------------------------------------------------------------
-    // 内部：创建解析上下文
-    // -------------------------------------------------------------------------
-
-    /**
-     * 创建 ANTLR 解析上下�?
-     *
-     * @param exp 表达式字符串
-     * @return [0] AntlrErrorTextWriter，[1] mathParser.ProgContext
-     */
-    static Object[] createParserContext(String exp) {
+    static ParserContext CreateParserContext(String exp) {
         AntlrErrorTextWriter errorWriter = new AntlrErrorTextWriter();
-        org.antlr.v4.runtime.CharStream stream = CharStreams.fromString(exp);
+        AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
         mathLexer lexer = new mathLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         mathParser parser = new mathParser(tokens);
         mathParser.ProgContext context = parser.prog();
-        return new Object[]{errorWriter, context};
+        return new ParserContext(errorWriter, context);
     }
 
-    // -------------------------------------------------------------------------
-    // 公共 API
-    // -------------------------------------------------------------------------
-
-    /**
-     * 判断字符串是否是合法单参数名（既不包含函数调用，又只包含一个参数且与原字符串相同）
-     *
-     * @param parameter 待检测字符串
-     * @return 是否是参�?
-     */
+    /// <summary>
+    /// 是不是参数
+    /// </summary>
+    /// <param name="parameter"></param>
+    /// <returns></returns>
     public static boolean IsParameter(String parameter) {
         if (parameter == null || parameter.trim().isEmpty()) {
             return false;
         }
         try {
             DiyNameInfo diy = GetDiyNames(parameter);
-            if (!diy.Functions.isEmpty()) {
+            if (diy.getFunctions().size() > 0) {
                 return false;
             }
-            if (diy.Parameters.size() == 1) {
-                DiyNameInfo.KeyInfo p = diy.Parameters.get(0);
-                return parameter.equals(p.Name);
+            if (diy.getParameters().size() == 1) {
+                DiyNameKeyInfo p = diy.getParameters().get(0);
+                return p.getName().equals(parameter);
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
         }
         return false;
     }
 
-    /**
-     * 获取表达式中使用到的 DIY 名称（参数名和函数名�?
-     *
-     * @param exp 表达式字符串
-     * @return DiyNameInfo
-     * @throws Exception 解析失败时抛�?
-     */
+    /// <summary>
+    /// 获取 DIY 名称
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public static DiyNameInfo GetDiyNames(String exp) throws Exception {
         if (exp == null || exp.trim().isEmpty()) {
             throw new Exception("Parameter exp invalid !");
         }
-        Object[] result = createParserContext(exp);
-        AntlrErrorTextWriter errorWriter = (AntlrErrorTextWriter) result[0];
-        if (errorWriter.IsError()) {
-            throw new Exception(errorWriter.ErrorMsg());
+        ParserContext context = CreateParserContext(exp);
+        if (context.errorWriter.IsError()) {
+            throw new Exception(context.errorWriter.ErrorMsg());
         }
-        mathParser.ProgContext context = (mathParser.ProgContext) result[1];
         DiyNameVisitor visitor = new DiyNameVisitor();
-        visitor.visit(context);
+        visitor.visit(context.context);
         return visitor.diy;
     }
 
-    /**
-     * 单位转换
-     *
-     * @param src        原始数�?
-     * @param oldSrcUnit 源单�?
-     * @param oldTarUnit 目标单位
-     * @return 转换后的 BigDecimal
-     * @throws Exception 单位不兼容时抛出
-     */
-    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit) throws Exception {
-        return UnitConversion(src, oldSrcUnit, oldTarUnit, null);
-    }
-
-    /**
-     * 单位转换（带名称提示�?
-     *
-     * @param src        原始数�?
-     * @param oldSrcUnit 源单�?
-     * @param oldTarUnit 目标单位
-     * @param name       输入项名称（用于错误信息，可�?null�?
-     * @return 转换后的 BigDecimal
-     * @throws Exception 单位不兼容时抛出
-     */
-    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
-        if (oldSrcUnit == null || oldSrcUnit.trim().isEmpty()
-                || oldTarUnit == null || oldTarUnit.trim().isEmpty()) {
+    /// <summary>
+    /// 单位转换
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="oldSrcUnit"></param>
+    /// <param name="oldTarUnit"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public static double UnitConversion(double src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
+        if (oldSrcUnit == null || oldSrcUnit.trim().isEmpty() || oldTarUnit == null || oldTarUnit.trim().isEmpty()) {
             return src;
         }
         if (oldSrcUnit.equals(oldTarUnit)) {
             return src;
         }
 
-        BigDecimal result = tryConvert(src, oldSrcUnit, oldTarUnit);
+        Double result = TryConvert(src, oldSrcUnit, oldTarUnit);
         if (result != null) {
             return result;
         }
 
-        String cleanedSrcUnit = UNIT_REGEX.matcher(oldSrcUnit).replaceAll("");
-        result = tryConvert(src, cleanedSrcUnit, oldTarUnit);
+        oldSrcUnit = unitRegex.matcher(oldSrcUnit).replaceAll("");
+        result = TryConvert(src, oldSrcUnit, oldTarUnit);
         if (result != null) {
             return result;
         }
 
         if (name == null || name.isEmpty()) {
-            throw new Exception(
-                    "The input item has different units and cannot be converted from [" + oldSrcUnit + "] to [" + oldTarUnit + "]");
+            throw new Exception(String.format("The input item has different units and cannot be converted from [%s] to [%s]", oldSrcUnit, oldTarUnit));
         }
-        throw new Exception(
-                "The input item [" + name + "] has different units and cannot be converted from [" + oldSrcUnit + "] to [" + oldTarUnit + "]");
+        throw new Exception(String.format("The input item [%s] has different units and cannot be converted from [%s] to [%s]", name, oldSrcUnit, oldTarUnit));
     }
 
-    private static BigDecimal tryConvert(BigDecimal src, String srcUnit, String tarUnit) {
+    private static Double TryConvert(double src, String srcUnit, String tarUnit) {
         try {
             if (DistanceConverter.Exists(srcUnit, tarUnit)) {
-                return new DistanceConverter(srcUnit, tarUnit).LeftToRight(src);
+                return new DistanceConverter(srcUnit, tarUnit).LeftToRight(new BigDecimal(src)).doubleValue();
             }
             if (MassConverter.Exists(srcUnit, tarUnit)) {
-                return new MassConverter(srcUnit, tarUnit).LeftToRight(src);
+                return new MassConverter(srcUnit, tarUnit).LeftToRight(new BigDecimal(src)).doubleValue();
             }
             if (AreaConverter.Exists(srcUnit, tarUnit)) {
-                return new AreaConverter(srcUnit, tarUnit).LeftToRight(src);
+                return new AreaConverter(srcUnit, tarUnit).LeftToRight(new BigDecimal(src)).doubleValue();
             }
             if (VolumeConverter.Exists(srcUnit, tarUnit)) {
-                return new VolumeConverter(srcUnit, tarUnit).LeftToRight(src);
+                return new VolumeConverter(srcUnit, tarUnit).LeftToRight(new BigDecimal(src)).doubleValue();
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
         }
         return null;
     }
 
-    /**
-     * 编译公式，返回可执行�?FunctionBase
-     *
-     * @param exp 公式字符�?
-     * @return 编译后的 FunctionBase
-     * @throws Exception 解析失败时抛�?
-     */
+    /// <summary>
+    /// 编译公式
+    /// </summary>
+    /// <param name="exp">公式</param>
+    /// <returns></returns>
     public static FunctionBase ParseFormula(String exp) throws Exception {
         if (exp == null || exp.trim().isEmpty()) {
             throw new Exception("Parameter exp invalid !");
         }
-        Object[] result = createParserContext(exp);
-        AntlrErrorTextWriter errorWriter = (AntlrErrorTextWriter) result[0];
-        if (errorWriter.IsError()) {
-            throw new Exception(errorWriter.ErrorMsg());
+        ParserContext context = CreateParserContext(exp);
+        if (context.errorWriter.IsError()) {
+            throw new Exception(context.errorWriter.ErrorMsg());
         }
-        mathParser.ProgContext context = (mathParser.ProgContext) result[1];
         MathFunctionVisitor visitor = new MathFunctionVisitor();
-        return visitor.visit(context);
+        return visitor.visitProg(context.context);
     }
 
-    /**
-     * 检查公式语法是否正�?
-     *
-     * @param exp 公式字符�?
-     * @return 是否正确
-     */
+    /// <summary>
+    /// 检查公式是否正确
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <returns></returns>
     public static boolean CheckFormula(String exp) {
         if (exp == null || exp.trim().isEmpty()) {
             return false;
         }
-        Object[] result = createParserContext(exp);
-        AntlrErrorTextWriter errorWriter = (AntlrErrorTextWriter) result[0];
-        return !errorWriter.IsError();
+        ParserContext context = CreateParserContext(exp);
+        return !context.errorWriter.IsError();
     }
 
-    /**
-     * 解析条件表达式，生成 ConditionTree
-     *
-     * @param condition 条件字符�?
-     * @return ConditionTree
-     */
+    /// <summary>
+    /// 解析条件
+    /// </summary>
+    /// <param name="condition"></param>
+    /// <returns></returns>
     public static ConditionTree ParseCondition(String condition) {
         ConditionTree tree = new ConditionTree();
         if (condition == null || condition.trim().isEmpty()) {
@@ -233,16 +180,14 @@ public final class AlgorithmEngineHelper {
             return tree;
         }
         try {
-            Object[] result = createParserContext(condition);
-            AntlrErrorTextWriter errorWriter = (AntlrErrorTextWriter) result[0];
-            if (errorWriter.IsError()) {
+            ParserContext context = CreateParserContext(condition);
+            if (context.errorWriter.IsError()) {
                 tree.Type = ConditionTreeType.Error;
-                tree.ErrorMessage = errorWriter.ErrorMsg();
+                tree.ErrorMessage = context.errorWriter.ErrorMsg();
                 return tree;
             }
-            mathParser.ProgContext context = (mathParser.ProgContext) result[1];
             MathSplitVisitor visitor = new MathSplitVisitor();
-            return visitor.visit(context);
+            return visitor.visitProg(context.context);
         } catch (Exception ex) {
             tree.Type = ConditionTreeType.Error;
             tree.ErrorMessage = ex.getMessage();
@@ -250,34 +195,31 @@ public final class AlgorithmEngineHelper {
         return tree;
     }
 
-    /**
-     * 创建 AND 逻辑函数（左 AND 右）
-     *
-     * @param left  左操作数函数
-     * @param right 右操作数函数
-     * @return AND 函数
-     */
+    /// <summary>
+    /// Creates a logical AND function that combines two specified functions.
+    /// </summary>
+    /// <param name="left">The left operand of the AND operation, representing the first function to be combined.</param>
+    /// <param name="right">The right operand of the AND operation, representing the second function to be combined.</param>
+    /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical AND of the specified functions.</returns>
     public static FunctionBase Condition_And(FunctionBase left, FunctionBase right) {
-        return new Function_AND(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_AND(left, right);
     }
 
-    /**
-     * 创建 OR 逻辑函数（左 OR 右）
-     *
-     * @param left  左操作数函数
-     * @param right 右操作数函数
-     * @return OR 函数
-     */
+    /// <summary>
+    /// Creates a logical OR function that combines two specified functions.
+    /// </summary>
+    /// <param name="left">The left operand of the OR operation, representing the first function to be combined.</param>
+    /// <param name="right">The right operand of the OR operation, representing the second function to be combined.</param>
+    /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical OR of the specified functions.</returns>
     public static FunctionBase Condition_Or(FunctionBase left, FunctionBase right) {
-        return new Function_OR(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_OR(left, right);
     }
 
-    /**
-     * 解析计算表达式，生成 CalculateTree
-     *
-     * @param exp 表达式字符串
-     * @return CalculateTree
-     */
+    /// <summary>
+    /// 解析计算表达式
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <returns></returns>
     public static CalculateTree ParseCalculate(String exp) {
         CalculateTree tree = new CalculateTree();
         if (exp == null || exp.trim().isEmpty()) {
@@ -286,16 +228,14 @@ public final class AlgorithmEngineHelper {
             return tree;
         }
         try {
-            Object[] result = createParserContext(exp);
-            AntlrErrorTextWriter errorWriter = (AntlrErrorTextWriter) result[0];
-            if (errorWriter.IsError()) {
+            ParserContext context = CreateParserContext(exp);
+            if (context.errorWriter.IsError()) {
                 tree.Type = CalculateTreeType.Error;
-                tree.ErrorMessage = errorWriter.ErrorMsg();
+                tree.ErrorMessage = context.errorWriter.ErrorMsg();
                 return tree;
             }
-            mathParser.ProgContext context = (mathParser.ProgContext) result[1];
             MathSplitVisitor2 visitor = new MathSplitVisitor2();
-            return visitor.visit(context);
+            return visitor.visitProg(context.context);
         } catch (Exception ex) {
             tree.Type = CalculateTreeType.Error;
             tree.ErrorMessage = ex.getMessage();
@@ -303,45 +243,75 @@ public final class AlgorithmEngineHelper {
         return tree;
     }
 
-    /**
-     * 创建加法运算函数
-     */
+    /// <summary>
+    /// Creates a function that represents the sum of two specified functions.
+    /// </summary>
+    /// <param name="left">The first function to be added.</param>
+    /// <param name="right">The second function to be added.</param>
+    /// <returns>A function that computes the sum of the values returned by the specified functions.</returns>
     public static FunctionBase Calculate_Add(FunctionBase left, FunctionBase right) {
-        return new Function_Add(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_Add(left, right);
     }
 
-    /**
-     * 创建减法运算函数
-     */
+    /// <summary>
+    /// Creates a function that represents the subtraction of two functions.
+    /// </summary>
+    /// <param name="left">The function to use as the minuend in the subtraction operation. Cannot be null.</param>
+    /// <param name="right">The function to use as the subtrahend in the subtraction operation. Cannot be null.</param>
+    /// <returns>A function that, when evaluated, returns the result of subtracting the value of the right function from the value
+    /// of the left function.</returns>
     public static FunctionBase Calculate_Subtract(FunctionBase left, FunctionBase right) {
-        return new Function_Sub(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_Sub(left, right);
     }
 
-    /**
-     * 创建乘法运算函数
-     */
+    /// <summary>
+    /// Creates a function that represents the multiplication of two functions.
+    /// </summary>
+    /// <param name="left">The left operand function to be multiplied.</param>
+    /// <param name="right">The right operand function to be multiplied.</param>
+    /// <returns>A function representing the product of the specified left and right functions.</returns>
     public static FunctionBase Calculate_Multiply(FunctionBase left, FunctionBase right) {
-        return new Function_Mul(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_Mul(left, right);
     }
 
-    /**
-     * 创建除法运算函数
-     */
+    /// <summary>
+    /// Creates a function that represents the division of two functions.
+    /// </summary>
+    /// <param name="left">The numerator function to be divided.</param>
+    /// <param name="right">The denominator function by which to divide.</param>
+    /// <returns>A function representing the result of dividing the left function by the right function.</returns>
     public static FunctionBase Calculate_Divide(FunctionBase left, FunctionBase right) {
-        return new Function_Div(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_Div(left, right);
     }
 
-    /**
-     * 创建取模运算函数
-     */
+    /// <summary>
+    /// Creates a function that computes the remainder after dividing the result of the left function by the result of the
+    /// right function.
+    /// </summary>
+    /// <param name="left">The function representing the dividend in the modulo operation. Cannot be null.</param>
+    /// <param name="right">The function representing the divisor in the modulo operation. Cannot be null.</param>
+    /// <returns>A function that, when evaluated, returns the result of the left function modulo the right function.</returns>
     public static FunctionBase Calculate_Mod(FunctionBase left, FunctionBase right) {
-        return new Function_Mod(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_Mod(left, right);
     }
 
-    /**
-     * 创建字符串连接函�?
-     */
+    /// <summary>
+    /// Creates a new function that represents the connection of two functions.
+    /// </summary>
+    /// <param name="left">The first function to be connected. Cannot be null.</param>
+    /// <param name="right">The second function to be connected. Cannot be null.</param>
+    /// <returns>A FunctionBase instance representing the connection of the specified left and right functions.</returns>
     public static FunctionBase Calculate_Connect(FunctionBase left, FunctionBase right) {
-        return new Function_Connect(left, right);
+        return new toolgood.algorithm.internals.functions.operator.Function_Connect(left, right);
+    }
+
+    static class ParserContext {
+        public AntlrErrorTextWriter errorWriter;
+        public mathParser.ProgContext context;
+
+        public ParserContext(AntlrErrorTextWriter errorWriter, mathParser.ProgContext context) {
+            this.errorWriter = errorWriter;
+            this.context = context;
+        }
     }
 }

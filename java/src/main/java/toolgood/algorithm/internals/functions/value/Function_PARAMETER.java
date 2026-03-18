@@ -46,10 +46,10 @@ public final class Function_PARAMETER extends Function_0 {
     @Override
     public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         ParameterType pt = new ParameterType();
-        pt.Name = name;
-        pt.Type = operandType;
-        pt.Operator = op;
-        pt.Value = val;
+        pt.setName(name);
+        pt.setType(operandType);
+        pt.setOperator(op);
+        pt.setValue(val);
         result.add(pt);
     }
 }

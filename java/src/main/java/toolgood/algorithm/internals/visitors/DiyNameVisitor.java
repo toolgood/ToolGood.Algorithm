@@ -5,17 +5,18 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import toolgood.algorithm.math.mathBaseVisitor;
 import toolgood.algorithm.math.mathParser.*;
 import toolgood.algorithm.internals.DiyNameInfo;
+import toolgood.algorithm.internals.DiyNameKeyInfo;
 
 public final class DiyNameVisitor extends mathBaseVisitor<Object> {
     public DiyNameInfo diy = new DiyNameInfo();
 
     private void AddParameter(TerminalNode node) {
         if (node != null) {
-            DiyNameInfo.KeyInfo keyInfo = diy.new KeyInfo();
-            keyInfo.Name = node.getText();
-            keyInfo.Start = node.getSymbol().getStartIndex();
-            keyInfo.End = node.getSymbol().getStopIndex();
-            diy.Parameters.add(keyInfo);
+            DiyNameKeyInfo keyInfo = new DiyNameKeyInfo();
+            keyInfo.setName(node.getText());
+            keyInfo.setStart(node.getSymbol().getStartIndex());
+            keyInfo.setEnd(node.getSymbol().getStopIndex());
+            diy.getParameters().add(keyInfo);
         }
     }
 
@@ -34,11 +35,11 @@ public final class DiyNameVisitor extends mathBaseVisitor<Object> {
     @Override
     public Object visitDiyFunction_fun(DiyFunction_funContext context) {
         TerminalNode node = context.PARAMETER();
-        DiyNameInfo.KeyInfo keyInfo = diy.new KeyInfo();
-        keyInfo.Name = node.getText();
-        keyInfo.Start = node.getSymbol().getStartIndex();
-        keyInfo.End = node.getSymbol().getStopIndex();
-        diy.Functions.add(keyInfo);
+        DiyNameKeyInfo keyInfo = new DiyNameKeyInfo();
+        keyInfo.setName(node.getText());
+        keyInfo.setStart(node.getSymbol().getStartIndex());
+        keyInfo.setEnd(node.getSymbol().getStopIndex());
+        diy.getFunctions().add(keyInfo);
         return visitChildren(context);
     }
 }
