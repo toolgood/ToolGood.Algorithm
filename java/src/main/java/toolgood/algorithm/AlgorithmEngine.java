@@ -6,13 +6,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 
 import toolgood.algorithm.enums.AreaUnitType;
 import toolgood.algorithm.enums.DistanceUnitType;
 import toolgood.algorithm.enums.MassUnitType;
 import toolgood.algorithm.enums.VolumeUnitType;
 import toolgood.algorithm.internals.functions.FunctionBase;
-import toolgood.algorithm.internals.visitors.AntlrErrorTextWriter;
+import toolgood.algorithm.internals.visitors.AntlrCharStream;
+import toolgood.algorithm.internals.visitors.AntlrErrorData;
+import toolgood.algorithm.internals.visitors.AntlrErrorListener;
 import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
@@ -63,7 +66,6 @@ public class AlgorithmEngine {
                 try {
                     return ParseInternal(e);
                 } catch (Exception e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
                 return null;
@@ -73,15 +75,22 @@ public class AlgorithmEngine {
     }
 
     private FunctionBase ParseInternal(String exp) throws Exception {
-        AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-        org.antlr.v4.runtime.CharStream stream = CharStreams.fromString(exp);
+        AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
         mathLexer lexer = new mathLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         mathParser parser = new mathParser(tokens);
 
+        AntlrErrorData data = new AntlrErrorData();
+        AntlrErrorListener<Integer> listener = new AntlrErrorListener<>(data);
+        AntlrErrorListener<Token> listener2 = new AntlrErrorListener<>(data);
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(listener);
+        parser.removeErrorListeners();
+        parser.addErrorListener(listener2);
+
         mathParser.ProgContext context = parser.prog();
-        if (antlrErrorTextWriter.IsError()) {
-            LastError = antlrErrorTextWriter.ErrorMsg();
+        if (data.isError()) {
+            LastError = data.getErrorMsg();
             throw new Exception(LastError);
         }
         MathFunctionVisitor visitor = new MathFunctionVisitor();
