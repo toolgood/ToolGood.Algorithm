@@ -153,16 +153,16 @@ public class MathEx {
 
         BigDecimal xx = xCopy.multiply(xCopy);
 
-        BigDecimal yy = xx.multiply(Half.negate());
-        BigDecimal y = One.add(yy);
+        BigDecimal term = xx.multiply(Half.negate());
+        BigDecimal y = One.add(term);
         BigDecimal cachedY = y.subtract(One);
         for (int i = 1; cachedY.compareTo(y) != 0 && i < MaximumIterations; i++) {
             cachedY = y;
 
             BigDecimal factor = new BigDecimal(i * (i + i + 3) + 1);
             factor = Half.divide(factor, MathContext.DECIMAL128).negate();
-            xx = xx.multiply(xCopy).multiply(xCopy).multiply(factor);
-            y = y.add(xx);
+            term = term.multiply(xx).multiply(factor);
+            y = y.add(term);
         }
 
         return y;
