@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
 
 import java.math.BigDecimal;
 import toolgood.algorithm.enums.CalculateTreeType;
@@ -38,12 +37,11 @@ public class AlgorithmEngineHelper {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         mathParser parser = new mathParser(tokens);
 
-        AntlrErrorListener<Integer> listener = new AntlrErrorListener<>(data);
-        AntlrErrorListener<Token> listener2 = new AntlrErrorListener<>(data);
+        AntlrErrorListener listener = new AntlrErrorListener(data);
         lexer.removeErrorListeners();
         lexer.addErrorListener(listener);
         parser.removeErrorListeners();
-        parser.addErrorListener(listener2);
+        parser.addErrorListener(listener);
 
         mathParser.ProgContext context = parser.prog();
         return new ParserContext(data, context);

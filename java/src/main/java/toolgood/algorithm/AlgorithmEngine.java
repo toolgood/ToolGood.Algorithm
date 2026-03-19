@@ -6,7 +6,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
 
 import toolgood.algorithm.enums.AreaUnitType;
 import toolgood.algorithm.enums.DistanceUnitType;
@@ -81,12 +80,11 @@ public class AlgorithmEngine {
         mathParser parser = new mathParser(tokens);
 
         AntlrErrorData data = new AntlrErrorData();
-        AntlrErrorListener<Integer> listener = new AntlrErrorListener<>(data);
-        AntlrErrorListener<Token> listener2 = new AntlrErrorListener<>(data);
+        AntlrErrorListener listener = new AntlrErrorListener(data);
         lexer.removeErrorListeners();
         lexer.addErrorListener(listener);
         parser.removeErrorListeners();
-        parser.addErrorListener(listener2);
+        parser.addErrorListener(listener);
 
         mathParser.ProgContext context = parser.prog();
         if (data.isError()) {
