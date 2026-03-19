@@ -19,9 +19,4 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			Data.ErrorMsg = msg;
 		}
 	}
-	internal sealed class AntlrErrorData
-	{
-		public bool IsError { get; set; }
-		public string ErrorMsg { get; set; }
-	}
 }
