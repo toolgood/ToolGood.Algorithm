@@ -108,7 +108,7 @@ public class CompareTest {
     }
 
     @Test
-    void negative_compare_test() {
+   public   void negative_compare_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean value = engine.TryEvaluate("1 > (-2)", false);
         assertEquals(value, true);
