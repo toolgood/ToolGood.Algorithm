@@ -1,4 +1,4 @@
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -100,15 +100,22 @@ namespace ToolGood.Algorithm
 		}
 		private FunctionBase ParseInternal(string exp)
 		{
-			AntlrErrorTextWriter antlrErrorTextWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, TextWriter.Null, antlrErrorTextWriter);
+			var stream = new AntlrCharStream(exp);
+			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, TextWriter.Null, antlrErrorTextWriter);
+			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
+
+			AntlrErrorData data = new AntlrErrorData();
+			var listener = new AntlrErrorListener<int>(data);
+			var listener2 = new AntlrErrorListener<IToken>(data);
+			lexer.RemoveErrorListeners();
+			lexer.AddErrorListener(listener);
+			parser.RemoveErrorListeners();
+			parser.AddErrorListener(listener2);
 
 			var context = parser.prog();
-			if(antlrErrorTextWriter.IsError) {
-				LastError = antlrErrorTextWriter.ErrorMsg;
+			if(data.IsError) {
+				LastError = data.ErrorMsg;
 				throw new Exception(LastError);
 			}
 			var visitor = new MathFunctionVisitor();

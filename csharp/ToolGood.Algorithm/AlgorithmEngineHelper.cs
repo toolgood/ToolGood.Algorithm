@@ -20,15 +20,23 @@ namespace ToolGood.Algorithm
 	{
 		private static readonly Regex unitRegex = new Regex(@"[\s\(\)（）\[\]<>]", RegexOptions.Compiled);
 
-		internal static (AntlrErrorTextWriter errorWriter, mathParser.ProgContext context) CreateParserContext(string exp)
+		internal static (AntlrErrorData errorWriter, mathParser.ProgContext context) CreateParserContext(string exp)
 		{
-			var errorWriter = new AntlrErrorTextWriter();
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
-			var lexer = new mathLexer(stream, TextWriter.Null, errorWriter);
+			var stream = new AntlrCharStream(exp);
+			var lexer = new mathLexer(stream,TextWriter.Null, TextWriter.Null);
 			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, TextWriter.Null, errorWriter);
+			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
+
+			AntlrErrorData data = new AntlrErrorData();
+			var listener = new AntlrErrorListener<int>(data);
+			var listener2 = new AntlrErrorListener<IToken>(data);
+			lexer.RemoveErrorListeners();
+			lexer.AddErrorListener(listener);
+			parser.RemoveErrorListeners();
+			parser.AddErrorListener(listener2);
+
 			var context = parser.prog();
-			return (errorWriter, context);
+			return (data, context);
 		}
 
 		/// <summary>
