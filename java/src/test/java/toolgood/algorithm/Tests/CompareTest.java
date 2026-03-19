@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class CompareTest {
 
     @Test
-    public  void base_test() {
+    public void base_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean b = engine.TryEvaluate("1=1", false);
         assertEquals(b, true);
@@ -73,7 +73,7 @@ public class CompareTest {
     }
 
     @Test
-    public  void null_compare_test() {
+    public void null_compare_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
 
         boolean bb2 = engine.TryEvaluate("1>null", false);
@@ -108,7 +108,7 @@ public class CompareTest {
     }
 
     @Test
-   public   void negative_compare_test() {
+    public void negative_compare_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean value = engine.TryEvaluate("1 > (-2)", false);
         assertEquals(value, true);
