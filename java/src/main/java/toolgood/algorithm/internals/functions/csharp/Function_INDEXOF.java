@@ -52,7 +52,8 @@ public final class Function_INDEXOF extends Function_4 {
             return ParameterError(4);
         }
 
-        return Operand.Create(text.indexOf(args2.TextValue(), startIndex, startIndex + count) + engine.ExcelIndex);
+        String searchIn = text.substring(startIndex, startIndex + count);
+        return Operand.Create(searchIn.indexOf(args2.TextValue()) + startIndex + engine.ExcelIndex);
     }
 
     @Override

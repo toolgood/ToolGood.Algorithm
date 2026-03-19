@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals.functions.csharpweb;
 
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -30,7 +30,7 @@ public final class Function_URLENCODE extends Function_1 {
             return args1;
         }
         String s = args1.TextValue();
-        String r = URLEncoder.encode(s, StandardCharsets.UTF_8);
+        String r = URLEncoder.encode(s, Charset.forName("UTF-8"));
         return Operand.Create(r);
     }
 
