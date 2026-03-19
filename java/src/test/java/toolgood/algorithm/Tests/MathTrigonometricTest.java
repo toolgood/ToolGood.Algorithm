@@ -5,7 +5,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class MathTrigonometricTest {
+public class MathTrigonometricTest {
 
     @Test
     void degrees_test() {

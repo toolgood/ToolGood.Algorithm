@@ -5,7 +5,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class StringTest {
+public class StringTest {
 
     @Test
     void ASC_test() {

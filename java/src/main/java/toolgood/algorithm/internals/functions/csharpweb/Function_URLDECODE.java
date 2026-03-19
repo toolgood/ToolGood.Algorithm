@@ -30,7 +30,7 @@ public final class Function_URLDECODE extends Function_1 {
             return args1;
         }
         String s = args1.TextValue();
-        String r = URLDecoder.decode(s, Charset.forName("UTF-8"));
+        String r = URLDecoder.decode(s, "UTF-8");
         return Operand.Create(r);
     }
 

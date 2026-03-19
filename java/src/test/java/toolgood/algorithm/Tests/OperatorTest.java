@@ -5,7 +5,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class OperatorTest {
+public class OperatorTest {
 
     @Test
     void arithmetic_test() {

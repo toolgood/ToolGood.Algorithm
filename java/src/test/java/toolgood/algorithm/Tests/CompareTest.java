@@ -5,10 +5,10 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class CompareTest {
+public class CompareTest {
 
     @Test
-    void base_test() {
+    public  void base_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean b = engine.TryEvaluate("1=1", false);
         assertEquals(b, true);
@@ -45,7 +45,7 @@ class CompareTest {
     }
 
     @Test
-    void strict_equality_test() {
+    public void strict_equality_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean b = engine.TryEvaluate("1===1", false);
         assertEquals(b, true);
@@ -73,7 +73,7 @@ class CompareTest {
     }
 
     @Test
-    void null_compare_test() {
+    public  void null_compare_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
 
         boolean bb2 = engine.TryEvaluate("1>null", false);

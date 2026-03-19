@@ -5,7 +5,7 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class MathTransformationTest {
+public class MathTransformationTest {
 
     @Test
     void BIN2DEC_test() {

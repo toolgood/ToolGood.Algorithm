@@ -10,7 +10,7 @@ import java.time.temporal.ChronoUnit;
 
 import static org.junit.Assert.assertEquals;
 
-class DateTimesTest {
+public class DateTimesTest {
 
     @Test
     void DATEVALUE_Test() {
