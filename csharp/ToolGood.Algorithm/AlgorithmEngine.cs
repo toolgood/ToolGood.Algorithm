@@ -100,7 +100,7 @@ namespace ToolGood.Algorithm
 		}
 		private FunctionBase ParseInternal(string exp)
 		{
-			var stream = new AntlrCharStream(new AntlrInputStream(exp));
+			var stream = new AntlrCharStream(exp);
 			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
