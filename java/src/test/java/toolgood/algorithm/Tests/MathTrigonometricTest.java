@@ -8,21 +8,21 @@ import static org.junit.Assert.assertEquals;
 public class MathTrigonometricTest {
 
     @Test
-    void degrees_test() {
+    public void degrees_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("degrees(pi())", 0.0);
         assertEquals(180.0, t, 0.0001);
     }
 
     @Test
-    void RADIANS_test() {
+    public void RADIANS_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("RADIANS(180)", 0.0);
         assertEquals(Math.PI, t, 0.0001);
     }
 
     @Test
-    void cos_test() {
+    public void cos_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("cos(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -30,7 +30,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void cosh_test() {
+    public void cosh_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("cosh(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -38,7 +38,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void sin_test() {
+    public void sin_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("sin(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -46,7 +46,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void sinh_test() {
+    public void sinh_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("sinh(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -54,7 +54,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void tan_test() {
+    public void tan_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("tan(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -62,7 +62,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void tanh_test() {
+    public void tanh_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("tanh(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -70,7 +70,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void acos_test() {
+    public void acos_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("acos(0.5)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -78,7 +78,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void acosh_test() {
+    public void acosh_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("acosh(1.5)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -86,7 +86,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void asin_test() {
+    public void asin_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("asin(0.5)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -94,7 +94,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void asinh_test() {
+    public void asinh_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("asinh(1.5)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -102,7 +102,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void atan_test() {
+    public void atan_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("atan(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -110,7 +110,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void atanh_test() {
+    public void atanh_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("atanh(0.5)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -118,7 +118,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void atan2_test() {
+    public void atan2_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("atan2(1,2)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -126,7 +126,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void cot_test() {
+    public void cot_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("cot(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -134,7 +134,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void coth_test() {
+    public void coth_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("coth(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -142,7 +142,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void csc_test() {
+    public void csc_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("csc(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -150,7 +150,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void csch_test() {
+    public void csch_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("csch(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -158,7 +158,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void sec_test() {
+    public void sec_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("sec(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -166,7 +166,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void sech_test() {
+    public void sech_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("sech(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -174,7 +174,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void acot_test() {
+    public void acot_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("acot(1)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;
@@ -182,7 +182,7 @@ public class MathTrigonometricTest {
     }
 
     @Test
-    void acoth_test() {
+    public void acoth_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("acoth(2)", 0.0);
         double rounded = Math.round(t * 1000000) / 1000000.0;

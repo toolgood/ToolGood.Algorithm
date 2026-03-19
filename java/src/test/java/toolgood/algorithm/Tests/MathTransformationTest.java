@@ -8,28 +8,28 @@ import static org.junit.Assert.assertEquals;
 public class MathTransformationTest {
 
     @Test
-    void BIN2DEC_test() {
+    public void BIN2DEC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object num = engine.TryEvaluate("BIN2DEC(10101)", 0);
         assertEquals(num, 21);
     }
 
     @Test
-    void OCT2DEC_test() {
+    public void OCT2DEC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object num = engine.TryEvaluate("OCT2DEC(12456)", 0);
         assertEquals(num, 5422);
     }
 
     @Test
-    void HEX2DEC_test() {
+    public void HEX2DEC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
         assertEquals(num, 2177759);
     }
 
     @Test
-    void DEC2BIN_test() {
+    public void DEC2BIN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("DEC2BIN(10)", "");
         assertEquals(t, "1010");
@@ -38,63 +38,63 @@ public class MathTransformationTest {
     }
 
     @Test
-    void OCT2BIN_test() {
+    public void OCT2BIN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("OCT2BIN('721')", "");
         assertEquals(t, "111010001");
     }
 
     @Test
-    void HEX2BIN_test() {
+    public void HEX2BIN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("HEX2BIN('fa')", "");
         assertEquals(t, "11111010");
     }
 
     @Test
-    void BIN2OCT_test() {
+    public void BIN2OCT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("BIN2OCT(10)", "");
         assertEquals(t, "2");
     }
 
     @Test
-    void DEC2OCT_test() {
+    public void DEC2OCT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("DEC2OCT('75')", "");
         assertEquals(t, "113");
     }
 
     @Test
-    void HEX2OCT_test() {
+    public void HEX2OCT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("HEX2OCT('f5')", "");
         assertEquals(t, "365");
     }
 
     @Test
-    void BIN2HEX_test() {
+    public void BIN2HEX_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("BIN2HEX(101010100)", "");
         assertEquals(t, "154");
     }
 
     @Test
-    void OCT2HEX_test() {
+    public void OCT2HEX_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("OCT2HEX(75212)", "");
         assertEquals(t, "7A8A");
     }
 
     @Test
-    void DEC2HEX_test() {
+    public void DEC2HEX_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("DEC2HEX(952)", "");
         assertEquals(t, "3B8");
     }
 
     @Test
-    void ARABIC_test() {
+    public void ARABIC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("ARABIC('I')", 0);
         assertEquals(t, 1);
@@ -137,7 +137,7 @@ public class MathTransformationTest {
     }
 
     @Test
-    void ROMAN_test() {
+    public void ROMAN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         Object t = engine.TryEvaluate("ROMAN(1)", "");
         assertEquals(t, "I");
