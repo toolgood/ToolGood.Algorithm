@@ -8,14 +8,14 @@ import static org.junit.Assert.assertEquals;
 public class StringTest {
 
     @Test
-    void ASC_test() {
+    public void ASC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("asc('ａｂｃＡＢＣ１２３')", "");
         assertEquals(t, "abcABC123");
     }
 
     @Test
-    void Jis_test() {
+    public void Jis_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("jis('abcABC123')", "");
         assertEquals(t, "ａｂｃＡＢＣ１２３");
@@ -24,28 +24,28 @@ public class StringTest {
     }
 
     @Test
-    void CHAR_test() {
+    public void CHAR_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("char(49)", "");
         assertEquals(t, "1");
     }
 
     @Test
-    void CLEAN_test() {
+    public void CLEAN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("clean('\r112\t')", "");
         assertEquals(t, "112");
     }
 
     @Test
-    void code_test() {
+    public void code_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("code('1')", "");
         assertEquals(t, 49);
     }
 
     @Test
-    void unichar_test() {
+    public void unichar_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("unichar(65)", "");
         assertEquals(t, "A");
@@ -56,7 +56,7 @@ public class StringTest {
     }
 
     @Test
-    void unicode_test() {
+    public void unicode_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("unicode('A')", "");
         assertEquals(t, 65);
@@ -67,21 +67,21 @@ public class StringTest {
     }
 
     @Test
-    void CONCATENATE_test() {
+    public void CONCATENATE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("CONCATENATE('tt','33')", "");
         assertEquals(t, "tt33");
     }
 
     @Test
-    void CONCATENATE_ALIAS_test() {
+    public void CONCATENATE_ALIAS_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("CONCAT('tt','33')", "");
         assertEquals(t, "tt33");
     }
 
     @Test
-    void EXACT_test() {
+    public void EXACT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("EXACT('tt','33')", "");
         assertEquals(t, false);
@@ -99,7 +99,7 @@ public class StringTest {
     }
 
     @Test
-    void FIND_test() {
+    public void FIND_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("FIND(\"11\",\"12221122\")", "");
         assertEquals(t, 5);
@@ -115,7 +115,7 @@ public class StringTest {
     }
 
     @Test
-    void FIXED_test() {
+    public void FIXED_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("FIXED(4567.89,1)", "");
         assertEquals(t, "4,567.9");
@@ -126,49 +126,49 @@ public class StringTest {
     }
 
     @Test
-    void LEFT_test() {
+    public void LEFT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LEFT('123222',3)", "");
         assertEquals(t, "123");
     }
 
     @Test
-    void LEN_test() {
+    public void LEN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LEN('123222')", "");
         assertEquals(t, 6);
     }
 
     @Test
-    void LOWER_test() {
+    public void LOWER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LOWER('ABC')", "");
         assertEquals(t, "abc");
     }
 
     @Test
-    void LOWER_ALIAS_test() {
+    public void LOWER_ALIAS_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("TOLOWER('ABC')", "");
         assertEquals(t, "abc");
     }
 
     @Test
-    void MID_test() {
+    public void MID_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("MID('ABCDEF',2,3)", "");
         assertEquals(t, "BCD");
     }
 
     @Test
-    void PROPER_test() {
+    public void PROPER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("PROPER('abc abc')", "");
         assertEquals(t, "Abc Abc");
     }
 
     @Test
-    void REPLACE_test() {
+    public void REPLACE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("REPLACE(\"abccd\",2,3,\"2\")", "");
         assertEquals(t, "a2d");
@@ -178,35 +178,35 @@ public class StringTest {
     }
 
     @Test
-    void REPT_test() {
+    public void REPT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("REPT(\"q\",3)", "");
         assertEquals(t, "qqq");
     }
 
     @Test
-    void RIGHT_test() {
+    public void RIGHT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("RIGHT(\"123q\",3)", "");
         assertEquals(t, "23q");
     }
 
     @Test
-    void RMB_test() {
+    public void RMB_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("rmb(12.3)", "");
         assertEquals(t, "壹拾贰元叁角");
     }
 
     @Test
-    void SEARCH_test() {
+    public void SEARCH_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", "");
         assertEquals(t, 4);
     }
 
     @Test
-    void SUBSTITUTE_test() {
+    public void SUBSTITUTE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\")", "");
         assertEquals(t, "1212cc");
@@ -224,7 +224,7 @@ public class StringTest {
     }
 
     @Test
-    void T_test() {
+    public void T_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("T(12)", "");
         assertEquals(t, "");
@@ -233,50 +233,49 @@ public class StringTest {
     }
 
     @Test
-    void TEXT_test() {
+    public void TEXT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("TEXT(123,\"0.00\")", "");
         assertEquals(t, "123.00");
     }
 
     @Test
-    void TRIM_test() {
+    public void TRIM_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("TRIM(\" 123 123 \")", "");
         assertEquals(t, "123 123");
     }
 
     @Test
-    void UPPER_test() {
+    public void UPPER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("UPPER(\"abc\")", "");
         assertEquals(t, "ABC");
     }
 
     @Test
-    void UPPER_ALIAS_test() {
+    public void UPPER_ALIAS_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("TOUPPER('abc')", "");
         assertEquals(t, "ABC");
     }
 
     @Test
-    void VALUE_test() {
+    public void VALUE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("VALUE(\"123\")", "");
         assertEquals(t, 123);
     }
 
-    // 方法式调用测试
     @Test
-    void MethodStyle_LEN_test() {
+    public void MethodStyle_LEN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abcdef'.LEN()", "");
         assertEquals(t, 6);
     }
 
     @Test
-    void MethodStyle_LEFT_test() {
+    public void MethodStyle_LEFT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abcdef'.LEFT(3)", "");
         assertEquals(t, "abc");
@@ -286,7 +285,7 @@ public class StringTest {
     }
 
     @Test
-    void MethodStyle_RIGHT_test() {
+    public void MethodStyle_RIGHT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abcdef'.RIGHT(3)", "");
         assertEquals(t, "def");
@@ -296,35 +295,35 @@ public class StringTest {
     }
 
     @Test
-    void MethodStyle_MID_test() {
+    public void MethodStyle_MID_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abcdef'.MID(2,3)", "");
         assertEquals(t, "bcd");
     }
 
     @Test
-    void MethodStyle_LOWER_test() {
+    public void MethodStyle_LOWER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'ABC'.LOWER()", "");
         assertEquals(t, "abc");
     }
 
     @Test
-    void MethodStyle_UPPER_test() {
+    public void MethodStyle_UPPER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abc'.UPPER()", "");
         assertEquals(t, "ABC");
     }
 
     @Test
-    void MethodStyle_TRIM_test() {
+    public void MethodStyle_TRIM_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'  abc  '.TRIM()", "");
         assertEquals(t, "abc");
     }
 
     @Test
-    void MethodStyle_REPLACE_test() {
+    public void MethodStyle_REPLACE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abcdef'.REPLACE(2,3,'x')", "");
         assertEquals(t, "axef");
@@ -334,7 +333,7 @@ public class StringTest {
     }
 
     @Test
-    void MethodStyle_EXACT_test() {
+    public void MethodStyle_EXACT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abc'.EXACT('abc')", "");
         assertEquals(t, true);
@@ -344,7 +343,7 @@ public class StringTest {
     }
 
     @Test
-    void MethodStyle_T_test() {
+    public void MethodStyle_T_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'abc'.T()", "");
         assertEquals(t, "abc");
@@ -354,29 +353,28 @@ public class StringTest {
     }
 
     @Test
-    void MethodStyle_TEXT_test() {
+    public void MethodStyle_TEXT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("123.456.TEXT('0.00')", "");
         assertEquals(t, "123.46");
     }
 
     @Test
-    void MethodStyle_VALUE_test2() {
+    public void MethodStyle_VALUE_test2() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("'123'.VALUE()", "");
         assertEquals(t, 123);
     }
 
     @Test
-    void MethodStyle_RMB_test() {
+    public void MethodStyle_RMB_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("123.45.RMB()", "");
         assertEquals(t, "壹佰贰拾叁元肆角伍分");
     }
 
-    // 边界值测试
     @Test
-    void EmptyString_Test() {
+    public void EmptyString_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LEN('')", "");
         assertEquals(t, 0);
@@ -392,7 +390,7 @@ public class StringTest {
     }
 
     @Test
-    void UnicodeBoundary_Test() {
+    public void UnicodeBoundary_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LEN('中文')", "");
         assertEquals(t, 2);
@@ -405,7 +403,7 @@ public class StringTest {
     }
 
     @Test
-    void SubstringBoundary_Test() {
+    public void SubstringBoundary_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LEFT('ABC', 100)", "");
         assertEquals(t, "ABC");
@@ -421,7 +419,7 @@ public class StringTest {
     }
 
     @Test
-    void SubstituteBoundary_Test() {
+    public void SubstituteBoundary_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("SUBSTITUTE('aaa', 'a', 'b')", "");
         assertEquals(t, "bbb");

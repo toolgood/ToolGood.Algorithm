@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class OperatorTest {
 
     @Test
-    void arithmetic_test() {
+    public void arithmetic_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("1+(3*2+2)/2", 0.0);
         assertEquals(5, t, 0.0001);
@@ -40,7 +40,7 @@ public class OperatorTest {
     }
 
     @Test
-    void connect_test() {
+    public void connect_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String s = engine.TryEvaluate("'aa'&'bb'", "");
         assertEquals("aabb", s);
@@ -50,7 +50,7 @@ public class OperatorTest {
     }
 
     @Test
-    void conditional_test() {
+    public void conditional_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t1 = engine.TryEvaluate("-7 < -2 ? 1 : 2", 0.0);
         assertEquals(1, t1, 0.0001);
@@ -65,7 +65,7 @@ public class OperatorTest {
     }
 
     @Test
-    void percentage_test() {
+    public void percentage_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("100%", 0.0);
         assertEquals(1.0, t, 0.0001);
@@ -84,7 +84,7 @@ public class OperatorTest {
     }
 
     @Test
-    void null_operation_test() {
+    public void null_operation_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double tbb2 = engine.TryEvaluate("'111'*null", 0.0);
         assertEquals(0, tbb2, 0.0001);
