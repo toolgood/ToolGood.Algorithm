@@ -5,10 +5,10 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class FlowTest {
+public class FlowTest {
 
     @Test
-    void If_Test() {
+    public void If_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(1=1,1,2)", 0.0);
         assertEquals(t, 1);
@@ -25,7 +25,7 @@ class FlowTest {
     }
 
     @Test
-    void iferror_test() {
+    public void iferror_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("iferror(1/0,1,2)", 0.0);
         assertEquals(t, 1);
@@ -35,7 +35,7 @@ class FlowTest {
     }
 
     @Test
-    void iserror_test() {
+    public void iserror_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("iserror(1/0,1)", 0.0);
         assertEquals(t, 1);
@@ -45,7 +45,7 @@ class FlowTest {
     }
 
     @Test
-    void ifnull_test() {
+    public void ifnull_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("isnull(null,1)", 0.0);
         assertEquals(t, 1);
@@ -55,7 +55,7 @@ class FlowTest {
     }
 
     @Test
-    void isnullorerror_test() {
+    public void isnullorerror_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("isnullorerror(null,1)", 0.0);
         assertEquals(t, 1);
@@ -68,7 +68,7 @@ class FlowTest {
     }
 
     @Test
-    void ISNUMBER_test() {
+    public void ISNUMBER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(ISNUMBER(1),1,2)", 0.0);
         assertEquals(t, 1);
@@ -83,7 +83,7 @@ class FlowTest {
     }
 
     @Test
-    void ISTEXT_test() {
+    public void ISTEXT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(ISTEXT(1),1,2)", 0.0);
         assertEquals(t, 2);
@@ -98,7 +98,7 @@ class FlowTest {
     }
 
     @Test
-    void ISNONTEXT_test() {
+    public void ISNONTEXT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(ISNONTEXT(1),1,2)", 0.0);
         assertEquals(t, 1);
@@ -113,7 +113,7 @@ class FlowTest {
     }
 
     @Test
-    void ISLOGICAL_test() {
+    public void ISLOGICAL_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(ISLOGICAL(1),1,2)", 0.0);
         assertEquals(t, 2);
@@ -129,7 +129,7 @@ class FlowTest {
     }
 
     @Test
-    void ISEVEN_test() {
+    public void ISEVEN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(ISEVEN(1),1,2)", 0.0);
         assertEquals(t, 2);
@@ -142,7 +142,7 @@ class FlowTest {
     }
 
     @Test
-    void ISODD_test() {
+    public void ISODD_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("if(ISODD(1),1,2)", 0.0);
         assertEquals(t, 1);
@@ -155,7 +155,7 @@ class FlowTest {
     }
 
     @Test
-    void And_Test() {
+    public void And_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("and(true(),1=1)", 0.0);
         assertEquals(t, true);
@@ -172,7 +172,7 @@ class FlowTest {
     }
 
     @Test
-    void Or_Test() {
+    public void Or_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("or(true(),1=1)", 0.0);
         assertEquals(t, true);
@@ -192,7 +192,7 @@ class FlowTest {
     }
 
     @Test
-    void Not_Test() {
+    public void Not_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("not(true())", 0.0);
         assertEquals(t, false);
@@ -201,21 +201,21 @@ class FlowTest {
     }
 
     @Test
-    void true_Test() {
+    public void true_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("true()", 0.0);
         assertEquals(t, true);
     }
 
     @Test
-    void false_Test() {
+    public void false_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("false()", 0.0);
         assertEquals(t, false);
     }
 
     @Test
-    void andor_Test() {
+    public void andor_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("1=1 && 2==2 && 3=3", false);
         assertEquals(t, true);
@@ -228,7 +228,7 @@ class FlowTest {
     }
 
     @Test
-    void IFS_test() {
+    public void IFS_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("IFS(1=1, 'a', 1=2, 'b')", 0.0);
         assertEquals(t, "a");
@@ -241,7 +241,7 @@ class FlowTest {
     }
 
     @Test
-    void SWITCH_test() {
+    public void SWITCH_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SWITCH(1, 1, 'one', 2, 'two')", 0.0);
         assertEquals(t, "one");
@@ -257,7 +257,7 @@ class FlowTest {
     }
 
     @Test
-    void XOR_test() {
+    public void XOR_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("XOR(true(), false())", false);
         assertEquals(t, true);
@@ -282,7 +282,7 @@ class FlowTest {
     }
 
     @Test
-    void MethodStyle_ISNUMBER_test() {
+    public void MethodStyle_ISNUMBER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("123.ISNUMBER()", false);
         assertEquals(t, true);
@@ -295,7 +295,7 @@ class FlowTest {
     }
 
     @Test
-    void MethodStyle_ISTEXT_test() {
+    public void MethodStyle_ISTEXT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("'abc'.ISTEXT()", false);
         assertEquals(t, true);
@@ -305,7 +305,7 @@ class FlowTest {
     }
 
     @Test
-    void MethodStyle_ISNONTEXT_test() {
+    public void MethodStyle_ISNONTEXT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("123.ISNONTEXT()", false);
         assertEquals(t, true);
@@ -315,7 +315,7 @@ class FlowTest {
     }
 
     @Test
-    void MethodStyle_ISLOGICAL_test() {
+    public void MethodStyle_ISLOGICAL_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("true.ISLOGICAL()", false);
         assertEquals(t, true);
@@ -328,7 +328,7 @@ class FlowTest {
     }
 
     @Test
-    void MethodStyle_ISNULL_test() {
+    public void MethodStyle_ISNULL_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("null.ISNULL()", false);
         assertEquals(t, true);
@@ -338,7 +338,7 @@ class FlowTest {
     }
 
     @Test
-    void MethodStyle_ISNULLORERROR_test() {
+    public void MethodStyle_ISNULLORERROR_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean t = engine.TryEvaluate("null.ISNULLORERROR()", false);
         assertEquals(t, true);

@@ -5,38 +5,38 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.*;
 
-class MathBaseTest {
+public class MathBaseTest {
 
     @Test
-    void Pi_test() {
+    public void Pi_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("pi()", 0.0);
         assertEquals(3.141592654, Math.round((Double) t * 1000000000L) / 1000000000.0);
     }
 
     @Test
-    void abs_test() {
+    public void abs_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("abs(-1.2)", 0.0);
         assertEquals(1.2, t);
     }
 
     @Test
-    void QUOTIENT_test() {
+    public void QUOTIENT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("QUOTIENT(7,3)", 0.0);
         assertEquals(2.0, t);
     }
 
     @Test
-    void MOD_test() {
+    public void MOD_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("MOD(7,3)", 0.0);
         assertEquals(1.0, t);
     }
 
     @Test
-    void SIGN_test() {
+    public void SIGN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SIGN(0)", 0.0);
         assertEquals(0, t);
@@ -47,21 +47,21 @@ class MathBaseTest {
     }
 
     @Test
-    void SQRT_test() {
+    public void SQRT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SQRT(9)", 0.0);
         assertEquals(3.0, t);
     }
 
     @Test
-    void SUM_test() {
+    public void SUM_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SUM(1,2,3,4)", 0.0);
         assertEquals(10.0, t);
     }
 
     @Test
-    void TRUNC_test() {
+    public void TRUNC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("TRUNC(9.222)", 0.0);
         assertEquals(9.0, t);
@@ -70,7 +70,7 @@ class MathBaseTest {
     }
 
     @Test
-    void int_test() {
+    public void int_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("int(9.222)", 0.0);
         assertEquals(9.0, t);
@@ -79,7 +79,7 @@ class MathBaseTest {
     }
 
     @Test
-    void GCD_test() {
+    public void GCD_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("GCD(3,5,7)", 0.0);
         assertEquals(1.0, t);
@@ -88,21 +88,21 @@ class MathBaseTest {
     }
 
     @Test
-    void LCM_test() {
+    public void LCM_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("LCM(3,5,7)", 0.0);
         assertEquals(105.0, t);
     }
 
     @Test
-    void combin_test() {
+    public void combin_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("combin(10,2)", 0.0);
         assertEquals(45.0, t);
     }
 
     @Test
-    void PERMUT_test() {
+    public void PERMUT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("PERMUT(10,2)", 0.0);
         assertEquals(90.0, t);
@@ -110,14 +110,14 @@ class MathBaseTest {
 
     // 四舍五入
     @Test
-    void ROUND_test() {
+    public void ROUND_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ROUND(4.333,2)", 0.0);
         assertEquals(4.33, t);
     }
 
     @Test
-    void ROUND_single_param_test() {
+    public void ROUND_single_param_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ROUND(4.5)", 0.0);
         assertEquals(5.0, t);
@@ -130,7 +130,7 @@ class MathBaseTest {
     }
 
     @Test
-    void ROUNDDOWN_test() {
+    public void ROUNDDOWN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ROUNDDOWN(4.333,2)", 0.0);
         assertEquals(4.33, t);
@@ -140,7 +140,7 @@ class MathBaseTest {
     }
 
     @Test
-    void ROUNDUP_test() {
+    public void ROUNDUP_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ROUNDUP(4.333,2)", 0.0);
         assertEquals(4.34, t);
@@ -150,7 +150,7 @@ class MathBaseTest {
     }
 
     @Test
-    void CEILING_test() {
+    public void CEILING_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("CEILING(4.333,0.1)", 0.0);
         assertEquals(4.4, t);
@@ -160,7 +160,7 @@ class MathBaseTest {
     }
 
     @Test
-    void FLOOR_test() {
+    public void FLOOR_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("FLOOR(4.363,0.1)", 0.0);
         assertEquals(4.3, t);
@@ -170,21 +170,21 @@ class MathBaseTest {
     }
 
     @Test
-    void even_test() {
+    public void even_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("even(4.363)", 0.0);
         assertEquals(6.0, t);
     }
 
     @Test
-    void odd_test() {
+    public void odd_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("odd(4.363)", 0.0);
         assertEquals(5, t);
     }
 
     @Test
-    void MROUND_test() {
+    public void MROUND_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("MROUND(4.363,2)", 0.0);
         assertEquals(4, t);
@@ -194,7 +194,7 @@ class MathBaseTest {
 
     // 随机数
     @Test
-    void Rand_test() {
+    public void Rand_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("RAND()", 0.0);
         double value = (Double) t;
@@ -203,7 +203,7 @@ class MathBaseTest {
     }
 
     @Test
-    void RANDBETWEEN_test() {
+    public void RANDBETWEEN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("RANDBETWEEN(2,99)", 0.0);
         double value = (Double) t;
@@ -213,7 +213,7 @@ class MathBaseTest {
 
     // 幂/对数/阶乘
     @Test
-    void fact_test() {
+    public void fact_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("fact(6)", 0.0);
         assertEquals(720.0, t);
@@ -222,21 +222,21 @@ class MathBaseTest {
     }
 
     @Test
-    void factdouble_test() {
+    public void factdouble_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("factdouble(10)", 0.0);
         assertEquals(3840.0, t);
     }
 
     @Test
-    void POWER_test() {
+    public void POWER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("POWER(10,2)", 0.0);
         assertEquals(100.0, t);
     }
 
     @Test
-    void exp_test() {
+    public void exp_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("exp(2)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -244,7 +244,7 @@ class MathBaseTest {
     }
 
     @Test
-    void ln_test() {
+    public void ln_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ln(4)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -252,7 +252,7 @@ class MathBaseTest {
     }
 
     @Test
-    void log_test() {
+    public void log_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("log(10)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -264,7 +264,7 @@ class MathBaseTest {
     }
 
     @Test
-    void log10_test() {
+    public void log10_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("log10(10)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -272,7 +272,7 @@ class MathBaseTest {
     }
 
     @Test
-    void MULTINOMIAL_test() {
+    public void MULTINOMIAL_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("MULTINOMIAL(1,2,3)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -286,7 +286,7 @@ class MathBaseTest {
     }
 
     @Test
-    void PRODUCT_test() {
+    public void PRODUCT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("PRODUCT(1,2,3,4)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -294,7 +294,7 @@ class MathBaseTest {
     }
 
     @Test
-    void SQRTPI_test() {
+    public void SQRTPI_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SQRTPI(3)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -302,7 +302,7 @@ class MathBaseTest {
     }
 
     @Test
-    void SUMSQ_test() {
+    public void SUMSQ_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SUMSQ(1,2)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -311,7 +311,7 @@ class MathBaseTest {
 
     // 工程函数
     @Test
-    void ERF_test() {
+    public void ERF_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ERF(0)", 0.0);
         assertEquals(0.0, Math.round((Double) t * 1000000) / 1000000.0);
@@ -338,7 +338,7 @@ class MathBaseTest {
     }
 
     @Test
-    void ERFC_test() {
+    public void ERFC_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("ERFC(0)", 0.0);
         assertEquals(1.0, Math.round((Double) t * 1000000) / 1000000.0);
@@ -355,7 +355,7 @@ class MathBaseTest {
     }
 
     @Test
-    void DELTA_test() {
+    public void DELTA_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("DELTA(5, 5)", 0.0);
         assertEquals(1.0, t);
@@ -371,7 +371,7 @@ class MathBaseTest {
     }
 
     @Test
-    void GESTEP_test() {
+    public void GESTEP_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("GESTEP(5, 4)", 0.0);
         assertEquals(1.0, t);
@@ -391,7 +391,7 @@ class MathBaseTest {
 
     // 百分比
     @Test
-    void Percentage_test() {
+    public void Percentage_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("50%", 0.0);
         assertEquals(0.5, t);
@@ -414,7 +414,7 @@ class MathBaseTest {
 
     // 边界值测试
     @Test
-    void DivisionByZero_Test() {
+    public void DivisionByZero_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("1/0", 0.0);
         assertEquals(t, 0);
@@ -424,14 +424,14 @@ class MathBaseTest {
     }
 
     @Test
-    void Overflow_Test() {
+    public void Overflow_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("99999999999999999999*99999999999999999999", 0.0);
         assertEquals(t, 0);
     }
 
     @Test
-    void NullOperation_Test() {
+    public void NullOperation_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("null+1", 0.0);
         assertEquals(t, 0);
@@ -444,14 +444,14 @@ class MathBaseTest {
     }
 
     @Test
-    void SquareRootNegative_Test() {
+    public void SquareRootNegative_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("sqrt(-1)", 0.0);
         assertEquals(t, 0);
     }
 
     @Test
-    void LogNegative_Test() {
+    public void LogNegative_Test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("log(-1)", 0.0);
         assertEquals(t, 0);

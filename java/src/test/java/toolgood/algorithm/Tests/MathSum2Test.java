@@ -5,10 +5,10 @@ import toolgood.algorithm.AlgorithmEngine;
 
 import static org.junit.Assert.assertEquals;
 
-class MathSum2Test {
+public class MathSum2Test {
 
     @Test
-    void NORMSDIST_test() {
+    public void NORMSDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("NORMSDIST(1)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -16,7 +16,7 @@ class MathSum2Test {
     }
 
     @Test
-    void NORMDIST_test() {
+    public void NORMDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("NORMDIST(3,8,4,1)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -27,7 +27,7 @@ class MathSum2Test {
     }
 
     @Test
-    void NORMINV_test() {
+    public void NORMINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("NORMINV(0.8,8,3)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -35,7 +35,7 @@ class MathSum2Test {
     }
 
     @Test
-    void NORMSINV_test() {
+    public void NORMSINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("NORMSINV(0.3)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -43,7 +43,7 @@ class MathSum2Test {
     }
 
     @Test
-    void BETADIST_test() {
+    public void BETADIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BETADIST(0.5,11,22)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -51,7 +51,7 @@ class MathSum2Test {
     }
 
     @Test
-    void BETAINV_test() {
+    public void BETAINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BETAINV(0.5,23,45)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -59,7 +59,7 @@ class MathSum2Test {
     }
 
     @Test
-    void BINOMDIST_test() {
+    public void BINOMDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BINOMDIST(12,45,0.5,0)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -70,7 +70,7 @@ class MathSum2Test {
     }
 
     @Test
-    void EXPONDIST_test() {
+    public void EXPONDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("EXPONDIST(3,1,0)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -81,7 +81,7 @@ class MathSum2Test {
     }
 
     @Test
-    void FDIST_test() {
+    public void FDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("FDIST(0.4,2,3)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -89,7 +89,7 @@ class MathSum2Test {
     }
 
     @Test
-    void FINV_test() {
+    public void FINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("FINV(0.7,2,3)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -97,7 +97,7 @@ class MathSum2Test {
     }
 
     @Test
-    void GAMMADIST_test() {
+    public void GAMMADIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("GAMMADIST(0.5,3,4,0)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -108,7 +108,7 @@ class MathSum2Test {
     }
 
     @Test
-    void GAMMAINV_test() {
+    public void GAMMAINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("GAMMAINV(0.2,3,4)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -116,7 +116,7 @@ class MathSum2Test {
     }
 
     @Test
-    void GAMMALN_test() {
+    public void GAMMALN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("GAMMALN(4)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -124,7 +124,7 @@ class MathSum2Test {
     }
 
     @Test
-    void HYPGEOMDIST_test() {
+    public void HYPGEOMDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("HYPGEOMDIST(23,45,45,100)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -132,7 +132,7 @@ class MathSum2Test {
     }
 
     @Test
-    void LOGINV_test() {
+    public void LOGINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("LOGINV(0.1,45,33)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -140,7 +140,7 @@ class MathSum2Test {
     }
 
     @Test
-    void LOGNORMDIST_test() {
+    public void LOGNORMDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("LOGNORMDIST(15,23,45)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -148,7 +148,7 @@ class MathSum2Test {
     }
 
     @Test
-    void NEGBINOMDIST_test() {
+    public void NEGBINOMDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("NEGBINOMDIST(23,45,0.7)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -156,7 +156,7 @@ class MathSum2Test {
     }
 
     @Test
-    void POISSON_test() {
+    public void POISSON_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("POISSON(23,23,0)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -167,7 +167,7 @@ class MathSum2Test {
     }
 
     @Test
-    void TDIST_test() {
+    public void TDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("TDIST(1.2,24,1)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -178,7 +178,7 @@ class MathSum2Test {
     }
 
     @Test
-    void TINV_test() {
+    public void TINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("TINV(0.12,23)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -186,7 +186,7 @@ class MathSum2Test {
     }
 
     @Test
-    void WEIBULL_test() {
+    public void WEIBULL_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("WEIBULL(1,2,3,1)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -201,7 +201,7 @@ class MathSum2Test {
     }
 
     @Test
-    void FISHER_test() {
+    public void FISHER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("FISHER(0.68)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -209,7 +209,7 @@ class MathSum2Test {
     }
 
     @Test
-    void FISHERINV_test() {
+    public void FISHERINV_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("FISHERINV(0.6)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -218,7 +218,7 @@ class MathSum2Test {
 
     // Bessel函数
     @Test
-    void BESSELI_test() {
+    public void BESSELI_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BESSELI(1.5, 1)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -230,7 +230,7 @@ class MathSum2Test {
     }
 
     @Test
-    void BESSELJ_test() {
+    public void BESSELJ_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BESSELJ(1.5, 1)", 0.0);
         double rounded = Math.round((Double) t * 1000000) / 1000000.0;
@@ -242,7 +242,7 @@ class MathSum2Test {
     }
 
     @Test
-    void BESSELK_test() {
+    public void BESSELK_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BESSELK(1.5, 1)", 0.0);
         double rounded = Math.round((Double) t * 1000) / 1000.0;
@@ -254,7 +254,7 @@ class MathSum2Test {
     }
 
     @Test
-    void BESSELY_test() {
+    public void BESSELY_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BESSELY(1.5, 1)", 0.0);
         double rounded = Math.round((Double) t * 1000) / 1000.0;
