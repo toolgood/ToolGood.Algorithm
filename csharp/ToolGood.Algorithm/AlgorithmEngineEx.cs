@@ -82,7 +82,7 @@ namespace ToolGood.Algorithm
 		/// <summary>
 		/// 清理参数
 		/// </summary>
-		public void ClearParameters()
+		public virtual void ClearParameters()
         {
             _tempdict.Clear();
         }
@@ -92,7 +92,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, Operand obj)
+        public virtual void AddParameter(string key, Operand obj)
         {
             _tempdict[key] = obj;
         }
@@ -102,7 +102,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, bool obj)
+        public virtual void AddParameter(string key, bool obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -114,7 +114,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, short obj)
+        public virtual void AddParameter(string key, short obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -124,7 +124,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, int obj)
+        public virtual void AddParameter(string key, int obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -134,7 +134,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, long obj)
+        public virtual void AddParameter(string key, long obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -144,7 +144,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, ushort obj)
+        public virtual void AddParameter(string key, ushort obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -154,7 +154,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, uint obj)
+        public virtual void AddParameter(string key, uint obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -164,7 +164,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, ulong obj)
+        public virtual void AddParameter(string key, ulong obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -174,7 +174,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, float obj)
+        public virtual void AddParameter(string key, float obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -184,7 +184,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, double obj)
+        public virtual void AddParameter(string key, double obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -194,7 +194,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, decimal obj)
+        public virtual void AddParameter(string key, decimal obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -206,7 +206,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, string obj)
+        public virtual void AddParameter(string key, string obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -218,7 +218,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, MyDate obj)
+        public virtual void AddParameter(string key, MyDate obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -228,7 +228,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, DateTime obj)
+        public virtual void AddParameter(string key, DateTime obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -238,7 +238,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, TimeSpan obj)
+        public virtual void AddParameter(string key, TimeSpan obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -252,7 +252,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, List<Operand> obj)
+        public virtual void AddParameter(string key, List<Operand> obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -262,7 +262,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, ICollection<string> obj)
+        public virtual void AddParameter(string key, ICollection<string> obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -272,7 +272,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, ICollection<double> obj)
+        public virtual void AddParameter(string key, ICollection<double> obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -282,7 +282,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, ICollection<int> obj)
+        public virtual void AddParameter(string key, ICollection<int> obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -292,7 +292,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, ICollection<bool> obj)
+        public virtual void AddParameter(string key, ICollection<bool> obj)
         {
             _tempdict[key] = Operand.Create(obj);
         }
@@ -303,7 +303,7 @@ namespace ToolGood.Algorithm
         /// 添加自定义参数
         /// </summary>
         /// <param name="json"></param>
-        public void AddParameterFromJson(string json)
+        public virtual void AddParameterFromJson(string json)
         {
             if (json.StartsWith('{') && json.EndsWith('}')) {
                 var jo = JsonMapper.ToObject(json);

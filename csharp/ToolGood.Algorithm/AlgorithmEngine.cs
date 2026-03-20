@@ -86,7 +86,7 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		/// <param name="exp">公式</param>
 		/// <returns></returns>
-		public FunctionBase Parse(string exp)
+		public virtual FunctionBase Parse(string exp)
 		{
 			LastError = null;
 			if(string.IsNullOrWhiteSpace(exp)) {
@@ -126,7 +126,7 @@ namespace ToolGood.Algorithm
 		/// 执行函数
 		/// </summary>
 		/// <returns></returns>
-		public Operand Evaluate(FunctionBase function)
+		public virtual Operand Evaluate(FunctionBase function)
 		{
 			return function.Evaluate(this);
 		}
@@ -140,7 +140,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public int TryEvaluate(string exp, int def)
+		public virtual int TryEvaluate(string exp, int def)
 		{
 			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.IntValue);
 		}
@@ -151,7 +151,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public long TryEvaluate(string exp, long def)
+		public virtual long TryEvaluate(string exp, long def)
 		{
 			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.LongValue);
 		}
@@ -162,7 +162,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public double TryEvaluate(string exp, double def)
+		public virtual double TryEvaluate(string exp, double def)
 		{
 			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.DoubleValue);
 		}
@@ -173,7 +173,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public decimal TryEvaluate(string exp, decimal def)
+		public virtual decimal TryEvaluate(string exp, decimal def)
 		{
 			return TryEvaluateCore(exp, def, o => o.IsNumber ? o : o.ToNumber("It can't be converted to number!"), o => o.NumberValue);
 		}
@@ -184,7 +184,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public string TryEvaluate(string exp, string def)
+		public virtual string TryEvaluate(string exp, string def)
 		{
 			return TryEvaluateCore(exp, def, o => o.IsText ? o : o.ToText("It can't be converted to string!"), o => o.TextValue);
 		}
@@ -195,7 +195,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public bool TryEvaluate(string exp, bool def)
+		public virtual bool TryEvaluate(string exp, bool def)
 		{
 			return TryEvaluateCore(exp, def, o => o.IsBoolean ? o : o.ToBoolean("It can't be converted to bool!"), o => o.BooleanValue);
 		}
@@ -206,7 +206,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public DateTime TryEvaluate(string exp, DateTime def)
+		public virtual DateTime TryEvaluate(string exp, DateTime def)
 		{
 			return TryEvaluateCore(exp, def,
 				o => o.IsDate ? o : o.ToMyDate("It can't be converted to DateTime!"),
@@ -219,7 +219,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public TimeSpan TryEvaluate(string exp, TimeSpan def)
+		public virtual TimeSpan TryEvaluate(string exp, TimeSpan def)
 		{
 			return TryEvaluateCore(exp, def,
 				o => o.IsDate ? o : o.ToMyDate("It can't be converted to DateTime!"),
@@ -233,7 +233,7 @@ namespace ToolGood.Algorithm
 		/// <param name="exp"></param>
 		/// <param name="def"></param>
 		/// <returns></returns>
-		public MyDate TryEvaluate_MyDate(string exp, MyDate def)
+		public virtual MyDate TryEvaluate_MyDate(string exp, MyDate def)
 		{
 			return TryEvaluateCore(exp, def,
 				o => o.IsDate ? o : o.ToMyDate("It can't be converted to DateTime!"),
