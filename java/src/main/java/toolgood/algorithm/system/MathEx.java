@@ -2,6 +2,7 @@ package toolgood.algorithm.system;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class MathEx {
     public static final BigDecimal E = new BigDecimal("2.7182818284590452353602874713526624977572470936999595749");
@@ -21,6 +22,8 @@ public class MathEx {
     private static final BigDecimal Log10Inv = new BigDecimal("0.434294481903251827651128918916605082294397005803666566114");
 
     private static final int MaximumIterations = 100;
+    
+    private static final MathContext PRECISION_28 = new MathContext(28, RoundingMode.HALF_UP);
 
     private static final BigDecimal HalfPi = new BigDecimal("1.570796326794896619231321691639751442098584699687552910487");
 
@@ -81,8 +84,8 @@ public class MathEx {
         BigDecimal xx = x.multiply(x);
         do {
             cachedResult = result;
-            result = result.multiply(xx).multiply(One.subtract(Half.divide(new BigDecimal(i), MathContext.DECIMAL128)));
-            y = y.add(result.divide(new BigDecimal(2 * i + 1), MathContext.DECIMAL128));
+            result = result.multiply(xx).multiply(One.subtract(Half.divide(new BigDecimal(i), PRECISION_28)));
+            y = y.add(result.divide(new BigDecimal(2 * i + 1), PRECISION_28));
             i++;
         } while (cachedResult.compareTo(result) != 0);
 
@@ -193,7 +196,7 @@ public class MathEx {
         BigDecimal cachedResult;
         do {
             cachedResult = result;
-            factor = factor.multiply(xCopy.divide(new BigDecimal(iteration++), MathContext.DECIMAL128));
+            factor = factor.multiply(xCopy.divide(new BigDecimal(iteration++), PRECISION_28));
             result = result.add(factor);
         } while (cachedResult.compareTo(result) != 0);
 
