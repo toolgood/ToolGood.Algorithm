@@ -151,9 +151,9 @@ public class MathEx {
             return Cos(xCopy.add(PI)).negate();
         }
 
-        BigDecimal xx = xCopy.multiply(xCopy);
+        xCopy = xCopy.multiply(xCopy);
 
-        BigDecimal term = xx.multiply(Half.negate());
+        BigDecimal term = xCopy.multiply(Half.negate());
         BigDecimal y = One.add(term);
         BigDecimal cachedY = y.subtract(One);
         for (int i = 1; cachedY.compareTo(y) != 0 && i < MaximumIterations; i++) {
@@ -161,7 +161,7 @@ public class MathEx {
 
             BigDecimal factor = new BigDecimal(i * (i + i + 3) + 1);
             factor = Half.divide(factor, MathContext.DECIMAL128).negate();
-            term = term.multiply(xx).multiply(factor);
+            term = term.multiply(xCopy).multiply(factor);
             y = y.add(term);
         }
 
