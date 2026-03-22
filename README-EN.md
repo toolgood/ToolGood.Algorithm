@@ -25,7 +25,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 	var c = engine.TryEvaluate("2+3", 0);
 	var q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
 	var e = engine.TryEvaluate("count(array(1, 2, 3, 4))", 0);//{} represents array, return: 4 {}代表数组, 返回:4
-	var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: AABB 字符串连接, 返回:aabb
+	var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: aabb 字符串连接, 返回:aabb
 	var r = engine.TryEvaluate("(1=1)*9+2", 0); //Return: 11 返回:11
 	var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //Return date: 2016-1-2 返回日期:2016-1-2
 	var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
