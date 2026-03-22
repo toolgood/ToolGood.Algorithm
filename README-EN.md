@@ -517,7 +517,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>GESTEP(5, 4) <br>>>1</td>
 	</tr>
 	<tr>
-        <td>SUMSQ</td><td>sumQq(number, ...)<br>Returns the sum of squares of parameters</td>
+        <td>SUMSQ</td><td>sumSq(number, ...)<br>Returns the sum of squares of parameters</td>
         <td>SUMSQ(1, 2) <br>>>5</td>
     </tr>
     <tr>
@@ -1166,7 +1166,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>UrlEncode ★</td><td>UrlEncode(text)<br> Encode the URL string.</td> <td></td>
 	</tr>
 	<tr>
-		<td>UrlDecode ★</td><td>UrlEncode(text)<br> Converts an URL-encoded string to a decoded string.</td> <td></td>
+		<td>UrlDecode ★</td><td>UrlDecode(text)<br> Converts an URL-encoded string to a decoded string.</td> <td></td>
 	</tr>
 	<tr>
 		<td>HtmlEncode ★</td><td>HtmlEncode(text)<br> Converts a string to a HTML-encoded string.</td> <td></td>
