@@ -947,6 +947,18 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>SMALL({1, 2, 3, 4, 2, 2, 1, 4}, 3) <br>>>2</td>
 	</tr>
 	<tr>
+		<td>LookCeiling</td><td>lookCeiling(number, array)<br>Finds the smallest value in the array that is greater than or equal to the specified value</td>
+		<td>LookCeiling(2.5, [1, 2, 3, 4, 5]) <br>>>3</td>
+	</tr>
+	<tr>
+		<td>LookFloor</td><td>lookFloor(number, array)<br>Finds the largest value in the array that is less than or equal to the specified value</td>
+		<td>LookFloor(2.5, [1, 2, 3, 4, 5]) <br>>>2</td>
+	</tr>
+	<tr>
+		<td>ARRAY</td><td>array(value1, value2, ...)<br>Creates an array</td>
+		<td>ARRAY(1, 2, 3) <br>>>[1, 2, 3]</td>
+	</tr>
+	<tr>
 		<td>PERCENTILE<br>PERCENTILE.INC</td><td>percentile(number, K)<br>Returns the k percentile in the area</td>
 		<td>PERCENTILE({1, 2, 3, 4, 2, 2, 1, 4}, 0.4) <br>>>2</td>
 	</tr>
