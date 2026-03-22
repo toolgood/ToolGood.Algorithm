@@ -1,21 +1,20 @@
-ToolGood.Algorithm
-===================
+# ToolGood.Algorithm
+
 [中文文档](README.md)
 
-ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algorithm library aimed at improving developers’ productivity in different business scenes. 
+ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algorithm library aimed at improving developers’ productivity in different business scenes.
 
+**Applicable scenarios:** Code and algorithm are separated to avoid forced project upgrade
 
-**Applicable scenarios:** Code and algorithm are separated to avoid forced project upgrade 
+1）Uncertain algorithm at the beginning of the project;
 
-1）Uncertain algorithm at the beginning of the project; 
+2）Algorithms that are frequently changed during project maintenance;
 
-2）Algorithms that are frequently changed during project maintenance; 
-
-3）Algorithms in financial data and statistical data (Note: Some formulas use the `double` type, and it is recommended to use `fen` as the unit); 
-
+3）Algorithms in financial data and statistical data (Note: Some formulas use the `double` type, and it is recommended to use `fen` as the unit);
 
 ## Quick start
-``` csharp
+
+```csharp
 	AlgorithmEngine engine = new AlgorithmEngine();
 	double a=0.0;
 	if (engine.Parse("1+2")) {
@@ -35,6 +34,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 	var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
 	var m = engine.TryEvaluate("[1,2,3,4,5,6].has(13)", true);//Return false 返回false
 ```
+
 Constants`pi`, `e`, `true`, `false`are supported.
 
 The value is converted to bool, non-zero is true and zero is false.
@@ -43,24 +43,21 @@ String to bool, `0` `FALSE` `NO` `无` `没有` `不是` `否` is false, `1` `TR
 Bool to value, false is`0`, true is`1`.
 Bool to string, false to`FALSE`, true to`TRUE`.
 
-
 The default index is`excel index`. If you want to use c# index, please set`UseExcelIndex`to`false`.
-
 
 Chinese symbols are automatically converted into English symbols: `brackets`, `commas`, `quotation marks`, `double quotation marks`，`addition`,`subtraction`, `multiplication`, `division` , `equal sign`.
 
+Note: Use `&` for string concatenation.
 
-Note: Use `&` for string concatenation. 
-
-
-Note: `find` is an Excel formula , find (the string to be searched, the string to be searched [, start position]) 
+Note: `find` is an Excel formula , find (the string to be searched, the string to be searched \[, start position])
 
 Note: Starting from version 6.0, the `[X,X]` array code replaces `{X,X}`.
 
 Note: Starting from version 6.2, converting datetime to numbers, numbers to datetime, and performing arithmetic operations between datetime and numbers are prohibited. Use `functions` instead for related operations.
 
 ## Custom parameters
-``` csharp
+
+```csharp
 	//Define cylinder information  定义圆柱信息 
 	public class Cylinder : AlgorithmEngine
 	{
@@ -108,9 +105,9 @@ Note: You can override the `GetParameter` and `ExecuteDiyFunction` methods to cu
 
 Note: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
 
-
 ## Custom parameters
-``` csharp
+
+```csharp
 	var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
 	helper.IsKeywords("false"); // return true
 	helper.IsKeywords("true"); // return true
@@ -128,7 +125,7 @@ Standard units can be set: `DistanceUnit` (default:`m`), `AreaUnit`(default:`m2`
 
 Note: When calculating the formula, first convert the quantity with units into standard units, and then perform numerical calculations.
 
-``` csharp
+```csharp
 	AlgorithmEngine engine = new AlgorithmEngine();
 	bool a = engine.TryEvaluate("1=1m", false); // return true
 	bool b = engine.TryEvaluate("1=1m2", false); // return true
@@ -142,20 +139,20 @@ Note: When calculating the formula, first convert the quantity with units into s
 	bool error = engine.TryEvaluate("1m=1m2", false); // return true
 ```
 
-
 ## Excel Formula
 
-Functions: `logical functions`, `mathematics and trigonometric functions`, `text functions`, `statistical functions`, `date and time functions` 
+Functions: `logical functions`, `mathematics and trigonometric functions`, `text functions`, `statistical functions`, `date and time functions`
 
-Note: Function names are not case sensitive. Parameters with square brackets can be omitted. The return value of the example is approximate. 
+Note: Function names are not case sensitive. Parameters with square brackets can be omitted. The return value of the example is approximate.
 
-Note 2: The function name with ★ indicates that the first parameter can be prefixed, such as `(-1).ISTEXT()` 
+Note 2: The function name with ★ indicates that the first parameter can be prefixed, such as `(-1).ISTEXT()`
 
 Note 3: The function name with ▲ means that it is affected by `Excel Index`,
 
 Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2,3][1]` returns the first element `1` in Excel index mode, and returns the second element `2` in C# index mode.
 
 #### Logical function
+
 <table>
 	<tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -249,6 +246,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 </table>
 
 #### Mathematics and Trigonometric Functions
+
 <table>
 	<tr><td>classification</td><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -265,11 +263,11 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>abs(-1) <br>>>1</td>
 	</tr>
 	<tr>
-		<td>QUOTIENT</td><td>quotient(number, dividend)<br>Returns the integer portion of the quotient, which can be used to round off the fractional portion of the quotient.</td>
+		<td>QUOTIENT</td><td>quotient(dividend, divisor)<br>Returns the integer portion of the quotient, which can be used to round off the fractional portion of the quotient.</td>
 		<td>QUOTIENT(7, 3) <br>>>2</td>
 	</tr>
 	<tr>
-		<td>mod</td><td>mod(number, dividend)<br>Returns the remainder of the division of two numbers</td>
+		<td>mod</td><td>mod(dividend, divisor)<br>Returns the remainder of the division of two numbers</td>
 		<td>MOD(7, 3) <br>>>1</td>
 	</tr>
 	<tr>
@@ -297,12 +295,12 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>LCM(3, 5, 7) <br>>>105</td>
 	</tr>
 	<tr>
-		<td>combin</td><td>combin(tatal, number)<br>Calculate the number of combinations to extract several objects from a given number of object sets</td>
+		<td>combin</td><td>combin(total, number)<br>Calculate the number of combinations to extract several objects from a given set of objects</td>
 		<td>combin(10, 2) <br>>>45</td>
 	</tr>
 	<tr>
-		<td>PERMUT</td><td>permut(tatal, number)<br>Returns the ranking of several objects selected from a given number of object collections</td>
-		<td>PERMUT(10, 2) <br>>>990</td>
+		<td>PERMUT</td><td>permut(total, number)<br>Returns the number of permutations of several objects selected from a given set of objects</td>
+		<td>PERMUT(10, 2) <br>>>90</td>
 	</tr>
 	<tr>
 		<td>FIXED</td><td>fixed(number[, decimalDigit[, hasComma]])<br>Format numeric values to text with fixed decimal places</td>
@@ -600,6 +598,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 </table>
 
 #### Text function
+
 <table>
 	<tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -631,7 +630,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>EXACT("11", "22") <br>>>false</td>
 	</tr>
 	<tr style="color:red">
-		<td>FIND ★ ▲</td><td>find(text, findText[, startIndex])<br>Find another text value within one text value (case sensitive) </td>
+		<td>FIND ★ ▲</td><td>find(findText, text[, startIndex])<br>Find another text value within one text value (case sensitive) </td>
 		<td>FIND("11", "12221122") <br>>>5</td>
 	</tr>
 	<tr>
@@ -714,6 +713,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 </table>
 
 #### Date and time functions
+
 <table>
 	<tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -807,6 +807,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 </table>
 
 ##### Extension function
+
 <table>
 	<tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -847,6 +848,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timestamp`. Set `true` to directly convert to local time.
 
 #### Financial function
+
 <table>
     <tr><td>function name</td><td>description</td><td>Example</td></tr>
     <tr>
@@ -916,6 +918,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 </table>
 
 #### Statistical function
+
 <table>
     <tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -1149,6 +1152,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 </table>
 
 #### Find references
+
 <table>
 	<tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -1160,6 +1164,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 </table>
 
 #### Add function similar to C# method
+
 <table>
 	<tr><td>function name</td><td>description</td><td>Example</td></tr>
 	<tr>
@@ -1277,6 +1282,3 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(text)<br> Dynamically obtaining parameters </td> <td></td>
 	</tr>
 </table>
-
-
- 
