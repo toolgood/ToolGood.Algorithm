@@ -151,7 +151,9 @@ Note: Function names are not case sensitive. Parameters with square brackets can
 
 Note 2: The function name with ★ indicates that the first parameter can be prefixed, such as `(-1).ISTEXT()` 
 
-Note 3: The function name with ▲ means that it is affected by `Excel Index`, 
+Note 3: The function name with ▲ means that it is affected by `Excel Index`,
+
+Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2,3][1]` returns the first element `1` in Excel index mode, and returns the second element `2` in C# index mode.
 
 #### Logical function
 <table>
@@ -1173,7 +1175,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>TextToBase64Url ★</td><td>TextToBase64Url(text)<br>   Converts a string to an Base64 string of type Url.</td> <td></td>
 	</tr>
 	<tr>
-		<td>Regex ★ ▲</td><td>Regex(text, matchText)<br> returns a matching string.</td> <td></td>
+		<td>Regex ★</td><td>Regex(text, matchText)<br> returns a matching string.</td> <td></td>
 	</tr>
 	<tr>
 		<td>REGEXREPLACE ★</td><td>REGEXREPLACE(text, matchText, replaceString)<br>  Matches the replacement string.</td> <td></td>
