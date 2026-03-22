@@ -1151,18 +1151,6 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
     </tr>
 </table>
 
-#### Find references
-
-<table>
-	<tr><td>function name</td><td>description</td><td>Example</td></tr>
-	<tr>
-		<td>LookFloor</td><td>LookFloor(value, array)<br>Find the lower bound value. The array will be sorted; if higher than the maximum, take the maximum value; if lower than the minimum, take the minimum value.</td> <td></td>
-	</tr>
-	<tr>
-		<td>LookCeiling</td><td>LookCeiling(value, array)<br>Find the upper bound value. The array will be sorted; if higher than the maximum, take the maximum value; if lower than the minimum, take the minimum value.</td> <td></td>
-	</tr>
-</table>
-
 #### Add function similar to C# method
 
 <table>
