@@ -25,8 +25,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var o2 = FunctionUtil.FlattenToList(args2, list2);
             if (o1 == false) { return ParameterError(1); }
             if (o2 == false) { return ParameterError(2); }
-            if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
-            if (list1.Count == 0) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
+            if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", Name); }
+            if (list1.Count == 0) { return Operand.Error("Function '{0}' parameter's count error!", Name); }
 
             decimal mean1 = 0, mean2 = 0, c = 0;
             for (int i = 0; i < list1.Count; i++) {
