@@ -120,7 +120,7 @@ expr:
 	| MOD '(' expr (',' expr) ')'							# MOD_fun
 	| SIGN '(' expr ')'										# SIGN_fun
 	| SQRT '(' expr ')'										# SQRT_fun
-	| TRUNC '(' expr ')'									# TRUNC_fun
+	| TRUNC '(' expr(',' expr)? ')'							# TRUNC_fun
 	| INT '(' expr ')'										# INT_fun
 	| GCD '(' expr (',' expr)* ')'							# GCD_fun
 	| LCM '(' expr (',' expr)* ')'							# LCM_fun

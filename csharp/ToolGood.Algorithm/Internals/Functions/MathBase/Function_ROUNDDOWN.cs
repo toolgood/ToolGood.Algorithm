@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -27,11 +27,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (args1.NumberValue == 0) {
                 return args1;
             }
-            var a = MathEx.Pow(10, args2.IntValue);
-            var b = args1.NumberValue;
+            var num = args1.NumberValue;
+            var digits = args2.IntValue;
+            var factor = MathEx.Pow(10, digits);
 
-            b = ((int)(b * a)) / a;
-            return Operand.Create(b);
+            decimal result;
+            if (num > 0) {
+                result = Math.Floor(num * factor) / factor;
+            } else {
+                result = Math.Ceiling(num * factor) / factor;
+            }
+            return Operand.Create(result);
         }
 		public override OperandType GetResultType()
 		{

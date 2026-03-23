@@ -217,13 +217,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitTRUNC_fun(mathParser.TRUNC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_TRUNC(args1);
+			var funcs = VisitExprs(context.expr());
+			return new Function_TRUNC(funcs);
 		}
 		public FunctionBase VisitINT_fun(mathParser.INT_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
-			return new Function_TRUNC(args1);
+			return new Function_INT(args1);
 		}
 		public FunctionBase VisitGCD_fun(mathParser.GCD_funContext context)
 		{

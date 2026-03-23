@@ -1,4 +1,4 @@
-﻿namespace ToolGood.Algorithm.math
+namespace ToolGood.Algorithm.math
 {
 #pragma warning disable 0162
 #pragma warning disable 0219
@@ -35,7 +35,7 @@ partial class mathLexer : Lexer {
 			return DefaultVocabulary;
 		}
 	}
-	public override string GrammarFileName { get { return string.Empty; } }
+	public override string GrammarFileName { get { return ""; } }
 	public override string[] RuleNames { get { return ruleNames; } }
 	public override string[] ChannelNames { get { return channelNames; } }
 	public override string[] ModeNames { get { return modeNames; } }

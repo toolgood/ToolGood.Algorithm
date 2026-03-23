@@ -6,9 +6,9 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal sealed class Function_TRUNC : Function_1
+	internal sealed class Function_TRUNC : Function_2
     {
-        public Function_TRUNC(FunctionBase func1) : base(func1)
+        public Function_TRUNC(FunctionBase[] funcs) : base(funcs)
         {
         }
 

@@ -19,11 +19,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone || args1.IsNone) { return args1; }
             var z = args1.NumberValue;
-            if (z % 2 == 1) { return args1; }
-            z = Math.Ceiling(z);
-            if (z % 2 == 1) { return Operand.Create(z); }
-            z++;
-            return Operand.Create(z);
+            
+            if (z == 0) { return Operand.Create(1); }
+            
+            if (z > 0) {
+                if (Math.Floor(z) == z && Math.Abs(z) % 2 == 1) { return args1; }
+                z = Math.Ceiling(z);
+                if (Math.Abs(z) % 2 == 1) { return Operand.Create(z); }
+                z++;
+                return Operand.Create(z);
+            } else {
+                if (Math.Floor(z) == z && Math.Abs(z) % 2 == 1) { return args1; }
+                z = Math.Floor(z);
+                if (Math.Abs(z) % 2 == 1) { return Operand.Create(z); }
+                z--;
+                return Operand.Create(z);
+            }
         }
 		public override OperandType GetResultType()
 		{
