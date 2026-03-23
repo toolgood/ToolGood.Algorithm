@@ -20,16 +20,25 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (args1.IsErrorOrNone) { return args1; }
 
 			if (func2 == null)
-				return Operand.Create(Math.Floor(args1.NumberValue));
+                return Operand.Create(Math.Floor(args1.NumberValue));
 
-			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsErrorOrNone) { return args2; }
+            var args2 = GetNumber_2(engine, tempParameter);
+            if (args2.IsErrorOrNone) { return args2; }
             var b = args2.NumberValue;
-            if (b <= 0) { return ParameterError(2); }
+            if (b == 0) { return Operand.Zero; }
 
             var a = args1.NumberValue;
-            var d = Math.Floor(a / b) * b;
-            return Operand.Create(d);
+
+            if (b > 0) {
+                var d = Math.Floor(a / b) * b;
+                return Operand.Create(d);
+            } else {
+                if (a > 0) {
+                    return ParameterError(1);
+                }
+                var d = Math.Floor(a / b) * b;
+                return Operand.Create(d);
+            }
         }
 		public override OperandType GetResultType()
 		{

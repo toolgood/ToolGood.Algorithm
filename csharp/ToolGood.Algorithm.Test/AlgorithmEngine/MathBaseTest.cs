@@ -519,5 +519,150 @@ namespace ToolGood.Algorithm.Test.MathBase
         }
 
         #endregion 边界值测试
+
+        #region Excel兼容性测试
+
+        [Test]
+        public void ODD_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ODD(1)", 0.0);
+            Assert.AreEqual(1.0, t);
+
+            t = engine.TryEvaluate("ODD(2)", 0.0);
+            Assert.AreEqual(3.0, t);
+
+            t = engine.TryEvaluate("ODD(3)", 0.0);
+            Assert.AreEqual(3.0, t);
+
+            t = engine.TryEvaluate("ODD(-1)", 0.0);
+            Assert.AreEqual(-1.0, t);
+
+            t = engine.TryEvaluate("ODD(-2)", 0.0);
+            Assert.AreEqual(-3.0, t);
+
+            t = engine.TryEvaluate("ODD(-3)", 0.0);
+            Assert.AreEqual(-3.0, t);
+
+            t = engine.TryEvaluate("ODD(-4)", 0.0);
+            Assert.AreEqual(-5.0, t);
+
+            t = engine.TryEvaluate("ODD(1.5)", 0.0);
+            Assert.AreEqual(3.0, t);
+
+            t = engine.TryEvaluate("ODD(-1.5)", 0.0);
+            Assert.AreEqual(-3.0, t);
+        }
+
+        [Test]
+        public void EVEN_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("EVEN(2)", 0.0);
+            Assert.AreEqual(2.0, t);
+
+            t = engine.TryEvaluate("EVEN(1)", 0.0);
+            Assert.AreEqual(2.0, t);
+
+            t = engine.TryEvaluate("EVEN(-1)", 0.0);
+            Assert.AreEqual(-2.0, t);
+
+            t = engine.TryEvaluate("EVEN(-2)", 0.0);
+            Assert.AreEqual(-2.0, t);
+
+            t = engine.TryEvaluate("EVEN(-3)", 0.0);
+            Assert.AreEqual(-4.0, t);
+
+            t = engine.TryEvaluate("EVEN(1.5)", 0.0);
+            Assert.AreEqual(2.0, t);
+
+            t = engine.TryEvaluate("EVEN(-1.5)", 0.0);
+            Assert.AreEqual(-2.0, t);
+
+            t = engine.TryEvaluate("EVEN(0)", 0.0);
+            Assert.AreEqual(0.0, t);
+        }
+
+        [Test]
+        public void CEILING_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("CEILING(2.5, 1)", 0.0);
+            Assert.AreEqual(3.0, t);
+
+            t = engine.TryEvaluate("CEILING(-2.5, -1)", 0.0);
+            Assert.AreEqual(-3.0, t);
+
+            t = engine.TryEvaluate("CEILING(-2.5, 1)", 0.0);
+            Assert.AreEqual(-2.0, t);
+
+            t = engine.TryEvaluate("CEILING(1.5, 0.1)", 0.0);
+            Assert.AreEqual(1.5, t);
+
+            t = engine.TryEvaluate("CEILING(0.234, 0.01)", 0.0);
+            Assert.AreEqual(0.24, t);
+        }
+
+        [Test]
+        public void FLOOR_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("FLOOR(3.7, 1)", 0.0);
+            Assert.AreEqual(3.0, t);
+
+            t = engine.TryEvaluate("FLOOR(-3.7, -1)", 0.0);
+            Assert.AreEqual(-3.0, t);
+
+            t = engine.TryEvaluate("FLOOR(-3.7, 1)", 0.0);
+            Assert.AreEqual(-4.0, t);
+
+            t = engine.TryEvaluate("FLOOR(3.7, 2)", 0.0);
+            Assert.AreEqual(2.0, t);
+
+            t = engine.TryEvaluate("FLOOR(0, 1)", 0.0);
+            Assert.AreEqual(0.0, t);
+        }
+
+        [Test]
+        public void MROUND_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("MROUND(10, 3)", 0.0);
+            Assert.AreEqual(9.0, t);
+
+            t = engine.TryEvaluate("MROUND(-10, -3)", 0.0);
+            Assert.AreEqual(-9.0, t);
+
+            t = engine.TryEvaluate("MROUND(1.3, 0.2)", 0.0);
+            Assert.AreEqual(1.4, t);
+
+            t = engine.TryEvaluate("MROUND(-1.3, -0.2)", 0.0);
+            Assert.AreEqual(-1.4, t);
+        }
+
+        [Test]
+        public void ROUNDDOWN_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ROUNDDOWN(3.7, 0)", 0.0);
+            Assert.AreEqual(3.0, t);
+
+            t = engine.TryEvaluate("ROUNDDOWN(-3.7, 0)", 0.0);
+            Assert.AreEqual(-3.0, t);
+
+            t = engine.TryEvaluate("ROUNDDOWN(3.777, 2)", 0.0);
+            Assert.AreEqual(3.77, t);
+
+            t = engine.TryEvaluate("ROUNDDOWN(-3.777, 2)", 0.0);
+            Assert.AreEqual(-3.77, t);
+
+            t = engine.TryEvaluate("ROUNDDOWN(76.9, -1)", 0.0);
+            Assert.AreEqual(70.0, t);
+
+            t = engine.TryEvaluate("ROUNDDOWN(-76.9, -1)", 0.0);
+            Assert.AreEqual(-70.0, t);
+        }
+
+        #endregion Excel兼容性测试
     }
 }
