@@ -29,6 +29,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 				}
 				i += 2;
 			}
+
+			// 参数数量为偶数时，最后一个参数是默认值
+			// 例如: SWITCH(expr, v1, r1, default) - 4个参数
+			//       SWITCH(expr, v1, r1, v2, r2, default) - 6个参数
+			if (funcs.Length % 2 == 0) {
+				return funcs[funcs.Length - 1].Evaluate(engine, tempParameter);
+			}
+
 			return FunctionError();
 		}
 
@@ -58,6 +66,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 				}
 				i += 2;
 			}
+			// 检查默认值的类型
+			if (funcs.Length % 2 == 0) {
+				var t = funcs[funcs.Length - 1].GetResultType();
+				if(t != OperandType.NONE) {
+					return t;
+				}
+			}
 			return OperandType.NONE;
 		}
 
@@ -69,6 +84,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NONE);
 				funcs[i + 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
 				i += 2;
+			}
+			// 默认值参数
+			if (funcs.Length % 2 == 0) {
+				funcs[funcs.Length - 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
 			}
 		}
 	}

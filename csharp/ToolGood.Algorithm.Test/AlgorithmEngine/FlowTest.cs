@@ -274,6 +274,33 @@ namespace ToolGood.Algorithm.Test.Flow
         }
 
         [Test]
+        public void SWITCH_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 有默认值的情况
+            var t = engine.TryEvaluate("SWITCH(3, 1, 'one', 2, 'two', 'unknown')", "");
+            Assert.AreEqual("unknown", t);
+
+            t = engine.TryEvaluate("SWITCH(1, 1, 'one', 2, 'two', 'unknown')", "");
+            Assert.AreEqual("one", t);
+
+            // 数字类型默认值
+            var t2 = engine.TryEvaluate("SWITCH(5, 1, 100, 2, 200, 0)", 0);
+            Assert.AreEqual(0, t2);
+
+            // 多个 value/result 对 + 默认值
+            t = engine.TryEvaluate("SWITCH(4, 1, 'A', 2, 'B', 3, 'C', 'D')", "");
+            Assert.AreEqual("D", t);
+
+            t = engine.TryEvaluate("SWITCH(3, 1, 'A', 2, 'B', 3, 'C', 'D')", "");
+            Assert.AreEqual("C", t);
+
+            // 字符串匹配 + 默认值
+            var t3 = engine.TryEvaluate("SWITCH('x', 'a', 1, 'b', 2, -1)", 0);
+            Assert.AreEqual(-1, t3);
+        }
+
+        [Test]
         public void XOR_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
