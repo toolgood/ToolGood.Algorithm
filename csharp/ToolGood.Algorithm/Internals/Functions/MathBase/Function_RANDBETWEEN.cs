@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 #else
             Random rand = Random.Shared;
 #endif
-            return Operand.Create((decimal)rand.NextDouble() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
+            return Operand.Create(Math.Floor((decimal)rand.NextDouble() * (top - bottom + 1) + bottom));
         }
 		public override OperandType GetResultType()
 		{
