@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -47,8 +47,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				guess = guessArg.NumberValue;
 			}
 
-			var irr = NewtonRaphsonIRR(values, guess);
-			return Operand.Create(irr);
+			try {
+				var irr = NewtonRaphsonIRR(values, guess);
+				return Operand.Create(irr);
+			} catch {
+				return FunctionError();
+			}
 		}
 
 		private decimal NewtonRaphsonIRR(List<decimal> values, decimal guess)
@@ -72,7 +76,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 				rate = newRate;
 			}
-			return rate;
+			throw new Exception("IRR calculation did not converge");
 		}
 		public override OperandType GetResultType()
 		{

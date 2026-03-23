@@ -40,7 +40,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			if (life == 0 || cost == 0) return Div0Error();
-			if (period < 1 || period > life + 1) {
+			if (period < 1 || period > life) {
 				return ParameterError(4);
 			}
 			if (life < 1) {

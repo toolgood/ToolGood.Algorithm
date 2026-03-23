@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
@@ -45,8 +45,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				guess = guessArg.NumberValue;
 			}
 
-			var xirr = NewtonRaphsonXIRR(values, dates, guess);
-			return Operand.Create(xirr);
+			try {
+				var xirr = NewtonRaphsonXIRR(values, dates, guess);
+				return Operand.Create(xirr);
+			} catch {
+				return FunctionError();
+			}
 		}
 
 		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal rate)
@@ -73,7 +77,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 				rate = newRate;
 			}
-			return rate;
+			throw new Exception("XIRR calculation did not converge");
 		}
 		public override OperandType GetResultType()
 		{
