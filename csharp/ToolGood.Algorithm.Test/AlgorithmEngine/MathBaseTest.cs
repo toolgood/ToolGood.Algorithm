@@ -77,6 +77,39 @@ namespace ToolGood.Algorithm.Test.MathBase
         }
 
         [Test]
+        public void TRUNC_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            var t = engine.TryEvaluate("TRUNC(8.9)", 0.0);
+            Assert.AreEqual(8.0, t);
+
+            t = engine.TryEvaluate("TRUNC(8.912, 2)", 0.0);
+            Assert.AreEqual(8.91, t);
+
+            t = engine.TryEvaluate("TRUNC(8.912, 1)", 0.0);
+            Assert.AreEqual(8.9, t);
+
+            t = engine.TryEvaluate("TRUNC(-5.5)", 0.0);
+            Assert.AreEqual(-5.0, t);
+
+            t = engine.TryEvaluate("TRUNC(123.456, -2)", 0.0);
+            Assert.AreEqual(100.0, t);
+
+            t = engine.TryEvaluate("TRUNC(123.456, -1)", 0.0);
+            Assert.AreEqual(120.0, t);
+
+            t = engine.TryEvaluate("TRUNC(-123.456, -2)", 0.0);
+            Assert.AreEqual(-100.0, t);
+
+            t = engine.TryEvaluate("TRUNC(0)", 0.0);
+            Assert.AreEqual(0.0, t);
+
+            t = engine.TryEvaluate("TRUNC(PI(), 4)", 0.0);
+            Assert.AreEqual(3.1415, Math.Round(t, 4));
+        }
+
+        [Test]
         public void int_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
