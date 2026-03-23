@@ -16,8 +16,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var valuesArg = GetArray_1(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
-			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.NumberValue);
+			foreach(var v in valuesArg.ArrayValue) {
+				if(v.IsNumber) {
+					values.Add(v.NumberValue);
+				} else {
+					var v2 = v.ToNumber($"Function '{Name}' parameter 1 is error!");
+					if(v2.IsErrorOrNone) return v2;
+					values.Add(v2.NumberValue);
+				}
 			}
 
 			var financeRateArg = GetNumber_2(engine, tempParameter);
