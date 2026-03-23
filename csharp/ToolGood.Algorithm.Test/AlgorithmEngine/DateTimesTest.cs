@@ -174,6 +174,54 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         [Test]
+        public void WEEKDAY_ExcelCompatible_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            // 2017年1月1日是周日，1月7日是周六，1月2日是周一
+            // type 1: 周日=1, 周六=7
+            // type 2: 周一=1, 周日=7
+            // type 3: 周一=0, 周日=6
+
+            // 测试所有 type (1-3, 11-17)
+            // 2017-1-2 (周一)
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),1)", 0), 2);  // type 1: 周一=2
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),2)", 0), 1);  // type 2: 周一=1
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),3)", 0), 0);  // type 3: 周一=0
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),11)", 0), 1); // type 11: 周一=1
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),12)", 0), 7); // type 12: 周二=1, 周一=7
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),13)", 0), 6); // type 13: 周三=1, 周一=6
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),14)", 0), 5); // type 14: 周四=1, 周一=5
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),15)", 0), 4); // type 15: 周五=1, 周一=4
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),16)", 0), 3); // type 16: 周六=1, 周一=3
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),17)", 0), 2); // type 17: 周日=1, 周一=2
+
+            // 2017-1-7 (周六)
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),1)", 0), 7);  // type 1: 周六=7
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),2)", 0), 6);  // type 2: 周六=6
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),3)", 0), 5);  // type 3: 周六=5
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),11)", 0), 6); // type 11: 周六=6
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),12)", 0), 5); // type 12: 周六=5
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),13)", 0), 4); // type 13: 周六=4
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),14)", 0), 3); // type 14: 周六=3
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),15)", 0), 2); // type 15: 周六=2
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),16)", 0), 1); // type 16: 周六=1
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),17)", 0), 7); // type 17: 周六=7
+
+            // 2017-1-8 (周日)
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),1)", 0), 1);  // type 1: 周日=1
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),2)", 0), 7);  // type 2: 周日=7
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),3)", 0), 6);  // type 3: 周日=6
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),11)", 0), 7); // type 11: 周日=7
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),12)", 0), 6); // type 12: 周日=6
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),13)", 0), 5); // type 13: 周日=5
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),14)", 0), 4); // type 14: 周日=4
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),15)", 0), 3); // type 15: 周日=3
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),16)", 0), 2); // type 16: 周日=2
+            Assert.AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),17)", 0), 1); // type 17: 周日=1
+        }
+
+        [Test]
         public void DATEDIF_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -314,6 +362,54 @@ namespace ToolGood.Algorithm.Test.DateTimes
             Assert.AreEqual(dt, 1);
             dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\",2)", 0);
             Assert.AreEqual(dt, 1);
+        }
+
+        [Test]
+        public void WEEKNUM_ExcelCompatible_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            // 2016年1月1日是周五
+            // type 1: 周日作为第一天
+            // type 2: 周一作为第一天
+            // type 11: 周一作为第一天 (同type 2)
+            // type 12-16: 不同起始日
+            // type 17: 周日作为第一天 (同type 1)
+            // type 21: ISO 8601，周一作为第一天
+
+            // 2016-1-1 (周五)
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),1)", 0), 1);   // type 1: 周五在第1周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),2)", 0), 1);  // type 2: 周一为起始日，周五在第53周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),11)", 0), 1);// type 11: 同type 2
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),12)", 0), 1); // type 12: 周二为起始日
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),13)", 0), 1); // type 13: 周三为起始日
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),14)", 0), 1); // type 14: 周四为起始日
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),15)", 0), 1); // type 15: 周五为起始日
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),16)", 0), 1);  // type 16: 周六为起始日，周五在第1周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),17)", 0), 1);  // type 17: 同type 1
+
+            // 2016-1-3 (周日)
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),1)", 0), 2);   // type 1: 周日为新一周开始
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),2)", 0), 1);   // type 2: 周一为新一周开始
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),11)", 0), 1);  // type 11: 同type 2
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),16)", 0), 2);  // type 16: 周六为起始日，周日是下一周第一天
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),17)", 0), 2);  // type 17: 同type 1
+
+            // 2016-1-4 (周一)
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),1)", 0), 2);  // type 1: 周日在第1周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),2)", 0), 2);  // type 2: 周一在第2周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),11)", 0), 2); // type 11: 同type 2
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 0); // type 21: ISO 8601，周一是第1周
+
+            // 测试 ISO 8601 (type 21)
+            // 2016年1月4日是ISO 8601标准的第1周第一天
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 0);
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),21)", 0), 0); // 2016-1-3是2015年的第53周
+
+            // 2021年1月1日是周五，ISO 8601第53周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,1),21)", 0), 0);
+            // 2021年1月4日是周一，ISO 8601第1周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,4),21)", 0), 0);
         }
 
         [Test]
