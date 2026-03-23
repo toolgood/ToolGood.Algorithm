@@ -176,14 +176,6 @@ namespace ToolGood.Algorithm.Test.String
         }
 
         [Test]
-        public void PROPER_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("PROPER('abc abc')", "");
-            Assert.AreEqual(t, "Abc Abc");
-        }
-
-        [Test]
         public void REPLACE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -269,6 +261,57 @@ namespace ToolGood.Algorithm.Test.String
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("TRIM(\" 123 123 \")", "");
             Assert.AreEqual(t, "123 123");
+        }
+
+        [Test]
+        public void TRIM_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("TRIM(\"  abc  \")", "");
+            Assert.AreEqual(t, "abc");
+
+            t = engine.TryEvaluate("TRIM(\"a   b   c\")", "");
+            Assert.AreEqual(t, "a b c");
+
+            t = engine.TryEvaluate("TRIM(\"  hello   world  \")", "");
+            Assert.AreEqual(t, "hello world");
+
+            t = engine.TryEvaluate("TRIM(\"no_spaces\")", "");
+            Assert.AreEqual(t, "no_spaces");
+
+            t = engine.TryEvaluate("TRIM(\"   \")", "");
+            Assert.AreEqual(t, "");
+        }
+
+        [Test]
+        public void PROPER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("PROPER('abc abc')", "");
+            Assert.AreEqual(t, "Abc Abc");
+        }
+
+        [Test]
+        public void PROPER_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("PROPER('hello world')", "");
+            Assert.AreEqual(t, "Hello World");
+
+            t = engine.TryEvaluate("PROPER('HELLO WORLD')", "");
+            Assert.AreEqual(t, "Hello World");
+
+            t = engine.TryEvaluate("PROPER('hELLO wORLD')", "");
+            Assert.AreEqual(t, "Hello World");
+
+            t = engine.TryEvaluate("PROPER('mICROSOFT eXCEL')", "");
+            Assert.AreEqual(t, "Microsoft Excel");
+
+            t = engine.TryEvaluate("PROPER('aPpLe')", "");
+            Assert.AreEqual(t, "Apple");
+
+            t = engine.TryEvaluate("PROPER('test123test')", "");
+            Assert.AreEqual(t, "Test123Test");
         }
 
         [Test]

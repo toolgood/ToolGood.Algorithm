@@ -30,64 +30,42 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var month = args2.IntValue;
 			var day = args3.IntValue;
 
-			if (month < 1 || month > 12) {
-				return ParameterError(2);
-			}
-			if (day < 1 || day > 31) {
-				return ParameterError(3);
+			DateTime baseDate;
+			try {
+				baseDate = new DateTime(year, 1, 1);
+				baseDate = baseDate.AddMonths(month - 1);
+				baseDate = baseDate.AddDays(day - 1);
+			} catch {
+				return ParameterError(1);
 			}
 
-            MyDate d;
-            if (func4 == null) {
-                d = new MyDate(year, month, day, 0, 0, 0);
-            } else if (func5 == null) {
+			int hour = 0, minute = 0, second = 0;
+            if (func4 != null) {
                 var args4 = GetNumber_4(engine, tempParameter);
                 if (args4.IsErrorOrNone) { return args4; }
-				var hour = args4.IntValue;
+				hour = args4.IntValue;
 				if (hour < 0 || hour > 23) {
 					return ParameterError(4);
 				}
-                d = new MyDate(year, month, day, hour, 0, 0);
-            } else if (func6 == null) {
-                var args4 = GetNumber_4(engine, tempParameter);
-                if (args4.IsErrorOrNone) { return args4; }
-
+            }
+			if (func5 != null) {
                 var args5 = GetNumber_5(engine, tempParameter);
                 if (args5.IsErrorOrNone) { return args5; }
-
-				var hour = args4.IntValue;
-				var minute = args5.IntValue;
-				if (hour < 0 || hour > 23) {
-					return ParameterError(4);
-				}
+				minute = args5.IntValue;
 				if (minute < 0 || minute > 59) {
 					return ParameterError(5);
 				}
-                d = new MyDate(year, month, day, hour, minute, 0);
-            } else {
-                var args4 = GetNumber_4(engine, tempParameter);
-                if (args4.IsErrorOrNone) { return args4; }
-
-                var args5 = GetNumber_5(engine, tempParameter);
-                if (args5.IsErrorOrNone) { return args5; }
-
+            }
+			if (func6 != null) {
                 var args6 = GetNumber_6(engine, tempParameter);
                 if (args6.IsErrorOrNone) { return args6; }
-
-				var hour = args4.IntValue;
-				var minute = args5.IntValue;
-				var second = args6.IntValue;
-				if (hour < 0 || hour > 23) {
-					return ParameterError(4);
-				}
-				if (minute < 0 || minute > 59) {
-					return ParameterError(5);
-				}
+				second = args6.IntValue;
 				if (second < 0 || second > 59) {
 					return ParameterError(6);
 				}
-                d = new MyDate(year, month, day, hour, minute, second);
             }
+
+			MyDate d = new MyDate(baseDate.Year, baseDate.Month, baseDate.Day, hour, minute, second);
             return Operand.Create(d);
         }
 		public override OperandType GetResultType()

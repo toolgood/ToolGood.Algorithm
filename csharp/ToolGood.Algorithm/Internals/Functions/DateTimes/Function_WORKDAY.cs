@@ -30,12 +30,22 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				if (ar.IsErrorOrNone) { return ar; }
 				list.Add(ar.DateValue.ToDateTime());
 			}
-            while (days > 0) {
-                startMyDate = startMyDate.AddDays(1);
-                if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
-                if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
-                if (list.Contains(startMyDate)) continue;
-                days--;
+            if (days > 0) {
+                while (days > 0) {
+                    startMyDate = startMyDate.AddDays(1);
+                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
+                    if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                    if (list.Contains(startMyDate)) continue;
+                    days--;
+                }
+            } else if (days < 0) {
+                while (days < 0) {
+                    startMyDate = startMyDate.AddDays(-1);
+                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
+                    if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                    if (list.Contains(startMyDate)) continue;
+                    days++;
+                }
             }
             return Operand.Create(startMyDate);
         }

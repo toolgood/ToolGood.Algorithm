@@ -23,32 +23,45 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (string.IsNullOrEmpty(text)) {
 				return Operand.Create(text);
 			}
+
 			bool needModify = false;
 			bool isFirst = true;
 			for (int i = 0; i < text.Length; i++) {
 				var t = text[i];
-				if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
+				if (!char.IsLetter(t)) {
 					isFirst = true;
-				} else if (isFirst) {
-					if (char.IsLower(t)) {
-						needModify = true;
-						break;
+				} else {
+					if (isFirst) {
+						if (char.IsLower(t)) {
+							needModify = true;
+						}
+					} else {
+						if (char.IsUpper(t)) {
+							needModify = true;
+						}
 					}
+					if (needModify) break;
 					isFirst = false;
 				}
 			}
+
 			if (!needModify) {
-				return args1; // no change
+				return args1;
 			}
+
 			char[] chars = text.ToCharArray();
 			Span<char> span = chars;
 			isFirst = true;
 			for (int i = 0; i < span.Length; i++) {
 				var t = span[i];
-				if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
+				if (!char.IsLetter(t)) {
 					isFirst = true;
-				} else if (isFirst) {
-					span[i] = char.ToUpper(t);
+				} else {
+					if (isFirst) {
+						span[i] = char.ToUpper(t);
+					} else {
+						span[i] = char.ToLower(t);
+					}
 					isFirst = false;
 				}
 			}

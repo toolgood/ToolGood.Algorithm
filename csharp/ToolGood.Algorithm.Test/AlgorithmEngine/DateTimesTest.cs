@@ -251,6 +251,55 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         [Test]
+        public void WORKDAY_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", 5)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 22));
+
+            dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", -5)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 8));
+
+            dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", 0)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 15));
+
+            dt = engine.TryEvaluate("WORKDAY(\"2024-01-12\", 1)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 15));
+
+            dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", -1)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 12));
+        }
+
+        [Test]
+        public void DATE_ExcelCompatible_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DATE(2024, 1, 15)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 15));
+
+            dt = engine.TryEvaluate("DATE(2024, 13, 1)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2025, 1, 1));
+
+            dt = engine.TryEvaluate("DATE(2024, 1, 32)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 2, 1));
+
+            dt = engine.TryEvaluate("DATE(2024, 0, 1)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2023, 12, 1));
+
+            dt = engine.TryEvaluate("DATE(2024, 2, 30)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 3, 1));
+
+            dt = engine.TryEvaluate("DATE(2024, -1, 1)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2023, 11, 1));
+
+            dt = engine.TryEvaluate("DATE(2024, 12, 0)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 11, 30));
+
+            dt = engine.TryEvaluate("DATE(2024, 1, -1)", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2023, 12, 30));
+        }
+
+        [Test]
         public void WEEKNUM_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
