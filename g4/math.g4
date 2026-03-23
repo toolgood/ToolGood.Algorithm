@@ -84,7 +84,7 @@ expr:
 	| ARRAY '(' expr (',' expr)* ')'						# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
 	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'		# IFS_fun
-	| SWITCH '(' expr ',' expr ',' expr (',' expr ',' expr)* ')'			# SWITCH_fun
+	| SWITCH '(' expr ',' expr ',' expr ( ',' expr)* ')'	# SWITCH_fun
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
 	| ISTEXT '(' expr ')'									# ISTEXT_fun
 	| ISERROR '(' expr (',' expr)? ')'						# ISERROR_fun
