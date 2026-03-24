@@ -1,9 +1,9 @@
 /**
  * DiyNameVisitor - DIY 名称访问者
  */
-import mathjsVisitor from '../../math/mathjsVisitor.js';
+import mathVisitor from '../../math/mathVisitor.js';
 
-class DiyNameVisitor extends mathjsVisitor {
+class DiyNameVisitor extends mathVisitor {
     constructor() {
         super();
         this.diy = {
