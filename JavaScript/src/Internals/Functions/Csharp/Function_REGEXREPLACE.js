@@ -2,9 +2,9 @@ import { Function_3 } from '../Function_3.js';
 import { Operand } from '../../../Operand.js';
 
 /**
- * Function_REGEXREPALCE
+ * Function_REGEXREPLACE
  */
-export class Function_REGEXREPALCE extends Function_3 {
+export class Function_REGEXREPLACE extends Function_3 {
     /**
      * @param {FunctionBase[]} funcs
      */

@@ -187,7 +187,7 @@ import { Function_BASE64URLTOTEXT } from '../Functions/CsharpWeb/Function_BASE64
 import { Function_TEXTTOBASE64 } from '../Functions/CsharpWeb/Function_TEXTTOBASE64.js';
 import { Function_TEXTTOBASE64URL } from '../Functions/CsharpWeb/Function_TEXTTOBASE64URL.js';
 import { Function_REGEX } from '../Functions/Csharp/Function_REGEX.js';
-import { Function_REGEXREPALCE } from '../Functions/Csharp/Function_REGEXREPALCE.js';
+import { Function_REGEXREPLACE } from '../Functions/Csharp/Function_REGEXREPLACE.js';
 import { Function_ISREGEX } from '../Functions/Csharp/Function_ISREGEX.js';
 import { Function_GUID } from '../Functions/Csharp/Function_GUID.js';
 import { Function_MD5 } from '../Functions/CsharpSecurity/Function_MD5.js';
@@ -2464,7 +2464,7 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitREGEXREPALCE_fun(context) {
-        return new Function_REGEXREPALCE(this.vN(context));
+        return new Function_REGEXREPLACE(this.vN(context));
     }
 
     /**
