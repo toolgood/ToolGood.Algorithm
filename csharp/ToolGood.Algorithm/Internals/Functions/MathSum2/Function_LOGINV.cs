@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -10,28 +13,40 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		{
 		}
 
-		
-
         public override string Name => "LogInv";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-            if (args1.IsError) return args1;
+            if (args1.IsErrorOrNone) return args1;
+            var probability = args1.NumberValue;
+            if (probability <= 0 || probability >= 1) {
+                return ParameterError(1);
+            }
 
             var args2 = GetNumber_2(engine, tempParameter);
-            if (args2.IsError) return args2;
+            if (args2.IsErrorOrNone) return args2;
 
             var args3 = GetNumber_3(engine, tempParameter);
-            if (args3.IsError) return args3;
+            if (args3.IsErrorOrNone) return args3;
 
-            var n3 = args3.DoubleValue;
-            if (n3 < 0.0) {
-                return FunctionError();
+            var n3 = args3.NumberValue;
+            if (n3 <= 0m) {
+                return ParameterError(3);
             }
-            return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
+            return Operand.Create(ExcelFunctions.LogInv(args1.NumberValue, args2.NumberValue, n3));
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

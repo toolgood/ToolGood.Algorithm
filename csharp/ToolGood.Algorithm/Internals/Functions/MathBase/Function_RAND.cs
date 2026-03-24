@@ -1,9 +1,12 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
-	internal sealed class Function_RAND : FunctionBase
+	internal sealed class Function_RAND : Function_0
     {
         public Function_RAND()
         {
@@ -25,8 +28,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
             stringBuilder.Append("Rand()");
         }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    
+	}
 
 }

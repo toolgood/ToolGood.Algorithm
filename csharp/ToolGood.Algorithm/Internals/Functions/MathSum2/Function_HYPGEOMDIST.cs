@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -10,34 +13,58 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		{
 		}
 
-		
-
         public override string Name => "HypgeomDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-            if (args1.IsError) return args1;
+            if (args1.IsErrorOrNone) return args1;
 
             var args2 = GetNumber_2(engine, tempParameter);
-            if (args2.IsError) return args2;
+            if (args2.IsErrorOrNone) return args2;
 
             var args3 = GetNumber_3(engine, tempParameter);
-            if (args3.IsError) return args3;
+            if (args3.IsErrorOrNone) return args3;
 
             var args4 = GetNumber_4(engine, tempParameter);
-            if (args4.IsError) return args4;
+            if (args4.IsErrorOrNone) return args4;
 
             int k = args1.IntValue;
+            if (k < 0) {
+                return ParameterError(1);
+            }
             int draws = args2.IntValue;
+            if (draws < 0) {
+                return ParameterError(2);
+            }
             int success = args3.IntValue;
+            if (success < 0) {
+                return ParameterError(3);
+            }
             int population = args4.IntValue;
-            if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
+            if (population < 0) {
+                return ParameterError(4);
+            }
+            if (k > draws) {
+                return ParameterError(1);
+            }
+            if (success > population || draws > population) {
                 return FunctionError();
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

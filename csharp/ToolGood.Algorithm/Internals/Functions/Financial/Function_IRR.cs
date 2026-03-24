@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_IRR : Function_N
+	internal sealed class Function_IRR : Function_2
 	{
 		public Function_IRR(FunctionBase[] funcs) : base(funcs) { }
 
@@ -11,48 +13,80 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 1) return ParameterError(1);
-
-			var valuesArg = GetArray(engine, tempParameter, 0);
-			if (valuesArg.IsError) return valuesArg;
-			var values = new List<double>();
-			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.DoubleValue);
+			var valuesArg = GetArray_1(engine, tempParameter);
+			if(valuesArg.IsErrorOrNone) return valuesArg;
+			var values = new List<decimal>();
+			foreach(var v in valuesArg.ArrayValue) {
+				if(v.IsNumber) {
+					values.Add(v.NumberValue);
+				} else {
+					var v2 = v.ToNumber($"Function '{Name}' parameter 1 is error!");
+					if(v2.IsErrorOrNone) return v2;
+					values.Add(v2.NumberValue);
+				}
 			}
 
-			double guess = 0.1;
-			if (funcs.Length > 1) {
-				var guessArg = GetNumber(engine, tempParameter, 1);
-				if (guessArg.IsError) return guessArg;
-				guess = guessArg.DoubleValue;
+			if(values.Count == 0) {
+				return ParameterError(1);
 			}
 
-			var irr = NewtonRaphsonIRR(values, guess);
-			return Operand.Create(irr);
+			bool hasPositive = false;
+			bool hasNegative = false;
+			foreach(var v in values) {
+				if(v > 0) hasPositive = true;
+				if(v < 0) hasNegative = true;
+			}
+			if(!hasPositive || !hasNegative) {
+				return ParameterError(1);
+			}
+
+			decimal guess = 0.1m;
+			if(func2 != null) {
+				var guessArg = GetNumber_2(engine, tempParameter);
+				if(guessArg.IsErrorOrNone) return guessArg;
+				guess = guessArg.NumberValue;
+			}
+
+			try {
+				var irr = NewtonRaphsonIRR(values, guess);
+				return Operand.Create(irr);
+			} catch {
+				return FunctionError();
+			}
 		}
 
-		private double NewtonRaphsonIRR(List<double> values, double guess)
+		private decimal NewtonRaphsonIRR(List<decimal> values, decimal guess)
 		{
 			var rate = guess;
-			for (int iter = 0; iter < 100; iter++) {
-				double npv = 0;
-				double dnpv = 0;
+			for(int iter = 0; iter < 100; iter++) {
+				decimal npv = 0;
+				decimal dnpv = 0;
 
-				for (int i = 0; i < values.Count; i++) {
-					var factor = (double)Math.Pow((1 + rate), i);
+				for(int i = 0; i < values.Count; i++) {
+					var factor = (decimal)MathEx.Pow((1 + rate), i);
 					npv += values[i] / factor;
 					dnpv -= i * values[i] / (factor * (1 + rate));
 				}
 
-				if (Math.Abs(dnpv) < 1e-12) break;
+				if(Math.Abs(dnpv) < 1e-12m) break;
 				var newRate = rate - npv / dnpv;
 
-				if (Math.Abs(newRate - rate) < 1e-10) {
+				if(Math.Abs(newRate - rate) < 1e-10m) {
 					return newRate;
 				}
 				rate = newRate;
 			}
-			return rate;
+			throw new Exception("IRR calculation did not converge");
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

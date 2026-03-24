@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_XIRR : Function_N
+	internal sealed class Function_XIRR : Function_3
 	{
 		public Function_XIRR(FunctionBase[] funcs) : base(funcs) { }
 
@@ -12,68 +14,81 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 2) return ParameterError(1);
-
-			var valuesArg = GetArray(engine, tempParameter, 0);
-			if (valuesArg.IsError) return valuesArg;
-			var values = new List<double>();
+			var valuesArg = GetArray_1(engine, tempParameter);
+			if (valuesArg.IsErrorOrNone) return valuesArg;
+			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.DoubleValue);
+				values.Add(v.NumberValue);
 			}
 
-			var datesArg = GetArray(engine, tempParameter, 1);
-			if (datesArg.IsError) return datesArg;
+			var datesArg = GetArray_2(engine, tempParameter);
+			if (datesArg.IsErrorOrNone) return datesArg;
 			var dates = new List<DateTime>();
 			foreach (var d in datesArg.ArrayValue) {
 				if (d.IsDate) {
 					dates.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
 				} else if (d.IsText) {
 					var myDate = MyDate.Parse(d.TextValue);
-					if (myDate == null) return FunctionError();
+					if (myDate == null) return ParameterError(2);
 					dates.Add(myDate.ToDateTime(DateTimeKind.Utc));
 				} else {
-					return FunctionError();
+					return ParameterError(2);
 				}
 			}
 
 			if (values.Count != dates.Count || values.Count < 2) return FunctionError();
 
-			double guess = 0.1;
-			if (funcs.Length > 2) {
-				var guessArg = GetNumber(engine, tempParameter, 2);
-				if (guessArg.IsError) return guessArg;
-				guess = guessArg.DoubleValue;
+			decimal guess = 0.1m;
+			if (func3 != null) {
+				var guessArg = GetNumber_3(engine, tempParameter);
+				if (guessArg.IsErrorOrNone) return guessArg;
+				guess = guessArg.NumberValue;
 			}
 
-			var xirr = NewtonRaphsonXIRR(values, dates, guess);
-			return Operand.Create(xirr);
+			try {
+				var xirr = NewtonRaphsonXIRR(values, dates, guess);
+				return Operand.Create(xirr);
+			} catch {
+				return FunctionError();
+			}
 		}
 
-		private double NewtonRaphsonXIRR(List<double> values, List<DateTime> dates, double rate)
+		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal rate)
 		{
 			var baseDate = dates[0];
 
 			for (int iter = 0; iter < 100; iter++) {
-				double npv = 0;
-				double dnpv = 0;
+				decimal npv = 0;
+				decimal dnpv = 0;
 
 				for (int i = 0; i < values.Count; i++) {
-					var days = (dates[i] - baseDate).TotalDays;
-					var exp = days / 365.0;
-					var factor = Math.Pow(1 + rate, exp);
+					var days = (decimal)(dates[i] - baseDate).TotalDays;
+					var exp = days / 365.0m;
+					var factor = MathEx.Pow(1 + rate, exp);
 					npv += values[i] / factor;
 					dnpv -= values[i] * exp / (factor * (1 + rate));
 				}
 
-				if (Math.Abs(dnpv) < 1e-12) break;
+				if (Math.Abs(dnpv) < 1e-12m) break;
 				var newRate = rate - npv / dnpv;
 
-				if (Math.Abs(newRate - rate) < 1e-10) {
+				if (Math.Abs(newRate - rate) < 1e-10m) {
 					return newRate;
 				}
 				rate = newRate;
 			}
-			return rate;
+			throw new Exception("XIRR calculation did not converge");
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			func2.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

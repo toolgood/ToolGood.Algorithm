@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
@@ -9,17 +12,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		{
 		}
 
-		
-
 		public override string Name => "HasValue";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetText_2(engine, tempParameter);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			if(args1.IsArrayJson) {
 				return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
@@ -53,7 +54,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				var ar = ((OperandArray)args1);
 				foreach(var item in ar.ArrayValue) {
 					var t = item.ToText();
-					if(t.IsError) { continue; }
+					if(t.IsErrorOrNone) { continue; }
 					if(t.TextValue == args2.TextValue) {
 						return Operand.True;
 					}
@@ -63,5 +64,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			return ParameterError(1);
 		}
 
+		public override OperandType GetResultType()
+		{
+			return OperandType.BOOLEAN;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.JSON);
+			func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+		}
 	}
 }

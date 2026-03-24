@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -14,13 +17,21 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetDate_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
             if (args1.DateValue.Month == null) {
-                return FunctionError();
+                return ParameterError(1);
             }
             return Operand.Create((int)args1.DateValue.Month.Value);
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+        {
+            func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+        }
+	}
 
 }

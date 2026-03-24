@@ -8,6 +8,7 @@ namespace ToolGood.Algorithm
 		private readonly object[] _args;
 		private string _formattedMsg;
 		public override OperandType Type => OperandType.ERROR;
+		internal override bool IsErrorOrNone => true;
 		public override bool IsError => true;
 		public override string ErrorMsg => _formattedMsg ?? (_formattedMsg = FormatMessage());
 

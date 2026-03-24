@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
@@ -9,14 +12,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 		{
 		}
 
-		
-
 		public override string Name => ">=";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsError) { return args1; }
-			var args2 = func2.Evaluate(engine, tempParameter); if(args2.IsError) { return args2; }
+			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
+			var args2 = func2.Evaluate(engine, tempParameter); if(args2.IsErrorOrNone) { return args2; }
 
 			if(args1.Type == args2.Type) {
 				if(args1.IsNumber) {
@@ -40,11 +41,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				return CompareError();
 			}
 			args1 = ConvertToNumber(args1, 1);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			args2 = ConvertToNumber(args2, 2);
-			if(args2.IsError) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 
 			return Operand.Create(args1.NumberValue >= args2.NumberValue);
+		}
+
+		public override OperandType GetResultType()
+		{
+			return OperandType.BOOLEAN;
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -53,6 +59,29 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 			stringBuilder.Append(" >= ");
 			func2.ToString(stringBuilder, false);
 			if(addBrackets) stringBuilder.Append(')');
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			var t1 = func1.GetResultType();
+			var t2 = func2.GetResultType();
+			if(t1 == OperandType.NONE) {
+				var p = noneEngine.Evaluate(func2).ToText();
+				if(t2 != OperandType.ERROR && p.IsErrorOrNone == false) {
+					func1.GetParameterTypes(noneEngine, result, t2, Name, p.TextValue);
+					func2.GetParameterTypes(noneEngine, result, t2);
+					return;
+				}
+			} else if(t2 == OperandType.NONE) {
+				var p = noneEngine.Evaluate(func1).ToText();
+				if(t1 != OperandType.ERROR && p.IsErrorOrNone == false) {
+					func2.GetParameterTypes(noneEngine, result, t1, Name, p.TextValue);
+					func1.GetParameterTypes(noneEngine, result, t1);
+					return;
+				}
+			}
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NONE);
 		}
 	}
 }

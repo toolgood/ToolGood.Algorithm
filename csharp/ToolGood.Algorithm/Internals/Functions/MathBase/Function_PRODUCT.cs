@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -17,12 +19,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { 
                 var aa = GetNumber(engine, tempParameter, i);
-                if (aa.IsError) { return aa; } 
+                if (aa.IsErrorOrNone || aa.IsNone) { return aa; } 
                 args.Add(aa); 
             }
 
             var list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args, list);
+            var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
 
             decimal d = 1;
@@ -32,7 +34,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
             return Operand.Create(d);
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+		}
+
+	}
 
 }

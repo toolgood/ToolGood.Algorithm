@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_IPMT : Function_N
+	internal sealed class Function_IPMT : Function_6
 	{
 		public Function_IPMT(FunctionBase[] funcs) : base(funcs) { }
 
@@ -10,36 +13,37 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 4) return ParameterError(1);
+			var rateArg = GetNumber_1(engine, tempParameter);
+			if (rateArg.IsErrorOrNone) return rateArg;
+			var rate = rateArg.NumberValue;
 
-			var rateArg = GetNumber(engine, tempParameter, 0);
-			if (rateArg.IsError) return rateArg;
-			var rate = rateArg.DoubleValue;
+			var perArg = GetNumber_2(engine, tempParameter);
+			if (perArg.IsErrorOrNone) return perArg;
+			var per = perArg.NumberValue;
 
-			var perArg = GetNumber(engine, tempParameter, 1);
-			if (perArg.IsError) return perArg;
-			var per = perArg.DoubleValue;
+			var nperArg = GetNumber_3(engine, tempParameter);
+			if (nperArg.IsErrorOrNone) return nperArg;
+			var nper = nperArg.NumberValue;
 
-			var nperArg = GetNumber(engine, tempParameter, 2);
-			if (nperArg.IsError) return nperArg;
-			var nper = nperArg.DoubleValue;
+			var pvArg = GetNumber_4(engine, tempParameter);
+			if (pvArg.IsErrorOrNone) return pvArg;
+			var pv = pvArg.NumberValue;
 
-			var pvArg = GetNumber(engine, tempParameter, 3);
-			if (pvArg.IsError) return pvArg;
-			var pv = pvArg.DoubleValue;
-
-			double fv = 0;
-			if (funcs.Length > 4) {
-				var fvArg = GetNumber(engine, tempParameter, 4);
-				if (fvArg.IsError) return fvArg;
-				fv = fvArg.DoubleValue;
+			decimal fv = 0;
+			if (func5 != null) {
+				var fvArg = GetNumber_5(engine, tempParameter);
+				if (fvArg.IsErrorOrNone) return fvArg;
+				fv = fvArg.NumberValue;
 			}
 
 			int type = 0;
-			if (funcs.Length > 5) {
-				var typeArg = GetNumber(engine, tempParameter, 5);
-				if (typeArg.IsError) return typeArg;
+			if (func6 != null) {
+				var typeArg = GetNumber_6(engine, tempParameter);
+				if (typeArg.IsErrorOrNone) return typeArg;
 				type = typeArg.IntValue;
+				if (type != 0 && type != 1) {
+					return ParameterError(6);
+				}
 			}
 
 			if (rate == 0) {
@@ -47,7 +51,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			var pmt = CalculatePMT(rate, nper, pv, fv, type);
-			var factor = Math.Pow((1 + rate), (per - 1));
+			var factor = MathEx.Pow((1 + rate), (per - 1));
 			var ipmt = -(pv * factor + pmt * (factor - 1) / rate) * rate;
 
 			if (type == 1 && per == 1) {
@@ -57,14 +61,28 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			return Operand.Create(ipmt);
 		}
 
-		private double CalculatePMT(double rate, double nper, double pv, double fv, int type)
+		private decimal CalculatePMT(decimal rate, decimal nper, decimal pv, decimal fv, int type)
 		{
-			var factor = Math.Pow((1 + rate), nper);
+			var factor = MathEx.Pow((1 + rate), nper);
 			var pmt = -(pv * factor + fv) * rate / (factor - 1);
 			if (type == 1) {
 				pmt = pmt / (1 + rate);
 			}
 			return pmt;
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func6 != null) func6.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

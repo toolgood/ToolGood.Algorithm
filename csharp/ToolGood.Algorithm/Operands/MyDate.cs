@@ -182,7 +182,7 @@ namespace ToolGood.Algorithm.Operands
         /// <returns></returns>
         public override string ToString()
         {
-            var stringBuffer = new StringBuilder(24);
+            var stringBuffer = new StringBuilder(20);
             if (Year != null && Year > 0) {
                 stringBuffer.Append(Year);
                 stringBuffer.Append('-');
@@ -387,7 +387,6 @@ namespace ToolGood.Algorithm.Operands
             d += Second;
             return d;
 		}
-
 
 	}
 }

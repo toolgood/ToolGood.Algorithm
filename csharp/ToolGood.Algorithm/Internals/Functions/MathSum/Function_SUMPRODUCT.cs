@@ -1,5 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -16,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var arrays = new List<List<decimal>>();
 			for (int i = 0; i < funcs.Length; i++) {
 				var arg = GetArray(engine, tempParameter, i);
-				if (arg.IsError) return arg;
+				if (arg.IsErrorOrNone) return arg;
 				var list = new List<decimal>();
 				foreach (var item in arg.ArrayValue) {
 					if (item.IsNumber) {
@@ -33,6 +35,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				}
 			}
 
+			if (minLength == 0) {
+				return Operand.Zero;
+			}
+
 			decimal result = 0;
 			for (int i = 0; i < minLength; i++) {
 				decimal product = 1;
@@ -43,6 +49,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			}
 
 			return Operand.Create(result);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				funcs[i].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			}
 		}
 	}
 }

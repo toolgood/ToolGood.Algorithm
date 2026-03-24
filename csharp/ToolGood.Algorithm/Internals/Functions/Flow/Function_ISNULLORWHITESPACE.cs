@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
@@ -16,9 +19,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNull) { return Operand.True; }
 			var textArg = ConvertToText(args1, 1);
-			if (textArg.IsError) { return textArg; }
+			if (textArg.IsErrorOrNone) { return textArg; }
             return Operand.Create(string.IsNullOrWhiteSpace(textArg.TextValue));
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.BOOLEAN;
+		}
 
-    } 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+		}
+	} 
 }

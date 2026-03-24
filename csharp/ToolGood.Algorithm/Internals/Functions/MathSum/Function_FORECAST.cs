@@ -1,5 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -14,14 +16,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length < 3) return ParameterError(1);
 
 			var xArg = GetNumber(engine, tempParameter, 0);
-			if (xArg.IsError) return xArg;
+			if (xArg.IsErrorOrNone) return xArg;
 			var x = xArg.NumberValue;
 
 			var yArrayArg = GetArray(engine, tempParameter, 1);
-			if (yArrayArg.IsError) return yArrayArg;
+			if (yArrayArg.IsErrorOrNone) return yArrayArg;
 
 			var xArrayArg = GetArray(engine, tempParameter, 2);
-			if (xArrayArg.IsError) return xArrayArg;
+			if (xArrayArg.IsErrorOrNone) return xArrayArg;
 
 			var yValues = new List<decimal>();
 			foreach (var item in yArrayArg.ArrayValue) {
@@ -48,10 +50,25 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var meanX = sumX / n;
 			var meanY = sumY / n;
 
-			var slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+			var denominator = n * sumX2 - sumX * sumX;
+			if (denominator == 0) {
+				return Div0Error();
+			}
+			var slope = (n * sumXY - sumX * sumY) / denominator;
 			var intercept = meanY - slope * meanX;
 
 			return Operand.Create(intercept + slope * x);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			funcs[0].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			funcs[2].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
 		}
 	}
 }

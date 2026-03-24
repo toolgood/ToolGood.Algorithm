@@ -38,16 +38,14 @@ namespace ToolGood.Algorithm
 			if (JsonValue.IsArray) {
 				var list = new List<Operand>(JsonValue.Count);
 				foreach (JsonData v in JsonValue) {
-					if (v.IsString)
-						list.Add(Operand.Create(v.StringValue));
-					else if (v.IsBoolean)
-						list.Add(Operand.Create(v.BooleanValue));
-					else if (v.IsDouble)
-						list.Add(Operand.Create(v.NumberValue));
-					else if (v.IsNull)
-						list.Add(Operand.CreateNull());
-					else
-						list.Add(Operand.Create(v));
+					list.Add(v switch
+					{
+						_ when v.IsString => Operand.Create(v.StringValue),
+						_ when v.IsBoolean => Operand.Create(v.BooleanValue),
+						_ when v.IsDouble => Operand.Create(v.NumberValue),
+						_ when v.IsNull => Operand.Null,
+						_ => Operand.Create(v)
+					});
 				}
 				return Create(list);
 			}

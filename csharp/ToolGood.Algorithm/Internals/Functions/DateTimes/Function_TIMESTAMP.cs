@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
@@ -9,19 +12,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		{
 		}
 
-
-
 		public override string Name => "Timestamp";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			int type = 0; // ºÁÃë
+			int type = 0; // ç±»åž‹
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
-				if(args2.IsError) { return args2; }
+				if(args2.IsErrorOrNone) { return args2; }
 				type = args2.IntValue;
 			}
-			var args0 = GetDate_1(engine, tempParameter); if(args0.IsError) { return args0; }
+			var args0 = GetDate_1(engine, tempParameter); if(args0.IsErrorOrNone) { return args0; }
 			DateTime args1;
 			if(engine.UseLocalTime) {
 				args1 = args0.DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
@@ -35,9 +36,20 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				var s = (args1 - FunctionUtil.StartDateUtc).TotalSeconds;
 				return Operand.Create(s);
 			}
-			return FunctionError();
+			return ParameterError(2);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
 		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			if(func2 != null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
+		}
 	}
 
 }

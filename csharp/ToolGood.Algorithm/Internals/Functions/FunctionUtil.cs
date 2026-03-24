@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -20,17 +20,28 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 		}
 
-		private static bool F_base_GetList<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
+		private static bool FlattenToListCore<T>(List<Operand> args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
-			foreach(var item in args) {
+			var queue = new Queue<Operand>(args.Count);
+			for(int i = 0; i < args.Count; i++) {
+				queue.Enqueue(args[i]);
+			}
+
+			while(queue.Count > 0) {
+				var item = queue.Dequeue();
+
 				if(item.IsArray) {
-					var o = F_base_GetList(item.ArrayValue, list, converter, valueGetter);
-					if(o == false) { return false; }
+					var array = item.ArrayValue;
+					for(int i = 0; i < array.Count; i++) {
+						queue.Enqueue(array[i]);
+					}
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
 					if(i.IsError) { return false; }
-					var o = F_base_GetList(i.ArrayValue, list, converter, valueGetter);
-					if(o == false) { return false; }
+					var array = i.ArrayValue;
+					for(int j = 0; j < array.Count; j++) {
+						queue.Enqueue(array[j]);
+					}
 				} else {
 					var converted = converter(item);
 					if(converted.IsError) { return false; }
@@ -40,17 +51,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return true;
 		}
 
-		private static bool F_base_GetList<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
+		private static bool FlattenToListCore<T>(Operand args, List<T> list, Func<Operand, Operand> converter, Func<Operand, T> valueGetter)
 		{
 			if(args.IsError) { return false; }
 			if(args.IsArray) {
-				var o = F_base_GetList(args.ArrayValue, list, converter, valueGetter);
-				if(o == false) { return false; }
+				return FlattenToListCore(args.ArrayValue, list, converter, valueGetter);
 			} else if(args.IsJson) {
 				var i = args.ToArray(null);
 				if(i.IsError) { return false; }
-				var o = F_base_GetList(i.ArrayValue, list, converter, valueGetter);
-				if(o == false) { return false; }
+				return FlattenToListCore(i.ArrayValue, list, converter, valueGetter);
 			} else {
 				var converted = converter(args);
 				if(converted.IsError) { return false; }
@@ -59,49 +68,27 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return true;
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<Operand> list)
+		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
-			return F_base_GetList(args, list,
-				obj => obj,
-				obj => obj);
+			return FlattenToListCore(args, list, obj => obj, obj => obj);
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<decimal> list)
+		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
-			return F_base_GetList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.NumberValue);
+			return FlattenToListCore(args, list, obj => obj.IsNumber ? obj : obj.ToNumber(null), obj => obj.NumberValue);
 		}
 
-		public static bool F_base_GetList(List<Operand> args, List<double> list)
+		public static bool FlattenToList(Operand args, List<decimal> list)
 		{
-			return F_base_GetList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.DoubleValue);
+			return FlattenToListCore(args, list, obj => obj.IsNumber ? obj : obj.ToNumber(null), obj => obj.NumberValue);
 		}
 
-		public static bool F_base_GetList(Operand args, List<decimal> list)
+		public static bool FlattenToList(Operand args, List<string> list)
 		{
-			return F_base_GetList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.NumberValue);
+			return FlattenToListCore(args, list, obj => obj.ToText(null), obj => obj.TextValue);
 		}
 
-		public static bool F_base_GetList(Operand args, List<double> list)
-		{
-			return F_base_GetList(args, list, 
-				obj => obj.IsNumber ? obj : obj.ToNumber(null),
-				obj => obj.DoubleValue);
-		}
-
-		public static bool F_base_GetList(Operand args, List<string> list)
-		{
-			return F_base_GetList(args, list, 
-				obj => obj.ToText(null),
-				obj => obj.TextValue);
-		}
-
-		public static int F_base_countif(List<decimal> dbs, decimal d)
+		public static int GetCountIf(List<decimal> dbs, decimal d)
 		{
 			int count = 0;
 			for(int i = 0; i < dbs.Count; i++) {
@@ -113,19 +100,19 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return count;
 		}
 
-		public static int F_base_countif(List<decimal> dbs, string s, decimal d)
+		public static int GetCountIf(List<decimal> dbs, string s, decimal d)
 		{
 			int count = 0;
 			for(int i = 0; i < dbs.Count; i++) {
 				var item = dbs[i];
-				if(F_base_compare(item, d, s)) {
+				if(CompareValues(item, d, s)) {
 					count++;
 				}
 			}
 			return count;
 		}
 
-		public static decimal F_base_sumif(List<decimal> dbs, decimal d, List<decimal> sumdbs)
+		public static decimal GetSumIf(List<decimal> dbs, decimal d, List<decimal> sumdbs)
 		{
 			decimal sum = 0;
 			for(int i = 0; i < dbs.Count; i++) {
@@ -133,77 +120,60 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(item == d) {
 					sum += sumdbs[i];
 				}
-				//if (Math.Round(item, 10, MidpointRounding.AwayFromZero) == d) {
-				//	sum += item;
-				//}
 			}
 			return sum;
 		}
 
-		public static decimal F_base_sumif(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
+		public static decimal GetSumIf(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
 		{
 			decimal sum = 0;
 			for(int i = 0; i < dbs.Count; i++) {
-				if(F_base_compare(dbs[i], d, s)) {
+				if(CompareValues(dbs[i], d, s)) {
 					sum += sumdbs[i];
 				}
 			}
 			return sum;
 		}
 
-		public static bool F_base_compare(decimal a, decimal b, string ss)
+		public static bool CompareValues(decimal a, decimal b, string ss)
 		{
 			if(CharUtil.Equals(ss, '<')) {
 				return a < b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
 			} else if(CharUtil.Equals(ss, "<=")) {
 				return a <= b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
 			} else if(CharUtil.Equals(ss, '>')) {
 				return a > b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
 			} else if(CharUtil.Equals(ss, ">=")) {
 				return (a >= b);
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
 			} else if(CharUtil.Equals(ss, "=", "==", "===")) {
 				return a == b;
-				//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
 			}
 			return a != b;
-			//return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
 		}
 
-		public static int F_base_gcd(List<decimal> list)
+		public static int GetGcd(List<decimal> list)
 		{
-			if(list.Count < 2) return list.Count == 1 ? (int)list[0] : 1;
+			if(list.Count == 0) return 1;
 			
-			int min1 = (int)list[0], min2 = (int)list[1];
-			if(min1 > min2) { var t = min1; min1 = min2; min2 = t; }
-			
-			for(int i = 2; i < list.Count; i++) {
-				int val = (int)list[i];
-				if(val < min1) { min2 = min1; min1 = val; }
-				else if(val < min2) { min2 = val; }
-			}
-			
-			var g = F_base_gcd(min2, min1);
-			for(int i = 0; i < list.Count; i++) {
-				int val = (int)list[i];
-				if(val != min1 && val != min2) {
-					g = F_base_gcd(val > g ? val : g, val > g ? g : val);
-				}
+			int g = (int)list[0];
+			for(int i = 1; i < list.Count; i++) {
+				g = GetGcd(g, (int)list[i]);
+				if(g == 1) break;
 			}
 			return g;
 		}
 
-		public static int F_base_gcd(int a, int b)
+		public static int GetGcd(int a, int b)
 		{
-			if(b == 1) { return 1; }
-			if(b == 0) { return a; }
-			return F_base_gcd(b, a % b);
+			while(b != 0) {
+				int t = b;
+				b = a % b;
+				a = t;
+			}
+			return a;
 		}
 
-		public static int F_base_lgm(List<decimal> list)
+		public static int GetLcm(List<decimal> list)
 		{
 			if(list.Count == 0) return 1;
 			
@@ -221,13 +191,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 				}
 				
 				int b = val;
-				int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
+				int g = b > a ? GetGcd(b, a) : GetGcd(a, b);
 				a = a / g * b;
 			}
 			return foundFirst ? a : 1;
 		}
 
-		public static int F_base_Factorial(int a)
+		public static int GetFactorial(int a)
 		{
 			if(a <= 0) { return 1; }
 			int r = 1;
@@ -237,8 +207,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return r;
 		}
 
-		public static Tuple<string, decimal> sumifMatch(string s)
+		public static Tuple<string, decimal> ParseSumIfMatch(string s)
 		{
+			if(s.Length == 0) { return null; }
 			var span = s.AsSpan();
 			var c = span[0];
 			if(c == '>' || c == '＞') {
@@ -286,47 +257,99 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			return null;
 		}
-
-		public static int Compare(decimal t1, decimal t2)
-		{
-			var b = t1 - t2;
-			//var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
-			if(b == 0) {
-				return 0;
-			} else if(b > 0) {
-				return 1;
-			}
-			return -1;
-		}
-
+	
 		public static bool TryParseBoolean(string TextValue, out bool boolValue)
 		{
-			if(TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = true;
-				return true;
-			}
-			if(TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = false;
-				return true;
-			}
-			if(TextValue.Equals("yes", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = true; 
-				return true;
-			}
-			if(TextValue.Equals("no", StringComparison.OrdinalIgnoreCase)) {
-				boolValue = false; 
-				return true;
-			}
-			if(TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) {
-				boolValue = true;
-				return true;
-			}
-			if(TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) {
-				boolValue = false;
-				return true;
+			var span = TextValue.AsSpan();
+			var len = span.Length;
+			switch(len) {
+				case 1: {
+					var c = span[0];
+					if(c == '1' || c == '是' || c == '有') { boolValue = true; return true; }
+					if(c == '0' || c == '否' || c == '无') { boolValue = false; return true; }
+					break;
+				}
+				case 2: {
+					if(span.Equals("no", StringComparison.OrdinalIgnoreCase)) { boolValue = false; return true; }
+					if(span.SequenceEqual("不是".AsSpan())) { boolValue = false; return true; }
+					if(span.SequenceEqual("没有".AsSpan())) { boolValue = false; return true; }
+					break;
+				}
+				case 3: {
+					if(span.Equals("yes", StringComparison.OrdinalIgnoreCase)) { boolValue = true; return true; }
+					break;
+				}
+				case 4: {
+					if(span.Equals("true", StringComparison.OrdinalIgnoreCase)) { boolValue = true; return true; }
+					break;
+				}
+				case 5: {
+					if(span.Equals("false", StringComparison.OrdinalIgnoreCase)) { boolValue = false; return true; }
+					break;
+				}
 			}
 			boolValue = false;
 			return false;
+		}
+
+		public static decimal QuickSelect(List<decimal> list, int k, bool largest)
+		{
+			if(list.Count == 1) return list[0];
+			
+			int targetIndex = largest ? list.Count - 1 - k : k;
+			return QuickSelectCore(list, 0, list.Count - 1, targetIndex);
+		}
+
+		private static decimal QuickSelectCore(List<decimal> list, int left, int right, int k)
+		{
+			while(left < right) {
+				int pivotIndex = Partition(list, left, right);
+				if(k == pivotIndex) {
+					return list[k];
+				} else if(k < pivotIndex) {
+					right = pivotIndex - 1;
+				} else {
+					left = pivotIndex + 1;
+				}
+			}
+			return list[left];
+		}
+
+		private static int Partition(List<decimal> list, int left, int right)
+		{
+			decimal pivot = list[right];
+			int i = left;
+			for(int j = left; j < right; j++) {
+				if(list[j] <= pivot) {
+					Swap(list, i, j);
+					i++;
+				}
+			}
+			Swap(list, i, right);
+			return i;
+		}
+
+		private static void Swap(List<decimal> list, int i, int j)
+		{
+			if(i != j) {
+				decimal temp = list[i];
+				list[i] = list[j];
+				list[j] = temp;
+			}
+		}
+
+		public static int GetRank(List<decimal> values, decimal num, bool descending)
+		{
+			int rank = 1;
+			int count = 0;
+			for(int i = 0; i < values.Count; i++) {
+				if(values[i] == num) {
+					count++;
+				} else if((descending && values[i] > num) || (!descending && values[i] < num)) {
+					rank++;
+				}
+			}
+			return count > 0 ? rank : 0;
 		}
 	}
 }

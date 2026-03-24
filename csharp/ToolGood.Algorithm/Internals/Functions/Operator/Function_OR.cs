@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -17,15 +20,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			// 程序 && and || or �?excel�? AND(x,y) OR(x,y) 有区�?
-			// 在excel�?AND(x,y) OR(x,y) 先报错，
-			// 在程序中�?& and  有true 直接返回true 就不会检测下一个会不会报错
-			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
 			var args1 = GetBoolean_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 			if(args1.BooleanValue) {
 				var args2 = GetBoolean_2(engine, tempParameter);
-				if(args2.IsError) { return args2; }
+				if(args2.IsErrorOrNone) { return args2; }
 				return Operand.True;
 			}
 			return GetBoolean_2(engine, tempParameter);
@@ -38,6 +37,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			stringBuilder.Append(" || ");
 			func2.ToString(stringBuilder, false);
 			if(addBrackets) stringBuilder.Append(')');
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.BOOLEAN;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+			func2.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
 		}
 	}
 }

@@ -19,7 +19,7 @@
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>6.2.3.9</Version>
+    <Version>6.2.5.20</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
@@ -29,7 +29,6 @@
     <PackageReadmeFile>README-EN.md</PackageReadmeFile>
     <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>
-
 
 	<ItemGroup>
 		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />

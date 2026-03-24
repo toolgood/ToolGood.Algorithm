@@ -220,6 +220,5 @@ namespace ToolGood.Algorithm.LitJson
 			}
 		}
 
-
 	}
 }

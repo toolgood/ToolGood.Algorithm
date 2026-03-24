@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -9,20 +12,18 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 		}
 
-		
-
 		public override string Name => "Replace";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 			var oldtext = args1.TextValue;
 			if (func4 == null) {
 				var args22 = GetText_2(engine, tempParameter);
-				if (args22.IsError) { return args22; }
+				if (args22.IsErrorOrNone) { return args22; }
 				var args32 = GetText_3(engine, tempParameter);
-				if (args32.IsError) { return args32; }
+				if (args32.IsErrorOrNone) { return args32; }
 
 				var old = args22.TextValue;
 				var newstr = args32.TextValue;
@@ -30,29 +31,52 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsError) { return args2; }
+			if (args2.IsErrorOrNone) { return args2; }
 			var args3 = GetNumber_3(engine, tempParameter);
-			if (args3.IsError) { return args3; }
+			if (args3.IsErrorOrNone) { return args3; }
 			var args4 = GetText_4(engine, tempParameter);
-			if (args4.IsError) { return args4; }
+			if (args4.IsErrorOrNone) { return args4; }
 
 			var start = args2.IntValue - engine.ExcelIndex;
 			var length = args3.IntValue;
 			var newtext = args4.TextValue;
 
+			if (start < 0) {
+				return ParameterError(2);
+			}
+			if (length < 0) {
+				return ParameterError(3);
+			}
+			if (start >= oldtext.Length) {
+				return Operand.Create(oldtext + newtext);
+			}
+
 			var sb = new StringBuilder(oldtext.Length - length + newtext.Length);
-			for (int i = 0; i < oldtext.Length; i++) {
-				if (i < start) {
-					sb.Append(oldtext[i]);
-				} else if (i == start) {
-					sb.Append(newtext);
-				} else if (i >= start + length) {
-					sb.Append(oldtext[i]);
-				}
+			sb.Append(oldtext, 0, start);
+			sb.Append(newtext);
+			int endIndex = start + length;
+			if (endIndex < oldtext.Length) {
+				sb.Append(oldtext, endIndex, oldtext.Length - endIndex);
 			}
 			return Operand.Create(sb.ToString());
 		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			if(func4 == null) {
+				func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+				func3.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			} else {
+				func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+				func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+				func4.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+			}
+		}
 	}
 
 }

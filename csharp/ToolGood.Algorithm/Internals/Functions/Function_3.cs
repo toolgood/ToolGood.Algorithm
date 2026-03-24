@@ -30,7 +30,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 			stringBuilder.Append(')');
 		}
 
-
 		#region Get_3
 		protected Operand GetText_3(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
@@ -68,6 +67,5 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#endregion
 
 	}
-
 
 }

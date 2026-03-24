@@ -16,7 +16,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 			this.func1 = funcs[0];
 		}
 
-
 		#region ToString
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -67,9 +66,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 		#endregion
 
-
-
 	}
-
 
 }

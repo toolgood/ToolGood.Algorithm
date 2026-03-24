@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_MIRR : Function_N
+	internal sealed class Function_MIRR : Function_3
 	{
 		public Function_MIRR(FunctionBase[] funcs) : base(funcs) { }
 
@@ -11,39 +13,61 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 3) return ParameterError(1);
-
-			var valuesArg = GetArray(engine, tempParameter, 0);
-			if (valuesArg.IsError) return valuesArg;
-			var values = new List<double>();
-			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.DoubleValue);
+			var valuesArg = GetArray_1(engine, tempParameter);
+			if (valuesArg.IsErrorOrNone) return valuesArg;
+			var values = new List<decimal>();
+			foreach(var v in valuesArg.ArrayValue) {
+				if(v.IsNumber) {
+					values.Add(v.NumberValue);
+				} else {
+					var v2 = v.ToNumber($"Function '{Name}' parameter 1 is error!");
+					if(v2.IsErrorOrNone) return v2;
+					values.Add(v2.NumberValue);
+				}
 			}
 
-			var financeRateArg = GetNumber(engine, tempParameter, 1);
-			if (financeRateArg.IsError) return financeRateArg;
-			var financeRate = financeRateArg.DoubleValue;
+			var financeRateArg = GetNumber_2(engine, tempParameter);
+			if (financeRateArg.IsErrorOrNone) return financeRateArg;
+			var financeRate = financeRateArg.NumberValue;
 
-			var reinvestRateArg = GetNumber(engine, tempParameter, 2);
-			if (reinvestRateArg.IsError) return reinvestRateArg;
-			var reinvestRate = reinvestRateArg.DoubleValue;
+			var reinvestRateArg = GetNumber_3(engine, tempParameter);
+			if (reinvestRateArg.IsErrorOrNone) return reinvestRateArg;
+			var reinvestRate = reinvestRateArg.NumberValue;
 
-			double npvNegative = 0;
-			double npvPositive = 0;
+			decimal npvNegative = 0;
+			decimal npvPositive = 0;
 			int n = values.Count;
+
+			if (n == 0) {
+				return ParameterError(1);
+			}
+			if (n == 1) {
+				return Div0Error();
+			}
 
 			for (int i = 0; i < n; i++) {
 				if (values[i] < 0) {
-					npvNegative += values[i] / Math.Pow((1 + financeRate), i);
+					npvNegative += values[i] / MathEx.Pow((1 + financeRate), i);
 				} else {
-					npvPositive += values[i] * Math.Pow((1 + reinvestRate), n - 1 - i);
+					npvPositive += values[i] * MathEx.Pow((1 + reinvestRate), n - 1 - i);
 				}
 			}
 
 			if (npvNegative == 0) return Div0Error();
 
-			var mirr = Math.Pow((-npvPositive / npvNegative), 1.0 / (n - 1)) - 1;
+			var mirr = MathEx.Pow((-npvPositive / npvNegative), 1.0m / (n - 1)) - 1;
 			return Operand.Create(mirr);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

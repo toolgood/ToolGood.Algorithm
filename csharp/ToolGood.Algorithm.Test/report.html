@@ -1,0 +1,11867 @@
+<html>
+<head>
+<style>
+body { font-family:Arial; margin:20px; font-size:10pt}
+div.assembly>div.title { font-size:20pt; margin-bottom:20px; border-bottom:1px solid silver; padding-bottom:20px; }
+div.testfixture>div.title { font-size:16pt; }
+div.testfixture { margin-bottom:20px; }
+div.test { margin-left:20px; }
+div.test div.title { font-size:12pt; }
+div.errormessage { color:Red; padding-top:10px; }
+div.pass>div.title { color:#808080; }
+span.highlighted { color:Red; }
+pre.code { background-color:#f0f0f0; }
+div.summary { border:1px solid silver; padding:10px; margin-bottom:20px; text-align:center; }
+div.fail div.summary { background-color:Red; color:White; }
+div.pass div.summary { background-color:Lime; }
+div.collapsed div.content { display:none; }
+div.test div.content { border-left:2px solid #d0d0d0; padding-left:10px; margin-left:10px; }
+a { text-decoration:none; color:#606060; }
+a:hover { color:orange; }
+div>div.title>span.indicator { display:inline-block; width:10px; height:10px; background-color:lime; border-radius:7px}
+div.fail>div.title>span.indicator { display:inline-block; width:10px; height:10px; background-color:red; }
+div.assembly>div.title>span.indicator { display:none; }
+div.misc_info { color:#808080; }
+</style>
+<script>
+window.addEventListener("load", setup, false);
+function setup() {
+    var divs = document.getElementsByClassName("toggle");
+    for (var i = 0; i < divs.length; i++) {
+        divs[i].onclick = function () {
+            var top = this.parentNode.parentNode;
+            if (top.className.indexOf(" collapsed") < 0)
+                top.className += " collapsed";
+            else
+                top.className = top.className.replace(" collapsed", "");
+            return false;
+        }
+    }
+}
+</script>
+</head>
+<body>
+<div class="assembly pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Results for ToolGood.Algorithm.Test.dll
+</a>
+
+</div>
+<div class="summary">
+Passed: 672 Failed: 0 Warnings: 0 Time in Test Cases: 671ms
+</div>
+<div class="content">
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm2.Test.AlgorithmEngineHelper2.AlgorithmEngineHelperTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GetDiyNames_test()
+</a>
+ <small>16ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IsParameter_Test()
+</a>
+ <small>9ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UnitConversion_test()
+</a>
+ <small>30ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CheckFormula_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.EngineTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+base_test2()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+base_test3()
+</a>
+ <small>37ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+base_test4()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+base_test5()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Cylinder_Test()
+</a>
+ <small>7ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.IssuesTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+issues_12()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+issues_13()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+issues_0()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.UnitConversion.UnitConversionTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_MeterToKilometer_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_KilometerToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_MeterToCentimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_MeterToMillimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_MeterToDecimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_CentimeterToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_MillimeterToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_ChineseUnit_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_FootToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_InchToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_YardToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DistanceConverter_MileToMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_SquareMeterToSquareKilometer_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_SquareMeterToSquareCentimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_SquareMeterToSquareMillimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_SquareMeterToSquareDecimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_ChineseUnit_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_HectareToSquareMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_MuToSquareMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AreaConverter_SquareFootToSquareMeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_CubicMeterToLiter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_LiterToMilliliter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_CubicMeterToCubicCentimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_CubicMeterToCubicMillimeter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_ChineseUnit_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_CubicFootToLiter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VolumeConverter_USGallonToLiter_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_KilogramToGram_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_KilogramToTon_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_TonToKilogram_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_GramToKilogram_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_ChineseUnit_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_PoundToKilogram_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MassConverter_OunceToKilogram_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UnitConversion_InvalidUnit_Test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.ParameterTypes.ParameterTypeTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Basic_NumberParameter()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Basic_BooleanParameter()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Basic_TextParameter()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_Equal_Number()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_Equal_Text()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_GreaterThanOrEqual()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_GreaterThanOrEqual_Expression()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_LessThan()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_LessThanOrEqual()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_GreaterThan()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Compare_NotEqual()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Logic_And()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Logic_Or()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Logic_Not()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Logic_Complex()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Logic_And_Function()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Logic_Or_Function()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_Add()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_Subtract()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_Multiply()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_Divide()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_Mod()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_ABS()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_SQRT()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_ROUND()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_CEILING()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_FLOOR()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_POWER()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_SUM()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_MAX()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_MIN()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Math_AVERAGE()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_LEFT()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_RIGHT()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_MID()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_LEN()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_UPPER()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_LOWER()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_TRIM()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_REPLACE()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_SUBSTITUTE()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_FIND()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_CONCATENATE()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_String_CONNECT()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_DATE()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_DATE_WithTime()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_YEAR()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_MONTH()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_DAY()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_HOUR()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_MINUTE()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_SECOND()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_ADDDAYS()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Date_DATEDIF()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISNUMBER()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISTEXT()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISNULL()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISNULLOREMPTY()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISERROR()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISEVEN()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISODD()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_TypeCheck_ISLOGICAL()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Flow_IF_WithCondition()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Flow_IFS()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Flow_IFERROR()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Flow_SWITCH()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conditional_SUMIF()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conditional_SUMIF_WithSumRange()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conditional_COUNTIF()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conditional_AVERAGEIF()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_SIN()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_COS()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_TAN()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_ASIN()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_ACOS()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_ATAN2()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_DEGREES()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Trig_RADIANS()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conversion_BIN2DEC()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conversion_DEC2BIN()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Conversion_HEX2DEC()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_NestedIF()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_MultipleParameters()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_MixedTypes()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_DateCalculation()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_ScoreGrade()
+</a>
+ <small>8ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_StringManipulation()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_ConditionalSum()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Complex_BooleanExpression()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Financial_PMT()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Financial_PV()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Financial_FV()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Financial_NPV()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Array_Array()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Array_Large()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Array_Small()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Array_Rank()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Operands.OperandsTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_StaticProperties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Bool_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Int_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Long_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Double_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Decimal_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_String_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_DateTime_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_TimeSpan_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_List_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Collection_String_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Collection_Int_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Collection_Double_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Create_Collection_Bool_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_CreateJson_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Error_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_CreateNull_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandInt_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandInt_ToNumber_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandInt_ToBoolean_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandInt_ToText_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandInt_ToString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandDouble_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandDouble_ToBoolean_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandDouble_ToText_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandDecimal_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandDecimal_ToBoolean_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandDecimal_ToText_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandBoolean_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandBoolean_ToNumber_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandBoolean_ToText_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandBoolean_ToString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_ToNumber_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_ToBoolean_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_ToMyDate_Test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_ToJson_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_ToArray_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandString_ToString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandNull_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandNull_ToString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandError_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandError_Conversions_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandArray_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandArray_ToText_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandArray_ToArray_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandArray_ToJson_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandArray_ToString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandMyDate_Properties_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandMyDate_ToText_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandMyDate_ToMyDate_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OperandMyDate_ToString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_Int_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_Double_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_Decimal_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_Bool_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_String_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_DateTime_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_TimeSpan_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Operand_Implicit_List_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Helpers.MyDateTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Constructor_DateTime_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Constructor_TimeSpan_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Constructor_Params_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Parse_DateTime_Test()
+</a>
+ <small>6ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Parse_DateTime_Slash_Test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Parse_Date_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Parse_Time_Test()
+</a>
+ <small>6ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Parse_Time_NoSeconds_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Parse_Invalid_Test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ToDateTime_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ToDateTime_Kind_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ToTimeSpan_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddYears_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddYears_Negative_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddMonths_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddMonths_Overflow_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddDays_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddDays_Negative_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddHours_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddHours_NoOverflow_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddMinutes_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddMinutes_NoOverflow_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddSeconds_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddSeconds_NoOverflow_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ToString_DateTime_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ToString_TimeOnly_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Implicit_DateTime_To_MyDate_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Implicit_MyDate_To_DateTime_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Implicit_MyDate_To_TimeSpan_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.ConditionTrees.CalculateTreeTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test1()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TestError()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TestComplexExpressions()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.ConditionTrees.ConditionTreeTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test1()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test2()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test3()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test4()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test5()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test6()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test7()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test8()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test9()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test10()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test11()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TestError()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Value.ValueTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+constant_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+boolean_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+array_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TestVersion()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test_Json()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PARAM_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Error_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+array_test2()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Distance_M_Test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Distance_DM_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Distance_CM_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Distance_MM_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Distance_KM_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Area_M2_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Area_DM2_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Area_CM2_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Area_MM2_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Area_KM2_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Volume_M3_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Volume_DM3_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Volume_CM3_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Volume_MM3_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Volume_KM3_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Mass_KG_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Mass_G_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Mass_T_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Unit_Error_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.String.StringTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ASC_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Jis_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CHAR_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CLEAN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+code_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+unichar_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+unicode_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CONCATENATE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CONCATENATE_ALIAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EXACT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FIND_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FIXED_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LEFT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LEN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LOWER_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LOWER_ALIAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MID_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+REPLACE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+REPT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RIGHT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RMB_test()
+</a>
+ <small>10ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SEARCH_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUBSTITUTE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+T_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TEXT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TRIM_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TRIM_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PROPER_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PROPER_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UPPER_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UPPER_ALIAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VALUE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_LEN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_LEFT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_RIGHT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_MID_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_LOWER_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_UPPER_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_TRIM_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_REPLACE_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_EXACT_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_T_test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_TEXT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_VALUE_test2()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_RMB_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EmptyString_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UnicodeBoundary_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SubstringBoundary_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SubstituteBoundary_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Operator.OperatorTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+arithmetic_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+connect_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+conditional_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+percentage_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+null_operation_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.MathTrigonometric.MathTrigonometricTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+degrees_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RADIANS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+cos_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+cosh_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+sin_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+sinh_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+tan_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+tanh_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+acos_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+acosh_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+asin_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+asinh_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+atan_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+atanh_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+atan2_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+cot_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+coth_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+csc_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+csch_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+sec_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+sech_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+acot_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+acoth_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.MathTransformation.MathTransformationTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BIN2DEC_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OCT2DEC_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HEX2DEC_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DEC2BIN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OCT2BIN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HEX2BIN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BIN2OCT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DEC2OCT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HEX2OCT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BIN2HEX_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+OCT2HEX_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DEC2HEX_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ARABIC_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ROMAN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.MathSum.MathSumTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MAX_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MEDIAN_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MIN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+QUARTILE_test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MODE_test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PERCENTILE_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PERCENTRANK_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AVERAGE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GEOMEAN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HARMEAN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+COUNT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AVEDEV_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+STDEV_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+STDEVP_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DEVSQ_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VAR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+VARP_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RANK_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FORECAST_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+INTERCEPT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SLOPE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CORREL_test()
+</a>
+ <small>41ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PEARSON_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LARGE_test()
+</a>
+ <small>12ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SMALL_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+COVAR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+COVARIANCES_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+COUNTIF_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUMIF_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AVERAGEIF_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SERIESSUM_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUMPRODUCT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUMX2MY2_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUMX2PY2_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUMXMY2_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.MathSum2.MathSum2Test()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NORMSDIST_test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NORMDIST_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NORMINV_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NORMSINV_test()
+</a>
+ <small>15ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BETADIST_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BETAINV_test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BINOMDIST_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EXPONDIST_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FDIST_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FINV_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GAMMADIST_test()
+</a>
+ <small>12ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GAMMAINV_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GAMMALN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HYPGEOMDIST_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LOGINV_test()
+</a>
+ <small>10ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LOGNORMDIST_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NEGBINOMDIST_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+POISSON_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TDIST_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TINV_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+WEIBULL_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FISHER_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FISHERINV_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BESSELI_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BESSELJ_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BESSELK_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+BESSELY_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.MathBase.MathBaseTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Pi_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+abs_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+QUOTIENT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MOD_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SIGN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SQRT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUM_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TRUNC_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+int_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GCD_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LCM_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+combin_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PERMUT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ROUND_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ROUND_single_param_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ROUNDDOWN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ROUNDUP_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CEILING_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FLOOR_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+even_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+odd_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MROUND_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Rand_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RANDBETWEEN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+fact_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+factdouble_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+POWER_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+exp_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ln_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+log_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+log10_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MULTINOMIAL_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PRODUCT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SQRTPI_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SUMSQ_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ERF_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ERFC_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DELTA_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GESTEP_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Percentage_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DivisionByZero_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Overflow_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NullOperation_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SquareRootNegative_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LogNegative_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ODD_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EVEN_ExcelCompatible_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+CEILING_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FLOOR_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MROUND_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ROUNDDOWN_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Flow.FlowTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+If_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+iferror_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+iserror_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ifnull_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+isnullorerror_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ISNUMBER_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ISTEXT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ISNONTEXT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ISLOGICAL_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ISEVEN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ISODD_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+And_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Or_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Not_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+true_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+false_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+andor_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IFS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SWITCH_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SWITCH_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+XOR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISNUMBER_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISTEXT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISNONTEXT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISLOGICAL_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISNULL_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISNULLORERROR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Financial.FinancialTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PMT_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PPMT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IPMT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+PV_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+FV_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NPER_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RATE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NPV_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IRR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MIRR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SLN_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+SYD_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DDB_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DB_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+XNPV_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+XIRR_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.DateTimes.DateTimesTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DATEVALUE_Test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TIMESTAMP_Test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TIMEVALUE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DATE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+time_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Now_test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Today_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Year_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Month_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Day_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Hour_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Minute_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Second_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+WEEKDAY_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DATEDIF_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DAYS_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DAYS360_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EDATE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EOMONTH_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+NETWORKDAYS_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+WORKDAY_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+WORKDAY_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+DATE_ExcelCompatible_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+WEEKNUM_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+YEARFRAC_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddYears_test()
+</a>
+ <small>8ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddMonths_test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddDays_test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddHours_test()
+</a>
+ <small>9ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddMinutes_test()
+</a>
+ <small>6ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddSeconds_test()
+</a>
+ <small>8ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_DATEVALUE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_TIMEVALUE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_YEAR_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_MONTH_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_DAY_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_HOUR_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_MINUTE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_SECOND_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ADDYEARS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ADDMONTHS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ADDDAYS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ADDHOURS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ADDMINUTES_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ADDSECONDS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_TIMESTAMP_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LeapYear_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LeapYear_AddDays_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MonthBoundary_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+YearBoundary_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.CsharpWeb.CsharpWebTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UrlDecode()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UrlEncode()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HtmlEncode()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HtmlDecode()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TextToBase64()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TextToBase64Url()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Base64ToText()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Base64UrlToText()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_URLENCODE_test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_URLDECODE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Csharp.CsharpTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Regex_test()
+</a>
+ <small>3ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+REGEXREPLACE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_REGEX_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_REGEXREPLACE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISREGEX_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IsRegex_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IsRegex_ALIAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IndexOf()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Split()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TrimStart()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TrimStart_ALIAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TrimEnd()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+TrimEnd_ALIAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Join()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Substring()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+StartsWith()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+EndsWith()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IsNullOrEmpty()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IsNullOrWhiteSpace()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RemoveStart()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+RemoveEnd()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_Object_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_Array_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_MethodChain_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_Invalid_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_Boolean_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Json_Raw_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_TRIMSTART_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_TRIMEND_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_INDEXOF_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_LASTINDEXOF_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_SPLIT_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_JOIN_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_SUBSTRING_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_STARTSWITH_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ENDSWITH_test()
+</a>
+ <small>16ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISNULLOREMPTY_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_ISNULLORWHITESPACE_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_REMOVESTART_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_REMOVEEND_test()
+</a>
+ <small>2ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_JSON_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_HAS_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_HASVALUE_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LookFloor_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+LookCeiling_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.CsharpSecurity.CsharpSecurityTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Md5_test()
+</a>
+ <small>4ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Sha1_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Sha256_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Sha512_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HmacMd5_test()
+</a>
+ <small>5ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HmacSha1_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HmacSha256_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+HmacSha512_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Guid()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_MD5_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_SHA1_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_SHA256_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+MethodStyle_SHA512_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.Compare.CompareTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+base_test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+strict_equality_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+null_compare_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+negative_compare_test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="testfixture pass">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Test Fixture ToolGood.Algorithm.Test.AlgorithmEngineExTests.AlgorithmEngineExTest()
+</a>
+
+</div>
+<div class="content">
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Constructor_Default_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Constructor_IgnoreCase_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Bool_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Int_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Long_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Double_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Decimal_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_String_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_DateTime_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_TimeSpan_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_List_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Collection_String_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Collection_Int_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Collection_Double_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Collection_Bool_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameter_Operand_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameterFromJson_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameterFromJson_Complex_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+AddParameterFromJson_Invalid_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+ClearParameters_Test()
+</a>
+ <small>1ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+UseTempDict_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IgnoreCase_True_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+IgnoreCase_False_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+GetParameterEx_Missing_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Complex_Expression_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Nested_Json_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+<div class="test pass collapsed">
+<div class="title">
+<span class="indicator">
+
+</span>
+<a class="toggle" href="#">
+Array_Operations_Test()
+</a>
+ <small>0ms</small>
+</div>
+<div class="content">
+<pre>Test passed!
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="misc_info">
+Time in test cases 671ms, setup/teardown 3ms, test framework 424ms<br/>Tests run at 23/03/2026 14:34:50 by ASUS on DESKTOP-UE699EV under Microsoft Windows NT 10.0.19045.0<br/>Command line: D:\git\ToolGood.Algorithm2\csharp\ToolGood.Algorithm.Test\bin\Debug\net10.0\ToolGood.Algorithm.Test.dll
+</div>
+
+</body>
+
+</html>

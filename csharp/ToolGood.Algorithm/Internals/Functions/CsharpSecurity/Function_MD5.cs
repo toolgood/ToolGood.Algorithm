@@ -1,6 +1,9 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
@@ -15,29 +18,31 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
-			try {
-				var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			} 
+			if(args1.IsErrorOrNone) { return args1; }
+			var t = GetMd5String(Encoding.UTF8.GetBytes(args1.TextValue));
+			return Operand.Create(t);
 		}
-
 
 		private string GetMd5String(byte[] buffer)
 		{
 #if NETSTANDARD2_1
-			System.Security.Cryptography.MD5 md5 = MD5.Create();
-			byte[] retVal = md5.ComputeHash(buffer);
-			md5.Dispose();
-			return BitConverter.ToString(retVal).Replace("-", "");
+			using var md5 = MD5.Create();
+			var retVal = md5.ComputeHash(buffer);
+			return BitConverter.ToString(retVal).Replace("-", string.Empty);
 #else
-            var retVal = MD5.HashData(buffer);
-            return Convert.ToHexString(retVal);
+			var retVal = MD5.HashData(buffer);
+			return Convert.ToHexString(retVal);
 #endif
 		}
-	}
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+		}
+	}
 
 }

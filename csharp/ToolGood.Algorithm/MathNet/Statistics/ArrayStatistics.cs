@@ -1,210 +1,146 @@
-﻿using System;
+using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
-    internal static partial class ArrayStatistics
-    {
-        public static double Minimum(double[] data)
-        {
-            if (data.Length == 0) {
-                return double.NaN;
-            }
+	internal static partial class ArrayStatistics
+	{
+		public static decimal Minimum(decimal[] data)
+		{
+			if(data.Length == 0) {
+				return decimal.MinValue;
+			}
 
-            double min = double.PositiveInfinity;
-            for (int i = 0; i < data.Length; i++) {
-                if (data[i] < min || double.IsNaN(data[i])) {
-                    min = data[i];
-                }
-            }
+			decimal min = decimal.MaxValue;
+			for(int i = 0; i < data.Length; i++) {
+				if(data[i] < min /*|| decimal.IsNaN(data[i])*/) {
+					min = data[i];
+				}
+			}
 
-            return min;
-        }
+			return min;
+		}
 
-        public static double Maximum(double[] data)
-        {
-            if (data.Length == 0) {
-                return double.NaN;
-            }
+		public static decimal Maximum(decimal[] data)
+		{
+			if(data.Length == 0) {
+				return decimal.MinValue;
+			}
 
-            double max = double.NegativeInfinity;
-            for (int i = 0; i < data.Length; i++) {
-                if (data[i] > max || double.IsNaN(data[i])) {
-                    max = data[i];
-                }
-            }
+			decimal max = decimal.MinValue;
+			for(int i = 0; i < data.Length; i++) {
+				if(data[i] > max /*|| decimal.IsNaN(data[i])*/) {
+					max = data[i];
+				}
+			}
 
-            return max;
-        }
+			return max;
+		}
 
-        public static double QuantileCustomInplace(double[] data, double tau, QuantileDefinition definition)
-        {
-            if (tau < 0d || tau > 1d || data.Length == 0) {
-                return double.NaN;
-            }
+		public static decimal QuantileCustomInplace(decimal[] data, decimal tau)
+		{
+			if(tau < 0m || tau > 1m || data.Length == 0) {
+				return decimal.MinValue;
+			}
 
-            if (tau == 0d || data.Length == 1) {
-                return Minimum(data);
-            }
+			if(tau == 0m || data.Length == 1) {
+				return Minimum(data);
+			}
 
-            if (tau == 1d) {
-                return Maximum(data);
-            }
+			if(tau == 1m) {
+				return Maximum(data);
+			}
 
-            switch (definition) {
-                case QuantileDefinition.R1: {
-                        double h = data.Length * tau + 0.5d;
-                        return SelectInplace(data, (int)Math.Ceiling(h - 0.5d) - 1);
-                    }
+			decimal h = (data.Length - 1) * tau + 1m;
+			var hf = (int)h;
+			var lower = SelectInplace(data, hf - 1);
+			var upper = SelectInplace(data, hf);
+			return lower + (h - hf) * (upper - lower);
+		}
 
-                case QuantileDefinition.R2: {
-                        double h = data.Length * tau + 0.5d;
-                        return (SelectInplace(data, (int)Math.Ceiling(h - 0.5d) - 1) + SelectInplace(data, (int)(h + 0.5d) - 1)) * 0.5d;
-                    }
+		private static decimal SelectInplace(decimal[] workingData, int rank)
+		{
+			if(rank <= 0) {
+				return Minimum(workingData);
+			}
 
-                case QuantileDefinition.R3: {
-                        double h = data.Length * tau;
-                        return SelectInplace(data, (int)Math.Round(h) - 1);
-                    }
+			if(rank >= workingData.Length - 1) {
+				return Maximum(workingData);
+			}
 
-                case QuantileDefinition.R4: {
-                        double h = data.Length * tau;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+			decimal[] a = workingData;
+			int low = 0;
+			int high = a.Length - 1;
 
-                case QuantileDefinition.R5: {
-                        double h = data.Length * tau + 0.5d;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+			while(true) {
+				if(high <= low + 1) {
+					if(high == low + 1 && a[high] < a[low]) {
+						var tmp = a[low];
+						a[low] = a[high];
+						a[high] = tmp;
+					}
 
-                case QuantileDefinition.R6: {
-                        double h = (data.Length + 1) * tau;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+					return a[rank];
+				}
 
-                case QuantileDefinition.R7: {
-                        double h = (data.Length - 1) * tau + 1d;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+				int middle = (low + high) >> 1;
 
-                case QuantileDefinition.R8: {
-                        double h = (data.Length + 1 / 3d) * tau + 1 / 3d;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+				var tmp1 = a[middle];
+				a[middle] = a[low + 1];
+				a[low + 1] = tmp1;
 
-                case QuantileDefinition.R9: {
-                        double h = (data.Length + 0.25d) * tau + 0.375d;
-                        var hf = (int)h;
-                        var lower = SelectInplace(data, hf - 1);
-                        var upper = SelectInplace(data, hf);
-                        return lower + (h - hf) * (upper - lower);
-                    }
+				if(a[low] > a[high]) {
+					var tmp = a[low];
+					a[low] = a[high];
+					a[high] = tmp;
+				}
 
-                default:
-                    throw new NotSupportedException();
-            }
-        }
+				if(a[low + 1] > a[high]) {
+					var tmp = a[low + 1];
+					a[low + 1] = a[high];
+					a[high] = tmp;
+				}
 
-        private static double SelectInplace(double[] workingData, int rank)
-        {
-            // Numerical Recipes: select
-            // http://en.wikipedia.org/wiki/Selection_algorithm
-            if (rank <= 0) {
-                return Minimum(workingData);
-            }
+				if(a[low] > a[low + 1]) {
+					var tmp = a[low];
+					a[low] = a[low + 1];
+					a[low + 1] = tmp;
+				}
 
-            if (rank >= workingData.Length - 1) {
-                return Maximum(workingData);
-            }
+				int begin = low + 1;
+				int end = high;
+				decimal pivot = a[begin];
 
-            double[] a = workingData;
-            int low = 0;
-            int high = a.Length - 1;
+				while(true) {
+					do {
+						begin++;
+					}
+					while(a[begin] < pivot);
 
-            while (true) {
-                if (high <= low + 1) {
-                    if (high == low + 1 && a[high] < a[low]) {
-                        var tmp = a[low];
-                        a[low] = a[high];
-                        a[high] = tmp;
-                    }
+					do {
+						end--;
+					}
+					while(a[end] > pivot);
 
-                    return a[rank];
-                }
+					if(end < begin) {
+						break;
+					}
 
-                int middle = (low + high) >> 1;
+					var tmp = a[begin];
+					a[begin] = a[end];
+					a[end] = tmp;
+				}
 
-                var tmp1 = a[middle];
-                a[middle] = a[low + 1];
-                a[low + 1] = tmp1;
+				a[low + 1] = a[end];
+				a[end] = pivot;
 
-                if (a[low] > a[high]) {
-                    var tmp = a[low];
-                    a[low] = a[high];
-                    a[high] = tmp;
-                }
+				if(end >= rank) {
+					high = end - 1;
+				}
 
-                if (a[low + 1] > a[high]) {
-                    var tmp = a[low + 1];
-                    a[low + 1] = a[high];
-                    a[high] = tmp;
-                }
-
-                if (a[low] > a[low + 1]) {
-                    var tmp = a[low];
-                    a[low] = a[low + 1];
-                    a[low + 1] = tmp;
-                }
-
-                int begin = low + 1;
-                int end = high;
-                double pivot = a[begin];
-
-                while (true) {
-                    do {
-                        begin++;
-                    }
-                    while (a[begin] < pivot);
-
-                    do {
-                        end--;
-                    }
-                    while (a[end] > pivot);
-
-                    if (end < begin) {
-                        break;
-                    }
-
-                    var tmp = a[begin];
-                    a[begin] = a[end];
-                    a[end] = tmp;
-                }
-
-                a[low + 1] = a[end];
-                a[end] = pivot;
-
-                if (end >= rank) {
-                    high = end - 1;
-                }
-
-                if (end <= rank) {
-                    low = begin;
-                }
-            }
-        }
-    }
+				if(end <= rank) {
+					low = begin;
+				}
+			}
+		}
+	}
 }

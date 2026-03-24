@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
@@ -17,7 +20,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			var result = new OperandKeyValueList();
 			foreach (var item in funcs) {
 				var o = item.Evaluate(engine, tempParameter);
-				result.AddValue((KeyValue)((OperandKeyValue)o).Value);
+				if(o.IsErrorOrNone) { return o; }
+				if(o is OperandKeyValue kv) {
+					result.AddValue(kv.Value);
+				} else {
+					return ParameterError(1);
+				}
 			}
 			return result;
 		}
@@ -31,6 +39,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				funcs[i].ToString(stringBuilder, false);
 			}
 			stringBuilder.Append('}');
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.ARRAYJSON;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				funcs[i].GetParameterTypes(noneEngine, result, OperandType.NONE);
+			}
 		}
 	}
 

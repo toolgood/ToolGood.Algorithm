@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_DATEVALUE : Function_N
+	internal sealed class Function_DATEVALUE : Function_2
 	{
 		public Function_DATEVALUE(FunctionBase[] funcs) : base(funcs)
 		{
@@ -15,61 +17,69 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			var args = new List<Operand>(funcs.Length);
-			foreach(var item in funcs) { var aa = item.Evaluate(engine, tempParameter); if(aa.IsError) { return aa; } args.Add(aa); }
-			if(args[0].IsDate) { return args[0]; }
+			var args1 = func1.Evaluate(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
+			if(args1.IsDate) { return args1; }
+			
 			int type = 0;
-			if(args.Count == 2) {
-				var args2 = ConvertToNumber(args[1], 2);
-				if(args2.IsError) { return args2; }
+			if(func2 != null) {
+				var args2 = GetNumber_2(engine, tempParameter);
+				if(args2.IsErrorOrNone) { return args2; }
 				type = args2.IntValue;
 			}
 			if(type == 0) {
-				if(args[0].IsText) {
-					if(DateTime.TryParse(args[0].TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime time)) {
+				if(args1.IsText) {
+					if(DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime time)) {
 						return Operand.Create(time);
 					}
 				}
-				var args1 = ConvertToNumber(args[0], 1);
-				if(args1.IsError) { return args1; }
-				if(args1.LongValue <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
-					return args1.ToMyDate();
+				var arg1 = ConvertToNumber(args1, 1);
+				if(arg1.IsErrorOrNone) { return arg1; }
+				if(arg1.LongValue <= 2958465L) {
+					return arg1.ToMyDate();
 				}
-				if(args1.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时�?�?时间�?�?253402232399L�?
-					var time = FunctionUtil.StartDateUtc.AddSeconds(args1.LongValue);
+				if(arg1.LongValue <= 253402232399L) {
+					var time = FunctionUtil.StartDateUtc.AddSeconds(arg1.LongValue);
 					if(engine.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
 					return Operand.Create(time);
 				}
-				// 注：时间�?253402232399 ms 转时�?�?1978-01-12 05:30:32
-				var time2 = FunctionUtil.StartDateUtc.AddMilliseconds(args1.LongValue);
+				var time2 = FunctionUtil.StartDateUtc.AddMilliseconds(arg1.LongValue);
 				if(engine.UseLocalTime) { return Operand.Create(time2.ToLocalTime()); }
 				return Operand.Create(time2);
 			} else if(type == 1) {
-				var args1 = ConvertToText(args[0], 1);
-				if(args1.IsError) { return args1; }
-				if(DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
+				var arg1 = ConvertToText(args1, 1);
+				if(arg1.IsErrorOrNone) { return arg1; }
+				if(DateTime.TryParse(arg1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
 					return Operand.Create(dt);
 				}
 			} else if(type == 2) {
-				var args1 = ConvertToNumber(args[0], 1);
-				if(args1.IsError) { return args1; }
-				return args1.ToMyDate();
+				var arg1 = ConvertToNumber(args1, 1);
+				if(arg1.IsErrorOrNone) { return arg1; }
+				return arg1.ToMyDate();
 			} else if(type == 3) {
-				var args1 = ConvertToNumber(args[0], 1);
-				if(args1.IsError) { return args1; }
-				var time = FunctionUtil.StartDateUtc.AddMilliseconds(args1.LongValue);
+				var arg1 = ConvertToNumber(args1, 1);
+				if(arg1.IsErrorOrNone) { return arg1; }
+				var time = FunctionUtil.StartDateUtc.AddMilliseconds(arg1.LongValue);
 				if(engine.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
 				return Operand.Create(time);
 			} else if(type == 4) {
-				var args1 = ConvertToNumber(args[0], 1);
-				if(args1.IsError) { return args1; }
-				var time = FunctionUtil.StartDateUtc.AddSeconds(args1.LongValue);
+				var arg1 = ConvertToNumber(args1, 1);
+				if(arg1.IsErrorOrNone) { return arg1; }
+				var time = FunctionUtil.StartDateUtc.AddSeconds(arg1.LongValue);
 				if(engine.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
 				return Operand.Create(time);
 			}
-			return FunctionError();
+			return ParameterError(1);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.DATE;
 		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
 	}
-
 }

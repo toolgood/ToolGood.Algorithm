@@ -4,14 +4,14 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
     internal static partial class SortedArrayStatistics
     {
-        public static double QuantileRank(double[] data, double x)
+        public static decimal QuantileRank(decimal[] data, decimal x)
         {
             if (x < data[0]) {
-                return 0.0;
+                return 0.0m;
             }
 
             if (x >= data[data.Length - 1]) {
-                return 1.0;
+                return 1.0m;
             }
 
             int right = Array.BinarySearch(data, x);
@@ -26,13 +26,13 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     right++;
                 }
 
-                return left / (double)(data.Length - 1);
+                return left / (decimal)(data.Length - 1);
             } else {
                 right = ~right;
                 int left = right - 1;
 
-                var a = left / (double)(data.Length - 1);
-                var b = right / (double)(data.Length - 1);
+                var a = left / (decimal)(data.Length - 1);
+                var b = right / (decimal)(data.Length - 1);
                 return ((data[right] - x) * a + (x - data[left]) * b) / (data[right] - data[left]);
             }
         }

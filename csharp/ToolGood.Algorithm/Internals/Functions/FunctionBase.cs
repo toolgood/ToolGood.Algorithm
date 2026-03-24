@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions
@@ -13,17 +15,48 @@ namespace ToolGood.Algorithm.Internals.Functions
 	public abstract class FunctionBase
 	{
 		/// <summary>
-		/// ����
+		/// 获取函数名称
 		/// </summary>
 		public abstract string Name { get; }
 
 		/// <summary>
-		/// ���м���
+		/// 执行函数计算
 		/// </summary>
 		/// <param name="engine"></param>
-		/// <param name="tempParameter">��ʱ������δ�ҵ�����null</param>
+		/// <param name="tempParameter"></param>
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
+
+	#region GetResultType
+		/// <summary>
+		/// 获取结果类型
+		/// </summary>
+		/// <returns></returns>
+		public abstract OperandType GetResultType();
+		#endregion
+
+		#region GetParameterTypes
+		/// <summary>
+		/// 获取参数类型列表
+		/// </summary>
+		/// <returns></returns>
+		public List<ParameterType> GetParameterTypes(AlgorithmEngine engine)
+		{
+			NoneEngine noneEngine = new NoneEngine(engine);
+			List<ParameterType> result = new List<ParameterType>();
+			GetParameterTypes(noneEngine, result, OperandType.NONE);
+			return result;
+		}
+		/// <summary>
+		/// 内部方法，获取参数类型
+		/// </summary>
+		/// <param name="noneEngine"></param>
+		/// <param name="result"></param>
+		/// <param name="operandType"></param>
+		/// <param name="op"></param>
+		/// <param name="val"></param>
+		internal abstract void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null);
+		#endregion
 
 		#region ToString
 		/// <summary>
@@ -47,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		#region ConvertToText
 		/// <summary>
-		/// ת������Ϊ�ı�
+		/// 转换为文本类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -58,7 +91,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����ֵ
+		/// 转换为布尔类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -69,7 +102,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����
+		/// 转换为数字类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -80,7 +113,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����
+		/// 转换为数组类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -91,7 +124,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// ת������Ϊ����
+		/// 转换为日期类型
 		/// </summary>
 		/// <param name="arg"></param>
 		/// <param name="paramIndex"></param>
@@ -123,7 +156,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
-		/// 
+		/// 创建比较错误
 		/// </summary>
 		/// <returns></returns>
 
@@ -132,7 +165,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return Operand.Error("Function '{0}' compare is error.", Name);
 		}
 		/// <summary>
-		/// 
+		/// 创建除零错误
 		/// </summary>
 		/// <returns></returns>
 		protected Operand Div0Error()
@@ -144,6 +177,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#region TryEvaluate
 
 		/// <summary>
+		/// 尝试执行计算，如果出错返回默认值
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="engine"></param>
@@ -163,12 +197,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 				}
 				return resultConverter(converted);
 			} catch(Exception ex) {
-				engine.LastError = ex.Message;
+				engine.LastError = ex.ToString();
 			}
 			return def;
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 int 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -180,8 +215,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 				obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
 				obj => obj.IntValue, tempParameter);
 		}
-		   
+
 		/// <summary>
+		/// 尝试执行计算，返回 decimal 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -195,6 +231,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 string 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -208,6 +245,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 bool 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -221,6 +259,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 DateTime 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -235,10 +274,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 						return obj.DateValue.ToDateTime(DateTimeKind.Local);
 					}
 					return obj.DateValue.ToDateTime(DateTimeKind.Utc);
-				} , tempParameter);
+				}, tempParameter);
 		}
 
 		/// <summary>
+		/// 尝试执行计算，返回 TimeSpan 类型，如果出错返回默认值
 		/// </summary>
 		/// <param name="engine"></param>
 		/// <param name="def"></param>
@@ -250,7 +290,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
 				obj => obj.DateValue.ToTimeSpan(), tempParameter);
 		}
- 
+
 		#endregion
 	}
 }

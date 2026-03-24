@@ -39,6 +39,10 @@ namespace ToolGood.Algorithm
 		/// Null
 		/// </summary>
 		public static readonly Operand Null = new OperandNull();
+		/// <summary>
+		/// NONE
+		/// </summary>
+		public static readonly Operand None = new OperandNone();
 
 		// 整数缓存范围: -1000 ~ 1000，共2001个值
 		private const int IntCacheOffset = 1000;
@@ -53,6 +57,11 @@ namespace ToolGood.Algorithm
 		}
 
 		#region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
+		internal virtual bool IsErrorOrNone => false;
+		/// <summary>
+		/// 是否未指定值
+		/// </summary>
+		public virtual bool IsNone => false;
 		/// <summary>
 		/// 是否为空值
 		/// </summary>
@@ -167,7 +176,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(short obj)
 		{
-			return new OperandInt(obj);
+			return IntCache[obj + IntCacheOffset];
 		}
 
 		/// <summary>
@@ -189,6 +198,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(long obj)
 		{
+			if (obj >= -IntCacheOffset && obj <= IntCacheOffset)
+				return IntCache[(int)obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -199,6 +210,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ushort obj)
 		{
+			if (obj <= IntCacheOffset)
+				return IntCache[obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -209,6 +222,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(uint obj)
 		{
+			if (obj <= IntCacheOffset)
+				return IntCache[(int)obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -219,6 +234,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ulong obj)
 		{
+			if (obj <= (ulong)IntCacheOffset)
+				return IntCache[(int)obj + IntCacheOffset];
 			return new OperandDecimal((decimal)obj);
 		}
 
@@ -229,7 +246,10 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(float obj)
 		{
-			return new OperandDouble((double)obj);
+			if(obj == MathF.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+				return IntCache[(int)obj + IntCacheOffset];
+			}
+			return new OperandDecimal((decimal)obj);
 		}
 
 		/// <summary>
@@ -239,7 +259,10 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(double obj)
 		{
-			return new OperandDouble((double)obj);
+			if(obj == Math.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+				return IntCache[(int)obj + IntCacheOffset];
+			}
+			return new OperandDecimal((decimal)obj);
 		}
 
 		/// <summary>
@@ -249,7 +272,10 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(decimal obj)
 		{
-			return new OperandDecimal((decimal)obj);
+			if(obj == decimal.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+				return IntCache[(int)obj + IntCacheOffset];
+			}
+			return new OperandDecimal(obj);
 		}
 
 		#endregion number
@@ -261,10 +287,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(string obj)
 		{
-			if(object.Equals(null, obj)) {
-				return Operand.CreateNull();
-			}
-			return new OperandString(obj);
+			return obj is null ? Null : new OperandString(obj);
 		}
 
 		/// <summary>
@@ -409,12 +432,6 @@ namespace ToolGood.Algorithm
 			return new OperandError(msg, args);
 		}
 
-		/// <summary>
-		/// 创建操作数
-		/// </summary>
-		/// <returns></returns>
-		public static Operand CreateNull() => Null;
-
 		#endregion Create
 
 		#region 转化类型
@@ -503,7 +520,7 @@ namespace ToolGood.Algorithm
 		#region number
 
 		/// <summary>
-		///
+		/// 从 Int16 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int16 obj)
@@ -512,7 +529,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 Int32 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int32 obj)
@@ -521,52 +538,52 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 Int64 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int64 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
-		///
+		/// 从 UInt16 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt16 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
-		///
+		/// 从 UInt32 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt32 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
-		///
+		/// 从 UInt64 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt64 obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
-		///
+		/// 从 float 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(float obj)
 		{
-			return Operand.Create((double)obj);
+			return Operand.Create((decimal)obj);
 		}
 
 		/// <summary>
-		///
+		/// 从 double 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(double obj)
@@ -575,7 +592,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 decimal 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(decimal obj)
@@ -586,7 +603,7 @@ namespace ToolGood.Algorithm
 		#endregion number
 
 		/// <summary>
-		///
+		/// 从 bool 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(bool obj)
@@ -595,7 +612,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 string 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(string obj)
@@ -604,7 +621,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 DateTime 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(DateTime obj)
@@ -613,7 +630,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 TimeSpan 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(TimeSpan obj)
@@ -622,7 +639,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;string&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<string> obj)
@@ -631,7 +648,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;bool&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<bool> obj)
@@ -640,7 +657,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;int&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<int> obj)
@@ -649,7 +666,7 @@ namespace ToolGood.Algorithm
 		}
 
 		/// <summary>
-		///
+		/// 从 List&lt;double&gt; 隐式转换为 Operand
 		/// </summary>
 		/// <param name="obj"></param>
 		public static implicit operator Operand(List<double> obj)

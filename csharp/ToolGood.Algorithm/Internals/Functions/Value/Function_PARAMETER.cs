@@ -1,21 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_PARAMETER : FunctionBase
+	internal sealed class Function_Parameter : Function_0
 	{
 		private readonly string name;
-		private readonly FunctionBase func1;
 
-		public Function_PARAMETER(string name)
+		public Function_Parameter(string name)
 		{
 			this.name = name;
-		}
-
-		public Function_PARAMETER(FunctionBase func1)
-		{
-			this.func1 = func1;
 		}
 
 		public override string Name => "Parameter";
@@ -23,14 +20,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var txt = name;
-			if(string.IsNullOrEmpty(name)) {
-				var args1 = func1.Evaluate(engine, tempParameter);
-				args1 = ConvertToText(args1, 1);
-				if(args1.IsError) { return args1; }
-				txt = args1.TextValue;
-			} else {
-				txt = name;
-			}
 			if(tempParameter != null) {
 				var r = tempParameter(engine, txt);
 				if(r != null) return r;
@@ -39,11 +28,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			if(string.IsNullOrEmpty(name)) {
-				func1.ToString(stringBuilder, false);
-			} else {
-				stringBuilder.Append(name);
-			}
+			stringBuilder.Append(name);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NONE;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			result.Add(new ParameterType() {
+				Name = name,
+				Type = operandType,
+				Operator = op,
+				Value = val
+			});
 		}
 	}
 

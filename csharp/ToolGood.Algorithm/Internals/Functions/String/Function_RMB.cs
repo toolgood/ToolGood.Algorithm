@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -16,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
 			return Operand.Create(F_base_ToChineseRMB(args1.NumberValue));
 		}
 
@@ -29,7 +32,15 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			string d = Regex1.Replace(s, "${b}${z}");
 			return Regex2.Replace(d, m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
 		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
 	}
 
 }

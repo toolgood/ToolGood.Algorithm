@@ -1,4 +1,4 @@
-using PetaTest;
+﻿using PetaTest;
 using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm.Test.Operands
         [Test]
         public void Operand_CreateNull_Test()
         {
-            var op = Operand.CreateNull();
+            var op = Operand.Null;
             Assert.IsTrue(op.IsNull);
         }
 
@@ -545,7 +545,7 @@ namespace ToolGood.Algorithm.Test.Operands
         [Test]
         public void OperandNull_Properties_Test()
         {
-            var op = Operand.CreateNull();
+            var op = Operand.Null;
             Assert.AreEqual(OperandType.NULL, op.Type);
             Assert.IsTrue(op.IsNull);
             Assert.IsFalse(op.IsNumber);
@@ -557,7 +557,7 @@ namespace ToolGood.Algorithm.Test.Operands
         [Test]
         public void OperandNull_ToString_Test()
         {
-            var op = Operand.CreateNull();
+            var op = Operand.Null;
             Assert.AreEqual("null", op.ToString());
         }
 
@@ -599,7 +599,7 @@ namespace ToolGood.Algorithm.Test.Operands
         {
             var list = new List<Operand> { Operand.Create(1), Operand.Create(2), Operand.Create(3) };
             var op = Operand.Create(list);
-            Assert.AreEqual(OperandType.ARRARY, op.Type);
+            Assert.AreEqual(OperandType.ARRAY, op.Type);
             Assert.IsTrue(op.IsArray);
             Assert.IsFalse(op.IsNumber);
             Assert.IsFalse(op.IsText);

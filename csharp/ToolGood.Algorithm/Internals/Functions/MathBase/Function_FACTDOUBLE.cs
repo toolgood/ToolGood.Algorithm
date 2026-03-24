@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
@@ -14,19 +17,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-			if (args1.IsError) { return args1; }
+			if (args1.IsErrorOrNone) { return args1; }
             var z = args1.IntValue;
-            if (z < 0) { return FunctionError(); }
+            if (z < 0) { return ParameterError(1); }
+            if (z > 300) { return ParameterError(1); }
 
-            double d = 1;
+            decimal d = 1;
             for (int i = z; i > 0; i -= 2) {
                 d *= i;
             }
             return Operand.Create(d);
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
-
-    
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+		}
+	}
 
 }

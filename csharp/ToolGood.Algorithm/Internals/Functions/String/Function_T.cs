@@ -1,5 +1,8 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
 {
@@ -17,9 +20,17 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args1.IsText) {
 				return args1;
 			}
-			return Operand.Create("");
+			return Operand.Create(string.Empty);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
 		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+		}
 	}
 
 }

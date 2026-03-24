@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
@@ -17,10 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(engine, tempParameter);
-			if(args1.IsError) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			if(args1.IsJson) { return args1; }
 			if(args1.IsArrayJson) { args1 = args1.ToText(); }
-			if(args1.IsText == false) { return FunctionError(); }
+			if(args1.IsText == false) { return ParameterError(1); }
 			var txt = args1.TextValue;
 			if((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
 				try {
@@ -28,9 +30,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					return Operand.Create(json);
 				} catch(Exception) { }
 			}
-			return FunctionError();
+			return ParameterError(1);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.JSON;
 		}
 
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NONE);
+		}
 	}
 
 }

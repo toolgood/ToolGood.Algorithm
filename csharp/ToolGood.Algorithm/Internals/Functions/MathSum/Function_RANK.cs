@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
@@ -14,16 +16,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (funcs.Length < 2) return ParameterError(1);
 
 			var numArg = GetNumber(engine, tempParameter, 0);
-			if (numArg.IsError) return numArg;
+			if (numArg.IsErrorOrNone) return numArg;
 			var num = numArg.NumberValue;
 
 			var arrayArg = GetArray(engine, tempParameter, 1);
-			if (arrayArg.IsError) return arrayArg;
+			if (arrayArg.IsErrorOrNone) return arrayArg;
 
 			int order = 0;
 			if (funcs.Length > 2) {
 				var orderArg = GetNumber(engine, tempParameter, 2);
-				if (orderArg.IsError) return orderArg;
+				if (orderArg.IsErrorOrNone) return orderArg;
 				order = orderArg.IntValue;
 			}
 
@@ -34,16 +36,31 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				}
 			}
 
-			values.Sort();
-			int rank;
-			if (order == 0) {
-				values.Reverse();
-				rank = values.IndexOf(num) + 1;
-			} else {
-				rank = values.IndexOf(num) + 1;
+			if (values.Count == 0) {
+				return ParameterError(2);
+			}
+
+			bool descending = (order == 0);
+			int rank = FunctionUtil.GetRank(values, num, descending);
+
+			if (rank == 0) {
+				return ParameterError(1);
 			}
 
 			return Operand.Create(rank);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			funcs[0].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			funcs[1].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			if(funcs.Length > 2) {
+				funcs[2].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			}
 		}
 	}
 }

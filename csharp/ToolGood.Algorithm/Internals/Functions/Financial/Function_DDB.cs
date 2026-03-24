@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
-	internal sealed class Function_DDB : Function_N
+	internal sealed class Function_DDB : Function_5
 	{
 		public Function_DDB(FunctionBase[] funcs) : base(funcs) { }
 
@@ -10,32 +13,37 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 4) return ParameterError(1);
 
-			var costArg = GetNumber(engine, tempParameter, 0);
-			if (costArg.IsError) return costArg;
+			var costArg = GetNumber_1(engine, tempParameter);
+			if (costArg.IsErrorOrNone) return costArg;
 			var cost = costArg.NumberValue;
 
-			var salvageArg = GetNumber(engine, tempParameter, 1);
-			if (salvageArg.IsError) return salvageArg;
+			var salvageArg = GetNumber_2(engine, tempParameter);
+			if (salvageArg.IsErrorOrNone) return salvageArg;
 			var salvage = salvageArg.NumberValue;
 
-			var lifeArg = GetNumber(engine, tempParameter, 2);
-			if (lifeArg.IsError) return lifeArg;
+			var lifeArg = GetNumber_3(engine, tempParameter);
+			if (lifeArg.IsErrorOrNone) return lifeArg;
 			var life = lifeArg.NumberValue;
 
-			var periodArg = GetNumber(engine, tempParameter, 3);
-			if (periodArg.IsError) return periodArg;
+			var periodArg = GetNumber_4(engine, tempParameter);
+			if (periodArg.IsErrorOrNone) return periodArg;
 			var period = periodArg.NumberValue;
 
 			decimal factor = 2;
-			if (funcs.Length > 4) {
-				var factorArg = GetNumber(engine, tempParameter, 4);
-				if (factorArg.IsError) return factorArg;
+			if (func5 != null) {
+				var factorArg = GetNumber_5(engine, tempParameter);
+				if (factorArg.IsErrorOrNone) return factorArg;
 				factor = factorArg.NumberValue;
 			}
 
 			if (life == 0 || factor == 0) return Div0Error();
+			if (period < 1 || period > life) {
+				return ParameterError(4);
+			}
+			if (life < 1) {
+				return ParameterError(3);
+			}
 
 			decimal depreciation = 0;
 			decimal remainingCost = cost;
@@ -59,6 +67,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			return Operand.Create(depreciation);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func4.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			if(func5 != null) func5.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}
 }

@@ -1,9 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_NOW : FunctionBase
+	internal sealed class Function_NOW : Function_0
     {
         public override string Name => "Now";
 
@@ -19,6 +21,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
         {
             stringBuilder.Append("Now()");
         }
-    }
+		public override OperandType GetResultType()
+		{
+			return OperandType.DATE;
+		}
+	 
+	}
 
 }

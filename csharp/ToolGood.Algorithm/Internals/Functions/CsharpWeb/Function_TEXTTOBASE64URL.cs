@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
@@ -14,17 +17,21 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if(args1.IsError) { return args1; }
-			try {
-				var bytes = Encoding.UTF8.GetBytes(args1.TextValue);
-				var t = Convert.ToBase64String(bytes).Replace('+', '-').Replace('/', '_').TrimEnd('=');
-				return Operand.Create(t);
-			} catch(Exception) {
-				return FunctionError();
-			}
+			if(args1.IsErrorOrNone) { return args1; }
+			var bytes = Encoding.UTF8.GetBytes(args1.TextValue);
+			var t = Convert.ToBase64String(bytes).Replace('+', '-').Replace('/', '_').TrimEnd('=');
+			return Operand.Create(t);
+		}
+		public override OperandType GetResultType()
+		{
+			return OperandType.TEXT;
+		}
+
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 		}
 
 	}
-
 
 }

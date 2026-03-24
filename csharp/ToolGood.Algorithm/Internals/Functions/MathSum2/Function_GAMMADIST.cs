@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
@@ -10,34 +13,49 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 		{
 		}
 
-		
-
         public override string Name => "GammaDist";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = GetNumber_1(engine, tempParameter);
-            if (args1.IsError) return args1;
+            if (args1.IsErrorOrNone) return args1;
 
             var args2 = GetNumber_2(engine, tempParameter);
-            if (args2.IsError) return args2;
+            if (args2.IsErrorOrNone) return args2;
 
             var args3 = GetNumber_3(engine, tempParameter);
-            if (args3.IsError) return args3;
+            if (args3.IsErrorOrNone) return args3;
 
             var args4 = GetBoolean_4(engine, tempParameter);
-            if (args4.IsError) return args4;
+            if (args4.IsErrorOrNone) return args4;
 
-            var x = args1.DoubleValue;
-            var alpha = args2.DoubleValue;
-            var beta = args3.DoubleValue;
-            var cumulative = args4.BooleanValue;
-            if (alpha < 0.0 || beta < 0.0) {
-                return FunctionError();
+            var x = args1.NumberValue;
+            if (x < 0) {
+                return ParameterError(1);
             }
+            var alpha = args2.NumberValue;
+            if (alpha <= 0m) {
+                return ParameterError(2);
+            }
+            var beta = args3.NumberValue;
+            if (beta <= 0m) {
+                return ParameterError(3);
+            }
+            var cumulative = args4.BooleanValue;
             return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
         }
+		public override OperandType GetResultType()
+		{
+			return OperandType.NUMBER;
+		}
 
-    }
+		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
+		{
+			func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			func4.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+		}
+	}
 
 }
