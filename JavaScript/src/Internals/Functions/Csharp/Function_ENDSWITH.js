@@ -1,25 +1,16 @@
 import { Function_3 } from '../Function_3.js';
+import { FunctionUtil } from '../FunctionUtil.js';
 import { Operand } from '../../../Operand.js';
 
-/**
- * Function_ENDSWITH
- */
 export class Function_ENDSWITH extends Function_3 {
-    /**
-     * @param {FunctionBase[]} funcs
-     */
     constructor(funcs) {
         super(funcs);
     }
-    
+
     get Name() {
         return "EndsWith";
     }
-    
-    /**
-     * @param {AlgorithmEngine} engine
-     * @returns {Operand}
-     */
+
     evaluate(engine, tempParameter) {
         let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
@@ -28,7 +19,7 @@ export class Function_ENDSWITH extends Function_3 {
         if (args2.IsError) { return args2; }
 
         let text = args1.TextValue;
-        if (!this.c) {
+        if (this.c == null) {
             return Operand.Create(text.endsWith(args2.TextValue));
         }
 
@@ -37,12 +28,10 @@ export class Function_ENDSWITH extends Function_3 {
 
         let ignoreCase = args3.BooleanValue;
         if (ignoreCase) {
-            return Operand.Create(text.toLowerCase().endsWith(args2.TextValue.toLowerCase()));
-        } else {
-            return Operand.Create(text.endsWith(args2.TextValue));
+            let r = text.toLowerCase().localeCompare(args2.TextValue.toLowerCase(), undefined, { sensitivity: 'base' });
+            return Operand.Create(r >= 0);
         }
+        return Operand.Create(text.endsWith(args2.TextValue));
     }
-    
-    
 }
 
