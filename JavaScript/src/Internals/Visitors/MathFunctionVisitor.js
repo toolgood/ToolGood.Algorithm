@@ -20,6 +20,7 @@ import { Function_AND_N } from '../Functions/Operator/Function_AND_N.js';
 import { Function_OR_N } from '../Functions/Operator/Function_OR_N.js';
 import { Function_NOT } from '../Functions/Flow/Function_NOT.js';
 import { Function_Value } from '../Functions/Value/Function_Value.js';
+import { Function_ValueBoolean } from '../Functions/Value/Function_ValueBoolean.js';
 
 import { Function_VALUE } from '../Functions/String/Function_VALUE.js';
 import { Function_ABS } from '../Functions/MathBase/Function_ABS.js';
@@ -40,6 +41,14 @@ import { Function_SIN } from '../Functions/MathTrigonometric/Function_SIN.js';
 import { Function_SINH } from '../Functions/MathTrigonometric/Function_SINH.js';
 import { Function_TAN } from '../Functions/MathTrigonometric/Function_TAN.js';
 import { Function_TANH } from '../Functions/MathTrigonometric/Function_TANH.js';
+import { Function_ACOT } from '../Functions/MathTrigonometric/Function_ACOT.js';
+import { Function_ACOTH } from '../Functions/MathTrigonometric/Function_ACOTH.js';
+import { Function_COT } from '../Functions/MathTrigonometric/Function_COT.js';
+import { Function_COTH } from '../Functions/MathTrigonometric/Function_COTH.js';
+import { Function_CSC } from '../Functions/MathTrigonometric/Function_CSC.js';
+import { Function_CSCH } from '../Functions/MathTrigonometric/Function_CSCH.js';
+import { Function_SEC } from '../Functions/MathTrigonometric/Function_SEC.js';
+import { Function_SECH } from '../Functions/MathTrigonometric/Function_SECH.js';
 import { Function_ACOS } from '../Functions/MathTrigonometric/Function_ACOS.js';
 import { Function_ACOSH } from '../Functions/MathTrigonometric/Function_ACOSH.js';
 import { Function_ASIN } from '../Functions/MathTrigonometric/Function_ASIN.js';
@@ -72,6 +81,14 @@ import { Function_RAND } from '../Functions/MathBase/Function_RAND.js';
 import { Function_RANDBETWEEN } from '../Functions/MathBase/Function_RANDBETWEEN.js';
 import { Function_COVARIANCES } from '../Functions/MathSum/Function_COVARIANCES.js';
 import { Function_COVAR } from '../Functions/MathSum/Function_COVAR.js';
+import { Function_ERF } from '../Functions/MathSum2/Function_ERF.js';
+import { Function_ERFC } from '../Functions/MathSum2/Function_ERFC.js';
+import { Function_BESSELI } from '../Functions/MathSum2/Function_BESSELI.js';
+import { Function_BESSELJ } from '../Functions/MathSum2/Function_BESSELJ.js';
+import { Function_BESSELK } from '../Functions/MathSum2/Function_BESSELK.js';
+import { Function_BESSELY } from '../Functions/MathSum2/Function_BESSELY.js';
+import { Function_DELTA } from '../Functions/MathBase/Function_DELTA.js';
+import { Function_GESTEP } from '../Functions/MathBase/Function_GESTEP.js';
 import { Function_FACT } from '../Functions/MathBase/Function_FACT.js';
 import { Function_FACTDOUBLE } from '../Functions/MathBase/Function_FACTDOUBLE.js';
 import { Function_POWER } from '../Functions/MathBase/Function_POWER.js';
@@ -82,6 +99,19 @@ import { Function_MULTINOMIAL } from '../Functions/MathBase/Function_MULTINOMIAL
 import { Function_PRODUCT } from '../Functions/MathBase/Function_PRODUCT.js';
 import { Function_SQRTPI } from '../Functions/MathBase/Function_SQRTPI.js';
 import { Function_SUMSQ } from '../Functions/MathSum/Function_SUMSQ.js';
+import { Function_SUMPRODUCT } from '../Functions/MathSum/Function_SUMPRODUCT.js';
+import { Function_SUMX2MY2 } from '../Functions/MathSum/Function_SUMX2MY2.js';
+import { Function_SUMX2PY2 } from '../Functions/MathSum/Function_SUMX2PY2.js';
+import { Function_SUMXMY2 } from '../Functions/MathSum/Function_SUMXMY2.js';
+import { Function_ARABIC } from '../Functions/MathTransformation/Function_ARABIC.js';
+import { Function_ROMAN } from '../Functions/MathTransformation/Function_ROMAN.js';
+import { Function_SERIESSUM } from '../Functions/MathSum/Function_SERIESSUM.js';
+import { Function_RANK } from '../Functions/MathSum/Function_RANK.js';
+import { Function_FORECAST } from '../Functions/MathSum/Function_FORECAST.js';
+import { Function_INTERCEPT } from '../Functions/MathSum/Function_INTERCEPT.js';
+import { Function_SLOPE } from '../Functions/MathSum/Function_SLOPE.js';
+import { Function_CORREL } from '../Functions/MathSum/Function_CORREL.js';
+import { Function_PEARSON } from '../Functions/MathSum/Function_PEARSON.js';
 import { Function_ASC } from '../Functions/String/Function_ASC.js';
 import { Function_JIS } from '../Functions/String/Function_JIS.js';
 import { Function_CHAR } from '../Functions/String/Function_CHAR.js';
@@ -120,6 +150,7 @@ import { Function_MINUTE } from '../Functions/DateTimes/Function_MINUTE.js';
 import { Function_SECOND } from '../Functions/DateTimes/Function_SECOND.js';
 import { Function_WEEKDAY } from '../Functions/DateTimes/Function_WEEKDAY.js';
 import { Function_DATEDIF } from '../Functions/DateTimes/Function_DATEDIF.js';
+import { Function_DAYS } from '../Functions/DateTimes/Function_DAYS.js';
 import { Function_DAYS360 } from '../Functions/DateTimes/Function_DAYS360.js';
 import { Function_EDATE } from '../Functions/DateTimes/Function_EDATE.js';
 import { Function_EOMONTH } from '../Functions/DateTimes/Function_EOMONTH.js';
@@ -178,6 +209,22 @@ import { Function_POISSON } from '../Functions/MathSum/Function_POISSON.js';
 import { Function_TDIST } from '../Functions/MathSum/Function_TDIST.js';
 import { Function_TINV } from '../Functions/MathSum/Function_TINV.js';
 import { Function_WEIBULL } from '../Functions/MathSum/Function_WEIBULL.js';
+import { Function_PMT } from '../Functions/Financial/Function_PMT.js';
+import { Function_PPMT } from '../Functions/Financial/Function_PPMT.js';
+import { Function_IPMT } from '../Functions/Financial/Function_IPMT.js';
+import { Function_PV } from '../Functions/Financial/Function_PV.js';
+import { Function_FV } from '../Functions/Financial/Function_FV.js';
+import { Function_NPER } from '../Functions/Financial/Function_NPER.js';
+import { Function_RATE } from '../Functions/Financial/Function_RATE.js';
+import { Function_NPV } from '../Functions/Financial/Function_NPV.js';
+import { Function_XNPV } from '../Functions/Financial/Function_XNPV.js';
+import { Function_IRR } from '../Functions/Financial/Function_IRR.js';
+import { Function_MIRR } from '../Functions/Financial/Function_MIRR.js';
+import { Function_XIRR } from '../Functions/Financial/Function_XIRR.js';
+import { Function_SLN } from '../Functions/Financial/Function_SLN.js';
+import { Function_DB } from '../Functions/Financial/Function_DB.js';
+import { Function_DDB } from '../Functions/Financial/Function_DDB.js';
+import { Function_SYD } from '../Functions/Financial/Function_SYD.js';
 import { Function_URLENCODE } from '../Functions/CsharpWeb/Function_URLENCODE.js';
 import { Function_URLDECODE } from '../Functions/CsharpWeb/Function_URLDECODE.js';
 import { Function_HTMLENCODE } from '../Functions/CsharpWeb/Function_HTMLENCODE.js';
@@ -214,6 +261,8 @@ import { Function_LOOKFLOOR } from '../Functions/Csharp/Function_LOOKFLOOR.js';
 import { Function_HAS } from '../Functions/Csharp/Function_HAS.js';
 import { Function_HASVALUE } from '../Functions/Csharp/Function_HASVALUE.js';
 import { Function_IF } from '../Functions/Flow/Function_IF.js';
+import { Function_IFS } from '../Functions/Flow/Function_IFS.js';
+import { Function_SWITCH } from '../Functions/Flow/Function_SWITCH.js';
 import { Function_IFERROR } from '../Functions/Flow/Function_IFERROR.js';
 import { Function_ISERROR } from '../Functions/Flow/Function_ISERROR.js';
 import { Function_ISNULL } from '../Functions/Flow/Function_ISNULL.js';
@@ -336,6 +385,24 @@ class MathFunctionVisitor extends mathjsVisitor  {
     }
 
     /**
+     * 访问IFS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitIFS_fun(context) {
+        return new Function_IFS(this.vN(context));
+    }
+
+    /**
+     * 访问SWITCH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSWITCH_fun(context) {
+        return new Function_SWITCH(this.vN(context));
+    }
+
+    /**
      * 访问IFERROR函数节点
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
@@ -452,6 +519,15 @@ class MathFunctionVisitor extends mathjsVisitor  {
     }
 
     /**
+     * 访问XOR函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitXOR_fun(context) {
+        return new Function_XOR(this.vN(context));
+    }
+
+    /**
      * 访问NOT函数节点
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
@@ -467,7 +543,7 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitTRUE_fun(context) {
-        return new Function_Value(Operand.True);
+        return new Function_ValueBoolean(true);
     }
 
     /**
@@ -476,7 +552,7 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitFALSE_fun(context) {
-        return new Function_Value(Operand.False);
+        return new Function_ValueBoolean(false);
     }
 
     /**
@@ -683,8 +759,80 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitTANH_fun(context) {
-        
+
         return new Function_TANH(this.v1(context));
+    }
+
+    /**
+     * 访问COT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitCOT_fun(context) {
+        return new Function_COT(this.v1(context));
+    }
+
+    /**
+     * 访问COTH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitCOTH_fun(context) {
+        return new Function_COTH(this.v1(context));
+    }
+
+    /**
+     * 访问CSC函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitCSC_fun(context) {
+        return new Function_CSC(this.v1(context));
+    }
+
+    /**
+     * 访问CSCH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitCSCH_fun(context) {
+        return new Function_CSCH(this.v1(context));
+    }
+
+    /**
+     * 访问SEC函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSEC_fun(context) {
+        return new Function_SEC(this.v1(context));
+    }
+
+    /**
+     * 访问SECH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSECH_fun(context) {
+        return new Function_SECH(this.v1(context));
+    }
+
+    /**
+     * 访问ACOT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitACOT_fun(context) {
+        return new Function_ACOT(this.v1(context));
+    }
+
+    /**
+     * 访问ACOTH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitACOTH_fun(context) {
+        return new Function_ACOTH(this.v1(context));
     }
 
     /**
@@ -1050,8 +1198,7 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitLOG10_fun(context) {
-        let es=[this.v1(context)];
-        return new Function_LOG(es);
+        return new Function_LOG(this.vN(context));
     }
 
     /**
@@ -1080,8 +1227,80 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitSQRTPI_fun(context) {
-        
+
         return new Function_SQRTPI(this.v1(context));
+    }
+
+    /**
+     * 访问ERF函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitERF_fun(context) {
+        return new Function_ERF(this.v1(context));
+    }
+
+    /**
+     * 访问ERFC函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitERFC_fun(context) {
+        return new Function_ERFC(this.v1(context));
+    }
+
+    /**
+     * 访问BESSELI函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitBESSELI_fun(context) {
+        return new Function_BESSELI(this.vN(context));
+    }
+
+    /**
+     * 访问BESSELJ函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitBESSELJ_fun(context) {
+        return new Function_BESSELJ(this.vN(context));
+    }
+
+    /**
+     * 访问BESSELK函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitBESSELK_fun(context) {
+        return new Function_BESSELK(this.vN(context));
+    }
+
+    /**
+     * 访问BESSELY函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitBESSELY_fun(context) {
+        return new Function_BESSELY(this.vN(context));
+    }
+
+    /**
+     * 访问DELTA函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDELTA_fun(context) {
+        return new Function_DELTA(this.vN(context));
+    }
+
+    /**
+     * 访问GESTEP函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitGESTEP_fun(context) {
+        return new Function_GESTEP(this.vN(context));
     }
 
     /**
@@ -1092,6 +1311,123 @@ class MathFunctionVisitor extends mathjsVisitor  {
     visitSUMSQ_fun(context) {
         //let args =this.vN(context);
         return new Function_SUMSQ(this.vN(context));
+    }
+
+    /**
+     * 访问SUMPRODUCT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSUMPRODUCT_fun(context) {
+        return new Function_SUMPRODUCT(this.vN(context));
+    }
+
+    /**
+     * 访问SUMX2MY2函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSUMX2MY2_fun(context) {
+        return new Function_SUMX2MY2(this.vN(context));
+    }
+
+    /**
+     * 访问SUMX2PY2函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSUMX2PY2_fun(context) {
+        return new Function_SUMX2PY2(this.vN(context));
+    }
+
+    /**
+     * 访问SUMXMY2函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSUMXMY2_fun(context) {
+        return new Function_SUMXMY2(this.vN(context));
+    }
+
+    /**
+     * 访问ARABIC函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitARABIC_fun(context) {
+        return new Function_ARABIC(this.v1(context));
+    }
+
+    /**
+     * 访问ROMAN函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitROMAN_fun(context) {
+        return new Function_ROMAN(this.vN(context));
+    }
+
+    /**
+     * 访问SERIESSUM函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSERIESSUM_fun(context) {
+        return new Function_SERIESSUM(this.vN(context));
+    }
+
+    /**
+     * 访问RANK函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitRANK_fun(context) {
+        return new Function_RANK(this.vN(context));
+    }
+
+    /**
+     * 访问FORECAST函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitFORECAST_fun(context) {
+        return new Function_FORECAST(this.vN(context));
+    }
+
+    /**
+     * 访问INTERCEPT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitINTERCEPT_fun(context) {
+        return new Function_INTERCEPT(this.vN(context));
+    }
+
+    /**
+     * 访问SLOPE函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSLOPE_fun(context) {
+        return new Function_SLOPE(this.vN(context));
+    }
+
+    /**
+     * 访问CORREL函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitCORREL_fun(context) {
+        return new Function_CORREL(this.vN(context));
+    }
+
+    /**
+     * 访问PEARSON函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitPEARSON_fun(context) {
+        return new Function_PEARSON(this.vN(context));
     }
 
     /**
@@ -1469,6 +1805,132 @@ class MathFunctionVisitor extends mathjsVisitor  {
     }
 
     /**
+     * 访问DAYS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDAYS_fun(context) {
+        return new Function_DAYS(this.vN(context));
+    }
+
+    /**
+     * 访问DATEDIF函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDAYS360_fun(context) {
+        return new Function_DAYS360(this.vN(context));
+    }
+
+    /**
+     * 访问DATEDIF函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitEDATE_fun(context) {
+        return new Function_EDATE(this.vN(context));
+    }
+
+    /**
+     * 访问EOMONTH函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitEOMONTH_fun(context) {
+        return new Function_EOMONTH(this.vN(context));
+    }
+
+    /**
+     * 访问NETWORKDAYS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitNETWORKDAYS_fun(context) {
+        return new Function_NETWORKDAYS(this.vN(context));
+    }
+
+    /**
+     * 访问WORKDAY函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitWORKDAY_fun(context) {
+        return new Function_WORKDAY(this.vN(context));
+    }
+
+    /**
+     * 访问WEEKNUM函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitWEEKNUM_fun(context) {
+        return new Function_WEEKNUM(this.vN(context));
+    }
+
+    /**
+     * 访问ADDMONTHS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitADDMONTHS_fun(context) {
+        return new Function_ADDMONTHS(this.vN(context));
+    }
+
+    /**
+     * 访问ADDYEARS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitADDYEARS_fun(context) {
+        return new Function_ADDYEARS(this.vN(context));
+    }
+
+    /**
+     * 访问ADDSECONDS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitADDSECONDS_fun(context) {
+        return new Function_ADDSECONDS(this.vN(context));
+    }
+
+    /**
+     * 访问ADDMINUTES函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitADDMINUTES_fun(context) {
+        return new Function_ADDMINUTES(this.vN(context));
+    }
+
+    /**
+     * 访问ADDDAYS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitADDDAYS_fun(context) {
+        return new Function_ADDDAYS(this.vN(context));
+    }
+
+    /**
+     * 访问ADDHOURS函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitADDHOURS_fun(context) {
+        return new Function_ADDHOURS(this.vN(context));
+    }
+
+    /**
+     * 访问DATEDIF函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDATEDIF_fun(context) {
+        return new Function_DATEDIF(this.vN(context));
+    }
+
+    /**
      * 访问DAYS360函数节点
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
@@ -1586,6 +2048,15 @@ class MathFunctionVisitor extends mathjsVisitor  {
     visitMAX_fun(context) {
         //let args =this.vN(context);
         return new Function_MAX(this.vN(context));
+    }
+
+    /**
+     * 访问YEARFRAC函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitYEARFRAC_fun(context) {
+        return new Function_YEARFRAC(this.vN(context));
     }
 
     /**
@@ -1968,7 +2439,9 @@ class MathFunctionVisitor extends mathjsVisitor  {
      * @returns {FunctionBase}
      */
     visitERROR_fun(context) {
-        
+        if (context.expr() == null) {
+            return new Function_ERROR(null);
+        }
         return new Function_ERROR(this.v1(context));
     }
 
@@ -2377,6 +2850,150 @@ class MathFunctionVisitor extends mathjsVisitor  {
     }
 
     /**
+     * 访问PMT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitPMT_fun(context) {
+        return new Function_PMT(this.vN(context));
+    }
+
+    /**
+     * 访问PPMT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitPPMT_fun(context) {
+        return new Function_PPMT(this.vN(context));
+    }
+
+    /**
+     * 访问IPMT函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitIPMT_fun(context) {
+        return new Function_IPMT(this.vN(context));
+    }
+
+    /**
+     * 访问PV函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitPV_fun(context) {
+        return new Function_PV(this.vN(context));
+    }
+
+    /**
+     * 访问FV函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitFV_fun(context) {
+        return new Function_FV(this.vN(context));
+    }
+
+    /**
+     * 访问NPER函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitNPER_fun(context) {
+        return new Function_NPER(this.vN(context));
+    }
+
+    /**
+     * 访问RATE函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitRATE_fun(context) {
+        return new Function_RATE(this.vN(context));
+    }
+
+    /**
+     * 访问NPV函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitNPV_fun(context) {
+        return new Function_NPV(this.vN(context));
+    }
+
+    /**
+     * 访问XNPV函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitXNPV_fun(context) {
+        return new Function_XNPV(this.vN(context));
+    }
+
+    /**
+     * 访问IRR函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitIRR_fun(context) {
+        return new Function_IRR(this.vN(context));
+    }
+
+    /**
+     * 访问MIRR函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitMIRR_fun(context) {
+        return new Function_MIRR(this.vN(context));
+    }
+
+    /**
+     * 访问XIRR函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitXIRR_fun(context) {
+        return new Function_XIRR(this.vN(context));
+    }
+
+    /**
+     * 访问SLN函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSLN_fun(context) {
+        return new Function_SLN(this.vN(context));
+    }
+
+    /**
+     * 访问DB函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDB_fun(context) {
+        return new Function_DB(this.vN(context));
+    }
+
+    /**
+     * 访问DDB函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitDDB_fun(context) {
+        return new Function_DDB(this.vN(context));
+    }
+
+    /**
+     * 访问SYD函数节点
+     * @param {Object} context - 上下文
+     * @returns {FunctionBase}
+     */
+    visitSYD_fun(context) {
+        return new Function_SYD(this.vN(context));
+    }
+
+    /**
      * 访问URLENCODE函数节点
      * @param {Object} context - 上下文
      * @returns {FunctionBase}
@@ -2556,15 +3173,6 @@ class MathFunctionVisitor extends mathjsVisitor  {
             }
         }
         return new Function_Value(Operand.Create(sb.join('')));
-    }
-    visitDiyFunction_fun(context) {
-        let funName = context.PARAMETER().getText();
-        let exprs = context.expr();
-        let args = [];
-        for (let i = 0; i < exprs.length; i++) {
-            args.push(exprs[i].accept(this));
-        }
-        return new Function_DiyFunction(funName, args);
     }
     visitVersion_fun(context) {
         return new Function_Value(Operand.Version, "VERSION");
