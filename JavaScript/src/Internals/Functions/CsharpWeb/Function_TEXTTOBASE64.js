@@ -19,7 +19,7 @@ class Function_TEXTTOBASE64 extends Function_1 {
             let t = buffer.toString('base64');
             return Operand.Create(t);
         } catch (e) {
-            return this.functionError();
+            return this.parameterError(1);
         }
     }
 }

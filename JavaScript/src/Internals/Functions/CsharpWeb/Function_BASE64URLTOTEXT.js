@@ -26,7 +26,7 @@ class Function_BASE64URLTOTEXT extends Function_1 {
             let t = buffer.toString('utf-8');
             return Operand.Create(t);
         } catch (e) {
-            return this.functionError();
+            return this.parameterError(1);
         }
     }
 }

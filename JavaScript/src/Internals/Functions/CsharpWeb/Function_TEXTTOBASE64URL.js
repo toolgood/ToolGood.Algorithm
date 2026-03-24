@@ -22,7 +22,7 @@ class Function_TEXTTOBASE64URL extends Function_1 {
                 .replace(/\//g, '_');
             return Operand.Create(t);
         } catch (e) {
-            return this.functionError();
+            return this.parameterError(1);
         }
     }
 }
