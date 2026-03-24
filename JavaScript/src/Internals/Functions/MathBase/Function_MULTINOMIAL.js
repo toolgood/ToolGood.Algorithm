@@ -19,17 +19,22 @@ class Function_MULTINOMIAL extends Function_N {
         }
 
         let list = [];
-        for (let arg of args) {
-            if (arg.IsNotNumber) {
+        for (let i = 0; i < args.length; i++) {
+            let arg = args[i];
+            if (arg.IsNumber==false) {
                 return this.functionError();
             }
-            list.push(arg.NumberValue);
+            let a = Math.floor(arg.NumberValue);
+            if (a < 0) {
+                return this.parameterError(i + 1);
+            }
+            list.push(a);
         }
 
         let sum = 0;
         let n = 1;
         for (let i = 0; i < list.length; i++) {
-            let a = Math.floor(list[i]); // 小于等于0 时，按0处理
+            let a = list[i];
             n *= this.calculateFactorial(a);
             sum += a;
         }
@@ -38,7 +43,6 @@ class Function_MULTINOMIAL extends Function_N {
         return Operand.Create(r);
     }
 
-    // 计算阶乘
     calculateFactorial(n) {
         if (n <= 1) return 1;
         let result = 1;

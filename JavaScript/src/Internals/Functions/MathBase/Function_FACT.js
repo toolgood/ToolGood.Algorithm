@@ -16,7 +16,10 @@ class Function_FACT extends Function_1 {
 
         let z = args1.IntValue;
         if (z < 0) {
-            return this.functionError();
+            return this.parameterError(1);
+        }
+        if (z > 170) {
+            return this.parameterError(1);
         }
         let d = 1;
         for (let i = 1; i <= z; i++) {

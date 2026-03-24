@@ -13,13 +13,22 @@ class Function_MROUND extends Function_2 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
-        let a = args2.NumberValue;
-        if (a <= 0) { return this.parameterError(2); }
 
-        let b = args1.NumberValue;
-        let r = Math.round(b / a) * a;
+        let multiple = args2.NumberValue;
+        if (multiple == 0) {
+            return this.parameterError(2);
+        }
+
+        let number = args1.NumberValue;
+
+        if ((number > 0 && multiple < 0) || (number < 0 && multiple > 0)) {
+            return this.parameterError(2);
+        }
+
+        let r = Math.round(number / multiple) * multiple;
         return Operand.Create(r);
     }
 }

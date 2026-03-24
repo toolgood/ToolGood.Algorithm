@@ -13,8 +13,14 @@ class Function_FACTDOUBLE extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+
         let z = args1.IntValue;
-        if (z < 0) { return this.functionError(); }
+        if (z < 0) {
+            return this.parameterError(1);
+        }
+        if (z > 300) {
+            return this.parameterError(1);
+        }
 
         let d = 1;
         for (let i = z; i > 0; i -= 2) {

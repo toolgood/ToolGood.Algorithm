@@ -13,29 +13,32 @@ class Function_PERMUT extends Function_2 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
-        let n = args1.NumberValue;
-        let k = args2.NumberValue;
+        let total = args1.IntValue;
+        let count = args2.IntValue;
 
-        if (n < 0 || k < 0) {
+        if (total < 0) {
             return this.parameterError(1);
         }
-        if (n < k) {
+        if (count < 0) {
+            return this.parameterError(2);
+        }
+        if (total < count) {
             return this.parameterError(2);
         }
 
-        if (k == 0) {
+        if (count == 0) {
             return Operand.Create(1);
         }
 
-        let result = 1;
-        for (let i = 0; i < k; i++) {
-            result *= (n - i);
+        let sum = 1;
+        for (let i = 0; i < count; i++) {
+            sum *= (total - i);
         }
-
-        return Operand.Create(result);
+        return Operand.Create(sum);
     }
 }
 

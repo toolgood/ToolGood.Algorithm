@@ -17,9 +17,15 @@ class Function_ROUND extends Function_2 {
         if (this.b === null) {
             return Operand.Create(Math.round(args1.NumberValue));
         }
+
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
+
         let decimalPlaces = args2.IntValue;
+        if (decimalPlaces < -15 || decimalPlaces > 15) {
+            return this.parameterError(2);
+        }
+
         let factor = Math.pow(10, decimalPlaces);
         return Operand.Create(Math.round(args1.NumberValue * factor) / factor);
     }

@@ -19,9 +19,13 @@ class Function_GCD extends Function_N {
         }
 
         let list = [];
-        for (let arg of args) {
-            if (!arg.IsNumber) {
+        for (let i = 0; i < args.length; i++) {
+            let arg = args[i];
+            if (arg.IsNumber==false) {
                 return this.functionError();
+            }
+            if (arg.NumberValue < 0) {
+                return this.parameterError(i + 1);
             }
             list.push(arg.NumberValue);
         }
@@ -29,9 +33,7 @@ class Function_GCD extends Function_N {
         return Operand.Create(this.calculateGCD(list));
     }
 
-    // 计算多个数字的最大公约数
     calculateGCD(numbers) {
-        // 计算两个数的GCD
         let gcdTwo = (a, b) => {
             a = Math.abs(a);
             b = Math.abs(b);
@@ -43,7 +45,6 @@ class Function_GCD extends Function_N {
             return a;
         };
 
-        // 对数组中的所有数字应用GCD
         return numbers.reduce((acc, current) => gcdTwo(acc, current), numbers[0]);
     }
 }

@@ -13,10 +13,20 @@ class Function_ROUNDUP extends Function_2 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
-        if (args1.NumberValue == 0.0) { return args1; }
-        let a = Math.pow(10, args2.IntValue);
+
+        let decimalPlaces = args2.IntValue;
+        if (decimalPlaces < -15 || decimalPlaces > 15) {
+            return this.parameterError(2);
+        }
+
+        if (args1.NumberValue == 0.0) {
+            return args1;
+        }
+
+        let a = Math.pow(10, decimalPlaces);
         let b = args1.NumberValue;
 
         let t = (Math.ceil(Math.abs(b) * a)) / a;

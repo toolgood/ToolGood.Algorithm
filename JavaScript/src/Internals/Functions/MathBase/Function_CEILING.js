@@ -24,13 +24,19 @@ class Function_CEILING extends Function_2 {
         if (b == 0) {
             return Operand.Zero;
         }
-        if (b < 0) {
-            return this.parameterError(2);
-        }
 
         let a = args1.NumberValue;
-        let d = Math.ceil(a / b) * b;
-        return Operand.Create(d);
+
+        if (b > 0) {
+            let d = Math.ceil(a / b) * b;
+            return Operand.Create(d);
+        } else {
+            if (a > 0) {
+                return this.parameterError(1);
+            }
+            let d = Math.ceil(a / b) * b;
+            return Operand.Create(d);
+        }
     }
 }
 

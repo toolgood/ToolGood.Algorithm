@@ -13,10 +13,17 @@ class Function_RANDBETWEEN extends Function_2 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
-        return Operand.Create(Math.random() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
+        let bottom = args1.NumberValue;
+        let top = args2.NumberValue;
+        if (bottom > top) {
+            return this.parameterError(1);
+        }
+
+        return Operand.Create(Math.floor(Math.random() * (top - bottom + 1) + bottom));
     }
 }
 

@@ -19,9 +19,13 @@ class Function_LCM extends Function_N {
         }
 
         let list = [];
-        for (let arg of args) {
-            if (!arg.IsNumber) {
+        for (let i = 0; i < args.length; i++) {
+            let arg = args[i];
+            if (arg.IsNotNumber) {
                 return this.functionError();
+            }
+            if (arg.NumberValue < 0) {
+                return this.parameterError(i + 1);
             }
             list.push(arg.NumberValue);
         }
@@ -29,9 +33,7 @@ class Function_LCM extends Function_N {
         return Operand.Create(this.calculateLCM(list));
     }
 
-    // 计算多个数字的最小公倍数
     calculateLCM(numbers) {
-        // 计算两个数的GCD
         let gcdTwo = (a, b) => {
             a = Math.abs(a);
             b = Math.abs(b);
@@ -43,12 +45,10 @@ class Function_LCM extends Function_N {
             return a;
         };
 
-        // 计算两个数的LCM
         let lcmTwo = (a, b) => {
             return Math.abs(a * b) / gcdTwo(a, b);
         };
 
-        // 对数组中的所有数字应用LCM
         return numbers.reduce((acc, current) => lcmTwo(acc, current), numbers[0]);
     }
 }
