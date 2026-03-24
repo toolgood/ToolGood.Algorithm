@@ -35,7 +35,7 @@ expr:
 	| expr '.' URLENCODE '(' ')'								# URLENCODE_fun
 	| expr '.' URLDECODE '(' ')'								# URLDECODE_fun
 	| expr '.' REGEX '(' expr ')'								# REGEX_fun
-	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
+	| expr '.' REGEXREPLACE '(' expr ',' expr ')'				# REGEXREPLACE_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
 	| expr '.' MD5 '(' ')'										# MD5_fun
 	| expr '.' SHA1 '(' ')'										# SHA1_fun
@@ -84,7 +84,7 @@ expr:
 	| ARRAY '(' expr (',' expr)* ')'						# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
 	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'		# IFS_fun
-	| SWITCH '(' expr ',' expr ',' expr (',' expr ',' expr)* ')'			# SWITCH_fun
+	| SWITCH '(' expr ',' expr ',' expr ( ',' expr)* ')'	# SWITCH_fun
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
 	| ISTEXT '(' expr ')'									# ISTEXT_fun
 	| ISERROR '(' expr (',' expr)? ')'						# ISERROR_fun
@@ -120,7 +120,7 @@ expr:
 	| MOD '(' expr (',' expr) ')'							# MOD_fun
 	| SIGN '(' expr ')'										# SIGN_fun
 	| SQRT '(' expr ')'										# SQRT_fun
-	| TRUNC '(' expr ')'									# TRUNC_fun
+	| TRUNC '(' expr(',' expr)? ')'							# TRUNC_fun
 	| INT '(' expr ')'										# INT_fun
 	| GCD '(' expr (',' expr)* ')'							# GCD_fun
 	| LCM '(' expr (',' expr)* ')'							# LCM_fun
@@ -315,7 +315,7 @@ expr:
 	| TEXTTOBASE64 '(' expr ')'									# TEXTTOBASE64_fun
 	| TEXTTOBASE64URL '(' expr ')'								# TEXTTOBASE64URL_fun
 	| REGEX '(' expr ',' expr ')'								# REGEX_fun
-	| REGEXREPALCE '(' expr ',' expr ',' expr ')'				# REGEXREPALCE_fun
+	| REGEXREPLACE '(' expr ',' expr ',' expr ')'				# REGEXREPLACE_fun
 	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun
 	| GUID '(' ')'												# GUID_fun
 	| MD5 '(' expr ')'											# MD5_fun
@@ -584,7 +584,7 @@ parameter2:
 	| TEXTTOBASE64
 	| TEXTTOBASE64URL
 	| REGEX
-	| REGEXREPALCE
+	| REGEXREPLACE
 	| ISREGEX
 	| GUID
 	| MD5
@@ -915,7 +915,7 @@ BASE64URLTOTEXT: 'BASE64URLTOTEXT';
 TEXTTOBASE64: 'TEXTTOBASE64';
 TEXTTOBASE64URL: 'TEXTTOBASE64URL';
 REGEX: 'REGEX';
-REGEXREPALCE: 'REGEXREPALCE';
+REGEXREPLACE: 'REGEXREPLACE';
 ISREGEX: 'ISREGEX' | 'ISMATCH';
 GUID: 'GUID';
 MD5: 'MD5';
