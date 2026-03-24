@@ -28,6 +28,8 @@ import { Function_QUOTIENT } from '../Functions/MathBase/Function_QUOTIENT.js';
 import { Function_SIGN } from '../Functions/MathBase/Function_SIGN.js';
 import { Function_SQRT } from '../Functions/MathBase/Function_SQRT.js';
 import { Function_TRUNC } from '../Functions/MathBase/Function_TRUNC.js';
+import { Function_INT } from '../Functions/MathBase/Function_INT.js';
+import { Function_LOG10 } from '../Functions/MathBase/Function_LOG10.js';
 import { Function_GCD } from '../Functions/MathBase/Function_GCD.js';
 import { Function_LCM } from '../Functions/MathBase/Function_LCM.js';
 import { Function_COMBIN } from '../Functions/MathBase/Function_COMBIN.js';
@@ -188,7 +190,7 @@ import { Function_VAR } from '../Functions/MathSum/Function_VAR.js';
 import { Function_VARP } from '../Functions/MathSum/Function_VARP.js';
 import { Function_NORMDIST } from '../Functions/MathSum2/Function_NORMDIST.js';
 import { Function_NORMINV } from '../Functions/MathSum2/Function_NORMINV.js';
-import { Function_NORMSDIST } from '../Functions/MathSumFunction_NORMSDIST.js';
+import { Function_NORMSDIST } from '../Functions/MathSum2/Function_NORMSDIST.js';
 import { Function_NORMSINV } from '../Functions/MathSum2/Function_NORMSINV.js';
 import { Function_BETADIST } from '../Functions/MathSum2/Function_BETADIST.js';
 import { Function_BETAINV } from '../Functions/MathSum2/Function_BETAINV.js';
@@ -561,7 +563,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitE_fun(context) {
-        return new Function_Value(Operand.Create(Math.E), "E");
+        return new Function_ValueNumber(Operand.Create(Math.E), "E");
     }
 
     /**
@@ -624,7 +626,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitTRUNC_fun(context) {
-        return new Function_TRUNC(this.v1(context));
+        return new Function_TRUNC(this.vN(context));
     }
 
     /**
@@ -633,7 +635,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitINT_fun(context) {
-        return new Function_TRUNC(this.v1(context));
+        return new Function_INT(this.v1(context));
     }
 
     /**
@@ -1198,7 +1200,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitLOG10_fun(context) {
-        return new Function_LOG(this.vN(context));
+        return new Function_LOG10(this.v1(context));
     }
 
     /**
@@ -2306,7 +2308,7 @@ class MathFunctionVisitor extends mathVisitor  {
                 if (!isNaN(key)) {
                     keyName = key.toString();
                 } else {
-                    return new Function_Value(Operand.Error(`Json key '${numText}' is error!`));
+                    return new Function_ValueNumber(Operand.Error(`Json key '${numText}' is error!`));
                 }
             }
         }
@@ -2390,9 +2392,9 @@ class MathFunctionVisitor extends mathVisitor  {
     visitNUM_fun(context) {
         let numText = context.num().getText ? context.num().getText() : context.num().text;
         let d = parseFloat(numText);
-		if (!context.unit()) { return new Function_Value(Operand.Create(d), numText); }
+		if (!context.unit()) { return new Function_ValueNumber(Operand.Create(d), numText); }
 		let unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
-		return new Function_NUM(d, unitText);
+		return new Function_Number(d, unitText);
     }
 
     /**
@@ -3175,7 +3177,7 @@ class MathFunctionVisitor extends mathVisitor  {
         return new Function_Value(Operand.Create(sb.join('')));
     }
     visitVersion_fun(context) {
-        return new Function_Value(Operand.Version, "VERSION");
+        return new Function_ValueNumber(Operand.Version, "VERSION");
     }
 }
 
