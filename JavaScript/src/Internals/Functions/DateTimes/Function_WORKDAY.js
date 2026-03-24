@@ -25,20 +25,30 @@ class Function_WORKDAY extends Function_N {
         for (let i = 2; i < this.z.length; i++) {
             let ar = this.getDate(engine, tempParameter, i);
             if (ar.IsError) { return ar; }
-            // 将日期转换为YYYY-MM-DD格式以确保Set能够正确比较
             let dateStr = ar.DateValue.ToDateTime().toISOString().split('T')[0];
             list.add(dateStr);
         }
 
-        while (days > 0) {
-            startMyDate.setDate(startMyDate.getDate() + 1);
-            let dayOfWeek = startMyDate.getDay();
-            if (dayOfWeek === 6) continue; // 星期�?
-            if (dayOfWeek === 0) continue; // 星期�?
-            // 将当前日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-            let currentDateStr = startMyDate.toISOString().split('T')[0];
-            if (list.has(currentDateStr)) continue;
-            days--;
+        if (days > 0) {
+            while (days > 0) {
+                startMyDate.setDate(startMyDate.getDate() + 1);
+                let dayOfWeek = startMyDate.getDay();
+                if (dayOfWeek === 6) continue;
+                if (dayOfWeek === 0) continue;
+                let currentDateStr = startMyDate.toISOString().split('T')[0];
+                if (list.has(currentDateStr)) continue;
+                days--;
+            }
+        } else if (days < 0) {
+            while (days < 0) {
+                startMyDate.setDate(startMyDate.getDate() - 1);
+                let dayOfWeek = startMyDate.getDay();
+                if (dayOfWeek === 6) continue;
+                if (dayOfWeek === 0) continue;
+                let currentDateStr = startMyDate.toISOString().split('T')[0];
+                if (list.has(currentDateStr)) continue;
+                days++;
+            }
         }
         return Operand.Create(new MyDate(startMyDate));
     }

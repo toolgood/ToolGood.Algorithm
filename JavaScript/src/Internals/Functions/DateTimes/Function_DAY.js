@@ -15,7 +15,7 @@ class Function_DAY extends Function_1 {
         let args1 = this.getDate_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         if (args1.DateValue.Day == null) {
-            return this.functionError();
+            return this.parameterError(1);
         }
         return Operand.Create(args1.DateValue.Day);
     }

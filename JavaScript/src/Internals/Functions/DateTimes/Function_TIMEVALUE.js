@@ -37,7 +37,7 @@ class Function_TIMEVALUE extends Function_1 {
         } catch (e) {
             // 解析失败
         }
-        return this.functionError();
+        return this.parameterError(1);
     }
 }
 
