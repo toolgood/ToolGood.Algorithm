@@ -7,17 +7,15 @@ class Function_COMBIN extends Function_2 {
     }
 
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
-        if (args1.IsNone) { return args1; }
 
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
-        if (args2.IsNone) { return args2; }
 
         let total = args1.IntValue;
         let count = args2.IntValue;
@@ -41,4 +39,3 @@ class Function_COMBIN extends Function_2 {
 }
 
 export { Function_COMBIN };
-

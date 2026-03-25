@@ -1,7 +1,7 @@
-import { Function_1 } from '../Function_1.js';
+import { Function_2 } from '../Function_2.js';
 import { Operand } from '../../../Operand.js';
 
-class Function_TRUNC extends Function_N {
+class Function_TRUNC extends Function_2 {
     get Name() {
         return "Trunc";
     }

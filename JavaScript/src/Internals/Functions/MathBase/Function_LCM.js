@@ -21,7 +21,7 @@ class Function_LCM extends Function_N {
         let list = [];
         for (let i = 0; i < args.length; i++) {
             let arg = args[i];
-            if (arg.IsNotNumber) {
+            if (arg.IsNumber==false) {
                 return this.functionError();
             }
             if (arg.NumberValue < 0) {
