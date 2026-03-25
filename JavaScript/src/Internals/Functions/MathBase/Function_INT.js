@@ -14,7 +14,7 @@ class Function_INT extends Function_1 {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         let n = args1.NumberValue;
-        return Operand.Create(Math.floor(n));
+        return Operand.Create(Math.trunc(n));
     }
 }
 

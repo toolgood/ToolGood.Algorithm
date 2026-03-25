@@ -932,8 +932,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitBIN2DEC_fun(context) {
-        
-        return new Function_BIN2DEC(this.v1(context));
+        return new Function_BIN2DEC(this.vN(context));
     }
 
     /**
@@ -2435,7 +2434,8 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitDiyFunction_fun(context) {
-        return new Function_DiyFunction(this.vN(context));
+        let funName = context.PARAMETER().getText ? context.PARAMETER().getText() : context.PARAMETER().text;
+        return new Function_DiyFunction(funName, this.vN(context));
     }
 
     /**
