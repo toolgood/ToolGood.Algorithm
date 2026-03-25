@@ -1,46 +1,24 @@
 import { AntlrCharStream } from './AntlrCharStream.js';
-
-
-// 导入ANTLR生成的文件
-import mathLexer from './math/mathLexer.js';
+import mathjsLexer from './math/mathjsLexer.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
-import mathParser from './math/mathParser.js';
-import mathVisitor from './math/mathVisitor.js';
-import { AntlrErrorTextWriter } from './AntlrErrorTextWriter.js';
-
-
+import mathjsParser from './math/mathjsParser.js';
 
 export class AlgorithmEngineHelper {
-  
-    /**
-     * 编译公式
-     */
     static ParseFormula(exp,errorListener) {
         if (!exp || exp.trim() === '') {
             throw new Error("Parameter exp invalid !");
         }
-        let antlrErrorTextWriter = new AntlrErrorTextWriter();
+        if (!errorListener ) {
+            throw new Error("Parameter errorListener invalid !");
+        }
         let stream =new AntlrCharStream(exp);
-        let lexer = new mathLexer(stream, null, antlrErrorTextWriter);
+        let lexer = new mathjsLexer(stream );
         lexer.removeErrorListeners();
-        lexer.addErrorListener(antlrErrorTextWriter);
+        lexer.addErrorListener(errorListener);
         let tokens = new CommonTokenStream(lexer);
-        let parser = new mathParser(tokens, null, antlrErrorTextWriter);
+        let parser = new mathjsParser(tokens);
         parser.removeErrorListeners();
-        parser.addErrorListener(antlrErrorTextWriter);
-        if (errorListener) {
-            parser.addErrorListener(errorListener);
-            let context = parser.prog();
-            let visitor = new mathVisitor();
-            return visitor.visit(context);
-        }
-        let context = parser.prog();
-        if (antlrErrorTextWriter.IsError) {
-            throw new Error(antlrErrorTextWriter.ErrorMsg);
-        }
-        let visitor = new mathVisitor();
-        return visitor.visit(context);
+        parser.addErrorListener(errorListener);
+        return parser.prog();
     }
-
-
 }
