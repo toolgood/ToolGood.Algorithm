@@ -1,5 +1,4 @@
-// Generated from mathjs.g4 by ANTLR 4.13.2
-// jshint ignore: start
+
 import antlr4 from '../antlr4/index.web.js';
 const serializedATN = [4,1,308,508,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,26,8,1,
@@ -186,148 +185,14 @@ const serializedATN = [4,1,308,508,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 172,174,176,196,198,215,217,234,236,238,251,253,264,275,277,288,291,297,
 306,312,323,329,338,342,378,393,413,424,437,439,452,466,469,486,488,492,
 503];
-
-
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
-
 const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DFA(ds, index) );
-
 const sharedContextCache = new antlr4.atn.PredictionContextCache();
-
 export default class mathjsParser extends antlr4.Parser {
-
     static grammarFileName = "mathjs.g4";
-    static literalNames = [ null, "'.'", "'('", "')'", "','", "'['", "']'", 
-                            "'!'", "'%'", "'*'", "'/'", "'+'", "'&'", "'>'", 
-                            "'>='", "'<'", "'<='", "'='", "'=='", "'==='", 
-                            "'!=='", "'!='", "'<>'", "'&&'", "'||'", "'?'", 
-                            "':'", "'{'", "'}'", "'-'", null, null, "'NULL'", 
-                            "'ERROR'", null, "'IF'", "'IFS'", "'SWITCH'", 
-                            "'IFERROR'", "'ISNUMBER'", "'ISTEXT'", "'ISERROR'", 
-                            "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", "'ISODD'", 
-                            "'ISNULL'", "'ISNULLORERROR'", "'AND'", "'OR'", 
-                            "'XOR'", "'NOT'", null, null, "'E'", "'PI'", 
-                            "'DEC2BIN'", "'DEC2HEX'", "'DEC2OCT'", "'HEX2BIN'", 
-                            "'HEX2DEC'", "'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", 
-                            "'OCT2HEX'", "'BIN2OCT'", "'BIN2DEC'", "'BIN2HEX'", 
-                            "'ABS'", "'QUOTIENT'", "'MOD'", "'SIGN'", "'SQRT'", 
-                            "'TRUNC'", "'INT'", "'GCD'", "'LCM'", "'COMBIN'", 
-                            "'PERMUT'", "'DEGREES'", "'RADIANS'", "'COS'", 
-                            "'COSH'", "'SIN'", "'SINH'", "'TAN'", "'TANH'", 
-                            "'COT'", "'COTH'", "'CSC'", "'CSCH'", "'SEC'", 
-                            "'SECH'", "'ACOS'", "'ACOSH'", "'ASIN'", "'ASINH'", 
-                            "'ATAN'", "'ATANH'", "'ACOT'", "'ACOTH'", "'ATAN2'", 
-                            "'ROUND'", "'ROUNDDOWN'", "'ROUNDUP'", "'CEILING'", 
-                            "'FLOOR'", "'EVEN'", "'ODD'", "'MROUND'", "'RAND'", 
-                            "'RANDBETWEEN'", "'FACT'", "'FACTDOUBLE'", "'POWER'", 
-                            "'EXP'", "'LN'", "'LOG'", "'LOG10'", "'MULTINOMIAL'", 
-                            "'PRODUCT'", "'SQRTPI'", "'ERF'", "'ERFC'", 
-                            "'BESSELI'", "'BESSELJ'", "'BESSELK'", "'BESSELY'", 
-                            "'DELTA'", "'GESTEP'", "'SUMSQ'", "'SUMPRODUCT'", 
-                            "'SUMX2MY2'", "'SUMX2PY2'", "'SUMXMY2'", "'ARABIC'", 
-                            "'ROMAN'", "'SERIESSUM'", "'RANK'", "'FORECAST'", 
-                            "'INTERCEPT'", "'SLOPE'", "'CORREL'", "'PEARSON'", 
-                            "'YEARFRAC'", "'ASC'", null, "'CHAR'", "'CLEAN'", 
-                            "'CODE'", "'UNICHAR'", "'UNICODE'", null, "'EXACT'", 
-                            "'FIND'", "'FIXED'", "'LEFT'", "'LEN'", null, 
-                            "'MID'", "'PROPER'", "'REPLACE'", "'REPT'", 
-                            "'RIGHT'", "'RMB'", "'SEARCH'", "'SUBSTITUTE'", 
-                            "'T'", "'TEXT'", "'TRIM'", null, "'VALUE'", 
-                            "'DATEVALUE'", "'TIMEVALUE'", "'DATE'", "'TIME'", 
-                            "'NOW'", "'TODAY'", "'YEAR'", "'MONTH'", "'DAY'", 
-                            "'HOUR'", "'MINUTE'", "'SECOND'", "'WEEKDAY'", 
-                            "'DATEDIF'", "'DAYS'", "'DAYS360'", "'EDATE'", 
-                            "'EOMONTH'", "'NETWORKDAYS'", "'WORKDAY'", "'WEEKNUM'", 
-                            "'MAX'", "'MEDIAN'", "'MIN'", "'QUARTILE'", 
-                            "'MODE'", "'LARGE'", "'SMALL'", null, null, 
-                            "'AVERAGE'", "'AVERAGEIF'", "'GEOMEAN'", "'HARMEAN'", 
-                            "'COUNT'", "'COUNTIF'", "'SUM'", "'SUMIF'", 
-                            "'AVEDEV'", null, null, null, "'COVARIANCE.S'", 
-                            "'DEVSQ'", null, null, null, null, null, null, 
-                            null, null, null, null, null, null, "'FISHER'", 
-                            "'FISHERINV'", null, null, null, null, null, 
-                            null, null, null, null, null, "'WEIBULL'", "'PMT'", 
-                            "'PPMT'", "'IPMT'", "'PV'", "'FV'", "'NPER'", 
-                            "'RATE'", "'NPV'", "'XNPV'", "'IRR'", "'MIRR'", 
-                            "'XIRR'", "'SLN'", "'DB'", "'DDB'", "'SYD'", 
-                            "'URLENCODE'", "'URLDECODE'", "'HTMLENCODE'", 
-                            "'HTMLDECODE'", "'BASE64TOTEXT'", "'BASE64URLTOTEXT'", 
-                            "'TEXTTOBASE64'", "'TEXTTOBASE64URL'", "'REGEX'", 
-                            "'REGEXREPLACE'", null, "'GUID'", "'MD5'", "'SHA1'", 
-                            "'SHA256'", "'SHA512'", "'HMACMD5'", "'HMACSHA1'", 
-                            "'HMACSHA256'", "'HMACSHA512'", null, null, 
-                            "'INDEXOF'", "'LASTINDEXOF'", "'SPLIT'", "'JOIN'", 
-                            "'SUBSTRING'", "'STARTSWITH'", "'ENDSWITH'", 
-                            "'ISNULLOREMPTY'", "'ISNULLORWHITESPACE'", "'REMOVESTART'", 
-                            "'REMOVEEND'", "'JSON'", "'LOOKCEILING'", "'LOOKFLOOR'", 
-                            "'ARRAY'", null, "'ADDYEARS'", "'ADDMONTHS'", 
-                            "'ADDDAYS'", "'ADDHOURS'", "'ADDMINUTES'", "'ADDSECONDS'", 
-                            "'TIMESTAMP'" ];
-    static symbolicNames = [ null, null, null, null, null, null, null, null, 
-                             null, null, null, null, null, null, null, null, 
-                             null, null, null, null, null, null, null, null, 
-                             null, null, null, null, null, "SUB", "NUM", 
-                             "STRING", "NULL", "ERROR", "UNIT", "IF", "IFS", 
-                             "SWITCH", "IFERROR", "ISNUMBER", "ISTEXT", 
-                             "ISERROR", "ISNONTEXT", "ISLOGICAL", "ISEVEN", 
-                             "ISODD", "ISNULL", "ISNULLORERROR", "AND", 
-                             "OR", "XOR", "NOT", "TRUE", "FALSE", "E", "PI", 
-                             "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN", 
-                             "HEX2DEC", "HEX2OCT", "OCT2BIN", "OCT2DEC", 
-                             "OCT2HEX", "BIN2OCT", "BIN2DEC", "BIN2HEX", 
-                             "ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", "TRUNC", 
-                             "INT", "GCD", "LCM", "COMBIN", "PERMUT", "DEGREES", 
-                             "RADIANS", "COS", "COSH", "SIN", "SINH", "TAN", 
-                             "TANH", "COT", "COTH", "CSC", "CSCH", "SEC", 
-                             "SECH", "ACOS", "ACOSH", "ASIN", "ASINH", "ATAN", 
-                             "ATANH", "ACOT", "ACOTH", "ATAN2", "ROUND", 
-                             "ROUNDDOWN", "ROUNDUP", "CEILING", "FLOOR", 
-                             "EVEN", "ODD", "MROUND", "RAND", "RANDBETWEEN", 
-                             "FACT", "FACTDOUBLE", "POWER", "EXP", "LN", 
-                             "LOG", "LOG10", "MULTINOMIAL", "PRODUCT", "SQRTPI", 
-                             "ERF", "ERFC", "BESSELI", "BESSELJ", "BESSELK", 
-                             "BESSELY", "DELTA", "GESTEP", "SUMSQ", "SUMPRODUCT", 
-                             "SUMX2MY2", "SUMX2PY2", "SUMXMY2", "ARABIC", 
-                             "ROMAN", "SERIESSUM", "RANK", "FORECAST", "INTERCEPT", 
-                             "SLOPE", "CORREL", "PEARSON", "YEARFRAC", "ASC", 
-                             "JIS", "CHAR", "CLEAN", "CODE", "UNICHAR", 
-                             "UNICODE", "CONCATENATE", "EXACT", "FIND", 
-                             "FIXED", "LEFT", "LEN", "LOWER", "MID", "PROPER", 
-                             "REPLACE", "REPT", "RIGHT", "RMB", "SEARCH", 
-                             "SUBSTITUTE", "T", "TEXT", "TRIM", "UPPER", 
-                             "VALUE", "DATEVALUE", "TIMEVALUE", "DATE", 
-                             "TIME", "NOW", "TODAY", "YEAR", "MONTH", "DAY", 
-                             "HOUR", "MINUTE", "SECOND", "WEEKDAY", "DATEDIF", 
-                             "DAYS", "DAYS360", "EDATE", "EOMONTH", "NETWORKDAYS", 
-                             "WORKDAY", "WEEKNUM", "MAX", "MEDIAN", "MIN", 
-                             "QUARTILE", "MODE", "LARGE", "SMALL", "PERCENTILE", 
-                             "PERCENTRANK", "AVERAGE", "AVERAGEIF", "GEOMEAN", 
-                             "HARMEAN", "COUNT", "COUNTIF", "SUM", "SUMIF", 
-                             "AVEDEV", "STDEV", "STDEVP", "COVAR", "COVARIANCES", 
-                             "DEVSQ", "VAR", "VARP", "NORMDIST", "NORMINV", 
-                             "NORMSDIST", "NORMSINV", "BETADIST", "BETAINV", 
-                             "BINOMDIST", "EXPONDIST", "FDIST", "FINV", 
-                             "FISHER", "FISHERINV", "GAMMADIST", "GAMMAINV", 
-                             "GAMMALN", "HYPGEOMDIST", "LOGINV", "LOGNORMDIST", 
-                             "NEGBINOMDIST", "POISSON", "TDIST", "TINV", 
-                             "WEIBULL", "PMT", "PPMT", "IPMT", "PV", "FV", 
-                             "NPER", "RATE", "NPV", "XNPV", "IRR", "MIRR", 
-                             "XIRR", "SLN", "DB", "DDB", "SYD", "URLENCODE", 
-                             "URLDECODE", "HTMLENCODE", "HTMLDECODE", "BASE64TOTEXT", 
-                             "BASE64URLTOTEXT", "TEXTTOBASE64", "TEXTTOBASE64URL", 
-                             "REGEX", "REGEXREPLACE", "ISREGEX", "GUID", 
-                             "MD5", "SHA1", "SHA256", "SHA512", "HMACMD5", 
-                             "HMACSHA1", "HMACSHA256", "HMACSHA512", "TRIMSTART", 
-                             "TRIMEND", "INDEXOF", "LASTINDEXOF", "SPLIT", 
-                             "JOIN", "SUBSTRING", "STARTSWITH", "ENDSWITH", 
-                             "ISNULLOREMPTY", "ISNULLORWHITESPACE", "REMOVESTART", 
-                             "REMOVEEND", "JSON", "LOOKCEILING", "LOOKFLOOR", 
-                             "ARRAY", "ALGORITHMVERSION", "ADDYEARS", "ADDMONTHS", 
-                             "ADDDAYS", "ADDHOURS", "ADDMINUTES", "ADDSECONDS", 
-                             "TIMESTAMP", "HAS", "HASVALUE", "PARAM", "PARAMETER", 
-                             "WS", "COMMENT", "LINE_COMMENT" ];
-    static ruleNames = [ "prog", "expr", "num", "arrayJson", "parameter2" ];
-
+    static literalNames =[];
+    static symbolicNames =[];
+    static ruleNames =[];
     constructor(input) {
         super(input);
         this._interp = new antlr4.atn.ParserATNSimulator(this, atn, decisionsToDFA, sharedContextCache);
@@ -335,77 +200,27 @@ export default class mathjsParser extends antlr4.Parser {
         this.literalNames = mathjsParser.literalNames;
         this.symbolicNames = mathjsParser.symbolicNames;
     }
-
-    sempred(localctx, ruleIndex, predIndex) {
-    	switch(ruleIndex) {
-    	case 1:
-    	    		return this.expr_sempred(localctx, predIndex);
-        default:
-            throw "No predicate with index:" + ruleIndex;
-       }
-    }
-
-    expr_sempred(localctx, predIndex) {
-    	switch(predIndex) {
-    		case 0:
-    			return this.precpred(this._ctx, 38);
-    		case 1:
-    			return this.precpred(this._ctx, 37);
-    		case 2:
-    			return this.precpred(this._ctx, 36);
-    		case 3:
-    			return this.precpred(this._ctx, 35);
-    		case 4:
-    			return this.precpred(this._ctx, 34);
-    		case 5:
-    			return this.precpred(this._ctx, 33);
-    		case 6:
-    			return this.precpred(this._ctx, 32);
-    		case 7:
-    			return this.precpred(this._ctx, 54);
-    		case 8:
-    			return this.precpred(this._ctx, 53);
-    		case 9:
-    			return this.precpred(this._ctx, 52);
-    		case 10:
-    			return this.precpred(this._ctx, 51);
-    		case 11:
-    			return this.precpred(this._ctx, 50);
-    		case 12:
-    			return this.precpred(this._ctx, 49);
-    		case 13:
-    			return this.precpred(this._ctx, 48);
-    		case 14:
-    			return this.precpred(this._ctx, 47);
-    		case 15:
-    			return this.precpred(this._ctx, 46);
-    		case 16:
-    			return this.precpred(this._ctx, 45);
-    		case 17:
-    			return this.precpred(this._ctx, 44);
-    		case 18:
-    			return this.precpred(this._ctx, 43);
-    		case 19:
-    			return this.precpred(this._ctx, 42);
-    		case 20:
-    			return this.precpred(this._ctx, 39);
-    		default:
-    			throw "No predicate with index:" + predIndex;
-    	}
-    };
-
-
-
-
+     sempred(localctx, ruleIndex, predIndex){return true;};
+	A(a){this.match(a);}
+	B(a,b){this.match(a);this.match(b);}
+	C(a,b,c){this.match(a);this.match(b);this.match(c);}
+	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}
+	E(a,b){this.state=a;this.expr(b);}
+	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}
+	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
+	R(){return this._input.LT(1);}
+	Q(){this._errHandler.reportMatch(this);this.consume();}
+	W(a,b,c){this.pushNewRecursionContext(a, b, c);}
+	X(){this._errHandler.sync(this);}
+	Y(){return this._input.LA(1);}
+	Z(){this._errHandler.sync(this);return this._input.LA(1);}
 	prog() {
 	    let localctx = new ProgContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 0, mathjsParser.RULE_prog);
+	    this.enterRule(localctx, 0, 0);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 10;
-	        this.expr(0);
-	        this.state = 11;
-	        this.match(mathjsParser.EOF);
+	        this.E(10,0);
+	        this.match(-1);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -419,8 +234,6 @@ export default class mathjsParser extends antlr4.Parser {
 	    }
 	    return localctx;
 	}
-
-
 	expr(_p) {
 		if(_p===undefined) {
 		    _p = 0;
@@ -428,1397 +241,687 @@ export default class mathjsParser extends antlr4.Parser {
 	    const _parentctx = this._ctx;
 	    const _parentState = this.state;
 	    let localctx = new ExprContext(this, this._ctx, _parentState);
-	    let _prevctx = localctx;
 	    const _startState = 2;
-	    this.enterRecursionRule(localctx, 2, mathjsParser.RULE_expr, _p);
+	    this.enterRecursionRule(localctx, 2, 1, _p);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 342;
-	        this._errHandler.sync(this);
+	        this.X();
 	        var la_ = this._interp.adaptivePredict(this._input,32,this._ctx);
 	        switch(la_) {
 	        case 1:
-	            this.state = 14;
-	            this.match(mathjsParser.T__1);
-	            this.state = 15;
-	            this.expr(0);
-	            this.state = 16;
-	            this.match(mathjsParser.T__2);
+	            this.J(2,15,0);
+	            this.A(3);
 	            break;
-
 	        case 2:
-	            this.state = 18;
-	            this.match(mathjsParser.T__6);
-	            this.state = 19;
-	            this.expr(40);
+	            this.J(7,19,40);
 	            break;
-
 	        case 3:
-	            this.state = 20;
-	            this.match(mathjsParser.ARRAY);
-	            this.state = 21;
-	            this.match(mathjsParser.T__1);
-	            this.state = 22;
-	            this.expr(0);
-	            this.state = 27;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.I(293,2,22,0);
+	            _la = this.Z();
 	            while(_la===4) {
-	                this.state = 23;
-	                this.match(mathjsParser.T__3);
-	                this.state = 24;
-	                this.expr(0);
-	                this.state = 29;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,24,0);
+	                _la = this.Z();
 	            }
-	            this.state = 30;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 4:
-	            this.state = 32;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===35 || _la===38 || _la===175)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 33;
-	            this.match(mathjsParser.T__1);
-	            this.state = 34;
-	            this.expr(0);
-	            this.state = 35;
-	            this.match(mathjsParser.T__3);
-	            this.state = 36;
-	            this.expr(0);
-	            this.state = 39;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,34,0);
+	            this.J(4,36,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 37;
-	                this.match(mathjsParser.T__3);
-	                this.state = 38;
-	                this.expr(0);
+	                this.J(4,38,0);
 	            }
-
-	            this.state = 41;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 5:
-	            this.state = 43;
-	            this.match(mathjsParser.IFS);
-	            this.state = 44;
-	            this.match(mathjsParser.T__1);
-	            this.state = 45;
-	            this.expr(0);
-	            this.state = 46;
-	            this.match(mathjsParser.T__3);
-	            this.state = 47;
-	            this.expr(0);
-	            this.state = 55;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.I(36,2,45,0);
+	            this.J(4,47,0);
+	            _la = this.Z();
 	            while(_la===4) {
-	                this.state = 48;
-	                this.match(mathjsParser.T__3);
-	                this.state = 49;
-	                this.expr(0);
-	                this.state = 50;
-	                this.match(mathjsParser.T__3);
-	                this.state = 51;
-	                this.expr(0);
-	                this.state = 57;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,49,0);
+	                this.J(4,51,0);
+	                _la = this.Z();
 	            }
-	            this.state = 58;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 6:
-	            this.state = 60;
-	            this.match(mathjsParser.SWITCH);
-	            this.state = 61;
-	            this.match(mathjsParser.T__1);
-	            this.state = 62;
-	            this.expr(0);
-	            this.state = 63;
-	            this.match(mathjsParser.T__3);
-	            this.state = 64;
-	            this.expr(0);
-	            this.state = 65;
-	            this.match(mathjsParser.T__3);
-	            this.state = 66;
-	            this.expr(0);
-	            this.state = 71;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.I(37,2,62,0);
+	            this.J(4,64,0);
+	            this.J(4,66,0);
+	            _la = this.Z();
 	            while(_la===4) {
-	                this.state = 67;
-	                this.match(mathjsParser.T__3);
-	                this.state = 68;
-	                this.expr(0);
-	                this.state = 73;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,68,0);
+	                _la = this.Z();
 	            }
-	            this.state = 74;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 7:
-	            this.state = 76;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 39)) & ~0x1f) === 0 && ((1 << (_la - 39)) & 536875131) !== 0) || ((((_la - 71)) & ~0x1f) === 0 && ((1 << (_la - 71)) & 1073741579) !== 0) || ((((_la - 107)) & ~0x1f) === 0 && ((1 << (_la - 107)) & 268553059) !== 0) || ((((_la - 145)) & ~0x1f) === 0 && ((1 << (_la - 145)) & 390639743) !== 0) || ((((_la - 220)) & ~0x1f) === 0 && ((1 << (_la - 220)) & 4867) !== 0) || ((((_la - 257)) & ~0x1f) === 0 && ((1 << (_la - 257)) & 1610612991) !== 0) || _la===290)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 77;
-	            this.match(mathjsParser.T__1);
-	            this.state = 78;
-	            this.expr(0);
-	            this.state = 79;
-	            this.match(mathjsParser.T__2);
+	            this.J(2,78,0);
+	            this.A(3);
 	            break;
-
 	        case 8:
-	            this.state = 81;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 41)) & ~0x1f) === 0 && ((1 << (_la - 41)) & 97) !== 0) || _la===73 || _la===102 || ((((_la - 105)) & ~0x1f) === 0 && ((1 << (_la - 105)) & 2172653571) !== 0) || ((((_la - 138)) & ~0x1f) === 0 && ((1 << (_la - 138)) & 436666369) !== 0) || ((((_la - 172)) & ~0x1f) === 0 && ((1 << (_la - 172)) & 2149355521) !== 0) || _la===209 || ((((_la - 250)) & ~0x1f) === 0 && ((1 << (_la - 250)) & 402653237) !== 0) || _la===301 || _la===304)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 82;
-	            this.match(mathjsParser.T__1);
-	            this.state = 83;
-	            this.expr(0);
-	            this.state = 86;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,83,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 84;
-	                this.match(mathjsParser.T__3);
-	                this.state = 85;
-	                this.expr(0);
+	                this.J(4,85,0);
 	            }
-
-	            this.state = 88;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 9:
-	            this.state = 90;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 48)) & ~0x1f) === 0 && ((1 << (_la - 48)) & 402653191) !== 0) || ((((_la - 119)) & ~0x1f) === 0 && ((1 << (_la - 119)) & 6147) !== 0) || _la===152 || ((((_la - 193)) & ~0x1f) === 0 && ((1 << (_la - 193)) & 30341655) !== 0) || _la===248)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 91;
-	            this.match(mathjsParser.T__1);
-	            this.state = 92;
-	            this.expr(0);
-	            this.state = 97;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,92,0);
+	            _la = this.Z();
 	            while(_la===4) {
-	                this.state = 93;
-	                this.match(mathjsParser.T__3);
-	                this.state = 94;
-	                this.expr(0);
-	                this.state = 99;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,94,0);
+	                _la = this.Z();
 	            }
-	            this.state = 100;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 10:
-	            this.state = 102;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 52)) & ~0x1f) === 0 && ((1 << (_la - 52)) & 15) !== 0))) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 105;
-	            this._errHandler.sync(this);
+	            this.X();
 	            var la_ = this._interp.adaptivePredict(this._input,6,this._ctx);
 	            if(la_===1) {
-	                this.state = 103;
-	                this.match(mathjsParser.T__1);
-	                this.state = 104;
-	                this.match(mathjsParser.T__2);
-
+	                this.B(2,3);
 	            }
 	            break;
-
 	        case 11:
-	            this.state = 107;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 56)) & ~0x1f) === 0 && ((1 << (_la - 56)) & 4095) !== 0))) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-
-	            this.state = 108;
-	            this.match(mathjsParser.T__1);
-	            this.state = 109;
-	            this.expr(0);
-	            this.state = 112;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,109,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 110;
-	                this.match(mathjsParser.T__3);
-	                this.state = 111;
-	                this.expr(0);
+	                this.J(4,111,0);
 	            }
-
-	            this.state = 114;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 12:
-	            this.state = 116;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 69)) & ~0x1f) === 0 && ((1 << (_la - 69)) & 771) !== 0) || ((((_la - 101)) & ~0x1f) === 0 && ((1 << (_la - 101)) & 2273322253) !== 0) || ((((_la - 133)) & ~0x1f) === 0 && ((1 << (_la - 133)) & 537923523) !== 0) || ((((_la - 168)) & ~0x1f) === 0 && ((1 << (_la - 168)) & 3493068801) !== 0) || ((((_la - 200)) & ~0x1f) === 0 && ((1 << (_la - 200)) & 2395496451) !== 0) || ((((_la - 234)) & ~0x1f) === 0 && ((1 << (_la - 234)) & 2152366113) !== 0) || ((((_la - 267)) & ~0x1f) === 0 && ((1 << (_la - 267)) & 4076880833) !== 0) || ((((_la - 299)) & ~0x1f) === 0 && ((1 << (_la - 299)) & 27) !== 0))) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 117;
-	            this.match(mathjsParser.T__1);
-	            this.state = 118;
-	            this.expr(0);
-	            this.state = 119;
-	            this.match(mathjsParser.T__3);
-	            this.state = 120;
-	            this.expr(0);
-	            this.state = 121;
-	            this.match(mathjsParser.T__2);
+	            this.J(2,118,0);
+	            this.J(4,120,0);
+	            this.A(3);
 	            break;
-
 	        case 13:
-	            this.state = 123;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===110 || _la===176 || _la===177 || _la===268)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 124;
-	            this.match(mathjsParser.T__1);
-	            this.state = 125;
-	            this.match(mathjsParser.T__2);
+	            this.B(2,3);
 	            break;
-
 	        case 14:
-	            this.state = 126;
-	            this.match(mathjsParser.SERIESSUM);
-	            this.state = 127;
-	            this.match(mathjsParser.T__1);
-	            this.state = 128;
-	            this.expr(0);
-	            this.state = 129;
-	            this.match(mathjsParser.T__3);
-	            this.state = 130;
-	            this.expr(0);
-	            this.state = 131;
-	            this.match(mathjsParser.T__3);
-	            this.state = 132;
-	            this.expr(0);
-	            this.state = 133;
-	            this.match(mathjsParser.T__3);
-	            this.state = 134;
-	            this.expr(0);
-	            this.state = 135;
-	            this.match(mathjsParser.T__2);
+	            this.I(137,2,128,0);
+	            this.J(4,130,0);
+	            this.J(4,132,0);
+	            this.J(4,134,0);
+	            this.A(3);
 	            break;
-
 	        case 15:
-	            this.state = 137;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===159 || _la===185 || _la===266)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 138;
-	            this.match(mathjsParser.T__1);
-	            this.state = 139;
-	            this.expr(0);
-	            this.state = 140;
-	            this.match(mathjsParser.T__3);
-	            this.state = 141;
-	            this.expr(0);
-	            this.state = 142;
-	            this.match(mathjsParser.T__3);
-	            this.state = 143;
-	            this.expr(0);
-	            this.state = 144;
-	            this.match(mathjsParser.T__2);
+	            this.J(2,139,0);
+	            this.J(4,141,0);
+	            this.J(4,143,0);
+	            this.A(3);
 	            break;
-
 	        case 16:
-	            this.state = 146;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===161 || ((((_la - 218)) & ~0x1f) === 0 && ((1 << (_la - 218)) & 6197313) !== 0) || ((((_la - 283)) & ~0x1f) === 0 && ((1 << (_la - 283)) & 7) !== 0))) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 147;
-	            this.match(mathjsParser.T__1);
-	            this.state = 148;
-	            this.expr(0);
-	            this.state = 149;
-	            this.match(mathjsParser.T__3);
-	            this.state = 150;
-	            this.expr(0);
-	            this.state = 151;
-	            this.match(mathjsParser.T__3);
-	            this.state = 152;
-	            this.expr(0);
-	            this.state = 155;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,148,0);
+	            this.J(4,150,0);
+	            this.J(4,152,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 153;
-	                this.match(mathjsParser.T__3);
-	                this.state = 154;
-	                this.expr(0);
+	                this.J(4,154,0);
 	            }
-
-	            this.state = 157;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 17:
-	            this.state = 159;
-	            this.match(mathjsParser.DATE);
-	            this.state = 160;
-	            this.match(mathjsParser.T__1);
-	            this.state = 161;
-	            this.expr(0);
-	            this.state = 162;
-	            this.match(mathjsParser.T__3);
-	            this.state = 163;
-	            this.expr(0);
-	            this.state = 164;
-	            this.match(mathjsParser.T__3);
-	            this.state = 165;
-	            this.expr(0);
-	            this.state = 176;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.I(174,2,161,0);
+	            this.J(4,163,0);
+	            this.J(4,165,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 166;
-	                this.match(mathjsParser.T__3);
-	                this.state = 167;
-	                this.expr(0);
-	                this.state = 174;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,167,0);
+	                _la = this.Z();
 	                if(_la===4) {
-	                    this.state = 168;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 169;
-	                    this.expr(0);
-	                    this.state = 172;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.J(4,169,0);
+	                    _la = this.Z();
 	                    if(_la===4) {
-	                        this.state = 170;
-	                        this.match(mathjsParser.T__3);
-	                        this.state = 171;
-	                        this.expr(0);
+	                        this.J(4,171,0);
 	                    }
-
 	                }
-
 	            }
-
-	            this.state = 178;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 18:
-	            this.state = 180;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 178)) & ~0x1f) === 0 && ((1 << (_la - 178)) & 63) !== 0))) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 181;
-	            this.match(mathjsParser.T__1);
-	            this.state = 182;
-	            this.expr(0);
-	            this.state = 183;
-	            this.match(mathjsParser.T__2);
+	            this.J(2,182,0);
+	            this.A(3);
 	            break;
-
 	        case 19:
-	            this.state = 185;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(((((_la - 241)) & ~0x1f) === 0 && ((1 << (_la - 241)) & 57) !== 0))) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 186;
-	            this.match(mathjsParser.T__1);
-	            this.state = 187;
-	            this.expr(0);
-	            this.state = 188;
-	            this.match(mathjsParser.T__3);
-	            this.state = 189;
-	            this.expr(0);
-	            this.state = 190;
-	            this.match(mathjsParser.T__3);
-	            this.state = 191;
-	            this.expr(0);
-	            this.state = 198;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,187,0);
+	            this.J(4,189,0);
+	            this.J(4,191,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 192;
-	                this.match(mathjsParser.T__3);
-	                this.state = 193;
-	                this.expr(0);
-	                this.state = 196;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,193,0);
+	                _la = this.Z();
 	                if(_la===4) {
-	                    this.state = 194;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 195;
-	                    this.expr(0);
+	                    this.J(4,195,0);
 	                }
-
 	            }
-
-	            this.state = 200;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 20:
-	            this.state = 202;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===242 || _la===243)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 203;
-	            this.match(mathjsParser.T__1);
-	            this.state = 204;
-	            this.expr(0);
-	            this.state = 205;
-	            this.match(mathjsParser.T__3);
-	            this.state = 206;
-	            this.expr(0);
-	            this.state = 207;
-	            this.match(mathjsParser.T__3);
-	            this.state = 208;
-	            this.expr(0);
-	            this.state = 209;
-	            this.match(mathjsParser.T__3);
-	            this.state = 210;
-	            this.expr(0);
-	            this.state = 217;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,204,0);
+	            this.J(4,206,0);
+	            this.J(4,208,0);
+	            this.J(4,210,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 211;
-	                this.match(mathjsParser.T__3);
-	                this.state = 212;
-	                this.expr(0);
-	                this.state = 215;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,212,0);
+	                _la = this.Z();
 	                if(_la===4) {
-	                    this.state = 213;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 214;
-	                    this.expr(0);
+	                    this.J(4,214,0);
 	                }
-
 	            }
-
-	            this.state = 219;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 21:
-	            this.state = 221;
-	            this.match(mathjsParser.RATE);
-	            this.state = 222;
-	            this.match(mathjsParser.T__1);
-	            this.state = 223;
-	            this.expr(0);
-	            this.state = 224;
-	            this.match(mathjsParser.T__3);
-	            this.state = 225;
-	            this.expr(0);
-	            this.state = 226;
-	            this.match(mathjsParser.T__3);
-	            this.state = 227;
-	            this.expr(0);
-	            this.state = 238;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.I(247,2,223,0);
+	            this.J(4,225,0);
+	            this.J(4,227,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 228;
-	                this.match(mathjsParser.T__3);
-	                this.state = 229;
-	                this.expr(0);
-	                this.state = 236;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,229,0);
+	                _la = this.Z();
 	                if(_la===4) {
-	                    this.state = 230;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 231;
-	                    this.expr(0);
-	                    this.state = 234;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.J(4,231,0);
+	                    _la = this.Z();
 	                    if(_la===4) {
-	                        this.state = 232;
-	                        this.match(mathjsParser.T__3);
-	                        this.state = 233;
-	                        this.expr(0);
+	                        this.J(4,233,0);
 	                    }
-
 	                }
-
 	            }
-
-	            this.state = 240;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 22:
-	            this.state = 242;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===279 || _la===280)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 243;
-	            this.match(mathjsParser.T__1);
-	            this.state = 244;
-	            this.expr(0);
-	            this.state = 245;
-	            this.match(mathjsParser.T__3);
-	            this.state = 246;
-	            this.expr(0);
-	            this.state = 253;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,244,0);
+	            this.J(4,246,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 247;
-	                this.match(mathjsParser.T__3);
-	                this.state = 248;
-	                this.expr(0);
-	                this.state = 251;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,248,0);
+	                _la = this.Z();
 	                if(_la===4) {
-	                    this.state = 249;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 250;
-	                    this.expr(0);
+	                    this.J(4,250,0);
 	                }
-
 	            }
-
-	            this.state = 255;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 23:
-	            this.state = 257;
-	            this.match(mathjsParser.JOIN);
-	            this.state = 258;
-	            this.match(mathjsParser.T__1);
-	            this.state = 259;
-	            this.expr(0);
-	            this.state = 262; 
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.I(282,2,259,0);
+	            _la = this.Z();
 	            do {
-	                this.state = 260;
-	                this.match(mathjsParser.T__3);
-	                this.state = 261;
-	                this.expr(0);
-	                this.state = 264; 
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,261,0);
+	                _la = this.Z();
 	            } while(_la===4);
-	            this.state = 266;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 24:
-	            this.state = 268;
-	            _la = this._input.LA(1);
+	            _la = this.Y();
 	            if(!(_la===288 || _la===289)) {
 	            this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 269;
-	            this.match(mathjsParser.T__1);
-	            this.state = 270;
-	            this.expr(0);
-	            this.state = 277;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.J(2,270,0);
+	            _la = this.Z();
 	            if(_la===4) {
-	                this.state = 271;
-	                this.match(mathjsParser.T__3);
-	                this.state = 272;
-	                this.expr(0);
-	                this.state = 275;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.J(4,272,0);
+	                _la = this.Z();
 	                if(_la===4) {
-	                    this.state = 273;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 274;
-	                    this.expr(0);
+	                    this.J(4,274,0);
 	                }
-
 	            }
-
-	            this.state = 279;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 25:
-	            this.state = 281;
-	            this.match(mathjsParser.PARAMETER);
-	            this.state = 282;
-	            this.match(mathjsParser.T__1);
-	            this.state = 291;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.B(305,2);
+	            _la = this.Z();
 	            if((((_la) & ~0x1f) === 0 && ((1 << _la) & 3892314276) !== 0) || ((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 4294967291) !== 0) || ((((_la - 64)) & ~0x1f) === 0 && ((1 << (_la - 64)) & 4294967295) !== 0) || ((((_la - 96)) & ~0x1f) === 0 && ((1 << (_la - 96)) & 4294967295) !== 0) || ((((_la - 128)) & ~0x1f) === 0 && ((1 << (_la - 128)) & 4294967295) !== 0) || ((((_la - 160)) & ~0x1f) === 0 && ((1 << (_la - 160)) & 4294967295) !== 0) || ((((_la - 192)) & ~0x1f) === 0 && ((1 << (_la - 192)) & 4294967295) !== 0) || ((((_la - 224)) & ~0x1f) === 0 && ((1 << (_la - 224)) & 4294967295) !== 0) || ((((_la - 256)) & ~0x1f) === 0 && ((1 << (_la - 256)) & 4294844415) !== 0) || ((((_la - 288)) & ~0x1f) === 0 && ((1 << (_la - 288)) & 262143) !== 0)) {
-	                this.state = 283;
-	                this.expr(0);
-	                this.state = 288;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.E(283,0);
+	                _la = this.Z();
 	                while(_la===4) {
-	                    this.state = 284;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 285;
-	                    this.expr(0);
-	                    this.state = 290;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.J(4,285,0);
+	                    _la = this.Z();
 	                }
 	            }
-
-	            this.state = 293;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 26:
-	            this.state = 294;
-	            this.match(mathjsParser.ERROR);
-	            this.state = 295;
-	            this.match(mathjsParser.T__1);
-	            this.state = 297;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            this.B(33,2);
+	            _la = this.Z();
 	            if((((_la) & ~0x1f) === 0 && ((1 << _la) & 3892314276) !== 0) || ((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 4294967291) !== 0) || ((((_la - 64)) & ~0x1f) === 0 && ((1 << (_la - 64)) & 4294967295) !== 0) || ((((_la - 96)) & ~0x1f) === 0 && ((1 << (_la - 96)) & 4294967295) !== 0) || ((((_la - 128)) & ~0x1f) === 0 && ((1 << (_la - 128)) & 4294967295) !== 0) || ((((_la - 160)) & ~0x1f) === 0 && ((1 << (_la - 160)) & 4294967295) !== 0) || ((((_la - 192)) & ~0x1f) === 0 && ((1 << (_la - 192)) & 4294967295) !== 0) || ((((_la - 224)) & ~0x1f) === 0 && ((1 << (_la - 224)) & 4294967295) !== 0) || ((((_la - 256)) & ~0x1f) === 0 && ((1 << (_la - 256)) & 4294844415) !== 0) || ((((_la - 288)) & ~0x1f) === 0 && ((1 << (_la - 288)) & 262143) !== 0)) {
-	                this.state = 296;
-	                this.expr(0);
+	                this.E(296,0);
 	            }
-
-	            this.state = 299;
-	            this.match(mathjsParser.T__2);
+	            this.A(3);
 	            break;
-
 	        case 27:
-	            this.state = 300;
-	            this.match(mathjsParser.T__26);
+	            this.A(27);
 	            this.state = 301;
 	            this.arrayJson();
-	            this.state = 306;
-	            this._errHandler.sync(this);
+	            this.X();
 	            var _alt = this._interp.adaptivePredict(this._input,27,this._ctx)
 	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	                if(_alt===1) {
-	                    this.state = 302;
-	                    this.match(mathjsParser.T__3);
+	                    this.A(4);
 	                    this.state = 303;
-	                    this.arrayJson(); 
+	                    this.arrayJson();
 	                }
-	                this.state = 308;
-	                this._errHandler.sync(this);
+	                this.X();
 	                _alt = this._interp.adaptivePredict(this._input,27,this._ctx);
 	            }
-
-	            this.state = 312;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            _la = this.Z();
 	            while(_la===4) {
-	                this.state = 309;
-	                this.match(mathjsParser.T__3);
-	                this.state = 314;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.A(4);
+	                _la = this.Z();
 	            }
-	            this.state = 315;
-	            this.match(mathjsParser.T__27);
+	            this.A(28);
 	            break;
-
 	        case 28:
-	            this.state = 317;
-	            this.match(mathjsParser.T__4);
-	            this.state = 318;
-	            this.expr(0);
-	            this.state = 323;
-	            this._errHandler.sync(this);
+	            this.J(5,318,0);
+	            this.X();
 	            var _alt = this._interp.adaptivePredict(this._input,29,this._ctx)
 	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	                if(_alt===1) {
-	                    this.state = 319;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 320;
-	                    this.expr(0); 
+	                    this.J(4,320,0);
 	                }
-	                this.state = 325;
-	                this._errHandler.sync(this);
+	                this.X();
 	                _alt = this._interp.adaptivePredict(this._input,29,this._ctx);
 	            }
-
-	            this.state = 329;
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
+	            _la = this.Z();
 	            while(_la===4) {
-	                this.state = 326;
-	                this.match(mathjsParser.T__3);
-	                this.state = 331;
-	                this._errHandler.sync(this);
-	                _la = this._input.LA(1);
+	                this.A(4);
+	                _la = this.Z();
 	            }
-	            this.state = 332;
-	            this.match(mathjsParser.T__5);
+	            this.A(6);
 	            break;
-
 	        case 29:
-	            this.state = 334;
-	            this.match(mathjsParser.ALGORITHMVERSION);
+	            this.A(294);
 	            break;
-
 	        case 30:
-	            this.state = 335;
-	            this.match(mathjsParser.PARAMETER);
+	            this.A(305);
 	            break;
-
 	        case 31:
 	            this.state = 336;
 	            this.num();
-	            this.state = 338;
-	            this._errHandler.sync(this);
+	            this.X();
 	            var la_ = this._interp.adaptivePredict(this._input,31,this._ctx);
 	            if(la_===1) {
-	                this.state = 337;
-	                localctx.unit = this._input.LT(1);
-	                _la = this._input.LA(1);
+	                localctx.unit = this.R();
+	                _la = this.Y();
 	                if(!(_la===34 || _la===167)) {
 	                    localctx.unit = this._errHandler.recoverInline(this);
 	                }
 	                else {
-	                	this._errHandler.reportMatch(this);
-	                    this.consume();
+	                	this.Q();
 	                }
-
 	            }
 	            break;
-
 	        case 32:
-	            this.state = 340;
-	            this.match(mathjsParser.STRING);
+	            this.A(31);
 	            break;
-
 	        case 33:
-	            this.state = 341;
-	            this.match(mathjsParser.NULL);
+	            this.A(32);
 	            break;
-
 	        }
 	        this._ctx.stop = this._input.LT(-1);
-	        this.state = 488;
-	        this._errHandler.sync(this);
+	        this.X();
 	        var _alt = this._interp.adaptivePredict(this._input,43,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	            if(_alt===1) {
 	                if(this._parseListeners!==null) {
 	                    this.triggerExitRuleEvent();
 	                }
-	                _prevctx = localctx;
-	                this.state = 486;
-	                this._errHandler.sync(this);
+	                this.X();
 	                var la_ = this._interp.adaptivePredict(this._input,42,this._ctx);
 	                switch(la_) {
 	                case 1:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 344;
-	                    if (!( this.precpred(this._ctx, 38))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 38)");
-	                    }
-	                    this.state = 345;
-	                    localctx.op = this._input.LT(1);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    localctx.op = this.R();
+	                    _la = this.Y();
 	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 1792) !== 0))) {
 	                        localctx.op = this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 346;
-	                    this.expr(39);
+	                    this.E(346,39);
 	                    break;
-
 	                case 2:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 347;
-	                    if (!( this.precpred(this._ctx, 37))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 37)");
-	                    }
-	                    this.state = 348;
-	                    localctx.op = this._input.LT(1);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    localctx.op = this.R();
+	                    _la = this.Y();
 	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 536877056) !== 0))) {
 	                        localctx.op = this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 349;
-	                    this.expr(38);
+	                    this.E(349,38);
 	                    break;
-
 	                case 3:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 350;
-	                    if (!( this.precpred(this._ctx, 36))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 36)");
-	                    }
-	                    this.state = 351;
-	                    localctx.op = this._input.LT(1);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    localctx.op = this.R();
+	                    _la = this.Y();
 	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 122880) !== 0))) {
 	                        localctx.op = this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 352;
-	                    this.expr(37);
+	                    this.E(352,37);
 	                    break;
-
 	                case 4:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 353;
-	                    if (!( this.precpred(this._ctx, 35))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 35)");
-	                    }
-	                    this.state = 354;
-	                    localctx.op = this._input.LT(1);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    localctx.op = this.R();
+	                    _la = this.Y();
 	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 8257536) !== 0))) {
 	                        localctx.op = this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 355;
-	                    this.expr(36);
+	                    this.E(355,36);
 	                    break;
-
 	                case 5:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 356;
-	                    if (!( this.precpred(this._ctx, 34))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 34)");
-	                    }
-	                    this.state = 357;
-	                    localctx.op = this.match(mathjsParser.T__22);
-	                    this.state = 358;
-	                    this.expr(35);
+	                    this.W(localctx, _startState, 1);
+	                    localctx.op = this.J(23,358,35);
 	                    break;
-
 	                case 6:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 359;
-	                    if (!( this.precpred(this._ctx, 33))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 33)");
-	                    }
-	                    this.state = 360;
-	                    localctx.op = this.match(mathjsParser.T__23);
-	                    this.state = 361;
-	                    this.expr(34);
+	                    this.W(localctx, _startState, 1);
+	                    localctx.op = this.J(24,361,34);
 	                    break;
-
 	                case 7:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 362;
-	                    if (!( this.precpred(this._ctx, 32))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 32)");
-	                    }
-	                    this.state = 363;
-	                    this.match(mathjsParser.T__24);
-	                    this.state = 364;
-	                    this.expr(0);
-	                    this.state = 365;
-	                    this.match(mathjsParser.T__25);
-	                    this.state = 366;
-	                    this.expr(33);
+	                    this.W(localctx, _startState, 1);
+	                    this.J(25,364,0);
+	                    this.J(26,366,33);
 	                    break;
-
 	                case 8:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 368;
-	                    if (!( this.precpred(this._ctx, 54))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 54)");
-	                    }
-	                    this.state = 369;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 370;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(((((_la - 39)) & ~0x1f) === 0 && ((1 << (_la - 39)) & 27) !== 0) || _la===74 || ((((_la - 157)) & ~0x1f) === 0 && ((1 << (_la - 157)) & 95363) !== 0) || ((((_la - 257)) & ~0x1f) === 0 && ((1 << (_la - 257)) & 1610674179) !== 0) || _la===290)) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 371;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 372;
-	                    this.match(mathjsParser.T__2);
+	                    this.B(2,3);
 	                    break;
-
 	                case 9:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 373;
-	                    if (!( this.precpred(this._ctx, 53))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 53)");
-	                    }
-	                    this.state = 374;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 375;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(((((_la - 41)) & ~0x1f) === 0 && ((1 << (_la - 41)) & 97) !== 0) || ((((_la - 156)) & ~0x1f) === 0 && ((1 << (_la - 156)) & 65665) !== 0) || ((((_la - 277)) & ~0x1f) === 0 && ((1 << (_la - 277)) & 16777219) !== 0))) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 376;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 378;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.A(2);
+	                    _la = this.Z();
 	                    if((((_la) & ~0x1f) === 0 && ((1 << _la) & 3892314276) !== 0) || ((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 4294967291) !== 0) || ((((_la - 64)) & ~0x1f) === 0 && ((1 << (_la - 64)) & 4294967295) !== 0) || ((((_la - 96)) & ~0x1f) === 0 && ((1 << (_la - 96)) & 4294967295) !== 0) || ((((_la - 128)) & ~0x1f) === 0 && ((1 << (_la - 128)) & 4294967295) !== 0) || ((((_la - 160)) & ~0x1f) === 0 && ((1 << (_la - 160)) & 4294967295) !== 0) || ((((_la - 192)) & ~0x1f) === 0 && ((1 << (_la - 192)) & 4294967295) !== 0) || ((((_la - 224)) & ~0x1f) === 0 && ((1 << (_la - 224)) & 4294967295) !== 0) || ((((_la - 256)) & ~0x1f) === 0 && ((1 << (_la - 256)) & 4294844415) !== 0) || ((((_la - 288)) & ~0x1f) === 0 && ((1 << (_la - 288)) & 262143) !== 0)) {
-	                        this.state = 377;
-	                        this.expr(0);
+	                        this.E(377,0);
 	                    }
-
-	                    this.state = 380;
-	                    this.match(mathjsParser.T__2);
+	                    this.A(3);
 	                    break;
-
 	                case 10:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 381;
-	                    if (!( this.precpred(this._ctx, 52))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 52)");
-	                    }
-	                    this.state = 382;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 383;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(_la===153 || _la===168 || ((((_la - 265)) & ~0x1f) === 0 && ((1 << (_la - 265)) & 3221291013) !== 0) || ((((_la - 297)) & ~0x1f) === 0 && ((1 << (_la - 297)) & 111) !== 0))) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 384;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 385;
-	                    this.expr(0);
-	                    this.state = 386;
-	                    this.match(mathjsParser.T__2);
+	                    this.J(2,385,0);
+	                    this.A(3);
 	                    break;
-
 	                case 11:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 388;
-	                    if (!( this.precpred(this._ctx, 51))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 51)");
-	                    }
-	                    this.state = 389;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 390;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(((((_la - 178)) & ~0x1f) === 0 && ((1 << (_la - 178)) & 63) !== 0))) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 393;
-	                    this._errHandler.sync(this);
+	                    this.X();
 	                    var la_ = this._interp.adaptivePredict(this._input,34,this._ctx);
 	                    if(la_===1) {
-	                        this.state = 391;
-	                        this.match(mathjsParser.T__1);
-	                        this.state = 392;
-	                        this.match(mathjsParser.T__2);
-
+	                        this.B(2,3);
 	                    }
 	                    break;
-
 	                case 12:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 395;
-	                    if (!( this.precpred(this._ctx, 50))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 50)");
-	                    }
-	                    this.state = 396;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 397;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(_la===159 || _la===266)) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 398;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 399;
-	                    this.expr(0);
-	                    this.state = 400;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 401;
-	                    this.expr(0);
-	                    this.state = 402;
-	                    this.match(mathjsParser.T__2);
+	                    this.J(2,399,0);
+	                    this.J(4,401,0);
+	                    this.A(3);
 	                    break;
-
 	                case 13:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 404;
-	                    if (!( this.precpred(this._ctx, 49))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 49)");
-	                    }
-	                    this.state = 405;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 406;
-	                    this.match(mathjsParser.REPLACE);
-	                    this.state = 407;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 408;
-	                    this.expr(0);
-	                    this.state = 409;
-	                    this.match(mathjsParser.T__3);
-	                    this.state = 410;
-	                    this.expr(0);
-	                    this.state = 413;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.G(1,161,2,408,0);
+	                    this.J(4,410,0);
+	                    _la = this.Z();
 	                    if(_la===4) {
-	                        this.state = 411;
-	                        this.match(mathjsParser.T__3);
-	                        this.state = 412;
-	                        this.expr(0);
+	                        this.J(4,412,0);
 	                    }
-
-	                    this.state = 415;
-	                    this.match(mathjsParser.T__2);
+	                    this.A(3);
 	                    break;
-
 	                case 14:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 417;
-	                    if (!( this.precpred(this._ctx, 48))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 48)");
-	                    }
-	                    this.state = 418;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 419;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(((((_la - 283)) & ~0x1f) === 0 && ((1 << (_la - 283)) & 103) !== 0))) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 420;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 421;
-	                    this.expr(0);
-	                    this.state = 424;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.J(2,421,0);
+	                    _la = this.Z();
 	                    if(_la===4) {
-	                        this.state = 422;
-	                        this.match(mathjsParser.T__3);
-	                        this.state = 423;
-	                        this.expr(0);
+	                        this.J(4,423,0);
 	                    }
-
-	                    this.state = 426;
-	                    this.match(mathjsParser.T__2);
+	                    this.A(3);
 	                    break;
-
 	                case 15:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 428;
-	                    if (!( this.precpred(this._ctx, 47))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 47)");
-	                    }
-	                    this.state = 429;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 430;
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
+	                    _la = this.Y();
 	                    if(!(_la===279 || _la===280)) {
 	                    this._errHandler.recoverInline(this);
 	                    }
 	                    else {
-	                    	this._errHandler.reportMatch(this);
-	                        this.consume();
+	                    	this.Q();
 	                    }
-	                    this.state = 431;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 432;
-	                    this.expr(0);
-	                    this.state = 439;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.J(2,432,0);
+	                    _la = this.Z();
 	                    if(_la===4) {
-	                        this.state = 433;
-	                        this.match(mathjsParser.T__3);
-	                        this.state = 434;
-	                        this.expr(0);
-	                        this.state = 437;
-	                        this._errHandler.sync(this);
-	                        _la = this._input.LA(1);
+	                        this.J(4,434,0);
+	                        _la = this.Z();
 	                        if(_la===4) {
-	                            this.state = 435;
-	                            this.match(mathjsParser.T__3);
-	                            this.state = 436;
-	                            this.expr(0);
+	                            this.J(4,436,0);
 	                        }
-
 	                    }
-
-	                    this.state = 441;
-	                    this.match(mathjsParser.T__2);
+	                    this.A(3);
 	                    break;
-
 	                case 16:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 443;
-	                    if (!( this.precpred(this._ctx, 46))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 46)");
-	                    }
-	                    this.state = 444;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 445;
-	                    this.match(mathjsParser.JOIN);
-	                    this.state = 446;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 447;
-	                    this.expr(0);
-	                    this.state = 452;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.G(1,282,2,447,0);
+	                    _la = this.Z();
 	                    while(_la===4) {
-	                        this.state = 448;
-	                        this.match(mathjsParser.T__3);
-	                        this.state = 449;
-	                        this.expr(0);
-	                        this.state = 454;
-	                        this._errHandler.sync(this);
-	                        _la = this._input.LA(1);
+	                        this.J(4,449,0);
+	                        _la = this.Z();
 	                    }
-	                    this.state = 455;
-	                    this.match(mathjsParser.T__2);
+	                    this.A(3);
 	                    break;
-
 	                case 17:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 457;
-	                    if (!( this.precpred(this._ctx, 45))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 45)");
-	                    }
-	                    this.state = 458;
-	                    this.match(mathjsParser.T__0);
-	                    this.state = 459;
-	                    this.match(mathjsParser.PARAMETER);
-	                    this.state = 460;
-	                    this.match(mathjsParser.T__1);
-	                    this.state = 469;
-	                    this._errHandler.sync(this);
-	                    _la = this._input.LA(1);
+	                    this.W(localctx, _startState, 1);
+	                    this.C(1,305,2);
+	                    _la = this.Z();
 	                    if((((_la) & ~0x1f) === 0 && ((1 << _la) & 3892314276) !== 0) || ((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 4294967291) !== 0) || ((((_la - 64)) & ~0x1f) === 0 && ((1 << (_la - 64)) & 4294967295) !== 0) || ((((_la - 96)) & ~0x1f) === 0 && ((1 << (_la - 96)) & 4294967295) !== 0) || ((((_la - 128)) & ~0x1f) === 0 && ((1 << (_la - 128)) & 4294967295) !== 0) || ((((_la - 160)) & ~0x1f) === 0 && ((1 << (_la - 160)) & 4294967295) !== 0) || ((((_la - 192)) & ~0x1f) === 0 && ((1 << (_la - 192)) & 4294967295) !== 0) || ((((_la - 224)) & ~0x1f) === 0 && ((1 << (_la - 224)) & 4294967295) !== 0) || ((((_la - 256)) & ~0x1f) === 0 && ((1 << (_la - 256)) & 4294844415) !== 0) || ((((_la - 288)) & ~0x1f) === 0 && ((1 << (_la - 288)) & 262143) !== 0)) {
-	                        this.state = 461;
-	                        this.expr(0);
-	                        this.state = 466;
-	                        this._errHandler.sync(this);
-	                        _la = this._input.LA(1);
+	                        this.E(461,0);
+	                        _la = this.Z();
 	                        while(_la===4) {
-	                            this.state = 462;
-	                            this.match(mathjsParser.T__3);
-	                            this.state = 463;
-	                            this.expr(0);
-	                            this.state = 468;
-	                            this._errHandler.sync(this);
-	                            _la = this._input.LA(1);
+	                            this.J(4,463,0);
+	                            _la = this.Z();
 	                        }
 	                    }
-
-	                    this.state = 471;
-	                    this.match(mathjsParser.T__2);
+	                    this.A(3);
 	                    break;
-
 	                case 18:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 472;
-	                    if (!( this.precpred(this._ctx, 44))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 44)");
-	                    }
-	                    this.state = 473;
-	                    this.match(mathjsParser.T__4);
-	                    this.state = 474;
-	                    this.match(mathjsParser.PARAMETER);
-	                    this.state = 475;
-	                    this.match(mathjsParser.T__5);
+	                    this.W(localctx, _startState, 1);
+	                    this.C(5,305,6);
 	                    break;
-
 	                case 19:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 476;
-	                    if (!( this.precpred(this._ctx, 43))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 43)");
-	                    }
-	                    this.state = 477;
-	                    this.match(mathjsParser.T__4);
-	                    this.state = 478;
-	                    this.expr(0);
-	                    this.state = 479;
-	                    this.match(mathjsParser.T__5);
+	                    this.W(localctx, _startState, 1);
+	                    this.J(5,478,0);
+	                    this.A(6);
 	                    break;
-
 	                case 20:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 481;
-	                    if (!( this.precpred(this._ctx, 42))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 42)");
-	                    }
-	                    this.state = 482;
-	                    this.match(mathjsParser.T__0);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(1);
 	                    this.state = 483;
 	                    this.parameter2();
 	                    break;
-
 	                case 21:
 	                    localctx = new ExprContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, mathjsParser.RULE_expr);
-	                    this.state = 484;
-	                    if (!( this.precpred(this._ctx, 39))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 39)");
-	                    }
-	                    this.state = 485;
-	                    this.match(mathjsParser.T__7);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(8);
 	                    break;
-
-	                } 
+	                }
 	            }
-	            this.state = 490;
-	            this._errHandler.sync(this);
+	            this.X();
 	            _alt = this._interp.adaptivePredict(this._input,43,this._ctx);
 	        }
-
 	    } catch( error) {
 	        if(error instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = error;
@@ -1832,25 +935,17 @@ export default class mathjsParser extends antlr4.Parser {
 	    }
 	    return localctx;
 	}
-
-
-
 	num() {
 	    let localctx = new NumContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 4, mathjsParser.RULE_num);
+	    this.enterRule(localctx, 4, 2);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 492;
-	        this._errHandler.sync(this);
-	        _la = this._input.LA(1);
+	        _la = this.Z();
 	        if(_la===29) {
-	            this.state = 491;
-	            this.match(mathjsParser.SUB);
+	            this.A(29);
 	        }
-
-	        this.state = 494;
-	        this.match(mathjsParser.NUM);
+	        this.A(30);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -1864,34 +959,25 @@ export default class mathjsParser extends antlr4.Parser {
 	    }
 	    return localctx;
 	}
-
-
-
 	arrayJson() {
 	    let localctx = new ArrayJsonContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 6, mathjsParser.RULE_arrayJson);
+	    this.enterRule(localctx, 6, 3);
 	    var _la = 0;
 	    try {
-	        this.state = 503;
-	        this._errHandler.sync(this);
+	        this.X();
 	        switch(this._input.LA(1)) {
 	        case 30:
 	        case 31:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 496;
-	            localctx.key = this._input.LT(1);
-	            _la = this._input.LA(1);
+	            localctx.key = this.R();
+	            _la = this.Y();
 	            if(!(_la===30 || _la===31)) {
 	                localctx.key = this._errHandler.recoverInline(this);
 	            }
 	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
+	            	this.Q();
 	            }
-	            this.state = 497;
-	            this.match(mathjsParser.T__25);
-	            this.state = 498;
-	            this.expr(0);
+	            this.J(26,498,0);
 	            break;
 	        case 32:
 	        case 33:
@@ -2169,10 +1255,7 @@ export default class mathjsParser extends antlr4.Parser {
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 499;
 	            this.parameter2();
-	            this.state = 500;
-	            this.match(mathjsParser.T__25);
-	            this.state = 501;
-	            this.expr(0);
+	            this.J(26,501,0);
 	            break;
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
@@ -2190,23 +1273,18 @@ export default class mathjsParser extends antlr4.Parser {
 	    }
 	    return localctx;
 	}
-
-
-
 	parameter2() {
 	    let localctx = new Parameter2Context(this, this._ctx, this.state);
-	    this.enterRule(localctx, 8, mathjsParser.RULE_parameter2);
+	    this.enterRule(localctx, 8, 4);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 505;
-	        _la = this._input.LA(1);
+	        _la = this.Y();
 	        if(!(((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 4294967295) !== 0) || ((((_la - 64)) & ~0x1f) === 0 && ((1 << (_la - 64)) & 4294967295) !== 0) || ((((_la - 96)) & ~0x1f) === 0 && ((1 << (_la - 96)) & 4294967295) !== 0) || ((((_la - 128)) & ~0x1f) === 0 && ((1 << (_la - 128)) & 4294967295) !== 0) || ((((_la - 160)) & ~0x1f) === 0 && ((1 << (_la - 160)) & 4294967295) !== 0) || ((((_la - 192)) & ~0x1f) === 0 && ((1 << (_la - 192)) & 4294967295) !== 0) || ((((_la - 224)) & ~0x1f) === 0 && ((1 << (_la - 224)) & 4294967295) !== 0) || ((((_la - 256)) & ~0x1f) === 0 && ((1 << (_la - 256)) & 4294967295) !== 0) || ((((_la - 288)) & ~0x1f) === 0 && ((1 << (_la - 288)) & 262111) !== 0))) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
-	        	this._errHandler.reportMatch(this);
-	            this.consume();
+	        	this.Q();
 	        }
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -2221,2685 +1299,42 @@ export default class mathjsParser extends antlr4.Parser {
 	    }
 	    return localctx;
 	}
-
-
 }
-
-mathjsParser.EOF = antlr4.Token.EOF;
-mathjsParser.T__0 = 1;
-mathjsParser.T__1 = 2;
-mathjsParser.T__2 = 3;
-mathjsParser.T__3 = 4;
-mathjsParser.T__4 = 5;
-mathjsParser.T__5 = 6;
-mathjsParser.T__6 = 7;
-mathjsParser.T__7 = 8;
-mathjsParser.T__8 = 9;
-mathjsParser.T__9 = 10;
-mathjsParser.T__10 = 11;
-mathjsParser.T__11 = 12;
-mathjsParser.T__12 = 13;
-mathjsParser.T__13 = 14;
-mathjsParser.T__14 = 15;
-mathjsParser.T__15 = 16;
-mathjsParser.T__16 = 17;
-mathjsParser.T__17 = 18;
-mathjsParser.T__18 = 19;
-mathjsParser.T__19 = 20;
-mathjsParser.T__20 = 21;
-mathjsParser.T__21 = 22;
-mathjsParser.T__22 = 23;
-mathjsParser.T__23 = 24;
-mathjsParser.T__24 = 25;
-mathjsParser.T__25 = 26;
-mathjsParser.T__26 = 27;
-mathjsParser.T__27 = 28;
-mathjsParser.SUB = 29;
-mathjsParser.NUM = 30;
-mathjsParser.STRING = 31;
-mathjsParser.NULL = 32;
-mathjsParser.ERROR = 33;
-mathjsParser.UNIT = 34;
-mathjsParser.IF = 35;
-mathjsParser.IFS = 36;
-mathjsParser.SWITCH = 37;
-mathjsParser.IFERROR = 38;
-mathjsParser.ISNUMBER = 39;
-mathjsParser.ISTEXT = 40;
-mathjsParser.ISERROR = 41;
-mathjsParser.ISNONTEXT = 42;
-mathjsParser.ISLOGICAL = 43;
-mathjsParser.ISEVEN = 44;
-mathjsParser.ISODD = 45;
-mathjsParser.ISNULL = 46;
-mathjsParser.ISNULLORERROR = 47;
-mathjsParser.AND = 48;
-mathjsParser.OR = 49;
-mathjsParser.XOR = 50;
-mathjsParser.NOT = 51;
-mathjsParser.TRUE = 52;
-mathjsParser.FALSE = 53;
-mathjsParser.E = 54;
-mathjsParser.PI = 55;
-mathjsParser.DEC2BIN = 56;
-mathjsParser.DEC2HEX = 57;
-mathjsParser.DEC2OCT = 58;
-mathjsParser.HEX2BIN = 59;
-mathjsParser.HEX2DEC = 60;
-mathjsParser.HEX2OCT = 61;
-mathjsParser.OCT2BIN = 62;
-mathjsParser.OCT2DEC = 63;
-mathjsParser.OCT2HEX = 64;
-mathjsParser.BIN2OCT = 65;
-mathjsParser.BIN2DEC = 66;
-mathjsParser.BIN2HEX = 67;
-mathjsParser.ABS = 68;
-mathjsParser.QUOTIENT = 69;
-mathjsParser.MOD = 70;
-mathjsParser.SIGN = 71;
-mathjsParser.SQRT = 72;
-mathjsParser.TRUNC = 73;
-mathjsParser.INT = 74;
-mathjsParser.GCD = 75;
-mathjsParser.LCM = 76;
-mathjsParser.COMBIN = 77;
-mathjsParser.PERMUT = 78;
-mathjsParser.DEGREES = 79;
-mathjsParser.RADIANS = 80;
-mathjsParser.COS = 81;
-mathjsParser.COSH = 82;
-mathjsParser.SIN = 83;
-mathjsParser.SINH = 84;
-mathjsParser.TAN = 85;
-mathjsParser.TANH = 86;
-mathjsParser.COT = 87;
-mathjsParser.COTH = 88;
-mathjsParser.CSC = 89;
-mathjsParser.CSCH = 90;
-mathjsParser.SEC = 91;
-mathjsParser.SECH = 92;
-mathjsParser.ACOS = 93;
-mathjsParser.ACOSH = 94;
-mathjsParser.ASIN = 95;
-mathjsParser.ASINH = 96;
-mathjsParser.ATAN = 97;
-mathjsParser.ATANH = 98;
-mathjsParser.ACOT = 99;
-mathjsParser.ACOTH = 100;
-mathjsParser.ATAN2 = 101;
-mathjsParser.ROUND = 102;
-mathjsParser.ROUNDDOWN = 103;
-mathjsParser.ROUNDUP = 104;
-mathjsParser.CEILING = 105;
-mathjsParser.FLOOR = 106;
-mathjsParser.EVEN = 107;
-mathjsParser.ODD = 108;
-mathjsParser.MROUND = 109;
-mathjsParser.RAND = 110;
-mathjsParser.RANDBETWEEN = 111;
-mathjsParser.FACT = 112;
-mathjsParser.FACTDOUBLE = 113;
-mathjsParser.POWER = 114;
-mathjsParser.EXP = 115;
-mathjsParser.LN = 116;
-mathjsParser.LOG = 117;
-mathjsParser.LOG10 = 118;
-mathjsParser.MULTINOMIAL = 119;
-mathjsParser.PRODUCT = 120;
-mathjsParser.SQRTPI = 121;
-mathjsParser.ERF = 122;
-mathjsParser.ERFC = 123;
-mathjsParser.BESSELI = 124;
-mathjsParser.BESSELJ = 125;
-mathjsParser.BESSELK = 126;
-mathjsParser.BESSELY = 127;
-mathjsParser.DELTA = 128;
-mathjsParser.GESTEP = 129;
-mathjsParser.SUMSQ = 130;
-mathjsParser.SUMPRODUCT = 131;
-mathjsParser.SUMX2MY2 = 132;
-mathjsParser.SUMX2PY2 = 133;
-mathjsParser.SUMXMY2 = 134;
-mathjsParser.ARABIC = 135;
-mathjsParser.ROMAN = 136;
-mathjsParser.SERIESSUM = 137;
-mathjsParser.RANK = 138;
-mathjsParser.FORECAST = 139;
-mathjsParser.INTERCEPT = 140;
-mathjsParser.SLOPE = 141;
-mathjsParser.CORREL = 142;
-mathjsParser.PEARSON = 143;
-mathjsParser.YEARFRAC = 144;
-mathjsParser.ASC = 145;
-mathjsParser.JIS = 146;
-mathjsParser.CHAR = 147;
-mathjsParser.CLEAN = 148;
-mathjsParser.CODE = 149;
-mathjsParser.UNICHAR = 150;
-mathjsParser.UNICODE = 151;
-mathjsParser.CONCATENATE = 152;
-mathjsParser.EXACT = 153;
-mathjsParser.FIND = 154;
-mathjsParser.FIXED = 155;
-mathjsParser.LEFT = 156;
-mathjsParser.LEN = 157;
-mathjsParser.LOWER = 158;
-mathjsParser.MID = 159;
-mathjsParser.PROPER = 160;
-mathjsParser.REPLACE = 161;
-mathjsParser.REPT = 162;
-mathjsParser.RIGHT = 163;
-mathjsParser.RMB = 164;
-mathjsParser.SEARCH = 165;
-mathjsParser.SUBSTITUTE = 166;
-mathjsParser.T = 167;
-mathjsParser.TEXT = 168;
-mathjsParser.TRIM = 169;
-mathjsParser.UPPER = 170;
-mathjsParser.VALUE = 171;
-mathjsParser.DATEVALUE = 172;
-mathjsParser.TIMEVALUE = 173;
-mathjsParser.DATE = 174;
-mathjsParser.TIME = 175;
-mathjsParser.NOW = 176;
-mathjsParser.TODAY = 177;
-mathjsParser.YEAR = 178;
-mathjsParser.MONTH = 179;
-mathjsParser.DAY = 180;
-mathjsParser.HOUR = 181;
-mathjsParser.MINUTE = 182;
-mathjsParser.SECOND = 183;
-mathjsParser.WEEKDAY = 184;
-mathjsParser.DATEDIF = 185;
-mathjsParser.DAYS = 186;
-mathjsParser.DAYS360 = 187;
-mathjsParser.EDATE = 188;
-mathjsParser.EOMONTH = 189;
-mathjsParser.NETWORKDAYS = 190;
-mathjsParser.WORKDAY = 191;
-mathjsParser.WEEKNUM = 192;
-mathjsParser.MAX = 193;
-mathjsParser.MEDIAN = 194;
-mathjsParser.MIN = 195;
-mathjsParser.QUARTILE = 196;
-mathjsParser.MODE = 197;
-mathjsParser.LARGE = 198;
-mathjsParser.SMALL = 199;
-mathjsParser.PERCENTILE = 200;
-mathjsParser.PERCENTRANK = 201;
-mathjsParser.AVERAGE = 202;
-mathjsParser.AVERAGEIF = 203;
-mathjsParser.GEOMEAN = 204;
-mathjsParser.HARMEAN = 205;
-mathjsParser.COUNT = 206;
-mathjsParser.COUNTIF = 207;
-mathjsParser.SUM = 208;
-mathjsParser.SUMIF = 209;
-mathjsParser.AVEDEV = 210;
-mathjsParser.STDEV = 211;
-mathjsParser.STDEVP = 212;
-mathjsParser.COVAR = 213;
-mathjsParser.COVARIANCES = 214;
-mathjsParser.DEVSQ = 215;
-mathjsParser.VAR = 216;
-mathjsParser.VARP = 217;
-mathjsParser.NORMDIST = 218;
-mathjsParser.NORMINV = 219;
-mathjsParser.NORMSDIST = 220;
-mathjsParser.NORMSINV = 221;
-mathjsParser.BETADIST = 222;
-mathjsParser.BETAINV = 223;
-mathjsParser.BINOMDIST = 224;
-mathjsParser.EXPONDIST = 225;
-mathjsParser.FDIST = 226;
-mathjsParser.FINV = 227;
-mathjsParser.FISHER = 228;
-mathjsParser.FISHERINV = 229;
-mathjsParser.GAMMADIST = 230;
-mathjsParser.GAMMAINV = 231;
-mathjsParser.GAMMALN = 232;
-mathjsParser.HYPGEOMDIST = 233;
-mathjsParser.LOGINV = 234;
-mathjsParser.LOGNORMDIST = 235;
-mathjsParser.NEGBINOMDIST = 236;
-mathjsParser.POISSON = 237;
-mathjsParser.TDIST = 238;
-mathjsParser.TINV = 239;
-mathjsParser.WEIBULL = 240;
-mathjsParser.PMT = 241;
-mathjsParser.PPMT = 242;
-mathjsParser.IPMT = 243;
-mathjsParser.PV = 244;
-mathjsParser.FV = 245;
-mathjsParser.NPER = 246;
-mathjsParser.RATE = 247;
-mathjsParser.NPV = 248;
-mathjsParser.XNPV = 249;
-mathjsParser.IRR = 250;
-mathjsParser.MIRR = 251;
-mathjsParser.XIRR = 252;
-mathjsParser.SLN = 253;
-mathjsParser.DB = 254;
-mathjsParser.DDB = 255;
-mathjsParser.SYD = 256;
-mathjsParser.URLENCODE = 257;
-mathjsParser.URLDECODE = 258;
-mathjsParser.HTMLENCODE = 259;
-mathjsParser.HTMLDECODE = 260;
-mathjsParser.BASE64TOTEXT = 261;
-mathjsParser.BASE64URLTOTEXT = 262;
-mathjsParser.TEXTTOBASE64 = 263;
-mathjsParser.TEXTTOBASE64URL = 264;
-mathjsParser.REGEX = 265;
-mathjsParser.REGEXREPLACE = 266;
-mathjsParser.ISREGEX = 267;
-mathjsParser.GUID = 268;
-mathjsParser.MD5 = 269;
-mathjsParser.SHA1 = 270;
-mathjsParser.SHA256 = 271;
-mathjsParser.SHA512 = 272;
-mathjsParser.HMACMD5 = 273;
-mathjsParser.HMACSHA1 = 274;
-mathjsParser.HMACSHA256 = 275;
-mathjsParser.HMACSHA512 = 276;
-mathjsParser.TRIMSTART = 277;
-mathjsParser.TRIMEND = 278;
-mathjsParser.INDEXOF = 279;
-mathjsParser.LASTINDEXOF = 280;
-mathjsParser.SPLIT = 281;
-mathjsParser.JOIN = 282;
-mathjsParser.SUBSTRING = 283;
-mathjsParser.STARTSWITH = 284;
-mathjsParser.ENDSWITH = 285;
-mathjsParser.ISNULLOREMPTY = 286;
-mathjsParser.ISNULLORWHITESPACE = 287;
-mathjsParser.REMOVESTART = 288;
-mathjsParser.REMOVEEND = 289;
-mathjsParser.JSON = 290;
-mathjsParser.LOOKCEILING = 291;
-mathjsParser.LOOKFLOOR = 292;
-mathjsParser.ARRAY = 293;
-mathjsParser.ALGORITHMVERSION = 294;
-mathjsParser.ADDYEARS = 295;
-mathjsParser.ADDMONTHS = 296;
-mathjsParser.ADDDAYS = 297;
-mathjsParser.ADDHOURS = 298;
-mathjsParser.ADDMINUTES = 299;
-mathjsParser.ADDSECONDS = 300;
-mathjsParser.TIMESTAMP = 301;
-mathjsParser.HAS = 302;
-mathjsParser.HASVALUE = 303;
-mathjsParser.PARAM = 304;
-mathjsParser.PARAMETER = 305;
-mathjsParser.WS = 306;
-mathjsParser.COMMENT = 307;
-mathjsParser.LINE_COMMENT = 308;
-
-mathjsParser.RULE_prog = 0;
-mathjsParser.RULE_expr = 1;
-mathjsParser.RULE_num = 2;
-mathjsParser.RULE_arrayJson = 3;
-mathjsParser.RULE_parameter2 = 4;
-
 class ProgContext extends antlr4.ParserRuleContext {
-
     constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathjsParser.RULE_prog;
+        this.ruleIndex = 0;
     }
-
-	expr() {
-	    return this.getTypedRuleContext(ExprContext,0);
-	};
-
-	EOF() {
-	    return this.getToken(mathjsParser.EOF, 0);
-	};
-
-
 }
-
-
-
 class ExprContext extends antlr4.ParserRuleContext {
-
     constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathjsParser.RULE_expr;
+        this.ruleIndex = 1;
         this.unit = null;
         this.op = null;
     }
-
-	expr = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExprContext);
-	    } else {
-	        return this.getTypedRuleContext(ExprContext,i);
-	    }
-	};
-
-	ARRAY() {
-	    return this.getToken(mathjsParser.ARRAY, 0);
-	};
-
-	IF() {
-	    return this.getToken(mathjsParser.IF, 0);
-	};
-
-	IFERROR() {
-	    return this.getToken(mathjsParser.IFERROR, 0);
-	};
-
-	TIME() {
-	    return this.getToken(mathjsParser.TIME, 0);
-	};
-
-	IFS() {
-	    return this.getToken(mathjsParser.IFS, 0);
-	};
-
-	SWITCH() {
-	    return this.getToken(mathjsParser.SWITCH, 0);
-	};
-
-	ISNUMBER() {
-	    return this.getToken(mathjsParser.ISNUMBER, 0);
-	};
-
-	ISTEXT() {
-	    return this.getToken(mathjsParser.ISTEXT, 0);
-	};
-
-	ISNONTEXT() {
-	    return this.getToken(mathjsParser.ISNONTEXT, 0);
-	};
-
-	ISLOGICAL() {
-	    return this.getToken(mathjsParser.ISLOGICAL, 0);
-	};
-
-	ISEVEN() {
-	    return this.getToken(mathjsParser.ISEVEN, 0);
-	};
-
-	ISODD() {
-	    return this.getToken(mathjsParser.ISODD, 0);
-	};
-
-	NOT() {
-	    return this.getToken(mathjsParser.NOT, 0);
-	};
-
-	ABS() {
-	    return this.getToken(mathjsParser.ABS, 0);
-	};
-
-	SIGN() {
-	    return this.getToken(mathjsParser.SIGN, 0);
-	};
-
-	SQRT() {
-	    return this.getToken(mathjsParser.SQRT, 0);
-	};
-
-	INT() {
-	    return this.getToken(mathjsParser.INT, 0);
-	};
-
-	DEGREES() {
-	    return this.getToken(mathjsParser.DEGREES, 0);
-	};
-
-	RADIANS() {
-	    return this.getToken(mathjsParser.RADIANS, 0);
-	};
-
-	COS() {
-	    return this.getToken(mathjsParser.COS, 0);
-	};
-
-	COSH() {
-	    return this.getToken(mathjsParser.COSH, 0);
-	};
-
-	SIN() {
-	    return this.getToken(mathjsParser.SIN, 0);
-	};
-
-	SINH() {
-	    return this.getToken(mathjsParser.SINH, 0);
-	};
-
-	TAN() {
-	    return this.getToken(mathjsParser.TAN, 0);
-	};
-
-	TANH() {
-	    return this.getToken(mathjsParser.TANH, 0);
-	};
-
-	COT() {
-	    return this.getToken(mathjsParser.COT, 0);
-	};
-
-	COTH() {
-	    return this.getToken(mathjsParser.COTH, 0);
-	};
-
-	CSC() {
-	    return this.getToken(mathjsParser.CSC, 0);
-	};
-
-	CSCH() {
-	    return this.getToken(mathjsParser.CSCH, 0);
-	};
-
-	SEC() {
-	    return this.getToken(mathjsParser.SEC, 0);
-	};
-
-	SECH() {
-	    return this.getToken(mathjsParser.SECH, 0);
-	};
-
-	ACOS() {
-	    return this.getToken(mathjsParser.ACOS, 0);
-	};
-
-	ACOSH() {
-	    return this.getToken(mathjsParser.ACOSH, 0);
-	};
-
-	ASIN() {
-	    return this.getToken(mathjsParser.ASIN, 0);
-	};
-
-	ASINH() {
-	    return this.getToken(mathjsParser.ASINH, 0);
-	};
-
-	ATAN() {
-	    return this.getToken(mathjsParser.ATAN, 0);
-	};
-
-	ATANH() {
-	    return this.getToken(mathjsParser.ATANH, 0);
-	};
-
-	ACOT() {
-	    return this.getToken(mathjsParser.ACOT, 0);
-	};
-
-	ACOTH() {
-	    return this.getToken(mathjsParser.ACOTH, 0);
-	};
-
-	EVEN() {
-	    return this.getToken(mathjsParser.EVEN, 0);
-	};
-
-	ODD() {
-	    return this.getToken(mathjsParser.ODD, 0);
-	};
-
-	FACT() {
-	    return this.getToken(mathjsParser.FACT, 0);
-	};
-
-	FACTDOUBLE() {
-	    return this.getToken(mathjsParser.FACTDOUBLE, 0);
-	};
-
-	EXP() {
-	    return this.getToken(mathjsParser.EXP, 0);
-	};
-
-	LN() {
-	    return this.getToken(mathjsParser.LN, 0);
-	};
-
-	LOG10() {
-	    return this.getToken(mathjsParser.LOG10, 0);
-	};
-
-	SQRTPI() {
-	    return this.getToken(mathjsParser.SQRTPI, 0);
-	};
-
-	ERF() {
-	    return this.getToken(mathjsParser.ERF, 0);
-	};
-
-	ERFC() {
-	    return this.getToken(mathjsParser.ERFC, 0);
-	};
-
-	ARABIC() {
-	    return this.getToken(mathjsParser.ARABIC, 0);
-	};
-
-	ASC() {
-	    return this.getToken(mathjsParser.ASC, 0);
-	};
-
-	JIS() {
-	    return this.getToken(mathjsParser.JIS, 0);
-	};
-
-	CHAR() {
-	    return this.getToken(mathjsParser.CHAR, 0);
-	};
-
-	CLEAN() {
-	    return this.getToken(mathjsParser.CLEAN, 0);
-	};
-
-	CODE() {
-	    return this.getToken(mathjsParser.CODE, 0);
-	};
-
-	UNICHAR() {
-	    return this.getToken(mathjsParser.UNICHAR, 0);
-	};
-
-	UNICODE() {
-	    return this.getToken(mathjsParser.UNICODE, 0);
-	};
-
-	LEN() {
-	    return this.getToken(mathjsParser.LEN, 0);
-	};
-
-	LOWER() {
-	    return this.getToken(mathjsParser.LOWER, 0);
-	};
-
-	PROPER() {
-	    return this.getToken(mathjsParser.PROPER, 0);
-	};
-
-	TRIM() {
-	    return this.getToken(mathjsParser.TRIM, 0);
-	};
-
-	UPPER() {
-	    return this.getToken(mathjsParser.UPPER, 0);
-	};
-
-	VALUE() {
-	    return this.getToken(mathjsParser.VALUE, 0);
-	};
-
-	TIMEVALUE() {
-	    return this.getToken(mathjsParser.TIMEVALUE, 0);
-	};
-
-	NORMSDIST() {
-	    return this.getToken(mathjsParser.NORMSDIST, 0);
-	};
-
-	NORMSINV() {
-	    return this.getToken(mathjsParser.NORMSINV, 0);
-	};
-
-	FISHER() {
-	    return this.getToken(mathjsParser.FISHER, 0);
-	};
-
-	FISHERINV() {
-	    return this.getToken(mathjsParser.FISHERINV, 0);
-	};
-
-	GAMMALN() {
-	    return this.getToken(mathjsParser.GAMMALN, 0);
-	};
-
-	URLENCODE() {
-	    return this.getToken(mathjsParser.URLENCODE, 0);
-	};
-
-	URLDECODE() {
-	    return this.getToken(mathjsParser.URLDECODE, 0);
-	};
-
-	HTMLENCODE() {
-	    return this.getToken(mathjsParser.HTMLENCODE, 0);
-	};
-
-	HTMLDECODE() {
-	    return this.getToken(mathjsParser.HTMLDECODE, 0);
-	};
-
-	BASE64TOTEXT() {
-	    return this.getToken(mathjsParser.BASE64TOTEXT, 0);
-	};
-
-	BASE64URLTOTEXT() {
-	    return this.getToken(mathjsParser.BASE64URLTOTEXT, 0);
-	};
-
-	TEXTTOBASE64() {
-	    return this.getToken(mathjsParser.TEXTTOBASE64, 0);
-	};
-
-	TEXTTOBASE64URL() {
-	    return this.getToken(mathjsParser.TEXTTOBASE64URL, 0);
-	};
-
-	ISNULLOREMPTY() {
-	    return this.getToken(mathjsParser.ISNULLOREMPTY, 0);
-	};
-
-	ISNULLORWHITESPACE() {
-	    return this.getToken(mathjsParser.ISNULLORWHITESPACE, 0);
-	};
-
-	JSON() {
-	    return this.getToken(mathjsParser.JSON, 0);
-	};
-
-	T() {
-	    return this.getToken(mathjsParser.T, 0);
-	};
-
-	RMB() {
-	    return this.getToken(mathjsParser.RMB, 0);
-	};
-
-	ISERROR() {
-	    return this.getToken(mathjsParser.ISERROR, 0);
-	};
-
-	ISNULL() {
-	    return this.getToken(mathjsParser.ISNULL, 0);
-	};
-
-	ISNULLORERROR() {
-	    return this.getToken(mathjsParser.ISNULLORERROR, 0);
-	};
-
-	TRUNC() {
-	    return this.getToken(mathjsParser.TRUNC, 0);
-	};
-
-	ROUND() {
-	    return this.getToken(mathjsParser.ROUND, 0);
-	};
-
-	CEILING() {
-	    return this.getToken(mathjsParser.CEILING, 0);
-	};
-
-	FLOOR() {
-	    return this.getToken(mathjsParser.FLOOR, 0);
-	};
-
-	LOG() {
-	    return this.getToken(mathjsParser.LOG, 0);
-	};
-
-	DELTA() {
-	    return this.getToken(mathjsParser.DELTA, 0);
-	};
-
-	GESTEP() {
-	    return this.getToken(mathjsParser.GESTEP, 0);
-	};
-
-	ROMAN() {
-	    return this.getToken(mathjsParser.ROMAN, 0);
-	};
-
-	RANK() {
-	    return this.getToken(mathjsParser.RANK, 0);
-	};
-
-	FIND() {
-	    return this.getToken(mathjsParser.FIND, 0);
-	};
-
-	FIXED() {
-	    return this.getToken(mathjsParser.FIXED, 0);
-	};
-
-	LEFT() {
-	    return this.getToken(mathjsParser.LEFT, 0);
-	};
-
-	RIGHT() {
-	    return this.getToken(mathjsParser.RIGHT, 0);
-	};
-
-	SEARCH() {
-	    return this.getToken(mathjsParser.SEARCH, 0);
-	};
-
-	SUBSTITUTE() {
-	    return this.getToken(mathjsParser.SUBSTITUTE, 0);
-	};
-
-	WEEKDAY() {
-	    return this.getToken(mathjsParser.WEEKDAY, 0);
-	};
-
-	DAYS360() {
-	    return this.getToken(mathjsParser.DAYS360, 0);
-	};
-
-	NETWORKDAYS() {
-	    return this.getToken(mathjsParser.NETWORKDAYS, 0);
-	};
-
-	WORKDAY() {
-	    return this.getToken(mathjsParser.WORKDAY, 0);
-	};
-
-	WEEKNUM() {
-	    return this.getToken(mathjsParser.WEEKNUM, 0);
-	};
-
-	AVERAGEIF() {
-	    return this.getToken(mathjsParser.AVERAGEIF, 0);
-	};
-
-	SUMIF() {
-	    return this.getToken(mathjsParser.SUMIF, 0);
-	};
-
-	IRR() {
-	    return this.getToken(mathjsParser.IRR, 0);
-	};
-
-	XIRR() {
-	    return this.getToken(mathjsParser.XIRR, 0);
-	};
-
-	DB() {
-	    return this.getToken(mathjsParser.DB, 0);
-	};
-
-	DDB() {
-	    return this.getToken(mathjsParser.DDB, 0);
-	};
-
-	TRIMSTART() {
-	    return this.getToken(mathjsParser.TRIMSTART, 0);
-	};
-
-	TRIMEND() {
-	    return this.getToken(mathjsParser.TRIMEND, 0);
-	};
-
-	TIMESTAMP() {
-	    return this.getToken(mathjsParser.TIMESTAMP, 0);
-	};
-
-	PARAM() {
-	    return this.getToken(mathjsParser.PARAM, 0);
-	};
-
-	DATEVALUE() {
-	    return this.getToken(mathjsParser.DATEVALUE, 0);
-	};
-
-	AND() {
-	    return this.getToken(mathjsParser.AND, 0);
-	};
-
-	OR() {
-	    return this.getToken(mathjsParser.OR, 0);
-	};
-
-	XOR() {
-	    return this.getToken(mathjsParser.XOR, 0);
-	};
-
-	GCD() {
-	    return this.getToken(mathjsParser.GCD, 0);
-	};
-
-	LCM() {
-	    return this.getToken(mathjsParser.LCM, 0);
-	};
-
-	MULTINOMIAL() {
-	    return this.getToken(mathjsParser.MULTINOMIAL, 0);
-	};
-
-	PRODUCT() {
-	    return this.getToken(mathjsParser.PRODUCT, 0);
-	};
-
-	SUMSQ() {
-	    return this.getToken(mathjsParser.SUMSQ, 0);
-	};
-
-	SUMPRODUCT() {
-	    return this.getToken(mathjsParser.SUMPRODUCT, 0);
-	};
-
-	CONCATENATE() {
-	    return this.getToken(mathjsParser.CONCATENATE, 0);
-	};
-
-	MAX() {
-	    return this.getToken(mathjsParser.MAX, 0);
-	};
-
-	MEDIAN() {
-	    return this.getToken(mathjsParser.MEDIAN, 0);
-	};
-
-	MIN() {
-	    return this.getToken(mathjsParser.MIN, 0);
-	};
-
-	MODE() {
-	    return this.getToken(mathjsParser.MODE, 0);
-	};
-
-	AVERAGE() {
-	    return this.getToken(mathjsParser.AVERAGE, 0);
-	};
-
-	GEOMEAN() {
-	    return this.getToken(mathjsParser.GEOMEAN, 0);
-	};
-
-	HARMEAN() {
-	    return this.getToken(mathjsParser.HARMEAN, 0);
-	};
-
-	COUNT() {
-	    return this.getToken(mathjsParser.COUNT, 0);
-	};
-
-	COUNTIF() {
-	    return this.getToken(mathjsParser.COUNTIF, 0);
-	};
-
-	SUM() {
-	    return this.getToken(mathjsParser.SUM, 0);
-	};
-
-	AVEDEV() {
-	    return this.getToken(mathjsParser.AVEDEV, 0);
-	};
-
-	STDEV() {
-	    return this.getToken(mathjsParser.STDEV, 0);
-	};
-
-	STDEVP() {
-	    return this.getToken(mathjsParser.STDEVP, 0);
-	};
-
-	DEVSQ() {
-	    return this.getToken(mathjsParser.DEVSQ, 0);
-	};
-
-	VAR() {
-	    return this.getToken(mathjsParser.VAR, 0);
-	};
-
-	VARP() {
-	    return this.getToken(mathjsParser.VARP, 0);
-	};
-
-	NPV() {
-	    return this.getToken(mathjsParser.NPV, 0);
-	};
-
-	TRUE() {
-	    return this.getToken(mathjsParser.TRUE, 0);
-	};
-
-	FALSE() {
-	    return this.getToken(mathjsParser.FALSE, 0);
-	};
-
-	E() {
-	    return this.getToken(mathjsParser.E, 0);
-	};
-
-	PI() {
-	    return this.getToken(mathjsParser.PI, 0);
-	};
-
-	DEC2BIN() {
-	    return this.getToken(mathjsParser.DEC2BIN, 0);
-	};
-
-	DEC2HEX() {
-	    return this.getToken(mathjsParser.DEC2HEX, 0);
-	};
-
-	DEC2OCT() {
-	    return this.getToken(mathjsParser.DEC2OCT, 0);
-	};
-
-	HEX2BIN() {
-	    return this.getToken(mathjsParser.HEX2BIN, 0);
-	};
-
-	HEX2DEC() {
-	    return this.getToken(mathjsParser.HEX2DEC, 0);
-	};
-
-	HEX2OCT() {
-	    return this.getToken(mathjsParser.HEX2OCT, 0);
-	};
-
-	OCT2BIN() {
-	    return this.getToken(mathjsParser.OCT2BIN, 0);
-	};
-
-	OCT2DEC() {
-	    return this.getToken(mathjsParser.OCT2DEC, 0);
-	};
-
-	OCT2HEX() {
-	    return this.getToken(mathjsParser.OCT2HEX, 0);
-	};
-
-	BIN2OCT() {
-	    return this.getToken(mathjsParser.BIN2OCT, 0);
-	};
-
-	BIN2DEC() {
-	    return this.getToken(mathjsParser.BIN2DEC, 0);
-	};
-
-	BIN2HEX() {
-	    return this.getToken(mathjsParser.BIN2HEX, 0);
-	};
-
-	QUOTIENT() {
-	    return this.getToken(mathjsParser.QUOTIENT, 0);
-	};
-
-	MOD() {
-	    return this.getToken(mathjsParser.MOD, 0);
-	};
-
-	COMBIN() {
-	    return this.getToken(mathjsParser.COMBIN, 0);
-	};
-
-	PERMUT() {
-	    return this.getToken(mathjsParser.PERMUT, 0);
-	};
-
-	ATAN2() {
-	    return this.getToken(mathjsParser.ATAN2, 0);
-	};
-
-	ROUNDDOWN() {
-	    return this.getToken(mathjsParser.ROUNDDOWN, 0);
-	};
-
-	ROUNDUP() {
-	    return this.getToken(mathjsParser.ROUNDUP, 0);
-	};
-
-	MROUND() {
-	    return this.getToken(mathjsParser.MROUND, 0);
-	};
-
-	RANDBETWEEN() {
-	    return this.getToken(mathjsParser.RANDBETWEEN, 0);
-	};
-
-	POWER() {
-	    return this.getToken(mathjsParser.POWER, 0);
-	};
-
-	BESSELI() {
-	    return this.getToken(mathjsParser.BESSELI, 0);
-	};
-
-	BESSELJ() {
-	    return this.getToken(mathjsParser.BESSELJ, 0);
-	};
-
-	BESSELK() {
-	    return this.getToken(mathjsParser.BESSELK, 0);
-	};
-
-	BESSELY() {
-	    return this.getToken(mathjsParser.BESSELY, 0);
-	};
-
-	SUMX2MY2() {
-	    return this.getToken(mathjsParser.SUMX2MY2, 0);
-	};
-
-	SUMX2PY2() {
-	    return this.getToken(mathjsParser.SUMX2PY2, 0);
-	};
-
-	SUMXMY2() {
-	    return this.getToken(mathjsParser.SUMXMY2, 0);
-	};
-
-	EXACT() {
-	    return this.getToken(mathjsParser.EXACT, 0);
-	};
-
-	REPT() {
-	    return this.getToken(mathjsParser.REPT, 0);
-	};
-
-	TEXT() {
-	    return this.getToken(mathjsParser.TEXT, 0);
-	};
-
-	DAYS() {
-	    return this.getToken(mathjsParser.DAYS, 0);
-	};
-
-	EDATE() {
-	    return this.getToken(mathjsParser.EDATE, 0);
-	};
-
-	EOMONTH() {
-	    return this.getToken(mathjsParser.EOMONTH, 0);
-	};
-
-	QUARTILE() {
-	    return this.getToken(mathjsParser.QUARTILE, 0);
-	};
-
-	LARGE() {
-	    return this.getToken(mathjsParser.LARGE, 0);
-	};
-
-	SMALL() {
-	    return this.getToken(mathjsParser.SMALL, 0);
-	};
-
-	PERCENTILE() {
-	    return this.getToken(mathjsParser.PERCENTILE, 0);
-	};
-
-	PERCENTRANK() {
-	    return this.getToken(mathjsParser.PERCENTRANK, 0);
-	};
-
-	COVAR() {
-	    return this.getToken(mathjsParser.COVAR, 0);
-	};
-
-	COVARIANCES() {
-	    return this.getToken(mathjsParser.COVARIANCES, 0);
-	};
-
-	NORMINV() {
-	    return this.getToken(mathjsParser.NORMINV, 0);
-	};
-
-	BETADIST() {
-	    return this.getToken(mathjsParser.BETADIST, 0);
-	};
-
-	BETAINV() {
-	    return this.getToken(mathjsParser.BETAINV, 0);
-	};
-
-	EXPONDIST() {
-	    return this.getToken(mathjsParser.EXPONDIST, 0);
-	};
-
-	FDIST() {
-	    return this.getToken(mathjsParser.FDIST, 0);
-	};
-
-	FINV() {
-	    return this.getToken(mathjsParser.FINV, 0);
-	};
-
-	GAMMAINV() {
-	    return this.getToken(mathjsParser.GAMMAINV, 0);
-	};
-
-	LOGINV() {
-	    return this.getToken(mathjsParser.LOGINV, 0);
-	};
-
-	TINV() {
-	    return this.getToken(mathjsParser.TINV, 0);
-	};
-
-	XNPV() {
-	    return this.getToken(mathjsParser.XNPV, 0);
-	};
-
-	MIRR() {
-	    return this.getToken(mathjsParser.MIRR, 0);
-	};
-
-	SLN() {
-	    return this.getToken(mathjsParser.SLN, 0);
-	};
-
-	SYD() {
-	    return this.getToken(mathjsParser.SYD, 0);
-	};
-
-	REGEX() {
-	    return this.getToken(mathjsParser.REGEX, 0);
-	};
-
-	ISREGEX() {
-	    return this.getToken(mathjsParser.ISREGEX, 0);
-	};
-
-	HMACMD5() {
-	    return this.getToken(mathjsParser.HMACMD5, 0);
-	};
-
-	HMACSHA1() {
-	    return this.getToken(mathjsParser.HMACSHA1, 0);
-	};
-
-	HMACSHA256() {
-	    return this.getToken(mathjsParser.HMACSHA256, 0);
-	};
-
-	HMACSHA512() {
-	    return this.getToken(mathjsParser.HMACSHA512, 0);
-	};
-
-	SPLIT() {
-	    return this.getToken(mathjsParser.SPLIT, 0);
-	};
-
-	LOOKCEILING() {
-	    return this.getToken(mathjsParser.LOOKCEILING, 0);
-	};
-
-	LOOKFLOOR() {
-	    return this.getToken(mathjsParser.LOOKFLOOR, 0);
-	};
-
-	ADDYEARS() {
-	    return this.getToken(mathjsParser.ADDYEARS, 0);
-	};
-
-	ADDMONTHS() {
-	    return this.getToken(mathjsParser.ADDMONTHS, 0);
-	};
-
-	ADDDAYS() {
-	    return this.getToken(mathjsParser.ADDDAYS, 0);
-	};
-
-	ADDHOURS() {
-	    return this.getToken(mathjsParser.ADDHOURS, 0);
-	};
-
-	ADDMINUTES() {
-	    return this.getToken(mathjsParser.ADDMINUTES, 0);
-	};
-
-	ADDSECONDS() {
-	    return this.getToken(mathjsParser.ADDSECONDS, 0);
-	};
-
-	HAS() {
-	    return this.getToken(mathjsParser.HAS, 0);
-	};
-
-	HASVALUE() {
-	    return this.getToken(mathjsParser.HASVALUE, 0);
-	};
-
-	FORECAST() {
-	    return this.getToken(mathjsParser.FORECAST, 0);
-	};
-
-	INTERCEPT() {
-	    return this.getToken(mathjsParser.INTERCEPT, 0);
-	};
-
-	SLOPE() {
-	    return this.getToken(mathjsParser.SLOPE, 0);
-	};
-
-	CORREL() {
-	    return this.getToken(mathjsParser.CORREL, 0);
-	};
-
-	PEARSON() {
-	    return this.getToken(mathjsParser.PEARSON, 0);
-	};
-
-	YEARFRAC() {
-	    return this.getToken(mathjsParser.YEARFRAC, 0);
-	};
-
-	RAND() {
-	    return this.getToken(mathjsParser.RAND, 0);
-	};
-
-	NOW() {
-	    return this.getToken(mathjsParser.NOW, 0);
-	};
-
-	TODAY() {
-	    return this.getToken(mathjsParser.TODAY, 0);
-	};
-
-	GUID() {
-	    return this.getToken(mathjsParser.GUID, 0);
-	};
-
-	SERIESSUM() {
-	    return this.getToken(mathjsParser.SERIESSUM, 0);
-	};
-
-	MID() {
-	    return this.getToken(mathjsParser.MID, 0);
-	};
-
-	DATEDIF() {
-	    return this.getToken(mathjsParser.DATEDIF, 0);
-	};
-
-	REGEXREPLACE() {
-	    return this.getToken(mathjsParser.REGEXREPLACE, 0);
-	};
-
-	REPLACE() {
-	    return this.getToken(mathjsParser.REPLACE, 0);
-	};
-
-	NORMDIST() {
-	    return this.getToken(mathjsParser.NORMDIST, 0);
-	};
-
-	BINOMDIST() {
-	    return this.getToken(mathjsParser.BINOMDIST, 0);
-	};
-
-	GAMMADIST() {
-	    return this.getToken(mathjsParser.GAMMADIST, 0);
-	};
-
-	HYPGEOMDIST() {
-	    return this.getToken(mathjsParser.HYPGEOMDIST, 0);
-	};
-
-	LOGNORMDIST() {
-	    return this.getToken(mathjsParser.LOGNORMDIST, 0);
-	};
-
-	NEGBINOMDIST() {
-	    return this.getToken(mathjsParser.NEGBINOMDIST, 0);
-	};
-
-	POISSON() {
-	    return this.getToken(mathjsParser.POISSON, 0);
-	};
-
-	TDIST() {
-	    return this.getToken(mathjsParser.TDIST, 0);
-	};
-
-	WEIBULL() {
-	    return this.getToken(mathjsParser.WEIBULL, 0);
-	};
-
-	SUBSTRING() {
-	    return this.getToken(mathjsParser.SUBSTRING, 0);
-	};
-
-	STARTSWITH() {
-	    return this.getToken(mathjsParser.STARTSWITH, 0);
-	};
-
-	ENDSWITH() {
-	    return this.getToken(mathjsParser.ENDSWITH, 0);
-	};
-
-	DATE() {
-	    return this.getToken(mathjsParser.DATE, 0);
-	};
-
-	YEAR() {
-	    return this.getToken(mathjsParser.YEAR, 0);
-	};
-
-	MONTH() {
-	    return this.getToken(mathjsParser.MONTH, 0);
-	};
-
-	DAY() {
-	    return this.getToken(mathjsParser.DAY, 0);
-	};
-
-	HOUR() {
-	    return this.getToken(mathjsParser.HOUR, 0);
-	};
-
-	MINUTE() {
-	    return this.getToken(mathjsParser.MINUTE, 0);
-	};
-
-	SECOND() {
-	    return this.getToken(mathjsParser.SECOND, 0);
-	};
-
-	PMT() {
-	    return this.getToken(mathjsParser.PMT, 0);
-	};
-
-	PV() {
-	    return this.getToken(mathjsParser.PV, 0);
-	};
-
-	FV() {
-	    return this.getToken(mathjsParser.FV, 0);
-	};
-
-	NPER() {
-	    return this.getToken(mathjsParser.NPER, 0);
-	};
-
-	PPMT() {
-	    return this.getToken(mathjsParser.PPMT, 0);
-	};
-
-	IPMT() {
-	    return this.getToken(mathjsParser.IPMT, 0);
-	};
-
-	RATE() {
-	    return this.getToken(mathjsParser.RATE, 0);
-	};
-
-	INDEXOF() {
-	    return this.getToken(mathjsParser.INDEXOF, 0);
-	};
-
-	LASTINDEXOF() {
-	    return this.getToken(mathjsParser.LASTINDEXOF, 0);
-	};
-
-	JOIN() {
-	    return this.getToken(mathjsParser.JOIN, 0);
-	};
-
-	REMOVESTART() {
-	    return this.getToken(mathjsParser.REMOVESTART, 0);
-	};
-
-	REMOVEEND() {
-	    return this.getToken(mathjsParser.REMOVEEND, 0);
-	};
-
-	PARAMETER() {
-	    return this.getToken(mathjsParser.PARAMETER, 0);
-	};
-
-	ERROR() {
-	    return this.getToken(mathjsParser.ERROR, 0);
-	};
-
-	arrayJson = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ArrayJsonContext);
-	    } else {
-	        return this.getTypedRuleContext(ArrayJsonContext,i);
-	    }
-	};
-
-	ALGORITHMVERSION() {
-	    return this.getToken(mathjsParser.ALGORITHMVERSION, 0);
-	};
-
-	num() {
-	    return this.getTypedRuleContext(NumContext,0);
-	};
-
-	UNIT() {
-	    return this.getToken(mathjsParser.UNIT, 0);
-	};
-
-	STRING() {
-	    return this.getToken(mathjsParser.STRING, 0);
-	};
-
-	NULL() {
-	    return this.getToken(mathjsParser.NULL, 0);
-	};
-
-	SUB() {
-	    return this.getToken(mathjsParser.SUB, 0);
-	};
-
-	MD5() {
-	    return this.getToken(mathjsParser.MD5, 0);
-	};
-
-	SHA1() {
-	    return this.getToken(mathjsParser.SHA1, 0);
-	};
-
-	SHA256() {
-	    return this.getToken(mathjsParser.SHA256, 0);
-	};
-
-	SHA512() {
-	    return this.getToken(mathjsParser.SHA512, 0);
-	};
-
-	parameter2() {
-	    return this.getTypedRuleContext(Parameter2Context,0);
-	};
-
-
 }
-
-
-
 class NumContext extends antlr4.ParserRuleContext {
-
     constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathjsParser.RULE_num;
+        this.ruleIndex = 2;
     }
-
-	NUM() {
-	    return this.getToken(mathjsParser.NUM, 0);
-	};
-
-	SUB() {
-	    return this.getToken(mathjsParser.SUB, 0);
-	};
-
-
 }
-
-
-
 class ArrayJsonContext extends antlr4.ParserRuleContext {
-
     constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathjsParser.RULE_arrayJson;
+        this.ruleIndex = 3;
         this.key = null;
     }
-
-	expr() {
-	    return this.getTypedRuleContext(ExprContext,0);
-	};
-
-	NUM() {
-	    return this.getToken(mathjsParser.NUM, 0);
-	};
-
-	STRING() {
-	    return this.getToken(mathjsParser.STRING, 0);
-	};
-
-	parameter2() {
-	    return this.getTypedRuleContext(Parameter2Context,0);
-	};
-
-
 }
-
-
-
 class Parameter2Context extends antlr4.ParserRuleContext {
-
     constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = mathjsParser.RULE_parameter2;
+        this.ruleIndex = 4;
     }
-
-	E() {
-	    return this.getToken(mathjsParser.E, 0);
-	};
-
-	IF() {
-	    return this.getToken(mathjsParser.IF, 0);
-	};
-
-	IFS() {
-	    return this.getToken(mathjsParser.IFS, 0);
-	};
-
-	SWITCH() {
-	    return this.getToken(mathjsParser.SWITCH, 0);
-	};
-
-	IFERROR() {
-	    return this.getToken(mathjsParser.IFERROR, 0);
-	};
-
-	ISNUMBER() {
-	    return this.getToken(mathjsParser.ISNUMBER, 0);
-	};
-
-	ISTEXT() {
-	    return this.getToken(mathjsParser.ISTEXT, 0);
-	};
-
-	ISERROR() {
-	    return this.getToken(mathjsParser.ISERROR, 0);
-	};
-
-	ISNONTEXT() {
-	    return this.getToken(mathjsParser.ISNONTEXT, 0);
-	};
-
-	ISLOGICAL() {
-	    return this.getToken(mathjsParser.ISLOGICAL, 0);
-	};
-
-	ISEVEN() {
-	    return this.getToken(mathjsParser.ISEVEN, 0);
-	};
-
-	ISODD() {
-	    return this.getToken(mathjsParser.ISODD, 0);
-	};
-
-	ISNULL() {
-	    return this.getToken(mathjsParser.ISNULL, 0);
-	};
-
-	ISNULLORERROR() {
-	    return this.getToken(mathjsParser.ISNULLORERROR, 0);
-	};
-
-	AND() {
-	    return this.getToken(mathjsParser.AND, 0);
-	};
-
-	OR() {
-	    return this.getToken(mathjsParser.OR, 0);
-	};
-
-	XOR() {
-	    return this.getToken(mathjsParser.XOR, 0);
-	};
-
-	NOT() {
-	    return this.getToken(mathjsParser.NOT, 0);
-	};
-
-	TRUE() {
-	    return this.getToken(mathjsParser.TRUE, 0);
-	};
-
-	FALSE() {
-	    return this.getToken(mathjsParser.FALSE, 0);
-	};
-
-	PI() {
-	    return this.getToken(mathjsParser.PI, 0);
-	};
-
-	DEC2BIN() {
-	    return this.getToken(mathjsParser.DEC2BIN, 0);
-	};
-
-	DEC2HEX() {
-	    return this.getToken(mathjsParser.DEC2HEX, 0);
-	};
-
-	DEC2OCT() {
-	    return this.getToken(mathjsParser.DEC2OCT, 0);
-	};
-
-	HEX2BIN() {
-	    return this.getToken(mathjsParser.HEX2BIN, 0);
-	};
-
-	HEX2DEC() {
-	    return this.getToken(mathjsParser.HEX2DEC, 0);
-	};
-
-	HEX2OCT() {
-	    return this.getToken(mathjsParser.HEX2OCT, 0);
-	};
-
-	OCT2BIN() {
-	    return this.getToken(mathjsParser.OCT2BIN, 0);
-	};
-
-	OCT2DEC() {
-	    return this.getToken(mathjsParser.OCT2DEC, 0);
-	};
-
-	OCT2HEX() {
-	    return this.getToken(mathjsParser.OCT2HEX, 0);
-	};
-
-	BIN2OCT() {
-	    return this.getToken(mathjsParser.BIN2OCT, 0);
-	};
-
-	BIN2DEC() {
-	    return this.getToken(mathjsParser.BIN2DEC, 0);
-	};
-
-	BIN2HEX() {
-	    return this.getToken(mathjsParser.BIN2HEX, 0);
-	};
-
-	ABS() {
-	    return this.getToken(mathjsParser.ABS, 0);
-	};
-
-	QUOTIENT() {
-	    return this.getToken(mathjsParser.QUOTIENT, 0);
-	};
-
-	MOD() {
-	    return this.getToken(mathjsParser.MOD, 0);
-	};
-
-	SIGN() {
-	    return this.getToken(mathjsParser.SIGN, 0);
-	};
-
-	SQRT() {
-	    return this.getToken(mathjsParser.SQRT, 0);
-	};
-
-	TRUNC() {
-	    return this.getToken(mathjsParser.TRUNC, 0);
-	};
-
-	INT() {
-	    return this.getToken(mathjsParser.INT, 0);
-	};
-
-	GCD() {
-	    return this.getToken(mathjsParser.GCD, 0);
-	};
-
-	LCM() {
-	    return this.getToken(mathjsParser.LCM, 0);
-	};
-
-	COMBIN() {
-	    return this.getToken(mathjsParser.COMBIN, 0);
-	};
-
-	PERMUT() {
-	    return this.getToken(mathjsParser.PERMUT, 0);
-	};
-
-	DEGREES() {
-	    return this.getToken(mathjsParser.DEGREES, 0);
-	};
-
-	RADIANS() {
-	    return this.getToken(mathjsParser.RADIANS, 0);
-	};
-
-	COS() {
-	    return this.getToken(mathjsParser.COS, 0);
-	};
-
-	COSH() {
-	    return this.getToken(mathjsParser.COSH, 0);
-	};
-
-	SIN() {
-	    return this.getToken(mathjsParser.SIN, 0);
-	};
-
-	SINH() {
-	    return this.getToken(mathjsParser.SINH, 0);
-	};
-
-	TAN() {
-	    return this.getToken(mathjsParser.TAN, 0);
-	};
-
-	TANH() {
-	    return this.getToken(mathjsParser.TANH, 0);
-	};
-
-	COT() {
-	    return this.getToken(mathjsParser.COT, 0);
-	};
-
-	COTH() {
-	    return this.getToken(mathjsParser.COTH, 0);
-	};
-
-	CSC() {
-	    return this.getToken(mathjsParser.CSC, 0);
-	};
-
-	CSCH() {
-	    return this.getToken(mathjsParser.CSCH, 0);
-	};
-
-	SEC() {
-	    return this.getToken(mathjsParser.SEC, 0);
-	};
-
-	SECH() {
-	    return this.getToken(mathjsParser.SECH, 0);
-	};
-
-	ACOS() {
-	    return this.getToken(mathjsParser.ACOS, 0);
-	};
-
-	ACOSH() {
-	    return this.getToken(mathjsParser.ACOSH, 0);
-	};
-
-	ASIN() {
-	    return this.getToken(mathjsParser.ASIN, 0);
-	};
-
-	ASINH() {
-	    return this.getToken(mathjsParser.ASINH, 0);
-	};
-
-	ATAN() {
-	    return this.getToken(mathjsParser.ATAN, 0);
-	};
-
-	ATANH() {
-	    return this.getToken(mathjsParser.ATANH, 0);
-	};
-
-	ACOT() {
-	    return this.getToken(mathjsParser.ACOT, 0);
-	};
-
-	ACOTH() {
-	    return this.getToken(mathjsParser.ACOTH, 0);
-	};
-
-	ATAN2() {
-	    return this.getToken(mathjsParser.ATAN2, 0);
-	};
-
-	ROUND() {
-	    return this.getToken(mathjsParser.ROUND, 0);
-	};
-
-	ROUNDDOWN() {
-	    return this.getToken(mathjsParser.ROUNDDOWN, 0);
-	};
-
-	ROUNDUP() {
-	    return this.getToken(mathjsParser.ROUNDUP, 0);
-	};
-
-	CEILING() {
-	    return this.getToken(mathjsParser.CEILING, 0);
-	};
-
-	FLOOR() {
-	    return this.getToken(mathjsParser.FLOOR, 0);
-	};
-
-	EVEN() {
-	    return this.getToken(mathjsParser.EVEN, 0);
-	};
-
-	ODD() {
-	    return this.getToken(mathjsParser.ODD, 0);
-	};
-
-	MROUND() {
-	    return this.getToken(mathjsParser.MROUND, 0);
-	};
-
-	RAND() {
-	    return this.getToken(mathjsParser.RAND, 0);
-	};
-
-	RANDBETWEEN() {
-	    return this.getToken(mathjsParser.RANDBETWEEN, 0);
-	};
-
-	FACT() {
-	    return this.getToken(mathjsParser.FACT, 0);
-	};
-
-	FACTDOUBLE() {
-	    return this.getToken(mathjsParser.FACTDOUBLE, 0);
-	};
-
-	POWER() {
-	    return this.getToken(mathjsParser.POWER, 0);
-	};
-
-	EXP() {
-	    return this.getToken(mathjsParser.EXP, 0);
-	};
-
-	LN() {
-	    return this.getToken(mathjsParser.LN, 0);
-	};
-
-	LOG() {
-	    return this.getToken(mathjsParser.LOG, 0);
-	};
-
-	LOG10() {
-	    return this.getToken(mathjsParser.LOG10, 0);
-	};
-
-	MULTINOMIAL() {
-	    return this.getToken(mathjsParser.MULTINOMIAL, 0);
-	};
-
-	PRODUCT() {
-	    return this.getToken(mathjsParser.PRODUCT, 0);
-	};
-
-	SQRTPI() {
-	    return this.getToken(mathjsParser.SQRTPI, 0);
-	};
-
-	ERF() {
-	    return this.getToken(mathjsParser.ERF, 0);
-	};
-
-	ERFC() {
-	    return this.getToken(mathjsParser.ERFC, 0);
-	};
-
-	BESSELI() {
-	    return this.getToken(mathjsParser.BESSELI, 0);
-	};
-
-	BESSELJ() {
-	    return this.getToken(mathjsParser.BESSELJ, 0);
-	};
-
-	BESSELK() {
-	    return this.getToken(mathjsParser.BESSELK, 0);
-	};
-
-	BESSELY() {
-	    return this.getToken(mathjsParser.BESSELY, 0);
-	};
-
-	DELTA() {
-	    return this.getToken(mathjsParser.DELTA, 0);
-	};
-
-	GESTEP() {
-	    return this.getToken(mathjsParser.GESTEP, 0);
-	};
-
-	SUMSQ() {
-	    return this.getToken(mathjsParser.SUMSQ, 0);
-	};
-
-	SUMPRODUCT() {
-	    return this.getToken(mathjsParser.SUMPRODUCT, 0);
-	};
-
-	SUMX2MY2() {
-	    return this.getToken(mathjsParser.SUMX2MY2, 0);
-	};
-
-	SUMX2PY2() {
-	    return this.getToken(mathjsParser.SUMX2PY2, 0);
-	};
-
-	SUMXMY2() {
-	    return this.getToken(mathjsParser.SUMXMY2, 0);
-	};
-
-	ARABIC() {
-	    return this.getToken(mathjsParser.ARABIC, 0);
-	};
-
-	ROMAN() {
-	    return this.getToken(mathjsParser.ROMAN, 0);
-	};
-
-	SERIESSUM() {
-	    return this.getToken(mathjsParser.SERIESSUM, 0);
-	};
-
-	RANK() {
-	    return this.getToken(mathjsParser.RANK, 0);
-	};
-
-	FORECAST() {
-	    return this.getToken(mathjsParser.FORECAST, 0);
-	};
-
-	INTERCEPT() {
-	    return this.getToken(mathjsParser.INTERCEPT, 0);
-	};
-
-	SLOPE() {
-	    return this.getToken(mathjsParser.SLOPE, 0);
-	};
-
-	CORREL() {
-	    return this.getToken(mathjsParser.CORREL, 0);
-	};
-
-	PEARSON() {
-	    return this.getToken(mathjsParser.PEARSON, 0);
-	};
-
-	YEARFRAC() {
-	    return this.getToken(mathjsParser.YEARFRAC, 0);
-	};
-
-	ASC() {
-	    return this.getToken(mathjsParser.ASC, 0);
-	};
-
-	JIS() {
-	    return this.getToken(mathjsParser.JIS, 0);
-	};
-
-	CHAR() {
-	    return this.getToken(mathjsParser.CHAR, 0);
-	};
-
-	CLEAN() {
-	    return this.getToken(mathjsParser.CLEAN, 0);
-	};
-
-	CODE() {
-	    return this.getToken(mathjsParser.CODE, 0);
-	};
-
-	UNICHAR() {
-	    return this.getToken(mathjsParser.UNICHAR, 0);
-	};
-
-	UNICODE() {
-	    return this.getToken(mathjsParser.UNICODE, 0);
-	};
-
-	CONCATENATE() {
-	    return this.getToken(mathjsParser.CONCATENATE, 0);
-	};
-
-	EXACT() {
-	    return this.getToken(mathjsParser.EXACT, 0);
-	};
-
-	FIND() {
-	    return this.getToken(mathjsParser.FIND, 0);
-	};
-
-	FIXED() {
-	    return this.getToken(mathjsParser.FIXED, 0);
-	};
-
-	LEFT() {
-	    return this.getToken(mathjsParser.LEFT, 0);
-	};
-
-	LEN() {
-	    return this.getToken(mathjsParser.LEN, 0);
-	};
-
-	LOWER() {
-	    return this.getToken(mathjsParser.LOWER, 0);
-	};
-
-	MID() {
-	    return this.getToken(mathjsParser.MID, 0);
-	};
-
-	PROPER() {
-	    return this.getToken(mathjsParser.PROPER, 0);
-	};
-
-	REPLACE() {
-	    return this.getToken(mathjsParser.REPLACE, 0);
-	};
-
-	REPT() {
-	    return this.getToken(mathjsParser.REPT, 0);
-	};
-
-	RIGHT() {
-	    return this.getToken(mathjsParser.RIGHT, 0);
-	};
-
-	RMB() {
-	    return this.getToken(mathjsParser.RMB, 0);
-	};
-
-	SEARCH() {
-	    return this.getToken(mathjsParser.SEARCH, 0);
-	};
-
-	SUBSTITUTE() {
-	    return this.getToken(mathjsParser.SUBSTITUTE, 0);
-	};
-
-	T() {
-	    return this.getToken(mathjsParser.T, 0);
-	};
-
-	TEXT() {
-	    return this.getToken(mathjsParser.TEXT, 0);
-	};
-
-	TRIM() {
-	    return this.getToken(mathjsParser.TRIM, 0);
-	};
-
-	UPPER() {
-	    return this.getToken(mathjsParser.UPPER, 0);
-	};
-
-	VALUE() {
-	    return this.getToken(mathjsParser.VALUE, 0);
-	};
-
-	DATEVALUE() {
-	    return this.getToken(mathjsParser.DATEVALUE, 0);
-	};
-
-	TIMEVALUE() {
-	    return this.getToken(mathjsParser.TIMEVALUE, 0);
-	};
-
-	DATE() {
-	    return this.getToken(mathjsParser.DATE, 0);
-	};
-
-	TIME() {
-	    return this.getToken(mathjsParser.TIME, 0);
-	};
-
-	NOW() {
-	    return this.getToken(mathjsParser.NOW, 0);
-	};
-
-	TODAY() {
-	    return this.getToken(mathjsParser.TODAY, 0);
-	};
-
-	YEAR() {
-	    return this.getToken(mathjsParser.YEAR, 0);
-	};
-
-	MONTH() {
-	    return this.getToken(mathjsParser.MONTH, 0);
-	};
-
-	DAY() {
-	    return this.getToken(mathjsParser.DAY, 0);
-	};
-
-	HOUR() {
-	    return this.getToken(mathjsParser.HOUR, 0);
-	};
-
-	MINUTE() {
-	    return this.getToken(mathjsParser.MINUTE, 0);
-	};
-
-	SECOND() {
-	    return this.getToken(mathjsParser.SECOND, 0);
-	};
-
-	WEEKDAY() {
-	    return this.getToken(mathjsParser.WEEKDAY, 0);
-	};
-
-	DATEDIF() {
-	    return this.getToken(mathjsParser.DATEDIF, 0);
-	};
-
-	DAYS() {
-	    return this.getToken(mathjsParser.DAYS, 0);
-	};
-
-	DAYS360() {
-	    return this.getToken(mathjsParser.DAYS360, 0);
-	};
-
-	EDATE() {
-	    return this.getToken(mathjsParser.EDATE, 0);
-	};
-
-	EOMONTH() {
-	    return this.getToken(mathjsParser.EOMONTH, 0);
-	};
-
-	NETWORKDAYS() {
-	    return this.getToken(mathjsParser.NETWORKDAYS, 0);
-	};
-
-	WORKDAY() {
-	    return this.getToken(mathjsParser.WORKDAY, 0);
-	};
-
-	WEEKNUM() {
-	    return this.getToken(mathjsParser.WEEKNUM, 0);
-	};
-
-	MAX() {
-	    return this.getToken(mathjsParser.MAX, 0);
-	};
-
-	MEDIAN() {
-	    return this.getToken(mathjsParser.MEDIAN, 0);
-	};
-
-	MIN() {
-	    return this.getToken(mathjsParser.MIN, 0);
-	};
-
-	QUARTILE() {
-	    return this.getToken(mathjsParser.QUARTILE, 0);
-	};
-
-	MODE() {
-	    return this.getToken(mathjsParser.MODE, 0);
-	};
-
-	LARGE() {
-	    return this.getToken(mathjsParser.LARGE, 0);
-	};
-
-	SMALL() {
-	    return this.getToken(mathjsParser.SMALL, 0);
-	};
-
-	PERCENTILE() {
-	    return this.getToken(mathjsParser.PERCENTILE, 0);
-	};
-
-	PERCENTRANK() {
-	    return this.getToken(mathjsParser.PERCENTRANK, 0);
-	};
-
-	AVERAGE() {
-	    return this.getToken(mathjsParser.AVERAGE, 0);
-	};
-
-	AVERAGEIF() {
-	    return this.getToken(mathjsParser.AVERAGEIF, 0);
-	};
-
-	GEOMEAN() {
-	    return this.getToken(mathjsParser.GEOMEAN, 0);
-	};
-
-	HARMEAN() {
-	    return this.getToken(mathjsParser.HARMEAN, 0);
-	};
-
-	COUNT() {
-	    return this.getToken(mathjsParser.COUNT, 0);
-	};
-
-	COUNTIF() {
-	    return this.getToken(mathjsParser.COUNTIF, 0);
-	};
-
-	SUM() {
-	    return this.getToken(mathjsParser.SUM, 0);
-	};
-
-	SUMIF() {
-	    return this.getToken(mathjsParser.SUMIF, 0);
-	};
-
-	AVEDEV() {
-	    return this.getToken(mathjsParser.AVEDEV, 0);
-	};
-
-	STDEV() {
-	    return this.getToken(mathjsParser.STDEV, 0);
-	};
-
-	STDEVP() {
-	    return this.getToken(mathjsParser.STDEVP, 0);
-	};
-
-	COVAR() {
-	    return this.getToken(mathjsParser.COVAR, 0);
-	};
-
-	COVARIANCES() {
-	    return this.getToken(mathjsParser.COVARIANCES, 0);
-	};
-
-	DEVSQ() {
-	    return this.getToken(mathjsParser.DEVSQ, 0);
-	};
-
-	VAR() {
-	    return this.getToken(mathjsParser.VAR, 0);
-	};
-
-	VARP() {
-	    return this.getToken(mathjsParser.VARP, 0);
-	};
-
-	NORMDIST() {
-	    return this.getToken(mathjsParser.NORMDIST, 0);
-	};
-
-	NORMINV() {
-	    return this.getToken(mathjsParser.NORMINV, 0);
-	};
-
-	NORMSDIST() {
-	    return this.getToken(mathjsParser.NORMSDIST, 0);
-	};
-
-	NORMSINV() {
-	    return this.getToken(mathjsParser.NORMSINV, 0);
-	};
-
-	BETADIST() {
-	    return this.getToken(mathjsParser.BETADIST, 0);
-	};
-
-	BETAINV() {
-	    return this.getToken(mathjsParser.BETAINV, 0);
-	};
-
-	BINOMDIST() {
-	    return this.getToken(mathjsParser.BINOMDIST, 0);
-	};
-
-	EXPONDIST() {
-	    return this.getToken(mathjsParser.EXPONDIST, 0);
-	};
-
-	FDIST() {
-	    return this.getToken(mathjsParser.FDIST, 0);
-	};
-
-	FINV() {
-	    return this.getToken(mathjsParser.FINV, 0);
-	};
-
-	FISHER() {
-	    return this.getToken(mathjsParser.FISHER, 0);
-	};
-
-	FISHERINV() {
-	    return this.getToken(mathjsParser.FISHERINV, 0);
-	};
-
-	GAMMADIST() {
-	    return this.getToken(mathjsParser.GAMMADIST, 0);
-	};
-
-	GAMMAINV() {
-	    return this.getToken(mathjsParser.GAMMAINV, 0);
-	};
-
-	GAMMALN() {
-	    return this.getToken(mathjsParser.GAMMALN, 0);
-	};
-
-	HYPGEOMDIST() {
-	    return this.getToken(mathjsParser.HYPGEOMDIST, 0);
-	};
-
-	LOGINV() {
-	    return this.getToken(mathjsParser.LOGINV, 0);
-	};
-
-	LOGNORMDIST() {
-	    return this.getToken(mathjsParser.LOGNORMDIST, 0);
-	};
-
-	NEGBINOMDIST() {
-	    return this.getToken(mathjsParser.NEGBINOMDIST, 0);
-	};
-
-	POISSON() {
-	    return this.getToken(mathjsParser.POISSON, 0);
-	};
-
-	TDIST() {
-	    return this.getToken(mathjsParser.TDIST, 0);
-	};
-
-	TINV() {
-	    return this.getToken(mathjsParser.TINV, 0);
-	};
-
-	WEIBULL() {
-	    return this.getToken(mathjsParser.WEIBULL, 0);
-	};
-
-	URLENCODE() {
-	    return this.getToken(mathjsParser.URLENCODE, 0);
-	};
-
-	URLDECODE() {
-	    return this.getToken(mathjsParser.URLDECODE, 0);
-	};
-
-	HTMLENCODE() {
-	    return this.getToken(mathjsParser.HTMLENCODE, 0);
-	};
-
-	HTMLDECODE() {
-	    return this.getToken(mathjsParser.HTMLDECODE, 0);
-	};
-
-	BASE64TOTEXT() {
-	    return this.getToken(mathjsParser.BASE64TOTEXT, 0);
-	};
-
-	BASE64URLTOTEXT() {
-	    return this.getToken(mathjsParser.BASE64URLTOTEXT, 0);
-	};
-
-	TEXTTOBASE64() {
-	    return this.getToken(mathjsParser.TEXTTOBASE64, 0);
-	};
-
-	TEXTTOBASE64URL() {
-	    return this.getToken(mathjsParser.TEXTTOBASE64URL, 0);
-	};
-
-	REGEX() {
-	    return this.getToken(mathjsParser.REGEX, 0);
-	};
-
-	REGEXREPLACE() {
-	    return this.getToken(mathjsParser.REGEXREPLACE, 0);
-	};
-
-	ISREGEX() {
-	    return this.getToken(mathjsParser.ISREGEX, 0);
-	};
-
-	GUID() {
-	    return this.getToken(mathjsParser.GUID, 0);
-	};
-
-	MD5() {
-	    return this.getToken(mathjsParser.MD5, 0);
-	};
-
-	SHA1() {
-	    return this.getToken(mathjsParser.SHA1, 0);
-	};
-
-	SHA256() {
-	    return this.getToken(mathjsParser.SHA256, 0);
-	};
-
-	SHA512() {
-	    return this.getToken(mathjsParser.SHA512, 0);
-	};
-
-	HMACMD5() {
-	    return this.getToken(mathjsParser.HMACMD5, 0);
-	};
-
-	HMACSHA1() {
-	    return this.getToken(mathjsParser.HMACSHA1, 0);
-	};
-
-	HMACSHA256() {
-	    return this.getToken(mathjsParser.HMACSHA256, 0);
-	};
-
-	HMACSHA512() {
-	    return this.getToken(mathjsParser.HMACSHA512, 0);
-	};
-
-	TRIMSTART() {
-	    return this.getToken(mathjsParser.TRIMSTART, 0);
-	};
-
-	TRIMEND() {
-	    return this.getToken(mathjsParser.TRIMEND, 0);
-	};
-
-	INDEXOF() {
-	    return this.getToken(mathjsParser.INDEXOF, 0);
-	};
-
-	LASTINDEXOF() {
-	    return this.getToken(mathjsParser.LASTINDEXOF, 0);
-	};
-
-	SPLIT() {
-	    return this.getToken(mathjsParser.SPLIT, 0);
-	};
-
-	JOIN() {
-	    return this.getToken(mathjsParser.JOIN, 0);
-	};
-
-	SUBSTRING() {
-	    return this.getToken(mathjsParser.SUBSTRING, 0);
-	};
-
-	STARTSWITH() {
-	    return this.getToken(mathjsParser.STARTSWITH, 0);
-	};
-
-	ENDSWITH() {
-	    return this.getToken(mathjsParser.ENDSWITH, 0);
-	};
-
-	ISNULLOREMPTY() {
-	    return this.getToken(mathjsParser.ISNULLOREMPTY, 0);
-	};
-
-	ISNULLORWHITESPACE() {
-	    return this.getToken(mathjsParser.ISNULLORWHITESPACE, 0);
-	};
-
-	REMOVESTART() {
-	    return this.getToken(mathjsParser.REMOVESTART, 0);
-	};
-
-	REMOVEEND() {
-	    return this.getToken(mathjsParser.REMOVEEND, 0);
-	};
-
-	JSON() {
-	    return this.getToken(mathjsParser.JSON, 0);
-	};
-
-	LOOKCEILING() {
-	    return this.getToken(mathjsParser.LOOKCEILING, 0);
-	};
-
-	LOOKFLOOR() {
-	    return this.getToken(mathjsParser.LOOKFLOOR, 0);
-	};
-
-	ADDYEARS() {
-	    return this.getToken(mathjsParser.ADDYEARS, 0);
-	};
-
-	ADDMONTHS() {
-	    return this.getToken(mathjsParser.ADDMONTHS, 0);
-	};
-
-	ADDDAYS() {
-	    return this.getToken(mathjsParser.ADDDAYS, 0);
-	};
-
-	ADDHOURS() {
-	    return this.getToken(mathjsParser.ADDHOURS, 0);
-	};
-
-	ADDMINUTES() {
-	    return this.getToken(mathjsParser.ADDMINUTES, 0);
-	};
-
-	ADDSECONDS() {
-	    return this.getToken(mathjsParser.ADDSECONDS, 0);
-	};
-
-	TIMESTAMP() {
-	    return this.getToken(mathjsParser.TIMESTAMP, 0);
-	};
-
-	PMT() {
-	    return this.getToken(mathjsParser.PMT, 0);
-	};
-
-	PPMT() {
-	    return this.getToken(mathjsParser.PPMT, 0);
-	};
-
-	IPMT() {
-	    return this.getToken(mathjsParser.IPMT, 0);
-	};
-
-	PV() {
-	    return this.getToken(mathjsParser.PV, 0);
-	};
-
-	FV() {
-	    return this.getToken(mathjsParser.FV, 0);
-	};
-
-	NPER() {
-	    return this.getToken(mathjsParser.NPER, 0);
-	};
-
-	RATE() {
-	    return this.getToken(mathjsParser.RATE, 0);
-	};
-
-	NPV() {
-	    return this.getToken(mathjsParser.NPV, 0);
-	};
-
-	XNPV() {
-	    return this.getToken(mathjsParser.XNPV, 0);
-	};
-
-	IRR() {
-	    return this.getToken(mathjsParser.IRR, 0);
-	};
-
-	MIRR() {
-	    return this.getToken(mathjsParser.MIRR, 0);
-	};
-
-	XIRR() {
-	    return this.getToken(mathjsParser.XIRR, 0);
-	};
-
-	SLN() {
-	    return this.getToken(mathjsParser.SLN, 0);
-	};
-
-	DB() {
-	    return this.getToken(mathjsParser.DB, 0);
-	};
-
-	DDB() {
-	    return this.getToken(mathjsParser.DDB, 0);
-	};
-
-	SYD() {
-	    return this.getToken(mathjsParser.SYD, 0);
-	};
-
-	NULL() {
-	    return this.getToken(mathjsParser.NULL, 0);
-	};
-
-	ERROR() {
-	    return this.getToken(mathjsParser.ERROR, 0);
-	};
-
-	UNIT() {
-	    return this.getToken(mathjsParser.UNIT, 0);
-	};
-
-	HAS() {
-	    return this.getToken(mathjsParser.HAS, 0);
-	};
-
-	HASVALUE() {
-	    return this.getToken(mathjsParser.HASVALUE, 0);
-	};
-
-	ALGORITHMVERSION() {
-	    return this.getToken(mathjsParser.ALGORITHMVERSION, 0);
-	};
-
-	PARAM() {
-	    return this.getToken(mathjsParser.PARAM, 0);
-	};
-
-	PARAMETER() {
-	    return this.getToken(mathjsParser.PARAMETER, 0);
-	};
-
-
 }
-
-
-
-
-mathjsParser.ProgContext = ProgContext; 
-mathjsParser.ExprContext = ExprContext; 
-mathjsParser.NumContext = NumContext; 
-mathjsParser.ArrayJsonContext = ArrayJsonContext; 
-mathjsParser.Parameter2Context = Parameter2Context; 
