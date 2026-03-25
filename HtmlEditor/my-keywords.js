@@ -56,7 +56,7 @@ ace_keywords = [{
     "meta": "反正切值"
 }, {
     "caption": "atan2",
-    "text": "atan2(数值)",
+    "text": "atan2(数值, 数值)",
     "meta": "反正切"
 }, {
     "caption": "atanh",
@@ -237,7 +237,7 @@ ace_keywords = [{
 }, {
     "caption": "gammaInv",
     "text": "gammaInv(分布概率, 分布参数α, 分布参数β)",
-    "meta": "反伽玛函数的"
+    "meta": "反伽玛函数"
 }, {
     "caption": "gammaLn",
     "text": "gammaLn(数值)",
@@ -471,6 +471,18 @@ ace_keywords = [{
     "text": "not(逻辑值)",
     "meta": "求反"
 }, {
+    "caption": "ifs",
+    "text": "ifs(条件1, 值1, 条件2, 值2, ...)",
+    "meta": "检查是否满足一个或多个条件，返回第一个TRUE条件对应的值"
+}, {
+    "caption": "switch",
+    "text": "switch(表达式, 值1, 结果1, 值2, 结果2, ...)",
+    "meta": "根据值列表计算表达式的值，并返回对应结果"
+}, {
+    "caption": "xor",
+    "text": "xor(逻辑值1, 逻辑值2, ...)",
+    "meta": "返回所有参数的异或值，奇数个TRUE返回TRUE"
+}, {
     "caption": "now",
     "text": "now()",
     "meta": "当前日期和时间"
@@ -539,12 +551,12 @@ ace_keywords = [{
     "text": "randBetween(最小整数, 最大整数)",
     "meta": "随机整数"
 }, {
-    "caption": "regexRepalce",
-    "text": "regexRepalce(文本, 匹配文本, 替换文本)",
+    "caption": "regexReplace",
+    "text": "regexReplace(文本, 匹配文本, 替换文本)",
     "meta": "正则替换"
 }, {
     "caption": "removeEnd",
-    "text": "removeEnd(文本, 左边文本, 可选忽略大小写1/0)",
+    "text": "removeEnd(文本, 右边文本, 可选忽略大小写1/0)",
     "meta": "去除右边匹配文本"
 }, {
     "caption": "removeStart",
@@ -651,10 +663,6 @@ ace_keywords = [{
     "text": "sumIf(数组, 条件, 可选数组)",
     "meta": "求和"
 }, {
-    "caption": "sumQq",
-    "text": "sumQq(数值A, 数值B,,,)",
-    "meta": "平方和"
-}, {
     "caption": "t",
     "text": "t(数值)",
     "meta": "转文本"
@@ -666,6 +674,150 @@ ace_keywords = [{
     "caption": "tanh",
     "text": "tanh(弧度)",
     "meta": "双曲正切值"
+}, {
+    "caption": "cot",
+    "text": "cot(弧度)",
+    "meta": "余切值"
+}, {
+    "caption": "coth",
+    "text": "coth(弧度)",
+    "meta": "双曲余切值"
+}, {
+    "caption": "csc",
+    "text": "csc(弧度)",
+    "meta": "余割值"
+}, {
+    "caption": "csch",
+    "text": "csch(弧度)",
+    "meta": "双曲余割值"
+}, {
+    "caption": "sec",
+    "text": "sec(弧度)",
+    "meta": "正割值"
+}, {
+    "caption": "sech",
+    "text": "sech(弧度)",
+    "meta": "双曲正割值"
+}, {
+    "caption": "acot",
+    "text": "acot(数值)",
+    "meta": "反余切值"
+}, {
+    "caption": "acoth",
+    "text": "acoth(数值)",
+    "meta": "反双曲余切值"
+}, {
+    "caption": "erf",
+    "text": "erf(数值)",
+    "meta": "误差函数值"
+}, {
+    "caption": "erfc",
+    "text": "erfc(数值)",
+    "meta": "补余误差函数值"
+}, {
+    "caption": "besselI",
+    "text": "besselI(x, n)",
+    "meta": "修正贝塞尔函数 In(x)"
+}, {
+    "caption": "besselJ",
+    "text": "besselJ(x, n)",
+    "meta": "贝塞尔函数 Jn(x)"
+}, {
+    "caption": "besselK",
+    "text": "besselK(x, n)",
+    "meta": "修正贝塞尔函数 Kn(x)"
+}, {
+    "caption": "besselY",
+    "text": "besselY(x, n)",
+    "meta": "贝塞尔函数 Yn(x)"
+}, {
+    "caption": "delta",
+    "text": "delta(数值1, 可选数值2)",
+    "meta": "检验两个数值是否相等，相等返回1，否则返回0"
+}, {
+    "caption": "gestep",
+    "text": "gestep(数值, 可选阈值)",
+    "meta": "检验数值是否大于等于阈值，大于等于返回1，否则返回0"
+}, {
+    "caption": "sumSq",
+    "text": "sumSq(数值A, 数值B, ...)",
+    "meta": "参数的平方和"
+}, {
+    "caption": "sumProduct",
+    "text": "sumProduct(数组1, 数组2, ...)",
+    "meta": "数组对应元素乘积之和"
+}, {
+    "caption": "sumX2MY2",
+    "text": "sumX2MY2(数组X, 数组Y)",
+    "meta": "两数组中对应数值的平方差之和"
+}, {
+    "caption": "sumX2PY2",
+    "text": "sumX2PY2(数组X, 数组Y)",
+    "meta": "两数组中对应数值的平方和之和"
+}, {
+    "caption": "sumXMY2",
+    "text": "sumXMY2(数组X, 数组Y)",
+    "meta": "两数组中对应数值之差的平方和"
+}, {
+    "caption": "seriesSum",
+    "text": "seriesSum(X, N, M, 系数数组)",
+    "meta": "返回幂级数之和"
+}, {
+    "caption": "arabic",
+    "text": "arabic(罗马数字文本)",
+    "meta": "将罗马数字转换为阿拉伯数字"
+}, {
+    "caption": "roman",
+    "text": "roman(数值, 可选类型)",
+    "meta": "将阿拉伯数字转换为罗马数字"
+}, {
+    "caption": "dec2bin",
+    "text": "dec2bin(数值, 可选位数)",
+    "meta": "十进制转二进制"
+}, {
+    "caption": "dec2oct",
+    "text": "dec2oct(数值, 可选位数)",
+    "meta": "十进制转八进制"
+}, {
+    "caption": "dec2hex",
+    "text": "dec2hex(数值, 可选位数)",
+    "meta": "十进制转十六进制"
+}, {
+    "caption": "hex2bin",
+    "text": "hex2bin(数值, 可选位数)",
+    "meta": "十六进制转二进制"
+}, {
+    "caption": "hex2oct",
+    "text": "hex2oct(数值, 可选位数)",
+    "meta": "十六进制转八进制"
+}, {
+    "caption": "hex2dec",
+    "text": "hex2dec(数值)",
+    "meta": "十六进制转十进制"
+}, {
+    "caption": "oct2bin",
+    "text": "oct2bin(数值, 可选位数)",
+    "meta": "八进制转二进制"
+}, {
+    "caption": "oct2dec",
+    "text": "oct2dec(数值)",
+    "meta": "八进制转十进制"
+}, {
+    "caption": "oct2hex",
+    "text": "oct2hex(数值, 可选位数)",
+    "meta": "八进制转十六进制"
+}, {
+    "caption": "bin2oct",
+    "text": "bin2oct(数值, 可选位数)",
+    "meta": "二进制转八进制"
+}, {
+    "caption": "bin2dec",
+    "text": "bin2dec(数值)",
+    "meta": "二进制转十进制"
+}, {
+    "caption": "bin2hex",
+    "text": "bin2hex(数值, 可选位数)",
+    "meta": "二进制转十六进制"
 }, {
     "caption": "tDist",
     "text": "tDist(数值, 自由度, 返回类型1/2)",
@@ -727,6 +879,14 @@ ace_keywords = [{
     "text": "value(字符串)",
     "meta": "文本转数值"
 }, {
+    "caption": "unichar",
+    "text": "unichar(数值)",
+    "meta": "返回由Unicode数值指定的字符"
+}, {
+    "caption": "unicode",
+    "text": "unicode(字符串)",
+    "meta": "返回文本字符串中第一个字符的Unicode数值代码"
+}, {
     "caption": "var",
     "text": "var(数值A, 数值B,,,)",
     "meta": "样本估算方差"
@@ -755,7 +915,179 @@ ace_keywords = [{
     "text": "workDay(开始日期, 天数, 可选假日)",
     "meta": "计算以后工作日期"
 }, {
+    "caption": "days",
+    "text": "days(结束日期, 开始日期)",
+    "meta": "返回两个日期之间的天数"
+}, {
+    "caption": "yearFrac",
+    "text": "yearFrac(开始日期, 结束日期, 可选基准类型：0-4)",
+    "meta": "返回两个日期之间的天数占全年天数的比例"
+}, {
+    "caption": "timestamp",
+    "text": "timestamp(值, 可选数值=0)",
+    "meta": "转成时间戳，默认为毫秒"
+}, {
     "caption": "year",
     "text": "year(日期)",
     "meta": "年"
+}, {
+    "caption": "pmt",
+    "text": "pmt(利率, 期数, 现值, 可选终值, 可选类型)",
+    "meta": "计算在定期支付、固定利率的情况下贷款的每期付款额"
+}, {
+    "caption": "ppmt",
+    "text": "ppmt(利率, 期数, 总期数, 现值, 可选终值, 可选类型)",
+    "meta": "计算在定期支付、固定利率的情况下贷款的每期本金付款额"
+}, {
+    "caption": "ipmt",
+    "text": "ipmt(利率, 期数, 总期数, 现值, 可选终值, 可选类型)",
+    "meta": "计算在定期支付、固定利率的情况下贷款的每期利息付款额"
+}, {
+    "caption": "pv",
+    "text": "pv(利率, 期数, 每期付款, 可选终值, 可选类型)",
+    "meta": "计算投资的现值"
+}, {
+    "caption": "fv",
+    "text": "fv(利率, 期数, 每期付款, 可选现值, 可选类型)",
+    "meta": "计算投资的终值"
+}, {
+    "caption": "nper",
+    "text": "nper(利率, 每期付款, 现值, 可选终值, 可选类型)",
+    "meta": "计算投资的期数"
+}, {
+    "caption": "rate",
+    "text": "rate(期数, 每期付款, 现值, 可选终值, 可选类型, 可选猜测值)",
+    "meta": "计算投资的每期利率"
+}, {
+    "caption": "npv",
+    "text": "npv(利率, 数值1, ...)",
+    "meta": "计算一系列定期现金流的净现值"
+}, {
+    "caption": "xnpv",
+    "text": "xnpv(利率, 现金流数组, 日期数组)",
+    "meta": "计算一系列非定期现金流的净现值"
+}, {
+    "caption": "irr",
+    "text": "irr(现金流数组, 可选猜测值)",
+    "meta": "计算一系列现金流的内部收益率"
+}, {
+    "caption": "mirr",
+    "text": "mirr(现金流数组, 融资利率, 再投资利率)",
+    "meta": "计算一系列现金流的修正内部收益率"
+}, {
+    "caption": "xirr",
+    "text": "xirr(现金流数组, 日期数组, 可选猜测值)",
+    "meta": "计算一系列非定期现金流的内部收益率"
+}, {
+    "caption": "sln",
+    "text": "sln(原值, 残值, 使用年限)",
+    "meta": "计算资产的直线折旧"
+}, {
+    "caption": "db",
+    "text": "db(原值, 残值, 使用年限, 期数, 可选月数)",
+    "meta": "计算资产的余额递减折旧"
+}, {
+    "caption": "ddb",
+    "text": "ddb(原值, 残值, 使用年限, 期数, 可选余额递减率)",
+    "meta": "计算资产的双倍余额递减折旧"
+}, {
+    "caption": "syd",
+    "text": "syd(原值, 残值, 使用年限, 期数)",
+    "meta": "计算资产的年数总和折旧"
+}, {
+    "caption": "array",
+    "text": "array(值1, 值2, ...)",
+    "meta": "创建数组"
+}, {
+    "caption": "covarianceS",
+    "text": "covarianceS(数组1, 数组2)",
+    "meta": "返回样本协方差"
+}, {
+    "caption": "rank",
+    "text": "rank(数值, 数组, 可选排序方式：0/1)",
+    "meta": "返回数值在数组中的排名"
+}, {
+    "caption": "forecast",
+    "text": "forecast(X, Y数组, X数组)",
+    "meta": "根据线性趋势返回预测值"
+}, {
+    "caption": "intercept",
+    "text": "intercept(Y数组, X数组)",
+    "meta": "返回线性回归线的截距"
+}, {
+    "caption": "slope",
+    "text": "slope(Y数组, X数组)",
+    "meta": "返回线性回归线的斜率"
+}, {
+    "caption": "correl",
+    "text": "correl(数组1, 数组2)",
+    "meta": "返回两个数组之间的相关系数"
+}, {
+    "caption": "pearson",
+    "text": "pearson(数组1, 数组2)",
+    "meta": "返回Pearson乘积矩相关系数"
+}, {
+    "caption": "urlEncode",
+    "text": "urlEncode(文本)",
+    "meta": "对 URL 字符串进行编码"
+}, {
+    "caption": "urlDecode",
+    "text": "urlDecode(文本)",
+    "meta": "将 URL 编码的字符串转换为已解码的字符串"
+}, {
+    "caption": "htmlEncode",
+    "text": "htmlEncode(文本)",
+    "meta": "将字符串转换为 HTML 编码的字符串"
+}, {
+    "caption": "htmlDecode",
+    "text": "htmlDecode(文本)",
+    "meta": "将HTML 编码的字符串转解码"
+}, {
+    "caption": "base64ToText",
+    "text": "base64ToText(文本)",
+    "meta": "将Base64转换为字符串"
+}, {
+    "caption": "base64UrlToText",
+    "text": "base64UrlToText(文本)",
+    "meta": "将Url类型的Base64 转换为字符串"
+}, {
+    "caption": "textToBase64",
+    "text": "textToBase64(文本)",
+    "meta": "将字符串转换为Base64字符串"
+}, {
+    "caption": "textToBase64Url",
+    "text": "textToBase64Url(文本)",
+    "meta": "将字符串 转换为Url类型的Base64 字符串"
+}, {
+    "caption": "regex",
+    "text": "regex(文本, 匹配文本)",
+    "meta": "返回匹配的字符串"
+}, {
+    "caption": "isMatch",
+    "text": "isMatch(文本, 匹配文本)",
+    "meta": "判断是否匹配"
+}, {
+    "caption": "guid",
+    "text": "guid()",
+    "meta": "生成Guid字符串"
+}, {
+    "caption": "md5",
+    "text": "md5(文本)",
+    "meta": "返回Md5的Hash字符串"
+}, {
+    "caption": "sha1",
+    "text": "sha1(文本)",
+    "meta": "返回Sha1的Hash字符串"
+}, {
+    "caption": "sha256",
+    "text": "sha256(文本)",
+    "meta": "返回Sha256的Hash字符串"
+}, {
+    "caption": "sha512",
+    "text": "sha512(文本)",
+    "meta": "返回Sha512的Hash字符串"
+}, {
+    "caption": "hmacMd5",
+    "text": "hmacMd5(文本, secret)",
+    "meta": "返回HmacMd5的Hash字符串"
 }]
