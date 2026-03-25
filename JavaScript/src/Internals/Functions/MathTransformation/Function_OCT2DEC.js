@@ -6,8 +6,8 @@ class Function_OCT2DEC extends Function_2 {
         return "Oct2Dec";
     }
 
-    constructor(a) {
-        super(a);
+    constructor(z) {
+        super(z);
     }
 
     evaluate(work, tempParameter) {
@@ -16,9 +16,20 @@ class Function_OCT2DEC extends Function_2 {
 
         if (!/^[0-7]+$/.test(args1.TextValue)) { return this.parameterError(1); }
         let num = parseInt(args1.TextValue, 8);
+        if (this.b != null) {
+            let args2 = this.getNumber_2(work, tempParameter);
+            if (args2.IsError) { return args2; }
+            if (args2.IntValue < 0) {
+                return this.parameterError(2);
+            }
+            let n = num.toString();
+            if (n.length <= args2.IntValue) {
+                return Operand.Create(n.padStart(args2.IntValue, '0'));
+            }
+            return this.parameterError(2);
+        }
         return Operand.Create(num);
     }
 }
 
 export { Function_OCT2DEC };
-
