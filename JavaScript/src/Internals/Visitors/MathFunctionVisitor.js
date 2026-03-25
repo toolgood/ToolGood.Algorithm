@@ -21,6 +21,8 @@ import { Function_OR_N } from '../Functions/Operator/Function_OR_N.js';
 import { Function_NOT } from '../Functions/Flow/Function_NOT.js';
 import { Function_ValueNumber } from '../Functions/Value/Function_ValueNumber.js';
 import { Function_ValueBoolean } from '../Functions/Value/Function_ValueBoolean.js';
+import { Function_ValueText } from '../Functions/Value/Function_ValueText.js';
+import { Function_NULL } from '../Functions/Value/Function_NULL.js';
 
 import { Function_VALUE } from '../Functions/String/Function_VALUE.js';
 import { Function_ABS } from '../Functions/MathBase/Function_ABS.js';
@@ -572,7 +574,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitPI_fun(context) {
-        return new Function_Value(Operand.Create(Math.PI), "PI");
+        return new Function_ValueNumber(Operand.Create(Math.PI), "PI");
     }
 
     /**
@@ -2381,7 +2383,7 @@ class MathFunctionVisitor extends mathVisitor  {
     }
     visitParameter2( context)
 	{
-		return new Function_Value(Operand.Create(context.children[0].getText()));
+		return new Function_ValueText(Operand.Create(context.children[0].getText()));
 	}
 
     /**
@@ -2392,8 +2394,9 @@ class MathFunctionVisitor extends mathVisitor  {
     visitNUM_fun(context) {
         let numText = context.num().getText ? context.num().getText() : context.num().text;
         let d = parseFloat(numText);
-		if (!context.unit()) { return new Function_ValueNumber(Operand.Create(d), numText); }
-		let unitText = context.unit().getText ? context.unit().getText() : context.unit().text;
+		if (context.unit == null) { return new Function_ValueNumber(Operand.Create(d), numText); }
+		let unit = context.unit;
+		let unitText = unit.getText ? unit.getText() : unit.text;
 		return new Function_Number(d, unitText);
     }
 
@@ -2423,7 +2426,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitNULL_fun(context) {
-        return new Function_Value(Operand.CreateNull(), "NULL");
+        return new Function_NULL();
     }
 
     /**
@@ -3174,7 +3177,7 @@ class MathFunctionVisitor extends mathVisitor  {
                 sb.push(c);
             }
         }
-        return new Function_Value(Operand.Create(sb.join('')));
+        return new Function_ValueText(Operand.Create(sb.join('')));
     }
     visitVersion_fun(context) {
         return new Function_ValueNumber(Operand.Version, "VERSION");
