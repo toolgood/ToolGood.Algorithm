@@ -16,8 +16,8 @@ class Function_COVAR extends Function_2 {
         let args2 = this.b.evaluate(engine, tempParameter); if (args2.IsError) { return args2; }
         let list1 = [];
         let list2 = [];
-        let o1 = FunctionUtil.F_base_GetList(args1, list1);
-        let o2 = FunctionUtil.F_base_GetList(args2, list2);
+        let o1 = FunctionUtil.FlattenToList(args1, list1);
+        let o2 = FunctionUtil.FlattenToList(args2, list2);
         if (o1 == false) { return this.parameterError(1); }
         if (o2 == false) { return this.parameterError(2); }
         if (list1.length != list2.length) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }

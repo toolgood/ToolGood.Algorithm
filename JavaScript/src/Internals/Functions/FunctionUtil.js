@@ -4,51 +4,49 @@
 export var FunctionUtil = {
     StartDateUtc: new Date(Date.UTC(1970, 0, 1, 0, 0, 0, 0)),
 
-    F_base_GetList: function(args, list) {
-        // 检查 args 是否是 OperandArray 对象
+    FlattenToList: function(args, list) {
         if (args.IsArray) {
             args = args.ArrayValue;
         }
-        
-        for(var i = 0; i < args.length; i++) {
+
+        for (var i = 0; i < args.length; i++) {
             var item = args[i];
-            if(item.IsNumber) {
+            if (item.IsNumber) {
                 list.push(item.NumberValue);
-            } else if(item.IsArray) {
-                var o = this.F_base_GetList(item.ArrayValue, list);
-                if(!o) { return false; }
-            } else if(item.IsJson) {
+            } else if (item.IsArray) {
+                var o = this.FlattenToList(item.ArrayValue, list);
+                if (!o) { return false; }
+            } else if (item.IsJson) {
                 var array = item.ToArray(null);
-                if(array.IsError) { return false; }
-                var o = this.F_base_GetList(array.ArrayValue, list);
-                if(!o) { return false; }
-            } else if(item.IsNull) {
-                // 跳过空值
+                if (array.IsError) { return false; }
+                var o = this.FlattenToList(array.ArrayValue, list);
+                if (!o) { return false; }
+            } else if (item.IsNull) {
                 continue;
             } else {
                 var o = item.ToNumber(null);
-                if(o.IsError) { return false; }
+                if (o.IsError) { return false; }
                 list.push(o.NumberValue);
             }
         }
         return true;
     },
 
-    F_base_compare: function(a, b) {
-        if(a.IsNumber && b.IsNumber) {
+    CompareValues: function(a, b) {
+        if (a.IsNumber && b.IsNumber) {
             return a.NumberValue - b.NumberValue;
-        } else if(a.IsText && b.IsText) {
+        } else if (a.IsText && b.IsText) {
             return a.TextValue.localeCompare(b.TextValue);
-        } else if(a.IsBool && b.IsBool) {
+        } else if (a.IsBool && b.IsBool) {
             return a.BoolValue === b.BoolValue ? 0 : (a.BoolValue ? 1 : -1);
-        } else if(a.IsDate && b.IsDate) {
+        } else if (a.IsDate && b.IsDate) {
             return a.DateValue - b.DateValue;
         }
         return 0;
     },
 
-    F_base_gcd: function(a, b) {
-        while(b !== 0) {
+    GetGcd: function(a, b) {
+        while (b !== 0) {
             var temp = b;
             b = a % b;
             a = temp;
@@ -56,72 +54,73 @@ export var FunctionUtil = {
         return a;
     },
 
-    F_base_gcd_List: function(list) {
+    GetGcd_List: function(list) {
         list.sort(function(a, b) { return a - b; });
-        var g = this.F_base_gcd(Math.floor(list[1]), Math.floor(list[0]));
-        for(var i = 2; i < list.length; i++) {
-            g = this.F_base_gcd(Math.floor(list[i]), g);
+        var g = this.GetGcd(Math.floor(list[1]), Math.floor(list[0]));
+        for (var i = 2; i < list.length; i++) {
+            g = this.GetGcd(Math.floor(list[i]), g);
         }
         return g;
     },
 
-    F_base_lgm: function(list) {
+    GetLcm: function(list) {
         list.sort(function(a, b) { return a - b; });
         list = list.filter(function(q) { return q > 1; });
 
         var a = Math.floor(list[0]);
-        for(var i = 1; i < list.length; i++) {
+        for (var i = 1; i < list.length; i++) {
             var b = Math.floor(list[i]);
-            var g = b > a ? this.F_base_gcd(b, a) : this.F_base_gcd(a, b);
+            var g = b > a ? this.GetGcd(b, a) : this.GetGcd(a, b);
             a = a / g * b;
         }
         return a;
     },
 
-    sumifMatch: function(s) {
+    ParseSumIfMatch: function(s) {
         var c = s[0];
-        if(c === '>' || c === '＞') {
-            if(s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+        if (c === '>' || c === '＞') {
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
                 var d = parseFloat(s.substring(2).trim());
-                if(!isNaN(d)) {
+                if (!isNaN(d)) {
                     return { operator: ">=", value: d };
                 }
             } else {
                 var d = parseFloat(s.substring(1).trim());
-                if(!isNaN(d)) {
+                if (!isNaN(d)) {
                     return { operator: ">", value: d };
                 }
             }
-        } else if(c === '<' || c === '＜') {
-            if(s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+        } else if (c === '<' || c === '＜') {
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
                 var d = parseFloat(s.substring(2).trim());
-                if(!isNaN(d)) {
+                if (!isNaN(d)) {
                     return { operator: "<=", value: d };
                 }
-            } else {
+            }
+            else {
                 var d = parseFloat(s.substring(1).trim());
-                if(!isNaN(d)) {
+                if (!isNaN(d)) {
                     return { operator: "<", value: d };
                 }
             }
-        } else if(c === '=' && s.length > 1 && s[1] === '=') {
+        } else if (c === '=' && s.length > 1 && s[1] === '=') {
             var d = parseFloat(s.substring(2).trim());
-            if(!isNaN(d)) {
+            if (!isNaN(d)) {
                 return { operator: "=", value: d };
             }
-        } else if((c === '=' || c === '＝' || c === ' ') && s.length > 1) {
+        } else if ((c === '=' || c === '＝' || c === ' ') && s.length > 1) {
             var d = parseFloat(s.substring(1).trim());
-            if(!isNaN(d)) {
+            if (!isNaN(d)) {
                 return { operator: "=", value: d };
             }
-        } else if(c === '!' && s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+        } else if (c === '!' && s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
             var d = parseFloat(s.substring(2).trim());
-            if(!isNaN(d)) {
+            if (!isNaN(d)) {
                 return { operator: "!=", value: d };
             }
         } else {
             var d = parseFloat(s.trim());
-            if(!isNaN(d)) {
+            if (!isNaN(d)) {
                 return { operator: "=", value: d };
             }
         }
@@ -129,33 +128,31 @@ export var FunctionUtil = {
     },
 
     TryParseBoolean: function(TextValue) {
-        if(TextValue.toLowerCase() === "true" || TextValue.toLowerCase() === "yes") {
+        if (TextValue.toLowerCase() === "true" || TextValue.toLowerCase() === "yes") {
             return true;
         }
-        if(TextValue.toLowerCase() === "false" || TextValue.toLowerCase() === "no") {
+        if (TextValue.toLowerCase() === "false" || TextValue.toLowerCase() === "no") {
             return false;
         }
-        if(TextValue === "1" || TextValue === "是" || TextValue === "有") {
+        if (TextValue === "1" || TextValue === "是" || TextValue === "有") {
             return true;
         }
-        if(TextValue === "0" || TextValue === "否" || TextValue === "不是" || TextValue === "无" || TextValue === "没有") {
+        if (TextValue === "0" || TextValue === "否" || TextValue === "不是" || TextValue === "无" || TextValue === "没有") {
             return false;
         }
         return null;
     },
 
-    F_base_countif: function(dbs, s, d) {
+    GetCountIf: function(dbs, s, d) {
         let count = 0;
         for (let i = 0; i < dbs.length; i++) {
             let item = dbs[i];
             if (arguments.length === 2) {
-                // 两个参数的情况：dbs 和 d
                 if (item === s) {
                     count++;
                 }
             } else {
-                // 三个参数的情况：dbs, s, d
-                if (this.F_base_compare(item, d, s)) {
+                if (this.CompareNumbers(item, d, s)) {
                     count++;
                 }
             }
@@ -163,7 +160,7 @@ export var FunctionUtil = {
         return count;
     },
 
-    F_base_compare: function(a, b, ss) {
+    CompareNumbers: function(a, b, ss) {
         if (ss === '<') {
             return a < b;
         } else if (ss === '<=') {
@@ -180,22 +177,20 @@ export var FunctionUtil = {
         return a !== b;
     },
 
-    F_base_sumif: function(list, arg1, arg2, arg3) {
+    GetSumIf: function(list, arg1, arg2, arg3) {
         let sum = 0;
         for (let i = 0; i < list.length; i++) {
             if (arguments.length === 3) {
-                // 三个参数的情况：list, value, sumdbs
                 let value = arg1;
                 let sumdbs = arg2;
                 if (list[i] === value) {
                     sum += sumdbs[i];
                 }
             } else {
-                // 四个参数的情况：list, operator, value, sumdbs
                 let operator = arg1;
                 let value = arg2;
                 let sumdbs = arg3;
-                if (this.F_base_compare(list[i], value, operator)) {
+                if (this.CompareNumbers(list[i], value, operator)) {
                     sum += sumdbs[i];
                 }
             }

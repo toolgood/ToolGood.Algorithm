@@ -26,7 +26,7 @@ class Function_HARMEAN extends Function_N {
         }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args, list);
+        let o = FunctionUtil.FlattenToList(args, list);
         if (o == false) {
             return this.functionError();
         }

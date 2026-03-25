@@ -20,7 +20,7 @@ class Function_AVEDEV extends Function_N {
         }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args, list);
+        let o = FunctionUtil.FlattenToList(args, list);
         if (o == false) { return this.functionError(); }
         if (list.length == 0) { return Operand.Zero; }
         let avg = list.reduce((sum, value) => sum + value, 0) / list.length;

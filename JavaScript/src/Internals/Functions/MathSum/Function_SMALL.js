@@ -21,7 +21,7 @@ class Function_SMALL extends Function_2 {
         if (args2.IsError) { return args2; }
 
         let list = [];
-        let o = FunctionUtil.F_base_GetList(args1, list);
+        let o = FunctionUtil.FlattenToList(args1, list);
         if (o == false) { return this.parameterError(1); }
         if (list.length == 0) { return this.parameterError(1); }
 
