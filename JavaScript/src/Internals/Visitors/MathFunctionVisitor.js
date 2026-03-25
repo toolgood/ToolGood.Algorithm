@@ -959,8 +959,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitOCT2DEC_fun(context) {
-        
-        return new Function_OCT2DEC(this.v1(context));
+        return new Function_OCT2DEC(this.vN(context));
     }
 
     /**
@@ -1023,8 +1022,7 @@ class MathFunctionVisitor extends mathVisitor  {
      * @returns {FunctionBase}
      */
     visitHEX2DEC_fun(context) {
-        
-        return new Function_HEX2DEC(this.v1(context));
+        return new Function_HEX2DEC(this.vN(context));
     }
 
     /**
