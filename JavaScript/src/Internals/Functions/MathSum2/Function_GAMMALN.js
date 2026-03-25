@@ -14,6 +14,9 @@ class Function_GAMMALN extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+        if (args1.DoubleValue <= 0.0) {
+            return this.parameterError(1);
+        }
         return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
     }
 }

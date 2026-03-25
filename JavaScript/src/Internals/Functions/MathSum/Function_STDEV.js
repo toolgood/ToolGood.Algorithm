@@ -26,16 +26,17 @@ class Function_STDEV extends Function_N {
         if (o == false) {
             return this.functionError();
         }
-        if (list.length == 0) {
+        if (list.length <= 1) {
             return this.functionError();
         }
 
-        let avg = list.reduce((sum, val) => sum + val, 0) / list.length;
-        let sum = 0;
+        let mean = 0, m2 = 0;
         for (let i = 0; i < list.length; i++) {
-            sum += (list[i] - avg) * (list[i] - avg);
+            let delta = list[i] - mean;
+            mean += delta / (i + 1);
+            m2 += delta * (list[i] - mean);
         }
-        return Operand.Create(Math.sqrt(sum / (list.length - 1)));
+        return Operand.Create(Math.sqrt(m2 / (list.length - 1)));
     }
 }
 

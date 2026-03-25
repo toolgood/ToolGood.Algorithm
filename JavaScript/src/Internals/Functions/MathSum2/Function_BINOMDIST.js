@@ -25,9 +25,16 @@ class Function_BINOMDIST extends Function_4 {
         if (args4.IsError) return args4;
 
         let n2 = args2.IntValue;
+        if (n2 < 0) {
+            return this.parameterError(2);
+        }
+        let k = args1.IntValue;
+        if (k < 0 || k > n2) {
+            return this.parameterError(1);
+        }
         let n3 = args3.DoubleValue;
-        if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
-            return this.functionError();
+        if (n3 < 0.0 || n3 > 1.0) {
+            return this.parameterError(3);
         }
         return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
     }

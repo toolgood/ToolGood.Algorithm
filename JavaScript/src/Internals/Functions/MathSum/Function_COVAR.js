@@ -23,14 +23,15 @@ class Function_COVAR extends Function_2 {
         if (list1.length != list2.length) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
         if (list1.length == 0) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
 
-        let avg1 = list1.reduce((sum, val) => sum + val, 0) / list1.length;
-        let avg2 = list2.reduce((sum, val) => sum + val, 0) / list2.length;
-        let sum = 0;
+        let mean1 = 0, mean2 = 0, c = 0;
         for (let i = 0; i < list1.length; i++) {
-            sum += (list1[i] - avg1) * (list2[i] - avg2);
+            let delta1 = list1[i] - mean1;
+            let delta2 = list2[i] - mean2;
+            mean1 += delta1 / (i + 1);
+            mean2 += delta2 / (i + 1);
+            c += delta1 * (list2[i] - mean2);
         }
-        let val = sum / list1.length;
-        return Operand.Create(val);
+        return Operand.Create(c / list1.length);
     }
 }
 

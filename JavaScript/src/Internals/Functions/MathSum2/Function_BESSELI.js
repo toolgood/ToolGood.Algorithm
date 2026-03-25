@@ -12,14 +12,14 @@ class Function_BESSELI extends Function_2 {
 
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
-        if (args1.IsErrorOrNone) { return args1; }
+        if (args1.IsError) { return args1; }
         let args2 = this.getNumber_2(engine, tempParameter);
-        if (args2.IsErrorOrNone) { return args2; }
+        if (args2.IsError) { return args2; }
 
         let x = args1.DoubleValue;
         let n = Math.trunc(args2.DoubleValue);
 
-        return Operand.Create(BesselI(n, x));
+        return Operand.Create(Function_BESSELI.BesselI(n, x));
     }
 
     static BesselI(n, x) {

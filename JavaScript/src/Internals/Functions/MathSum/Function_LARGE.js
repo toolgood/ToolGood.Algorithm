@@ -23,13 +23,14 @@ class Function_LARGE extends Function_2 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) { return this.parameterError(1); }
+        if (list.length == 0) { return this.parameterError(1); }
 
-        list.sort((a, b) => b - a);
-        let k = args2.IntValue;
-        if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {
+        let k = args2.IntValue - engine.ExcelIndex;
+        if (k < 0 || k >= list.length) {
             return this.parameterError(2);
         }
-        return Operand.Create(list[k - engine.ExcelIndex]);
+        list.sort((a, b) => b - a);
+        return Operand.Create(list[k]);
     }
 }
 

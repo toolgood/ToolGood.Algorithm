@@ -20,11 +20,15 @@ class Function_TDIST extends Function_3 {
 
         let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) return args3;
+
         let x = args1.DoubleValue;
         let degreesFreedom = args2.IntValue;
+        if (degreesFreedom <= 0) {
+            return this.parameterError(2);
+        }
         let tails = args3.IntValue;
-        if (degreesFreedom <= 0.0 || tails < 1 || tails > 2) {
-            return this.functionError();
+        if (tails < 1 || tails > 2) {
+            return this.parameterError(3);
         }
         return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
     }

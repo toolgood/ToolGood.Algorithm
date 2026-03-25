@@ -22,10 +22,16 @@ class Function_FDIST extends Function_3 {
         if (args3.IsError) return args3;
 
         let x = args1.DoubleValue;
+        if (x <= 0.0) {
+            return this.parameterError(1);
+        }
         let degreesFreedom = args2.IntValue;
+        if (degreesFreedom <= 0) {
+            return this.parameterError(2);
+        }
         let degreesFreedom2 = args3.IntValue;
-        if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
-            return this.functionError();
+        if (degreesFreedom2 <= 0) {
+            return this.parameterError(3);
         }
         return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
     }

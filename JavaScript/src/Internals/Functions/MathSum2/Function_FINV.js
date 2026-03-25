@@ -22,10 +22,16 @@ class Function_FINV extends Function_3 {
         if (args3.IsError) return args3;
 
         let p = args1.DoubleValue;
+        if (p <= 0.0 || p >= 1.0) {
+            return this.parameterError(1);
+        }
         let degreesFreedom = args2.IntValue;
+        if (degreesFreedom <= 0) {
+            return this.parameterError(2);
+        }
         let degreesFreedom2 = args3.IntValue;
-        if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
-            return this.functionError();
+        if (degreesFreedom2 <= 0) {
+            return this.parameterError(3);
         }
         return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
     }

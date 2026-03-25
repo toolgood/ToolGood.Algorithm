@@ -21,9 +21,6 @@ class Function_VARP extends Function_N {
             args.push(aa);
         }
 
-        if (args.length == 1) {
-            return Operand.Error("Function '{0}' parameter only one error!", "VarP");
-        }
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
@@ -33,15 +30,16 @@ class Function_VARP extends Function_N {
             return this.functionError();
         }
         if (list.length == 1) {
-            return Operand.Zero;
+            return Operand.Create(0);
         }
 
-        let sum = 0;
-        let avg = list.reduce((sum, val) => sum + val, 0) / list.length;
+        let mean = 0, m2 = 0;
         for (let i = 0; i < list.length; i++) {
-            sum += (avg - list[i]) * (avg - list[i]);
+            let delta = list[i] - mean;
+            mean += delta / (i + 1);
+            m2 += delta * (list[i] - mean);
         }
-        return Operand.Create(sum / list.length);
+        return Operand.Create(m2 / list.length);
     }
 }
 

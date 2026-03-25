@@ -21,10 +21,6 @@ class Function_VAR extends Function_N {
             args.push(aa);
         }
 
-        if (args.length == 1) {
-            return Operand.Error("Function '{0}' parameter only one error!", "Var");
-        }
-
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
@@ -33,13 +29,14 @@ class Function_VAR extends Function_N {
         if (list.length <= 1) {
             return this.functionError();
         }
-        let sum = 0;
-        let sum2 = 0;
+
+        let mean = 0, m2 = 0;
         for (let i = 0; i < list.length; i++) {
-            sum += list[i] * list[i];
-            sum2 += list[i];
+            let delta = list[i] - mean;
+            mean += delta / (i + 1);
+            m2 += delta * (list[i] - mean);
         }
-        return Operand.Create((list.length * sum - sum2 * sum2) / list.length / (list.length - 1));
+        return Operand.Create(m2 / (list.length - 1));
     }
 }
 

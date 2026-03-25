@@ -21,11 +21,14 @@ class Function_POISSON extends Function_3 {
         let args3 = this.getBoolean_3(engine, tempParameter);
         if (args3.IsError) return args3;
         let k = args1.IntValue;
-        let lambda = args2.DoubleValue;
-        let state = args3.BooleanValue;
-        if (!(lambda > 0.0)) {
-            return this.functionError();
+        if (k < 0) {
+            return this.parameterError(1);
         }
+        let lambda = args2.DoubleValue;
+        if (!(lambda > 0.0)) {
+            return this.parameterError(2);
+        }
+        let state = args3.BooleanValue;
         return Operand.Create(ExcelFunctions.Poisson(k, lambda, state));
     }
 }

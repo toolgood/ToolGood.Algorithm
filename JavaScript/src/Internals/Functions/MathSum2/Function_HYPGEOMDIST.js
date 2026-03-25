@@ -25,10 +25,25 @@ class Function_HYPGEOMDIST extends Function_4 {
         if (args4.IsError) return args4;
 
         let k = args1.IntValue;
+        if (k < 0) {
+            return this.parameterError(1);
+        }
         let draws = args2.IntValue;
+        if (draws < 0) {
+            return this.parameterError(2);
+        }
         let success = args3.IntValue;
+        if (success < 0) {
+            return this.parameterError(3);
+        }
         let population = args4.IntValue;
-        if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
+        if (population < 0) {
+            return this.parameterError(4);
+        }
+        if (k > draws) {
+            return this.parameterError(1);
+        }
+        if (success > population || draws > population) {
             return this.functionError();
         }
         return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));

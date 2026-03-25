@@ -30,6 +30,9 @@ class Function_PERCENTRANK extends Function_3 {
             let args3 = this.getNumber_3(engine, tempParameter);
             if (args3.IsError) { return args3; }
             d = args3.IntValue;
+            if (d < 0) {
+                return this.parameterError(3);
+            }
         }
         return Operand.Create(Math.round(v * Math.pow(10, d)) / Math.pow(10, d));
     }

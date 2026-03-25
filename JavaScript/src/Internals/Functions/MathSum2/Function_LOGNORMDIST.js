@@ -21,11 +21,16 @@ class Function_LOGNORMDIST extends Function_3 {
         let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) return args3;
 
-        let n3 = args3.DoubleValue;
-        if (n3 < 0.0) {
-            return this.functionError();
+        let x = args1.DoubleValue;
+        if (x <= 0.0) {
+            return this.parameterError(1);
         }
-        return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
+
+        let n3 = args3.DoubleValue;
+        if (n3 <= 0.0) {
+            return this.parameterError(3);
+        }
+        return Operand.Create(ExcelFunctions.LognormDist(x, args2.DoubleValue, n3));
     }
 }
 
