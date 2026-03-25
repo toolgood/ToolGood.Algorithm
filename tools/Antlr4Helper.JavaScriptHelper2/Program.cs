@@ -6,22 +6,22 @@ namespace Antlr4Helper.JavaScriptHelper2
 	{
 		static void Main(string[] args)
 		{
-			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathParser.js");
+			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathjsParser.js");
 			var text = File.ReadAllText(filePath);
 			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
-			text = text.Replace("import mathVisitor from './mathVisitor.js';", "");
-			text = text.Replace("mathParser.EOF = antlr4.Token.EOF;", "");
-			text = Regex.Replace(text, @"mathParser\..*?Context = .*?Context;", "");
+			text = text.Replace("import mathjsVisitor from './mathjsVisitor.js';", "");
+			text = text.Replace("mathjsParser.EOF = antlr4.Token.EOF;", "");
+			text = Regex.Replace(text, @"mathjsParser\..*?Context = .*?Context;", "");
 			text = Regex.Replace(text, @"this\.state = \d+;[\r\n\t ]*this.match", "this.match");
 
-			// 替换所有的 mathParser.xxx = n 为字典，然后再替换回去
-			var ms = Regex.Matches(text, @"(mathParser\..*) = (\d+);");
+			// 替换所有的 mathjsParser.xxx = n 为字典，然后再替换回去
+			var ms = Regex.Matches(text, @"(mathjsParser\..*) = (\d+);");
 			Dictionary<string, string> dict = new Dictionary<string, string>();
-			dict["mathParser.EOF"] = "-1";
+			dict["mathjsParser.EOF"] = "-1";
 			foreach(Match m in ms) {
 				dict[m.Groups[1].Value] = m.Groups[2].Value;
 			}
-			text = Regex.Replace(text, @"(mathParser\..*) = (\d+);", "");
+			text = Regex.Replace(text, @"(mathjsParser\..*) = (\d+);", "");
 			var keys = dict.Keys.OrderByDescending(q => q.Length).ToList();
 			foreach(var item in keys) {
 				text = Regex.Replace(text, @$"\b{item}\b", dict[item]);
@@ -32,7 +32,7 @@ namespace Antlr4Helper.JavaScriptHelper2
 			text = Regex.Replace(text, @"([A-Z][0-9A-Z]*\(\) \{return this\.getToken.*?};)", "//$1");
 	 
 
-			text = text.Replace("if ( visitor instanceof mathVisitor ) {", "");
+			text = text.Replace("if ( visitor instanceof mathjsVisitor ) {", "");
 			text = Regex.Replace(text, @"\} else \{[\r\n\t ]*return visitor\.visitChildren\(this\);[\r\n\t ]*\}", "");
 
 
@@ -103,15 +103,16 @@ namespace Antlr4Helper.JavaScriptHelper2
 	Z(){this._errHandler.sync(this);return this._input.LA(1);}
 ");
 
-			text = text.Replace("expr = function(i) {return this.getTypedRuleContexts(ExprContext);};", "");
 
+			// new DAY_funContext(this, new ExprContext(this, _parentctx, _parentState))
 			// 清理多余的空行和注释
 			text = Regex.Replace(text, @"[\t ]*//.*([\r\n])", "$1");
 			text = Regex.Replace(text, @"[\t ]*([\r\n])([\r\n])+", "$1");
 			text = Regex.Replace(text, @"([\r\n])([\r\n])+", "$1");
 
+ 
 
-			File.WriteAllText("mathParser.js", text);
+			File.WriteAllText("mathjsParser.js", text);
 
 
 
