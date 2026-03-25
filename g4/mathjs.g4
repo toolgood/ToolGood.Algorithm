@@ -3,47 +3,344 @@ grammar mathjs;
 prog: expr EOF;
 
 expr:
-	expr '.' T '(' ')'											# DiyFunction_fun
-	| expr '.' AND '(' ')'										# DiyFunction_fun
-	| expr '.' OR '(' ')'										# DiyFunction_fun
-	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
-	| expr '[' PARAMETER ']'									# GetJsonValue_fun
-	| expr '[' expr ']'											# GetJsonValue_fun
-	| expr '.' parameter2										# GetJsonValue_fun
+	expr '.' (ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | INT | LEN | LOWER | RMB | T | TRIM | UPPER | VALUE | TIMEVALUE | URLENCODE | URLDECODE | MD5 | SHA1 | SHA256 | SHA512 | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON) '(' ')'
+	| expr '.' (ISERROR | ISNULL | ISNULLORERROR | LEFT | RIGHT | DATEVALUE | TRIMSTART | TRIMEND | TIMESTAMP) '(' expr? ')'
+	| expr '.' (EXACT | TEXT | REGEX | ISREGEX | SPLIT | ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS | HAS | HASVALUE) '(' expr ')'
+	| expr '.' (YEAR | MONTH | DAY | HOUR | MINUTE | SECOND) ('(' ')')?
+	| expr '.' (MID | REGEXREPLACE) '(' expr ',' expr ')'
+	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'
+	| expr '.' (SUBSTRING | STARTSWITH | ENDSWITH | REMOVESTART | REMOVEEND) '(' expr (',' expr)? ')'
+	| expr '.' (INDEXOF | LASTINDEXOF) '(' expr (',' expr (',' expr)?)? ')'
+	| expr '.' JOIN '(' expr (',' expr)* ')'
+	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'
+	| expr '[' PARAMETER ']'									
+	| expr '[' expr ']'											
+	| expr '.' parameter2										
 
 	// 运算符优先级 开始
-	| '(' expr ')'												# Bracket_fun
-	| '!' expr													# NOT_fun
-	| expr '%'													# Percentage_fun
-	| expr op = ('*' | '/' | '%') expr							# MulDiv_fun
-	| expr op = ('+' | '-' | '&') expr							# AddSub_fun
-	| expr op = ('>' | '>=' | '<' | '<=') expr					# Judge_fun
-	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	# Judge_fun
-	| expr op = '&&'  expr										# AndOr_fun
-	| expr op = '||'  expr										# AndOr_fun
-	| expr '?' expr ':' expr									# DiyFunction_fun
-	| func=T '(' expr ')'										# DiyFunction_fun
-	| func=AND '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
-	| func=OR '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
-	| func=PARAMETER '(' (expr (',' expr)*)? ')'				# DiyFunction_fun
-	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
-	| '[' expr (',' expr)* ','* ']'								# Array_fun
-	| PARAMETER													# PARAMETER_fun
-	| num unit=(UNIT | T)										# NUM_fun
-	| STRING													# STRING_fun
-	| NULL														# NULL_fun
+	| '(' expr ')'												
+	| '!' expr													
+	| expr '%'													
+	| expr op = ('*' | '/' | '%') expr							
+	| expr op = ('+' | '-' | '&') expr							
+	| expr op = ('>' | '>=' | '<' | '<=') expr					
+	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	
+	| expr op = '&&' expr										
+	| expr op = '||' expr										
+	| expr '?' expr ':' expr									
+	// 运算符优先级 结束
+	| ARRAY '(' expr (',' expr)* ')'
+	| (IF | IFERROR | TIME) '(' expr ',' expr (',' expr)? ')'
+	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'
+	| SWITCH '(' expr ',' expr ',' expr ( ',' expr)* ')'
+	| (ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | ISEVEN | ISODD | NOT | ABS | SIGN | SQRT | INT | DEGREES | RADIANS | COS | COSH | SIN | SINH | TAN | TANH | COT | COTH | CSC | CSCH | SEC | SECH | ACOS | ACOSH | ASIN | ASINH | ATAN | ATANH | ACOT | ACOTH | EVEN | ODD | FACT | FACTDOUBLE | EXP | LN | LOG10 | SQRTPI | ERF | ERFC | ARABIC | ASC | JIS | CHAR | CLEAN | CODE | UNICHAR | UNICODE | LEN | LOWER | PROPER | TRIM | UPPER | VALUE | TIMEVALUE | NORMSDIST | NORMSINV | FISHER | FISHERINV | GAMMALN | URLENCODE | URLDECODE | HTMLENCODE | HTMLDECODE | BASE64TOTEXT | BASE64URLTOTEXT | TEXTTOBASE64 | TEXTTOBASE64URL | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON | T | RMB) '(' expr ')'
+	| (ISERROR | ISNULL | ISNULLORERROR | TRUNC | ROUND | CEILING | FLOOR | LOG | DELTA | GESTEP | ROMAN | RANK | FIND | FIXED | LEFT | RIGHT | SEARCH | SUBSTITUTE | WEEKDAY | DAYS360 | NETWORKDAYS | WORKDAY | WEEKNUM | AVERAGEIF | SUMIF | IRR | XIRR | DB | DDB | TRIMSTART | TRIMEND | TIMESTAMP | PARAM | DATEVALUE) '(' expr (',' expr)? ')'
+	| (AND | OR | XOR | GCD | LCM | MULTINOMIAL | PRODUCT | SUMSQ | SUMPRODUCT | CONCATENATE | MAX | MEDIAN | MIN | MODE | AVERAGE | GEOMEAN | HARMEAN | COUNT | COUNTIF | SUM | AVEDEV | STDEV | STDEVP | DEVSQ | VAR | VARP | NPV) '(' expr (',' expr)* ')'
+	| (TRUE | FALSE | E | PI) ('(' ')')?
+	| (DEC2BIN | DEC2HEX | DEC2OCT | HEX2BIN | HEX2DEC | HEX2OCT | OCT2BIN | OCT2DEC | OCT2HEX | BIN2OCT | BIN2DEC | BIN2HEX) ('(' expr (',' expr)? ')')
+	| (QUOTIENT | MOD | COMBIN | PERMUT | ATAN2 | ROUNDDOWN | ROUNDUP | MROUND | RANDBETWEEN | POWER | BESSELI | BESSELJ | BESSELK | BESSELY | SUMX2MY2 | SUMX2PY2 | SUMXMY2 | EXACT | REPT | TEXT | DAYS | EDATE | EOMONTH | QUARTILE | LARGE | SMALL | PERCENTILE | PERCENTRANK | COVAR | COVARIANCES | NORMINV | BETADIST | BETAINV | EXPONDIST | FDIST | FINV | GAMMAINV | LOGINV | TINV | XNPV | MIRR | SLN | SYD | REGEX | ISREGEX | HMACMD5 | HMACSHA1 | HMACSHA256 | HMACSHA512 | SPLIT | LOOKCEILING | LOOKFLOOR | ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS | HAS | HASVALUE | FORECAST | INTERCEPT | SLOPE | CORREL | PEARSON | YEARFRAC) '(' expr ',' expr ')'
+	| (RAND | NOW | TODAY | GUID) '(' ')'
+	| SERIESSUM '(' expr ',' expr ',' expr ',' expr ')'
+	| (MID | DATEDIF | REGEXREPLACE) '(' expr ',' expr ',' expr ')'
+	| (REPLACE | NORMDIST | BINOMDIST | GAMMADIST | HYPGEOMDIST | LOGNORMDIST | NEGBINOMDIST | POISSON | TDIST | WEIBULL | SUBSTRING | STARTSWITH | ENDSWITH) '(' expr ',' expr ',' expr (',' expr)? ')'
+	| DATE '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)? )? ')'
+	| (YEAR | MONTH | DAY | HOUR | MINUTE | SECOND) '(' expr ')'
+	| (PMT | PV | FV | NPER) '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'
+	| (PPMT | IPMT) '(' expr ',' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'
+	| RATE '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)?)? ')'
+	| (INDEXOF | LASTINDEXOF) '(' expr ',' expr (',' expr (',' expr)?)? ')'
+	| JOIN '(' expr (',' expr)+ ')'
+	| (REMOVESTART | REMOVEEND) '(' expr (',' expr (',' expr)?)? ')'
+	| PARAMETER '(' (expr (',' expr)*)? ')'
+	| ERROR '(' expr? ')'
+	| '{' arrayJson (',' arrayJson)* ','* '}'					
+	| '[' expr (',' expr)* ','* ']'								
+	| ALGORITHMVERSION											
+	| PARAMETER													
+	| num  unit=(UNIT | T)?										
+	| STRING													
+	| NULL														
 	;
 
 num: '-'? NUM;
+ 
+
 arrayJson: key=(NUM | STRING) ':' expr
 	| parameter2 ':' expr;
 
 parameter2:
-	NULL
-	| T
+	E
+	| IF
+	| IFS
+	| SWITCH
+	| IFERROR
+	| ISNUMBER
+	| ISTEXT
+	| ISERROR
+	| ISNONTEXT
+	| ISLOGICAL
+	| ISEVEN
+	| ISODD
+	| ISNULL
+	| ISNULLORERROR
 	| AND
 	| OR
+	| XOR
+	| NOT
+	| TRUE
+	| FALSE
+	| PI
+	| DEC2BIN
+	| DEC2HEX
+	| DEC2OCT
+	| HEX2BIN
+	| HEX2DEC
+	| HEX2OCT
+	| OCT2BIN
+	| OCT2DEC
+	| OCT2HEX
+	| BIN2OCT
+	| BIN2DEC
+	| BIN2HEX
+	| ABS
+	| QUOTIENT
+	| MOD
+	| SIGN
+	| SQRT
+	| TRUNC
+	| INT
+	| GCD
+	| LCM
+	| COMBIN
+	| PERMUT
+	| DEGREES
+	| RADIANS
+	| COS
+	| COSH
+	| SIN
+	| SINH
+	| TAN
+	| TANH
+	| COT
+	| COTH
+	| CSC
+	| CSCH
+	| SEC
+	| SECH
+	| ACOS
+	| ACOSH
+	| ASIN
+	| ASINH
+	| ATAN
+	| ATANH
+	| ACOT
+	| ACOTH
+	| ATAN2
+	| ROUND
+	| ROUNDDOWN
+	| ROUNDUP
+	| CEILING
+	| FLOOR
+	| EVEN
+	| ODD
+	| MROUND
+	| RAND
+	| RANDBETWEEN
+	| FACT
+	| FACTDOUBLE
+	| POWER
+	| EXP
+	| LN
+	| LOG
+	| LOG10
+	| MULTINOMIAL
+	| PRODUCT
+	| SQRTPI
+	| ERF
+	| ERFC
+	| BESSELI
+	| BESSELJ
+	| BESSELK
+	| BESSELY
+	| DELTA
+	| GESTEP
+	| SUMSQ
+	| SUMPRODUCT
+	| SUMX2MY2
+	| SUMX2PY2
+	| SUMXMY2
+	| ARABIC
+	| ROMAN
+	| SERIESSUM
+	| RANK
+	| FORECAST
+	| INTERCEPT
+	| SLOPE
+	| CORREL
+	| PEARSON
+	| YEARFRAC
+	| ASC
+	| JIS
+	| CHAR
+	| CLEAN
+	| CODE
+	| UNICHAR
+	| UNICODE
+	| CONCATENATE
+	| EXACT
+	| FIND
+	| FIXED
+	| LEFT
+	| LEN
+	| LOWER
+	| MID
+	| PROPER
+	| REPLACE
+	| REPT
+	| RIGHT
+	| RMB
+	| SEARCH
+	| SUBSTITUTE
+	| T
+	| TEXT
+	| TRIM
+	| UPPER
+	| VALUE
+	| DATEVALUE
+	| TIMEVALUE
+	| DATE
+	| TIME
+	| NOW
+	| TODAY
+	| YEAR
+	| MONTH
+	| DAY
+	| HOUR
+	| MINUTE
+	| SECOND
+	| WEEKDAY
+	| DATEDIF
+	| DAYS
+	| DAYS360
+	| EDATE
+	| EOMONTH
+	| NETWORKDAYS
+	| WORKDAY
+	| WEEKNUM
+	| MAX
+	| MEDIAN
+	| MIN
+	| QUARTILE
+	| MODE
+	| LARGE
+	| SMALL
+	| PERCENTILE
+	| PERCENTRANK
+	| AVERAGE
+	| AVERAGEIF
+	| GEOMEAN
+	| HARMEAN
+	| COUNT
+	| COUNTIF
+	| SUM
+	| SUMIF
+	| AVEDEV
+	| STDEV
+	| STDEVP
+	| COVAR
+	| COVARIANCES
+	| DEVSQ
+	| VAR
+	| VARP
+	| NORMDIST
+	| NORMINV
+	| NORMSDIST
+	| NORMSINV
+	| BETADIST
+	| BETAINV
+	| BINOMDIST
+	| EXPONDIST
+	| FDIST
+	| FINV
+	| FISHER
+	| FISHERINV
+	| GAMMADIST
+	| GAMMAINV
+	| GAMMALN
+	| HYPGEOMDIST
+	| LOGINV
+	| LOGNORMDIST
+	| NEGBINOMDIST
+	| POISSON
+	| TDIST
+	| TINV
+	| WEIBULL
+	| URLENCODE
+	| URLDECODE
+	| HTMLENCODE
+	| HTMLDECODE
+	| BASE64TOTEXT
+	| BASE64URLTOTEXT
+	| TEXTTOBASE64
+	| TEXTTOBASE64URL
+	| REGEX
+	| REGEXREPLACE
+	| ISREGEX
+	| GUID
+	| MD5
+	| SHA1
+	| SHA256
+	| SHA512
+	| HMACMD5
+	| HMACSHA1
+	| HMACSHA256
+	| HMACSHA512
+	| TRIMSTART
+	| TRIMEND
+	| INDEXOF
+	| LASTINDEXOF
+	| SPLIT
+	| JOIN
+	| SUBSTRING
+	| STARTSWITH
+	| ENDSWITH
+	| ISNULLOREMPTY
+	| ISNULLORWHITESPACE
+	| REMOVESTART
+	| REMOVEEND
+	| JSON
+	| LOOKCEILING
+	| LOOKFLOOR
+	| ADDYEARS
+	| ADDMONTHS
+	| ADDDAYS
+	| ADDHOURS
+	| ADDMINUTES
+	| ADDSECONDS
+	| TIMESTAMP
+	| PMT
+	| PPMT
+	| IPMT
+	| PV
+	| FV
+	| NPER
+	| RATE
+	| NPV
+	| XNPV
+	| IRR
+	| MIRR
+	| XIRR
+	| SLN
+	| DB
+	| DDB
+	| SYD
+	| NULL
+	| ERROR
 	| UNIT
+	| HAS
+	| HASVALUE
+	| ALGORITHMVERSION
+	| PARAM
 	| PARAMETER;
  
 
@@ -57,6 +354,7 @@ STRING:
 	| '"' ( ~'"' | '\\"')* '"'
 	| '`' ( ~'`' | '\\`')* '`';
 NULL: 'NULL';
+ERROR: 'ERROR';
 
 UNIT:
 	'M'
@@ -79,39 +377,286 @@ UNIT:
 	| 'G'
 	| 'KG';
 
-T: 'T';
+// 逻辑函数
+IF: 'IF';
+IFS: 'IFS';
+SWITCH: 'SWITCH';
+IFERROR: 'IFERROR';
+ISNUMBER: 'ISNUMBER';
+ISTEXT: 'ISTEXT';
+ISERROR: 'ISERROR';
+ISNONTEXT: 'ISNONTEXT';
+ISLOGICAL: 'ISLOGICAL';
+ISEVEN: 'ISEVEN';
+ISODD: 'ISODD';
+ISNULL: 'ISNULL';
+ISNULLORERROR: 'ISNULLORERROR';
 AND: 'AND';
 OR: 'OR';
+XOR: 'XOR';
+NOT: 'NOT';
+TRUE: 'TRUE' | 'YES';
+FALSE: 'FALSE' | 'NO';
+// 数学与三角函数
+E: 'E';
+PI: 'PI';
+DEC2BIN: 'DEC2BIN';
+DEC2HEX: 'DEC2HEX';
+DEC2OCT: 'DEC2OCT';
+HEX2BIN: 'HEX2BIN'; //  将十六进制数转换为二进制数
+HEX2DEC: 'HEX2DEC'; // 将十六进制数转换为十进制数
+HEX2OCT: 'HEX2OCT'; //  将十六进制数转换为八进制数
+OCT2BIN: 'OCT2BIN'; //   将八进制数转换为二进制数
+OCT2DEC: 'OCT2DEC'; //   将八进制数转换为十进制数
+OCT2HEX: 'OCT2HEX'; //  将八进制数转换为十六进制数
+BIN2OCT: 'BIN2OCT';
+BIN2DEC: 'BIN2DEC';
+BIN2HEX: 'BIN2HEX';
+ABS: 'ABS';
+QUOTIENT: 'QUOTIENT';
+MOD: 'MOD';
+SIGN: 'SIGN';
+SQRT: 'SQRT';
+TRUNC: 'TRUNC';
+INT: 'INT';
+GCD: 'GCD';
+LCM: 'LCM';
+COMBIN: 'COMBIN';
+PERMUT: 'PERMUT';
+DEGREES: 'DEGREES';
+RADIANS: 'RADIANS';
+COS: 'COS';
+COSH: 'COSH';
+SIN: 'SIN';
+SINH: 'SINH';
+TAN: 'TAN';
+TANH: 'TANH';
+COT: 'COT';
+COTH: 'COTH';
+CSC: 'CSC';
+CSCH: 'CSCH';
+SEC: 'SEC';
+SECH: 'SECH';
+ACOS: 'ACOS';
+ACOSH: 'ACOSH';
+ASIN: 'ASIN';
+ASINH: 'ASINH';
+ATAN: 'ATAN';
+ATANH: 'ATANH';
+ACOT: 'ACOT';
+ACOTH: 'ACOTH';
+ATAN2: 'ATAN2';
+ROUND: 'ROUND';
+ROUNDDOWN: 'ROUNDDOWN';
+ROUNDUP: 'ROUNDUP';
+CEILING: 'CEILING';
+FLOOR: 'FLOOR';
+EVEN: 'EVEN';
+ODD: 'ODD';
+MROUND: 'MROUND';
+RAND: 'RAND';
+RANDBETWEEN: 'RANDBETWEEN';
+FACT: 'FACT';
+FACTDOUBLE: 'FACTDOUBLE';
+POWER: 'POWER';
+EXP: 'EXP';
+LN: 'LN';
+LOG: 'LOG';
+LOG10: 'LOG10';
+MULTINOMIAL: 'MULTINOMIAL';
+PRODUCT: 'PRODUCT';
+SQRTPI: 'SQRTPI';
+ERF: 'ERF';
+ERFC: 'ERFC';
+BESSELI: 'BESSELI';
+BESSELJ: 'BESSELJ';
+BESSELK: 'BESSELK';
+BESSELY: 'BESSELY';
+DELTA: 'DELTA';
+GESTEP: 'GESTEP';
+SUMSQ: 'SUMSQ';
+SUMPRODUCT: 'SUMPRODUCT';
+SUMX2MY2: 'SUMX2MY2';
+SUMX2PY2: 'SUMX2PY2';
+SUMXMY2: 'SUMXMY2';
+ARABIC: 'ARABIC';
+ROMAN: 'ROMAN';
+SERIESSUM: 'SERIESSUM';
+RANK: 'RANK';
+FORECAST: 'FORECAST';
+INTERCEPT: 'INTERCEPT';
+SLOPE: 'SLOPE';
+CORREL: 'CORREL';
+PEARSON: 'PEARSON';
+YEARFRAC: 'YEARFRAC';
+// 文本函数
+ASC: 'ASC';
+JIS: 'JIS' | 'WIDECHAR';
+CHAR: 'CHAR';
+CLEAN: 'CLEAN';
+CODE: 'CODE';
+UNICHAR: 'UNICHAR';
+UNICODE: 'UNICODE';
+CONCATENATE: 'CONCATENATE'|'CONCAT';
+EXACT: 'EXACT';
+FIND: 'FIND';
+FIXED: 'FIXED';
+LEFT: 'LEFT';
+LEN: 'LEN';
+LOWER: 'LOWER' | 'TOLOWER';
+MID: 'MID';
+PROPER: 'PROPER';
+REPLACE: 'REPLACE';
+REPT: 'REPT';
+RIGHT: 'RIGHT';
+RMB: 'RMB';
+SEARCH: 'SEARCH';
+SUBSTITUTE: 'SUBSTITUTE';
+T: 'T';
+TEXT: 'TEXT';
+TRIM: 'TRIM';
+UPPER: 'UPPER' | 'TOUPPER';
+VALUE: 'VALUE';
+// 日期与时间函数
+DATEVALUE: 'DATEVALUE';
+TIMEVALUE: 'TIMEVALUE';
+DATE: 'DATE';
+TIME: 'TIME';
+NOW: 'NOW';
+TODAY: 'TODAY';
+YEAR: 'YEAR';
+MONTH: 'MONTH';
+DAY: 'DAY';
+HOUR: 'HOUR';
+MINUTE: 'MINUTE';
+SECOND: 'SECOND';
+WEEKDAY: 'WEEKDAY';
+DATEDIF: 'DATEDIF';
+DAYS: 'DAYS';
+DAYS360: 'DAYS360';
+EDATE: 'EDATE';
+EOMONTH: 'EOMONTH';
+NETWORKDAYS: 'NETWORKDAYS';
+WORKDAY: 'WORKDAY';
+WEEKNUM: 'WEEKNUM';
+// 统计函数
+MAX: 'MAX';
+MEDIAN: 'MEDIAN';
+MIN: 'MIN';
+QUARTILE: 'QUARTILE';
+MODE: 'MODE';
+LARGE: 'LARGE';
+SMALL: 'SMALL';
+PERCENTILE: 'PERCENTILE'|'PERCENTILE.INC';
+PERCENTRANK: 'PERCENTRANK'|'PERCENTRANK.INC';
+AVERAGE: 'AVERAGE';
+AVERAGEIF: 'AVERAGEIF';
+GEOMEAN: 'GEOMEAN';
+HARMEAN: 'HARMEAN';
+COUNT: 'COUNT';
+COUNTIF: 'COUNTIF';
+SUM: 'SUM';
+SUMIF: 'SUMIF';
+AVEDEV: 'AVEDEV';
+STDEV: 'STDEV' | 'STDEV.S';
+STDEVP: 'STDEVP' | 'STDEV.P';
+COVAR:'COVAR' | 'COVARIANCE.P';
+COVARIANCES:'COVARIANCE.S';
+DEVSQ: 'DEVSQ';
+VAR: 'VAR' | 'VAR.S';
+VARP: 'VARP'| 'VAR.P';
+NORMDIST: 'NORMDIST'| 'NORM.DIST';
+NORMINV: 'NORMINV' | 'NORM.INV';
+NORMSDIST: 'NORMSDIST'|'NORM.S.DIST';
+NORMSINV: 'NORMSINV' |'NORM.S.INV';
+BETADIST: 'BETADIST'|'BETA.DIST';
+BETAINV: 'BETAINV'|'BETA.INV';
+BINOMDIST: 'BINOMDIST'|'BINOM.DIST';
+EXPONDIST: 'EXPONDIST'|'EXPON.DIST';
+FDIST: 'FDIST'|'F.DIST';
+FINV: 'FINV'|'F.INV';
+FISHER: 'FISHER';
+FISHERINV: 'FISHERINV';
+GAMMADIST: 'GAMMADIST'|'GAMMA.DIST';
+GAMMAINV: 'GAMMAINV'|'GAMMA.INV';
+GAMMALN: 'GAMMALN'|'GAMMALN.PRECISE';
+HYPGEOMDIST: 'HYPGEOMDIST'|'HYPGEOM.DIST';
+LOGINV: 'LOGINV'|'LOGNORM.INV';
+LOGNORMDIST: 'LOGNORMDIST'|'LOGNORM.DIST';
+NEGBINOMDIST: 'NEGBINOMDIST'|'NEGBINOM.DIST';
+POISSON: 'POISSON'|'POISSON.DIST';
+TDIST: 'TDIST'|'T.DIST';
+TINV: 'TINV'|'T.INV';
+WEIBULL: 'WEIBULL';
+// 财务函数
+PMT: 'PMT';
+PPMT: 'PPMT';
+IPMT: 'IPMT';
+PV: 'PV';
+FV: 'FV';
+NPER: 'NPER';
+RATE: 'RATE';
+NPV: 'NPV';
+XNPV: 'XNPV';
+IRR: 'IRR';
+MIRR: 'MIRR';
+XIRR: 'XIRR';
+SLN: 'SLN';
+DB: 'DB';
+DDB: 'DDB';
+SYD: 'SYD';
+// 增加函数 类C
+URLENCODE: 'URLENCODE';
+URLDECODE: 'URLDECODE';
+HTMLENCODE: 'HTMLENCODE';
+HTMLDECODE: 'HTMLDECODE';
+BASE64TOTEXT: 'BASE64TOTEXT';
+BASE64URLTOTEXT: 'BASE64URLTOTEXT';
+TEXTTOBASE64: 'TEXTTOBASE64';
+TEXTTOBASE64URL: 'TEXTTOBASE64URL';
+REGEX: 'REGEX';
+REGEXREPLACE: 'REGEXREPLACE';
+ISREGEX: 'ISREGEX' | 'ISMATCH';
+GUID: 'GUID';
+MD5: 'MD5';
+SHA1: 'SHA1';
+SHA256: 'SHA256';
+SHA512: 'SHA512';
+HMACMD5: 'HMACMD5';
+HMACSHA1: 'HMACSHA1';
+HMACSHA256: 'HMACSHA256';
+HMACSHA512: 'HMACSHA512';
+TRIMSTART: 'TRIMSTART' | 'LTRIM';
+TRIMEND: 'TRIMEND' | 'RTRIM';
+INDEXOF: 'INDEXOF';
+LASTINDEXOF: 'LASTINDEXOF';
+SPLIT: 'SPLIT';
+JOIN: 'JOIN';
+SUBSTRING: 'SUBSTRING';
+STARTSWITH: 'STARTSWITH';
+ENDSWITH: 'ENDSWITH';
+ISNULLOREMPTY: 'ISNULLOREMPTY';
+ISNULLORWHITESPACE: 'ISNULLORWHITESPACE';
+REMOVESTART: 'REMOVESTART';
+REMOVEEND: 'REMOVEEND';
+JSON: 'JSON';
+LOOKCEILING: 'LOOKCEILING';
+LOOKFLOOR: 'LOOKFLOOR';
+ARRAY: 'ARRAY';
+ALGORITHMVERSION:'ALGORITHMVERSION'|'ENGINEVERSION';
 
-PARAMETER:'PERCENTILE.INC'
-	|'PERCENTRANK.INC'
-	|'STDEV.S'
-	|'STDEV.P'
-	|'COVARIANCE.P'
-	|'COVARIANCE.S'
-	|'VAR.S'
-	|'VAR.P'
-	|'NORM.DIST'
-	|'NORM.INV'
-	|'NORM.S.DIST'
-	|'NORM.S.INV'
-	|'BETA.DIST'
-	|'BETA.INV'
-	|'BINOM.DIST'
-	|'EXPON.DIST'
-	|'F.DIST'
-	|'F.INV'
-	|'GAMMA.DIST'
-	|'GAMMA.INV'
-	|'GAMMALN.PRECISE'
-	|'HYPGEOM.DIST'
-	|'LOGNORM.INV'
-	|'LOGNORM.DIST'
-	|'NEGBINOM.DIST'
-	|'POISSON.DIST'
-	|'T.DIST'
-	|'T.INV'
-	| ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter)*;
+ADDYEARS: 'ADDYEARS';
+ADDMONTHS: 'ADDMONTHS';
+ADDDAYS: 'ADDDAYS';
+ADDHOURS: 'ADDHOURS';
+ADDMINUTES: 'ADDMINUTES';
+ADDSECONDS: 'ADDSECONDS';
+TIMESTAMP: 'TIMESTAMP';
+HAS: 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY';
+HASVALUE: 'HASVALUE' | 'CONTAINSVALUE';
+PARAM: 'PARAM' | 'PARAMETER' | 'GETPARAMETER';
+
+PARAMETER: ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter	)*;
 
 fragment FullWidthLetter:
 	'\u00c0' ..'\u00d6'
@@ -126,6 +671,7 @@ fragment FullWidthLetter:
 	| '\ua000' ..'\ud7ff'
 	| '\uf900' ..'\ufaff'
 	| '\uff00' ..'\ufff0'
+	// | '\u10000'..'\u1F9FF' //not support four bytes chars | '\u20000'..'\u2FA1F'
 	;
 
 WS: [ \t\r\n\u000C]+ -> skip;
