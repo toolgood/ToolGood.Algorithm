@@ -37,7 +37,7 @@ class Function_PARAMETER extends FunctionBase {
         if (this.name === undefined || this.name === null) {
             this.func1.toString2(stringBuilder, false);
         } else {
-            stringBuilder.append(this.name);
+            stringBuilder.push(this.name);
         }
     }
 

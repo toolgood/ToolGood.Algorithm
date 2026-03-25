@@ -11,7 +11,7 @@ class Function_NULL extends Function_0 {
     }
 
     evaluate(engine, tempParameter = null) {
-        return Operand.Null;
+        return Operand.CreateNull();
     }
 }
 
