@@ -2,6 +2,7 @@ import { AntlrCharStream } from './AntlrCharStream.js';
 import mathjsLexer from './math/mathjsLexer.js';
 import CommonTokenStream from './antlr4/CommonTokenStream.js';
 import mathjsParser from './math/mathjsParser.js';
+import mathjsVisitor from './math/mathjsVisitor.js';
 
 export class AlgorithmEngineHelper {
     static ParseFormula(exp,errorListener) {
@@ -19,6 +20,8 @@ export class AlgorithmEngineHelper {
         let parser = new mathjsParser(tokens);
         parser.removeErrorListeners();
         parser.addErrorListener(errorListener);
-        return parser.prog();
+        let context= parser.prog();
+        let visitor = new mathjsVisitor();
+        return visitor.visit(context);
     }
 }

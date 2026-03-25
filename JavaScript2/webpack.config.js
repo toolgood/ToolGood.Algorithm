@@ -57,7 +57,6 @@ export default {
   resolve: {
     extensions: ['.js'],
     fallback: {
-      "crypto": "crypto-browserify",
       "buffer": "buffer",
       "stream": "stream-browserify",
       "vm": "vm-browserify",

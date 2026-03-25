@@ -1,5 +1,6 @@
 
 import antlr4 from '../antlr4/index.web.js';
+import mathjsVisitor from './mathjsVisitor.js';
 const serializedATN = [4,1,308,508,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,26,8,1,
 10,1,12,1,29,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,40,8,1,1,1,1,1,
@@ -1306,6 +1307,9 @@ class ProgContext extends antlr4.ParserRuleContext {
         this.parser = parser;
         this.ruleIndex = 0;
     }
+	accept(visitor) {
+	        return visitor.visitProg(this);
+	}
 }
 class ExprContext extends antlr4.ParserRuleContext {
     constructor(parser, parent, invokingState) {
@@ -1315,6 +1319,11 @@ class ExprContext extends antlr4.ParserRuleContext {
         this.unit = null;
         this.op = null;
     }
+	accept(visitor) {
+	    if ( visitor instanceof mathjsVisitor ) {
+	        return visitor.visitExpr(this);
+	    }
+	}
 }
 class NumContext extends antlr4.ParserRuleContext {
     constructor(parser, parent, invokingState) {
@@ -1322,6 +1331,9 @@ class NumContext extends antlr4.ParserRuleContext {
         this.parser = parser;
         this.ruleIndex = 2;
     }
+	accept(visitor) {
+	        return visitor.visitNum(this);
+	}
 }
 class ArrayJsonContext extends antlr4.ParserRuleContext {
     constructor(parser, parent, invokingState) {
@@ -1330,6 +1342,9 @@ class ArrayJsonContext extends antlr4.ParserRuleContext {
         this.ruleIndex = 3;
         this.key = null;
     }
+	accept(visitor) {
+	        return visitor.visitArrayJson(this);
+	}
 }
 class Parameter2Context extends antlr4.ParserRuleContext {
     constructor(parser, parent, invokingState) {
@@ -1337,4 +1352,7 @@ class Parameter2Context extends antlr4.ParserRuleContext {
         this.parser = parser;
         this.ruleIndex = 4;
     }
+	accept(visitor) {
+	        return visitor.visitParameter2(this);
+	}
 }
