@@ -12,23 +12,24 @@ class Function_VALUE extends Function_1 {
 
     evaluate(work, tempParameter) {
         let args1 = this.a.evaluate(work, tempParameter);
+        if (args1.IsError) { return args1; }
         if (args1.IsNumber) {
             return args1;
         }
         if (args1.isBoolean) {
             return args1.BooleanValue ? Operand.one : Operand.zero;
         }
-            args1 = args1.ToText(this.functionError, 'Value');
-            if (args1.IsError) {
-                return args1;
-            }
+        args1 = args1.ToText(this.parameterError, 'Value', 1);
+        if (args1.IsError) {
+            return args1;
+        }
 
         let TextValue = args1.TextValue;
         let parsedValue = parseFloat(TextValue);
         if (!isNaN(parsedValue)) {
             return Operand.Create(parsedValue);
         }
-        return Operand.Error(this.functionError, 'Value');
+        return this.parameterError(1);
     }
 }
 

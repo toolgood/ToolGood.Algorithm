@@ -48,7 +48,7 @@ class Function_TEXT extends Function_2 {
             // 同样，日期格式化可能需要更复杂的处理
             return Operand.Create(args1.DateValue.toString());
         }
-        let args1Text = args1.ToText(this.functionError, 'Text', 1);
+        let args1Text = args1.ToText(this.parameterError, 'Text', 1);
         if (args1Text.IsError) {
             return args1Text;
         }
