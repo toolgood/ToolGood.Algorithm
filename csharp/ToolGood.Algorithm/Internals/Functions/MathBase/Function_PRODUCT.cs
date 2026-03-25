@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { 
                 var aa = GetNumber(engine, tempParameter, i);
-                if (aa.IsErrorOrNone || aa.IsNone) { return aa; } 
+                if (aa.IsErrorOrNone) { return aa; } 
                 args.Add(aa); 
             }
 
