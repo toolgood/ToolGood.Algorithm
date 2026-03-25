@@ -6,12 +6,9 @@ import mathjsVisitor from './math/mathjsVisitor.js';
 
 export class AlgorithmEngineHelper {
     static ParseFormula(exp,errorListener) {
-        if (!exp || exp.trim() === '') {
-            throw new Error("Parameter exp invalid !");
-        }
-        if (!errorListener ) {
-            throw new Error("Parameter errorListener invalid !");
-        }
+        if (!exp || exp.trim() === '') { return null; }
+        if (!errorListener ) { return null; }
+
         let stream =new AntlrCharStream(exp);
         let lexer = new mathjsLexer(stream );
         lexer.removeErrorListeners();

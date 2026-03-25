@@ -1,19 +1,22 @@
 import { AlgorithmEngineHelper } from './AlgorithmEngineHelper.js';
-import antlr4 from './antlr4/index.web.js';
+import { AntlrErrorListener } from './AntlrErrorTextWriter.js';
+
 
 export {
   AlgorithmEngineHelper,
+  AntlrErrorListener,
 };
 
 export default {
   AlgorithmEngineHelper,
+  AntlrErrorListener,
 };
 
 // Browser support
 if (typeof window !== 'undefined') {
   window.ToolGood = window.ToolGood || {};
-  window.ToolGood.antlr4 = antlr4;
   window.ToolGood.Algorithm = {
     AlgorithmEngineHelper,
+    AntlrErrorListener,
   };
 }
