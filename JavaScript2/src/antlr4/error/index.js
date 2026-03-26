@@ -4,7 +4,7 @@
  */
 
 import RecognitionException from './RecognitionException.js';
-// import NoViableAltException from './NoViableAltException.js';
+import NoViableAltException from './NoViableAltException.js';
 // import LexerNoViableAltException from './LexerNoViableAltException.js';
 // import InputMismatchException from './InputMismatchException.js';
 // import FailedPredicateException from './FailedPredicateException.js';
@@ -15,7 +15,8 @@ import RecognitionException from './RecognitionException.js';
 
 export default {
      RecognitionException,
-     // NoViableAltException, LexerNoViableAltException, InputMismatchException, FailedPredicateException,
+     NoViableAltException,
+     //  LexerNoViableAltException, InputMismatchException, FailedPredicateException,
     // DiagnosticErrorListener, BailErrorStrategy, DefaultErrorStrategy, 
     
     // ErrorListener
