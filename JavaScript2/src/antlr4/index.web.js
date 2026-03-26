@@ -37,7 +37,7 @@ import ParserRuleContext from './context/ParserRuleContext.js';
 // import Interval from './misc/Interval.js';
 // import IntervalSet from './misc/IntervalSet.js';
 // import ParseTreeListener from "./tree/ParseTreeListener.js";
-import ParseTreeVisitor from "./tree/ParseTreeVisitor.js";
+// import ParseTreeVisitor from "./tree/ParseTreeVisitor.js";
 // import ParseTreeWalker from "./tree/ParseTreeWalker.js";
 // import ErrorListener from "./error/ErrorListener.js"
 // import DiagnosticErrorListener from "./error/DiagnosticErrorListener.js"
@@ -48,7 +48,7 @@ import ParseTreeVisitor from "./tree/ParseTreeVisitor.js";
 // import InputMismatchException from "./error/InputMismatchException.js"
 
 export default {
-    atn, dfa, error, tree, Lexer, Parser, ParserRuleContext,ParseTreeVisitor
+    atn, dfa, error, tree, Lexer, Parser, ParserRuleContext
 }
 
 // export {
