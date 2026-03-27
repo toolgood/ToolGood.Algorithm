@@ -32,8 +32,7 @@ namespace ToolGood.Algorithm
 			parser.RemoveErrorListeners();
 			parser.AddErrorListener(data);
 
-			var context = parser.prog();
-			return context;
+			return parser.prog();
 		}
 
 		/// <summary>
