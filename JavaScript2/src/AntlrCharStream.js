@@ -1,4 +1,3 @@
-import { CharUtil } from './CharUtil.js';
 import CharStream from './antlr4/CharStream.js';
 import Token from './antlr4/Token.js';
 
@@ -27,6 +26,29 @@ export class AntlrCharStream extends CharStream {
              return Token.EOF;
          }
          let c=this.data[pos];
-        return CharUtil.standardChar(String.fromCharCode(c)).charCodeAt(0);
+        return AntlrCharStream.standardChar(String.fromCharCode(c)).charCodeAt(0);
      }
+    static standardChar(o) {
+        if (typeof o !== 'string' || o.length !== 1) return o;
+        let charCode = o.charCodeAt(0);
+        if (charCode >= 65 && charCode <= 90) return o;
+        if (charCode <= 127) return o.toUpperCase();
+        if (charCode <= 65280) {
+            if (o == '×') return '*';//215
+            if (o == '÷') return '/';//247
+            if (o == '‘') return '\'';//8216
+            if (o == '’') return '\'';//8217
+            if (o == '"') return '"';//8220
+            if (o == '"') return '"';//8221
+            if (charCode == 12288) return String.fromCharCode(32);
+            if (o == '【') return '[';//12304
+            if (o == '】') return ']';//12305
+            if (o == '〔') return '(';//12308
+            if (o == '〕') return ')';//12309
+            return o;
+        } else if (charCode < 65375) {
+            o = String.fromCharCode(charCode - 65248);
+        }
+        return o.toUpperCase();
+    }
 }
