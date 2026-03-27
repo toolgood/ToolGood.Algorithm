@@ -922,7 +922,7 @@ namespace ToolGood.Algorithm.Test.ParameterTypes
 		[Test]
 		public void Test_Complex_MultipleParameters()
 		{
-			var fb = AlgorithmEngineHelper.ParseFormula("(a+b)*(c-d)/e");
+			var fb = AlgorithmEngineHelper.ParseFormula("(a+b)*(c-d)/e()");
 			var list = fb.GetParameterTypes(new AlgorithmEngine());
 			Assert.IsNotNull(list);
 			Assert.AreEqual(4, list.Count);
