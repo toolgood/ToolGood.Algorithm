@@ -29,10 +29,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			};
 			hasBracket = false;
 			var exprs = context.expr();
-			var t = context.op.Text;
-			if(CharUtil.Equals(t, '*')) {
+			var t = context.op.Type;
+			if(t == math.mathLexer.OPMUL) {
 				tree.Type = CalculateTreeType.Mul;
-			} else if(CharUtil.Equals(t, '/')) {
+			} else if(t == math.mathLexer.OPDIV) {
 				tree.Type = CalculateTreeType.Div;
 			} else {
 				tree.Type = CalculateTreeType.Mod;
@@ -52,10 +52,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			};
 			hasBracket = false;
 			var exprs = context.expr();
-			var t = context.op.Text;
-			if(CharUtil.Equals(t, '+')) {
+			var t = context.op.Type;
+			if(t == math.mathLexer.OPADD) {
 				tree.Type = CalculateTreeType.Add;
-			} else if(CharUtil.Equals(t, '-')) {
+			} else if(t == math.mathLexer.OPSUB) {
 				tree.Type = CalculateTreeType.Sub;
 			} else {
 				tree.Type = CalculateTreeType.Connect;

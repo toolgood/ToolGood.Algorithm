@@ -24,8 +24,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
-			var t = context.op.Text;
-			if(CharUtil.Equals(t, "&&")) {
+			var t = context.op.Type;
+			if(t == mathLexer.OPAND) {
 				tree.Type = ConditionTreeType.And;
 			} else {
 				tree.Type = ConditionTreeType.Or;
