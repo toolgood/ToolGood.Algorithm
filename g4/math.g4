@@ -3,65 +3,39 @@ grammar math;
 prog: expr EOF;
 
 expr:
-	expr '.' ISNUMBER '(' ')'									# ISNUMBER_fun
-	| expr '.' ISTEXT '(' ')'									# ISTEXT_fun
-	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
-	| expr '.' ISLOGICAL '(' ')'								# ISLOGICAL_fun
-	| expr '.' ISERROR '(' expr? ')'							# ISERROR_fun
-	| expr '.' ISNULL '(' expr? ')'								# ISNULL_fun
-	| expr '.' ISNULLORERROR '(' expr? ')'						# ISNULLORERROR_fun
+	expr '.' f=(ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL) '(' ')'	# IS_fun
+	| expr '.' f=(ISERROR | ISNULL | ISNULLORERROR) '(' expr? ')'	# ISNULL_check_fun
 	| expr '.' INT '(' ')'										# INT_fun
 	| expr '.' EXACT '(' expr ')'								# EXACT_fun
-	| expr '.' LEFT '(' expr? ')'								# LEFT_fun
+	| expr '.' f=(LEFT | RIGHT) '(' expr? ')'					# LR_fun
 	| expr '.' LEN '(' ')'										# LEN_fun
-	| expr '.' LOWER '(' ')'									# LOWER_fun
+	| expr '.' f=(LOWER | UPPER) '(' ')'						# CASE_fun
 	| expr '.' MID '(' expr ',' expr ')'						# MID_fun
 	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'		# REPLACE_fun
-	| expr '.' RIGHT '(' expr? ')'								# RIGHT_fun
 	| expr '.' RMB '(' ')'										# RMB_fun
 	| expr '.' T '(' ')'										# T_fun
 	| expr '.' TEXT '(' expr ')'								# TEXT_fun
 	| expr '.' TRIM '(' ')'										# TRIM_fun
-	| expr '.' UPPER '(' ')'									# UPPER_fun
 	| expr '.' VALUE '(' ')'									# VALUE_fun
 	| expr '.' DATEVALUE '(' expr? ')'							# DATEVALUE_fun
 	| expr '.' TIMEVALUE '(' ')'								# TIMEVALUE_fun
-	| expr '.' YEAR ('(' ')')									# YEAR_fun
-	| expr '.' MONTH ('(' ')')									# MONTH_fun
-	| expr '.' DAY ('(' ')')									# DAY_fun
-	| expr '.' HOUR ('(' ')')									# HOUR_fun
-	| expr '.' MINUTE ('(' ')')									# MINUTE_fun
-	| expr '.' SECOND ('(' ')')									# SECOND_fun
-	| expr '.' URLENCODE '(' ')'								# URLENCODE_fun
-	| expr '.' URLDECODE '(' ')'								# URLDECODE_fun
+	| expr '.' f=(YEAR | MONTH | DAY | HOUR | MINUTE | SECOND) '(' ')'	# DATE_TIME_fun
+	| expr '.' f=(URLENCODE | URLDECODE) '(' ')'				# ENCODE_fun
 	| expr '.' REGEX '(' expr ')'								# REGEX_fun
 	| expr '.' REGEXREPLACE '(' expr ',' expr ')'				# REGEXREPLACE_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
-	| expr '.' MD5 '(' ')'										# MD5_fun
-	| expr '.' SHA1 '(' ')'										# SHA1_fun
-	| expr '.' SHA256 '(' ')'									# SHA256_fun
-	| expr '.' SHA512 '(' ')'									# SHA512_fun
-	| expr '.' TRIMSTART '(' expr? ')'							# TRIMSTART_fun
-	| expr '.' TRIMEND '(' expr? ')'							# TRIMEND_fun
-	| expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
-	| expr '.' LASTINDEXOF '(' expr (',' expr (',' expr)?)? ')'	# LASTINDEXOF_fun
+	| expr '.' f=(MD5 | SHA1 | SHA256 | SHA512) '(' ')'			# HASH_fun
+	| expr '.' f=(TRIMSTART | TRIMEND) '(' expr? ')'				# TRIM_SE_fun
+	| expr '.' f=(INDEXOF | LASTINDEXOF) '(' expr (',' expr (',' expr)?)? ')'	# INDEXOF_fun
 	| expr '.' SPLIT '(' expr ')'								# SPLIT_fun
 	| expr '.' JOIN '(' expr (',' expr)* ')'					# JOIN_fun
 	| expr '.' SUBSTRING '(' expr (',' expr)? ')'				# SUBSTRING_fun
-	| expr '.' STARTSWITH '(' expr (',' expr)? ')'				# STARTSWITH_fun
-	| expr '.' ENDSWITH '(' expr (',' expr)? ')'				# ENDSWITH_fun
-	| expr '.' ISNULLOREMPTY '(' ')'							# ISNULLOREMPTY_fun
-	| expr '.' ISNULLORWHITESPACE '(' ')'						# ISNULLORWHITESPACE_fun
-	| expr '.' REMOVESTART '(' expr (',' expr)? ')'				# REMOVESTART_fun
-	| expr '.' REMOVEEND '(' expr (',' expr)? ')'				# REMOVEEND_fun
+	| expr '.' f=(STARTSWITH | ENDSWITH) '(' expr (',' expr)? ')'	# STRINGSuffix_fun
+	| expr '.' f=(ISNULLOREMPTY | ISNULLORWHITESPACE) '(' ')'	# ISNULLOR_fun
+	| expr '.' f=(REMOVESTART | REMOVEEND) '(' expr (',' expr)? ')'	# REMOVE_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
 	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
-	| expr '.' ADDYEARS '(' expr ')'							# ADDYEARS_fun
-	| expr '.' ADDMONTHS '(' expr ')'							# ADDMONTHS_fun
-	| expr '.' ADDDAYS '(' expr ')'								# ADDDAYS_fun
-	| expr '.' ADDHOURS '(' expr ')'							# ADDHOURS_fun
-	| expr '.' ADDMINUTES '(' expr ')'							# ADDMINUTES_fun
-	| expr '.' ADDSECONDS '(' expr ')'							# ADDSECONDS_fun
+	| expr '.' f=(ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS) '(' expr ')'	# ADD_DateTime_fun
 	| expr '.' TIMESTAMP '(' expr? ')'							# TIMESTAMP_fun
 	| expr '.' HAS '(' expr ')'									# HAS_fun
 	| expr '.' HASVALUE '(' expr ')'							# HASVALUE_fun
@@ -85,36 +59,16 @@ expr:
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
 	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'		# IFS_fun
 	| SWITCH '(' expr ',' expr ',' expr ( ',' expr)* ')'	# SWITCH_fun
-	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
-	| ISTEXT '(' expr ')'									# ISTEXT_fun
-	| ISERROR '(' expr (',' expr)? ')'						# ISERROR_fun
-	| ISNONTEXT '(' expr ')'								# ISNONTEXT_fun
-	| ISLOGICAL '(' expr ')'								# ISLOGICAL_fun
-	| ISEVEN '(' expr ')'									# ISEVEN_fun
-	| ISODD '(' expr ')'									# ISODD_fun
+	| f=(ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | ISEVEN | ISODD) '(' expr ')'	# IS_fun
+	| f=(ISERROR | ISNULL | ISNULLORERROR) '(' expr (',' expr)? ')'	# ISNULL_check_fun
 	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun
-	| ISNULL '(' expr (',' expr)? ')'						# ISNULL_fun
-	| ISNULLORERROR '(' expr (',' expr)? ')'				# ISNULLORERROR_fun
-	| AND '(' expr (',' expr)* ')'							# AND_fun
-	| OR '(' expr (',' expr)* ')'							# OR_fun
-	| XOR '(' expr (',' expr)* ')'							# XOR_fun
+	| f=(AND | OR | XOR) '(' expr (',' expr)* ')'				# LOGIC_fun
 	| NOT '(' expr ')'										# NOT_fun
 	| TRUE ('(' ')')?										# TRUE_fun
 	| FALSE ('(' ')')?										# FALSE_fun
 	| E ('(' ')')											# E_fun
 	| PI ('(' ')')											# PI_fun
-	| DEC2BIN ('(' expr (',' expr)? ')')					# DEC2BIN_fun
-	| DEC2HEX ('(' expr (',' expr)? ')')					# DEC2HEX_fun
-	| DEC2OCT ('(' expr (',' expr)? ')')					# DEC2OCT_fun
-	| HEX2BIN ('(' expr (',' expr)? ')')					# HEX2BIN_fun
-	| HEX2DEC ('(' expr (',' expr)? ')')					# HEX2DEC_fun
-	| HEX2OCT ('(' expr (',' expr)? ')')					# HEX2OCT_fun
-	| OCT2BIN ('(' expr (',' expr)? ')')					# OCT2BIN_fun
-	| OCT2DEC ('(' expr (',' expr)? ')')					# OCT2DEC_fun
-	| OCT2HEX ('(' expr (',' expr)? ')')					# OCT2HEX_fun
-	| BIN2OCT ('(' expr (',' expr)? ')')					# BIN2OCT_fun
-	| BIN2DEC ('(' expr (',' expr)? ')')					# BIN2DEC_fun
-	| BIN2HEX ('(' expr (',' expr)? ')')					# BIN2HEX_fun
+	| f=(DEC2BIN | DEC2HEX | DEC2OCT | HEX2BIN | HEX2DEC | HEX2OCT | OCT2BIN | OCT2DEC | OCT2HEX | BIN2OCT | BIN2DEC | BIN2HEX) ('(' expr (',' expr)? ')')	# Convert_fun
 	| ABS '(' expr ')'										# ABS_fun
 	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun
 	| MOD '(' expr (',' expr) ')'							# MOD_fun
@@ -197,27 +151,24 @@ expr:
 	| CHAR '(' expr ')'										# CHAR_fun
 	| CLEAN '(' expr ')'									# CLEAN_fun
 	| CODE '(' expr ')'										# CODE_fun
-	| UNICHAR '(' expr ')'									# UNICHAR_fun
-	| UNICODE '(' expr ')'									# UNICODE_fun
+	| f=(UNICHAR | UNICODE) '(' expr ')'						# UNICODE_fun
 	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun
 	| EXACT '(' expr ',' expr ')'							# EXACT_fun
 	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun
 	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun
-	| LEFT '(' expr (',' expr)? ')'							# LEFT_fun
+	| f=(LEFT | RIGHT) '(' expr (',' expr)? ')'				# LR_fun
 	| LEN '(' expr ')'										# LEN_fun
-	| LOWER '(' expr ')'									# LOWER_fun
+	| f=(LOWER | UPPER) '(' expr ')'							# CASE_fun
 	| MID '(' expr ',' expr ',' expr ')'					# MID_fun
 	| PROPER '(' expr ')'									# PROPER_fun
 	| REPLACE '(' expr ',' expr ',' expr (',' expr)? ')'	# REPLACE_fun
 	| REPT '(' expr ',' expr ')'							# REPT_fun
-	| RIGHT '(' expr (',' expr)? ')'						# RIGHT_fun
 	| RMB '(' expr ')'										# RMB_fun
 	| SEARCH '(' expr ',' expr (',' expr)? ')'				# SEARCH_fun
 	| SUBSTITUTE '(' expr ',' expr ',' expr (',' expr)? ')'	# SUBSTITUTE_fun
 	| T '(' expr ')'										# T_fun
 	| TEXT '(' expr ',' expr ')'							# TEXT_fun
 	| TRIM '(' expr ')'										# TRIM_fun
-	| UPPER '(' expr ')'									# UPPER_fun
 	| VALUE '(' expr ')'									# VALUE_fun
 	| DATEVALUE '(' expr (',' expr)? ')'					# DATEVALUE_fun
 	| TIMEVALUE '(' expr ')'								# TIMEVALUE_fun
@@ -227,12 +178,7 @@ expr:
 	| TIME '(' expr ',' expr (',' expr)? ')'					# TIME_fun
 	| NOW '(' ')'												# NOW_fun
 	| TODAY '(' ')'												# TODAY_fun
-	| YEAR '(' expr ')'											# YEAR_fun
-	| MONTH '(' expr ')'										# MONTH_fun
-	| DAY '(' expr ')'											# DAY_fun
-	| HOUR '(' expr ')'											# HOUR_fun
-	| MINUTE '(' expr ')'										# MINUTE_fun
-	| SECOND '(' expr ')'										# SECOND_fun
+	| f=(YEAR | MONTH | DAY | HOUR | MINUTE | SECOND) '(' expr ')'	# DATE_TIME_fun
 	| WEEKDAY '(' expr (',' expr)? ')'							# WEEKDAY_fun
 	| DATEDIF '(' expr ',' expr ',' expr ')'					# DATEDIF_fun
 	| DAYS '(' expr ',' expr ')'								# DAYS_fun
@@ -306,49 +252,25 @@ expr:
 	| DB '(' expr ',' expr ',' expr ',' expr (',' expr)? ')'	# DB_fun
 	| DDB '(' expr ',' expr ',' expr ',' expr (',' expr)? ')'	# DDB_fun
 	| SYD '(' expr ',' expr ',' expr ',' expr ')'				# SYD_fun
-	| URLENCODE '(' expr ')'									# URLENCODE_fun
-	| URLDECODE '(' expr ')'									# URLDECODE_fun
-	| HTMLENCODE '(' expr ')'									# HTMLENCODE_fun
-	| HTMLDECODE '(' expr ')'									# HTMLDECODE_fun
-	| BASE64TOTEXT '(' expr ')'									# BASE64TOTEXT_fun
-	| BASE64URLTOTEXT '(' expr ')'								# BASE64URLTOTEXT_fun
-	| TEXTTOBASE64 '(' expr ')'									# TEXTTOBASE64_fun
-	| TEXTTOBASE64URL '(' expr ')'								# TEXTTOBASE64URL_fun
+	| f=(URLENCODE | URLDECODE | HTMLENCODE | HTMLDECODE | BASE64TOTEXT | BASE64URLTOTEXT | TEXTTOBASE64 | TEXTTOBASE64URL) '(' expr ')'	# ENCODE_fun
 	| REGEX '(' expr ',' expr ')'								# REGEX_fun
 	| REGEXREPLACE '(' expr ',' expr ',' expr ')'				# REGEXREPLACE_fun
 	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun
 	| GUID '(' ')'												# GUID_fun
-	| MD5 '(' expr ')'											# MD5_fun
-	| SHA1 '(' expr ')'											# SHA1_fun
-	| SHA256 '(' expr ')'										# SHA256_fun
-	| SHA512 '(' expr ')'										# SHA512_fun
-	| HMACMD5 '(' expr ',' expr ')'								# HMACMD5_fun
-	| HMACSHA1 '(' expr ',' expr ')'							# HMACSHA1_fun
-	| HMACSHA256 '(' expr ',' expr ')'							# HMACSHA256_fun
-	| HMACSHA512 '(' expr ',' expr ')'							# HMACSHA512_fun
-	| TRIMSTART '(' expr (',' expr)? ')'						# TRIMSTART_fun
-	| TRIMEND '(' expr (',' expr)? ')'							# TRIMEND_fun
-	| INDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
-	| LASTINDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'	# LASTINDEXOF_fun
+	| f=(MD5 | SHA1 | SHA256 | SHA512) '(' expr ')'				# HASH_fun
+	| f=(HMACMD5 | HMACSHA1 | HMACSHA256 | HMACSHA512) '(' expr ',' expr ')'	# HMAC_fun
+	| f=(TRIMSTART | TRIMEND) '(' expr (',' expr)? ')'			# TRIM_SE_fun
+	| f=(INDEXOF | LASTINDEXOF) '(' expr ',' expr (',' expr (',' expr)?)? ')'	# INDEXOF_fun
 	| SPLIT '(' expr ',' expr ')'								# SPLIT_fun
 	| JOIN '(' expr (',' expr)+ ')'								# JOIN_fun
 	| SUBSTRING '(' expr ',' expr (',' expr)? ')'				# SUBSTRING_fun
-	| STARTSWITH '(' expr ',' expr (',' expr)? ')'				# STARTSWITH_fun
-	| ENDSWITH '(' expr ',' expr (',' expr)? ')'				# ENDSWITH_fun
-	| ISNULLOREMPTY '(' expr ')'								# ISNULLOREMPTY_fun
-	| ISNULLORWHITESPACE '(' expr ')'							# ISNULLORWHITESPACE_fun
-	| REMOVESTART '(' expr (',' expr (',' expr)?)? ')'			# REMOVESTART_fun
-	| REMOVEEND '(' expr (',' expr (',' expr)?)? ')'			# REMOVEEND_fun
+	| f=(STARTSWITH | ENDSWITH) '(' expr ',' expr (',' expr)? ')'	# STRINGSuffix_fun
+	| f=(ISNULLOREMPTY | ISNULLORWHITESPACE) '(' expr ')'		# ISNULLOR_fun
+	| f=(REMOVESTART | REMOVEEND) '(' expr (',' expr (',' expr)?)? ')'	# REMOVE_fun
 	| JSON '(' expr ')'											# JSON_fun
-	| LOOKCEILING '(' expr ',' expr ')'							# LOOKCEILING_fun
-	| LOOKFLOOR '(' expr ',' expr ')'							# LOOKFLOOR_fun
+	| f=(LOOKCEILING | LOOKFLOOR) '(' expr ',' expr ')'			# LOOK_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
-	| ADDYEARS '(' expr ',' expr ')'							# ADDYEARS_fun
-	| ADDMONTHS '(' expr ',' expr ')'							# ADDMONTHS_fun
-	| ADDDAYS '(' expr ',' expr ')'								# ADDDAYS_fun
-	| ADDHOURS '(' expr ',' expr ')'							# ADDHOURS_fun
-	| ADDMINUTES '(' expr ',' expr ')'							# ADDMINUTES_fun
-	| ADDSECONDS '(' expr ',' expr ')'							# ADDSECONDS_fun
+	| f=(ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS) '(' expr ',' expr ')'	# ADD_DateTime_fun
 	| TIMESTAMP '(' expr (',' expr)? ')'						# TIMESTAMP_fun
 	| PARAM '(' expr (',' expr)? ')'							# PARAM_fun
 	| ERROR '(' expr? ')'										# ERROR_fun

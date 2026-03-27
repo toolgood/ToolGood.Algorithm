@@ -1,4 +1,5 @@
-﻿using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
 using System.Text;
@@ -106,66 +107,51 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_IFERROR(funcs);
 		}
-		public FunctionBase VisitISNUMBER_fun(mathParser.ISNUMBER_funContext context)
+		public FunctionBase VisitIS_fun(mathParser.IS_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = this.Visit(context.expr());
-			return new Function_ISNUMBER(args1);
+			if(txt.Equals("ISNUMBER", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISNUMBER(args1);
+			} else if(txt.Equals("ISTEXT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISTEXT(args1);
+			} else if(txt.Equals("ISLOGICAL", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISLOGICAL(args1);
+			} else if(txt.Equals("ISNONTEXT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISNONTEXT(args1);
+			} else if(txt.Equals("ISEVEN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISEVEN(args1);
+			}
+			//} else if(txt.Equals("ISODD", StringComparison.OrdinalIgnoreCase)) {
+			return new Function_ISODD(args1);
+			//}
 		}
-		public FunctionBase VisitISTEXT_fun(mathParser.ISTEXT_funContext context)
+
+		public FunctionBase VisitISNULL_check_fun(mathParser.ISNULL_check_funContext context)
 		{
-			var args1 = this.Visit(context.expr());
-			return new Function_ISTEXT(args1);
-		}
-		public FunctionBase VisitISERROR_fun(mathParser.ISERROR_funContext context)
-		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_ISERROR(funcs);
-		}
-		public FunctionBase VisitISNULL_fun(mathParser.ISNULL_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ISNULL(funcs);
-		}
-		public FunctionBase VisitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("ISERROR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISERROR(funcs);
+			} else if(txt.Equals("ISNULL", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISNULL(funcs);
+			}
+			//if(txt.Equals("ISNULLORERROR", StringComparison.OrdinalIgnoreCase)) {
 			return new Function_ISNULLORERROR(funcs);
 		}
-		public FunctionBase VisitISEVEN_fun(mathParser.ISEVEN_funContext context)
+		public FunctionBase VisitLOGIC_fun(mathParser.LOGIC_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ISEVEN(args1);
-		}
-		public FunctionBase VisitISLOGICAL_fun(mathParser.ISLOGICAL_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ISLOGICAL(args1);
-		}
-		public FunctionBase VisitISODD_fun(mathParser.ISODD_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ISODD(args1);
-		}
-		public FunctionBase VisitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ISNONTEXT(args1);
-		}
-		public FunctionBase VisitAND_fun(mathParser.AND_funContext context)
-		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_AND_N(funcs);
-		}
-		public FunctionBase VisitOR_fun(mathParser.OR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_OR_N(funcs);
-		}
-		public FunctionBase VisitXOR_fun(mathParser.XOR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+
+			if(txt.Equals("AND", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_AND_N(funcs);
+			} else if(txt.Equals("OR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_OR_N(funcs);
+			}
 			return new Function_XOR(funcs);
 		}
+ 
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
@@ -374,64 +360,33 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		#endregion trigonometric functions
 		#region transformation
-		public FunctionBase VisitBIN2OCT_fun(mathParser.BIN2OCT_funContext context)
+		public FunctionBase VisitConvert_fun(mathParser.Convert_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_BIN2OCT(funcs);
-		}
-		public FunctionBase VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BIN2DEC(funcs);
-		}
-		public FunctionBase VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BIN2HEX(funcs);
-		}
-		public FunctionBase VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_OCT2BIN(funcs);
-		}
-		public FunctionBase VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_OCT2DEC(funcs);
-		}
-		public FunctionBase VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_OCT2HEX(funcs);
-		}
-		public FunctionBase VisitDEC2BIN_fun(mathParser.DEC2BIN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DEC2BIN(funcs);
-		}
-		public FunctionBase VisitDEC2OCT_fun(mathParser.DEC2OCT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DEC2OCT(funcs);
-		}
-		public FunctionBase VisitDEC2HEX_fun(mathParser.DEC2HEX_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DEC2HEX(funcs);
-		}
-		public FunctionBase VisitHEX2BIN_fun(mathParser.HEX2BIN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HEX2BIN(funcs);
-		}
-		public FunctionBase VisitHEX2OCT_fun(mathParser.HEX2OCT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HEX2OCT(funcs);
-		}
-		public FunctionBase VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("BIN2OCT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BIN2OCT(funcs);
+			} else if(txt.Equals("BIN2DEC", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BIN2DEC(funcs);
+			} else if(txt.Equals("BIN2HEX", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BIN2HEX(funcs);
+			} else if(txt.Equals("OCT2BIN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_OCT2BIN(funcs);
+			} else if(txt.Equals("OCT2DEC", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_OCT2DEC(funcs);
+			} else if(txt.Equals("OCT2HEX", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_OCT2HEX(funcs);
+			} else if(txt.Equals("DEC2BIN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_DEC2BIN(funcs);
+			} else if(txt.Equals("DEC2OCT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_DEC2OCT(funcs);
+			} else if(txt.Equals("DEC2HEX", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_DEC2HEX(funcs);
+			} else if(txt.Equals("HEX2BIN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HEX2BIN(funcs);
+			} else if(txt.Equals("HEX2OCT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HEX2OCT(funcs);
+			}
 			return new Function_HEX2DEC(funcs);
 		}
 		#endregion transformation
@@ -692,15 +647,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_CODE(args1);
 		}
-		public FunctionBase VisitUNICHAR_fun(mathParser.UNICHAR_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_UNICHAR(args1);
-		}
 		public FunctionBase VisitUNICODE_fun(mathParser.UNICODE_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_UNICODE(args1);
+			if(txt.Equals("UNICODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_UNICODE(args1);
+			}
+			return new Function_UNICHAR(args1);
 		}
 		public FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
 		{
@@ -717,21 +671,34 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_FIND(funcs);
 		}
-		public FunctionBase VisitLEFT_fun(mathParser.LEFT_funContext context)
+		public FunctionBase VisitLR_fun(mathParser.LR_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_LEFT(funcs);
+			if(txt.Equals("LEFT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_LEFT(funcs);
+			}
+			//if(txt.Equals("RIGHT", StringComparison.OrdinalIgnoreCase)) {
+			return new Function_RIGHT(funcs);
+			//}
 		}
+
 		public FunctionBase VisitLEN_fun(mathParser.LEN_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_LEN(args1);
 		}
-		public FunctionBase VisitLOWER_fun(mathParser.LOWER_funContext context)
+		public FunctionBase VisitCASE_fun(mathParser.CASE_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_LOWER(args1);
+			if(txt.Equals("LOWER", StringComparison.OrdinalIgnoreCase) || txt.Equals("TOLOWER", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_LOWER(args1);
+			}
+			
+			return new Function_UPPER(args1);
 		}
+
 		public FunctionBase VisitMID_fun(mathParser.MID_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -752,11 +719,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_REPT(funcs);
 		}
-		public FunctionBase VisitRIGHT_fun(mathParser.RIGHT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_RIGHT(funcs);
-		}
+
 		public FunctionBase VisitRMB_fun(mathParser.RMB_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
@@ -786,11 +749,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_TRIM(args1);
-		}
-		public FunctionBase VisitUPPER_fun(mathParser.UPPER_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_UPPER(args1);
 		}
 		public FunctionBase VisitVALUE_fun(mathParser.VALUE_funContext context)
 		{
@@ -832,36 +790,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_TODAY();
 		}
-		public FunctionBase VisitYEAR_fun(mathParser.YEAR_funContext context)
+		public FunctionBase VisitDATE_TIME_fun(mathParser.DATE_TIME_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_YEAR(args1);
+			if(txt.Equals("YEAR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_YEAR(args1);
+			} else if(txt.Equals("MONTH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MONTH(args1);
+			} else if(txt.Equals("DAY", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_DAY(args1);
+			} else if(txt.Equals("HOUR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HOUR(args1);
+			} else if(txt.Equals("MINUTE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MINUTE(args1);
+			} else if(txt.Equals("SECOND", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SECOND(args1);
+			}
+			throw new NotSupportedException($"不支持的函数 {txt}");
 		}
-		public FunctionBase VisitMONTH_fun(mathParser.MONTH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_MONTH(args1);
-		}
-		public FunctionBase VisitDAY_fun(mathParser.DAY_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_DAY(args1);
-		}
-		public FunctionBase VisitHOUR_fun(mathParser.HOUR_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_HOUR(args1);
-		}
-		public FunctionBase VisitMINUTE_fun(mathParser.MINUTE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_MINUTE(args1);
-		}
-		public FunctionBase VisitSECOND_fun(mathParser.SECOND_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SECOND(args1);
-		}
+
 		public FunctionBase VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -907,36 +855,27 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_WEEKNUM(funcs);
 		}
-		public FunctionBase VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
+		public FunctionBase VisitADD_DateTime_fun(mathParser.ADD_DateTime_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_ADDMONTHS(funcs);
-		}
-		public FunctionBase VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ADDYEARS(funcs);
-		}
-		public FunctionBase VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("ADDYEARS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ADDYEARS(funcs);
+			} else if(txt.Equals("ADDMONTHS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ADDMONTHS(funcs);
+			} else if(txt.Equals("ADDDAYS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ADDDAYS(funcs);
+			} else if(txt.Equals("ADDHOURS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ADDHOURS(funcs);
+
+			} else if(txt.Equals("ADDMINUTES", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ADDMINUTES(funcs);
+			}
+			//if(txt.Equals("ADDSECONDS", StringComparison.OrdinalIgnoreCase)) {
 			return new Function_ADDSECONDS(funcs);
+			//}
 		}
-		public FunctionBase VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ADDMINUTES(funcs);
-		}
-		public FunctionBase VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ADDDAYS(funcs);
-		}
-		public FunctionBase VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ADDHOURS(funcs);
-		}
+
 		#endregion MyDate time
 		#region sum
 		public FunctionBase VisitMAX_fun(mathParser.MAX_funContext context)
@@ -1253,45 +1192,28 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		#endregion financial
 		#region csharp
-		public FunctionBase VisitURLENCODE_fun(mathParser.URLENCODE_funContext context)
+		public FunctionBase VisitENCODE_fun(mathParser.ENCODE_funContext context)
 		{
+			var text = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_URLENCODE(args1);
-		}
-		public FunctionBase VisitURLDECODE_fun(mathParser.URLDECODE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_URLDECODE(args1);
-		}
-		public FunctionBase VisitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_HTMLENCODE(args1);
-		}
-		public FunctionBase VisitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_HTMLDECODE(args1);
-		}
-		public FunctionBase VisitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_BASE64TOTEXT(args1);
-		}
-		public FunctionBase VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_BASE64URLTOTEXT(args1);
-		}
-		public FunctionBase VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_TEXTTOBASE64(args1);
-		}
-		public FunctionBase VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
+			if(text.Equals("URLENCODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_URLENCODE(args1);
+			} else if(text.Equals("URLDECODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_URLDECODE(args1);
+			} else if(text.Equals("HTMLENCODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HTMLENCODE(args1);
+			} else if(text.Equals("HTMLDECODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HTMLDECODE(args1);
+			} else if(text.Equals("BASE64TOTEXT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BASE64TOTEXT(args1);
+			} else if(text.Equals("BASE64URLTOTEXT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BASE64URLTOTEXT(args1);
+			} else if(text.Equals("TEXTTOBASE64", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_TEXTTOBASE64(args1);
+			}
+			//else if(text.Equals("TEXTTOBASE64URL", StringComparison.OrdinalIgnoreCase)) {
 			return new Function_TEXTTOBASE64URL(args1);
+			//}
 		}
 		public FunctionBase VisitREGEX_fun(mathParser.REGEX_funContext context)
 		{
@@ -1312,65 +1234,54 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_GUID();
 		}
-		public FunctionBase VisitMD5_fun(mathParser.MD5_funContext context)
+		public FunctionBase VisitHMAC_fun(mathParser.HMAC_funContext context)
 		{
+			var text = context.f.Text;
+			var funcs = VisitExprs(context.expr());
+			if(text.Equals("HMACMD5", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HMACMD5(funcs);
+			} else if(text.Equals("HMACSHA1", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HMACSHA1(funcs);
+			} else if(text.Equals("HMACSHA256", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HMACSHA256(funcs);
+			} else if(text.Equals("HMACSHA512", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HMACSHA512(funcs);
+			}
+			throw new NotSupportedException($"不支持的函数 {text}");
+		}
+		public FunctionBase VisitHASH_fun(mathParser.HASH_funContext context)
+		{
+			var text = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_MD5(args1);
+			if(text.Equals("MD5", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MD5(args1);
+			} else if(text.Equals("SHA1", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SHA1(args1);
+			} else if(text.Equals("SHA256", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SHA256(args1);
+			} else if(text.Equals("SHA512", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SHA512(args1);
+			}
+			throw new NotSupportedException($"不支持的函数 {text}");
 		}
-		public FunctionBase VisitSHA1_fun(mathParser.SHA1_funContext context)
+		public FunctionBase VisitTRIM_SE_fun(mathParser.TRIM_SE_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SHA1(args1);
-		}
-		public FunctionBase VisitSHA256_fun(mathParser.SHA256_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SHA256(args1);
-		}
-		public FunctionBase VisitSHA512_fun(mathParser.SHA512_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SHA512(args1);
-		}
-		public FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
-		{
+			var text = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_HMACMD5(funcs);
-		}
-		public FunctionBase VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HMACSHA1(funcs);
-		}
-		public FunctionBase VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HMACSHA256(funcs);
-		}
-		public FunctionBase VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HMACSHA512(funcs);
-		}
-		public FunctionBase VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TRIMSTART(funcs);
-		}
-		public FunctionBase VisitTRIMEND_fun(mathParser.TRIMEND_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(text.Equals("TRIMSTART", StringComparison.OrdinalIgnoreCase)|| text.Equals("LTRIM", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_TRIMSTART(funcs);
+			}
 			return new Function_TRIMEND(funcs);
 		}
 		public FunctionBase VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
 		{
+			var text = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_INDEXOF(funcs);
-		}
-		public FunctionBase VisitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(text.Equals("INDEXOF", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_INDEXOF(funcs);
+			}
 			return new Function_LASTINDEXOF(funcs);
+
 		}
 		public FunctionBase VisitSPLIT_fun(mathParser.SPLIT_funContext context)
 		{
@@ -1387,34 +1298,32 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_SUBSTRING(funcs);
 		}
-		public FunctionBase VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
+		public FunctionBase VisitSTRINGSuffix_fun(mathParser.STRINGSuffix_funContext context)
 		{
+			var text = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_STARTSWITH(funcs);
-		}
-		public FunctionBase VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(text.Equals("STARTSWITH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_STARTSWITH(funcs);
+			}
 			return new Function_ENDSWITH(funcs);
+
 		}
-		public FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
+		public FunctionBase VisitISNULLOR_fun(mathParser.ISNULLOR_funContext context)
 		{
+			var text = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_ISNULLOREMPTY(args1);
-		}
-		public FunctionBase VisitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
+			if(text.Equals("ISNULLOREMPTY", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ISNULLOREMPTY(args1);
+			}
 			return new Function_ISNULLORWHITESPACE(args1);
 		}
-		public FunctionBase VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context)
+		public FunctionBase VisitREMOVE_fun(mathParser.REMOVE_funContext context)
 		{
+			var text = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_REMOVESTART(funcs);
-		}
-		public FunctionBase VisitREMOVEEND_fun(mathParser.REMOVEEND_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(text.Equals("REMOVESTART", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_REMOVESTART(funcs);
+			}
 			return new Function_REMOVEEND(funcs);
 		}
 		public FunctionBase VisitJSON_fun(mathParser.JSON_funContext context)
@@ -1424,14 +1333,14 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		#endregion csharp
 		#region LOOKFLOOR LOOKCEILING
-		public FunctionBase VisitLOOKFLOOR_fun(mathParser.LOOKFLOOR_funContext context)
+
+		public FunctionBase VisitLOOK_fun(mathParser.LOOK_funContext context)
 		{
+			var text = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_LOOKFLOOR(funcs);
-		}
-		public FunctionBase VisitLOOKCEILING_fun(mathParser.LOOKCEILING_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(text.Equals("LOOKFLOOR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_LOOKFLOOR(funcs);
+			}
 			return new Function_LOOKCEILING(funcs);
 		}
 		#endregion
@@ -1459,7 +1368,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
 			return new Function_ValueNumber(Operand.Create(d), text);
 		}
- 
+
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
 		{
 			var opd = context.GetText();
@@ -1561,6 +1470,20 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		#endregion getValue
