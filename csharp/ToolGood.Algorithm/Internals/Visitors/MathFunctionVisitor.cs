@@ -289,7 +289,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return new Function_ACOTH(args1);
 			//} 
 		}
-		 
+
 		public FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -348,19 +348,19 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("ROUNDDOWN",StringComparison.OrdinalIgnoreCase)) {
+			if(txt.Equals("ROUNDDOWN", StringComparison.OrdinalIgnoreCase)) {
 				return new Function_ROUNDDOWN(funcs);
 			}
 			return new Function_ROUNDUP(funcs);
 		}
-		public FunctionBase VisitEVEN_fun(mathParser.EVEN_funContext context)
+
+		public FunctionBase VisitEVEN_ODD_fun(mathParser.EVEN_ODD_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_EVEN(args1);
-		}
-		public FunctionBase VisitODD_fun(mathParser.ODD_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
+			if(txt.Equals("EVEN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_EVEN(args1);
+			}
 			return new Function_ODD(args1);
 		}
 		public FunctionBase VisitMROUND_fun(mathParser.MROUND_funContext context)
@@ -443,32 +443,24 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitERF_fun(mathParser.ERF_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_ERF(args1);
-		}
-		public FunctionBase VisitERFC_fun(mathParser.ERFC_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
+			if(txt.Equals("ERF", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ERF(args1);
+			}
 			return new Function_ERFC(args1);
 		}
-		public FunctionBase VisitBESSELI_fun(mathParser.BESSELI_funContext context)
+		public FunctionBase VisitBESSEL_fun(mathParser.BESSEL_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_BESSELI(funcs);
-		}
-		public FunctionBase VisitBESSELJ_fun(mathParser.BESSELJ_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BESSELJ(funcs);
-		}
-		public FunctionBase VisitBESSELK_fun(mathParser.BESSELK_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BESSELK(funcs);
-		}
-		public FunctionBase VisitBESSELY_fun(mathParser.BESSELY_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("BESSELI", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BESSELI(funcs);
+			} else if(txt.Equals("BESSELJ", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BESSELJ(funcs);
+			} else if(txt.Equals("BESSELK", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_BESSELK(funcs);
+			}
 			return new Function_BESSELY(funcs);
 		}
 		public FunctionBase VisitDELTA_fun(mathParser.DELTA_funContext context)
@@ -481,29 +473,25 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_GESTEP(funcs);
 		}
-		public FunctionBase VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
+
+		public FunctionBase VisitSUM2_fun(mathParser.SUM2_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_SUMSQ(funcs);
-		}
-		public FunctionBase VisitSUMPRODUCT_fun(mathParser.SUMPRODUCT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("SUMSQ", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SUMSQ(funcs);
+			}
 			return new Function_SUMPRODUCT(funcs);
 		}
-		public FunctionBase VisitSUMX2MY2_fun(mathParser.SUMX2MY2_funContext context)
+		public FunctionBase VisitSUMX_fun(mathParser.SUMX_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_SUMX2MY2(funcs);
-		}
-		public FunctionBase VisitSUMX2PY2_fun(mathParser.SUMX2PY2_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SUMX2PY2(funcs);
-		}
-		public FunctionBase VisitSUMXMY2_fun(mathParser.SUMXMY2_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("SUMX2MY2", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SUMX2MY2(funcs);
+			} else if(txt.Equals("SUMX2PY2", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SUMX2PY2(funcs);
+			}
 			return new Function_SUMXMY2(funcs);
 		}
 		public FunctionBase VisitARABIC_fun(mathParser.ARABIC_funContext context)
@@ -559,40 +547,30 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		#endregion
 		#endregion math
 		#region string
-		public FunctionBase VisitASC_fun(mathParser.ASC_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ASC(args1);
-		}
-		public FunctionBase VisitJIS_fun(mathParser.JIS_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_JIS(args1);
-		}
 		public FunctionBase VisitCHAR_fun(mathParser.CHAR_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_CHAR(args1);
+			if(txt.Equals("CHAR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_CHAR(args1);
+			} else if(txt.Equals("ASC", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ASC(args1);
+			} else if(txt.Equals("CODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_CODE(args1);
+			} else if(txt.Equals("UNICHAR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_UNICHAR(args1);
+			} else if(txt.Equals("UNICODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_UNICODE(args1);
+			}
+			return new Function_JIS(args1);
 		}
+
 		public FunctionBase VisitCLEAN_fun(mathParser.CLEAN_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_CLEAN(args1);
 		}
-		public FunctionBase VisitCODE_fun(mathParser.CODE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_CODE(args1);
-		}
-		public FunctionBase VisitUNICODE_fun(mathParser.UNICODE_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("UNICODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_UNICODE(args1);
-			}
-			return new Function_UNICHAR(args1);
-		}
+
 		public FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -605,8 +583,12 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitFIND_fun(mathParser.FIND_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_FIND(funcs);
+			if(txt.Equals("FIND", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_FIND(funcs);
+			}
+			return new Function_SEARCH(funcs);
 		}
 		public FunctionBase VisitLR_fun(mathParser.LR_funContext context)
 		{
@@ -661,11 +643,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_RMB(args1);
-		}
-		public FunctionBase VisitSEARCH_fun(mathParser.SEARCH_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SEARCH(funcs);
 		}
 		public FunctionBase VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
 		{
@@ -866,9 +843,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				return new Function_SMALL(funcs);
 			} else if(txt.Equals("PERCENTILE", StringComparison.OrdinalIgnoreCase)) {
 				return new Function_PERCENTILE(funcs);
-			} 
+			}
 			//if(txt.Equals("PERCENTRANK", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_PERCENTRANK(funcs);
+			return new Function_PERCENTRANK(funcs);
 			//}
 		}
 
@@ -1367,6 +1344,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
+
+
+
+
 
 
 

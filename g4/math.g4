@@ -68,8 +68,13 @@ expr:
 	| FALSE ('(' ')')?										# FALSE_fun
 	| E ('(' ')')											# E_fun
 	| PI ('(' ')')											# PI_fun
-
+	| NOW '(' ')'												# NOW_fun
+	| TODAY '(' ')'												# TODAY_fun
+	| GUID '(' ')'												# GUID_fun
+	| RAND '(' ')'											# RAND_fun
+	| RANDBETWEEN '(' expr ',' expr ')'						# RANDBETWEEN_fun
 	
+
 	| f=(DEC2BIN | DEC2HEX | DEC2OCT | HEX2BIN | HEX2DEC | HEX2OCT | OCT2BIN | OCT2DEC | OCT2HEX | BIN2OCT | BIN2DEC | BIN2HEX) ('(' expr (',' expr)? ')')	# Convert_fun
 	| ABS '(' expr ')'										# ABS_fun
 	| SIGN '(' expr ')'										# SIGN_fun
@@ -86,11 +91,8 @@ expr:
 	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
 	| f=(ROUNDDOWN | ROUNDUP) '(' expr ',' expr ')'			# ROUND_UD_fun
 	| f=(ROUND | CEILING | FLOOR) '(' expr (',' expr)? ')'		# ROUND_fun
-	| EVEN '(' expr ')'										# EVEN_fun
-	| ODD '(' expr ')'										# ODD_fun
 	| MROUND '(' expr ',' expr ')'							# MROUND_fun
-	| RAND '(' ')'											# RAND_fun
-	| RANDBETWEEN '(' expr ',' expr ')'						# RANDBETWEEN_fun
+	| f=(EVEN | ODD) '(' expr ')'								# EVEN_ODD_fun
 	| FACT '(' expr ')'										# FACT_fun
 	| FACTDOUBLE '(' expr ')'								# FACTDOUBLE_fun
 	| POWER '(' expr ',' expr ')'							# POWER_fun
@@ -101,19 +103,12 @@ expr:
 	| MULTINOMIAL '(' expr (',' expr)* ')'					# MULTINOMIAL_fun
 	| PRODUCT '(' expr (',' expr)* ')'						# PRODUCT_fun
 	| SQRTPI '(' expr ')'									# SQRTPI_fun
-	| ERF '(' expr ')'										# ERF_fun
-	| ERFC '(' expr ')'										# ERFC_fun
-	| BESSELI '(' expr ',' expr ')'							# BESSELI_fun
-	| BESSELJ '(' expr ',' expr ')'							# BESSELJ_fun
-	| BESSELK '(' expr ',' expr ')'							# BESSELK_fun
-	| BESSELY '(' expr ',' expr ')'							# BESSELY_fun
+	| f=(ERF | ERFC) '(' expr ')'								# ERF_fun
+	| f=(BESSELI | BESSELJ | BESSELK | BESSELY) '(' expr ',' expr ')'	# BESSEL_fun
 	| DELTA '(' expr (',' expr)? ')'						# DELTA_fun
 	| GESTEP '(' expr (',' expr)? ')'						# GESTEP_fun
-	| SUMSQ '(' expr (',' expr)* ')'						# SUMSQ_fun
-	| SUMPRODUCT '(' expr (',' expr)* ')'				# SUMPRODUCT_fun
-	| SUMX2MY2 '(' expr ',' expr ')'					# SUMX2MY2_fun
-	| SUMX2PY2 '(' expr ',' expr ')'					# SUMX2PY2_fun
-	| SUMXMY2 '(' expr ',' expr ')'						# SUMXMY2_fun
+	| f=(SUMSQ | SUMPRODUCT) '(' expr (',' expr)* ')'			# SUM2_fun
+	| f=(SUMX2MY2 | SUMX2PY2 | SUMXMY2) '(' expr ',' expr ')'	# SUMX_fun
 	| ARABIC '(' expr ')'								# ARABIC_fun
 	| ROMAN '(' expr (',' expr)? ')'					# ROMAN_fun
 	| SERIESSUM '(' expr ',' expr ',' expr ',' expr ')'	# SERIESSUM_fun
@@ -124,15 +119,12 @@ expr:
 	| CORREL '(' expr ',' expr ')'						# CORREL_fun
 	| PEARSON '(' expr ',' expr ')'						# PEARSON_fun
 	| YEARFRAC '(' expr ',' expr (',' expr)? ')'		# YEARFRAC_fun
-	| ASC '(' expr ')'									# ASC_fun
-	| JIS '(' expr ')'										# JIS_fun
-	| CHAR '(' expr ')'										# CHAR_fun
 	| CLEAN '(' expr ')'									# CLEAN_fun
-	| CODE '(' expr ')'										# CODE_fun
-	| f=(UNICHAR | UNICODE) '(' expr ')'						# UNICODE_fun
+
+	| f=(ASC | JIS | CHAR | CODE | UNICHAR | UNICODE) '(' expr ')'	# CHAR_fun
 	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun
 	| EXACT '(' expr ',' expr ')'							# EXACT_fun
-	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun
+	| f=(FIND | SEARCH) '(' expr ',' expr (',' expr)? ')'		# FIND_fun
 	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun
 	| f=(LEFT | RIGHT) '(' expr (',' expr)? ')'				# LR_fun
 	| LEN '(' expr ')'										# LEN_fun
@@ -142,7 +134,6 @@ expr:
 	| REPLACE '(' expr ',' expr ',' expr (',' expr)? ')'	# REPLACE_fun
 	| REPT '(' expr ',' expr ')'							# REPT_fun
 	| RMB '(' expr ')'										# RMB_fun
-	| SEARCH '(' expr ',' expr (',' expr)? ')'				# SEARCH_fun
 	| SUBSTITUTE '(' expr ',' expr ',' expr (',' expr)? ')'	# SUBSTITUTE_fun
 	| T '(' expr ')'										# T_fun
 	| TEXT '(' expr ',' expr ')'							# TEXT_fun
@@ -154,8 +145,7 @@ expr:
 		',' expr (',' expr (',' expr)?)?
 	)? ')'														# DATE_fun
 	| TIME '(' expr ',' expr (',' expr)? ')'					# TIME_fun
-	| NOW '(' ')'												# NOW_fun
-	| TODAY '(' ')'												# TODAY_fun
+
 	| f=(YEAR | MONTH | DAY | HOUR | MINUTE | SECOND) '(' expr ')'	# DATE_TIME_fun
 	| WEEKDAY '(' expr (',' expr)? ')'							# WEEKDAY_fun
 	| DATEDIF '(' expr ',' expr ',' expr ')'					# DATEDIF_fun
@@ -216,7 +206,6 @@ expr:
 	| REGEX '(' expr ',' expr ')'								# REGEX_fun
 	| REGEXREPLACE '(' expr ',' expr ',' expr ')'				# REGEXREPLACE_fun
 	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun
-	| GUID '(' ')'												# GUID_fun
 	| f=(MD5 | SHA1 | SHA256 | SHA512) '(' expr ')'				# HASH_fun
 	| f=(HMACMD5 | HMACSHA1 | HMACSHA256 | HMACSHA512) '(' expr ',' expr ')'	# HMAC_fun
 	| f=(TRIMSTART | TRIMEND) '(' expr (',' expr)? ')'			# TRIM_SE_fun
