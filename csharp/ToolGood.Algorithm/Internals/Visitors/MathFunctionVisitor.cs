@@ -157,25 +157,35 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_NOT(args1);
 		}
-		public FunctionBase VisitTRUE_fun(mathParser.TRUE_funContext context)
+		public FunctionBase VisitBOOL_fun(mathParser.BOOL_funContext context)
 		{
-			return new Function_ValueBoolean(true);
-		}
-		public FunctionBase VisitFALSE_fun(mathParser.FALSE_funContext context)
-		{
+			var txt = context.f.Text;
+			if(txt.Equals("TRUE", StringComparison.OrdinalIgnoreCase) || txt.Equals("YES", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ValueBoolean(true);
+			}
 			return new Function_ValueBoolean(false);
 		}
+
 		#endregion flow
 		#region math
 		#region base
-		public FunctionBase VisitE_fun(mathParser.E_funContext context)
+		public FunctionBase VisitCONST_fun(mathParser.CONST_funContext context)
 		{
-			return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
+			var txt = context.f.Text;
+			if(txt.Equals("E", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
+			} else if(txt.Equals("PI", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
+			} else if(txt.Equals("RAND", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_RAND();
+			} else if(txt.Equals("GUID", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_GUID();
+			} else if(txt.Equals("NOW", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_NOW();
+			}
+			return new Function_TODAY();
 		}
-		public FunctionBase VisitPI_fun(mathParser.PI_funContext context)
-		{
-			return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
-		}
+
 		public FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
@@ -211,16 +221,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_INT(args1);
 		}
-		public FunctionBase VisitGCD_fun(mathParser.GCD_funContext context)
+		public FunctionBase VisitGCD_LCM_fun(mathParser.GCD_LCM_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_GCD(funcs);
-		}
-		public FunctionBase VisitLCM_fun(mathParser.LCM_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("GCD", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_GCD(funcs);
+			}
 			return new Function_LCM(funcs);
 		}
+ 
 		public FunctionBase VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -370,10 +380,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		#endregion rounding
 		#region RAND
-		public FunctionBase VisitRAND_fun(mathParser.RAND_funContext context)
-		{
-			return new Function_RAND();
-		}
+
 		public FunctionBase VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -696,14 +703,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_TIME(funcs);
 		}
-		public FunctionBase VisitNOW_fun(mathParser.NOW_funContext context)
-		{
-			return new Function_NOW();
-		}
-		public FunctionBase VisitTODAY_fun(mathParser.TODAY_funContext context)
-		{
-			return new Function_TODAY();
-		}
+
 		public FunctionBase VisitDATE_TIME_fun(mathParser.DATE_TIME_funContext context)
 		{
 			var txt = context.f.Text;
@@ -1104,10 +1104,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_ISREGEX(funcs);
 		}
-		public FunctionBase VisitGUID_fun(mathParser.GUID_funContext context)
-		{
-			return new Function_GUID();
-		}
+
 		public FunctionBase VisitHMAC_fun(mathParser.HMAC_funContext context)
 		{
 			var text = context.f.Text;
@@ -1344,6 +1341,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
+
+
 
 
 

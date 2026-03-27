@@ -6,17 +6,18 @@ expr:
 	expr '.' f=(ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL) '(' ')'	# IS_fun
 	| expr '.' f=(ISERROR | ISNULL | ISNULLORERROR) '(' expr? ')'	# ISNULL_check_fun
 	| expr '.' INT '(' ')'										# INT_fun
+	| expr '.' RMB '(' ')'										# RMB_fun
+	| expr '.' T '(' ')'										# T_fun
+	| expr '.' JSON '(' ')'										# JSON_fun
+	| expr '.' VALUE '(' ')'									# VALUE_fun
 	| expr '.' EXACT '(' expr ')'								# EXACT_fun
 	| expr '.' f=(LEFT | RIGHT) '(' expr? ')'					# LR_fun
 	| expr '.' LEN '(' ')'										# LEN_fun
 	| expr '.' f=(LOWER | UPPER) '(' ')'						# CASE_fun
 	| expr '.' MID '(' expr ',' expr ')'						# MID_fun
 	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'		# REPLACE_fun
-	| expr '.' RMB '(' ')'										# RMB_fun
-	| expr '.' T '(' ')'										# T_fun
 	| expr '.' TEXT '(' expr ')'								# TEXT_fun
 	| expr '.' TRIM '(' ')'										# TRIM_fun
-	| expr '.' VALUE '(' ')'									# VALUE_fun
 	| expr '.' DATEVALUE '(' expr? ')'							# DATEVALUE_fun
 	| expr '.' TIMEVALUE '(' ')'								# TIMEVALUE_fun
 	| expr '.' f=(YEAR | MONTH | DAY | HOUR | MINUTE | SECOND) '(' ')'	# DATE_TIME_fun
@@ -33,7 +34,6 @@ expr:
 	| expr '.' f=(STARTSWITH | ENDSWITH) '(' expr (',' expr)? ')'	# STRINGSuffix_fun
 	| expr '.' f=(ISNULLOREMPTY | ISNULLORWHITESPACE) '(' ')'	# ISNULLOR_fun
 	| expr '.' f=(REMOVESTART | REMOVEEND) '(' expr (',' expr)? ')'	# REMOVE_fun
-	| expr '.' JSON '(' ')'										# JSON_fun
 	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
 	| expr '.' f=(ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS) '(' expr ')'	# ADD_DateTime_fun
 	| expr '.' TIMESTAMP '(' expr? ')'							# TIMESTAMP_fun
@@ -64,14 +64,8 @@ expr:
 	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun
 	| f=(AND | OR | XOR) '(' expr (',' expr)* ')'				# LOGIC_fun
 	| NOT '(' expr ')'										# NOT_fun
-	| TRUE ('(' ')')?										# TRUE_fun
-	| FALSE ('(' ')')?										# FALSE_fun
-	| E ('(' ')')											# E_fun
-	| PI ('(' ')')											# PI_fun
-	| NOW '(' ')'												# NOW_fun
-	| TODAY '(' ')'												# TODAY_fun
-	| GUID '(' ')'												# GUID_fun
-	| RAND '(' ')'											# RAND_fun
+	| f=(TRUE | FALSE) ('(' ')')?								# BOOL_fun
+	| f=(E | PI| NOW | TODAY | GUID | RAND) '(' ')'			# CONST_fun
 	| RANDBETWEEN '(' expr ',' expr ')'						# RANDBETWEEN_fun
 	
 
@@ -83,8 +77,7 @@ expr:
 	| QUOTIENT '(' expr ',' expr ')'						# QUOTIENT_fun
 	| MOD '(' expr ',' expr ')'								# MOD_fun
 	| TRUNC '(' expr(',' expr)? ')'							# TRUNC_fun
-	| GCD '(' expr (',' expr)* ')'							# GCD_fun
-	| LCM '(' expr (',' expr)* ')'							# LCM_fun
+	| f=(GCD | LCM) '(' expr (',' expr)* ')'					# GCD_LCM_fun
 	| COMBIN '(' expr ',' expr ')'							# COMBIN_fun
 	| PERMUT '(' expr ',' expr ')'							# PERMUT_fun
 	| f=(DEGREES | RADIANS | COS | COSH | SIN | SINH | TAN | TANH | COT | COTH | CSC | CSCH | SEC | SECH | ACOS | ACOSH | ASIN | ASINH | ATAN | ATANH | ACOT | ACOTH) '(' expr ')'	# TRIG_fun
@@ -120,7 +113,6 @@ expr:
 	| PEARSON '(' expr ',' expr ')'						# PEARSON_fun
 	| YEARFRAC '(' expr ',' expr (',' expr)? ')'		# YEARFRAC_fun
 	| CLEAN '(' expr ')'									# CLEAN_fun
-
 	| f=(ASC | JIS | CHAR | CODE | UNICHAR | UNICODE) '(' expr ')'	# CHAR_fun
 	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun
 	| EXACT '(' expr ',' expr ')'							# EXACT_fun
@@ -222,7 +214,7 @@ expr:
 	| f=(ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS) '(' expr ',' expr ')'	# ADD_DateTime_fun
 	| TIMESTAMP '(' expr (',' expr)? ')'						# TIMESTAMP_fun
 	| PARAM '(' expr (',' expr)? ')'							# PARAM_fun
-	| ERROR '(' expr? ')'										# ERROR_fun
+	| ERROR '(' expr ')'										# ERROR_fun
 	| HAS '('expr ',' expr ')'									# HAS_fun
 	| HASVALUE '(' expr ','expr ')'								# HASVALUE_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
