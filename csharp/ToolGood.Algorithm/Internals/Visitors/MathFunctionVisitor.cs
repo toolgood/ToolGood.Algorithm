@@ -151,7 +151,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			return new Function_XOR(funcs);
 		}
- 
+
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
@@ -695,7 +695,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			if(txt.Equals("LOWER", StringComparison.OrdinalIgnoreCase) || txt.Equals("TOLOWER", StringComparison.OrdinalIgnoreCase)) {
 				return new Function_LOWER(args1);
 			}
-			
+
 			return new Function_UPPER(args1);
 		}
 
@@ -878,31 +878,50 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		#endregion MyDate time
 		#region sum
-		public FunctionBase VisitMAX_fun(mathParser.MAX_funContext context)
+
+		public FunctionBase VisitSTAT_fun(mathParser.STAT_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_MAX(funcs);
-		}
-		public FunctionBase VisitMEDIAN_fun(mathParser.MEDIAN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MEDIAN(funcs);
-		}
-		public FunctionBase VisitMIN_fun(mathParser.MIN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MIN(funcs);
+			if(txt.Equals("MAX", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MAX(funcs);
+			} else if(txt.Equals("MEDIAN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MEDIAN(funcs);
+			} else if(txt.Equals("MIN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MIN(funcs);
+			} else if(txt.Equals("MODE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_MODE(funcs);
+			} else if(txt.Equals("AVERAGE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_AVERAGE(funcs);
+			} else if(txt.Equals("GEOMEAN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_GEOMEAN(funcs);
+			} else if(txt.Equals("HARMEAN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_HARMEAN(funcs);
+			} else if(txt.Equals("COUNT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_COUNT(funcs);
+			} else if(txt.Equals("SUM", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SUM(funcs);
+			} else if(txt.Equals("AVEDEV", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_AVEDEV(funcs);
+			} else if(txt.Equals("STDEV", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_STDEV(funcs);
+			} else if(txt.Equals("STDEVP", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_STDEVP(funcs);
+			} else if(txt.Equals("DEVSQ", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_DEVSQ(funcs);
+			} else if(txt.Equals("VAR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_VAR(funcs);
+			}
+			//if (txt.Equals("VARP", StringComparison.OrdinalIgnoreCase)) {
+			return new Function_VARP(funcs);
+			//}
 		}
 		public FunctionBase VisitQUARTILE_fun(mathParser.QUARTILE_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_QUARTILE(funcs);
 		}
-		public FunctionBase VisitMODE_fun(mathParser.MODE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MODE(funcs);
-		}
+
 		public FunctionBase VisitLARGE_fun(mathParser.LARGE_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -923,76 +942,25 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_PERCENTRANK(funcs);
 		}
-		public FunctionBase VisitAVERAGE_fun(mathParser.AVERAGE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_AVERAGE(funcs);
-		}
+
 		public FunctionBase VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_AVERAGEIF(funcs);
 		}
-		public FunctionBase VisitGEOMEAN_fun(mathParser.GEOMEAN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_GEOMEAN(funcs);
-		}
-		public FunctionBase VisitHARMEAN_fun(mathParser.HARMEAN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HARMEAN(funcs);
-		}
-		public FunctionBase VisitCOUNT_fun(mathParser.COUNT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_COUNT(funcs);
-		}
+
 		public FunctionBase VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_COUNTIF(funcs);
 		}
-		public FunctionBase VisitSUM_fun(mathParser.SUM_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SUM(funcs);
-		}
+
 		public FunctionBase VisitSUMIF_fun(mathParser.SUMIF_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
 			return new Function_SUMIF(funcs);
 		}
-		public FunctionBase VisitAVEDEV_fun(mathParser.AVEDEV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_AVEDEV(funcs);
-		}
-		public FunctionBase VisitSTDEV_fun(mathParser.STDEV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_STDEV(funcs);
-		}
-		public FunctionBase VisitSTDEVP_fun(mathParser.STDEVP_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_STDEVP(funcs);
-		}
-		public FunctionBase VisitDEVSQ_fun(mathParser.DEVSQ_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DEVSQ(funcs);
-		}
-		public FunctionBase VisitVAR_fun(mathParser.VAR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_VAR(funcs);
-		}
-		public FunctionBase VisitVARP_fun(mathParser.VARP_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_VARP(funcs);
-		}
+
 		public FunctionBase VisitNORMDIST_fun(mathParser.NORMDIST_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -1268,7 +1236,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var text = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			if(text.Equals("TRIMSTART", StringComparison.OrdinalIgnoreCase)|| text.Equals("LTRIM", StringComparison.OrdinalIgnoreCase)) {
+			if(text.Equals("TRIMSTART", StringComparison.OrdinalIgnoreCase) || text.Equals("LTRIM", StringComparison.OrdinalIgnoreCase)) {
 				return new Function_TRIMSTART(funcs);
 			}
 			return new Function_TRIMEND(funcs);
@@ -1470,6 +1438,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
+
 
 
 

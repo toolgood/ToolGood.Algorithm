@@ -188,31 +188,17 @@ expr:
 	| NETWORKDAYS '(' expr ',' expr (',' expr)? ')'				# NETWORKDAYS_fun
 	| WORKDAY '(' expr ',' expr (',' expr)? ')'					# WORKDAY_fun
 	| WEEKNUM '(' expr (',' expr)? ')'							# WEEKNUM_fun
-	| MAX '(' expr (',' expr)* ')'								# MAX_fun
-	| MEDIAN '(' expr (',' expr)* ')'							# MEDIAN_fun
-	| MIN '(' expr (',' expr)* ')'								# MIN_fun
+	| f=(MAX | MEDIAN | MIN | MODE | AVERAGE | GEOMEAN | HARMEAN | COUNT | SUM | AVEDEV | STDEV | STDEVP | DEVSQ | VAR | VARP) '(' expr (',' expr)* ')'	# STAT_fun
 	| QUARTILE '(' expr ',' expr ')'							# QUARTILE_fun
-	| MODE '(' expr (',' expr)* ')'								# MODE_fun
 	| LARGE '(' expr ',' expr ')'								# LARGE_fun
 	| SMALL '(' expr ',' expr ')'								# SMALL_fun
 	| PERCENTILE '(' expr ',' expr ')'							# PERCENTILE_fun
 	| PERCENTRANK '(' expr ',' expr ')'							# PERCENTRANK_fun
-	| AVERAGE '(' expr (',' expr)* ')'							# AVERAGE_fun
 	| AVERAGEIF '(' expr ',' expr (',' expr)? ')'				# AVERAGEIF_fun
-	| GEOMEAN '(' expr (',' expr)* ')'							# GEOMEAN_fun
-	| HARMEAN '(' expr (',' expr)* ')'							# HARMEAN_fun
-	| COUNT '(' expr (',' expr)* ')'							# COUNT_fun
 	| COUNTIF '(' expr ',' expr ')'								# COUNTIF_fun
-	| SUM '(' expr (',' expr)* ')'								# SUM_fun
 	| SUMIF '(' expr ',' expr (',' expr)? ')'					# SUMIF_fun
-	| AVEDEV '(' expr (',' expr)* ')'							# AVEDEV_fun
-	| STDEV '(' expr (',' expr)* ')'							# STDEV_fun
-	| STDEVP '(' expr (',' expr)* ')'							# STDEVP_fun
 	| COVAR '('expr ',' expr')'									# COVAR_fun
 	| COVARIANCES '('expr ',' expr')'							# COVARIANCES_fun
-	| DEVSQ '(' expr (',' expr)* ')'							# DEVSQ_fun
-	| VAR '(' expr (',' expr)* ')'								# VAR_fun
-	| VARP '(' expr (',' expr)* ')'								# VARP_fun
 	| NORMDIST '(' expr ',' expr ',' expr ',' expr ')'			# NORMDIST_fun
 	| NORMINV '(' expr ',' expr ',' expr ')'					# NORMINV_fun
 	| NORMSDIST '(' expr ')'									# NORMSDIST_fun
