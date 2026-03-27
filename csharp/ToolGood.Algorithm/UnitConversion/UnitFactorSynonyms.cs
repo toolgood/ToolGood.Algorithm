@@ -6,12 +6,12 @@ namespace ToolGood.Algorithm.UnitConversion
 {
     internal sealed class UnitFactorSynonyms
     {
-        public UnitFactorSynonyms(params string[] items)
+		private string[] _synonyms;
+		public UnitFactorSynonyms(params string[] items)
         {
-            _synonyms.AddRange(items);
+            _synonyms = items;
         }
 
-        private List<string> _synonyms = new List<string>();
 
         // Find if some synonym of a given UnitFactor is included in this UnitFactor
         internal bool Contains(UnitFactorSynonyms synonyms)
