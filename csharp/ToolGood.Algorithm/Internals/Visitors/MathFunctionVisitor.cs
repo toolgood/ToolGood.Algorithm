@@ -1,7 +1,7 @@
-﻿using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
+using System.Security.Cryptography;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Functions.Compare;
@@ -20,6 +20,7 @@ using ToolGood.Algorithm.Internals.Functions.Operator;
 using ToolGood.Algorithm.Internals.Functions.String;
 using ToolGood.Algorithm.Internals.Functions.Value;
 using ToolGood.Algorithm.math;
+
 namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
@@ -40,10 +41,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			var t = context.op.Text;
-			if(CharUtil.Equals(t, '*')) {
+			var type = context.op.Type;
+			if(type == mathLexer.OPMUL) {
 				return new Function_Mul(funcs);
-			} else if(CharUtil.Equals(t, '/')) {
+			} else if(type == mathLexer.OPDIV) {
 				return new Function_Div(funcs);
 			}
 			return new Function_Mod(funcs);
@@ -51,36 +52,36 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			var t = context.op.Text;
-			if(CharUtil.Equals(t, '&')) {
-				return new Function_Connect(funcs);
-			} else if(CharUtil.Equals(t, '+')) {
+			var type = context.op.Type;
+			if(type == mathLexer.OPADD) {
 				return new Function_Add(funcs);
+			} else if(type == mathLexer.OPSUB) {
+				return new Function_Sub(funcs);
 			}
-			return new Function_Sub(funcs);
+			return new Function_Connect(funcs);
 		}
 		public FunctionBase VisitJudge_fun(mathParser.Judge_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			string type = context.op.Text;
-			if(CharUtil.Equals(type, "=", "==", "===")) {
-				return new Function_EQ(funcs);
-			} else if(CharUtil.Equals(type, "<")) {
-				return new Function_LT(funcs);
-			} else if(CharUtil.Equals(type, "<=")) {
-				return new Function_LE(funcs);
-			} else if(CharUtil.Equals(type, ">")) {
+			var type = context.op.Type;
+			if(type == mathLexer.OPGT) {
 				return new Function_GT(funcs);
-			} else if(CharUtil.Equals(type, ">=")) {
+			} else if(type == mathLexer.OPGE) {
 				return new Function_GE(funcs);
+			} else if(type == mathLexer.OPLT) {
+				return new Function_LT(funcs);
+			} else if(type == mathLexer.OPLE) {
+				return new Function_LE(funcs);
+			} else if(type == mathLexer.OPEQ) {
+				return new Function_EQ(funcs);
 			}
 			return new Function_NE(funcs);
 		}
 		public FunctionBase VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			var t = context.op.Text;
-			if(CharUtil.Equals(t, "&&")) {
+			var type = context.op.Type;
+			if(type == mathLexer.OPAND) {
 				return new Function_AND(funcs);
 			}
 			return new Function_OR(funcs);
@@ -102,55 +103,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_SWITCH(funcs);
 		}
-		public FunctionBase VisitIFERROR_fun(mathParser.IFERROR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_IFERROR(funcs);
-		}
-		public FunctionBase VisitIS_fun(mathParser.IS_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = this.Visit(context.expr());
-			if(txt.Equals("ISNUMBER", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISNUMBER(args1);
-			} else if(txt.Equals("ISTEXT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISTEXT(args1);
-			} else if(txt.Equals("ISLOGICAL", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISLOGICAL(args1);
-			} else if(txt.Equals("ISNONTEXT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISNONTEXT(args1);
-			} else if(txt.Equals("ISEVEN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISEVEN(args1);
-			}
-			//} else if(txt.Equals("ISODD", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_ISODD(args1);
-			//}
-		}
-
-		public FunctionBase VisitISNULL_check_fun(mathParser.ISNULL_check_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("ISERROR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISERROR(funcs);
-			} else if(txt.Equals("ISNULL", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISNULL(funcs);
-			}
-			//if(txt.Equals("ISNULLORERROR", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_ISNULLORERROR(funcs);
-		}
-		public FunctionBase VisitLOGIC_fun(mathParser.LOGIC_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-
-			if(txt.Equals("AND", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_AND_N(funcs);
-			} else if(txt.Equals("OR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_OR_N(funcs);
-			}
-			return new Function_XOR(funcs);
-		}
 
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
 		{
@@ -159,1067 +111,41 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitBOOL_fun(mathParser.BOOL_funContext context)
 		{
-			var txt = context.f.Text;
-			if(txt.Equals("TRUE", StringComparison.OrdinalIgnoreCase) || txt.Equals("YES", StringComparison.OrdinalIgnoreCase)) {
+			if(context.f.Type == mathLexer.TRUE) {
 				return new Function_ValueBoolean(true);
 			}
 			return new Function_ValueBoolean(false);
 		}
 
 		#endregion flow
-		#region math
-		#region base
 		public FunctionBase VisitCONST_fun(mathParser.CONST_funContext context)
 		{
-			var txt = context.f.Text;
-			if(txt.Equals("E", StringComparison.OrdinalIgnoreCase)) {
+			var type = context.f.Type;
+			if(type == mathLexer.E) {
 				return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
-			} else if(txt.Equals("PI", StringComparison.OrdinalIgnoreCase)) {
+			} else if(type == mathLexer.PI) {
 				return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
-			} else if(txt.Equals("RAND", StringComparison.OrdinalIgnoreCase)) {
+			} else if(type == mathLexer.RAND) {
 				return new Function_RAND();
-			} else if(txt.Equals("GUID", StringComparison.OrdinalIgnoreCase)) {
+			} else if(type == mathLexer.GUID) {
 				return new Function_GUID();
-			} else if(txt.Equals("NOW", StringComparison.OrdinalIgnoreCase)) {
+			} else if(type == mathLexer.NOW) {
 				return new Function_NOW();
 			}
 			return new Function_TODAY();
 		}
 
-		public FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ABS(args1);
-		}
-		public FunctionBase VisitQUOTIENT_fun(mathParser.QUOTIENT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_QUOTIENT(funcs);
-		}
-		public FunctionBase VisitMOD_fun(mathParser.MOD_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_Mod(funcs);
-		}
-		public FunctionBase VisitSIGN_fun(mathParser.SIGN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SIGN(args1);
-		}
-		public FunctionBase VisitSQRT_fun(mathParser.SQRT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SQRT(args1);
-		}
-		public FunctionBase VisitTRUNC_fun(mathParser.TRUNC_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TRUNC(funcs);
-		}
-		public FunctionBase VisitINT_fun(mathParser.INT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_INT(args1);
-		}
-		public FunctionBase VisitGCD_LCM_fun(mathParser.GCD_LCM_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("GCD", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_GCD(funcs);
-			}
-			return new Function_LCM(funcs);
-		}
- 
-		public FunctionBase VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_COMBIN(funcs);
-		}
-		public FunctionBase VisitPERMUT_fun(mathParser.PERMUT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PERMUT(funcs);
-		}
 		public FunctionBase VisitPercentage_fun(mathParser.Percentage_funContext context)
 		{
 			var args1 = context.expr().Accept(this);
 			return new Function_Percentage(args1);
 		}
-		#endregion base
-		#region trigonometric functions
-		public FunctionBase VisitTRIG_fun(mathParser.TRIG_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("DEGREES", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_DEGREES(args1);
-			} else if(txt.Equals("RADIANS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_RADIANS(args1);
-			} else if(txt.Equals("COS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_COS(args1);
-			} else if(txt.Equals("COSH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_COSH(args1);
-			} else if(txt.Equals("SIN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SIN(args1);
-			} else if(txt.Equals("SINH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SINH(args1);
-			} else if(txt.Equals("TAN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_TAN(args1);
-			} else if(txt.Equals("TANH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_TANH(args1);
-			} else if(txt.Equals("COT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_COT(args1);
-			} else if(txt.Equals("COTH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_COTH(args1);
-			} else if(txt.Equals("CSC", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_CSC(args1);
-			} else if(txt.Equals("CSCH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_CSCH(args1);
-			} else if(txt.Equals("SEC", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SEC(args1);
-			} else if(txt.Equals("SECH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SECH(args1);
-			} else if(txt.Equals("ACOS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ACOS(args1);
-			} else if(txt.Equals("ACOSH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ACOSH(args1);
-			} else if(txt.Equals("ASIN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ASIN(args1);
-			} else if(txt.Equals("ASINH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ASINH(args1);
-			} else if(txt.Equals("ATAN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ATAN(args1);
-			} else if(txt.Equals("ATANH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ATANH(args1);
-			} else if(txt.Equals("ACOT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ACOT(args1);
-			}
-			//if(txt.Equals("ACOTH", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_ACOTH(args1);
-			//} 
-		}
 
-		public FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ATAN2(funcs);
-		}
-		public FunctionBase VisitFIXED_fun(mathParser.FIXED_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_FIXED(funcs);
-		}
-		#endregion trigonometric functions
-		#region transformation
-		public FunctionBase VisitConvert_fun(mathParser.Convert_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("BIN2OCT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BIN2OCT(funcs);
-			} else if(txt.Equals("BIN2DEC", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BIN2DEC(funcs);
-			} else if(txt.Equals("BIN2HEX", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BIN2HEX(funcs);
-			} else if(txt.Equals("OCT2BIN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_OCT2BIN(funcs);
-			} else if(txt.Equals("OCT2DEC", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_OCT2DEC(funcs);
-			} else if(txt.Equals("OCT2HEX", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_OCT2HEX(funcs);
-			} else if(txt.Equals("DEC2BIN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_DEC2BIN(funcs);
-			} else if(txt.Equals("DEC2OCT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_DEC2OCT(funcs);
-			} else if(txt.Equals("DEC2HEX", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_DEC2HEX(funcs);
-			} else if(txt.Equals("HEX2BIN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HEX2BIN(funcs);
-			} else if(txt.Equals("HEX2OCT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HEX2OCT(funcs);
-			}
-			return new Function_HEX2DEC(funcs);
-		}
-		#endregion transformation
-		#region rounding
-		public FunctionBase VisitROUND_fun(mathParser.ROUND_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("CEILING", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_CEILING(funcs);
-			} else if(txt.Equals("FLOOR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_FLOOR(funcs);
-			}
-			return new Function_ROUND(funcs);
-		}
-		public FunctionBase VisitROUND_UD_fun(mathParser.ROUND_UD_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("ROUNDDOWN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ROUNDDOWN(funcs);
-			}
-			return new Function_ROUNDUP(funcs);
-		}
-
-		public FunctionBase VisitEVEN_ODD_fun(mathParser.EVEN_ODD_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("EVEN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_EVEN(args1);
-			}
-			return new Function_ODD(args1);
-		}
-		public FunctionBase VisitMROUND_fun(mathParser.MROUND_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MROUND(funcs);
-		}
-		#endregion rounding
-		#region RAND
-
-		public FunctionBase VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_RANDBETWEEN(funcs);
-		}
-		#endregion RAND
-		#region power logarithm factorial
-		public FunctionBase VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_COVARIANCES(funcs);
-		}
-		public FunctionBase VisitCOVAR_fun(mathParser.COVAR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_COVAR(funcs);
-		}
-		public FunctionBase VisitFACT_fun(mathParser.FACT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_FACT(args1);
-		}
-		public FunctionBase VisitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_FACTDOUBLE(args1);
-		}
-		public FunctionBase VisitPOWER_fun(mathParser.POWER_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_POWER(funcs);
-		}
-		public FunctionBase VisitEXP_fun(mathParser.EXP_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_EXP(args1);
-		}
-		public FunctionBase VisitLN_fun(mathParser.LN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_LN(args1);
-		}
-		public FunctionBase VisitLOG_fun(mathParser.LOG_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_LOG(funcs);
-		}
-		public FunctionBase VisitLOG10_fun(mathParser.LOG10_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_LOG10(args1);
-		}
-		public FunctionBase VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MULTINOMIAL(funcs);
-		}
-		public FunctionBase VisitPRODUCT_fun(mathParser.PRODUCT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PRODUCT(funcs);
-		}
-		public FunctionBase VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SQRTPI(args1);
-		}
-		public FunctionBase VisitERF_fun(mathParser.ERF_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("ERF", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ERF(args1);
-			}
-			return new Function_ERFC(args1);
-		}
-		public FunctionBase VisitBESSEL_fun(mathParser.BESSEL_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("BESSELI", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BESSELI(funcs);
-			} else if(txt.Equals("BESSELJ", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BESSELJ(funcs);
-			} else if(txt.Equals("BESSELK", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BESSELK(funcs);
-			}
-			return new Function_BESSELY(funcs);
-		}
-		public FunctionBase VisitDELTA_fun(mathParser.DELTA_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DELTA(funcs);
-		}
-		public FunctionBase VisitGESTEP_fun(mathParser.GESTEP_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_GESTEP(funcs);
-		}
-
-		public FunctionBase VisitSUM2_fun(mathParser.SUM2_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("SUMSQ", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SUMSQ(funcs);
-			}
-			return new Function_SUMPRODUCT(funcs);
-		}
-		public FunctionBase VisitSUMX_fun(mathParser.SUMX_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("SUMX2MY2", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SUMX2MY2(funcs);
-			} else if(txt.Equals("SUMX2PY2", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SUMX2PY2(funcs);
-			}
-			return new Function_SUMXMY2(funcs);
-		}
-		public FunctionBase VisitARABIC_fun(mathParser.ARABIC_funContext context)
-		{
-			var func = Visit(context.expr());
-			return new Function_ARABIC(func);
-		}
-		public FunctionBase VisitROMAN_fun(mathParser.ROMAN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ROMAN(funcs);
-		}
-		public FunctionBase VisitSERIESSUM_fun(mathParser.SERIESSUM_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SERIESSUM(funcs);
-		}
-		public FunctionBase VisitRANK_fun(mathParser.RANK_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_RANK(funcs);
-		}
-		public FunctionBase VisitFORECAST_fun(mathParser.FORECAST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_FORECAST(funcs);
-		}
-		public FunctionBase VisitINTERCEPT_fun(mathParser.INTERCEPT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_INTERCEPT(funcs);
-		}
-		public FunctionBase VisitSLOPE_fun(mathParser.SLOPE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SLOPE(funcs);
-		}
-		public FunctionBase VisitCORREL_fun(mathParser.CORREL_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_CORREL(funcs);
-		}
-		public FunctionBase VisitPEARSON_fun(mathParser.PEARSON_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PEARSON(funcs);
-		}
-		public FunctionBase VisitYEARFRAC_fun(mathParser.YEARFRAC_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_YEARFRAC(funcs);
-		}
-		#endregion
-		#endregion math
-		#region string
-		public FunctionBase VisitCHAR_fun(mathParser.CHAR_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("CHAR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_CHAR(args1);
-			} else if(txt.Equals("ASC", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ASC(args1);
-			} else if(txt.Equals("CODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_CODE(args1);
-			} else if(txt.Equals("UNICHAR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_UNICHAR(args1);
-			} else if(txt.Equals("UNICODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_UNICODE(args1);
-			}
-			return new Function_JIS(args1);
-		}
-
-		public FunctionBase VisitCLEAN_fun(mathParser.CLEAN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_CLEAN(args1);
-		}
-
-		public FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_CONCATENATE(funcs);
-		}
-		public FunctionBase VisitEXACT_fun(mathParser.EXACT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_EXACT(funcs);
-		}
-		public FunctionBase VisitFIND_fun(mathParser.FIND_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("FIND", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_FIND(funcs);
-			}
-			return new Function_SEARCH(funcs);
-		}
-		public FunctionBase VisitLR_fun(mathParser.LR_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("LEFT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_LEFT(funcs);
-			}
-			//if(txt.Equals("RIGHT", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_RIGHT(funcs);
-			//}
-		}
-
-		public FunctionBase VisitLEN_fun(mathParser.LEN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_LEN(args1);
-		}
-		public FunctionBase VisitCASE_fun(mathParser.CASE_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("LOWER", StringComparison.OrdinalIgnoreCase) || txt.Equals("TOLOWER", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_LOWER(args1);
-			}
-
-			return new Function_UPPER(args1);
-		}
-
-		public FunctionBase VisitMID_fun(mathParser.MID_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MID(funcs);
-		}
-		public FunctionBase VisitPROPER_fun(mathParser.PROPER_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_PROPER(args1);
-		}
-		public FunctionBase VisitREPLACE_fun(mathParser.REPLACE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_REPLACE(funcs);
-		}
-		public FunctionBase VisitREPT_fun(mathParser.REPT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_REPT(funcs);
-		}
-
-		public FunctionBase VisitRMB_fun(mathParser.RMB_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_RMB(args1);
-		}
-		public FunctionBase VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SUBSTITUTE(funcs);
-		}
-		public FunctionBase VisitT_fun(mathParser.T_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_T(args1);
-		}
-		public FunctionBase VisitTEXT_fun(mathParser.TEXT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TEXT(funcs);
-		}
-		public FunctionBase VisitTRIM_fun(mathParser.TRIM_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_TRIM(args1);
-		}
-		public FunctionBase VisitVALUE_fun(mathParser.VALUE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_VALUE(args1);
-		}
-		#endregion string
-		#region MyDate time
-		public FunctionBase VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DATEVALUE(funcs);
-		}
-		public FunctionBase VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TIMESTAMP(funcs);
-		}
-		public FunctionBase VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_TIMEVALUE(args1);
-		}
-		public FunctionBase VisitDATE_fun(mathParser.DATE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DATE(funcs);
-		}
-		public FunctionBase VisitTIME_fun(mathParser.TIME_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TIME(funcs);
-		}
-
-		public FunctionBase VisitDATE_TIME_fun(mathParser.DATE_TIME_funContext context)
-		{
-			var txt = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(txt.Equals("YEAR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_YEAR(args1);
-			} else if(txt.Equals("MONTH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MONTH(args1);
-			} else if(txt.Equals("DAY", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_DAY(args1);
-			} else if(txt.Equals("HOUR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HOUR(args1);
-			} else if(txt.Equals("MINUTE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MINUTE(args1);
-			} else if(txt.Equals("SECOND", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SECOND(args1);
-			}
-			throw new NotSupportedException($"不支持的函数 {txt}");
-		}
-
-		public FunctionBase VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_WEEKDAY(funcs);
-		}
-		public FunctionBase VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DATEDIF(funcs);
-		}
-		public FunctionBase VisitDAYS_fun(mathParser.DAYS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DAYS(funcs);
-		}
-		public FunctionBase VisitDAYS360_fun(mathParser.DAYS360_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DAYS360(funcs);
-		}
-		public FunctionBase VisitEDATE_fun(mathParser.EDATE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_EDATE(funcs);
-		}
-		public FunctionBase VisitEOMONTH_fun(mathParser.EOMONTH_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_EOMONTH(funcs);
-		}
-		public FunctionBase VisitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_NETWORKDAYS(funcs);
-		}
-		public FunctionBase VisitWORKDAY_fun(mathParser.WORKDAY_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_WORKDAY(funcs);
-		}
-		public FunctionBase VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_WEEKNUM(funcs);
-		}
-		public FunctionBase VisitADD_DateTime_fun(mathParser.ADD_DateTime_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("ADDYEARS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ADDYEARS(funcs);
-			} else if(txt.Equals("ADDMONTHS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ADDMONTHS(funcs);
-			} else if(txt.Equals("ADDDAYS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ADDDAYS(funcs);
-			} else if(txt.Equals("ADDHOURS", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ADDHOURS(funcs);
-
-			} else if(txt.Equals("ADDMINUTES", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ADDMINUTES(funcs);
-			}
-			//if(txt.Equals("ADDSECONDS", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_ADDSECONDS(funcs);
-			//}
-		}
-
-		#endregion MyDate time
-		#region sum
-
-		public FunctionBase VisitSTAT_fun(mathParser.STAT_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("MAX", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MAX(funcs);
-			} else if(txt.Equals("MEDIAN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MEDIAN(funcs);
-			} else if(txt.Equals("MIN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MIN(funcs);
-			} else if(txt.Equals("MODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MODE(funcs);
-			} else if(txt.Equals("AVERAGE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_AVERAGE(funcs);
-			} else if(txt.Equals("GEOMEAN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_GEOMEAN(funcs);
-			} else if(txt.Equals("HARMEAN", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HARMEAN(funcs);
-			} else if(txt.Equals("COUNT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_COUNT(funcs);
-			} else if(txt.Equals("SUM", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SUM(funcs);
-			} else if(txt.Equals("AVEDEV", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_AVEDEV(funcs);
-			} else if(txt.Equals("STDEV", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_STDEV(funcs);
-			} else if(txt.Equals("STDEVP", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_STDEVP(funcs);
-			} else if(txt.Equals("DEVSQ", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_DEVSQ(funcs);
-			} else if(txt.Equals("VAR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_VAR(funcs);
-			}
-			//if (txt.Equals("VARP", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_VARP(funcs);
-			//}
-		}
-
-		public FunctionBase VisitRANK2_fun(mathParser.RANK2_funContext context)
-		{
-			var txt = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(txt.Equals("QUARTILE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_QUARTILE(funcs);
-			} else if(txt.Equals("LARGE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_LARGE(funcs);
-			} else if(txt.Equals("SMALL", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SMALL(funcs);
-			} else if(txt.Equals("PERCENTILE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_PERCENTILE(funcs);
-			}
-			//if(txt.Equals("PERCENTRANK", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_PERCENTRANK(funcs);
-			//}
-		}
-
-		public FunctionBase VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_AVERAGEIF(funcs);
-		}
-
-		public FunctionBase VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_COUNTIF(funcs);
-		}
-
-		public FunctionBase VisitSUMIF_fun(mathParser.SUMIF_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SUMIF(funcs);
-		}
-
-		public FunctionBase VisitNORMDIST_fun(mathParser.NORMDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_NORMDIST(funcs);
-		}
-		public FunctionBase VisitNORMINV_fun(mathParser.NORMINV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_NORMINV(funcs);
-		}
-		public FunctionBase VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_NORMSDIST(args1);
-		}
-		public FunctionBase VisitNORMSINV_fun(mathParser.NORMSINV_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_NORMSINV(args1);
-		}
-		public FunctionBase VisitBETADIST_fun(mathParser.BETADIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BETADIST(funcs);
-		}
-		public FunctionBase VisitBETAINV_fun(mathParser.BETAINV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BETAINV(funcs);
-		}
-		public FunctionBase VisitBINOMDIST_fun(mathParser.BINOMDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_BINOMDIST(funcs);
-		}
-		public FunctionBase VisitEXPONDIST_fun(mathParser.EXPONDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_EXPONDIST(funcs);
-		}
-		public FunctionBase VisitFDIST_fun(mathParser.FDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_FDIST(funcs);
-		}
-		public FunctionBase VisitFINV_fun(mathParser.FINV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_FINV(funcs);
-		}
-		public FunctionBase VisitFISHER_fun(mathParser.FISHER_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_FISHER(args1);
-		}
-		public FunctionBase VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_FISHERINV(args1);
-		}
-		public FunctionBase VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_GAMMADIST(funcs);
-		}
-		public FunctionBase VisitGAMMAINV_fun(mathParser.GAMMAINV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_GAMMAINV(funcs);
-		}
-		public FunctionBase VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_GAMMALN(args1);
-		}
-		public FunctionBase VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HYPGEOMDIST(funcs);
-		}
-		public FunctionBase VisitLOGINV_fun(mathParser.LOGINV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_LOGINV(funcs);
-		}
-		public FunctionBase VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_LOGNORMDIST(funcs);
-		}
-		public FunctionBase VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_NEGBINOMDIST(funcs);
-		}
-		public FunctionBase VisitPOISSON_fun(mathParser.POISSON_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_POISSON(funcs);
-		}
-		public FunctionBase VisitTDIST_fun(mathParser.TDIST_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TDIST(funcs);
-		}
-		public FunctionBase VisitTINV_fun(mathParser.TINV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_TINV(funcs);
-		}
-		public FunctionBase VisitWEIBULL_fun(mathParser.WEIBULL_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_WEIBULL(funcs);
-		}
-		#endregion sum
-		#region financial
-		public FunctionBase VisitPMT_fun(mathParser.PMT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PMT(funcs);
-		}
-		public FunctionBase VisitPPMT_fun(mathParser.PPMT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PPMT(funcs);
-		}
-		public FunctionBase VisitIPMT_fun(mathParser.IPMT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_IPMT(funcs);
-		}
-		public FunctionBase VisitPV_fun(mathParser.PV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PV(funcs);
-		}
-		public FunctionBase VisitFV_fun(mathParser.FV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_FV(funcs);
-		}
-		public FunctionBase VisitNPER_fun(mathParser.NPER_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_NPER(funcs);
-		}
-		public FunctionBase VisitRATE_fun(mathParser.RATE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_RATE(funcs);
-		}
-		public FunctionBase VisitNPV_fun(mathParser.NPV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_NPV(funcs);
-		}
-		public FunctionBase VisitXNPV_fun(mathParser.XNPV_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_XNPV(funcs);
-		}
-		public FunctionBase VisitIRR_fun(mathParser.IRR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_IRR(funcs);
-		}
-		public FunctionBase VisitMIRR_fun(mathParser.MIRR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_MIRR(funcs);
-		}
-		public FunctionBase VisitXIRR_fun(mathParser.XIRR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_XIRR(funcs);
-		}
-		public FunctionBase VisitSLN_fun(mathParser.SLN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SLN(funcs);
-		}
-		public FunctionBase VisitDB_fun(mathParser.DB_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DB(funcs);
-		}
-		public FunctionBase VisitDDB_fun(mathParser.DDB_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_DDB(funcs);
-		}
-		public FunctionBase VisitSYD_fun(mathParser.SYD_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SYD(funcs);
-		}
-		#endregion financial
-		#region csharp
-		public FunctionBase VisitENCODE_fun(mathParser.ENCODE_funContext context)
-		{
-			var text = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(text.Equals("URLENCODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_URLENCODE(args1);
-			} else if(text.Equals("URLDECODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_URLDECODE(args1);
-			} else if(text.Equals("HTMLENCODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HTMLENCODE(args1);
-			} else if(text.Equals("HTMLDECODE", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HTMLDECODE(args1);
-			} else if(text.Equals("BASE64TOTEXT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BASE64TOTEXT(args1);
-			} else if(text.Equals("BASE64URLTOTEXT", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_BASE64URLTOTEXT(args1);
-			} else if(text.Equals("TEXTTOBASE64", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_TEXTTOBASE64(args1);
-			}
-			//else if(text.Equals("TEXTTOBASE64URL", StringComparison.OrdinalIgnoreCase)) {
-			return new Function_TEXTTOBASE64URL(args1);
-			//}
-		}
-		public FunctionBase VisitREGEX_fun(mathParser.REGEX_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_REGEX(funcs);
-		}
-		public FunctionBase VisitREGEXREPLACE_fun(mathParser.REGEXREPLACE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_REGEXREPLACE(funcs);
-		}
-		public FunctionBase VisitISREGEX_fun(mathParser.ISREGEX_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_ISREGEX(funcs);
-		}
-
-		public FunctionBase VisitHMAC_fun(mathParser.HMAC_funContext context)
-		{
-			var text = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(text.Equals("HMACMD5", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HMACMD5(funcs);
-			} else if(text.Equals("HMACSHA1", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HMACSHA1(funcs);
-			} else if(text.Equals("HMACSHA256", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HMACSHA256(funcs);
-			} else if(text.Equals("HMACSHA512", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_HMACSHA512(funcs);
-			}
-			throw new NotSupportedException($"不支持的函数 {text}");
-		}
-		public FunctionBase VisitHASH_fun(mathParser.HASH_funContext context)
-		{
-			var text = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(text.Equals("MD5", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_MD5(args1);
-			} else if(text.Equals("SHA1", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SHA1(args1);
-			} else if(text.Equals("SHA256", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SHA256(args1);
-			} else if(text.Equals("SHA512", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_SHA512(args1);
-			}
-			throw new NotSupportedException($"不支持的函数 {text}");
-		}
-		public FunctionBase VisitTRIM_SE_fun(mathParser.TRIM_SE_funContext context)
-		{
-			var text = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(text.Equals("TRIMSTART", StringComparison.OrdinalIgnoreCase) || text.Equals("LTRIM", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_TRIMSTART(funcs);
-			}
-			return new Function_TRIMEND(funcs);
-		}
-		public FunctionBase VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
-		{
-			var text = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(text.Equals("INDEXOF", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_INDEXOF(funcs);
-			}
-			return new Function_LASTINDEXOF(funcs);
-
-		}
-		public FunctionBase VisitSPLIT_fun(mathParser.SPLIT_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SPLIT(funcs);
-		}
-		public FunctionBase VisitJOIN_fun(mathParser.JOIN_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_JOIN(funcs);
-		}
-		public FunctionBase VisitSUBSTRING_fun(mathParser.SUBSTRING_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SUBSTRING(funcs);
-		}
-		public FunctionBase VisitSTRINGSuffix_fun(mathParser.STRINGSuffix_funContext context)
-		{
-			var text = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(text.Equals("STARTSWITH", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_STARTSWITH(funcs);
-			}
-			return new Function_ENDSWITH(funcs);
-
-		}
-		public FunctionBase VisitISNULLOR_fun(mathParser.ISNULLOR_funContext context)
-		{
-			var text = context.f.Text;
-			var args1 = context.expr().Accept(this);
-			if(text.Equals("ISNULLOREMPTY", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_ISNULLOREMPTY(args1);
-			}
-			return new Function_ISNULLORWHITESPACE(args1);
-		}
-		public FunctionBase VisitREMOVE_fun(mathParser.REMOVE_funContext context)
-		{
-			var text = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(text.Equals("REMOVESTART", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_REMOVESTART(funcs);
-			}
-			return new Function_REMOVEEND(funcs);
-		}
-		public FunctionBase VisitJSON_fun(mathParser.JSON_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_JSON(args1);
-		}
-		#endregion csharp
-		#region LOOKFLOOR LOOKCEILING
-
-		public FunctionBase VisitLOOK_fun(mathParser.LOOK_funContext context)
-		{
-			var text = context.f.Text;
-			var funcs = VisitExprs(context.expr());
-			if(text.Equals("LOOKFLOOR", StringComparison.OrdinalIgnoreCase)) {
-				return new Function_LOOKFLOOR(funcs);
-			}
-			return new Function_LOOKCEILING(funcs);
-		}
-		#endregion
 		#region getValue
 		public FunctionBase VisitArray_fun(mathParser.Array_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			return new Function_Array(funcs);
+			return new Function_ARRAY(funcs);
 		}
 		public FunctionBase VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
@@ -1284,10 +210,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				var op = new Function_Parameter(context.PARAMETER().GetText());
 				return new Function_GetJsonValue(funcs[0], op);
 			}
-			if(context.parameter2() != null) {
-				var op = context.parameter2().Accept(this);
-				return new Function_GetJsonValue(funcs[0], op);
-			}
 			return new Function_GetJsonValue(funcs[0], funcs[1]);
 		}
 		public FunctionBase VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
@@ -1296,21 +218,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_DiyFunction(funName, funcs);
 		}
-		public FunctionBase VisitPARAM_fun(mathParser.PARAM_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_Param(funcs);
-		}
-		public FunctionBase VisitHAS_fun(mathParser.HAS_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HAS(funcs);
-		}
-		public FunctionBase VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_HASVALUE(funcs);
-		}
+
 		public FunctionBase VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
 		{
 			var exprs = context.arrayJson();
@@ -1331,26 +239,437 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var f = context.expr().Accept(this);
 			return new Function_ArrayJsonItem(keyName, f);
 		}
-		public FunctionBase VisitERROR_fun(mathParser.ERROR_funContext context)
-		{
-			if(context.expr() == null) { return new Function_ERROR(null); }
-			var args1 = context.expr().Accept(this);
-			return new Function_ERROR(args1);
-		}
 		public FunctionBase VisitVersion_fun(mathParser.Version_funContext context)
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
-
-
-
-
-
-
-
-
-
-
+		public FunctionBase VisitJOIN_fun(mathParser.JOIN_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_JOIN(funcs);
+		}
 		#endregion getValue
+
+
+		public FunctionBase VisitFOUR_FIVE_args_fun(mathParser.FOUR_FIVE_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.DB: return new Function_DB(funcs);
+				case mathLexer.DDB: return new Function_DDB(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitTHREE_args_fun(mathParser.THREE_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.DAYS360: return new Function_DAYS360(funcs);
+				case mathLexer.NETWORKDAYS: return new Function_NETWORKDAYS(funcs);
+				case mathLexer.WORKDAY: return new Function_WORKDAY(funcs);
+				case mathLexer.AVERAGEIF: return new Function_AVERAGEIF(funcs);
+				case mathLexer.SUMIF: return new Function_SUMIF(funcs);
+				case mathLexer.XIRR: return new Function_XIRR(funcs);
+				case mathLexer.IF: return new Function_IF(funcs);
+				case mathLexer.IFERROR: return new Function_IFERROR(funcs);
+				case mathLexer.TIME: return new Function_TIME(funcs);
+				case mathLexer.YEARFRAC: return new Function_YEARFRAC(funcs);
+				case mathLexer.SUBSTRING: return new Function_SUBSTRING(funcs);
+				case mathLexer.STARTSWITH: return new Function_STARTSWITH(funcs);
+				case mathLexer.ENDSWITH: return new Function_ENDSWITH(funcs);
+				case mathLexer.MID: return new Function_MID(funcs);
+				case mathLexer.DATEDIF: return new Function_DATEDIF(funcs);
+				case mathLexer.FORECAST: return new Function_FORECAST(funcs);
+				case mathLexer.NORMINV: return new Function_NORMINV(funcs);
+				case mathLexer.BETADIST: return new Function_BETADIST(funcs);
+				case mathLexer.BETAINV: return new Function_BETAINV(funcs);
+				case mathLexer.EXPONDIST: return new Function_EXPONDIST(funcs);
+				case mathLexer.FDIST: return new Function_FDIST(funcs);
+				case mathLexer.FINV: return new Function_FINV(funcs);
+				case mathLexer.GAMMAINV: return new Function_GAMMAINV(funcs);
+				case mathLexer.LOGINV: return new Function_LOGINV(funcs);
+				case mathLexer.XNPV: return new Function_XNPV(funcs);
+				case mathLexer.MIRR: return new Function_MIRR(funcs);
+				case mathLexer.SLN : return new Function_SLN(funcs);
+				case mathLexer.REGEXREPLACE : return new Function_REGEXREPLACE(funcs);
+				case mathLexer.LOGNORMDIST: return new Function_LOGNORMDIST(funcs);
+				case mathLexer.NEGBINOMDIST: return new Function_NEGBINOMDIST(funcs);
+				case mathLexer.POISSON: return new Function_POISSON(funcs);
+				case mathLexer.TDIST: return new Function_TDIST(funcs);
+
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+
+
+		public FunctionBase VisitFOUR_TO_SIX_args_fun(mathParser.FOUR_TO_SIX_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.PPMT: return new Function_PPMT(funcs);
+				case mathLexer.IPMT: return new Function_IPMT(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitFOUR_args_fun(mathParser.FOUR_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.NORMDIST: return new Function_NORMDIST(funcs);
+				case mathLexer.BINOMDIST: return new Function_BINOMDIST(funcs);
+				case mathLexer.GAMMADIST: return new Function_GAMMADIST(funcs);
+				case mathLexer.HYPGEOMDIST: return new Function_HYPGEOMDIST(funcs);
+				case mathLexer.WEIBULL: return new Function_WEIBULL(funcs);
+				case mathLexer.SYD: return new Function_SYD(funcs);
+				case mathLexer.SERIESSUM: return new Function_SERIESSUM(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitONE_arg_fun(mathParser.ONE_arg_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = context.expr().Accept(this);
+			switch(type) {
+				case mathLexer.ERROR: return new Function_ERROR(funcs);
+				case mathLexer.YEAR: return new Function_YEAR(funcs);
+				case mathLexer.MONTH: return new Function_MONTH(funcs);
+				case mathLexer.DAY: return new Function_DAY(funcs);
+				case mathLexer.HOUR: return new Function_HOUR(funcs);
+				case mathLexer.MINUTE: return new Function_MINUTE(funcs);
+				case mathLexer.SECOND: return new Function_SECOND(funcs);
+				case mathLexer.ISNUMBER: return new Function_ISNUMBER(funcs);
+				case mathLexer.ISTEXT: return new Function_ISTEXT(funcs);
+				case mathLexer.ISNONTEXT: return new Function_ISNONTEXT(funcs);
+				case mathLexer.ISLOGICAL: return new Function_ISLOGICAL(funcs);
+				case mathLexer.ISEVEN: return new Function_ISEVEN(funcs);
+				case mathLexer.ISODD: return new Function_ISODD(funcs);
+				case mathLexer.NOT: return new Function_NOT(funcs);
+				case mathLexer.ABS: return new Function_ABS(funcs);
+				case mathLexer.SIGN: return new Function_SIGN(funcs);
+				case mathLexer.SQRT: return new Function_SQRT(funcs);
+				case mathLexer.INT: return new Function_INT(funcs);
+				case mathLexer.DEGREES: return new Function_DEGREES(funcs);
+				case mathLexer.RADIANS: return new Function_RADIANS(funcs);
+				case mathLexer.COS: return new Function_COS(funcs);
+				case mathLexer.COSH: return new Function_COSH(funcs);
+				case mathLexer.SIN: return new Function_SIN(funcs);
+				case mathLexer.SINH: return new Function_SINH(funcs);
+				case mathLexer.TAN: return new Function_TAN(funcs);
+				case mathLexer.TANH: return new Function_TANH(funcs);
+				case mathLexer.COT: return new Function_COT(funcs);
+				case mathLexer.COTH: return new Function_COTH(funcs);
+				case mathLexer.CSC: return new Function_CSC(funcs);
+				case mathLexer.CSCH: return new Function_CSCH(funcs);
+				case mathLexer.SEC: return new Function_SEC(funcs);
+				case mathLexer.SECH: return new Function_SECH(funcs);
+				case mathLexer.ACOS: return new Function_ACOS(funcs);
+				case mathLexer.ACOSH: return new Function_ACOSH(funcs);
+				case mathLexer.ASIN: return new Function_ASIN(funcs);
+				case mathLexer.ASINH: return new Function_ASINH(funcs);
+				case mathLexer.ATAN: return new Function_ATAN(funcs);
+				case mathLexer.ATANH: return new Function_ATANH(funcs);
+				case mathLexer.ACOT: return new Function_ACOT(funcs);
+				case mathLexer.ACOTH: return new Function_ACOTH(funcs);
+				case mathLexer.EVEN: return new Function_EVEN(funcs);
+				case mathLexer.ODD: return new Function_ODD(funcs);
+				case mathLexer.FACT: return new Function_FACT(funcs);
+				case mathLexer.FACTDOUBLE: return new Function_FACTDOUBLE(funcs);
+				case mathLexer.EXP: return new Function_EXP(funcs);
+				case mathLexer.LN: return new Function_LN(funcs);
+				case mathLexer.LOG10: return new Function_LOG10(funcs);
+				case mathLexer.SQRTPI: return new Function_SQRTPI(funcs);
+				case mathLexer.ERF: return new Function_ERF(funcs);
+				case mathLexer.ERFC: return new Function_ERFC(funcs);
+				case mathLexer.ARABIC: return new Function_ARABIC(funcs);
+				case mathLexer.ASC: return new Function_ASC(funcs);
+				case mathLexer.JIS: return new Function_JIS(funcs);
+				case mathLexer.CHAR: return new Function_CHAR(funcs);
+				case mathLexer.CLEAN: return new Function_CLEAN(funcs);
+				case mathLexer.CODE: return new Function_CODE(funcs);
+				case mathLexer.UNICHAR: return new Function_UNICHAR(funcs);
+				case mathLexer.UNICODE: return new Function_UNICODE(funcs);
+				case mathLexer.LEN: return new Function_LEN(funcs);
+				case mathLexer.LOWER: return new Function_LOWER(funcs);
+				case mathLexer.PROPER: return new Function_PROPER(funcs);
+				case mathLexer.TRIM: return new Function_TRIM(funcs);
+				case mathLexer.UPPER: return new Function_UPPER(funcs);
+				case mathLexer.VALUE: return new Function_VALUE(funcs);
+				case mathLexer.TIMEVALUE: return new Function_TIMEVALUE(funcs);
+				case mathLexer.NORMSDIST: return new Function_NORMSDIST(funcs);
+				case mathLexer.NORMSINV: return new Function_NORMSINV(funcs);
+				case mathLexer.FISHER: return new Function_FISHER(funcs);
+				case mathLexer.FISHERINV: return new Function_FISHERINV(funcs);
+				case mathLexer.GAMMALN: return new Function_GAMMALN(funcs);
+				case mathLexer.URLENCODE: return new Function_URLENCODE(funcs);
+				case mathLexer.URLDECODE: return new Function_URLDECODE(funcs);
+				case mathLexer.HTMLENCODE: return new Function_HTMLENCODE(funcs);
+				case mathLexer.HTMLDECODE: return new Function_HTMLDECODE(funcs);
+				case mathLexer.BASE64TOTEXT: return new Function_BASE64TOTEXT(funcs);
+				case mathLexer.BASE64URLTOTEXT: return new Function_BASE64URLTOTEXT(funcs);
+				case mathLexer.TEXTTOBASE64: return new Function_TEXTTOBASE64(funcs);
+				case mathLexer.TEXTTOBASE64URL: return new Function_TEXTTOBASE64URL(funcs);
+				case mathLexer.ISNULLOREMPTY: return new Function_ISNULLOREMPTY(funcs);
+				case mathLexer.ISNULLORWHITESPACE: return new Function_ISNULLORWHITESPACE(funcs);
+				case mathLexer.JSON: return new Function_JSON(funcs);
+				case mathLexer.T: return new Function_T(funcs);
+				case mathLexer.RMB: return new Function_RMB(funcs);
+				case mathLexer.MD5: return new Function_MD5(funcs);
+				case mathLexer.SHA1: return new Function_SHA1(funcs);
+				case mathLexer.SHA256: return new Function_SHA256(funcs);
+				case mathLexer.SHA512: return new Function_SHA512(funcs);
+
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitTHREE_TO_SIX_args_fun(mathParser.THREE_TO_SIX_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.RATE: return new Function_RATE(funcs);
+				case mathLexer.DATE: return new Function_DATE(funcs);
+
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitONE_TWO_args_fun(mathParser.ONE_TWO_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.DEC2BIN: return new Function_DEC2BIN(funcs);
+				case mathLexer.DEC2HEX: return new Function_DEC2HEX(funcs);
+				case mathLexer.DEC2OCT: return new Function_DEC2OCT(funcs);
+				case mathLexer.HEX2BIN: return new Function_HEX2BIN(funcs);
+				case mathLexer.HEX2DEC: return new Function_HEX2DEC(funcs);
+				case mathLexer.HEX2OCT: return new Function_HEX2OCT(funcs);
+				case mathLexer.OCT2BIN: return new Function_OCT2BIN(funcs);
+				case mathLexer.OCT2DEC: return new Function_OCT2DEC(funcs);
+				case mathLexer.OCT2HEX: return new Function_OCT2HEX(funcs);
+				case mathLexer.BIN2OCT: return new Function_BIN2OCT(funcs);
+				case mathLexer.BIN2DEC: return new Function_BIN2DEC(funcs);
+				case mathLexer.BIN2HEX: return new Function_BIN2HEX(funcs);
+				case mathLexer.ISERROR: return new Function_ISERROR(funcs);
+				case mathLexer.ISNULL: return new Function_ISNULL(funcs);
+				case mathLexer.ISNULLORERROR: return new Function_ISNULLORERROR(funcs);
+				case mathLexer.TRUNC: return new Function_TRUNC(funcs);
+				case mathLexer.ROUND: return new Function_ROUND(funcs);
+				case mathLexer.CEILING: return new Function_CEILING(funcs);
+				case mathLexer.FLOOR: return new Function_FLOOR(funcs);
+				case mathLexer.LOG: return new Function_LOG(funcs);
+				case mathLexer.DELTA: return new Function_DELTA(funcs);
+				case mathLexer.GESTEP: return new Function_GESTEP(funcs);
+				case mathLexer.ROMAN: return new Function_ROMAN(funcs);
+				case mathLexer.RANK: return new Function_RANK(funcs);
+				case mathLexer.FIND: return new Function_FIND(funcs);
+				case mathLexer.LEFT: return new Function_LEFT(funcs);
+				case mathLexer.RIGHT: return new Function_RIGHT(funcs);
+				case mathLexer.SEARCH: return new Function_SEARCH(funcs);
+				case mathLexer.WEEKDAY: return new Function_WEEKDAY(funcs);
+				case mathLexer.WEEKNUM: return new Function_WEEKNUM(funcs);
+				case mathLexer.IRR: return new Function_IRR(funcs);
+				case mathLexer.TRIMSTART: return new Function_TRIMSTART(funcs);
+				case mathLexer.TRIMEND: return new Function_TRIMEND(funcs);
+				case mathLexer.TIMESTAMP: return new Function_TIMESTAMP(funcs);
+				case mathLexer.PARAM: return new Function_PARAM(funcs);
+				case mathLexer.DATEVALUE: return new Function_DATEVALUE(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitTHREE_TO_FIVE_args_fun(mathParser.THREE_TO_FIVE_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.PMT: return new Function_PMT(funcs);
+				case mathLexer.PV: return new Function_PV(funcs);
+				case mathLexer.FV: return new Function_FV(funcs);
+				case mathLexer.NPER: return new Function_NPER(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitONE_TO_N_args_fun(mathParser.ONE_TO_N_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.ARRAY: return new Function_ARRAY(funcs);
+				case mathLexer.AND: return new Function_AND(funcs);
+				case mathLexer.OR: return new Function_OR(funcs);
+				case mathLexer.XOR: return new Function_XOR(funcs);
+				case mathLexer.GCD: return new Function_GCD(funcs);
+				case mathLexer.LCM: return new Function_LCM(funcs);
+				case mathLexer.MULTINOMIAL: return new Function_MULTINOMIAL(funcs);
+				case mathLexer.PRODUCT: return new Function_PRODUCT(funcs);
+				case mathLexer.SUMSQ: return new Function_SUMSQ(funcs);
+				case mathLexer.SUMPRODUCT: return new Function_SUMPRODUCT(funcs);
+				case mathLexer.CONCATENATE: return new Function_CONCATENATE(funcs);
+				case mathLexer.MAX: return new Function_MAX(funcs);
+				case mathLexer.MEDIAN: return new Function_MEDIAN(funcs);
+				case mathLexer.MIN: return new Function_MIN(funcs);
+				case mathLexer.MODE: return new Function_MODE(funcs);
+				case mathLexer.AVERAGE: return new Function_AVERAGE(funcs);
+				case mathLexer.GEOMEAN: return new Function_GEOMEAN(funcs);
+				case mathLexer.HARMEAN: return new Function_HARMEAN(funcs);
+				case mathLexer.COUNT: return new Function_COUNT(funcs);
+				case mathLexer.SUM: return new Function_SUM(funcs);
+				case mathLexer.AVEDEV: return new Function_AVEDEV(funcs);
+				case mathLexer.STDEV: return new Function_STDEV(funcs);
+				case mathLexer.STDEVP: return new Function_STDEVP(funcs);
+				case mathLexer.DEVSQ: return new Function_DEVSQ(funcs);
+				case mathLexer.VAR: return new Function_VAR(funcs);
+				case mathLexer.VARP: return new Function_VARP(funcs);
+				case mathLexer.NPV: return new Function_NPV(funcs);
+
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitTHREE_FOUR_args_fun(mathParser.THREE_FOUR_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.SUBSTITUTE: return new Function_SUBSTITUTE(funcs);
+				case mathLexer.REPLACE: return new Function_REPLACE(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitTWO_THREE_args_fun(mathParser.TWO_THREE_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.DAYS360: return new Function_DAYS360(funcs);
+				case mathLexer.NETWORKDAYS: return new Function_NETWORKDAYS(funcs);
+				case mathLexer.WORKDAY: return new Function_WORKDAY(funcs);
+				case mathLexer.AVERAGEIF: return new Function_AVERAGEIF(funcs);
+				case mathLexer.SUMIF: return new Function_SUMIF(funcs);
+				case mathLexer.XIRR: return new Function_XIRR(funcs);
+				case mathLexer.IF: return new Function_IF(funcs);
+				case mathLexer.IFERROR: return new Function_IFERROR(funcs);
+				case mathLexer.TIME: return new Function_TIME(funcs);
+				case mathLexer.YEARFRAC: return new Function_YEARFRAC(funcs);
+				case mathLexer.SUBSTRING: return new Function_SUBSTRING(funcs);
+				case mathLexer.STARTSWITH: return new Function_STARTSWITH(funcs);
+				case mathLexer.ENDSWITH: return new Function_ENDSWITH(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitINDEX_fun(mathParser.INDEX_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.INDEXOF: return new Function_INDEXOF(funcs);
+				case mathLexer.LASTINDEXOF: return new Function_LASTINDEXOF(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitONE_TO_THREE_args_fun(mathParser.ONE_TO_THREE_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.FIXED: return new Function_FIXED(funcs);
+				case mathLexer.REMOVESTART: return new Function_REMOVESTART(funcs);
+				case mathLexer.REMOVEEND: return new Function_REMOVEEND(funcs);
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		public FunctionBase VisitTWO_args_fun(mathParser.TWO_args_funContext context)
+		{
+			var type = context.f.Type;
+			var funcs = VisitExprs(context.expr());
+			switch(type) {
+				case mathLexer.QUOTIENT: return new Function_QUOTIENT(funcs);
+				case mathLexer.MOD: return new Function_Mod(funcs);
+				case mathLexer.COMBIN: return new Function_COMBIN(funcs);
+				case mathLexer.PERMUT: return new Function_PERMUT(funcs);
+				case mathLexer.ATAN2: return new Function_ATAN2(funcs);
+				case mathLexer.ROUNDDOWN: return new Function_ROUNDDOWN(funcs);
+				case mathLexer.ROUNDUP: return new Function_ROUNDUP(funcs);
+				case mathLexer.MROUND: return new Function_MROUND(funcs);
+				case mathLexer.RANDBETWEEN: return new Function_RANDBETWEEN(funcs);
+				case mathLexer.POWER: return new Function_POWER(funcs);
+				case mathLexer.BESSELI: return new Function_BESSELI(funcs);
+				case mathLexer.BESSELJ: return new Function_BESSELJ(funcs);
+				case mathLexer.BESSELK: return new Function_BESSELK(funcs);
+				case mathLexer.BESSELY: return new Function_BESSELY(funcs);
+				case mathLexer.SUMX2MY2: return new Function_SUMX2MY2(funcs);
+				case mathLexer.SUMX2PY2: return new Function_SUMX2PY2(funcs);
+				case mathLexer.SUMXMY2: return new Function_SUMXMY2(funcs);
+				case mathLexer.EXACT: return new Function_EXACT(funcs);
+				case mathLexer.REPT: return new Function_REPT(funcs);
+				case mathLexer.TEXT: return new Function_TEXT(funcs);
+				case mathLexer.DAYS: return new Function_DAYS(funcs);
+				case mathLexer.EDATE: return new Function_EDATE(funcs);
+				case mathLexer.EOMONTH: return new Function_EOMONTH(funcs);
+				case mathLexer.QUARTILE: return new Function_QUARTILE(funcs);
+				case mathLexer.LARGE: return new Function_LARGE(funcs);
+				case mathLexer.SMALL: return new Function_SMALL(funcs);
+				case mathLexer.PERCENTILE: return new Function_PERCENTILE(funcs);
+				case mathLexer.PERCENTRANK: return new Function_PERCENTRANK(funcs);
+				case mathLexer.COVAR: return new Function_COVAR(funcs);
+				case mathLexer.COVARIANCES: return new Function_COVARIANCES(funcs);
+				case mathLexer.TINV: return new Function_TINV(funcs);
+				case mathLexer.REGEX: return new Function_REGEX(funcs);
+				case mathLexer.ISREGEX: return new Function_ISREGEX(funcs);
+				case mathLexer.HMACMD5: return new Function_HMACMD5(funcs);
+				case mathLexer.HMACSHA1: return new Function_HMACSHA1(funcs);
+				case mathLexer.HMACSHA256: return new Function_HMACSHA256(funcs);
+				case mathLexer.HMACSHA512: return new Function_HMACSHA512(funcs);
+				case mathLexer.SPLIT: return new Function_SPLIT(funcs);
+				case mathLexer.LOOKCEILING: return new Function_LOOKCEILING(funcs);
+				case mathLexer.LOOKFLOOR: return new Function_LOOKFLOOR(funcs);
+				case mathLexer.ADDYEARS: return new Function_ADDYEARS(funcs);
+				case mathLexer.ADDMONTHS: return new Function_ADDMONTHS(funcs);
+				case mathLexer.ADDDAYS: return new Function_ADDDAYS(funcs);
+				case mathLexer.ADDHOURS: return new Function_ADDHOURS(funcs);
+				case mathLexer.ADDMINUTES: return new Function_ADDMINUTES(funcs);
+				case mathLexer.ADDSECONDS: return new Function_ADDSECONDS(funcs);
+				case mathLexer.HAS: return new Function_HAS(funcs);
+				case mathLexer.HASVALUE: return new Function_HASVALUE(funcs);
+				case mathLexer.INTERCEPT: return new Function_INTERCEPT(funcs);
+				case mathLexer.SLOPE: return new Function_SLOPE(funcs);
+				case mathLexer.CORREL: return new Function_CORREL(funcs);
+				case mathLexer.PEARSON: return new Function_PEARSON(funcs);
+				case mathLexer.COUNTIF: return new Function_COUNTIF(funcs);
+
+				default: break;
+			}
+			throw new NotImplementedException();
+		}
+
+		 
 	}
 }

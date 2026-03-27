@@ -14,7 +14,6 @@ expr:
 	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'
 	| expr '[' PARAMETER ']'									
 	| expr '[' expr ']'											
-	| expr '.' parameter2										
 
 	// 运算符优先级 开始
 	| '(' expr ')'												
@@ -42,8 +41,8 @@ expr:
 	| (FORECAST | NORMINV | BETADIST | BETAINV | EXPONDIST | FDIST | FINV | GAMMAINV | LOGINV | XNPV | MIRR | SLN|MID | DATEDIF | REGEXREPLACE|LOGNORMDIST | NEGBINOMDIST | POISSON | TDIST) '(' expr ',' expr ',' expr ')'
 	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'
 	| (INDEXOF | LASTINDEXOF) '(' expr ',' expr (',' expr (',' expr)?)? ')'
-	| JOIN '(' expr (',' expr)+ ')'
-	| SWITCH '(' expr ',' expr ',' expr ( ',' expr)* ')'
+	| JOIN '(' expr ',' expr (',' expr)* ')'
+	| SWITCH '(' expr ',' expr ',' expr (',' expr)* ')'
 	| (NORMDIST | BINOMDIST | GAMMADIST | HYPGEOMDIST | WEIBULL|SYD|SERIESSUM) '(' expr ',' expr ',' expr ',' expr ')'
 	| (PMT | PV | FV | NPER) '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'
 	| (RATE|DATE) '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)?)? ')'

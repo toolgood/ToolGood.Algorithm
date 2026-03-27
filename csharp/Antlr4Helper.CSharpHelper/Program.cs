@@ -107,7 +107,7 @@ namespace Antlr4Helper.CSharpHelper
 			csText = csText.Replace("public partial class mathLexer", "partial class mathLexer");
 
 			csText = csText.Replace("public override string GrammarFileName { get { return \"math.g4\"; } }", "public override string GrammarFileName { get { return \"\"; } }");
-			csText = Regex.Replace(csText, @"public const int[\s\S]*?;", "");
+			//csText = Regex.Replace(csText, @"public const int[\s\S]*?;", "");
 			csText = Regex.Replace(csText, @"public static string\[\] channelNames = \{[\s\S]*?\}", "public static string[] channelNames = {}");
 			csText = Regex.Replace(csText, @"public static string\[\] modeNames = \{[\s\S]*?\}", "public static string[] modeNames = {}");
 			csText = Regex.Replace(csText, @"public static readonly string\[\] ruleNames = \{[\s\S]*?\}", "public static readonly string[] ruleNames = {}");

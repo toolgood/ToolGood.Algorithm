@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -6,9 +6,9 @@ using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_Array : Function_N
+	internal sealed class Function_ARRAY : Function_N
 	{
-		public Function_Array(FunctionBase[] funcs) : base(funcs)
+		public Function_ARRAY(FunctionBase[] funcs) : base(funcs)
 		{
 		}
 
