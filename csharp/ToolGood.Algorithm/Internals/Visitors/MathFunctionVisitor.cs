@@ -1,7 +1,6 @@
 ﻿using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
-using System.Security.Cryptography;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Functions.Compare;
