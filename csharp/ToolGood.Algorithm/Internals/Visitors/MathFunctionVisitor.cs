@@ -238,116 +238,58 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		#endregion base
 		#region trigonometric functions
-		public FunctionBase VisitDEGREES_fun(mathParser.DEGREES_funContext context)
+		public FunctionBase VisitTRIG_fun(mathParser.TRIG_funContext context)
 		{
+			var txt = context.f.Text;
 			var args1 = context.expr().Accept(this);
-			return new Function_DEGREES(args1);
-		}
-		public FunctionBase VisitRADIANS_fun(mathParser.RADIANS_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_RADIANS(args1);
-		}
-		public FunctionBase VisitCOS_fun(mathParser.COS_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_COS(args1);
-		}
-		public FunctionBase VisitCOSH_fun(mathParser.COSH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_COSH(args1);
-		}
-		public FunctionBase VisitSIN_fun(mathParser.SIN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SIN(args1);
-		}
-		public FunctionBase VisitSINH_fun(mathParser.SINH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SINH(args1);
-		}
-		public FunctionBase VisitTAN_fun(mathParser.TAN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_TAN(args1);
-		}
-		public FunctionBase VisitTANH_fun(mathParser.TANH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_TANH(args1);
-		}
-		public FunctionBase VisitCOT_fun(mathParser.COT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_COT(args1);
-		}
-		public FunctionBase VisitCOTH_fun(mathParser.COTH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_COTH(args1);
-		}
-		public FunctionBase VisitCSC_fun(mathParser.CSC_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_CSC(args1);
-		}
-		public FunctionBase VisitCSCH_fun(mathParser.CSCH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_CSCH(args1);
-		}
-		public FunctionBase VisitSEC_fun(mathParser.SEC_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SEC(args1);
-		}
-		public FunctionBase VisitSECH_fun(mathParser.SECH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_SECH(args1);
-		}
-		public FunctionBase VisitACOS_fun(mathParser.ACOS_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ACOS(args1);
-		}
-		public FunctionBase VisitACOSH_fun(mathParser.ACOSH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ACOSH(args1);
-		}
-		public FunctionBase VisitASIN_fun(mathParser.ASIN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ASIN(args1);
-		}
-		public FunctionBase VisitASINH_fun(mathParser.ASINH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ASINH(args1);
-		}
-		public FunctionBase VisitATAN_fun(mathParser.ATAN_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ATAN(args1);
-		}
-		public FunctionBase VisitATANH_fun(mathParser.ATANH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ATANH(args1);
-		}
-		public FunctionBase VisitACOT_fun(mathParser.ACOT_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
-			return new Function_ACOT(args1);
-		}
-		public FunctionBase VisitACOTH_fun(mathParser.ACOTH_funContext context)
-		{
-			var args1 = context.expr().Accept(this);
+			if(txt.Equals("DEGREES", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_DEGREES(args1);
+			} else if(txt.Equals("RADIANS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_RADIANS(args1);
+			} else if(txt.Equals("COS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_COS(args1);
+			} else if(txt.Equals("COSH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_COSH(args1);
+			} else if(txt.Equals("SIN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SIN(args1);
+			} else if(txt.Equals("SINH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SINH(args1);
+			} else if(txt.Equals("TAN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_TAN(args1);
+			} else if(txt.Equals("TANH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_TANH(args1);
+			} else if(txt.Equals("COT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_COT(args1);
+			} else if(txt.Equals("COTH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_COTH(args1);
+			} else if(txt.Equals("CSC", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_CSC(args1);
+			} else if(txt.Equals("CSCH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_CSCH(args1);
+			} else if(txt.Equals("SEC", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SEC(args1);
+			} else if(txt.Equals("SECH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SECH(args1);
+			} else if(txt.Equals("ACOS", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ACOS(args1);
+			} else if(txt.Equals("ACOSH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ACOSH(args1);
+			} else if(txt.Equals("ASIN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ASIN(args1);
+			} else if(txt.Equals("ASINH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ASINH(args1);
+			} else if(txt.Equals("ATAN", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ATAN(args1);
+			} else if(txt.Equals("ATANH", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ATANH(args1);
+			} else if(txt.Equals("ACOT", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ACOT(args1);
+			}
+			//if(txt.Equals("ACOTH", StringComparison.OrdinalIgnoreCase)) {
 			return new Function_ACOTH(args1);
+			//} 
 		}
+		 
 		public FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());

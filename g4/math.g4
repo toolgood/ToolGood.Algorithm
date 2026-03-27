@@ -70,38 +70,17 @@ expr:
 	| PI ('(' ')')											# PI_fun
 	| f=(DEC2BIN | DEC2HEX | DEC2OCT | HEX2BIN | HEX2DEC | HEX2OCT | OCT2BIN | OCT2DEC | OCT2HEX | BIN2OCT | BIN2DEC | BIN2HEX) ('(' expr (',' expr)? ')')	# Convert_fun
 	| ABS '(' expr ')'										# ABS_fun
-	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun
-	| MOD '(' expr (',' expr) ')'							# MOD_fun
 	| SIGN '(' expr ')'										# SIGN_fun
 	| SQRT '(' expr ')'										# SQRT_fun
-	| TRUNC '(' expr(',' expr)? ')'							# TRUNC_fun
 	| INT '(' expr ')'										# INT_fun
+	| QUOTIENT '(' expr ',' expr ')'						# QUOTIENT_fun
+	| MOD '(' expr ',' expr ')'								# MOD_fun
+	| TRUNC '(' expr(',' expr)? ')'							# TRUNC_fun
 	| GCD '(' expr (',' expr)* ')'							# GCD_fun
 	| LCM '(' expr (',' expr)* ')'							# LCM_fun
 	| COMBIN '(' expr ',' expr ')'							# COMBIN_fun
 	| PERMUT '(' expr ',' expr ')'							# PERMUT_fun
-	| DEGREES '(' expr ')'									# DEGREES_fun
-	| RADIANS '(' expr ')'									# RADIANS_fun
-	| COS '(' expr ')'										# COS_fun
-	| COSH '(' expr ')'										# COSH_fun
-	| SIN '(' expr ')'										# SIN_fun
-	| SINH '(' expr ')'										# SINH_fun
-	| TAN '(' expr ')'										# TAN_fun
-	| TANH '(' expr ')'										# TANH_fun
-	| COT '(' expr ')'										# COT_fun
-	| COTH '(' expr ')'										# COTH_fun
-	| CSC '(' expr ')'										# CSC_fun
-	| CSCH '(' expr ')'										# CSCH_fun
-	| SEC '(' expr ')'										# SEC_fun
-	| SECH '(' expr ')'										# SECH_fun
-	| ACOS '(' expr ')'										# ACOS_fun
-	| ACOSH '(' expr ')'									# ACOSH_fun
-	| ASIN '(' expr ')'										# ASIN_fun
-	| ASINH '(' expr ')'									# ASINH_fun
-	| ATAN '(' expr ')'										# ATAN_fun
-	| ATANH '(' expr ')'									# ATANH_fun
-	| ACOT '(' expr ')'										# ACOT_fun
-	| ACOTH '(' expr ')'									# ACOTH_fun
+	| f=(DEGREES | RADIANS | COS | COSH | SIN | SINH | TAN | TANH | COT | COTH | CSC | CSCH | SEC | SECH | ACOS | ACOSH | ASIN | ASINH | ATAN | ATANH | ACOT | ACOTH) '(' expr ')'	# TRIG_fun
 	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
 	| ROUND '(' expr (',' expr)? ')'						# ROUND_fun
 	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun
