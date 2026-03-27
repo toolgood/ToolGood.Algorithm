@@ -95,6 +95,9 @@ namespace Antlr4Helper.CSharpHelper
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
 			csText = Regex.Replace(csText, @"\r\n[ \t]*\r\n", "\r\n");
+
+			csText = csText.Replace("public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {\r\n\t\treturn true;\r\n\t}", "");
+
 			csText = "namespace ToolGood.Algorithm.math\r\n{" + csText + "\r\n}";
 			File.WriteAllText(@"..\..\..\..\..\csharp\ToolGood.Algorithm\math\mathParser.cs", csText);
 

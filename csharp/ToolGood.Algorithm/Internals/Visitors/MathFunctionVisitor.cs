@@ -303,7 +303,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.NEGBINOMDIST: return new Function_NEGBINOMDIST(funcs);
 				case mathLexer.POISSON: return new Function_POISSON(funcs);
 				case mathLexer.TDIST: return new Function_TDIST(funcs);
-
 				default: break;
 			}
 			throw new NotImplementedException();
@@ -432,7 +431,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.SHA1: return new Function_SHA1(funcs);
 				case mathLexer.SHA256: return new Function_SHA256(funcs);
 				case mathLexer.SHA512: return new Function_SHA512(funcs);
-
 				default: break;
 			}
 			throw new NotImplementedException();
@@ -541,7 +539,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.VAR: return new Function_VAR(funcs);
 				case mathLexer.VARP: return new Function_VARP(funcs);
 				case mathLexer.NPV: return new Function_NPV(funcs);
-
 				default: break;
 			}
 			throw new NotImplementedException();

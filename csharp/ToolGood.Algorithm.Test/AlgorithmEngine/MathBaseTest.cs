@@ -256,8 +256,8 @@ namespace ToolGood.Algorithm.Test.MathBase
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("RAND()", 0.0);
-            Assert.Greater(t, 0);
-            Assert.LessOrEqual(t, 1);
+            Assert.GreaterOrEqual(t, 0);
+            Assert.Less(t, 1);
         }
 
         [Test]
@@ -265,7 +265,7 @@ namespace ToolGood.Algorithm.Test.MathBase
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("RANDBETWEEN(2,99)", 0.0);
-            Assert.Greater(t, 2);
+            Assert.GreaterOrEqual(t, 2);
             Assert.LessOrEqual(t, 99);
         }
 

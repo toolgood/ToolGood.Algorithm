@@ -30,13 +30,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			} else {
 				tree.Type = ConditionTreeType.Or;
 			}
-			var exprs = context.expr();
-
-			tree.Nodes.Add(exprs[0].Accept(this));
-			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();
+
+			var exprs = context.expr();
+			tree.Nodes.Add(exprs[0].Accept(this));
+			tree.Nodes.Add(exprs[1].Accept(this));
 			return tree;
 		}
 

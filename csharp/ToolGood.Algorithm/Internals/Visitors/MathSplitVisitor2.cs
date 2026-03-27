@@ -28,7 +28,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
-			var exprs = context.expr();
 			var t = context.op.Type;
 			if(t == math.mathLexer.OPMUL) {
 				tree.Type = CalculateTreeType.Mul;
@@ -37,11 +36,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			} else {
 				tree.Type = CalculateTreeType.Mod;
 			}
-			tree.Nodes.Add(exprs[0].Accept(this));
-			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();
+
+			var exprs = context.expr();
+			tree.Nodes.Add(exprs[0].Accept(this));
+			tree.Nodes.Add(exprs[1].Accept(this));
 			return tree;
 		}
 		public override CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
@@ -51,7 +52,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
-			var exprs = context.expr();
 			var t = context.op.Type;
 			if(t == math.mathLexer.OPADD) {
 				tree.Type = CalculateTreeType.Add;
@@ -60,11 +60,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			} else {
 				tree.Type = CalculateTreeType.Connect;
 			}
-			tree.Nodes.Add(exprs[0].Accept(this));
-			tree.Nodes.Add(exprs[1].Accept(this));
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();
+
+			var exprs = context.expr();
+			tree.Nodes.Add(exprs[0].Accept(this));
+			tree.Nodes.Add(exprs[1].Accept(this));
 			return tree;
 		}
 
