@@ -35,7 +35,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 	var m = engine.TryEvaluate("[1,2,3,4,5,6].has(13)", true);//Return false 返回false
 ```
 
-Constants`pi`, `e`, `true`, `false`are supported.
+Constants `true`, `false`are supported.
 
 The value is converted to bool, non-zero is true and zero is false.
 String to bool, `0` `FALSE` `NO` `无` `没有` `不是` `否` is false, `1` `TRUE` `YES` `是` `有` is true. Case insensitive.
