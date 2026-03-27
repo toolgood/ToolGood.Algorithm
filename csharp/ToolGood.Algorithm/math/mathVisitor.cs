@@ -250,19 +250,19 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitVersion_fun(mathParser.Version_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>PARAMETER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPARAMETER_fun(mathParser.PARAMETER_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>NUM_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitNUM_fun(mathParser.NUM_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>PARAMETER_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPARAMETER_fun(mathParser.PARAMETER_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ONE_TO_THREE_args_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

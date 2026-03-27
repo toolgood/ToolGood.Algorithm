@@ -3,7 +3,12 @@ grammar math;
 prog: expr EOF;
 
 expr:
-	expr '.' f=(YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | INT | LEN | LOWER | RMB | T | TRIM | UPPER | VALUE | TIMEVALUE | URLENCODE | URLDECODE | MD5 | SHA1 | SHA256 | SHA512 | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON) '(' ')'			# ONE_arg_fun
+	'(' expr ')'												# Bracket_fun
+	| num unit=(UNIT | T)?										# NUM_fun
+	| STRING													# STRING_fun
+	| PARAMETER													# PARAMETER_fun
+
+	| expr '.' f=(YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | INT | LEN | LOWER | RMB | T | TRIM | UPPER | VALUE | TIMEVALUE | URLENCODE | URLDECODE | MD5 | SHA1 | SHA256 | SHA512 | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON) '(' ')'			# ONE_arg_fun
 	| expr '.' f=(ISERROR | ISNULL | ISNULLORERROR | LEFT | RIGHT | DATEVALUE | TRIMSTART | TRIMEND | TIMESTAMP) '(' expr? ')'		# ONE_TWO_args_fun
 	| expr '.' f=(EXACT | TEXT | REGEX | ISREGEX | SPLIT | ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS | HAS | HASVALUE) '(' expr ')'	# TWO_args_fun
 	| expr '.' f=(SUBSTRING | STARTSWITH | ENDSWITH | REMOVESTART | REMOVEEND) '(' expr (',' expr)? ')'	# TWO_THREE_args_fun
@@ -15,7 +20,6 @@ expr:
 	| expr ('[' (PARAMETER | expr) ']' | '.' parameter2)			# GetJsonValue_fun
 
 	// 运算符优先级 开始
-	| '(' expr ')'												# Bracket_fun
 	| '!' expr													# NOT_fun
 	| expr '%'													# Percentage_fun
 	| expr op = (OPMUL | OPDIV | OPMOD) expr							# MulDiv_fun
@@ -25,8 +29,8 @@ expr:
 	| expr op = OPAND expr										# AndOr_fun
 	| expr op = OPOR expr										# AndOr_fun
 	| expr '?' expr ':' expr									# IF_fun	
-
 	// 运算符优先级 结束
+
 	| f=(TRUE | FALSE) ('(' ')')?								# BOOL_fun
 	| f=(RAND | NOW | TODAY | GUID | E | PI) '(' ')'			# CONST_fun
 	| f=(ERROR | YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | ISEVEN | ISODD | NOT | ABS | SIGN | SQRT | INT | DEGREES | RADIANS | COS | COSH | SIN | SINH | TAN | TANH | COT | COTH | CSC | CSCH | SEC | SECH | ACOS | ACOSH | ASIN | ASINH | ATAN | ATANH | ACOT | ACOTH | EVEN | ODD | FACT | FACTDOUBLE | EXP | LN | LOG10 | SQRTPI | ERF | ERFC | ARABIC | ASC | JIS | CHAR | CLEAN | CODE | UNICHAR | UNICODE | LEN | LOWER | PROPER | TRIM | UPPER | VALUE | TIMEVALUE | NORMSDIST | NORMSINV | FISHER | FISHERINV | GAMMALN | URLENCODE | URLDECODE | HTMLENCODE | HTMLDECODE | BASE64TOTEXT | BASE64URLTOTEXT | TEXTTOBASE64 | TEXTTOBASE64URL | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON | T | RMB | MD5 | SHA1 | SHA256 | SHA512) '(' expr ')'	# ONE_arg_fun
@@ -49,9 +53,6 @@ expr:
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
 	| '[' expr (',' expr)* ','* ']'								# Array_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
-	| PARAMETER													# PARAMETER_fun
-	| num unit=(UNIT | T)?										# NUM_fun
-	| STRING													# STRING_fun
 	| ALGORITHMVERSION											# Version_fun
 	| NULL														# NULL_fun													
 	;
