@@ -6,7 +6,7 @@ namespace Antlr4Helper.JavaScriptHelper2
 	{
 		static void Main(string[] args)
 		{
-			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\antlr4\mathjsParser.js");
+			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathjsParser.js");
 			var text = File.ReadAllText(filePath);
 			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
 			text = text.Replace("import mathjsVisitor from './mathjsVisitor.js';", "");
@@ -30,7 +30,7 @@ namespace Antlr4Helper.JavaScriptHelper2
 			text = Regex.Replace(text, @"([A-Z][0-9A-Z]*\(\) \{)[\r\n\t ]*(return this\.getToken\()", "$1$2");
 			text = Regex.Replace(text, @"([A-Z][0-9A-Z]*\(\) \{return this\.getToken.*?;)[\r\n\t ]*};", "$1};");
 			text = Regex.Replace(text, @"([A-Z][0-9A-Z]*\(\) \{return this\.getToken.*?};)", "//$1");
-	 
+
 
 			text = text.Replace("if ( visitor instanceof mathjsVisitor ) {", "");
 			text = Regex.Replace(text, @"\} else \{[\r\n\t ]*return visitor\.visitChildren\(this\);[\r\n\t ]*\}", "");
@@ -110,11 +110,21 @@ namespace Antlr4Helper.JavaScriptHelper2
 			text = Regex.Replace(text, @"[\t ]*([\r\n])([\r\n])+", "$1");
 			text = Regex.Replace(text, @"([\r\n])([\r\n])+", "$1");
 
- 
 
-			File.WriteAllText("mathjsParser.js", text);
+			File.WriteAllText(@"..\..\..\..\..\JavaScript2\src\math\mathjsParser.js", text);
+
+			//filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathjsLexer.js");
+			//text = File.ReadAllText(filePath);
+			//text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
+
+			//File.WriteAllText(@"..\..\..\..\..\JavaScript2\src\math\mathjsLexer.js", text);
 
 
+			filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathjsVisitor.js");
+			text = File.ReadAllText(filePath);
+			text = text.Replace("import antlr4 from 'antlr4';", "import antlr4 from '../antlr4/index.web.js';");
+
+			File.WriteAllText(@"..\..\..\..\..\JavaScript2\src\math\mathjsVisitor.js", text);
 
 
 		}
