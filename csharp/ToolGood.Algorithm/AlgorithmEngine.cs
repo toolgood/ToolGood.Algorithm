@@ -105,13 +105,11 @@ namespace ToolGood.Algorithm
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 
-			AntlrErrorData data = new AntlrErrorData();
-			var listener = new AntlrErrorListener<int>(data);
-			var listener2 = new AntlrErrorListener<IToken>(data);
+			var data = new AntlrErrorListener<IToken>();
 			lexer.RemoveErrorListeners();
-			lexer.AddErrorListener(listener);
+			lexer.AddErrorListener(data);
 			parser.RemoveErrorListeners();
-			parser.AddErrorListener(listener2);
+			parser.AddErrorListener(data);
 
 			var context = parser.prog();
 			if(data.IsError) {

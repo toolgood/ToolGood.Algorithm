@@ -20,23 +20,20 @@ namespace ToolGood.Algorithm
 	{
 		private static readonly Regex unitRegex = new Regex(@"[\s\(\)（）\[\]<>]", RegexOptions.Compiled);
 
-		internal static (AntlrErrorData errorWriter, mathParser.ProgContext context) CreateParserContext(string exp)
+		internal static mathParser.ProgContext CreateParserContext(string exp, AntlrErrorListener<IToken> data)
 		{
 			var stream = new AntlrCharStream(exp);
-			var lexer = new mathLexer(stream,TextWriter.Null, TextWriter.Null);
+			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 
-			AntlrErrorData data = new AntlrErrorData();
-			var listener = new AntlrErrorListener<int>(data);
-			var listener2 = new AntlrErrorListener<IToken>(data);
 			lexer.RemoveErrorListeners();
-			lexer.AddErrorListener(listener);
+			lexer.AddErrorListener(data);
 			parser.RemoveErrorListeners();
-			parser.AddErrorListener(listener2);
+			parser.AddErrorListener(data);
 
 			var context = parser.prog();
-			return (data, context);
+			return context;
 		}
 
 		/// <summary>
@@ -69,7 +66,8 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			var (errorWriter, context) = CreateParserContext(exp);
+			var errorWriter = new AntlrErrorListener<IToken>();
+			var context = CreateParserContext(exp, errorWriter);
 			if(errorWriter.IsError) {
 				throw new Exception(errorWriter.ErrorMsg);
 			}
@@ -132,7 +130,8 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			var (errorWriter, context) = CreateParserContext(exp);
+			var errorWriter = new AntlrErrorListener<IToken>();
+			var context = CreateParserContext(exp, errorWriter);
 			if(errorWriter.IsError) {
 				throw new Exception(errorWriter.ErrorMsg);
 			}
@@ -148,7 +147,8 @@ namespace ToolGood.Algorithm
 		public static bool CheckFormula(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
-			var (errorWriter, _) = CreateParserContext(exp);
+			var errorWriter = new AntlrErrorListener<IToken>();
+			CreateParserContext(exp, errorWriter);
 			return !errorWriter.IsError;
 		}
 
@@ -166,7 +166,8 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				var (errorWriter, context) = CreateParserContext(condition);
+				var errorWriter = new AntlrErrorListener<IToken>();
+				var context = CreateParserContext(condition, errorWriter);
 				if(errorWriter.IsError) {
 					tree.Type = ConditionTreeType.Error;
 					tree.ErrorMessage = errorWriter.ErrorMsg;
@@ -215,7 +216,8 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				var (errorWriter, context) = CreateParserContext(exp);
+				var errorWriter = new AntlrErrorListener<IToken>();
+				var context = CreateParserContext(exp, errorWriter);
 				if(errorWriter.IsError) {
 					tree.Type = CalculateTreeType.Error;
 					tree.ErrorMessage = errorWriter.ErrorMsg;

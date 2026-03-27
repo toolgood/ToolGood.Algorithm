@@ -1,22 +1,14 @@
 ﻿using Antlr4.Runtime;
-using System;
 using System.IO;
-using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
-	internal sealed class AntlrErrorListener<Symbol> : IAntlrErrorListener<Symbol>
+	internal class AntlrErrorListener<T> : AntlrErrorData ,IAntlrErrorListener<T>
 	{
-		public AntlrErrorData Data { get; set; }
-		public AntlrErrorListener(AntlrErrorData data)
+		public void SyntaxError(TextWriter output, IRecognizer recognizer, T offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
 		{
-			Data = data;
-		}
-
-		public void SyntaxError(TextWriter output, IRecognizer recognizer, Symbol offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
-		{
-			Data.IsError = true;
-			Data.ErrorMsg = msg;
+			IsError = true;
+			ErrorMsg = msg;
 		}
 	}
 }
