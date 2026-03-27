@@ -210,6 +210,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				var op = new Function_Parameter(context.PARAMETER().GetText());
 				return new Function_GetJsonValue(funcs[0], op);
 			}
+			if(context.parameter2() != null) {
+				var op = context.parameter2().Accept(this);
+				return new Function_GetJsonValue(funcs[0], op);
+			}
 			return new Function_GetJsonValue(funcs[0], funcs[1]);
 		}
 		public FunctionBase VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
@@ -476,8 +480,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.DELTA: return new Function_DELTA(funcs);
 				case mathLexer.GESTEP: return new Function_GESTEP(funcs);
 				case mathLexer.ROMAN: return new Function_ROMAN(funcs);
-				case mathLexer.RANK: return new Function_RANK(funcs);
-				case mathLexer.FIND: return new Function_FIND(funcs);
 				case mathLexer.LEFT: return new Function_LEFT(funcs);
 				case mathLexer.RIGHT: return new Function_RIGHT(funcs);
 				case mathLexer.SEARCH: return new Function_SEARCH(funcs);
@@ -514,8 +516,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			switch(type) {
 				case mathLexer.ARRAY: return new Function_ARRAY(funcs);
-				case mathLexer.AND: return new Function_AND(funcs);
-				case mathLexer.OR: return new Function_OR(funcs);
+				case mathLexer.AND: return new Function_AND_N(funcs);
+				case mathLexer.OR: return new Function_OR_N(funcs);
 				case mathLexer.XOR: return new Function_XOR(funcs);
 				case mathLexer.GCD: return new Function_GCD(funcs);
 				case mathLexer.LCM: return new Function_LCM(funcs);
@@ -576,6 +578,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.SUBSTRING: return new Function_SUBSTRING(funcs);
 				case mathLexer.STARTSWITH: return new Function_STARTSWITH(funcs);
 				case mathLexer.ENDSWITH: return new Function_ENDSWITH(funcs);
+				case mathLexer.REMOVESTART: return new Function_REMOVESTART(funcs);
+				case mathLexer.REMOVEEND: return new Function_REMOVEEND(funcs);
+				case mathLexer.FIND: return new Function_FIND(funcs);
+				case mathLexer.RANK: return new Function_RANK(funcs);
 				default: break;
 			}
 			throw new NotImplementedException();
