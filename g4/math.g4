@@ -26,12 +26,12 @@ expr:
 	| expr '.' VALUE '(' ')'									# VALUE_fun
 	| expr '.' DATEVALUE '(' expr? ')'							# DATEVALUE_fun
 	| expr '.' TIMEVALUE '(' ')'								# TIMEVALUE_fun
-	| expr '.' YEAR ('(' ')')?									# YEAR_fun
-	| expr '.' MONTH ('(' ')')?									# MONTH_fun
-	| expr '.' DAY ('(' ')')?									# DAY_fun
-	| expr '.' HOUR ('(' ')')?									# HOUR_fun
-	| expr '.' MINUTE ('(' ')')?								# MINUTE_fun
-	| expr '.' SECOND ('(' ')')?								# SECOND_fun
+	| expr '.' YEAR ('(' ')')									# YEAR_fun
+	| expr '.' MONTH ('(' ')')									# MONTH_fun
+	| expr '.' DAY ('(' ')')									# DAY_fun
+	| expr '.' HOUR ('(' ')')									# HOUR_fun
+	| expr '.' MINUTE ('(' ')')									# MINUTE_fun
+	| expr '.' SECOND ('(' ')')									# SECOND_fun
 	| expr '.' URLENCODE '(' ')'								# URLENCODE_fun
 	| expr '.' URLDECODE '(' ')'								# URLDECODE_fun
 	| expr '.' REGEX '(' expr ')'								# REGEX_fun
@@ -101,8 +101,8 @@ expr:
 	| NOT '(' expr ')'										# NOT_fun
 	| TRUE ('(' ')')?										# TRUE_fun
 	| FALSE ('(' ')')?										# FALSE_fun
-	| E ('(' ')')?											# E_fun
-	| PI ('(' ')')?											# PI_fun
+	| E ('(' ')')											# E_fun
+	| PI ('(' ')')											# PI_fun
 	| DEC2BIN ('(' expr (',' expr)? ')')					# DEC2BIN_fun
 	| DEC2HEX ('(' expr (',' expr)? ')')					# DEC2HEX_fun
 	| DEC2OCT ('(' expr (',' expr)? ')')					# DEC2OCT_fun
@@ -256,7 +256,7 @@ expr:
 	| GEOMEAN '(' expr (',' expr)* ')'							# GEOMEAN_fun
 	| HARMEAN '(' expr (',' expr)* ')'							# HARMEAN_fun
 	| COUNT '(' expr (',' expr)* ')'							# COUNT_fun
-	| COUNTIF '(' expr (',' expr)* ')'							# COUNTIF_fun
+	| COUNTIF '(' expr ',' expr ')'								# COUNTIF_fun
 	| SUM '(' expr (',' expr)* ')'								# SUM_fun
 	| SUMIF '(' expr ',' expr (',' expr)? ')'					# SUMIF_fun
 	| AVEDEV '(' expr (',' expr)* ')'							# AVEDEV_fun
