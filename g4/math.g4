@@ -68,6 +68,8 @@ expr:
 	| FALSE ('(' ')')?										# FALSE_fun
 	| E ('(' ')')											# E_fun
 	| PI ('(' ')')											# PI_fun
+
+	
 	| f=(DEC2BIN | DEC2HEX | DEC2OCT | HEX2BIN | HEX2DEC | HEX2OCT | OCT2BIN | OCT2DEC | OCT2HEX | BIN2OCT | BIN2DEC | BIN2HEX) ('(' expr (',' expr)? ')')	# Convert_fun
 	| ABS '(' expr ')'										# ABS_fun
 	| SIGN '(' expr ')'										# SIGN_fun
@@ -82,11 +84,8 @@ expr:
 	| PERMUT '(' expr ',' expr ')'							# PERMUT_fun
 	| f=(DEGREES | RADIANS | COS | COSH | SIN | SINH | TAN | TANH | COT | COTH | CSC | CSCH | SEC | SECH | ACOS | ACOSH | ASIN | ASINH | ATAN | ATANH | ACOT | ACOTH) '(' expr ')'	# TRIG_fun
 	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
-	| ROUND '(' expr (',' expr)? ')'						# ROUND_fun
-	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun
-	| ROUNDUP '(' expr ',' expr ')'							# ROUNDUP_fun
-	| CEILING '(' expr (',' expr)? ')'						# CEILING_fun
-	| FLOOR '(' expr (',' expr)? ')'						# FLOOR_fun
+	| f=(ROUNDDOWN | ROUNDUP) '(' expr ',' expr ')'			# ROUND_UD_fun
+	| f=(ROUND | CEILING | FLOOR) '(' expr (',' expr)? ')'		# ROUND_fun
 	| EVEN '(' expr ')'										# EVEN_fun
 	| ODD '(' expr ')'										# ODD_fun
 	| MROUND '(' expr ',' expr ')'							# MROUND_fun
@@ -168,16 +167,12 @@ expr:
 	| WORKDAY '(' expr ',' expr (',' expr)? ')'					# WORKDAY_fun
 	| WEEKNUM '(' expr (',' expr)? ')'							# WEEKNUM_fun
 	| f=(MAX | MEDIAN | MIN | MODE | AVERAGE | GEOMEAN | HARMEAN | COUNT | SUM | AVEDEV | STDEV | STDEVP | DEVSQ | VAR | VARP) '(' expr (',' expr)* ')'	# STAT_fun
-	| QUARTILE '(' expr ',' expr ')'							# QUARTILE_fun
-	| LARGE '(' expr ',' expr ')'								# LARGE_fun
-	| SMALL '(' expr ',' expr ')'								# SMALL_fun
-	| PERCENTILE '(' expr ',' expr ')'							# PERCENTILE_fun
-	| PERCENTRANK '(' expr ',' expr ')'							# PERCENTRANK_fun
+	| f=(QUARTILE | LARGE | SMALL | PERCENTILE | PERCENTRANK) '(' expr ',' expr ')'	# RANK2_fun
+	| COVAR '(' expr ',' expr ')'									# COVAR_fun
+	| COVARIANCES '(' expr ',' expr ')'							# COVARIANCES_fun
 	| AVERAGEIF '(' expr ',' expr (',' expr)? ')'				# AVERAGEIF_fun
 	| COUNTIF '(' expr ',' expr ')'								# COUNTIF_fun
 	| SUMIF '(' expr ',' expr (',' expr)? ')'					# SUMIF_fun
-	| COVAR '('expr ',' expr')'									# COVAR_fun
-	| COVARIANCES '('expr ',' expr')'							# COVARIANCES_fun
 	| NORMDIST '(' expr ',' expr ',' expr ',' expr ')'			# NORMDIST_fun
 	| NORMINV '(' expr ',' expr ',' expr ')'					# NORMINV_fun
 	| NORMSDIST '(' expr ')'									# NORMSDIST_fun

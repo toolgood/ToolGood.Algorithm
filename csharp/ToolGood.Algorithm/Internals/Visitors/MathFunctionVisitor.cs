@@ -335,28 +335,23 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		#region rounding
 		public FunctionBase VisitROUND_fun(mathParser.ROUND_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("CEILING", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_CEILING(funcs);
+			} else if(txt.Equals("FLOOR", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_FLOOR(funcs);
+			}
 			return new Function_ROUND(funcs);
 		}
-		public FunctionBase VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
+		public FunctionBase VisitROUND_UD_fun(mathParser.ROUND_UD_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_ROUNDDOWN(funcs);
-		}
-		public FunctionBase VisitROUNDUP_fun(mathParser.ROUNDUP_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
+			if(txt.Equals("ROUNDDOWN",StringComparison.OrdinalIgnoreCase)) {
+				return new Function_ROUNDDOWN(funcs);
+			}
 			return new Function_ROUNDUP(funcs);
-		}
-		public FunctionBase VisitCEILING_fun(mathParser.CEILING_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_CEILING(funcs);
-		}
-		public FunctionBase VisitFLOOR_fun(mathParser.FLOOR_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_FLOOR(funcs);
 		}
 		public FunctionBase VisitEVEN_fun(mathParser.EVEN_funContext context)
 		{
@@ -858,31 +853,23 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return new Function_VARP(funcs);
 			//}
 		}
-		public FunctionBase VisitQUARTILE_fun(mathParser.QUARTILE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_QUARTILE(funcs);
-		}
 
-		public FunctionBase VisitLARGE_fun(mathParser.LARGE_funContext context)
+		public FunctionBase VisitRANK2_fun(mathParser.RANK2_funContext context)
 		{
+			var txt = context.f.Text;
 			var funcs = VisitExprs(context.expr());
-			return new Function_LARGE(funcs);
-		}
-		public FunctionBase VisitSMALL_fun(mathParser.SMALL_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_SMALL(funcs);
-		}
-		public FunctionBase VisitPERCENTILE_fun(mathParser.PERCENTILE_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PERCENTILE(funcs);
-		}
-		public FunctionBase VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
-		{
-			var funcs = VisitExprs(context.expr());
-			return new Function_PERCENTRANK(funcs);
+			if(txt.Equals("QUARTILE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_QUARTILE(funcs);
+			} else if(txt.Equals("LARGE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_LARGE(funcs);
+			} else if(txt.Equals("SMALL", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_SMALL(funcs);
+			} else if(txt.Equals("PERCENTILE", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_PERCENTILE(funcs);
+			} 
+			//if(txt.Equals("PERCENTRANK", StringComparison.OrdinalIgnoreCase)) {
+				return new Function_PERCENTRANK(funcs);
+			//}
 		}
 
 		public FunctionBase VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
@@ -1380,19 +1367,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
