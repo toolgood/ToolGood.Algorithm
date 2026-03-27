@@ -4,9 +4,8 @@ using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.LitJson;
-using ToolGood.Algorithm.Operands;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Operands
 {
 	internal sealed class OperandString : Operand
 	{

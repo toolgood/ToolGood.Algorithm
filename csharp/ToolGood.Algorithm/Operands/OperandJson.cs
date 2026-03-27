@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Operands
 {
 	internal sealed class OperandJson : Operand
 	{

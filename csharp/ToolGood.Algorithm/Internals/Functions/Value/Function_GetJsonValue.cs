@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {

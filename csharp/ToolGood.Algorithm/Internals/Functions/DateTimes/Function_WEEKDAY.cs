@@ -1,14 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	#region second minute hour month year day
-
-	#endregion
 	internal sealed class Function_WEEKDAY : Function_2
     {
 		public Function_WEEKDAY(FunctionBase[] funcs) : base(funcs)

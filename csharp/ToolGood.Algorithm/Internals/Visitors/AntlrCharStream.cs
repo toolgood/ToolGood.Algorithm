@@ -1,6 +1,4 @@
 ﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using System.IO;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {

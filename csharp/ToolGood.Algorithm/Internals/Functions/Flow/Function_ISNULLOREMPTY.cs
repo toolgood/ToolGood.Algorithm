@@ -1,9 +1,6 @@
-using Antlr4.Runtime.Misc;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.Flow
 {

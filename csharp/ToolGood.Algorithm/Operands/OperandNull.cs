@@ -1,6 +1,6 @@
 using ToolGood.Algorithm.Enums;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Operands
 {
 	internal sealed class OperandNull : Operand
 	{

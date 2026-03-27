@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
-using ToolGood.Algorithm.Operands;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Operands
 {
 	internal sealed class OperandKeyValueList : Operand
 	{

@@ -1,8 +1,7 @@
 using System.Globalization;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Operands;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Operands
 {
 	internal sealed class OperandDecimal : Operand
 	{

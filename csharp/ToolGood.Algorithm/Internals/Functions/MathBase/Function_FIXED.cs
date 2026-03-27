@@ -1,9 +1,7 @@
 using System;
-using System.Globalization;
 using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
