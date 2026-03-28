@@ -16,7 +16,13 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			return Operand.Create(args1.TextValue.ToLowerInvariant());
+			var text = args1.TextValue;
+			for (int i = 0; i < text.Length; i++) {
+				if (char.IsUpper(text[i])) {
+					return Operand.Create(text.ToLowerInvariant());
+				}
+			}
+			return args1;
 		}
 		public override OperandType GetResultType()
 		{
