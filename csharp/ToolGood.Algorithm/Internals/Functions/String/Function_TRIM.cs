@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
@@ -21,6 +21,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args1.IsErrorOrNone) { return args1; }
 			var text = args1.TextValue.Trim();
 			text = s_multipleSpaces.Replace(text, " ");
+			if(text.Equals(args1.TextValue)) {
+				return args1;
+			}
 			return Operand.Create(text);
 		}
 		public override OperandType GetResultType()

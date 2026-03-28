@@ -28,11 +28,17 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (length == 0) {
 				return Operand.Create(string.Empty);
 			}
-			if (newtext.Length > 0 && length > 32767 / newtext.Length) {
+			if (newtext.Length == 0) {
+				return args1;
+			}
+			if (length > 32767 / newtext.Length) {
 				return ParameterError(2);
 			}
+			if (length == 1) {
+				return args1;
+			}
 			var sb = new StringBuilder(newtext.Length * length);
-			for (int i = 0; i < length; i++) {
+			for(int i = 0; i < length; i++) {
 				sb.Append(newtext);
 			}
 			return Operand.Create(sb.ToString());

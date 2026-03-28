@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -26,6 +26,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 				var old = args22.TextValue;
 				var newstr = args32.TextValue;
+				if(old.Length == 0 || oldtext.IndexOf(old, StringComparison.Ordinal) < 0) {
+					return args1;
+				}
 				return Operand.Create(oldtext.Replace(old, newstr));
 			}
 
