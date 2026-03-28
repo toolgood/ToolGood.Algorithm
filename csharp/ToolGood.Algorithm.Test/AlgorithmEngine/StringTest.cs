@@ -1,4 +1,4 @@
-using PetaTest;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm.Test.String
 {
@@ -141,7 +141,10 @@ namespace ToolGood.Algorithm.Test.String
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("LEFT('123222',3)", "");
             Assert.AreEqual(t, "123");
-        }
+
+			t = engine.TryEvaluate("LEFT('123222',30)", "");
+			Assert.AreEqual(t, "123222");
+		}
 
         [Test]
         public void LEN_test()
@@ -200,7 +203,10 @@ namespace ToolGood.Algorithm.Test.String
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("RIGHT(\"123q\",3)", "");
             Assert.AreEqual(t, "23q");
-        }
+
+			t = engine.TryEvaluate("RIGHT(\"123q\",30)", "");
+			Assert.AreEqual(t, "123q");
+		}
 
         [Test]
         public void RMB_test()

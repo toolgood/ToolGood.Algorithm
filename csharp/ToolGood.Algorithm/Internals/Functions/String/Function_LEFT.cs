@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -27,8 +27,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args2.IntValue < 0) {
 				return ParameterError(2);
 			}
-			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
-			return Operand.Create(args1.TextValue.Substring(0, length));
+			if(args2.IntValue>= args1.TextValue.Length) {
+				return args1;
+			}
+			return Operand.Create(args1.TextValue.Substring(0, args2.IntValue));
 		}
 		public override OperandType GetResultType()
 		{

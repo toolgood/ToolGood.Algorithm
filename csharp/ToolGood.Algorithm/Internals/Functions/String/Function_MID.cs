@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -15,26 +15,29 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if (args1.IsErrorOrNone) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsErrorOrNone) { return args2; }
+			if(args2.IsErrorOrNone) { return args2; }
 			var args3 = GetNumber_3(engine, tempParameter);
-			if (args3.IsErrorOrNone) { return args3; }
+			if(args3.IsErrorOrNone) { return args3; }
 
 			var text = args1.TextValue;
 			var startIndex = args2.IntValue - engine.ExcelIndex;
 			var length = args3.IntValue;
 
-			if (startIndex < 0) {
+			if(startIndex < 0) {
 				return ParameterError(2);
 			}
-			if (length < 0) {
+			if(length < 0) {
 				return ParameterError(3);
 			}
-			if (startIndex >= text.Length) {
+			if(startIndex == 0 && length >= text.Length) {
+				return args1;
+			}
+			if(startIndex >= text.Length) {
 				return Operand.Create(string.Empty);
 			}
-			if (startIndex + length > text.Length) {
+			if(startIndex + length > text.Length) {
 				length = text.Length - startIndex;
 			}
 			return Operand.Create(text.Substring(startIndex, length));

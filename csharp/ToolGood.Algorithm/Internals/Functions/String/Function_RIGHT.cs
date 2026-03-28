@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -15,21 +15,24 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetText_1(engine, tempParameter);
-			if (args1.IsErrorOrNone) { return args1; }
+			if(args1.IsErrorOrNone) { return args1; }
 
-			if (args1.TextValue.Length == 0) {
+			if(args1.TextValue.Length == 0) {
 				return Operand.Create(string.Empty);
 			}
-			if (func2 == null) {
+			if(func2 == null) {
 				return Operand.Create(args1.TextValue.Substring(args1.TextValue.Length - 1, 1));
 			}
 			var args2 = GetNumber_2(engine, tempParameter);
-			if (args2.IsErrorOrNone) { return args2; }
-			if (args2.IntValue < 0) {
+			if(args2.IsErrorOrNone) { return args2; }
+			if(args2.IntValue < 0) {
 				return ParameterError(2);
 			}
-			int length = Math.Min(args2.IntValue, args1.TextValue.Length);
-			int start = args1.TextValue.Length - length;
+			if(args2.IntValue >= args1.TextValue.Length) {
+				return args1;
+			}
+			int length = args2.IntValue;
+			int start = args1.TextValue.Length - args2.IntValue;
 			return Operand.Create(args1.TextValue.Substring(start, length));
 		}
 		public override OperandType GetResultType()
