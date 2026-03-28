@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		{
 		}
 
-		public override string Name => "OrN";
+		public override string Name => "Or";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{

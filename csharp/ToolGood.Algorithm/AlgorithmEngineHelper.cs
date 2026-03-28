@@ -19,17 +19,19 @@ namespace ToolGood.Algorithm
 	{
 		private static readonly Regex unitRegex = new Regex(@"[\s\(\)（）\[\]<>]", RegexOptions.Compiled);
 
-		internal static mathParser.ProgContext CreateParserContext(string exp, AntlrErrorListener<IToken> data)
+		internal static mathParser.ProgContext CreateParserContext(string exp, AntlrErrorData data)
 		{
 			var stream = new AntlrCharStream(exp);
 			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 
-			lexer.RemoveErrorListeners();
-			lexer.AddErrorListener(data);
-			parser.RemoveErrorListeners();
-			parser.AddErrorListener(data);
+			lexer.AddErrorData(data);
+			parser.AddErrorData(data);
+			//lexer.RemoveErrorListeners();
+			//lexer.AddErrorListener(data);
+			//parser.RemoveErrorListeners();
+			//parser.AddErrorListener(data);
 
 			return parser.prog();
 		}
@@ -64,7 +66,7 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			var errorWriter = new AntlrErrorListener<IToken>();
+			var errorWriter = new AntlrErrorData();
 			var context = CreateParserContext(exp, errorWriter);
 			if(errorWriter.IsError) {
 				throw new Exception(errorWriter.ErrorMsg);
@@ -128,7 +130,7 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new Exception("Parameter exp invalid !");
 			}
-			var errorWriter = new AntlrErrorListener<IToken>();
+			var errorWriter = new AntlrErrorData();
 			var context = CreateParserContext(exp, errorWriter);
 			if(errorWriter.IsError) {
 				throw new Exception(errorWriter.ErrorMsg);
@@ -145,7 +147,7 @@ namespace ToolGood.Algorithm
 		public static bool CheckFormula(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
-			var errorWriter = new AntlrErrorListener<IToken>();
+			var errorWriter = new AntlrErrorData();
 			CreateParserContext(exp, errorWriter);
 			return !errorWriter.IsError;
 		}
@@ -164,7 +166,7 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				var errorWriter = new AntlrErrorListener<IToken>();
+				var errorWriter = new AntlrErrorData();
 				var context = CreateParserContext(condition, errorWriter);
 				if(errorWriter.IsError) {
 					tree.Type = ConditionTreeType.Error;
@@ -214,7 +216,7 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				var errorWriter = new AntlrErrorListener<IToken>();
+				var errorWriter = new AntlrErrorData();
 				var context = CreateParserContext(exp, errorWriter);
 				if(errorWriter.IsError) {
 					tree.Type = CalculateTreeType.Error;
