@@ -50,8 +50,8 @@ expr:
 	| JOIN '(' expr ',' expr (',' expr)* ')'					# JOIN_fun
 	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'			# IFS_fun
 	| SWITCH '(' expr ',' expr ',' expr (',' expr)* ')'			# SWITCH_fun
-	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
-	| '[' expr (',' expr)* ','* ']'								# Array_fun
+	| '{' arrayJson (',' arrayJson)* ','? '}'					# ArrayJson_fun
+	| '[' expr (',' expr)* ','? ']'								# Array_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
 	| ALGORITHMVERSION											# Version_fun
 	| NULL														# NULL_fun													
