@@ -77,6 +77,7 @@ parameter2:
 	| ISODD
 	| ISNULL
 	| ISNULLORERROR
+	| ARRAY
 	| AND
 	| OR
 	| XOR
