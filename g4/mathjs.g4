@@ -95,6 +95,7 @@ parameter2:
 	| BIN2OCT
 	| BIN2DEC
 	| BIN2HEX
+	| ARRAY
 	| ABS
 	| QUOTIENT
 	| MOD
