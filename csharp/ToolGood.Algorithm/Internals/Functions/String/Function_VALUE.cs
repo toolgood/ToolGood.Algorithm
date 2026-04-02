@@ -8,8 +8,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 	internal sealed class Function_VALUE : Function_1
 	{
-		public Function_VALUE(FunctionBase func1) : base(func1)
+		public Function_VALUE(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
 		}
 
 		public override string Name => "Value";

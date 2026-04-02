@@ -6,9 +6,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 {
 	internal sealed class Function_SEC : Function_1
     {
-        public Function_SEC(FunctionBase func1) : base(func1)
-        {
-        }
+        public Function_SEC(FunctionBase[] funcs) : base(funcs)
+		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
         public override string Name => "Sec";
 

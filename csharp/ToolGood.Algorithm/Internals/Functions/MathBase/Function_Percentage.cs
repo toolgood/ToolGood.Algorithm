@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -7,11 +7,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal sealed class Function_Percentage : Function_1
     {
-        public Function_Percentage(FunctionBase func1) : base(func1)
-        {
-        }
+        public Function_Percentage(FunctionBase[] funcs) : base(funcs)
+		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
-        public override string Name => "Percentage";
+		public Function_Percentage(FunctionBase func1) : base(func1)
+		{
+		}
+
+		public override string Name => "Percentage";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {

@@ -9,8 +9,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 	{
 		private static readonly Regex s_multipleSpaces = new Regex(@" +", RegexOptions.Compiled);
 
-		public Function_TRIM(FunctionBase func1) : base(func1)
+		public Function_TRIM(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
 		}
 
 		public override string Name => "Trim";

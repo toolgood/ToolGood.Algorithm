@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,10 +6,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
 	internal sealed class Function_ERFC : Function_1
 	{
-		public Function_ERFC(FunctionBase func) : base(func)
-		{
-		}
-
 		public Function_ERFC(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 1) {

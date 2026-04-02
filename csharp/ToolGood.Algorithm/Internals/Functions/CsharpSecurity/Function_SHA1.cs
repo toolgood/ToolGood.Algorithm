@@ -8,8 +8,11 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 {
 	internal sealed class Function_SHA1 : Function_1
 	{
-		public Function_SHA1(FunctionBase func1) : base(func1)
+		public Function_SHA1(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
 		}
 
 		public override string Name => "SHA1";

@@ -6,9 +6,12 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal sealed class Function_MINUTE : Function_1
     {
-        public Function_MINUTE(FunctionBase func1) : base(func1)
-        {
-        }
+        public Function_MINUTE(FunctionBase[] funcs) : base(funcs)
+		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
         public override string Name => "Minute";
 

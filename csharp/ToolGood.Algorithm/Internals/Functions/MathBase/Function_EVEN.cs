@@ -6,9 +6,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal sealed class Function_EVEN : Function_1
     {
-        public Function_EVEN(FunctionBase func1) : base(func1)
-        {
-        }
+        public Function_EVEN(FunctionBase[] funcs) : base(funcs)
+		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
         public override string Name => "Even";
 

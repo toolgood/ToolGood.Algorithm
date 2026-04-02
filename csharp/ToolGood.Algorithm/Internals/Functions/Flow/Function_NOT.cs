@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,11 +6,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 {
 	internal sealed class Function_NOT : Function_1
     {
-        public Function_NOT(FunctionBase func1) : base(func1)
-        {
-        }
+        public Function_NOT(FunctionBase[] funcs) : base(funcs)
+		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
-        public override string Name => "Not";
+		public Function_NOT(FunctionBase func1) : base(func1)
+		{
+		}
+
+		public override string Name => "Not";
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {

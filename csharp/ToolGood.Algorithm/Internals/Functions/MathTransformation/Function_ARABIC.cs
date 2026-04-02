@@ -6,7 +6,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
 	internal sealed class Function_ARABIC : Function_1
 	{
-		public Function_ARABIC(FunctionBase func1) : base(func1) { }
+		public Function_ARABIC(FunctionBase[] funcs) : base(funcs)
+		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
 		public override string Name => "ARABIC";
 

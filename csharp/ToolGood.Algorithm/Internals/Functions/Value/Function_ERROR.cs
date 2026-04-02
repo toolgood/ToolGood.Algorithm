@@ -6,8 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 	internal sealed class Function_ERROR : Function_1
 	{
-		public Function_ERROR(FunctionBase func1) : base(func1)
+		public Function_ERROR(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
 		}
 
 		public override string Name => "Error";
