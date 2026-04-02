@@ -32,7 +32,7 @@ expr:
 	| expr op = (OPNE | OPEQ ) expr	# Judge_fun
 	| expr op = OPAND expr										# AndOr_fun
 	| expr op = OPOR expr										# AndOr_fun
-	| expr '?' expr ':' expr									# IF_fun	
+	| expr '?' expr ':' expr <assoc=right> 						# IF_fun	
 	// 运算符优先级 结束
 
 	| f=(TRUE | FALSE) ('(' ')')?								# BOOL_fun
