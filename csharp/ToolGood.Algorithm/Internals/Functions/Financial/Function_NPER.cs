@@ -7,8 +7,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 	internal sealed class Function_NPER : Function_5
 	{
 		public Function_NPER(FunctionBase[] funcs) : base(funcs) {
-			if (funcs.Length < 3) {
-				throw new ArgumentException($"Function '{Name}' requires at least 3 parameters.");
+			if (funcs.Length < 3 || funcs.Length > 5) {
+				throw new ArgumentException($"Function '{Name}' requires 3 to 5 parameters.");
 			}
 		}
 

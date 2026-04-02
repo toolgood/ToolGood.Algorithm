@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_IRR : Function_2
 	{
-		public Function_IRR(FunctionBase[] funcs) : base(funcs) { }
+		public Function_IRR(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 1 || funcs.Length > 2) {
+				throw new ArgumentException($"Function '{Name}' requires 1 to 2 parameters.");
+			}
+		}
 
 		public override string Name => "IRR";
 

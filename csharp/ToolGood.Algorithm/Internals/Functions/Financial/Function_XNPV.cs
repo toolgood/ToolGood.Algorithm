@@ -7,7 +7,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_XNPV : Function_3
 	{
-		public Function_XNPV(FunctionBase[] funcs) : base(funcs) { }
+		public Function_XNPV(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length != 3) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 3 parameters.");
+			}
+		}
 
 		public override string Name => "XNPV";
 

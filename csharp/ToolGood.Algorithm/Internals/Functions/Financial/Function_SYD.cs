@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_SYD : Function_4
 	{
-		public Function_SYD(FunctionBase[] funcs) : base(funcs) { }
+		public Function_SYD(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length != 4) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 4 parameters.");
+			}
+		}
 
 		public override string Name => "SYD";
 

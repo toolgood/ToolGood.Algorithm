@@ -8,8 +8,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 	internal sealed class Function_XIRR : Function_3
 	{
 		public Function_XIRR(FunctionBase[] funcs) : base(funcs) {
-			if (funcs.Length < 2) {
-				throw new ArgumentException($"Function '{Name}' requires at least 2 parameters.");
+			if (funcs.Length < 2 || funcs.Length > 3) {
+				throw new ArgumentException($"Function '{Name}' requires 2 to 3 parameters.");
 			}
 		}
 

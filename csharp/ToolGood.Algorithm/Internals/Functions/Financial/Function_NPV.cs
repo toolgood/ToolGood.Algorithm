@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_NPV : Function_N
 	{
-		public Function_NPV(FunctionBase[] funcs) : base(funcs) { }
+		public Function_NPV(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 1) {
+				throw new ArgumentException($"Function '{Name}' requires at least 1 parameter.");
+			}
+		}
 
 		public override string Name => "NPV";
 
