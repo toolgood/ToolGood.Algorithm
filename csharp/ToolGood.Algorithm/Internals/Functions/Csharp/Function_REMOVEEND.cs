@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 	{
 		public Function_REMOVEEND(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length < 1 || funcs.Length > 3) {
+				throw new ArgumentException($"Function '{Name}' requires 1 to 3 parameters.");
+			}
 		}
 
 		public override string Name => "RemoveEnd";

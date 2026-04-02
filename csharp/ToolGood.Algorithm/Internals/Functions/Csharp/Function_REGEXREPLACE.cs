@@ -9,6 +9,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 	{
 		public Function_REGEXREPLACE(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 3) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 3 parameters.");
+			}
 		}
 
 		public override string Name => "RegexReplace";

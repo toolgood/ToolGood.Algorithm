@@ -10,6 +10,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 	{
 		public Function_HAS(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 2) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 2 parameters.");
+			}
 		}
 
 		public override string Name => "Has";
