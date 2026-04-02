@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 	{
 		public Function_LEFT(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length < 1 || funcs.Length > 2) {
+				throw new ArgumentException($"Function '{Name}' requires 1 to 2 parameters.");
+			}
 		}
 
 		public override string Name => "Left";
