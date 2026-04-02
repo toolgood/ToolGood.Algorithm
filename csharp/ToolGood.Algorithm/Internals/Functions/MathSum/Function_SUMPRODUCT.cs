@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_SUMPRODUCT : Function_N
 	{
-		public Function_SUMPRODUCT(FunctionBase[] funcs) : base(funcs) { }
+		public Function_SUMPRODUCT(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 1) {
+				throw new ArgumentException($"Function '{Name}' requires at least 1 parameter.");
+			}
+		}
 
 		public override string Name => "SUMPRODUCT";
 

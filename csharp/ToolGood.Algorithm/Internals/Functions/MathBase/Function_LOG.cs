@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
     {
 		public Function_LOG(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length < 1 || funcs.Length > 2) {
+				throw new ArgumentException($"Function '{Name}' requires 1 to 2 parameters.");
+			}
 		}
 
 		public Function_LOG(FunctionBase func1, FunctionBase func2) : base(func1, func2)

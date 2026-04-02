@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_SUMX2PY2 : Function_N
 	{
-		public Function_SUMX2PY2(FunctionBase[] funcs) : base(funcs) { }
+		public Function_SUMX2PY2(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length != 2) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 2 parameters.");
+			}
+		}
 
 		public override string Name => "SUMX2PY2";
 

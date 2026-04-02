@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_FORECAST : Function_N
 	{
-		public Function_FORECAST(FunctionBase[] funcs) : base(funcs) { }
+		public Function_FORECAST(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length != 3) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 3 parameters.");
+			}
+		}
 
 		public override string Name => "FORECAST";
 

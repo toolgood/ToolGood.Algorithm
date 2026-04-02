@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_SERIESSUM : Function_N
 	{
-		public Function_SERIESSUM(FunctionBase[] funcs) : base(funcs) { }
+		public Function_SERIESSUM(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length != 4) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 4 parameters.");
+			}
+		}
 
 		public override string Name => "SERIESSUM";
 
