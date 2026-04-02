@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -7,7 +7,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 {
 	internal sealed class Function_ROMAN : Function_2
 	{
-		public Function_ROMAN(FunctionBase[] funcs) : base(funcs) { }
+		public Function_ROMAN(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 1 || funcs.Length > 2) {
+				throw new ArgumentException($"Function '{Name}' requires 1 to 2 parameters.");
+			}
+		}
 
 		public override string Name => "ROMAN";
 
