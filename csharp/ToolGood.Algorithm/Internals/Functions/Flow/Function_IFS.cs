@@ -8,6 +8,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 	{
 		public Function_IFS(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length < 4) {
+				throw new ArgumentException($"Function '{Name}' requires at least 4 parameters.");
+			}
+			if (funcs.Length % 2 != 0) {
+				throw new ArgumentException($"Function '{Name}' requires an even number of parameters.");
+			}
 		}
 
 		public override string Name => "Ifs";

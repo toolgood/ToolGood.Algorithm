@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal sealed class Function_YEARFRAC : Function_3
 	{
-		public Function_YEARFRAC(FunctionBase[] funcs) : base(funcs) { }
+		public Function_YEARFRAC(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 2) {
+				throw new ArgumentException($"Function '{Name}' requires at least 2 parameters.");
+			}
+		}
 
 		public override string Name => "YEARFRAC";
 

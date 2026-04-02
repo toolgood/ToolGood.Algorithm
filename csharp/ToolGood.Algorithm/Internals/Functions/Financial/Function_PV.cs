@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_PV : Function_5
 	{
-		public Function_PV(FunctionBase[] funcs) : base(funcs) { }
+		public Function_PV(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 3) {
+				throw new ArgumentException($"Function '{Name}' requires at least 3 parameters.");
+			}
+		}
 
 		public override string Name => "PV";
 

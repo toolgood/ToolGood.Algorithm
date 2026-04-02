@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_DDB : Function_5
 	{
-		public Function_DDB(FunctionBase[] funcs) : base(funcs) { }
+		public Function_DDB(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 4) {
+				throw new ArgumentException($"Function '{Name}' requires at least 4 parameters.");
+			}
+		}
 
 		public override string Name => "DDB";
 

@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 {
 	internal sealed class Function_PPMT : Function_6
 	{
-		public Function_PPMT(FunctionBase[] funcs) : base(funcs) { }
+		public Function_PPMT(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 4) {
+				throw new ArgumentException($"Function '{Name}' requires at least 4 parameters.");
+			}
+		}
 
 		public override string Name => "PPMT";
 

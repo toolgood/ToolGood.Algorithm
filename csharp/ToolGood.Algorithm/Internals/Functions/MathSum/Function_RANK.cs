@@ -6,7 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 {
 	internal sealed class Function_RANK : Function_N
 	{
-		public Function_RANK(FunctionBase[] funcs) : base(funcs) { }
+		public Function_RANK(FunctionBase[] funcs) : base(funcs) {
+			if (funcs.Length < 2) {
+				throw new ArgumentException($"Function '{Name}' requires at least 2 parameters.");
+			}
+		}
 
 		public override string Name => "RANK";
 

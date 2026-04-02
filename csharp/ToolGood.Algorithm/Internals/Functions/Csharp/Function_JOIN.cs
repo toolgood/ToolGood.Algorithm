@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 	{
 		public Function_JOIN(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length < 2) {
+				throw new ArgumentException($"Function '{Name}' requires at least 2 parameters.");
+			}
 		}
 
 		public override string Name => "Join";
