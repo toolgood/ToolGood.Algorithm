@@ -12,6 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
 		public Function_ERFC(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 1) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
 		}
 
 		public override string Name => "Erfc";

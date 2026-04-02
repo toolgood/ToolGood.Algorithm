@@ -12,6 +12,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
 		public Function_BESSELJ(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 2) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 2 parameters.");
+			}
 		}
 
 		public override string Name => "BesselJ";

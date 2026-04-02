@@ -9,6 +9,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
     {
 		public Function_PERCENTRANK(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length < 2 || funcs.Length > 3) {
+				throw new ArgumentException($"Function '{Name}' requires 2 to 3 parameters.");
+			}
 		}
 
         public override string Name => "PercentRank";

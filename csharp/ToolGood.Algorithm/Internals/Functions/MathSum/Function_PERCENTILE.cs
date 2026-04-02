@@ -9,6 +9,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
     {
 		public Function_PERCENTILE(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 2) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 2 parameters.");
+			}
 		}
 
         public override string Name => "Percentile";

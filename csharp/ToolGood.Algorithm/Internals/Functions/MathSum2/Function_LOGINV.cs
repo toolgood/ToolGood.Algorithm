@@ -9,6 +9,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
     {
 		public Function_LOGINV(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 3) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 3 parameters.");
+			}
 		}
 
         public override string Name => "LogInv";
