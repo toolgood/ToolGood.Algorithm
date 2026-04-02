@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
     {
 		public Function_DATEDIF(FunctionBase[] funcs) : base(funcs)
 		{
+			if (funcs.Length != 3) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 3 parameters.");
+			}
 		}
 
         public override string Name => "DateDif";

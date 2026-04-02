@@ -9,8 +9,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
     {
 		public Function_TIME(FunctionBase[] funcs) : base(funcs)
 		{
-			if (funcs.Length < 2) {
-				throw new ArgumentException($"Function '{Name}' requires at least 2 parameters.");
+			if (funcs.Length < 2 || funcs.Length > 3) {
+				throw new ArgumentException($"Function '{Name}' requires 2 to 3 parameters.");
 			}
 		}
 
