@@ -5,7 +5,7 @@ prog: expr EOF;
 expr:
 	'(' expr ')'												
 	| expr '.'  PARAMETER '(' (expr (',' expr)*)? ')'			
-	| expr ('[' (PARAMETER | expr) ']' | '.' parameter2)			
+	| expr ('[' (PARAMETER | expr) ']' | '.' (PARAMETER|BOOL))			
 	// 运算符优先级 开始
 	| '!' expr													
 	| expr '%'													
@@ -19,15 +19,10 @@ expr:
 	| '[' expr (',' expr)* ','? ']'		
 	| '-'? NUM										
 	| STRING													
-	| PARAMETER								
-	| ALGORITHMVERSION											
-	| NULL														
+	| PARAMETER																					
 	;
 
-arrayJson: key=(NUM | STRING) ':' expr
-	| parameter2 ':' expr;
-
-parameter2:	BOOL | NULL	| ALGORITHMVERSION | PARAMETER;
+arrayJson: (NUM | STRING | BOOL | PARAMETER) ':' expr;
  
 OPMOD: '%';
 OP: '+'| '-'| '*'| '/'|'&'| '>'| '>='|'<'|'<='| '!=' | '!==' | '<>'| '=' | '==' | '==='| '&&'|'||';
@@ -47,8 +42,6 @@ STRING:
 // BOOL_fun
 BOOL: 'TRUE' | 'YES'| 'FALSE' | 'NO';
  
-ALGORITHMVERSION: 'ALGORITHMVERSION' | 'ENGINEVERSION';
-NULL: 'NULL';
 PARAMETER: ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter	)*;
 
 fragment FullWidthLetter:

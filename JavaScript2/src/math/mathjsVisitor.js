@@ -24,11 +24,5 @@ export default class mathjsVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by mathjsParser#parameter2.
-	visitParameter2(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 
 }
