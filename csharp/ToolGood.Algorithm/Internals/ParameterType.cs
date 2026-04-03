@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm.Internals
 	/// <summary>
 	/// 参数类型类
 	/// </summary>
-	public class ParameterType
+	public struct ParameterType
 	{
 		/// <summary>
 		/// 参数名称
