@@ -8,8 +8,8 @@ expr:
 	| expr ('[' (PARAMETER | expr) ']' | '.' (PARAMETER|BOOL))			
 	// 运算符优先级 开始
 	| '!' expr													
-	| expr '%'													
-	| expr ('+'| '-'| '*' |'%'| '/'|'&'| '>'| '>='|'<'|'<='| '!=' | '!==' | '<>'| '=' | '==' | '==='| '&&'|'||') expr							
+	| expr OPMOD													
+	| expr (OPMOD|OP) expr							
 	| expr '?' expr ':' expr				
 	// 运算符优先级 结束
 
