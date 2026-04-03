@@ -137,7 +137,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
 			if(context.unit == null) { return new Function_ValueNumber(Operand.Create(d), text); }
 			var unit = context.unit.Text;
-			return new Function_Number(d, unit);
+			return new Function_Number(d, unit, text);
 		}
 		public FunctionBase VisitNum(mathParser.NumContext context)
 		{
@@ -168,7 +168,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 					sb.Append(c);
 				}
 			}
-			return new Function_ValueText(Operand.Create(sb.ToString()));
+			return new Function_ValueText(Operand.Create(sb.ToString()), opd);
 		}
 		public FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
 		{

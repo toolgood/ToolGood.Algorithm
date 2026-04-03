@@ -9,11 +9,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 	{
 		private readonly decimal d;
 		private readonly string unit;
+		private readonly string txt;
 
-		public Function_Number(decimal func1, string func2)
+		public Function_Number(decimal func1, string func2, string func3)
 		{
 			d = func1;
-			unit = func2;
+			txt = func2;
 		}
 
 		public override string Name => "Num";
@@ -27,8 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			stringBuilder.Append(d);
-			stringBuilder.Append(unit);
+			stringBuilder.Append(txt);
 		}
 
 		public override OperandType GetResultType()
