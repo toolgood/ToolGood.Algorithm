@@ -2,8 +2,6 @@
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals.Functions;
-using ToolGood.Algorithm.Internals.Functions.Operator;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals.Visitors
