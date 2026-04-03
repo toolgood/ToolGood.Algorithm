@@ -19,8 +19,7 @@ expr:
 		| MID | REGEXREPLACE
 		| REPLACE
 		| INDEXOF | LASTINDEXOF
-		| JOIN) '(' (expr (',' expr)*)? ')'			# Function_fun
-	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
+		| JOIN | PARAMETER) '(' (expr (',' expr)*)? ')'			# Function_fun
 	| expr ('[' (PARAMETER | expr) ']' | '.' parameter2)			# GetJsonValue_fun
 
 	// 运算符优先级 开始
@@ -75,8 +74,7 @@ expr:
 		| INDEXOF | LASTINDEXOF
 		| JOIN
 		| IFS
-		| SWITCH) '(' expr (',' expr)* ')'						# Function_fun
-	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
+		| SWITCH | PARAMETER) '(' expr (',' expr)* ')'						# Function_fun
 	| '{' arrayJson (',' arrayJson)* ','? '}'					# ArrayJson_fun
 	| '[' expr (',' expr)* ','? ']'								# Array_fun
 	| ALGORITHMVERSION											# Version_fun

@@ -1,5 +1,6 @@
-using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Tree;
 using System;
+using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals.Visitors
@@ -25,12 +26,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			AddParameter(context.PARAMETER());
 			return VisitChildren(context);
 		}
-		public override object VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
+		public override object VisitFunction_fun(mathParser.Function_funContext context)
 		{
 			var node = context.PARAMETER();
-			diy.Functions.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+			if (node != null) {
+				diy.Functions.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+			}
 			return VisitChildren(context);
 		}
-		 
+
+
 	}
 }

@@ -106,17 +106,6 @@ partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, ImathV
 	/// <return>The visitor result.</return>
 	public virtual Result VisitSTRING_fun(mathParser.STRING_funContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>DiyFunction_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitDiyFunction_fun(mathParser.DiyFunction_funContext context) { return VisitChildren(context); }
-	/// <summary>
 	/// Visit a parse tree produced by the <c>AddSub_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// <para>

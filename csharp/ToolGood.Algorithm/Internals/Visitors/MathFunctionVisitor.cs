@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime.Tree;
 using System;
+using System.Data.Common;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
@@ -201,13 +202,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			return new Function_GetJsonValue(funcs[0], funcs[1]);
 		}
-		public FunctionBase VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
-		{
-			var funName = context.PARAMETER().GetText();
-			var funcs = VisitExprs(context.expr());
-			return new Function_DiyFunction(funName, funcs);
-		}
-
 		public FunctionBase VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
 		{
 			var exprs = context.arrayJson();
@@ -502,6 +496,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.JOIN: return new Function_JOIN(funcs);
 				case mathLexer.IFS: return new Function_IFS(funcs);
 				case mathLexer.SWITCH: return new Function_SWITCH(funcs);
+				case mathLexer.PARAMETER:
+					var funName = context.PARAMETER().GetText();
+					return new Function_DiyFunction(funName,funcs);
 				default: break;
 			}
 
