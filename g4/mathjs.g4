@@ -5,7 +5,7 @@ prog: expr EOF;
 expr:
 	'(' expr ')'												
 	| expr '.'  PARAMETER '(' (expr (',' expr)*)? ')'			
-	| expr ('[' (PARAMETER | expr) ']' | '.' (PARAMETER|BOOL))			
+	| expr ('[' (PARAMETER | expr) ']' | '.' PARAMETER)			
 	// 运算符优先级 开始
 	| '!' expr													
 	| expr OPMOD													
@@ -13,7 +13,6 @@ expr:
 	| expr '?' expr ':' expr				
 	// 运算符优先级 结束
 
-	| BOOL ('(' ')')?								
 	| PARAMETER '(' (expr (',' expr)*)? ')'						
 	| '{' arrayJson (',' arrayJson)* ','? '}'					
 	| '[' expr (',' expr)* ','? ']'		
@@ -22,7 +21,7 @@ expr:
 	| PARAMETER																					
 	;
 
-arrayJson: (NUM | STRING | BOOL | PARAMETER) ':' expr;
+arrayJson: (NUM | STRING | PARAMETER) ':' expr;
  
 OPMOD: '%';
 OP: '+'| '-'| '*'| '/'|'&'| '>'| '>='|'<'|'<='| '!=' | '!==' | '<>'| '=' | '==' | '==='| '&&'|'||';
@@ -38,9 +37,6 @@ STRING:
 	'\'' (~['\\] | '\\' .)* '\''
 	| '"' (~["\\] | '\\' .)* '"'
 	| '`' (~[`\\] | '\\' .)* '`';
-
-// BOOL_fun
-BOOL: 'TRUE' | 'YES'| 'FALSE' | 'NO';
  
 PARAMETER: ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter	)*;
 
