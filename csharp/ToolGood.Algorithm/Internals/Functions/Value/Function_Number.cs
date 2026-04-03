@@ -14,7 +14,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public Function_Number(decimal func1, string func2, string func3)
 		{
 			d = func1;
-			txt = func2;
+			unit = func2;
+			txt = func3;
 		}
 
 		public override string Name => "Num";
