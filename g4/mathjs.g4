@@ -4,8 +4,8 @@ prog: expr EOF;
 
 expr:
 	'(' expr ')'												
-	| expr '.'  PARAMETER '(' (expr (',' expr)*)? ')'			
-	| expr ('[' (PARAMETER | expr) ']' | '.' PARAMETER)			
+	| expr '.'  PARAMETER ('(' (expr (',' expr)*)? ')')?			
+	| expr '[' (PARAMETER | expr) ']' 			
 	// 运算符优先级 开始
 	| '!' expr													
 	| expr OPMOD													
