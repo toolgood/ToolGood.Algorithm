@@ -9,21 +9,15 @@ expr:
 	// 运算符优先级 开始
 	| '!' expr													
 	| expr '%'													
-	| expr (OPMUL | OPDIV | OPMOD) expr							
-	| expr (OPADD | OPSUB | OPCAT) expr							
-	| expr (OPGT | OPGE | OPLT | OPLE) expr					
-	| expr (OPNE | OPEQ ) expr	
-	| expr OPAND expr										
-	| expr OPOR expr										
+	| expr ('+'| '-'| '*' |'%'| '/'|'&'| '>'| '>='|'<'|'<='| '!=' | '!==' | '<>'| '=' | '==' | '==='| '&&'|'||') expr							
 	| expr '?' expr ':' expr				
 	// 运算符优先级 结束
 
-	| (TRUE | FALSE) ('(' ')')?								
-	| (RAND | NOW | TODAY | GUID | E | PI) '(' ')'			
-	| PARAMETER '(' expr (',' expr)* ')'						
+	| BOOL ('(' ')')?								
+	| PARAMETER '(' (expr (',' expr)*)? ')'						
 	| '{' arrayJson (',' arrayJson)* ','? '}'					
 	| '[' expr (',' expr)* ','? ']'		
-	| OPSUB? NUM										
+	| '-'? NUM										
 	| STRING													
 	| PARAMETER								
 	| ALGORITHMVERSION											
@@ -33,26 +27,10 @@ expr:
 arrayJson: key=(NUM | STRING) ':' expr
 	| parameter2 ':' expr;
 
-parameter2:
-	E | PI | TRUE | FALSE | NULL
-	| RAND | NOW | TODAY | GUID
-	| ALGORITHMVERSION
-	| PARAMETER;
+parameter2:	BOOL | NULL	| ALGORITHMVERSION | PARAMETER;
  
-OPADD: '+';
-OPSUB: '-';
-OPMUL: '*';
-OPDIV: '/';
 OPMOD: '%';
-OPCAT :'&';
-OPGT: '>';
-OPGE: '>=';
-OPLT: '<';
-OPLE: '<=';
-OPNE: '!=' | '!==' | '<>';
-OPEQ: '=' | '==' | '===';
-OPAND: '&&';
-OPOR: '||';
+OP: '+'| '-'| '*'| '/'|'&'| '>'| '>='|'<'|'<='| '!=' | '!==' | '<>'| '=' | '==' | '==='| '&&'|'||';
 
 NUM: [0-9]+ ('.' [0-9]+)? ('E' [+-]? [0-9]+)?
 	| [0-9]+ ('.' [0-9]+)? ('M'
@@ -61,24 +39,14 @@ NUM: [0-9]+ ('.' [0-9]+)? ('E' [+-]? [0-9]+)?
 		| 'M3'	| 'KM3'	| 'DM3'	| 'CM3'	| 'MM3'	| 'L'	| 'ML'
 		| 'G'	| 'KG' | 'T')
 	;
-
 STRING:
 	'\'' (~['\\] | '\\' .)* '\''
 	| '"' (~["\\] | '\\' .)* '"'
 	| '`' (~[`\\] | '\\' .)* '`';
 
 // BOOL_fun
-TRUE: 'TRUE' | 'YES';
-FALSE: 'FALSE' | 'NO';
-
-// CONST_fun
-RAND: 'RAND';
-NOW: 'NOW';
-TODAY: 'TODAY';
-GUID: 'GUID';
-E: 'E';
-PI: 'PI';
-
+BOOL: 'TRUE' | 'YES'| 'FALSE' | 'NO';
+ 
 ALGORITHMVERSION: 'ALGORITHMVERSION' | 'ENGINEVERSION';
 NULL: 'NULL';
 PARAMETER: ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter	)*;
