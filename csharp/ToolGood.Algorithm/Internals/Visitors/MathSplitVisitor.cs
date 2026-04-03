@@ -2,6 +2,8 @@
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.Internals.Functions.Operator;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals.Visitors
@@ -15,23 +17,35 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			hasBracket = false;
 			return context.expr().Accept(this);
 		}
-
-		public override ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
+		public override ConditionTree VisitOr_fun(mathParser.Or_funContext context)
 		{
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
 			var tree = new ConditionTree {
-				Nodes = new List<ConditionTree>(2) { f1,f2 },
+				Nodes = new List<ConditionTree>(2) { f1, f2 },
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
-			var t = context.op.Type;
-			if(t == mathLexer.OPAND) {
-				tree.Type = ConditionTreeType.And;
-			} else {
-				tree.Type = ConditionTreeType.Or;
-			}
+			tree.Type = ConditionTreeType.Or;
+			tree.Start = context.Start.StartIndex;
+			tree.End = context.Stop.StopIndex;
+			tree.Text = context.GetText();
+
+			return tree;
+		}
+
+		public override ConditionTree VisitAnd_fun(mathParser.And_funContext context)
+		{
+			var exprs = context.expr();
+			var f1 = exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
+			var tree = new ConditionTree {
+				Nodes = new List<ConditionTree>(2) { f1, f2 },
+				HasBracket = hasBracket,
+			};
+			hasBracket = false;
+			tree.Type = ConditionTreeType.And;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();

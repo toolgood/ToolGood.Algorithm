@@ -28,13 +28,13 @@ expr:
 	| expr op = (OPMUL | OPDIV | OPMOD) expr							# MulDiv_fun
 	| expr op = (OPADD | OPSUB | OPCAT) expr							# AddSub_fun
 	| expr op = (OPGT | OPGE | OPLT | OPLE) expr					# Judge_fun
-	| expr op = (OPNE | OPEQ ) expr	# Judge_fun
-	| expr op = OPAND expr										# AndOr_fun
-	| expr op = OPOR expr										# AndOr_fun
+	| expr op = (OPNE | OPEQ ) expr									# Judge_fun
+	| expr OPAND expr										# And_fun
+	| expr OPOR expr										# Or_fun
 	| expr '?' expr ':' expr <assoc=right> 						# IF_fun	
 	// 运算符优先级 结束
 
-	| f=(TRUE | FALSE) ('(' ')')?								# BOOL_fun
+	| f=(TRUE | FALSE | ALGORITHMVERSION | NULL) ('(' ')')?				# CONST2_fun
 	| f=(RAND | NOW | TODAY | GUID | E | PI) '(' ')'			# CONST_fun
 	| f=(ERROR | YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | ISNUMBER | ISTEXT | ISNONTEXT 
 		| ISLOGICAL | ISEVEN | ISODD | NOT | ABS | SIGN | SQRT | INT | DEGREES | RADIANS | COS 
@@ -77,8 +77,6 @@ expr:
 		| SWITCH | PARAMETER) '(' expr (',' expr)* ')'						# Function_fun
 	| '{' arrayJson (',' arrayJson)* ','? '}'					# ArrayJson_fun
 	| '[' expr (',' expr)* ','? ']'								# Array_fun
-	| ALGORITHMVERSION											# Version_fun
-	| NULL														# NULL_fun													
 	;
 
 num: OPSUB? NUM;

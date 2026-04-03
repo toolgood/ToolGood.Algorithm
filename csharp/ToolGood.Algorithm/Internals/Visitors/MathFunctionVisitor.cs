@@ -73,15 +73,18 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				default: return new Function_NE(funcs);
 			}
 		}
-		public FunctionBase VisitAndOr_fun(mathParser.AndOr_funContext context)
+		public FunctionBase VisitOr_fun(mathParser.Or_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
-			var type = context.op.Type;
-			if(type == mathLexer.OPAND) {
-				return new Function_AND(funcs);
-			}
 			return new Function_OR(funcs);
 		}
+
+		public FunctionBase VisitAnd_fun(mathParser.And_funContext context)
+		{
+			var funcs = VisitExprs(context.expr());
+			return new Function_AND(funcs);
+		}
+	 
 		public FunctionBase VisitIF_fun(mathParser.IF_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -93,12 +96,16 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var args1 = context.expr().Accept(this);
 			return new Function_NOT(args1);
 		}
-		public FunctionBase VisitBOOL_fun(mathParser.BOOL_funContext context)
+		public FunctionBase VisitCONST2_fun(mathParser.CONST2_funContext context)
 		{
-			if(context.f.Type == mathLexer.TRUE) {
-				return new Function_ValueBoolean(true);
+			var type = context.f.Type;
+			switch(type) {
+				case mathLexer.TRUE: return new Function_ValueBoolean(true);
+				case mathLexer.FALSE: return new Function_ValueBoolean(false);
+				case mathLexer.ALGORITHMVERSION: return new Function_Version();
+				case mathLexer.NULL:
+				default: return new Function_NULL();
 			}
-			return new Function_ValueBoolean(false);
 		}
 
 		public FunctionBase VisitCONST_fun(mathParser.CONST_funContext context)
@@ -170,10 +177,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			return new Function_ValueText(Operand.Create(sb.ToString()));
 		}
-		public FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
-		{
-			return new Function_NULL();
-		}
 		public FunctionBase VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
 		{
 			ITerminalNode node = context.PARAMETER();
@@ -215,10 +218,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			var f = context.expr().Accept(this);
 			return new Function_ArrayJsonItem(keyName, f);
-		}
-		public FunctionBase VisitVersion_fun(mathParser.Version_funContext context)
-		{
-			return new Function_Version();
 		}
 
 		#endregion getValue
@@ -498,5 +497,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 			throw new NotImplementedException();
 		}
+
+
 	}
 }
