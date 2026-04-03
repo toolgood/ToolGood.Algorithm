@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.Internals
     /// <summary>
     /// 自定义类型
     /// </summary>
-    public sealed class DiyNameInfo
+    public struct DiyNameInfo
     {
         /// <summary>
         /// 自定义 参数
@@ -17,13 +17,13 @@ namespace ToolGood.Algorithm.Internals
         /// </summary>
         public List<DiyNameKeyInfo> Functions { get; private set; }
 
-        /// <summary>
-        /// 自定义类型
-        /// </summary>
-        internal DiyNameInfo()
+		/// <summary>
+		/// 自定义类型
+		/// </summary>
+		public DiyNameInfo(List<DiyNameKeyInfo> p, List<DiyNameKeyInfo>f)
         {
-            Parameters = new List<DiyNameKeyInfo>();
-            Functions = new List<DiyNameKeyInfo>();
+            Parameters = p;
+            Functions = f;
         }
 	}
 }

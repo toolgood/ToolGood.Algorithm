@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime.Tree;
 using System;
+using System.Collections.Generic;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 
@@ -7,12 +8,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 {
 	internal sealed class DiyNameVisitor : mathBaseVisitor<Object>
 	{
-		internal DiyNameInfo diy = new DiyNameInfo();
+		internal List<DiyNameKeyInfo> Parameters = new List<DiyNameKeyInfo>();	
+		internal List<DiyNameKeyInfo> Functions =new List<DiyNameKeyInfo>();
 
 		private void AddParameter(ITerminalNode node)
 		{
 			if(node != null) {
-				diy.Parameters.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+				Parameters.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			}
 		}
 
@@ -30,7 +32,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var node = context.PARAMETER();
 			if (node != null) {
-				diy.Functions.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
+				Functions.Add(new DiyNameKeyInfo() { Name = node.GetText(), Start = node.Symbol.StartIndex, End = node.Symbol.StopIndex });
 			}
 			return VisitChildren(context);
 		}

@@ -73,7 +73,7 @@ namespace ToolGood.Algorithm
 			}
 			var visitor = new DiyNameVisitor();
 			visitor.Visit(context);
-			return visitor.diy;
+			return new DiyNameInfo(visitor.Parameters, visitor.Functions);
 		}
 
 		/// <summary>
