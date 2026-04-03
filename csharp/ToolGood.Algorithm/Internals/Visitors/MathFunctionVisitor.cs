@@ -218,7 +218,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitVersion_fun(mathParser.Version_funContext context)
 		{
-			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
+			return new Function_Version();
 		}
 
 		#endregion getValue

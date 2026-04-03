@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal class Function_Number_PI : Function_0
+	internal sealed class Function_Number_PI : Function_0
 	{
 		private static Operand _Operand = Operand.Create(MathEx.PI);
 		public override string Name => "PI";

@@ -7,18 +7,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 	internal sealed class Function_ValueText : Function_0
 	{
 		private readonly Operand _value;
-		private readonly string _showName;
 
 		public Function_ValueText(Operand value)
 		{
 			_value = value;
 		}
-		public Function_ValueText(Operand value, string showName)
-		{
-			_value = value;
-			_showName = showName;
-		}
-
+		 
 		public override string Name => "Value";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
@@ -27,10 +21,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			if(string.IsNullOrEmpty(_showName) == false) {
-				stringBuilder.Append(_showName);
-				return;
-			}
 			stringBuilder.Append('"');
 			var stringValue = _value.TextValue;
 			stringValue = stringValue.Replace("\\", "\\\\");
