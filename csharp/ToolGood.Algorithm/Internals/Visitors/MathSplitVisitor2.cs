@@ -1,4 +1,4 @@
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -23,8 +23,11 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public override CalculateTree VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
+			var exprs = context.expr();
+			var f1= exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2),
+				Nodes = new List<CalculateTree>(2) { f1,f2 },
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
@@ -39,16 +42,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();
-
-			var exprs = context.expr();
-			tree.Nodes.Add(exprs[0].Accept(this));
-			tree.Nodes.Add(exprs[1].Accept(this));
 			return tree;
 		}
 		public override CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
+			var exprs = context.expr();
+			var f1 = exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
 			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2),
+				Nodes = new List<CalculateTree>(2) { f1, f2 },
 				HasBracket = hasBracket,
 			};
 			hasBracket = false;
@@ -63,10 +65,6 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();
-
-			var exprs = context.expr();
-			tree.Nodes.Add(exprs[0].Accept(this));
-			tree.Nodes.Add(exprs[1].Accept(this));
 			return tree;
 		}
 

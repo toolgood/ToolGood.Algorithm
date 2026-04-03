@@ -63,18 +63,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var funcs = VisitExprs(context.expr());
 			var type = context.op.Type;
-			if(type == mathLexer.OPGT) {
-				return new Function_GT(funcs);
-			} else if(type == mathLexer.OPGE) {
-				return new Function_GE(funcs);
-			} else if(type == mathLexer.OPLT) {
-				return new Function_LT(funcs);
-			} else if(type == mathLexer.OPLE) {
-				return new Function_LE(funcs);
-			} else if(type == mathLexer.OPEQ) {
-				return new Function_EQ(funcs);
+			switch(type) {
+				case mathLexer.OPGT: return new Function_GT(funcs);
+				case mathLexer.OPGE: return new Function_GE(funcs);
+				case mathLexer.OPLT: return new Function_LT(funcs);
+				case mathLexer.OPLE: return new Function_LE(funcs);
+				case mathLexer.OPEQ: return new Function_EQ(funcs);
+				case mathLexer.OPNE:
+				default: return new Function_NE(funcs);
 			}
-			return new Function_NE(funcs);
 		}
 		public FunctionBase VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
@@ -107,18 +104,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitCONST_fun(mathParser.CONST_funContext context)
 		{
 			var type = context.f.Type;
-			if(type == mathLexer.E) {
-				return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
-			} else if(type == mathLexer.PI) {
-				return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
-			} else if(type == mathLexer.RAND) {
-				return new Function_RAND();
-			} else if(type == mathLexer.GUID) {
-				return new Function_GUID();
-			} else if(type == mathLexer.NOW) {
-				return new Function_NOW();
+			switch(type) {
+				case mathLexer.E: return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
+				case mathLexer.PI: return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
+				case mathLexer.RAND: return new Function_RAND();
+				case mathLexer.GUID: return new Function_GUID();
+				case mathLexer.NOW: return new Function_NOW();
+				case mathLexer.TODAY: 
+				default: return new Function_TODAY();
 			}
-			return new Function_TODAY();
 		}
 
 		public FunctionBase VisitPercentage_fun(mathParser.Percentage_funContext context)
@@ -226,13 +220,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			return new Function_ValueText(Operand.Version, "ALGORITHMVERSION");
 		}
- 
+
 		#endregion getValue
-		 
+
 		public FunctionBase VisitFunction_fun(mathParser.Function_funContext context)
 		{
-			var type = context.f.Type;
 			var funcs = VisitExprs(context.expr());
+			var type = context.f.Type;
 			switch(type) {
 				case mathLexer.ERROR: return new Function_ERROR(funcs);
 				case mathLexer.YEAR: return new Function_YEAR(funcs);
@@ -498,7 +492,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.SWITCH: return new Function_SWITCH(funcs);
 				case mathLexer.PARAMETER:
 					var funName = context.PARAMETER().GetText();
-					return new Function_DiyFunction(funName,funcs);
+					return new Function_DiyFunction(funName, funcs);
 				default: break;
 			}
 
