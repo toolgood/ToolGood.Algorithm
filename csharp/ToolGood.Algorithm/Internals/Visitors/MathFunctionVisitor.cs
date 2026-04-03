@@ -168,7 +168,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 					sb.Append(c);
 				}
 			}
-			return new Function_ValueText(Operand.Create(sb.ToString()), opd);
+			return new Function_ValueText(Operand.Create(sb.ToString()));
 		}
 		public FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
 		{
