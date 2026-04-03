@@ -38,10 +38,14 @@ describe('AlgorithmEngineHelper', () => {
             expect(result).toBeDefined();
             expect(errorListener.errors.length).toBe(0);
         });
+        test('should return null when no error listener provided func', () => {
+            const result = AlgorithmEngineHelper.ParseFormula('1+abs(-123)');
+            expect(result).toBeNull();
+        });
 
         test('should parse complex expression successfully', () => {
             const errorListener = new TestErrorListener();
-            const result = AlgorithmEngineHelper.ParseFormula('(2+3)*4/2', errorListener);
+            const result = AlgorithmEngineHelper.ParseFormula('(2+3)*4/2mm', errorListener);
             expect(result).toBeDefined();
             expect(errorListener.errors.length).toBe(0);
         });

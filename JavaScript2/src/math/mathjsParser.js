@@ -1,2 +1,478 @@
 
-import antlr4 from '../antlr4/index.web.js';const serializedATN = [4,1,41,145,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,22,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,32,8,1,10,1,12,1,35,9,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,43,8,1,10,1,12,1,46,9,1,1,1,3,1,49,8,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,57,8,1,10,1,12,1,60,9,1,1,1,3,1,63,8,1,1,1,1,1,1,1,3,1,68,8,1,1,1,1,1,1,1,1,1,1,1,3,1,75,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,108,8,1,10,1,12,1,111,9,1,3,1,113,8,1,1,1,1,1,1,1,1,1,1,1,3,1,120,8,1,1,1,1,1,1,1,3,1,125,8,1,1,1,1,1,5,1,129,8,1,10,1,12,1,132,9,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,141,8,2,1,3,1,3,1,3,0,1,2,4,0,2,4,6,0,8,1,0,28,29,1,0,30,35,1,0,14,16,2,0,12,13,17,17,1,0,18,21,1,0,22,23,1,0,26,27,1,0,28,38,173,0,8,1,0,0,0,2,74,1,0,0,0,4,140,1,0,0,0,6,142,1,0,0,0,8,9,3,2,1,0,9,10,5,0,0,1,10,1,1,0,0,0,11,12,6,1,-1,0,12,13,5,1,0,0,13,14,3,2,1,0,14,15,5,2,0,0,15,75,1,0,0,0,16,17,5,7,0,0,17,75,3,2,1,19,18,21,7,0,0,0,19,20,5,1,0,0,20,22,5,2,0,0,21,19,1,0,0,0,21,22,1,0,0,0,22,75,1,0,0,0,23,24,7,1,0,0,24,25,5,1,0,0,25,75,5,2,0,0,26,27,5,38,0,0,27,28,5,1,0,0,28,33,3,2,1,0,29,30,5,4,0,0,30,32,3,2,1,0,31,29,1,0,0,0,32,35,1,0,0,0,33,31,1,0,0,0,33,34,1,0,0,0,34,36,1,0,0,0,35,33,1,0,0,0,36,37,5,2,0,0,37,75,1,0,0,0,38,39,5,10,0,0,39,44,3,4,2,0,40,41,5,4,0,0,41,43,3,4,2,0,42,40,1,0,0,0,43,46,1,0,0,0,44,42,1,0,0,0,44,45,1,0,0,0,45,48,1,0,0,0,46,44,1,0,0,0,47,49,5,4,0,0,48,47,1,0,0,0,48,49,1,0,0,0,49,50,1,0,0,0,50,51,5,11,0,0,51,75,1,0,0,0,52,53,5,5,0,0,53,58,3,2,1,0,54,55,5,4,0,0,55,57,3,2,1,0,56,54,1,0,0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,61,63,5,4,0,0,62,61,1,0,0,0,62,63,1,0,0,0,63,64,1,0,0,0,64,65,5,6,0,0,65,75,1,0,0,0,66,68,5,13,0,0,67,66,1,0,0,0,67,68,1,0,0,0,68,69,1,0,0,0,69,75,5,26,0,0,70,75,5,27,0,0,71,75,5,38,0,0,72,75,5,36,0,0,73,75,5,37,0,0,74,11,1,0,0,0,74,16,1,0,0,0,74,18,1,0,0,0,74,23,1,0,0,0,74,26,1,0,0,0,74,38,1,0,0,0,74,52,1,0,0,0,74,67,1,0,0,0,74,70,1,0,0,0,74,71,1,0,0,0,74,72,1,0,0,0,74,73,1,0,0,0,75,130,1,0,0,0,76,77,10,17,0,0,77,78,7,2,0,0,78,129,3,2,1,18,79,80,10,16,0,0,80,81,7,3,0,0,81,129,3,2,1,17,82,83,10,15,0,0,83,84,7,4,0,0,84,129,3,2,1,16,85,86,10,14,0,0,86,87,7,5,0,0,87,129,3,2,1,15,88,89,10,13,0,0,89,90,5,24,0,0,90,129,3,2,1,14,91,92,10,12,0,0,92,93,5,25,0,0,93,129,3,2,1,13,94,95,10,11,0,0,95,96,5,8,0,0,96,97,3,2,1,0,97,98,5,9,0,0,98,99,3,2,1,12,99,129,1,0,0,0,100,101,10,21,0,0,101,102,5,3,0,0,102,103,5,38,0,0,103,112,5,1,0,0,104,109,3,2,1,0,105,106,5,4,0,0,106,108,3,2,1,0,107,105,1,0,0,0,108,111,1,0,0,0,109,107,1,0,0,0,109,110,1,0,0,0,110,113,1,0,0,0,111,109,1,0,0,0,112,104,1,0,0,0,112,113,1,0,0,0,113,114,1,0,0,0,114,129,5,2,0,0,115,124,10,20,0,0,116,119,5,5,0,0,117,120,5,38,0,0,118,120,3,2,1,0,119,117,1,0,0,0,119,118,1,0,0,0,120,121,1,0,0,0,121,125,5,6,0,0,122,123,5,3,0,0,123,125,3,6,3,0,124,116,1,0,0,0,124,122,1,0,0,0,125,129,1,0,0,0,126,127,10,18,0,0,127,129,5,16,0,0,128,76,1,0,0,0,128,79,1,0,0,0,128,82,1,0,0,0,128,85,1,0,0,0,128,88,1,0,0,0,128,91,1,0,0,0,128,94,1,0,0,0,128,100,1,0,0,0,128,115,1,0,0,0,128,126,1,0,0,0,129,132,1,0,0,0,130,128,1,0,0,0,130,131,1,0,0,0,131,3,1,0,0,0,132,130,1,0,0,0,133,134,7,6,0,0,134,135,5,9,0,0,135,141,3,2,1,0,136,137,3,6,3,0,137,138,5,9,0,0,138,139,3,2,1,0,139,141,1,0,0,0,140,133,1,0,0,0,140,136,1,0,0,0,141,5,1,0,0,0,142,143,7,7,0,0,143,7,1,0,0,0,15,21,33,44,48,58,62,67,74,109,112,119,124,128,130,140];const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DFA(ds, index) );const sharedContextCache = new antlr4.atn.PredictionContextCache();export default class mathjsParser extends antlr4.Parser {    static grammarFileName = "mathjs.g4";    static literalNames =[];    static symbolicNames =[];    static ruleNames =[];    constructor(input) {        super(input);        this._interp = new antlr4.atn.ParserATNSimulator(this, atn, decisionsToDFA, sharedContextCache);        this.ruleNames = mathjsParser.ruleNames;        this.literalNames = mathjsParser.literalNames;        this.symbolicNames = mathjsParser.symbolicNames;    }     sempred(localctx, ruleIndex, predIndex){return true;};	A(a){this.match(a);}	B(a,b){this.match(a);this.match(b);}	C(a,b,c){this.match(a);this.match(b);this.match(c);}	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}	E(a,b){this.state=a;this.expr(b);}	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}	J(a,e,f){this.match(a);this.state=e;this.expr(f);}	R(){return this._input.LT(1);}	Q(){this._errHandler.reportMatch(this);this.consume();}	W(a,b,c){this.pushNewRecursionContext(a, b, c);}	X(){this._errHandler.sync(this);}	Y(){return this._input.LA(1);}	Z(){this._errHandler.sync(this);return this._input.LA(1);}	prog() {	    let localctx = new ProgContext(this, this._ctx, this.state);	    this.enterRule(localctx, 0, 0);	    try {	        this.enterOuterAlt(localctx, 1);	        this.E(8,0);	        this.match(-1);	    } catch (re) {	    	if(re instanceof antlr4.error.RecognitionException) {		        localctx.exception = re;		        this._errHandler.reportError(this, re);		        this._errHandler.recover(this, re);		    } else {		    	throw re;		    }	    } finally {	        this.exitRule();	    }	    return localctx;	}	expr(_p) {		if(_p===undefined) {		    _p = 0;		}	    const _parentctx = this._ctx;	    const _parentState = this.state;	    let localctx = new ExprContext(this, this._ctx, _parentState);	    const _startState = 2;	    this.enterRecursionRule(localctx, 2, 1, _p);	    var _la = 0;	    try {	        this.enterOuterAlt(localctx, 1);	        this.X();	        var la_ = this._interp.adaptivePredict(this._input,7,this._ctx);	        switch(la_) {	        case 1:	            this.J(1,13,0);	            this.A(2);	            break;	        case 2:	            this.J(7,17,19);	            break;	        case 3:	            _la = this.Y();	            if(!(_la===28 || _la===29)) {	            this._errHandler.recoverInline(this);	            }	            else {	            	this.Q();	            }	            this.X();	            var la_ = this._interp.adaptivePredict(this._input,0,this._ctx);	            if(la_===1) {	                this.B(1,2);	            }	            break;	        case 4:	            _la = this.Y();	            if(!(((((_la - 30)) & ~0x1f) === 0 && ((1 << (_la - 30)) & 63) !== 0))) {	            this._errHandler.recoverInline(this);	            }	            else {	            	this.Q();	            }	            this.B(1,2);	            break;	        case 5:	            this.I(38,1,28,0);	            _la = this.Z();	            while(_la===4) {	                this.J(4,30,0);	                _la = this.Z();	            }	            this.A(2);	            break;	        case 6:	            this.A(10);	            this.state = 39;	            this.arrayJson();	            this.X();	            var _alt = this._interp.adaptivePredict(this._input,2,this._ctx)	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {	                if(_alt===1) {	                    this.A(4);	                    this.state = 41;	                    this.arrayJson();	                }	                this.X();	                _alt = this._interp.adaptivePredict(this._input,2,this._ctx);	            }	            _la = this.Z();	            if(_la===4) {	                this.A(4);	            }	            this.A(11);	            break;	        case 7:	            this.J(5,53,0);	            this.X();	            var _alt = this._interp.adaptivePredict(this._input,4,this._ctx)	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {	                if(_alt===1) {	                    this.J(4,55,0);	                }	                this.X();	                _alt = this._interp.adaptivePredict(this._input,4,this._ctx);	            }	            _la = this.Z();	            if(_la===4) {	                this.A(4);	            }	            this.A(6);	            break;	        case 8:	            _la = this.Z();	            if(_la===13) {	                this.A(13);	            }	            this.A(26);	            break;	        case 9:	            this.A(27);	            break;	        case 10:	            this.A(38);	            break;	        case 11:	            this.A(36);	            break;	        case 12:	            this.A(37);	            break;	        }	        this._ctx.stop = this._input.LT(-1);	        this.X();	        var _alt = this._interp.adaptivePredict(this._input,13,this._ctx)	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {	            if(_alt===1) {	                if(this._parseListeners!==null) {	                    this.triggerExitRuleEvent();	                }	                this.X();	                var la_ = this._interp.adaptivePredict(this._input,12,this._ctx);	                switch(la_) {	                case 1:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.state = 76;	                    _la = this.Y();	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 114688) !== 0))) {	                    this._errHandler.recoverInline(this);	                    }	                    else {	                    	this.Q();	                    }	                    this.E(78,18);	                    break;	                case 2:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.state = 79;	                    _la = this.Y();	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 143360) !== 0))) {	                    this._errHandler.recoverInline(this);	                    }	                    else {	                    	this.Q();	                    }	                    this.E(81,17);	                    break;	                case 3:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.state = 82;	                    _la = this.Y();	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 3932160) !== 0))) {	                    this._errHandler.recoverInline(this);	                    }	                    else {	                    	this.Q();	                    }	                    this.E(84,16);	                    break;	                case 4:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.state = 85;	                    _la = this.Y();	                    if(!(_la===22 || _la===23)) {	                    this._errHandler.recoverInline(this);	                    }	                    else {	                    	this.Q();	                    }	                    this.E(87,15);	                    break;	                case 5:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.J(24,90,14);	                    break;	                case 6:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.J(25,93,13);	                    break;	                case 7:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.J(8,96,0);	                    this.J(9,98,12);	                    break;	                case 8:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.C(3,38,1);	                    _la = this.Z();	                    if((((_la) & ~0x1f) === 0 && ((1 << _la) & 4227867810) !== 0) || ((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 127) !== 0)) {	                        this.E(104,0);	                        _la = this.Z();	                        while(_la===4) {	                            this.J(4,106,0);	                            _la = this.Z();	                        }	                    }	                    this.A(2);	                    break;	                case 9:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.state = 115;	                    this.X();	                    switch(this._input.LA(1)) {	                    case 5:	                        this.A(5);	                        this.X();	                        var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);	                        switch(la_) {	                        case 1:	                            this.A(38);	                            break;	                        case 2:	                            this.E(118,0);	                            break;	                        }	                        this.A(6);	                        break;	                    case 3:	                        this.A(3);	                        this.state = 123;	                        this.parameter2();	                        break;	                    default:	                        throw new antlr4.error.NoViableAltException(this);	                    }	                    break;	                case 10:	                    localctx = new ExprContext(this, _parentctx, _parentState);	                    this.W(localctx, _startState, 1);	                    this.A(16);	                    break;	                }	            }	            this.X();	            _alt = this._interp.adaptivePredict(this._input,13,this._ctx);	        }	    } catch( error) {	        if(error instanceof antlr4.error.RecognitionException) {		        localctx.exception = error;		        this._errHandler.reportError(this, error);		        this._errHandler.recover(this, error);		    } else {		    	throw error;		    }	    } finally {	        this.unrollRecursionContexts(_parentctx)	    }	    return localctx;	}	arrayJson() {	    let localctx = new ArrayJsonContext(this, this._ctx, this.state);	    this.enterRule(localctx, 4, 2);	    var _la = 0;	    try {	        this.X();	        switch(this._input.LA(1)) {	        case 26:	        case 27:	            this.enterOuterAlt(localctx, 1);	            localctx.key = this.R();	            _la = this.Y();	            if(!(_la===26 || _la===27)) {	                localctx.key = this._errHandler.recoverInline(this);	            }	            else {	            	this.Q();	            }	            this.J(9,135,0);	            break;	        case 28:	        case 29:	        case 30:	        case 31:	        case 32:	        case 33:	        case 34:	        case 35:	        case 36:	        case 37:	        case 38:	            this.enterOuterAlt(localctx, 2);	            this.state = 136;	            this.parameter2();	            this.J(9,138,0);	            break;	        default:	            throw new antlr4.error.NoViableAltException(this);	        }	    } catch (re) {	    	if(re instanceof antlr4.error.RecognitionException) {		        localctx.exception = re;		        this._errHandler.reportError(this, re);		        this._errHandler.recover(this, re);		    } else {		    	throw re;		    }	    } finally {	        this.exitRule();	    }	    return localctx;	}	parameter2() {	    let localctx = new Parameter2Context(this, this._ctx, this.state);	    this.enterRule(localctx, 6, 3);	    var _la = 0;	    try {	        this.enterOuterAlt(localctx, 1);	        _la = this.Y();	        if(!(((((_la - 28)) & ~0x1f) === 0 && ((1 << (_la - 28)) & 2047) !== 0))) {	        this._errHandler.recoverInline(this);	        }	        else {	        	this.Q();	        }	    } catch (re) {	    	if(re instanceof antlr4.error.RecognitionException) {		        localctx.exception = re;		        this._errHandler.reportError(this, re);		        this._errHandler.recover(this, re);		    } else {		    	throw re;		    }	    } finally {	        this.exitRule();	    }	    return localctx;	}}class ProgContext extends antlr4.ParserRuleContext {    constructor(parser, parent, invokingState) {        super(parent, invokingState);        this.parser = parser;        this.ruleIndex = 0;    }	expr() {	    return this.getTypedRuleContext(ExprContext,0);	};	accept(visitor) {	        return visitor.visitProg(this);	}}class ExprContext extends antlr4.ParserRuleContext {    constructor(parser, parent, invokingState) {        super(parent, invokingState);        this.parser = parser;        this.ruleIndex = 1;    }	expr = function(i) {return this.getTypedRuleContexts(ExprContext);};	arrayJson = function(i) {return this.getTypedRuleContexts(ArrayJsonContext);};	parameter2() {	    return this.getTypedRuleContext(Parameter2Context,0);	};	accept(visitor) {	        return visitor.visitExpr(this);	}}class ArrayJsonContext extends antlr4.ParserRuleContext {    constructor(parser, parent, invokingState) {        super(parent, invokingState);        this.parser = parser;        this.ruleIndex = 2;        this.key = null;    }	expr() {	    return this.getTypedRuleContext(ExprContext,0);	};	parameter2() {	    return this.getTypedRuleContext(Parameter2Context,0);	};	accept(visitor) {	        return visitor.visitArrayJson(this);	}}class Parameter2Context extends antlr4.ParserRuleContext {    constructor(parser, parent, invokingState) {        super(parent, invokingState);        this.parser = parser;        this.ruleIndex = 3;    }	accept(visitor) {	        return visitor.visitParameter2(this);	}}
+import antlr4 from '../antlr4/index.web.js';
+const serializedATN = [4,1,41,145,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,
+0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,22,8,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,5,1,32,8,1,10,1,12,1,35,9,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,
+43,8,1,10,1,12,1,46,9,1,1,1,3,1,49,8,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,57,8,
+1,10,1,12,1,60,9,1,1,1,3,1,63,8,1,1,1,1,1,1,1,3,1,68,8,1,1,1,1,1,1,1,1,1,
+1,1,3,1,75,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,108,
+8,1,10,1,12,1,111,9,1,3,1,113,8,1,1,1,1,1,1,1,1,1,1,1,3,1,120,8,1,1,1,1,
+1,1,1,3,1,125,8,1,1,1,1,1,5,1,129,8,1,10,1,12,1,132,9,1,1,2,1,2,1,2,1,2,
+1,2,1,2,1,2,3,2,141,8,2,1,3,1,3,1,3,0,1,2,4,0,2,4,6,0,8,1,0,28,29,1,0,30,
+35,1,0,14,16,2,0,12,13,17,17,1,0,18,21,1,0,22,23,1,0,26,27,1,0,28,38,173,
+0,8,1,0,0,0,2,74,1,0,0,0,4,140,1,0,0,0,6,142,1,0,0,0,8,9,3,2,1,0,9,10,5,
+0,0,1,10,1,1,0,0,0,11,12,6,1,-1,0,12,13,5,1,0,0,13,14,3,2,1,0,14,15,5,2,
+0,0,15,75,1,0,0,0,16,17,5,7,0,0,17,75,3,2,1,19,18,21,7,0,0,0,19,20,5,1,0,
+0,20,22,5,2,0,0,21,19,1,0,0,0,21,22,1,0,0,0,22,75,1,0,0,0,23,24,7,1,0,0,
+24,25,5,1,0,0,25,75,5,2,0,0,26,27,5,38,0,0,27,28,5,1,0,0,28,33,3,2,1,0,29,
+30,5,4,0,0,30,32,3,2,1,0,31,29,1,0,0,0,32,35,1,0,0,0,33,31,1,0,0,0,33,34,
+1,0,0,0,34,36,1,0,0,0,35,33,1,0,0,0,36,37,5,2,0,0,37,75,1,0,0,0,38,39,5,
+10,0,0,39,44,3,4,2,0,40,41,5,4,0,0,41,43,3,4,2,0,42,40,1,0,0,0,43,46,1,0,
+0,0,44,42,1,0,0,0,44,45,1,0,0,0,45,48,1,0,0,0,46,44,1,0,0,0,47,49,5,4,0,
+0,48,47,1,0,0,0,48,49,1,0,0,0,49,50,1,0,0,0,50,51,5,11,0,0,51,75,1,0,0,0,
+52,53,5,5,0,0,53,58,3,2,1,0,54,55,5,4,0,0,55,57,3,2,1,0,56,54,1,0,0,0,57,
+60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,61,63,
+5,4,0,0,62,61,1,0,0,0,62,63,1,0,0,0,63,64,1,0,0,0,64,65,5,6,0,0,65,75,1,
+0,0,0,66,68,5,13,0,0,67,66,1,0,0,0,67,68,1,0,0,0,68,69,1,0,0,0,69,75,5,26,
+0,0,70,75,5,27,0,0,71,75,5,38,0,0,72,75,5,36,0,0,73,75,5,37,0,0,74,11,1,
+0,0,0,74,16,1,0,0,0,74,18,1,0,0,0,74,23,1,0,0,0,74,26,1,0,0,0,74,38,1,0,
+0,0,74,52,1,0,0,0,74,67,1,0,0,0,74,70,1,0,0,0,74,71,1,0,0,0,74,72,1,0,0,
+0,74,73,1,0,0,0,75,130,1,0,0,0,76,77,10,17,0,0,77,78,7,2,0,0,78,129,3,2,
+1,18,79,80,10,16,0,0,80,81,7,3,0,0,81,129,3,2,1,17,82,83,10,15,0,0,83,84,
+7,4,0,0,84,129,3,2,1,16,85,86,10,14,0,0,86,87,7,5,0,0,87,129,3,2,1,15,88,
+89,10,13,0,0,89,90,5,24,0,0,90,129,3,2,1,14,91,92,10,12,0,0,92,93,5,25,0,
+0,93,129,3,2,1,13,94,95,10,11,0,0,95,96,5,8,0,0,96,97,3,2,1,0,97,98,5,9,
+0,0,98,99,3,2,1,12,99,129,1,0,0,0,100,101,10,21,0,0,101,102,5,3,0,0,102,
+103,5,38,0,0,103,112,5,1,0,0,104,109,3,2,1,0,105,106,5,4,0,0,106,108,3,2,
+1,0,107,105,1,0,0,0,108,111,1,0,0,0,109,107,1,0,0,0,109,110,1,0,0,0,110,
+113,1,0,0,0,111,109,1,0,0,0,112,104,1,0,0,0,112,113,1,0,0,0,113,114,1,0,
+0,0,114,129,5,2,0,0,115,124,10,20,0,0,116,119,5,5,0,0,117,120,5,38,0,0,118,
+120,3,2,1,0,119,117,1,0,0,0,119,118,1,0,0,0,120,121,1,0,0,0,121,125,5,6,
+0,0,122,123,5,3,0,0,123,125,3,6,3,0,124,116,1,0,0,0,124,122,1,0,0,0,125,
+129,1,0,0,0,126,127,10,18,0,0,127,129,5,16,0,0,128,76,1,0,0,0,128,79,1,0,
+0,0,128,82,1,0,0,0,128,85,1,0,0,0,128,88,1,0,0,0,128,91,1,0,0,0,128,94,1,
+0,0,0,128,100,1,0,0,0,128,115,1,0,0,0,128,126,1,0,0,0,129,132,1,0,0,0,130,
+128,1,0,0,0,130,131,1,0,0,0,131,3,1,0,0,0,132,130,1,0,0,0,133,134,7,6,0,
+0,134,135,5,9,0,0,135,141,3,2,1,0,136,137,3,6,3,0,137,138,5,9,0,0,138,139,
+3,2,1,0,139,141,1,0,0,0,140,133,1,0,0,0,140,136,1,0,0,0,141,5,1,0,0,0,142,
+143,7,7,0,0,143,7,1,0,0,0,15,21,33,44,48,58,62,67,74,109,112,119,124,128,
+130,140];
+const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
+const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DFA(ds, index) );
+const sharedContextCache = new antlr4.atn.PredictionContextCache();
+export default class mathjsParser extends antlr4.Parser {
+    static grammarFileName = "mathjs.g4";
+    static literalNames =[];
+    static symbolicNames =[];
+    static ruleNames =[];
+    constructor(input) {
+        super(input);
+        this._interp = new antlr4.atn.ParserATNSimulator(this, atn, decisionsToDFA, sharedContextCache);
+        this.ruleNames = mathjsParser.ruleNames;
+        this.literalNames = mathjsParser.literalNames;
+        this.symbolicNames = mathjsParser.symbolicNames;
+    }
+     sempred(localctx, ruleIndex, predIndex){return true;};
+	A(a){this.match(a);}
+	B(a,b){this.match(a);this.match(b);}
+	C(a,b,c){this.match(a);this.match(b);this.match(c);}
+	D(a,b,c,d){this.match(a);this.match(b);this.match(c);this.match(d);}
+	E(a,b){this.state=a;this.expr(b);}
+	I(a,b,e,f){this.match(a);this.match(b);this.state=e;this.expr(f);}
+	J(a,e,f){this.match(a);this.state=e;this.expr(f);}
+	R(){return this._input.LT(1);}
+	Q(){this._errHandler.reportMatch(this);this.consume();}
+	W(a,b,c){this.pushNewRecursionContext(a, b, c);}
+	X(){this._errHandler.sync(this);}
+	Y(){return this._input.LA(1);}
+	Z(){this._errHandler.sync(this);return this._input.LA(1);}
+	prog() {
+	    let localctx = new ProgContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 0, 0);
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.E(8,0);
+	        this.match(-1);
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+	expr(_p) {
+		if(_p===undefined) {
+		    _p = 0;
+		}
+	    const _parentctx = this._ctx;
+	    const _parentState = this.state;
+	    let localctx = new ExprContext(this, this._ctx, _parentState);
+	    const _startState = 2;
+	    this.enterRecursionRule(localctx, 2, 1, _p);
+	    var _la = 0;
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.X();
+	        var la_ = this._interp.adaptivePredict(this._input,7,this._ctx);
+	        switch(la_) {
+	        case 1:
+	            this.J(1,13,0);
+	            this.A(2);
+	            break;
+	        case 2:
+	            this.J(7,17,19);
+	            break;
+	        case 3:
+	            _la = this.Y();
+	            if(!(_la===28 || _la===29)) {
+	            this._errHandler.recoverInline(this);
+	            }
+	            else {
+	            	this.Q();
+	            }
+	            this.X();
+	            var la_ = this._interp.adaptivePredict(this._input,0,this._ctx);
+	            if(la_===1) {
+	                this.B(1,2);
+	            }
+	            break;
+	        case 4:
+	            _la = this.Y();
+	            if(!(((((_la - 30)) & ~0x1f) === 0 && ((1 << (_la - 30)) & 63) !== 0))) {
+	            this._errHandler.recoverInline(this);
+	            }
+	            else {
+	            	this.Q();
+	            }
+	            this.B(1,2);
+	            break;
+	        case 5:
+	            this.I(38,1,28,0);
+	            _la = this.Z();
+	            while(_la===4) {
+	                this.J(4,30,0);
+	                _la = this.Z();
+	            }
+	            this.A(2);
+	            break;
+	        case 6:
+	            this.A(10);
+	            this.state = 39;
+	            this.arrayJson();
+	            this.X();
+	            var _alt = this._interp.adaptivePredict(this._input,2,this._ctx)
+	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+	                if(_alt===1) {
+	                    this.A(4);
+	                    this.state = 41;
+	                    this.arrayJson();
+	                }
+	                this.X();
+	                _alt = this._interp.adaptivePredict(this._input,2,this._ctx);
+	            }
+	            _la = this.Z();
+	            if(_la===4) {
+	                this.A(4);
+	            }
+	            this.A(11);
+	            break;
+	        case 7:
+	            this.J(5,53,0);
+	            this.X();
+	            var _alt = this._interp.adaptivePredict(this._input,4,this._ctx)
+	            while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+	                if(_alt===1) {
+	                    this.J(4,55,0);
+	                }
+	                this.X();
+	                _alt = this._interp.adaptivePredict(this._input,4,this._ctx);
+	            }
+	            _la = this.Z();
+	            if(_la===4) {
+	                this.A(4);
+	            }
+	            this.A(6);
+	            break;
+	        case 8:
+	            _la = this.Z();
+	            if(_la===13) {
+	                this.A(13);
+	            }
+	            this.A(26);
+	            break;
+	        case 9:
+	            this.A(27);
+	            break;
+	        case 10:
+	            this.A(38);
+	            break;
+	        case 11:
+	            this.A(36);
+	            break;
+	        case 12:
+	            this.A(37);
+	            break;
+	        }
+	        this._ctx.stop = this._input.LT(-1);
+	        this.X();
+	        var _alt = this._interp.adaptivePredict(this._input,13,this._ctx)
+	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+	            if(_alt===1) {
+	                if(this._parseListeners!==null) {
+	                    this.triggerExitRuleEvent();
+	                }
+	                this.X();
+	                var la_ = this._interp.adaptivePredict(this._input,12,this._ctx);
+	                switch(la_) {
+	                case 1:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.state = 76;
+	                    _la = this.Y();
+	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 114688) !== 0))) {
+	                    this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this.Q();
+	                    }
+	                    this.E(78,18);
+	                    break;
+	                case 2:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.state = 79;
+	                    _la = this.Y();
+	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 143360) !== 0))) {
+	                    this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this.Q();
+	                    }
+	                    this.E(81,17);
+	                    break;
+	                case 3:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.state = 82;
+	                    _la = this.Y();
+	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 3932160) !== 0))) {
+	                    this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this.Q();
+	                    }
+	                    this.E(84,16);
+	                    break;
+	                case 4:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.state = 85;
+	                    _la = this.Y();
+	                    if(!(_la===22 || _la===23)) {
+	                    this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this.Q();
+	                    }
+	                    this.E(87,15);
+	                    break;
+	                case 5:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.J(24,90,14);
+	                    break;
+	                case 6:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.J(25,93,13);
+	                    break;
+	                case 7:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.J(8,96,0);
+	                    this.J(9,98,12);
+	                    break;
+	                case 8:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.C(3,38,1);
+	                    _la = this.Z();
+	                    if((((_la) & ~0x1f) === 0 && ((1 << _la) & 4227867810) !== 0) || ((((_la - 32)) & ~0x1f) === 0 && ((1 << (_la - 32)) & 127) !== 0)) {
+	                        this.E(104,0);
+	                        _la = this.Z();
+	                        while(_la===4) {
+	                            this.J(4,106,0);
+	                            _la = this.Z();
+	                        }
+	                    }
+	                    this.A(2);
+	                    break;
+	                case 9:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.state = 115;
+	                    this.X();
+	                    switch(this._input.LA(1)) {
+	                    case 5:
+	                        this.A(5);
+	                        this.X();
+	                        var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
+	                        switch(la_) {
+	                        case 1:
+	                            this.A(38);
+	                            break;
+	                        case 2:
+	                            this.E(118,0);
+	                            break;
+	                        }
+	                        this.A(6);
+	                        break;
+	                    case 3:
+	                        this.A(3);
+	                        this.state = 123;
+	                        this.parameter2();
+	                        break;
+	                    default:
+	                        throw new antlr4.error.NoViableAltException(this);
+	                    }
+	                    break;
+	                case 10:
+	                    localctx = new ExprContext(this, _parentctx, _parentState);
+	                    this.W(localctx, _startState, 1);
+	                    this.A(16);
+	                    break;
+	                }
+	            }
+	            this.X();
+	            _alt = this._interp.adaptivePredict(this._input,13,this._ctx);
+	        }
+	    } catch( error) {
+	        if(error instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = error;
+		        this._errHandler.reportError(this, error);
+		        this._errHandler.recover(this, error);
+		    } else {
+		    	throw error;
+		    }
+	    } finally {
+	        this.unrollRecursionContexts(_parentctx)
+	    }
+	    return localctx;
+	}
+	arrayJson() {
+	    let localctx = new ArrayJsonContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 4, 2);
+	    var _la = 0;
+	    try {
+	        this.X();
+	        switch(this._input.LA(1)) {
+	        case 26:
+	        case 27:
+	            this.enterOuterAlt(localctx, 1);
+	            localctx.key = this.R();
+	            _la = this.Y();
+	            if(!(_la===26 || _la===27)) {
+	                localctx.key = this._errHandler.recoverInline(this);
+	            }
+	            else {
+	            	this.Q();
+	            }
+	            this.J(9,135,0);
+	            break;
+	        case 28:
+	        case 29:
+	        case 30:
+	        case 31:
+	        case 32:
+	        case 33:
+	        case 34:
+	        case 35:
+	        case 36:
+	        case 37:
+	        case 38:
+	            this.enterOuterAlt(localctx, 2);
+	            this.state = 136;
+	            this.parameter2();
+	            this.J(9,138,0);
+	            break;
+	        default:
+	            throw new antlr4.error.NoViableAltException(this);
+	        }
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+	parameter2() {
+	    let localctx = new Parameter2Context(this, this._ctx, this.state);
+	    this.enterRule(localctx, 6, 3);
+	    var _la = 0;
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        _la = this.Y();
+	        if(!(((((_la - 28)) & ~0x1f) === 0 && ((1 << (_la - 28)) & 2047) !== 0))) {
+	        this._errHandler.recoverInline(this);
+	        }
+	        else {
+	        	this.Q();
+	        }
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+}
+class ProgContext extends antlr4.ParserRuleContext {
+    constructor(parser, parent, invokingState) {
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = 0;
+    }
+	accept(visitor) {
+	        return visitor.visitProg(this);
+	}
+}
+class ExprContext extends antlr4.ParserRuleContext {
+    constructor(parser, parent, invokingState) {
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = 1;
+    }
+	accept(visitor) {
+	        return visitor.visitExpr(this);
+	}
+}
+class ArrayJsonContext extends antlr4.ParserRuleContext {
+    constructor(parser, parent, invokingState) {
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = 2;
+        this.key = null;
+    }
+	accept(visitor) {
+	        return visitor.visitArrayJson(this);
+	}
+}
+class Parameter2Context extends antlr4.ParserRuleContext {
+    constructor(parser, parent, invokingState) {
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = 3;
+    }
+	accept(visitor) {
+	        return visitor.visitParameter2(this);
+	}
+}
