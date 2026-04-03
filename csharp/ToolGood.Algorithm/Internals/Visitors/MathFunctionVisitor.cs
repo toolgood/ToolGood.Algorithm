@@ -105,12 +105,12 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var type = context.f.Type;
 			switch(type) {
-				case mathLexer.E: return new Function_ValueNumber(Operand.Create(MathEx.E), "E");
-				case mathLexer.PI: return new Function_ValueNumber(Operand.Create(MathEx.PI), "PI");
+				case mathLexer.E: return new Function_Number_E();
+				case mathLexer.PI: return new Function_Number_PI();
 				case mathLexer.RAND: return new Function_RAND();
 				case mathLexer.GUID: return new Function_GUID();
 				case mathLexer.NOW: return new Function_NOW();
-				case mathLexer.TODAY: 
+				case mathLexer.TODAY:
 				default: return new Function_TODAY();
 			}
 		}
@@ -135,15 +135,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			var text = context.num().GetText();
 			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			if(context.unit == null) { return new Function_ValueNumber(Operand.Create(d), text); }
+			if(context.unit == null) { return new Function_Number(Operand.Create(d)); }
 			var unit = context.unit.Text;
-			return new Function_Number(d, unit, text);
+			return new Function_Number2(d, unit);
 		}
 		public FunctionBase VisitNum(mathParser.NumContext context)
 		{
 			var text = context.GetText();
 			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			return new Function_ValueNumber(Operand.Create(d), text);
+			return new Function_Number(Operand.Create(d));
 		}
 
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)

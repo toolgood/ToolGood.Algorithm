@@ -1,23 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Value
 {
-	internal sealed class Function_Number : Function_0
+	internal class Function_Number_E : Function_0
 	{
-		private readonly Operand _value;
-
-		public Function_Number(Operand value)
-		{
-			_value = value;
-		}
-
-		public override string Name => "Num";
+		private static Operand _Operand=Operand.Create(MathEx.E);
+		public override string Name => "E";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null)
 		{
-			return _value;
+			return _Operand;
 		}
 
 		public override OperandType GetResultType()
@@ -27,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			stringBuilder.Append(_value.NumberValue);
+			stringBuilder.Append("E()");
 		}
 	}
 }
