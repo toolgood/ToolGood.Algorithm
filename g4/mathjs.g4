@@ -3,338 +3,40 @@ grammar mathjs;
 prog: expr EOF;
 
 expr:
-	expr '.' (YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | INT | LEN | LOWER | RMB | T | TRIM | UPPER | VALUE | TIMEVALUE | URLENCODE | URLDECODE | MD5 | SHA1 | SHA256 | SHA512 | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON) '(' ')'			
-	| expr '.' (ISERROR | ISNULL | ISNULLORERROR | LEFT | RIGHT | DATEVALUE | TRIMSTART | TRIMEND | TIMESTAMP) '(' expr? ')'		
-	| expr '.' (EXACT | TEXT | REGEX | ISREGEX | SPLIT | ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS | HAS | HASVALUE) '(' expr ')'	
-	| expr '.' (SUBSTRING | STARTSWITH | ENDSWITH | REMOVESTART | REMOVEEND) '(' expr (',' expr)? ')'	
-	| expr '.' (MID | REGEXREPLACE) '(' expr ',' expr ')'		
-	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'		
-	| expr '.' (INDEXOF | LASTINDEXOF) '(' expr (',' expr (',' expr)?)? ')'	
-	| expr '.' JOIN '(' expr (',' expr)* ')'					
-	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			
+	'(' expr ')'												
+	| expr '.'  PARAMETER '(' (expr (',' expr)*)? ')'			
 	| expr ('[' (PARAMETER | expr) ']' | '.' parameter2)			
-
 	// 运算符优先级 开始
-	| '(' expr ')'												
 	| '!' expr													
 	| expr '%'													
-	| expr op = (OPMUL | OPDIV | OPMOD) expr							
-	| expr op = (OPADD | OPSUB | OPCAT) expr							
-	| expr op = (OPGT | OPGE | OPLT | OPLE) expr					
-	| expr op = (OPNE | OPEQ ) expr	
-	| expr op = OPAND expr										
-	| expr op = OPOR expr										
-	| expr '?' expr ':' expr									
-
+	| expr (OPMUL | OPDIV | OPMOD) expr							
+	| expr (OPADD | OPSUB | OPCAT) expr							
+	| expr (OPGT | OPGE | OPLT | OPLE) expr					
+	| expr (OPNE | OPEQ ) expr	
+	| expr OPAND expr										
+	| expr OPOR expr										
+	| expr '?' expr ':' expr				
 	// 运算符优先级 结束
+
 	| (TRUE | FALSE) ('(' ')')?								
 	| (RAND | NOW | TODAY | GUID | E | PI) '(' ')'			
-	| (ERROR | YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | ISNUMBER | ISTEXT | ISNONTEXT | ISLOGICAL | ISEVEN | ISODD | NOT | ABS | SIGN | SQRT | INT | DEGREES | RADIANS | COS | COSH | SIN | SINH | TAN | TANH | COT | COTH | CSC | CSCH | SEC | SECH | ACOS | ACOSH | ASIN | ASINH | ATAN | ATANH | ACOT | ACOTH | EVEN | ODD | FACT | FACTDOUBLE | EXP | LN | LOG10 | SQRTPI | ERF | ERFC | ARABIC | ASC | JIS | CHAR | CLEAN | CODE | UNICHAR | UNICODE | LEN | LOWER | PROPER | TRIM | UPPER | VALUE | TIMEVALUE | NORMSDIST | NORMSINV | FISHER | FISHERINV | GAMMALN | URLENCODE | URLDECODE | HTMLENCODE | HTMLDECODE | BASE64TOTEXT | BASE64URLTOTEXT | TEXTTOBASE64 | TEXTTOBASE64URL | ISNULLOREMPTY | ISNULLORWHITESPACE | JSON | T | RMB | MD5 | SHA1 | SHA256 | SHA512) '(' expr ')'	
-	| (DEC2BIN | DEC2HEX | DEC2OCT | HEX2BIN | HEX2DEC | HEX2OCT | OCT2BIN | OCT2DEC | OCT2HEX | BIN2OCT | BIN2DEC | BIN2HEX | ISERROR | ISNULL | ISNULLORERROR | TRUNC | ROUND | CEILING | FLOOR | LOG | DELTA | GESTEP | ROMAN  | LEFT | RIGHT | SEARCH | WEEKDAY | WEEKNUM | IRR | TRIMSTART | TRIMEND | TIMESTAMP | PARAM | DATEVALUE) '(' expr (',' expr)? ')'	
-	| (DAYS360 | NETWORKDAYS | WORKDAY | AVERAGEIF | SUMIF | XIRR | IF | IFERROR | TIME | YEARFRAC | SUBSTRING | STARTSWITH | ENDSWITH | FIND | RANK) '(' expr ',' expr (',' expr)? ')'	
-	| (SUBSTITUTE | REPLACE) '(' expr ',' expr ',' expr (',' expr)? ')'	
-	| (DB | DDB) '(' expr ',' expr ',' expr ',' expr (',' expr)? ')'	
-	| (FIXED | REMOVESTART | REMOVEEND) '(' expr (',' expr (',' expr)?)? ')'	
-	| (ARRAY | AND | OR | XOR | GCD | LCM | MULTINOMIAL | PRODUCT | SUMSQ | SUMPRODUCT | CONCATENATE | MAX | MEDIAN | MIN | MODE | AVERAGE | GEOMEAN | HARMEAN | COUNT | SUM | AVEDEV | STDEV | STDEVP | DEVSQ | VAR | VARP | NPV) '(' expr (',' expr)* ')'	
-	| (QUOTIENT | MOD | COMBIN | PERMUT | ATAN2 | ROUNDDOWN | ROUNDUP | MROUND | RANDBETWEEN | POWER | BESSELI | BESSELJ | BESSELK | BESSELY | SUMX2MY2 | SUMX2PY2 | SUMXMY2 | EXACT | REPT | TEXT | DAYS | EDATE | EOMONTH | QUARTILE | LARGE | SMALL | PERCENTILE | PERCENTRANK | COVAR | COVARIANCES | TINV | REGEX | ISREGEX | HMACMD5 | HMACSHA1 | HMACSHA256 | HMACSHA512 | SPLIT | LOOKCEILING | LOOKFLOOR | ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS | HAS | HASVALUE | INTERCEPT | SLOPE | CORREL | PEARSON | COUNTIF) '(' expr ',' expr ')'	
-	| (FORECAST | NORMINV | BETADIST | BETAINV | EXPONDIST | FDIST | FINV | GAMMAINV | LOGINV | XNPV | MIRR | SLN | MID | DATEDIF | REGEXREPLACE | LOGNORMDIST | NEGBINOMDIST | POISSON | TDIST) '(' expr ',' expr ',' expr ')'	
-	| (NORMDIST | BINOMDIST | GAMMADIST | HYPGEOMDIST | WEIBULL | SYD | SERIESSUM) '(' expr ',' expr ',' expr ',' expr ')'	
-	| (PMT | PV | FV | NPER) '(' expr ',' expr ',' expr (',' expr (',' expr)?)? ')'	
-	| (RATE | DATE) '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)?)? ')'	
-	| (PPMT | IPMT) '(' expr ',' expr ',' expr ',' expr (',' expr (',' expr)?)? ')' 	
-	| (INDEXOF | LASTINDEXOF) '(' expr ',' expr (',' expr (',' expr)?)? ')'	
-	| JOIN '(' expr ',' expr (',' expr)* ')'					
-	| IFS '(' expr ',' expr (',' expr ',' expr)* ')'			
-	| SWITCH '(' expr ',' expr ',' expr (',' expr)* ')'			
-	| '{' arrayJson (',' arrayJson)* ','* '}'					
-	| '[' expr (',' expr)* ','* ']'								
-	| PARAMETER '(' (expr (',' expr)*)? ')'						
-	| PARAMETER													
-	| num unit=(UNIT | T)?										
+	| PARAMETER '(' expr (',' expr)* ')'						
+	| '{' arrayJson (',' arrayJson)* ','? '}'					
+	| '[' expr (',' expr)* ','? ']'		
+	| OPSUB? NUM										
 	| STRING													
+	| PARAMETER								
 	| ALGORITHMVERSION											
 	| NULL														
 	;
-
-num: OPSUB? NUM;
 
 arrayJson: key=(NUM | STRING) ':' expr
 	| parameter2 ':' expr;
 
 parameter2:
-	E
-	| IF
-	| IFS
-	| SWITCH
-	| IFERROR
-	| ISNUMBER
-	| ISTEXT
-	| ISERROR
-	| ISNONTEXT
-	| ISLOGICAL
-	| ISEVEN
-	| ISODD
-	| ISNULL
-	| ISNULLORERROR
-	| AND
-	| OR
-	| XOR
-	| NOT
-	| TRUE
-	| FALSE
-	| PI
-	| DEC2BIN
-	| DEC2HEX
-	| DEC2OCT
-	| HEX2BIN
-	| HEX2DEC
-	| HEX2OCT
-	| OCT2BIN
-	| OCT2DEC
-	| OCT2HEX
-	| BIN2OCT
-	| BIN2DEC
-	| BIN2HEX
-	| ARRAY
-	| ABS
-	| QUOTIENT
-	| MOD
-	| SIGN
-	| SQRT
-	| TRUNC
-	| INT
-	| GCD
-	| LCM
-	| COMBIN
-	| PERMUT
-	| DEGREES
-	| RADIANS
-	| COS
-	| COSH
-	| SIN
-	| SINH
-	| TAN
-	| TANH
-	| COT
-	| COTH
-	| CSC
-	| CSCH
-	| SEC
-	| SECH
-	| ACOS
-	| ACOSH
-	| ASIN
-	| ASINH
-	| ATAN
-	| ATANH
-	| ACOT
-	| ACOTH
-	| ATAN2
-	| ROUND
-	| ROUNDDOWN
-	| ROUNDUP
-	| CEILING
-	| FLOOR
-	| EVEN
-	| ODD
-	| MROUND
-	| RAND
-	| RANDBETWEEN
-	| FACT
-	| FACTDOUBLE
-	| POWER
-	| EXP
-	| LN
-	| LOG
-	| LOG10
-	| MULTINOMIAL
-	| PRODUCT
-	| SQRTPI
-	| ERF
-	| ERFC
-	| BESSELI
-	| BESSELJ
-	| BESSELK
-	| BESSELY
-	| DELTA
-	| GESTEP
-	| SUMSQ
-	| SUMPRODUCT
-	| SUMX2MY2
-	| SUMX2PY2
-	| SUMXMY2
-	| ARABIC
-	| ROMAN
-	| SERIESSUM
-	| RANK
-	| FORECAST
-	| INTERCEPT
-	| SLOPE
-	| CORREL
-	| PEARSON
-	| YEARFRAC
-	| ASC
-	| JIS
-	| CHAR
-	| CLEAN
-	| CODE
-	| UNICHAR
-	| UNICODE
-	| CONCATENATE
-	| EXACT
-	| FIND
-	| FIXED
-	| LEFT
-	| LEN
-	| LOWER
-	| MID
-	| PROPER
-	| REPLACE
-	| REPT
-	| RIGHT
-	| RMB
-	| SEARCH
-	| SUBSTITUTE
-	| T
-	| TEXT
-	| TRIM
-	| UPPER
-	| VALUE
-	| DATEVALUE
-	| TIMEVALUE
-	| DATE
-	| TIME
-	| NOW
-	| TODAY
-	| YEAR
-	| MONTH
-	| DAY
-	| HOUR
-	| MINUTE
-	| SECOND
-	| WEEKDAY
-	| DATEDIF
-	| DAYS
-	| DAYS360
-	| EDATE
-	| EOMONTH
-	| NETWORKDAYS
-	| WORKDAY
-	| WEEKNUM
-	| MAX
-	| MEDIAN
-	| MIN
-	| QUARTILE
-	| MODE
-	| LARGE
-	| SMALL
-	| PERCENTILE
-	| PERCENTRANK
-	| AVERAGE
-	| AVERAGEIF
-	| GEOMEAN
-	| HARMEAN
-	| COUNT
-	| COUNTIF
-	| SUM
-	| SUMIF
-	| AVEDEV
-	| STDEV
-	| STDEVP
-	| COVAR
-	| COVARIANCES
-	| DEVSQ
-	| VAR
-	| VARP
-	| NORMDIST
-	| NORMINV
-	| NORMSDIST
-	| NORMSINV
-	| BETADIST
-	| BETAINV
-	| BINOMDIST
-	| EXPONDIST
-	| FDIST
-	| FINV
-	| FISHER
-	| FISHERINV
-	| GAMMADIST
-	| GAMMAINV
-	| GAMMALN
-	| HYPGEOMDIST
-	| LOGINV
-	| LOGNORMDIST
-	| NEGBINOMDIST
-	| POISSON
-	| TDIST
-	| TINV
-	| WEIBULL
-	| URLENCODE
-	| URLDECODE
-	| HTMLENCODE
-	| HTMLDECODE
-	| BASE64TOTEXT
-	| BASE64URLTOTEXT
-	| TEXTTOBASE64
-	| TEXTTOBASE64URL
-	| REGEX
-	| REGEXREPLACE
-	| ISREGEX
-	| GUID
-	| MD5
-	| SHA1
-	| SHA256
-	| SHA512
-	| HMACMD5
-	| HMACSHA1
-	| HMACSHA256
-	| HMACSHA512
-	| TRIMSTART
-	| TRIMEND
-	| INDEXOF
-	| LASTINDEXOF
-	| SPLIT
-	| JOIN
-	| SUBSTRING
-	| STARTSWITH
-	| ENDSWITH
-	| ISNULLOREMPTY
-	| ISNULLORWHITESPACE
-	| REMOVESTART
-	| REMOVEEND
-	| JSON
-	| LOOKCEILING
-	| LOOKFLOOR
-	| ADDYEARS
-	| ADDMONTHS
-	| ADDDAYS
-	| ADDHOURS
-	| ADDMINUTES
-	| ADDSECONDS
-	| TIMESTAMP
-	| PMT
-	| PPMT
-	| IPMT
-	| PV
-	| FV
-	| NPER
-	| RATE
-	| NPV
-	| XNPV
-	| IRR
-	| MIRR
-	| XIRR
-	| SLN
-	| DB
-	| DDB
-	| SYD
-	| NULL
-	| ERROR
-	| UNIT
-	| HAS
-	| HASVALUE
+	E | PI | TRUE | FALSE | NULL
+	| RAND | NOW | TODAY | GUID
 	| ALGORITHMVERSION
-	| PARAM
 	| PARAMETER;
  
 OPADD: '+';
@@ -352,37 +54,18 @@ OPEQ: '=' | '==' | '===';
 OPAND: '&&';
 OPOR: '||';
 
-NUM:
-	'0' ('.' [0-9]+)?
-	| [1-9][0-9]* ('.' [0-9]+)?
-	| ('0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?) 'E' [+-]? [0-9][0-9]?;
+NUM: [0-9]+ ('.' [0-9]+)? ('E' [+-]? [0-9]+)?
+	| [0-9]+ ('.' [0-9]+)? ('M'
+		| 'KM'	| 'DM'	| 'CM'	| 'MM'
+		| 'M2'	| 'KM2'	| 'DM2'	| 'CM2'	| 'MM2'
+		| 'M3'	| 'KM3'	| 'DM3'	| 'CM3'	| 'MM3'	| 'L'	| 'ML'
+		| 'G'	| 'KG' | 'T')
+	;
+
 STRING:
-	'\'' (~'\'' | '\\\'')* '\''
-	| '"' ( ~'"' | '\\"')* '"'
-	| '`' ( ~'`' | '\\`')* '`';
-
-
-UNIT:
-	'M'
-	| 'KM'
-	| 'DM'
-	| 'CM'
-	| 'MM'
-	| 'M2'
-	| 'KM2'
-	| 'DM2'
-	| 'CM2'
-	| 'MM2'
-	| 'M3'
-	| 'KM3'
-	| 'DM3'
-	| 'CM3'
-	| 'MM3'
-	| 'L'
-	| 'ML'
-	| 'G'
-	| 'KG';
-
+	'\'' (~['\\] | '\\' .)* '\''
+	| '"' (~["\\] | '\\' .)* '"'
+	| '`' (~[`\\] | '\\' .)* '`';
 
 // BOOL_fun
 TRUE: 'TRUE' | 'YES';
@@ -396,303 +79,6 @@ GUID: 'GUID';
 E: 'E';
 PI: 'PI';
 
-// ONE_arg_fun
-ERROR: 'ERROR';
-YEAR: 'YEAR';
-MONTH: 'MONTH';
-DAY: 'DAY';
-HOUR: 'HOUR';
-MINUTE: 'MINUTE';
-SECOND: 'SECOND';
-ISNUMBER: 'ISNUMBER';
-ISTEXT: 'ISTEXT';
-ISNONTEXT: 'ISNONTEXT';
-ISLOGICAL: 'ISLOGICAL';
-ISEVEN: 'ISEVEN';
-ISODD: 'ISODD';
-NOT: 'NOT';
-ABS: 'ABS';
-SIGN: 'SIGN';
-SQRT: 'SQRT';
-INT: 'INT';
-DEGREES: 'DEGREES';
-RADIANS: 'RADIANS';
-COS: 'COS';
-COSH: 'COSH';
-SIN: 'SIN';
-SINH: 'SINH';
-TAN: 'TAN';
-TANH: 'TANH';
-COT: 'COT';
-COTH: 'COTH';
-CSC: 'CSC';
-CSCH: 'CSCH';
-SEC: 'SEC';
-SECH: 'SECH';
-ACOS: 'ACOS';
-ACOSH: 'ACOSH';
-ASIN: 'ASIN';
-ASINH: 'ASINH';
-ATAN: 'ATAN';
-ATANH: 'ATANH';
-ACOT: 'ACOT';
-ACOTH: 'ACOTH';
-EVEN: 'EVEN';
-ODD: 'ODD';
-FACT: 'FACT';
-FACTDOUBLE: 'FACTDOUBLE';
-EXP: 'EXP';
-LN: 'LN';
-LOG10: 'LOG10';
-SQRTPI: 'SQRTPI';
-ERF: 'ERF';
-ERFC: 'ERFC';
-ARABIC: 'ARABIC';
-ASC: 'ASC';
-JIS: 'JIS' | 'WIDECHAR';
-CHAR: 'CHAR';
-CLEAN: 'CLEAN';
-CODE: 'CODE';
-UNICHAR: 'UNICHAR';
-UNICODE: 'UNICODE';
-LEN: 'LEN';
-LOWER: 'LOWER' | 'TOLOWER';
-PROPER: 'PROPER';
-TRIM: 'TRIM';
-UPPER: 'UPPER' | 'TOUPPER';
-VALUE: 'VALUE';
-TIMEVALUE: 'TIMEVALUE';
-NORMSDIST: 'NORMSDIST' | 'NORM.S.DIST';
-NORMSINV: 'NORMSINV' | 'NORM.S.INV';
-FISHER: 'FISHER';
-FISHERINV: 'FISHERINV';
-GAMMALN: 'GAMMALN' | 'GAMMALN.PRECISE';
-URLENCODE: 'URLENCODE';
-URLDECODE: 'URLDECODE';
-HTMLENCODE: 'HTMLENCODE';
-HTMLDECODE: 'HTMLDECODE';
-BASE64TOTEXT: 'BASE64TOTEXT';
-BASE64URLTOTEXT: 'BASE64URLTOTEXT';
-TEXTTOBASE64: 'TEXTTOBASE64';
-TEXTTOBASE64URL: 'TEXTTOBASE64URL';
-ISNULLOREMPTY: 'ISNULLOREMPTY';
-ISNULLORWHITESPACE: 'ISNULLORWHITESPACE';
-JSON: 'JSON';
-T: 'T';
-RMB: 'RMB';
-MD5: 'MD5';
-SHA1: 'SHA1';
-SHA256: 'SHA256';
-SHA512: 'SHA512';
-
-// ONE_TWO_args_fun
-DEC2BIN: 'DEC2BIN';
-DEC2HEX: 'DEC2HEX';
-DEC2OCT: 'DEC2OCT';
-HEX2BIN: 'HEX2BIN';
-HEX2DEC: 'HEX2DEC';
-HEX2OCT: 'HEX2OCT';
-OCT2BIN: 'OCT2BIN';
-OCT2DEC: 'OCT2DEC';
-OCT2HEX: 'OCT2HEX';
-BIN2OCT: 'BIN2OCT';
-BIN2DEC: 'BIN2DEC';
-BIN2HEX: 'BIN2HEX';
-ISERROR: 'ISERROR';
-ISNULL: 'ISNULL';
-ISNULLORERROR: 'ISNULLORERROR';
-TRUNC: 'TRUNC';
-ROUND: 'ROUND';
-CEILING: 'CEILING';
-FLOOR: 'FLOOR';
-LOG: 'LOG';
-DELTA: 'DELTA';
-GESTEP: 'GESTEP';
-ROMAN: 'ROMAN';
-LEFT: 'LEFT';
-RIGHT: 'RIGHT';
-SEARCH: 'SEARCH';
-WEEKDAY: 'WEEKDAY';
-WEEKNUM: 'WEEKNUM';
-IRR: 'IRR';
-TRIMSTART: 'TRIMSTART' | 'LTRIM';
-TRIMEND: 'TRIMEND' | 'RTRIM';
-TIMESTAMP: 'TIMESTAMP';
-PARAM: 'PARAM' | 'PARAMETER' | 'GETPARAMETER';
-DATEVALUE: 'DATEVALUE';
-
-// TWO_THREE_args_fun
-DAYS360: 'DAYS360';
-NETWORKDAYS: 'NETWORKDAYS';
-WORKDAY: 'WORKDAY';
-AVERAGEIF: 'AVERAGEIF';
-SUMIF: 'SUMIF';
-XIRR: 'XIRR';
-IF: 'IF';
-IFERROR: 'IFERROR';
-TIME: 'TIME';
-YEARFRAC: 'YEARFRAC';
-SUBSTRING: 'SUBSTRING';
-STARTSWITH: 'STARTSWITH';
-ENDSWITH: 'ENDSWITH';
-FIND: 'FIND';
-RANK: 'RANK';
-
-// THREE_FOUR_args_fun
-SUBSTITUTE: 'SUBSTITUTE';
-REPLACE: 'REPLACE';
-
-// FOUR_FIVE_args_fun
-DB: 'DB';
-DDB: 'DDB';
-
-// ONE_TO_THREE_args_fun
-FIXED: 'FIXED';
-REMOVESTART: 'REMOVESTART';
-REMOVEEND: 'REMOVEEND';
-
-// ONE_TO_N_args_fun
-ARRAY: 'ARRAY';
-AND: 'AND';
-OR: 'OR';
-XOR: 'XOR';
-GCD: 'GCD';
-LCM: 'LCM';
-MULTINOMIAL: 'MULTINOMIAL';
-PRODUCT: 'PRODUCT';
-SUMSQ: 'SUMSQ';
-SUMPRODUCT: 'SUMPRODUCT';
-CONCATENATE: 'CONCATENATE' | 'CONCAT';
-MAX: 'MAX';
-MEDIAN: 'MEDIAN';
-MIN: 'MIN';
-MODE: 'MODE';
-AVERAGE: 'AVERAGE';
-GEOMEAN: 'GEOMEAN';
-HARMEAN: 'HARMEAN';
-COUNT: 'COUNT';
-SUM: 'SUM';
-AVEDEV: 'AVEDEV';
-STDEV: 'STDEV' | 'STDEV.S';
-STDEVP: 'STDEVP' | 'STDEV.P';
-DEVSQ: 'DEVSQ';
-VAR: 'VAR' | 'VAR.S';
-VARP: 'VARP' | 'VAR.P';
-NPV: 'NPV';
-
-// TWO_args_fun
-QUOTIENT: 'QUOTIENT';
-MOD: 'MOD';
-COMBIN: 'COMBIN';
-PERMUT: 'PERMUT';
-ATAN2: 'ATAN2';
-ROUNDDOWN: 'ROUNDDOWN';
-ROUNDUP: 'ROUNDUP';
-MROUND: 'MROUND';
-RANDBETWEEN: 'RANDBETWEEN';
-POWER: 'POWER';
-BESSELI: 'BESSELI';
-BESSELJ: 'BESSELJ';
-BESSELK: 'BESSELK';
-BESSELY: 'BESSELY';
-SUMX2MY2: 'SUMX2MY2';
-SUMX2PY2: 'SUMX2PY2';
-SUMXMY2: 'SUMXMY2';
-EXACT: 'EXACT';
-REPT: 'REPT';
-TEXT: 'TEXT';
-DAYS: 'DAYS';
-EDATE: 'EDATE';
-EOMONTH: 'EOMONTH';
-QUARTILE: 'QUARTILE';
-LARGE: 'LARGE';
-SMALL: 'SMALL';
-PERCENTILE: 'PERCENTILE' | 'PERCENTILE.INC';
-PERCENTRANK: 'PERCENTRANK' | 'PERCENTRANK.INC';
-COVAR: 'COVAR' | 'COVARIANCE.P';
-COVARIANCES: 'COVARIANCE.S';
-TINV: 'TINV' | 'T.INV';
-REGEX: 'REGEX';
-ISREGEX: 'ISREGEX' | 'ISMATCH';
-HMACMD5: 'HMACMD5';
-HMACSHA1: 'HMACSHA1';
-HMACSHA256: 'HMACSHA256';
-HMACSHA512: 'HMACSHA512';
-SPLIT: 'SPLIT';
-LOOKCEILING: 'LOOKCEILING';
-LOOKFLOOR: 'LOOKFLOOR';
-ADDYEARS: 'ADDYEARS';
-ADDMONTHS: 'ADDMONTHS';
-ADDDAYS: 'ADDDAYS';
-ADDHOURS: 'ADDHOURS';
-ADDMINUTES: 'ADDMINUTES';
-ADDSECONDS: 'ADDSECONDS';
-HAS: 'HAS' | 'HASKEY' | 'CONTAINS' | 'CONTAINSKEY';
-HASVALUE: 'HASVALUE' | 'CONTAINSVALUE';
-INTERCEPT: 'INTERCEPT';
-SLOPE: 'SLOPE';
-CORREL: 'CORREL';
-PEARSON: 'PEARSON';
-COUNTIF: 'COUNTIF';
-
-// THREE_args_fun
-FORECAST: 'FORECAST';
-NORMINV: 'NORMINV' | 'NORM.INV';
-BETADIST: 'BETADIST' | 'BETA.DIST';
-BETAINV: 'BETAINV' | 'BETA.INV';
-EXPONDIST: 'EXPONDIST' | 'EXPON.DIST';
-FDIST: 'FDIST' | 'F.DIST';
-FINV: 'FINV' | 'F.INV';
-GAMMAINV: 'GAMMAINV' | 'GAMMA.INV';
-LOGINV: 'LOGINV' | 'LOGNORM.INV';
-XNPV: 'XNPV';
-MIRR: 'MIRR';
-SLN: 'SLN';
-MID: 'MID';
-DATEDIF: 'DATEDIF';
-REGEXREPLACE: 'REGEXREPLACE';
-LOGNORMDIST: 'LOGNORMDIST' | 'LOGNORM.DIST';
-NEGBINOMDIST: 'NEGBINOMDIST' | 'NEGBINOM.DIST';
-POISSON: 'POISSON' | 'POISSON.DIST';
-TDIST: 'TDIST' | 'T.DIST';
-
-// FOUR_args_fun
-NORMDIST: 'NORMDIST' | 'NORM.DIST';
-BINOMDIST: 'BINOMDIST' | 'BINOM.DIST';
-GAMMADIST: 'GAMMADIST' | 'GAMMA.DIST';
-HYPGEOMDIST: 'HYPGEOMDIST' | 'HYPGEOM.DIST';
-WEIBULL: 'WEIBULL';
-SYD: 'SYD';
-SERIESSUM: 'SERIESSUM';
-
-// THREE_TO_FIVE_args_fun
-PMT: 'PMT';
-PV: 'PV';
-FV: 'FV';
-NPER: 'NPER';
-
-// THREE_TO_SIX_args_fun
-RATE: 'RATE';
-DATE: 'DATE';
-
-// FOUR_TO_SIX_args_fun
-PPMT: 'PPMT';
-IPMT: 'IPMT';
-
-// INDEX_fun
-INDEXOF: 'INDEXOF';
-LASTINDEXOF: 'LASTINDEXOF';
-
-// JOIN_fun
-JOIN: 'JOIN';
-
-// IFS_fun
-IFS: 'IFS';
-
-// SWITCH_fun
-SWITCH: 'SWITCH';
-
-// Version_fun
 ALGORITHMVERSION: 'ALGORITHMVERSION' | 'ENGINEVERSION';
 NULL: 'NULL';
 PARAMETER: ([A-Z_] | FullWidthLetter) ( [A-Z0-9_] | FullWidthLetter	)*;
@@ -713,6 +99,6 @@ fragment FullWidthLetter:
 	// | '\u10000'..'\u1F9FF' //not support four bytes chars | '\u20000'..'\u2FA1F'
 	;
 
-WS: [ \t\r\n\u000C]+ -> skip;
+WS: [ \t\r\n\f]+ -> skip;
 COMMENT: '/*' .*? '*/' -> skip;
 LINE_COMMENT: '//' ~[\r\n]* -> skip;
