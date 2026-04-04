@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.UnitConversion
 			{"imperial quart",0.879877m }, {"imperial qt",0.879877m },
 			{"US pint",2.11337643513819m }, {"US pt",2.11337643513819m },{"US p",2.11337643513819m },
 			{"US gallon",0.264172m }, {"US gal",0.264172m },
-			{"US quart",2.11338m }, {"US qt",2.11338m },
+			{"US quart",1000000000m / 946352946 }, {"US qt",1000000000m / 946352946 },
 		};
 
 		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)
