@@ -1,34 +1,37 @@
-﻿namespace ToolGood.Algorithm.UnitConversion
+﻿using System;
+using System.Collections.Generic;
+
+namespace ToolGood.Algorithm.UnitConversion
 {
-    internal sealed class AreaConverter : BaseUnitConverter
+    internal sealed class AreaConverter 
     {
-        private static UnitFactors units = new UnitFactors()
-        {
-            { new UnitFactorSynonyms("m²", "m2", "square metre","square meter", "centiare","平方米","平方公尺"), 1 },
-            { new UnitFactorSynonyms("km²", "km2", "square kilometre","square kilometer","平方千米"), 0.000001m },
-            { new UnitFactorSynonyms("dm²", "dm2", "square decimetre","square decimeter","平方分米"), 100 },
-            { new UnitFactorSynonyms("cm²", "cm2", "square centimetre","square centimeter","平方厘米"), 10000 },
-            { new UnitFactorSynonyms("mm²", "mm2", "square millimetre", "square millimeter","平方毫米"), 1000000 },
-            { new UnitFactorSynonyms("ft²", "ft2", "square foot", "square feet", "sq ft","平方英尺"), 1m /  0.3048m /  0.3048m },
-            { new UnitFactorSynonyms("yd²", "yd2", "sq yd", "square yard","平方码"), 1m /  0.9144m /  0.9144m},
-            { new UnitFactorSynonyms("a", "are"), 0.01m },
-            { new UnitFactorSynonyms("ha", "hectare","公顷"), 0.0001m },
-            { new UnitFactorSynonyms("in²", "in2", "sq in", "square inch","平方英寸"), 1m / 0.00064516m },
-            { new UnitFactorSynonyms("mi²", "mi2", "sq mi", "square mile","平方英里"), 1m / 2589988.110336m },
-            { new UnitFactorSynonyms( "亩"), 1m / 666.667m },
-        };
+		private static Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
+			{"m²",1 }, {"m2",1 }, {"square metre",1 },{"square meter",1 },{"centiare",1 },{"平方米",1 },{"平方公尺",1 },
+			{"km²",0.000001m }, {"km2",0.000001m }, {"square kilometre",0.000001m },{"square kilometer",0.000001m },{"平方千米",0.000001m },
+			{"dm²",100 }, {"dm2",100 }, {"square decimetre",100 },{"square decimeter",100 },{"平方分米",100 },
+			{"cm²",10000 }, {"cm2",10000 }, {"square centimetre",10000 },{"square centimeter",10000 },{"平方厘米",10000 },
+			{"mm²",1000000 }, {"mm2",1000000 }, {"square millimetre",1000000 },{"square millimeter",1000000 },{"平方毫米",1000000 },
+			{"ft²",1m /  0.3048m /  0.3048m }, {"ft2",1m /  0.3048m /  0.3048m }, {"square foot",1m /  0.3048m /  0.3048m },{"square feet",1m /  0.3048m /  0.3048m },{"sq ft",1m /  0.3048m /  0.3048m },{"平方英尺",1m /  0.3048m /  0.3048m },
+			{"yd²",1m /  0.9144m /  0.9144m }, {"yd2",1m /  0.9144m /  0.9144m }, {"sq yd",1m /  0.9144m /  0.9144m },{"square yard",1m /  0.9144m /  0.9144m },{"平方码",1m /  0.9144m /  0.9144m },
+			{"a",0.01m  },{"are",0.01m  },
+			{"ha",0.0001m }, {"hectare",0.0001m }, {"公顷",0.0001m },
+			{"in²",1m / 0.00064516m }, {"in2",1m / 0.00064516m }, {"sq in",1m / 0.00064516m },{"square inch",1m / 0.00064516m },{"平方英寸",1m / 0.00064516m },
+			{"mi²",1m / 2589988.110336m }, {"mi2",1m / 2589988.110336m }, {"sq mi",1m / 2589988.110336m },{"square mile",1m / 2589988.110336m },{"平方英里",1m / 2589988.110336m },
+			{"亩",1m / 666.667m  },
+		};
 
-        public AreaConverter(string leftUnit, string rightUnit)
-        {
-            Instantiate(units, leftUnit, rightUnit);
-        }
+		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)
+		{
+			if(units2.TryGetValue(leftSynonym, out decimal l)) {
+				if(units2.TryGetValue(rightSynonym, out decimal r)) {
+					right = left / l * r;
+					return true;
+				}
+			}
+			right = decimal.Zero;
+			return false;
+		}
 
-        public static bool Exists(string leftSynonym, string rightSynonym)
-        {
-            if (units.FindUnit(leftSynonym) != null) {
-                return units.FindUnit(rightSynonym) != null;
-            }
-            return false;
-        }
+	 
     }
 }

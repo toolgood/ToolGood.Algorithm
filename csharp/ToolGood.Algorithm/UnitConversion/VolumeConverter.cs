@@ -1,35 +1,39 @@
-﻿namespace ToolGood.Algorithm.UnitConversion
+﻿using System;
+using System.Collections.Generic;
+
+namespace ToolGood.Algorithm.UnitConversion
 {
-    internal sealed class VolumeConverter : BaseUnitConverter
+    internal sealed class VolumeConverter 
     {
-        private static UnitFactors units = new UnitFactors()
-        {
-            { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre", "cubic decimeter","升","立方分米"), 1 },
-            { new UnitFactorSynonyms("m³", "m3", "cubic metre","cubic meter", "立方米"), 0.001m },
-            { new UnitFactorSynonyms("km³", "km3", "cubic kilometre","cubic kilometer", "立方千米"), 0.001m* 0.001m* 0.001m* 0.001m },
-            { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre","cubic centimeter","立方厘米","毫升"), 1000 },
-            { new UnitFactorSynonyms("mm³", "mm3", "cubic millimetre","cubic millimeter", "立方毫米"), 1000000 },
-            { new UnitFactorSynonyms("ft³", "ft3", "cubic foot", "cubic feet", "cu ft","立方英尺"), 0.0353147m },
-            { new UnitFactorSynonyms("in³", "in3", "cu in", "cubic inch","立方英寸"), 61.0237m },
-            { new UnitFactorSynonyms("imperial pint", "imperial pt", "imperial p"), 1.75975m },
-            { new UnitFactorSynonyms("imperial gallon", "imperial gal"), 0.219969m },
-            { new UnitFactorSynonyms("imperial quart", "imperial qt"), 0.879877m },
-            { new UnitFactorSynonyms("US pint", "US pt", "US p"), 2.11337643513819m },
-            { new UnitFactorSynonyms("US gallon", "US gal"), 0.264172m },
-            { new UnitFactorSynonyms("US quart", "US qt"), 2.11338m },
-        };
+		private static Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
+			{"l",1 },{"lt",1 },{"ltr",1 },{"liter",1 },{"litre",1 },
+			{"dm³",1 }, {"dm3",1 }, {"cubic decimetre",1 },{"cubic decimeter",1 },{"升",1 },{"立方分米",1 },
+			{"m³",0.001m }, {"m3",0.001m }, {"cubic metre",0.001m },{"cubic meter",0.001m },{"立方米",0.001m },
+			{"km³",0.001m* 0.001m* 0.001m* 0.001m }, {"km3",0.001m* 0.001m* 0.001m* 0.001m }, {"cubic kilometre",0.001m* 0.001m* 0.001m* 0.001m },{"cubic kilometer",0.001m* 0.001m* 0.001m* 0.001m },{"立方千米",0.001m* 0.001m* 0.001m* 0.001m },
+			{"cm³",1000 }, {"cm3",1000 }, {"cubic centimetre",1000 },{"cubic centimeter",1000 },{"立方厘米",1000 },{"毫升",1000 },{"ml",1000 },
+			{"mm³",1000000 }, {"mm3",1000000 }, {"cubic millimetre",1000000 },{"cubic millimeter",1000000 },{"立方毫米",1000000 },
+			{"ft³",0.0353147m }, {"ft3",0.0353147m }, {"cubic foot",0.0353147m },{"cubic feet",0.0353147m },{"立方英尺",0.0353147m },{"cu ft",0.0353147m },
+			{"in³",61.0237m }, {"in3",61.0237m }, {"cubic in",61.0237m },{"cubic inch",61.0237m },{"立方英寸",61.0237m },
 
-        public VolumeConverter(string leftUnit, string rightUnit)
-        {
-            Instantiate(units, leftUnit, rightUnit);
-        }
+			{"imperial pint",1.75975m }, {"imperial pt",1.75975m }, {"imperial p",1.75975m },
+			{"imperial gallon",0.219969m }, {"imperial gal",0.219969m },
+			{"imperial quart",0.879877m }, {"imperial qt",0.879877m },
+			{"US pint",2.11337643513819m }, {"US pt",2.11337643513819m },{"US p",2.11337643513819m },
+			{"US gallon",0.264172m }, {"US gal",0.264172m },
+			{"US quart",2.11338m }, {"US qt",2.11338m },
+		};
 
-        public static bool Exists(string leftSynonym, string rightSynonym)
-        {
-            if (units.FindUnit(leftSynonym) != null) {
-                return units.FindUnit(rightSynonym) != null;
-            }
-            return false;
-        }
+		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)
+		{
+			if(units2.TryGetValue(leftSynonym, out decimal l)) {
+				if(units2.TryGetValue(rightSynonym, out decimal r)) {
+					right = left / l * r;
+					return true;
+				}
+			}
+			right = decimal.Zero;
+			return false;
+		}
+		 
     }
 }

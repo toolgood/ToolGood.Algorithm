@@ -105,17 +105,18 @@ namespace ToolGood.Algorithm
 
 		private static decimal? TryConvert(decimal src, string srcUnit, string tarUnit)
 		{
-			if(DistanceConverter.Exists(srcUnit, tarUnit)) {
-				return new DistanceConverter(srcUnit, tarUnit).LeftToRight(src);
+			decimal d1;
+			if(DistanceConverter.TryConvert(srcUnit, tarUnit, src, out d1)) {
+				return d1;
 			}
-			if(MassConverter.Exists(srcUnit, tarUnit)) {
-				return new MassConverter(srcUnit, tarUnit).LeftToRight(src);
+			if(MassConverter.TryConvert(srcUnit, tarUnit, src, out d1)) {
+				return d1;
 			}
-			if(AreaConverter.Exists(srcUnit, tarUnit)) {
-				return new AreaConverter(srcUnit, tarUnit).LeftToRight(src);
+			if(AreaConverter.TryConvert(srcUnit, tarUnit, src, out d1)) {
+				return d1;
 			}
-			if(VolumeConverter.Exists(srcUnit, tarUnit)) {
-				return new VolumeConverter(srcUnit, tarUnit).LeftToRight(src);
+			if(VolumeConverter.TryConvert(srcUnit, tarUnit, src, out d1)) {
+				return d1;
 			}
 			return null;
 		}
