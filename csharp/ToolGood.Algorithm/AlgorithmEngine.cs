@@ -108,15 +108,56 @@ namespace ToolGood.Algorithm
 			var data = new AntlrErrorData();
 			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
-			//lexer.RemoveErrorListeners();
-			//lexer.AddErrorListener(data);
-			//parser.RemoveErrorListeners();
-			//parser.AddErrorListener(data);
 
 			var context = parser.prog();
 			if(data.IsError) {
 				LastError = data.ErrorMsg;
 				throw new Exception(LastError);
+			}
+			var visitor = new MathFunctionVisitor();
+			return visitor.Visit(context);
+		}
+
+		/// <summary>
+		/// 编译公式，失败尽可能返回null,不抛错
+		/// </summary>
+		/// <param name="exp"></param>
+		/// <returns></returns>
+		public virtual FunctionBase ParseWithoutError(string exp)
+		{
+			LastError = null;
+			if(string.IsNullOrWhiteSpace(exp)) {
+				LastError = "Parameter exp invalid !";
+				return null;
+			}
+			if(UseParseCache) {
+				if(_parseCache.TryGetValue(exp.Trim(), out FunctionBase r)) {
+					return r;
+				}
+				r = ParseInternalWithoutError(exp);
+				if(r != null) {
+					_parseCache.TryAdd(exp.Trim(), r);
+				}
+				return r;
+			}
+			return ParseInternalWithoutError(exp);
+		}
+
+		private FunctionBase ParseInternalWithoutError(string exp)
+		{
+			var stream = new AntlrCharStream(exp);
+			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
+			var tokens = new CommonTokenStream(lexer);
+			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
+
+			var data = new AntlrErrorData();
+			lexer.AddErrorData(data);
+			parser.AddErrorData(data);
+
+			var context = parser.prog();
+			if(data.IsError) {
+				LastError = data.ErrorMsg;
+				return null;
 			}
 			var visitor = new MathFunctionVisitor();
 			return visitor.Visit(context);
@@ -243,7 +284,8 @@ namespace ToolGood.Algorithm
 		private T TryEvaluateCore<T>(string exp, T def, Func<Operand, Operand> convert, Func<Operand, T> getValue)
 		{
 			try {
-				var function = Parse(exp);
+				var function = ParseWithoutError(exp);
+				if(function == null) { return def; }
 				var obj = function.Evaluate(this);
 				obj = convert(obj);
 				if(obj.IsError) {
