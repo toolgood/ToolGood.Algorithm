@@ -4,7 +4,7 @@ prog: expr EOF;
 
 expr:
 	'(' expr ')'												# Bracket_fun
-	| num unit=(UNIT | T)?										# NUM_fun
+	| OPSUB? NUM												# NUM_fun
 	| STRING													# STRING_fun
 	| PARAMETER													# PARAMETER_fun
 
@@ -79,8 +79,6 @@ expr:
 	| '[' expr (',' expr)* ','? ']'								# Array_fun
 	;
 
-num: OPSUB? NUM;
-
 arrayJson: key=(NUM | STRING) ':' expr
 	| parameter2 ':' expr;
 
@@ -117,37 +115,38 @@ parameter2:
 	| FISHER | FISHERINV
 	| PMT | PPMT | IPMT | PV | FV | NPER | RATE | NPV | XNPV | IRR | MIRR | XIRR | SLN | DB | DDB | SYD
 	| ARRAY | INDEXOF | LASTINDEXOF | SPLIT | JOIN | SUBSTRING | STARTSWITH | ENDSWITH | HAS | HASVALUE
-	| GUID | ERROR | UNIT | TRIMSTART | TRIMEND | ISNULLOREMPTY | ISNULLORWHITESPACE | REMOVESTART | REMOVEEND
+	| GUID | ERROR | TRIMSTART | TRIMEND | ISNULLOREMPTY | ISNULLORWHITESPACE | REMOVESTART | REMOVEEND
 	| JSON | LOOKCEILING | LOOKFLOOR
 	| ADDYEARS | ADDMONTHS | ADDDAYS | ADDHOURS | ADDMINUTES | ADDSECONDS | TIMESTAMP
 	| ALGORITHMVERSION | PARAM
 	| PARAMETER;
  
+OPAND: '&&';
+OPOR: '||';
 OPADD: '+';
 OPSUB: '-';
 OPMUL: '*';
 OPDIV: '/';
 OPMOD: '%';
 OPCAT :'&';
-OPGT: '>';
 OPGE: '>=';
-OPLT: '<';
 OPLE: '<=';
+OPGT: '>';
+OPLT: '<';
 OPNE: '!' '=' '='? | '<>';
 OPEQ: '=' ('=' '='?)?;
-OPAND: '&&';
-OPOR: '||';
 
-NUM: [0-9]+ ('.' [0-9]+)? ('E' [+-]? [0-9]+)?;
+NUM: [0-9]+ ('.' [0-9]+)? (
+		('E' [+-]? [0-9]+)?
+		| [KDCM]? 'M' [23]?
+		| 'M'? 'L'	 
+		| 'K'? 'G'
+		| 'T'
+	);
 STRING:
 	'\'' (~['\\] | '\\' .)* '\''
 	| '"' (~["\\] | '\\' .)* '"'
 	| '`' (~[`\\] | '\\' .)* '`';
-
-
-UNIT: [KDCM]? 'M' [23]?
-		| 'M'? 'L'	 
-		| 'K'? 'G';
 
 // BOOL_fun
 TRUE: 'TRUE' | 'YES';

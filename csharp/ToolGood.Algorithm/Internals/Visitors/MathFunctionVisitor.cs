@@ -84,7 +84,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var funcs = VisitExprs(context.expr());
 			return new Function_AND(funcs);
 		}
-	 
+
 		public FunctionBase VisitIF_fun(mathParser.IF_funContext context)
 		{
 			var funcs = VisitExprs(context.expr());
@@ -140,17 +140,25 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
 		{
-			var text = context.num().GetText();
-			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			if(context.unit == null) { return new Function_Number(Operand.Create(d)); }
-			var unit = context.unit.Text;
-			return new Function_Number2(d, unit);
-		}
-		public FunctionBase VisitNum(mathParser.NumContext context)
-		{
 			var text = context.GetText();
-			var d = decimal.Parse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture);
-			return new Function_Number(Operand.Create(d));
+			if(decimal.TryParse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+				return new Function_Number(Operand.Create(d));
+			}
+			string txt;
+			string unit;
+			var len = text.Length;
+			if(len > 3 && text[len - 3] >= 'A' ) {
+				txt=text.Substring(0, len - 3);
+				unit=text.Substring(len - 3);
+			} else if(len > 2 && text[len - 2] >= 'A') {
+				txt = text.Substring(0, len - 2);
+				unit = text.Substring(len - 2);
+			} else {
+				txt = text.Substring(0, len - 1);
+				unit = text.Substring(len - 1);
+			}
+			var d2 = decimal.Parse(txt, NumberStyles.Any, CultureInfo.InvariantCulture);
+			return new Function_Number2(d2, unit);
 		}
 
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
