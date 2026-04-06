@@ -41,6 +41,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 		{
 			if(funcs.Length == 1) {
 				funcs[0].GetParameterTypes(noneEngine, result, OperandType.ARRAY);
+			} else if(funcs.Length == 2) {
+				var t1 = funcs[0].GetResultType();
+				var t2 = funcs[1].GetResultType();
+				if(t1 == OperandType.NONE && t2 == OperandType.NUMBER) {
+					var p = noneEngine.Evaluate(funcs[1]).ToText();
+					if(t2 != OperandType.ERROR && p.IsErrorOrNone == false) {
+						funcs[0].GetParameterTypes(noneEngine, result, t2, Name, p.TextValue);
+						funcs[1].GetParameterTypes(noneEngine, result, t2);
+						return;
+					}
+				} else if(t1 == OperandType.NUMBER && t2 == OperandType.NONE) {
+					var p = noneEngine.Evaluate(funcs[0]).ToText();
+					if(t1 != OperandType.ERROR && p.IsErrorOrNone == false) {
+						funcs[1].GetParameterTypes(noneEngine, result, t1, Name, p.TextValue);
+						funcs[0].GetParameterTypes(noneEngine, result, t1);
+						return;
+					}
+				}
+				funcs[0].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+				funcs[1].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 			} else {
 				for(int i = 0; i < funcs.Length; i++) {
 					funcs[i].GetParameterTypes(noneEngine, result, OperandType.NUMBER);
