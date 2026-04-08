@@ -21,17 +21,64 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var error = TryEvaluateAll(engine, tempParameter, args);
 			if(error != null) { return error; }
 
-            var list = new List<decimal>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return FunctionError(); }
-            if (list.Count <= 1) { return FunctionError(); }
-            decimal sum = 0;
-            decimal sum2 = 0;
-            for (int i = 0; i < list.Count; i++) {
-                sum += list[i] * list[i];
-                sum2 += list[i];
+            decimal mean = 0, m2 = 0;
+            int count = 0;
+
+            for(int i = 0; i < args.Count; i++) {
+                var item = args[i];
+                if(item.IsArray) {
+                    var array = item.ArrayValue;
+                    for(int j = 0; j < array.Count; j++) {
+                        var elem = array[j];
+                        if(elem.IsNumber) {
+                            count++;
+                            decimal delta = elem.NumberValue - mean;
+                            mean += delta / count;
+                            m2 += delta * (elem.NumberValue - mean);
+                        } else if(elem.IsArray || elem.IsJson) {
+                            var list = new List<decimal>();
+                            if(!FunctionUtil.FlattenToList(elem, list)) { return FunctionError(); }
+                            for(int k = 0; k < list.Count; k++) {
+                                count++;
+                                decimal delta = list[k] - mean;
+                                mean += delta / count;
+                                m2 += delta * (list[k] - mean);
+                            }
+                        } else {
+                            var converted = elem.ToNumber(null);
+                            if(converted.IsError) { return FunctionError(); }
+                            count++;
+                            decimal delta = converted.NumberValue - mean;
+                            mean += delta / count;
+                            m2 += delta * (converted.NumberValue - mean);
+                        }
+                    }
+                } else if(item.IsNumber) {
+                    count++;
+                    decimal delta = item.NumberValue - mean;
+                    mean += delta / count;
+                    m2 += delta * (item.NumberValue - mean);
+                } else if(item.IsJson) {
+                    var list = new List<decimal>();
+                    if(!FunctionUtil.FlattenToList(item, list)) { return FunctionError(); }
+                    for(int k = 0; k < list.Count; k++) {
+                        count++;
+                        decimal delta = list[k] - mean;
+                        mean += delta / count;
+                        m2 += delta * (list[k] - mean);
+                    }
+                } else {
+                    var converted = item.ToNumber(null);
+                    if(converted.IsError) { return FunctionError(); }
+                    count++;
+                    decimal delta = converted.NumberValue - mean;
+                    mean += delta / count;
+                    m2 += delta * (converted.NumberValue - mean);
+                }
             }
-            return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
+
+            if(count <= 1) { return FunctionError(); }
+            return Operand.Create(m2 / (count - 1));
         }
 		public override OperandType GetResultType()
 		{

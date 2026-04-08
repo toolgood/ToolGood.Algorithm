@@ -101,22 +101,31 @@ namespace ToolGood.Algorithm.Operands
 		public override string ToString()
 		{
 			var len = _value.Length;
-			for (int i = 0; i < len; i++) {
+			if(len == 0) return "\"\"";
+			
+			int escapeCount = 0;
+			for(int i = 0; i < len; i++) {
 				var c = _value[i];
-				if (c == '"' || c == '\\' || c == '\n' || c == '\r' || c == '\t'
-					|| c == '\0' || c == '\v' || c == '\a' || c == '\b' || c == '\f') {
-					return ToStringInternal();
+				if(c == '"' || c == '\\' || c < ' ') {
+					escapeCount++;
 				}
 			}
-			return "\"" + _value + "\"";
+			
+			if(escapeCount == 0) {
+				return "\"" + _value + "\"";
+			}
+			
+			return ToStringInternal(escapeCount);
 		}
 
-		private string ToStringInternal()
+		private string ToStringInternal(int escapeCount)
 		{
-			var sb = new StringBuilder(_value.Length + 16);
+			var len = _value.Length;
+			var sb = new StringBuilder(len + escapeCount + 2);
 			sb.Append('"');
-			foreach (var c in _value) {
-				switch (c) {
+			for(int i = 0; i < len; i++) {
+				var c = _value[i];
+				switch(c) {
 					case '"': sb.Append("\\\""); break;
 					case '\\': sb.Append("\\\\"); break;
 					case '\n': sb.Append("\\n"); break;
@@ -127,7 +136,14 @@ namespace ToolGood.Algorithm.Operands
 					case '\a': sb.Append("\\a"); break;
 					case '\b': sb.Append("\\b"); break;
 					case '\f': sb.Append("\\f"); break;
-					default: sb.Append(c); break;
+					default: 
+						if(c < ' ') {
+							sb.Append("\\u");
+							sb.Append(((int)c).ToString("x4"));
+						} else {
+							sb.Append(c);
+						}
+						break;
 				}
 			}
 			sb.Append('"');

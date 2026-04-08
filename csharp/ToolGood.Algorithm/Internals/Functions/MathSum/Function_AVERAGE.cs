@@ -21,13 +21,55 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var error = TryEvaluateAll(engine, tempParameter, args);
             if(error != null) { return error; }
 
-            var list = new List<decimal>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return FunctionError(); }
-            if (list.Count == 0) { return Div0Error(); }
             decimal sum = 0;
-            for(int i = 0; i < list.Count; i++) { sum += list[i]; }
-            return Operand.Create(sum / list.Count);
+            int count = 0;
+            
+            for(int i = 0; i < args.Count; i++) {
+                var item = args[i];
+                if(item.IsArray) {
+                    var array = item.ArrayValue;
+                    for(int j = 0; j < array.Count; j++) {
+                        var elem = array[j];
+                        if(elem.IsNumber) {
+                            sum += elem.NumberValue;
+                            count++;
+                        } else if(elem.IsArray || elem.IsJson) {
+                            var list = new List<decimal>();
+                            if(FunctionUtil.FlattenToList(elem, list)) {
+                                for(int k = 0; k < list.Count; k++) {
+                                    sum += list[k];
+                                }
+                                count += list.Count;
+                            } else {
+                                return FunctionError();
+                            }
+                        } else {
+                            var converted = elem.ToNumber(null);
+                            if(converted.IsError) { return FunctionError(); }
+                            sum += converted.NumberValue;
+                            count++;
+                        }
+                    }
+                } else if(item.IsNumber) {
+                    sum += item.NumberValue;
+                    count++;
+                } else if(item.IsJson) {
+                    var list = new List<decimal>();
+                    if(!FunctionUtil.FlattenToList(item, list)) { return FunctionError(); }
+                    for(int k = 0; k < list.Count; k++) {
+                        sum += list[k];
+                    }
+                    count += list.Count;
+                } else {
+                    var converted = item.ToNumber(null);
+                    if(converted.IsError) { return FunctionError(); }
+                    sum += converted.NumberValue;
+                    count++;
+                }
+            }
+            
+            if(count == 0) { return Div0Error(); }
+            return Operand.Create(sum / count);
         }
 		public override OperandType GetResultType()
 		{

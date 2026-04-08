@@ -21,15 +21,66 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			var error = TryEvaluateAll(engine, tempParameter, args);
 			if(error != null) { return error; }
 
-			var list = new List<decimal>();
-			var o = FunctionUtil.FlattenToList(args, list);
-			if(o == false) { return FunctionError(); }
-			if(list.Count == 0) { return FunctionError(); }
-
-			decimal max = list[0];
-			for(int i = 1; i < list.Count; i++) {
-				if(list[i] > max) { max = list[i]; }
+			bool found = false;
+			decimal max = decimal.MinValue;
+			
+			for(int i = 0; i < args.Count; i++) {
+				var item = args[i];
+				if(item.IsArray) {
+					var array = item.ArrayValue;
+					for(int j = 0; j < array.Count; j++) {
+						var elem = array[j];
+						if(elem.IsNumber) {
+							if(!found || elem.NumberValue > max) {
+								max = elem.NumberValue;
+								found = true;
+							}
+						} else if(elem.IsArray || elem.IsJson) {
+							var list = new List<decimal>();
+							if(FunctionUtil.FlattenToList(elem, list)) {
+								for(int k = 0; k < list.Count; k++) {
+									if(!found || list[k] > max) {
+										max = list[k];
+										found = true;
+									}
+								}
+							} else {
+								return FunctionError();
+							}
+						} else {
+							var converted = elem.ToNumber(null);
+							if(converted.IsError) { return FunctionError(); }
+							if(!found || converted.NumberValue > max) {
+								max = converted.NumberValue;
+								found = true;
+							}
+						}
+					}
+				} else if(item.IsNumber) {
+					if(!found || item.NumberValue > max) {
+						max = item.NumberValue;
+						found = true;
+					}
+				} else if(item.IsJson) {
+					var list = new List<decimal>();
+					if(!FunctionUtil.FlattenToList(item, list)) { return FunctionError(); }
+					for(int k = 0; k < list.Count; k++) {
+						if(!found || list[k] > max) {
+							max = list[k];
+							found = true;
+						}
+					}
+				} else {
+					var converted = item.ToNumber(null);
+					if(converted.IsError) { return FunctionError(); }
+					if(!found || converted.NumberValue > max) {
+						max = converted.NumberValue;
+						found = true;
+					}
+				}
 			}
+			
+			if(!found) { return FunctionError(); }
 			return Operand.Create(max);
 		}
 		public override OperandType GetResultType()
