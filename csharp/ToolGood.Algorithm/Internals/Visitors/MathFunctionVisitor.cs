@@ -498,12 +498,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.YEAR: return new Function_YEAR(funcs);
 				case mathLexer.YEARFRAC: return new Function_YEARFRAC(funcs);
 				case mathLexer.PARAMETER:
+				default:
 					var funName = context.PARAMETER().GetText();
 					return new Function_DiyFunction(funName, funcs);
-				default: break;
 			}
-
-			throw new NotImplementedException();
 		}
 
 
