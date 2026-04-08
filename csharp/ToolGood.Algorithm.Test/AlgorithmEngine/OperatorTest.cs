@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Test.Operator
             t1 = engine.TryEvaluate("-7 < -2 ?1 ： 2", 0);
             Assert.AreEqual(t1, 1);
 
-			t1 = engine.TryEvaluate("-7 < -2 ?1 ： 7>1?3:2", 0);
+			t1 = engine.TryEvaluate("-7 < -2 ?1 ： (7>1?3:2)", 0);
 			Assert.AreEqual(t1, 1);
 
 			t1 = engine.TryEvaluate("-7 < -2 ?1 ：2", 0);
