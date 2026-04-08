@@ -31,13 +31,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return count;
 		}
 
-		private static int EstimateCount(Operand args)
-		{
-			if(args.IsArray) return args.ArrayValue.Count;
-			if(args.IsJson) return 8;
-			return 1;
-		}
-
 		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
