@@ -359,7 +359,6 @@ partial class mathParser : Parser {
 				{
 				_localctx = new CONST2_funContext(_localctx);
 				Context = _localctx;
-				State = 24;
 				((CONST2_funContext)_localctx).f = TokenStream.LT(1);
 				_la = TokenStream.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4026531840L) != 0)) ) {
@@ -384,7 +383,6 @@ partial class mathParser : Parser {
 				{
 				_localctx = new CONST_funContext(_localctx);
 				Context = _localctx;
-				State = 29;
 				((CONST_funContext)_localctx).f = TokenStream.LT(1);
 				_la = TokenStream.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 270582939648L) != 0)) ) {
@@ -402,7 +400,6 @@ partial class mathParser : Parser {
 				{
 				_localctx = new Function_funContext(_localctx);
 				Context = _localctx;
-				State = 32;
 				((Function_funContext)_localctx).f = TokenStream.LT(1);
 				_la = TokenStream.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & -274877906944L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & -1L) != 0) || ((((_la - 256)) & ~0x3f) == 0 && ((1L << (_la - 256)) & 35184372088831L) != 0)) ) {
@@ -510,7 +507,6 @@ partial class mathParser : Parser {
 						{
 						_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, 1);
-						State = 75;
 						((MulDiv_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 458752L) != 0)) ) {
@@ -528,7 +524,6 @@ partial class mathParser : Parser {
 						{
 						_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, 1);
-						State = 78;
 						((AddSub_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 573440L) != 0)) ) {
@@ -546,7 +541,6 @@ partial class mathParser : Parser {
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, 1);
-						State = 81;
 						((Judge_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 15728640L) != 0)) ) {
@@ -564,7 +558,6 @@ partial class mathParser : Parser {
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, 1);
-						State = 84;
 						((Judge_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !(_la==24 || _la==25) ) {
@@ -613,7 +606,6 @@ partial class mathParser : Parser {
 						_localctx = new Function_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, 1);
 						Match(3);
-						State = 100;
 						((Function_funContext)_localctx).f = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !(((((_la - 43)) & ~0x3f) == 0 && ((1L << (_la - 43)) & 4613374868287651903L) != 0) || ((((_la - 111)) & ~0x3f) == 0 && ((1L << (_la - 111)) & 3870831098982301697L) != 0) || ((((_la - 180)) & ~0x3f) == 0 && ((1L << (_la - 180)) & -3450918398844730283L) != 0) || ((((_la - 244)) & ~0x3f) == 0 && ((1L << (_la - 244)) & 90105231584543873L) != 0)) ) {
@@ -741,7 +733,6 @@ partial class mathParser : Parser {
 			case 27:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 131;
 				_localctx.key = TokenStream.LT(1);
 				_la = TokenStream.LA(1);
 				if ( !(_la==26 || _la==27) ) {

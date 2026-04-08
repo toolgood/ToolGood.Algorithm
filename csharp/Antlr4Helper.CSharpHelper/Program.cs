@@ -37,6 +37,11 @@ namespace Antlr4Helper.CSharpHelper
 
 			csText = Regex.Replace(csText, "if \\(!\\(Precpred.*\\r\\n\\t*", "");
 			csText = Regex.Replace(csText, "State = \\d+;\\r\\n[ \\t]+State =", "State =");
+
+			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*\(.*_localctx\).f)", "$1");
+			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*\(.*_localctx\).op)", "$1");
+			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*_localctx.key)", "$1");
+
 			csText = Regex.Replace(csText, "return GetRuleContext<ExprContext>\\(i\\);\\r\\n", "return GetRuleContext<ExprContext>(i);");
 			csText = Regex.Replace(csText, @"\[System.Diagnostics.DebuggerNonUserCode\] public ExprContext expr\(int i\) \{\r\n", "// [System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {");
 
@@ -73,7 +78,7 @@ namespace Antlr4Helper.CSharpHelper
 				csText = csText.Replace($"public override int RuleIndex {{ get {{ return {item}; }} }}", $"public override int RuleIndex {{ get {{ return {value}; }} }}"); //(1L << (MULTINOMIAL
 				csText = Regex.Replace(csText, @$"EnterRule\(_localctx, (\d+), {item}\);", $"EnterRule(_localctx, $1, {value});"); //(1L << (MULTINOMIAL
 				csText = Regex.Replace(csText, @$"EnterRecursionRule\(_localctx, (\d+), {item}, _p\);", $"EnterRecursionRule(_localctx, $1, {value}, _p);"); //(1L << (MULTINOMIAL
-		 
+
 			}
 
 			csText = csText.Replace("//[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER()", "[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER()");
