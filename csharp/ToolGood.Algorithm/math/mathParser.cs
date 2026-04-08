@@ -433,7 +433,6 @@ partial class mathParser : Parser {
 				_localctx = new ArrayJson_funContext(_localctx);
 				Context = _localctx;
 				Match(10);
-				State = 45;
 				arrayJson();
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,3,Context);
@@ -442,7 +441,6 @@ partial class mathParser : Parser {
 						{
 						{
 						Match(4);
-						State = 47;
 						arrayJson();
 						}
 						} 
@@ -669,7 +667,6 @@ partial class mathParser : Parser {
 						case 3:
 							{
 							Match(3);
-							State = 121;
 							parameter2();
 							}
 							break;
@@ -1022,7 +1019,6 @@ partial class mathParser : Parser {
 			case 300:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 134;
 				parameter2();
 				Match(9);
 				State = 136;

@@ -41,6 +41,8 @@ namespace Antlr4Helper.CSharpHelper
 			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*\(.*_localctx\).f)", "$1");
 			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*\(.*_localctx\).op)", "$1");
 			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*_localctx.key)", "$1");
+			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*parameter2\(\))", "$1");
+			csText = Regex.Replace(csText, @"State = \d+;([\r\n\t]*arrayJson\(\))", "$1");
 
 			csText = Regex.Replace(csText, "return GetRuleContext<ExprContext>\\(i\\);\\r\\n", "return GetRuleContext<ExprContext>(i);");
 			csText = Regex.Replace(csText, @"\[System.Diagnostics.DebuggerNonUserCode\] public ExprContext expr\(int i\) \{\r\n", "// [System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {");
