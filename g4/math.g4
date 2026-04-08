@@ -31,7 +31,7 @@ expr:
 	| expr op = (OPNE | OPEQ ) expr									# Judge_fun
 	| expr OPAND expr										# And_fun
 	| expr OPOR expr										# Or_fun
-	| expr '?' expr ':' expr <assoc=right> 						# IF_fun	
+	| expr '?' expr ':' expr								# IF_fun	
 	// 运算符优先级 结束
 
 	| f=(TRUE | FALSE | ALGORITHMVERSION | NULL) ('(' ')')?				# CONST2_fun
