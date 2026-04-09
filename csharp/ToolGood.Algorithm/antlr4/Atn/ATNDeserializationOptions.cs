@@ -5,37 +5,26 @@
 using System;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
     public class ATNDeserializationOptions
     {
         private static readonly Antlr4.Runtime.Atn.ATNDeserializationOptions defaultOptions;
-
         static ATNDeserializationOptions()
         {
             defaultOptions = new Antlr4.Runtime.Atn.ATNDeserializationOptions();
             defaultOptions.MakeReadOnly();
         }
-
         private bool readOnly;
-
         private bool verifyATN;
-
         private bool generateRuleBypassTransitions;
-
         private bool optimize;
-
         public ATNDeserializationOptions()
         {
             this.verifyATN = true;
             this.generateRuleBypassTransitions = false;
             this.optimize = true;
         }
-
-
-        //[NotNull]
         public static Antlr4.Runtime.Atn.ATNDeserializationOptions Default
         {
             get
@@ -43,7 +32,6 @@ namespace Antlr4.Runtime.Atn
                 return defaultOptions;
             }
         }
-
         public bool IsReadOnly
         {
             get
@@ -51,12 +39,10 @@ namespace Antlr4.Runtime.Atn
                 return readOnly;
             }
         }
-
         public void MakeReadOnly()
         {
             readOnly = true;
         }
-
         public bool VerifyAtn
         {
             get
@@ -70,7 +56,6 @@ namespace Antlr4.Runtime.Atn
                 this.verifyATN = verifyATN;
             }
         }
-
         public bool GenerateRuleBypassTransitions
         {
             get
@@ -84,7 +69,6 @@ namespace Antlr4.Runtime.Atn
                 this.generateRuleBypassTransitions = generateRuleBypassTransitions;
             }
         }
-
         public bool Optimize
         {
             get
@@ -98,7 +82,6 @@ namespace Antlr4.Runtime.Atn
                 this.optimize = optimize;
             }
         }
-
         protected internal virtual void ThrowIfReadOnly()
         {
             if (IsReadOnly)

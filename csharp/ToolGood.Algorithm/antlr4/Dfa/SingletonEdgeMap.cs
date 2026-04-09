@@ -3,17 +3,13 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 using System.Collections.Generic;
-
 namespace Antlr4.Runtime.Dfa
 {
-    /// <author>Sam Harwell</author>
     public sealed class SingletonEdgeMap<T> : AbstractEdgeMap<T>
         where T : class
     {
         private readonly int key;
-
         private readonly T value;
-
         public SingletonEdgeMap(int minIndex, int maxIndex, int key, T value)
             : base(minIndex, maxIndex)
         {
@@ -28,7 +24,6 @@ namespace Antlr4.Runtime.Dfa
                 this.value = null;
             }
         }
-
         public int Key
         {
             get
@@ -36,7 +31,6 @@ namespace Antlr4.Runtime.Dfa
                 return key;
             }
         }
-
         public T Value
         {
             get
@@ -44,7 +38,6 @@ namespace Antlr4.Runtime.Dfa
                 return value;
             }
         }
-
         public override int Count
         {
             get
@@ -52,7 +45,6 @@ namespace Antlr4.Runtime.Dfa
                 return value != null ? 1 : 0;
             }
         }
-
         public override bool IsEmpty
         {
             get
@@ -60,12 +52,10 @@ namespace Antlr4.Runtime.Dfa
                 return value == null;
             }
         }
-
         public override bool ContainsKey(int key)
         {
             return key == this.key && value != null;
         }
-
         public override T this[int key]
         {
             get
@@ -77,7 +67,6 @@ namespace Antlr4.Runtime.Dfa
                 return null;
             }
         }
-
         public override AbstractEdgeMap<T> Put(int key, T value)
         {
             if (key < minIndex || key > maxIndex)
@@ -103,7 +92,6 @@ namespace Antlr4.Runtime.Dfa
                 }
             }
         }
-
         public override AbstractEdgeMap<T> Remove(int key)
         {
             if (key == this.key && this.value != null)
@@ -112,7 +100,6 @@ namespace Antlr4.Runtime.Dfa
             }
             return this;
         }
-
         public override AbstractEdgeMap<T> Clear()
         {
             if (this.value != null)
@@ -121,7 +108,6 @@ namespace Antlr4.Runtime.Dfa
             }
             return this;
         }
-
         public override IReadOnlyDictionary<int, T> ToMap()
         {
             if (IsEmpty)

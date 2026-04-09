@@ -8,106 +8,14 @@ using System.Text;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime
 {
-    /// <summary>
-    /// This implementation of
-    /// <see cref="ITokenStream"/>
-    /// loads tokens from a
-    /// <see cref="ITokenSource"/>
-    /// on-demand, and places the tokens in a buffer to provide
-    /// access to any previous token by index.
-    /// <p>
-    /// This token stream ignores the value of
-    /// <see cref="IToken.Channel()"/>
-    /// . If your
-    /// parser requires the token stream filter tokens to only those on a particular
-    /// channel, such as
-    /// <see cref="TokenConstants.DefaultChannel"/>
-    /// or
-    /// <see cref="TokenConstants.HiddenChannel"/>
-    /// , use a filtering token stream such a
-    /// <see cref="CommonTokenStream"/>
-    /// .</p>
-    /// </summary>
     public class BufferedTokenStream : ITokenStream
     {
-        /// <summary>
-        /// The
-        /// <see cref="ITokenSource"/>
-        /// from which tokens for this stream are fetched.
-        /// </summary>
-        //[NotNull]
         private ITokenSource _tokenSource;
-
-        /// <summary>A collection of all tokens fetched from the token source.</summary>
-        /// <remarks>
-        /// A collection of all tokens fetched from the token source. The list is
-        /// considered a complete view of the input once
-        /// <see cref="fetchedEOF"/>
-        /// is set
-        /// to
-        /// <see langword="true"/>
-        /// .
-        /// </remarks>
         protected internal IList<IToken> tokens = new List<IToken>(100);
-
-        /// <summary>
-        /// The index into
-        /// <see cref="tokens"/>
-        /// of the current token (next token to
-        /// <see cref="Consume()"/>
-        /// ).
-        /// <see cref="tokens"/>
-        /// <c>[</c>
-        /// <see cref="p"/>
-        /// <c>]</c>
-        /// should be
-        /// <see cref="LT(int)">LT(1)</see>
-        /// .
-        /// <p>This field is set to -1 when the stream is first constructed or when
-        /// <see cref="SetTokenSource(ITokenSource)"/>
-        /// is called, indicating that the first token has
-        /// not yet been fetched from the token source. For additional information,
-        /// see the documentation of
-        /// <see cref="IIntStream"/>
-        /// for a description of
-        /// Initializing Methods.</p>
-        /// </summary>
         protected internal int p = -1;
-
-        /// <summary>
-        /// Indicates whether the
-        /// <see cref="TokenConstants.EOF"/>
-        /// token has been fetched from
-        /// <see cref="_tokenSource"/>
-        /// and added to
-        /// <see cref="tokens"/>
-        /// . This field improves
-        /// performance for the following cases:
-        /// <ul>
-        /// <li>
-        /// <see cref="Consume()"/>
-        /// : The lookahead check in
-        /// <see cref="Consume()"/>
-        /// to prevent
-        /// consuming the EOF symbol is optimized by checking the values of
-        /// <see cref="fetchedEOF"/>
-        /// and
-        /// <see cref="p"/>
-        /// instead of calling
-        /// <see cref="LA(int)"/>
-        /// .</li>
-        /// <li>
-        /// <see cref="Fetch(int)"/>
-        /// : The check to prevent adding multiple EOF symbols into
-        /// <see cref="tokens"/>
-        /// is trivial with this field.</li>
-        /// </ul>
-        /// </summary>
         protected internal bool fetchedEOF;
-
         public BufferedTokenStream(ITokenSource tokenSource)
         {
             if (tokenSource == null)
@@ -116,7 +24,6 @@ namespace Antlr4.Runtime
             }
             this._tokenSource = tokenSource;
         }
-
         public virtual ITokenSource TokenSource
         {
             get
@@ -124,7 +31,6 @@ namespace Antlr4.Runtime
                 return _tokenSource;
             }
         }
-
         public virtual int Index
         {
             get
@@ -132,22 +38,18 @@ namespace Antlr4.Runtime
                 return p;
             }
         }
-
         public virtual int Mark()
         {
             return 0;
         }
-
         public virtual void Release(int marker)
         {
         }
-
         public virtual void Seek(int index)
         {
             LazyInit();
             p = AdjustSeekIndex(index);
         }
-
         public virtual int Size
         {
             get
@@ -155,7 +57,6 @@ namespace Antlr4.Runtime
                 return tokens.Count;
             }
         }
-
         public virtual void Consume()
         {
             bool skipEofCheck;
@@ -163,19 +64,15 @@ namespace Antlr4.Runtime
             {
                 if (fetchedEOF)
                 {
-                    // the last token in tokens is EOF. skip check if p indexes any
-                    // fetched token except the last.
                     skipEofCheck = p < tokens.Count - 1;
                 }
                 else
                 {
-                    // no EOF token in tokens. skip check if p indexes a fetched token.
                     skipEofCheck = p < tokens.Count;
                 }
             }
             else
             {
-                // not yet initialized
                 skipEofCheck = false;
             }
             if (!skipEofCheck && LA(1) == IntStreamConstants.EOF)
@@ -187,28 +84,10 @@ namespace Antlr4.Runtime
                 p = AdjustSeekIndex(p + 1);
             }
         }
-
-        /// <summary>
-        /// Make sure index
-        /// <paramref name="i"/>
-        /// in tokens has a token.
-        /// </summary>
-        /// <returns>
-        ///
-        /// <see langword="true"/>
-        /// if a token is located at index
-        /// <paramref name="i"/>
-        /// , otherwise
-        /// <see langword="false"/>
-        /// .
-        /// </returns>
-        /// <seealso cref="Get(int)"/>
         protected internal virtual bool Sync(int i)
         {
             System.Diagnostics.Debug.Assert(i >= 0);
             int n = i - tokens.Count + 1;
-            // how many more elements we need?
-            //System.out.println("sync("+i+") needs "+n);
             if (n > 0)
             {
                 int fetched = Fetch(n);
@@ -216,13 +95,6 @@ namespace Antlr4.Runtime
             }
             return true;
         }
-
-        /// <summary>
-        /// Add
-        /// <paramref name="n"/>
-        /// elements to buffer.
-        /// </summary>
-        /// <returns>The actual number of elements added to the buffer.</returns>
         protected internal virtual int Fetch(int n)
         {
             if (fetchedEOF)
@@ -245,7 +117,6 @@ namespace Antlr4.Runtime
             }
             return n;
         }
-
         public virtual IToken Get(int i)
         {
             if (i < 0 || i >= tokens.Count)
@@ -254,12 +125,10 @@ namespace Antlr4.Runtime
             }
             return tokens[i];
         }
-
         public virtual int LA(int i)
         {
             return LT(i).Type;
         }
-
         protected internal virtual IToken Lb(int k)
         {
             if ((p - k) < 0)
@@ -268,8 +137,6 @@ namespace Antlr4.Runtime
             }
             return tokens[p - k];
         }
-
-        //[return: NotNull]
         public virtual IToken LT(int k)
         {
             LazyInit();
@@ -285,39 +152,14 @@ namespace Antlr4.Runtime
             Sync(i);
             if (i >= tokens.Count)
             {
-                // return EOF token
-                // EOF must be last token
                 return tokens[tokens.Count - 1];
             }
-            //		if ( i>range ) range = i;
             return tokens[i];
         }
-
-        /// <summary>
-        /// Allowed derived classes to modify the behavior of operations which change
-        /// the current stream position by adjusting the target token index of a seek
-        /// operation.
-        /// </summary>
-        /// <remarks>
-        /// Allowed derived classes to modify the behavior of operations which change
-        /// the current stream position by adjusting the target token index of a seek
-        /// operation. The default implementation simply returns
-        /// <paramref name="i"/>
-        /// . If an
-        /// exception is thrown in this method, the current stream index should not be
-        /// changed.
-        /// <p>For example,
-        /// <see cref="CommonTokenStream"/>
-        /// overrides this method to ensure that
-        /// the seek target is always an on-channel token.</p>
-        /// </remarks>
-        /// <param name="i">The target token index.</param>
-        /// <returns>The adjusted target token index.</returns>
         protected internal virtual int AdjustSeekIndex(int i)
         {
             return i;
         }
-
         protected internal void LazyInit()
         {
             if (p == -1)
@@ -325,15 +167,11 @@ namespace Antlr4.Runtime
                 Setup();
             }
         }
-
         protected internal virtual void Setup()
         {
             Sync(0);
             p = AdjustSeekIndex(0);
         }
-
-        /// <summary>Reset this token stream by setting its token source.</summary>
-        /// <remarks>Reset this token stream by setting its token source.</remarks>
         public virtual void SetTokenSource(ITokenSource tokenSource)
         {
             this._tokenSource = tokenSource;
@@ -341,20 +179,6 @@ namespace Antlr4.Runtime
             p = -1;
 			this.fetchedEOF = false;
         }
-
-        /// <summary>Given a starting index, return the index of the next token on channel.</summary>
-        /// <remarks>
-        /// Given a starting index, return the index of the next token on channel.
-        /// Return
-        /// <paramref name="i"/>
-        /// if
-        /// <c>tokens[i]</c>
-        /// is on channel. Return the index of
-        /// the EOF token if there are no tokens on channel between
-        /// <paramref name="i"/>
-        /// and
-        /// EOF.
-        /// </remarks>
         protected internal virtual int NextTokenOnChannel(int i, int channel)
         {
             Sync(i);
@@ -375,34 +199,11 @@ namespace Antlr4.Runtime
             }
             return i;
         }
-
-        /// <summary>
-        /// Given a starting index, return the index of the previous token on
-        /// channel.
-        /// </summary>
-        /// <remarks>
-        /// Given a starting index, return the index of the previous token on
-        /// channel. Return
-        /// <paramref name="i"/>
-        /// if
-        /// <c>tokens[i]</c>
-        /// is on channel. Return -1
-        /// if there are no tokens on channel between
-        /// <paramref name="i"/>
-        /// and 0.
-        /// <p>
-        /// If
-        /// <paramref name="i"/>
-        /// specifies an index at or after the EOF token, the EOF token
-        /// index is returned. This is due to the fact that the EOF token is treated
-        /// as though it were on every channel.</p>
-        /// </remarks>
         protected internal virtual int PreviousTokenOnChannel(int i, int channel)
         {
             Sync(i);
             if (i >= Size)
             {
-                // the EOF token is on every channel
                 return Size - 1;
             }
             while (i >= 0)
@@ -416,7 +217,6 @@ namespace Antlr4.Runtime
             }
             return i;
         }
- 
         public virtual string SourceName
         {
             get
@@ -424,17 +224,11 @@ namespace Antlr4.Runtime
                 return _tokenSource.SourceName;
             }
         }
-
-        /// <summary>Get the text of all tokens in this buffer.</summary>
-        /// <remarks>Get the text of all tokens in this buffer.</remarks>
-        //[return: NotNull]
         public virtual string GetText()
         {
             Fill();
             return GetText(Interval.Of(0, Size - 1));
         }
-
-        //[return: NotNull]
         public virtual string GetText(Interval interval)
         {
             int start = interval.a;
@@ -460,14 +254,10 @@ namespace Antlr4.Runtime
             }
             return buf.ToString();
         }
-
-        //[return: NotNull]
         public virtual string GetText(RuleContext ctx)
         {
             return GetText(ctx.SourceInterval);
         }
-
-        //[return: NotNull]
         public virtual string GetText(IToken start, IToken stop)
         {
             if (start != null && stop != null)
@@ -476,9 +266,6 @@ namespace Antlr4.Runtime
             }
             return string.Empty;
         }
-
-        /// <summary>Get all tokens from lexer until EOF.</summary>
-        /// <remarks>Get all tokens from lexer until EOF.</remarks>
         public virtual void Fill()
         {
             LazyInit();

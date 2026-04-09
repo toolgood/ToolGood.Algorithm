@@ -5,7 +5,6 @@
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
     public sealed class NotSetTransition : SetTransition
@@ -14,7 +13,6 @@ namespace Antlr4.Runtime.Atn
             : base(target, set)
         {
         }
-
         public override Antlr4.Runtime.Atn.TransitionType TransitionType
         {
             get
@@ -22,11 +20,9 @@ namespace Antlr4.Runtime.Atn
                 return Antlr4.Runtime.Atn.TransitionType.NOT_SET;
             }
         }
-
         public override bool Matches(int symbol, int minVocabSymbol, int maxVocabSymbol)
         {
             return symbol >= minVocabSymbol && symbol <= maxVocabSymbol && !base.Matches(symbol, minVocabSymbol, maxVocabSymbol);
         }
-
     }
 }

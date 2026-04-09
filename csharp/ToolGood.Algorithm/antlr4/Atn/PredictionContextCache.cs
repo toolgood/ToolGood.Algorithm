@@ -5,14 +5,12 @@
 using System;
 using System.Collections.Generic;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
 	public class PredictionContextCache
 	{
 		protected readonly Dictionary<PredictionContext, PredictionContext> cache =
 			new Dictionary<PredictionContext, PredictionContext>();
-
 		/** Add a context to the cache and return it. If the context already exists,
 		 *  return that one instead and do not add a new context to the cache.
 		 *  Protect shared cache from unsafe thread access.
@@ -29,11 +27,9 @@ namespace Antlr4.Runtime.Atn
 			cache.Put(ctx, ctx);
 			return ctx;
 		}
-
 		public PredictionContext Get(PredictionContext ctx)
 		{
 			return cache.Get(ctx);
 		}
-
 	}
 }

@@ -7,42 +7,33 @@ namespace Antlr4.Runtime.Sharpen
     using System;
     using System.Collections.Generic;
     using StringBuilder = System.Text.StringBuilder;
-
     internal static class Arrays
     {
         public static T[] CopyOf<T>(T[] array, int newSize)
         {
             if (array.Length == newSize)
                 return (T[])array.Clone();
-
             Array.Resize(ref array, newSize);
             return array;
         }
-
         public static IList<T> AsList<T>(params T[] array)
         {
             return array;
         }
-
         public static bool Equals<T>(T[] left, T[] right)
         {
             if (left == right)
                 return true;
             else if (left == null || right == null)
                 return false;
-
             if (left.Length != right.Length)
                 return false;
-
             for (int i = 0; i < left.Length; i++)
             {
                 if (!object.Equals(left[i], right[i]))
                     return false;
             }
-
             return true;
         }
-
- 
     }
 }

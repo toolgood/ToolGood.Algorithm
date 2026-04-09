@@ -4,15 +4,12 @@
  */
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
     public sealed class RuleStartState : ATNState
     {
         public RuleStopState stopState;
-
         public bool isPrecedenceRule;
-
         public override Antlr4.Runtime.Atn.StateType StateType
         {
             get

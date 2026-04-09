@@ -6,31 +6,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Dfa
 {
-    /// <author>Sam Harwell</author>
     public sealed class SparseEdgeMap<T> : AbstractEdgeMap<T>
         where T : class
     {
         private const int DefaultMaxSize = 5;
-
         private readonly int[] keys;
-
         private readonly List<T> values;
-
         public SparseEdgeMap(int minIndex, int maxIndex)
             : this(minIndex, maxIndex, DefaultMaxSize)
         {
         }
-
         public SparseEdgeMap(int minIndex, int maxIndex, int maxSparseSize)
             : base(minIndex, maxIndex)
         {
             this.keys = new int[maxSparseSize];
             this.values = new List<T>(maxSparseSize);
         }
-
         private SparseEdgeMap(Antlr4.Runtime.Dfa.SparseEdgeMap<T> map, int maxSparseSize)
             : base(map.minIndex, map.maxIndex)
         {
@@ -45,7 +38,6 @@ namespace Antlr4.Runtime.Dfa
                 values.AddRange(map.Values);
             }
         }
-
         public int[] Keys
         {
             get
@@ -53,7 +45,6 @@ namespace Antlr4.Runtime.Dfa
                 return keys;
             }
         }
-
         public IList<T> Values
         {
             get
@@ -61,7 +52,6 @@ namespace Antlr4.Runtime.Dfa
                 return values;
             }
         }
-
         public int MaxSparseSize
         {
             get
@@ -69,7 +59,6 @@ namespace Antlr4.Runtime.Dfa
                 return keys.Length;
             }
         }
-
         public override int Count
         {
             get
@@ -77,7 +66,6 @@ namespace Antlr4.Runtime.Dfa
                 return values.Count;
             }
         }
-
         public override bool IsEmpty
         {
             get
@@ -85,19 +73,14 @@ namespace Antlr4.Runtime.Dfa
                 return values.Count == 0;
             }
         }
-
         public override bool ContainsKey(int key)
         {
             return this[key] != null;
         }
-
         public override T this[int key]
         {
             get
             {
-                // Special property of this collection: values are only even added to
-                // the end, else a new object is returned from put(). Therefore no lock
-                // is required in this method.
                 int index = System.Array.BinarySearch(keys, 0, Count, key);
                 if (index < 0)
                 {
@@ -106,7 +89,6 @@ namespace Antlr4.Runtime.Dfa
                 return values[index];
             }
         }
-
         public override AbstractEdgeMap<T> Put(int key, T value)
         {
             if (key < minIndex || key > maxIndex)
@@ -122,7 +104,6 @@ namespace Antlr4.Runtime.Dfa
                 int index = System.Array.BinarySearch(keys, 0, Count, key);
                 if (index >= 0)
                 {
-                    // replace existing entry
                     values[index] = value;
                     return this;
                 }
@@ -130,14 +111,12 @@ namespace Antlr4.Runtime.Dfa
                 int insertIndex = -index - 1;
                 if (Count < MaxSparseSize && insertIndex == Count)
                 {
-                    // stay sparse and add new entry
                     keys[insertIndex] = key;
                     values.Add(value);
                     return this;
                 }
                 int desiredSize = Count >= MaxSparseSize ? MaxSparseSize * 2 : MaxSparseSize;
                 int space = maxIndex - minIndex + 1;
-                // SparseEdgeMap only uses less memory than ArrayEdgeMap up to half the size of the symbol space
                 if (desiredSize >= space / 2)
                 {
                     ArrayEdgeMap<T> arrayMap = new ArrayEdgeMap<T>(minIndex, maxIndex);
@@ -155,7 +134,6 @@ namespace Antlr4.Runtime.Dfa
                 }
             }
         }
-
         public override AbstractEdgeMap<T> Remove(int key)
         {
             lock (this)
@@ -171,7 +149,6 @@ namespace Antlr4.Runtime.Dfa
                 return result;
             }
         }
-
         public override AbstractEdgeMap<T> Clear()
         {
             if (IsEmpty)
@@ -180,7 +157,6 @@ namespace Antlr4.Runtime.Dfa
             }
             return new EmptyEdgeMap<T>(minIndex, maxIndex);
         }
-
         public override IReadOnlyDictionary<int, T> ToMap()
         {
             if (IsEmpty)
@@ -190,12 +166,10 @@ namespace Antlr4.Runtime.Dfa
             lock (this)
             {
                 IDictionary<int, T> result = new SortedDictionary<int, T>();
-
                 for (int i = 0; i < Count; i++)
                 {
                     result[keys[i]] = values[i];
                 }
-
                 return new ReadOnlyDictionary<int, T>(result);
             }
         }

@@ -4,10 +4,8 @@
  */
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
     public abstract class AbstractPredicateTransition : Transition
     {
         public AbstractPredicateTransition(ATNState target)

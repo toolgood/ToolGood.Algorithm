@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Dfa
 {
 	public class DFA
@@ -14,33 +13,24 @@ namespace Antlr4.Runtime.Dfa
 		/** A set of all DFA states. Use {@link Map} so we can get old state back
 	 *  ({@link Set} only allows you to see if it's there).
      */
-
 		public Dictionary<DFAState, DFAState> states = new Dictionary<DFAState, DFAState>();
-
 		public DFAState s0;
-
 		public int decision;
-
 		/** From which ATN state did we create this DFA? */
-
 		public DecisionState atnStartState;
-
 		/**
 		 * {@code true} if this DFA is for a precedence decision; otherwise,
 		 * {@code false}. This is the backing field for {@link #isPrecedenceDfa}.
 		 */
 		private bool precedenceDfa;
-
 		public DFA(DecisionState atnStartState)
 			: this(atnStartState, 0)
 		{
 		}
-
 		public DFA(DecisionState atnStartState, int decision)
 		{
 			this.atnStartState = atnStartState;
 			this.decision = decision;
-
 			this.precedenceDfa = false;
 			if (atnStartState is StarLoopEntryState && ((StarLoopEntryState)atnStartState).isPrecedenceDecision)
 			{
@@ -52,7 +42,6 @@ namespace Antlr4.Runtime.Dfa
 				this.s0 = precedenceState;
 			}
 		}
-
 		/**
 		 * Gets whether this DFA is a precedence DFA. Precedence DFAs use a special
 		 * start state {@link #s0} which is not stored in {@link #states}. The
@@ -71,7 +60,6 @@ namespace Antlr4.Runtime.Dfa
 				return precedenceDfa;
 			}
 		}
-
 		/**
 		 * Get the start state for a specific precedence value.
 		 *
@@ -88,16 +76,12 @@ namespace Antlr4.Runtime.Dfa
 			{
 				throw new Exception("Only precedence DFAs may contain a precedence start state.");
 			}
-
-			// s0.edges is never null for a precedence DFA
 			if (precedence < 0 || precedence >= s0.edges.Length)
 			{
 				return null;
 			}
-
 			return s0.edges[precedence];
 		}
-
 		/**
 		 * Set the start state for a specific precedence value.
 		 *
@@ -114,25 +98,18 @@ namespace Antlr4.Runtime.Dfa
 			{
 				throw new Exception("Only precedence DFAs may contain a precedence start state.");
 			}
-
 			if (precedence < 0)
 			{
 				return;
 			}
-
-			// synchronization on s0 here is ok. when the DFA is turned into a
-			// precedence DFA, s0 will be initialized once and not updated again
 			lock (s0)
 			{
-				// s0.edges is never null for a precedence DFA
 				if (precedence >= s0.edges.Length)
 				{
 					s0.edges = Arrays.CopyOf(s0.edges, precedence + 1);
 				}
-
 				s0.edges[precedence] = startState;
 			}
 		}
-
 	}
 }

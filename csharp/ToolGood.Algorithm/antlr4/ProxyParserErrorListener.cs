@@ -6,17 +6,14 @@ using System.Collections.Generic;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Dfa;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime
 {
-    /// <author>Sam Harwell</author>
     public class ProxyParserErrorListener : ProxyErrorListener<IToken>, IParserErrorListener
     {
         public ProxyParserErrorListener(ICollection<IAntlrErrorListener<IToken>> delegates)
             : base(delegates)
         {
         }
-
         public virtual void ReportAmbiguity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, bool exact, BitSet ambigAlts, ATNConfigSet configs)
         {
             foreach (IAntlrErrorListener<IToken> listener in Delegates)
@@ -29,7 +26,6 @@ namespace Antlr4.Runtime
                 parserErrorListener.ReportAmbiguity(recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs);
             }
         }
-
         public virtual void ReportAttemptingFullContext(Parser recognizer, DFA dfa, int startIndex, int stopIndex, BitSet conflictingAlts, ATNConfigSet configs)
         {
             foreach (IAntlrErrorListener<IToken> listener in Delegates)
@@ -42,7 +38,6 @@ namespace Antlr4.Runtime
                 parserErrorListener.ReportAttemptingFullContext(recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs);
             }
         }
-
         public virtual void ReportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, int prediction, ATNConfigSet configs)
         {
             foreach (IAntlrErrorListener<IToken> listener in Delegates)

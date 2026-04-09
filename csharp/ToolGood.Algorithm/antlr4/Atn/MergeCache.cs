@@ -4,7 +4,6 @@
  */
 using System;
 using System.Collections.Generic;
-
 namespace Antlr4.Runtime.Atn
 {
 	public class MergeCache
@@ -13,18 +12,15 @@ namespace Antlr4.Runtime.Atn
 		{
 			public readonly PredictionContext A;
 			public readonly PredictionContext B;
-
 			public CacheKey(PredictionContext a, PredictionContext b)
 			{
 				A = a;
 				B = b;
 			}
-
 			public bool Equals(CacheKey other)
 			{
 				return ReferenceEquals(A, other.A) && ReferenceEquals(B, other.B);
 			}
-
 			public override int GetHashCode()
 			{
 				unchecked
@@ -33,9 +29,7 @@ namespace Antlr4.Runtime.Atn
 				}
 			}
 		}
-
 		private readonly Dictionary<CacheKey, PredictionContext> _cache = new Dictionary<CacheKey, PredictionContext>();
-
 		public PredictionContext Get(PredictionContext a, PredictionContext b)
 		{
 			var key = new CacheKey(a, b);
@@ -44,7 +38,6 @@ namespace Antlr4.Runtime.Atn
 				return value;
 			return null;
 		}
-
 		public void Put(PredictionContext a, PredictionContext b, PredictionContext value)
 		{
 			var key = new CacheKey(a, b);

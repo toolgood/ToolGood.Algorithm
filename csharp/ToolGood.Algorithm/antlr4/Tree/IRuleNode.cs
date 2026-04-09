@@ -3,7 +3,6 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 using Antlr4.Runtime.Tree;
-
 namespace Antlr4.Runtime.Tree
 {
     public interface IRuleNode : IParseTree
@@ -12,7 +11,6 @@ namespace Antlr4.Runtime.Tree
         {
             get;
         }
-
         new IRuleNode Parent
         {
             get;

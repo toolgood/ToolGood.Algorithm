@@ -6,83 +6,21 @@ using System;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime
 {
     [System.Serializable]
     public class CommonToken : IWritableToken
     {
-        //private const long serialVersionUID = -6708843461296520577L;
-
-        /// <summary>
-        /// An empty
-        /// <see cref="Tuple{T1, T2}"/>
-        /// which is used as the default value of
-        /// <see cref="source"/>
-        /// for tokens that do not have a source.
-        /// </summary>
         protected internal static readonly Tuple<ITokenSource, ICharStream> EmptySource = Tuple.Create<ITokenSource, ICharStream>(null, null);
-
-        /// <summary>
-        /// This is the backing field for the <see cref="Type"/> property.
-        /// </summary>
         private int _type;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="Line"/> property.
-        /// </summary>
         private int _line;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="Column"/> property.
-        /// </summary>
         protected internal int charPositionInLine = -1;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="Channel"/> property.
-        /// </summary>
         private int _channel = TokenConstants.DefaultChannel;
-
-        /// <summary>
-        /// This is the backing field for
-        /// <see cref="TokenSource()"/>
-        /// and
-        /// <see cref="InputStream()"/>
-        /// .
-        /// <p>
-        /// These properties share a field to reduce the memory footprint of
-        /// <see cref="CommonToken"/>
-        /// . Tokens created by a
-        /// <see cref="CommonTokenFactory"/>
-        /// from
-        /// the same source and input stream share a reference to the same
-        /// <see cref="Tuple{T1, T2}"/>
-        /// containing these values.</p>
-        /// </summary>
-        //[NotNull]
         protected internal Tuple<ITokenSource, ICharStream> source;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="Text"/> property.
-        /// </summary>
-        /// <seealso cref="Text"/>
         private string _text;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="TokenIndex"/> property.
-        /// </summary>
         protected internal int index = -1;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="StartIndex"/> property.
-        /// </summary>
         protected internal int start;
-
-        /// <summary>
-        /// This is the backing field for the <see cref="StopIndex"/> property.
-        /// </summary>
         protected internal int stop;
-
         public CommonToken(Tuple<ITokenSource, ICharStream> source, int type, int channel, int start, int stop)
         {
             this.source = source;
@@ -96,15 +34,6 @@ namespace Antlr4.Runtime
                 this.charPositionInLine = source.Item1.Column;
             }
         }
-
-        /// <summary>
-        /// Constructs a new
-        /// <see cref="CommonToken"/>
-        /// with the specified token type and
-        /// text.
-        /// </summary>
-        /// <param name="type">The token type.</param>
-        /// <param name="text">The text of the token.</param>
         public CommonToken(int type, string text)
         {
             this._type = type;
@@ -112,7 +41,6 @@ namespace Antlr4.Runtime
             this._text = text;
             this.source = EmptySource;
         }
-
         public virtual int Type
         {
             get
@@ -124,7 +52,6 @@ namespace Antlr4.Runtime
  				this._type = value;
             }
         }
-
         public virtual int Line
         {
             get
@@ -136,23 +63,6 @@ namespace Antlr4.Runtime
  				this._line = value;
             }
         }
-
-        /// <summary>Explicitly set the text for this token.</summary>
-        /// <remarks>
-        /// Explicitly set the text for this token. If {code text} is not
-        /// <see langword="null"/>
-        /// , then
-        /// <see cref="Text()"/>
-        /// will return this value rather than
-        /// extracting the text from the input.
-        /// </remarks>
-        /// <value>
-        /// The explicit text of the token, or
-        /// <see langword="null"/>
-        /// if the text
-        /// should be obtained from the input along with the start and stop indexes
-        /// of the token.
-        /// </value>
         public virtual string Text
         {
             get
@@ -181,7 +91,6 @@ namespace Antlr4.Runtime
  				this._text = value;
             }
         }
-
         public virtual int Column
         {
             get
@@ -194,7 +103,6 @@ namespace Antlr4.Runtime
                 this.charPositionInLine = charPositionInLine;
             }
         }
-
         public virtual int Channel
         {
             get
@@ -206,7 +114,6 @@ namespace Antlr4.Runtime
                 this._channel = value;
             }
         }
-
         public virtual int StartIndex
         {
             get
@@ -219,7 +126,6 @@ namespace Antlr4.Runtime
                 this.start = start;
             }
         }
-
         public virtual int StopIndex
         {
             get
@@ -232,7 +138,6 @@ namespace Antlr4.Runtime
                 this.stop = stop;
             }
         }
-
         public virtual int TokenIndex
         {
             get
@@ -245,7 +150,6 @@ namespace Antlr4.Runtime
                 this.index = index;
             }
         }
-
         public virtual ITokenSource TokenSource
         {
             get
@@ -253,7 +157,6 @@ namespace Antlr4.Runtime
                 return source.Item1;
             }
         }
-
         public virtual ICharStream InputStream
         {
             get

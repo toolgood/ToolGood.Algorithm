@@ -9,10 +9,8 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-
 	/** A tuple: (ATN state, predicted alt, syntactic, semantic context).
 	 *  The syntactic context is a graph-structured stack node whose
 	 *  path(s) to the root is the rule invocation(s)
@@ -28,19 +26,15 @@ namespace Antlr4.Runtime.Atn
 		 * existing {@link #reachesIntoOuterContext} field.
 		 */
 		private static readonly int SUPPRESS_PRECEDENCE_FILTER = 0x40000000;
-
 		/** The ATN state associated with this configuration */
 		public readonly ATNState state;
-
 		/** What alt (or lexer rule) is predicted by this configuration */
 		public readonly int alt;
-
 		/** The stack of invoking states leading to the rule/states associated
 		 *  with this config.  We track only those contexts pushed during
 		 *  execution of the ATN simulator.
 		 */
 		public PredictionContext context;
-
 		/**
 		 * We cannot execute predicates dependent upon local context unless
 		 * we know for sure we are in the correct context. Because there is
@@ -65,17 +59,13 @@ namespace Antlr4.Runtime.Atn
 		 * <em>completely</em> unaffected by the change.</p>
 		 */
 		public int reachesIntoOuterContext;
-
-
 		public readonly SemanticContext semanticContext;
- 
 		public ATNConfig(ATNState state,
 						 int alt,
 						 PredictionContext context)
 			: this(state, alt, context, SemanticContext.Empty.Instance)
 		{
 		}
-
 		public ATNConfig(ATNState state,
 						 int alt,
 						 PredictionContext context,
@@ -86,30 +76,25 @@ namespace Antlr4.Runtime.Atn
 			this.context = context;
 			this.semanticContext = semanticContext;
 		}
-
 		public ATNConfig(ATNConfig c, ATNState state)
 			: this(c, state, c.context, c.semanticContext)
 		{
 		}
-
 		public ATNConfig(ATNConfig c, ATNState state,
 			 SemanticContext semanticContext)
 			: this(c, state, c.context, semanticContext)
 		{
 		}
-
 		public ATNConfig(ATNConfig c,
 						 SemanticContext semanticContext)
 			: this(c, c.state, c.context, semanticContext)
 		{
 		}
-
 		public ATNConfig(ATNConfig c, ATNState state,
 						 PredictionContext context)
 			: this(c, state, context, c.semanticContext)
 		{
 		}
-
 		public ATNConfig(ATNConfig c, ATNState state,
 						 PredictionContext context,
 						 SemanticContext semanticContext)
@@ -120,7 +105,6 @@ namespace Antlr4.Runtime.Atn
 			this.semanticContext = semanticContext;
 			this.reachesIntoOuterContext = c.reachesIntoOuterContext;
 		}
-
 		/**
 		 * This method gets the value of the {@link #reachesIntoOuterContext} field
 		 * as it existed prior to the introduction of the
@@ -133,7 +117,6 @@ namespace Antlr4.Runtime.Atn
 				return reachesIntoOuterContext & ~SUPPRESS_PRECEDENCE_FILTER;
 			}
 		}
-
 		public bool IsPrecedenceFilterSuppressed
 		{
 			get
@@ -141,7 +124,6 @@ namespace Antlr4.Runtime.Atn
 				return (reachesIntoOuterContext & SUPPRESS_PRECEDENCE_FILTER) != 0;
 			}
 		}
-
 		public void SetPrecedenceFilterSuppressed(bool value)
 		{
 			if (value)
@@ -152,7 +134,6 @@ namespace Antlr4.Runtime.Atn
 				this.reachesIntoOuterContext &= ~SUPPRESS_PRECEDENCE_FILTER;
 			}
 		}
-
 		/** An ATN configuration is equal to another if both have
 		 *  the same state, they predict the same alternative, and
 		 *  syntactic/semantic contexts are the same.
@@ -162,10 +143,8 @@ namespace Antlr4.Runtime.Atn
 			if (!(o is ATNConfig)) {
 				return false;
 			}
-
 			return this.Equals((ATNConfig)o);
 		}
-
 		public virtual bool Equals(ATNConfig other)
 		{
 			if (this == other)
@@ -176,14 +155,12 @@ namespace Antlr4.Runtime.Atn
 			{
 				return false;
 			}
-
 			return this.state.stateNumber == other.state.stateNumber
 				&& this.alt == other.alt
 				&& (this.context == other.context || (this.context != null && this.context.Equals(other.context)))
 				&& this.semanticContext.Equals(other.semanticContext)
 				&& this.IsPrecedenceFilterSuppressed == other.IsPrecedenceFilterSuppressed;
 		}
-
 		public override int GetHashCode()
 		{
 			int hashCode = MurmurHash.Initialize(7);
@@ -194,8 +171,5 @@ namespace Antlr4.Runtime.Atn
 			hashCode = MurmurHash.Finish(hashCode, 4);
 			return hashCode;
 		}
-
- 
 	}
-
 }

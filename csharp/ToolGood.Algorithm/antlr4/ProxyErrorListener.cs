@@ -7,18 +7,9 @@ using System.Collections.Generic;
 using System.IO;
 namespace Antlr4.Runtime
 {
-    /// <summary>
-    /// This implementation of
-    /// <see cref="IAntlrErrorListener{Symbol}"/>
-    /// dispatches all calls to a
-    /// collection of delegate listeners. This reduces the effort required to support multiple
-    /// listeners.
-    /// </summary>
-    /// <author>Sam Harwell</author>
     public class ProxyErrorListener<Symbol> : IAntlrErrorListener<Symbol>
     {
         private readonly IEnumerable<IAntlrErrorListener<Symbol>> delegates;
-
         public ProxyErrorListener(IEnumerable<IAntlrErrorListener<Symbol>> delegates)
         {
             if (delegates == null)
@@ -27,7 +18,6 @@ namespace Antlr4.Runtime
             }
             this.delegates = delegates;
         }
-
         protected internal virtual IEnumerable<IAntlrErrorListener<Symbol>> Delegates
         {
             get
@@ -35,7 +25,6 @@ namespace Antlr4.Runtime
                 return delegates;
             }
         }
-
         public virtual void SyntaxError(TextWriter output, IRecognizer recognizer, Symbol offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
             foreach (IAntlrErrorListener<Symbol> listener in delegates)

@@ -83,11 +83,7 @@ partial class mathLexer : Lexer {
 			return DefaultVocabulary;
 		}
 	}
-	public override string GrammarFileName { get { return ""; } }
 	public override string[] RuleNames { get { return ruleNames; } }
-	public override string[] ChannelNames { get { return channelNames; } }
-	public override string[] ModeNames { get { return modeNames; } }
-	public override int[] SerializedAtn { get { return _serializedATN; } }
 	static mathLexer() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {

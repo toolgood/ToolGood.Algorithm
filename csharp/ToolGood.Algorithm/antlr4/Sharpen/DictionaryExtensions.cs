@@ -5,7 +5,6 @@
 namespace Antlr4.Runtime.Sharpen
 {
     using System.Collections.Generic;
-
     internal static class DictionaryExtensions
     {
         public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
@@ -14,17 +13,14 @@ namespace Antlr4.Runtime.Sharpen
             TValue value;
             if (!dictionary.TryGetValue(key, out value))
                 return null;
-
             return value;
         }
-
         public static TValue Put<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
             where TValue : class
         {
             TValue previous;
             if (!dictionary.TryGetValue(key, out previous))
                 previous = null;
-
             dictionary[key] = value;
             return previous;
         }

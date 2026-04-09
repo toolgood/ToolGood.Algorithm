@@ -4,20 +4,16 @@
  */
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
     public sealed class PrecedencePredicateTransition : AbstractPredicateTransition
     {
         public readonly int precedence;
-
         public PrecedencePredicateTransition(ATNState target, int precedence)
             : base(target)
         {
             this.precedence = precedence;
         }
-
         public override Antlr4.Runtime.Atn.TransitionType TransitionType
         {
             get
@@ -25,7 +21,6 @@ namespace Antlr4.Runtime.Atn
                 return Antlr4.Runtime.Atn.TransitionType.PRECEDENCE;
             }
         }
-
         public override bool IsEpsilon
         {
             get
@@ -33,12 +28,10 @@ namespace Antlr4.Runtime.Atn
                 return true;
             }
         }
-
         public override bool Matches(int symbol, int minVocabSymbol, int maxVocabSymbol)
         {
             return false;
         }
-
         public SemanticContext.PrecedencePredicate Predicate
         {
             get
@@ -46,6 +39,5 @@ namespace Antlr4.Runtime.Atn
                 return new SemanticContext.PrecedencePredicate(precedence);
             }
         }
- 
     }
 }

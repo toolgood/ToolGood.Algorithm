@@ -1,4 +1,4 @@
-namespace ToolGood.Algorithm.math
+﻿namespace ToolGood.Algorithm.math
 {
 #pragma warning disable 0162
 #pragma warning disable 0219
@@ -28,9 +28,7 @@ partial class mathParser : Parser {
 			return DefaultVocabulary;
 		}
 	}
-	public override string GrammarFileName { get { return ""; } }
 	public override string[] RuleNames { get { return ruleNames; } }
-	public override int[] SerializedAtn { get { return _serializedATN; } }
 	static mathParser() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
@@ -1043,9 +1041,6 @@ partial class mathParser : Parser {
 		
 		
 		
-		
-		
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(300, 0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{

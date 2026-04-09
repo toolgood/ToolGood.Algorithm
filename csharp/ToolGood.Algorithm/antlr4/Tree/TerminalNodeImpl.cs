@@ -3,30 +3,24 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 using Antlr4.Runtime.Misc;
-
 namespace Antlr4.Runtime.Tree
 {
     public class TerminalNodeImpl : ITerminalNode
     {
         private IToken _symbol;
-
         private IRuleNode _parent;
-
         public TerminalNodeImpl(IToken symbol)
         {
             this._symbol = symbol;
         }
-
         public virtual IParseTree GetChild(int i)
         {
             return null;
         }
-
         ITree ITree.GetChild(int i)
         {
             return GetChild(i);
         }
-
         public virtual IToken Symbol
         {
             get
@@ -34,7 +28,6 @@ namespace Antlr4.Runtime.Tree
                 return _symbol;
             }
         }
-
         public virtual IRuleNode Parent
         {
             get
@@ -46,7 +39,6 @@ namespace Antlr4.Runtime.Tree
 				_parent = value;
 			}
         }
-
         IParseTree IParseTree.Parent
         {
             get
@@ -54,7 +46,6 @@ namespace Antlr4.Runtime.Tree
                 return Parent;
             }
         }
-
         ITree ITree.Parent
         {
             get
@@ -62,7 +53,6 @@ namespace Antlr4.Runtime.Tree
                 return Parent;
             }
         }
-
         public virtual IToken Payload
         {
             get
@@ -70,7 +60,6 @@ namespace Antlr4.Runtime.Tree
                 return Symbol;
             }
         }
-
         object ITree.Payload
         {
             get
@@ -78,7 +67,6 @@ namespace Antlr4.Runtime.Tree
                 return Payload;
             }
         }
-
         public virtual Interval SourceInterval
         {
             get
@@ -91,7 +79,6 @@ namespace Antlr4.Runtime.Tree
                 return Interval.Invalid;
             }
         }
-
         public virtual int ChildCount
         {
             get
@@ -99,12 +86,10 @@ namespace Antlr4.Runtime.Tree
                 return 0;
             }
         }
-
         public virtual T Accept<T>(IParseTreeVisitor<T> visitor)
         {
             return visitor.VisitTerminal(this);
         }
-
         public virtual string GetText()
         {
             if (Symbol != null)
@@ -113,6 +98,5 @@ namespace Antlr4.Runtime.Tree
             }
             return null;
         }
-
     }
 }

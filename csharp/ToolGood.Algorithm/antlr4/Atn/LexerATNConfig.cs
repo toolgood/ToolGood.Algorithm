@@ -4,37 +4,29 @@
  */
 using System;
 using Antlr4.Runtime.Misc;
-
 namespace Antlr4.Runtime.Atn
 {
 	public class LexerATNConfig : ATNConfig
 	{
-
 		/**
 		 * This is the backing field for {@link #getLexerActionExecutor}.
 		 */
 		private readonly LexerActionExecutor lexerActionExecutor;
-
 		private readonly bool passedThroughNonGreedyDecision;
-
 		public LexerATNConfig(ATNState state,
 							  int alt,
 							  PredictionContext context)
-				: base(state, alt, context/*, SemanticContext.Empty.Instance*/) // TODO
+				: base(state, alt, context/*, SemanticContext.Empty.Instance*/) 
 		{
 			this.passedThroughNonGreedyDecision = false;
 			this.lexerActionExecutor = null;
 		}
-
- 
-
 		public LexerATNConfig(LexerATNConfig c, ATNState state)
 			: base(c, state, c.context, c.semanticContext)
 		{
 			this.lexerActionExecutor = c.lexerActionExecutor;
 			this.passedThroughNonGreedyDecision = checkNonGreedyDecision(c, state);
 		}
-
 		public LexerATNConfig(LexerATNConfig c, ATNState state,
 							  LexerActionExecutor lexerActionExecutor)
 			: base(c, state, c.context, c.semanticContext)
@@ -42,7 +34,6 @@ namespace Antlr4.Runtime.Atn
 			this.lexerActionExecutor = lexerActionExecutor;
 			this.passedThroughNonGreedyDecision = checkNonGreedyDecision(c, state);
 		}
-
 		public LexerATNConfig(LexerATNConfig c, ATNState state,
 							  PredictionContext context)
 			: base(c, state, context, c.semanticContext)
@@ -50,7 +41,6 @@ namespace Antlr4.Runtime.Atn
 			this.lexerActionExecutor = c.lexerActionExecutor;
 			this.passedThroughNonGreedyDecision = checkNonGreedyDecision(c, state);
 		}
-
 		/**
 		 * Gets the {@link LexerActionExecutor} capable of executing the embedded
 		 * action(s) for the current configuration.
@@ -59,12 +49,10 @@ namespace Antlr4.Runtime.Atn
 		{
 			return lexerActionExecutor;
 		}
-
 		public bool hasPassedThroughNonGreedyDecision()
 		{
 			return passedThroughNonGreedyDecision;
 		}
-
 		public override int GetHashCode()
 		{
 			int hashCode = MurmurHash.Initialize(7);
@@ -77,7 +65,6 @@ namespace Antlr4.Runtime.Atn
 			hashCode = MurmurHash.Finish(hashCode, 6);
 			return hashCode;
 		}
-
 		public override bool Equals(ATNConfig other)
 		{
 			if (this == other)
@@ -88,21 +75,17 @@ namespace Antlr4.Runtime.Atn
 			{
 				return false;
 			}
-
 			LexerATNConfig lexerOther = (LexerATNConfig)other;
 			if (passedThroughNonGreedyDecision != lexerOther.passedThroughNonGreedyDecision)
 			{
 				return false;
 			}
-
 			if (!(lexerActionExecutor==null ? lexerOther.lexerActionExecutor==null : lexerActionExecutor.Equals(lexerOther.lexerActionExecutor)))
 			{
 				return false;
 			}
-
 			return base.Equals(other);
 		}
-
 		private static bool checkNonGreedyDecision(LexerATNConfig source, ATNState target)
 		{
 			return source.passedThroughNonGreedyDecision

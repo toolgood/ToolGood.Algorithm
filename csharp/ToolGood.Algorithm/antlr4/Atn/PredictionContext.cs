@@ -7,15 +7,12 @@ using System.Collections.Generic;
 using System.Text;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
 	public abstract class PredictionContext
 	{
 		public static readonly int EMPTY_RETURN_STATE = int.MaxValue;
-
 		private static readonly int INITIAL_HASH = 1;
-
 		protected internal static int CalculateHashCode(PredictionContext parent, int returnState)
 		{
 			int hash = MurmurHash.Initialize(INITIAL_HASH);
@@ -24,7 +21,6 @@ namespace Antlr4.Runtime.Atn
 			hash = MurmurHash.Finish(hash, 2);
 			return hash;
 		}
-
 		protected internal static int CalculateHashCode(PredictionContext[] parents, int[] returnStates)
 		{
 			int hash = MurmurHash.Initialize(INITIAL_HASH);
@@ -39,14 +35,11 @@ namespace Antlr4.Runtime.Atn
 			hash = MurmurHash.Finish(hash, 2 * parents.Length);
 			return hash;
 		}
-
 		private readonly int cachedHashCode;
-
 		protected internal PredictionContext(int cachedHashCode)
 		{
 			this.cachedHashCode = cachedHashCode;
 		}
-
 		public static PredictionContext FromRuleContext(ATN atn, RuleContext outerContext)
 		{
 			if (outerContext == null)
@@ -58,16 +51,12 @@ namespace Antlr4.Runtime.Atn
 			RuleTransition transition = (RuleTransition)state.Transition(0);
 			return parent.GetChild(transition.followState.stateNumber);
 		}
-
 		public abstract int Size
 		{
 			get;
 		}
-
 		public abstract PredictionContext GetParent(int index);
-
 		public abstract int GetReturnState(int index);
-
 		public virtual bool IsEmpty
 		{
 			get
@@ -75,7 +64,6 @@ namespace Antlr4.Runtime.Atn
 				return this == EmptyPredictionContext.Instance;
 			}
 		}
-
 		public virtual bool HasEmptyPath
 		{
 			get
@@ -83,14 +71,10 @@ namespace Antlr4.Runtime.Atn
 				return GetReturnState(Size - 1) == EMPTY_RETURN_STATE;
 			}
 		}
-
 		public sealed override int GetHashCode()
 		{
 			return cachedHashCode;
 		}
-
-
-
 		internal static PredictionContext Merge(PredictionContext a, PredictionContext b, bool rootIsWildcard, MergeCache mergeCache)
 		{
 			if (a == b || a.Equals(b))
@@ -103,9 +87,6 @@ namespace Antlr4.Runtime.Atn
 									   (SingletonPredictionContext)b,
 									   rootIsWildcard, mergeCache);
 			}
-
-			// At least one of a or b is array
-			// If one is $ and rootIsWildcard, return $ as * wildcard
 			if (rootIsWildcard)
 			{
 				if (a is EmptyPredictionContext)
@@ -113,8 +94,6 @@ namespace Antlr4.Runtime.Atn
 				if (b is EmptyPredictionContext)
 					return b;
 			}
-
-			// convert singleton so both are arrays to normalize
 			if (a is SingletonPredictionContext)
 			{
 				a = new ArrayPredictionContext((SingletonPredictionContext)a);
@@ -126,7 +105,6 @@ namespace Antlr4.Runtime.Atn
 			return MergeArrays((ArrayPredictionContext)a, (ArrayPredictionContext)b,
 							   rootIsWildcard, mergeCache);
 		}
-
 		public static PredictionContext MergeSingletons(
 	SingletonPredictionContext a,
 	SingletonPredictionContext b,
@@ -140,41 +118,32 @@ namespace Antlr4.Runtime.Atn
 				previous = mergeCache.Get(b, a);
 				if (previous != null) return previous;
 			}
-
 			PredictionContext rootMerge = MergeRoot(a, b, rootIsWildcard);
 			if (rootMerge != null)
 			{
 				if (mergeCache != null) mergeCache.Put(a, b, rootMerge);
 				return rootMerge;
 			}
-
 			if (a.returnState == b.returnState)
-			{ // a == b
+			{ 
 				PredictionContext parent = Merge(a.parent, b.parent, rootIsWildcard, mergeCache);
-				// if parent is same as existing a or b parent or reduced to a parent, return it
-				if (parent == a.parent) return a; // ax + bx = ax, if a=b
-				if (parent == b.parent) return b; // ax + bx = bx, if a=b
-												  // else: ax + ay = a'[x,y]
-												  // merge parents x and y, giving array node with x,y then remainders
-												  // of those graphs.  dup a, a' points at merged array
-												  // new joined parent so create new singleton pointing to it, a'
+				if (parent == a.parent) return a; 
+				if (parent == b.parent) return b; 
 				PredictionContext a_ = SingletonPredictionContext.Create(parent, a.returnState);
 				if (mergeCache != null) mergeCache.Put(a, b, a_);
 				return a_;
 			}
-			else { // a != b payloads differ
-				   // see if we can collapse parents due to $+x parents if local ctx
+			else { 
 				int[] payloads = new int[2];
 				PredictionContext[] parents = new PredictionContext[2];
 				PredictionContext pc;
 				PredictionContext singleParent = null;
 				if (a == b || (a.parent != null && a.parent.Equals(b.parent)))
-				{ // ax + bx = [a,b]x
+				{ 
 					singleParent = a.parent;
 				}
 				if (singleParent != null)
-				{   // parents are same
-					// sort payloads and use same parent
+				{   
 					if (a.returnState > b.returnState)
 					{
 						payloads[0] = b.returnState;
@@ -191,10 +160,6 @@ namespace Antlr4.Runtime.Atn
 						mergeCache.Put(a, b, pc);
 					return pc;
 				}
-				// parents differ and can't merge them. Just pack together
-				// into array; can't merge.
-				// ax + by = [ax,by]
-				// sort by payload
 				if (a.returnState > b.returnState)
 				{
 					payloads[0] = b.returnState;
@@ -214,7 +179,6 @@ namespace Antlr4.Runtime.Atn
 				return pc;
 			}
 		}
-
 		public static PredictionContext MergeArrays(
             ArrayPredictionContext a,
             ArrayPredictionContext b,
@@ -232,58 +196,50 @@ namespace Antlr4.Runtime.Atn
 					return previous;
 				}
 			}
-
-			// merge sorted payloads a + b => M
-			int i = 0; // walks a
-			int j = 0; // walks b
-			int k = 0; // walks target M array
-
+			int i = 0; 
+			int j = 0; 
+			int k = 0; 
 			int[] mergedReturnStates =
 				new int[a.returnStates.Length + b.returnStates.Length];
 			PredictionContext[] mergedParents =
 				new PredictionContext[a.returnStates.Length + b.returnStates.Length];
-			// walk and merge to yield mergedParents, mergedReturnStates
 			while (i < a.returnStates.Length && j < b.returnStates.Length)
 			{
 				PredictionContext a_parent = a.parents[i];
 				PredictionContext b_parent = b.parents[j];
 				if (a.returnStates[i] == b.returnStates[j])
 				{
-					// same payload (stack tops are equal), must yield merged singleton
 					int payload = a.returnStates[i];
-					// $+$ = $
 					bool both_dollar = payload == EMPTY_RETURN_STATE &&
 									a_parent == null && b_parent == null;
 					bool ax_ax = (a_parent != null && b_parent != null) &&
-									a_parent.Equals(b_parent); // ax+ax -> ax
+									a_parent.Equals(b_parent); 
 					if (both_dollar || ax_ax ) {
-						mergedParents[k] = a_parent; // choose left
+						mergedParents[k] = a_parent; 
 						mergedReturnStates[k] = payload;
 					}
-				else { // ax+ay -> a'[x,y]
+				else { 
 						PredictionContext mergedParent =
 							Merge(a_parent, b_parent, rootIsWildcard, mergeCache);
 						mergedParents[k] = mergedParent;
 						mergedReturnStates[k] = payload;
 					}
-					i++; // hop over left one as usual
-					j++; // but also skip one in right side since we merge
+					i++; 
+					j++; 
 				}
 				else if (a.returnStates[i] < b.returnStates[j])
-				{ // copy a[i] to M
+				{ 
 					mergedParents[k] = a_parent;
 					mergedReturnStates[k] = a.returnStates[i];
 					i++;
 				}
-				else { // b > a, copy b[j] to M
+				else { 
 					mergedParents[k] = b_parent;
 					mergedReturnStates[k] = b.returnStates[j];
 					j++;
 				}
 				k++;
 			}
-
-			// copy over any payloads remaining in either array
 			if (i < a.returnStates.Length)
 			{
 				for (int p = i; p < a.returnStates.Length; p++)
@@ -301,12 +257,10 @@ namespace Antlr4.Runtime.Atn
 					k++;
 				}
 			}
-
-			// trim merged if we combined a few that had same stack tops
 			if (k < mergedParents.Length)
-			{ // write index < last position; trim
+			{ 
 				if (k == 1)
-				{ // for just one merged element, return singleton top
+				{ 
 					PredictionContext a_ = SingletonPredictionContext.Create(mergedParents[0], mergedReturnStates[0]);
 					if (mergeCache != null) mergeCache.Put(a, b, a_);
 					return a_;
@@ -314,11 +268,7 @@ namespace Antlr4.Runtime.Atn
 				mergedParents = Arrays.CopyOf(mergedParents, k);
 				mergedReturnStates = Arrays.CopyOf(mergedReturnStates, k);
 			}
-
 			PredictionContext M = new ArrayPredictionContext(mergedParents, mergedReturnStates);
-
-			// if we created same array as a or b, return that instead
-			// TODO: track whether this is possible above during merge sort for speed
 			if (M.Equals(a))
 			{
 				if (mergeCache != null)
@@ -331,27 +281,22 @@ namespace Antlr4.Runtime.Atn
 					mergeCache.Put(a, b, b);
 				return b;
 			}
-
 			CombineCommonParents(mergedParents);
-
 			if (mergeCache != null)
 				mergeCache.Put(a, b, M);
 			return M;
 		}
-
 		protected static void CombineCommonParents(PredictionContext[] parents)
 		{
 			Dictionary<PredictionContext, PredictionContext> uniqueParents = new Dictionary<PredictionContext, PredictionContext>();
-
 			for (int p = 0; p < parents.Length; p++)
 			{
 				PredictionContext parent = parents[p];
 				if (parent!=null && !uniqueParents.ContainsKey(parent))
-				{ // don't replace
+				{ 
 					uniqueParents.Put(parent, parent);
 				}
 			}
-
 			for (int p = 0; p < parents.Length; p++)
 			{
 				PredictionContext parent = parents[p];
@@ -359,7 +304,6 @@ namespace Antlr4.Runtime.Atn
 					parents[p] = uniqueParents.Get(parent);
 			}
 		}
-
 		public static PredictionContext MergeRoot(SingletonPredictionContext a,
 											  SingletonPredictionContext b,
 											  bool rootIsWildcard)
@@ -367,14 +311,14 @@ namespace Antlr4.Runtime.Atn
 			if (rootIsWildcard)
 			{
 				if (a == EmptyPredictionContext.Instance)
-					return EmptyPredictionContext.Instance;  // * + b = *
+					return EmptyPredictionContext.Instance;  
 				if (b == EmptyPredictionContext.Instance)
-					return EmptyPredictionContext.Instance;  // a + * = *
+					return EmptyPredictionContext.Instance;  
 			}
 			else {
-				if (a == EmptyPredictionContext.Instance && b == EmptyPredictionContext.Instance) return EmptyPredictionContext.Instance; // $ + $ = $
+				if (a == EmptyPredictionContext.Instance && b == EmptyPredictionContext.Instance) return EmptyPredictionContext.Instance; 
 				if (a == EmptyPredictionContext.Instance)
-				{ // $ + x = [$,x]
+				{ 
 					int[] payloads = { b.returnState, EMPTY_RETURN_STATE };
 					PredictionContext[] parents = { b.parent, null };
 					PredictionContext joined =
@@ -382,7 +326,7 @@ namespace Antlr4.Runtime.Atn
 					return joined;
 				}
 				if (b == EmptyPredictionContext.Instance)
-				{ // x + $ = [$,x] ($ is always first if present)
+				{ 
 					int[] payloads = { a.returnState, EMPTY_RETURN_STATE };
 					PredictionContext[] parents = { a.parent, null };
 					PredictionContext joined =
@@ -392,28 +336,23 @@ namespace Antlr4.Runtime.Atn
 			}
 			return null;
 		}
-
-
 		public static PredictionContext GetCachedContext(PredictionContext context, PredictionContextCache contextCache, PredictionContext.IdentityHashMap visited)
 		{
 			if (context.IsEmpty)
 			{
 				return context;
 			}
-
 			PredictionContext existing = visited.Get(context);
 			if (existing != null)
 			{
 				return existing;
 			}
-
 			existing = contextCache.Get(context);
 			if (existing != null)
 			{
 				visited.Put(context, existing);
 				return existing;
 			}
-
 			bool changed = false;
 			PredictionContext[] parents = new PredictionContext[context.Size];
 			for (int i = 0; i < parents.Length; i++)
@@ -428,21 +367,17 @@ namespace Antlr4.Runtime.Atn
 						{
 							parents[j] = context.GetParent(j);
 						}
-
 						changed = true;
 					}
-
 					parents[i] = parent;
 				}
 			}
-
 			if (!changed)
 			{
 				contextCache.Add(context);
 				visited.Put(context, context);
 				return context;
 			}
-
 			PredictionContext updated;
 			if (parents.Length == 0)
 			{
@@ -456,20 +391,15 @@ namespace Antlr4.Runtime.Atn
 				ArrayPredictionContext arrayPredictionContext = (ArrayPredictionContext)context;
 				updated = new ArrayPredictionContext(parents, arrayPredictionContext.returnStates);
 			}
-
 			contextCache.Add(updated);
 			visited.Put(updated, updated);
 			visited.Put(context, updated);
-
 			return updated;
 		}
-
 		public virtual PredictionContext GetChild(int returnState)
 		{
 			return new SingletonPredictionContext(this, returnState);
 		}
-
-
 		public sealed class IdentityHashMap : Dictionary<PredictionContext, PredictionContext>
 		{
 			public IdentityHashMap()
@@ -477,20 +407,16 @@ namespace Antlr4.Runtime.Atn
 			{
 			}
 		}
-
 		public sealed class IdentityEqualityComparator : EqualityComparer<PredictionContext>
 		{
 			public static readonly PredictionContext.IdentityEqualityComparator Instance = new PredictionContext.IdentityEqualityComparator();
-
 			private IdentityEqualityComparator()
 			{
 			}
-
 			public override int GetHashCode(PredictionContext obj)
 			{
 				return obj.GetHashCode();
 			}
-
 			public override bool Equals(PredictionContext a, PredictionContext b)
 			{
 				return a == b;
