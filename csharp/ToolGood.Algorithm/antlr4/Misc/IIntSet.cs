@@ -8,11 +8,7 @@ namespace Antlr4.Runtime.Misc
     public interface IIntSet
     {
         void Add(int el);
-        IIntSet AddAll(IIntSet set);
-        IIntSet And(IIntSet a);
-        IIntSet Complement(IIntSet elements);
-        IIntSet Or(IIntSet a);
-        IIntSet Subtract(IIntSet a);
+  
         int Count
         {
             get;
@@ -22,10 +18,7 @@ namespace Antlr4.Runtime.Misc
             get;
         }
         bool Equals(object obj);
-        int SingleElement
-        {
-            get;
-        }
+  
         bool Contains(int el);
         void Remove(int el);
         IList<int> ToList();

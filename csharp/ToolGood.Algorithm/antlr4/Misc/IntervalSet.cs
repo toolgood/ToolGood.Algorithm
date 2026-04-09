@@ -241,87 +241,6 @@ namespace Antlr4.Runtime.Misc
             o.AddAll(a);
             return o;
         }
-        public virtual Antlr4.Runtime.Misc.IntervalSet And(IIntSet other)
-        {
-            if (other == null)
-            {
-                return null;
-            }
-            IList<Interval> myIntervals = this.intervals;
-            IList<Interval> theirIntervals = ((Antlr4.Runtime.Misc.IntervalSet)other).intervals;
-            Antlr4.Runtime.Misc.IntervalSet intersection = null;
-            int mySize = myIntervals.Count;
-            int theirSize = theirIntervals.Count;
-            int i = 0;
-            int j = 0;
-            while (i < mySize && j < theirSize)
-            {
-                Interval mine = myIntervals[i];
-                Interval theirs = theirIntervals[j];
-                if (mine.StartsBeforeDisjoint(theirs))
-                {
-                    i++;
-                }
-                else
-                {
-                    if (theirs.StartsBeforeDisjoint(mine))
-                    {
-                        j++;
-                    }
-                    else
-                    {
-                        if (mine.ProperlyContains(theirs))
-                        {
-                            if (intersection == null)
-                            {
-                                intersection = new Antlr4.Runtime.Misc.IntervalSet();
-                            }
-                            intersection.Add(mine.Intersection(theirs));
-                            j++;
-                        }
-                        else
-                        {
-                            if (theirs.ProperlyContains(mine))
-                            {
-                                if (intersection == null)
-                                {
-                                    intersection = new Antlr4.Runtime.Misc.IntervalSet();
-                                }
-                                intersection.Add(mine.Intersection(theirs));
-                                i++;
-                            }
-                            else
-                            {
-                                if (!mine.Disjoint(theirs))
-                                {
-                                    if (intersection == null)
-                                    {
-                                        intersection = new Antlr4.Runtime.Misc.IntervalSet();
-                                    }
-                                    intersection.Add(mine.Intersection(theirs));
-                                    if (mine.StartsAfterNonDisjoint(theirs))
-                                    {
-                                        j++;
-                                    }
-                                    else
-                                    {
-                                        if (theirs.StartsAfterNonDisjoint(mine))
-                                        {
-                                            i++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (intersection == null)
-            {
-                return new Antlr4.Runtime.Misc.IntervalSet();
-            }
-            return intersection;
-        }
         public virtual bool Contains(int el)
         {
             int n = intervals.Count;
@@ -346,21 +265,6 @@ namespace Antlr4.Runtime.Misc
             get
             {
                 return intervals == null || intervals.Count == 0;
-            }
-        }
-        public virtual int SingleElement
-        {
-            get
-            {
-                if (intervals != null && intervals.Count == 1)
-                {
-                    Interval I = intervals[0];
-                    if (I.a == I.b)
-                    {
-                        return I.a;
-                    }
-                }
-                return TokenConstants.InvalidType;
             }
         }
         public virtual int MinElement
@@ -397,61 +301,6 @@ namespace Antlr4.Runtime.Misc
             }
             Antlr4.Runtime.Misc.IntervalSet other = (Antlr4.Runtime.Misc.IntervalSet)obj;
             return this.intervals.SequenceEqual(other.intervals);
-        }
-        public virtual string ToString(bool elemAreChar)
-        {
-            StringBuilder buf = new StringBuilder();
-            if (this.intervals == null || this.intervals.Count == 0)
-            {
-                return "{}";
-            }
-            if (this.Count > 1)
-            {
-                buf.Append("{");
-            }
-            bool first = true;
-            foreach (Interval I in intervals)
-            {
-                if (!first)
-                    buf.Append(", ");
-                first = false;
-                int a = I.a;
-                int b = I.b;
-                if (a == b)
-                {
-                    if (a == TokenConstants.EOF)
-                    {
-                        buf.Append("<EOF>");
-                    }
-                    else
-                    {
-                        if (elemAreChar)
-                        {
-                            buf.Append("'").Append((char)a).Append("'");
-                        }
-                        else
-                        {
-                            buf.Append(a);
-                        }
-                    }
-                }
-                else
-                {
-                    if (elemAreChar)
-                    {
-                        buf.Append("'").Append((char)a).Append("'..'").Append((char)b).Append("'");
-                    }
-                    else
-                    {
-                        buf.Append(a).Append("..").Append(b);
-                    }
-                }
-            }
-            if (this.Count > 1)
-            {
-                buf.Append("}");
-            }
-            return buf.ToString();
         }
         public virtual string ToString(IVocabulary vocabulary)
         {
@@ -593,26 +442,6 @@ namespace Antlr4.Runtime.Misc
                 throw new InvalidOperationException("can't alter readonly IntervalSet");
             }
             this.@readonly = @readonly;
-        }
-        IIntSet IIntSet.AddAll(IIntSet set)
-        {
-            return AddAll(set);
-        }
-        IIntSet IIntSet.And(IIntSet a)
-        {
-            return And(a);
-        }
-        IIntSet IIntSet.Complement(IIntSet elements)
-        {
-            return Complement(elements);
-        }
-        IIntSet IIntSet.Or(IIntSet a)
-        {
-            return Or(a);
-        }
-        IIntSet IIntSet.Subtract(IIntSet a)
-        {
-            return Subtract(a);
         }
     }
 }
