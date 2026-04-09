@@ -12,9 +12,9 @@ namespace Antlr4.Runtime.Atn
 	/// <summary>"dup" of ParserInterpreter</summary>
 	public class LexerATNSimulator : ATNSimulator
 	{
-		public readonly bool debug = false;
+		// public readonly bool debug = false;
 
-		public readonly bool dfa_debug = false;
+		// public readonly bool dfa_debug = false;
 
 
 		public static readonly int MIN_DFA_EDGE = 0;
@@ -114,10 +114,6 @@ namespace Antlr4.Runtime.Atn
 		protected int MatchATN(ICharStream input)
 		{
 			ATNState startState = atn.modeToStartState[mode];
-            if (debug)
-			{
-				Console.WriteLine("matchATN mode " + mode + " start: " + startState);
-			}
             int old_mode = mode;
 
 			ATNConfigSet s0_closure = ComputeStartState(input, startState);
@@ -131,20 +127,12 @@ namespace Antlr4.Runtime.Atn
 			}
 
 			int predict = ExecATN(input, next);
-            if (debug)
-			{
-				Console.WriteLine("DFA after matchATN: " + decisionToDFA[old_mode].ToString());
-			}
             return predict;
 		}
 
 		protected int ExecATN(ICharStream input, DFAState ds0)
 		{
             //System.out.println("enter exec index "+input.index()+" from "+ds0.configs);
-            if (debug)
-            {
-                Console.WriteLine("start state closure=" + ds0.configSet);
-			}
             if (ds0.isAcceptState)
 			{
 				// allow zero-length tokens
@@ -157,10 +145,6 @@ namespace Antlr4.Runtime.Atn
 
 			while (true)
 			{ // while more work
-                if (debug)
-                {
-                    Console.WriteLine("execATN loop starting closure: " + s.configSet);
-				}
                 // As we move src->trg, src->trg, we keep track of the previous trg to
                 // avoid looking up the DFA state again, which is expensive.
                 // If the previous target was already part of the DFA, we might
@@ -234,10 +218,6 @@ namespace Antlr4.Runtime.Atn
 			}
 
 			DFAState target = s.edges[t - MIN_DFA_EDGE];
-			if (debug && target != null)
-			{
-				Console.WriteLine("reuse state " + s.stateNumber + " edge to " + target.stateNumber);
-			}
 
 			return target;
 		}
@@ -318,11 +298,6 @@ namespace Antlr4.Runtime.Atn
 					continue;
 				}
 
-				if (debug)
-				{
-					Console.WriteLine("testing " + GetTokenName(t) + " at " + c.ToString(recog, true));
-				}
-
 				int n = c.state.NumberOfTransitions;
 				for (int ti = 0; ti < n; ti++)
 				{               // for each transition
@@ -352,11 +327,6 @@ namespace Antlr4.Runtime.Atn
 		protected void Accept(ICharStream input, LexerActionExecutor lexerActionExecutor,
 							  int startIndex, int index, int line, int charPos)
 		{
-			if (debug)
-			{
-				Console.WriteLine("ACTION " + lexerActionExecutor);
-			}
-
 			// seek to after last char in token
 			input.Seek(index);
 			this.thisLine = line;
@@ -406,24 +376,8 @@ namespace Antlr4.Runtime.Atn
 		 */
 		protected bool Closure(ICharStream input, LexerATNConfig config, ATNConfigSet configs, bool currentAltReachedAcceptState, bool speculative, bool treatEofAsEpsilon)
 		{
-			if (debug)
-			{
-				Console.WriteLine("closure(" + config.ToString(recog, true) + ")");
-			}
-
 			if (config.state is RuleStopState)
 			{
-				if (debug)
-				{
-					if (recog != null)
-					{
-						Console.WriteLine("closure at " + recog.RuleNames[config.state.ruleIndex] + " rule stop " + config);
-					}
-					else {
-						Console.WriteLine("closure at rule stop " + config);
-					}
-				}
-
 				if (config.context == null || config.context.HasEmptyPath)
 				{
 					if (config.context == null || config.context.IsEmpty)
@@ -518,10 +472,6 @@ namespace Antlr4.Runtime.Atn
 					 test them, we cannot cash the DFA state target of ID.
 				 */
 					PredicateTransition pt = (PredicateTransition)t;
-					if (debug)
-					{
-						Console.WriteLine("EVAL rule " + pt.ruleIndex + ":" + pt.predIndex);
-					}
 					configs.hasSemanticContext = true;
 					if (EvaluatePredicate(input, pt.ruleIndex, pt.predIndex, speculative))
 					{
@@ -675,11 +625,6 @@ namespace Antlr4.Runtime.Atn
 			{
 				// Only track edges within the DFA bounds
 				return;
-			}
-
-			if (debug)
-			{
-				Console.WriteLine("EDGE " + p + " -> " + q + " upon " + ((char)t));
 			}
 
 			lock (p)

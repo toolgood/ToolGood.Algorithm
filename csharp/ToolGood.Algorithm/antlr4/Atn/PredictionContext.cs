@@ -232,12 +232,10 @@ namespace Antlr4.Runtime.Atn
 			{
 				PredictionContext previous = mergeCache.Get(a, b);
 				if (previous != null) {
-    				if ( ParserATNSimulator.trace_atn_sim ) Console.WriteLine("mergeArrays a="+a+",b="+b+" -> previous");
 					return previous;
 				}
 				previous = mergeCache.Get(b, a);
 				if (previous != null) {
-    				if ( ParserATNSimulator.trace_atn_sim ) Console.WriteLine("mergeArrays a="+a+",b="+b+" -> previous");
 					return previous;
 				}
 			}
@@ -332,20 +330,16 @@ namespace Antlr4.Runtime.Atn
 			{
 				if (mergeCache != null)
 					mergeCache.Put(a, b, a);
-   				if ( ParserATNSimulator.trace_atn_sim ) Console.WriteLine("mergeArrays a="+a+",b="+b+" -> a");
 				return a;
 			}
 			if (M.Equals(b))
 			{
 				if (mergeCache != null)
 					mergeCache.Put(a, b, b);
-   				if ( ParserATNSimulator.trace_atn_sim ) Console.WriteLine("mergeArrays a="+a+",b="+b+" -> b");
 				return b;
 			}
 
 			CombineCommonParents(mergedParents);
-
-			if ( ParserATNSimulator.trace_atn_sim ) Console.WriteLine("mergeArrays a="+a+",b="+b+" -> "+M);
 
 			if (mergeCache != null)
 				mergeCache.Put(a, b, M);
