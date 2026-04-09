@@ -17,10 +17,6 @@ namespace Antlr4.Runtime.Tree
         {
             return null;
         }
-        ITree ITree.GetChild(int i)
-        {
-            return GetChild(i);
-        }
         public virtual IToken Symbol
         {
             get
@@ -39,34 +35,7 @@ namespace Antlr4.Runtime.Tree
 				_parent = value;
 			}
         }
-        IParseTree IParseTree.Parent
-        {
-            get
-            {
-                return Parent;
-            }
-        }
-        ITree ITree.Parent
-        {
-            get
-            {
-                return Parent;
-            }
-        }
-        public virtual IToken Payload
-        {
-            get
-            {
-                return Symbol;
-            }
-        }
-        object ITree.Payload
-        {
-            get
-            {
-                return Payload;
-            }
-        }
+   
         public virtual Interval SourceInterval
         {
             get

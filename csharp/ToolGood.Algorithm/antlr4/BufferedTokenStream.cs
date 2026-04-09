@@ -172,13 +172,6 @@ namespace Antlr4.Runtime
             Sync(0);
             p = AdjustSeekIndex(0);
         }
-        public virtual void SetTokenSource(ITokenSource tokenSource)
-        {
-            this._tokenSource = tokenSource;
-            tokens.Clear();
-            p = -1;
-			this.fetchedEOF = false;
-        }
         protected internal virtual int NextTokenOnChannel(int i, int channel)
         {
             Sync(i);
@@ -223,11 +216,6 @@ namespace Antlr4.Runtime
             {
                 return _tokenSource.SourceName;
             }
-        }
-        public virtual string GetText()
-        {
-            Fill();
-            return GetText(Interval.Of(0, Size - 1));
         }
         public virtual string GetText(Interval interval)
         {

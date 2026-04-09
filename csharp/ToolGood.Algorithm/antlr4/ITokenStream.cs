@@ -16,8 +16,6 @@ namespace Antlr4.Runtime
             get;
         }
         string GetText(Interval interval);
-        string GetText();
-        string GetText(RuleContext ctx);
         string GetText(IToken start, IToken stop);
     }
 }
