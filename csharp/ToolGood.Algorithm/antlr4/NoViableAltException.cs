@@ -22,23 +22,6 @@ namespace Antlr4.Runtime
     [System.Serializable]
     public class NoViableAltException : RecognitionException
     {
-        //private const long serialVersionUID = 5096000008992867052L;
-
-        /// <summary>Which configurations did we try at input.index() that couldn't match input.LT(1)?</summary>
-        //[Nullable]
-        private readonly ATNConfigSet deadEndConfigs;
-
-        /// <summary>
-        /// The token object at the start index; the input stream might
-        /// not be buffering tokens so get a reference to it.
-        /// </summary>
-        /// <remarks>
-        /// The token object at the start index; the input stream might
-        /// not be buffering tokens so get a reference to it. (At the
-        /// time the error occurred, of course the stream needs to keep a
-        /// buffer all of the tokens but later we might not have access to those.)
-        /// </remarks>
-        //[NotNull]
         private readonly IToken startToken;
 
         public NoViableAltException(Parser recognizer)
@@ -50,7 +33,6 @@ namespace Antlr4.Runtime
             : base(recognizer, input, ctx)
         {
             // LL(1) error
-            this.deadEndConfigs = deadEndConfigs;
             this.startToken = startToken;
             this.OffendingToken = offendingToken;
         }
@@ -62,14 +44,6 @@ namespace Antlr4.Runtime
                 return startToken;
             }
         }
-
-        //[Nullable]
-        public virtual ATNConfigSet DeadEndConfigs
-        {
-            get
-            {
-                return deadEndConfigs;
-            }
-        }
+       
     }
 }

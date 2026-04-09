@@ -67,14 +67,6 @@ namespace Antlr4.Runtime
         //[Nullable]
         private IList<IParseTreeListener> _parseListeners;
 
-        /// <summary>The number of syntax errors reported during parsing.</summary>
-        /// <remarks>
-        /// The number of syntax errors reported during parsing. This value is
-        /// incremented each time
-        /// <see cref="NotifyErrorListeners(string)"/>
-        /// is called.
-        /// </remarks>
-        private int _syntaxErrors;
 
         protected readonly TextWriter ErrorOutput;
 
@@ -93,7 +85,6 @@ namespace Antlr4.Runtime
             }
             _errHandler.Reset(this);
             _ctx = null;
-            _syntaxErrors = 0;
             _precedenceStack.Clear();
             _precedenceStack.Add(0);
             ATNSimulator interpreter = Interpreter;
@@ -305,7 +296,6 @@ namespace Antlr4.Runtime
 
         public virtual void NotifyErrorListeners(IToken offendingToken, string msg, RecognitionException e)
         {
-            _syntaxErrors++;
             int line = -1;
             int charPositionInLine = -1;
             if (offendingToken != null)
