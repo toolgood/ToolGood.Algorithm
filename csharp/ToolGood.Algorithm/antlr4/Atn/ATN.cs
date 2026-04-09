@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -92,11 +92,6 @@ namespace Antlr4.Runtime.Atn
         }
 
 
-        public virtual PredictionContext GetCachedContext(PredictionContext context)
-        {
-            return PredictionContext.GetCachedContext(context, contextCache, new PredictionContext.IdentityHashMap());
-        }
-
         /// <summary>
         /// Compute the set of valid tokens that can occur starting in state
         /// <paramref name="s"/>
@@ -150,21 +145,6 @@ namespace Antlr4.Runtime.Atn
                 state.stateNumber = states.Count;
             }
             states.Add(state);
-        }
-
-        public virtual void RemoveState(ATNState state)
-        {
-            states[state.stateNumber] = null;
-        }
-
-        // just free mem, don't shift states in list
-        public virtual void DefineMode(string name, TokensStartState s)
-        {
-            modeNameToStartState[name] = s;
-            modeToStartState.Add(s);
-            modeToDFA = Arrays.CopyOf(modeToDFA, modeToStartState.Count);
-            modeToDFA[modeToDFA.Length - 1] = new DFA(s);
-            DefineDecisionState(s);
         }
 
         public virtual int DefineDecisionState(DecisionState s)

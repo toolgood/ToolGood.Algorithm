@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -76,15 +76,11 @@ namespace Antlr4.Runtime
         /// </remarks>
         private int _syntaxErrors;
 
-        protected readonly TextWriter Output;
         protected readonly TextWriter ErrorOutput;
-
-        public Parser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
 
         public Parser(ITokenStream input, TextWriter output, TextWriter errorOutput)
         {
             TokenStream = input;
-            Output = output;
             ErrorOutput = errorOutput;
         }
 
@@ -249,30 +245,6 @@ namespace Antlr4.Runtime
 					listener.ExitEveryRule (_ctx);
 				}
 			}
-        }
-
-        /// <summary>Gets the number of syntax errors reported during parsing.</summary>
-        /// <remarks>
-        /// Gets the number of syntax errors reported during parsing. This value is
-        /// incremented each time
-        /// <see cref="NotifyErrorListeners(string)"/>
-        /// is called.
-        /// </remarks>
-        /// <seealso cref="NotifyErrorListeners(string)"/>
-        public virtual int NumberOfSyntaxErrors
-        {
-            get
-            {
-                return _syntaxErrors;
-            }
-        }
-
-        public virtual ITokenFactory TokenFactory
-        {
-            get
-            {
-                return _input.TokenSource.TokenFactory;
-            }
         }
 
         public virtual IAntlrErrorStrategy ErrorHandler
@@ -444,29 +416,7 @@ namespace Antlr4.Runtime
                 TriggerEnterRuleEvent();
             }
         }
-
-        public virtual void EnterLeftFactoredRule(ParserRuleContext localctx, int state, int ruleIndex)
-        {
-            State = state;
-            if (_buildParseTrees)
-            {
-                ParserRuleContext factoredContext = (ParserRuleContext)_ctx.GetChild(_ctx.ChildCount - 1);
-                _ctx.RemoveLastChild();
-                factoredContext.Parent = localctx;
-                localctx.AddChild(factoredContext);
-            }
-            _ctx = localctx;
-            _ctx.Start = _input.LT(1);
-            if (_buildParseTrees)
-            {
-                AddContextToParseTree();
-            }
-            if (_parseListeners != null)
-            {
-                TriggerEnterRuleEvent();
-            }
-        }
-
+ 
         public virtual void ExitRule()
         {
             _ctx.Stop = _input.LT(-1);
@@ -512,12 +462,6 @@ namespace Antlr4.Runtime
                 }
                 return _precedenceStack[_precedenceStack.Count - 1];
             }
-        }
-
-        [Obsolete(@"UseEnterRecursionRule(ParserRuleContext, int, int, int) instead.")]
-        public virtual void EnterRecursionRule(ParserRuleContext localctx, int ruleIndex)
-        {
-            EnterRecursionRule(localctx, Atn.ruleToStartState[ruleIndex].stateNumber, ruleIndex, 0);
         }
 
         public virtual void EnterRecursionRule(ParserRuleContext localctx, int state, int ruleIndex, int precedence)
@@ -654,18 +598,6 @@ namespace Antlr4.Runtime
             }
             return stack;
         }
-
-        public virtual IList<string> GetRuleInvocationStack()
-        {
-            return GetRuleInvocationStack(_ctx);
-        }
-
-        public virtual string SourceName
-        {
-            get
-            {
-                return _input.SourceName;
-            }
-        }
+ 
     }
 }

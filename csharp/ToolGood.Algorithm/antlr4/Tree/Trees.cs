@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -13,18 +13,6 @@ namespace Antlr4.Runtime.Tree
     /// <remarks>A set of utility routines useful for all kinds of ANTLR trees.</remarks>
     public class Trees
     {
-        /// <summary>Print out a whole tree in LISP form.</summary>
-        /// <remarks>
-        /// Print out a whole tree in LISP form.
-        /// <see cref="GetNodeText(ITree, Antlr4.Runtime.Parser)"/>
-        /// is used on the
-        /// node payloads to get the text for the nodes.  Detect
-        /// parse trees and extract data appropriately.
-        /// </remarks>
-        public static string ToStringTree(ITree t)
-        {
-            return ToStringTree(t, (IList<string>)null);
-        }
 
         /// <summary>Print out a whole tree in LISP form.</summary>
         /// <remarks>
@@ -123,57 +111,7 @@ namespace Antlr4.Runtime.Tree
             return t.Payload.ToString();
         }
 
-        /// <summary>Return ordered list of all children of this node</summary>
-        public static IList<ITree> GetChildren(ITree t)
-        {
-            IList<ITree> kids = new List<ITree>();
-            for (int i = 0; i < t.ChildCount; i++)
-            {
-                kids.Add(t.GetChild(i));
-            }
-            return kids;
-        }
-
-        /// <summary>Return a list of all ancestors of this node.</summary>
-        /// <remarks>
-        /// Return a list of all ancestors of this node.  The first node of
-        /// list is the root and the last is the parent of this node.
-        /// </remarks>
-        [return: NotNull]
-        public static IList<ITree> GetAncestors(ITree t)
-        {
-            if (t.Parent == null)
-            {
-                return Collections.EmptyList<ITree>();
-            }
-            IList<ITree> ancestors = new List<ITree>();
-            t = t.Parent;
-            while (t != null)
-            {
-                ancestors.Insert(0, t);
-                // insert at start
-                t = t.Parent;
-            }
-            return ancestors;
-        }
-
-        public static ICollection<IParseTree> FindAllTokenNodes(IParseTree t, int ttype)
-        {
-            return FindAllNodes(t, ttype, true);
-        }
-
-        public static ICollection<IParseTree> FindAllRuleNodes(IParseTree t, int ruleIndex)
-        {
-            return FindAllNodes(t, ruleIndex, false);
-        }
-
-        public static IList<IParseTree> FindAllNodes(IParseTree t, int index, bool findTokens)
-        {
-            IList<IParseTree> nodes = new List<IParseTree>();
-            _findAllNodes(t, index, findTokens, nodes);
-            return nodes;
-        }
-
+ 
         private static void _findAllNodes(IParseTree t, int index, bool findTokens, IList<IParseTree> nodes)
         {
             // check this node (the root) first
@@ -215,8 +153,5 @@ namespace Antlr4.Runtime.Tree
             return nodes;
         }
 
-        private Trees()
-        {
-        }
     }
 }

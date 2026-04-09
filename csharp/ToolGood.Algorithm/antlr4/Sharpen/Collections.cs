@@ -23,11 +23,7 @@ namespace Antlr4.Runtime.Sharpen
             return EmptyMapImpl<TKey, TValue>.Instance;
         }
 
-        public static ReadOnlyCollection<T> SingletonList<T>(T item)
-        {
-            return new ReadOnlyCollection<T>(new T[] { item });
-        }
-
+  
         public static ReadOnlyDictionary<TKey, TValue> SingletonMap<TKey, TValue>(TKey key, TValue value)
         {
             return new ReadOnlyDictionary<TKey,TValue>(new Dictionary<TKey, TValue> { { key, value } });

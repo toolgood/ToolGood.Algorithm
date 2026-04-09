@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -33,8 +33,6 @@ namespace Antlr4.Runtime
         public const int MaxCharValue = 0x10FFFF;
 
         private ICharStream _input;
-
-        protected readonly TextWriter Output;
 
         protected readonly TextWriter ErrorOutput;
 
@@ -99,35 +97,11 @@ namespace Antlr4.Runtime
         /// </remarks>
 		private string _text;
 
-        public Lexer(ICharStream input) : this(input, Console.Out, Console.Error) { }
-
         public Lexer(ICharStream input, TextWriter output, TextWriter errorOutput)
         {
             this._input = input;
-            this.Output = output;
             this.ErrorOutput = errorOutput;
             this._tokenFactorySourcePair = Tuple.Create((ITokenSource)this, input);
-        }
-
-        public virtual void Reset()
-        {
-            // wack Lexer state variables
-            if (_input != null)
-            {
-                _input.Seek(0);
-            }
-            // rewind the input
-            _token = null;
-            _type = TokenConstants.InvalidType;
-            _channel = TokenConstants.DefaultChannel;
-            _tokenStartCharIndex = -1;
-            _tokenStartColumn = -1;
-            _tokenStartLine = -1;
-            _text = null;
-            _hitEOF = false;
-            _mode = Antlr4.Runtime.Lexer.DEFAULT_MODE;
-            _modeStack.Clear();
-            Interpreter.Reset();
         }
 
         /// <summary>
@@ -267,16 +241,6 @@ outer_continue: ;
             }
         }
 
-        /// <summary>Set the char stream and reset the lexer</summary>
-        public virtual void SetInputStream(ICharStream input)
-        {
-            this._input = null;
-            this._tokenFactorySourcePair = Tuple.Create((ITokenSource)this, _input);
-            Reset();
-            this._input = input;
-            this._tokenFactorySourcePair = Tuple.Create((ITokenSource)this, _input);
-        }
-
         public virtual string SourceName
         {
             get
@@ -378,78 +342,7 @@ outer_continue: ;
                 return _input.Index;
             }
         }
-
-		public virtual int TokenStartCharIndex
-		{
-			get
-			{
-				return _tokenStartCharIndex;
-			}
-		}
-
-		public virtual int TokenStartLine
-		{
-			get
-			{
-				return _tokenStartLine;
-			}
-		}
-
-		public virtual int TokenStartColumn
-		{
-			get
-			{
-				return _tokenStartColumn;
-			}
-		}
-
-        /// <summary>
-        /// Return the text matched so far for the current token or any text
-        /// override.
-        /// </summary>
-        /// <remarks>
-        /// Return the text matched so far for the current token or any text
-        /// override.
-        /// </remarks>
-        /// <summary>
-        /// Set the complete text of this token; it wipes any previous changes to the
-        /// text.
-        /// </summary>
-        /// <remarks>
-        /// Set the complete text of this token; it wipes any previous changes to the
-        /// text.
-        /// </remarks>
-        public virtual string Text
-        {
-            get
-            {
-                if (_text != null)
-                {
-                    return _text;
-                }
-                return Interpreter.GetText(_input);
-            }
-            set
-            {
-                string text = value;
-                this._text = text;
-            }
-        }
-
-        /// <summary>Override if emitting multiple tokens.</summary>
-        /// <remarks>Override if emitting multiple tokens.</remarks>
-        public virtual IToken Token
-        {
-            get
-            {
-                return _token;
-            }
-            set
-            {
-                IToken _token = value;
-                this._token = _token;
-            }
-        }
+ 
 
         public virtual int Type
         {
@@ -476,41 +369,7 @@ outer_continue: ;
                 _channel = channel;
             }
         }
-
-        public virtual Stack<int> ModeStack
-        {
-            get
-            {
-                return _modeStack;
-            }
-        }
-
-        public virtual int CurrentMode
-        {
-            get
-            {
-                return _mode;
-            }
-            set
-            {
-                int mode = value;
-                _mode = mode;
-            }
-        }
-
-        public virtual bool HitEOF
-        {
-            get
-            {
-                return _hitEOF;
-            }
-            set
-            {
-                bool hitEOF = value;
-                _hitEOF = hitEOF;
-            }
-        }
-
+  
         public virtual string[] ChannelNames
         {
             get
@@ -525,23 +384,6 @@ outer_continue: ;
             {
                 return null;
             }
-        }
-
-        /// <summary>Return a list of all Token objects in input char stream.</summary>
-        /// <remarks>
-        /// Return a list of all Token objects in input char stream.
-        /// Forces load of all tokens. Does not include EOF token.
-        /// </remarks>
-        public virtual IList<IToken> GetAllTokens()
-        {
-            IList<IToken> tokens = new List<IToken>();
-            IToken t = NextToken();
-            while (t.Type != TokenConstants.EOF)
-            {
-                tokens.Add(t);
-                t = NextToken();
-            }
-            return tokens;
         }
 
         public virtual void Recover(LexerNoViableAltException e)
@@ -610,29 +452,5 @@ outer_continue: ;
             return s;
         }
 
-        public virtual string GetCharErrorDisplay(int c)
-        {
-            string s = GetErrorDisplay(c);
-            return "'" + s + "'";
-        }
-
-        /// <summary>
-        /// Lexers can normally match any char in it's vocabulary after matching
-        /// a token, so do the easy thing and just kill a character and hope
-        /// it all works out.
-        /// </summary>
-        /// <remarks>
-        /// Lexers can normally match any char in it's vocabulary after matching
-        /// a token, so do the easy thing and just kill a character and hope
-        /// it all works out.  You can instead use the rule invocation stack
-        /// to do sophisticated error recovery if you are in a fragment rule.
-        /// </remarks>
-        public virtual void Recover(RecognitionException re)
-        {
-            //System.out.println("consuming char "+(char)input.LA(1)+" during recovery");
-            //re.printStackTrace();
-            // TODO: Do we lose character or line position information?
-            _input.Consume();
-        }
     }
 }

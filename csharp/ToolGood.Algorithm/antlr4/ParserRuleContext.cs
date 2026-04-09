@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -285,40 +285,6 @@ namespace Antlr4.Runtime
             return null;
         }
 
-        public virtual ITerminalNode[] GetTokens(int ttype)
-        {
-            if (children == null)
-            {
-                return Collections.EmptyList<ITerminalNode>();
-            }
-
-            List<ITerminalNode> tokens = null;
-            foreach (IParseTree o in children)
-            {
-                if (o is ITerminalNode)
-                {
-                    ITerminalNode tnode = (ITerminalNode) o;
-                    IToken symbol = tnode.Symbol;
-                    if (symbol.Type == ttype)
-                    {
-                        if (tokens == null)
-                        {
-                            tokens = new List<ITerminalNode>();
-                        }
-
-                        tokens.Add(tnode);
-                    }
-                }
-            }
-
-            if (tokens == null)
-            {
-                return Collections.EmptyList<ITerminalNode>();
-            }
-
-            return tokens.ToArray();
-        }
-
         public virtual T GetRuleContext<T>(int i)
             where T : Antlr4.Runtime.ParserRuleContext
         {
@@ -385,12 +351,5 @@ namespace Antlr4.Runtime
             set { _stop = value; }
         }
 
-        /// <summary>Used for rule context info debugging during parse-time, not so much for ATN debugging</summary>
-        public virtual string ToInfoString(Parser recognizer)
-        {
-            List<string> rules = new List<string>(recognizer.GetRuleInvocationStack(this));
-            rules.Reverse();
-            return "ParserRuleContext" + rules + "{" + "start=" + _start + ", stop=" + _stop + '}';
-        }
     }
 }
