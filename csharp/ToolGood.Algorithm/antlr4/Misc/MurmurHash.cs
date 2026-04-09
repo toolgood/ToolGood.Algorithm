@@ -10,12 +10,19 @@ namespace Antlr4.Runtime.Misc
     {
         private const int DefaultSeed = 0;
 
+        private static readonly int C1 = unchecked((int)(0xCC9E2D51));
+        private static readonly int C2 = unchecked((int)(0x1B873593));
+        private static readonly int M = 5;
+        private static readonly int N = unchecked((int)(0xE6546B64));
+        private static readonly int Seed1 = unchecked((int)(0x85EBCA6B));
+        private static readonly int Seed2 = unchecked((int)(0xC2B2AE35));
+
         /// <summary>Initialize the hash using the default seed value.</summary>
         /// <remarks>Initialize the hash using the default seed value.</remarks>
         /// <returns>the intermediate hash value</returns>
         public static int Initialize()
         {
-            return Initialize(DefaultSeed);
+            return DefaultSeed;
         }
 
         /// <summary>
@@ -40,19 +47,13 @@ namespace Antlr4.Runtime.Misc
         /// <returns>the updated intermediate hash value</returns>
         public static int Update(int hash, int value)
         {
-            int c1 = unchecked((int)(0xCC9E2D51));
-            int c2 = unchecked((int)(0x1B873593));
-            int r1 = 15;
-            int r2 = 13;
-            int m = 5;
-            int n = unchecked((int)(0xE6546B64));
             int k = value;
-            k = k * c1;
-            k = (k << r1) | ((int)(((uint)k) >> (32 - r1)));
-            k = k * c2;
+            k = k * C1;
+            k = (k << 15) | ((int)(((uint)k) >> 17));
+            k = k * C2;
             hash = hash ^ k;
-            hash = (hash << r2) | ((int)(((uint)hash) >> (32 - r2)));
-            hash = hash * m + n;
+            hash = (hash << 13) | ((int)(((uint)hash) >> 19));
+            hash = hash * M + N;
             return hash;
         }
 
@@ -81,9 +82,9 @@ namespace Antlr4.Runtime.Misc
         {
             hash = hash ^ (numberOfWords * 4);
             hash = hash ^ ((int)(((uint)hash) >> 16));
-            hash = hash * unchecked((int)(0x85EBCA6B));
+            hash = hash * Seed1;
             hash = hash ^ ((int)(((uint)hash) >> 13));
-            hash = hash * unchecked((int)(0xC2B2AE35));
+            hash = hash * Seed2;
             hash = hash ^ ((int)(((uint)hash) >> 16));
             return hash;
         }
@@ -102,9 +103,9 @@ namespace Antlr4.Runtime.Misc
         public static int HashCode<T>(T[] data, int seed)
         {
             int hash = Initialize(seed);
-            foreach (T value in data)
+            for (int i = 0; i < data.Length; i++)
             {
-                hash = Update(hash, value);
+                hash = Update(hash, data[i]);
             }
             hash = Finish(hash, data.Length);
             return hash;

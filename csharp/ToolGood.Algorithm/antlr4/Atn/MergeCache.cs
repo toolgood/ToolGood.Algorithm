@@ -9,30 +9,46 @@ namespace Antlr4.Runtime.Atn
 {
 	public class MergeCache
 	{
-		Dictionary<PredictionContext, Dictionary<PredictionContext, PredictionContext>> data = new Dictionary<PredictionContext, Dictionary<PredictionContext, PredictionContext>>();
+		private struct CacheKey : IEquatable<CacheKey>
+		{
+			public readonly PredictionContext A;
+			public readonly PredictionContext B;
+
+			public CacheKey(PredictionContext a, PredictionContext b)
+			{
+				A = a;
+				B = b;
+			}
+
+			public bool Equals(CacheKey other)
+			{
+				return ReferenceEquals(A, other.A) && ReferenceEquals(B, other.B);
+			}
+
+			public override int GetHashCode()
+			{
+				unchecked
+				{
+					return (A?.GetHashCode() ?? 0) * 31 + (B?.GetHashCode() ?? 0);
+				}
+			}
+		}
+
+		private readonly Dictionary<CacheKey, PredictionContext> _cache = new Dictionary<CacheKey, PredictionContext>();
 
 		public PredictionContext Get(PredictionContext a, PredictionContext b)
 		{
-			Dictionary<PredictionContext, PredictionContext> first;
-			if (!data.TryGetValue(a, out first))
-				return null;
+			var key = new CacheKey(a, b);
 			PredictionContext value;
-			if (first.TryGetValue(b, out value))
+			if (_cache.TryGetValue(key, out value))
 				return value;
-			else
-				return null;
-
+			return null;
 		}
 
 		public void Put(PredictionContext a, PredictionContext b, PredictionContext value)
 		{
-			Dictionary<PredictionContext, PredictionContext> first;
-			if (!data.TryGetValue(a, out first))
-			{
-				first = new Dictionary<PredictionContext, PredictionContext>();
-				data[a] = first;
-			}
-			first[b] = value;
+			var key = new CacheKey(a, b);
+			_cache[key] = value;
 		}
 	}
 }
