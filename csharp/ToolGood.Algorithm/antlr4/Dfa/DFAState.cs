@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -80,32 +80,10 @@ namespace Antlr4.Runtime.Dfa
 		 */
 
 		public PredPrediction[] predicates;
-
-
-
-		public DFAState() { }
-
-		public DFAState(int stateNumber) { this.stateNumber = stateNumber; }
+ 
 
 		public DFAState(ATNConfigSet configs) { this.configSet = configs; }
 
-		/** Get the set of all alts mentioned by all ATN configurations in this
-		 *  DFA state.
-		 */
-		public HashSet<int> getAltSet()
-		{
-			HashSet<int> alts = new HashSet<int>();
-			if (configSet != null)
-			{
-				foreach (ATNConfig c in configSet.configs)
-				{
-					alts.Add(c.alt);
-				}
-			}
-			if (alts.Count==0)
-				return null;
-			return alts;
-		}
 
 		public override int GetHashCode()
 		{

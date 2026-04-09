@@ -22,7 +22,7 @@ namespace Antlr4.Runtime
         [NotNull]
         private IAntlrErrorListener<Symbol>[] _listeners =
         {
-            ConsoleErrorListener<Symbol>.Instance
+            //ConsoleErrorListener<Symbol>.Instance
         };
 
         private ATNInterpreter _interp;

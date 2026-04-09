@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -169,11 +169,11 @@ namespace Antlr4.Runtime
                 }
                 else
                 {
-                    if (e is FailedPredicateException)
-                    {
-                        ReportFailedPredicate(recognizer, (FailedPredicateException)e);
-                    }
-                    else
+                    //if (e is FailedPredicateException)
+                    //{
+                    //    ReportFailedPredicate(recognizer, (FailedPredicateException)e);
+                    //}
+                    //else
                     {
                         System.Console.Error.WriteLine("unknown recognition error type: " + e.GetType().FullName);
                         NotifyErrorListeners(recognizer, e.Message, e);
@@ -380,22 +380,22 @@ namespace Antlr4.Runtime
             NotifyErrorListeners(recognizer, msg, e);
         }
 
-        /// <summary>
-        /// This is called by
-        /// <see cref="ReportError(Parser, RecognitionException)"/>
-        /// when the exception is a
-        /// <see cref="FailedPredicateException"/>
-        /// .
-        /// </summary>
-        /// <seealso cref="ReportError(Parser, RecognitionException)"/>
-        /// <param name="recognizer">the parser instance</param>
-        /// <param name="e">the recognition exception</param>
-        protected internal virtual void ReportFailedPredicate(Parser recognizer, FailedPredicateException e)
-        {
-			string ruleName = recognizer.RuleNames[recognizer.RuleContext.RuleIndex];
-            string msg = "rule " + ruleName + " " + e.Message;
-            NotifyErrorListeners(recognizer, msg, e);
-        }
+   //     /// <summary>
+   //     /// This is called by
+   //     /// <see cref="ReportError(Parser, RecognitionException)"/>
+   //     /// when the exception is a
+   //     /// <see cref="FailedPredicateException"/>
+   //     /// .
+   //     /// </summary>
+   //     /// <seealso cref="ReportError(Parser, RecognitionException)"/>
+   //     /// <param name="recognizer">the parser instance</param>
+   //     /// <param name="e">the recognition exception</param>
+   //     protected internal virtual void ReportFailedPredicate(Parser recognizer, FailedPredicateException e)
+   //     {
+			//string ruleName = recognizer.RuleNames[recognizer.RuleContext.RuleIndex];
+   //         string msg = "rule " + ruleName + " " + e.Message;
+   //         NotifyErrorListeners(recognizer, msg, e);
+   //     }
 
         /// <summary>
         /// This method is called to report a syntax error which requires the removal

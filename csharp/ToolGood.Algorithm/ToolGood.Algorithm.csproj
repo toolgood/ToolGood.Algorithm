@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Remove="antlr4\Tree\Xpath\**" />
     <Compile Remove="antlr4\Tree\Pattern\**" />
+    <Compile Remove="antlr4\ConsoleErrorListener.cs" />
+    <Compile Remove="antlr4\FailedPredicateException.cs" />
     <Compile Remove="antlr4\ParserInterpreter.cs" />
     <Compile Remove="antlr4\LexerInterpreter.cs" />
     <Compile Remove="antlr4\InterpreterRuleContext.cs" />
