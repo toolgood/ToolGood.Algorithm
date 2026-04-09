@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -228,21 +228,6 @@ namespace Antlr4.Runtime.Atn
 		{
 			this.decision = decision;
 		}
-
-		public override string ToString()
-		{
-			return "{" +
-				   "decision=" + decision +
-					", contextSensitivities=" + contextSensitivities.Count +
-				   ", errors=" + errors.Count +
-				   ", ambiguities=" + ambiguities.Count +
-				   ", SLL_lookahead=" + SLL_TotalLook +
-				   ", SLL_ATNTransitions=" + SLL_ATNTransitions +
-				   ", SLL_DFATransitions=" + SLL_DFATransitions +
-				   ", LL_Fallback=" + LL_Fallback +
-				   ", LL_lookahead=" + LL_TotalLook +
-				   ", LL_ATNTransitions=" + LL_ATNTransitions +
-				   '}';
-		}
+	 
 	}
 }

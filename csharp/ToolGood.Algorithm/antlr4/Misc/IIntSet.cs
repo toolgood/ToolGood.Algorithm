@@ -280,7 +280,5 @@ namespace Antlr4.Runtime.Misc
         //[return: NotNull]
         IList<int> ToList();
 
-        /// <summary><inheritDoc/></summary>
-        string ToString();
     }
 }

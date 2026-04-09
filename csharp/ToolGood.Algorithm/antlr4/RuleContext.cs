@@ -231,59 +231,6 @@ namespace Antlr4.Runtime
         {
             return visitor.VisitChildren(this);
         }
-
- 
-        public override string ToString()
-        {
-            return ToString((IList<string>)null, (Antlr4.Runtime.RuleContext)null);
-        }
-
-        public string ToString(IRecognizer recog)
-        {
-            return ToString(recog, ParserRuleContext.EmptyContext);
-        }
-
-        public string ToString(IList<string> ruleNames)
-        {
-            return ToString(ruleNames, null);
-        }
-
-        // recog null unless ParserRuleContext, in which case we use subclass toString(...)
-        public virtual string ToString(IRecognizer recog, Antlr4.Runtime.RuleContext stop)
-        {
-            string[] ruleNames = recog != null ? recog.RuleNames : null;
-            IList<string> ruleNamesList = ruleNames != null ? Arrays.AsList(ruleNames) : null;
-            return ToString(ruleNamesList, stop);
-        }
-
-        public virtual string ToString(IList<string> ruleNames, Antlr4.Runtime.RuleContext stop)
-        {
-            StringBuilder buf = new StringBuilder();
-            Antlr4.Runtime.RuleContext p = this;
-            buf.Append("[");
-            while (p != null && p != stop)
-            {
-                if (ruleNames == null)
-                {
-                    if (!p.IsEmpty)
-                    {
-                        buf.Append(p.invokingState);
-                    }
-                }
-                else
-                {
-                    int ruleIndex = p.RuleIndex;
-                    string ruleName = ruleIndex >= 0 && ruleIndex < ruleNames.Count ? ruleNames[ruleIndex] : ruleIndex.ToString();
-                    buf.Append(ruleName);
-                }
-                if (p.Parent != null && (ruleNames != null || !p.Parent.IsEmpty))
-                {
-                    buf.Append(" ");
-                }
-                p = p.Parent;
-            }
-            buf.Append("]");
-            return buf.ToString();
-        }
+         
     }
 }

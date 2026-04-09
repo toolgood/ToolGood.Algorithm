@@ -121,9 +121,6 @@ namespace Antlr4.Runtime.Atn
             return channel == ((Antlr4.Runtime.Atn.LexerChannelAction)obj).channel;
         }
 
-        //public override string ToString()
-        //{
-        //    return string.Format("channel({0})", channel);
-        //}
+ 
     }
 }

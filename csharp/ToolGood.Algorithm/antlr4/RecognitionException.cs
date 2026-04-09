@@ -67,64 +67,6 @@ namespace Antlr4.Runtime
             }
         }
 
-        //public RecognitionException(string message, IRecognizer recognizer, IIntStream input, ParserRuleContext ctx)
-        //    : base(message)
-        //{
-        //    this.recognizer = recognizer;
-        //    this.input = input;
-        //    this.ctx = ctx;
-        //    if (recognizer != null)
-        //    {
-        //        this.offendingState = recognizer.State;
-        //    }
-        //}
-
-        /// <summary>
-        /// Gets the set of input symbols which could potentially follow the
-        /// previously matched symbol at the time this exception was thrown.
-        /// </summary>
-        /// <remarks>
-        /// Gets the set of input symbols which could potentially follow the
-        /// previously matched symbol at the time this exception was thrown.
-        /// <p>If the set of expected tokens is not known and could not be computed,
-        /// this method returns
-        /// <see langword="null"/>
-        /// .</p>
-        /// </remarks>
-        /// <returns>
-        /// The set of token types that could potentially follow the current
-        /// state in the ATN, or
-        /// <see langword="null"/>
-        /// if the information is not available.
-        /// </returns>
-        //[return: Nullable]
-        public virtual IntervalSet GetExpectedTokens()
-        {
-            if (recognizer != null)
-            {
-                return recognizer.Atn.GetExpectedTokens(offendingState, ctx);
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the input stream which is the symbol source for the recognizer where
-        /// this exception was thrown.
-        /// </summary>
-        /// <remarks>
-        /// Gets the input stream which is the symbol source for the recognizer where
-        /// this exception was thrown.
-        /// <p>If the input stream is not available, this method returns
-        /// <see langword="null"/>
-        /// .</p>
-        /// </remarks>
-        /// <returns>
-        /// The input stream which is the symbol source for the recognizer
-        /// where this exception was thrown, or
-        /// <see langword="null"/>
-        /// if the stream is not
-        /// available.
-        /// </returns>
         public virtual IIntStream InputStream
         {
             get
