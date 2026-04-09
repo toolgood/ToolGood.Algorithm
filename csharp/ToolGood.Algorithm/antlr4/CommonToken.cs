@@ -59,7 +59,7 @@ namespace Antlr4.Runtime
         /// <see cref="Tuple{T1, T2}"/>
         /// containing these values.</p>
         /// </summary>
-        [NotNull]
+        //[NotNull]
         protected internal Tuple<ITokenSource, ICharStream> source;
 
         /// <summary>

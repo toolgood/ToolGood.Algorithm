@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -81,7 +81,7 @@ namespace Antlr4.Runtime
 		/// <see langword="null"/>
 		/// if no string literal is associated with the type.
 		/// </returns>
-		[return: Nullable]
+		//[return: Nullable]
         string GetLiteralName(int tokenType);
 
         /// <summary>Gets the symbolic name associated with a token type.</summary>
@@ -145,7 +145,7 @@ namespace Antlr4.Runtime
         /// <see langword="null"/>
         /// if no symbolic name is associated with the type.
         /// </returns>
-        [return: Nullable]
+        //[return: Nullable]
         string GetSymbolicName(int tokenType);
 
         /// <summary>Gets the display name of a token type.</summary>
@@ -174,7 +174,7 @@ namespace Antlr4.Runtime
         /// The display name of the token type, for use in error reporting or
         /// other user-visible messages which reference specific token types.
         /// </returns>
-        [return: NotNull]
+        //[return: NotNull]
         string GetDisplayName(int tokenType);
     }
 }

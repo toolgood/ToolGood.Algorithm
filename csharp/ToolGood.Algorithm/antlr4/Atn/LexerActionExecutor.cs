@@ -26,7 +26,7 @@ namespace Antlr4.Runtime.Atn
     /// <since>4.2</since>
     public class LexerActionExecutor
     {
-        [NotNull]
+        //[NotNull]
         private readonly ILexerAction[] lexerActions;
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Antlr4.Runtime.Atn
         /// <paramref name="lexerAction"/>
         /// .
         /// </returns>
-        [return: NotNull]
+        //[return: NotNull]
         public static Antlr4.Runtime.Atn.LexerActionExecutor Append(Antlr4.Runtime.Atn.LexerActionExecutor lexerActionExecutor, ILexerAction lexerAction)
         {
             if (lexerActionExecutor == null)
@@ -163,18 +163,6 @@ namespace Antlr4.Runtime.Atn
             }
             return new Antlr4.Runtime.Atn.LexerActionExecutor(updatedLexerActions);
         }
-
-        /// <summary>Gets the lexer actions to be executed by this executor.</summary>
-        /// <remarks>Gets the lexer actions to be executed by this executor.</remarks>
-        /// <returns>The lexer actions to be executed by this executor.</returns>
-        //[NotNull]
-        //public virtual ILexerAction[] LexerActions
-        //{
-        //    get
-        //    {
-        //        return lexerActions;
-        //    }
-        //}
 
         /// <summary>
         /// Execute the actions encapsulated by this executor within the context of a

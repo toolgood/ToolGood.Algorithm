@@ -1,4 +1,4 @@
-namespace ToolGood.Algorithm.math
+﻿namespace ToolGood.Algorithm.math
 {
 #pragma warning disable 0162
 #pragma warning disable 0219
@@ -75,7 +75,7 @@ partial class mathLexer : Lexer {
 	private static readonly string[] _LiteralNames = {};
 	private static readonly string[] _SymbolicNames = {};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
-	[NotNull]
+	//[NotNull]
 	public override IVocabulary Vocabulary
 	{
 		get

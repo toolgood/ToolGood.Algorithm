@@ -45,11 +45,7 @@ namespace Antlr4.Runtime.Atn
 
 		readonly SimState prevAccept = new SimState();
 
-		//public LexerATNSimulator(ATN atn, DFA[] decisionToDFA,
-		//						 PredictionContextCache sharedContextCache)
-		//	: this(null, atn, decisionToDFA, sharedContextCache)
-		//{
-		//}
+ 
 
 		public LexerATNSimulator(Lexer recog, ATN atn,
 								 DFA[] decisionToDFA,
@@ -62,14 +58,7 @@ namespace Antlr4.Runtime.Atn
 
 
 
-  //      public void CopyState(LexerATNSimulator simulator)
-		//{
-		//	this.charPositionInLine = simulator.charPositionInLine;
-		//	this.thisLine = simulator.thisLine;
-		//	this.mode = simulator.mode;
-		//	this.startIndex = simulator.startIndex;
-		//}
-
+ 
 		public int Match(ICharStream input, int mode)
 		{
 			this.mode = mode;

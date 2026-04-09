@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -35,17 +35,6 @@ namespace Antlr4.Runtime.Atn
         public LexerTypeAction(int type)
         {
             this.type = type;
-        }
-
-        /// <summary>Gets the type to assign to a token created by the lexer.</summary>
-        /// <remarks>Gets the type to assign to a token created by the lexer.</remarks>
-        /// <returns>The type to assign to a token created by the lexer.</returns>
-        public virtual int Type
-        {
-            get
-            {
-                return type;
-            }
         }
 
         /// <summary><inheritDoc/></summary>
@@ -114,9 +103,5 @@ namespace Antlr4.Runtime.Atn
             return type == ((Antlr4.Runtime.Atn.LexerTypeAction)obj).type;
         }
 
-        public override string ToString()
-        {
-            return string.Format("type({0})", type);
-        }
     }
 }

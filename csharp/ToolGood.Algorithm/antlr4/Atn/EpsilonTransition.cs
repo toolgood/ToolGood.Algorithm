@@ -59,10 +59,5 @@ namespace Antlr4.Runtime.Atn
             return false;
         }
 
-        //[return: NotNull]
-        //public override string ToString()
-        //{
-        //    return "epsilon";
-        //}
     }
 }

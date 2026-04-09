@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -73,7 +73,7 @@ namespace Antlr4.Runtime.Misc
 
         /// <summary>Create a set with a single element, el.</summary>
         /// <remarks>Create a set with a single element, el.</remarks>
-        [return: NotNull]
+        //[return: NotNull]
         public static Antlr4.Runtime.Misc.IntervalSet Of(int a)
         {
             Antlr4.Runtime.Misc.IntervalSet s = new Antlr4.Runtime.Misc.IntervalSet();
@@ -277,7 +277,7 @@ namespace Antlr4.Runtime.Misc
         /// <see langword="null"/>
         /// , it is treated as though it was an empty set.
         /// </remarks>
-        [return: NotNull]
+        //[return: NotNull]
         public static Antlr4.Runtime.Misc.IntervalSet Subtract(Antlr4.Runtime.Misc.IntervalSet left, Antlr4.Runtime.Misc.IntervalSet right)
         {
             if (left == null || left.IsNil)
@@ -715,7 +715,7 @@ namespace Antlr4.Runtime.Misc
             return buf.ToString();
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         protected internal virtual string ElementName(IVocabulary vocabulary, int a)
         {
             if (a == TokenConstants.EOF)

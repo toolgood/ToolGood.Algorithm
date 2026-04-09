@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -38,7 +38,7 @@ namespace Antlr4.Runtime
         /// time the error occurred, of course the stream needs to keep a
         /// buffer all of the tokens but later we might not have access to those.)
         /// </remarks>
-        [NotNull]
+        //[NotNull]
         private readonly IToken startToken;
 
         public NoViableAltException(Parser recognizer)

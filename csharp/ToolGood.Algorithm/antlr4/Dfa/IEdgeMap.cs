@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -27,19 +27,19 @@ namespace Antlr4.Runtime.Dfa
             get;
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         IEdgeMap<T> Put(int key, T value);
 
-        [return: NotNull]
+        //[return: NotNull]
         IEdgeMap<T> Remove(int key);
 
-        [return: NotNull]
+        //[return: NotNull]
         IEdgeMap<T> PutAll(IEdgeMap<T> m);
 
-        [return: NotNull]
+        //[return: NotNull]
         IEdgeMap<T> Clear();
 
-        [return: NotNull]
+        //[return: NotNull]
         IReadOnlyDictionary<int, T> ToMap();
     }
 }

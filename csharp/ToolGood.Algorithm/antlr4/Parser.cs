@@ -26,7 +26,7 @@ namespace Antlr4.Runtime
         /// .
         /// </remarks>
         /// <seealso cref="ErrorHandler"/>
-        [NotNull]
+        //[NotNull]
 		private IAntlrErrorStrategy _errHandler = new DefaultErrorStrategy();
 
         /// <summary>The input stream.</summary>
@@ -136,7 +136,7 @@ namespace Antlr4.Runtime
         /// mismatched symbol
         /// </exception>
         /// <exception cref="Antlr4.Runtime.RecognitionException"/>
-        [return: NotNull]
+        //[return: NotNull]
         public virtual IToken Match(int ttype)
         {
             IToken t = CurrentToken;
@@ -565,7 +565,7 @@ namespace Antlr4.Runtime
         /// respectively.
         /// </summary>
         /// <seealso cref="Antlr4.Runtime.Atn.ATN.GetExpectedTokens(int, RuleContext)"/>
-        [return: NotNull]
+        //[return: NotNull]
         public virtual IntervalSet GetExpectedTokens()
         {
             return Atn.GetExpectedTokens(State, Context);

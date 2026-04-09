@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -38,14 +38,7 @@ namespace Antlr4.Runtime.Atn
             public readonly int predIndex;
 
             public readonly bool isCtxDependent;
-
-            protected internal Predicate()
-            {
-                // e.g., $i ref in pred
-                this.ruleIndex = -1;
-                this.predIndex = -1;
-                this.isCtxDependent = false;
-            }
+  
 
             public Predicate(int ruleIndex, int predIndex, bool isCtxDependent)
             {
@@ -84,20 +77,11 @@ namespace Antlr4.Runtime.Atn
                 return this.ruleIndex == p.ruleIndex && this.predIndex == p.predIndex && this.isCtxDependent == p.isCtxDependent;
             }
 
-            public override string ToString()
-            {
-                return "{" + ruleIndex + ":" + predIndex + "}?";
-            }
         }
 
         public class PrecedencePredicate : SemanticContext, IComparable<SemanticContext.PrecedencePredicate>
         {
             public readonly int precedence;
-
-            protected internal PrecedencePredicate()
-            {
-                this.precedence = 0;
-            }
 
             public PrecedencePredicate(int precedence)
             {
@@ -147,16 +131,11 @@ namespace Antlr4.Runtime.Atn
                 return this.precedence == other.precedence;
             }
 
-            public override string ToString()
-            {
-                // precedence >= _precedenceStack.peek()
-                return "{" + precedence + ">=prec}?";
-            }
         }
 
         public abstract class Operator : SemanticContext
         {
-            [NotNull]
+            //[NotNull]
             public abstract ICollection<SemanticContext> Operands
             {
                 get;
@@ -165,7 +144,7 @@ namespace Antlr4.Runtime.Atn
 
         public class AND : SemanticContext.Operator
         {
-            [NotNull]
+            //[NotNull]
             public readonly SemanticContext[] opnds;
 
             public AND(SemanticContext a, SemanticContext b)
@@ -274,16 +253,12 @@ namespace Antlr4.Runtime.Atn
                 }
                 return result;
             }
-
-            public override string ToString()
-            {
-                return Utils.Join("&&", opnds);
-            }
+   
         }
 
         public class OR : SemanticContext.Operator
         {
-            [NotNull]
+            //[NotNull]
             public readonly SemanticContext[] opnds;
 
             public OR(SemanticContext a, SemanticContext b)
@@ -393,10 +368,6 @@ namespace Antlr4.Runtime.Atn
                 return result;
             }
 
-            public override string ToString()
-            {
-                return Utils.Join("||", opnds);
-            }
         }
 
         public static SemanticContext AndOp(SemanticContext a, SemanticContext b)

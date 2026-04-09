@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -30,16 +30,16 @@ namespace Antlr4.Runtime
         /// <see cref="TokenConstants.EOF"/>
         /// .</p>
         /// </summary>
-        [NotNull]
+        //[NotNull]
         public static readonly Vocabulary EmptyVocabulary = new Vocabulary(EmptyNames, EmptyNames, EmptyNames);
 
-        [NotNull]
+        //[NotNull]
         private readonly string[] literalNames;
 
-        [NotNull]
+        //[NotNull]
         private readonly string[] symbolicNames;
 
-        [NotNull]
+        //[NotNull]
         private readonly string[] displayNames;
 
         private readonly int maxTokenType;
@@ -118,7 +118,7 @@ namespace Antlr4.Runtime
         	return maxTokenType;
         }
 
-        [return: Nullable]
+        //[return: Nullable]
         public virtual string GetLiteralName(int tokenType)
         {
             if (tokenType >= 0 && tokenType < literalNames.Length)
@@ -128,7 +128,7 @@ namespace Antlr4.Runtime
             return null;
         }
 
-        [return: Nullable]
+        //[return: Nullable]
         public virtual string GetSymbolicName(int tokenType)
         {
             if (tokenType >= 0 && tokenType < symbolicNames.Length)
@@ -142,7 +142,7 @@ namespace Antlr4.Runtime
             return null;
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         public virtual string GetDisplayName(int tokenType)
         {
             if (tokenType >= 0 && tokenType < displayNames.Length)

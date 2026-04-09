@@ -32,13 +32,6 @@ namespace Antlr4.Runtime.Atn
 
         public IntervalSet nextTokenWithinRule;
 
-        //public virtual int NonStopStateNumber
-        //{
-        //    get
-        //    {
-        //        return stateNumber;
-        //    }
-        //}
 
         public override int GetHashCode()
         {
@@ -51,26 +44,6 @@ namespace Antlr4.Runtime.Atn
 				(o is ATNState && stateNumber == ((ATNState)o).stateNumber);
         }
 
-        //public virtual bool IsNonGreedyExitState
-        //{
-        //    get
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        //public override string ToString()
-        //{
-        //    return stateNumber.ToString();
-        //}
-
-        //public virtual Transition[] TransitionsArray
-        //{
-        //    get
-        //    {
-        //        return transitions.ToArray();
-        //    }
-        //}
 
         public virtual int NumberOfTransitions
         {

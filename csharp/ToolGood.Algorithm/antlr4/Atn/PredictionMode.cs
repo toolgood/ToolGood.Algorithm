@@ -789,7 +789,7 @@ namespace Antlr4.Runtime.Atn
         /// alt and not pred
         /// </pre>
         /// </remarks>
-        [return: NotNull]
+        //[return: NotNull]
         public static ICollection<BitSet> GetConflictingAltSubsets(IEnumerable<ATNConfig> configs)
         {
             PredictionMode.AltAndContextMap configToAlts = new PredictionMode.AltAndContextMap();
@@ -821,7 +821,7 @@ namespace Antlr4.Runtime.Atn
         /// <see cref="ATNConfig.alt"/>
         /// </pre>
         /// </remarks>
-        [return: NotNull]
+        //[return: NotNull]
         public static IDictionary<ATNState, BitSet> GetStateToAltMap(IEnumerable<ATNConfig> configs)
         {
             IDictionary<ATNState, BitSet> m = new Dictionary<ATNState, BitSet>();

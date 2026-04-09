@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -30,7 +30,7 @@ namespace Antlr4.Runtime
         /// .
         /// </summary>
         /// <seealso cref="IIntStream.LA(int)"/>
-        [return: NotNull]
+        //[return: NotNull]
         IToken LT(int k);
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Antlr4.Runtime
         /// if the stream does not support
         /// retrieving the token at the specified index
         /// </exception>
-        [return: NotNull]
+        //[return: NotNull]
         IToken Get(int i);
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Antlr4.Runtime
         /// is
         /// <see langword="null"/>
         /// </exception>
-        [return: NotNull]
+        //[return: NotNull]
         string GetText(Interval interval);
 
         /// <summary>Return the text of all tokens in the stream.</summary>
@@ -131,7 +131,7 @@ namespace Antlr4.Runtime
         /// </pre>
         /// </remarks>
         /// <returns>The text of all tokens in the stream.</returns>
-        [return: NotNull]
+        //[return: NotNull]
         string GetText();
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Antlr4.Runtime
         /// <paramref name="ctx"/>
         /// .
         /// </returns>
-        [return: NotNull]
+        //[return: NotNull]
         string GetText(RuleContext ctx);
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace Antlr4.Runtime
         /// if this stream does not support
         /// this method for the specified tokens
         /// </exception>
-        [return: NotNull]
+        //[return: NotNull]
         string GetText(IToken start, IToken stop);
     }
 }

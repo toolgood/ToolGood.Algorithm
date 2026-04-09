@@ -19,7 +19,7 @@ namespace Antlr4.Runtime
         //private static readonly ConditionalWeakTable<IVocabulary, IDictionary<string, int>> tokenTypeMapCache = new ConditionalWeakTable<IVocabulary, IDictionary<string, int>>();
         //private static readonly ConditionalWeakTable<string[], IDictionary<string, int>> ruleIndexMapCache = new ConditionalWeakTable<string[], IDictionary<string, int>>();
 
-        [NotNull]
+        //[NotNull]
         private IAntlrErrorListener<Symbol>[] _listeners =
         {
             //ConsoleErrorListener<Symbol>.Instance
@@ -71,7 +71,7 @@ namespace Antlr4.Runtime
         /// </remarks>
         public virtual int[] SerializedAtn
         {
-            [return: NotNull]
+            //[return: NotNull]
             get
             {
                 throw new NotSupportedException("there is no serialized ATN");
@@ -128,7 +128,7 @@ namespace Antlr4.Runtime
         }
 
 
-        [NotNull]
+        //[NotNull]
         public virtual IList<IAntlrErrorListener<Symbol>> ErrorListeners
         {
             get

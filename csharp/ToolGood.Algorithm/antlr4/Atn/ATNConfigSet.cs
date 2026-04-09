@@ -13,8 +13,6 @@ namespace Antlr4.Runtime.Atn
 {
 	public class ATNConfigSet
 	{
-
-
 		/** Indicates that the set of configurations is read-only. Do not
 		 *  allow any code to manipulate the set; DFA states will point at
 		 *  the sets and they must not change. This does not protect the other
@@ -118,14 +116,6 @@ namespace Antlr4.Runtime.Atn
 			return true;
 		}
 
-		/** Return a List holding list of configs */
-		public List<ATNConfig> Elements
-		{
-			get
-			{
-				return configs;
-			}
-		}
 
 		/**
 		 * Gets the complete set of represented alternatives for the configuration
@@ -162,11 +152,6 @@ namespace Antlr4.Runtime.Atn
 			}
 		}
 
-		public bool AddAll(ICollection<ATNConfig> coll)
-		{
-			foreach (ATNConfig c in coll) Add(c);
-			return false;
-		}
 
 		public override bool Equals(Object o)
 		{
@@ -238,35 +223,7 @@ namespace Antlr4.Runtime.Atn
 				configLookup = null; // can't mod, no need for lookup cache
 			}
 		}
-
-		//public override String ToString()
-		//{
-		//	StringBuilder buf = new StringBuilder();
-		//	buf.Append('[');
-		//	List<ATNConfig> cfgs = Elements;
-		//	if (cfgs.Count > 0)
-		//	{
-		//		foreach (ATNConfig c in cfgs)
-		//		{
-		//			buf.Append(c.ToString());
-		//			buf.Append(", ");
-		//		}
-		//		buf.Length = buf.Length - 2;
-		//	}
-		//	buf.Append(']');
-		//	if (hasSemanticContext)
-		//		buf.Append(",hasSemanticContext=")
-		//		   .Append(hasSemanticContext.ToString().ToLower());
-		//	if (uniqueAlt != ATN.INVALID_ALT_NUMBER)
-		//		buf.Append(",uniqueAlt=")
-		//		   .Append(uniqueAlt);
-		//	if (conflictingAlts != null)
-		//		buf.Append(",conflictingAlts=")
-		//		   .Append(conflictingAlts);
-		//	if (dipsIntoOuterContext)
-		//		buf.Append(",dipsIntoOuterContext");
-		//	return buf.ToString();
-		//}
+		 
 
 
 	}

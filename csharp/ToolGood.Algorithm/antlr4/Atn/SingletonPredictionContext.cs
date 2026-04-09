@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -20,7 +20,7 @@ namespace Antlr4.Runtime.Atn
 			return new SingletonPredictionContext(parent, returnState);
 		}
 
-        [NotNull]
+        //[NotNull]
         public readonly PredictionContext parent;
 
         public readonly int returnState;
@@ -81,19 +81,6 @@ namespace Antlr4.Runtime.Atn
 			Antlr4.Runtime.Atn.SingletonPredictionContext other = (Antlr4.Runtime.Atn.SingletonPredictionContext)o;
             return returnState == other.returnState && (parent != null && parent.Equals(other.parent));
         }
-
-		public override string ToString()
-		{
-			string up = parent != null ? parent.ToString() : "";
-			if (up.Length == 0)
-			{
-				if (returnState == EMPTY_RETURN_STATE)
-				{
-					return "$";
-				}
-				return returnState.ToString();
-			}
-			return returnState.ToString() + " " + up;
-		}
+ 
     }
 }

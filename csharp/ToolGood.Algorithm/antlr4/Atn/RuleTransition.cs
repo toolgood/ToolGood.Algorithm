@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -15,18 +15,13 @@ namespace Antlr4.Runtime.Atn
         public readonly int precedence;
 
         /// <summary>What node to begin computations following ref to rule</summary>
-        [NotNull]
+        //[NotNull]
         public ATNState followState;
 
         public bool tailCall;
 
         public bool optimizedTailCall;
 
-        [Obsolete(@"UseRuleTransition(RuleStartState, int, int, ATNState) instead.")]
-        public RuleTransition(RuleStartState ruleStart, int ruleIndex, ATNState followState)
-            : this(ruleStart, ruleIndex, 0, followState)
-        {
-        }
 
         public RuleTransition(RuleStartState ruleStart, int ruleIndex, int precedence, ATNState followState)
             : base(ruleStart)

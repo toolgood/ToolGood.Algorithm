@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -26,11 +26,11 @@ namespace Antlr4.Runtime
         /// error handling strategy. If text!=null, than the start and stop positions
         /// are wiped to -1 in the text override is set in the CommonToken.
         /// </remarks>
-        [return: NotNull]
+        //[return: NotNull]
         IToken Create(Tuple<ITokenSource, ICharStream> source, int type, string text, int channel, int start, int stop, int line, int charPositionInLine);
 
         /// <summary>Generically useful</summary>
-        [return: NotNull]
+        //[return: NotNull]
         IToken Create(int type, string text);
     }
 }

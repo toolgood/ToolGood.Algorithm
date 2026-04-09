@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -15,13 +15,6 @@ namespace Antlr4.Runtime.Atn
 		public static readonly int EMPTY_RETURN_STATE = int.MaxValue;
 
 		private static readonly int INITIAL_HASH = 1;
-
-		protected internal static int CalculateEmptyHashCode()
-		{
-			int hash = MurmurHash.Initialize(INITIAL_HASH);
-			hash = MurmurHash.Finish(hash, 0);
-			return hash;
-		}
 
 		protected internal static int CalculateHashCode(PredictionContext parent, int returnState)
 		{
@@ -476,83 +469,6 @@ namespace Antlr4.Runtime.Atn
 			return new SingletonPredictionContext(this, returnState);
 		}
 
-
-		public virtual string[] ToStrings(IRecognizer recognizer, int currentState)
-		{
-			return ToStrings(recognizer, EmptyPredictionContext.Instance, currentState);
-		}
-
-		public virtual string[] ToStrings(IRecognizer recognizer, PredictionContext stop, int currentState)
-		{
-			List<string> result = new List<string>();
-			for (int perm = 0; ; perm++)
-			{
-				int offset = 0;
-				bool last = true;
-				PredictionContext p = this;
-				int stateNumber = currentState;
-				StringBuilder localBuffer = new StringBuilder();
-				localBuffer.Append("[");
-				while (!p.IsEmpty && p != stop)
-				{
-					int index = 0;
-					if (p.Size > 0)
-					{
-						int bits = 1;
-						while ((1 << bits) < p.Size)
-						{
-							bits++;
-						}
-						int mask = (1 << bits) - 1;
-						index = (perm >> offset) & mask;
-						last &= index >= p.Size - 1;
-						if (index >= p.Size)
-						{
-							goto outer_continue;
-						}
-						offset += bits;
-					}
-					if (recognizer != null)
-					{
-						if (localBuffer.Length > 1)
-						{
-							// first char is '[', if more than that this isn't the first rule
-							localBuffer.Append(' ');
-						}
-						ATN atn = recognizer.Atn;
-						ATNState s = atn.states[stateNumber];
-						string ruleName = recognizer.RuleNames[s.ruleIndex];
-						localBuffer.Append(ruleName);
-					}
-					else
-					{
-						if (p.GetReturnState(index) != EMPTY_RETURN_STATE)
-						{
-							if (!p.IsEmpty)
-							{
-								if (localBuffer.Length > 1)
-								{
-									// first char is '[', if more than that this isn't the first rule
-									localBuffer.Append(' ');
-								}
-								localBuffer.Append(p.GetReturnState(index));
-							}
-						}
-					}
-					stateNumber = p.GetReturnState(index);
-					p = p.GetParent(index);
-				}
-				localBuffer.Append("]");
-				result.Add(localBuffer.ToString());
-				if (last)
-				{
-					break;
-				}
-			outer_continue:;
-			}
-
-			return result.ToArray();
-		}
 
 		public sealed class IdentityHashMap : Dictionary<PredictionContext, PredictionContext>
 		{

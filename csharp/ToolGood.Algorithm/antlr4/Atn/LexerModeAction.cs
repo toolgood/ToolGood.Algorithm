@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -36,21 +36,6 @@ namespace Antlr4.Runtime.Atn
         public LexerModeAction(int mode)
         {
             this.mode = mode;
-        }
-
-        /// <summary>Get the lexer mode this action should transition the lexer to.</summary>
-        /// <remarks>Get the lexer mode this action should transition the lexer to.</remarks>
-        /// <returns>
-        /// The lexer mode for this
-        /// <c>mode</c>
-        /// command.
-        /// </returns>
-        public int Mode
-        {
-            get
-            {
-                return mode;
-            }
         }
 
         /// <summary><inheritDoc/></summary>
@@ -119,9 +104,6 @@ namespace Antlr4.Runtime.Atn
             return mode == ((Antlr4.Runtime.Atn.LexerModeAction)obj).mode;
         }
 
-        public override string ToString()
-        {
-            return string.Format("mode({0})", mode);
-        }
+ 
     }
 }

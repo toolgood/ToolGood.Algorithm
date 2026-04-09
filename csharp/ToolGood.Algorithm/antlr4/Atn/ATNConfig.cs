@@ -195,43 +195,7 @@ namespace Antlr4.Runtime.Atn
 			return hashCode;
 		}
 
-		public override String ToString()
-		{
-			return ToString(null, true);
-		}
-
-		public String ToString(IRecognizer recog, bool showAlt)
-		{
-			StringBuilder buf = new StringBuilder();
-			//		if ( state.ruleIndex>=0 ) {
-			//			if ( recog!=null ) buf.append(recog.getRuleNames()[state.ruleIndex]+":");
-			//			else buf.append(state.ruleIndex+":");
-			//		}
-			buf.Append('(');
-			buf.Append(state);
-			if (showAlt)
-			{
-				buf.Append(",");
-				buf.Append(alt);
-			}
-			if (context != null)
-			{
-				buf.Append(",[");
-				buf.Append(context.ToString());
-				buf.Append("]");
-			}
-			if (semanticContext != null && semanticContext != SemanticContext.Empty.Instance)
-			{
-				buf.Append(",");
-				buf.Append(semanticContext);
-			}
-			if (OuterContextDepth > 0)
-			{
-				buf.Append(",up=").Append(OuterContextDepth);
-			}
-			buf.Append(')');
-			return buf.ToString();
-		}
+ 
 	}
 
 }

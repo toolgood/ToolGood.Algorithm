@@ -26,15 +26,7 @@ namespace Antlr4.Runtime.Atn
 			this.lexerActionExecutor = null;
 		}
 
-		//public LexerATNConfig(ATNState state,
-		//					  int alt,
-		//					  PredictionContext context,
-		//					  LexerActionExecutor lexerActionExecutor)
-		//	: base(state, alt, context, SemanticContext.Empty.Instance)
-		//{
-		//	this.lexerActionExecutor = lexerActionExecutor;
-		//	this.passedThroughNonGreedyDecision = false;
-		//}
+ 
 
 		public LexerATNConfig(LexerATNConfig c, ATNState state)
 			: base(c, state, c.context, c.semanticContext)

@@ -9,11 +9,9 @@ namespace Antlr4.Runtime.Atn
 {
     public sealed class ActionTransition : Transition
     {
-        public readonly int ruleIndex;
 
         public readonly int actionIndex;
 
-        public readonly bool isCtxDependent;
 
         //public ActionTransition(ATNState target, int ruleIndex)
         //    : this(target, ruleIndex, -1, false)
@@ -24,9 +22,7 @@ namespace Antlr4.Runtime.Atn
             : base(target)
         {
             // e.g., $i ref in action
-            this.ruleIndex = ruleIndex;
             this.actionIndex = actionIndex;
-            this.isCtxDependent = isCtxDependent;
         }
 
         public override Antlr4.Runtime.Atn.TransitionType TransitionType

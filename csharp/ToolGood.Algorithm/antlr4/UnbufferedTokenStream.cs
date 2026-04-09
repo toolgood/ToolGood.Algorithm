@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -161,19 +161,19 @@ namespace Antlr4.Runtime
 			}
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         public virtual string GetText()
         {
             return string.Empty;
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         public virtual string GetText(RuleContext ctx)
         {
             return GetText(ctx.SourceInterval);
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         public virtual string GetText(IToken start, IToken stop)
         {
             if (start != null && stop != null)
@@ -375,7 +375,7 @@ namespace Antlr4.Runtime
             }
         }
 
-        [return: NotNull]
+        //[return: NotNull]
         public virtual string GetText(Interval interval)
         {
             int bufferStartIndex = GetBufferStartIndex();

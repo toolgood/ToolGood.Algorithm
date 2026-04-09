@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -12,7 +12,7 @@ namespace Antlr4.Runtime.Atn
     /// <remarks>A transition containing a set of values.</remarks>
     public class SetTransition : Transition
     {
-        [NotNull]
+        //[NotNull]
         public readonly IntervalSet set;
 
         public SetTransition(ATNState target, IntervalSet set)
@@ -46,11 +46,6 @@ namespace Antlr4.Runtime.Atn
         {
             return set.Contains(symbol);
         }
-
-        [return: NotNull]
-        public override string ToString()
-        {
-            return set.ToString();
-        }
+ 
     }
 }
