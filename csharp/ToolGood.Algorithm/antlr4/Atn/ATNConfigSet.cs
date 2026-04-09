@@ -305,16 +305,19 @@ namespace Antlr4.Runtime.Atn
 
 		public int GetHashCode(ATNConfig o)
 		{
-			int hashCode = 7;
-			hashCode = 31 * hashCode + o.state.stateNumber;
-			hashCode = 31 * hashCode + o.alt;
-			hashCode = 31 * hashCode + o.semanticContext.GetHashCode();
-			return hashCode;
+			unchecked
+			{
+				int hashCode = 7;
+				hashCode = hashCode * 31 + o.state.stateNumber;
+				hashCode = hashCode * 31 + o.alt;
+				hashCode = hashCode * 31 + o.semanticContext.GetHashCode();
+				return hashCode;
+			}
 		}
 
 		public bool Equals(ATNConfig a, ATNConfig b)
 		{
-			if (a == b) return true;
+			if (ReferenceEquals(a, b)) return true;
 			if (a == null || b == null) return false;
 			return a.state.stateNumber == b.state.stateNumber
 				&& a.alt == b.alt
