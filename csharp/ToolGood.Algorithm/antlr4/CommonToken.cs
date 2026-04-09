@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -83,19 +83,6 @@ namespace Antlr4.Runtime
         /// </summary>
         protected internal int stop;
 
-        /// <summary>
-        /// Constructs a new
-        /// <see cref="CommonToken"/>
-        /// with the specified token type.
-        /// </summary>
-        /// <param name="type">The token type.</param>
-        public CommonToken(int type)
-        {
-            // set to invalid position
-            this._type = type;
-            this.source = EmptySource;
-        }
-
         public CommonToken(Tuple<ITokenSource, ICharStream> source, int type, int channel, int start, int stop)
         {
             this.source = source;
@@ -124,60 +111,6 @@ namespace Antlr4.Runtime
             this._channel = TokenConstants.DefaultChannel;
             this._text = text;
             this.source = EmptySource;
-        }
-
-        /// <summary>
-        /// Constructs a new
-        /// <see cref="CommonToken"/>
-        /// as a copy of another
-        /// <see cref="IToken"/>
-        /// .
-        /// <p>
-        /// If
-        /// <paramref name="oldToken"/>
-        /// is also a
-        /// <see cref="CommonToken"/>
-        /// instance, the newly
-        /// constructed token will share a reference to the
-        /// <see cref="Text()"/>
-        /// field and
-        /// the
-        /// <see cref="Tuple{T1, T2}"/>
-        /// stored in
-        /// <see cref="source"/>
-        /// . Otherwise,
-        /// <see cref="Text()"/>
-        /// will
-        /// be assigned the result of calling
-        /// <see cref="Text()"/>
-        /// , and
-        /// <see cref="source"/>
-        /// will be constructed from the result of
-        /// <see cref="IToken.TokenSource()"/>
-        /// and
-        /// <see cref="IToken.InputStream()"/>
-        /// .</p>
-        /// </summary>
-        /// <param name="oldToken">The token to copy.</param>
-        public CommonToken(IToken oldToken)
-        {
-            _type = oldToken.Type;
-            _line = oldToken.Line;
-            index = oldToken.TokenIndex;
-            charPositionInLine = oldToken.Column;
-            _channel = oldToken.Channel;
-            start = oldToken.StartIndex;
-            stop = oldToken.StopIndex;
-            if (oldToken is Antlr4.Runtime.CommonToken)
-            {
-                _text = ((Antlr4.Runtime.CommonToken)oldToken)._text;
-                source = ((Antlr4.Runtime.CommonToken)oldToken).source;
-            }
-            else
-            {
-                _text = oldToken.Text;
-                source = Tuple.Create(oldToken.TokenSource, oldToken.InputStream);
-            }
         }
 
         public virtual int Type
@@ -327,27 +260,6 @@ namespace Antlr4.Runtime
             {
                 return source.Item2;
             }
-        }
-
-        public override string ToString()
-        {
-            string channelStr = string.Empty;
-            if (_channel > 0)
-            {
-                channelStr = ",channel=" + _channel;
-            }
-            string txt = Text;
-            if (txt != null)
-            {
-                txt = txt.Replace("\n", "\\n");
-                txt = txt.Replace("\r", "\\r");
-                txt = txt.Replace("\t", "\\t");
-            }
-            else
-            {
-                txt = "<no text>";
-            }
-            return "[@" + TokenIndex + "," + start + ":" + stop + "='" + txt + "',<" + _type + ">" + channelStr + "," + _line + ":" + Column + "]";
         }
     }
 }

@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -73,28 +73,6 @@ namespace Antlr4.Runtime
         {
         }
 
-        /// <summary>
-        /// Constructs a new
-        /// <see cref="CommonTokenStream"/>
-        /// using the specified token
-        /// source and filtering tokens to the specified channel. Only tokens whose
-        /// <see cref="IToken.Channel()"/>
-        /// matches
-        /// <paramref name="channel"/>
-        /// or have the
-        /// <see cref="IToken.Type()"/>
-        /// equal to
-        /// <see cref="TokenConstants.EOF"/>
-        /// will be returned by the
-        /// token stream lookahead methods.
-        /// </summary>
-        /// <param name="tokenSource">The token source.</param>
-        /// <param name="channel">The channel to use for filtering tokens.</param>
-        public CommonTokenStream(ITokenSource tokenSource, int channel)
-            : this(tokenSource)
-        {
-            this.channel = channel;
-        }
 
         protected internal override int AdjustSeekIndex(int i)
         {

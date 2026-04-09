@@ -374,23 +374,6 @@ namespace Antlr4.Runtime
             NotifyErrorListeners(recognizer, msg, e);
         }
 
-   //     /// <summary>
-   //     /// This is called by
-   //     /// <see cref="ReportError(Parser, RecognitionException)"/>
-   //     /// when the exception is a
-   //     /// <see cref="FailedPredicateException"/>
-   //     /// .
-   //     /// </summary>
-   //     /// <seealso cref="ReportError(Parser, RecognitionException)"/>
-   //     /// <param name="recognizer">the parser instance</param>
-   //     /// <param name="e">the recognition exception</param>
-   //     protected internal virtual void ReportFailedPredicate(Parser recognizer, FailedPredicateException e)
-   //     {
-			//string ruleName = recognizer.RuleNames[recognizer.RuleContext.RuleIndex];
-   //         string msg = "rule " + ruleName + " " + e.Message;
-   //         NotifyErrorListeners(recognizer, msg, e);
-   //     }
-
         /// <summary>
         /// This method is called to report a syntax error which requires the removal
         /// of a token from the input stream.
