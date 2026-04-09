@@ -1,4 +1,4 @@
-/*
+﻿/*
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
@@ -45,11 +45,11 @@ namespace Antlr4.Runtime.Atn
 
 		readonly SimState prevAccept = new SimState();
 
-		public LexerATNSimulator(ATN atn, DFA[] decisionToDFA,
-								 PredictionContextCache sharedContextCache)
-			: this(null, atn, decisionToDFA, sharedContextCache)
-		{
-		}
+		//public LexerATNSimulator(ATN atn, DFA[] decisionToDFA,
+		//						 PredictionContextCache sharedContextCache)
+		//	: this(null, atn, decisionToDFA, sharedContextCache)
+		//{
+		//}
 
 		public LexerATNSimulator(Lexer recog, ATN atn,
 								 DFA[] decisionToDFA,
@@ -62,13 +62,13 @@ namespace Antlr4.Runtime.Atn
 
 
 
-        public void CopyState(LexerATNSimulator simulator)
-		{
-			this.charPositionInLine = simulator.charPositionInLine;
-			this.thisLine = simulator.thisLine;
-			this.mode = simulator.mode;
-			this.startIndex = simulator.startIndex;
-		}
+  //      public void CopyState(LexerATNSimulator simulator)
+		//{
+		//	this.charPositionInLine = simulator.charPositionInLine;
+		//	this.thisLine = simulator.thisLine;
+		//	this.mode = simulator.mode;
+		//	this.startIndex = simulator.startIndex;
+		//}
 
 		public int Match(ICharStream input, int mode)
 		{
@@ -685,19 +685,19 @@ namespace Antlr4.Runtime.Atn
 		}
 
 
-		public DFA GetDFA(int mode)
-		{
-			return decisionToDFA[mode];
-		}
+		//public DFA GetDFA(int mode)
+		//{
+		//	return decisionToDFA[mode];
+		//}
 
-		/** Get the text matched so far for the current token.
-		 */
+		///** Get the text matched so far for the current token.
+		// */
 
-		public String GetText(ICharStream input)
-		{
-			// index is first lookahead char, don't include.
-			return input.GetText(Interval.Of(startIndex, input.Index - 1));
-		}
+		//public String GetText(ICharStream input)
+		//{
+		//	// index is first lookahead char, don't include.
+		//	return input.GetText(Interval.Of(startIndex, input.Index - 1));
+		//}
 
 		public int Line
 		{
@@ -739,12 +739,12 @@ namespace Antlr4.Runtime.Atn
 		}
 
 
-		public String GetTokenName(int t)
-		{
-			if (t == -1) return "EOF";
-			//if ( atn.g!=null ) return atn.g.getTokenDisplayName(t);
-			return "'" + (char)t + "'";
-		}
+		//public String GetTokenName(int t)
+		//{
+		//	if (t == -1) return "EOF";
+		//	//if ( atn.g!=null ) return atn.g.getTokenDisplayName(t);
+		//	return "'" + (char)t + "'";
+		//}
 	}
 
 	/** When we hit an accept state in either the DFA or the ATN, we

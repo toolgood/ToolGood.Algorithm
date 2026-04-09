@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -32,13 +32,13 @@ namespace Antlr4.Runtime.Atn
 
         public IntervalSet nextTokenWithinRule;
 
-        public virtual int NonStopStateNumber
-        {
-            get
-            {
-                return stateNumber;
-            }
-        }
+        //public virtual int NonStopStateNumber
+        //{
+        //    get
+        //    {
+        //        return stateNumber;
+        //    }
+        //}
 
         public override int GetHashCode()
         {
@@ -51,26 +51,26 @@ namespace Antlr4.Runtime.Atn
 				(o is ATNState && stateNumber == ((ATNState)o).stateNumber);
         }
 
-        public virtual bool IsNonGreedyExitState
-        {
-            get
-            {
-                return false;
-            }
-        }
+        //public virtual bool IsNonGreedyExitState
+        //{
+        //    get
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public override string ToString()
-        {
-            return stateNumber.ToString();
-        }
+        //public override string ToString()
+        //{
+        //    return stateNumber.ToString();
+        //}
 
-        public virtual Transition[] TransitionsArray
-        {
-            get
-            {
-                return transitions.ToArray();
-            }
-        }
+        //public virtual Transition[] TransitionsArray
+        //{
+        //    get
+        //    {
+        //        return transitions.ToArray();
+        //    }
+        //}
 
         public virtual int NumberOfTransitions
         {
@@ -107,10 +107,10 @@ namespace Antlr4.Runtime.Atn
             return transitions[i];
         }
 
-        public virtual void SetTransition(int i, Antlr4.Runtime.Atn.Transition e)
-        {
-            transitions[i] = e;
-        }
+        //public virtual void SetTransition(int i, Antlr4.Runtime.Atn.Transition e)
+        //{
+        //    transitions[i] = e;
+        //}
 
         public virtual void RemoveTransition(int index)
         {
@@ -165,14 +165,14 @@ namespace Antlr4.Runtime.Atn
             optimizedTransitions.Add(e);
         }
 
-        public virtual void SetOptimizedTransition(int i, Antlr4.Runtime.Atn.Transition e)
-        {
-            if (!IsOptimized)
-            {
-                throw new InvalidOperationException();
-            }
-            optimizedTransitions[i] = e;
-        }
+        //public virtual void SetOptimizedTransition(int i, Antlr4.Runtime.Atn.Transition e)
+        //{
+        //    if (!IsOptimized)
+        //    {
+        //        throw new InvalidOperationException();
+        //    }
+        //    optimizedTransitions[i] = e;
+        //}
 
         public virtual void RemoveOptimizedTransition(int i)
         {

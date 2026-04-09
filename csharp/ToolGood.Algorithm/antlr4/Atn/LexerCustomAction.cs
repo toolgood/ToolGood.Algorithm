@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -54,33 +54,33 @@ namespace Antlr4.Runtime.Atn
             this.actionIndex = actionIndex;
         }
 
-        /// <summary>
-        /// Gets the rule index to use for calls to
-        /// <see cref="Antlr4.Runtime.Recognizer{Symbol, ATNInterpreter}.Action(Antlr4.Runtime.RuleContext, int, int)"/>
-        /// .
-        /// </summary>
-        /// <returns>The rule index for the custom action.</returns>
-        public int RuleIndex
-        {
-            get
-            {
-                return ruleIndex;
-            }
-        }
+        ///// <summary>
+        ///// Gets the rule index to use for calls to
+        ///// <see cref="Antlr4.Runtime.Recognizer{Symbol, ATNInterpreter}.Action(Antlr4.Runtime.RuleContext, int, int)"/>
+        ///// .
+        ///// </summary>
+        ///// <returns>The rule index for the custom action.</returns>
+        //public int RuleIndex
+        //{
+        //    get
+        //    {
+        //        return ruleIndex;
+        //    }
+        //}
 
-        /// <summary>
-        /// Gets the action index to use for calls to
-        /// <see cref="Antlr4.Runtime.Recognizer{Symbol, ATNInterpreter}.Action(Antlr4.Runtime.RuleContext, int, int)"/>
-        /// .
-        /// </summary>
-        /// <returns>The action index for the custom action.</returns>
-        public int ActionIndex
-        {
-            get
-            {
-                return actionIndex;
-            }
-        }
+        ///// <summary>
+        ///// Gets the action index to use for calls to
+        ///// <see cref="Antlr4.Runtime.Recognizer{Symbol, ATNInterpreter}.Action(Antlr4.Runtime.RuleContext, int, int)"/>
+        ///// .
+        ///// </summary>
+        ///// <returns>The action index for the custom action.</returns>
+        //public int ActionIndex
+        //{
+        //    get
+        //    {
+        //        return actionIndex;
+        //    }
+        //}
 
         /// <summary><inheritDoc/></summary>
         /// <returns>

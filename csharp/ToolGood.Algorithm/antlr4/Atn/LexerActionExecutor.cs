@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -167,14 +167,14 @@ namespace Antlr4.Runtime.Atn
         /// <summary>Gets the lexer actions to be executed by this executor.</summary>
         /// <remarks>Gets the lexer actions to be executed by this executor.</remarks>
         /// <returns>The lexer actions to be executed by this executor.</returns>
-        [NotNull]
-        public virtual ILexerAction[] LexerActions
-        {
-            get
-            {
-                return lexerActions;
-            }
-        }
+        //[NotNull]
+        //public virtual ILexerAction[] LexerActions
+        //{
+        //    get
+        //    {
+        //        return lexerActions;
+        //    }
+        //}
 
         /// <summary>
         /// Execute the actions encapsulated by this executor within the context of a

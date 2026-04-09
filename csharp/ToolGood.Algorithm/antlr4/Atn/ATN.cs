@@ -40,8 +40,8 @@ namespace Antlr4.Runtime.Atn
         /// <remarks>Maps from rule index to stop state number.</remarks>
         public RuleStopState[] ruleToStopState;
 
-        [NotNull]
-        public readonly IDictionary<string, TokensStartState> modeNameToStartState = new Dictionary<string, TokensStartState>();
+        //[NotNull]
+        //public readonly IDictionary<string, TokensStartState> modeNameToStartState = new Dictionary<string, TokensStartState>();
 
         /// <summary>The type of the ATN.</summary>
         /// <remarks>The type of the ATN.</remarks>
@@ -74,7 +74,7 @@ namespace Antlr4.Runtime.Atn
         [NotNull]
         public readonly IList<TokensStartState> modeToStartState = new List<TokensStartState>();
 
-        private readonly PredictionContextCache contextCache = new PredictionContextCache();
+        //private readonly PredictionContextCache contextCache = new PredictionContextCache();
 
         [NotNull]
 		public DFA[] decisionToDFA = Collections.EmptyList<DFA>();
@@ -82,7 +82,7 @@ namespace Antlr4.Runtime.Atn
         [NotNull]
 		public DFA[] modeToDFA = Collections.EmptyList<DFA>();
 
-        protected internal readonly ConcurrentDictionary<int, int> LL1Table = new ConcurrentDictionary<int, int>();
+        //protected internal readonly ConcurrentDictionary<int, int> LL1Table = new ConcurrentDictionary<int, int>();
 
         /// <summary>Used for runtime deserialization of ATNs from strings</summary>
         public ATN(ATNType grammarType, int maxTokenType)

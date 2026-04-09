@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
+﻿/* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
@@ -51,19 +51,19 @@ namespace Antlr4.Runtime.Atn
             return this == o;
         }
 
-		public override string ToString()
-		{
-			return "$";
-		}
+		//public override string ToString()
+		//{
+		//	return "$";
+		//}
 
-		public override string[] ToStrings(IRecognizer recognizer, int currentState)
-        {
-            return new string[] { "[]" };
-        }
+		//public override string[] ToStrings(IRecognizer recognizer, int currentState)
+  //      {
+  //          return new string[] { "[]" };
+  //      }
 
-        public override string[] ToStrings(IRecognizer recognizer, PredictionContext stop, int currentState)
-        {
-            return new string[] { "[]" };
-        }
+  //      public override string[] ToStrings(IRecognizer recognizer, PredictionContext stop, int currentState)
+  //      {
+  //          return new string[] { "[]" };
+  //      }
     }
 }

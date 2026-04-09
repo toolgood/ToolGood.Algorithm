@@ -66,6 +66,7 @@
     <Compile Remove="antlr4\Atn\PredicateEvalInfo.cs" />
     <Compile Remove="antlr4\Atn\SimulatorState.cs" />
     <Compile Remove="antlr4\AntlrFileStream.cs" />
+    <Compile Remove="antlr4\Tree\Trees.cs" />
     <Compile Remove="antlr4\UnbufferedCharStream.cs" />
     <Compile Remove="antlr4\UnbufferedTokenStream.cs" />
     <Compile Remove="antlr4\BailErrorStrategy.cs" />

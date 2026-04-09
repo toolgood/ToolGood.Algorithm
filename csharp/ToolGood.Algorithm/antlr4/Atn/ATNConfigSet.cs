@@ -239,34 +239,34 @@ namespace Antlr4.Runtime.Atn
 			}
 		}
 
-		public override String ToString()
-		{
-			StringBuilder buf = new StringBuilder();
-			buf.Append('[');
-			List<ATNConfig> cfgs = Elements;
-			if (cfgs.Count > 0)
-			{
-				foreach (ATNConfig c in cfgs)
-				{
-					buf.Append(c.ToString());
-					buf.Append(", ");
-				}
-				buf.Length = buf.Length - 2;
-			}
-			buf.Append(']');
-			if (hasSemanticContext)
-				buf.Append(",hasSemanticContext=")
-				   .Append(hasSemanticContext.ToString().ToLower());
-			if (uniqueAlt != ATN.INVALID_ALT_NUMBER)
-				buf.Append(",uniqueAlt=")
-				   .Append(uniqueAlt);
-			if (conflictingAlts != null)
-				buf.Append(",conflictingAlts=")
-				   .Append(conflictingAlts);
-			if (dipsIntoOuterContext)
-				buf.Append(",dipsIntoOuterContext");
-			return buf.ToString();
-		}
+		//public override String ToString()
+		//{
+		//	StringBuilder buf = new StringBuilder();
+		//	buf.Append('[');
+		//	List<ATNConfig> cfgs = Elements;
+		//	if (cfgs.Count > 0)
+		//	{
+		//		foreach (ATNConfig c in cfgs)
+		//		{
+		//			buf.Append(c.ToString());
+		//			buf.Append(", ");
+		//		}
+		//		buf.Length = buf.Length - 2;
+		//	}
+		//	buf.Append(']');
+		//	if (hasSemanticContext)
+		//		buf.Append(",hasSemanticContext=")
+		//		   .Append(hasSemanticContext.ToString().ToLower());
+		//	if (uniqueAlt != ATN.INVALID_ALT_NUMBER)
+		//		buf.Append(",uniqueAlt=")
+		//		   .Append(uniqueAlt);
+		//	if (conflictingAlts != null)
+		//		buf.Append(",conflictingAlts=")
+		//		   .Append(conflictingAlts);
+		//	if (dipsIntoOuterContext)
+		//		buf.Append(",dipsIntoOuterContext");
+		//	return buf.ToString();
+		//}
 
 
 	}
