@@ -43,10 +43,6 @@ namespace Antlr4.Runtime.Misc
 
         protected internal bool @readonly;
 
-        public IntervalSet(IList<Interval> intervals)
-        {
-            this.intervals = intervals;
-        }
 
         public IntervalSet(Antlr4.Runtime.Misc.IntervalSet set)
             : this()
@@ -89,14 +85,6 @@ namespace Antlr4.Runtime.Misc
             return s;
         }
 
-        public virtual void Clear()
-        {
-            if (@readonly)
-            {
-                throw new InvalidOperationException("can't alter readonly IntervalSet");
-            }
-            intervals.Clear();
-        }
 
         /// <summary>Add a single element to the set.</summary>
         /// <remarks>
@@ -186,17 +174,7 @@ namespace Antlr4.Runtime.Misc
             intervals.Add(addition);
         }
 
-        /// <summary>combine all sets in the array returned the or'd value</summary>
-        public static Antlr4.Runtime.Misc.IntervalSet Or(Antlr4.Runtime.Misc.IntervalSet[] sets)
-        {
-            Antlr4.Runtime.Misc.IntervalSet r = new Antlr4.Runtime.Misc.IntervalSet();
-            foreach (Antlr4.Runtime.Misc.IntervalSet s in sets)
-            {
-                r.AddAll(s);
-            }
-            return r;
-        }
-
+ 
         public virtual Antlr4.Runtime.Misc.IntervalSet AddAll(IIntSet set)
         {
             if (set == null)
@@ -223,12 +201,7 @@ namespace Antlr4.Runtime.Misc
             }
             return this;
         }
-
-        public virtual Antlr4.Runtime.Misc.IntervalSet Complement(int minElement, int maxElement)
-        {
-            return this.Complement(Antlr4.Runtime.Misc.IntervalSet.Of(minElement, maxElement));
-        }
-
+         
         /// <summary>
         /// <inheritDoc/>
         ///
@@ -527,27 +500,6 @@ namespace Antlr4.Runtime.Misc
             }
         }
 
-        /// <summary>Returns the maximum value contained in the set.</summary>
-        /// <remarks>Returns the maximum value contained in the set.</remarks>
-        /// <returns>
-        /// the maximum value contained in the set. If the set is empty, this
-        /// method returns
-        /// <see cref="TokenConstants.InvalidType"/>
-        /// .
-        /// </returns>
-        public virtual int MaxElement
-        {
-            get
-            {
-                if (IsNil)
-                {
-                    return TokenConstants.InvalidType;
-                }
-                Interval last = intervals[intervals.Count - 1];
-                return last.b;
-            }
-        }
-
         /// <summary>Returns the minimum value contained in the set.</summary>
         /// <remarks>Returns the minimum value contained in the set.</remarks>
         /// <returns>
@@ -608,10 +560,6 @@ namespace Antlr4.Runtime.Misc
             return this.intervals.SequenceEqual(other.intervals);
         }
 
-        public override string ToString()
-        {
-            return ToString(false);
-        }
 
         public virtual string ToString(bool elemAreChar)
         {
@@ -755,23 +703,6 @@ namespace Antlr4.Runtime.Misc
             }
         }
 
-        public virtual ArrayList<int> ToIntegerList()
-        {
-            ArrayList<int> values = new ArrayList<int>(Count);
-            int n = intervals.Count;
-            for (int i = 0; i < n; i++)
-            {
-                Interval I = intervals[i];
-                int a = I.a;
-                int b = I.b;
-                for (int v = a; v <= b; v++)
-                {
-                    values.Add(v);
-                }
-            }
-            return values;
-        }
-
         public virtual IList<int> ToList()
         {
             IList<int> values = new ArrayList<int>();
@@ -788,27 +719,7 @@ namespace Antlr4.Runtime.Misc
             }
             return values;
         }
-
-        public virtual HashSet<int> ToSet()
-        {
-            HashSet<int> s = new HashSet<int>();
-            foreach (Interval I in intervals)
-            {
-                int a = I.a;
-                int b = I.b;
-                for (int v = a; v <= b; v++)
-                {
-                    s.Add(v);
-                }
-            }
-            return s;
-        }
-
-        public virtual int[] ToArray()
-        {
-            return ToIntegerList().ToArray();
-        }
-
+ 
         public virtual void Remove(int el)
         {
             if (@readonly)
@@ -856,14 +767,6 @@ namespace Antlr4.Runtime.Misc
             }
         }
 
-        public virtual bool IsReadOnly
-        {
-            get
-            {
-                // add [x+1..b]
-                return @readonly;
-            }
-        }
 
         public virtual void SetReadonly(bool @readonly)
         {

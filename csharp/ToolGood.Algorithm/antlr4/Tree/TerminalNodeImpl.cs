@@ -114,30 +114,5 @@ namespace Antlr4.Runtime.Tree
             return null;
         }
 
-        //public virtual string ToStringTree(Parser parser)
-        //{
-        //    return ToString();
-        //}
-
-        //public override string ToString()
-        //{
-        //    if (Symbol != null)
-        //    {
-        //        if (Symbol.Type == TokenConstants.EOF)
-        //        {
-        //            return "<EOF>";
-        //        }
-        //        return Symbol.Text;
-        //    }
-        //    else
-        //    {
-        //        return "<null>";
-        //    }
-        //}
-
-        //public virtual string ToStringTree()
-        //{
-        //    return ToString();
-        //}
     }
 }

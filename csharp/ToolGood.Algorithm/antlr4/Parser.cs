@@ -64,7 +64,7 @@ namespace Antlr4.Runtime
         /// events during the parse.
         /// </summary>
         /// <seealso cref="AddParseListener(Antlr4.Runtime.Tree.IParseTreeListener)"/>
-        [Nullable]
+        //[Nullable]
         private IList<IParseTreeListener> _parseListeners;
 
         /// <summary>The number of syntax errors reported during parsing.</summary>

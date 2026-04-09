@@ -21,10 +21,10 @@ namespace Antlr4.Runtime.Dfa
         //[NotNull]
         private readonly IVocabulary vocabulary;
 
-        [Nullable]
+        //[Nullable]
         internal readonly string[] ruleNames;
 
-        [Nullable]
+        //[Nullable]
         internal readonly ATN atn;
 
         public DFASerializer(DFA dfa, IVocabulary vocabulary)

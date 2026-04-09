@@ -370,7 +370,7 @@ namespace Antlr4.Runtime
         /// <param name="e">the recognition exception</param>
         protected internal virtual void ReportInputMismatch(Parser recognizer, InputMismatchException e)
         {
-            string msg = "mismatched input " + GetTokenErrorDisplay(e.OffendingToken) + " expecting " + e.GetExpectedTokens().ToString(recognizer.Vocabulary);
+            string msg = "mismatched input " + GetTokenErrorDisplay(e.OffendingToken) + " expecting ";// + e.GetExpectedTokens().ToString(recognizer.Vocabulary);
             NotifyErrorListeners(recognizer, msg, e);
         }
 

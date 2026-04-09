@@ -50,6 +50,9 @@
     <Compile Remove="antlr4\Tree\Pattern\**" />
     <Compile Remove="antlr4\ConsoleErrorListener.cs" />
     <Compile Remove="antlr4\FailedPredicateException.cs" />
+    <Compile Remove="antlr4\Misc\NotNullAttribute.cs" />
+    <Compile Remove="antlr4\Misc\NullableAttribute.cs" />
+    <Compile Remove="antlr4\Misc\Utils.cs" />
     <Compile Remove="antlr4\ParserInterpreter.cs" />
     <Compile Remove="antlr4\LexerInterpreter.cs" />
     <Compile Remove="antlr4\InterpreterRuleContext.cs" />

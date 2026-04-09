@@ -108,13 +108,6 @@ namespace Antlr4.Runtime.Sharpen
             return index64[((value ^ (value - 1)) * debruijn64) >> 58];
         }
 
-        public BitSet Clone()
-        {
-            BitSet result = new BitSet();
-            result._data = (ulong[])_data.Clone();
-            return result;
-        }
-
         public void Clear(int index)
         {
             if (index < 0)
@@ -209,19 +202,6 @@ namespace Antlr4.Runtime.Sharpen
             return -1;
         }
 
-        public void And(BitSet set)
-        {
-            if (set == null)
-                throw new ArgumentNullException("set");
-
-            int length = Math.Min(_data.Length, set._data.Length);
-            for (int i = 0; i < length; i++)
-                _data[i] &= set._data[i];
-
-            for (int i = length; i < _data.Length; i++)
-                _data[i] = 0;
-        }
-
         public void Or(BitSet set)
         {
             if (set == null)
@@ -279,22 +259,6 @@ namespace Antlr4.Runtime.Sharpen
 
             return result.GetHashCode();
         }
-
-        public override string ToString()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append('{');
-
-            for (int i = NextSetBit(0); i >= 0; i = NextSetBit(i + 1))
-            {
-                if (builder.Length > 1)
-                    builder.Append(", ");
-
-                builder.Append(i);
-            }
-
-            builder.Append('}');
-            return builder.ToString();
-        }
+ 
     }
 }

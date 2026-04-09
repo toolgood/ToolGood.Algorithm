@@ -25,7 +25,7 @@ namespace Antlr4.Runtime
         //private const long serialVersionUID = 5096000008992867052L;
 
         /// <summary>Which configurations did we try at input.index() that couldn't match input.LT(1)?</summary>
-        [Nullable]
+        //[Nullable]
         private readonly ATNConfigSet deadEndConfigs;
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Antlr4.Runtime
             }
         }
 
-        [Nullable]
+        //[Nullable]
         public virtual ATNConfigSet DeadEndConfigs
         {
             get

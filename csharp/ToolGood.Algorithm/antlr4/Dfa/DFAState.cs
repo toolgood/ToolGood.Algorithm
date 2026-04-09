@@ -123,23 +123,7 @@ namespace Antlr4.Runtime.Dfa
 			return sameSet;
 		}
 
-		public override String ToString()
-		{
-			StringBuilder buf = new StringBuilder();
-			buf.Append(stateNumber).Append(":").Append(configSet);
-			if (isAcceptState)
-			{
-				buf.Append("=>");
-				if (predicates != null)
-				{
-					buf.Append(Arrays.ToString(predicates));
-				}
-				else {
-					buf.Append(prediction);
-				}
-			}
-			return buf.ToString();
-		}
+ 
 	}
 
 	/** Map a predicate to a predicted alternative. */
@@ -154,9 +138,5 @@ namespace Antlr4.Runtime.Dfa
 			this.pred = pred;
 		}
 
-		public override String ToString()
-		{
-			return "(" + pred + ", " + alt + ")";
-		}
 	}
 }

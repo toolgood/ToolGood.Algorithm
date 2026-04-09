@@ -28,13 +28,13 @@ namespace Antlr4.Runtime
         /// <see cref="IRecognizer"/>
         /// where this exception originated.
         /// </summary>
-        [Nullable]
+        //[Nullable]
         private readonly IRecognizer recognizer;
 
-        [Nullable]
+        //[Nullable]
         private readonly RuleContext ctx;
 
-        [Nullable]
+        //[Nullable]
         private readonly IIntStream input;
 
         /// <summary>
