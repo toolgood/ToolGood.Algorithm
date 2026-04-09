@@ -67,17 +67,17 @@ namespace Antlr4.Runtime
             }
         }
 
-        public RecognitionException(string message, IRecognizer recognizer, IIntStream input, ParserRuleContext ctx)
-            : base(message)
-        {
-            this.recognizer = recognizer;
-            this.input = input;
-            this.ctx = ctx;
-            if (recognizer != null)
-            {
-                this.offendingState = recognizer.State;
-            }
-        }
+        //public RecognitionException(string message, IRecognizer recognizer, IIntStream input, ParserRuleContext ctx)
+        //    : base(message)
+        //{
+        //    this.recognizer = recognizer;
+        //    this.input = input;
+        //    this.ctx = ctx;
+        //    if (recognizer != null)
+        //    {
+        //        this.offendingState = recognizer.State;
+        //    }
+        //}
 
         /// <summary>
         /// Gets the set of input symbols which could potentially follow the

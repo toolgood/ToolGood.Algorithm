@@ -52,10 +52,6 @@ namespace Antlr4.Runtime
          */
         protected ParserRuleContext nextTokensContext;
 
-        /**
-         * @see #nextTokensContext
-         */
-        protected int nextTokensState;
 
         /// <summary>
         /// <inheritDoc/>
@@ -282,7 +278,6 @@ namespace Antlr4.Runtime
             if (nextTokens.Contains(la))
             {
                 nextTokensContext = null;
-                nextTokensState = ATNState.InvalidStateNumber;
                 return;
             }
 
@@ -293,7 +288,6 @@ namespace Antlr4.Runtime
                     // It's possible the next token won't match; information tracked
                     // by sync is restricted for performance.
                     nextTokensContext = recognizer.Context;
-                    nextTokensState = recognizer.State;
                 }
                 return;
             }

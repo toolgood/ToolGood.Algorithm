@@ -26,7 +26,6 @@ namespace Antlr4.Runtime
 
         public const int DefaultTokenChannel = TokenConstants.DefaultChannel;
 
-        public const int Hidden = TokenConstants.HiddenChannel;
 
         public const int MinCharValue = 0x0000;
 

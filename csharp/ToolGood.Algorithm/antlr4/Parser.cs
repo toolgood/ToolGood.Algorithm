@@ -579,25 +579,25 @@ namespace Antlr4.Runtime
             }
         }
 
-        public virtual IList<string> GetRuleInvocationStack(RuleContext p)
-        {
-            string[] ruleNames = RuleNames;
-            IList<string> stack = new List<string>();
-            while (p != null)
-            {
-                int ruleIndex = p.RuleIndex;
-                if (ruleIndex < 0)
-                {
-                    stack.Add("n/a");
-                }
-                else
-                {
-                    stack.Add(ruleNames[ruleIndex]);
-                }
-                p = p.Parent;
-            }
-            return stack;
-        }
+        //public virtual IList<string> GetRuleInvocationStack(RuleContext p)
+        //{
+        //    string[] ruleNames = RuleNames;
+        //    IList<string> stack = new List<string>();
+        //    while (p != null)
+        //    {
+        //        int ruleIndex = p.RuleIndex;
+        //        if (ruleIndex < 0)
+        //        {
+        //            stack.Add("n/a");
+        //        }
+        //        else
+        //        {
+        //            stack.Add(ruleNames[ruleIndex]);
+        //        }
+        //        p = p.Parent;
+        //    }
+        //    return stack;
+        //}
  
     }
 }
