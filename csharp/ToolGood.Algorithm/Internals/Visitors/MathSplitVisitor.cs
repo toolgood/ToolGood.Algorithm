@@ -17,14 +17,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public override ConditionTree VisitOr_fun(mathParser.Or_funContext context)
 		{
+			var tree = new ConditionTree { HasBracket = hasBracket, };
+			hasBracket = false;
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
-			var tree = new ConditionTree {
-				Nodes = new List<ConditionTree>(2) { f1, f2 },
-				HasBracket = hasBracket,
-			};
-			hasBracket = false;
+			tree.Nodes = new List<ConditionTree>(2) { f1, f2 };
+	 
 			tree.Type = ConditionTreeType.Or;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
@@ -35,14 +34,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public override ConditionTree VisitAnd_fun(mathParser.And_funContext context)
 		{
+			var tree = new ConditionTree { HasBracket = hasBracket, };
+			hasBracket = false;
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
-			var tree = new ConditionTree {
-				Nodes = new List<ConditionTree>(2) { f1, f2 },
-				HasBracket = hasBracket,
-			};
-			hasBracket = false;
+			tree.Nodes = new List<ConditionTree>(2) { f1, f2 };
+
 			tree.Type = ConditionTreeType.And;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;

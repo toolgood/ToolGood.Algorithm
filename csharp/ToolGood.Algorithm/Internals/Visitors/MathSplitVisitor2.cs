@@ -24,31 +24,28 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public override CalculateTree VisitOr_fun(mathParser.Or_funContext context)
 		{
+			var tree = new CalculateTree { HasBracket = hasBracket, };
+			hasBracket = false;
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
-			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2) { f1, f2 },
-				HasBracket = hasBracket,
-			};
-			hasBracket = false;
+			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
+
 			tree.Type = CalculateTreeType.Or;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
 			tree.Text = context.GetText();
-
 			return tree;
 		}
 		public override CalculateTree VisitAnd_fun(mathParser.And_funContext context)
 		{
+			var tree = new CalculateTree { HasBracket = hasBracket, };
+			hasBracket = false;
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
-			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2) { f1, f2 },
-				HasBracket = hasBracket,
-			};
-			hasBracket = false;
+			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
+
 			tree.Type = CalculateTreeType.And;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
@@ -58,14 +55,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public override CalculateTree VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
-			var exprs = context.expr();
-			var f1= exprs[0].Accept(this);
-			var f2 = exprs[1].Accept(this);
-			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2) { f1,f2 },
-				HasBracket = hasBracket,
-			};
+			var tree = new CalculateTree { HasBracket = hasBracket, };
 			hasBracket = false;
+			var exprs = context.expr();
+			var f1 = exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
+			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
+
 			var t = context.op.Type;
 			if(t == math.mathLexer.OPMUL) {
 				tree.Type = CalculateTreeType.Mul;
@@ -81,14 +77,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public override CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
+			var tree = new CalculateTree { HasBracket = hasBracket, };
+			hasBracket = false;
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
-			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2) { f1, f2 },
-				HasBracket = hasBracket,
-			};
-			hasBracket = false;
+			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
+
 			var t = context.op.Type;
 			if(t == math.mathLexer.OPADD) {
 				tree.Type = CalculateTreeType.Add;
@@ -104,14 +99,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public override CalculateTree VisitJudge_fun(mathParser.Judge_funContext context)
 		{
+			var tree = new CalculateTree { HasBracket = hasBracket, };
+			hasBracket = false;
 			var exprs = context.expr();
 			var f1 = exprs[0].Accept(this);
 			var f2 = exprs[1].Accept(this);
-			var tree = new CalculateTree {
-				Nodes = new List<CalculateTree>(2) { f1, f2 },
-				HasBracket = hasBracket,
-			};
-			hasBracket = false;
+			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
+
 			var t = context.op.Type;
 			if(t == math.mathLexer.OPGE) {
 				tree.Type = CalculateTreeType.OpGe;
@@ -123,7 +117,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				tree.Type = CalculateTreeType.OpLt;
 			} else if(t == math.mathLexer.OPEQ) {
 				tree.Type = CalculateTreeType.OpEq;
-			} else  {
+			} else {
 				tree.Type = CalculateTreeType.OpNe;
 			}
 			tree.Start = context.Start.StartIndex;
