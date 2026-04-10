@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -10,7 +10,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 		public Function_NE(FunctionBase[] funcs) : base(funcs)
 		{
 		}
-
+		public Function_NE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+		{
+		}
 		public override string Name => "!=";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)

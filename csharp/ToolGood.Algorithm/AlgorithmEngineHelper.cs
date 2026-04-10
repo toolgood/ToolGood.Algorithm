@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
+using ToolGood.Algorithm.Internals.Functions.Compare;
 using ToolGood.Algorithm.Internals.Functions.Operator;
 using ToolGood.Algorithm.Internals.Visitors;
 using ToolGood.Algorithm.math;
@@ -182,6 +183,9 @@ namespace ToolGood.Algorithm
 			}
 			return tree;
 		}
+
+
+
 		/// <summary>
 		/// Creates a logical AND function that combines two specified functions.
 		/// </summary>
@@ -233,68 +237,35 @@ namespace ToolGood.Algorithm
 			return tree;
 		}
 
+
 		/// <summary>
-		/// Creates a function that represents the sum of two specified functions.
+		/// 拼接计算表达式
 		/// </summary>
-		/// <param name="left">The first function to be added.</param>
-		/// <param name="right">The second function to be added.</param>
-		/// <returns>A function that computes the sum of the values returned by the specified functions.</returns>
-		public static FunctionBase Calculate_Add(FunctionBase left, FunctionBase right)
+		/// <param name="left">左操作数</param>
+		/// <param name="type">操作类型</param>
+		/// <param name="right">右操作数</param>
+		/// <returns>返回拼接后的计算表达式</returns>
+		public static FunctionBase CombineCalculate(FunctionBase left, CombineCalculateType type, FunctionBase right)
 		{
-			return new Function_Add(left, right);
+			switch(type) {
+				case CombineCalculateType.Add: return new Function_Add(left, right);
+				case CombineCalculateType.Sub: return new Function_Sub(left, right);
+				case CombineCalculateType.Mul: return new Function_Mul(left, right);
+				case CombineCalculateType.Div: return new Function_Div(left, right);
+				case CombineCalculateType.Mod: return new Function_Mod(left, right);
+				case CombineCalculateType.Connect: return new Function_Connect(left, right);
+				case CombineCalculateType.And: return new Function_AND(left, right);
+				case CombineCalculateType.Or: return new Function_OR(left, right);
+				case CombineCalculateType.OpGt: return new Function_GT(left, right);
+				case CombineCalculateType.OpLt: return new Function_LT(left, right);
+				case CombineCalculateType.OpGe: return new Function_GE(left, right);
+				case CombineCalculateType.OpLe: return new Function_LE(left, right);
+				case CombineCalculateType.OpEq: return new Function_EQ(left, right);
+				case CombineCalculateType.OpNe:
+				default: return new Function_NE(left, right);
+			}
 		}
-		/// <summary>
-		/// Creates a function that represents the subtraction of two functions.
-		/// </summary>
-		/// <param name="left">The function to use as the minuend in the subtraction operation. Cannot be null.</param>
-		/// <param name="right">The function to use as the subtrahend in the subtraction operation. Cannot be null.</param>
-		/// <returns>A function that, when evaluated, returns the result of subtracting the value of the right function from the value
-		/// of the left function.</returns>
-		public static FunctionBase Calculate_Subtract(FunctionBase left, FunctionBase right)
-		{
-			return new Function_Sub(left, right);
-		}
-		/// <summary>
-		/// Creates a function that represents the multiplication of two functions.
-		/// </summary>
-		/// <param name="left">The left operand function to be multiplied.</param>
-		/// <param name="right">The right operand function to be multiplied.</param>
-		/// <returns>A function representing the product of the specified left and right functions.</returns>
-		public static FunctionBase Calculate_Multiply(FunctionBase left, FunctionBase right)
-		{
-			return new Function_Mul(left, right);
-		}
-		/// <summary>
-		/// Creates a function that represents the division of two functions.
-		/// </summary>
-		/// <param name="left">The numerator function to be divided.</param>
-		/// <param name="right">The denominator function by which to divide.</param>
-		/// <returns>A function representing the result of dividing the left function by the right function.</returns>
-		public static FunctionBase Calculate_Divide(FunctionBase left, FunctionBase right)
-		{
-			return new Function_Div(left, right);
-		}
-		/// <summary>
-		/// Creates a function that computes the remainder after dividing the result of the left function by the result of the
-		/// right function.
-		/// </summary>
-		/// <param name="left">The function representing the dividend in the modulo operation. Cannot be null.</param>
-		/// <param name="right">The function representing the divisor in the modulo operation. Cannot be null.</param>
-		/// <returns>A function that, when evaluated, returns the result of the left function modulo the right function.</returns>
-		public static FunctionBase Calculate_Mod(FunctionBase left, FunctionBase right)
-		{
-			return new Function_Mod(left, right);
-		}
-		/// <summary>
-		/// Creates a new function that represents the connection of two functions.
-		/// </summary>
-		/// <param name="left">The first function to be connected. Cannot be null.</param>
-		/// <param name="right">The second function to be connected. Cannot be null.</param>
-		/// <returns>A FunctionBase instance representing the connection of the specified left and right functions.</returns>
-		public static FunctionBase Calculate_Connect(FunctionBase left, FunctionBase right)
-		{
-			return new Function_Connect(left, right);
-		}
+
 
 	}
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 	internal sealed class Function_LE : Function_2
 	{
 		public Function_LE(FunctionBase[] funcs) : base(funcs)
+		{
+		}
+		public Function_LE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
 		{
 		}
 

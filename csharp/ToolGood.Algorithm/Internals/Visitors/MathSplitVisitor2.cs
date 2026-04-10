@@ -2,6 +2,7 @@
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals.Visitors
@@ -20,6 +21,40 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			hasBracket = true;
 			return context.expr().Accept(this);
+		}
+		public override CalculateTree VisitOr_fun(mathParser.Or_funContext context)
+		{
+			var exprs = context.expr();
+			var f1 = exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
+			var tree = new CalculateTree {
+				Nodes = new List<CalculateTree>(2) { f1, f2 },
+				HasBracket = hasBracket,
+			};
+			hasBracket = false;
+			tree.Type = CalculateTreeType.Or;
+			tree.Start = context.Start.StartIndex;
+			tree.End = context.Stop.StopIndex;
+			tree.Text = context.GetText();
+
+			return tree;
+		}
+		public override CalculateTree VisitAnd_fun(mathParser.And_funContext context)
+		{
+			var exprs = context.expr();
+			var f1 = exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
+			var tree = new CalculateTree {
+				Nodes = new List<CalculateTree>(2) { f1, f2 },
+				HasBracket = hasBracket,
+			};
+			hasBracket = false;
+			tree.Type = CalculateTreeType.And;
+			tree.Start = context.Start.StartIndex;
+			tree.End = context.Stop.StopIndex;
+			tree.Text = context.GetText();
+
+			return tree;
 		}
 		public override CalculateTree VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
@@ -67,7 +102,35 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Text = context.GetText();
 			return tree;
 		}
-
+		public override CalculateTree VisitJudge_fun(mathParser.Judge_funContext context)
+		{
+			var exprs = context.expr();
+			var f1 = exprs[0].Accept(this);
+			var f2 = exprs[1].Accept(this);
+			var tree = new CalculateTree {
+				Nodes = new List<CalculateTree>(2) { f1, f2 },
+				HasBracket = hasBracket,
+			};
+			hasBracket = false;
+			var t = context.op.Type;
+			if(t == math.mathLexer.OPGE) {
+				tree.Type = CalculateTreeType.OpGe;
+			} else if(t == math.mathLexer.OPLE) {
+				tree.Type = CalculateTreeType.OpLe;
+			} else if(t == math.mathLexer.OPGT) {
+				tree.Type = CalculateTreeType.OpGt;
+			} else if(t == math.mathLexer.OPLT) {
+				tree.Type = CalculateTreeType.OpLt;
+			} else if(t == math.mathLexer.OPEQ) {
+				tree.Type = CalculateTreeType.OpEq;
+			} else  {
+				tree.Type = CalculateTreeType.OpNe;
+			}
+			tree.Start = context.Start.StartIndex;
+			tree.End = context.Stop.StopIndex;
+			tree.Text = context.GetText();
+			return tree;
+		}
 		public override CalculateTree VisitChildren(IRuleNode node)
 		{
 			var context = node as ParserRuleContext;

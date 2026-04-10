@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,7 +6,7 @@ using ToolGood.Algorithm.Internals.Visitors;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-	internal class FunctionUtil
+	internal static class FunctionUtil
 	{
 		public static readonly DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 

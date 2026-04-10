@@ -3,8 +3,8 @@
     /// <summary>
     /// 条件树类型
     /// </summary>
-    public enum ConditionTreeType
-    {
+    public enum ConditionTreeType : byte
+	{
         /// <summary>
         /// 文本
         /// </summary>
