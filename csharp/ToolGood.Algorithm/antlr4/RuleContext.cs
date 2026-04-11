@@ -23,17 +23,6 @@ namespace Antlr4.Runtime
             this._parent = parent;
             this.invokingState = invokingState;
         }
-        public virtual int Depth()
-        {
-            int n = 0;
-            Antlr4.Runtime.RuleContext p = this;
-            while (p != null)
-            {
-                p = p._parent;
-                n++;
-            }
-            return n;
-        }
         public virtual bool IsEmpty
         {
             get
@@ -65,41 +54,6 @@ namespace Antlr4.Runtime
 			{
 				_parent = value;
 			}
-        }
-        IRuleNode IRuleNode.Parent
-        {
-            get
-            {
-                return Parent;
-            }
-        }
-        IParseTree IParseTree.Parent
-        {
-            get
-            {
-                return Parent;
-            }
-        }
-        ITree ITree.Parent
-        {
-            get
-            {
-                return Parent;
-            }
-        }
-        public virtual Antlr4.Runtime.RuleContext Payload
-        {
-            get
-            {
-                return this;
-            }
-        }
-        object ITree.Payload
-        {
-            get
-            {
-                return Payload;
-            }
         }
         public virtual string GetText()
         {
@@ -133,10 +87,6 @@ namespace Antlr4.Runtime
         {
             return null;
         }
-        ITree ITree.GetChild(int i)
-        {
-            return GetChild(i);
-        }
         public virtual int ChildCount
         {
             get
@@ -147,42 +97,6 @@ namespace Antlr4.Runtime
         public virtual T Accept<T>(IParseTreeVisitor<T> visitor)
         {
             return visitor.VisitChildren(this);
-        }
-
-        public virtual string ToString(IRecognizer recog, Antlr4.Runtime.RuleContext stop)
-        {
-            string[] ruleNames = recog != null ? recog.RuleNames : null;
-            IList<string> ruleNamesList = ruleNames != null ? Arrays.AsList(ruleNames) : null;
-            return ToString(ruleNamesList, stop);
-        }
-        public virtual string ToString(IList<string> ruleNames, Antlr4.Runtime.RuleContext stop)
-        {
-            StringBuilder buf = new StringBuilder();
-            Antlr4.Runtime.RuleContext p = this;
-            buf.Append("[");
-            while (p != null && p != stop)
-            {
-                if (ruleNames == null)
-                {
-                    if (!p.IsEmpty)
-                    {
-                        buf.Append(p.invokingState);
-                    }
-                }
-                else
-                {
-                    int ruleIndex = p.RuleIndex;
-                    string ruleName = ruleIndex >= 0 && ruleIndex < ruleNames.Count ? ruleNames[ruleIndex] : ruleIndex.ToString();
-                    buf.Append(ruleName);
-                }
-                if (p.Parent != null && (ruleNames != null || !p.Parent.IsEmpty))
-                {
-                    buf.Append(" ");
-                }
-                p = p.Parent;
-            }
-            buf.Append("]");
-            return buf.ToString();
         }
     }
 }

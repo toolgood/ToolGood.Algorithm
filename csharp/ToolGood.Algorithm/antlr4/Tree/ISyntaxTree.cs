@@ -8,9 +8,6 @@ namespace Antlr4.Runtime.Tree
 {
     internal interface ISyntaxTree : ITree
     {
-        Interval SourceInterval
-        {
-            get;
-        }
+   
     }
 }

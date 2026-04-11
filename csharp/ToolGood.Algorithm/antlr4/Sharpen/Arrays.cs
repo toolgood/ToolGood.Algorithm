@@ -20,20 +20,6 @@ namespace Antlr4.Runtime.Sharpen
         {
             return array;
         }
-        public static void Fill<T>(T[] array, T value)
-        {
-            for (int i = 0; i < array.Length; i++)
-                array[i] = value;
-        }
-        public static int HashCode<T>(T[] array)
-        {
-            if (array == null)
-                return 0;
-            int result = 1;
-            foreach (object o in array)
-                result = 31 * result + (o == null ? 0 : o.GetHashCode());
-            return result;
-        }
         public static bool Equals<T>(T[] left, T[] right)
         {
             if (left == right)
@@ -48,25 +34,6 @@ namespace Antlr4.Runtime.Sharpen
                     return false;
             }
             return true;
-        }
-        public static string ToString<T>(T[] array)
-        {
-            if (array == null)
-                return "null";
-            StringBuilder builder = new StringBuilder();
-            builder.Append('[');
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (i > 0)
-                    builder.Append(", ");
-                T o = array[i];
-                if (o == null)
-                    builder.Append("null");
-                else
-                    builder.Append(o);
-            }
-            builder.Append(']');
-            return builder.ToString();
         }
     }
 }

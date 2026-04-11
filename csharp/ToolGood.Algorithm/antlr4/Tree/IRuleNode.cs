@@ -11,9 +11,6 @@ namespace Antlr4.Runtime.Tree
         {
             get;
         }
-        new IRuleNode Parent
-        {
-            get;
-        }
+   
     }
 }

@@ -9,10 +9,6 @@ namespace Antlr4.Runtime.Misc
 {
     internal class Utils
     {
-        public static string Join<T>(string separator, IEnumerable<T> items)
-        {
-            return string.Join(separator, items);
-        }
         public static string EscapeWhitespace(string s, bool escapeSpaces)
         {
             StringBuilder buf = new StringBuilder();
