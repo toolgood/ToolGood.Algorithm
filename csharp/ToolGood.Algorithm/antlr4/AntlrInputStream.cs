@@ -100,10 +100,7 @@ namespace Antlr4.Runtime
         }
         protected abstract int ValueAt(int i);
         protected abstract string ConvertDataToString(int start, int count);
-        public override sealed string ToString()
-        {
-            return ConvertDataToString(0, n);
-        }
+
         public virtual string SourceName
         {
             get

@@ -401,7 +401,7 @@ namespace Antlr4.Runtime
         {
             return precedence >= _precedenceStack[_precedenceStack.Count - 1];
         }
-        public new IParserErrorListener ErrorListenerDispatch
+        public IParserErrorListener ErrorListenerDispatch
         {
             get
             {

@@ -23,13 +23,7 @@ namespace Antlr4.Runtime
             this._parent = parent;
             this.invokingState = invokingState;
         }
-        public virtual bool IsEmpty
-        {
-            get
-            {
-                return invokingState == -1;
-            }
-        }
+ 
         public virtual Interval SourceInterval
         {
             get
@@ -76,12 +70,6 @@ namespace Antlr4.Runtime
             }
         }
 
-	/* Set the outer alternative number for this context node. Default
-	 * implementation does nothing to avoid backing field overhead for
-	 * trees that don't need it.  Create
-     * a subclass of ParserRuleContext with backing field and set
-     * option contextSuperClass.
-	 */
 	public virtual void setAltNumber(int altNumber) { }
         public virtual IParseTree GetChild(int i)
         {
