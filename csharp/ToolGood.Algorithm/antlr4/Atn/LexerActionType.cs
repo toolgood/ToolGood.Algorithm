@@ -9,7 +9,7 @@ namespace Antlr4.Runtime.Atn
 {
     /// <author>Sam Harwell</author>
     /// <since>4.2</since>
-    public enum LexerActionType
+    internal enum LexerActionType
     {
         Channel,
         Custom,

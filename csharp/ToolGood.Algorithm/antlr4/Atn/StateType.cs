@@ -5,7 +5,7 @@
 
 namespace Antlr4.Runtime.Atn
 {
-    public enum StateType
+    internal enum StateType
     {
         InvalidType,
         Basic,

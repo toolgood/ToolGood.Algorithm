@@ -864,19 +864,7 @@ namespace Antlr4.Runtime
             }
             return stack;
         }
-
-        public override ParseInfo ParseInfo
-        {
-            get
-            {
-                ParserATNSimulator interp = Interpreter;
-                if (interp is ProfilingATNSimulator simulator)
-                {
-                    return new ParseInfo(simulator);
-                }
-                return null;
-            }
-        }
+ 
 
         /// <summary>
         /// During a parse is sometimes useful to listen in on the rule entry and exit

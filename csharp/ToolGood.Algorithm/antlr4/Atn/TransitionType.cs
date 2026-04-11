@@ -5,7 +5,7 @@
 
 namespace Antlr4.Runtime.Atn
 {
-    public enum TransitionType
+    internal enum TransitionType
     {
 		INVALID,
         EPSILON,
