@@ -8,26 +8,20 @@ using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Dfa;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
 	internal abstract class ATNSimulator
 	{
 
-
 		/** Must distinguish between missing edge and edge we know leads nowhere */
-
 		public static readonly DFAState ERROR = InitERROR();
-
 		static DFAState InitERROR()
 		{
 			DFAState state = new DFAState(new ATNConfigSet());
 			state.stateNumber = Int32.MaxValue;
 			return state;
 		}
-
 		public readonly ATN atn;
-
 		/** The context cache maps all PredictionContext objects that are equals()
 		 *  to a single cached copy. This cache is shared across all contexts
 		 *  in all ATNConfigs in all DFA states.  We rebuild each ATNConfigSet
@@ -50,15 +44,12 @@ namespace Antlr4.Runtime.Atn
 		 */
 		protected readonly PredictionContextCache sharedContextCache;
 
-
 		public ATNSimulator(ATN atn, PredictionContextCache sharedContextCache)
 		{
 			this.atn = atn;
 			this.sharedContextCache = sharedContextCache;
 		}
-
 		public abstract void Reset();
-
 		/**
 		 * Clear the DFA cache used by the current instance. Since the DFA cache may
 		 * be shared by multiple ATN simulators, this method may affect the
@@ -74,11 +65,9 @@ namespace Antlr4.Runtime.Atn
 		{
 			throw new Exception("This ATN simulator does not support clearing the DFA.");
 		}
-
 		public PredictionContext getCachedContext(PredictionContext context)
 		{
 			if (sharedContextCache == null) return context;
-
 			lock (sharedContextCache)
 			{
 				PredictionContext.IdentityHashMap visited =
@@ -88,6 +77,5 @@ namespace Antlr4.Runtime.Atn
 														  visited);
 			}
 		}
-
 	}
 }

@@ -7,7 +7,6 @@ namespace Antlr4.Runtime
     internal static class TokenTypes
     {
         public const int More = -2;
-
         public const int Skip = -3;
     }
 }

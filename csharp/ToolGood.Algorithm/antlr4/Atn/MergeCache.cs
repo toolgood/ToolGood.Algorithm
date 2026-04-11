@@ -4,13 +4,11 @@
  */
 using System;
 using System.Collections.Generic;
-
 namespace Antlr4.Runtime.Atn
 {
 	internal class MergeCache
 	{
 		Dictionary<PredictionContext, Dictionary<PredictionContext, PredictionContext>> data = new Dictionary<PredictionContext, Dictionary<PredictionContext, PredictionContext>>();
-
 		public PredictionContext Get(PredictionContext a, PredictionContext b)
 		{
 			Dictionary<PredictionContext, PredictionContext> first;
@@ -21,9 +19,7 @@ namespace Antlr4.Runtime.Atn
 				return value;
 			else
 				return null;
-
 		}
-
 		public void Put(PredictionContext a, PredictionContext b, PredictionContext value)
 		{
 			Dictionary<PredictionContext, PredictionContext> first;

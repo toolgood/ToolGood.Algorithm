@@ -4,15 +4,8 @@
  */
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
 namespace Antlr4.Runtime.Dfa
 {
-    /// <summary>
-    /// This implementation of
-    /// <see cref="AbstractEdgeMap{T}"/>
-    /// represents an empty edge map.
-    /// </summary>
-    /// <author>Sam Harwell</author>
     internal sealed class EmptyEdgeMap<T> : AbstractEdgeMap<T>
         where T : class
     {
@@ -20,27 +13,22 @@ namespace Antlr4.Runtime.Dfa
             : base(minIndex, maxIndex)
         {
         }
-
         public override AbstractEdgeMap<T> Put(int key, T value)
         {
             if (value == null || key < minIndex || key > maxIndex)
             {
-                // remains empty
                 return this;
             }
             return new SingletonEdgeMap<T>(minIndex, maxIndex, key, value);
         }
-
         public override AbstractEdgeMap<T> Clear()
         {
             return this;
         }
-
         public override AbstractEdgeMap<T> Remove(int key)
         {
             return this;
         }
-
         public override int Count
         {
             get
@@ -48,7 +36,6 @@ namespace Antlr4.Runtime.Dfa
                 return 0;
             }
         }
-
         public override bool IsEmpty
         {
             get
@@ -56,12 +43,10 @@ namespace Antlr4.Runtime.Dfa
                 return true;
             }
         }
-
         public override bool ContainsKey(int key)
         {
             return false;
         }
-
         public override T this[int key]
         {
             get
@@ -69,7 +54,6 @@ namespace Antlr4.Runtime.Dfa
                 return null;
             }
         }
-
         public override IReadOnlyDictionary<int, T> ToMap()
         {
             return new ReadOnlyDictionary<int, T>(new Dictionary<int, T>());

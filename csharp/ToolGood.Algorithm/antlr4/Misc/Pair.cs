@@ -3,20 +3,17 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 using System;
-
 namespace Antlr4.Runtime.Misc
 {
 	internal class Pair<A, B>
 	{
 		public readonly A a;
 		public readonly B b;
-
 		public Pair(A a, B b)
 		{
 			this.a = a;
 			this.b = b;
 		}
-
 		public override bool Equals(Object obj)
 		{
 			if (obj == this)
@@ -27,12 +24,10 @@ namespace Antlr4.Runtime.Misc
 			{
 				return false;
 			}
-
 			Pair<A, B> other = (Pair<A, B>)obj;
 			return (a == null ? other.a == null : a.Equals(other.a)) &&
 				   (b == null ? other.b == null : b.Equals(other.b));
 		}
-
 		public override int GetHashCode()
 		{
 			int hash = MurmurHash.Initialize();
@@ -40,6 +35,5 @@ namespace Antlr4.Runtime.Misc
 			hash = MurmurHash.Update(hash, b);
 			return MurmurHash.Finish(hash, 2);
 		}
-
 	}
 }

@@ -6,25 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Interlocked = System.Threading.Interlocked;
-
 using Volatile = System.Threading.Volatile;
-
 namespace Antlr4.Runtime.Dfa
 {
-    /// <author>Sam Harwell</author>
     internal sealed class ArrayEdgeMap<T> : AbstractEdgeMap<T>
         where T : class
     {
         private readonly T[] arrayData;
-
         private int size;
-
         public ArrayEdgeMap(int minIndex, int maxIndex)
             : base(minIndex, maxIndex)
         {
             arrayData = new T[maxIndex - minIndex + 1];
         }
-
         public override int Count
         {
             get
@@ -32,7 +26,6 @@ namespace Antlr4.Runtime.Dfa
                 return Volatile.Read(ref size);
             }
         }
-
         public override bool IsEmpty
         {
             get
@@ -40,12 +33,10 @@ namespace Antlr4.Runtime.Dfa
                 return Count == 0;
             }
         }
-
         public override bool ContainsKey(int key)
         {
             return this[key] != null;
         }
-
         public override T this[int key]
         {
             get
@@ -54,11 +45,9 @@ namespace Antlr4.Runtime.Dfa
                 {
                     return null;
                 }
-
                 return Volatile.Read(ref arrayData[key - minIndex]);
             }
         }
-
         public override AbstractEdgeMap<T> Put(int key, T value)
         {
             if (key >= minIndex && key <= maxIndex)
@@ -78,12 +67,10 @@ namespace Antlr4.Runtime.Dfa
             }
             return this;
         }
-
         public override AbstractEdgeMap<T> Remove(int key)
         {
             return Put(key, null);
         }
-
         public override AbstractEdgeMap<T> PutAll(IEdgeMap<T> m)
         {
             if (m.IsEmpty)
@@ -131,21 +118,17 @@ namespace Antlr4.Runtime.Dfa
                 }
             }
         }
-
         public override AbstractEdgeMap<T> Clear()
         {
             return new EmptyEdgeMap<T>(minIndex, maxIndex);
         }
-
         public override IReadOnlyDictionary<int, T> ToMap()
         {
             if (IsEmpty)
             {
                 return Sharpen.Collections.EmptyMap<int, T>();
             }
-
             IDictionary<int, T> result = new SortedDictionary<int, T>();
-
             for (int i = 0; i < arrayData.Length; i++)
             {
                 T element = arrayData[i];
@@ -155,7 +138,6 @@ namespace Antlr4.Runtime.Dfa
                 }
                 result[i + minIndex] = element;
             }
-
             return new ReadOnlyDictionary<int, T>(result);
         }
     }

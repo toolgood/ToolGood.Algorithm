@@ -5,7 +5,6 @@
 using System.Collections.Generic;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
     internal class LL1Analyzer
@@ -14,15 +13,11 @@ namespace Antlr4.Runtime.Atn
          *  a predicate during analysis if {@code seeThruPreds==false}.
          */
         public const int HitPred = TokenConstants.InvalidType;
-
-        
         public readonly ATN atn;
-
         public LL1Analyzer(ATN atn)
         {
             this.atn = atn;
         }
-       
         /**
 	 * Compute set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
@@ -39,12 +34,10 @@ namespace Antlr4.Runtime.Atn
 	 * @return The set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
 	 */
-        
         public virtual IntervalSet Look(ATNState s, RuleContext ctx)
         {
             return Look(s, null, ctx);
         }
-
         /**
 	 * Compute set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
@@ -63,7 +56,6 @@ namespace Antlr4.Runtime.Atn
 	 * @return The set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
 	 */
-        
         public virtual IntervalSet Look(ATNState s, ATNState stopState, RuleContext ctx)
         {
             IntervalSet r = new IntervalSet();
@@ -72,7 +64,6 @@ namespace Antlr4.Runtime.Atn
             Look_(s, stopState, lookContext, r, new HashSet<ATNConfig>(), new BitSet(), seeThruPreds, true);
             return r;
         }
-
         /**
          * Compute set of tokens that can follow {@code s} in the ATN in the
          * specified {@code ctx}.

@@ -6,34 +6,28 @@ namespace Antlr4.Runtime
 {
     using System;
     using Antlr4.Runtime.Atn;
-
     internal interface IRecognizer
     {
         IVocabulary Vocabulary
         {
             get;
         }
-
         string[] RuleNames
         {
             get;
         }
-
         string GrammarFileName
         {
             get;
         }
-
         ATN Atn
         {
             get;
         }
-
         int State
         {
             get;
         }
-
         IIntStream InputStream
         {
             get;

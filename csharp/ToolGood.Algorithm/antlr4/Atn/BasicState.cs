@@ -4,7 +4,6 @@
  */
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
     internal sealed class BasicState : ATNState
     {
         public override Antlr4.Runtime.Atn.StateType StateType

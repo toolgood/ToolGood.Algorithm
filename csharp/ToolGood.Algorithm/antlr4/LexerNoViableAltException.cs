@@ -7,21 +7,17 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime
 {
     [System.Serializable]
     internal class LexerNoViableAltException : RecognitionException
     {
-        /// <summary>Matching attempted at what input index?</summary>
         private readonly int startIndex;
-
         public LexerNoViableAltException(Lexer lexer, ICharStream input, int startIndex, ATNConfigSet deadEndConfigs)
             : base(lexer, input)
         {
             this.startIndex = startIndex;
         }
-
         public override IIntStream InputStream
         {
             get
@@ -29,6 +25,5 @@ namespace Antlr4.Runtime
                 return (ICharStream)base.InputStream;
             }
         }
-
     }
 }

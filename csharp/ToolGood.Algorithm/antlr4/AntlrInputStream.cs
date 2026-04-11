@@ -8,24 +8,15 @@ using System.Text;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime
 {
     internal abstract class BaseInputCharStream : ICharStream
     {
         public const int ReadBufferSize = 1024;
-
         public const int InitialBufferSize = 1024;
-
-        /// <summary>How many characters are actually in the buffer</summary>
         protected internal int n;
-
-        /// <summary>0..n-1 index into string of next char</summary>
         protected internal int p = 0;
-
-        /// <summary>What is name or source of this char stream?</summary>
         public string name;
-
         public virtual void Consume()
         {
             if (p >= n)
@@ -38,44 +29,26 @@ namespace Antlr4.Runtime
                 p++;
             }
         }
-
-        //System.out.println("p moves to "+p+" (c='"+(char)data[p]+"')");
         public virtual int LA(int i)
         {
             if (i == 0)
             {
                 return 0;
             }
-            // undefined
             if (i < 0)
             {
                 i++;
-                // e.g., translate LA(-1) to use offset i=0; then data[p+0-1]
                 if ((p + i - 1) < 0)
                 {
                     return IntStreamConstants.EOF;
                 }
             }
-            // invalid; no char before first char
             if ((p + i - 1) >= n)
             {
-                //System.out.println("char LA("+i+")=EOF; p="+p);
                 return IntStreamConstants.EOF;
             }
-            //System.out.println("char LA("+i+")="+(char)data[p+i-1]+"; p="+p);
-            //System.out.println("LA("+i+"); p="+p+" n="+n+" data.length="+data.length);
             return ValueAt(p + i - 1);
         }
-
-        /// <summary>
-        /// Return the current input symbol index 0..n where n indicates the
-        /// last symbol has been read.
-        /// </summary>
-        /// <remarks>
-        /// Return the current input symbol index 0..n where n indicates the
-        /// last symbol has been read.  The index is the index of char to
-        /// be returned from LA(1).
-        /// </remarks>
         public virtual int Index
         {
             get
@@ -83,7 +56,6 @@ namespace Antlr4.Runtime
                 return p;
             }
         }
-
         public virtual int Size
         {
             get
@@ -91,41 +63,26 @@ namespace Antlr4.Runtime
                 return n;
             }
         }
-
-        /// <summary>mark/release do nothing; we have entire buffer</summary>
         public virtual int Mark()
         {
             return -1;
         }
-
         public virtual void Release(int marker)
         {
         }
-
-        /// <summary>
-        /// consume() ahead until p==index; can't just set p=index as we must
-        /// update line and charPositionInLine.
-        /// </summary>
-        /// <remarks>
-        /// consume() ahead until p==index; can't just set p=index as we must
-        /// update line and charPositionInLine. If we seek backwards, just set p
-        /// </remarks>
         public virtual void Seek(int index)
         {
             if (index <= p)
             {
                 p = index;
-                // just jump; don't update stream state (line, ...)
                 return;
             }
-            // seek forward, consume until p hits index or n (whichever comes first)
             index = Math.Min(index, n);
             while (p < index)
             {
                 Consume();
             }
         }
-
         public virtual string GetText(Interval interval)
         {
             int start = interval.a;
@@ -141,16 +98,12 @@ namespace Antlr4.Runtime
             }
             return ConvertDataToString(start, count);
         }
-
         protected abstract int ValueAt(int i);
-
         protected abstract string ConvertDataToString(int start, int count);
-
         public override sealed string ToString()
         {
             return ConvertDataToString(0, n);
         }
-
         public virtual string SourceName
         {
             get
@@ -163,50 +116,24 @@ namespace Antlr4.Runtime
             }
         }
     }
-
-    /// <summary>
-    /// Vacuum all input from a
-    /// <see cref="System.IO.TextReader"/>
-    /// /
-    /// <see cref="System.IO.Stream"/>
-    /// and then treat it
-    /// like a
-    /// <c>char[]</c>
-    /// buffer. Can also pass in a
-    /// <see cref="string"/>
-    /// or
-    /// <c>char[]</c>
-    /// to use.
-    /// <p>If you need encoding, pass in stream/reader with correct encoding.</p>
-    /// </summary>
     internal class AntlrInputStream : BaseInputCharStream
     {
-        /// <summary>The data being scanned</summary>
         protected internal char[] data;
-
         public AntlrInputStream()
         {
         }
-
-        /// <summary>Copy data in string to a local char array</summary>
         public AntlrInputStream(string input)
         {
             this.data = input.ToCharArray();
             this.n = input.Length;
         }
-
         protected override int ValueAt(int i)
         {
             return data[i];
         }
-
         protected override string ConvertDataToString(int start, int count)
         {
-            //		System.err.println("data: "+Arrays.toString(data)+", n="+n+
-            //                                             ", start="+start+
-            //                                             ", stop="+stop);
             return new string(data, start, count);
         }
     }
- 
 }

@@ -4,15 +4,9 @@
  */
 namespace Antlr4.Runtime.Atn
 {
-    /// <summary>
-    /// Terminal node of a simple
-    /// <c>(a|b|c)</c>
-    /// block.
-    /// </summary>
     internal sealed class BlockEndState : ATNState
     {
         public BlockStartState startState;
-
         public override Antlr4.Runtime.Atn.StateType StateType
         {
             get

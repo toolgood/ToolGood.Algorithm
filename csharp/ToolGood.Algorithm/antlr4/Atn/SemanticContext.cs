@@ -7,59 +7,47 @@ using System.Collections.Generic;
 using System.Linq;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
     internal abstract class SemanticContext
     {
         public abstract bool Eval<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             where ATNInterpreter : ATNSimulator;
-
 		public virtual SemanticContext EvalPrecedence<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             where ATNInterpreter : ATNSimulator
         {
             return this;
         }
-
         internal class Empty : SemanticContext
         {
             public static readonly SemanticContext Instance = new Empty();
-
             public override bool Eval<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 return false;
             }
         }
-
         internal class Predicate : SemanticContext
         {
             public readonly int ruleIndex;
-
             public readonly int predIndex;
-
             public readonly bool isCtxDependent;
-
             protected internal Predicate()
             {
-                // e.g., $i ref in pred
                 this.ruleIndex = -1;
                 this.predIndex = -1;
                 this.isCtxDependent = false;
             }
-
             public Predicate(int ruleIndex, int predIndex, bool isCtxDependent)
             {
                 this.ruleIndex = ruleIndex;
                 this.predIndex = predIndex;
                 this.isCtxDependent = isCtxDependent;
             }
-
             public override bool Eval<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 RuleContext localctx = isCtxDependent ? parserCallStack : null;
                 return parser.Sempred(localctx, ruleIndex, predIndex);
             }
-
             public override int GetHashCode()
             {
                 int hashCode = MurmurHash.Initialize();
@@ -69,7 +57,6 @@ namespace Antlr4.Runtime.Atn
                 hashCode = MurmurHash.Finish(hashCode, 3);
                 return hashCode;
             }
-
             public override bool Equals(object obj)
             {
                 if (!(obj is Predicate o))
@@ -80,26 +67,20 @@ namespace Antlr4.Runtime.Atn
                 {
                     return true;
                 }
-
                 return ruleIndex == o.ruleIndex && predIndex == o.predIndex && isCtxDependent == o.isCtxDependent;
             }
-
         }
-
         internal class PrecedencePredicate : SemanticContext, IComparable<SemanticContext.PrecedencePredicate>
         {
             public readonly int precedence;
-
             public PrecedencePredicate(int precedence)
             {
                 this.precedence = precedence;
             }
-
             public override bool Eval<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 return parser.Precpred(parserCallStack, precedence);
             }
-
             public override SemanticContext EvalPrecedence<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 if (parser.Precpred(parserCallStack, precedence))
@@ -111,19 +92,16 @@ namespace Antlr4.Runtime.Atn
                     return null;
                 }
             }
-
             public virtual int CompareTo(SemanticContext.PrecedencePredicate o)
             {
                 return precedence - o.precedence;
             }
-
             public override int GetHashCode()
             {
                 int hashCode = 1;
                 hashCode = 31 * hashCode + precedence;
                 return hashCode;
             }
-
             public override bool Equals(object obj)
             {
                 if (!(obj is SemanticContext.PrecedencePredicate other))
@@ -134,26 +112,19 @@ namespace Antlr4.Runtime.Atn
                 {
                     return true;
                 }
-
                 return precedence == other.precedence;
             }
-
         }
-
         internal abstract class Operator : SemanticContext
         {
-            
             public abstract ICollection<SemanticContext> Operands
             {
                 get;
             }
         }
-
         internal class AND : SemanticContext.Operator
         {
-            
             public readonly SemanticContext[] opnds;
-
             public AND(SemanticContext a, SemanticContext b)
             {
                 HashSet<SemanticContext> operands = new HashSet<SemanticContext>();
@@ -176,13 +147,11 @@ namespace Antlr4.Runtime.Atn
                 IList<SemanticContext.PrecedencePredicate> precedencePredicates = FilterPrecedencePredicates(operands);
                 if (precedencePredicates.Count > 0)
                 {
-                    // interested in the transition with the lowest precedence
                     SemanticContext.PrecedencePredicate reduced = precedencePredicates.Min();
                     operands.Add(reduced);
                 }
                 opnds = operands.ToArray();
             }
-
             public override ICollection<SemanticContext> Operands
             {
                 get
@@ -190,7 +159,6 @@ namespace Antlr4.Runtime.Atn
                     return Arrays.AsList(opnds);
                 }
             }
-
             public override bool Equals(object obj)
             {
                 if (this == obj)
@@ -201,15 +169,12 @@ namespace Antlr4.Runtime.Atn
                 {
                     return false;
                 }
-
                 return Arrays.Equals(opnds, other.opnds);
             }
-
             public override int GetHashCode()
             {
                 return MurmurHash.HashCode(opnds, typeof(SemanticContext.AND).GetHashCode());
             }
-
             public override bool Eval<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 foreach (SemanticContext opnd in opnds)
@@ -221,7 +186,6 @@ namespace Antlr4.Runtime.Atn
                 }
                 return true;
             }
-
             public override SemanticContext EvalPrecedence<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 bool differs = false;
@@ -232,14 +196,12 @@ namespace Antlr4.Runtime.Atn
                     differs |= (evaluated != context);
                     if (evaluated == null)
                     {
-                        // The AND context is false if any element is false
                         return null;
                     }
                     else
                     {
                         if (evaluated != Empty.Instance)
                         {
-                            // Reduce the result by skipping true elements
                             operands.Add(evaluated);
                         }
                     }
@@ -250,7 +212,6 @@ namespace Antlr4.Runtime.Atn
                 }
                 if (operands.Count == 0)
                 {
-                    // all elements were true, so the AND context is true
                     return Empty.Instance;
                 }
                 SemanticContext result = operands[0];
@@ -260,14 +221,10 @@ namespace Antlr4.Runtime.Atn
                 }
                 return result;
             }
-
         }
-
         internal class OR : SemanticContext.Operator
         {
-            
             public readonly SemanticContext[] opnds;
-
             public OR(SemanticContext a, SemanticContext b)
             {
                 HashSet<SemanticContext> operands = new HashSet<SemanticContext>();
@@ -290,13 +247,11 @@ namespace Antlr4.Runtime.Atn
                 IList<SemanticContext.PrecedencePredicate> precedencePredicates = FilterPrecedencePredicates(operands);
                 if (precedencePredicates.Count > 0)
                 {
-                    // interested in the transition with the highest precedence
                     SemanticContext.PrecedencePredicate reduced = precedencePredicates.Max();
                     operands.Add(reduced);
                 }
                 this.opnds = operands.ToArray();
             }
-
             public override ICollection<SemanticContext> Operands
             {
                 get
@@ -304,7 +259,6 @@ namespace Antlr4.Runtime.Atn
                     return Arrays.AsList(opnds);
                 }
             }
-
             public override bool Equals(object obj)
             {
                 if (this == obj)
@@ -315,15 +269,12 @@ namespace Antlr4.Runtime.Atn
                 {
                     return false;
                 }
-
                 return Arrays.Equals(opnds, other.opnds);
             }
-
             public override int GetHashCode()
             {
                 return MurmurHash.HashCode(opnds, typeof(SemanticContext.OR).GetHashCode());
             }
-
             public override bool Eval<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 foreach (SemanticContext opnd in opnds)
@@ -335,7 +286,6 @@ namespace Antlr4.Runtime.Atn
                 }
                 return false;
             }
-
             public override SemanticContext EvalPrecedence<Symbol, ATNInterpreter>(Recognizer<Symbol, ATNInterpreter> parser, RuleContext parserCallStack)
             {
                 bool differs = false;
@@ -346,14 +296,12 @@ namespace Antlr4.Runtime.Atn
                     differs |= (evaluated != context);
                     if (evaluated == Empty.Instance)
                     {
-                        // The OR context is true if any element is true
                         return Empty.Instance;
                     }
                     else
                     {
                         if (evaluated != null)
                         {
-                            // Reduce the result by skipping false elements
                             operands.Add(evaluated);
                         }
                     }
@@ -364,7 +312,6 @@ namespace Antlr4.Runtime.Atn
                 }
                 if (operands.Count == 0)
                 {
-                    // all elements were false, so the OR context is false
                     return null;
                 }
                 SemanticContext result = operands[0];
@@ -374,9 +321,7 @@ namespace Antlr4.Runtime.Atn
                 }
                 return result;
             }
-
         }
-
         public static SemanticContext AndOp(SemanticContext a, SemanticContext b)
         {
             if (a == null || a == Empty.Instance)
@@ -394,7 +339,6 @@ namespace Antlr4.Runtime.Atn
             }
             return result;
         }
-
         public static SemanticContext OrOp(SemanticContext a, SemanticContext b)
         {
             if (a == null)
@@ -416,12 +360,10 @@ namespace Antlr4.Runtime.Atn
             }
             return result;
         }
-
         private static IList<SemanticContext.PrecedencePredicate> FilterPrecedencePredicates(HashSet<SemanticContext> collection)
         {
             if (!collection.OfType<PrecedencePredicate>().Any())
                 Collections.EmptyList<PrecedencePredicate>();
-
             List<PrecedencePredicate> result = collection.OfType<PrecedencePredicate>().ToList();
             collection.ExceptWith(result);
             return result;

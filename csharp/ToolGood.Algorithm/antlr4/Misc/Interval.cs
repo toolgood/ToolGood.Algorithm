@@ -3,50 +3,22 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 using System;
-
 namespace Antlr4.Runtime.Misc
 {
-    /// <summary>An immutable inclusive interval a..b.</summary>
-    /// <remarks>An immutable inclusive interval a..b.</remarks>
     internal struct Interval
     {
         public static readonly Antlr4.Runtime.Misc.Interval Invalid = new Antlr4.Runtime.Misc.Interval(-1, -2);
-
-        /// <summary>The start of the interval.</summary>
-        /// <remarks>The start of the interval.</remarks>
         public readonly int a;
-
-        /// <summary>The end of the interval (inclusive).</summary>
-        /// <remarks>The end of the interval (inclusive).</remarks>
         public readonly int b;
-
         public Interval(int a, int b)
         {
             this.a = a;
             this.b = b;
         }
-
-        /// <summary>
-        /// Interval objects are used readonly so share all with the
-        /// same single value a==b up to some max size.
-        /// </summary>
-        /// <remarks>
-        /// Interval objects are used readonly so share all with the
-        /// same single value a==b up to some max size.  Use an array as a perfect hash.
-        /// Return shared object for 0..INTERVAL_POOL_MAX_VALUE or a new
-        /// Interval object with a..a in it.  On Java.g4, 218623 IntervalSets
-        /// have a..a (set with 1 element).
-        /// </remarks>
         public static Antlr4.Runtime.Misc.Interval Of(int a, int b)
         {
             return new Antlr4.Runtime.Misc.Interval(a, b);
         }
-
-        /// <summary>return number of elements between a and b inclusively.</summary>
-        /// <remarks>
-        /// return number of elements between a and b inclusively. x..x is length 1.
-        /// if b &lt; a, then length is 0. 9..10 has length 2.
-        /// </remarks>
         public int Length
         {
             get
@@ -58,17 +30,14 @@ namespace Antlr4.Runtime.Misc
                 return b - a + 1;
             }
         }
-
         public override bool Equals(object o)
         {
             if (!(o is Interval other))
             {
                 return false;
             }
-
             return a == other.a && b == other.b;
         }
-
         public override int GetHashCode()
         {
             int hash = 23;
@@ -76,55 +45,38 @@ namespace Antlr4.Runtime.Misc
             hash = hash * 31 + b;
             return hash;
         }
-
-        /// <summary>Does this start completely before other? Disjoint</summary>
         public bool StartsBeforeDisjoint(Antlr4.Runtime.Misc.Interval other)
         {
             return this.a < other.a && this.b < other.a;
         }
 
-
-        /// <summary>Does this start completely after other? Disjoint</summary>
         public bool StartsAfterDisjoint(Antlr4.Runtime.Misc.Interval other)
         {
             return this.a > other.b;
         }
-
-        /// <summary>Does this start after other? NonDisjoint</summary>
         public bool StartsAfterNonDisjoint(Antlr4.Runtime.Misc.Interval other)
         {
             return this.a > other.a && this.a <= other.b;
         }
-
-        // this.b>=other.b implied
-        /// <summary>Are both ranges disjoint? I.e., no overlap?</summary>
         public bool Disjoint(Antlr4.Runtime.Misc.Interval other)
         {
             return StartsBeforeDisjoint(other) || StartsAfterDisjoint(other);
         }
-
-        /// <summary>Are two intervals adjacent such as 0..41 and 42..42?</summary>
         public bool Adjacent(Antlr4.Runtime.Misc.Interval other)
         {
             return this.a == other.b + 1 || this.b == other.a - 1;
         }
-
         public bool ProperlyContains(Antlr4.Runtime.Misc.Interval other)
         {
             return other.a >= this.a && other.b <= this.b;
         }
-
-        /// <summary>Return the interval computed from combining this and other</summary>
         public Antlr4.Runtime.Misc.Interval Union(Antlr4.Runtime.Misc.Interval other)
         {
             return Antlr4.Runtime.Misc.Interval.Of(Math.Min(a, other.a), Math.Max(b, other.b));
         }
-
-        /// <summary>Return the interval in common between this and o</summary>
         public Antlr4.Runtime.Misc.Interval Intersection(Antlr4.Runtime.Misc.Interval other)
         {
             return Antlr4.Runtime.Misc.Interval.Of(Math.Max(a, other.a), Math.Min(b, other.b));
         }
-
     }
 }

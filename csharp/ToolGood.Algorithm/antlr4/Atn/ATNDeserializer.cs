@@ -8,22 +8,16 @@ using System.Globalization;
 using Antlr4.Runtime.Dfa;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
     internal class ATNDeserializer
     {
         public static readonly int SerializedVersion = 4;
-
-        
         private readonly ATNDeserializationOptions deserializationOptions;
-
         public ATNDeserializer()
             : this(ATNDeserializationOptions.Default)
         {
         }
-
         public ATNDeserializer(ATNDeserializationOptions deserializationOptions)
         {
             if (deserializationOptions == null)
@@ -32,10 +26,8 @@ namespace Antlr4.Runtime.Atn
             }
             this.deserializationOptions = deserializationOptions;
         }
-
 		int[] data;
 		int p;
-
         public virtual ATN Deserialize(int[] data)
         {
 	        this.data = data;
@@ -63,7 +55,6 @@ namespace Antlr4.Runtime.Atn
             IdentifyTailCalls(atn);
             return atn;
         }
-
 		protected internal virtual void OptimizeATN(ATN atn)
 		{
 			while (true)
@@ -80,11 +71,9 @@ namespace Antlr4.Runtime.Atn
 			}
 			if (deserializationOptions.VerifyAtn)
 			{
-				// reverify after modification
 				VerifyATN(atn);
 			}
 		}
-
 		protected internal virtual void GenerateRuleBypassTransitions(ATN atn)
 		{
 			atn.ruleToTokenType = new int[atn.ruleToStartState.Length];
@@ -107,7 +96,6 @@ namespace Antlr4.Runtime.Atn
 				Transition excludeTransition = null;
 				if (atn.ruleToStartState[i_13].isPrecedenceRule)
 				{
-					// wrap from the beginning of the rule to the StarLoopEntryState
 					endState = null;
 					foreach (ATNState state_3 in atn.states)
 					{
@@ -140,7 +128,6 @@ namespace Antlr4.Runtime.Atn
 				{
 					endState = atn.ruleToStopState[i_13];
 				}
-				// all non-excluded transitions that currently target end state need to target blockEnd instead
 				foreach (ATNState state_4 in atn.states)
 				{
 					foreach (Transition transition in state_4.transitions)
@@ -155,14 +142,12 @@ namespace Antlr4.Runtime.Atn
 						}
 					}
 				}
-				// all transitions leaving the rule start state need to leave blockStart instead
 				while (atn.ruleToStartState[i_13].NumberOfTransitions > 0)
 				{
 					Transition transition = atn.ruleToStartState[i_13].Transition(atn.ruleToStartState[i_13].NumberOfTransitions - 1);
 					atn.ruleToStartState[i_13].RemoveTransition(atn.ruleToStartState[i_13].NumberOfTransitions - 1);
 					bypassStart.AddTransition(transition);
 				}
-				// link the new states
 				atn.ruleToStartState[i_13].AddTransition(new EpsilonTransition(bypassStart));
 				bypassStop.AddTransition(new EpsilonTransition(endState));
 				ATNState matchState = new BasicState();
@@ -172,16 +157,11 @@ namespace Antlr4.Runtime.Atn
 			}
 			if (deserializationOptions.VerifyAtn)
 			{
-				// reverify after modification
 				VerifyATN(atn);
 			}
 		}
-
 		protected internal virtual void ReadLexerActions(ATN atn)
 		{
-			//
-			// LEXER ACTIONS
-			//
 			if (atn.grammarType == ATNType.Lexer)
 			{
 				atn.lexerActions = new ILexerAction[ReadInt()];
@@ -195,12 +175,8 @@ namespace Antlr4.Runtime.Atn
 				}
 			}
 		}
-
 		protected internal virtual void ReadDecisions(ATN atn)
 		{
-			//
-			// DECISIONS
-			//
 			int ndecisions = ReadInt();
 			for (int i_11 = 0; i_11 < ndecisions; i_11++)
 			{
@@ -215,12 +191,8 @@ namespace Antlr4.Runtime.Atn
 				atn.decisionToDFA[i_12] = new DFA(atn.decisionToState[i_12], i_12);
 			}
 		}
-
 		protected internal virtual void ReadEdges(ATN atn, IList<IntervalSet> sets)
 		{
-			//
-			// EDGES
-			//
 			int nedges = ReadInt();
 			for (int i_9 = 0; i_9 < nedges; i_9++)
 			{
@@ -234,7 +206,6 @@ namespace Antlr4.Runtime.Atn
 				ATNState srcState = atn.states[src];
 				srcState.AddTransition(trans);
 			}
-			// edges for rule stop states can be derived, so they aren't serialized
 			foreach (ATNState state_1 in atn.states)
 			{
 				for (int i_10 = 0; i_10 < state_1.NumberOfTransitions; i_10++)
@@ -260,12 +231,10 @@ namespace Antlr4.Runtime.Atn
 			{
 				if (state_2 is BlockStartState state)
 				{
-					// we need to know the end state to set its start state
 					if (state.endState == null)
 					{
 						throw new InvalidOperationException();
 					}
-					// block end states can only be associated to a single block start state
 					if (state.endState.startState != null)
 					{
 						throw new InvalidOperationException();
@@ -296,12 +265,8 @@ namespace Antlr4.Runtime.Atn
 				}
 			}
 		}
-
 		protected internal virtual void ReadSets(ATN atn, IList<IntervalSet> sets)
 		{
-			//
-			// SETS
-			//
 			int nsets = ReadInt();
 			for (int i_8 = 0; i_8 < nsets; i_8++)
 			{
@@ -319,31 +284,22 @@ namespace Antlr4.Runtime.Atn
 				}
 			}
 		}
-
 		protected internal virtual void ReadModes(ATN atn)
 		{
-			//
-			// MODES
-			//
 			int nmodes = ReadInt();
 			for (int i_6 = 0; i_6 < nmodes; i_6++)
 			{
 				int _i = ReadInt();
 				atn.modeToStartState.Add((TokensStartState)atn.states[_i]);
 			}
-			// not in Java code
 			atn.modeToDFA = new DFA[nmodes];
 			for (int i_7 = 0; i_7 < nmodes; i_7++)
 			{
 				atn.modeToDFA[i_7] = new DFA(atn.modeToStartState[i_7]);
 			}
 		}
-
 		protected internal virtual void ReadRules(ATN atn)
 		{
-			//
-			// RULES
-			//
 			int nrules = ReadInt();
 			if (atn.grammarType == ATNType.Lexer)
 			{
@@ -371,19 +327,14 @@ namespace Antlr4.Runtime.Atn
 				atn.ruleToStartState[stopState.ruleIndex].stopState = stopState;
 			}
 		}
-
 		protected internal virtual void ReadStates(ATN atn)
 		{
-			//
-			// STATES
-			//
 			IList<Tuple<LoopEndState, int>> loopBackStateNumbers = new List<Tuple<LoopEndState, int>>();
 			IList<Tuple<BlockStartState, int>> endStateNumbers = new List<Tuple<BlockStartState, int>>();
 			int nstates = ReadInt();
 			for (int i_1 = 0; i_1 < nstates; i_1++)
 			{
 				StateType stype = (StateType)ReadInt();
-				// ignore bad type of states
 				if (stype == StateType.InvalidType)
 				{
 					atn.AddState(null);
@@ -397,7 +348,6 @@ namespace Antlr4.Runtime.Atn
 				ATNState s = StateFactory(stype, ruleIndex);
 				if (stype == StateType.LoopEnd)
 				{
-					// special case
 					int loopBackStateNumber = ReadInt();
 					loopBackStateNumbers.Add(Tuple.Create((LoopEndState)s, loopBackStateNumber));
 				}
@@ -411,7 +361,6 @@ namespace Antlr4.Runtime.Atn
 				}
 				atn.AddState(s);
 			}
-			// delay the assignment of loop back and end states until we know all the state instances have been initialized
 			foreach (Tuple<LoopEndState, int> pair in loopBackStateNumbers)
 			{
 				pair.Item1.loopBackState = atn.states[pair.Item2];
@@ -433,14 +382,12 @@ namespace Antlr4.Runtime.Atn
 				((RuleStartState)atn.states[stateNumber]).isPrecedenceRule = true;
 			}
 		}
-
 		protected internal virtual ATN ReadATN()
 		{
 			ATNType grammarType = (ATNType)ReadInt();
 			int maxTokenType = ReadInt();
 			return new ATN(grammarType, maxTokenType);
 		}
-
 		protected internal virtual void CheckVersion()
 		{
 			int version = ReadInt();
@@ -450,17 +397,6 @@ namespace Antlr4.Runtime.Atn
 				throw new NotSupportedException(reason);
 			}
 		}
-
-        /// <summary>
-        /// Analyze the
-        /// <see cref="StarLoopEntryState"/>
-        /// states in the specified ATN to set
-        /// the
-        /// <see cref="StarLoopEntryState.isPrecedenceDecision"/>
-        /// field to the
-        /// correct value.
-        /// </summary>
-        /// <param name="atn">The ATN.</param>
         protected internal virtual void MarkPrecedenceDecisions(ATN atn)
         {
             foreach (ATNState state in atn.states)
@@ -482,10 +418,8 @@ namespace Antlr4.Runtime.Atn
                 }
             }
         }
-
         protected internal virtual void VerifyATN(ATN atn)
         {
-            // verify assumptions
             foreach (ATNState state in atn.states)
             {
                 if (state == null)
@@ -550,12 +484,10 @@ namespace Antlr4.Runtime.Atn
                 }
             }
         }
-
         protected internal virtual void CheckCondition(bool condition)
         {
             CheckCondition(condition, null);
         }
-
         protected internal virtual void CheckCondition(bool condition, string message)
         {
             if (!condition)
@@ -563,7 +495,6 @@ namespace Antlr4.Runtime.Atn
                 throw new InvalidOperationException(message);
             }
         }
-
         private static int InlineSetRules(ATN atn)
         {
             int inlinedCalls = 0;
@@ -595,14 +526,11 @@ namespace Antlr4.Runtime.Atn
                         ruleToInlineTransition[i] = matchTransition;
                         break;
                     }
-
                     case TransitionType.NOT_SET:
                     case TransitionType.WILDCARD:
                     {
-                        // not implemented yet
                         continue;
                     }
-
                     default:
                     {
                         continue;
@@ -628,7 +556,6 @@ namespace Antlr4.Runtime.Atn
                         }
                         continue;
                     }
-
                     Transition effective = ruleToInlineTransition[ruleTransition.target.ruleIndex];
                     if (effective == null)
                     {
@@ -659,19 +586,16 @@ namespace Antlr4.Runtime.Atn
 							intermediateState.AddTransition(new AtomTransition(target, ((AtomTransition)effective).token));
                             break;
                         }
-
                         case TransitionType.RANGE:
                         {
                             intermediateState.AddTransition(new RangeTransition(target, ((RangeTransition)effective).from, ((RangeTransition)effective).to));
                             break;
                         }
-
                         case TransitionType.SET:
                         {
                             intermediateState.AddTransition(new SetTransition(target, effective.Label));
                             break;
                         }
-
                         default:
                         {
                             throw new NotSupportedException();
@@ -695,7 +619,6 @@ namespace Antlr4.Runtime.Atn
             }
             return inlinedCalls;
         }
-
         private static int CombineChainedEpsilons(ATN atn)
         {
             int removedEdges = 0;
@@ -745,7 +668,6 @@ namespace Antlr4.Runtime.Atn
                     }
 nextTransition_continue: ;
                 }
-
                 if (optimizedTransitions != null)
                 {
                     if (state.IsOptimized)
@@ -761,15 +683,12 @@ nextTransition_continue: ;
                     }
                 }
             }
-
             return removedEdges;
         }
-
         private static int OptimizeSets(ATN atn, bool preserveOrder)
         {
             if (preserveOrder)
             {
-                // this optimization currently doesn't preserve edge order.
                 return 0;
             }
             int removedPaths = 0;
@@ -795,7 +714,6 @@ nextTransition_continue: ;
                     }
                     if (transition is NotSetTransition)
                     {
-                        // TODO: not yet implemented
                         continue;
                     }
                     if (transition is AtomTransition || transition is RangeTransition || transition is SetTransition)
@@ -870,7 +788,6 @@ nextTransition_continue: ;
             }
             return removedPaths;
         }
-
         private static void IdentifyTailCalls(ATN atn)
         {
             foreach (ATNState state in atn.states)
@@ -894,13 +811,11 @@ nextTransition_continue: ;
                     {
                         continue;
                     }
-
                     ruleTransition.tailCall = TestTailCall(atn, ruleTransition, false);
                     ruleTransition.optimizedTailCall = TestTailCall(atn, ruleTransition, true);
                 }
             }
         }
-
         private static bool TestTailCall(ATN atn, RuleTransition transition, bool optimizedPath)
         {
             if (!optimizedPath && transition.tailCall)
@@ -942,13 +857,10 @@ nextTransition_continue: ;
             return true;
         }
 
-
         protected internal int ReadInt()
         {
 			return data[p++];
         }
-
-        
         protected internal virtual Transition EdgeFactory(ATN atn, TransitionType type, int src, int trg, int arg1, int arg2, int arg3, IList<IntervalSet> sets)
         {
             ATNState target = atn.states[trg];
@@ -958,7 +870,6 @@ nextTransition_continue: ;
                 {
                     return new EpsilonTransition(target);
                 }
-
                 case TransitionType.RANGE:
                 {
                     if (arg3 != 0)
@@ -970,24 +881,20 @@ nextTransition_continue: ;
                         return new RangeTransition(target, arg1, arg2);
                     }
                 }
-
                 case TransitionType.RULE:
                 {
                     RuleTransition rt = new RuleTransition((RuleStartState)atn.states[arg1], arg2, arg3, target);
                     return rt;
                 }
-
                 case TransitionType.PREDICATE:
                 {
                     PredicateTransition pt = new PredicateTransition(target, arg1, arg2, arg3 != 0);
                     return pt;
                 }
-
                 case TransitionType.PRECEDENCE:
                 {
                     return new PrecedencePredicateTransition(target, arg1);
                 }
-
                 case TransitionType.ATOM:
                 {
                     if (arg3 != 0)
@@ -999,23 +906,19 @@ nextTransition_continue: ;
                         return new AtomTransition(target, arg1);
                     }
                 }
-
                 case TransitionType.ACTION:
                 {
                     ActionTransition a = new ActionTransition(target, arg1, arg2, arg3 != 0);
                     return a;
                 }
-
                 case TransitionType.SET:
                 {
                     return new SetTransition(target, sets[arg1]);
                 }
-
                 case TransitionType.NOT_SET:
                 {
                     return new NotSetTransition(target, sets[arg1]);
                 }
-
                 case TransitionType.WILDCARD:
                 {
                     return new WildcardTransition(target);
@@ -1023,7 +926,6 @@ nextTransition_continue: ;
             }
             throw new ArgumentException("The specified transition type is not valid.");
         }
-
         protected internal virtual ATNState StateFactory(StateType type, int ruleIndex)
         {
             ATNState s;
@@ -1033,79 +935,66 @@ nextTransition_continue: ;
                 {
                     return null;
                 }
-
                 case StateType.Basic:
                 {
                     s = new BasicState();
                     break;
                 }
-
                 case StateType.RuleStart:
                 {
                     s = new RuleStartState();
                     break;
                 }
-
                 case StateType.BlockStart:
                 {
                     s = new BasicBlockStartState();
                     break;
                 }
-
                 case StateType.PlusBlockStart:
                 {
                     s = new PlusBlockStartState();
                     break;
                 }
-
                 case StateType.StarBlockStart:
                 {
                     s = new StarBlockStartState();
                     break;
                 }
-
                 case StateType.TokenStart:
                 {
                     s = new TokensStartState();
                     break;
                 }
-
                 case StateType.RuleStop:
                 {
                     s = new RuleStopState();
                     break;
                 }
-
                 case StateType.BlockEnd:
                 {
                     s = new BlockEndState();
                     break;
                 }
-
                 case StateType.StarLoopBack:
                 {
                     s = new StarLoopbackState();
                     break;
                 }
-
                 case StateType.StarLoopEntry:
                 {
                     s = new StarLoopEntryState();
                     break;
                 }
-
                 case StateType.PlusLoopBack:
                 {
                     s = new PlusLoopbackState();
                     break;
                 }
-
                 case StateType.LoopEnd:
                 {
                     s = new LoopEndState();
                     break;
                 }
-
                 default:
                 {
                     string message = string.Format(CultureInfo.CurrentCulture, "The specified state type {0} is not valid.", type);
@@ -1115,7 +1004,6 @@ nextTransition_continue: ;
             s.ruleIndex = ruleIndex;
             return s;
         }
-
         protected internal virtual ILexerAction LexerActionFactory(LexerActionType type, int data1, int data2)
         {
             switch (type)
@@ -1124,42 +1012,34 @@ nextTransition_continue: ;
                 {
                     return new LexerChannelAction(data1);
                 }
-
                 case LexerActionType.Custom:
                 {
                     return new LexerCustomAction(data1, data2);
                 }
-
                 case LexerActionType.Mode:
                 {
                     return new LexerModeAction(data1);
                 }
-
                 case LexerActionType.More:
                 {
                     return LexerMoreAction.Instance;
                 }
-
                 case LexerActionType.PopMode:
                 {
                     return LexerPopModeAction.Instance;
                 }
-
                 case LexerActionType.PushMode:
                 {
                     return new LexerPushModeAction(data1);
                 }
-
                 case LexerActionType.Skip:
                 {
                     return LexerSkipAction.Instance;
                 }
-
                 case LexerActionType.Type:
                 {
                     return new LexerTypeAction(data1);
                 }
-
                 default:
                 {
                     string message = string.Format(CultureInfo.CurrentCulture, "The specified lexer action type {0} is not valid.", type);

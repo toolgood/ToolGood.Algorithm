@@ -4,11 +4,8 @@
  */
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <summary>The block that begins a closure loop.</summary>
-    /// <remarks>The block that begins a closure loop.</remarks>
     internal sealed class StarBlockStartState : BlockStartState
     {
         public override Antlr4.Runtime.Atn.StateType StateType

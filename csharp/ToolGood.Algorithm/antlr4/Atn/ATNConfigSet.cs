@@ -8,12 +8,10 @@ using System.Linq;
 using System.Text;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
 	internal class ATNConfigSet
 	{
-
 
 		/** Indicates that the set of configurations is read-only. Do not
 		 *  allow any code to manipulate the set; DFA states will point at
@@ -22,18 +20,13 @@ namespace Antlr4.Runtime.Atn
 		 *  we've made this readonly.
 		 */
 		protected bool readOnly = false;
-
 		/**
 		 * All configs but hashed by (s, i, _, pi) not including context. Wiped out
 		 * when we go readonly as this set becomes a DFA state.
 		 */
 		public ConfigHashSet configLookup;
-
 		/** Track the elements as they are added to the set; supports get(i) */
 		public ArrayList<ATNConfig> configs = new ArrayList<ATNConfig>(7);
-
-		// TODO: these fields make me pretty uncomfortable but nice to pack up info together, saves recomputation
-		// TODO: can we track conflicts as they are added to save scanning configs later?
 		public int uniqueAlt;
 		/** Currently this is only used when we detect SLL conflict; this does
 		 *  not necessarily represent the ambiguous alternatives. In fact,
@@ -41,36 +34,27 @@ namespace Antlr4.Runtime.Atn
 		 *  that have predicates that evaluate to false. Computed in computeTargetState().
 		 */
 		public BitSet conflictingAlts;
-
-		// Used in parser and lexer. In lexer, it indicates we hit a pred
-		// while computing a closure operation.  Don't make a DFA state from this.
 		public bool hasSemanticContext;
 		public bool dipsIntoOuterContext;
-
 		/** Indicates that this configuration set is part of a full context
 		 *  LL prediction. It will be used to determine how to merge $. With SLL
 		 *  it's a wildcard whereas it is not for LL context merge.
 		 */
 		public readonly bool fullCtx;
-
 		private int cachedHashCode = -1;
-
 		public ATNConfigSet(bool fullCtx)
 		{
 			configLookup = new ConfigHashSet();
 			this.fullCtx = fullCtx;
 		}
-
 		public ATNConfigSet()
 		: this(true)
 		{
 		}
- 
 		public bool Add(ATNConfig config)
 		{
 			return Add(config, null);
 		}
-
 		/**
 		 * Adding a new config means merging contexts with existing configs for
 		 * {@code (s, i, pi, _)}, where {@code s} is the
@@ -95,36 +79,20 @@ namespace Antlr4.Runtime.Atn
 			}
 			ATNConfig existing = configLookup.GetOrAdd(config);
 			if (existing == config)
-			{ // we added this new one
+			{ 
 				cachedHashCode = -1;
-				configs.Add(config);  // track order here
+				configs.Add(config);  
 				return true;
 			}
-			// a previous (s,i,pi,_), merge with it and save result
 			bool rootIsWildcard = !fullCtx;
 			PredictionContext merged = PredictionContext.Merge(existing.context, config.context, rootIsWildcard, mergeCache);
-			 // no need to check for existing.context, config.context in cache
-			 // since only way to create new graphs is "call rule" and here. We
-			 // cache at both places.
 			existing.reachesIntoOuterContext = Math.Max(existing.reachesIntoOuterContext, config.reachesIntoOuterContext);
-
-			// make sure to preserve the precedence filter suppression during the merge
 			if (config.IsPrecedenceFilterSuppressed)
 			{
 				existing.SetPrecedenceFilterSuppressed(true);
 			}
-
-			existing.context = merged; // replace context; no need to alt mapping
+			existing.context = merged; 
 			return true;
-		}
-
-		/** Return a List holding list of configs */
-		public List<ATNConfig> Elements
-		{
-			get
-			{
-				return configs;
-			}
 		}
 
 		/**
@@ -135,7 +103,6 @@ namespace Antlr4.Runtime.Atn
 		 *
 		 * @since 4.3
 		 */
-
 		public BitSet GetAlts()
 		{
 			BitSet alts = new BitSet();
@@ -145,48 +112,36 @@ namespace Antlr4.Runtime.Atn
 			}
 			return alts;
 		}
-
 		public void OptimizeConfigs(ATNSimulator interpreter)
 		{
 			if (readOnly)
 				throw new Exception("This set is readonly");
 			if (configLookup.Count == 0)
 				return;
-
 			foreach (ATNConfig config in configs)
 			{
-				//			int before = PredictionContext.getAllContextNodes(config.context).size();
 				config.context = interpreter.getCachedContext(config.context);
-				//			int after = PredictionContext.getAllContextNodes(config.context).size();
-				//			System.out.println("configs "+before+"->"+after);
 			}
 		}
-
 		public override bool Equals(Object o)
 		{
 			if (o == this)
 			{
 				return true;
 			}
-
 			if (!(o is ATNConfigSet other))
 			{
 				return false;
 			}
-
-			//		System.out.print("equals " + this + ", " + o+" = ");
 			bool same = configs != null &&
-			            configs.Equals(other.configs) &&  // includes stack context
+			            configs.Equals(other.configs) &&  
 			            fullCtx == other.fullCtx &&
 			            uniqueAlt == other.uniqueAlt &&
 			            conflictingAlts == other.conflictingAlts &&
 			            hasSemanticContext == other.hasSemanticContext &&
 			            dipsIntoOuterContext == other.dipsIntoOuterContext;
-
-			//		System.out.println(same);
 			return same;
 		}
-
 
 		public override int GetHashCode()
 		{
@@ -196,13 +151,10 @@ namespace Antlr4.Runtime.Atn
 				{
 					cachedHashCode = configs.GetHashCode();
 				}
-
 				return cachedHashCode;
 			}
-
 			return configs.GetHashCode();
 		}
-
 		public int Count
 		{
 			get
@@ -210,16 +162,13 @@ namespace Antlr4.Runtime.Atn
 				return configs.Count;
 			}
 		}
-
 		public bool Empty
 		{
 			get
 			{
-
 				return configs.Count == 0;
 			}
 		}
-	 
 		public bool IsReadOnly
 		{
 			get
@@ -229,21 +178,17 @@ namespace Antlr4.Runtime.Atn
 			set
 			{
 				this.readOnly = value;
-				configLookup = null; // can't mod, no need for lookup cache
+				configLookup = null; 
 			}
 		}
 
-
 	}
-
 	internal class OrderedATNConfigSet : ATNConfigSet
 	{
-
 		public OrderedATNConfigSet()
 		{
 			this.configLookup = new LexerConfigHashSet();
 		}
-
 		internal class LexerConfigHashSet : ConfigHashSet
 		{
 			public LexerConfigHashSet()
@@ -252,10 +197,8 @@ namespace Antlr4.Runtime.Atn
 			}
 		}
 	}
-
 	internal class ObjectEqualityComparator : IEqualityComparer<ATNConfig>
 	{
-
 
 		public int GetHashCode(ATNConfig o)
 		{
@@ -264,7 +207,6 @@ namespace Antlr4.Runtime.Atn
 			else
 				return o.GetHashCode();
 		}
-
 		public bool Equals(ATNConfig a, ATNConfig b)
 		{
 			if (a == b) return true;
@@ -272,7 +214,6 @@ namespace Antlr4.Runtime.Atn
 			return a.Equals(b);
 		}
 	}
-
 	/**
 	* The reason that we need this is because we don't want the hash map to use
 	* the standard hash code and equals. We need all configurations with the same
@@ -287,12 +228,10 @@ namespace Antlr4.Runtime.Atn
 		{
 		}
 
-
 		public ConfigHashSet()
 			: base(new ConfigEqualityComparator())
 		{
 		}
-
 		public ATNConfig GetOrAdd(ATNConfig config)
 		{
 			ATNConfig existing;
@@ -304,12 +243,9 @@ namespace Antlr4.Runtime.Atn
 				return config;
 			}
 		}
-
 	}
-
 	internal class ConfigEqualityComparator : IEqualityComparer<ATNConfig>
 	{
-
 
 		public int GetHashCode(ATNConfig o)
 		{
@@ -319,7 +255,6 @@ namespace Antlr4.Runtime.Atn
 			hashCode = 31 * hashCode + o.semanticContext.GetHashCode();
 			return hashCode;
 		}
-
 		public bool Equals(ATNConfig a, ATNConfig b)
 		{
 			if (a == b) return true;
@@ -329,5 +264,4 @@ namespace Antlr4.Runtime.Atn
 				&& a.semanticContext.Equals(b.semanticContext);
 		}
 	}
-
 }

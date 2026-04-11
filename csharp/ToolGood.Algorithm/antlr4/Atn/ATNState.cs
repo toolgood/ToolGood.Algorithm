@@ -7,31 +7,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
     internal abstract class ATNState
     {
         public const int InitialNumTransitions = 4;
-
         public static readonly ReadOnlyCollection<string> serializationNames = new ReadOnlyCollection<string>(Arrays.AsList("INVALID", "BASIC", "RULE_START", "BLOCK_START", "PLUS_BLOCK_START", "STAR_BLOCK_START", "TOKEN_START", "RULE_STOP", "BLOCK_END", "STAR_LOOP_BACK", "STAR_LOOP_ENTRY", "PLUS_LOOP_BACK", "LOOP_END"));
-
         public const int InvalidStateNumber = -1;
-
         public ATN atn = null;
-
         public int stateNumber = InvalidStateNumber;
-
         public int ruleIndex;
-
         public bool epsilonOnlyTransitions = false;
-
         protected internal readonly List<Transition> transitions = new List<Transition>(InitialNumTransitions);
-
         protected internal List<Transition> optimizedTransitions;
-
         public IntervalSet nextTokenWithinRule;
-
         public virtual int NonStopStateNumber
         {
             get
@@ -39,18 +28,15 @@ namespace Antlr4.Runtime.Atn
                 return stateNumber;
             }
         }
-
         public override int GetHashCode()
         {
             return stateNumber;
         }
-
         public override bool Equals(object o)
         {
             return o==this ||
 				(o is ATNState state && stateNumber == state.stateNumber);
         }
-
         public virtual int NumberOfTransitions
         {
             get
@@ -58,12 +44,10 @@ namespace Antlr4.Runtime.Atn
                 return transitions.Count;
             }
         }
-
         public virtual void AddTransition(Antlr4.Runtime.Atn.Transition e)
         {
             AddTransition(transitions.Count, e);
         }
-
         public virtual void AddTransition(int index, Antlr4.Runtime.Atn.Transition e)
         {
             if (transitions.Count == 0)
@@ -80,22 +64,18 @@ namespace Antlr4.Runtime.Atn
             }
             transitions.Insert(index, e);
         }
-
         public virtual Antlr4.Runtime.Atn.Transition Transition(int i)
         {
             return transitions[i];
         }
-
         public virtual void RemoveTransition(int index)
         {
             transitions.RemoveAt(index);
         }
-
         public abstract Antlr4.Runtime.Atn.StateType StateType
         {
             get;
         }
-
         public bool OnlyHasEpsilonTransitions
         {
             get
@@ -103,12 +83,10 @@ namespace Antlr4.Runtime.Atn
                 return epsilonOnlyTransitions;
             }
         }
-
         public virtual void SetRuleIndex(int ruleIndex)
         {
             this.ruleIndex = ruleIndex;
         }
-
         public virtual bool IsOptimized
         {
             get
@@ -116,7 +94,6 @@ namespace Antlr4.Runtime.Atn
                 return optimizedTransitions != transitions;
             }
         }
-
         public virtual int NumberOfOptimizedTransitions
         {
             get
@@ -124,12 +101,10 @@ namespace Antlr4.Runtime.Atn
                 return optimizedTransitions.Count;
             }
         }
-
         public virtual Antlr4.Runtime.Atn.Transition GetOptimizedTransition(int i)
         {
             return optimizedTransitions[i];
         }
-
         public virtual void AddOptimizedTransition(Antlr4.Runtime.Atn.Transition e)
         {
             if (!IsOptimized)
@@ -138,7 +113,6 @@ namespace Antlr4.Runtime.Atn
             }
             optimizedTransitions.Add(e);
         }
- 
         public virtual void RemoveOptimizedTransition(int i)
         {
             if (!IsOptimized)
@@ -147,7 +121,6 @@ namespace Antlr4.Runtime.Atn
             }
             optimizedTransitions.RemoveAt(i);
         }
-
         public ATNState()
         {
             optimizedTransitions = transitions;

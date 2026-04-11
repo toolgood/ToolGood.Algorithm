@@ -4,11 +4,8 @@
  */
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
-    /// <since>4.2</since>
     internal enum LexerActionType
     {
         Channel,

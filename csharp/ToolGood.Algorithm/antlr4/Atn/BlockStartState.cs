@@ -4,11 +4,6 @@
  */
 namespace Antlr4.Runtime.Atn
 {
-    /// <summary>
-    /// The start of a regular
-    /// <c>(...)</c>
-    /// block.
-    /// </summary>
     internal abstract class BlockStartState : DecisionState
     {
         public BlockEndState endState;

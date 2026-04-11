@@ -4,42 +4,27 @@
  */
 using System.Collections.Generic;
 using Antlr4.Runtime.Misc;
-
 namespace Antlr4.Runtime.Dfa
 {
-    /// <author>Sam Harwell</author>
     internal interface IEdgeMap<T> : IEnumerable<KeyValuePair<int, T>>
     {
         int Count
         {
             get;
         }
-
         bool IsEmpty
         {
             get;
         }
-
         bool ContainsKey(int key);
-
         T this[int key]
         {
             get;
         }
-
-        
         IEdgeMap<T> Put(int key, T value);
-
-        
         IEdgeMap<T> Remove(int key);
-
-        
         IEdgeMap<T> PutAll(IEdgeMap<T> m);
-
-        
         IEdgeMap<T> Clear();
-
-        
         IReadOnlyDictionary<int, T> ToMap();
     }
 }

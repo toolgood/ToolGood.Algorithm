@@ -5,22 +5,18 @@
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
     internal sealed class RangeTransition : Transition
     {
         public readonly int from;
-
         public readonly int to;
-
         public RangeTransition(ATNState target, int from, int to)
             : base(target)
         {
             this.from = from;
             this.to = to;
         }
-
         public override Antlr4.Runtime.Atn.TransitionType TransitionType
         {
             get
@@ -28,7 +24,6 @@ namespace Antlr4.Runtime.Atn
                 return Antlr4.Runtime.Atn.TransitionType.RANGE;
             }
         }
-
         public override IntervalSet Label
         {
             get
@@ -36,11 +31,9 @@ namespace Antlr4.Runtime.Atn
                 return IntervalSet.Of(from, to);
             }
         }
-
         public override bool Matches(int symbol, int minVocabSymbol, int maxVocabSymbol)
         {
             return symbol >= from && symbol <= to;
         }
-
     }
 }

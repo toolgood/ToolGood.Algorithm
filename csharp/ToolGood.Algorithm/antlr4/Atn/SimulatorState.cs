@@ -5,20 +5,14 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Dfa;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
-    /// <author>Sam Harwell</author>
     internal class SimulatorState
     {
         public readonly ParserRuleContext outerContext;
-
         public readonly DFAState s0;
-
         public readonly bool useContext;
-
         public readonly ParserRuleContext remainingOuterContext;
-
         public SimulatorState(ParserRuleContext outerContext, DFAState s0, bool useContext, ParserRuleContext remainingOuterContext)
         {
             this.outerContext = outerContext != null ? outerContext : ParserRuleContext.EmptyContext;

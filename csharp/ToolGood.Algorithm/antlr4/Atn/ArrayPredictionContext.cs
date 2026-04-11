@@ -5,12 +5,10 @@
 using System;
 using System.Text;
 using Antlr4.Runtime.Sharpen;
-
 namespace Antlr4.Runtime.Atn
 {
 
-
-	#pragma warning disable 0659 // 'class' overrides Object.Equals(object o) but does not override Object.GetHashCode()
+	#pragma warning disable 0659 
 	internal class ArrayPredictionContext : PredictionContext
 	{
 		/** Parent can be null only if full ctx mode and we make an array
@@ -18,35 +16,27 @@ namespace Antlr4.Runtime.Atn
 		 *  returnState == {@link #EMPTY_RETURN_STATE}.
 		 */
 		public readonly PredictionContext[] parents;
-
 		/** Sorted for merge, no duplicates; if present,
 		 *  {@link #EMPTY_RETURN_STATE} is always last.
 		 */
 		public readonly int[] returnStates;
-
 		public ArrayPredictionContext(SingletonPredictionContext a)
 			: this(new PredictionContext[] { a.parent }, new int[] { a.returnState })
 		{
 		}
-
 		public ArrayPredictionContext(PredictionContext[] parents, int[] returnStates)
 			: base(CalculateHashCode(parents, returnStates))
 		{
-			//		System.err.println("CREATE ARRAY: "+Arrays.toString(parents)+", "+Arrays.toString(returnStates));
 			this.parents = parents;
 			this.returnStates = returnStates;
 		}
-
 		public override bool IsEmpty
 		{
 			get
 			{
-				// since EMPTY_RETURN_STATE can only appear in the last position, we
-				// don't need to verify that size==1
 				return returnStates[0] == EMPTY_RETURN_STATE;
 			}
 		}
-
 		public override int Size
 		{
 			get
@@ -54,43 +44,30 @@ namespace Antlr4.Runtime.Atn
 				return returnStates.Length;
 			}
 		}
-
 		public override PredictionContext GetParent(int index)
 		{
 			return parents[index];
 		}
-
 		public override int GetReturnState(int index)
 		{
 			return returnStates[index];
 		}
-
-		//	@Override
-		//	public int findReturnState(int returnState) {
-		//		return Arrays.binarySearch(returnStates, returnState);
-		//	}
-
 		public override bool Equals(Object o)
 		{
 			if (this == o)
 			{
 				return true;
 			}
-
 			if (!(o is ArrayPredictionContext context))
 			{
 				return false;
 			}
-
 			if (GetHashCode() != context.GetHashCode())
 			{
-				return false; // can't be same if hash is different
+				return false; 
 			}
-
 			return Arrays.Equals(returnStates, context.returnStates) &&
 			       Arrays.Equals(parents, context.parents);
 		}
-
 	}
-
 }

@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace Antlr4.Runtime.Misc
 {
     internal class Utils
@@ -14,7 +13,6 @@ namespace Antlr4.Runtime.Misc
         {
             return string.Join(separator, items);
         }
-
         public static string EscapeWhitespace(string s, bool escapeSpaces)
         {
             StringBuilder buf = new StringBuilder();
@@ -52,6 +50,5 @@ namespace Antlr4.Runtime.Misc
             }
             return buf.ToString();
         }
-
     }
 }
