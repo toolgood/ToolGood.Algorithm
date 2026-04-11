@@ -19,7 +19,7 @@
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>6.2.5.42</Version>
+    <Version>6.2.5.43</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
@@ -30,9 +30,9 @@
     <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<ItemGroup>
     <None Include="..\..\LICENSE.md">
@@ -45,15 +45,8 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="antlr4\Tree\Xpath\**" />
-    <Compile Remove="antlr4\Tree\Pattern\**" />
-    <Compile Remove="antlr4\ParserInterpreter.cs" />
-    <Compile Remove="antlr4\LexerInterpreter.cs" />
-    <Compile Remove="antlr4\InterpreterRuleContext.cs" />
-    <Compile Remove="antlr4\TokenStreamRewriter.cs" />
-    <Compile Remove="antlr4\Atn\ProfilingATNSimulator.cs" />
-    <Compile Remove="antlr4\Atn\ParseInfo.cs" />
+  <!--<ItemGroup>
+    <Compile Remove="antlr4\AntlrFileStream.cs" />
     <Compile Remove="antlr4\Atn\AmbiguityInfo.cs" />
     <Compile Remove="antlr4\Atn\ConflictInfo.cs" />
     <Compile Remove="antlr4\Atn\ContextSensitivityInfo.cs" />
@@ -61,22 +54,30 @@
     <Compile Remove="antlr4\Atn\DecisionInfo.cs" />
     <Compile Remove="antlr4\Atn\ErrorInfo.cs" />
     <Compile Remove="antlr4\Atn\LookaheadEventInfo.cs" />
+    <Compile Remove="antlr4\Atn\ParseInfo.cs" />
     <Compile Remove="antlr4\Atn\PredicateEvalInfo.cs" />
-    <Compile Remove="antlr4\AntlrFileStream.cs" />
-    <Compile Remove="antlr4\UnbufferedCharStream.cs" />
-    <Compile Remove="antlr4\UnbufferedTokenStream.cs" />
+    <Compile Remove="antlr4\Atn\ProfilingATNSimulator.cs" />
     <Compile Remove="antlr4\BailErrorStrategy.cs" />
-    <Compile Remove="antlr4\DiagnosticErrorListener.cs" />
-    <Compile Remove="antlr4\ListTokenSource.cs" />
     <Compile Remove="antlr4\CharStreams.cs" />
     <Compile Remove="antlr4\Dependents.cs" />
-    <Compile Remove="antlr4\RuleDependencyAttribute.cs" />
-    <Compile Remove="antlr4\RuleVersionAttribute.cs" />
-    <Compile Remove="antlr4\Misc\RuleDependencyChecker.cs" />
+    <Compile Remove="antlr4\DiagnosticErrorListener.cs" />
+    <Compile Remove="antlr4\InterpreterRuleContext.cs" />
+    <Compile Remove="antlr4\LexerInterpreter.cs" />
+    <Compile Remove="antlr4\ListTokenSource.cs" />
+    <Compile Remove="antlr4\Misc\Args.cs" />
     <Compile Remove="antlr4\Misc\MultiMap.cs" />
     <Compile Remove="antlr4\Misc\ParseCanceledException.cs" />
-    <Compile Remove="antlr4\Misc\Args.cs" />
-    <Compile Remove="antlr4\Tree\ParseTreeWalker.cs" />
+    <Compile Remove="antlr4\Misc\RuleDependencyChecker.cs" />
+    <Compile Remove="antlr4\ParserInterpreter.cs" />
+    <Compile Remove="antlr4\RuleDependencyAttribute.cs" />
+    <Compile Remove="antlr4\RuleVersionAttribute.cs" />
+    <Compile Remove="antlr4\TokenStreamRewriter.cs" />
     <Compile Remove="antlr4\Tree\ParseTreeProperty.cs" />
-  </ItemGroup>
+    <Compile Remove="antlr4\Tree\ParseTreeWalker.cs" />
+    <Compile Remove="antlr4\Tree\Pattern\**" />
+    <Compile Remove="antlr4\Tree\Xpath\**" />
+    <Compile Remove="antlr4\UnbufferedCharStream.cs" />
+    <Compile Remove="antlr4\UnbufferedTokenStream.cs" />
+
+  </ItemGroup>-->
 </Project>
