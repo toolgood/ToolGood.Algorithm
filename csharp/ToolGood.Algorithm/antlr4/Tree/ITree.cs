@@ -60,11 +60,5 @@ namespace Antlr4.Runtime.Tree
             get;
         }
 
-        /// <summary>
-        /// Print out a whole tree, not just a node, in LISP format
-        /// <c>(root child1 .. childN)</c>
-        /// . Print just a node if this is a leaf.
-        /// </summary>
-        string ToStringTree();
     }
 }

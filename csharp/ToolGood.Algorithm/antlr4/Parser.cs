@@ -81,16 +81,6 @@ namespace Antlr4.Runtime
             }
         }
 
-        /// <summary>
-        /// This field maps from the serialized ATN string to the deserialized
-        /// <see cref="Antlr4.Runtime.Atn.ATN"/>
-        /// with
-        /// bypass alternatives.
-        /// </summary>
-        /// <seealso cref="Antlr4.Runtime.Atn.ATNDeserializationOptions.GenerateRuleBypassTransitions()"/>
-//        private static readonly IDictionary<string, ATN> bypassAltsAtnCache = new Dictionary<string, ATN>();
-        private ATN bypassAltsAtnCache;
-
         /// <summary>The error handling strategy for the parser.</summary>
         /// <remarks>
         /// The error handling strategy for the parser. The default value is a new
@@ -777,27 +767,6 @@ namespace Antlr4.Runtime
             {
                 return _ctx;
             }
-        }
-
-        public virtual IList<string> GetRuleInvocationStack(RuleContext p)
-        {
-            string[] ruleNames = RuleNames;
-            IList<string> stack = new List<string>();
-            while (p != null)
-            {
-                // compute what follows who invoked us
-                int ruleIndex = p.RuleIndex;
-                if (ruleIndex < 0)
-                {
-                    stack.Add("n/a");
-                }
-                else
-                {
-                    stack.Add(ruleNames[ruleIndex]);
-                }
-                p = p.Parent;
-            }
-            return stack;
         }
  
 

@@ -129,25 +129,5 @@ namespace Antlr4.Runtime
             return tokens[i];
         }
 
-        /// <summary>Count EOF just once.</summary>
-        /// <remarks>Count EOF just once.</remarks>
-        public virtual int GetNumberOfOnChannelTokens()
-        {
-            int n = 0;
-            Fill();
-            for (int i = 0; i < tokens.Count; i++)
-            {
-                IToken t = tokens[i];
-                if (t.Channel == channel)
-                {
-                    n++;
-                }
-                if (t.Type == TokenConstants.EOF)
-                {
-                    break;
-                }
-            }
-            return n;
-        }
     }
 }

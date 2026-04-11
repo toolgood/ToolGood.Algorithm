@@ -142,11 +142,6 @@ namespace Antlr4.Runtime
         {
         }
 
-        // no resources to release
-        public virtual void Reset()
-        {
-            Seek(0);
-        }
 
         public virtual void Seek(int index)
         {
@@ -261,31 +256,6 @@ namespace Antlr4.Runtime
             return tokens[i];
         }
 
-        /// <summary>Get all tokens from start..stop inclusively.</summary>
-        /// <remarks>Get all tokens from start..stop inclusively.</remarks>
-        public virtual IList<IToken> Get(int start, int stop)
-        {
-            if (start < 0 || stop < 0)
-            {
-                return null;
-            }
-            LazyInit();
-            IList<IToken> subset = new List<IToken>();
-            if (stop >= tokens.Count)
-            {
-                stop = tokens.Count - 1;
-            }
-            for (int i = start; i <= stop; i++)
-            {
-                IToken t = tokens[i];
-                if (t.Type == TokenConstants.EOF)
-                {
-                    break;
-                }
-                subset.Add(t);
-            }
-            return subset;
-        }
 
         public virtual int LA(int i)
         {
@@ -373,62 +343,7 @@ namespace Antlr4.Runtime
             p = -1;
 			this.fetchedEOF = false;
         }
-
-        public virtual IList<IToken> GetTokens()
-        {
-            return tokens;
-        }
-
-        public virtual IList<IToken> GetTokens(int start, int stop)
-        {
-            return GetTokens(start, stop, null);
-        }
-
-        /// <summary>
-        /// Given a start and stop index, return a
-        /// <c>List</c>
-        /// of all tokens in
-        /// the token type
-        /// <c>BitSet</c>
-        /// .  Return
-        /// <see langword="null"/>
-        /// if no tokens were found.  This
-        /// method looks at both on and off channel tokens.
-        /// </summary>
-        public virtual IList<IToken> GetTokens(int start, int stop, BitSet types)
-        {
-            LazyInit();
-            if (start < 0 || stop >= tokens.Count || stop < 0 || start >= tokens.Count)
-            {
-                throw new ArgumentOutOfRangeException("start " + start + " or stop " + stop + " not in 0.." + (tokens.Count - 1));
-            }
-            if (start > stop)
-            {
-                return null;
-            }
-            // list = tokens[start:stop]:{T t, t.getType() in types}
-            IList<IToken> filteredTokens = new List<IToken>();
-            for (int i = start; i <= stop; i++)
-            {
-                IToken t = tokens[i];
-                if (types == null || types.Get(t.Type))
-                {
-                    filteredTokens.Add(t);
-                }
-            }
-            if (filteredTokens.Count == 0)
-            {
-                filteredTokens = null;
-            }
-            return filteredTokens;
-        }
-
-        public virtual IList<IToken> GetTokens(int start, int stop, int ttype)
-        {
-            BitSet s = new BitSet(ttype);
-            s.Set(ttype);
-            return GetTokens(start, stop, s);
-        }
+ 
 
         /// <summary>Given a starting index, return the index of the next token on channel.</summary>
         /// <remarks>
@@ -503,123 +418,6 @@ namespace Antlr4.Runtime
                 i--;
             }
             return i;
-        }
-
-        /// <summary>
-        /// Collect all tokens on specified channel to the right of
-        /// the current token up until we see a token on
-        /// <see cref="Lexer.DefaultTokenChannel"/>
-        /// or
-        /// EOF. If
-        /// <paramref name="channel"/>
-        /// is
-        /// <c>-1</c>
-        /// , find any non default channel token.
-        /// </summary>
-        public virtual IList<IToken> GetHiddenTokensToRight(int tokenIndex, int channel)
-        {
-            LazyInit();
-            if (tokenIndex < 0 || tokenIndex >= tokens.Count)
-            {
-                throw new ArgumentOutOfRangeException(tokenIndex + " not in 0.." + (tokens.Count - 1));
-            }
-            int nextOnChannel = NextTokenOnChannel(tokenIndex + 1, Lexer.DefaultTokenChannel);
-            int to;
-            int from = tokenIndex + 1;
-            // if none onchannel to right, nextOnChannel=-1 so set to = last token
-            if (nextOnChannel == -1)
-            {
-                to = Size - 1;
-            }
-            else
-            {
-                to = nextOnChannel;
-            }
-            return FilterForChannel(from, to, channel);
-        }
-
-        /// <summary>
-        /// Collect all hidden tokens (any off-default channel) to the right of
-        /// the current token up until we see a token on
-        /// <see cref="Lexer.DefaultTokenChannel"/>
-        /// or EOF.
-        /// </summary>
-        public virtual IList<IToken> GetHiddenTokensToRight(int tokenIndex)
-        {
-            return GetHiddenTokensToRight(tokenIndex, -1);
-        }
-
-        /// <summary>
-        /// Collect all tokens on specified channel to the left of
-        /// the current token up until we see a token on
-        /// <see cref="Lexer.DefaultTokenChannel"/>
-        /// .
-        /// If
-        /// <paramref name="channel"/>
-        /// is
-        /// <c>-1</c>
-        /// , find any non default channel token.
-        /// </summary>
-        public virtual IList<IToken> GetHiddenTokensToLeft(int tokenIndex, int channel)
-        {
-            LazyInit();
-            if (tokenIndex < 0 || tokenIndex >= tokens.Count)
-            {
-                throw new ArgumentOutOfRangeException(tokenIndex + " not in 0.." + (tokens.Count - 1));
-            }
-            if (tokenIndex == 0)
-            {
-                // obviously no tokens can appear before the first token
-                return null;
-            }
-            int prevOnChannel = PreviousTokenOnChannel(tokenIndex - 1, Lexer.DefaultTokenChannel);
-            if (prevOnChannel == tokenIndex - 1)
-            {
-                return null;
-            }
-            // if none onchannel to left, prevOnChannel=-1 then from=0
-            int from = prevOnChannel + 1;
-            int to = tokenIndex - 1;
-            return FilterForChannel(from, to, channel);
-        }
-
-        /// <summary>
-        /// Collect all hidden tokens (any off-default channel) to the left of
-        /// the current token up until we see a token on
-        /// <see cref="Lexer.DefaultTokenChannel"/>
-        /// .
-        /// </summary>
-        public virtual IList<IToken> GetHiddenTokensToLeft(int tokenIndex)
-        {
-            return GetHiddenTokensToLeft(tokenIndex, -1);
-        }
-
-        protected internal virtual IList<IToken> FilterForChannel(int from, int to, int channel)
-        {
-            IList<IToken> hidden = new List<IToken>();
-            for (int i = from; i <= to; i++)
-            {
-                IToken t = tokens[i];
-                if (channel == -1)
-                {
-                    if (t.Channel != Lexer.DefaultTokenChannel)
-                    {
-                        hidden.Add(t);
-                    }
-                }
-                else
-                {
-                    if (t.Channel == channel)
-                    {
-                        hidden.Add(t);
-                    }
-                }
-            }
-            if (hidden.Count == 0)
-            {
-                return null;
-            }
-            return hidden;
         }
 
         public virtual string SourceName

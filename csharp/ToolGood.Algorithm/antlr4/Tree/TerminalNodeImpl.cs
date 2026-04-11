@@ -114,11 +114,6 @@ namespace Antlr4.Runtime.Tree
             return null;
         }
 
-        public virtual string ToStringTree(Parser parser)
-        {
-            return ToString();
-        }
-
         public override string ToString()
         {
             if (Symbol != null)
@@ -133,11 +128,6 @@ namespace Antlr4.Runtime.Tree
             {
                 return "<null>";
             }
-        }
-
-        public virtual string ToStringTree()
-        {
-            return ToString();
         }
     }
 }

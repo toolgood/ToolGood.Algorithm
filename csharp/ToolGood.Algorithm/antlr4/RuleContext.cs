@@ -227,38 +227,6 @@ namespace Antlr4.Runtime
             return visitor.VisitChildren(this);
         }
 
-        /// <summary>
-        /// Print out a whole tree, not just a node, in LISP format
-        /// (root child1 ..
-        /// </summary>
-        /// <remarks>
-        /// Print out a whole tree, not just a node, in LISP format
-        /// (root child1 .. childN). Print just a node if this is a leaf.
-        /// We have to know the recognizer so we can get rule names.
-        /// </remarks>
-        public virtual string ToStringTree(Parser recog)
-        {
-            return Trees.ToStringTree(this, recog);
-        }
-
-        /// <summary>
-        /// Print out a whole tree, not just a node, in LISP format
-        /// (root child1 ..
-        /// </summary>
-        /// <remarks>
-        /// Print out a whole tree, not just a node, in LISP format
-        /// (root child1 .. childN). Print just a node if this is a leaf.
-        /// </remarks>
-        public virtual string ToStringTree(IList<string> ruleNames)
-        {
-            return Trees.ToStringTree(this, ruleNames);
-        }
-
-        public virtual string ToStringTree()
-        {
-            return ToStringTree((IList<string>)null);
-        }
-
         public override string ToString()
         {
             return ToString((IList<string>)null, (Antlr4.Runtime.RuleContext)null);

@@ -56,40 +56,6 @@ namespace Antlr4.Runtime
 			get;
        }
 
-        /// <summary>Get a map from token names to token types.</summary>
-        /// <remarks>
-        /// Get a map from token names to token types.
-        /// <p>Used for XPath and tree pattern compilation.</p>
-        /// </remarks>
-        
-        public virtual IDictionary<string, int> TokenTypeMap
-        {
-            get
-            {
-                return tokenTypeMapCache.GetValue(Vocabulary, CreateTokenTypeMap);
-            }
-        }
-
-        protected virtual IDictionary<string, int> CreateTokenTypeMap(IVocabulary vocabulary)
-        {
-            var result = new Dictionary<string, int>();
-            for (int i = 0; i <= Atn.maxTokenType; i++)
-            {
-                string literalName = vocabulary.GetLiteralName(i);
-                if (literalName != null)
-                {
-                    result[literalName] = i;
-                }
-                string symbolicName = vocabulary.GetSymbolicName(i);
-                if (symbolicName != null)
-                {
-                    result[symbolicName] = i;
-                }
-            }
-            result["EOF"] = TokenConstants.EOF;
-            return result;
-        }
-
         /// <summary>
         /// If this recognizer was generated, it will have a serialized ATN
         /// representation of the grammar.

@@ -94,11 +94,6 @@ namespace Antlr4.Runtime.Atn
         {
             public readonly int precedence;
 
-            protected internal PrecedencePredicate()
-            {
-                this.precedence = 0;
-            }
-
             public PrecedencePredicate(int precedence)
             {
                 this.precedence = precedence;

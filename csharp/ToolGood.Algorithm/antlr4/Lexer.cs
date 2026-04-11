@@ -435,55 +435,6 @@ outer_continue: ;
         public virtual void NotifyListeners(LexerNoViableAltException e)
         {
         }
-
-        public virtual string GetErrorDisplay(string s)
-        {
-            StringBuilder buf = new StringBuilder();
-            for (var i = 0; i < s.Length; ) {
-                var codePoint = Char.ConvertToUtf32(s, i);
-                buf.Append(GetErrorDisplay(codePoint));
-                i += (codePoint > 0xFFFF) ? 2 : 1;
-            }
-            return buf.ToString();
-        }
-
-        public virtual string GetErrorDisplay(int c)
-        {
-            string s;
-            switch (c)
-            {
-                case TokenConstants.EOF:
-                {
-                    s = "<EOF>";
-                    break;
-                }
-
-                case '\n':
-                {
-                    s = "\\n";
-                    break;
-                }
-
-                case '\t':
-                {
-                    s = "\\t";
-                    break;
-                }
-
-                case '\r':
-                {
-                    s = "\\r";
-                    break;
-                }
-
-                default:
-                {
-                    s = Char.ConvertFromUtf32(c);
-                    break;
-                }
-            }
-            return s;
-        }
-
+ 
     }
 }
