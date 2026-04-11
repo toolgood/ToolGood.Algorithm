@@ -26,7 +26,7 @@ namespace Antlr4.Runtime.Atn
             return symbol >= minVocabSymbol && symbol <= maxVocabSymbol;
         }
 
-        [return: NotNull]
+        
         public override string ToString()
         {
             return ".";

@@ -20,7 +20,7 @@ namespace Antlr4.Runtime.Atn
 			return new SingletonPredictionContext(parent, returnState);
 		}
 
-        [NotNull]
+        
         public readonly PredictionContext parent;
 
         public readonly int returnState;

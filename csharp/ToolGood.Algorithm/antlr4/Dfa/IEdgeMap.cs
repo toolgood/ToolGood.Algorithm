@@ -27,19 +27,19 @@ namespace Antlr4.Runtime.Dfa
             get;
         }
 
-        [return: NotNull]
+        
         IEdgeMap<T> Put(int key, T value);
 
-        [return: NotNull]
+        
         IEdgeMap<T> Remove(int key);
 
-        [return: NotNull]
+        
         IEdgeMap<T> PutAll(IEdgeMap<T> m);
 
-        [return: NotNull]
+        
         IEdgeMap<T> Clear();
 
-        [return: NotNull]
+        
         IReadOnlyDictionary<int, T> ToMap();
     }
 }

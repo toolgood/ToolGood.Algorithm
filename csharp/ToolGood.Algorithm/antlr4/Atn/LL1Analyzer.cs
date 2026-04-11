@@ -15,50 +15,14 @@ namespace Antlr4.Runtime.Atn
          */
         public const int HitPred = TokenConstants.InvalidType;
 
-        [NotNull]
+        
         public readonly ATN atn;
 
         public LL1Analyzer(ATN atn)
         {
             this.atn = atn;
         }
-
-        /**
-      * Calculates the SLL(1) expected lookahead set for each outgoing transition
-      * of an {@link ATNState}. The returned array has one element for each
-      * outgoing transition in {@code s}. If the closure from transition
-      * <em>i</em> leads to a semantic predicate before matching a symbol, the
-      * element at index <em>i</em> of the result will be {@code null}.
-      *
-      * @param s the ATN state
-      * @return the expected symbols for each outgoing transition of {@code s}.
-      */
-        [return: Nullable]
-        public virtual IntervalSet[] GetDecisionLookahead(ATNState s)
-        {
-            //		System.out.println("LOOK("+s.stateNumber+")");
-            if (s == null)
-            {
-                return null;
-            }
-            IntervalSet[] look = new IntervalSet[s.NumberOfTransitions];
-            for (int alt = 0; alt < s.NumberOfTransitions; alt++)
-            {
-                look[alt] = new IntervalSet();
-                HashSet<ATNConfig> lookBusy = new HashSet<ATNConfig>();
-                bool seeThruPreds = false;
-                // fail to get lookahead upon pred
-                Look_(s.Transition(alt).target, null, EmptyPredictionContext.Instance, look[alt], lookBusy, new BitSet(), seeThruPreds, false);
-                // Wipe out lookahead for this alternative if we found nothing
-                // or we had a predicate when we !seeThruPreds
-                if (look[alt].Count == 0 || look[alt].Contains(HitPred))
-                {
-                    look[alt] = null;
-                }
-            }
-            return look;
-        }
-
+       
         /**
 	 * Compute set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
@@ -75,7 +39,7 @@ namespace Antlr4.Runtime.Atn
 	 * @return The set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
 	 */
-        [return: NotNull]
+        
         public virtual IntervalSet Look(ATNState s, RuleContext ctx)
         {
             return Look(s, null, ctx);
@@ -99,7 +63,7 @@ namespace Antlr4.Runtime.Atn
 	 * @return The set of tokens that can follow {@code s} in the ATN in the
 	 * specified {@code ctx}.
 	 */
-        [return: NotNull]
+        
         public virtual IntervalSet Look(ATNState s, ATNState stopState, RuleContext ctx)
         {
             IntervalSet r = new IntervalSet();

@@ -35,7 +35,7 @@ namespace Antlr4.Runtime.Atn
         }
 
 
-        [NotNull]
+        
         public static Antlr4.Runtime.Atn.ATNDeserializationOptions Default
         {
             get

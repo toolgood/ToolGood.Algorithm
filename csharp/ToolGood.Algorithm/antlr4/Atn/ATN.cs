@@ -17,7 +17,7 @@ namespace Antlr4.Runtime.Atn
     {
         public const int INVALID_ALT_NUMBER = 0;
 
-        [NotNull]
+        
         public readonly IList<ATNState> states = new List<ATNState>();
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Antlr4.Runtime.Atn
         /// can go back later and build DFA predictors for them.  This includes
         /// all the rules, subrules, optional blocks, ()+, ()* etc...
         /// </remarks>
-        [NotNull]
+        
         public readonly IList<DecisionState> decisionToState = new List<DecisionState>();
 
         /// <summary>Maps from rule index to starting state number.</summary>
@@ -40,7 +40,7 @@ namespace Antlr4.Runtime.Atn
         /// <remarks>Maps from rule index to stop state number.</remarks>
         public RuleStopState[] ruleToStopState;
 
-        [NotNull]
+        
         public readonly IDictionary<string, TokensStartState> modeNameToStartState = new Dictionary<string, TokensStartState>();
 
         /// <summary>The type of the ATN.</summary>
@@ -71,13 +71,13 @@ namespace Antlr4.Runtime.Atn
         /// </summary>
         public ILexerAction[] lexerActions;
 
-        [NotNull]
+        
         public readonly IList<TokensStartState> modeToStartState = new List<TokensStartState>();
 
-        [NotNull]
+        
 		public DFA[] decisionToDFA = new DFA[0];
 
-        [NotNull]
+        
 		public DFA[] modeToDFA = new DFA[0];
 
         protected internal readonly ConcurrentDictionary<int, int> LL1Table = new ConcurrentDictionary<int, int>();
@@ -106,7 +106,7 @@ namespace Antlr4.Runtime.Atn
         /// <paramref name="s"/>
         /// 's rule.
         /// </summary>
-        [return: NotNull]
+        
         public virtual IntervalSet NextTokens(ATNState s, RuleContext ctx)
         {
             LL1Analyzer anal = new LL1Analyzer(this);
@@ -123,7 +123,7 @@ namespace Antlr4.Runtime.Atn
         /// is in set if we reach end of
         /// rule.
         /// </summary>
-        [return: NotNull]
+        
         public virtual IntervalSet NextTokens(ATNState s)
         {
             if (s.nextTokenWithinRule != null)
@@ -204,7 +204,7 @@ namespace Antlr4.Runtime.Atn
         /// number
         /// <paramref name="stateNumber"/>
         /// </exception>
-        [return: NotNull]
+        
         public virtual IntervalSet GetExpectedTokens(int stateNumber, RuleContext context)
         {
             if (stateNumber < 0 || stateNumber >= states.Count)

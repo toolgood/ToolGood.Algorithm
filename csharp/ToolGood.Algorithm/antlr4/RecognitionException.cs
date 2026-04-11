@@ -26,13 +26,13 @@ namespace Antlr4.Runtime
         /// <see cref="IRecognizer"/>
         /// where this exception originated.
         /// </summary>
-        [Nullable]
+        
         private readonly IRecognizer recognizer;
 
-        [Nullable]
+        
         private readonly RuleContext ctx;
 
-        [Nullable]
+        
         private readonly IIntStream input;
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Antlr4.Runtime
         /// <see langword="null"/>
         /// if the information is not available.
         /// </returns>
-        [return: Nullable]
+        
         public virtual IntervalSet GetExpectedTokens()
         {
             if (recognizer != null)

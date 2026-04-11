@@ -99,7 +99,7 @@ namespace Antlr4.Runtime
         /// .
         /// </remarks>
         /// <seealso cref="ErrorHandler"/>
-        [NotNull]
+        
 		private IAntlrErrorStrategy _errHandler = new DefaultErrorStrategy();
 
         /// <summary>The input stream.</summary>
@@ -153,7 +153,7 @@ namespace Antlr4.Runtime
         /// events during the parse.
         /// </summary>
         /// <seealso cref="AddParseListener(Antlr4.Runtime.Tree.IParseTreeListener)"/>
-        [Nullable]
+        
         private IList<IParseTreeListener> _parseListeners;
 
         protected readonly TextWriter ErrorOutput;
@@ -764,7 +764,7 @@ namespace Antlr4.Runtime
         /// respectively.
         /// </summary>
         /// <seealso cref="Antlr4.Runtime.Atn.ATN.GetExpectedTokens(int, RuleContext)"/>
-        [return: NotNull]
+        
         public virtual IntervalSet GetExpectedTokens()
         {
             return Atn.GetExpectedTokens(State, Context);

@@ -16,12 +16,6 @@ namespace Antlr4.Runtime.Atn
 
 		private static readonly int INITIAL_HASH = 1;
 
-		protected internal static int CalculateEmptyHashCode()
-		{
-			int hash = MurmurHash.Initialize(INITIAL_HASH);
-			hash = MurmurHash.Finish(hash, 0);
-			return hash;
-		}
 
 		protected internal static int CalculateHashCode(PredictionContext parent, int returnState)
 		{

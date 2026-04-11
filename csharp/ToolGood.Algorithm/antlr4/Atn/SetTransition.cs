@@ -12,7 +12,7 @@ namespace Antlr4.Runtime.Atn
     /// <remarks>A transition containing a set of values.</remarks>
     internal class SetTransition : Transition
     {
-        [NotNull]
+        
         public readonly IntervalSet set;
 
         public SetTransition(ATNState target, IntervalSet set)
@@ -47,7 +47,7 @@ namespace Antlr4.Runtime.Atn
             return set.Contains(symbol);
         }
 
-        [return: NotNull]
+        
         public override string ToString()
         {
             return set.ToString();

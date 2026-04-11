@@ -42,7 +42,7 @@ namespace Antlr4.Runtime.Atn
             return symbol >= from && symbol <= to;
         }
 
-        [return: NotNull]
+        
         public override string ToString()
         {
             return "'" + (char)from + "'..'" + (char)to + "'";

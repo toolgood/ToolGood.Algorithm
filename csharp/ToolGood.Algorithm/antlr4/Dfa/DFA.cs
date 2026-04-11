@@ -134,17 +134,6 @@ namespace Antlr4.Runtime.Dfa
 			}
 		}
 
-		/**
-		 * Return a list of all states in this DFA, ordered by state number.
-		 */
-
-		public List<DFAState> GetStates()
-		{
-			List<DFAState> result = new List<DFAState>(states.Keys);
-			result.Sort((x, y) => x.stateNumber - y.stateNumber);
-			return result;
-		}
-
 		public override String ToString() { return ToString(Vocabulary.EmptyVocabulary); }
 
 

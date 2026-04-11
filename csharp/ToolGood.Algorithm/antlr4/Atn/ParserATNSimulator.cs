@@ -263,14 +263,7 @@ namespace Antlr4.Runtime.Atn
 		protected int startIndex;
 		protected ParserRuleContext context;
 		protected DFA thisDfa;
-
-		/** Testing only! */
-		public ParserATNSimulator(ATN atn, DFA[] decisionToDFA,
-								  PredictionContextCache sharedContextCache)
-
-		: this(null, atn, decisionToDFA, sharedContextCache)
-		{ }
-
+ 
 		public ParserATNSimulator(Parser parser, ATN atn,
 								  DFA[] decisionToDFA,
 								  PredictionContextCache sharedContextCache)
@@ -848,26 +841,6 @@ namespace Antlr4.Runtime.Atn
 			return reach;
 		}
 
-		/**
-		 * Return a configuration set containing only the configurations from
-		 * {@code configs} which are in a {@link RuleStopState}. If all
-		 * configurations in {@code configs} are already in a rule stop state, this
-		 * method simply returns {@code configs}.
-		 *
-		 * <p>When {@code lookToEndOfRule} is true, this method uses
-		 * {@link ATN#nextTokens} for each configuration in {@code configs} which is
-		 * not already in a rule stop state to see if a rule stop state is reachable
-		 * from the configuration via epsilon-only transitions.</p>
-		 *
-		 * @param configs the configuration set to update
-		 * @param lookToEndOfRule when true, this method checks for rule stop states
-		 * reachable by epsilon-only transitions from each configuration in
-		 * {@code configs}.
-		 *
-		 * @return {@code configs} if all configurations in {@code configs} are in a
-		 * rule stop state, otherwise return a new configuration set containing only
-		 * the configurations from {@code configs} which are in a rule stop state
-		 */
 		protected ATNConfigSet RemoveAllConfigsNotInRuleStopState(ATNConfigSet configSet, bool lookToEndOfRule)
 		{
 			if (PredictionMode.AllConfigsInRuleStopStates(configSet.configs))
@@ -918,169 +891,6 @@ namespace Antlr4.Runtime.Atn
 			return configs;
 		}
 
-		/* parrt internal source braindump that doesn't mess up
-		 * external API spec.
-			context-sensitive in that they can only be properly evaluated
-			in the context of the proper prec argument. Without pruning,
-			these predicates are normal predicates evaluated when we reach
-			conflict state (or unique prediction). As we cannot evaluate
-			these predicates out of context, the resulting conflict leads
-			to full LL evaluation and nonlinear prediction which shows up
-			very clearly with fairly large expressions.
-
-			Example grammar:
-
-			e : e '*' e
-			  | e '+' e
-			  | INT
-			  ;
-
-			We convert that to the following:
-
-			e[int prec]
-				:   INT
-					( {3>=prec}? '*' e[4]
-					| {2>=prec}? '+' e[3]
-					)*
-				;
-
-			The (..)* loop has a decision for the inner block as well as
-			an enter or exit decision, which is what concerns us here. At
-			the 1st + of input 1+2+3, the loop entry sees both predicates
-			and the loop exit also sees both predicates by falling off the
-			edge of e.  This is because we have no stack information with
-			SLL and find the follow of e, which will hit the return states
-			inside the loop after e[4] and e[3], which brings it back to
-			the enter or exit decision. In this case, we know that we
-			cannot evaluate those predicates because we have fallen off
-			the edge of the stack and will in general not know which prec
-			parameter is the right one to use in the predicate.
-
-			Because we have special information, that these are precedence
-			predicates, we can resolve them without failing over to full
-			LL despite their context sensitive nature. We make an
-			assumption that prec[-1] <= prec[0], meaning that the current
-			precedence level is greater than or equal to the precedence
-			level of recursive invocations above us in the stack. For
-			example, if predicate {3>=prec}? is true of the current prec,
-			then one option is to enter the loop to match it now. The
-			other option is to exit the loop and the left recursive rule
-			to match the current operator in rule invocation further up
-			the stack. But, we know that all of those prec are lower or
-			the same value and so we can decide to enter the loop instead
-			of matching it later. That means we can strip out the other
-			configuration for the exit branch.
-
-			So imagine we have (14,1,$,{2>=prec}?) and then
-			(14,2,$-dipsIntoOuterContext,{2>=prec}?). The optimization
-			allows us to collapse these two configurations. We know that
-			if {2>=prec}? is true for the current prec parameter, it will
-			also be true for any prec from an invoking e call, indicated
-			by dipsIntoOuterContext. As the predicates are both true, we
-			have the option to evaluate them early in the decision start
-			state. We do this by stripping both predicates and choosing to
-			enter the loop as it is consistent with the notion of operator
-			precedence. It's also how the full LL conflict resolution
-			would work.
-
-			The solution requires a different DFA start state for each
-			precedence level.
-
-			The basic filter mechanism is to remove configurations of the
-			form (p, 2, pi) if (p, 1, pi) exists for the same p and pi. In
-			other words, for the same ATN state and predicate context,
-			remove any configuration associated with an exit branch if
-			there is a configuration associated with the enter branch.
-
-			It's also the case that the filter evaluates precedence
-			predicates and resolves conflicts according to precedence
-			levels. For example, for input 1+2+3 at the first +, we see
-			prediction filtering
-
-			[(11,1,[$],{3>=prec}?), (14,1,[$],{2>=prec}?), (5,2,[$],up=1),
-			 (11,2,[$],up=1), (14,2,[$],up=1)],hasSemanticContext=true,dipsIntoOuterContext
-
-			to
-
-			[(11,1,[$]), (14,1,[$]), (5,2,[$],up=1)],dipsIntoOuterContext
-
-			This filters because {3>=prec}? evals to true and collapses
-			(11,1,[$],{3>=prec}?) and (11,2,[$],up=1) since early conflict
-			resolution based upon rules of operator precedence fits with
-			our usual match first alt upon conflict.
-
-			We noticed a problem where a recursive call resets precedence
-			to 0. Sam's fix: each config has flag indicating if it has
-			returned from an expr[0] call. then just don't filter any
-			config with that flag set. flag is carried along in
-			closure(). so to avoid adding field, set bit just under sign
-			bit of dipsIntoOuterContext (SUPPRESS_PRECEDENCE_FILTER).
-			With the change you filter "unless (p, 2, pi) was reached
-			after leaving the rule stop state of the LR rule containing
-			state p, corresponding to a rule invocation with precedence
-			level 0"
-		 */
-
-		/**
-		 * This method transforms the start state computed by
-		 * {@link #computeStartState} to the special start state used by a
-		 * precedence DFA for a particular precedence value. The transformation
-		 * process applies the following changes to the start state's configuration
-		 * set.
-		 *
-		 * <ol>
-		 * <li>Evaluate the precedence predicates for each configuration using
-		 * {@link SemanticContext#evalPrecedence}.</li>
-		 * <li>When {@link ATNConfig#isPrecedenceFilterSuppressed} is {@code false},
-		 * remove all configurations which predict an alternative greater than 1,
-		 * for which another configuration that predicts alternative 1 is in the
-		 * same ATN state with the same prediction context. This transformation is
-		 * valid for the following reasons:
-		 * <ul>
-		 * <li>The closure block cannot contain any epsilon transitions which bypass
-		 * the body of the closure, so all states reachable via alternative 1 are
-		 * part of the precedence alternatives of the transformed left-recursive
-		 * rule.</li>
-		 * <li>The "primary" portion of a left recursive rule cannot contain an
-		 * epsilon transition, so the only way an alternative other than 1 can exist
-		 * in a state that is also reachable via alternative 1 is by nesting calls
-		 * to the left-recursive rule, with the outer calls not being at the
-		 * preferred precedence level. The
-		 * {@link ATNConfig#isPrecedenceFilterSuppressed} property marks ATN
-		 * configurations which do not meet this condition, and therefore are not
-		 * eligible for elimination during the filtering process.</li>
-		 * </ul>
-		 * </li>
-		 * </ol>
-		 *
-		 * <p>
-		 * The prediction context must be considered by this filter to address
-		 * situations like the following.
-		 * </p>
-		 * <code>
-		 * <pre>
-		 * grammar TA;
-		 * prog: statement* EOF;
-		 * statement: letterA | statement letterA 'b' ;
-		 * letterA: 'a';
-		 * </pre>
-		 * </code>
-		 * <p>
-		 * If the above grammar, the ATN state immediately before the token
-		 * reference {@code 'a'} in {@code letterA} is reachable from the left edge
-		 * of both the primary and closure blocks of the left-recursive rule
-		 * {@code statement}. The prediction context associated with each of these
-		 * configurations distinguishes between them, and prevents the alternative
-		 * which stepped out to {@code prog} (and then back in to {@code statement}
-		 * from being eliminated by the filter.
-		 * </p>
-		 *
-		 * @param configs The configuration set computed by
-		 * {@link #computeStartState} as the start state for the DFA.
-		 * @return The transformed configuration set representing the start state
-		 * for a precedence DFA at a particular precedence level (determined by
-		 * calling {@link Parser#getPrecedence}).
-		 */
 
 		protected ATNConfigSet ApplyPrecedenceFilter(ATNConfigSet configSet)
 		{
@@ -1420,12 +1230,6 @@ namespace Antlr4.Runtime.Atn
 			return pred.Eval(parser, parserCallStack);
 		}
 
-		/* TODO: If we are doing predicates, there is no point in pursuing
-			 closure operations if we reach a DFA state that uniquely predicts
-			 alternative. We will not be caching that DFA state and it is a
-			 waste to pursue the closure. Might have to advance when we do
-			 ambig detection thought :(
-			  */
 
 		protected void Closure(ATNConfig config,
 							   ATNConfigSet configs,
@@ -1580,94 +1384,6 @@ namespace Antlr4.Runtime.Atn
 			}
 		}
 
-		/** Implements first-edge (loop entry) elimination as an optimization
-		 *  during closure operations.  See antlr/antlr4#1398.
-		 *
-		 * The optimization is to avoid adding the loop entry config when
-		 * the exit path can only lead back to the same
-		 * StarLoopEntryState after popping context at the rule end state
-		 * (traversing only epsilon edges, so we're still in closure, in
-		 * this same rule).
-		 *
-		 * We need to detect any state that can reach loop entry on
-		 * epsilon w/o exiting rule. We don't have to look at FOLLOW
-		 * links, just ensure that all stack tops for config refer to key
-		 * states in LR rule.
-		 *
-		 * To verify we are in the right situation we must first check
-		 * closure is at a StarLoopEntryState generated during LR removal.
-		 * Then we check that each stack top of context is a return state
-		 * from one of these cases:
-		 *
-		 *   1. 'not' expr, '(' type ')' expr. The return state points at loop entry state
-		 *   2. expr op expr. The return state is the block end of internal block of (...)*
-		 *   3. 'between' expr 'and' expr. The return state of 2nd expr reference.
-		 *      That state points at block end of internal block of (...)*.
-		 *   4. expr '?' expr ':' expr. The return state points at block end,
-		 *      which points at loop entry state.
-		 *
-		 * If any is true for each stack top, then closure does not add a
-		 * config to the current config set for edge[0], the loop entry branch.
-		 *
-		 *  Conditions fail if any context for the current config is:
-		 *
-		 *   a. empty (we'd fall out of expr to do a global FOLLOW which could
-		 *      even be to some weird spot in expr) or,
-		 *   b. lies outside of expr or,
-		 *   c. lies within expr but at a state not the BlockEndState
-		 *   generated during LR removal
-		 *
-		 * Do we need to evaluate predicates ever in closure for this case?
-		 *
-		 * No. Predicates, including precedence predicates, are only
-		 * evaluated when computing a DFA start state. I.e., only before
-		 * the lookahead (but not parser) consumes a token.
-		 *
-		 * There are no epsilon edges allowed in LR rule alt blocks or in
-		 * the "primary" part (ID here). If closure is in
-		 * StarLoopEntryState any lookahead operation will have consumed a
-		 * token as there are no epsilon-paths that lead to
-		 * StarLoopEntryState. We do not have to evaluate predicates
-		 * therefore if we are in the generated StarLoopEntryState of a LR
-		 * rule. Note that when making a prediction starting at that
-		 * decision point, decision d=2, compute-start-state performs
-		 * closure starting at edges[0], edges[1] emanating from
-		 * StarLoopEntryState. That means it is not performing closure on
-		 * StarLoopEntryState during compute-start-state.
-		 *
-		 * How do we know this always gives same prediction answer?
-		 *
-		 * Without predicates, loop entry and exit paths are ambiguous
-		 * upon remaining input +b (in, say, a+b). Either paths lead to
-		 * valid parses. Closure can lead to consuming + immediately or by
-		 * falling out of this call to expr back into expr and loop back
-		 * again to StarLoopEntryState to match +b. In this special case,
-		 * we choose the more efficient path, which is to take the bypass
-		 * path.
-		 *
-		 * The lookahead language has not changed because closure chooses
-		 * one path over the other. Both paths lead to consuming the same
-		 * remaining input during a lookahead operation. If the next token
-		 * is an operator, lookahead will enter the choice block with
-		 * operators. If it is not, lookahead will exit expr. Same as if
-		 * closure had chosen to enter the choice block immediately.
-		 *
-		 * Closure is examining one config (some loopentrystate, some alt,
-		 * context) which means it is considering exactly one alt. Closure
-		 * always copies the same alt to any derived configs.
-		 *
-		 * How do we know this optimization doesn't mess up precedence in
-		 * our parse trees?
-		 *
-		 * Looking through expr from left edge of stat only has to confirm
-		 * that an input, say, a+b+c; begins with any valid interpretation
-		 * of an expression. The precedence actually doesn't matter when
-		 * making a decision in stat seeing through expr. It is only when
-		 * parsing rule expr that we must use the precedence to get the
-		 * right interpretation and, hence, parse tree.
-		 *
-		 * @since 4.6
-		 */
 		protected bool CanDropLoopEntryEdgeInLeftRecursiveRule(ATNConfig config)
 		{
 			ATNState p = config.state;
@@ -1744,12 +1460,6 @@ namespace Antlr4.Runtime.Atn
 			return true;
 		}
 
-
-		public string GetRuleName(int index)
-		{
-			if (parser != null && index >= 0) return parser.RuleNames[index];
-			return "<rule " + index + ">";
-		}
 
 
 		protected ATNConfig GetEpsilonTarget(ATNConfig config,
@@ -1954,24 +1664,6 @@ namespace Antlr4.Runtime.Atn
 			return conflictingAlts;
 		}
 
-
-		public string GetTokenName(int t)
-		{
-			if (t == TokenConstants.EOF)
-			{
-				return "EOF";
-			}
-
-			IVocabulary vocabulary = parser != null ? parser.Vocabulary : Vocabulary.EmptyVocabulary;
-			String displayName = vocabulary.GetDisplayName(t);
-			if (displayName.Equals(t.ToString()))
-			{
-				return displayName;
-			}
-
-			return displayName + "<" + t + ">";
-		}
- 
 		protected NoViableAltException NoViableAlt(ITokenStream input,
 												ParserRuleContext outerContext,
 												ATNConfigSet configs,
@@ -2112,24 +1804,7 @@ namespace Antlr4.Runtime.Atn
 			if (parser != null) parser.ErrorListenerDispatch.ReportAmbiguity(parser, dfa, startIndex, stopIndex,
 																				  exact, ambigAlts, configs);
 		}
-
-		public PredictionMode PredictionMode
-		{
-			get
-			{
-				return this.mode;
-			}
-			set
-			{
-				this.mode = value;
-			}
-		}
-
-
-		public Parser getParser()
-		{
-			return parser;
-		}
+ 
 	}
 
 }

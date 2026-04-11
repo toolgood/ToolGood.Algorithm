@@ -40,12 +40,6 @@ namespace Antlr4.Runtime.Atn
 
 		readonly SimState prevAccept = new SimState();
 
-		public LexerATNSimulator(ATN atn, DFA[] decisionToDFA,
-								 PredictionContextCache sharedContextCache)
-			: this(null, atn, decisionToDFA, sharedContextCache)
-		{
-		}
-
 		public LexerATNSimulator(Lexer recog, ATN atn,
 								 DFA[] decisionToDFA,
 								 PredictionContextCache sharedContextCache)
@@ -54,16 +48,7 @@ namespace Antlr4.Runtime.Atn
 			this.decisionToDFA = decisionToDFA;
 			this.recog = recog;
 		}
-
-
-
-        public void CopyState(LexerATNSimulator simulator)
-		{
-			this.charPositionInLine = simulator.charPositionInLine;
-			this.thisLine = simulator.thisLine;
-			this.mode = simulator.mode;
-			this.startIndex = simulator.startIndex;
-		}
+ 
 
 		public int Match(ICharStream input, int mode)
 		{
@@ -679,11 +664,6 @@ namespace Antlr4.Runtime.Atn
 		}
 
 
-		public DFA GetDFA(int mode)
-		{
-			return decisionToDFA[mode];
-		}
-
 		/** Get the text matched so far for the current token.
 		 */
 
@@ -732,13 +712,6 @@ namespace Antlr4.Runtime.Atn
 			input.Consume();
 		}
 
-
-		public String GetTokenName(int t)
-		{
-			if (t == -1) return "EOF";
-			//if ( atn.g!=null ) return atn.g.getTokenDisplayName(t);
-			return "'" + (char)t + "'";
-		}
 	}
 
 	/** When we hit an accept state in either the DFA or the ATN, we

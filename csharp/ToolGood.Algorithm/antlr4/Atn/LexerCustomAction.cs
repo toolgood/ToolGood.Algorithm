@@ -54,34 +54,6 @@ namespace Antlr4.Runtime.Atn
             this.actionIndex = actionIndex;
         }
 
-        /// <summary>
-        /// Gets the rule index to use for calls to
-        /// <see cref="Antlr4.Runtime.Recognizer{Symbol, ATNInterpreter}.Action(Antlr4.Runtime.RuleContext, int, int)"/>
-        /// .
-        /// </summary>
-        /// <returns>The rule index for the custom action.</returns>
-        public int RuleIndex
-        {
-            get
-            {
-                return ruleIndex;
-            }
-        }
-
-        /// <summary>
-        /// Gets the action index to use for calls to
-        /// <see cref="Antlr4.Runtime.Recognizer{Symbol, ATNInterpreter}.Action(Antlr4.Runtime.RuleContext, int, int)"/>
-        /// .
-        /// </summary>
-        /// <returns>The action index for the custom action.</returns>
-        public int ActionIndex
-        {
-            get
-            {
-                return actionIndex;
-            }
-        }
-
         /// <summary><inheritDoc/></summary>
         /// <returns>
         /// This method returns

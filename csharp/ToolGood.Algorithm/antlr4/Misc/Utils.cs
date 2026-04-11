@@ -53,19 +53,5 @@ namespace Antlr4.Runtime.Misc
             return buf.ToString();
         }
 
-        /// <summary>Convert array of strings to string&#x2192;index map.</summary>
-        /// <remarks>
-        /// Convert array of strings to string&#x2192;index map. Useful for
-        /// converting rulenames to name&#x2192;ruleindex map.
-        /// </remarks>
-        public static IDictionary<string, int> ToMap(string[] keys)
-        {
-            IDictionary<string, int> m = new Dictionary<string, int>();
-            for (int i = 0; i < keys.Length; i++)
-            {
-                m[keys[i]] = i;
-            }
-            return m;
-        }
     }
 }

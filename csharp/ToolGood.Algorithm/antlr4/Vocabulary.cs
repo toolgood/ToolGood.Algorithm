@@ -30,16 +30,16 @@ namespace Antlr4.Runtime
         /// <see cref="TokenConstants.EOF"/>
         /// .</p>
         /// </summary>
-        [NotNull]
+        
         public static readonly Vocabulary EmptyVocabulary = new Vocabulary(EmptyNames, EmptyNames, EmptyNames);
 
-        [NotNull]
+        
         private readonly string[] literalNames;
 
-        [NotNull]
+        
         private readonly string[] symbolicNames;
 
-        [NotNull]
+        
         private readonly string[] displayNames;
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Antlr4.Runtime
             this.displayNames = displayNames != null ? displayNames : EmptyNames;
         }
 
-        [return: Nullable]
+        
         public virtual string GetLiteralName(int tokenType)
         {
             if (tokenType >= 0 && tokenType < literalNames.Length)
@@ -113,7 +113,7 @@ namespace Antlr4.Runtime
             return null;
         }
 
-        [return: Nullable]
+        
         public virtual string GetSymbolicName(int tokenType)
         {
             if (tokenType >= 0 && tokenType < symbolicNames.Length)
@@ -127,7 +127,7 @@ namespace Antlr4.Runtime
             return null;
         }
 
-        [return: NotNull]
+        
         public virtual string GetDisplayName(int tokenType)
         {
             if (tokenType >= 0 && tokenType < displayNames.Length)

@@ -38,7 +38,7 @@ namespace Antlr4.Runtime
         /// <see cref="ITokenSource"/>
         /// from which tokens for this stream are fetched.
         /// </summary>
-        [NotNull]
+        
         private ITokenSource _tokenSource;
 
         /// <summary>A collection of all tokens fetched from the token source.</summary>
@@ -301,7 +301,7 @@ namespace Antlr4.Runtime
             return tokens[p - k];
         }
 
-        [return: NotNull]
+        
         public virtual IToken LT(int k)
         {
             LazyInit();
@@ -632,14 +632,14 @@ namespace Antlr4.Runtime
 
         /// <summary>Get the text of all tokens in this buffer.</summary>
         /// <remarks>Get the text of all tokens in this buffer.</remarks>
-        [return: NotNull]
+        
         public virtual string GetText()
         {
             Fill();
             return GetText(Interval.Of(0, Size - 1));
         }
 
-        [return: NotNull]
+        
         public virtual string GetText(Interval interval)
         {
             int start = interval.a;
@@ -666,13 +666,13 @@ namespace Antlr4.Runtime
             return buf.ToString();
         }
 
-        [return: NotNull]
+        
         public virtual string GetText(RuleContext ctx)
         {
             return GetText(ctx.SourceInterval);
         }
 
-        [return: NotNull]
+        
         public virtual string GetText(IToken start, IToken stop)
         {
             if (start != null && stop != null)

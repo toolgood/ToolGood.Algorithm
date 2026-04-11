@@ -27,7 +27,7 @@ namespace Antlr4.Runtime.Atn
 
         /// <summary>The target of this transition.</summary>
         /// <remarks>The target of this transition.</remarks>
-        [NotNull]
+        
         public ATNState target;
 
         protected internal Transition(ATNState target)

@@ -25,7 +25,7 @@ namespace Antlr4.Runtime.Atn
         /// <summary>Gets the serialization type of the lexer action.</summary>
         /// <remarks>Gets the serialization type of the lexer action.</remarks>
         /// <returns>The serialization type of the lexer action.</returns>
-        [NotNull]
+        
         LexerActionType ActionType
         {
             get;

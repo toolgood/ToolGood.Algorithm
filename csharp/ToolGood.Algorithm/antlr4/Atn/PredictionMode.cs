@@ -610,61 +610,6 @@ namespace Antlr4.Runtime.Atn
         }
 
         /// <summary>
-        /// Determines if every alternative subset in
-        /// <paramref name="altsets"/>
-        /// contains more
-        /// than one alternative.
-        /// </summary>
-        /// <param name="altsets">a collection of alternative subsets</param>
-        /// <returns>
-        ///
-        /// <see langword="true"/>
-        /// if every
-        /// <see cref="Antlr4.Runtime.Sharpen.BitSet"/>
-        /// in
-        /// <paramref name="altsets"/>
-        /// has
-        /// <see cref="Antlr4.Runtime.Sharpen.BitSet.Cardinality()">cardinality</see>
-        /// &gt; 1, otherwise
-        /// <see langword="false"/>
-        /// </returns>
-        public static bool AllSubsetsConflict(IEnumerable<BitSet> altsets)
-        {
-            return !HasNonConflictingAltSet(altsets);
-        }
-
-        /// <summary>
-        /// Determines if any single alternative subset in
-        /// <paramref name="altsets"/>
-        /// contains
-        /// exactly one alternative.
-        /// </summary>
-        /// <param name="altsets">a collection of alternative subsets</param>
-        /// <returns>
-        ///
-        /// <see langword="true"/>
-        /// if
-        /// <paramref name="altsets"/>
-        /// contains a
-        /// <see cref="Antlr4.Runtime.Sharpen.BitSet"/>
-        /// with
-        /// <see cref="Antlr4.Runtime.Sharpen.BitSet.Cardinality()">cardinality</see>
-        /// 1, otherwise
-        /// <see langword="false"/>
-        /// </returns>
-        public static bool HasNonConflictingAltSet(IEnumerable<BitSet> altsets)
-        {
-            foreach (BitSet alts in altsets)
-            {
-                if (alts.Cardinality() == 1)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Determines if any single alternative subset in
         /// <paramref name="altsets"/>
         /// contains
@@ -693,55 +638,6 @@ namespace Antlr4.Runtime.Atn
                 }
             }
             return false;
-        }
-
-        /// <summary>
-        /// Determines if every alternative subset in
-        /// <paramref name="altsets"/>
-        /// is equivalent.
-        /// </summary>
-        /// <param name="altsets">a collection of alternative subsets</param>
-        /// <returns>
-        ///
-        /// <see langword="true"/>
-        /// if every member of
-        /// <paramref name="altsets"/>
-        /// is equal to the
-        /// others, otherwise
-        /// <see langword="false"/>
-        /// </returns>
-        public static bool AllSubsetsEqual(IEnumerable<BitSet> altsets)
-        {
-            IEnumerator<BitSet> it = altsets.GetEnumerator();
-            it.MoveNext();
-            BitSet first = it.Current;
-            while (it.MoveNext())
-            {
-                BitSet next = it.Current;
-                if (!next.Equals(first))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Returns the unique alternative predicted by all alternative subsets in
-        /// <paramref name="altsets"/>
-        /// . If no such alternative exists, this method returns
-        /// <see cref="ATN.INVALID_ALT_NUMBER"/>
-        /// .
-        /// </summary>
-        /// <param name="altsets">a collection of alternative subsets</param>
-        public static int GetUniqueAlt(IEnumerable<BitSet> altsets)
-        {
-            BitSet all = GetAlts(altsets);
-            if (all.Cardinality() == 1)
-            {
-                return all.NextSetBit(0);
-            }
-            return ATN.INVALID_ALT_NUMBER;
         }
 
         /// <summary>
@@ -786,7 +682,7 @@ namespace Antlr4.Runtime.Atn
         /// alt and not pred
         /// </pre>
         /// </remarks>
-        [return: NotNull]
+        
         public static ICollection<BitSet> GetConflictingAltSubsets(IEnumerable<ATNConfig> configs)
         {
             PredictionMode.AltAndContextMap configToAlts = new PredictionMode.AltAndContextMap();
@@ -818,7 +714,7 @@ namespace Antlr4.Runtime.Atn
         /// <see cref="ATNConfig.alt"/>
         /// </pre>
         /// </remarks>
-        [return: NotNull]
+        
         public static IDictionary<ATNState, BitSet> GetStateToAltMap(IEnumerable<ATNConfig> configs)
         {
             IDictionary<ATNState, BitSet> m = new Dictionary<ATNState, BitSet>();

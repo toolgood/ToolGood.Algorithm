@@ -89,11 +89,6 @@ namespace Antlr4.Runtime.Misc
             return this.a <= other.a && this.b >= other.a;
         }
 
-        /// <summary>Does this.a start after other.b? May or may not be disjoint</summary>
-        public bool StartsAfter(Antlr4.Runtime.Misc.Interval other)
-        {
-            return this.a > other.a;
-        }
 
         /// <summary>Does this start completely after other? Disjoint</summary>
         public bool StartsAfterDisjoint(Antlr4.Runtime.Misc.Interval other)
@@ -137,37 +132,6 @@ namespace Antlr4.Runtime.Misc
             return Antlr4.Runtime.Misc.Interval.Of(Math.Max(a, other.a), Math.Min(b, other.b));
         }
 
-        /// <summary>
-        /// Return the interval with elements from
-        /// <c>this</c>
-        /// not in
-        /// <paramref name="other"/>
-        /// ;
-        /// <paramref name="other"/>
-        /// must not be totally enclosed (properly contained)
-        /// within
-        /// <c>this</c>
-        /// , which would result in two disjoint intervals
-        /// instead of the single one returned by this method.
-        /// </summary>
-        public Antlr4.Runtime.Misc.Interval? DifferenceNotProperlyContained(Antlr4.Runtime.Misc.Interval other)
-        {
-            Antlr4.Runtime.Misc.Interval? diff = null;
-            // other.a to left of this.a (or same)
-            if (other.StartsBeforeNonDisjoint(this))
-            {
-                diff = Antlr4.Runtime.Misc.Interval.Of(Math.Max(this.a, other.b + 1), this.b);
-            }
-            else
-            {
-                // other.a to right of this.a
-                if (other.StartsAfterNonDisjoint(this))
-                {
-                    diff = Antlr4.Runtime.Misc.Interval.Of(this.a, other.a - 1);
-                }
-            }
-            return diff;
-        }
 
         public override string ToString()
         {

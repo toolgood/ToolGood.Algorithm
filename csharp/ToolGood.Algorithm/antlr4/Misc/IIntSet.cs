@@ -43,7 +43,7 @@ namespace Antlr4.Runtime.Misc
         /// IllegalStateException
         /// if the current set is read-only
         /// </exception>
-        [return: NotNull]
+        
         IIntSet AddAll(IIntSet set);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Antlr4.Runtime.Misc
         /// may be returned in
         /// place of an empty result set.
         /// </returns>
-        [return: Nullable]
+        
         IIntSet And(IIntSet a);
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Antlr4.Runtime.Misc
         /// <see langword="null"/>
         /// may be returned in place of an empty result set.
         /// </returns>
-        [return: Nullable]
+        
         IIntSet Complement(IIntSet elements);
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Antlr4.Runtime.Misc
         /// may be returned in place of an
         /// empty result set.
         /// </returns>
-        [return: Nullable]
+        
         IIntSet Or(IIntSet a);
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Antlr4.Runtime.Misc
         /// <see langword="null"/>
         /// may be returned in place of an empty result set.
         /// </returns>
-        [return: Nullable]
+        
         IIntSet Subtract(IIntSet a);
 
         /// <summary>Return the total number of elements represented by the current set.</summary>
@@ -277,7 +277,7 @@ namespace Antlr4.Runtime.Misc
         /// A list containing all element present in the current set, sorted
         /// in ascending numerical order.
         /// </returns>
-        [return: NotNull]
+        
         IList<int> ToList();
 
         /// <summary><inheritDoc/></summary>

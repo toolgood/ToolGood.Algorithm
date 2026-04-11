@@ -18,7 +18,7 @@ namespace Antlr4.Runtime
         private static readonly ConditionalWeakTable<IVocabulary, IDictionary<string, int>> tokenTypeMapCache = new ConditionalWeakTable<IVocabulary, IDictionary<string, int>>();
         private static readonly ConditionalWeakTable<string[], IDictionary<string, int>> ruleIndexMapCache = new ConditionalWeakTable<string[], IDictionary<string, int>>();
 
-        [NotNull]
+        
         private IAntlrErrorListener<Symbol>[] _listeners =
         {
         };
@@ -61,7 +61,7 @@ namespace Antlr4.Runtime
         /// Get a map from token names to token types.
         /// <p>Used for XPath and tree pattern compilation.</p>
         /// </remarks>
-        [NotNull]
+        
         public virtual IDictionary<string, int> TokenTypeMap
         {
             get
@@ -102,7 +102,7 @@ namespace Antlr4.Runtime
         /// </remarks>
         public virtual int[] SerializedAtn
         {
-            [return: NotNull]
+            
             get
             {
                 throw new NotSupportedException("there is no serialized ATN");
@@ -158,7 +158,7 @@ namespace Antlr4.Runtime
             }
         }
 
-        [NotNull]
+        
         public virtual IList<IAntlrErrorListener<Symbol>> ErrorListeners
         {
             get

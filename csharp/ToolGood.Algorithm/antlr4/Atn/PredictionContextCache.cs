@@ -35,13 +35,5 @@ namespace Antlr4.Runtime.Atn
 			return cache.Get(ctx);
 		}
 
-		public int Count
-		{
-			get
-			{
-				return cache.Count;
-			}
-		}
-
 	}
 }

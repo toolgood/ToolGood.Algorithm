@@ -156,7 +156,7 @@ namespace Antlr4.Runtime.Atn
 
         internal abstract class Operator : SemanticContext
         {
-            [NotNull]
+            
             public abstract ICollection<SemanticContext> Operands
             {
                 get;
@@ -165,7 +165,7 @@ namespace Antlr4.Runtime.Atn
 
         internal class AND : SemanticContext.Operator
         {
-            [NotNull]
+            
             public readonly SemanticContext[] opnds;
 
             public AND(SemanticContext a, SemanticContext b)
@@ -283,7 +283,7 @@ namespace Antlr4.Runtime.Atn
 
         internal class OR : SemanticContext.Operator
         {
-            [NotNull]
+            
             public readonly SemanticContext[] opnds;
 
             public OR(SemanticContext a, SemanticContext b)

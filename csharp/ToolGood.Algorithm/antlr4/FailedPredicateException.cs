@@ -37,7 +37,7 @@ namespace Antlr4.Runtime
         }
 
 
-        [return: NotNull]
+        
         private static string FormatMessage(string predicate, string message)
         {
             if (message != null)

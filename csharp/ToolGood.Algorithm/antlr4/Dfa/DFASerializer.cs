@@ -15,25 +15,20 @@ namespace Antlr4.Runtime.Dfa
     /// <remarks>A DFA walker that knows how to dump them to serialized strings.</remarks>
     internal class DFASerializer
     {
-        [NotNull]
+        
         private readonly DFA dfa;
 
-        [NotNull]
+        
         private readonly IVocabulary vocabulary;
 
-        [Nullable]
+        
         internal readonly string[] ruleNames;
 
-        [Nullable]
+        
         internal readonly ATN atn;
 
         public DFASerializer(DFA dfa, IVocabulary vocabulary)
             : this(dfa, vocabulary, null, null)
-        {
-        }
-
-        public DFASerializer(DFA dfa, IRecognizer parser)
-            : this(dfa, parser != null ? parser.Vocabulary : Vocabulary.EmptyVocabulary, parser != null ? parser.RuleNames : null, parser != null ? parser.Atn : null)
         {
         }
 
@@ -83,25 +78,6 @@ namespace Antlr4.Runtime.Dfa
             return output;
         }
 
-
-
-        protected internal virtual string GetContextLabel(int i)
-        {
-			if (i == PredictionContext.EMPTY_RETURN_STATE)
-            {
-                return "ctx:EMPTY";
-            }
-            if (atn != null && i > 0 && i <= atn.states.Count)
-            {
-                ATNState state = atn.states[i];
-                int ruleIndex = state.ruleIndex;
-                if (ruleNames != null && ruleIndex >= 0 && ruleIndex < ruleNames.Length)
-                {
-                    return "ctx:" + i.ToString() + "(" + ruleNames[ruleIndex] + ")";
-                }
-            }
-            return "ctx:" + i.ToString();
-        }
 
         protected internal virtual string GetEdgeLabel(int i)
         {

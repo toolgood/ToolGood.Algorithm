@@ -16,7 +16,7 @@ namespace Antlr4.Runtime.Atn
     {
         public static readonly int SerializedVersion = 4;
 
-        [NotNull]
+        
         private readonly ATNDeserializationOptions deserializationOptions;
 
         public ATNDeserializer()
@@ -948,7 +948,7 @@ nextTransition_continue: ;
 			return data[p++];
         }
 
-        [return: NotNull]
+        
         protected internal virtual Transition EdgeFactory(ATN atn, TransitionType type, int src, int trg, int arg1, int arg2, int arg3, IList<IntervalSet> sets)
         {
             ATNState target = atn.states[trg];

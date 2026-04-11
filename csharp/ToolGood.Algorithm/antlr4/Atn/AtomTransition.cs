@@ -42,7 +42,7 @@ namespace Antlr4.Runtime.Atn
 			return token == symbol;
         }
 
-        [return: NotNull]
+        
         public override string ToString()
         {
 			return token.ToString();

@@ -24,7 +24,7 @@ namespace Antlr4.Runtime
     {
 
         /// <summary>Which configurations did we try at input.index() that couldn't match input.LT(1)?</summary>
-        [Nullable]
+        
         private readonly ATNConfigSet deadEndConfigs;
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Antlr4.Runtime
         /// time the error occurred, of course the stream needs to keep a
         /// buffer all of the tokens but later we might not have access to those.)
         /// </remarks>
-        [NotNull]
+        
         private readonly IToken startToken;
 
         public NoViableAltException(Parser recognizer)
@@ -62,7 +62,7 @@ namespace Antlr4.Runtime
             }
         }
 
-        [Nullable]
+        
         public virtual ATNConfigSet DeadEndConfigs
         {
             get
