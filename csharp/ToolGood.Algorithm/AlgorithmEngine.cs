@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Atn;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -109,6 +110,7 @@ namespace ToolGood.Algorithm
 			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
 
+			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
 			var context = parser.prog();
 			if(data.IsError) {
 				LastError = data.ErrorMsg;
@@ -154,6 +156,7 @@ namespace ToolGood.Algorithm
 			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
 
+			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
 			var context = parser.prog();
 			if(data.IsError) {
 				LastError = data.ErrorMsg;

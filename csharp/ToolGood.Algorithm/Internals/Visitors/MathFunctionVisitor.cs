@@ -1,6 +1,5 @@
 ﻿using Antlr4.Runtime.Tree;
 using System;
-using System.Data.Common;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
@@ -29,13 +28,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			FunctionBase[] list = new FunctionBase[exprs.Length];
 			for(int i = 0; i < exprs.Length; i++) {
-				list[i] = exprs[i].Accept(this);
+				list[i] = exprs[i].Accept2(this);
 			}
 			return list;
 		}
 		public FunctionBase VisitProg(mathParser.ProgContext context)
 		{
-			return context.expr().Accept(this);
+			return context.expr().Accept2(this);
 		}
 		public FunctionBase VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
@@ -93,7 +92,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitNOT_fun(mathParser.NOT_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
+			var args1 = context.expr().Accept2(this);
 			return new Function_NOT(args1);
 		}
 		public FunctionBase VisitCONST2_fun(mathParser.CONST2_funContext context)
@@ -124,7 +123,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		public FunctionBase VisitPercentage_fun(mathParser.Percentage_funContext context)
 		{
-			var args1 = context.expr().Accept(this);
+			var args1 = context.expr().Accept2(this);
 			return new Function_Percentage(args1);
 		}
 
@@ -136,7 +135,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		}
 		public FunctionBase VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
-			return context.expr().Accept(this);
+			return context.expr().Accept2(this);
 		}
 		public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
 		{
@@ -202,7 +201,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				return new Function_GetJsonValue(funcs[0], op);
 			}
 			if(context.parameter2() != null) {
-				var op = context.parameter2().Accept(this);
+				var op = context.parameter2().Accept2(this);
 				return new Function_GetJsonValue(funcs[0], op);
 			}
 			return new Function_GetJsonValue(funcs[0], funcs[1]);
@@ -212,7 +211,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var exprs = context.arrayJson();
 			FunctionBase[] args = new FunctionBase[exprs.Length];
 			for(int i = 0; i < exprs.Length; i++) {
-				args[i] = exprs[i].Accept(this);
+				args[i] = exprs[i].Accept2(this);
 			}
 			return new Function_ArrayJson(args);
 		}
@@ -224,7 +223,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			} else if(context.parameter2() != null) {
 				keyName = context.parameter2().GetText();
 			}
-			var f = context.expr().Accept(this);
+			var f = context.expr().Accept2(this);
 			return new Function_ArrayJsonItem(keyName, f);
 		}
 

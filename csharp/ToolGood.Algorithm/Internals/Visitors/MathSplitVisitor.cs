@@ -13,15 +13,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public override ConditionTree VisitProg(mathParser.ProgContext context)
 		{
 			hasBracket = false;
-			return context.expr().Accept(this);
+			return context.expr().Accept2(this);
 		}
 		public override ConditionTree VisitOr_fun(mathParser.Or_funContext context)
 		{
 			var tree = new ConditionTree { HasBracket = hasBracket, };
 			hasBracket = false;
 			var exprs = context.expr();
-			var f1 = exprs[0].Accept(this);
-			var f2 = exprs[1].Accept(this);
+			var f1 = exprs[0].Accept2(this);
+			var f2 = exprs[1].Accept2(this);
 			tree.Nodes = new List<ConditionTree>(2) { f1, f2 };
 	 
 			tree.Type = ConditionTreeType.Or;
@@ -37,8 +37,8 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new ConditionTree { HasBracket = hasBracket, };
 			hasBracket = false;
 			var exprs = context.expr();
-			var f1 = exprs[0].Accept(this);
-			var f2 = exprs[1].Accept(this);
+			var f1 = exprs[0].Accept2(this);
+			var f2 = exprs[1].Accept2(this);
 			tree.Nodes = new List<ConditionTree>(2) { f1, f2 };
 
 			tree.Type = ConditionTreeType.And;
@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public override ConditionTree VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
 			hasBracket = true;
-			return context.expr().Accept(this);
+			return context.expr().Accept2(this);
 		}
 
 		public override ConditionTree VisitChildren(IRuleNode node)

@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Atn;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -34,6 +35,7 @@ namespace ToolGood.Algorithm
 			//parser.RemoveErrorListeners();
 			//parser.AddErrorListener(data);
 
+			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
 			return parser.prog();
 		}
 

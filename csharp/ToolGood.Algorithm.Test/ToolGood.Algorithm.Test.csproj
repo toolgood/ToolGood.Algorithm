@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <!--<ItemGroup>
-    <PackageReference Include="ToolGood.Algorithm" Version="6.2.5.28" />
+    <PackageReference Include="ToolGood.Algorithm" Version="6.2.5.41" />
   </ItemGroup>-->
 
   <ItemGroup>

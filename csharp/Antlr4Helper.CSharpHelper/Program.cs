@@ -93,6 +93,8 @@ namespace Antlr4Helper.CSharpHelper
 			csText = Regex.Replace(csText, @"private static readonly string\[\] _LiteralNames = \{[\s\S]*?\};", "private static readonly string[] _LiteralNames = {};");
 			csText = Regex.Replace(csText, @"private static readonly string\[\] _SymbolicNames = \{[\s\S]*?\};", "private static readonly string[] _SymbolicNames = {};");
 
+			csText = csText.Replace("ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;", "");
+			csText = csText.Replace("public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {", "public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {");
 
 
 			csText = Regex.Replace(csText, @"//.*", "");

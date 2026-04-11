@@ -43,7 +43,7 @@ partial class mathParser : Parser {
 	{
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
-	internal sealed class ProgContext : ParserRuleContext {
+	internal sealed class ProgContext : MyRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -53,8 +53,7 @@ partial class mathParser : Parser {
 		}
 		public override int RuleIndex { get { return 0; } }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitProg(this);
 		}
 	}
@@ -79,7 +78,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal class ExprContext : ParserRuleContext {
+	internal class ExprContext : MyRuleContext {
 		public ExprContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -102,8 +101,7 @@ partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(300, 0); }
 		public Function_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitFunction_fun(this);
 		}
 	}
@@ -113,8 +111,7 @@ partial class mathParser : Parser {
 		}
 		public Or_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitOr_fun(this);
 		}
 	}
@@ -124,8 +121,7 @@ partial class mathParser : Parser {
 		}
 		public IF_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitIF_fun(this);
 		}
 	}
@@ -136,8 +132,7 @@ partial class mathParser : Parser {
 		}
 		public Judge_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitJudge_fun(this);
 		}
 	}
@@ -147,16 +142,14 @@ partial class mathParser : Parser {
 		}
 		public Percentage_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitPercentage_fun(this);
 		}
 	}
 	internal sealed class STRING_funContext : ExprContext {
 		public STRING_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitSTRING_fun(this);
 		}
 	}
@@ -168,8 +161,7 @@ partial class mathParser : Parser {
 		
 		public AddSub_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitAddSub_fun(this);
 		}
 	}
@@ -182,8 +174,7 @@ partial class mathParser : Parser {
 		}
 		public ArrayJson_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitArrayJson_fun(this);
 		}
 	}
@@ -197,8 +188,7 @@ partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(300, 0); }
 		public GetJsonValue_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitGetJsonValue_fun(this);
 		}
 	}
@@ -208,8 +198,7 @@ partial class mathParser : Parser {
 		}
 		public And_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitAnd_fun(this);
 		}
 	}
@@ -219,8 +208,7 @@ partial class mathParser : Parser {
 		}
 		public Array_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitArray_fun(this);
 		}
 	}
@@ -232,8 +220,7 @@ partial class mathParser : Parser {
 		
 		public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitMulDiv_fun(this);
 		}
 	}
@@ -243,8 +230,7 @@ partial class mathParser : Parser {
 		}
 		public NOT_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitNOT_fun(this);
 		}
 	}
@@ -253,8 +239,7 @@ partial class mathParser : Parser {
 		
 		public CONST2_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitCONST2_fun(this);
 		}
 	}
@@ -264,8 +249,7 @@ partial class mathParser : Parser {
 		}
 		public Bracket_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitBracket_fun(this);
 		}
 	}
@@ -273,16 +257,14 @@ partial class mathParser : Parser {
 		public IToken f;
 		public CONST_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitCONST_fun(this);
 		}
 	}
 	internal sealed class NUM_funContext : ExprContext {
 		public NUM_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitNUM_fun(this);
 		}
 	}
@@ -290,8 +272,7 @@ partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(300, 0); }
 		public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitPARAMETER_fun(this);
 		}
 	}
@@ -700,7 +681,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal sealed class ArrayJsonContext : ParserRuleContext {
+	internal sealed class ArrayJsonContext : MyRuleContext {
 		public IToken key;
 		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -714,8 +695,7 @@ partial class mathParser : Parser {
 		}
 		public override int RuleIndex { get { return 2; } }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitArrayJson(this);
 		}
 	}
@@ -1039,7 +1019,7 @@ partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	internal sealed class Parameter2Context : ParserRuleContext {
+	internal sealed class Parameter2Context : MyRuleContext {
 		
 		
 		
@@ -1052,8 +1032,7 @@ partial class mathParser : Parser {
 		}
 		public override int RuleIndex { get { return 3; } }
 		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+		public override TResult Accept2<TResult>(ImathVisitor<TResult> typedVisitor) {
 			return typedVisitor.VisitParameter2(this);
 		}
 	}
