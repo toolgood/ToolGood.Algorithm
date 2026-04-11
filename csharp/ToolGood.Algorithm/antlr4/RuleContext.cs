@@ -58,12 +58,7 @@ namespace Antlr4.Runtime
             //if ( parent!=null ) System.out.println("invoke "+stateNumber+" from "+parent);
             this.invokingState = invokingState;
         }
-
-        public static Antlr4.Runtime.RuleContext GetChildContext(Antlr4.Runtime.RuleContext parent, int invokingState)
-        {
-            return new Antlr4.Runtime.RuleContext(parent, invokingState);
-        }
-
+ 
         public virtual int Depth()
         {
             int n = 0;

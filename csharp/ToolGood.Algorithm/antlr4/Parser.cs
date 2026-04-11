@@ -156,24 +156,11 @@ namespace Antlr4.Runtime
         [Nullable]
         private IList<IParseTreeListener> _parseListeners;
 
-        /// <summary>The number of syntax errors reported during parsing.</summary>
-        /// <remarks>
-        /// The number of syntax errors reported during parsing. This value is
-        /// incremented each time
-        /// <see cref="NotifyErrorListeners(string)"/>
-        /// is called.
-        /// </remarks>
-        private int _syntaxErrors;
-
-        protected readonly TextWriter Output;
         protected readonly TextWriter ErrorOutput;
-
-        public Parser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
 
         public Parser(ITokenStream input, TextWriter output, TextWriter errorOutput)
         {
             TokenStream = input;
-            Output = output;
             ErrorOutput = errorOutput;
         }
 
@@ -186,7 +173,6 @@ namespace Antlr4.Runtime
             }
             _errHandler.Reset(this);
             _ctx = null;
-            _syntaxErrors = 0;
             Trace = false;
             _precedenceStack.Clear();
             _precedenceStack.Add(0);
@@ -234,56 +220,6 @@ namespace Antlr4.Runtime
         {
             IToken t = CurrentToken;
             if (t.Type == ttype)
-            {
-                _errHandler.ReportMatch(this);
-                Consume();
-            }
-            else
-            {
-                t = _errHandler.RecoverInline(this);
-                if (_buildParseTrees && t.TokenIndex == -1)
-                {
-                    // we must have conjured up a new token during single token insertion
-                    // if it's not the current symbol
-                    _ctx.AddErrorNode(t);
-                }
-            }
-            return t;
-        }
-
-        /// <summary>Match current input symbol as a wildcard.</summary>
-        /// <remarks>
-        /// Match current input symbol as a wildcard. If the symbol type matches
-        /// (i.e. has a value greater than 0),
-        /// <see cref="IAntlrErrorStrategy.ReportMatch(Parser)"/>
-        /// and
-        /// <see cref="Consume()"/>
-        /// are called to complete the match process.
-        /// <p>If the symbol type does not match,
-        /// <see cref="IAntlrErrorStrategy.RecoverInline(Parser)"/>
-        /// is called on the current error
-        /// strategy to attempt recovery. If
-        /// <see cref="BuildParseTree()"/>
-        /// is
-        /// <see langword="true"/>
-        /// and the token index of the symbol returned by
-        /// <see cref="IAntlrErrorStrategy.RecoverInline(Parser)"/>
-        /// is -1, the symbol is added to
-        /// the parse tree by calling
-        /// <see cref="ParserRuleContext.AddErrorNode(IToken)"/>
-        /// .</p>
-        /// </remarks>
-        /// <returns>the matched symbol</returns>
-        /// <exception cref="RecognitionException">
-        /// if the current input symbol did not match
-        /// a wildcard and the error strategy could not recover from the mismatched
-        /// symbol
-        /// </exception>
-        /// <exception cref="Antlr4.Runtime.RecognitionException"/>
-        public virtual IToken MatchWildcard()
-        {
-            IToken t = CurrentToken;
-            if (t.Type > 0)
             {
                 _errHandler.ReportMatch(this);
                 Consume();
@@ -568,7 +504,6 @@ namespace Antlr4.Runtime
 
         public virtual void NotifyErrorListeners(IToken offendingToken, string msg, RecognitionException e)
         {
-            _syntaxErrors++;
             int line = -1;
             int charPositionInLine = -1;
             if (offendingToken != null)

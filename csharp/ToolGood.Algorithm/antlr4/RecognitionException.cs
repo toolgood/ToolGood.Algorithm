@@ -78,35 +78,6 @@ namespace Antlr4.Runtime
         }
 
         /// <summary>
-        /// Get the ATN state number the parser was in at the time the error
-        /// occurred.
-        /// </summary>
-        /// <remarks>
-        /// Get the ATN state number the parser was in at the time the error
-        /// occurred. For
-        /// <see cref="NoViableAltException"/>
-        /// and
-        /// <see cref="LexerNoViableAltException"/>
-        /// exceptions, this is the
-        /// <see cref="Antlr4.Runtime.Atn.DecisionState"/>
-        /// number. For others, it is the state whose outgoing
-        /// edge we couldn't match.
-        /// <p>If the state number is not known, this method returns -1.</p>
-        /// </remarks>
-        public int OffendingState
-        {
-            get
-            {
-                return offendingState;
-            }
-            protected set
-            {
-                int offendingState = value;
-                this.offendingState = offendingState;
-            }
-        }
-
-        /// <summary>
         /// Gets the set of input symbols which could potentially follow the
         /// previously matched symbol at the time this exception was thrown.
         /// </summary>
@@ -132,30 +103,6 @@ namespace Antlr4.Runtime
                 return recognizer.Atn.GetExpectedTokens(offendingState, ctx);
             }
             return null;
-        }
-
-        /// <summary>
-        /// Gets the
-        /// <see cref="RuleContext"/>
-        /// at the time this exception was thrown.
-        /// <p>If the context is not available, this method returns
-        /// <see langword="null"/>
-        /// .</p>
-        /// </summary>
-        /// <returns>
-        /// The
-        /// <see cref="RuleContext"/>
-        /// at the time this exception was thrown.
-        /// If the context is not available, this method returns
-        /// <see langword="null"/>
-        /// .
-        /// </returns>
-        public virtual RuleContext Context
-        {
-            get
-            {
-                return ctx;
-            }
         }
 
         /// <summary>
@@ -197,26 +144,6 @@ namespace Antlr4.Runtime
             }
         }
 
-        /// <summary>
-        /// Gets the
-        /// <see cref="IRecognizer"/>
-        /// where this exception occurred.
-        /// <p>If the recognizer is not available, this method returns
-        /// <see langword="null"/>
-        /// .</p>
-        /// </summary>
-        /// <returns>
-        /// The recognizer where this exception occurred, or
-        /// <see langword="null"/>
-        /// if
-        /// the recognizer is not available.
-        /// </returns>
-        public virtual IRecognizer Recognizer
-        {
-            get
-            {
-                return recognizer;
-            }
-        }
+  
     }
 }

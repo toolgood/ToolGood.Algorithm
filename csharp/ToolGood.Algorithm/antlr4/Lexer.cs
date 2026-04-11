@@ -434,10 +434,6 @@ outer_continue: ;
 
         public virtual void NotifyListeners(LexerNoViableAltException e)
         {
-            string text = _input.GetText(Interval.Of(_tokenStartCharIndex, _input.Index));
-            string msg = "token recognition error at: '" + GetErrorDisplay(text) + "'";
-            IAntlrErrorListener<int> listener = ErrorListenerDispatch;
-            listener.SyntaxError(ErrorOutput, this, 0, _tokenStartLine, _tokenStartColumn, msg, e);
         }
 
         public virtual string GetErrorDisplay(string s)

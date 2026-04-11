@@ -90,36 +90,6 @@ namespace Antlr4.Runtime
             return result;
         }
 
-        /// <summary>Get a map from rule names to rule indexes.</summary>
-        /// <remarks>
-        /// Get a map from rule names to rule indexes.
-        /// <p>Used for XPath and tree pattern compilation.</p>
-        /// </remarks>
-        [NotNull]
-        public virtual IDictionary<string, int> RuleIndexMap
-        {
-            get
-            {
-                string[] ruleNames = RuleNames;
-                if (ruleNames == null)
-                {
-                    throw new NotSupportedException("The current recognizer does not provide a list of rule names.");
-                }
-
-                return ruleIndexMapCache.GetValue(ruleNames, Utils.ToMap);
-            }
-        }
-
-        public virtual int GetTokenType(string tokenName)
-        {
-            int ttype;
-            if (TokenTypeMap.TryGetValue(tokenName, out ttype))
-            {
-                return ttype;
-            }
-            return TokenConstants.InvalidType;
-        }
-
         /// <summary>
         /// If this recognizer was generated, it will have a serialized ATN
         /// representation of the grammar.
@@ -194,14 +164,6 @@ namespace Antlr4.Runtime
             get
             {
                 return new List<IAntlrErrorListener<Symbol>>(_listeners);
-            }
-        }
-
-        public virtual IAntlrErrorListener<Symbol> ErrorListenerDispatch
-        {
-            get
-            {
-                return new ProxyErrorListener<Symbol>(ErrorListeners);
             }
         }
 
