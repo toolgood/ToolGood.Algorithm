@@ -68,13 +68,6 @@ namespace Antlr4.Runtime.Atn
 			charPositionInLine = 0;
 			mode = Lexer.DEFAULT_MODE;
 		}
-		public override void ClearDFA()
-		{
-			for (int d = 0; d < decisionToDFA.Length; d++)
-			{
-				decisionToDFA[d] = new DFA(atn.GetDecisionState(d), d);
-			}
-		}
 		protected int MatchATN(ICharStream input)
 		{
 			ATNState startState = atn.modeToStartState[mode];

@@ -21,10 +21,6 @@ namespace Antlr4.Runtime.Dfa
         {
             get;
         }
-        IEdgeMap<T> Put(int key, T value);
-        IEdgeMap<T> Remove(int key);
-        IEdgeMap<T> PutAll(IEdgeMap<T> m);
-        IEdgeMap<T> Clear();
         IReadOnlyDictionary<int, T> ToMap();
     }
 }

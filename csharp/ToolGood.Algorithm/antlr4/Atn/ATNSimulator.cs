@@ -50,21 +50,6 @@ namespace Antlr4.Runtime.Atn
 			this.sharedContextCache = sharedContextCache;
 		}
 		public abstract void Reset();
-		/**
-		 * Clear the DFA cache used by the current instance. Since the DFA cache may
-		 * be shared by multiple ATN simulators, this method may affect the
-		 * performance (but not accuracy) of other parsers which are being used
-		 * concurrently.
-		 *
-		 * @throws UnsupportedOperationException if the current instance does not
-		 * support clearing the DFA.
-		 *
-		 * @since 4.3
-		 */
-		public virtual void ClearDFA()
-		{
-			throw new Exception("This ATN simulator does not support clearing the DFA.");
-		}
 		public PredictionContext getCachedContext(PredictionContext context)
 		{
 			if (sharedContextCache == null) return context;

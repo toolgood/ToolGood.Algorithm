@@ -118,10 +118,6 @@ namespace Antlr4.Runtime.Dfa
                 }
             }
         }
-        public override AbstractEdgeMap<T> Clear()
-        {
-            return new EmptyEdgeMap<T>(minIndex, maxIndex);
-        }
         public override IReadOnlyDictionary<int, T> ToMap()
         {
             if (IsEmpty)

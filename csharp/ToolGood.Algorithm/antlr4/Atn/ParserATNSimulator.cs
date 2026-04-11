@@ -266,14 +266,6 @@ namespace Antlr4.Runtime.Atn
 		public override void Reset()
 		{
 		}
-
-		public override void ClearDFA()
-		{
-			for (int d = 0; d < decisionToDFA.Length; d++)
-			{
-				decisionToDFA[d] = new DFA(atn.GetDecisionState(d), d);
-			}
-		}
 		public virtual int AdaptivePredict(ITokenStream input, int decision,
 								   ParserRuleContext outerContext)
 		{

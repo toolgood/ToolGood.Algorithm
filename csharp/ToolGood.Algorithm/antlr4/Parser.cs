@@ -113,17 +113,6 @@ namespace Antlr4.Runtime
             }
             return t;
         }
-        public virtual bool BuildParseTree
-        {
-            get
-            {
-                return _buildParseTrees;
-            }
-            set
-            {
-				this._buildParseTrees = value;
-            }
-        }
         public virtual bool TrimParseTree
         {
             get
@@ -240,10 +229,6 @@ namespace Antlr4.Runtime
             {
                 return _input.LT(1);
             }
-        }
-        public void NotifyErrorListeners(string msg)
-        {
-            NotifyErrorListeners(CurrentToken, msg, null);
         }
         public virtual void NotifyErrorListeners(IToken offendingToken, string msg, RecognitionException e)
         {

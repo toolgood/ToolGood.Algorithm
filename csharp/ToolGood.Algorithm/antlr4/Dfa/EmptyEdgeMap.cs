@@ -21,10 +21,6 @@ namespace Antlr4.Runtime.Dfa
             }
             return new SingletonEdgeMap<T>(minIndex, maxIndex, key, value);
         }
-        public override AbstractEdgeMap<T> Clear()
-        {
-            return this;
-        }
         public override AbstractEdgeMap<T> Remove(int key)
         {
             return this;

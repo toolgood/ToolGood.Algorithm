@@ -10,19 +10,10 @@ namespace Antlr4.Runtime.Misc
 {
     internal class IntervalSet : IIntSet
     {
-        public static readonly Antlr4.Runtime.Misc.IntervalSet CompleteCharSet = Antlr4.Runtime.Misc.IntervalSet.Of(Lexer.MinCharValue, Lexer.MaxCharValue);
-        public static readonly Antlr4.Runtime.Misc.IntervalSet EmptySet = new Antlr4.Runtime.Misc.IntervalSet();
-        static IntervalSet()
-        {
-            CompleteCharSet.SetReadonly(true);
-            EmptySet.SetReadonly(true);
-        }
+  
         protected internal IList<Interval> intervals;
         protected internal bool @readonly;
-        public IntervalSet(IList<Interval> intervals)
-        {
-            this.intervals = intervals;
-        }
+
         public IntervalSet(Antlr4.Runtime.Misc.IntervalSet set)
             : this()
         {
@@ -245,87 +236,6 @@ namespace Antlr4.Runtime.Misc
             o.AddAll(a);
             return o;
         }
-        public virtual Antlr4.Runtime.Misc.IntervalSet And(IIntSet other)
-        {
-            if (other == null)
-            {
-                return null;
-            }
-            IList<Interval> myIntervals = this.intervals;
-            IList<Interval> theirIntervals = ((Antlr4.Runtime.Misc.IntervalSet)other).intervals;
-            Antlr4.Runtime.Misc.IntervalSet intersection = null;
-            int mySize = myIntervals.Count;
-            int theirSize = theirIntervals.Count;
-            int i = 0;
-            int j = 0;
-            while (i < mySize && j < theirSize)
-            {
-                Interval mine = myIntervals[i];
-                Interval theirs = theirIntervals[j];
-                if (mine.StartsBeforeDisjoint(theirs))
-                {
-                    i++;
-                }
-                else
-                {
-                    if (theirs.StartsBeforeDisjoint(mine))
-                    {
-                        j++;
-                    }
-                    else
-                    {
-                        if (mine.ProperlyContains(theirs))
-                        {
-                            if (intersection == null)
-                            {
-                                intersection = new Antlr4.Runtime.Misc.IntervalSet();
-                            }
-                            intersection.Add(mine.Intersection(theirs));
-                            j++;
-                        }
-                        else
-                        {
-                            if (theirs.ProperlyContains(mine))
-                            {
-                                if (intersection == null)
-                                {
-                                    intersection = new Antlr4.Runtime.Misc.IntervalSet();
-                                }
-                                intersection.Add(mine.Intersection(theirs));
-                                i++;
-                            }
-                            else
-                            {
-                                if (!mine.Disjoint(theirs))
-                                {
-                                    if (intersection == null)
-                                    {
-                                        intersection = new Antlr4.Runtime.Misc.IntervalSet();
-                                    }
-                                    intersection.Add(mine.Intersection(theirs));
-                                    if (mine.StartsAfterNonDisjoint(theirs))
-                                    {
-                                        j++;
-                                    }
-                                    else
-                                    {
-                                        if (theirs.StartsAfterNonDisjoint(mine))
-                                        {
-                                            i++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (intersection == null)
-            {
-                return new Antlr4.Runtime.Misc.IntervalSet();
-            }
-            return intersection;
-        }
         public virtual bool Contains(int el)
         {
             int n = intervals.Count;
@@ -543,26 +453,6 @@ namespace Antlr4.Runtime.Misc
                 throw new InvalidOperationException("can't alter readonly IntervalSet");
             }
             this.@readonly = @readonly;
-        }
-        IIntSet IIntSet.AddAll(IIntSet set)
-        {
-            return AddAll(set);
-        }
-        IIntSet IIntSet.And(IIntSet a)
-        {
-            return And(a);
-        }
-        IIntSet IIntSet.Complement(IIntSet elements)
-        {
-            return Complement(elements);
-        }
-        IIntSet IIntSet.Or(IIntSet a)
-        {
-            return Or(a);
-        }
-        IIntSet IIntSet.Subtract(IIntSet a)
-        {
-            return Subtract(a);
         }
     }
 }

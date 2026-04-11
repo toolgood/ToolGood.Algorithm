@@ -18,10 +18,6 @@ namespace Antlr4.Runtime.Dfa
             this.maxIndex = maxIndex;
         }
         public abstract Antlr4.Runtime.Dfa.AbstractEdgeMap<T> Put(int key, T value);
-        IEdgeMap<T> IEdgeMap<T>.Put(int key, T value)
-        {
-            return Put(key, value);
-        }
         public virtual Antlr4.Runtime.Dfa.AbstractEdgeMap<T> PutAll(IEdgeMap<T> m)
         {
             Antlr4.Runtime.Dfa.AbstractEdgeMap<T> result = this;
@@ -31,20 +27,7 @@ namespace Antlr4.Runtime.Dfa
             }
             return result;
         }
-        IEdgeMap<T> IEdgeMap<T>.PutAll(IEdgeMap<T> m)
-        {
-            return PutAll(m);
-        }
-        public abstract Antlr4.Runtime.Dfa.AbstractEdgeMap<T> Clear();
-        IEdgeMap<T> IEdgeMap<T>.Clear()
-        {
-            return Clear();
-        }
         public abstract Antlr4.Runtime.Dfa.AbstractEdgeMap<T> Remove(int key);
-        IEdgeMap<T> IEdgeMap<T>.Remove(int key)
-        {
-            return Remove(key);
-        }
         public abstract bool ContainsKey(int arg1);
         public abstract T this[int arg1]
         {
