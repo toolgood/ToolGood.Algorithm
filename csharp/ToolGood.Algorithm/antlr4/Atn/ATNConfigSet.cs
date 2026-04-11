@@ -65,17 +65,7 @@ namespace Antlr4.Runtime.Atn
 		: this(true)
 		{
 		}
-
-		public ATNConfigSet(ATNConfigSet old)
-			: this(old.fullCtx)
-		{
-			AddAll(old.configs);
-			this.uniqueAlt = old.uniqueAlt;
-			this.conflictingAlts = old.conflictingAlts;
-			this.hasSemanticContext = old.hasSemanticContext;
-			this.dipsIntoOuterContext = old.dipsIntoOuterContext;
-		}
-
+ 
 		public bool Add(ATNConfig config)
 		{
 			return Add(config, null);
@@ -137,16 +127,6 @@ namespace Antlr4.Runtime.Atn
 			}
 		}
 
-		public HashSet<ATNState> GetStates()
-		{
-			HashSet<ATNState> states = new HashSet<ATNState>();
-			foreach (ATNConfig c in configs)
-			{
-				states.Add(c.state);
-			}
-			return states;
-		}
-
 		/**
 		 * Gets the complete set of represented alternatives for the configuration
 		 * set.
@@ -166,21 +146,6 @@ namespace Antlr4.Runtime.Atn
 			return alts;
 		}
 
-		public List<SemanticContext> GetPredicates()
-		{
-			List<SemanticContext> preds = new List<SemanticContext>();
-			foreach (ATNConfig c in configs)
-			{
-				if (c.semanticContext != SemanticContext.Empty.Instance)
-				{
-					preds.Add(c.semanticContext);
-				}
-			}
-			return preds;
-		}
-
-		public ATNConfig Get(int i) { return configs[i]; }
-
 		public void OptimizeConfigs(ATNSimulator interpreter)
 		{
 			if (readOnly)
@@ -195,12 +160,6 @@ namespace Antlr4.Runtime.Atn
 				//			int after = PredictionContext.getAllContextNodes(config.context).size();
 				//			System.out.println("configs "+before+"->"+after);
 			}
-		}
-
-		public bool AddAll(ICollection<ATNConfig> coll)
-		{
-			foreach (ATNConfig c in coll) Add(c);
-			return false;
 		}
 
 		public override bool Equals(Object o)
@@ -260,27 +219,7 @@ namespace Antlr4.Runtime.Atn
 				return configs.Count == 0;
 			}
 		}
-
-		public bool Contains(Object o)
-		{
-			if (configLookup == null)
-			{
-				throw new Exception("This method is not implemented for readonly sets.");
-			}
-
-			return configLookup.ContainsKey((ATNConfig)o);
-		}
-
-
-		public void Clear()
-		{
-			if (readOnly)
-				throw new Exception("This set is readonly");
-			configs.Clear();
-			cachedHashCode = -1;
-			configLookup.Clear();
-		}
-
+	 
 		public bool IsReadOnly
 		{
 			get

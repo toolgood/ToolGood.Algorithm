@@ -74,8 +74,6 @@ namespace Antlr4.Runtime.Atn
         [NotNull]
         public readonly IList<TokensStartState> modeToStartState = new List<TokensStartState>();
 
-        private readonly PredictionContextCache contextCache = new PredictionContextCache();
-
         [NotNull]
 		public DFA[] decisionToDFA = new DFA[0];
 
@@ -91,11 +89,6 @@ namespace Antlr4.Runtime.Atn
             this.maxTokenType = maxTokenType;
         }
 
-
-        public virtual PredictionContext GetCachedContext(PredictionContext context)
-        {
-            return PredictionContext.GetCachedContext(context, contextCache, new PredictionContext.IdentityHashMap());
-        }
 
         /// <summary>
         /// Compute the set of valid tokens that can occur starting in state
@@ -150,21 +143,6 @@ namespace Antlr4.Runtime.Atn
                 state.stateNumber = states.Count;
             }
             states.Add(state);
-        }
-
-        public virtual void RemoveState(ATNState state)
-        {
-            states[state.stateNumber] = null;
-        }
-
-        // just free mem, don't shift states in list
-        public virtual void DefineMode(string name, TokensStartState s)
-        {
-            modeNameToStartState[name] = s;
-            modeToStartState.Add(s);
-            modeToDFA = Arrays.CopyOf(modeToDFA, modeToStartState.Count);
-            modeToDFA[modeToDFA.Length - 1] = new DFA(s);
-            DefineDecisionState(s);
         }
 
         public virtual int DefineDecisionState(DecisionState s)

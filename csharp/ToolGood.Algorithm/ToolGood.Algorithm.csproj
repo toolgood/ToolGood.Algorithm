@@ -45,18 +45,7 @@
     </None>
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <Compile Remove="antlr4\Atn\AmbiguityInfo.cs" />
-    <Compile Remove="antlr4\Atn\ContextSensitivityInfo.cs" />
-    <Compile Remove="antlr4\Atn\DecisionEventInfo.cs" />
-    <Compile Remove="antlr4\Atn\DecisionInfo.cs" />
-    <Compile Remove="antlr4\Atn\ErrorInfo.cs" />
-    <Compile Remove="antlr4\Atn\LookaheadEventInfo.cs" />
-    <Compile Remove="antlr4\Atn\ParseInfo.cs" />
-    <Compile Remove="antlr4\Atn\PredicateEvalInfo.cs" />
-    <Compile Remove="antlr4\Atn\ProfilingATNSimulator.cs" />
-    <Compile Remove="antlr4\InterpreterRuleContext.cs" />
+  <ItemGroup>
     <Compile Remove="antlr4\Misc\Args.cs" />
-    <Compile Remove="antlr4\TokenStreamRewriter.cs" />
-  </ItemGroup>-->
+  </ItemGroup>
 </Project>

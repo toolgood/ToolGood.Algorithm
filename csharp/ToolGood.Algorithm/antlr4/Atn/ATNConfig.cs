@@ -68,16 +68,7 @@ namespace Antlr4.Runtime.Atn
 
 
 		public readonly SemanticContext semanticContext;
-
-		public ATNConfig(ATNConfig old)
-		{ // dup
-			this.state = old.state;
-			this.alt = old.alt;
-			this.context = old.context;
-			this.semanticContext = old.semanticContext;
-			this.reachesIntoOuterContext = old.reachesIntoOuterContext;
-		}
-
+ 
 		public ATNConfig(ATNState state,
 						 int alt,
 						 PredictionContext context)

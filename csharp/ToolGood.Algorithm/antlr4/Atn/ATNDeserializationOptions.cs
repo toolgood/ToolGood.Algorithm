@@ -34,12 +34,6 @@ namespace Antlr4.Runtime.Atn
             this.optimize = true;
         }
 
-        public ATNDeserializationOptions(Antlr4.Runtime.Atn.ATNDeserializationOptions options)
-        {
-            this.verifyATN = options.verifyATN;
-            this.generateRuleBypassTransitions = options.generateRuleBypassTransitions;
-            this.optimize = options.optimize;
-        }
 
         [NotNull]
         public static Antlr4.Runtime.Atn.ATNDeserializationOptions Default

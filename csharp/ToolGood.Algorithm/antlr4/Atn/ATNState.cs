@@ -51,26 +51,12 @@ namespace Antlr4.Runtime.Atn
 				(o is ATNState state && stateNumber == state.stateNumber);
         }
 
-        public virtual bool IsNonGreedyExitState
-        {
-            get
-            {
-                return false;
-            }
-        }
 
         public override string ToString()
         {
             return stateNumber.ToString();
         }
 
-        public virtual Transition[] TransitionsArray
-        {
-            get
-            {
-                return transitions.ToArray();
-            }
-        }
 
         public virtual int NumberOfTransitions
         {
@@ -105,11 +91,6 @@ namespace Antlr4.Runtime.Atn
         public virtual Antlr4.Runtime.Atn.Transition Transition(int i)
         {
             return transitions[i];
-        }
-
-        public virtual void SetTransition(int i, Antlr4.Runtime.Atn.Transition e)
-        {
-            transitions[i] = e;
         }
 
         public virtual void RemoveTransition(int index)
@@ -164,16 +145,7 @@ namespace Antlr4.Runtime.Atn
             }
             optimizedTransitions.Add(e);
         }
-
-        public virtual void SetOptimizedTransition(int i, Antlr4.Runtime.Atn.Transition e)
-        {
-            if (!IsOptimized)
-            {
-                throw new InvalidOperationException();
-            }
-            optimizedTransitions[i] = e;
-        }
-
+ 
         public virtual void RemoveOptimizedTransition(int i)
         {
             if (!IsOptimized)
