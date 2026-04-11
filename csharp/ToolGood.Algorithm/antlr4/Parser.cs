@@ -72,11 +72,9 @@ namespace Antlr4.Runtime
         private bool _buildParseTrees = true;
         private Parser.TraceListener _tracer;
         private IList<IParseTreeListener> _parseListeners;
-        protected readonly TextWriter ErrorOutput;
         public Parser(ITokenStream input, TextWriter output, TextWriter errorOutput)
         {
             TokenStream = input;
-            ErrorOutput = errorOutput;
         }
         public virtual void Reset()
         {
@@ -232,15 +230,6 @@ namespace Antlr4.Runtime
         }
         public virtual void NotifyErrorListeners(IToken offendingToken, string msg, RecognitionException e)
         {
-            int line = -1;
-            int charPositionInLine = -1;
-            if (offendingToken != null)
-            {
-                line = offendingToken.Line;
-                charPositionInLine = offendingToken.Column;
-            }
-            IAntlrErrorListener<IToken> listener = ((IParserErrorListener)ErrorListenerDispatch);
-            listener.SyntaxError(ErrorOutput, this, offendingToken, line, charPositionInLine, msg, e);
         }
         public virtual IToken Consume()
         {

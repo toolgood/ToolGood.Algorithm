@@ -20,8 +20,6 @@ namespace Antlr4.Runtime
         public const int MinCharValue = 0x0000;
         public const int MaxCharValue = 0x10FFFF;
         private ICharStream _input;
-        protected readonly TextWriter Output;
-        protected readonly TextWriter ErrorOutput;
 		private Tuple<ITokenSource, ICharStream> _tokenFactorySourcePair;
 		private ITokenFactory _factory = CommonTokenFactory.Default;
         private IToken _token;
@@ -37,8 +35,6 @@ namespace Antlr4.Runtime
         public Lexer(ICharStream input, TextWriter output, TextWriter errorOutput)
         {
             this._input = input;
-            this.Output = output;
-            this.ErrorOutput = errorOutput;
             this._tokenFactorySourcePair = Tuple.Create((ITokenSource)this, input);
         }
 
