@@ -260,25 +260,5 @@ namespace Antlr4.Runtime
             }
         }
 
-        public override string ToString()
-        {
-            string channelStr = string.Empty;
-            if (_channel > 0)
-            {
-                channelStr = ",channel=" + _channel;
-            }
-            string txt = Text;
-            if (txt != null)
-            {
-                txt = txt.Replace("\n", "\\n");
-                txt = txt.Replace("\r", "\\r");
-                txt = txt.Replace("\t", "\\t");
-            }
-            else
-            {
-                txt = "<no text>";
-            }
-            return "[@" + TokenIndex + "," + start + ":" + stop + "='" + txt + "',<" + _type + ">" + channelStr + "," + _line + ":" + Column + "]";
-        }
     }
 }

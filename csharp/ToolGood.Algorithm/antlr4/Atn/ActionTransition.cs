@@ -46,9 +46,5 @@ namespace Antlr4.Runtime.Atn
             return false;
         }
 
-        public override string ToString()
-        {
-            return "action_" + ruleIndex + ":" + actionIndex;
-        }
     }
 }

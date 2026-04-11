@@ -51,11 +51,6 @@ namespace Antlr4.Runtime.Atn
             return this == o;
         }
 
-		public override string ToString()
-		{
-			return "$";
-		}
-
 		public override string[] ToStrings(IRecognizer recognizer, int currentState)
         {
             return new string[] { "[]" };

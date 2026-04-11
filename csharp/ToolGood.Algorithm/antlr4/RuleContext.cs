@@ -187,14 +187,6 @@ namespace Antlr4.Runtime
             }
         }
 
-	/* For rule associated with this parse tree internal node, return
-	 * the outer alternative number used to match the input. Default
-	 * implementation does not compute nor store this alt num. Create
-	 * a subclass of ParserRuleContext with backing field and set
-	 * option contextSuperClass.
-	 * to set it.
-	 */
-	public virtual int getAltNumber() { return Atn.ATN.INVALID_ALT_NUMBER; }
 
 	/* Set the outer alternative number for this context node. Default
 	 * implementation does nothing to avoid backing field overhead for
@@ -227,20 +219,6 @@ namespace Antlr4.Runtime
             return visitor.VisitChildren(this);
         }
 
-        public override string ToString()
-        {
-            return ToString((IList<string>)null, (Antlr4.Runtime.RuleContext)null);
-        }
-
-        public string ToString(IRecognizer recog)
-        {
-            return ToString(recog, ParserRuleContext.EmptyContext);
-        }
-
-        public string ToString(IList<string> ruleNames)
-        {
-            return ToString(ruleNames, null);
-        }
 
         // recog null unless ParserRuleContext, in which case we use subclass toString(...)
         public virtual string ToString(IRecognizer recog, Antlr4.Runtime.RuleContext stop)

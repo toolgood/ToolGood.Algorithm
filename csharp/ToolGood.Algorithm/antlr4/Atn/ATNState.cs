@@ -51,13 +51,6 @@ namespace Antlr4.Runtime.Atn
 				(o is ATNState state && stateNumber == state.stateNumber);
         }
 
-
-        public override string ToString()
-        {
-            return stateNumber.ToString();
-        }
-
-
         public virtual int NumberOfTransitions
         {
             get

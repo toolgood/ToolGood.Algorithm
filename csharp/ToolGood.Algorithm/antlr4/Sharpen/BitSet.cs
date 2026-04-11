@@ -280,21 +280,5 @@ namespace Antlr4.Runtime.Sharpen
             return result.GetHashCode();
         }
 
-        public override string ToString()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append('{');
-
-            for (int i = NextSetBit(0); i >= 0; i = NextSetBit(i + 1))
-            {
-                if (builder.Length > 1)
-                    builder.Append(", ");
-
-                builder.Append(i);
-            }
-
-            builder.Append('}');
-            return builder.ToString();
-        }
     }
 }

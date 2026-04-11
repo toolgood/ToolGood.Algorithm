@@ -80,18 +80,5 @@ namespace Antlr4.Runtime.Atn
             return returnState == other.returnState && (parent != null && parent.Equals(other.parent));
         }
 
-		public override string ToString()
-		{
-			string up = parent != null ? parent.ToString() : "";
-			if (up.Length == 0)
-			{
-				if (returnState == EMPTY_RETURN_STATE)
-				{
-					return "$";
-				}
-				return returnState.ToString();
-			}
-			return returnState.ToString() + " " + up;
-		}
     }
 }

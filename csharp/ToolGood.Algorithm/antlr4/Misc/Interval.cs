@@ -83,12 +83,6 @@ namespace Antlr4.Runtime.Misc
             return this.a < other.a && this.b < other.a;
         }
 
-        /// <summary>Does this start at or before other? Nondisjoint</summary>
-        public bool StartsBeforeNonDisjoint(Antlr4.Runtime.Misc.Interval other)
-        {
-            return this.a <= other.a && this.b >= other.a;
-        }
-
 
         /// <summary>Does this start completely after other? Disjoint</summary>
         public bool StartsAfterDisjoint(Antlr4.Runtime.Misc.Interval other)
@@ -132,10 +126,5 @@ namespace Antlr4.Runtime.Misc
             return Antlr4.Runtime.Misc.Interval.Of(Math.Max(a, other.a), Math.Min(b, other.b));
         }
 
-
-        public override string ToString()
-        {
-            return a + ".." + b;
-        }
     }
 }

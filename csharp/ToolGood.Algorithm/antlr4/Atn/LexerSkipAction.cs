@@ -90,9 +90,5 @@ namespace Antlr4.Runtime.Atn
             return obj == this;
         }
 
-        public override string ToString()
-        {
-            return "skip";
-        }
     }
 }

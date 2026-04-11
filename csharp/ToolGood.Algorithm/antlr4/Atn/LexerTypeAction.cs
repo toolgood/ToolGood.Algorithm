@@ -112,9 +112,5 @@ namespace Antlr4.Runtime.Atn
             return type == action.type;
         }
 
-        public override string ToString()
-        {
-            return string.Format("type({0})", type);
-        }
     }
 }

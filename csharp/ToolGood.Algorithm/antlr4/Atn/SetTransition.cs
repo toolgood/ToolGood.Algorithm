@@ -47,10 +47,5 @@ namespace Antlr4.Runtime.Atn
             return set.Contains(symbol);
         }
 
-        
-        public override string ToString()
-        {
-            return set.ToString();
-        }
     }
 }

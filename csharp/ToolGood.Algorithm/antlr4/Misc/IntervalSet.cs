@@ -562,68 +562,6 @@ namespace Antlr4.Runtime.Misc
             return intervals.SequenceEqual(other.intervals);
         }
 
-        public override string ToString()
-        {
-            return ToString(false);
-        }
-
-        public virtual string ToString(bool elemAreChar)
-        {
-            StringBuilder buf = new StringBuilder();
-            if (this.intervals == null || this.intervals.Count == 0)
-            {
-                return "{}";
-            }
-            if (this.Count > 1)
-            {
-                buf.Append("{");
-            }
-
-            bool first = true;
-            foreach (Interval I in intervals)
-            {
-                if (!first)
-                    buf.Append(", ");
-
-                first = false;
-                int a = I.a;
-                int b = I.b;
-                if (a == b)
-                {
-                    if (a == TokenConstants.EOF)
-                    {
-                        buf.Append("<EOF>");
-                    }
-                    else
-                    {
-                        if (elemAreChar)
-                        {
-                            buf.Append("'").Append((char)a).Append("'");
-                        }
-                        else
-                        {
-                            buf.Append(a);
-                        }
-                    }
-                }
-                else
-                {
-                    if (elemAreChar)
-                    {
-                        buf.Append("'").Append((char)a).Append("'..'").Append((char)b).Append("'");
-                    }
-                    else
-                    {
-                        buf.Append(a).Append("..").Append(b);
-                    }
-                }
-            }
-            if (this.Count > 1)
-            {
-                buf.Append("}");
-            }
-            return buf.ToString();
-        }
 
         public virtual string ToString(IVocabulary vocabulary)
         {
@@ -707,23 +645,6 @@ namespace Antlr4.Runtime.Misc
                 }
                 return n;
             }
-        }
-
-        public virtual ArrayList<int> ToIntegerList()
-        {
-            ArrayList<int> values = new ArrayList<int>(Count);
-            int n = intervals.Count;
-            for (int i = 0; i < n; i++)
-            {
-                Interval I = intervals[i];
-                int a = I.a;
-                int b = I.b;
-                for (int v = a; v <= b; v++)
-                {
-                    values.Add(v);
-                }
-            }
-            return values;
         }
 
         public virtual IList<int> ToList()

@@ -66,9 +66,5 @@ namespace Antlr4.Runtime.Atn
         }
 
         
-        public override string ToString()
-        {
-            return "pred_" + ruleIndex + ":" + predIndex;
-        }
     }
 }

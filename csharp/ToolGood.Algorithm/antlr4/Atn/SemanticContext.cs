@@ -84,10 +84,6 @@ namespace Antlr4.Runtime.Atn
                 return ruleIndex == o.ruleIndex && predIndex == o.predIndex && isCtxDependent == o.isCtxDependent;
             }
 
-            public override string ToString()
-            {
-                return "{" + ruleIndex + ":" + predIndex + "}?";
-            }
         }
 
         internal class PrecedencePredicate : SemanticContext, IComparable<SemanticContext.PrecedencePredicate>
@@ -142,11 +138,6 @@ namespace Antlr4.Runtime.Atn
                 return precedence == other.precedence;
             }
 
-            public override string ToString()
-            {
-                // precedence >= _precedenceStack.peek()
-                return "{" + precedence + ">=prec}?";
-            }
         }
 
         internal abstract class Operator : SemanticContext
@@ -270,10 +261,6 @@ namespace Antlr4.Runtime.Atn
                 return result;
             }
 
-            public override string ToString()
-            {
-                return Utils.Join("&&", opnds);
-            }
         }
 
         internal class OR : SemanticContext.Operator
@@ -388,10 +375,6 @@ namespace Antlr4.Runtime.Atn
                 return result;
             }
 
-            public override string ToString()
-            {
-                return Utils.Join("||", opnds);
-            }
         }
 
         public static SemanticContext AndOp(SemanticContext a, SemanticContext b)

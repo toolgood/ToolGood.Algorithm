@@ -91,34 +91,6 @@ namespace Antlr4.Runtime.Atn
 			       Arrays.Equals(parents, context.parents);
 		}
 
-
-		public override String ToString()
-		{
-			if (IsEmpty)
-				return "[]";
-			StringBuilder buf = new StringBuilder();
-			buf.Append("[");
-			for (int i = 0; i < returnStates.Length; i++)
-			{
-				if (i > 0) buf.Append(", ");
-				if (returnStates[i] == EMPTY_RETURN_STATE)
-				{
-					buf.Append("$");
-					continue;
-				}
-				buf.Append(returnStates[i]);
-				if (parents[i] != null)
-				{
-					buf.Append(' ');
-					buf.Append(parents[i].ToString());
-				}
-				else {
-					buf.Append("null");
-				}
-			}
-			buf.Append("]");
-			return buf.ToString();
-		}
 	}
 
 }

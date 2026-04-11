@@ -134,8 +134,6 @@ namespace Antlr4.Runtime.Dfa
 			}
 		}
 
-		public override String ToString() { return ToString(Vocabulary.EmptyVocabulary); }
-
 
 		public String ToString(IVocabulary vocabulary)
 		{

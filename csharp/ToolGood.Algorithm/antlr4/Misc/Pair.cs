@@ -41,9 +41,5 @@ namespace Antlr4.Runtime.Misc
 			return MurmurHash.Finish(hash, 2);
 		}
 
-		public override String ToString()
-		{
-			return String.Format("({0}, {1})", a, b);
-		}
 	}
 }

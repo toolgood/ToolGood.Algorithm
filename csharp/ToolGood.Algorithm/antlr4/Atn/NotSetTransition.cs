@@ -28,9 +28,6 @@ namespace Antlr4.Runtime.Atn
             return symbol >= minVocabSymbol && symbol <= maxVocabSymbol && !base.Matches(symbol, minVocabSymbol, maxVocabSymbol);
         }
 
-        public override string ToString()
-        {
-            return '~' + base.ToString();
-        }
+ 
     }
 }

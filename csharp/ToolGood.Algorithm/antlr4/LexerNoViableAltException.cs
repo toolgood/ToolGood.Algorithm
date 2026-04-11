@@ -30,15 +30,5 @@ namespace Antlr4.Runtime
             }
         }
 
-        public override string ToString()
-        {
-            string symbol = string.Empty;
-            if (startIndex >= 0 && startIndex < ((ICharStream)InputStream).Size)
-            {
-                symbol = ((ICharStream)InputStream).GetText(Interval.Of(startIndex, startIndex));
-                symbol = Utils.EscapeWhitespace(symbol, false);
-            }
-            return string.Format(CultureInfo.CurrentCulture, "{0}('{1}')", typeof(Antlr4.Runtime.LexerNoViableAltException).Name, symbol);
-        }
     }
 }
