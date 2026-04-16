@@ -413,7 +413,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>roundUp(4.333, 2) <br>>>4.34</td>
 	</tr>
 	<tr>
-		<td>CEILING</td><td>ceiling(number, roundingBase)<br>Rounding up (in the direction in which the absolute value increases) is a multiple of the nearest rounding base.</td>
+		<td>CEILING<br>CEIL</td><td>ceiling(number, roundingBase)<br>Rounding up (in the direction in which the absolute value increases) is a multiple of the nearest rounding base.</td>
 		<td>CEILING(4.333, 0.1) <br>>>4.4</td>
 	</tr>
 	<tr>
@@ -950,7 +950,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>SMALL({1, 2, 3, 4, 2, 2, 1, 4}, 3) <br>>>2</td>
 	</tr>
 	<tr>
-		<td>LookCeiling</td><td>lookCeiling(number, array)<br>Finds the smallest value in the array that is greater than or equal to the specified value</td>
+		<td>LookCeiling<br>LookCeil</td><td>lookCeiling(number, array)<br>Finds the smallest value in the array that is greater than or equal to the specified value</td>
 		<td>LookCeiling(2.5, [1, 2, 3, 4, 5]) <br>>>3</td>
 	</tr>
 	<tr>
