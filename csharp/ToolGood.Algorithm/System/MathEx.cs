@@ -10,12 +10,12 @@
 		/// <summary>
 		///     Represents PI.
 		/// </summary>
-		public const decimal Epsilon = 0.0000000000000000001M;
+		private const decimal Epsilon = 0.0000000000000000001M;
 
 		/// <summary>
 		///     Represents one as decimal.
 		/// </summary>
-		public const decimal One = 1.0M;
+		private const decimal One = 1.0M;
 
 		/// <summary>
 		///     Represents PI.
@@ -25,7 +25,7 @@
 		/// <summary>
 		///     Represents a zero as decimal.
 		/// </summary>
-		public const decimal Zero = 0.0M;
+		private const decimal Zero = 0.0M;
 
 		/// <summary>
 		///     Represents 1.0/E.

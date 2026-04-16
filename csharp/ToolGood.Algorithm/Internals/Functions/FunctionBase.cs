@@ -26,15 +26,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		public abstract Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter = null);
 
-	#region GetResultType
+		#region GetResultType GetParameterTypes
 		/// <summary>
 		/// 获取结果类型
 		/// </summary>
 		/// <returns></returns>
 		public abstract OperandType GetResultType();
-		#endregion
-
-		#region GetParameterTypes
+ 
 		/// <summary>
 		/// 获取参数类型列表
 		/// </summary>

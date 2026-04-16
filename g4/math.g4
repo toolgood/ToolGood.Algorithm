@@ -1,4 +1,7 @@
 grammar math;
+options {
+   contextSuperClass = MyRuleContext  ;
+}
 
 prog: expr EOF;
 
