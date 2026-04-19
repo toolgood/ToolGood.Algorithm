@@ -23,19 +23,19 @@ namespace ToolGood.Algorithm.math
 			//base.NotifyErrorListeners(offendingToken, msg, e);
 		}
 	}
-	partial class mathLexer
-	{
-		private AntlrErrorData ErrorData;
-		public void AddErrorData(AntlrErrorData data)
-		{
-			ErrorData = data;
-		}
-		public override void NotifyListeners(LexerNoViableAltException e)
-		{
-			ErrorData.IsError = true;
-			ErrorData.ErrorMsg = "Lexer is err";
-		}
-	}
+	//partial class mathLexer
+	//{
+	//	private AntlrErrorData ErrorData;
+	//	public void AddErrorData(AntlrErrorData data)
+	//	{
+	//		ErrorData = data;
+	//	}
+	//	public override void NotifyListeners(LexerNoViableAltException e)
+	//	{
+	//		ErrorData.IsError = true;
+	//		ErrorData.ErrorMsg = "Lexer is err";
+	//	}
+	//}
 	abstract class MyRuleContext : ParserRuleContext
 	{
 		public MyRuleContext() : base() { }
