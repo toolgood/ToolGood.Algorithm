@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Antlr4Helper.CSharpHelper.Regexs
@@ -26,14 +27,28 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 
 		public ushort[] BuildIndex()
 		{
+			for(int i = 0; i < table.Length; i++) {
+				var sp = table[i].Split('|',StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
+				table[i] = string.Join("|", sp);
+			}
+
+			HashSet<string> texts = new HashSet<string>();
+			foreach(string s in table) {
+				texts.Add(s);
+			}
+			var list = texts.OrderByDescending(q => q.Split('|').Length).ThenBy(q => q).ToList();
 			var tableIndex = new ushort[table.Length];
 			Dictionary<string, ushort> dict = new Dictionary<string, ushort>();
+			for(int i = 0; i < list.Count; i++) {
+				dict[list[i]] = (ushort)(i + 1);
+			}
+
 			for(int i = 0; i < table.Length; i++) {
 				var txt = table[i];
 				if(dict.TryGetValue(txt, out ushort key)) {
 					tableIndex[i] = key;
 				} else {
-					ushort newKey = (ushort)dict.Count;
+					ushort newKey = (ushort)(dict.Count + 1);
 					dict[txt] = newKey;
 					tableIndex[i] = newKey;
 				}
@@ -45,7 +60,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 		public void Visit(CharNode node)
 		{
 			layer++;
-			table[node.Value] += $"[{index},{layer}]";
+			table[node.Value] += $"{layer:D2},{index:D3}|";
 		}
 
 		public void Visit(CharClassNode node)
@@ -54,7 +69,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 			if(node.Negated == false) {
 				foreach(var (min, max) in node.Ranges) {
 					for(int i = min; i <= max; i++) {
-						table[i] += $"[{index},{layer}]";
+						table[i] += $"{layer:D2},{index:D3}|";
 					}
 				}
 			} else {
@@ -66,7 +81,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 				}
 				for(int i = 0; i <= char.MaxValue; i++) {
 					if(ranges.Contains(i) == false) {
-						table[i] += $"[{index},{layer}]";
+						table[i] += $"{layer:D2},{index:D3}|";
 					}
 				}
 			}

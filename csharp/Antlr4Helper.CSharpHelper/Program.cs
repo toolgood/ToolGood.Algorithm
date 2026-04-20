@@ -18,14 +18,6 @@ namespace Antlr4Helper.CSharpHelper
 		static void Main(string[] args)
 		{
 			try {
-				RegexParser regexParser2 = new RegexParser();
-				var t = regexParser2.Parse(@"'([^'\\]|\\.)*'|""([^""\\]|\\.)*""|`([^`\\]|\\.)*`");
-			} catch(Exception ex) {
-				Console.WriteLine($"解析出错: {ex.Message}");
-				return;
-			}
-
-			try {
 				var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\math.g4");
 				if(File.Exists(filePath)) {
 					var lrs = LoadLexerRegexs(filePath);
@@ -43,15 +35,18 @@ namespace Antlr4Helper.CSharpHelper
 			}
 			var texts = File.ReadAllLines("math_regex.txt");
 			Dictionary<string, RegexNode> dictRegexNode = new Dictionary<string, RegexNode>();
+			CharacterTable characterTable = new CharacterTable();
 			foreach(var item in texts) {
 				var index = item.IndexOf('=');
 				var sp1 = item.Substring(0, index);
 				var sp2 = item.Substring(index + 1);
 				RegexParser regexParser = new RegexParser();
-				dictRegexNode[sp1] = regexParser.Parse(sp2);
+				var reg = regexParser.Parse(sp2);
+				dictRegexNode[sp1] = reg;
+				characterTable.SetIndex(dictRegexNode.Count, reg);
 			}
-
-
+			var dict= characterTable.BuildIndex();
+			var max = dict.Max();
 
 
 
