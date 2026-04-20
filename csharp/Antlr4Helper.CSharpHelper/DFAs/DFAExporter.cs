@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 
 namespace Antlr4Helper.CSharpHelper.DFAs
@@ -25,6 +26,32 @@ namespace Antlr4Helper.CSharpHelper.DFAs
                         kvp => kvp.Value.Id)
                 }).ToList(),
                 Alphabet = dfa.Alphabet.OrderBy(c => c).Select(c => (int)c).ToList(),
+                PatternNames = patternNames
+            };
+
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            return JsonSerializer.Serialize(data, options);
+        }
+
+        public string ExportOptimizedToJson(OptimizedDFA optimizedDfa, List<string> patternNames = null)
+        {
+            var dfa = optimizedDfa.OriginalDFA;
+            var partitioner = optimizedDfa.CharPartitioner;
+
+            var data = new OptimizedDFAData
+            {
+                StateCount = dfa.States.Count,
+                ClassCount = partitioner.ClassCount,
+                PatternCount = dfa.PatternCount,
+                StartState = dfa.StartState.Id,
+                CharToClassMap = partitioner.BuildCharToClassArray(),
+                TransitionTable = optimizedDfa.TransitionTable,
+                AcceptStates = optimizedDfa.AcceptStates,
                 PatternNames = patternNames
             };
 
@@ -216,6 +243,103 @@ namespace Antlr4Helper.CSharpHelper.DFAs
             if (c == '\t') return "\\t";
             return $"x{((int)c):X2}";
         }
+
+        public string ExportOptimizedCode(OptimizedDFA optimizedDfa, string className, string namespaceName)
+        {
+            return optimizedDfa.GenerateCode(className, namespaceName);
+        }
+
+        public string ExportOptimizedTable(OptimizedDFA optimizedDfa)
+        {
+            var sb = new StringBuilder();
+            var partitioner = optimizedDfa.CharPartitioner;
+
+            sb.AppendLine("优化后的DFA状态转换表:");
+            sb.AppendLine("=====================");
+            sb.AppendLine();
+            sb.AppendLine($"状态数: {optimizedDfa.OriginalDFA.States.Count}");
+            sb.AppendLine($"字符等价类数: {partitioner.ClassCount}");
+            sb.AppendLine($"原始字母表大小: {optimizedDfa.OriginalDFA.Alphabet.Count}");
+            sb.AppendLine();
+
+            sb.AppendLine(partitioner.GenerateClassInfo());
+            sb.AppendLine();
+
+            sb.AppendLine("状态转换表:");
+            sb.Append($"{"状态",-6}");
+            for (int i = 0; i < Math.Min(partitioner.ClassCount, 15); i++)
+            {
+                sb.Append($"{"C" + i,-6}");
+            }
+            if (partitioner.ClassCount > 15)
+                sb.Append("...");
+            sb.AppendLine();
+            sb.AppendLine(new string('-', 6 + Math.Min(partitioner.ClassCount, 16) * 6));
+
+            foreach (var state in optimizedDfa.OriginalDFA.States.OrderBy(s => s.Id))
+            {
+                var acceptMark = state.IsAccept ? "*" : " ";
+                sb.Append($"{acceptMark}{state.Id,-5}");
+
+                var row = optimizedDfa.TransitionTable[state.Id];
+                for (int i = 0; i < Math.Min(row.Length, 15); i++)
+                {
+                    if (row[i] >= 0)
+                        sb.Append($"{row[i],-6}");
+                    else
+                        sb.Append($"{"-",-6}");
+                }
+                if (row.Length > 15)
+                    sb.Append("...");
+                sb.AppendLine();
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("* 表示接受状态");
+            sb.AppendLine("- 表示无转换");
+            sb.AppendLine("C 表示字符等价类");
+
+            return sb.ToString();
+        }
+
+        public string ExportMemoryComparison(DFA dfa)
+        {
+            var optimizedDfa = new OptimizedDFA(dfa);
+            var partitioner = optimizedDfa.CharPartitioner;
+
+            var sb = new StringBuilder();
+            sb.AppendLine("内存使用对比:");
+            sb.AppendLine("=============");
+            sb.AppendLine();
+
+            int originalStates = dfa.States.Count;
+            int originalAlphabet = 256;
+            long originalMemory = (long)originalStates * originalAlphabet * sizeof(int);
+
+            int optimizedStates = originalStates;
+            int optimizedClasses = partitioner.ClassCount;
+            long optimizedMemory = (long)optimizedStates * optimizedClasses * sizeof(int) + 256 * sizeof(int);
+
+            sb.AppendLine($"原始DFA:");
+            sb.AppendLine($"  状态数: {originalStates}");
+            sb.AppendLine($"  字母表大小: {originalAlphabet}");
+            sb.AppendLine($"  转换表大小: {originalStates} × {originalAlphabet} = {(long)originalStates * originalAlphabet} 个int");
+            sb.AppendLine($"  预估内存: {originalMemory:N0} 字节 ({originalMemory / 1024.0:F2} KB)");
+            sb.AppendLine();
+
+            sb.AppendLine($"优化后DFA:");
+            sb.AppendLine($"  状态数: {optimizedStates}");
+            sb.AppendLine($"  字符等价类数: {optimizedClasses}");
+            sb.AppendLine($"  转换表大小: {optimizedStates} × {optimizedClasses} = {(long)optimizedStates * optimizedClasses} 个int");
+            sb.AppendLine($"  字符映射表: 256 个int");
+            sb.AppendLine($"  预估内存: {optimizedMemory:N0} 字节 ({optimizedMemory / 1024.0:F2} KB)");
+            sb.AppendLine();
+
+            double savings = 100.0 * (originalMemory - optimizedMemory) / originalMemory;
+            sb.AppendLine($"内存节省: {savings:F1}%");
+
+            return sb.ToString();
+        }
     }
 
     public sealed class DFAData
@@ -235,5 +359,17 @@ namespace Antlr4Helper.CSharpHelper.DFAs
         public bool IsAccept { get; set; }
         public int AcceptId { get; set; }
         public Dictionary<string, int> Transitions { get; set; }
+    }
+
+    public sealed class OptimizedDFAData
+    {
+        public int StateCount { get; set; }
+        public int ClassCount { get; set; }
+        public int PatternCount { get; set; }
+        public int StartState { get; set; }
+        public int[] CharToClassMap { get; set; }
+        public int[][] TransitionTable { get; set; }
+        public int[] AcceptStates { get; set; }
+        public List<string> PatternNames { get; set; }
     }
 }

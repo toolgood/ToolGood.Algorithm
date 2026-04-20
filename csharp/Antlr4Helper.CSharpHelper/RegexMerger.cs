@@ -1,4 +1,4 @@
-﻿using Antlr4Helper.CSharpHelper.DFAs;
+using Antlr4Helper.CSharpHelper.DFAs;
 using Antlr4Helper.CSharpHelper.Regexs;
 using System;
 using System.Collections.Generic;
@@ -48,6 +48,12 @@ namespace Antlr4Helper.CSharpHelper.RegexEngine
             return minimizedDfa;
         }
 
+        public OptimizedDFA MergePatternsOptimized(List<string> patterns)
+        {
+            var dfa = MergePatterns(patterns);
+            return new OptimizedDFA(dfa);
+        }
+
         public DFA BuildSinglePattern(string pattern)
         {
             if (string.IsNullOrEmpty(pattern))
@@ -59,6 +65,12 @@ namespace Antlr4Helper.CSharpHelper.RegexEngine
             var minimizedDfa = _minimizer.Minimize(dfa);
 
             return minimizedDfa;
+        }
+
+        public OptimizedDFA BuildSinglePatternOptimized(string pattern)
+        {
+            var dfa = BuildSinglePattern(pattern);
+            return new OptimizedDFA(dfa);
         }
 
         public List<RegexParseResult> ValidatePatterns(List<string> patterns)

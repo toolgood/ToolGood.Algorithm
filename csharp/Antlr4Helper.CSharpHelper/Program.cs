@@ -17,17 +17,22 @@ namespace Antlr4Helper.CSharpHelper
 	{
 		static void Main(string[] args)
 		{
-			var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\math.g4");
-			var lrs = LoadLexerRegexs(filePath);
-			StringBuilder sb=new StringBuilder();
-			foreach(var item in lrs) {
-				sb.Append(item.Name);
-				sb.Append('=');
-				sb.Append(item.Regex);
-				sb.Append('\n');
+			try {
+				var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\math.g4");
+				if(File.Exists(filePath)) {
+					var lrs = LoadLexerRegexs(filePath);
+					StringBuilder sb=new StringBuilder();
+					foreach(var item in lrs) {
+						sb.Append(item.Name);
+						sb.Append('=');
+						sb.Append(item.Regex);
+						sb.Append('\n');
+					}
+					File.WriteAllText(@"math_regex_temp.txt", sb.ToString());
+				}
+			} catch(Exception ex) {
+				Console.WriteLine($"加载g4文件失败: {ex.Message}");
 			}
-			File.WriteAllText(@"math_regex_temp.txt", sb.ToString());
-
 
 			var merger = new RegexMerger();
 			var patterns = new List<string> { "hell", "[a-z]+", @"\d+", "\"[^\"]*\"" };
@@ -96,25 +101,67 @@ namespace Antlr4Helper.CSharpHelper
 				}
 				Console.WriteLine();
 
-				//var generator = new DFACodeGenerator();
-				//var code = generator.GenerateCode(dfa, "GeneratedLexer", "Generated");
-
-				//var outputPath = Path.Combine(
-				//	AppDomain.CurrentDomain.BaseDirectory,
-				//	"..", "..", "..",
-				//	"GeneratedLexer.cs");
-
-				//Directory.CreateDirectory(Path.GetDirectoryName(outputPath));
-				//File.WriteAllText(outputPath, code);
-
-				//Console.WriteLine($"DFA代码已生成: {Path.GetFullPath(outputPath)}");
-				//Console.WriteLine();
-
 				GenerateDetailedReport(patterns, dfa);
+
+				DemoCharClassOptimization(dfa, patterns);
 			} catch(RegexParseException ex) {
 				Console.WriteLine($"解析错误: {ex.Message}");
 			} catch(Exception ex) {
 				Console.WriteLine($"错误: {ex.Message}");
+			}
+		}
+
+		static void DemoCharClassOptimization(DFA dfa, List<string> patterns)
+		{
+			Console.WriteLine();
+			Console.WriteLine("=== 字符等价类优化 ===");
+			Console.WriteLine();
+
+			var optimizedDfa = new OptimizedDFA(dfa);
+			var partitioner = optimizedDfa.CharPartitioner;
+
+			Console.WriteLine($"原始字母表大小: 256 (所有ASCII字符)");
+			Console.WriteLine($"优化后字符等价类数量: {partitioner.ClassCount}");
+			Console.WriteLine();
+
+			var exporter = new DFAExporter();
+			Console.WriteLine(exporter.ExportMemoryComparison(dfa));
+			Console.WriteLine();
+
+			Console.WriteLine("字符等价类详情:");
+			Console.WriteLine(partitioner.GenerateClassInfo());
+
+			Console.WriteLine();
+			Console.WriteLine("优化后的转换表:");
+			Console.WriteLine(exporter.ExportOptimizedTable(optimizedDfa));
+
+			var testInputs = new List<string>
+			{
+				"identifier",
+				"12345",
+				"\"test\""
+			};
+
+			Console.WriteLine("优化后DFA匹配测试:");
+			foreach(var input in testInputs) {
+				var result = optimizedDfa.Match(input);
+				if(result.Success) {
+					Console.WriteLine($"  \"{input}\" -> 匹配模式 {result.PatternId}, 长度 {result.EndIndex}");
+				} else {
+					Console.WriteLine($"  \"{input}\" -> 无匹配");
+				}
+			}
+
+			Console.WriteLine();
+			Console.WriteLine("生成优化后的代码示例:");
+			Console.WriteLine(new string('-', 60));
+			var code = exporter.ExportOptimizedCode(optimizedDfa, "OptimizedLexer", "Generated");
+			var lines = code.Split('\n');
+			for(int i = 0; i < Math.Min(50, lines.Length); i++) {
+				Console.WriteLine(lines[i]);
+			}
+			if(lines.Length > 50) {
+				Console.WriteLine($"... (共 {lines.Length} 行)");
 			}
 		}
 
