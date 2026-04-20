@@ -21,7 +21,7 @@ namespace Antlr4Helper.CSharpHelper
 				var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\math.g4");
 				if(File.Exists(filePath)) {
 					var lrs = LoadLexerRegexs(filePath);
-					StringBuilder sb=new StringBuilder();
+					StringBuilder sb = new StringBuilder();
 					foreach(var item in lrs) {
 						sb.Append(item.Name);
 						sb.Append('=');
@@ -33,6 +33,21 @@ namespace Antlr4Helper.CSharpHelper
 			} catch(Exception ex) {
 				Console.WriteLine($"加载g4文件失败: {ex.Message}");
 			}
+			var texts = File.ReadAllLines("math_regex.txt");
+			Dictionary<string, RegexNode> dictRegexNode = new Dictionary<string, RegexNode>();
+			foreach(var item in texts) {
+				var index = item.IndexOf('=');
+				var sp1 = item.Substring(0, index);
+				var sp2 = item.Substring(index + 1);
+				RegexParser regexParser = new RegexParser();
+				dictRegexNode[sp1] = regexParser.Parse(sp2);
+			}
+
+
+
+
+
+
 
 			var merger = new RegexMerger();
 			var patterns = new List<string> { "hell", "[a-z]+", @"\d+", "\"[^\"]*\"" };
