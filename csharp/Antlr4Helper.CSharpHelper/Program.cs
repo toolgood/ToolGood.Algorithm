@@ -18,6 +18,14 @@ namespace Antlr4Helper.CSharpHelper
 		static void Main(string[] args)
 		{
 			try {
+				RegexParser regexParser2 = new RegexParser();
+				var t = regexParser2.Parse(@"'([^'\\]|\\.)*'|""([^""\\]|\\.)*""|`([^`\\]|\\.)*`");
+			} catch(Exception ex) {
+				Console.WriteLine($"解析出错: {ex.Message}");
+				return;
+			}
+
+			try {
 				var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\math.g4");
 				if(File.Exists(filePath)) {
 					var lrs = LoadLexerRegexs(filePath);
@@ -50,7 +58,7 @@ namespace Antlr4Helper.CSharpHelper
 
 
 			var merger = new RegexMerger();
-			var patterns = new List<string> { "hell", "[a-z]+", @"\d+", "\"[^\"]*\"" };
+			var patterns = new List<string> { "hell", "[a-z]+", @"\d+", "\"[^\"]*\"", @"'([^'\\]|\\.)*'|""([^""\\]|\\.)*""|`([^`\\]|\\.)*`" };
 			var dfa = merger.MergePatterns(patterns);
 
 			var result = dfa.Match("hello");  // 匹配模式 0

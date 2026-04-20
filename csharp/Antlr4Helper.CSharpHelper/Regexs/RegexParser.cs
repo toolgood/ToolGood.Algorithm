@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Antlr4Helper.CSharpHelper.Regexs
@@ -282,7 +282,6 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 
                 if (CurrentToken.Type == RegexTokenType.EscapeChar)
                 {
-                    Advance();
                     startChar = RegexLexer.GetEscapedChar(CurrentToken.Value);
                     Advance();
                 }
@@ -305,7 +304,6 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 
                     if (CurrentToken.Type == RegexTokenType.EscapeChar)
                     {
-                        Advance();
                         endChar = RegexLexer.GetEscapedChar(CurrentToken.Value);
                         Advance();
                     }
@@ -348,6 +346,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
                 case RegexTokenType.Caret:
                 case RegexTokenType.Dollar:
                 case RegexTokenType.Comma:
+                case RegexTokenType.LBracket:
                     c = CurrentToken.Value;
                     break;
                 case RegexTokenType.Dash:
