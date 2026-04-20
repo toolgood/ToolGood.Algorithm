@@ -1,8 +1,9 @@
+﻿using Antlr4Helper.CSharpHelper.Regexs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Antlr4Helper.CSharpHelper.RegexEngine
+namespace Antlr4Helper.CSharpHelper.DFAs
 {
     public sealed class NFAState
     {

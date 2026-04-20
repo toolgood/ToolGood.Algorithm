@@ -1,13 +1,15 @@
 ﻿using Antlr4.Runtime;
 using Antlr4Helper.CSharpHelper.ANTLRv4;
+using Antlr4Helper.CSharpHelper.DFAs;
 using Antlr4Helper.CSharpHelper.RegexEngine;
+using Antlr4Helper.CSharpHelper.Regexs;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using RegexParseException = Antlr4Helper.CSharpHelper.RegexEngine.RegexParseException;
+using RegexParseException = Antlr4Helper.CSharpHelper.Regexs.RegexParseException;
 
 namespace Antlr4Helper.CSharpHelper
 {
@@ -94,19 +96,19 @@ namespace Antlr4Helper.CSharpHelper
 				}
 				Console.WriteLine();
 
-				var generator = new DFACodeGenerator();
-				var code = generator.GenerateCode(dfa, "GeneratedLexer", "Generated");
+				//var generator = new DFACodeGenerator();
+				//var code = generator.GenerateCode(dfa, "GeneratedLexer", "Generated");
 
-				var outputPath = Path.Combine(
-					AppDomain.CurrentDomain.BaseDirectory,
-					"..", "..", "..",
-					"GeneratedLexer.cs");
+				//var outputPath = Path.Combine(
+				//	AppDomain.CurrentDomain.BaseDirectory,
+				//	"..", "..", "..",
+				//	"GeneratedLexer.cs");
 
-				Directory.CreateDirectory(Path.GetDirectoryName(outputPath));
-				File.WriteAllText(outputPath, code);
+				//Directory.CreateDirectory(Path.GetDirectoryName(outputPath));
+				//File.WriteAllText(outputPath, code);
 
-				Console.WriteLine($"DFA代码已生成: {Path.GetFullPath(outputPath)}");
-				Console.WriteLine();
+				//Console.WriteLine($"DFA代码已生成: {Path.GetFullPath(outputPath)}");
+				//Console.WriteLine();
 
 				GenerateDetailedReport(patterns, dfa);
 			} catch(RegexParseException ex) {

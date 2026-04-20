@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Antlr4Helper.CSharpHelper.RegexEngine
+namespace Antlr4Helper.CSharpHelper.Regexs
 {
     public abstract class RegexNode
     {

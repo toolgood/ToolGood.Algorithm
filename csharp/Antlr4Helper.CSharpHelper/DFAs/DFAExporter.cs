@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 
-namespace Antlr4Helper.CSharpHelper.RegexEngine
+namespace Antlr4Helper.CSharpHelper.DFAs
 {
     public sealed class DFAExporter
     {
