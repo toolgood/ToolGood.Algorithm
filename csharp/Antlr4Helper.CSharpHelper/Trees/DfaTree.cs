@@ -11,9 +11,10 @@ namespace Antlr4Helper.CSharpHelper.Trees
 	public class DfaTree
 	{
 		private byte[] _dict;
-		private byte[] _key;
 		private ushort[] _next;
-		private byte[] _end; //0,无匹配，0xFF 跳过
+		private int[] _next2;
+		private byte[] _end; //0,无匹配，0x1 跳过
+
 
 		public DfaTree() { }
 
@@ -24,22 +25,18 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			var startIdx = 0;
 			for(int i = 0; i < text.Length; i++) {
 				var t = _dict[text[i]];
-				var next = _next[p] + t;
-				bool find = _key[next] == t;
-				if(find == false) {
+				var next = _next[_next2[p] + t];
+				if(next == 0) {
 					var r = _end[p];
 					if(r == 0) {
-						startIdx = i;
-					} else if(r == 0xFF) {
-						startIdx = i;
-					} else {
+						// 添加未确认token
+						break;
+					} else if(r != 0xFF) {
 						root.Add(text.Substring(startIdx, i - startIdx));
-						startIdx = i;
 					}
-					p = 0;
-					next = t;
-					find = _key[next] == t;
-					if(find == false) {
+					startIdx = i;
+					next = _next[t];
+					if(next == 0) {
 						// 出错了
 						break;
 					}
@@ -48,15 +45,12 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			}
 			var r2 = _end[p];
 			if(r2 == 0) {
-
-			} else if(r2 == 0xFF) {
-
-			} else {
+				// 添加未确认token
+			} else if(r2 != 0xFF) {
 				root.Add(text.Substring(startIdx, text.Length - startIdx));
 			}
 			return root;
 		}
-
 
 
 		public void Save()
@@ -65,20 +59,6 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			int index = 0;
 			stringBuilder.Append("private byte[] _dict2 = new byte[] {");
 			List<byte> list = compress(_dict);
-			foreach(var item in list) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X2"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 32 == 0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
-
-			index = 0;
-			stringBuilder.Append("private byte[] _key2 = new byte[] {");
-			list = compress(_key);
 			foreach(var item in list) {
 				stringBuilder.Append("0x");
 				stringBuilder.Append(item.ToString("X2"));
@@ -108,12 +88,15 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			index = 0;
 			stringBuilder.Append("private ushort[] _next2 = new ushort[] {");
 			var list2 = compress(_next);
-			foreach(var item in list2) {
+			for(int i = 0; i < list2.Count(); i += 2) {
 				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X4"));
+				stringBuilder.Append(list2[i].ToString("X2"));
+				stringBuilder.Append(",");
+				stringBuilder.Append("0x");
+				stringBuilder.Append(list2[i + 1].ToString("X4"));
 				stringBuilder.Append(",");
 				index++;
-				if(index % 32 == 0) {
+				if(index % 16 == 0) {
 					stringBuilder.Append("\r\n");
 				}
 			}
@@ -185,46 +168,39 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		internal void build(List<TrieNodeEx> nodes)
 		{
 			var length = (int)_dict.Max(q => q);
-			int[] has = new int[0x00FFFFFF];
-			bool[] seats = new bool[0x00FFFFFF];
-			bool[] seats2 = new bool[0x00FFFFFF];
-			Int32 start = 1;
-			Int32 oneStart = 1;
-			for(int i = 0; i < nodes.Count; i++) {
-				var node = nodes[i];
-				node.Rank(ref oneStart, ref start, seats, seats2, has);
-			}
-			Int32 maxCount = has.Length - 1;
-			while(has[maxCount] == 0) { maxCount--; }
-			length = maxCount + length + 1;
+			var nodes1 = nodes.Where(q => q.m_values != null).ToList();
+			var nodes2 = nodes.Where(q => q.m_values == null).ToList();
+			var tatol = length * (nodes1.Count() + 1) + 1;
 
-			_key = new byte[length];
-			_next = new ushort[length];
-			_end = new byte[length];
-			for(Int32 i = 0; i < length; i++) {
-				var item = nodes[has[i]];
-				if(item == null) continue;
-				//_key[i] = (byte)item.Char;
-				_next[i] = (ushort)item.Next;
-				if(item.End) {
-					_end[i] = (byte)item.Results[0];
-					if(item.Next == 0) { //没有子节点了,但是有结果, 需要特殊标记一下地址
-						_next[i] = (ushort)(maxCount + 1);
-					}
-				}
+			for(int i = 0; i < nodes1.Count(); i++) {
+				nodes1[i].Next = (int)i;
+			}
+			var next2 = nodes1.Count();
+			foreach(var item in nodes2) {
+				item.Next = next2;
+			}
+			nodes1.AddRange(nodes2);
+			for(int i = 0; i < nodes1.Count; i++) {
+				nodes1[i].Index = i;
 			}
 
-			for(int i = 0; i < nodes.Count; i++) {
-				var node = nodes[i];
-				var p = node.Next;
+			_next = new ushort[tatol];
+			_next2 = new int[nodes.Count];
+			_end = new byte[nodes.Count];
+
+			for(int i = 0; i < nodes1.Count(); i++) {
+				var node = nodes1[i];
+				_next2[i] = node.Next * length;
 				if(node.m_values != null) {
-					foreach(var (key, val) in node.m_values) {
-						_key[p + key] = (byte)key;
+					foreach(var (k, v) in node.m_values) {
+						var p = _next2[i] + k;
+						_next[p] = (ushort)v.Index;
 					}
 				}
+				if(node.End) {
+					_end[i] = (byte)node.Results[0];
+				}
 			}
-
-
 		}
 
 

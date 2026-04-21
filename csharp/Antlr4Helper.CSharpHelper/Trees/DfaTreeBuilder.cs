@@ -27,8 +27,8 @@ namespace Antlr4Helper.CSharpHelper.Trees
 					node.Add(key, nodes[value.Id]);
 					//count++;
 				}
-				if(state.AcceptId >= skipMinIndex) {
-					node.SetResults(0xFFFF);
+				if(state.AcceptId > skipMinIndex) {
+					node.SetResults(1);
 				} else {
 					node.SetResults(state.AcceptId);
 				}

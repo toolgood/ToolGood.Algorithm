@@ -1,6 +1,5 @@
 ﻿using Antlr4.Runtime;
 using Antlr4Helper.CSharpHelper.ANTLRv4;
-using Antlr4Helper.CSharpHelper.DFAs;
 using Antlr4Helper.CSharpHelper.RegexEngine;
 using Antlr4Helper.CSharpHelper.Regexs;
 using Antlr4Helper.CSharpHelper.Trees;
@@ -10,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using RegexParseException = Antlr4Helper.CSharpHelper.Regexs.RegexParseException;
 
 namespace Antlr4Helper.CSharpHelper
 {
