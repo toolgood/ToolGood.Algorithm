@@ -17,6 +17,39 @@ namespace Antlr4Helper.CSharpHelper
 	{
 		static void Main(string[] args)
 		{
+			Build_File_math_regex();
+
+			var texts = File.ReadAllLines("math_regex.txt");
+			Dictionary<string, RegexNode> dictRegexNode = new Dictionary<string, RegexNode>();
+			var patterns = new List<string>(texts.Length);
+
+			CharacterTable characterTable = new CharacterTable();
+			foreach(var item in texts) {
+				var index = item.IndexOf('=');
+				var sp1 = item.Substring(0, index);
+				var sp2 = item.Substring(index + 1);
+				patterns.Add(sp2);
+				RegexParser regexParser = new RegexParser();
+				var reg = regexParser.Parse(sp2);
+				dictRegexNode[sp1] = reg;
+				characterTable.SetIndex(dictRegexNode.Count, reg);
+			}
+			var dict= characterTable.BuildIndex();
+			var max = dict.Max();
+
+			var merger = new RegexMerger();
+			var dfa = merger.MergePatterns(patterns, dict);
+
+			var result1 = dfa.Match("(");
+
+			var result2 = dfa.Match("hello");  // 匹配模式 0
+			var result3 = dfa.Match("123");   // 匹配模式 2
+
+	 
+		}
+
+		static void Build_File_math_regex()
+		{
 			try {
 				var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\math.g4");
 				if(File.Exists(filePath)) {
@@ -33,327 +66,8 @@ namespace Antlr4Helper.CSharpHelper
 			} catch(Exception ex) {
 				Console.WriteLine($"加载g4文件失败: {ex.Message}");
 			}
-			var texts = File.ReadAllLines("math_regex.txt");
-			Dictionary<string, RegexNode> dictRegexNode = new Dictionary<string, RegexNode>();
-			CharacterTable characterTable = new CharacterTable();
-			foreach(var item in texts) {
-				var index = item.IndexOf('=');
-				var sp1 = item.Substring(0, index);
-				var sp2 = item.Substring(index + 1);
-				RegexParser regexParser = new RegexParser();
-				var reg = regexParser.Parse(sp2);
-				dictRegexNode[sp1] = reg;
-				characterTable.SetIndex(dictRegexNode.Count, reg);
-			}
-			var dict= characterTable.BuildIndex();
-			var max = dict.Max();
-
-
-
-
-
-			var merger = new RegexMerger();
-			var patterns = new List<string> { "hell", "[a-z]+", @"\d+", "\"[^\"]*\"", @"'([^'\\]|\\.)*'|""([^""\\]|\\.)*""|`([^`\\]|\\.)*`" };
-			var dfa = merger.MergePatterns(patterns);
-
-			var result = dfa.Match("hello");  // 匹配模式 0
-			var result2 = dfa.Match("123");   // 匹配模式 2
-
-			Console.WriteLine("=== 正则表达式解析系统 ===");
-			Console.WriteLine();
-
-			RunDemo();
-
-			Console.WriteLine();
-			Console.WriteLine("按任意键退出...");
-			Console.ReadKey();
 		}
 
-		static void RunDemo()
-		{
-			var patterns = new List<string>
-			{
-				@"[a-zA-Z_][a-zA-Z0-9_]*",
-				@"\d+",
-				@"""[^""]*""",
-				@"'[^']*'",
-				@"//.*",
-				@"/\*[\s\S]*?\*/"
-			};
-
-			Console.WriteLine("输入的正则表达式模式:");
-			for(int i = 0; i < patterns.Count; i++) {
-				Console.WriteLine($"  [{i}] {patterns[i]}");
-			}
-			Console.WriteLine();
-
-			try {
-				var merger = new RegexMerger();
-				Console.WriteLine("正在解析和合并正则表达式...");
-
-				var dfa = merger.MergePatterns(patterns);
-
-				Console.WriteLine($"DFA状态数: {dfa.States.Count}");
-				Console.WriteLine($"字母表大小: {dfa.Alphabet.Count}");
-				Console.WriteLine();
-
-				var testInputs = new List<string>
-				{
-					"identifier",
-					"12345",
-					"\"string literal\"",
-					"'c'",
-					"// comment",
-					"/* multi\nline\ncomment */",
-					"invalid@symbol"
-				};
-
-				Console.WriteLine("测试匹配:");
-				foreach(var input in testInputs) {
-					var result = dfa.Match(input);
-					if(result.Success) {
-						Console.WriteLine($"  \"{input}\" -> 匹配模式 {result.PatternId}, 长度 {result.EndIndex}");
-					} else {
-						Console.WriteLine($"  \"{input}\" -> 无匹配");
-					}
-				}
-				Console.WriteLine();
-
-				GenerateDetailedReport(patterns, dfa);
-
-				DemoCharClassOptimization(dfa, patterns);
-			} catch(RegexParseException ex) {
-				Console.WriteLine($"解析错误: {ex.Message}");
-			} catch(Exception ex) {
-				Console.WriteLine($"错误: {ex.Message}");
-			}
-		}
-
-		static void DemoCharClassOptimization(DFA dfa, List<string> patterns)
-		{
-			Console.WriteLine();
-			Console.WriteLine("=== 字符等价类优化 ===");
-			Console.WriteLine();
-
-			var optimizedDfa = new OptimizedDFA(dfa);
-			var partitioner = optimizedDfa.CharPartitioner;
-
-			Console.WriteLine($"原始字母表大小: 256 (所有ASCII字符)");
-			Console.WriteLine($"优化后字符等价类数量: {partitioner.ClassCount}");
-			Console.WriteLine();
-
-			var exporter = new DFAExporter();
-			Console.WriteLine(exporter.ExportMemoryComparison(dfa));
-			Console.WriteLine();
-
-			Console.WriteLine("字符等价类详情:");
-			Console.WriteLine(partitioner.GenerateClassInfo());
-
-			Console.WriteLine();
-			Console.WriteLine("优化后的转换表:");
-			Console.WriteLine(exporter.ExportOptimizedTable(optimizedDfa));
-
-			var testInputs = new List<string>
-			{
-				"identifier",
-				"12345",
-				"\"test\""
-			};
-
-			Console.WriteLine("优化后DFA匹配测试:");
-			foreach(var input in testInputs) {
-				var result = optimizedDfa.Match(input);
-				if(result.Success) {
-					Console.WriteLine($"  \"{input}\" -> 匹配模式 {result.PatternId}, 长度 {result.EndIndex}");
-				} else {
-					Console.WriteLine($"  \"{input}\" -> 无匹配");
-				}
-			}
-
-			Console.WriteLine();
-			Console.WriteLine("生成优化后的代码示例:");
-			Console.WriteLine(new string('-', 60));
-			var code = exporter.ExportOptimizedCode(optimizedDfa, "OptimizedLexer", "Generated");
-			var lines = code.Split('\n');
-			for(int i = 0; i < Math.Min(50, lines.Length); i++) {
-				Console.WriteLine(lines[i]);
-			}
-			if(lines.Length > 50) {
-				Console.WriteLine($"... (共 {lines.Length} 行)");
-			}
-		}
-
-		static void GenerateDetailedReport(List<string> patterns, DFA dfa)
-		{
-			Console.WriteLine("=== DFA详细信息 ===");
-			Console.WriteLine();
-
-			Console.WriteLine("状态列表:");
-			foreach(var state in dfa.States) {
-				var acceptStr = state.IsAccept ? $" [Accept: Pattern {state.AcceptId}]" : "";
-				Console.WriteLine($"  State {state.Id}{acceptStr}");
-
-				if(state.Transitions.Count > 0) {
-					var transitionCount = Math.Min(5, state.Transitions.Count);
-					var i = 0;
-					foreach(var kvp in state.Transitions) {
-						if(i >= transitionCount) {
-							Console.WriteLine($"    ... 还有 {state.Transitions.Count - transitionCount} 个转换");
-							break;
-						}
-						var charStr = GetCharDisplay(kvp.Key);
-						Console.WriteLine($"    '{charStr}' -> State {kvp.Value.Id}");
-						i++;
-					}
-				}
-			}
-			Console.WriteLine();
-
-			Console.WriteLine("模式说明:");
-			Console.WriteLine("  [0] 标识符: 字母或下划线开头，后跟字母、数字或下划线");
-			Console.WriteLine("  [1] 整数: 一个或多个数字");
-			Console.WriteLine("  [2] 字符串字面量: 双引号包围的任意字符序列");
-			Console.WriteLine("  [3] 字符字面量: 单引号包围的单个字符");
-			Console.WriteLine("  [4] 单行注释: // 开头到行尾");
-			Console.WriteLine("  [5] 多行注释: /* */ 包围的内容");
-		}
-
-		static string GetCharDisplay(char c)
-		{
-			if(c >= 32 && c <= 126 && c != '\\' && c != '\'')
-				return c.ToString();
-			if(c == '\n') return "\\n";
-			if(c == '\r') return "\\r";
-			if(c == '\t') return "\\t";
-			return $"\\x{((int)c):X2}";
-		}
-
-		static void RunInteractiveMode()
-		{
-			Console.WriteLine("=== 交互模式 ===");
-			Console.WriteLine("输入正则表达式（每行一个，空行结束）:");
-
-			var patterns = new List<string>();
-			string line;
-			while(!string.IsNullOrEmpty(line = Console.ReadLine())) {
-				patterns.Add(line);
-			}
-
-			if(patterns.Count == 0) {
-				Console.WriteLine("未输入任何模式。");
-				return;
-			}
-
-			try {
-				var merger = new RegexMerger();
-				var dfa = merger.MergePatterns(patterns);
-
-				Console.WriteLine($"\n合并后的DFA有 {dfa.States.Count} 个状态。");
-				Console.WriteLine("\n输入测试字符串（空行退出）:");
-
-				while(!string.IsNullOrEmpty(line = Console.ReadLine())) {
-					var result = dfa.Match(line);
-					if(result.Success) {
-						Console.WriteLine($"匹配成功: 模式 {result.PatternId}, 位置 [{result.StartIndex}, {result.EndIndex})");
-					} else {
-						Console.WriteLine("无匹配");
-					}
-				}
-			} catch(RegexParseException ex) {
-				Console.WriteLine($"解析错误: {ex.Message}");
-			}
-		}
-
-		static void TestSinglePattern()
-		{
-			Console.WriteLine("=== 单模式测试 ===");
-			Console.Write("输入正则表达式: ");
-			var pattern = Console.ReadLine();
-
-			if(string.IsNullOrEmpty(pattern)) {
-				Console.WriteLine("模式不能为空。");
-				return;
-			}
-
-			try {
-				var parser = new RegexParser();
-				var ast = parser.Parse(pattern);
-
-				Console.WriteLine("\nAST结构:");
-				PrintAst(ast, 0);
-
-				var builder = new NFABuilder();
-				var nfa = builder.Build(ast, 0);
-
-				Console.WriteLine($"\nNFA状态数: {nfa.States.Count}");
-
-				var converter = new NFAToDFAConverter();
-				var dfa = converter.Convert(nfa);
-
-				Console.WriteLine($"转换后DFA状态数: {dfa.States.Count}");
-
-				var minimizer = new DFAMinimizer();
-				var minDfa = minimizer.Minimize(dfa);
-
-				Console.WriteLine($"最小化后DFA状态数: {minDfa.States.Count}");
-
-				Console.WriteLine("\n输入测试字符串（空行退出）:");
-				string line;
-				while(!string.IsNullOrEmpty(line = Console.ReadLine())) {
-					var result = minDfa.Match(line);
-					if(result.Success) {
-						Console.WriteLine($"匹配成功: 位置 [{result.StartIndex}, {result.EndIndex})");
-					} else {
-						Console.WriteLine("无匹配");
-					}
-				}
-			} catch(RegexParseException ex) {
-				Console.WriteLine($"解析错误: {ex.Message}");
-			}
-		}
-
-		static void PrintAst(RegexNode node, int indent)
-		{
-			var prefix = new string(' ', indent * 2);
-
-			switch(node) {
-				case CharNode cn:
-					Console.WriteLine($"{prefix}Char: '{cn.Value}'");
-					break;
-				case CharClassNode ccn:
-					var ranges = string.Join(", ", ccn.Ranges.Select(r => r.Min == r.Max ? $"'{r.Min}'" : $"'{r.Min}'-'{r.Max}'"));
-					Console.WriteLine($"{prefix}CharClass: {(ccn.Negated ? "^" : "")}[{ranges}]");
-					break;
-				case AnyCharNode:
-					Console.WriteLine($"{prefix}AnyChar: .");
-					break;
-				case ConcatNode concat:
-					Console.WriteLine($"{prefix}Concat:");
-					foreach(var child in concat.Children)
-						PrintAst(child, indent + 1);
-					break;
-				case AlternationNode alt:
-					Console.WriteLine($"{prefix}Alternation:");
-					foreach(var child in alt.Alternatives)
-						PrintAst(child, indent + 1);
-					break;
-				case QuantifierNode qn:
-					var max = qn.MaxCount?.ToString() ?? "∞";
-					Console.WriteLine($"{prefix}Quantifier: {{{qn.MinCount},{max}}}{(qn.Greedy ? "" : "?")}");
-					PrintAst(qn.Child, indent + 1);
-					break;
-				case GroupNode gn:
-					Console.WriteLine($"{prefix}Group({gn.GroupIndex}):");
-					PrintAst(gn.Child, indent + 1);
-					break;
-				case AnchorNode an:
-					Console.WriteLine($"{prefix}Anchor: {an.Type}");
-					break;
-				case EmptyNode:
-					Console.WriteLine($"{prefix}Empty");
-					break;
-			}
-		}
 
 		static List<LexerRegex> LoadLexerRegexs(string file)
 		{

@@ -25,7 +25,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 			regexNode.Accept(this);
 		}
 
-		public ushort[] BuildIndex()
+		public char[] BuildIndex()
 		{
 			for(int i = 0; i < table.Length; i++) {
 				var sp = table[i].Split('|',StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
@@ -37,18 +37,18 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 				texts.Add(s);
 			}
 			var list = texts.OrderByDescending(q => q.Split('|').Length).ThenBy(q => q).ToList();
-			var tableIndex = new ushort[table.Length];
-			Dictionary<string, ushort> dict = new Dictionary<string, ushort>();
+			var tableIndex = new char[table.Length];
+			Dictionary<string, char> dict = new Dictionary<string, char>();
 			for(int i = 0; i < list.Count; i++) {
-				dict[list[i]] = (ushort)(i + 1);
+				dict[list[i]] = (char)(i + 1);
 			}
 
 			for(int i = 0; i < table.Length; i++) {
 				var txt = table[i];
-				if(dict.TryGetValue(txt, out ushort key)) {
+				if(dict.TryGetValue(txt, out char key)) {
 					tableIndex[i] = key;
 				} else {
-					ushort newKey = (ushort)(dict.Count + 1);
+					char newKey = (char)(dict.Count + 1);
 					dict[txt] = newKey;
 					tableIndex[i] = newKey;
 				}

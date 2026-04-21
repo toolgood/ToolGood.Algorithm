@@ -59,6 +59,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
         public List<DFAState> States { get; }
         public HashSet<char> Alphabet { get; }
         public int PatternCount { get; }
+		private char[] _dict {  get;   set; }
 
         public DFA(DFAState startState, List<DFAState> states, HashSet<char> alphabet, int patternCount)
         {
@@ -66,6 +67,10 @@ namespace Antlr4Helper.CSharpHelper.DFAs
             States = states;
             Alphabet = alphabet;
             PatternCount = patternCount;
+        }
+        public void SetDict(char[] dict)
+        {
+            _dict = dict;
         }
 
         public MatchResult Match(string input)
@@ -77,6 +82,9 @@ namespace Antlr4Helper.CSharpHelper.DFAs
             for (int i = 0; i < input.Length; i++)
             {
                 var c = input[i];
+                if(_dict != null) {
+					c= _dict[c];
+				}
                 if (current.Transitions.TryGetValue(c, out var next))
                 {
                     current = next;
