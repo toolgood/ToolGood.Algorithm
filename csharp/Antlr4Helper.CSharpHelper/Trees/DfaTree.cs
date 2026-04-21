@@ -10,43 +10,47 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		public byte[] _dict;
 		public byte[] _key;
 		public ushort[] _next;
-		public byte[] _end; //0,无匹配，0xFFFF 跳过
+		public byte[] _end; //0,无匹配，0xFF 跳过
 
 		public DfaTree() { }
 
+		public List<string> FindAll(string text)
+		{
+			List<string> root = new List<string>();
+			var p = 0;
+			var startIdx = 0;
+			for(int i = 0; i < text.Length; i++) {
+				var t = _dict[text[i]];
+				var next = _next[p] + t;
+				bool find = _key[next] == t;
+				if(find == false) {
+					var r = _end[p];
+					if(r == 0) {
+						startIdx = i;
+					} else if(r == 0xFF) {
+						startIdx = i;
+					} else {
+						root.Add(text.Substring(startIdx, i - startIdx));
+						startIdx = i;
+					}
+					p = 0;
+					next = _next[0] + t;
+					find = _key[next] == t;
+				}
+				if(find) {
+					p = next;
+				}
+			}
+			var r2 = _end[p];
+			if(r2 == 0) {
 
-		//public List<string> FindAll(string text)
-		//{
-		//	List<string> root = new List<string>();
-		//	var p = 0;
+			} else if(r2 == 0xFF) {
 
-		//	foreach(char t1 in text) {
-		//		var t = (char)_dict[t1];
-		//		if(t == 0) {
-		//			p = 0;
-		//			continue;
-		//		}
-		//		var next = _next[p] + t;
-		//		bool find = _key[next] == t;
-		//		if(find == false && p != 0) {
-		//			p = 0;
-		//			next = _next[0] + t;
-		//			find = _key[next] == t;
-		//		}
-		//		if(find) {
-		//			var index = _check[next];
-		//			if(index > 0) {
-		//				foreach(var item in _guides[index]) {
-		//					root.Add(_keywords[item]);
-		//				}
-		//			}
-		//			p = next;
-		//		}
-		//	}
-		//	return root;
-		//}
-
-
+			} else {
+				root.Add(text.Substring(startIdx, text.Length - startIdx));
+			}
+			return root;
+		}
 
 
 		internal void setDict(char[] dict)

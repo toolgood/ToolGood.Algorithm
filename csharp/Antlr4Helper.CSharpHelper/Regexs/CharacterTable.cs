@@ -47,8 +47,25 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 			var list = texts.OrderByDescending(q => q.Split('|').Length).ThenBy(q => q).ToList();
 			var tableIndex = new char[table.Length];
 			Dictionary<string, char> dict = new Dictionary<string, char>();
+			for(int i = '0'; i <= '9'; i++) {
+				if(dict.ContainsKey(table[i]) == false) {
+					dict[table[i]] = (char)(dict.Count + 1);
+				}
+			}
+			for(int i = 'A'; i <= 'Z'; i++) {
+				if(dict.ContainsKey(table[i]) == false) {
+					dict[table[i]] = (char)(dict.Count + 1);
+				}
+			}
+			if(dict.ContainsKey(table['.']) == false) {
+				dict[table['.']] = (char)(dict.Count + 1);
+			}
+
 			for(int i = 0; i < list.Count; i++) {
-				dict[list[i]] = (char)(i + 1);
+				char newKey = (char)(dict.Count + 1);
+				if(dict.ContainsKey(list[i])==false) {
+					dict[list[i]] = newKey;
+				}
 			}
 
 			for(int i = 0; i < table.Length; i++) {

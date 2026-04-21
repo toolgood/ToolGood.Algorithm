@@ -49,7 +49,9 @@ namespace Antlr4Helper.CSharpHelper
 			var result4 = dfa.Match(" ");
 			var result5 = dfa.Match("T.INV");
 
-			var dfaTree = DfaTreeBuilder.Build(dfa,302);
+			var dfaTree = DfaTreeBuilder.Build(dfa, 302);
+			var ts0 = dfa.Match("1+123+55");
+			var ts = dfaTree.FindAll("1+123+55");
 
 		}
 

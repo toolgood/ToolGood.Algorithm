@@ -16,24 +16,22 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		{
 			List<TrieNodeEx> nodes = new List<TrieNodeEx>(states.Count);
 			for(int i = 0; i < states.Count; i++) {
-				nodes.Add(new TrieNodeEx());
+				nodes.Add(new TrieNodeEx() { Index = i });
 			}
-			var count = 0;
+			//var count = 0;
 			for(int i = 0; i < states.Count; i++) {
 				var state = states[i];
 				var node = nodes[i];
 				foreach(var (key, value) in state.Transitions) {
-					var idx = value.Id;// states.IndexOf(value);
-					nodes[idx].Char = key;
-					node.Add(key, nodes[idx]);
-					count++;
+					nodes[value.Id].Char = key;
+					node.Add(key, nodes[value.Id]);
+					//count++;
 				}
 				if(state.AcceptId >= skipMinIndex) {
 					node.SetResults(0xFFFF);
 				} else {
 					node.SetResults(state.AcceptId);
 				}
-				node.Index = i;
 			}
 
 			DfaTree dfaTree = new DfaTree();
