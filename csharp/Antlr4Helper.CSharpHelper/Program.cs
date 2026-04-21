@@ -22,13 +22,15 @@ namespace Antlr4Helper.CSharpHelper
 			Dictionary<string, RegexNode> dictRegexNode = new Dictionary<string, RegexNode>();
 			var patterns = new List<string>(texts.Length);
 
+			RegexParser regexParser = new RegexParser();
+			var reg2 = regexParser.Parse("([A-Z_]|([\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff\\u0100-\\u1fff\\u2c00-\\u2fff\\u3040-\\u318f\\u3300-\\u337f\\u3400-\\u3fff\\u4e00-\\u9fff\\ua000-\\ud7ff\\uf900-\\ufaff\\uff00-\\ufff0]))(([A-Z0-9_]|([\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff\\u0100-\\u1fff\\u2c00-\\u2fff\\u3040-\\u318f\\u3300-\\u337f\\u3400-\\u3fff\\u4e00-\\u9fff\\ua000-\\ud7ff\\uf900-\\ufaff\\uff00-\\ufff0])))*");
+
 			CharacterTable characterTable = new CharacterTable();
 			foreach(var item in texts) {
 				var index = item.IndexOf('=');
 				var sp1 = item.Substring(0, index);
 				var sp2 = item.Substring(index + 1);
 				patterns.Add(sp2);
-				RegexParser regexParser = new RegexParser();
 				var reg = regexParser.Parse(sp2);
 				dictRegexNode[sp1] = reg;
 				characterTable.SetIndex(dictRegexNode.Count, reg);
@@ -50,6 +52,8 @@ namespace Antlr4Helper.CSharpHelper
 			var dfaTree = DfaTreeBuilder.Build(dfa, 302);
 			var ts0 = dfa.Match("1+123+55");
 			var ts = dfaTree.FindAll("1+123+55");
+			var ts1 = dfaTree.FindAll(":1+  Max (1,2,3e1)");
+			var ts01 = dfa.Match(":1+  Max (1,2,3e1)");
 
 			dfaTree.Save();
 		}

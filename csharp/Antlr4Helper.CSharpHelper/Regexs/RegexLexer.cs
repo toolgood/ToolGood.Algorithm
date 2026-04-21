@@ -127,6 +127,23 @@ namespace Antlr4Helper.CSharpHelper.Regexs
                 throw new RegexParseException("正则表达式末尾存在未完成的转义序列", startPos);
 
             var c = _input[_position];
+
+            if (c == 'u')
+            {
+                _position++;
+                if (_position + 3 >= _input.Length)
+                    throw new RegexParseException("无效的Unicode转义序列", startPos);
+
+                var hexStr = _input.Substring(_position, 4);
+                if (!IsHexDigit(hexStr[0]) || !IsHexDigit(hexStr[1]) ||
+                    !IsHexDigit(hexStr[2]) || !IsHexDigit(hexStr[3]))
+                    throw new RegexParseException("无效的Unicode转义序列", startPos);
+
+                _position += 4;
+                var codePoint = Convert.ToInt32(hexStr, 16);
+                return new RegexToken(RegexTokenType.EscapeChar, (char)codePoint, startPos);
+            }
+
             _position++;
 
             switch (c)
@@ -147,6 +164,13 @@ namespace Antlr4Helper.CSharpHelper.Regexs
                 default:
                     return new RegexToken(RegexTokenType.EscapeChar, c, startPos);
             }
+        }
+
+        private static bool IsHexDigit(char c)
+        {
+            return (c >= '0' && c <= '9') ||
+                   (c >= 'a' && c <= 'f') ||
+                   (c >= 'A' && c <= 'F');
         }
 
         public static char GetEscapedChar(char c)

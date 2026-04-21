@@ -35,10 +35,10 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 				}
 			}
 
-			for(int i = 0; i < table.Length; i++) {
-				var sp = table[i].Split('|', StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
-				table[i] = string.Join("|", sp);
-			}
+			//for(int i = 0; i < table.Length; i++) {
+			//	var sp = table[i].Split('|', StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
+			//	table[i] = string.Join("|", sp);
+			//}
 
 			HashSet<string> texts = new HashSet<string>();
 			foreach(string s in table) {
@@ -59,6 +59,9 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 			}
 			if(dict.ContainsKey(table['.']) == false) {
 				dict[table['.']] = (char)(dict.Count + 1);
+			}
+			if(dict.ContainsKey(table[':']) == false) {
+				dict[table[':']] = (char)(dict.Count + 1);
 			}
 
 			for(int i = 0; i < list.Count; i++) {
@@ -107,6 +110,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 		public void Visit(CharClassNode node)
 		{
 			layer++;
+
 			if(node.Negated == false) {
 				foreach(var (min, max) in node.Ranges) {
 					for(int i = min; i <= max; i++) {

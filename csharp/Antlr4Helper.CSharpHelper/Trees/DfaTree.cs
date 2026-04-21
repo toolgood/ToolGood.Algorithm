@@ -13,7 +13,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		private byte[] _dict;
 		private ushort[] _next;
 		private int[] _next2;
-		private byte[] _end; //0,无匹配，0x1 跳过
+		private byte[] _end; //0,无匹配，0xFF 跳过
 
 
 		public DfaTree() { }
@@ -167,7 +167,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 
 		internal void build(List<TrieNodeEx> nodes)
 		{
-			var length = (int)_dict.Max(q => q);
+			var length = (int)_dict.Max(q => q)+1;
 			var nodes1 = nodes.Where(q => q.m_values != null).ToList();
 			var nodes2 = nodes.Where(q => q.m_values == null).ToList();
 			var tatol = length * (nodes1.Count() + 1) + 1;
