@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -62,7 +63,38 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			StringBuilder stringBuilder = new StringBuilder();
 			int index=0;
 			stringBuilder.Append("private byte[] _dict = new byte[] {");
-			foreach(var item in _dict) {
+			List<byte> list = new List<byte>();
+
+			int count = 1;
+			byte data = _dict[0];
+			for(int i = 1; i < _dict.Length; i++) {
+				if(_dict[i]==data) {
+					count++;
+				} else {
+					if(count>255) {
+						list.Add((byte)0);
+					var bs=	BitConverter.GetBytes((ushort)count);
+						list.Add(bs[0]);
+						list.Add(bs[1]);
+					} else {
+						list.Add((byte)count);
+					}
+					list.Add(data);
+					count = 1;
+					data = _dict[i];
+				}
+			}
+			if(count > 255) {
+				list.Add((byte)0);
+				var bs = BitConverter.GetBytes((ushort)count);
+				list.Add(bs[0]);
+				list.Add(bs[1]);
+			} else {
+				list.Add((byte)count);
+			}
+			list.Add(data);
+
+			foreach(var item in list) {
 				stringBuilder.Append("0x");
 				stringBuilder.Append(item.ToString("X2"));
 				stringBuilder.Append(",");
