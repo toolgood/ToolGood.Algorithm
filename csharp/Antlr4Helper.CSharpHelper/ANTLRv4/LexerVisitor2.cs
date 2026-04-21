@@ -23,20 +23,7 @@ namespace Antlr4Helper.CSharpHelper.ANTLRv4
 				var txt = context.GetText();
 				if(txt.StartsWith("'")) {
 					txt = txt.Substring(1, txt.Length - 2);
-					txt = txt.Replace("\\'", "'");
-					txt = txt.Replace("\\", "\\\\");
-					txt = txt.Replace(".", "\\.");
-					txt = txt.Replace("-", "\\-");
-					txt = txt.Replace("+", "\\+");
-					txt = txt.Replace("?", "\\?");
-					txt = txt.Replace("*", "\\*");
-					txt = txt.Replace("|", "\\|");
-					txt = txt.Replace(")", "\\)");
-					txt = txt.Replace("(", "\\(");
-					txt = txt.Replace("]", "\\]");
-					txt = txt.Replace("[", "\\[");
-					txt = txt.Replace("{", "\\{");
-					txt = txt.Replace("}", "\\}");
+					txt = ReplaceRegex(txt);
 					if(VisitTerminalDefs.Contains(txt) == false) {
 						VisitTerminalDefs.Add(txt);
 						Console.WriteLine($"VisitTerminalDef: T__{T}: " + txt);
@@ -54,20 +41,33 @@ namespace Antlr4Helper.CSharpHelper.ANTLRv4
 			}
 			var t = context.STRING_LITERAL().GetText();
 			t = t.Substring(1, t.Length - 2);
-			t = t.Replace("\\'", "'");
-			t = t.Replace("\\", "\\\\");
-			t = t.Replace(".", "\\.");
-			t = t.Replace("-", "\\-");
-			t = t.Replace("+", "\\+");
-			t = t.Replace("?", "\\?");
-			t = t.Replace("*", "\\*");
-			t = t.Replace("|", "\\|");
+			t = ReplaceRegex(t);
 			if(context.elementOptions() != null) {
 				t = t + Visit(context.elementOptions());
 			}
 			return t;
 		}
 
+		private static string ReplaceRegex(string txt)
+		{
+			txt = txt.Replace("\\'", "'");
+			txt = txt.Replace("\\", "\\\\");
+			txt = txt.Replace(".", "\\.");
+			txt = txt.Replace(":", "\\:");
+			txt = txt.Replace(",", "\\,");
+			txt = txt.Replace("-", "\\-");
+			txt = txt.Replace("+", "\\+");
+			txt = txt.Replace("?", "\\?");
+			txt = txt.Replace("*", "\\*");
+			txt = txt.Replace("|", "\\|");
+			txt = txt.Replace(")", "\\)");
+			txt = txt.Replace("(", "\\(");
+			txt = txt.Replace("]", "\\]");
+			txt = txt.Replace("[", "\\[");
+			txt = txt.Replace("{", "\\{");
+			txt = txt.Replace("}", "\\}");
+			return txt;
+		}
 
 		public override string VisitLexerRuleSpec([NotNull] ANTLRv4Parser.LexerRuleSpecContext context)
 		{
