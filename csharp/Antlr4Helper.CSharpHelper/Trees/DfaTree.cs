@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -7,10 +8,10 @@ namespace Antlr4Helper.CSharpHelper.Trees
 {
 	public class DfaTree
 	{
-		public byte[] _dict;
-		public byte[] _key;
-		public ushort[] _next;
-		public byte[] _end; //0,无匹配，0xFF 跳过
+		private byte[] _dict ;
+		private byte[] _key;
+		private ushort[] _next;
+		private byte[] _end; //0,无匹配，0xFF 跳过
 
 		public DfaTree() { }
 
@@ -34,12 +35,14 @@ namespace Antlr4Helper.CSharpHelper.Trees
 						startIdx = i;
 					}
 					p = 0;
-					next = _next[0] + t;
+					next = t;
 					find = _key[next] == t;
+					if(find == false) {
+						// 出错了
+						break;
+					}
 				}
-				if(find) {
-					p = next;
-				}
+				p = next;
 			}
 			var r2 = _end[p];
 			if(r2 == 0) {
@@ -52,6 +55,66 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			return root;
 		}
 
+
+
+		public void Save()
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			int index=0;
+			stringBuilder.Append("private byte[] _dict = new byte[] {");
+			foreach(var item in _dict) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(",");
+				index++;
+				if(index%32==0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+			index = 0; 
+			stringBuilder.Append("private byte[] _key = new byte[] {");
+			foreach(var item in _key) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+
+			index = 0; 
+			stringBuilder.Append("private ushort[] _next = new ushort[] {");
+			foreach(var item in _next) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X4"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+			index = 0; 
+			stringBuilder.Append("private byte[] _end = new byte[] {");
+			foreach(var item in _end) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+			File.WriteAllText("1.txt",stringBuilder.ToString());
+		}
 
 		internal void setDict(char[] dict)
 		{
@@ -83,12 +146,27 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			for(Int32 i = 0; i < length; i++) {
 				var item = nodes[has[i]];
 				if(item == null) continue;
-				_key[i] = (byte)item.Char;
+				//_key[i] = (byte)item.Char;
 				_next[i] = (ushort)item.Next;
 				if(item.End) {
 					_end[i] = (byte)item.Results[0];
+					if(item.Next == 0) { //没有子节点了,但是有结果, 需要特殊标记一下地址
+						_next[i] = (ushort)(maxCount + 1);
+					}
 				}
 			}
+
+			for(int i = 0; i < nodes.Count; i++) {
+				var node = nodes[i];
+				var p = node.Next;
+				if(node.m_values != null) {
+					foreach(var (key, val) in node.m_values) {
+						_key[p + key] = (byte)key;
+					}
+				}
+			}
+
+
 		}
 
 

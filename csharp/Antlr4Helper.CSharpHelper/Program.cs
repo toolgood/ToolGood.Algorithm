@@ -53,6 +53,7 @@ namespace Antlr4Helper.CSharpHelper
 			var ts0 = dfa.Match("1+123+55");
 			var ts = dfaTree.FindAll("1+123+55");
 
+			dfaTree.Save();
 		}
 
 		static void Build_File_math_regex()
