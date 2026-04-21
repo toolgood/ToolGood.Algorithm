@@ -39,13 +39,15 @@ namespace Antlr4Helper.CSharpHelper
 
 			var merger = new RegexMerger();
 			var dfa = merger.MergePatterns(patterns, dict);
+			dfa.SetDict(dict);
 
 			var result1 = dfa.Match("(");
+			var result21 = dfa.Match("true");   
+			var result2 = dfa.Match("hello");   
+			var result3 = dfa.Match("123");
+			var result4 = dfa.Match(" ");
 
-			var result2 = dfa.Match("hello");  // 匹配模式 0
-			var result3 = dfa.Match("123");   // 匹配模式 2
 
-	 
 		}
 
 		static void Build_File_math_regex()

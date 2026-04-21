@@ -32,7 +32,7 @@ namespace Antlr4Helper.CSharpHelper.RegexEngine
 			for(int i = 0; i < patterns.Count; i++) {
 				try {
 					var ast = _parser.Parse(patterns[i]);
-					var nfa = _nfaBuilder.Build(ast, i);
+					var nfa = _nfaBuilder.Build(ast, i + 1);
 					nfas.Add(nfa);
 				} catch(RegexParseException ex) {
 					throw new RegexParseException($"模式 {i} 解析失败: {ex.Message}", ex.Position);

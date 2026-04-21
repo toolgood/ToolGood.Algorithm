@@ -27,8 +27,16 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 
 		public char[] BuildIndex()
 		{
+			for(int i = 'a'; i < table.Length; i++) {
+				var c = (char)i;
+				var c2 = StandardChar(c);
+				if(c != c2) {
+					table[i] = table[c2];
+				}
+			}
+
 			for(int i = 0; i < table.Length; i++) {
-				var sp = table[i].Split('|',StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
+				var sp = table[i].Split('|', StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
 				table[i] = string.Join("|", sp);
 			}
 
@@ -55,6 +63,22 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 			}
 			return tableIndex;
 		}
+
+		public static char StandardChar(char o) => o switch {
+			>= 'a' and <= 'z' => (char)(o - 32),
+			< (char)127 => o,
+			(char)215 => '*',
+			(char)247 => '/',
+			(char)8216 or (char)8217 => '\'',
+			(char)8220 or (char)8221 => '"',
+			(char)12288 => ' ',
+			(char)12304 => '[',
+			(char)12305 => ']',
+			(char)12308 => '(',
+			(char)12309 => ')',
+			> (char)65280 and < (char)65375 => (char)(o - 65248),
+			_ => char.ToUpperInvariant(o)
+		};
 
 
 		public void Visit(CharNode node)
