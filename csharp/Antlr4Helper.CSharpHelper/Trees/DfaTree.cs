@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.IO;
@@ -9,7 +10,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 {
 	public class DfaTree
 	{
-		private byte[] _dict ;
+		private byte[] _dict;
 		private byte[] _key;
 		private ushort[] _next;
 		private byte[] _end; //0,无匹配，0xFF 跳过
@@ -61,19 +62,96 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		public void Save()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			int index=0;
-			stringBuilder.Append("private byte[] _dict = new byte[] {");
-			List<byte> list = new List<byte>();
+			int index = 0;
+			stringBuilder.Append("private byte[] _dict2 = new byte[] {");
+			List<byte> list = compress(_dict);
+			foreach(var item in list) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
 
+			index = 0;
+			stringBuilder.Append("private byte[] _key2 = new byte[] {");
+			list = compress(_key);
+			foreach(var item in list) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+			index = 0;
+			stringBuilder.Append("private byte[] _end2 = new byte[] {");
+			list = compress(_end);
+			foreach(var item in list) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+
+			index = 0;
+			stringBuilder.Append("private ushort[] _next2 = new ushort[] {");
+			var list2 = compress(_next);
+			foreach(var item in list2) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X4"));
+				stringBuilder.Append(",");
+				index++;
+				if(index % 32 == 0) {
+					stringBuilder.Append("\r\n");
+				}
+			}
+			stringBuilder.Append("};\r\n");
+
+			File.WriteAllText("1.txt", stringBuilder.ToString());
+		}
+		public static List<ushort> compress(ushort[] bytes)
+		{
+			List<ushort> list = new List<ushort>();
 			int count = 1;
-			byte data = _dict[0];
-			for(int i = 1; i < _dict.Length; i++) {
-				if(_dict[i]==data) {
+			ushort data = bytes[0];
+			for(int i = 1; i < bytes.Length; i++) {
+				if(bytes[i] == data) {
 					count++;
 				} else {
-					if(count>255) {
+					list.Add((ushort)count);
+					list.Add(data);
+					count = 1;
+					data = bytes[i];
+				}
+			}
+			list.Add((ushort)count);
+			list.Add(data);
+			return list;
+		}
+		public static List<byte> compress(byte[] bytes)
+		{
+			List<byte> list = new List<byte>();
+			int count = 1;
+			byte data = bytes[0];
+			for(int i = 1; i < bytes.Length; i++) {
+				if(bytes[i] == data) {
+					count++;
+				} else {
+					if(count > 255) {
 						list.Add((byte)0);
-					var bs=	BitConverter.GetBytes((ushort)count);
+						var bs = BitConverter.GetBytes((ushort)count);
 						list.Add(bs[0]);
 						list.Add(bs[1]);
 					} else {
@@ -81,7 +159,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 					}
 					list.Add(data);
 					count = 1;
-					data = _dict[i];
+					data = bytes[i];
 				}
 			}
 			if(count > 255) {
@@ -93,59 +171,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 				list.Add((byte)count);
 			}
 			list.Add(data);
-
-			foreach(var item in list) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X2"));
-				stringBuilder.Append(",");
-				index++;
-				if(index%32==0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
-
-			index = 0; 
-			stringBuilder.Append("private byte[] _key = new byte[] {");
-			foreach(var item in _key) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X2"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 32 == 0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
-
-
-			index = 0; 
-			stringBuilder.Append("private ushort[] _next = new ushort[] {");
-			foreach(var item in _next) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X4"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 32 == 0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
-
-			index = 0; 
-			stringBuilder.Append("private byte[] _end = new byte[] {");
-			foreach(var item in _end) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X2"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 32 == 0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
-
-			File.WriteAllText("1.txt",stringBuilder.ToString());
+			return list;
 		}
 
 		internal void setDict(char[] dict)
