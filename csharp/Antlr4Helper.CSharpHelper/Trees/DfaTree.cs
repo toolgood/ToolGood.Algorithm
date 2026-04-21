@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Antlr4Helper.CSharpHelper.Trees
@@ -9,7 +10,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		public byte[] _dict;
 		public byte[] _key;
 		public ushort[] _next;
-		public byte[] _end; //0,无匹配，0xff 跳过
+		public byte[] _end; //0,无匹配，0xFFFF 跳过
 
 		public DfaTree() { }
 
@@ -47,8 +48,18 @@ namespace Antlr4Helper.CSharpHelper.Trees
 
 
 
-		private void build(List<TrieNodeEx> nodes, Int32 length)
+
+		internal void setDict(char[] dict)
 		{
+			_dict = new byte[0x10000];
+			for(int i = 0; i < dict.Length; i++) {
+				_dict[i] = (byte)dict[i];
+			}
+		}
+
+		internal void build(List<TrieNodeEx> nodes)
+		{
+			var length = (int)_dict.Max(q => q);
 			int[] has = new int[0x00FFFFFF];
 			bool[] seats = new bool[0x00FFFFFF];
 			bool[] seats2 = new bool[0x00FFFFFF];
@@ -68,8 +79,8 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			for(Int32 i = 0; i < length; i++) {
 				var item = nodes[has[i]];
 				if(item == null) continue;
-				_key[i] =(byte) item.Char;
-				_next[i] =(ushort) item.Next;
+				_key[i] = (byte)item.Char;
+				_next[i] = (ushort)item.Next;
 				if(item.End) {
 					_end[i] = (byte)item.Results[0];
 				}

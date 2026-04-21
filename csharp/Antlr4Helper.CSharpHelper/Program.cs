@@ -3,6 +3,7 @@ using Antlr4Helper.CSharpHelper.ANTLRv4;
 using Antlr4Helper.CSharpHelper.DFAs;
 using Antlr4Helper.CSharpHelper.RegexEngine;
 using Antlr4Helper.CSharpHelper.Regexs;
+using Antlr4Helper.CSharpHelper.Trees;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +35,7 @@ namespace Antlr4Helper.CSharpHelper
 				dictRegexNode[sp1] = reg;
 				characterTable.SetIndex(dictRegexNode.Count, reg);
 			}
-			var dict= characterTable.BuildIndex();
+			var dict = characterTable.BuildIndex();
 			var max = dict.Max();
 
 			var merger = new RegexMerger();
@@ -42,12 +43,13 @@ namespace Antlr4Helper.CSharpHelper
 			dfa.SetDict(dict);
 
 			var result1 = dfa.Match("(");
-			var result21 = dfa.Match("true");   
-			var result2 = dfa.Match("hello");   
+			var result21 = dfa.Match("true");
+			var result2 = dfa.Match("hello");
 			var result3 = dfa.Match("123");
 			var result4 = dfa.Match(" ");
 			var result5 = dfa.Match("T.INV");
 
+			var dfaTree = DfaTreeBuilder.Build(dfa,302);
 
 		}
 

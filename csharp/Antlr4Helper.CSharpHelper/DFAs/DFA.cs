@@ -59,7 +59,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
         public List<DFAState> States { get; }
         public HashSet<char> Alphabet { get; }
         public int PatternCount { get; }
-		private char[] _dict {  get;   set; }
+		internal char[] _dict {  get;   set; }
 
         public DFA(DFAState startState, List<DFAState> states, HashSet<char> alphabet, int patternCount)
         {
