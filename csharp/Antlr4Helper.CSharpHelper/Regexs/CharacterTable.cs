@@ -14,7 +14,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 
 		public CharacterTable()
 		{
-			uniqueTable=new HashSet<char>();
+			uniqueTable = new HashSet<char>();
 			table = new string[char.MaxValue + 1];
 			for(int i = 0; i < char.MaxValue; i++) {
 				table[i] = "";
@@ -41,15 +41,9 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 				}
 			}
 
-			//for(int i = 0; i < table.Length; i++) {
-			//	var sp = table[i].Split('|', StringSplitOptions.RemoveEmptyEntries).OrderBy(q => q);
-			//	table[i] = string.Join("|", sp);
-			//}
-
 			HashSet<string> texts = new HashSet<string>();
-			foreach(string s in table) {
-				texts.Add(s);
-			}
+			foreach(string s in table) { texts.Add(s); }
+
 			var list = texts.OrderByDescending(q => q.Split('|').Length).ThenBy(q => q).ToList();
 			var tableIndex = new char[table.Length];
 			Dictionary<string, char> dict = new Dictionary<string, char>();
@@ -63,16 +57,16 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 					dict[table[i]] = (char)(dict.Count + 1);
 				}
 			}
+			if(dict.ContainsKey(table['一']) == false) {
+				dict[table['一']] = (char)(dict.Count + 1);
+			}
 			if(dict.ContainsKey(table['.']) == false) {
 				dict[table['.']] = (char)(dict.Count + 1);
-			}
-			if(dict.ContainsKey(table[':']) == false) {
-				dict[table[':']] = (char)(dict.Count + 1);
 			}
 
 			for(int i = 0; i < list.Count; i++) {
 				char newKey = (char)(dict.Count + 1);
-				if(dict.ContainsKey(list[i])==false) {
+				if(dict.ContainsKey(list[i]) == false) {
 					dict[list[i]] = newKey;
 				}
 			}
