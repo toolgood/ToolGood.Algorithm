@@ -16,15 +16,15 @@ namespace ToolGood.Algorithm.Test
 			var t222 = Convert.ToString(122223, 16);
 			AlgorithmEngine engine = new AlgorithmEngine();
 
-			var a1 = Math.Sqrt(2) / 3 / 7 * 21 * Math.Sqrt(2);              // 返回	2.0000000000000004
-			var a2 = engine.TryEvaluate("sqrt(2)/3/7*21*sqrt(2)", 0.0m);    // 返回 1.9999999999999999999999999991M    sqrt 会将精度降低 ，不可避免有误差 
-			var a3 = engine.TryEvaluate("sqrt(2)/3/7*21*sqrt(2)", 0.0);     // 返回 2     内部使用 decimal，还回double ,精度应转化而提高了。。。（应该是四舍五入）
-			var a4 = engine.TryEvaluate("2/3/7/4*5*21", 0.0m);              // 返回 2.4999999999999999999999999990M
-			var a5 = engine.TryEvaluate("2/3/7/4*5*21", 0.0);               // 返回 2.5
-			var a6 = 2.0 / 3 / 7 / 4 * 5 * 21;                              // 返回	2.5
+			//var a1 = Math.Sqrt(2) / 3 / 7 * 21 * Math.Sqrt(2);              // 返回	2.0000000000000004
+			//var a2 = engine.TryEvaluate("sqrt(2)/3/7*21*sqrt(2)", 0.0m);    // 返回 1.9999999999999999999999999991M    sqrt 会将精度降低 ，不可避免有误差 
+			//var a3 = engine.TryEvaluate("sqrt(2)/3/7*21*sqrt(2)", 0.0);     // 返回 2     内部使用 decimal，还回double ,精度应转化而提高了。。。（应该是四舍五入）
+			//var a4 = engine.TryEvaluate("2/3/7/4*5*21", 0.0m);              // 返回 2.4999999999999999999999999990M
+			//var a5 = engine.TryEvaluate("2/3/7/4*5*21", 0.0);               // 返回 2.5
+			//var a6 = 2.0 / 3 / 7 / 4 * 5 * 21;                              // 返回	2.5
 
-			var a11 = Math.Sqrt(2);                                         // 返回	1.4142135623730951
-			var a12 = engine.TryEvaluate("sqrt(2)", 0.0m);                  // 返回 1.4142135623730950488016887242M 
+			//var a11 = Math.Sqrt(2);                                         // 返回	1.4142135623730951
+			//var a12 = engine.TryEvaluate("sqrt(2)", 0.0m);                  // 返回 1.4142135623730950488016887242M 
 
 			var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && || and or
 			var c = engine.TryEvaluate("2+3", 0);

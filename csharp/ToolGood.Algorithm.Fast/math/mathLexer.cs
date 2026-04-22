@@ -507,8 +507,6 @@ namespace ToolGood.Algorithm.math
 		private readonly ICharStream _input;
 		private int _line = 1;
 		private int _column = 0;
-		private int startIdx;
-		private int p;
 
 		public mathLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 		{
@@ -521,39 +519,72 @@ namespace ToolGood.Algorithm.math
 		public string SourceName => _input.SourceName;
 		public ITokenFactory TokenFactory { get; set; } = new CommonTokenFactory();
 
+		private bool isEnd = false;
 
+		public List<IToken> Tokens;
 
-		[return: NotNull]
-		public IToken NextToken()
+		int startIdx;
+		public void BuildTokens()
 		{
+			Tokens = new List<IToken>();
+			  startIdx = 0;
+			var p = 0;
 			while(true) {
 				var c = _input.LA(1);
 				if(c == IntStreamConstants.EOF) {
-					return TokenFactory.Create(TokenConstants.EOF, "");
+					isEnd = true;
+					var type = _end[p];
+					if(type == 0) {
+						Tokens.Add(CreateToken(TokenConstants.InvalidType));
+					} else if(type != 0xFF) {
+						int stopIndex = _input.Index - 1;
+						string text = _input.GetText(Interval.Of(startIdx, stopIndex));
+						var token = TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, startIdx, stopIndex, 0, 0);
+						Tokens.Add(token);
+					}
+					Tokens.Add(TokenFactory.Create(TokenConstants.EOF, ""));
+					return;
 				}
-				_input.Consume();
 				var t = _dict[c];
 				var next = _next[_next2[p] + t];
 				if(next == 0) {
-					var r = _end[p];
-					if(r == 0) {
-						return CreateToken(TokenConstants.InvalidType);
-					} else if(r != 0xFF) {
-						return CreateToken(r);
+					var type = _end[p];
+					if(type == 0) {
+						Tokens.Add(CreateToken(TokenConstants.InvalidType));
+						Tokens.Add(TokenFactory.Create(TokenConstants.EOF, ""));
+						return;
+					} else if(type != 0xFF) {
+						int stopIndex = _input.Index - 1;
+						string text = _input.GetText(Interval.Of(startIdx, stopIndex));
+						var token = TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, startIdx, stopIndex, 0, 0);
+						Tokens.Add(token);
 					}
 					startIdx = _input.Index;
 					next = _next[t];
 					if(next == 0) {
-						return CreateToken(TokenConstants.InvalidType);
+						Tokens.Add(CreateToken(TokenConstants.InvalidType));
+						Tokens.Add(TokenFactory.Create(TokenConstants.EOF, ""));
+						return;
 					}
 				}
 				p = next;
+				_input.Consume();
 			}
+		}
 
+		int index = 0;
+
+		[return: NotNull]
+		public IToken NextToken()
+		{
+			if(Tokens == null) {
+				BuildTokens();
+			}
+			return Tokens[index++];
 		}
 		private IToken CreateToken(int type)
 		{
-			int stopIndex = _input.Index - 1;
+			int stopIndex = _input.Index - 2;
 			string text = _input.GetText(Interval.Of(startIdx, stopIndex));
 			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, startIdx, stopIndex, 0, 0);
 		}
