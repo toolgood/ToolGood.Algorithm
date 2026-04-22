@@ -1,4 +1,4 @@
-﻿using Antlr4Helper.CSharpHelper.DFAs;
+using Antlr4Helper.CSharpHelper.DFAs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,7 +28,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 					//count++;
 				}
 				if(state.AcceptId >= skipMinIndex) {
-					node.SetResults(0xFF);
+					node.SetResults(0xFFFF);
 				} else {
 					node.SetResults(state.AcceptId);
 				}

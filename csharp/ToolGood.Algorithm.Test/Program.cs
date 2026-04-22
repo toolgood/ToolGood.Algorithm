@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Misc;
 using System;
 using System.Globalization;
 using System.Text;
@@ -43,6 +43,7 @@ namespace ToolGood.Algorithm.Test
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
 
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+			ToolGood.Algorithm.math.LexerDiagnostic.Run();
 			PetaTest.Runner.RunMain(args);
 		}
 

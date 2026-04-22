@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		private byte[] _dict;
 		private ushort[] _next;
 		private int[] _next2;
-		private byte[] _end; //0,无匹配，0xFF 跳过
+		private ushort[] _end; //0,无匹配，0xFF 跳过
 
 
 		public DfaTree() { }
@@ -29,12 +29,12 @@ namespace Antlr4Helper.CSharpHelper.Trees
 				var next = _next[_next2[p] + t];
 				if(next == 0) {
 					var r = _end[p];
-					if(r == 0) {
-						// 添加未确认token
-						break;
-					} else if(r != 0xFF) {
-						root.Add(text.Substring(startIdx, i - startIdx));
-					}
+				if(r == 0) {
+					// 添加未确认token
+					break;
+				} else if(r != 0xFFFF) {
+					root.Add(text.Substring(startIdx, i - startIdx));
+				}
 					startIdx = i;
 					next = _next[t];
 					if(next == 0) {
@@ -47,7 +47,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			var r2 = _end[p];
 			if(r2 == 0) {
 				// 添加未确认token
-			} else if(r2 != 0xFF) {
+			} else if(r2 != 0xFFFF) {
 				root.Add(text.Substring(startIdx, text.Length - startIdx));
 			}
 			return root;
@@ -147,11 +147,11 @@ namespace Antlr4Helper.CSharpHelper.Trees
 				}
 			}
 			length = br.ReadVarInt32();
-			_end = new byte[length];
+			_end = new ushort[length];
 			index = 0;
 			while(index < length) {
 				var b = br.ReadVarInt32();
-				var data = br.ReadByte();
+				var data = br.ReadVarUInt16();
 				for(int i = 0; i < b; i++) {
 					_end[index++] = data;
 				}
@@ -194,7 +194,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 
 			_next = new ushort[tatol];
 			_next2 = new int[nodes.Count];
-			_end = new byte[nodes.Count];
+			_end = new ushort[nodes.Count];
 
 			for(int i = 0; i < nodes1.Count(); i++) {
 				var node = nodes1[i];
@@ -206,7 +206,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 					}
 				}
 				if(node.End) {
-					_end[i] = (byte)node.Results[0];
+					_end[i] = (ushort)node.Results[0];
 				}
 			}
 		}
