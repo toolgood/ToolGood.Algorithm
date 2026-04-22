@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
@@ -58,27 +59,60 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			MemoryStream memoryStream = new MemoryStream();
 			BinaryWriter bw = new BinaryWriter(memoryStream);
 
-			bw.Write(_dict.Length);
-			var bs = compress(_dict);
-			bw.Write(bs.ToArray());
+			bw.WriteVarInt32(_dict.Length);
+			Write(bw, _dict);
 
-			bw.Write(_next.Length);
-			var bs2 = compress(_next);
-			foreach(var item in bs2) {
-				bw.Write(item);
-			}
+			bw.WriteVarInt32(_next.Length);
+			Write(bw, _next);
 
-			bw.Write(_end.Length);
-			bs = compress(_end);
-			bw.Write(bs.ToArray());
+
+			bw.WriteVarInt32(_end.Length);
+			Write(bw, _end);
 
 			var len = _dict.Max(q => q);
 			var max = _next2.Max(q => q);
-			bw.Write(len);
-			bw.Write(max);
+			bw.WriteVarInt32(len);
+			bw.WriteVarInt32(max);
 
 			File.WriteAllBytes("math.bin", memoryStream.ToArray());
 		}
+		public void Write(BinaryWriter bw, byte[] bytes)
+		{
+			int count = 1;
+			ushort data = bytes[0];
+			for(int i = 1; i < bytes.Length; i++) {
+				if(bytes[i] == data) {
+					count++;
+				} else {
+					bw.WriteVarInt32(count);
+					bw.Write(data);
+					count = 1;
+					data = bytes[i];
+				}
+			}
+			bw.WriteVarInt32(count);
+			bw.Write(data);
+		}
+		public void Write(BinaryWriter bw, ushort[] bytes)
+		{
+			int count = 1;
+			ushort data = bytes[0];
+			for(int i = 1; i < bytes.Length; i++) {
+				if(bytes[i] == data) {
+					count++;
+				} else {
+					bw.WriteVarInt32(count);
+					bw.WriteVarUInt16(data);
+					count = 1;
+					data = bytes[i];
+				}
+			}
+			bw.WriteVarInt32(count);
+			bw.WriteVarUInt16(data);
+		}
+
+
+
 
 		public void Load(byte[] bytes)
 		{
