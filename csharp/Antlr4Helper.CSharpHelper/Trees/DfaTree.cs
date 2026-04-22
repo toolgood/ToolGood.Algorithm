@@ -55,72 +55,124 @@ namespace Antlr4Helper.CSharpHelper.Trees
 
 		public void Save()
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-			int index = 0;
-			stringBuilder.Append("private byte[] _dict2 = new byte[] {");
-			List<byte> list = compress(_dict);
-			foreach(var item in list) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X2"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 32 == 0) {
-					stringBuilder.Append("\r\n");
-				}
+			MemoryStream memoryStream = new MemoryStream();
+			BinaryWriter bw = new BinaryWriter(memoryStream);
+
+			bw.Write(_dict.Length);
+			var bs = compress(_dict);
+			bw.Write(bs.ToArray());
+
+			bw.Write(_next.Length);
+			var bs2 = compress(_next);
+			foreach(var item in bs2) {
+				bw.Write(item);
 			}
-			stringBuilder.Append("};\r\n");
 
-			index = 0;
-			stringBuilder.Append("private byte[] _end2 = new byte[] {");
-			list = compress(_end);
-			foreach(var item in list) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(item.ToString("X2"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 32 == 0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
+			bw.Write(_end.Length);
+			bs = compress(_end);
+			bw.Write(bs.ToArray());
 
+			var len = _dict.Max(q => q);
+			var max = _next2.Max(q => q);
+			bw.Write(len);
+			bw.Write(max);
 
-			index = 0;
-			stringBuilder.Append("private ushort[] _next2 = new ushort[] {");
-			var list2 = compress(_next);
-			for(int i = 0; i < list2.Count(); i += 2) {
-				stringBuilder.Append("0x");
-				stringBuilder.Append(list2[i].ToString("X2"));
-				stringBuilder.Append(",");
-				stringBuilder.Append("0x");
-				stringBuilder.Append(list2[i + 1].ToString("X4"));
-				stringBuilder.Append(",");
-				index++;
-				if(index % 16 == 0) {
-					stringBuilder.Append("\r\n");
-				}
-			}
-			stringBuilder.Append("};\r\n");
-
-			File.WriteAllText("1.txt", stringBuilder.ToString());
+			File.WriteAllBytes("math.bin", memoryStream.ToArray());
 		}
-		public static List<ushort> compress(ushort[] bytes)
+
+		public void Load(byte[] bytes)
 		{
-			List<ushort> list = new List<ushort>();
+			MemoryStream memoryStream = new MemoryStream(bytes);
+			BinaryReader br = new BinaryReader(memoryStream);
+			var length = br.ReadInt32();
+			_dict = new byte[length];
+			var index = 0;
+			while(index < length) {
+				var b = br.ReadByte();
+				if(b == 0) {
+					var count2 = br.ReadUInt16();
+					for(int i = 0; i < count2; i++) {
+						_dict[index++] = br.ReadByte();
+					}
+				} else {
+					var data = br.ReadByte();
+					for(int i = 0; i < b; i++) {
+						_dict[index++] = data;
+					}
+				}
+			}
+			length = br.ReadInt32();
+			_next = new ushort[length];
+			index = 0;
+			while(index < length) {
+				var b = br.ReadByte();
+				if(b == 0) {
+					var count2 = br.ReadUInt16();
+					for(int i = 0; i < count2; i++) {
+						_next[index++] = br.ReadUInt16();
+					}
+				} else {
+					var data = br.ReadUInt16();
+					for(int i = 0; i < b; i++) {
+						_next[index++] = data;
+					}
+				}
+			}
+			length = br.ReadInt32();
+			_end = new byte[length];
+			index = 0;
+			while(index < length) {
+				var b = br.ReadByte();
+				if(b == 0) {
+					var count2 = br.ReadUInt16();
+					for(int i = 0; i < count2; i++) {
+						_end[index++] = br.ReadByte();
+					}
+				} else {
+					var data = br.ReadByte();
+					for(int i = 0; i < b; i++) {
+						_end[index++] = data;
+					}
+				}
+			}
+
+			var len2 = br.ReadInt32();
+			var max = br.ReadInt32();
+			_next2 = new int[length];
+			for(int i = 0; i < length; i++) {
+				_next2[i] = Math.Min(max, len2 * i);
+			}
+		}
+
+
+		public static List<byte> compress(ushort[] bytes)
+		{
+			List<byte> list = new List<byte>();
 			int count = 1;
 			ushort data = bytes[0];
 			for(int i = 1; i < bytes.Length; i++) {
 				if(bytes[i] == data) {
 					count++;
 				} else {
-					list.Add((ushort)count);
-					list.Add(data);
+					if(count > 255) {
+						list.Add((byte)0);
+						var bs = BitConverter.GetBytes((ushort)count);
+						list.Add(bs[0]);
+						list.Add(bs[1]);
+					} else {
+						list.Add((byte)count);
+					}
+					var bs2 = BitConverter.GetBytes((ushort)data);
+					list.Add(bs2[0]);
+					list.Add(bs2[1]);
 					count = 1;
 					data = bytes[i];
 				}
 			}
-			list.Add((ushort)count);
-			list.Add(data);
+			list.Add((byte)count);
+			var bs3 = BitConverter.GetBytes((ushort)data);
+			list.Add(bs3[0]);
+			list.Add(bs3[1]);
 			return list;
 		}
 		public static List<byte> compress(byte[] bytes)
