@@ -167,7 +167,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 
 		internal void build(List<TrieNodeEx> nodes)
 		{
-			var length = (int)_dict.Max(q => q)+1;
+			var length = (int)_dict.Max(q => q);
 			var nodes1 = nodes.Where(q => q.m_values != null).ToList();
 			var nodes2 = nodes.Where(q => q.m_values == null).ToList();
 			var tatol = length * (nodes1.Count() + 1) + 1;

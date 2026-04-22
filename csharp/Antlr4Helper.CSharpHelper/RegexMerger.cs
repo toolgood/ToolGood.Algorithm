@@ -21,12 +21,12 @@ namespace Antlr4Helper.CSharpHelper.RegexEngine
 			_minimizer = new DFAMinimizer();
 		}
 
-		public DFA MergePatterns(List<string> patterns, char[] dict = null)
+		public DFA MergePatterns(List<string> patterns, char[] dict = null, HashSet<char> excludeTable = null)
 		{
 			if(patterns == null || patterns.Count == 0)
 				throw new ArgumentException("模式列表不能为空", nameof(patterns));
 			_nfaBuilder.SetDict(dict);
-
+			_nfaBuilder.SetExcludeTable(excludeTable);
 			var nfas = new List<NFA>();
 
 			for(int i = 0; i < patterns.Count; i++) {

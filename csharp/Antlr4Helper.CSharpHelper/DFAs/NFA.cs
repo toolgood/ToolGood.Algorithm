@@ -128,6 +128,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
 		private readonly Stack<NFAFragment> _fragmentStack;
 		private int _patternId;
 		private char[] _dict;
+		private HashSet<char> _excludeTable;
 
 		public NFABuilder()
 		{
@@ -138,6 +139,10 @@ namespace Antlr4Helper.CSharpHelper.DFAs
 		public void SetDict(char[] dict)
 		{
 			_dict = dict;
+		}
+		internal void SetExcludeTable(HashSet<char> excludeTable)
+		{
+			_excludeTable = excludeTable;
 		}
 
 		public NFA Build(RegexNode ast, int patternId = 0)
@@ -216,6 +221,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
 					if(!excludedChars.Contains((char)c)) {
 						var ch = (char)c;
 						if(_dict != null) {
+							if(_excludeTable.Contains(ch)) { continue; }
 							ch = _dict[ch];
 						}
 						if(charSet.Add(ch)) {
@@ -228,6 +234,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
 					for(var c = range.Min; c <= range.Max; c++) {
 						var ch = (char)c;
 						if(_dict != null) {
+							if(_excludeTable.Contains(ch)) { continue; }
 							ch = _dict[ch];
 						}
 						if(charSet.Add(ch)) {
@@ -248,6 +255,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
 			for(int c = 0; c <= char.MaxValue; c++) {
 				var ch = (char)c;
 				if(_dict != null) {
+					if(_excludeTable.Contains(ch)) { continue; }
 					ch = _dict[ch];
 				}
 				if(charSet.Add(ch)) {
@@ -373,5 +381,7 @@ namespace Antlr4Helper.CSharpHelper.DFAs
 			start.AddEpsilonTransition(end);
 			_fragmentStack.Push(new NFAFragment(start, end));
 		}
+
+
 	}
 }

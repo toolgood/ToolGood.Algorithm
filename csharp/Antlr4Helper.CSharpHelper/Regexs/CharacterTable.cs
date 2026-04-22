@@ -7,12 +7,14 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 {
 	internal class CharacterTable : IRegexNodeVisitor
 	{
+		public HashSet<char> uniqueTable;
 		public string[] table;
 		public int index;
 		public int layer;
 
 		public CharacterTable()
 		{
+			uniqueTable=new HashSet<char>();
 			table = new string[char.MaxValue + 1];
 			for(int i = 0; i < char.MaxValue; i++) {
 				table[i] = "";
@@ -27,6 +29,10 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 
 		public char[] BuildIndex()
 		{
+			foreach(var item in uniqueTable) {
+				table[item] += "|||" + ((int)item).ToString();
+			}
+
 			for(int i = 'a'; i < table.Length; i++) {
 				var c = (char)i;
 				var c2 = StandardChar(c);
@@ -84,6 +90,20 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 			return tableIndex;
 		}
 
+		public static HashSet<char> ExcludeTable()
+		{
+			HashSet<char> result = new HashSet<char>();
+			for(int i = 0; i <= char.MaxValue; i++) {
+				var c = (char)i;
+				var c2 = StandardChar(c);
+				if(c != c2) {
+					result.Add(c);
+				}
+			}
+			return result;
+		}
+
+
 		public static char StandardChar(char o) => o switch {
 			>= 'a' and <= 'z' => (char)(o - 32),
 			< (char)127 => o,
@@ -104,17 +124,17 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 		public void Visit(CharNode node)
 		{
 			layer++;
-			table[node.Value] += $"{layer:D2},{index:D3}|";
+			uniqueTable.Add(node.Value);
 		}
 
 		public void Visit(CharClassNode node)
 		{
 			layer++;
-
+			var txt = node.ToString();
 			if(node.Negated == false) {
 				foreach(var (min, max) in node.Ranges) {
 					for(int i = min; i <= max; i++) {
-						table[i] += $"{layer:D2},{index:D3}|";
+						table[i] += txt;
 					}
 				}
 			} else {
@@ -126,7 +146,7 @@ namespace Antlr4Helper.CSharpHelper.Regexs
 				}
 				for(int i = 0; i <= char.MaxValue; i++) {
 					if(ranges.Contains(i) == false) {
-						table[i] += $"{layer:D2},{index:D3}|";
+						table[i] += txt;
 					}
 				}
 			}

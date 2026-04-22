@@ -36,10 +36,10 @@ namespace Antlr4Helper.CSharpHelper
 				characterTable.SetIndex(dictRegexNode.Count, reg);
 			}
 			var dict = characterTable.BuildIndex();
-			var max = dict.Max();
+			var excludeTable = CharacterTable.ExcludeTable();
 
 			var merger = new RegexMerger();
-			var dfa = merger.MergePatterns(patterns, dict);
+			var dfa = merger.MergePatterns(patterns, dict, excludeTable);
 			dfa.SetDict(dict);
 
 			var result1 = dfa.Match("(");
@@ -51,6 +51,9 @@ namespace Antlr4Helper.CSharpHelper
 
 			var dfaTree = DfaTreeBuilder.Build(dfa, 302);
 			var ts0 = dfa.Match("1+123+55");
+			var ts012 = dfa.Match("1");
+			var ts0123 = dfa.Match("1+");
+
 			var ts = dfaTree.FindAll("1+123+55");
 			var ts1 = dfaTree.FindAll(":1+  Max (1,2,3e1)");
 			var ts01 = dfa.Match(":1+  Max (1,2,3e1)");
