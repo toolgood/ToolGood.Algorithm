@@ -1,12 +1,9 @@
 <Solution>
-  <Configurations>
-    <BuildType Name="Debug" />
-    <BuildType Name="Release" />
-  </Configurations>
   <Folder Name="/tool/">
     <Project Path="Antlr4Helper.CSharpHelper/Antlr4Helper.CSharpHelper.csproj">
     </Project>
   </Folder>
+  <Project Path="ToolGood.Algorithm.Fast/ToolGood.Algorithm.Fast.csproj" Id="098e553b-5c75-435e-a8e5-819e40778dfc" />
   <Project Path="ToolGood.Algorithm.Test/ToolGood.Algorithm.Test.csproj">
   </Project>
   <Project Path="ToolGood.Algorithm/ToolGood.Algorithm.csproj" />

@@ -70,7 +70,21 @@ namespace Antlr4Helper.CSharpHelper.Trees
 			bw.WriteVarInt32(len);
 			bw.WriteVarInt32(max);
 
-			File.WriteAllBytes("math.bin", memoryStream.ToArray());
+			var bytes = memoryStream.ToArray();
+			File.WriteAllBytes("math.bin", bytes);
+
+			StringBuilder stringBuilder= new StringBuilder();
+			var index = 0;	
+			foreach(var item in bytes) {
+				stringBuilder.Append("0x");
+				stringBuilder.Append(item.ToString("X2"));
+				stringBuilder.Append(',');
+				index++;
+				if(index%32==0) {
+					stringBuilder.AppendLine();
+				}
+			}
+			File.WriteAllText("math.txt", stringBuilder.ToString());
 		}
 		public void Write(BinaryWriter bw, byte[] bytes)
 		{

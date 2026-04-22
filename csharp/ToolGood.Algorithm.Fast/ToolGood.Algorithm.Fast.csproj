@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。使用非生成的Lexer，速度很快</Description>
+		<Copyright>Copyright 2017-2026 ToolGood</Copyright>
+		<AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
+		<Authors>ToolGood</Authors>
+		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
+		<AssemblyName>ToolGood.Algorithm.Fast</AssemblyName>
+		<PublicSign>true</PublicSign>
+		<PackageId>ToolGood.Algorithm</PackageId>
+		<PackageTags>algorithm;excel;excel-expressions;script;formula-grammar;formula;expression</PackageTags>
+		<PackageProjectUrl>https://github.com/toolgood/ToolGood.Algorithm</PackageProjectUrl>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<RepositoryType>git</RepositoryType>
+		<RootNamespace>ToolGood.Algorithm</RootNamespace>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Product>ToolGood.Algorithm</Product>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<SignAssembly>true</SignAssembly>
+		<Version>6.2.5.43</Version>
+		<AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>false</DelaySign>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
+		<Nullable>disable</Nullable>
+		<Configurations>Debug;Release</Configurations>
+		<Title>ToolGood.Algorithm</Title>
+		<PackageReadmeFile>README-EN.md</PackageReadmeFile>
+		<RepositoryUrl></RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\README-EN.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\ToolGood.Algorithm\**\*.cs" Exclude="..\ToolGood.Algorithm\obj\**\*.cs;..\ToolGood.Algorithm\math\mathLexer.cs" />
+  </ItemGroup>
+
+</Project>
