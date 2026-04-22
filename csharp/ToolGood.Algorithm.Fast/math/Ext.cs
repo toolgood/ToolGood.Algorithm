@@ -1,5 +1,4 @@
 ﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using System;
 using System.Collections.Generic;
@@ -30,7 +29,7 @@ namespace ToolGood.Algorithm.math
 		{
 			ErrorData = data;
 		}
-		public override void NotifyListeners(LexerNoViableAltException e)
+		public   void NotifyListeners(LexerNoViableAltException e)
 		{
 			ErrorData.IsError = true;
 			ErrorData.ErrorMsg = "Lexer is err";

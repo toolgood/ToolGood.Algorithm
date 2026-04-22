@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ToolGood.Algorithm.Fast.math
+namespace ToolGood.Algorithm.math
 {
-	internal class mathLexer : ITokenSource
+	internal partial class mathLexer : ITokenSource
 	{
 		public const int
 			T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
@@ -507,9 +507,10 @@ namespace ToolGood.Algorithm.Fast.math
 		private readonly ICharStream _input;
 		private int _line = 1;
 		private int _column = 0;
-		private int _startCharIndex;
+		private int startIdx;
+		private int p;
 
-		public mathLexer(ICharStream input)
+		public mathLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 		{
 			_input = input;
 		}
@@ -521,10 +522,40 @@ namespace ToolGood.Algorithm.Fast.math
 		public ITokenFactory TokenFactory { get; set; } = new CommonTokenFactory();
 
 
+
 		[return: NotNull]
 		public IToken NextToken()
 		{
-			throw new NotImplementedException();
+			while(true) {
+				var c = _input.LA(1);
+				if(c == IntStreamConstants.EOF) {
+					return TokenFactory.Create(TokenConstants.EOF, "");
+				}
+				_input.Consume();
+				var t = _dict[c];
+				var next = _next[_next2[p] + t];
+				if(next == 0) {
+					var r = _end[p];
+					if(r == 0) {
+						return CreateToken(TokenConstants.InvalidType);
+					} else if(r != 0xFF) {
+						return CreateToken(r);
+					}
+					startIdx = _input.Index;
+					next = _next[t];
+					if(next == 0) {
+						return CreateToken(TokenConstants.InvalidType);
+					}
+				}
+				p = next;
+			}
+
+		}
+		private IToken CreateToken(int type)
+		{
+			int stopIndex = _input.Index - 1;
+			string text = _input.GetText(Interval.Of(startIdx, stopIndex));
+			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, startIdx, stopIndex, 0, 0);
 		}
 	}
 }

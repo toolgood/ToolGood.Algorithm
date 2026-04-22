@@ -102,13 +102,13 @@ namespace ToolGood.Algorithm
 		private FunctionBase ParseInternal(string exp)
 		{
 			var stream = new AntlrCharStream(exp);
-			//var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
-			var lexer = new mathLexer2(stream);
+			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
+			//var lexer = new mathLexer2(stream);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 
 			var data = new AntlrErrorData();
-			//lexer.AddErrorData(data);
+			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
 
 			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
@@ -149,13 +149,13 @@ namespace ToolGood.Algorithm
 		private FunctionBase ParseInternalWithoutError(string exp)
 		{
 			var stream = new AntlrCharStream(exp);
-			//var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
-			var lexer = new mathLexer2(stream);
+			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
+			//var lexer = new mathLexer2(stream);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 
 			var data = new AntlrErrorData();
-			//lexer.AddErrorData(data);
+			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
 
 			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
