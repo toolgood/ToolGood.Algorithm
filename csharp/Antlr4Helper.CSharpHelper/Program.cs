@@ -59,6 +59,12 @@ namespace Antlr4Helper.CSharpHelper
 			var ts01 = dfa.Match(":1+  Max (1,2,3e1)");
 
 			dfaTree.Save();
+
+
+			DfaTree dfaTree1 = new DfaTree();
+			dfaTree1.Load(File.ReadAllBytes("math.bin"));
+			var ts12= dfaTree1.FindAll(":1+  Max (1,2,3e1)");
+
 		}
 
 		static void Build_File_math_regex()
