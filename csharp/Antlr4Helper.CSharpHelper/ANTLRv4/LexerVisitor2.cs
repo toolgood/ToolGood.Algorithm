@@ -12,6 +12,7 @@ namespace Antlr4Helper.CSharpHelper.ANTLRv4
 	public class LexerVisitor2 : ANTLRv4ParserBaseVisitor<string>, IANTLRv4ParserVisitor<string>
 	{
 		public List<string> VisitTerminalDefs = new List<string>();
+		public List<LexerRegex> LexerRegexes1 = new List<LexerRegex>();
 		public List<LexerRegex> LexerRegexes = new List<LexerRegex>();
 		public string lexerCommands = null;
 		private bool b = true;
@@ -27,7 +28,7 @@ namespace Antlr4Helper.CSharpHelper.ANTLRv4
 					if(VisitTerminalDefs.Contains(txt) == false) {
 						VisitTerminalDefs.Add(txt);
 						Console.WriteLine($"VisitTerminalDef: T__{T}: " + txt);
-						LexerRegexes.Add(new LexerRegex { Name = $"T__{T}", Regex = txt });
+						LexerRegexes1.Add(new LexerRegex { Name = $"T__{T}", Regex = txt });
 						T++;
 					}
 					return null;

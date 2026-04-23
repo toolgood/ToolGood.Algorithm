@@ -1,11 +1,12 @@
+﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using System;
 using System.Collections.Generic;
-using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
+using System.IO;
 
 namespace ToolGood.Algorithm.math
 {
-	internal class mathLexer2 : ITokenSource
+	internal partial class mathLexer : ITokenSource
 	{
 		public const int
 			T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
@@ -64,7 +65,7 @@ namespace ToolGood.Algorithm.math
 		private int _startLine;
 		private int _startColumn;
 
-		static mathLexer2()
+		static mathLexer()
 		{
 			_keywords = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
 			{
@@ -343,7 +344,7 @@ namespace ToolGood.Algorithm.math
 			};
 		}
 
-		public mathLexer2(ICharStream input)
+		public mathLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 		{
 			_input = input;
 		}

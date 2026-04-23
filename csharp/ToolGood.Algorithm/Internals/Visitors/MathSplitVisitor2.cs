@@ -62,9 +62,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
 
 			var t = context.op.Type;
-			if(t == math.mathLexer2.OPMUL) {
+			if(t == math.mathLexer.OPMUL) {
 				tree.Type = CalculateTreeType.Mul;
-			} else if(t == math.mathLexer2.OPDIV) {
+			} else if(t == math.mathLexer.OPDIV) {
 				tree.Type = CalculateTreeType.Div;
 			} else {
 				tree.Type = CalculateTreeType.Mod;
@@ -84,9 +84,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
 
 			var t = context.op.Type;
-			if(t == math.mathLexer2.OPADD) {
+			if(t == math.mathLexer.OPADD) {
 				tree.Type = CalculateTreeType.Add;
-			} else if(t == math.mathLexer2.OPSUB) {
+			} else if(t == math.mathLexer.OPSUB) {
 				tree.Type = CalculateTreeType.Sub;
 			} else {
 				tree.Type = CalculateTreeType.Connect;
@@ -106,15 +106,15 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Nodes = new List<CalculateTree>(2) { f1, f2 };
 
 			var t = context.op.Type;
-			if(t == math.mathLexer2.OPGE) {
+			if(t == math.mathLexer.OPGE) {
 				tree.Type = CalculateTreeType.OpGe;
-			} else if(t == math.mathLexer2.OPLE) {
+			} else if(t == math.mathLexer.OPLE) {
 				tree.Type = CalculateTreeType.OpLe;
-			} else if(t == math.mathLexer2.OPGT) {
+			} else if(t == math.mathLexer.OPGT) {
 				tree.Type = CalculateTreeType.OpGt;
-			} else if(t == math.mathLexer2.OPLT) {
+			} else if(t == math.mathLexer.OPLT) {
 				tree.Type = CalculateTreeType.OpLt;
-			} else if(t == math.mathLexer2.OPEQ) {
+			} else if(t == math.mathLexer.OPEQ) {
 				tree.Type = CalculateTreeType.OpEq;
 			} else {
 				tree.Type = CalculateTreeType.OpNe;

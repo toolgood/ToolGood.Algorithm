@@ -46,7 +46,7 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\ToolGood.Algorithm\**\*.cs" Exclude="..\ToolGood.Algorithm\obj\**\*.cs;..\ToolGood.Algorithm\math\mathLexer.cs;..\ToolGood.Algorithm\math\Ext.cs" />
+    <Compile Include="..\ToolGood.Algorithm\**\*.cs" Exclude="..\ToolGood.Algorithm\obj\**\*.cs;..\ToolGood.Algorithm\math\mathLexer.cs;..\ToolGood.Algorithm\math\Ext.cs;..\ToolGood.Algorithm\math\mathLexer2.cs" />
   </ItemGroup>
 
 </Project>

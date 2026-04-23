@@ -1,4 +1,4 @@
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using Antlr4Helper.CSharpHelper.ANTLRv4;
 using Antlr4Helper.CSharpHelper.RegexEngine;
 using Antlr4Helper.CSharpHelper.Regexs;
@@ -63,7 +63,7 @@ namespace Antlr4Helper.CSharpHelper
 
 			DfaTree dfaTree1 = new DfaTree();
 			dfaTree1.Load(File.ReadAllBytes("math.bin"));
-			var ts12= dfaTree1.FindAll(":1+  Max (1,2,3e1)");
+			var ts12 = dfaTree1.FindAll(":1+  Max (1,2,3e1)");
 
 		}
 
@@ -98,23 +98,35 @@ namespace Antlr4Helper.CSharpHelper
 			var ts = parser.grammarSpec();
 			var lexerVisitor = new LexerVisitor2();
 			lexerVisitor.Visit(ts);
+			var lexerRegexes1 = lexerVisitor.LexerRegexes1;
 			var lexerRegexes = lexerVisitor.LexerRegexes;
 
 			for(int i = lexerRegexes.Count - 1; i >= 0; i--) {
 				var lr = lexerRegexes[i];
+				for(int j = lexerRegexes1.Count - 1; j >= 0; j--) {
+					var lr2 = lexerRegexes1[i];
+					if(lr.Regex == lr2.Regex) {
+						lexerRegexes1.RemoveAt(j);
+					}
+				}
+			}
+			lexerRegexes1.AddRange(lexerRegexes);
+
+			for(int i = lexerRegexes1.Count - 1; i >= 0; i--) {
+				var lr = lexerRegexes1[i];
 				if(lr.IsFragment == false) { continue; }
 				var lrtxt = "(" + lr.Regex + ")";
 				for(int j = i - 1; j >= 0; j--) {
-					var lrr = lexerRegexes[j];
+					var lrr = lexerRegexes1[j];
 					if(lrr.IsFragment) { continue; }
 					lrr.Regex = lrr.Regex.Replace(lr.Name, lrtxt);
 				}
-				lexerRegexes.RemoveAt(i);
+				lexerRegexes1.RemoveAt(i);
 			}
-			for(int i = 0; i < lexerRegexes.Count; i++) {
-				lexerRegexes[i].Id = i + 1;
+			for(int i = 0; i < lexerRegexes1.Count; i++) {
+				lexerRegexes1[i].Id = i + 1;
 			}
-			return lexerRegexes;
+			return lexerRegexes1;
 		}
 
 		static void Main2(string[] args)

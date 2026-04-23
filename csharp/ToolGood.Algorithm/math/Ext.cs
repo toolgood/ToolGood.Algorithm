@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.math
 		{
 			ErrorData = data;
 		}
-		public override void NotifyListeners(LexerNoViableAltException e)
+		public   void NotifyListeners(LexerNoViableAltException e)
 		{
 			ErrorData.IsError = true;
 			ErrorData.ErrorMsg = "Lexer is err";

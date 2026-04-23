@@ -103,7 +103,7 @@ namespace ToolGood.Algorithm
 		{
 			var stream = new AntlrCharStream(exp);
 			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
-			//var lexer = new mathLexer2(stream);
+			//var lexer = new mathLexer(stream);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 
@@ -150,7 +150,7 @@ namespace ToolGood.Algorithm
 		{
 			var stream = new AntlrCharStream(exp);
 			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
-			//var lexer = new mathLexer2(stream);
+			//var lexer = new mathLexer(stream);
 			var tokens = new CommonTokenStream(lexer);
 			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
 

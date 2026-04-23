@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace Antlr4Helper.CSharpHelper.Trees
 		private byte[] _dict;
 		private ushort[] _next;
 		private int[] _next2;
-		private ushort[] _end; //0,无匹配，0xFF 跳过
+		private ushort[] _end; //0,无匹配，0xFFFF 跳过
 
 
 		public DfaTree() { }
