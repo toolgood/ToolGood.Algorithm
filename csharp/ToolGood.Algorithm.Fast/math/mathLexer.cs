@@ -537,6 +537,10 @@ namespace ToolGood.Algorithm.math
 			if(c == IntStreamConstants.EOF) {
 				return TokenFactory.Create(TokenConstants.EOF, "");
 			}
+			if(IsDigit(c)) {
+				return ReadNumber();
+			}
+
 			var p = 0;
 			startIdx = _input.Index;
 			while(true) {
@@ -572,7 +576,84 @@ namespace ToolGood.Algorithm.math
 			}
 		}
 
- 
+		private bool IsDigit(int c)
+		{
+			return c >= '0' && c <= '9';
+		}
+
+		private IToken ReadNumber()
+		{
+			while(IsDigit(_input.LA(1))) {
+				_input.Consume();
+			}
+
+			if(_input.LA(1) == '.' && IsDigit(_input.LA(2))) {
+				_input.Consume();
+				while(IsDigit(_input.LA(1))) {
+					_input.Consume();
+				}
+			}
+
+			int c = _input.LA(1);
+			if(c == 'E' || c == 'e') {
+				_input.Consume();
+				c = _input.LA(1);
+				if(c == '+' || c == '-') {
+					_input.Consume();
+				}
+				while(IsDigit(_input.LA(1))) {
+					_input.Consume();
+				}
+			}
+
+			c = _input.LA(1);
+			if(c == 'K' || c == 'D' || c == 'C' || c == 'M') {
+				int c2 = _input.LA(2);
+				if(c2 == 'M') {
+					_input.Consume();
+					_input.Consume();
+					int c3 = _input.LA(1);
+					if(c3 == '2' || c3 == '3') {
+						_input.Consume();
+					}
+				} else if(c2 == 'L') {
+					_input.Consume();
+					_input.Consume();
+				} else if(c == 'K' && c2 == 'G') {
+					_input.Consume();
+					_input.Consume();
+				} else if(c == 'T') {
+					_input.Consume();
+				} else if(c == 'M') {
+					_input.Consume();
+					int c3 = _input.LA(1);
+					if(c3 == 'L') {
+						_input.Consume();
+					} else if(c3 == '2' || c3 == '3') {
+						_input.Consume();
+					}
+				}
+			} else if(c == 'M') {
+				_input.Consume();
+				int c2 = _input.LA(1);
+				if(c2 == 'L') {
+					_input.Consume();
+				} else if(c2 == '2' || c2 == '3') {
+					_input.Consume();
+				}
+			} else if(c == 'L') {
+				_input.Consume();
+			} else if(c == 'T') {
+				_input.Consume();
+			} else if(c == 'K' && _input.LA(2) == 'G') {
+				_input.Consume();
+				_input.Consume();
+			} else if(c == 'G') {
+				_input.Consume();
+			}
+
+			return CreateToken(NUM);
+		}
 		private IToken CreateToken(int type)
 		{
 			int startIdx2 = this.startIdx;
