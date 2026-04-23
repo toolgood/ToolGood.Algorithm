@@ -25,7 +25,8 @@ namespace ToolGood.Algorithm.Test
 
 			//var a11 = Math.Sqrt(2);                                         // 返回	1.4142135623730951
 			//var a12 = engine.TryEvaluate("sqrt(2)", 0.0m);                  // 返回 1.4142135623730950488016887242M 
-
+			var c11 = engine.TryEvaluate("/*1*/(2)+/*1*/3", 0);
+			
 			var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && || and or
 			var c = engine.TryEvaluate("2+3", 0);
 			var d = engine.TryEvaluate("count(array(1,2,3,4))", 0);//{} represents array, return: 4 {}代表数组,返回:4

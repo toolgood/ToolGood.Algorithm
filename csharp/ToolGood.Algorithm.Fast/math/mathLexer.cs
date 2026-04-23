@@ -530,56 +530,6 @@ namespace ToolGood.Algorithm.math
 		public List<IToken> Tokens;
 
 		int startIdx;
-		public void BuildTokens()
-		{
-			Tokens = new List<IToken>();
-			startIdx = 0;
-			var p = 0;
-			while(true) {
-				var c = _input.LA(1);
-				if(c == IntStreamConstants.EOF) {
-					isEnd = true;
-					var type = _end[p];
-					if(type == 0) {
-						Tokens.Add(CreateToken(TokenConstants.InvalidType));
-					} else if(type != 0xFFFF) {
-						int stopIndex = _input.Index - 1;
-						string text = _input.GetText(Interval.Of(startIdx, stopIndex));
-						var token = TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, startIdx, stopIndex, 0, 0);
-						Tokens.Add(token);
-					}
-					Tokens.Add(TokenFactory.Create(TokenConstants.EOF, ""));
-					return;
-				}
-				var t = _dict[c];
-				var next = _next[_next2[p] + t];
-				if(next == 0) {
-					var type = _end[p];
-					if(type == 0) {
-						Tokens.Add(CreateToken(TokenConstants.InvalidType));
-						Tokens.Add(TokenFactory.Create(TokenConstants.EOF, ""));
-						return;
-					} else if(type != 0xFFFF) {
-						int stopIndex = _input.Index - 1;
-						string text = _input.GetText(Interval.Of(startIdx, stopIndex));
-						var token = TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, startIdx, stopIndex, 0, 0);
-						Tokens.Add(token);
-					}
-					startIdx = _input.Index;
-					next = _next[t];
-					if(next == 0) {
-						Tokens.Add(CreateToken(TokenConstants.InvalidType));
-						Tokens.Add(TokenFactory.Create(TokenConstants.EOF, ""));
-						return;
-					}
-				}
-				p = next;
-				_input.Consume();
-			}
-		}
-
-		int index = 0;
-
 
 		[return: NotNull]
 		public IToken NextToken()
@@ -601,6 +551,7 @@ namespace ToolGood.Algorithm.math
 						return CreateToken(type);
 					}
 					startIdx = _input.Index;
+					p = 0;
 					next = _next[t];
 					if(next == 0) {
 						_input.Consume();
@@ -622,13 +573,7 @@ namespace ToolGood.Algorithm.math
 			}
 		}
 
-		public IToken NextToken2()
-		{
-			if(Tokens == null) {
-				BuildTokens();
-			}
-			return Tokens[index++];
-		}
+ 
 		private IToken CreateToken(int type)
 		{
 			int startIdx2 = this.startIdx;

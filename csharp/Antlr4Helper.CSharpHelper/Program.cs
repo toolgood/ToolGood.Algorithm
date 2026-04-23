@@ -41,22 +41,12 @@ namespace Antlr4Helper.CSharpHelper
 			var merger = new RegexMerger();
 			var dfa = merger.MergePatterns(patterns, dict, excludeTable);
 			dfa.SetDict(dict);
-
-			var result1 = dfa.Match("(");
-			var result21 = dfa.Match("true");
-			var result2 = dfa.Match("hello");
-			var result3 = dfa.Match("123");
-			var result4 = dfa.Match(" ");
-			var result5 = dfa.Match("T.INV");
+			var result122 = dfa.Match("/*1*/123");
+			Console.WriteLine(result122);
 
 			var dfaTree = DfaTreeBuilder.Build(dfa, 301);
-			var ts0 = dfa.Match("1+123+55");
-			var ts012 = dfa.Match("1");
-			var ts0123 = dfa.Match("1+");
-
-			var ts = dfaTree.FindAll("1+123+55");
-			var ts1 = dfaTree.FindAll(":1+  Max (1,2,3e1)");
-			var ts01 = dfa.Match(":1+  Max (1,2,3e1)");
+			var result1221 = dfaTree.FindAll("/*1*/123");
+			Console.WriteLine(result1221.Count);
 
 			dfaTree.Save();
 
