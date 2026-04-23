@@ -3,12 +3,12 @@
 	<PropertyGroup>
 		<Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。使用非生成的Lexer，速度很快</Description>
 		<Copyright>Copyright 2017-2026 ToolGood</Copyright>
-		<AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
+		<AssemblyTitle>ToolGood.Algorithm.Fast</AssemblyTitle>
 		<Authors>ToolGood</Authors>
 		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
 		<AssemblyName>ToolGood.Algorithm.Fast</AssemblyName>
 		<PublicSign>true</PublicSign>
-		<PackageId>ToolGood.Algorithm</PackageId>
+		<PackageId>ToolGood.Algorithm.Fast</PackageId>
 		<PackageTags>algorithm;excel;excel-expressions;script;formula-grammar;formula;expression</PackageTags>
 		<PackageProjectUrl>https://github.com/toolgood/ToolGood.Algorithm</PackageProjectUrl>
 		<PackageLicenseUrl></PackageLicenseUrl>
@@ -16,7 +16,7 @@
 		<RootNamespace>ToolGood.Algorithm</RootNamespace>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Product>ToolGood.Algorithm</Product>
+		<Product>ToolGood.Algorithm.Fast</Product>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<SignAssembly>true</SignAssembly>
 		<Version>6.2.5.43</Version>
@@ -25,7 +25,7 @@
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
 		<Nullable>disable</Nullable>
 		<Configurations>Debug;Release</Configurations>
-		<Title>ToolGood.Algorithm</Title>
+		<Title>ToolGood.Algorithm.Fast</Title>
 		<PackageReadmeFile>README-EN.md</PackageReadmeFile>
 		<RepositoryUrl></RepositoryUrl>
 	</PropertyGroup>
