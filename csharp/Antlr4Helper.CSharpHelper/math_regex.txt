@@ -299,5 +299,5 @@ YEAR=YEAR
 YEARFRAC=YEARFRAC
 PARAMETER=([A-Z_]|([\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u00ff\u0100-\u1fff\u2c00-\u2fff\u3040-\u318f\u3300-\u337f\u3400-\u3fff\u4e00-\u9fff\ua000-\ud7ff\uf900-\ufaff\uff00-\ufff0]))(([A-Z0-9_]|([\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u00ff\u0100-\u1fff\u2c00-\u2fff\u3040-\u318f\u3300-\u337f\u3400-\u3fff\u4e00-\u9fff\ua000-\ud7ff\uf900-\ufaff\uff00-\ufff0])))*
 WS=[ \t\r\n\f]
-COMMENT=/\*(.)*?\*/
+COMMENT=/\*([^\*]|\*[^/])*\*/
 LINE_COMMENT=//([^\r\n])*
