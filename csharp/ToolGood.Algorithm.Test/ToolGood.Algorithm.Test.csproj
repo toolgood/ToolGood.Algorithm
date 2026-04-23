@@ -10,7 +10,8 @@
   </ItemGroup>-->
 
   <ItemGroup>
-    <ProjectReference Include="..\ToolGood.Algorithm\ToolGood.Algorithm.csproj" />
+    <ProjectReference Include="..\ToolGood.Algorithm.Fast\ToolGood.Algorithm.Fast.csproj" />
+    <!--<ProjectReference Include="..\ToolGood.Algorithm\ToolGood.Algorithm.csproj" />-->
   </ItemGroup>
 
 </Project>
