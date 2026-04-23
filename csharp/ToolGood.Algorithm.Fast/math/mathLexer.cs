@@ -356,12 +356,20 @@ namespace ToolGood.Algorithm.math
 		public IToken NextToken()
 		{
 			while(true) {
-				if(_input.LA(1) == IntStreamConstants.EOF) {
-					var eofToken = TokenFactory.Create(TokenConstants.EOF, "");
-					return eofToken;
-				}
 				int c = _input.LA(1);
-				if(IsWhitespace(c)) {
+				if(c == IntStreamConstants.EOF) {
+					return TokenFactory.Create(TokenConstants.EOF, "");
+				}
+				if(IsDigit(c)) {
+					_startCharIndex = _input.Index;
+					return ReadNumber();
+				} else if(c == '\'' || c == '"' || c == '`') {
+					_startCharIndex = _input.Index;
+					return ReadString(c);
+				} else if(IsIdentifierStart(c)) {
+					_startCharIndex = _input.Index;
+					return ReadIdentifier();
+				} else if(IsWhitespace(c)) {
 					ConsumeWhitespace();
 					continue;
 				} else if(c == '/') {
@@ -375,15 +383,6 @@ namespace ToolGood.Algorithm.math
 					}
 				}
 				_startCharIndex = _input.Index;
-				if(IsDigit(c) ) {
-					return ReadNumber();
-				}
-				if(c == '\'' || c == '"' || c == '`') {
-					return ReadString(c);
-				}
-				if(IsIdentifierStart(c)) {
-					return ReadIdentifier();
-				}
 				return ReadOperator();
 			}
 		}
@@ -397,7 +396,7 @@ namespace ToolGood.Algorithm.math
 
 		private bool IsWhitespace(int c)
 		{
-			return c == ' ' || c == '\n' ;
+			return c == ' ' || c == '\n';
 		}
 
 		private bool IsDigit(int c)
