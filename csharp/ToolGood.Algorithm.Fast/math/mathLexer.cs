@@ -603,6 +603,7 @@ namespace ToolGood.Algorithm.math
 					startIdx = _input.Index;
 					next = _next[t];
 					if(next == 0) {
+						_input.Consume();
 						return CreateToken(TokenConstants.InvalidType);
 					}
 				}
