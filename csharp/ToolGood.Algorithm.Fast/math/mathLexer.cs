@@ -482,32 +482,34 @@ namespace ToolGood.Algorithm.math
 		private IToken ReadNumber()
 		{
 			_input.Consume();
-			while(IsDigit(_input.LA(1))) {
-				_input.Consume();
-			}
-
-			if(_input.LA(1) == '.' && IsDigit(_input.LA(2))) {
-				_input.Consume();
-				_input.Consume();
-				while(IsDigit(_input.LA(1))) {
-					_input.Consume();
-				}
-			}
 
 			int c = _input.LA(1);
-			if(c == 'E') {
+			while(IsDigit(c)) {
 				_input.Consume();
 				c = _input.LA(1);
-				if(c == '+' || c == '-') {
+			}
+
+			if(c == '.' && IsDigit(_input.LA(2))) {
+				_input.Consume();
+				_input.Consume();
+				c = _input.LA(1);
+				while(IsDigit(c)) {
 					_input.Consume();
+					c = _input.LA(1);
 				}
-				while(IsDigit(_input.LA(1))) {
+			}
+			if(c == 'E') {
+				var c2 = _input.LA(2);
+				if(IsDigit(c2) || c2 == '+' || c2 == '-') {
 					_input.Consume();
+					_input.Consume();
+					while(IsDigit(_input.LA(1))) {
+						_input.Consume();
+					}
 				}
 				return CreateToken(NUM);
 			}
 
-			c = _input.LA(1);
 			if(c == 'K') {
 				int c2 = _input.LA(2);
 				if(c2 == 'M') {
