@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace ToolGood.Algorithm.math
 {
-	internal partial class mathLexer : ITokenSource
+	internal sealed partial class mathLexer : ITokenSource
 	{
 		public const int
 			T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
@@ -386,6 +386,7 @@ namespace ToolGood.Algorithm.math
 			}
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private IToken CreateToken(int type)
 		{
 			int stopIndex = _input.Index - 1;
@@ -416,6 +417,7 @@ namespace ToolGood.Algorithm.math
 			return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || c == '_';
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ConsumeWhitespace()
 		{
 			while(IsWhitespace(_input.LA(1))) {
@@ -423,6 +425,7 @@ namespace ToolGood.Algorithm.math
 			}
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ConsumeBlockComment()
 		{
 			_input.Consume();
@@ -439,6 +442,7 @@ namespace ToolGood.Algorithm.math
 			}
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ConsumeLineComment()
 		{
 			_input.Consume();
