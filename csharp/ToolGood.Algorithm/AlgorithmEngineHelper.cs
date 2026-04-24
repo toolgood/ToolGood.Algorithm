@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using System;
 using System.IO;
@@ -67,12 +67,12 @@ namespace ToolGood.Algorithm
 		public static DiyNameInfo GetDiyNames(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) {
-				throw new Exception("Parameter exp invalid !");
+				throw new ArgumentException("Parameter exp invalid !", nameof(exp));
 			}
 			var errorWriter = new AntlrErrorData();
 			var context = CreateParserContext(exp, errorWriter);
 			if(errorWriter.IsError) {
-				throw new Exception(errorWriter.ErrorMsg);
+				throw new ArgumentException(errorWriter.ErrorMsg, nameof(exp));
 			}
 			var visitor = new DiyNameVisitor();
 			visitor.Visit(context);
@@ -101,9 +101,9 @@ namespace ToolGood.Algorithm
 			if(result.HasValue) { return result.Value; }
 
 			if(string.IsNullOrEmpty(name)) {
-				throw new Exception($"The input item has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
+				throw new InvalidOperationException($"The input item has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
 			}
-			throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
+			throw new InvalidOperationException($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
 		}
 
 		private static decimal? TryConvert(decimal src, string srcUnit, string tarUnit)
@@ -132,12 +132,12 @@ namespace ToolGood.Algorithm
 		public static FunctionBase ParseFormula(string exp)
 		{
 			if(string.IsNullOrWhiteSpace(exp)) {
-				throw new Exception("Parameter exp invalid !");
+				throw new ArgumentException("Parameter exp invalid !", nameof(exp));
 			}
 			var errorWriter = new AntlrErrorData();
 			var context = CreateParserContext(exp, errorWriter);
 			if(errorWriter.IsError) {
-				throw new Exception(errorWriter.ErrorMsg);
+				throw new ArgumentException(errorWriter.ErrorMsg, nameof(exp));
 			}
 			var visitor = new MathFunctionVisitor();
 			return visitor.Visit(context);

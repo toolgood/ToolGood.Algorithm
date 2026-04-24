@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.RootFinding
                 return root;
             }
 
-            throw new Exception("RootFindingFailed");
+            throw new InvalidOperationException("RootFindingFailed");
         }
 
         public static bool TryFindRoot(Func<decimal, decimal> f, decimal lowerBound, decimal upperBound, decimal accuracy, int maxIterations, out decimal root)

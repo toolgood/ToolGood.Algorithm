@@ -79,7 +79,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 				rate = newRate;
 			}
-			throw new Exception("IRR calculation did not converge");
+			throw new InvalidOperationException("IRR calculation did not converge");
 		}
 		public override OperandType GetResultType()
 		{

@@ -389,7 +389,7 @@
 				case Zero when pow > Zero:
 					return Zero;
 				case Zero:
-					throw new Exception("Invalid Operation: zero base and negative power");
+					throw new InvalidOperationException("Invalid Operation: zero base and negative power");
 			}
 
 			if(pow == -One) {
@@ -398,7 +398,7 @@
 
 			var isPowerInteger = IsInteger(pow);
 			if(value < Zero && !isPowerInteger) {
-				throw new Exception("Invalid Operation: negative base and non-integer power");
+				throw new InvalidOperationException("Invalid Operation: negative base and non-integer power");
 			}
 
 			if(isPowerInteger && value > Zero) {

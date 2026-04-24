@@ -80,7 +80,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 				rate = newRate;
 			}
-			throw new Exception("XIRR calculation did not converge");
+			throw new InvalidOperationException("XIRR calculation did not converge");
 		}
 		public override OperandType GetResultType()
 		{

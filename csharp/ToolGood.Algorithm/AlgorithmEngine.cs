@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using System;
 using System.Collections.Concurrent;
@@ -92,7 +92,7 @@ namespace ToolGood.Algorithm
 			LastError = null;
 			if(string.IsNullOrWhiteSpace(exp)) {
 				LastError = "Parameter exp invalid !";
-				throw new Exception(LastError);
+				throw new FormatException(LastError);
 			}
 			if(UseParseCache) {
 				return _parseCache.GetOrAdd(exp.Trim(), _ => ParseInternal(exp));
@@ -114,7 +114,7 @@ namespace ToolGood.Algorithm
 			var context = parser.prog();
 			if(data.IsError) {
 				LastError = data.ErrorMsg;
-				throw new Exception(LastError);
+				throw new FormatException(LastError);
 			}
 			var visitor = new MathFunctionVisitor();
 			return visitor.Visit(context);

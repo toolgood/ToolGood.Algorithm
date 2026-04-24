@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -324,7 +324,7 @@ namespace ToolGood.Algorithm
                     return;
                 }
             }
-            throw new Exception("Parameter is not json string.");
+            throw new ArgumentException("Parameter is not json string.", nameof(json));
         }
 
         #endregion Parameter
