@@ -118,7 +118,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public static bool Equals(string left, char right)
 		{
 			if(left.Length != 1) return false;
-			return left[0] == right || StandardChar(left[0]) == right;
+			return left[0] == right || _StandardChars[left[0]] == right;
 		}
 
 		public static bool Equals(string left, string right)
@@ -133,8 +133,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				var l = left[i];
 				var r = right[i];
 				if(l == r) continue;
-				l = StandardChar(l);
-				if(l != r) return false;
+				if(_StandardChars[l] != r) return false;
 			}
 			return true;
 		}
