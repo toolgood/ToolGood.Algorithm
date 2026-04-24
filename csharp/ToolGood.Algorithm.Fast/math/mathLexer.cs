@@ -390,8 +390,8 @@ namespace ToolGood.Algorithm.math
 		private IToken CreateToken(int type)
 		{
 			int stopIndex = _input.Index - 1;
-			string text = _input.GetText(Interval.Of(_startCharIndex, stopIndex));
-			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, text, TokenConstants.DefaultChannel, _startCharIndex, stopIndex, 0, 0);
+			//string text = _input.GetText(Interval.Of(_startCharIndex, stopIndex));
+			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, null, TokenConstants.DefaultChannel, _startCharIndex, stopIndex, 0, 0);
 		}
 
 		private bool IsWhitespace(int c)
@@ -552,9 +552,7 @@ namespace ToolGood.Algorithm.math
 				_input.Consume();
 			}
 
-			int stopIndex = _input.Index - 1;
-			string text = _input.GetText(Interval.Of(_startCharIndex, stopIndex));
-			string upperText = text.ToUpperInvariant();
+			string text = _input.GetText(Interval.Of(_startCharIndex, _input.Index - 1));
 
 			if(_input.LA(1) == '.' && IsIdentifierStart(_input.LA(2))) {
 				int savedIndex = _input.Index;
@@ -564,20 +562,16 @@ namespace ToolGood.Algorithm.math
 					_input.Consume();
 				}
 
-				int stopIndex2 = _input.Index - 1;
-				string fullText = _input.GetText(Interval.Of(_startCharIndex, stopIndex2));
-				string upperFullText = fullText.ToUpperInvariant();
+				string fullText = _input.GetText(Interval.Of(_startCharIndex, _input.Index - 1));
 
-				if(_keywords.TryGetValue(upperFullText, out int fullTokenType)) {
+				if(_keywords.TryGetValue(fullText, out int fullTokenType)) {
 					return CreateToken(fullTokenType);
 				}
 
-				while(_input.Index > savedIndex) {
-					_input.Seek(_input.Index - 1);
-				}
+				_input.Seek(savedIndex);
 			}
 
-			if(_keywords.TryGetValue(upperText, out int tokenType)) {
+			if(_keywords.TryGetValue(text, out int tokenType)) {
 				return CreateToken(tokenType);
 			}
 
