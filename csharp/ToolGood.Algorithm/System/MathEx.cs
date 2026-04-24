@@ -135,7 +135,7 @@
 				y += result / (2 * i + 1);
 				i++;
 			}
-			while(cachedResult != result);
+			while(cachedResult != result && i <= 10000);
 
 			return y;
 		}
@@ -281,7 +281,7 @@
 				factor *= x / iteration++;
 				result += factor;
 			}
-			while(cachedResult != result);
+			while(cachedResult != result && iteration <= 10000);
 
 			if(count != 0) {
 				result *= PowerN(E, count);
@@ -498,6 +498,7 @@
 			if(x < Zero) {
 				throw new OverflowException("Cannot calculate square root from a negative number");
 			}
+
 
 			// Initial approximation.
 			decimal current = (decimal)Math.Sqrt((double)x), previous;
