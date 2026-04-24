@@ -1,4 +1,4 @@
-using PetaTest;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm.Test.Compare
 {
@@ -39,7 +39,9 @@ namespace ToolGood.Algorithm.Test.Compare
             Assert.AreEqual(true, b);
             b = engine.TryEvaluate("'1'='2'", true);
             Assert.AreEqual(false, b);
-            b = engine.TryEvaluate("'1'!='2'", false);
+			b = engine.TryEvaluate("'我'='你'", true);
+			Assert.AreEqual(false, b);
+			b = engine.TryEvaluate("'1'!='2'", false);
             Assert.AreEqual(true, b);
         }
 
