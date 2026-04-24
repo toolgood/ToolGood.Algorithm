@@ -495,10 +495,34 @@ namespace ToolGood.Algorithm.math
 				while(IsDigit(_input.LA(1))) {
 					_input.Consume();
 				}
+				return CreateToken(NUM);
 			}
 
 			c = _input.LA(1);
-			if(c == 'K' || c == 'D' || c == 'C' || c == 'M') {
+			if(c == 'K') {
+				int c2 = _input.LA(2);
+				if(c2 == 'M') {
+					_input.Consume();
+					_input.Consume();
+					int c3 = _input.LA(1);
+					if(c3 == '2' || c3 == '3') {
+						_input.Consume();
+					}
+				} else if(c2 == 'G') {
+					_input.Consume();
+					_input.Consume();
+				}
+			} else if(c == 'D' || c == 'C') {
+				int c2 = _input.LA(2);
+				if(c2 == 'M') {
+					_input.Consume();
+					_input.Consume();
+					int c3 = _input.LA(1);
+					if(c3 == '2' || c3 == '3') {
+						_input.Consume();
+					}
+				}
+			} else if(c == 'M') {
 				int c2 = _input.LA(2);
 				if(c2 == 'M') {
 					_input.Consume();
@@ -510,36 +534,14 @@ namespace ToolGood.Algorithm.math
 				} else if(c2 == 'L') {
 					_input.Consume();
 					_input.Consume();
-				} else if(c == 'K' && c2 == 'G') {
-					_input.Consume();
-					_input.Consume();
-				} else if(c == 'T') {
-					_input.Consume();
-				} else if(c == 'M') {
-					_input.Consume();
-					int c3 = _input.LA(1);
-					if(c3 == 'L') {
-						_input.Consume();
-					} else if(c3 == '2' || c3 == '3') {
-						_input.Consume();
-					}
-				}
-			} else if(c == 'M') {
-				_input.Consume();
-				int c2 = _input.LA(1);
-				if(c2 == 'L') {
-					_input.Consume();
 				} else if(c2 == '2' || c2 == '3') {
 					_input.Consume();
 				}
 			} else if(c == 'L') {
 				_input.Consume();
-			} else if(c == 'T') {
-				_input.Consume();
-			} else if(c == 'K' && _input.LA(2) == 'G') {
-				_input.Consume();
-				_input.Consume();
 			} else if(c == 'G') {
+				_input.Consume();
+			} else if(c == 'T') {
 				_input.Consume();
 			}
 
@@ -552,8 +554,6 @@ namespace ToolGood.Algorithm.math
 				_input.Consume();
 			}
 
-			string text = _input.GetText(Interval.Of(_startCharIndex, _input.Index - 1));
-
 			if(_input.LA(1) == '.' && IsIdentifierStart(_input.LA(2))) {
 				int savedIndex = _input.Index;
 
@@ -563,7 +563,6 @@ namespace ToolGood.Algorithm.math
 				}
 
 				string fullText = _input.GetText(Interval.Of(_startCharIndex, _input.Index - 1));
-
 				if(_keywords.TryGetValue(fullText, out int fullTokenType)) {
 					return CreateToken(fullTokenType);
 				}
@@ -571,6 +570,7 @@ namespace ToolGood.Algorithm.math
 				_input.Seek(savedIndex);
 			}
 
+			string text = _input.GetText(Interval.Of(_startCharIndex, _input.Index - 1));
 			if(_keywords.TryGetValue(text, out int tokenType)) {
 				return CreateToken(tokenType);
 			}
