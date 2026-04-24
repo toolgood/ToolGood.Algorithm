@@ -488,6 +488,7 @@ namespace ToolGood.Algorithm.math
 
 			if(_input.LA(1) == '.' && IsDigit(_input.LA(2))) {
 				_input.Consume();
+				_input.Consume();
 				while(IsDigit(_input.LA(1))) {
 					_input.Consume();
 				}
