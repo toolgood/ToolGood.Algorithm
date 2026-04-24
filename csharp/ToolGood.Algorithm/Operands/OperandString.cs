@@ -93,7 +93,9 @@ namespace ToolGood.Algorithm.Operands
 				try {
 					var json = JsonMapper.ToObject(span);
 					return Operand.Create(json);
-				} catch { }
+				} catch { 
+					return Error(errorMessage ?? "Convert to json error!");
+				}
 			}
 			return Error(errorMessage ?? "Convert to json error!");
 		}

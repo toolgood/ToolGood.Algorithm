@@ -42,8 +42,9 @@ namespace ToolGood.Algorithm.Operands
 			try {
 				var json = JsonMapper.ToObject(txt);
 				return Operand.Create(json);
-			} catch { }
-			return Error(errorMessage ?? "Convert to json error!");
+			} catch { 
+				return Error(errorMessage ?? "Convert to json error!");
+			}
 		}
 
 		public void AddValue(KeyValue keyValue)

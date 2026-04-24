@@ -29,7 +29,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch(Exception) { }
+				} catch { 
+					return ParameterError(1);
+				}
 			}
 			return ParameterError(1);
 		}

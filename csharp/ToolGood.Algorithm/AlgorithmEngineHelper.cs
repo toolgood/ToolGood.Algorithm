@@ -54,7 +54,9 @@ namespace ToolGood.Algorithm
 					var p = diy.Parameters[0];
 					return p.Name == parameter;
 				}
-			} catch(Exception) { }
+			} catch { 
+				return false;
+			}
 			return false;
 		}
 

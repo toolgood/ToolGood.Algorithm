@@ -301,7 +301,9 @@ namespace ToolGood.Algorithm
 				try {
 					var json = JsonMapper.ToObject(txt);
 					return Operand.Create(json);
-				} catch(Exception) { }
+				} catch(Exception) { 
+					return Operand.Error("Convert to json error!");
+				}
 			}
 			return Operand.Error("Convert to json error!");
 		}
