@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.UnitConversion
 {
     internal sealed class AreaConverter 
     {
-		private static Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
+		private static readonly Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
 			{"m²",1 }, {"m2",1 }, {"square metre",1 },{"square meter",1 },{"centiare",1 },{"平方米",1 },{"平方公尺",1 },
 			{"km²",0.000001m }, {"km2",0.000001m }, {"square kilometre",0.000001m },{"square kilometer",0.000001m },{"平方千米",0.000001m },
 			{"dm²",100 }, {"dm2",100 }, {"square decimetre",100 },{"square decimeter",100 },{"平方分米",100 },

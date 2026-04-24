@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.UnitConversion
 {
     internal sealed class MassConverter 
     {
-		private static Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
+		private static readonly Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
 			{"kg",1 }, {"kilogram",1 }, {"千克",1 },
 			{"gram",1000 }, {"g",1000 }, {"克",1000 },
 			{"ton",1M/1000 }, {"t",1M/1000 }, {"吨",1M/1000 },

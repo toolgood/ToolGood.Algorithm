@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.UnitConversion
 {
     internal sealed class VolumeConverter 
     {
-		private static Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
+		private static readonly Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
 			{"l",1 },{"lt",1 },{"ltr",1 },{"liter",1 },{"litre",1 },
 			{"dm³",1 }, {"dm3",1 }, {"cubic decimetre",1 },{"cubic decimeter",1 },{"升",1 },{"立方分米",1 },
 			{"m³",0.001m }, {"m3",0.001m }, {"cubic metre",0.001m },{"cubic meter",0.001m },{"立方米",0.001m },

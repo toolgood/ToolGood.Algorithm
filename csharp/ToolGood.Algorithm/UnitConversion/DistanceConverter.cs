@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.UnitConversion
 {
 	internal sealed class DistanceConverter
 	{
-		private static Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
+		private static readonly Dictionary<string, decimal> units2 = new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase) {
 			{"m",1 }, {"metre",1 }, {"米",1 },
 			{"km",0.001m },{"kilometre",0.001m },{"千米",0.001m },
 			{"dm",10 },{"decimetre",10 },{"分米",10 },
