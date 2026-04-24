@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.LitJson
 		public int Count {
 			get {
 				if(type == JsonType.Array) return inst_array.Count;
-				return inst_object.Count;
+				return inst_object?.Count ?? 0;
 			}
 		}
 		public bool IsArray { get { return type == JsonType.Array; } }
