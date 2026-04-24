@@ -3,6 +3,7 @@ using Antlr4.Runtime.Misc;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace ToolGood.Algorithm.math
 {
@@ -59,8 +60,6 @@ namespace ToolGood.Algorithm.math
 
 		private static readonly Dictionary<string, int> _keywords;
 		private readonly ICharStream _input;
-		private int _line = 1;
-		private int _column = 0;
 		private int _startCharIndex;
 
 		static mathLexer()
@@ -347,8 +346,8 @@ namespace ToolGood.Algorithm.math
 			_input = input;
 		}
 
-		public int Line => _line;
-		public int Column => _column;
+		public int Line => 0;
+		public int Column => 0;
 		public ICharStream InputStream => _input;
 		public string SourceName => _input.SourceName;
 		public ITokenFactory TokenFactory { get; set; } = new CommonTokenFactory();
@@ -394,24 +393,27 @@ namespace ToolGood.Algorithm.math
 			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, null, TokenConstants.DefaultChannel, _startCharIndex, stopIndex, 0, 0);
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsWhitespace(int c)
 		{
 			return c == ' ' || c == '\n';
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsDigit(int c)
 		{
 			return c >= '0' && c <= '9';
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsIdentifierStart(int c)
 		{
 			return (c >= 'A' && c <= 'Z') || c == '_';
 		}
-
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsIdentifierPart(int c)
 		{
-			return IsIdentifierStart(c) || IsDigit(c);
+			return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || c == '_';
 		}
 
 		private void ConsumeWhitespace()
