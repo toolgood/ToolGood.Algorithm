@@ -523,18 +523,15 @@ namespace ToolGood.Algorithm.math
 					}
 				}
 			} else if(c == 'M') {
-				int c2 = _input.LA(2);
+				_input.Consume();
+				int c2 = _input.LA(1);
 				if(c2 == 'M') {
-					_input.Consume();
 					_input.Consume();
 					int c3 = _input.LA(1);
 					if(c3 == '2' || c3 == '3') {
 						_input.Consume();
 					}
-				} else if(c2 == 'L') {
-					_input.Consume();
-					_input.Consume();
-				} else if(c2 == '2' || c2 == '3') {
+				} else if(c2 == 'L' || c2 == '2' || c2 == '3') {
 					_input.Consume();
 				}
 			} else if(c == 'L') {
