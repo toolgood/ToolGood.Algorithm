@@ -6,6 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal sealed class Function_RANDBETWEEN : Function_2
     {
+#if NETSTANDARD2_1
+        private static readonly Random _random = new Random();
+        private static readonly object _randomLock = new object();
+#endif
+
 		public Function_RANDBETWEEN(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 2) {
@@ -29,12 +34,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
                 return ParameterError(1);
             }
 #if NETSTANDARD2_1
-            var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+            lock(_randomLock) {
+                return Operand.Create(Math.Floor((decimal)_random.NextDouble() * (top - bottom + 1) + bottom));
+            }
 #else
-            Random rand = Random.Shared;
+            return Operand.Create(Math.Floor((decimal)Random.Shared.NextDouble() * (top - bottom + 1) + bottom));
 #endif
-            return Operand.Create(Math.Floor((decimal)rand.NextDouble() * (top - bottom + 1) + bottom));
         }
 		public override OperandType GetResultType()
 		{

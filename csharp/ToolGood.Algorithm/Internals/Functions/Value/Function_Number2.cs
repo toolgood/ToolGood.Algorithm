@@ -36,43 +36,39 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 			return OperandType.NUMBER;
 		}
 
-		private static Dictionary<string, NumberUnitType> unitTypedict;
+		private static readonly Dictionary<string, NumberUnitType> unitTypedict = new Dictionary<string, NumberUnitType>(StringComparer.OrdinalIgnoreCase) {
+			["KM"] = NumberUnitType.KM,
+			["M"] = NumberUnitType.M,
+			["DM"] = NumberUnitType.DM,
+			["CM"] = NumberUnitType.CM,
+			["MM"] = NumberUnitType.MM,
+
+			["KM2"] = NumberUnitType.KM2,
+			["M2"] = NumberUnitType.M2,
+			["DM2"] = NumberUnitType.DM2,
+			["CM2"] = NumberUnitType.CM2,
+			["MM2"] = NumberUnitType.MM2,
+
+			["M3"] = NumberUnitType.M3,
+			["DM3"] = NumberUnitType.DM3,
+			["CM3"] = NumberUnitType.CM3,
+			["MM3"] = NumberUnitType.MM3,
+			["KM3"] = NumberUnitType.KM3,
+
+			["L"] = NumberUnitType.DM3,
+			["ML"] = NumberUnitType.CM3,
+
+			["T"] = NumberUnitType.T,
+			["KG"] = NumberUnitType.KG,
+			["G"] = NumberUnitType.G
+		};
 
 		/// <summary>
-		/// »ñÈ¡ µ¥Î»×Öµä
+		/// ï¿½ï¿½È¡ ï¿½ï¿½Î»ï¿½Öµï¿½
 		/// </summary>
 		/// <returns></returns>
 		internal static Dictionary<string, NumberUnitType> GetUnitTypedict()
 		{
-			if(unitTypedict == null) {
-				var dict = new Dictionary<string, NumberUnitType>(StringComparer.OrdinalIgnoreCase) {
-					["KM"] = NumberUnitType.KM,
-					["M"] = NumberUnitType.M,
-					["DM"] = NumberUnitType.DM,
-					["CM"] = NumberUnitType.CM,
-					["MM"] = NumberUnitType.MM,
-
-					["KM2"] = NumberUnitType.KM2,
-					["M2"] = NumberUnitType.M2,
-					["DM2"] = NumberUnitType.DM2,
-					["CM2"] = NumberUnitType.CM2,
-					["MM2"] = NumberUnitType.MM2,
-
-					["M3"] = NumberUnitType.M3,
-					["DM3"] = NumberUnitType.DM3,
-					["CM3"] = NumberUnitType.CM3,
-					["MM3"] = NumberUnitType.MM3,
-					["KM3"] = NumberUnitType.KM3,
-
-					["L"] = NumberUnitType.DM3,
-					["ML"] = NumberUnitType.CM3,
-
-					["T"] = NumberUnitType.T,
-					["KG"] = NumberUnitType.KG,
-					["G"] = NumberUnitType.G
-				};
-				unitTypedict = dict;
-			}
 			return unitTypedict;
 		}
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -6,6 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 {
 	internal sealed class Function_RAND : Function_0
     {
+#if NETSTANDARD2_1
+        private static readonly Random _random = new Random();
+        private static readonly object _randomLock = new object();
+#endif
+
         public Function_RAND()
         {
         }
@@ -15,12 +20,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
 #if NETSTANDARD2_1
-            var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+            lock(_randomLock) {
+                return Operand.Create(_random.NextDouble());
+            }
 #else
-            Random rand = Random.Shared;
+            return Operand.Create(Random.Shared.NextDouble());
 #endif
-            return Operand.Create(rand.NextDouble());
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
