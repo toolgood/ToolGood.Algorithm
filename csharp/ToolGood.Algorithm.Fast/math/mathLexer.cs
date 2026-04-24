@@ -568,7 +568,7 @@ namespace ToolGood.Algorithm.math
 
 			if(c == '.' && IsIdentifierStart(_input.LA(2))) {
 				int savedIndex = _input.Index;
-
+				_input.Consume();
 				_input.Consume();
 				while(IsIdentifierPart(_input.LA(1))) {
 					_input.Consume();
