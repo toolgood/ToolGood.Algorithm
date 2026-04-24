@@ -10,6 +10,7 @@ namespace Antlr4Helper.CSharpHelper
 	{
 		static void Main(string[] args)
 		{
+			StandardCharsBuilder.Build();
 			Dictionary<string, string> dict = new Dictionary<string, string>();
 			dict["Eof"] = "-1";
 
