@@ -391,7 +391,7 @@ namespace ToolGood.Algorithm.math
 		{
 			int stopIndex = _input.Index - 1;
 			//string text = _input.GetText(Interval.Of(_startCharIndex, stopIndex));
-			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, null, TokenConstants.DefaultChannel, _startCharIndex, stopIndex, 0, 0);
+			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, null, 0, _startCharIndex, stopIndex, 0, 0);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -434,12 +434,11 @@ namespace ToolGood.Algorithm.math
 			while(true) {
 				int c = _input.LA(1);
 				if(c == IntStreamConstants.EOF) break;
-				if(c == '*' && _input.LA(2) == '/') {
-					_input.Consume();
+				_input.Consume();
+				if(c == '*' && _input.LA(1) == '/') {
 					_input.Consume();
 					break;
 				}
-				_input.Consume();
 			}
 		}
 
@@ -460,21 +459,15 @@ namespace ToolGood.Algorithm.math
 			_input.Consume();
 			while(true) {
 				int c = _input.LA(1);
-				if(c == IntStreamConstants.EOF) {
-					break;
-				}
+				if(c == IntStreamConstants.EOF) { break; }
+				_input.Consume();
+				if(c == quote) { break; }
+
 				if(c == '\\') {
-					_input.Consume();
 					if(_input.LA(1) != IntStreamConstants.EOF) {
 						_input.Consume();
 					}
-					continue;
 				}
-				if(c == quote) {
-					_input.Consume();
-					break;
-				}
-				_input.Consume();
 			}
 			return CreateToken(STRING);
 		}
