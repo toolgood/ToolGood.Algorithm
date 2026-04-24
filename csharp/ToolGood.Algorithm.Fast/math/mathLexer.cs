@@ -382,7 +382,7 @@ namespace ToolGood.Algorithm.math
 					}
 				}
 				_startCharIndex = _input.Index;
-				return ReadOperator();
+				return ReadOperator(c);
 			}
 		}
 
@@ -420,6 +420,7 @@ namespace ToolGood.Algorithm.math
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ConsumeWhitespace()
 		{
+			_input.Consume();
 			while(IsWhitespace(_input.LA(1))) {
 				_input.Consume();
 			}
@@ -480,6 +481,7 @@ namespace ToolGood.Algorithm.math
 
 		private IToken ReadNumber()
 		{
+			_input.Consume();
 			while(IsDigit(_input.LA(1))) {
 				_input.Consume();
 			}
@@ -553,6 +555,7 @@ namespace ToolGood.Algorithm.math
 
 		private IToken ReadIdentifier()
 		{
+			_input.Consume();
 			while(IsIdentifierPart(_input.LA(1))) {
 				_input.Consume();
 			}
@@ -581,31 +584,23 @@ namespace ToolGood.Algorithm.math
 			return CreateToken(PARAMETER);
 		}
 
-		private IToken ReadOperator()
+		private IToken ReadOperator(int c)
 		{
-			int c = _input.LA(1);
-
+			_input.Consume();
 			switch(c) {
 				case '(':
-					_input.Consume();
 					return CreateToken(T__0);
 				case ')':
-					_input.Consume();
 					return CreateToken(T__1);
 				case '.':
-					_input.Consume();
 					return CreateToken(T__2);
 				case ',':
-					_input.Consume();
 					return CreateToken(T__3);
 				case '[':
-					_input.Consume();
 					return CreateToken(T__4);
 				case ']':
-					_input.Consume();
 					return CreateToken(T__5);
 				case '!':
-					_input.Consume();
 					if(_input.LA(1) == '=') {
 						_input.Consume();
 						if(_input.LA(1) == '=') {
@@ -615,55 +610,42 @@ namespace ToolGood.Algorithm.math
 					}
 					return CreateToken(T__6);
 				case '?':
-					_input.Consume();
 					return CreateToken(T__7);
 				case ':':
-					_input.Consume();
 					return CreateToken(T__8);
 				case '{':
-					_input.Consume();
 					return CreateToken(T__9);
 				case '}':
-					_input.Consume();
 					return CreateToken(T__10);
 				case '&':
-					_input.Consume();
 					if(_input.LA(1) == '&') {
 						_input.Consume();
 						return CreateToken(OPAND);
 					}
 					return CreateToken(OPCAT);
 				case '|':
-					_input.Consume();
 					if(_input.LA(1) == '|') {
 						_input.Consume();
 						return CreateToken(OPOR);
 					}
 					break;
 				case '+':
-					_input.Consume();
 					return CreateToken(OPADD);
 				case '-':
-					_input.Consume();
 					return CreateToken(OPSUB);
 				case '*':
-					_input.Consume();
 					return CreateToken(OPMUL);
 				case '/':
-					_input.Consume();
 					return CreateToken(OPDIV);
 				case '%':
-					_input.Consume();
 					return CreateToken(OPMOD);
 				case '>':
-					_input.Consume();
 					if(_input.LA(1) == '=') {
 						_input.Consume();
 						return CreateToken(OPGE);
 					}
 					return CreateToken(OPGT);
 				case '<':
-					_input.Consume();
 					if(_input.LA(1) == '=') {
 						_input.Consume();
 						return CreateToken(OPLE);
@@ -674,7 +656,6 @@ namespace ToolGood.Algorithm.math
 					}
 					return CreateToken(OPLT);
 				case '=':
-					_input.Consume();
 					if(_input.LA(1) == '=') {
 						_input.Consume();
 						if(_input.LA(1) == '=') {
@@ -684,8 +665,6 @@ namespace ToolGood.Algorithm.math
 					}
 					return CreateToken(OPEQ);
 			}
-
-			_input.Consume();
 			return CreateToken(TokenConstants.InvalidType);
 		}
 	}
