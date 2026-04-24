@@ -559,11 +559,13 @@ namespace ToolGood.Algorithm.math
 		private IToken ReadIdentifier()
 		{
 			_input.Consume();
-			while(IsIdentifierPart(_input.LA(1))) {
+			int c = _input.LA(1);
+			while(IsIdentifierPart(c)) {
 				_input.Consume();
+				c = _input.LA(1);
 			}
 
-			if(_input.LA(1) == '.' && IsIdentifierStart(_input.LA(2))) {
+			if(c == '.' && IsIdentifierStart(_input.LA(2))) {
 				int savedIndex = _input.Index;
 
 				_input.Consume();
