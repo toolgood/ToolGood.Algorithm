@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace ToolGood.Algorithm.Internals.Visitors
 {
@@ -110,22 +111,26 @@ namespace ToolGood.Algorithm.Internals.Visitors
 
 		//	return char.ToUpperInvariant(c);
 		//}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static char StandardChar(char c)
 		{
 			return _StandardChars[c];
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Equals(string left, char right)
 		{
 			if(left.Length != 1) return false;
 			return left[0] == right || _StandardChars[left[0]] == right;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Equals(string left, string right)
 		{
 			return Equals(left.AsSpan(), right.AsSpan());
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Equals(ReadOnlySpan<char> left, ReadOnlySpan<char> right)
 		{
 			if(left.Length != right.Length) return false;
@@ -138,6 +143,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return true;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Equals(string left, string option1, string option2, string option3)
 		{
 			return Equals(left, option1) || Equals(left, option2) || Equals(left, option3);
