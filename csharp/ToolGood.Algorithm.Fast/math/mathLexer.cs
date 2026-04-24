@@ -414,7 +414,7 @@ namespace ToolGood.Algorithm.math
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsIdentifierPart(int c)
 		{
-			return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || c == '_';
+			return (c >= 'A' && c <= 'Z') || c == '_' || (c >= '0' && c <= '9');
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -498,6 +498,7 @@ namespace ToolGood.Algorithm.math
 					c = _input.LA(1);
 				}
 			}
+
 			if(c == 'E') {
 				var c2 = _input.LA(2);
 				if(IsDigit(c2) || c2 == '+' || c2 == '-') {
@@ -523,7 +524,7 @@ namespace ToolGood.Algorithm.math
 					_input.Consume();
 					_input.Consume();
 				}
-			} else if(c == 'D' || c == 'C') {
+			} else if(c == 'C' || c == 'D') {
 				int c2 = _input.LA(2);
 				if(c2 == 'M') {
 					_input.Consume();
@@ -542,14 +543,14 @@ namespace ToolGood.Algorithm.math
 					if(c3 == '2' || c3 == '3') {
 						_input.Consume();
 					}
-				} else if(c2 == 'L' || c2 == '2' || c2 == '3') {
+				} else if(c2 == '2' || c2 == '3' || c2 == 'L') {
 					_input.Consume();
 				}
-			} else if(c == 'L') {
-				_input.Consume();
 			} else if(c == 'G') {
 				_input.Consume();
 			} else if(c == 'T') {
+				_input.Consume();
+			} else if(c == 'L') {
 				_input.Consume();
 			}
 
