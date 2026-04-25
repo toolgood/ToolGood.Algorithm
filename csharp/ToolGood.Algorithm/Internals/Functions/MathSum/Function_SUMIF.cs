@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             decimal sum;
             if (args2.IsNumber) {
-                sum = FunctionUtil.GetCountIf(list, args2.NumberValue) * args2.NumberValue;
+                sum = FunctionUtil.GetSumIf(list, args2.NumberValue, sumdbs);
             } else {
                 var span = args2.TextValue.AsSpan().Trim();
                 if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
