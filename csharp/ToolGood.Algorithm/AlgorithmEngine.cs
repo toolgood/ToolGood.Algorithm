@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Visitors;
 using ToolGood.Algorithm.math;
@@ -13,12 +12,11 @@ using ToolGood.Algorithm.Operands;
 namespace ToolGood.Algorithm
 {
 	/// <summary>
-	/// 算法引擎类
+	/// 算法引擎类。
 	/// </summary>
-	public class AlgorithmEngine : IDisposable
+	public class AlgorithmEngine
 	{
 		internal int ExcelIndex = 1;
-		private bool _disposed;
 
 		/// <summary>
 		/// 使用 本地时间，影响 时间戳转化
@@ -55,10 +53,10 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		public bool UseExcelIndex { set { ExcelIndex = value ? 1 : 0; } }
 		/// <summary>
-		/// 使用缓存
+		/// 使用缓存，不要在并发环境下运行
 		/// </summary>
 		public bool UseParseCache { get; set; } = false;
-		private readonly LRUCache<string, FunctionBase> _parseCache = new LRUCache<string, FunctionBase>(10000);
+		private readonly Dictionary<string, FunctionBase> _parseCache = new Dictionary<string, FunctionBase>();
 
 		/// <summary>
 		/// 自定义参数 请重写此方法
@@ -97,7 +95,12 @@ namespace ToolGood.Algorithm
 			}
 			exp = exp?.Trim();
 			if(UseParseCache) {
-				return _parseCache.GetOrAdd(exp, _ => ParseInternal(exp, true));
+				if(_parseCache.TryGetValue(exp, out FunctionBase r)) {
+					return r;
+				}
+				r = ParseInternal(exp, true);
+				_parseCache[exp] = r;
+				return r;
 			}
 			return ParseInternal(exp, true);
 		}
@@ -116,12 +119,12 @@ namespace ToolGood.Algorithm
 			}
 			exp = exp?.Trim();
 			if(UseParseCache) {
-				if(_parseCache.TryGet(exp, out FunctionBase r)) {
+				if(_parseCache.TryGetValue(exp, out FunctionBase r)) {
 					return r;
 				}
 				r = ParseInternal(exp, false);
 				if(r != null) {
-					_parseCache.Put(exp, r);
+					_parseCache[exp] = r;
 				}
 				return r;
 			}
@@ -289,28 +292,6 @@ namespace ToolGood.Algorithm
 		}
 
 		#endregion TryEvaluate
-
-		/// <summary>
-		/// 释放资源
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// 释放资源
-		/// </summary>
-		/// <param name="disposing"></param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if(!_disposed) {
-				if(disposing) {
-					_parseCache.Dispose();
-				}
-				_disposed = true;
-			}
-		}
+ 
 	}
 }
