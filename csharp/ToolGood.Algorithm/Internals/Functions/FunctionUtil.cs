@@ -301,37 +301,37 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return a != b;
 		}
 
-		public static int GetGcd(List<decimal> list)
+		public static decimal GetGcd(List<decimal> list)
 		{
 			if(list.Count == 0) return 1;
 			
-			int g = (int)list[0];
+			decimal g = Math.Truncate(list[0]);
 			for(int i = 1; i < list.Count; i++) {
-				g = GetGcd(g, (int)list[i]);
+				g = GetGcd(g, Math.Truncate(list[i]));
 				if(g == 1) break;
 			}
 			return g;
 		}
 
-		public static int GetGcd(int a, int b)
+		public static decimal GetGcd(decimal a, decimal b)
 		{
 			while(b != 0) {
-				int t = b;
+				decimal t = b;
 				b = a % b;
 				a = t;
 			}
 			return a;
 		}
 
-		public static int GetLcm(List<decimal> list)
+		public static decimal GetLcm(List<decimal> list)
 		{
 			if(list.Count == 0) return 1;
 			
-			int a = 0;
+			decimal a = 0;
 			bool foundFirst = false;
 			
 			for(int i = 0; i < list.Count; i++) {
-				int val = (int)list[i];
+				decimal val = Math.Truncate(list[i]);
 				if(val <= 1) continue;
 				
 				if(!foundFirst) {
@@ -340,18 +340,19 @@ namespace ToolGood.Algorithm.Internals.Functions
 					continue;
 				}
 				
-				int b = val;
-				int g = b > a ? GetGcd(b, a) : GetGcd(a, b);
+				decimal b = val;
+				decimal g = b > a ? GetGcd(b, a) : GetGcd(a, b);
 				a = a / g * b;
 			}
 			return foundFirst ? a : 1;
 		}
 
-		public static int GetFactorial(int a)
+		public static decimal GetFactorial(decimal a)
 		{
 			if(a <= 0) { return 1; }
-			int r = 1;
-			for(int i = a; i > 0; i--) {
+			a = Math.Truncate(a);
+			decimal r = 1;
+			for(decimal i = a; i > 0; i--) {
 				r *= i;
 			}
 			return r;

@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 				}
 				var n = num.ToString();
 				if(n.Length <= args2.IntValue) {
-					return Operand.Create(n.ToString().PadLeft(args2.IntValue, '0'));
+					return Operand.Create(n.PadLeft(args2.IntValue, '0'));
 				}
 				return ParameterError(2);
 			}

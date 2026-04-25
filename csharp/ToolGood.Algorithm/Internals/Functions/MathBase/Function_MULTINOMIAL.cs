@@ -25,8 +25,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
 
-            int sum = 0;
-            int n = 1;
+            decimal sum = 0;
+            decimal n = 1;
             for (int i = 0; i < list.Count; i++) {
                 var a = (int)list[i];
                 if (a < 0) {
