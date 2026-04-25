@@ -1,10 +1,10 @@
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Visitors;
 using ToolGood.Algorithm.math;
@@ -57,7 +57,7 @@ namespace ToolGood.Algorithm
 		/// 使用缓存
 		/// </summary>
 		public bool UseParseCache { get; set; } = false;
-		private readonly ConcurrentDictionary<string, FunctionBase> _parseCache = new ConcurrentDictionary<string, FunctionBase>();
+		private readonly LRUCache<string, FunctionBase> _parseCache = new LRUCache<string, FunctionBase>(10000);
 
 		/// <summary>
 		/// 自定义参数 请重写此方法
@@ -94,8 +94,9 @@ namespace ToolGood.Algorithm
 				LastError = "Parameter exp invalid !";
 				throw new FormatException(LastError);
 			}
+			exp = exp?.Trim();
 			if(UseParseCache) {
-				return _parseCache.GetOrAdd(exp.Trim(), _ => ParseInternal(exp));
+				return _parseCache.GetOrAdd(exp, _ => ParseInternal(exp));
 			}
 			return ParseInternal(exp);
 		}
@@ -132,13 +133,14 @@ namespace ToolGood.Algorithm
 				LastError = "Parameter exp invalid !";
 				return null;
 			}
+			exp = exp?.Trim();
 			if(UseParseCache) {
-				if(_parseCache.TryGetValue(exp.Trim(), out FunctionBase r)) {
+				if(_parseCache.TryGet(exp, out FunctionBase r)) {
 					return r;
 				}
 				r = ParseInternalWithoutError(exp);
 				if(r != null) {
-					_parseCache.TryAdd(exp.Trim(), r);
+					_parseCache.Put(exp, r);
 				}
 				return r;
 			}
