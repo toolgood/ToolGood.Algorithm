@@ -61,6 +61,7 @@ namespace ToolGood.Algorithm.math
 		private static readonly Dictionary<string, int> _keywords;
 		private readonly ICharStream _input;
 		private int _startCharIndex;
+		private Tuple<ITokenSource, ICharStream> tuple;
 
 		static mathLexer()
 		{
@@ -344,6 +345,7 @@ namespace ToolGood.Algorithm.math
 		public mathLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 		{
 			_input = input;
+			tuple = Tuple.Create((ITokenSource)this, input);
 		}
 
 		public int Line => 0;
@@ -391,7 +393,7 @@ namespace ToolGood.Algorithm.math
 		{
 			int stopIndex = _input.Index - 1;
 			//string text = _input.GetText(Interval.Of(_startCharIndex, stopIndex));
-			return TokenFactory.Create(Tuple.Create((ITokenSource)this, (ICharStream)_input), type, null, 0, _startCharIndex, stopIndex, 0, 0);
+			return TokenFactory.Create(tuple, type, null, 0, _startCharIndex, stopIndex, 0, 0);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -645,7 +647,7 @@ namespace ToolGood.Algorithm.math
 					}
 					return CreateToken(OPGT);
 				case '<':
-					var c2 = _input.LA(2);
+					var c2 = _input.LA(1);
 					if(c2 == '=') {
 						_input.Consume();
 						return CreateToken(OPLE);
