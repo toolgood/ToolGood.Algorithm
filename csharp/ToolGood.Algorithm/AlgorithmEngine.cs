@@ -15,9 +15,10 @@ namespace ToolGood.Algorithm
 	/// <summary>
 	/// 算法引擎类
 	/// </summary>
-	public class AlgorithmEngine
+	public class AlgorithmEngine : IDisposable
 	{
 		internal int ExcelIndex = 1;
+		private bool _disposed;
 
 		/// <summary>
 		/// 使用 本地时间，影响 时间戳转化
@@ -96,29 +97,9 @@ namespace ToolGood.Algorithm
 			}
 			exp = exp?.Trim();
 			if(UseParseCache) {
-				return _parseCache.GetOrAdd(exp, _ => ParseInternal(exp));
+				return _parseCache.GetOrAdd(exp, _ => ParseInternal(exp, true));
 			}
-			return ParseInternal(exp);
-		}
-		private FunctionBase ParseInternal(string exp)
-		{
-			var stream = new AntlrCharStream(exp);
-			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
-			var tokens = new CommonTokenStream(lexer);
-			var parser = new mathParser(tokens, TextWriter.Null, TextWriter.Null);
-
-			var data = new AntlrErrorData();
-			lexer.AddErrorData(data);
-			parser.AddErrorData(data);
-
-			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
-			var context = parser.prog();
-			if(data.IsError) {
-				LastError = data.ErrorMsg;
-				throw new FormatException(LastError);
-			}
-			var visitor = new MathFunctionVisitor();
-			return visitor.Visit(context);
+			return ParseInternal(exp, true);
 		}
 
 		/// <summary>
@@ -138,16 +119,16 @@ namespace ToolGood.Algorithm
 				if(_parseCache.TryGet(exp, out FunctionBase r)) {
 					return r;
 				}
-				r = ParseInternalWithoutError(exp);
+				r = ParseInternal(exp, false);
 				if(r != null) {
 					_parseCache.Put(exp, r);
 				}
 				return r;
 			}
-			return ParseInternalWithoutError(exp);
+			return ParseInternal(exp, false);
 		}
 
-		private FunctionBase ParseInternalWithoutError(string exp)
+		private FunctionBase ParseInternal(string exp, bool throwOnError)
 		{
 			var stream = new AntlrCharStream(exp);
 			var lexer = new mathLexer(stream, TextWriter.Null, TextWriter.Null);
@@ -162,6 +143,9 @@ namespace ToolGood.Algorithm
 			var context = parser.prog();
 			if(data.IsError) {
 				LastError = data.ErrorMsg;
+				if(throwOnError) {
+					throw new FormatException(LastError);
+				}
 				return null;
 			}
 			var visitor = new MathFunctionVisitor();
@@ -305,5 +289,28 @@ namespace ToolGood.Algorithm
 		}
 
 		#endregion TryEvaluate
+
+		/// <summary>
+		/// 释放资源
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// 释放资源
+		/// </summary>
+		/// <param name="disposing"></param>
+		protected virtual void Dispose(bool disposing)
+		{
+			if(!_disposed) {
+				if(disposing) {
+					_parseCache.Dispose();
+				}
+				_disposed = true;
+			}
+		}
 	}
 }

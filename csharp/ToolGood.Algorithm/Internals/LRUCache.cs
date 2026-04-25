@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace ToolGood.Algorithm.Internals
 {
-	internal class LRUCache<TKey, TValue>
+	internal class LRUCache<TKey, TValue> : IDisposable
 	{
 		private readonly DoubleLinkedListNode<TKey, TValue> _head;
 		private readonly DoubleLinkedListNode<TKey, TValue> _tail;
@@ -12,9 +12,13 @@ namespace ToolGood.Algorithm.Internals
 		private readonly ReaderWriterLockSlim _slimLock = new ReaderWriterLockSlim();
 
 		private readonly int _capacity;
+		private bool _disposed;
 
 		public LRUCache(int capacity)
 		{
+			if(capacity <= 0) {
+				throw new ArgumentOutOfRangeException(nameof(capacity), "Capacity must be greater than zero.");
+			}
 			_capacity = capacity;
 			_head = new DoubleLinkedListNode<TKey, TValue>();
 			_tail = new DoubleLinkedListNode<TKey, TValue>();
@@ -25,43 +29,53 @@ namespace ToolGood.Algorithm.Internals
 
 		public bool TryGet(TKey key, out TValue value)
 		{
-			_slimLock.EnterUpgradeableReadLock();
+			_slimLock.EnterReadLock();
 			try {
 				if(_dictionary.TryGetValue(key, out var node)) {
-					_slimLock.EnterWriteLock();
-					try {
-						MoveToLast(node);
-					} finally {
-						_slimLock.ExitWriteLock();
-					}
 					value = node.Value;
-					return true;
+				} else {
+					value = default;
+					return false;
 				}
 			} finally {
-				_slimLock.ExitUpgradeableReadLock();
+				_slimLock.ExitReadLock();
 			}
-			value = default;
-			return false;
+
+			_slimLock.EnterWriteLock();
+			try {
+				if(_dictionary.TryGetValue(key, out var node)) {
+					MoveToLast(node);
+				}
+			} finally {
+				_slimLock.ExitWriteLock();
+			}
+			return true;
 		}
 
 		public TValue GetOrAdd(TKey key, Func<TKey, TValue> factory)
 		{
-			_slimLock.EnterUpgradeableReadLock();
+			_slimLock.EnterReadLock();
 			try {
 				if(_dictionary.TryGetValue(key, out var node)) {
+					var value = node.Value;
+					_slimLock.ExitReadLock();
 					_slimLock.EnterWriteLock();
 					try {
-						MoveToLast(node);
+						if(_dictionary.TryGetValue(key, out var node2)) {
+							MoveToLast(node2);
+						}
 					} finally {
 						_slimLock.ExitWriteLock();
 					}
-					return node.Value;
+					return value;
 				}
 			} finally {
-				_slimLock.ExitUpgradeableReadLock();
+				if(_slimLock.IsReadLockHeld) {
+					_slimLock.ExitReadLock();
+				}
 			}
 
-			var value = factory(key);
+			var newValue = factory(key);
 
 			_slimLock.EnterWriteLock();
 			try {
@@ -72,10 +86,10 @@ namespace ToolGood.Algorithm.Internals
 				if(_dictionary.Count >= _capacity) {
 					EvictOldest();
 				}
-				var newNode = new DoubleLinkedListNode<TKey, TValue>(key, value);
+				var newNode = new DoubleLinkedListNode<TKey, TValue>(key, newValue);
 				AddLast(newNode);
 				_dictionary.Add(key, newNode);
-				return value;
+				return newValue;
 			} finally {
 				_slimLock.ExitWriteLock();
 			}
@@ -111,6 +125,22 @@ namespace ToolGood.Algorithm.Internals
 				}
 			} finally {
 				_slimLock.ExitWriteLock();
+			}
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if(!_disposed) {
+				if(disposing) {
+					_slimLock.Dispose();
+				}
+				_disposed = true;
 			}
 		}
 
