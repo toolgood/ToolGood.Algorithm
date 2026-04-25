@@ -34,178 +34,68 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
-			var stack = ArrayPool<Operand>.Shared.Rent(Math.Max(16, args.Count));
-			int stackIndex = 0;
-			
-			for(int i = 0; i < args.Count; i++) {
-				stack[stackIndex++] = args[i];
-			}
-
-			while(stackIndex > 0) {
-				var item = stack[--stackIndex];
-
+			var stack = new List<Operand>(args);
+			while(stack.Count > 0) {
+				var item = stack[stack.Count - 1];
+				stack.RemoveAt(stack.Count - 1);
 				if(item.IsArray) {
 					var array = item.ArrayValue;
-					if(stackIndex + array.Count >= stack.Length) {
-						var newStack = ArrayPool<Operand>.Shared.Rent(stack.Length * 2 + array.Count);
-						Array.Copy(stack, 0, newStack, 0, stackIndex);
-						ArrayPool<Operand>.Shared.Return(stack);
-						stack = newStack;
-					}
-					for(int i = array.Count - 1; i >= 0; i--) {
-						stack[stackIndex++] = array[i];
-					}
+					for(int i = array.Count - 1; i >= 0; i--) stack.Add(array[i]);
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
-					if(i.IsError) {
-						ArrayPool<Operand>.Shared.Return(stack);
-						return false;
-					}
+					if(i.IsError) return false;
 					var array = i.ArrayValue;
-					if(stackIndex + array.Count >= stack.Length) {
-						var newStack = ArrayPool<Operand>.Shared.Rent(stack.Length * 2 + array.Count);
-						Array.Copy(stack, 0, newStack, 0, stackIndex);
-						ArrayPool<Operand>.Shared.Return(stack);
-						stack = newStack;
-					}
-					for(int j = array.Count - 1; j >= 0; j--) {
-						stack[stackIndex++] = array[j];
-					}
+					for(int j = array.Count - 1; j >= 0; j--) stack.Add(array[j]);
 				} else {
 					list.Add(item);
 				}
 			}
-			ArrayPool<Operand>.Shared.Return(stack);
 			return true;
 		}
 
 		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
-			var stack = ArrayPool<Operand>.Shared.Rent(Math.Max(16, args.Count));
-			int stackIndex = 0;
-			
-			for(int i = 0; i < args.Count; i++) {
-				stack[stackIndex++] = args[i];
-			}
-
-			while(stackIndex > 0) {
-				var item = stack[--stackIndex];
-
+			var stack = new List<Operand>(args);
+			while(stack.Count > 0) {
+				var item = stack[stack.Count - 1];
+				stack.RemoveAt(stack.Count - 1);
 				if(item.IsArray) {
 					var array = item.ArrayValue;
-					if(stackIndex + array.Count >= stack.Length) {
-						var newStack = ArrayPool<Operand>.Shared.Rent(stack.Length * 2 + array.Count);
-						Array.Copy(stack, 0, newStack, 0, stackIndex);
-						ArrayPool<Operand>.Shared.Return(stack);
-						stack = newStack;
-					}
-					for(int i = array.Count - 1; i >= 0; i--) {
-						stack[stackIndex++] = array[i];
-					}
+					for(int i = array.Count - 1; i >= 0; i--) stack.Add(array[i]);
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
-					if(i.IsError) {
-						ArrayPool<Operand>.Shared.Return(stack);
-						return false;
-					}
+					if(i.IsError) return false;
 					var array = i.ArrayValue;
-					if(stackIndex + array.Count >= stack.Length) {
-						var newStack = ArrayPool<Operand>.Shared.Rent(stack.Length * 2 + array.Count);
-						Array.Copy(stack, 0, newStack, 0, stackIndex);
-						ArrayPool<Operand>.Shared.Return(stack);
-						stack = newStack;
-					}
-					for(int j = array.Count - 1; j >= 0; j--) {
-						stack[stackIndex++] = array[j];
-					}
+					for(int j = array.Count - 1; j >= 0; j--) stack.Add(array[j]);
 				} else {
 					if(item.IsNumber) {
 						list.Add(item.NumberValue);
 					} else {
 						var converted = item.ToNumber(null);
-						if(converted.IsError) {
-							ArrayPool<Operand>.Shared.Return(stack);
-							return false;
-						}
+						if(converted.IsError) return false;
 						list.Add(converted.NumberValue);
 					}
 				}
 			}
-			ArrayPool<Operand>.Shared.Return(stack);
 			return true;
 		}
 
 		public static bool FlattenToList(Operand args, List<decimal> list)
 		{
-			if(args.IsError) { return false; }
-			if(args.IsArray) {
-				var array = args.ArrayValue;
-				list.Capacity = Math.Max(list.Capacity, array.Count);
-				var stack = ArrayPool<Operand>.Shared.Rent(Math.Max(16, array.Count));
-				int stackIndex = 0;
-				
-				for(int i = array.Count - 1; i >= 0; i--) {
-					stack[stackIndex++] = array[i];
-				}
-
-				while(stackIndex > 0) {
-					var item = stack[--stackIndex];
-
-					if(item.IsArray) {
-						var subArray = item.ArrayValue;
-						if(stackIndex + subArray.Count >= stack.Length) {
-							var newStack = ArrayPool<Operand>.Shared.Rent(stack.Length * 2 + subArray.Count);
-							Array.Copy(stack, 0, newStack, 0, stackIndex);
-							ArrayPool<Operand>.Shared.Return(stack);
-							stack = newStack;
-						}
-						for(int i = subArray.Count - 1; i >= 0; i--) {
-							stack[stackIndex++] = subArray[i];
-						}
-					} else if(item.IsJson) {
-						var i = item.ToArray(null);
-						if(i.IsError) {
-							ArrayPool<Operand>.Shared.Return(stack);
-							return false;
-						}
-						var subArray = i.ArrayValue;
-						if(stackIndex + subArray.Count >= stack.Length) {
-							var newStack = ArrayPool<Operand>.Shared.Rent(stack.Length * 2 + subArray.Count);
-							Array.Copy(stack, 0, newStack, 0, stackIndex);
-							ArrayPool<Operand>.Shared.Return(stack);
-							stack = newStack;
-						}
-						for(int j = subArray.Count - 1; j >= 0; j--) {
-							stack[stackIndex++] = subArray[j];
-						}
-					} else {
-						if(item.IsNumber) {
-							list.Add(item.NumberValue);
-						} else {
-							var converted = item.ToNumber(null);
-							if(converted.IsError) {
-								ArrayPool<Operand>.Shared.Return(stack);
-								return false;
-							}
-							list.Add(converted.NumberValue);
-						}
-					}
-				}
-				ArrayPool<Operand>.Shared.Return(stack);
-				return true;
-			} else if(args.IsJson) {
+			if(args.IsError) return false;
+			if(args.IsArray) return FlattenToList(args.ArrayValue, list);
+			if(args.IsJson) {
 				var i = args.ToArray(null);
-				if(i.IsError) { return false; }
+				if(i.IsError) return false;
 				return FlattenToList(i.ArrayValue, list);
+			}
+			if(args.IsNumber) {
+				list.Add(args.NumberValue);
 			} else {
-				if(args.IsNumber) {
-					list.Add(args.NumberValue);
-				} else {
-					var converted = args.ToNumber(null);
-					if(converted.IsError) { return false; }
-					list.Add(converted.NumberValue);
-				}
+				var converted = args.ToNumber(null);
+				if(converted.IsError) return false;
+				list.Add(converted.NumberValue);
 			}
 			return true;
 		}
