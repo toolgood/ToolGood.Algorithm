@@ -37,8 +37,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
 
             decimal sum = 1;
-            for (int i = 0; i < count; i++) {
-                sum *= (total - i);
+            try {
+                for (int i = 0; i < count; i++) {
+                    sum *= (total - i);
+                }
+            } catch (OverflowException) {
+                return ParameterError(1);
             }
             return Operand.Create(sum);
         }
