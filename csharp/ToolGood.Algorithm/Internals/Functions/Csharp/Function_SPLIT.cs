@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				return ParameterError(2);
 			}
 
-			return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
+			return Operand.Create(args1.TextValue.Split(new[] { args2.TextValue }, StringSplitOptions.None));
 		}
 		public override OperandType GetResultType()
 		{
