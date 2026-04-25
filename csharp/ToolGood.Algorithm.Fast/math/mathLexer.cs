@@ -60,8 +60,8 @@ namespace ToolGood.Algorithm.math
 
 		private static readonly Dictionary<string, int> _keywords;
 		private readonly ICharStream _input;
+		private readonly Tuple<ITokenSource, ICharStream> tuple;
 		private int _startCharIndex;
-		private Tuple<ITokenSource, ICharStream> tuple;
 
 		static mathLexer()
 		{
