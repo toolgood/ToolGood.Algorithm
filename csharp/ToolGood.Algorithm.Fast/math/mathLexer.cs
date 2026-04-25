@@ -645,11 +645,11 @@ namespace ToolGood.Algorithm.math
 					}
 					return CreateToken(OPGT);
 				case '<':
-					if(_input.LA(1) == '=') {
+					var c2 = _input.LA(2);
+					if(c2 == '=') {
 						_input.Consume();
 						return CreateToken(OPLE);
-					}
-					if(_input.LA(1) == '>') {
+					} else if(c2 == '>') {
 						_input.Consume();
 						return CreateToken(OPNE);
 					}
