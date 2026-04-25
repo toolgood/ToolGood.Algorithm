@@ -545,9 +545,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(Int64 obj)
 		{
-			if(obj >= -IntCacheOffset && obj <= IntCacheOffset)
-				return IntCache[(int)obj + IntCacheOffset];
-			return Operand.Create((decimal)obj);
+			return Operand.Create(obj);
 		}
 
 		/// <summary>
@@ -556,9 +554,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt16 obj)
 		{
-			if(obj <= IntCacheOffset)
-				return IntCache[(int)obj + IntCacheOffset];
-			return Operand.Create((decimal)obj);
+			return Operand.Create(obj);
 		}
 
 		/// <summary>
@@ -567,9 +563,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt32 obj)
 		{
-			if(obj <= IntCacheOffset)
-				return IntCache[(int)obj + IntCacheOffset];
-			return Operand.Create((decimal)obj);
+			return Operand.Create(obj);
 		}
 
 		/// <summary>
@@ -578,9 +572,7 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(UInt64 obj)
 		{
-			if(obj <= IntCacheOffset)
-				return IntCache[(int)obj + IntCacheOffset];
-			return Operand.Create((decimal)obj);
+			return Operand.Create(obj);
 		}
 
 		/// <summary>
@@ -589,10 +581,8 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(float obj)
 		{
-			if(obj == MathF.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
-				return IntCache[(int)obj + IntCacheOffset];
-			}
-			return Operand.Create((decimal)obj);
+		
+			return Operand.Create(obj);
 		}
 
 		/// <summary>
@@ -601,9 +591,6 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(double obj)
 		{
-			if(obj == Math.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
-				return IntCache[(int)obj + IntCacheOffset];
-			}
 			return Operand.Create(obj);
 		}
 
@@ -613,9 +600,6 @@ namespace ToolGood.Algorithm
 		/// <param name="obj"></param>
 		public static implicit operator Operand(decimal obj)
 		{
-			if(obj == decimal.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
-				return IntCache[(int)obj + IntCacheOffset];
-			}
 			return Operand.Create(obj);
 		}
 
