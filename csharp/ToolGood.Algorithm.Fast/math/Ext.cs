@@ -29,11 +29,6 @@ namespace ToolGood.Algorithm.math
 		{
 			//ErrorData = data;
 		}
-		public void NotifyListeners(LexerNoViableAltException e)
-		{
-			//ErrorData.IsError = true;
-			//ErrorData.ErrorMsg = "Lexer is err";
-		}
 	}
 	abstract class MyRuleContext : ParserRuleContext
 	{
