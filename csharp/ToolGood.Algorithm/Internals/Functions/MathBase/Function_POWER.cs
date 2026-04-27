@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if (baseValue == 0 && exponent < 0) {
 				return Div0Error();
 			}
-			if (baseValue < 0 && exponent != Math.Floor(exponent)) {
+			if (baseValue < 0 && exponent % 1 != 0) {
 				return ParameterError(1);
 			}
 

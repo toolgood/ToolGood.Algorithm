@@ -25,8 +25,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args2.IsErrorOrNone) { return args2; }
 
 			try {
-				var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
+				var b = Regex.IsMatch(args1.TextValue, args2.TextValue, RegexOptions.None, TimeSpan.FromSeconds(1));
 				return Operand.Create(b);
+			} catch (RegexMatchTimeoutException) {
+				return Operand.False;
 			} catch (ArgumentException) {
 				return ParameterError(2);
 			}

@@ -25,11 +25,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args2.IsErrorOrNone) { return args2; }
 
 			try {
-				var b = Regex.Match(args1.TextValue, args2.TextValue);
+				var b = Regex.Match(args1.TextValue, args2.TextValue, RegexOptions.None, TimeSpan.FromSeconds(1));
 				if(b.Success == false) {
 					return FunctionError();
 				}
 				return Operand.Create(b.Value);
+			} catch (RegexMatchTimeoutException) {
+				return Operand.Error("Function '{0}' regex match timeout!", Name);
 			} catch (ArgumentException) {
 				return ParameterError(2);
 			}

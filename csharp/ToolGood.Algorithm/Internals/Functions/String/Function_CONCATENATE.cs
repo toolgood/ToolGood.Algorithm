@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				if (a.IsErrorOrNone) { return a; }
 				return a; // 只有一个参数
 			}
-			var sb = new StringBuilder();
+			var sb = new StringBuilder(funcs.Length * 16);
 			for (int i = 0; i < funcs.Length; i++) {
 				var a = GetText(engine, tempParameter, i);
 				if (a.IsErrorOrNone) { return a; }

@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 			try {
 				var t = Encoding.UTF8.GetString(Convert.FromBase64String(args1.TextValue));
 				return Operand.Create(t);
-			} catch(Exception) {
+			} catch {
 				return ParameterError(1);
 			}
 		}

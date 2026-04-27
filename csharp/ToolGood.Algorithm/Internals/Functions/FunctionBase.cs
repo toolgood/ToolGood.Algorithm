@@ -194,7 +194,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				}
 				return resultConverter(converted);
 			} catch(Exception ex) {
-				engine.LastError = ex.ToString();
+				engine.LastError = ex.Message;
 			}
 			return def;
 		}

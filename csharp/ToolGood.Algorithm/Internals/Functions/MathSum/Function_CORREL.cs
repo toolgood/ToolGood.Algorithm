@@ -26,12 +26,20 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			var xValues = new List<decimal>();
 			foreach(var item in array1Arg.ArrayValue) {
-				if(item.IsNumber) xValues.Add(item.NumberValue);
+				if(item.IsNumber) {
+					xValues.Add(item.NumberValue);
+				} else {
+					return ParameterError(1);
+				}
 			}
 
 			var yValues = new List<decimal>();
 			foreach(var item in array2Arg.ArrayValue) {
-				if(item.IsNumber) yValues.Add(item.NumberValue);
+				if(item.IsNumber) {
+					yValues.Add(item.NumberValue);
+				} else {
+					return ParameterError(2);
+				}
 			}
 
 			if(xValues.Count != yValues.Count || xValues.Count < 2) return FunctionError();

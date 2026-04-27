@@ -28,8 +28,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(args3.IsErrorOrNone) { return args3; }
 
 			try {
-				var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
+				var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue, RegexOptions.None, TimeSpan.FromSeconds(1));
 				return Operand.Create(b);
+			} catch (RegexMatchTimeoutException) {
+				return Operand.Error("Function '{0}' regex replace timeout!", Name);
 			} catch (ArgumentException) {
 				return ParameterError(2);
 			}
