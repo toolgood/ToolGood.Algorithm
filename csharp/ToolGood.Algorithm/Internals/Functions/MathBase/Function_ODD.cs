@@ -24,15 +24,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (z == 0) { return Operand.Create(1); }
             
             if (z > 0) {
-                if (Math.Floor(z) == z && Math.Abs(z) % 2 == 1) { return args1; }
+                if (z % 2 == 1 || z % 2 == -1) { return args1; }
                 z = Math.Ceiling(z);
-                if (Math.Abs(z) % 2 == 1) { return Operand.Create(z); }
+                if (z % 2 != 0) { return Operand.Create(z); }
                 z++;
                 return Operand.Create(z);
             } else {
-                if (Math.Floor(z) == z && Math.Abs(z) % 2 == 1) { return args1; }
+                if (z % 2 == 1 || z % 2 == -1) { return args1; }
                 z = Math.Floor(z);
-                if (Math.Abs(z) % 2 == 1) { return Operand.Create(z); }
+                if (z % 2 != 0) { return Operand.Create(z); }
                 z--;
                 return Operand.Create(z);
             }
