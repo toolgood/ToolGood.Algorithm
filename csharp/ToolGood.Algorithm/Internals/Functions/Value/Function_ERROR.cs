@@ -12,6 +12,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
 			}
 		}
+		public Function_ERROR(FunctionBase func) : base(new FunctionBase[] { func })
+		{
+			if(func == null) {
+				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
+			}
+		}
 
 		public override string Name => "Error";
 

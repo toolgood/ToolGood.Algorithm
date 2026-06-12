@@ -1,4 +1,4 @@
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using System;
 using System.IO;
@@ -8,6 +8,7 @@ using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Internals.Functions.Compare;
 using ToolGood.Algorithm.Internals.Functions.Operator;
+using ToolGood.Algorithm.Internals.Functions.Value;
 using ToolGood.Algorithm.Internals.Visitors;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.UnitConversion;
@@ -209,6 +210,16 @@ namespace ToolGood.Algorithm
 		public static FunctionBase Condition_Or(FunctionBase left, FunctionBase right)
 		{
 			return new Function_OR(left, right);
+		}
+
+		/// <summary>
+		/// Creates a logical NOT function that negates the specified function.
+		/// </summary>
+		/// <param name="txt"></param>
+		/// <returns></returns>
+		public static FunctionBase Error(FunctionBase txt )
+		{
+			return new Function_ERROR(txt);
 		}
 
 		/// <summary>
