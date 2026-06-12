@@ -1,0 +1,63 @@
+package toolgood.algorithm.internals.functions.flow;
+
+import java.util.List;
+import java.util.function.BiFunction;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.Enums.OperandType;
+import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_N;
+
+final class Function_IFS extends Function_N {
+
+    public Function_IFS(FunctionBase[] funcs) {
+        super(funcs);
+        if (funcs.length < 4) {
+            throw new IllegalArgumentException("Function '" + Name() + "' requires at least 4 parameters.");
+        }
+        if (funcs.length % 2 != 0) {
+            throw new IllegalArgumentException("Function '" + Name() + "' requires an even number of parameters.");
+        }
+    }
+
+    @Override
+    public String Name() {
+        return "Ifs";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        for (int i = 0; i < funcs.length - 1; i += 2) {
+            Operand condition = GetBoolean(engine, tempParameter, i);
+            if (condition.IsErrorOrNone()) {
+                return condition;
+            }
+            if (condition.BooleanValue()) {
+                return funcs[i + 1].Evaluate(engine, tempParameter);
+            }
+        }
+        return FunctionError();
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        for (int i = 0; i < funcs.length - 1; i += 2) {
+            OperandType t = funcs[i + 1].GetResultType();
+            if (t != OperandType.NONE) {
+                return t;
+            }
+        }
+        return OperandType.NONE;
+    }
+
+    @Override
+    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        for (int i = 0; i < funcs.length - 1; i += 2) {
+            funcs[i].GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+            funcs[i + 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
+        }
+    }
+
+}
