@@ -1,0 +1,59 @@
+package toolgood.algorithm.internals.functions.operator;
+
+import java.util.List;
+import java.util.function.BiFunction;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+
+public final class Function_AND extends Function_2 {
+
+    public Function_AND(FunctionBase[] funcs) {
+        super(funcs);
+    }
+
+    public Function_AND(FunctionBase func1, FunctionBase func2) {
+        super(func1, func2);
+    }
+
+    @Override
+    public String Name() {
+        return "And";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetBoolean_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+        if (!args1.BooleanValue()) {
+            Operand args2 = GetBoolean_2(engine, tempParameter);
+            if (args2.IsErrorOrNone()) { return args2; }
+            return Operand.False;
+        }
+        return GetBoolean_2(engine, tempParameter);
+    }
+
+    @Override
+    public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
+        if (addBrackets) stringBuilder.append('(');
+        func1.ToString(stringBuilder, false);
+        stringBuilder.append(" && ");
+        func2.ToString(stringBuilder, false);
+        if (addBrackets) stringBuilder.append(')');
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.BOOLEAN;
+    }
+
+    @Override
+    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+        func2.GetParameterTypes(noneEngine, result, OperandType.BOOLEAN);
+    }
+}
