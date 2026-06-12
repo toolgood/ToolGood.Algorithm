@@ -1,0 +1,60 @@
+package toolgood.algorithm.internals.functions.mathBase;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.function.BiFunction;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+
+final class Function_MROUND extends Function_2 {
+    public Function_MROUND(FunctionBase[] funcs) {
+        super(funcs);
+        if (funcs.length != 2) {
+            throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 2 parameters.");
+        }
+    }
+
+    @Override
+    public String Name() {
+        return "Mround";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+        Operand args2 = GetNumber_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+        BigDecimal multiple = args2.NumberValue();
+        if (multiple.compareTo(BigDecimal.ZERO) == 0) {
+            return ParameterError(2);
+        }
+        BigDecimal number = args1.NumberValue();
+        if ((number.compareTo(BigDecimal.ZERO) > 0 && multiple.compareTo(BigDecimal.ZERO) < 0)
+                || (number.compareTo(BigDecimal.ZERO) < 0 && multiple.compareTo(BigDecimal.ZERO) > 0)) {
+            return ParameterError(2);
+        }
+        double r = Math.round(number.doubleValue() / multiple.doubleValue()) * multiple.doubleValue();
+        return Operand.Create(BigDecimal.valueOf(r));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+    }
+}
