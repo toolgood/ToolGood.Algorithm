@@ -17,12 +17,50 @@ public abstract class Operand {
     public final static Operand False = new OperandBoolean(false);
     public final static Operand One = Operand.Create(1);
     public final static Operand Zero = Operand.Create(0);
+    public final static Operand Null = new OperandNull();
+    public final static Operand None = new OperandNone();
 
     public boolean IsNull() {
         return false;
     }
 
+    public boolean IsNone() {
+        return false;
+    }
+
     public boolean IsError() {
+        return false;
+    }
+
+    public boolean IsErrorOrNone() {
+        return false;
+    }
+
+    public boolean IsNumber() {
+        return false;
+    }
+
+    public boolean IsText() {
+        return false;
+    }
+
+    public boolean IsBoolean() {
+        return false;
+    }
+
+    public boolean IsArray() {
+        return false;
+    }
+
+    public boolean IsDate() {
+        return false;
+    }
+
+    public boolean IsJson() {
+        return false;
+    }
+
+    public boolean IsArrayJson() {
         return false;
     }
 
@@ -145,7 +183,7 @@ public abstract class Operand {
     }
 
     public static Operand CreateNull() {
-        return new OperandNull();
+        return Null;
     }
 
     public Operand ToNumber(final String errorMessage) {
@@ -201,6 +239,11 @@ public abstract class Operand {
         }
 
         @Override
+        public boolean IsArray() {
+            return true;
+        }
+
+        @Override
         public Operand ToArray(String errorMessage) {
             return this;
         }
@@ -220,6 +263,11 @@ public abstract class Operand {
         @Override
         public boolean BooleanValue() {
             return _value;
+        }
+
+        @Override
+        public boolean IsBoolean() {
+            return true;
         }
 
         @Override
@@ -270,6 +318,11 @@ public abstract class Operand {
         @Override
         public OperandType Type() {
             return OperandType.DATE;
+        }
+
+        @Override
+        public boolean IsDate() {
+            return true;
         }
 
         @Override
@@ -332,6 +385,11 @@ public abstract class Operand {
             return true;
         }
 
+        @Override
+        public boolean IsErrorOrNone() {
+            return true;
+        }
+
         public String ErrorMsg() {
             return _errorMsg;
         }
@@ -376,6 +434,11 @@ public abstract class Operand {
         @Override
         public OperandType Type() {
             return OperandType.JSON;
+        }
+
+        @Override
+        public boolean IsJson() {
+            return true;
         }
 
         @Override
@@ -459,6 +522,25 @@ public abstract class Operand {
 
     }
 
+    static class OperandNone extends Operand {
+
+        @Override
+        public OperandType Type() {
+            return OperandType.NONE;
+        }
+
+        @Override
+        public boolean IsNone() {
+            return true;
+        }
+
+        @Override
+        public boolean IsErrorOrNone() {
+            return true;
+        }
+
+    }
+
     static class OperandNumber extends OperandT<BigDecimal> {
 
         public OperandNumber(BigDecimal obj) {
@@ -468,6 +550,11 @@ public abstract class Operand {
         @Override
         public OperandType Type() {
             return OperandType.NUMBER;
+        }
+
+        @Override
+        public boolean IsNumber() {
+            return true;
         }
 
         @Override
@@ -540,6 +627,11 @@ public abstract class Operand {
         @Override
         public OperandType Type() {
             return OperandType.TEXT;
+        }
+
+        @Override
+        public boolean IsText() {
+            return true;
         }
 
         @Override
@@ -633,6 +725,11 @@ public abstract class Operand {
             super(obj);
         }
 
+        @Override
+        public boolean IsArrayJson() {
+            return true;
+        }
+
         public OperandType Type() {
             return OperandType.ARRARYJSON;
         }
@@ -643,6 +740,11 @@ public abstract class Operand {
 
         public OperandKeyValueList(KeyValue obj) {
             super(obj);
+        }
+
+        @Override
+        public boolean IsArrayJson() {
+            return true;
         }
 
         public OperandType Type() {

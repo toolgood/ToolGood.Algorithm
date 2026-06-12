@@ -1,16 +1,16 @@
 package toolgood.algorithm.internals;
 
 import java.util.List;
-import toolgood.algorithm.enums.ConditionTreeType;
+import toolgood.algorithm.enums.CalculateTreeType;
 
 /**
- * 条件树
+ * 计算树
  */
-public final class ConditionTree {
+public final class CalculateTree {
     /**
      * 子节点
      */
-    public List<ConditionTree> Nodes;
+    public List<CalculateTree> Nodes;
 
     /**
      * 开始位置
@@ -25,7 +25,7 @@ public final class ConditionTree {
     /**
      * 类型
      */
-    public ConditionTreeType Type;
+    public CalculateTreeType Type;
 
     /**
      * 文本
@@ -42,6 +42,6 @@ public final class ConditionTree {
      */
     public String ErrorMessage;
 
-    public ConditionTree() {
+    public CalculateTree() {
     }
 }
