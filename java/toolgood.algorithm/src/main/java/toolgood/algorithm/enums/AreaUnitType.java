@@ -1,25 +1,28 @@
 package toolgood.algorithm.enums;
 
+/**
+ * 面积单位
+ */
 public enum AreaUnitType {
-    /// <summary>
-    /// 平方毫米
-    /// </summary>
+    /**
+     * 平方毫米
+     */
     MM2(11),
-    /// <summary>
-    /// 平方厘米
-    /// </summary>
+    /**
+     * 平方厘米
+     */
     CM2(12),
-    /// <summary>
-    /// 平方分米
-    /// </summary>
+    /**
+     * 平方分米
+     */
     DM2(13),
-    /// <summary>
-    /// 平方米
-    /// </summary>
+    /**
+     * 平方米
+     */
     M2(14),
-    /// <summary>
-    /// 平方千米
-    /// </summary>
+    /**
+     * 平方千米
+     */
     KM2(15);
 
     private final int value;

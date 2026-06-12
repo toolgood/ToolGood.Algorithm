@@ -1,25 +1,28 @@
 package toolgood.algorithm.enums;
 
+/**
+ * 体积单位
+ */
 public enum VolumeUnitType {
-    /// <summary>
-    /// 立方毫米
-    /// </summary>
+    /**
+     * 立方毫米
+     */
     MM3(21),
-    /// <summary>
-    /// 立方厘米
-    /// </summary>
+    /**
+     * 立方厘米
+     */
     CM3(22),
-    /// <summary>
-    /// 立方分米
-    /// </summary>
+    /**
+     * 立方分米
+     */
     DM3(23),
-    /// <summary>
-    /// 立方米
-    /// </summary>
+    /**
+     * 立方米
+     */
     M3(24),
-    /// <summary>
-    /// 立方千米
-    /// </summary>
+    /**
+     * 立方千米
+     */
     KM3(25);
 
     private final int value;

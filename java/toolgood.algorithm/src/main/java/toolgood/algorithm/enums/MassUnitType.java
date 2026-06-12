@@ -1,17 +1,20 @@
 package toolgood.algorithm.enums;
 
+/**
+ * 重量单位
+ */
 public enum MassUnitType {
-    /// <summary>
-    /// 克
-    /// </summary>
+    /**
+     * 克
+     */
     G(31),
-    /// <summary>
-    /// 千克
-    /// </summary>
+    /**
+     * 千克
+     */
     KG(32),
-    /// <summary>
-    /// 吨
-    /// </summary>
+    /**
+     * 吨
+     */
     T(33);
 
     private final int value;
