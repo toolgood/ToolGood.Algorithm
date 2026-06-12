@@ -1,0 +1,69 @@
+package toolgood.algorithm.internals.functions.csharp;
+
+import java.util.List;
+import java.util.function.BiFunction;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+final class Function_TRIMEND extends Function_2 {
+
+    Function_TRIMEND(FunctionBase[] funcs) {
+        super(funcs);
+        if (funcs.length < 1 || funcs.length > 2) {
+            throw new IllegalArgumentException("Function 'TrimEnd' requires 1 to 2 parameters.");
+        }
+    }
+
+    @Override
+    public String Name() {
+        return "TrimEnd";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetText_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) { return args1; }
+
+        if (func2 == null) {
+            return Operand.Create(args1.TextValue().stripTrailing());
+        }
+
+        Operand args2 = GetText_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) { return args2; }
+
+        char[] trimChars = args2.TextValue().toCharArray();
+        String text = args1.TextValue();
+        int end = text.length();
+        while (end > 0) {
+            char c = text.charAt(end - 1);
+            boolean found = false;
+            for (char tc : trimChars) {
+                if (c == tc) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) { break; }
+            end--;
+        }
+        return Operand.Create(text.substring(0, end));
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.TEXT;
+    }
+
+    @Override
+    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+        if (func2 != null) {
+            func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
+        }
+    }
+}

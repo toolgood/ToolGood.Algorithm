@@ -1,0 +1,82 @@
+package toolgood.algorithm.internals.functions.csharp;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.BiFunction;
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.ParameterType;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionUtil;
+import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.NoneEngine;
+
+final class Function_LOOKFLOOR extends Function_2 {
+
+    public Function_LOOKFLOOR(FunctionBase[] funcs) {
+        super(funcs);
+        if (funcs.length != 2) {
+            throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 2 parameters.");
+        }
+    }
+
+    @Override
+    public String Name() {
+        return "LookFloor";
+    }
+
+    @Override
+    public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
+        Operand args1 = GetNumber_1(engine, tempParameter);
+        if (args1.IsErrorOrNone()) {
+            return args1;
+        }
+
+        Operand args2 = GetArray_2(engine, tempParameter);
+        if (args2.IsErrorOrNone()) {
+            return args2;
+        }
+
+        List<BigDecimal> list = new ArrayList<BigDecimal>();
+        boolean o = FunctionUtil.FlattenToNumberList(args2, list);
+        if (o == false) {
+            return ParameterError(2);
+        }
+        if (list.size() == 0) {
+            return ParameterError(2);
+        }
+        Collections.sort(list);
+
+        BigDecimal value = args1.NumberValue();
+        BigDecimal result = list.get(0);
+        if (result.compareTo(value) == 0) {
+            return args1;
+        }
+        for (int i = 1; i < list.size(); i++) {
+            BigDecimal val = list.get(i);
+            if (val.compareTo(value) < 0) {
+                result = val;
+            } else if (val.compareTo(value) == 0) {
+                return args1;
+            } else /*if (val > value)*/ {
+                break;
+            }
+        }
+        return Operand.Create(result);
+    }
+
+    @Override
+    public OperandType GetResultType() {
+        return OperandType.NUMBER;
+    }
+
+    @Override
+    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+        func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+        func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+    }
+
+}
