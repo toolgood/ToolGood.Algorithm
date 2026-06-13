@@ -22,7 +22,7 @@ class FunctionUtil {
         int count = 0;
         for (int i = 0; i < args.size(); i++) {
             Operand item = args.get(i);
-            if (item.Type() == OperandType.ARRARY) {
+            if (item.Type() == OperandType.ARRAY) {
                 count += item.ArrayValue().size();
             } else if (item.Type() == OperandType.JSON) {
                 count += 8;
@@ -38,7 +38,7 @@ class FunctionUtil {
         List<Operand> stack = new ArrayList<>(args);
         while (stack.size() > 0) {
             Operand item = stack.remove(stack.size() - 1);
-            if (item.Type() == OperandType.ARRARY) {
+            if (item.Type() == OperandType.ARRAY) {
                 List<Operand> array = item.ArrayValue();
                 for (int i = array.size() - 1; i >= 0; i--)
                     stack.add(array.get(i));
@@ -61,7 +61,7 @@ class FunctionUtil {
         List<Operand> stack = new ArrayList<>(args);
         while (stack.size() > 0) {
             Operand item = stack.remove(stack.size() - 1);
-            if (item.Type() == OperandType.ARRARY) {
+            if (item.Type() == OperandType.ARRAY) {
                 List<Operand> array = item.ArrayValue();
                 for (int i = array.size() - 1; i >= 0; i--)
                     stack.add(array.get(i));
@@ -89,7 +89,7 @@ class FunctionUtil {
     public static boolean FlattenToNumberList(Operand args, List<BigDecimal> list) {
         if (args.IsError())
             return false;
-        if (args.Type() == OperandType.ARRARY)
+        if (args.Type() == OperandType.ARRAY)
             return FlattenToList(args.ArrayValue(), list);
         if (args.Type() == OperandType.JSON) {
             Operand i = args.ToArray(null);
@@ -112,12 +112,12 @@ class FunctionUtil {
         if (args.IsError()) {
             return false;
         }
-        if (args.Type() == OperandType.ARRARY) {
+        if (args.Type() == OperandType.ARRAY) {
             List<Operand> array = args.ArrayValue();
             list.ensureCapacity(Math.max(list.size(), array.size()));
             for (int i = 0; i < array.size(); i++) {
                 Operand item = array.get(i);
-                if (item.Type() == OperandType.ARRARY || item.Type() == OperandType.JSON) {
+                if (item.Type() == OperandType.ARRAY || item.Type() == OperandType.JSON) {
                     if (!FlattenToStringList(item, list))
                         return false;
                 } else {

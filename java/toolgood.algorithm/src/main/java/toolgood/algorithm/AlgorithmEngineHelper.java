@@ -3,17 +3,24 @@ package toolgood.algorithm;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import toolgood.algorithm.enums.AreaUnitType;
-import toolgood.algorithm.enums.DistanceUnitType;
-import toolgood.algorithm.enums.MassUnitType;
-import toolgood.algorithm.enums.VolumeUnitType;
-import toolgood.algorithm.internals.AntlrCharStream;
-import toolgood.algorithm.internals.AntlrErrorListener;
-import toolgood.algorithm.internals.CharUtil;
-import toolgood.algorithm.internals.DiyNameVisitor;
-import toolgood.algorithm.internals.MathVisitor;
-import toolgood.algorithm.internals.MyFunction;
-import toolgood.algorithm.internals.MyParameter;
+import toolgood.algorithm.enums.CombineCalculateType;
+import toolgood.algorithm.enums.ConditionTreeType;
+import toolgood.algorithm.enums.CalculateTreeType;
+import toolgood.algorithm.internals.CalculateTree;
+import toolgood.algorithm.internals.ConditionTree;
+import toolgood.algorithm.internals.DiyNameInfo;
+import toolgood.algorithm.internals.DiyNameKeyInfo;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.functions.compare.*;
+import toolgood.algorithm.internals.functions.flow.*;
+import toolgood.algorithm.internals.functions.operator.*;
+import toolgood.algorithm.internals.functions.value.Function_ERROR;
+import toolgood.algorithm.internals.visitors.AntlrCharStream;
+import toolgood.algorithm.internals.visitors.AntlrErrorListener;
+import toolgood.algorithm.internals.visitors.DiyNameVisitor;
+import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
+import toolgood.algorithm.internals.visitors.MathSplitVisitor;
+import toolgood.algorithm.internals.visitors.MathSplitVisitor2;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.ProgContext;
@@ -23,572 +30,206 @@ import toolgood.algorithm.unitConversion.MassConverter;
 import toolgood.algorithm.unitConversion.VolumeConverter;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Function;
 
-/**
- * 算法引擎助手
- */
 public class AlgorithmEngineHelper {
 
-    private static Set<String> _lexerSet;
-
-    private static Set<String> GetLexerSet() {
-        if (_lexerSet == null) {
-            Set<String> lexerSet = new HashSet<String>();
-            lexerSet.add("NULL");
-            lexerSet.add("IF");
-            lexerSet.add("IFERROR");
-            lexerSet.add("ISNUMBER");
-            lexerSet.add("ISTEXT");
-            lexerSet.add("ISERROR");
-            lexerSet.add("ISNONTEXT");
-            lexerSet.add("ISLOGICAL");
-            lexerSet.add("ISEVEN");
-            lexerSet.add("ISODD");
-            lexerSet.add("ISNULL");
-            lexerSet.add("ISNULLORERROR");
-            lexerSet.add("AND");
-            lexerSet.add("OR");
-            lexerSet.add("NOT");
-            lexerSet.add("TRUE");
-            lexerSet.add("FALSE");
-            lexerSet.add("E");
-            lexerSet.add("PI");
-            lexerSet.add("DEC2BIN");
-            lexerSet.add("DEC2HEX");
-            lexerSet.add("DEC2OCT");
-            lexerSet.add("HEX2BIN");
-            lexerSet.add("HEX2DEC");
-            lexerSet.add("HEX2OCT");
-            lexerSet.add("OCT2BIN");
-            lexerSet.add("OCT2DEC");
-            lexerSet.add("OCT2HEX");
-            lexerSet.add("BIN2OCT");
-            lexerSet.add("BIN2DEC");
-            lexerSet.add("BIN2HEX");
-            lexerSet.add("ABS");
-            lexerSet.add("QUOTIENT");
-            lexerSet.add("MOD");
-            lexerSet.add("SIGN");
-            lexerSet.add("SQRT");
-            lexerSet.add("TRUNC");
-            lexerSet.add("INT");
-            lexerSet.add("GCD");
-            lexerSet.add("LCM");
-            lexerSet.add("COMBIN");
-            lexerSet.add("PERMUT");
-            lexerSet.add("DEGREES");
-            lexerSet.add("RADIANS");
-            lexerSet.add("COS");
-            lexerSet.add("COSH");
-            lexerSet.add("SIN");
-            lexerSet.add("SINH");
-            lexerSet.add("TAN");
-            lexerSet.add("TANH");
-            lexerSet.add("ACOS");
-            lexerSet.add("ACOSH");
-            lexerSet.add("ASIN");
-            lexerSet.add("ASINH");
-            lexerSet.add("ATAN");
-            lexerSet.add("ATANH");
-            lexerSet.add("ATAN2");
-            lexerSet.add("ROUND");
-            lexerSet.add("ROUNDDOWN");
-            lexerSet.add("ROUNDUP");
-            lexerSet.add("CEILING");
-            lexerSet.add("FLOOR");
-            lexerSet.add("EVEN");
-            lexerSet.add("ODD");
-            lexerSet.add("MROUND");
-            lexerSet.add("RAND");
-            lexerSet.add("RANDBETWEEN");
-            lexerSet.add("FACT");
-            lexerSet.add("FACTDOUBLE");
-            lexerSet.add("POWER");
-            lexerSet.add("EXP");
-            lexerSet.add("LN");
-            lexerSet.add("LOG");
-            lexerSet.add("LOG10");
-            lexerSet.add("MULTINOMIAL");
-            lexerSet.add("PRODUCT");
-            lexerSet.add("SQRTPI");
-            lexerSet.add("SUMSQ");
-            lexerSet.add("ASC");
-            lexerSet.add("JIS");
-            lexerSet.add("WIDECHAR");
-            lexerSet.add("CHAR");
-            lexerSet.add("CLEAN");
-            lexerSet.add("CODE");
-            lexerSet.add("CONCATENATE");
-            lexerSet.add("EXACT");
-            lexerSet.add("FIND");
-            lexerSet.add("FIXED");
-            lexerSet.add("LEFT");
-            lexerSet.add("LEN");
-            lexerSet.add("LOWER");
-            lexerSet.add("TOLOWER");
-            lexerSet.add("MID");
-            lexerSet.add("PROPER");
-            lexerSet.add("REPLACE");
-            lexerSet.add("REPT");
-            lexerSet.add("RIGHT");
-            lexerSet.add("RMB");
-            lexerSet.add("SEARCH");
-            lexerSet.add("SUBSTITUTE");
-            lexerSet.add("T");
-            lexerSet.add("TEXT");
-            lexerSet.add("TRIM");
-            lexerSet.add("UPPER");
-            lexerSet.add("TOUPPER");
-            lexerSet.add("VALUE");
-            lexerSet.add("DATEVALUE");
-            lexerSet.add("TIMEVALUE");
-            lexerSet.add("DATE");
-            lexerSet.add("TIME");
-            lexerSet.add("NOW");
-            lexerSet.add("TODAY");
-            lexerSet.add("YEAR");
-            lexerSet.add("MONTH");
-            lexerSet.add("DAY");
-            lexerSet.add("HOUR");
-            lexerSet.add("MINUTE");
-            lexerSet.add("SECOND");
-            lexerSet.add("WEEKDAY");
-            lexerSet.add("DATEDIF");
-            lexerSet.add("DAYS360");
-            lexerSet.add("EDATE");
-            lexerSet.add("EOMONTH");
-            lexerSet.add("NETWORKDAYS");
-            lexerSet.add("WORKDAY");
-            lexerSet.add("WEEKNUM");
-            lexerSet.add("MAX");
-            lexerSet.add("MEDIAN");
-            lexerSet.add("MIN");
-            lexerSet.add("QUARTILE");
-            lexerSet.add("MODE");
-            lexerSet.add("LARGE");
-            lexerSet.add("SMALL");
-            lexerSet.add("PERCENTILE");
-            lexerSet.add("PERCENTRANK");
-            lexerSet.add("AVERAGE");
-            lexerSet.add("AVERAGEIF");
-            lexerSet.add("GEOMEAN");
-            lexerSet.add("HARMEAN");
-            lexerSet.add("COUNT");
-            lexerSet.add("COUNTIF");
-            lexerSet.add("SUM");
-            lexerSet.add("SUMIF");
-            lexerSet.add("AVEDEV");
-            lexerSet.add("STDEV");
-            lexerSet.add("STDEV.S");
-            lexerSet.add("STDEVP");
-            lexerSet.add("STDEV.P");
-            lexerSet.add("COVAR");
-            lexerSet.add("COVARIANCE.P");
-            lexerSet.add("COVARIANCE.S");
-            lexerSet.add("DEVSQ");
-            lexerSet.add("VAR");
-            lexerSet.add("VAR.S");
-            lexerSet.add("VARP");
-            lexerSet.add("VAR.P");
-            lexerSet.add("NORMDIST");
-            lexerSet.add("NORM.DIST");
-            lexerSet.add("NORMINV");
-            lexerSet.add("NORM.INV");
-            lexerSet.add("NORMSDIST");
-            lexerSet.add("NORM.S.DIST");
-            lexerSet.add("NORMSINV");
-            lexerSet.add("NORM.S.INV");
-            lexerSet.add("BETADIST");
-            lexerSet.add("BETA.DIST");
-            lexerSet.add("BETAINV");
-            lexerSet.add("BETA.INV");
-            lexerSet.add("BINOMDIST");
-            lexerSet.add("BINOM.DIST");
-            lexerSet.add("EXPONDIST");
-            lexerSet.add("EXPON.DIST");
-            lexerSet.add("FDIST");
-            lexerSet.add("F.DIST");
-            lexerSet.add("FINV");
-            lexerSet.add("F.INV");
-            lexerSet.add("FISHER");
-            lexerSet.add("FISHERINV");
-            lexerSet.add("GAMMADIST");
-            lexerSet.add("GAMMA.DIST");
-            lexerSet.add("GAMMAINV");
-            lexerSet.add("GAMMA.INV");
-            lexerSet.add("GAMMALN");
-            lexerSet.add("HYPGEOMDIST");
-            lexerSet.add("HYPGEOM.DIST");
-            lexerSet.add("LOGINV");
-            lexerSet.add("LOGNORM.INV");
-            lexerSet.add("LOGNORMDIST");
-            lexerSet.add("LOGNORM.DIST");
-            lexerSet.add("NEGBINOMDIST");
-            lexerSet.add("NEGBINOM.DIST");
-            lexerSet.add("POISSON");
-            lexerSet.add("POISSON.DIST");
-            lexerSet.add("TDIST");
-            lexerSet.add("T.DIST");
-            lexerSet.add("TINV");
-            lexerSet.add("T.INV");
-            lexerSet.add("WEIBULL");
-            lexerSet.add("URLENCODE");
-            lexerSet.add("URLDECODE");
-            lexerSet.add("HTMLENCODE");
-            lexerSet.add("HTMLDECODE");
-            lexerSet.add("BASE64TOTEXT");
-            lexerSet.add("BASE64URLTOTEXT");
-            lexerSet.add("TEXTTOBASE64");
-            lexerSet.add("TEXTTOBASE64URL");
-            lexerSet.add("REGEX");
-            lexerSet.add("REGEXREPALCE");
-            lexerSet.add("ISREGEX");
-            lexerSet.add("ISMATCH");
-            lexerSet.add("GUID");
-            lexerSet.add("MD5");
-            lexerSet.add("SHA1");
-            lexerSet.add("SHA256");
-            lexerSet.add("SHA512");
-            lexerSet.add("CRC32");
-            lexerSet.add("HMACMD5");
-            lexerSet.add("HMACSHA1");
-            lexerSet.add("HMACSHA256");
-            lexerSet.add("HMACSHA512");
-            lexerSet.add("TRIMSTART");
-            lexerSet.add("LTRIM");
-            lexerSet.add("TRIMEND");
-            lexerSet.add("RTRIM");
-            lexerSet.add("INDEXOF");
-            lexerSet.add("LASTINDEXOF");
-            lexerSet.add("SPLIT");
-            lexerSet.add("JOIN");
-            lexerSet.add("SUBSTRING");
-            lexerSet.add("STARTSWITH");
-            lexerSet.add("ENDSWITH");
-            lexerSet.add("ISNULLOREMPTY");
-            lexerSet.add("ISNULLORWHITESPACE");
-            lexerSet.add("REMOVESTART");
-            lexerSet.add("REMOVEEND");
-            lexerSet.add("JSON");
-            lexerSet.add("VLOOKUP");
-            lexerSet.add("LOOKUP");
-            lexerSet.add("ARRAY");
-            lexerSet.add("ADDYEARS");
-            lexerSet.add("ADDMONTHS");
-            lexerSet.add("ADDDAYS");
-            lexerSet.add("ADDHOURS");
-            lexerSet.add("ADDMINUTES");
-            lexerSet.add("ADDSECONDS");
-            lexerSet.add("TIMESTAMP");
-
-            lexerSet.add("HAS");
-            lexerSet.add("HASKEY");
-            lexerSet.add("CONTAINS");
-            lexerSet.add("CONTAINSKEY");
-            lexerSet.add("HASVALUE");
-            lexerSet.add("CONTAINSVALUE");
-            lexerSet.add("PARAM");
-            lexerSet.add("PARAMETER");
-            lexerSet.add("GETPARAMETER");
-            lexerSet.add("ERROR");
-            _lexerSet = lexerSet;
-        }
-        return _lexerSet;
-    }
-
-    /**
-     * 是否与内置关键字相同
-     *
-     * @param parameter
-     * @return
-     */
-    public static boolean IsKeywords(String parameter) {
-        Set<String> lexerSet = GetLexerSet();
-        return lexerSet.contains(CharUtil.StandardString(parameter));
-    }
-
-    /**
-     * 获取 DIY 名称
-     *
-     * @param exp
-     * @return
-     * @throws Exception
-     */
-    public static DiyNameInfo GetDiyNames(String exp) throws Exception {
-        if (exp == null || exp.equals("")) {
-            throw new Exception("Parameter exp invalid !");
-        }
-        final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
-        final mathLexer lexer = new mathLexer(stream);
-        final CommonTokenStream tokens = new CommonTokenStream(lexer);
-        final mathParser parser = new mathParser(tokens);
-        final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
+    private static mathParser.ProgContext CreateParserContext(String exp, AntlrErrorListener errorListener) {
+        AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
+        mathLexer lexer = new mathLexer(stream);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        mathParser parser = new mathParser(tokens);
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(errorListener);
         parser.removeErrorListeners();
-        parser.addErrorListener(antlrErrorListener);
-        final ProgContext context = parser.prog();
-
-        if (antlrErrorListener.IsError) {
-            throw new Exception(antlrErrorListener.ErrorMsg);
-        }
-
-        final DiyNameVisitor visitor = new DiyNameVisitor();
-        visitor.visit(context);
-        return visitor.diy;
+        parser.addErrorListener(errorListener);
+        return parser.prog();
     }
 
-    /**
-     * 单位转换
-     *
-     * @param src
-     * @param oldSrcUnit
-     * @param oldTarUnit
-     * @return
-     * @throws Exception
-     */
+    public static boolean IsParameter(String parameter) {
+        if (parameter == null || parameter.trim().isEmpty()) {
+            return false;
+        }
+        try {
+            DiyNameInfo diy = GetDiyNames(parameter);
+            if (diy.Functions.size() > 0) {
+                return false;
+            }
+            if (diy.Parameters.size() == 1) {
+                DiyNameKeyInfo p = diy.Parameters.get(0);
+                return p.Name.equals(parameter);
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    public static DiyNameInfo GetDiyNames(String exp) throws Exception {
+        if (exp == null || exp.trim().isEmpty()) {
+            throw new IllegalArgumentException("Parameter exp invalid !");
+        }
+        AntlrErrorListener errorListener = new AntlrErrorListener();
+        ProgContext context = CreateParserContext(exp, errorListener);
+        if (errorListener.IsError) {
+            throw new IllegalArgumentException(errorListener.ErrorMsg);
+        }
+        DiyNameVisitor visitor = new DiyNameVisitor();
+        visitor.visit(context);
+        return new DiyNameInfo(visitor.Parameters, visitor.Functions);
+    }
+
     public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit) throws Exception {
         return UnitConversion(src, oldSrcUnit, oldTarUnit, null);
     }
 
-    /**
-     * 单位转换
-     *
-     * @param src
-     * @param oldSrcUnit
-     * @param oldTarUnit
-     * @param name
-     * @return
-     * @throws Exception
-     */
-    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name)
-            throws Exception {
-        if (oldSrcUnit == null || oldSrcUnit.equals("") || oldTarUnit == null || oldTarUnit.equals("")) {
+    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
+        if (oldSrcUnit == null || oldSrcUnit.trim().isEmpty() || oldTarUnit == null || oldTarUnit.trim().isEmpty()) {
             return src;
         }
-        oldSrcUnit = oldSrcUnit.replaceAll("[\\s \\(\\)（）\\[\\]<>]", "");
         if (oldSrcUnit.equals(oldTarUnit)) {
             return src;
         }
-        if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            DistanceConverter c = new DistanceConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+
+        BigDecimal result = TryConvert(src, oldSrcUnit, oldTarUnit);
+        if (result != null) {
+            return result;
         }
-        if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            MassConverter c = new MassConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+
+        String cleanSrcUnit = oldSrcUnit.replaceAll("[\\s\\(\\)（）\\[\\]<>]", "");
+        if (!cleanSrcUnit.equals(oldSrcUnit)) {
+            result = TryConvert(src, cleanSrcUnit, oldTarUnit);
+            if (result != null) {
+                return result;
+            }
         }
-        if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            AreaConverter c = new AreaConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
+
+        if (name == null || name.isEmpty()) {
+            throw new RuntimeException("The input item has different units and cannot be converted from ["
+                    + oldSrcUnit + "] to [" + oldTarUnit + "]");
         }
-        if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
-            VolumeConverter c = new VolumeConverter(oldSrcUnit, oldTarUnit);
-            return c.LeftToRight(src);
-        }
-        if (name == null || name.equals("")) {
-            throw new Exception("The input item has different units and cannot be converted from [" + oldSrcUnit
-                    + "] to [" + oldTarUnit + "]");
-        }
-        throw new Exception("The input item [" + name + "] has different units and cannot be converted from ["
+        throw new RuntimeException("The input item [" + name + "] has different units and cannot be converted from ["
                 + oldSrcUnit + "] to [" + oldTarUnit + "]");
     }
 
-    /**
-     * 解析
-     * 
-     * @param exp
-     * @return
-     * @throws Exception
-     */
-    public static mathParser.ProgContext Parse(String exp) throws Exception {
-        if (null == exp || exp.equals("")) {
-            throw new Exception("Parameter exp invalid !");
+    private static BigDecimal TryConvert(BigDecimal src, String srcUnit, String tarUnit) {
+        if (DistanceConverter.Exists(srcUnit, tarUnit)) {
+            DistanceConverter c = new DistanceConverter(srcUnit, tarUnit);
+            return c.LeftToRight(src);
         }
-        final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
-        final mathLexer lexer = new mathLexer(stream);
-        final CommonTokenStream tokens = new CommonTokenStream(lexer);
-        final mathParser parser = new mathParser(tokens);
-        final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
-        parser.removeErrorListeners();
-        parser.addErrorListener(antlrErrorListener);
-        final ProgContext context = parser.prog();
-
-        if (antlrErrorListener.IsError) {
-            throw new Exception(antlrErrorListener.ErrorMsg);
+        if (MassConverter.Exists(srcUnit, tarUnit)) {
+            MassConverter c = new MassConverter(srcUnit, tarUnit);
+            return c.LeftToRight(src);
         }
-        return context;
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context) {
-        return Evaluate(context, null, null, true, false, DistanceUnitType.M, AreaUnitType.M2, VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter) {
-        return Evaluate(context, GetParameter, null, true, false, DistanceUnitType.M, AreaUnitType.M2,
-                VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction) {
-        return Evaluate(context, GetParameter, ExecuteDiyFunction, true, false, DistanceUnitType.M, AreaUnitType.M2,
-                VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @param UseExcelIndex
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex) {
-        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, false, DistanceUnitType.M,
-                AreaUnitType.M2,
-                VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @param UseExcelIndex
-     * @param UseLocalTime
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime) {
-        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnitType.M,
-                AreaUnitType.M2,
-                VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @param UseExcelIndex
-     * @param UseLocalTime
-     * @param DistanceUnit
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
-            DistanceUnitType DistanceUnit) {
-        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
-                AreaUnitType.M2,
-                VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @param UseExcelIndex
-     * @param UseLocalTime
-     * @param DistanceUnit
-     * @param AreaUnit
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
-            DistanceUnitType DistanceUnit, AreaUnitType AreaUnit) {
-        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
-                AreaUnit,
-                VolumeUnitType.M3,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @param UseExcelIndex
-     * @param UseLocalTime
-     * @param DistanceUnit
-     * @param AreaUnit
-     * @param VolumeUnit
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
-            DistanceUnitType DistanceUnit, AreaUnitType AreaUnit, VolumeUnitType VolumeUnit) {
-        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
-                AreaUnit,
-                VolumeUnit,
-                MassUnitType.KG);
-    }
-
-    /**
-     * 执行
-     * 
-     * @param context
-     * @param GetParameter
-     * @param ExecuteDiyFunction
-     * @param UseExcelIndex
-     * @param UseLocalTime
-     * @param DistanceUnit
-     * @param AreaUnit
-     * @param VolumeUnit
-     * @param MassUnit
-     * @return
-     */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
-            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
-            DistanceUnitType DistanceUnit, AreaUnitType AreaUnit, VolumeUnitType VolumeUnit, MassUnitType MassUnit) {
-        MathVisitor visitor = new MathVisitor();
-        if (GetParameter != null) {
-            visitor.GetParameter = GetParameter;
+        if (AreaConverter.Exists(srcUnit, tarUnit)) {
+            AreaConverter c = new AreaConverter(srcUnit, tarUnit);
+            return c.LeftToRight(src);
         }
-        if (ExecuteDiyFunction != null) {
-            visitor.DiyFunction = ExecuteDiyFunction;
+        if (VolumeConverter.Exists(srcUnit, tarUnit)) {
+            VolumeConverter c = new VolumeConverter(srcUnit, tarUnit);
+            return c.LeftToRight(src);
         }
-        visitor.excelIndex = UseExcelIndex ? 1 : 0;
-        visitor.useLocalTime = UseLocalTime;
-        visitor.MassUnit = MassUnit;
-        visitor.DistanceUnit = DistanceUnit;
-        visitor.AreaUnit = AreaUnit;
-        visitor.VolumeUnit = VolumeUnit;
+        return null;
+    }
+
+    public static FunctionBase ParseFormula(String exp) throws Exception {
+        if (exp == null || exp.trim().isEmpty()) {
+            throw new IllegalArgumentException("Parameter exp invalid !");
+        }
+        AntlrErrorListener errorListener = new AntlrErrorListener();
+        ProgContext context = CreateParserContext(exp, errorListener);
+        if (errorListener.IsError) {
+            throw new IllegalArgumentException(errorListener.ErrorMsg);
+        }
+        MathFunctionVisitor visitor = new MathFunctionVisitor();
         return visitor.visit(context);
     }
 
+    public static boolean CheckFormula(String exp) {
+        if (exp == null || exp.trim().isEmpty()) {
+            return false;
+        }
+        AntlrErrorListener errorListener = new AntlrErrorListener();
+        CreateParserContext(exp, errorListener);
+        return !errorListener.IsError;
+    }
+
+    public static ConditionTree ParseCondition(String condition) {
+        ConditionTree tree = new ConditionTree();
+        if (condition == null || condition.trim().isEmpty()) {
+            tree.Type = ConditionTreeType.Error;
+            tree.ErrorMessage = "condition is null";
+            return tree;
+        }
+        try {
+            AntlrErrorListener errorListener = new AntlrErrorListener();
+            ProgContext context = CreateParserContext(condition, errorListener);
+            if (errorListener.IsError) {
+                tree.Type = ConditionTreeType.Error;
+                tree.ErrorMessage = errorListener.ErrorMsg;
+                return tree;
+            }
+            MathSplitVisitor visitor = new MathSplitVisitor();
+            return visitor.visit(context);
+        } catch (Exception ex) {
+            tree.Type = ConditionTreeType.Error;
+            tree.ErrorMessage = ex.getMessage();
+        }
+        return tree;
+    }
+
+    public static FunctionBase Condition_And(FunctionBase left, FunctionBase right) {
+        return new Function_AND(left, right);
+    }
+
+    public static FunctionBase Condition_Or(FunctionBase left, FunctionBase right) {
+        return new Function_OR(left, right);
+    }
+
+    public static FunctionBase Error(FunctionBase txt) {
+        return new Function_ERROR(txt);
+    }
+
+    public static CalculateTree ParseCalculate(String exp) {
+        CalculateTree tree = new CalculateTree();
+        if (exp == null || exp.trim().isEmpty()) {
+            tree.Type = CalculateTreeType.Error;
+            tree.ErrorMessage = "exp is null";
+            return tree;
+        }
+        try {
+            AntlrErrorListener errorListener = new AntlrErrorListener();
+            ProgContext context = CreateParserContext(exp, errorListener);
+            if (errorListener.IsError) {
+                tree.Type = CalculateTreeType.Error;
+                tree.ErrorMessage = errorListener.ErrorMsg;
+                return tree;
+            }
+            MathSplitVisitor2 visitor = new MathSplitVisitor2();
+            return visitor.visit(context);
+        } catch (Exception ex) {
+            tree.Type = CalculateTreeType.Error;
+            tree.ErrorMessage = ex.getMessage();
+        }
+        return tree;
+    }
+
+    public static FunctionBase CombineCalculate(FunctionBase left, CombineCalculateType type, FunctionBase right) {
+        switch (type) {
+            case Add: return new Function_Add(left, right);
+            case Sub: return new Function_Sub(left, right);
+            case Mul: return new Function_Mul(left, right);
+            case Div: return new Function_Div(left, right);
+            case Mod: return new Function_Mod(left, right);
+            case Connect: return new Function_Connect(left, right);
+            case And: return new Function_AND(left, right);
+            case Or: return new Function_OR(left, right);
+            case OpGt: return new Function_GT(left, right);
+            case OpLt: return new Function_LT(left, right);
+            case OpGe: return new Function_GE(left, right);
+            case OpLe: return new Function_LE(left, right);
+            case OpEq: return new Function_EQ(left, right);
+            case OpNe:
+            default: return new Function_NE(left, right);
+        }
+    }
 }

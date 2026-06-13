@@ -307,7 +307,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 }
 
                 r = firstValue.TextValue().compareTo(secondValue.TextValue());
-            } else if (firstValue.Type() == OperandType.ARRARY) {
+            } else if (firstValue.Type() == OperandType.ARRAY) {
                 return Operand.Error("The two types cannot be compared.");
             } else {
                 firstValue = firstValue.ToNumber("Function '" + type + "' parameter 1 is error!");
@@ -349,7 +349,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             // r = String.Compare(firstValue.TextValue(), secondValue.TextValue(), true);
         } else if (firstValue.Type() == OperandType.TEXT || secondValue.Type() == OperandType.TEXT
                 || firstValue.Type() == OperandType.JSON || secondValue.Type() == OperandType.JSON
-                || firstValue.Type() == OperandType.ARRARY || secondValue.Type() == OperandType.ARRARY) {
+                || firstValue.Type() == OperandType.ARRAY || secondValue.Type() == OperandType.ARRAY) {
             return Operand.Error("The two types cannot be compared.");
         } else {
             firstValue = firstValue.ToNumber("Function '" + type + "' parameter 1 is error!");
@@ -4383,7 +4383,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         for (final Operand item : args) {
             if (item.Type() == OperandType.NUMBER) {
                 list.add(item.NumberValue());
-            } else if (item.Type() == OperandType.ARRARY) {
+            } else if (item.Type() == OperandType.ARRAY) {
                 final boolean o = F_base_GetList_1(item.ArrayValue(), list);
                 if (o == false) {
                     return false;
@@ -4414,7 +4414,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
         if (args.Type() == OperandType.NUMBER) {
             list.add(args.NumberValue());
-        } else if (args.Type() == OperandType.ARRARY) {
+        } else if (args.Type() == OperandType.ARRAY) {
             return F_base_GetList_1(args.ArrayValue(), list);
         } else if (args.Type() == OperandType.JSON) {
             final Operand i = args.ToArray(null);
@@ -4436,7 +4436,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (args.IsError()) {
             return false;
         }
-        if (args.Type() == OperandType.ARRARY) {
+        if (args.Type() == OperandType.ARRAY) {
             return F_base_GetList(args.ArrayValue(), list);
         } else if (args.Type() == OperandType.JSON) {
             final Operand i = args.ToArray(null);
@@ -4456,7 +4456,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     private boolean F_base_GetList(final List<Operand> args, final List<String> list) {
         for (final Operand item : args) {
-            if (item.Type() == OperandType.ARRARY) {
+            if (item.Type() == OperandType.ARRAY) {
                 final boolean o = F_base_GetList(item.ArrayValue(), list);
                 if (o == false) {
                     return false;
@@ -5075,7 +5075,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 firstValue = o;
             }
         }
-        if (firstValue.Type() == OperandType.ARRARY) {
+        if (firstValue.Type() == OperandType.ARRAY) {
             final List<String> list = new ArrayList<String>();
             final boolean o = F_base_GetList(firstValue, list);
             if (o == false)
@@ -5437,7 +5437,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (secondValue.IsError()) {
             return secondValue;
         }
-        if (firstValue.Type() == OperandType.ARRARYJSON) {
+        if (firstValue.Type() == OperandType.ARRAYJSON) {
             secondValue = secondValue.ToNumber("");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -5617,7 +5617,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return args2;
         }
 
-        if (args1.Type() == OperandType.ARRARYJSON) {
+        if (args1.Type() == OperandType.ARRAYJSON) {
             return Operand.Create(((Operand.OperandKeyValueList) args1).ContainsKey(args2));
         } else if (args1.Type() == OperandType.JSON) {
             JsonData json = args1.JsonValue();
@@ -5645,7 +5645,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 }
             }
             return Operand.False;
-        } else if (args1.Type() == OperandType.ARRARY) {
+        } else if (args1.Type() == OperandType.ARRAY) {
             for (Operand item : args1.ArrayValue()) {
                 Operand t = item.ToText("");
                 if (t.IsError()) {
@@ -5672,7 +5672,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return args2;
         }
 
-        if (args1.Type() == OperandType.ARRARYJSON) {
+        if (args1.Type() == OperandType.ARRAYJSON) {
             return Operand.Create(((Operand.OperandKeyValueList) args1).ContainsValue(args2));
         } else if (args1.Type() == OperandType.JSON) {
             JsonData json = args1.JsonValue();
@@ -5711,7 +5711,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 }
             }
             return Operand.False;
-        } else if (args1.Type() == OperandType.ARRARY) {
+        } else if (args1.Type() == OperandType.ARRAY) {
             for (Operand item : args1.ArrayValue()) {
                 Operand t = item.ToText("");
                 if (t.IsError()) {
@@ -5819,7 +5819,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
         }
 
-        if (firstValue.Type() == OperandType.ARRARY) {
+        if (firstValue.Type() == OperandType.ARRAY) {
             op = op.ToNumber("ARRARY index is error!");
             if (op.IsError()) {
                 return op;
@@ -5829,7 +5829,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return firstValue.ArrayValue().get(index);// [index];
             return Operand.Error("ARRARY index " + index + " greater than maximum length!");
         }
-        if (firstValue.Type() == OperandType.ARRARYJSON) {
+        if (firstValue.Type() == OperandType.ARRAYJSON) {
             if (op.Type() == OperandType.NUMBER) {
                 if (((Operand.OperandKeyValueList) firstValue).HasKey(op.NumberValue().toString())) {
                     return ((Operand.OperandKeyValueList) firstValue).GetValue(op.NumberValue().toString());

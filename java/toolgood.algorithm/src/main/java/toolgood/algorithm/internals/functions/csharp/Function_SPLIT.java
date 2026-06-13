@@ -43,7 +43,7 @@ final class Function_SPLIT extends Function_2 {
 
     @Override
     public OperandType GetResultType() {
-        return OperandType.ARRARY;
+        return OperandType.ARRAY;
     }
 
     @Override

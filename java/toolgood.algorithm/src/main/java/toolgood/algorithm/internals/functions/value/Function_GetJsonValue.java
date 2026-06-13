@@ -37,7 +37,7 @@ public final class Function_GetJsonValue extends Function_2 {
             int index = op.IntValue() - excelIndex;
             if (index < obj.ArrayValue().size() && index >= 0)
                 return obj.ArrayValue().get(index);
-            return Operand.Error(String.format("Function '%s' ARRARY index %d greater than maximum length!", "GetJsonValue", index));
+            return Operand.Error(String.format("Function '%s' ARRAY index %d greater than maximum length!", "GetJsonValue", index));
         }
         if (obj.IsArrayJson()) {
             if (op.IsNumber()) {

@@ -383,4 +383,21 @@ public class MyDate {
         return new MyDate(this.ToNumber().divide(num, MathContext.DECIMAL32));
     }
 
+    public long ToLong() {
+        long d = 0;
+        if (Year != null) {
+            d += Year * 10000000000L;
+        }
+        if (Month != null) {
+            d += Month * 100000000L;
+        }
+        if (Day != null) {
+            d += Day * 1000000L;
+        }
+        d += Hour * 10000L;
+        d += Minute * 100L;
+        d += Second;
+        return d;
+    }
+
 }

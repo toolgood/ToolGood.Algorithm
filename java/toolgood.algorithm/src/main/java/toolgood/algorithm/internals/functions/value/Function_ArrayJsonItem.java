@@ -42,7 +42,7 @@ public final class Function_ArrayJsonItem extends Function_1 {
 
     @Override
     public OperandType GetResultType() {
-        return OperandType.ARRARYJSON;
+        return OperandType.ARRAYJSON;
     }
 
     @Override

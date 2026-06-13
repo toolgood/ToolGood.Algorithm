@@ -53,7 +53,7 @@ public final class Function_ArrayJson extends Function_N {
 
     @Override
     public OperandType GetResultType() {
-        return OperandType.ARRARYJSON;
+        return OperandType.ARRAYJSON;
     }
 
     @Override

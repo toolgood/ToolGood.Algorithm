@@ -76,7 +76,7 @@ final class Function_LOOKFLOOR extends Function_2 {
     @Override
     void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
-        func2.GetParameterTypes(noneEngine, result, OperandType.ARRARY);
+        func2.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
     }
 
 }
