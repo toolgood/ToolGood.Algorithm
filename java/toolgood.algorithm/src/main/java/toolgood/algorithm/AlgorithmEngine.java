@@ -1,472 +1,263 @@
 package toolgood.algorithm;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import java.time.Duration;
+
 import toolgood.algorithm.enums.AreaUnitType;
 import toolgood.algorithm.enums.DistanceUnitType;
 import toolgood.algorithm.enums.MassUnitType;
 import toolgood.algorithm.enums.VolumeUnitType;
-import toolgood.algorithm.internals.*;
-import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.litJson.JsonMapper;
+import toolgood.algorithm.internals.functions.FunctionBase;
+import toolgood.algorithm.internals.visitors.AntlrCharStream;
+import toolgood.algorithm.internals.visitors.AntlrErrorListener;
+import toolgood.algorithm.internals.visitors.MathFunctionVisitor;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser.ProgContext;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
+/**
+ * 算法引擎类。
+ */
 public class AlgorithmEngine {
+    int ExcelIndex = 1;
+
     /**
-     * 使用EXCEL索引
+     * 使用 本地时间，影响 时间戳转化
      */
-    public boolean UseExcelIndex = true;
+    public boolean UseLocalTime = true;
+
+    /**
+     * 长度单位
+     */
+    public DistanceUnitType DistanceUnit = DistanceUnitType.M;
+
+    /**
+     * 面积单位
+     */
+    public AreaUnitType AreaUnit = AreaUnitType.M2;
+
+    /**
+     * 体积单位
+     */
+    public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
+
+    /**
+     * 重量单位
+     */
+    public MassUnitType MassUnit = MassUnitType.KG;
+
     /**
      * 最后一个错误
      */
     public String LastError;
-    /**
-     * 保存到临时文档
-     */
-    public boolean UseTempDict = false;
-    /**
-     * 是否忽略大小写
-     */
-    public final boolean IgnoreCase;
-    /**
-     * 使用本地时区
-     */
-    public boolean UseLocalTime = false;
-    private ProgContext _context;
-    private final Map<String, Operand> _tempdict;
-    public DistanceUnitType DistanceUnit = DistanceUnitType.M;
-    public AreaUnitType AreaUnit = AreaUnitType.M2;
-    public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
-    public MassUnitType MassUnit = MassUnitType.KG;
 
-    /// <summary>
-    /// 默认不带缓存
-    /// </summary>
-    public AlgorithmEngine() {
-        IgnoreCase = false;
-        _tempdict = new TreeMap<String, Operand>();
+    /**
+     * 使用EXCEL索引
+     */
+    public void SetUseExcelIndex(boolean value) {
+        ExcelIndex = value ? 1 : 0;
     }
 
-    /// <summary>
-    /// 带缓存关键字大小写参数
-    /// </summary>
-    /// <param name="ignoreCase"></param>
-    public AlgorithmEngine(boolean ignoreCase) {
-        IgnoreCase = ignoreCase;
-        if (ignoreCase) {
-            _tempdict = new TreeMap<String, Operand>(String.CASE_INSENSITIVE_ORDER);
-        } else {
-            _tempdict = new TreeMap<String, Operand>();
-        }
-    }
+    /**
+     * 使用缓存，不要在并发环境下运行
+     */
+    public boolean UseParseCache = false;
+    private final Map<String, FunctionBase> _parseCache = new HashMap<>();
 
-    private Operand GetDiyParameterInside(MyParameter parameter) {
-        if (_tempdict.containsKey(parameter.Name)) {
-            return _tempdict.get(parameter.Name);
-        }
-        Operand result = GetParameter(parameter);
-        if (UseTempDict) {
-            _tempdict.put(parameter.Name, result);
-        }
-        return result;
-    }
-
-    protected Operand GetParameter(final MyParameter parameter) {
+    /**
+     * 自定义参数 请重写此方法
+     */
+    public Operand GetParameter(String parameter) {
         return Operand.Error("Parameter [" + parameter + "] is missing.");
     }
 
-    protected Operand ExecuteDiyFunction(final String funcName, final List<Operand> operands) {
-        return Operand.Error("DiyFunction [" + funcName + "] is missing.");
+    /**
+     * 自定义函数 请重写此方法
+     */
+    public Operand ExecuteDiyFunction(String parameter, List<Operand> args) {
+        return Operand.Error("DiyFunction [" + parameter + "] is missing.");
     }
 
-    public void ClearParameters() {
-        _tempdict.clear();
-    }
+    // #region Parse Evaluate
 
     /**
-     * 添加自定义参数
+     * 编译公式，默认
      */
-    public void AddParameter(final String key, final Operand obj) {
-        _tempdict.put(key, obj);
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final boolean obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final short obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final int obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final long obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final float obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final double obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final BigDecimal obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final String obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final MyDate obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(final String key, final List<Operand> obj) {
-        _tempdict.put(key, Operand.Create(obj));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameterFromJson(final String json) throws Exception {
-        if (json.startsWith("{") && json.endsWith("}")) {
-            final JsonData jo = (JsonData) JsonMapper.ToObject(json);
-            if (jo.IsObject()) {
-                for (String item : jo.inst_object.keySet()) {
-                    final JsonData v = jo.inst_object.get(item);
-                    if (v.IsString())
-                        _tempdict.put(item, Operand.Create(v.StringValue()));
-                    else if (v.IsBoolean())
-                        _tempdict.put(item, Operand.Create(v.BooleanValue()));
-                    else if (v.IsDouble())
-                        _tempdict.put(item, Operand.Create(v.NumberValue()));
-                    else if (v.IsObject())
-                        _tempdict.put(item, Operand.Create(v));
-                    else if (v.IsArray())
-                        _tempdict.put(item, Operand.Create(v));
-                    else if (v.IsNull())
-                        _tempdict.put(item, Operand.CreateNull());
-                }
-                return;
-            }
-        }
-        throw new Exception("Parameter is not json String.");
-    }
-
-    public boolean Parse(final String exp) throws RecognitionException {
-        if (exp == null || exp.equals("")) {
+    public FunctionBase Parse(String exp) {
+        LastError = null;
+        if (exp == null || exp.trim().isEmpty()) {
             LastError = "Parameter exp invalid !";
-            return false;
+            throw new IllegalArgumentException(LastError);
         }
-        final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
-        final mathLexer lexer = new mathLexer(stream);
-        final CommonTokenStream tokens = new CommonTokenStream(lexer);
-        final mathParser parser = new mathParser(tokens);
-        final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
+        exp = exp.trim();
+        if (UseParseCache) {
+            FunctionBase r = _parseCache.get(exp);
+            if (r != null) {
+                return r;
+            }
+            r = ParseInternal(exp, true);
+            _parseCache.put(exp, r);
+            return r;
+        }
+        return ParseInternal(exp, true);
+    }
+
+    /**
+     * 编译公式，失败尽可能返回null,不抛错
+     */
+    public FunctionBase ParseWithoutError(String exp) {
+        LastError = null;
+        if (exp == null || exp.trim().isEmpty()) {
+            LastError = "Parameter exp invalid !";
+            return null;
+        }
+        exp = exp.trim();
+        if (UseParseCache) {
+            FunctionBase r = _parseCache.get(exp);
+            if (r != null) {
+                return r;
+            }
+            r = ParseInternal(exp, false);
+            if (r != null) {
+                _parseCache.put(exp, r);
+            }
+            return r;
+        }
+        return ParseInternal(exp, false);
+    }
+
+    private FunctionBase ParseInternal(String exp, boolean throwOnError) {
+        AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
+        mathLexer lexer = new mathLexer(stream);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        mathParser parser = new mathParser(tokens);
+
+        AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(antlrErrorListener);
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorListener);
-        final ProgContext context = parser.prog();
 
+        mathParser.ProgContext context = parser.prog();
         if (antlrErrorListener.IsError) {
-            _context = null;
             LastError = antlrErrorListener.ErrorMsg;
-            return false;
-        }
-        _context = context;
-        return true;
-    }
-
-    public Operand Evaluate() throws Exception {
-        if (_context == null) {
-            LastError = "Please use Parse to compile formula !";
-            throw new Exception("Please use Parse to compile formula !");
-        }
-        final MathVisitor visitor = new MathVisitor();
-        visitor.GetParameter = f -> {
-            try {
-                return GetDiyParameterInside(f);
-            } catch (Exception e) {
+            if (throwOnError) {
+                throw new IllegalArgumentException(LastError);
             }
             return null;
-        };
-        visitor.excelIndex = UseExcelIndex ? 1 : 0;
-
-        visitor.DiyFunction = f -> {
-            return ExecuteDiyFunction(f.Name, f.OperandList);
-        };
-        visitor.useLocalTime = UseLocalTime;
-        visitor.DistanceUnit= DistanceUnit;
-        visitor.AreaUnit=AreaUnit;
-        visitor.VolumeUnit=VolumeUnit;
-        visitor.MassUnit=MassUnit;
-        return visitor.visit(_context);
-    }
-
-    public BigDecimal TryEvaluate(final String exp, final BigDecimal defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.NumberValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
         }
-        return defvalue;
-    }
-
-    public int TryEvaluate(final String exp, final int defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.IntValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
-    }
-
-    public double TryEvaluate(final String exp, final double defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.DoubleValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
-    }
-
-    public long TryEvaluate(final String exp, final long defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.LongValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
-    }
-
-    public String TryEvaluate(final String exp, final String defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                if (obj.IsNull()) {
-                    return null;
-                }
-                obj = obj.ToText("It can't be converted to String!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.TextValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
-    }
-
-    public boolean TryEvaluate(final String exp, final boolean defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToBoolean("It can't be converted to boolean!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.BooleanValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
-    }
-
-    public DateTime TryEvaluate(final String exp, final DateTime defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToDate("It can't be converted to DateTime!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                if (UseLocalTime) {
-                    return obj.DateValue().ToDateTime(DateTimeZone.getDefault());
-                }
-                return obj.DateValue().ToDateTime(DateTimeZone.UTC);
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
-    }
-
-    public MyDate TryEvaluate(final String exp, final MyDate defvalue) {
-        try {
-            if (Parse(exp)) {
-                Operand obj = Evaluate();
-                obj = obj.ToDate("It can't be converted to MyDate!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return defvalue;
-                }
-                return obj.DateValue();
-            }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return defvalue;
+        MathFunctionVisitor visitor = new MathFunctionVisitor();
+        return visitor.visit(context);
     }
 
     /**
-     * 获取简化公式
-     *
-     * @param formula 公式
+     * 执行函数
      */
-    public String GetSimplifiedFormula(final String formula) {
+    public Operand Evaluate(FunctionBase function) {
+        return function.Evaluate(this, (engine, name) -> engine.GetParameter(name));
+    }
+
+    // #endregion Parse Evaluate
+
+    // #region TryEvaluate
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public int TryEvaluate(String exp, int def) {
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.IntValue());
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public long TryEvaluate(String exp, long def) {
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.LongValue());
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public double TryEvaluate(String exp, double def) {
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.DoubleValue());
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public BigDecimal TryEvaluate(String exp, BigDecimal def) {
+        return TryEvaluateCore(exp, def, o -> o.IsNumber() ? o : o.ToNumber("It can't be converted to number!"), o -> o.NumberValue());
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public String TryEvaluate(String exp, String def) {
+        return TryEvaluateCore(exp, def, o -> o.IsText() ? o : o.ToText("It can't be converted to string!"), o -> o.TextValue());
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public boolean TryEvaluate(String exp, boolean def) {
+        return TryEvaluateCore(exp, def, o -> o.IsBoolean() ? o : o.ToBoolean("It can't be converted to bool!"), o -> o.BooleanValue());
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public DateTime TryEvaluate(String exp, DateTime def) {
+        return TryEvaluateCore(exp, def,
+                o -> o.IsDate() ? o : o.ToMyDate("It can't be converted to DateTime!"),
+                o -> o.DateValue().ToDateTime(UseLocalTime ? DateTimeZone.getDefault() : DateTimeZone.UTC));
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值
+     */
+    public Duration TryEvaluate(String exp, Duration def) {
+        return TryEvaluateCore(exp, def,
+                o -> o.IsDate() ? o : o.ToMyDate("It can't be converted to DateTime!"),
+                o -> Duration.ofMillis(o.DateValue().ToDateTime().getMillis()));
+    }
+
+    /**
+     * 执行函数,如果异常，返回默认值。
+     * 解决 def 为 null 二义性问题
+     */
+    public MyDate TryEvaluate_MyDate(String exp, MyDate def) {
+        return TryEvaluateCore(exp, def,
+                o -> o.IsDate() ? o : o.ToMyDate("It can't be converted to DateTime!"),
+                o -> o.DateValue());
+    }
+
+    private <T> T TryEvaluateCore(String exp, T def, Function<Operand, Operand> convert, Function<Operand, T> getValue) {
         try {
-            if (Parse(formula)) {
-                final MathSimplifiedFormulaVisitor visitor = new MathSimplifiedFormulaVisitor();
-                visitor.GetParameter = f -> {
-                    try {
-                        return GetDiyParameterInside(f);
-                    } catch (Exception e) {
-                    }
-                    return null;
-                };
-                visitor.excelIndex = UseExcelIndex ? 1 : 0;
-                visitor.DiyFunction = f -> {
-                    return ExecuteDiyFunction(f.Name, f.OperandList);
-                };
-                visitor.useLocalTime = UseLocalTime;
-                visitor.DistanceUnit= DistanceUnit;
-                visitor.AreaUnit=AreaUnit;
-                visitor.VolumeUnit=VolumeUnit;
-                visitor.MassUnit=MassUnit;
-                Operand obj = visitor.visit(_context);
-                obj = obj.ToText("It can't be converted to String!");
-                if (obj.IsError()) {
-                    LastError = obj.ErrorMsg();
-                    return null;
-                }
-                return obj.TextValue();
+            FunctionBase function = ParseWithoutError(exp);
+            if (function == null) {
+                return def;
             }
-        } catch (final Exception ex) {
-            LastError = ex.getMessage();
-        }
-        return null;
-    }
-
-    /**
-     * 计算公式
-     *
-     * @param formula   公式
-     * @param splitChar 分隔符
-     * @return
-     */
-    public String EvaluateFormula(String formula, Character splitChar) {
-        if (formula == null || formula.equals(""))
-            return "";
-        List<Character> splitChars = new ArrayList<>();
-        splitChars.add(splitChar);
-        return EvaluateFormula(formula, splitChars);
-    }
-
-    /**
-     * 计算公式
-     *
-     * @param formula    公式
-     * @param splitChars 分隔符
-     * @return
-     */
-    public String EvaluateFormula(String formula, List<Character> splitChars) {
-        if (formula == null || formula.equals(""))
-            return "";
-        List<String> sp = CharUtil.SplitFormula(formula, splitChars);
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < sp.size(); i++) {
-            String s = sp.get(i);
-            if (s.length() == 1 && splitChars.contains(s.charAt(0))) {
-                stringBuilder.append(s);
-            } else {
-                // TODO 替换此处
-                String d = TryEvaluate(s, "");
-                stringBuilder.append(d);
+            Operand obj = Evaluate(function);
+            obj = convert.apply(obj);
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return def;
             }
+            return getValue.apply(obj);
+        } catch (Exception ex) {
+            LastError = ex.toString();
         }
-        return stringBuilder.toString();
+        return def;
     }
+
+    // #endregion TryEvaluate
+
 }
