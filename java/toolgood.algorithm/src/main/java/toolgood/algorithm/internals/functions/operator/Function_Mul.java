@@ -13,6 +13,9 @@ import toolgood.algorithm.internals.functions.Function_2;
 
 public final class Function_Mul extends Function_2 {
 
+    // C# decimal max value: 79,228,162,514,264,337,593,543,950,335
+    private static final BigDecimal DECIMAL_MAX = new BigDecimal("79228162514264337593543950335");
+
     public Function_Mul(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -34,7 +37,11 @@ public final class Function_Mul extends Function_2 {
         if (args1.NumberValue().compareTo(BigDecimal.ONE) == 0) { return args2; }
         if (args2.NumberValue().compareTo(BigDecimal.ONE) == 0) { return args1; }
 
-        return Operand.Create(args1.NumberValue().multiply(args2.NumberValue()));
+        BigDecimal result = args1.NumberValue().multiply(args2.NumberValue());
+        if (result.abs().compareTo(DECIMAL_MAX) > 0) {
+            return Operand.Error("The number is too large, it cannot be represented as a decimal.");
+        }
+        return Operand.Create(result);
     }
 
     @Override
