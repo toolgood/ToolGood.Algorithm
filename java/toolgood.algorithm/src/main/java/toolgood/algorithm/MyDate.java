@@ -140,7 +140,7 @@ public class MyDate {
             return date;
         }
 
-        m = Pattern.compile("(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)").matcher(t);
+        m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$").matcher(t);
         if (m.find()) {
             MyDate date = new MyDate();
             date.Year = Integer.parseInt(m.group(1));
@@ -150,7 +150,7 @@ public class MyDate {
             date.Minute = Integer.parseInt(m.group(5));
             return date;
         }
-        m = Pattern.compile("(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)").matcher(t);
+        m = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$").matcher(t);
         if (m.find()) {
             MyDate date = new MyDate();
             date.Year = Integer.parseInt(m.group(1));
@@ -161,7 +161,7 @@ public class MyDate {
             return date;
         }
 
-        m = Pattern.compile("(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)").matcher(t);
+        m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$").matcher(t);
         if (m.find()) {
             MyDate date = new MyDate();
             date.Year = Integer.parseInt(m.group(1));
@@ -169,7 +169,7 @@ public class MyDate {
             date.Day = Integer.parseInt(m.group(3));
             return date;
         }
-        m = Pattern.compile("(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)").matcher(t);
+        m = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$").matcher(t);
         if (m.find()) {
             MyDate date = new MyDate();
             date.Year = Integer.parseInt(m.group(1));
