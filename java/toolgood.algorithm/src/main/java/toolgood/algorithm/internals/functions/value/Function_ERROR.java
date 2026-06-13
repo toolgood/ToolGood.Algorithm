@@ -46,7 +46,7 @@ public final class Function_ERROR extends Function_1 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         if (func1 != null) {
             func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
         }

@@ -2,7 +2,7 @@ package toolgood.algorithm.internals;
 
 import java.util.regex.Pattern;
 
-final class RegexHelper {
+public final class RegexHelper {
     public static boolean IsHex(String value) {
         if (value == null || value.isEmpty()) return false;
         for (int i = 0; i < value.length(); i++) {

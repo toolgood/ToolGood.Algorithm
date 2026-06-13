@@ -27,7 +27,26 @@ import toolgood.algorithm.math.mathParser;
  * 算法引擎类。
  */
 public class AlgorithmEngine {
-    int ExcelIndex = 1;
+    protected int ExcelIndex = 1;
+
+    /**
+     * 是否忽略大小写
+     */
+    public final boolean IgnoreCase;
+
+    /**
+     * 默认构造
+     */
+    public AlgorithmEngine() {
+        IgnoreCase = false;
+    }
+
+    /**
+     * 带大小写参数构造
+     */
+    public AlgorithmEngine(boolean ignoreCase) {
+        IgnoreCase = ignoreCase;
+    }
 
     /**
      * 使用 本地时间，影响 时间戳转化

@@ -43,7 +43,7 @@ final class Function_UPPER extends Function_1 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
     }
 }

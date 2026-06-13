@@ -83,7 +83,7 @@ final class Function_EQ extends Function_2 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         OperandType t1 = func1.GetResultType();
         OperandType t2 = func2.GetResultType();
         if (t1 == OperandType.NONE) {

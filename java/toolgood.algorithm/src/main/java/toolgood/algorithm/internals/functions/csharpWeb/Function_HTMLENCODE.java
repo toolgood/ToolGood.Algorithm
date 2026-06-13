@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.Enums.OperandType;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
@@ -52,7 +52,7 @@ final class Function_HTMLENCODE extends Function_1 {
 	}
 
 	@Override
-	void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+	public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
 		func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
 	}
 }

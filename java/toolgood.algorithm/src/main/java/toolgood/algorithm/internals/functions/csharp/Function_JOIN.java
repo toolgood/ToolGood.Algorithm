@@ -66,7 +66,7 @@ final class Function_JOIN extends Function_N {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         for (FunctionBase item : funcs) {
             item.GetParameterTypes(noneEngine, result, OperandType.NONE);
         }

@@ -7,13 +7,13 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.ParameterType;
 
-abstract class Function_0 extends FunctionBase {
+public abstract class Function_0 extends FunctionBase {
 
     protected Function_0() {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
     }
 
 }

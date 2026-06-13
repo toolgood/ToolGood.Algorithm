@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Map;
 import java.util.TreeMap;
 
-final class VolumeConverter {
+public final class VolumeConverter {
     private static final Map<String, BigDecimal> units2;
 
     static {

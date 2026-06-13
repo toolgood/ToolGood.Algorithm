@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Map;
 import java.util.TreeMap;
 
-final class DistanceConverter {
+public final class DistanceConverter {
     private static final Map<String, BigDecimal> units2;
 
     static {

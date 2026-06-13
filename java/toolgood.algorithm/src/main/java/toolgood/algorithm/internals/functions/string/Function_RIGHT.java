@@ -54,7 +54,7 @@ final class Function_RIGHT extends Function_2 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
         if (func2 != null) {
             func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);

@@ -9,9 +9,9 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.CharUtil;
+import toolgood.algorithm.internals.visitors.CharUtil;
 
-class FunctionUtil {
+public class FunctionUtil {
     public static final DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeZone.UTC);
 
     public static boolean GetStringComparison(boolean ignoreCase) {
@@ -56,7 +56,7 @@ class FunctionUtil {
         return true;
     }
 
-    public static boolean FlattenToList(List<Operand> args, List<BigDecimal> list) {
+    public static boolean FlattenToBigDecimalList(List<Operand> args, List<BigDecimal> list) {
         list.ensureCapacity(Math.max(list.size(), EstimateCount(args)));
         List<Operand> stack = new ArrayList<>(args);
         while (stack.size() > 0) {
@@ -90,12 +90,12 @@ class FunctionUtil {
         if (args.IsError())
             return false;
         if (args.Type() == OperandType.ARRAY)
-            return FlattenToList(args.ArrayValue(), list);
+            return FlattenToBigDecimalList(args.ArrayValue(), list);
         if (args.Type() == OperandType.JSON) {
             Operand i = args.ToArray(null);
             if (i.IsError())
                 return false;
-            return FlattenToList(i.ArrayValue(), list);
+            return FlattenToBigDecimalList(i.ArrayValue(), list);
         }
         if (args.Type() == OperandType.NUMBER) {
             list.add(args.NumberValue());

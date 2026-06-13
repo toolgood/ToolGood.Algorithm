@@ -173,50 +173,6 @@ public class AlgorithmEngineEx extends AlgorithmEngine {
         _tempdict.put(key, Operand.Create(obj));
     }
 
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(String key, Collection<String> obj) {
-        List<Operand> list = new ArrayList<>();
-        for (String s : obj) {
-            list.add(Operand.Create(s));
-        }
-        _tempdict.put(key, Operand.Create(list));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(String key, Collection<Double> obj) {
-        List<Operand> list = new ArrayList<>();
-        for (Double d : obj) {
-            list.add(Operand.Create(d));
-        }
-        _tempdict.put(key, Operand.Create(list));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(String key, Collection<Integer> obj) {
-        List<Operand> list = new ArrayList<>();
-        for (Integer i : obj) {
-            list.add(Operand.Create(i));
-        }
-        _tempdict.put(key, Operand.Create(list));
-    }
-
-    /**
-     * 添加自定义参数
-     */
-    public void AddParameter(String key, Collection<Boolean> obj) {
-        List<Operand> list = new ArrayList<>();
-        for (Boolean b : obj) {
-            list.add(Operand.Create(b));
-        }
-        _tempdict.put(key, Operand.Create(list));
-    }
-
     // #endregion array
 
     /**

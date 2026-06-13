@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 
-abstract class Function_N extends FunctionBase {
+public abstract class Function_N extends FunctionBase {
     protected FunctionBase[] funcs;
 
     protected Function_N(FunctionBase[] funcs) {

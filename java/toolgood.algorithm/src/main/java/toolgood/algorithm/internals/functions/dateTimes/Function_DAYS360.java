@@ -6,7 +6,7 @@ import org.joda.time.DateTimeZone;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
@@ -91,7 +91,7 @@ final class Function_DAYS360 extends Function_3 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
         func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
         if (func3 != null) {

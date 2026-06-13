@@ -5,6 +5,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.RuleNode;
 
 import toolgood.algorithm.enums.CalculateTreeType;
+import toolgood.algorithm.internals.CalculateTree;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.*;
 import toolgood.algorithm.math.mathVisitor;

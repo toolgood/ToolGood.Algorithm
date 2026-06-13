@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
@@ -64,7 +64,7 @@ final class Function_COMBIN extends Function_2 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
         func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }

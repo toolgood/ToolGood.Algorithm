@@ -60,7 +60,7 @@ final class Function_REMOVEEND extends Function_3 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
         func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
         if (func3 != null) {

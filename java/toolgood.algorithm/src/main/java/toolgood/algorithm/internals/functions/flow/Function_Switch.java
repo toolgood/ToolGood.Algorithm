@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.Enums.OperandType;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.enums.OperandType;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
@@ -44,7 +44,7 @@ final class Function_SWITCH extends Function_N {
             i += 2;
         }
 
-        // 参数数量为偶数时，最后一个参数是默认值
+        // Default value when even number of parameters
         if (funcs.length % 2 == 0) {
             return funcs[funcs.length - 1].Evaluate(engine, tempParameter);
         }
@@ -89,7 +89,7 @@ final class Function_SWITCH extends Function_N {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         funcs[0].GetParameterTypes(noneEngine, result, OperandType.NONE);
         int i = 1;
         while (i < funcs.length - 1) {
@@ -97,7 +97,7 @@ final class Function_SWITCH extends Function_N {
             funcs[i + 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
             i += 2;
         }
-        // 默认值参数
+        // Default parameter value
         if (funcs.length % 2 == 0) {
             funcs[funcs.length - 1].GetParameterTypes(noneEngine, result, OperandType.NONE);
         }

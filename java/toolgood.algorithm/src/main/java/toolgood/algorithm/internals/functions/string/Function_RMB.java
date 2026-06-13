@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
@@ -97,9 +97,9 @@ final class Function_RMB extends Function_1 {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c == '-') {
-                result.append(CN_MAP.charAt(0)); // 负
+                result.append(CN_MAP.charAt(0)); // negative
             } else if (c == '.') {
-                result.append(CN_MAP.charAt(1)); // 元
+                result.append(CN_MAP.charAt(1)); // dot
             } else {
                 int idx = c - '-';
                 if (idx >= 0 && idx < CN_MAP.length()) {
@@ -252,7 +252,7 @@ final class Function_RMB extends Function_1 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }
 }

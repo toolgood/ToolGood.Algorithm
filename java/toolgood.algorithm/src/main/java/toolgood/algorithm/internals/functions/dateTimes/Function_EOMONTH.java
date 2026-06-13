@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
@@ -41,7 +41,7 @@ final class Function_EOMONTH extends Function_2 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
         func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
     }

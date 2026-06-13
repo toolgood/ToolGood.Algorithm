@@ -1,11 +1,11 @@
 package toolgood.algorithm.internals.functions;
 
 import java.util.List;
+
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.internals.MyParameter;
 
-class NoneEngine extends AlgorithmEngine {
+public class NoneEngine extends AlgorithmEngine {
     public NoneEngine(AlgorithmEngine engine) {
         super(engine.IgnoreCase);
         this.AreaUnit = engine.AreaUnit;
@@ -13,16 +13,16 @@ class NoneEngine extends AlgorithmEngine {
         this.LastError = engine.LastError;
         this.MassUnit = engine.MassUnit;
         this.UseLocalTime = engine.UseLocalTime;
-        this.UseExcelIndex = engine.UseExcelIndex;
+        this.ExcelIndex = engine.ExcelIndex;
     }
 
     @Override
-    protected Operand GetParameter(MyParameter parameter) {
-        return Operand.CreateNull();
+    public Operand GetParameter(String parameter) {
+        return Operand.Null;
     }
 
     @Override
-    protected Operand ExecuteDiyFunction(String parameter, List<Operand> args) {
-        return Operand.CreateNull();
+    public Operand ExecuteDiyFunction(String parameter, List<Operand> args) {
+        return Operand.Null;
     }
 }

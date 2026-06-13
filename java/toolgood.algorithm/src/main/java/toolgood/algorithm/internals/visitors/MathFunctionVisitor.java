@@ -187,8 +187,8 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
                 else if (c2 == 'r') sb.append('\r');
                 else if (c2 == 't') sb.append('\t');
                 else if (c2 == '0') sb.append('\0');
-                else if (c2 == 'v') sb.append('\v');
-                else if (c2 == 'a') sb.append('\a');
+                else if (c2 == 'v') sb.append('\u000B');
+                else if (c2 == 'a') sb.append('\u0007');
                 else if (c2 == 'b') sb.append('\b');
                 else if (c2 == 'f') sb.append('\f');
                 else sb.append(c2);

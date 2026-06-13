@@ -13,7 +13,7 @@ import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.NoneEngine;
+import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
@@ -106,7 +106,7 @@ final class Function_XIRR extends Function_3 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
         func2.GetParameterTypes(noneEngine, result, OperandType.ARRAY);
         if (func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);

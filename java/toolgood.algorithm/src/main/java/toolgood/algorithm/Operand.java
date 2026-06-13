@@ -190,7 +190,7 @@ public abstract class Operand {
 
     // ============== Inner classes ==============
 
-    // region OperandInt (缓存的整数)
+    // region OperandInt (缓存的整�?
     static final class OperandInt extends Operand {
         private final int _value;
 
@@ -221,7 +221,6 @@ public abstract class Operand {
             if (errorMessage == null) errorMessage = "Convert number to bool error!";
             return Error(errorMessage);
         }
-        @Override
         public Operand ToBoolean(String errorMessage, Object... args) {
             if (_value == 0) return False;
             if (_value == 1) return True;
@@ -232,7 +231,6 @@ public abstract class Operand {
         public Operand ToText(String errorMessage) {
             return Create(String.valueOf(_value));
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             return Create(String.valueOf(_value));
         }
@@ -278,7 +276,6 @@ public abstract class Operand {
             if (errorMessage == null) errorMessage = "Convert number to bool error!";
             return Error(errorMessage);
         }
-        @Override
         public Operand ToBoolean(String errorMessage, Object... args) {
             if (_value.compareTo(BigDecimal.ZERO) == 0) return False;
             if (_value.compareTo(BigDecimal.ONE) == 0) return True;
@@ -293,7 +290,6 @@ public abstract class Operand {
             }
             return Create(str);
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             String str = _value.toPlainString();
             if (str.contains(".")) {
@@ -341,14 +337,12 @@ public abstract class Operand {
         public Operand ToText(String errorMessage) {
             return Create(toString());
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             return Create(toString());
         }
 
         @Override
         public Operand ToArray(String errorMessage) { return this; }
-        @Override
         public Operand ToArray(String errorMessage, Object... args) { return this; }
 
         @Override
@@ -405,14 +399,12 @@ public abstract class Operand {
 
         @Override
         public Operand ToBoolean(String errorMessage) { return this; }
-        @Override
         public Operand ToBoolean(String errorMessage, Object... args) { return this; }
 
         @Override
         public Operand ToText(String errorMessage) {
             return Create(_value ? "TRUE" : "FALSE");
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             return Create(_value ? "TRUE" : "FALSE");
         }
@@ -467,14 +459,12 @@ public abstract class Operand {
         public Operand ToText(String errorMessage) {
             return Create(DateValue().toString());
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             return Create(DateValue().toString());
         }
 
         @Override
         public Operand ToMyDate(String errorMessage) { return this; }
-        @Override
         public Operand ToMyDate(String errorMessage, Object... args) { return this; }
 
         @Override
@@ -529,21 +519,17 @@ public abstract class Operand {
         public Operand ToNumber(String errorMessage, Object... args) { return this; }
         @Override
         public Operand ToBoolean(String errorMessage) { return this; }
-        @Override
         public Operand ToBoolean(String errorMessage, Object... args) { return this; }
         @Override
         public Operand ToText(String errorMessage) { return this; }
-        @Override
         public Operand ToText(String errorMessage, Object... args) { return this; }
         @Override
         public Operand ToArray(String errorMessage) { return this; }
-        @Override
         public Operand ToArray(String errorMessage, Object... args) { return this; }
         @Override
         public Operand ToJson(String errorMessage) { return this; }
         @Override
         public Operand ToMyDate(String errorMessage) { return this; }
-        @Override
         public Operand ToMyDate(String errorMessage, Object... args) { return this; }
     }
     // endregion
@@ -568,7 +554,6 @@ public abstract class Operand {
         public Operand ToText(String errorMessage) {
             return Create(_value.toString());
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             return Create(_value.toString());
         }
@@ -594,7 +579,6 @@ public abstract class Operand {
             if (errorMessage == null) errorMessage = "Convert json to array error!";
             return Error(errorMessage);
         }
-        @Override
         public Operand ToArray(String errorMessage, Object... args) {
             if (JsonValue().IsArray()) {
                 List<Operand> list = new ArrayList<>();
@@ -699,14 +683,12 @@ public abstract class Operand {
 
         @Override
         public Operand ToText(String errorMessage) { return this; }
-        @Override
         public Operand ToText(String errorMessage, Object... args) { return this; }
 
         @Override
         public Operand ToBoolean(String errorMessage) {
             return ToBooleanInternal(errorMessage);
         }
-        @Override
         public Operand ToBoolean(String errorMessage, Object... args) {
             return ToBooleanInternal(String.format(errorMessage, args));
         }
@@ -715,8 +697,8 @@ public abstract class Operand {
             String txt = _value.trim();
             if (txt.equals("true") || txt.equals("TRUE") || txt.equals("True")) return True;
             if (txt.equals("false") || txt.equals("FALSE") || txt.equals("False")) return False;
-            if (txt.equals("1") || txt.equals("是") || txt.equals("有")) return True;
-            if (txt.equals("0") || txt.equals("否") || txt.equals("不是") || txt.equals("无") || txt.equals("没有")) return False;
+            if (txt.equals("1") || txt.equals("\u662f") || txt.equals("\u6709")) return True;
+            if (txt.equals("0") || txt.equals("\u5426") || txt.equals("\u4e0d\u662f") || txt.equals("\u65e0") || txt.equals("\u6ca1\u6709")) return False;
             if (errorMessage == null) return Error("Convert string to bool error!");
             return Error(errorMessage);
         }
@@ -725,7 +707,6 @@ public abstract class Operand {
         public Operand ToMyDate(String errorMessage) {
             return ToMyDateInternal(errorMessage);
         }
-        @Override
         public Operand ToMyDate(String errorMessage, Object... args) {
             return ToMyDateInternal(String.format(errorMessage, args));
         }
@@ -762,7 +743,7 @@ public abstract class Operand {
             int len = _value.length();
             if (len == 0) return "\"\"";
             
-            // 统计需要转义的字符数
+            // Count characters that need escaping
             int escapeCount = 0;
             for (int i = 0; i < len; i++) {
                 char c = _value.charAt(i);
@@ -851,7 +832,6 @@ public abstract class Operand {
         public Operand ToText(String errorMessage) {
             return Create(toString());
         }
-        @Override
         public Operand ToText(String errorMessage, Object... args) {
             return Create(toString());
         }
@@ -860,7 +840,6 @@ public abstract class Operand {
         public Operand ToArray(String errorMessage) {
             return Create(ArrayValue());
         }
-        @Override
         public Operand ToArray(String errorMessage, Object... args) {
             return Create(ArrayValue());
         }

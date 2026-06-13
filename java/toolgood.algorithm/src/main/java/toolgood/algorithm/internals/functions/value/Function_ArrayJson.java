@@ -57,7 +57,7 @@ public final class Function_ArrayJson extends Function_N {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         for (int i = 0; i < funcs.length; i++) {
             funcs[i].GetParameterTypes(noneEngine, result, OperandType.NONE);
         }

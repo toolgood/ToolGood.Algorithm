@@ -47,7 +47,7 @@ final class Function_SPLIT extends Function_2 {
     }
 
     @Override
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val) {
         func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);
         func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
     }

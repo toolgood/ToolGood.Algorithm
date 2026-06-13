@@ -41,11 +41,11 @@ public abstract class FunctionBase {
     }
 
     /**
-     * 内部方法，获取参数类型
+     * Internal method to get parameter types
      */
-    abstract void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val);
+    public abstract void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, String op, String val);
 
-    void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType) {
+    public void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType) {
         GetParameterTypes(noneEngine, result, operandType, null, null);
     }
 
@@ -76,7 +76,7 @@ public abstract class FunctionBase {
     }
 
     protected Operand ConvertToDate(Operand arg, int paramIndex) {
-        return arg.ToDate(String.format("Function '%s' parameter %d is error!", Name(), paramIndex));
+        return arg.ToMyDate(String.format("Function '%s' parameter %d is error!", Name(), paramIndex));
     }
     // endregion
 
@@ -143,7 +143,7 @@ public abstract class FunctionBase {
 
     public DateTime TryEvaluate(AlgorithmEngine engine, DateTime def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         return TryEvaluate(engine, def,
-                obj -> obj.Type() == OperandType.DATE ? obj : obj.ToDate("It can't be converted to DateTime!"),
+                obj -> obj.Type() == OperandType.DATE ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
                 obj -> {
                     if (engine.UseLocalTime) {
                         return obj.DateValue().ToDateTime(DateTimeZone.getDefault());
@@ -154,7 +154,7 @@ public abstract class FunctionBase {
 
     public MyDate TryEvaluate(AlgorithmEngine engine, MyDate def, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         return TryEvaluate(engine, def,
-                obj -> obj.Type() == OperandType.DATE ? obj : obj.ToDate("It can't be converted to DateTime!"),
+                obj -> obj.Type() == OperandType.DATE ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
                 obj -> obj.DateValue(), tempParameter);
     }
     // endregion
