@@ -1,0 +1,13 @@
+1、进入网址https://central.sonatype.com，登录账号
+
+2、进入https://central.sonatype.com/publishing
+
+3、使用build.bat 打包jar包
+
+4、使用build2.exe 生成 文件夹
+
+5、进入target文件夹，压缩io文件夹到zip
+
+6、上传zip 
+
+7、审核再发布
