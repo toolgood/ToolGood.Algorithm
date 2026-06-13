@@ -3,7 +3,7 @@ package toolgood.algorithm.internals.functions.mathSum;
 import java.util.List;
 import java.util.ArrayList;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -38,14 +38,14 @@ public final class Function_AVEDEV extends Function_N {
 
         BigDecimal sum = BigDecimal.ZERO;
         for (int i = 0; i < list.size(); i++) { sum = sum.add(list.get(i)); }
-        BigDecimal avg = sum.divide(BigDecimal.valueOf(list.size()), RoundingMode.HALF_UP);
+        BigDecimal avg = sum.divide(BigDecimal.valueOf(list.size()), MathContext.DECIMAL128);
 
         BigDecimal sum2 = BigDecimal.ZERO;
         for (int i = 0; i < list.size(); i++) {
             BigDecimal diff = list.get(i).subtract(avg);
             sum2 = sum2.add(diff.abs());
         }
-        return Operand.Create(sum2.divide(BigDecimal.valueOf(list.size()), RoundingMode.HALF_UP));
+        return Operand.Create(sum2.divide(BigDecimal.valueOf(list.size()), MathContext.DECIMAL128));
     }
 
     @Override

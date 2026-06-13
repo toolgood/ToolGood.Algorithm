@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals.functions.operator;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.List;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
@@ -35,7 +35,7 @@ public final class Function_Div extends Function_2 {
         if (args2.NumberValue().compareTo(BigDecimal.ZERO) == 0) { return Div0Error(); }
         if (args2.NumberValue().compareTo(BigDecimal.ONE) == 0) { return args1; }
 
-        return Operand.Create(args1.NumberValue().divide(args2.NumberValue(), RoundingMode.HALF_UP));
+        return Operand.Create(args1.NumberValue().divide(args2.NumberValue(), MathContext.DECIMAL128));
     }
 
     @Override

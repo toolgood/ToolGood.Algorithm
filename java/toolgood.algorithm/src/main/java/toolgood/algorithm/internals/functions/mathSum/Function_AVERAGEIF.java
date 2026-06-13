@@ -70,7 +70,7 @@ public final class Function_AVERAGEIF extends Function_3 {
         if (count == 0) {
             return Div0Error();
         }
-        return Operand.Create(sum.divide(BigDecimal.valueOf(count), java.math.RoundingMode.HALF_UP));
+        return Operand.Create(sum.divide(BigDecimal.valueOf(count), java.math.MathContext.DECIMAL128));
     }
 
     private static BigDecimal TryParseDecimal(String s) {

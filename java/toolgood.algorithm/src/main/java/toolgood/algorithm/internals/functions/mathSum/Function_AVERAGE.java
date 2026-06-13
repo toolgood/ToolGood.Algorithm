@@ -3,7 +3,7 @@ package toolgood.algorithm.internals.functions.mathSum;
 import java.util.List;
 import java.util.ArrayList;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -79,7 +79,7 @@ public final class Function_AVERAGE extends Function_N {
         }
 
         if (count == 0) { return Div0Error(); }
-        return Operand.Create(sum.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+        return Operand.Create(sum.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
     }
 
     @Override

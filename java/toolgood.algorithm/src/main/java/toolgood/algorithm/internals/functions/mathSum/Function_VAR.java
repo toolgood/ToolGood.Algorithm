@@ -3,7 +3,7 @@ package toolgood.algorithm.internals.functions.mathSum;
 import java.util.List;
 import java.util.ArrayList;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -44,7 +44,7 @@ public final class Function_VAR extends Function_N {
                     if (elem.IsNumber()) {
                         count++;
                         BigDecimal delta = elem.NumberValue().subtract(mean);
-                        mean = mean.add(delta.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+                        mean = mean.add(delta.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
                         BigDecimal delta2 = elem.NumberValue().subtract(mean);
                         m2 = m2.add(delta.multiply(delta2));
                     } else if (elem.IsArray() || elem.IsJson()) {
@@ -53,7 +53,7 @@ public final class Function_VAR extends Function_N {
                         for (int k = 0; k < list.size(); k++) {
                             count++;
                             BigDecimal delta = list.get(k).subtract(mean);
-                            mean = mean.add(delta.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+                            mean = mean.add(delta.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
                             BigDecimal delta2 = list.get(k).subtract(mean);
                             m2 = m2.add(delta.multiply(delta2));
                         }
@@ -62,7 +62,7 @@ public final class Function_VAR extends Function_N {
                         if (converted.IsError()) { return FunctionError(); }
                         count++;
                         BigDecimal delta = converted.NumberValue().subtract(mean);
-                        mean = mean.add(delta.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+                        mean = mean.add(delta.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
                         BigDecimal delta2 = converted.NumberValue().subtract(mean);
                         m2 = m2.add(delta.multiply(delta2));
                     }
@@ -70,7 +70,7 @@ public final class Function_VAR extends Function_N {
             } else if (item.IsNumber()) {
                 count++;
                 BigDecimal delta = item.NumberValue().subtract(mean);
-                mean = mean.add(delta.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+                mean = mean.add(delta.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
                 BigDecimal delta2 = item.NumberValue().subtract(mean);
                 m2 = m2.add(delta.multiply(delta2));
             } else if (item.IsJson()) {
@@ -79,7 +79,7 @@ public final class Function_VAR extends Function_N {
                 for (int k = 0; k < list.size(); k++) {
                     count++;
                     BigDecimal delta = list.get(k).subtract(mean);
-                    mean = mean.add(delta.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+                    mean = mean.add(delta.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
                     BigDecimal delta2 = list.get(k).subtract(mean);
                     m2 = m2.add(delta.multiply(delta2));
                 }
@@ -88,14 +88,14 @@ public final class Function_VAR extends Function_N {
                 if (converted.IsError()) { return FunctionError(); }
                 count++;
                 BigDecimal delta = converted.NumberValue().subtract(mean);
-                mean = mean.add(delta.divide(BigDecimal.valueOf(count), RoundingMode.HALF_UP));
+                mean = mean.add(delta.divide(BigDecimal.valueOf(count), MathContext.DECIMAL128));
                 BigDecimal delta2 = converted.NumberValue().subtract(mean);
                 m2 = m2.add(delta.multiply(delta2));
             }
         }
 
         if (count <= 1) { return FunctionError(); }
-        return Operand.Create(m2.divide(BigDecimal.valueOf(count - 1), RoundingMode.HALF_UP));
+        return Operand.Create(m2.divide(BigDecimal.valueOf(count - 1), MathContext.DECIMAL128));
     }
 
     @Override

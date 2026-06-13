@@ -60,7 +60,7 @@ public final class Function_FV extends Function_5 {
             return Operand.Create(pmt.multiply(nper).negate().subtract(pv));
         }
 
-        BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), nper.doubleValue()));
+        BigDecimal factor = bigPow(BigDecimal.ONE.add(rate), nper);
         BigDecimal fv = pv.multiply(factor).negate()
                 .subtract(pmt.multiply(factor.subtract(BigDecimal.ONE)).divide(rate, MathContext.DECIMAL128));
         if (type == 1) {
@@ -69,6 +69,20 @@ public final class Function_FV extends Function_5 {
         }
 
         return Operand.Create(fv);
+    }
+
+    private static BigDecimal bigPow(BigDecimal base, BigDecimal exponent) {
+        int n = exponent.intValue();
+        BigDecimal result = BigDecimal.ONE;
+        BigDecimal current = base;
+        while (n > 0) {
+            if (n % 2 == 1) {
+                result = result.multiply(current);
+            }
+            current = current.multiply(current);
+            n /= 2;
+        }
+        return result;
     }
 
     @Override

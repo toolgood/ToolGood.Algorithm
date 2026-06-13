@@ -3,7 +3,7 @@ package toolgood.algorithm.internals.functions.mathSum;
 import java.util.List;
 import java.util.ArrayList;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
@@ -41,11 +41,11 @@ public final class Function_VARP extends Function_N {
         BigDecimal m2 = BigDecimal.ZERO;
         for (int i = 0; i < list.size(); i++) {
             BigDecimal delta = list.get(i).subtract(mean);
-            mean = mean.add(delta.divide(BigDecimal.valueOf(i + 1), RoundingMode.HALF_UP));
+            mean = mean.add(delta.divide(BigDecimal.valueOf(i + 1), MathContext.DECIMAL128));
             BigDecimal delta2 = list.get(i).subtract(mean);
             m2 = m2.add(delta.multiply(delta2));
         }
-        return Operand.Create(m2.divide(BigDecimal.valueOf(list.size()), RoundingMode.HALF_UP));
+        return Operand.Create(m2.divide(BigDecimal.valueOf(list.size()), MathContext.DECIMAL128));
     }
 
     @Override

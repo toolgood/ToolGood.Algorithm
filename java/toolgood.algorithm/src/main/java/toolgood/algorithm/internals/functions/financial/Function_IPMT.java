@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
 import java.util.function.BiFunction;
-
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
@@ -66,7 +65,7 @@ public final class Function_IPMT extends Function_6 {
 		}
 
 		BigDecimal pmt = calculatePMT(rate, nper, pv, fv, type);
-		BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), per.subtract(BigDecimal.ONE).doubleValue()));
+		BigDecimal factor = bigPow(BigDecimal.ONE.add(rate), per.subtract(BigDecimal.ONE));
 
 		BigDecimal term1 = pv.multiply(factor);
 		BigDecimal term2 = pmt.multiply(factor.subtract(BigDecimal.ONE)).divide(rate, MathContext.DECIMAL128);
@@ -80,12 +79,26 @@ public final class Function_IPMT extends Function_6 {
 	}
 
 	private BigDecimal calculatePMT(BigDecimal rate, BigDecimal nper, BigDecimal pv, BigDecimal fv, int type) {
-		BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), nper.doubleValue()));
+		BigDecimal factor = bigPow(BigDecimal.ONE.add(rate), nper);
 		BigDecimal pmt = pv.multiply(factor).add(fv).negate().multiply(rate).divide(factor.subtract(BigDecimal.ONE), MathContext.DECIMAL128);
 		if (type == 1) {
 			pmt = pmt.divide(BigDecimal.ONE.add(rate), MathContext.DECIMAL128);
 		}
 		return pmt;
+	}
+
+	private static BigDecimal bigPow(BigDecimal base, BigDecimal exponent) {
+		int n = exponent.intValue();
+		BigDecimal result = BigDecimal.ONE;
+		BigDecimal current = base;
+		while (n > 0) {
+			if (n % 2 == 1) {
+				result = result.multiply(current);
+			}
+			current = current.multiply(current);
+			n /= 2;
+		}
+		return result;
 	}
 
 	@Override
