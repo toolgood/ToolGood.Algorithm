@@ -21,7 +21,7 @@ class Function_GetJsonValue extends Function_2 {
         }
 
         if (obj.IsArray) {
-            op = op.ToNumber('Function \'{0}\'' + ' ARRARY index is error!', 'GetJsonValue');
+            op = op.ToNumber('Function \'{0}\'' + ' ARRAY index is error!', 'GetJsonValue');
             if (op.IsError) {
                 return op;
             }
@@ -29,7 +29,7 @@ class Function_GetJsonValue extends Function_2 {
             if (index < obj.ArrayValue.length) {
                 return obj.ArrayValue[index];
             }
-            return Operand.Error('Function \'{0}\'' + ' ARRARY index {1} greater than maximum length!', 'GetJsonValue', index);
+            return Operand.Error('Function \'{0}\'' + ' ARRAY index {1} greater than maximum length!', 'GetJsonValue', index);
         }
         if (obj.IsArrayJson) {
             if (op.IsNumber) {

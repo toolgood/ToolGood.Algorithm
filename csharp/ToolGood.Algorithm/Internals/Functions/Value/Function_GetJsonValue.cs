@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				var index = op.IntValue - engine.ExcelIndex;
 				if(index < obj.ArrayValue.Count && index >= 0)
 					return obj.ArrayValue[index];
-				return Operand.Error("Function '{0}' ARRARY index {1} greater than maximum length!", "GetJsonValue", index);
+				return Operand.Error("Function '{0}' ARRAY index {1} greater than maximum length!", "GetJsonValue", index);
 			}
 			if(obj.IsArrayJson) {
 				if(op.IsNumber) {

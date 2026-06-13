@@ -5820,14 +5820,14 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         if (firstValue.Type() == OperandType.ARRAY) {
-            op = op.ToNumber("ARRARY index is error!");
+            op = op.ToNumber("ARRAY index is error!");
             if (op.IsError()) {
                 return op;
             }
             final int index = op.IntValue() - excelIndex;
             if (index < firstValue.ArrayValue().size())
                 return firstValue.ArrayValue().get(index);// [index];
-            return Operand.Error("ARRARY index " + index + " greater than maximum length!");
+            return Operand.Error("ARRAY index " + index + " greater than maximum length!");
         }
         if (firstValue.Type() == OperandType.ARRAYJSON) {
             if (op.Type() == OperandType.NUMBER) {

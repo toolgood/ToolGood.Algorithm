@@ -570,7 +570,7 @@ class OperandArray extends Operand {
         this._value = obj;
     }
     get IsArray() { return true; }
-    get Type() { return OperandType.ARRARY; }
+    get Type() { return OperandType.ARRAY; }
     get ArrayValue() { return this._value; }
 
     ToText(errorMessage = null) {
@@ -644,7 +644,7 @@ class OperandKeyValueList extends Operand {
     }
 
     get IsArrayJson() { return true; }
-    get Type() { return OperandType.ARRARYJSON; }
+    get Type() { return OperandType.ARRAYJSON; }
     get ArrayValue() { return this.TextList.map(q => q.Value); }
 
     ToText(errorMessage = null) {
@@ -717,7 +717,7 @@ class OperandKeyValue extends Operand {
         this._value = obj;
     }
     get IsArrayJson() { return true; }
-    get Type() { return OperandType.ARRARYJSON; }
+    get Type() { return OperandType.ARRAYJSON; }
     get Value() { return this._value; }
 }
 
