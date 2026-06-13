@@ -10,9 +10,9 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 
-public final class Function_IfError extends Function_3 {
+public final class Function_IFERROR extends Function_3 {
 
-    public Function_IfError(FunctionBase[] funcs) {
+    public Function_IFERROR(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires 2 to 3 parameters.");
@@ -21,7 +21,7 @@ public final class Function_IfError extends Function_3 {
 
     @Override
     public String Name() {
-        return "IfError";
+        return "IFERROR";
     }
 
     @Override

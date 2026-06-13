@@ -96,13 +96,13 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
     @Override
     public FunctionBase visitIF_fun(IF_funContext context) {
         FunctionBase[] funcs = VisitExprs(context.expr());
-        return new Function_If(funcs);
+        return new Function_IF(funcs);
     }
 
     @Override
     public FunctionBase visitNOT_fun(NOT_funContext context) {
         FunctionBase args1 = visit(context.expr());
-        return new Function_Not(args1);
+        return new Function_NOT(args1);
     }
 
     @Override
@@ -361,9 +361,9 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
             case mathParser.HTMLDECODE: return new Function_HTMLDECODE(funcs);
             case mathParser.HTMLENCODE: return new Function_HTMLENCODE(funcs);
             case mathParser.HYPGEOMDIST: return new Function_HYPGEOMDIST(funcs);
-            case mathParser.IF: return new Function_If(funcs);
-            case mathParser.IFERROR: return new Function_IfError(funcs);
-            case mathParser.IFS: return new Function_Ifs(funcs);
+            case mathParser.IF: return new Function_IF(funcs);
+            case mathParser.IFERROR: return new Function_IFERROR(funcs);
+            case mathParser.IFS: return new Function_IFS(funcs);
             case mathParser.INDEXOF: return new Function_INDEXOF(funcs);
             case mathParser.INT: return new Function_INT(funcs);
             case mathParser.INTERCEPT: return new Function_INTERCEPT(funcs);
@@ -415,7 +415,7 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
             case mathParser.NORMINV: return new Function_NORMINV(funcs);
             case mathParser.NORMSDIST: return new Function_NORMSDIST(funcs);
             case mathParser.NORMSINV: return new Function_NORMSINV(funcs);
-            case mathParser.NOT: return new Function_Not(funcs);
+            case mathParser.NOT: return new Function_NOT(funcs);
             case mathParser.NPER: return new Function_NPER(funcs);
             case mathParser.NPV: return new Function_NPV(funcs);
             case mathParser.OCT2BIN: return new Function_OCT2BIN(funcs);
@@ -482,7 +482,7 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
             case mathParser.SUMX2MY2: return new Function_SUMX2MY2(funcs);
             case mathParser.SUMX2PY2: return new Function_SUMX2PY2(funcs);
             case mathParser.SUMXMY2: return new Function_SUMXMY2(funcs);
-            case mathParser.SWITCH: return new Function_Switch(funcs);
+            case mathParser.SWITCH: return new Function_SWITCH(funcs);
             case mathParser.SYD: return new Function_SYD(funcs);
             case mathParser.T: return new Function_T(funcs);
             case mathParser.TAN: return new Function_TAN(funcs);
