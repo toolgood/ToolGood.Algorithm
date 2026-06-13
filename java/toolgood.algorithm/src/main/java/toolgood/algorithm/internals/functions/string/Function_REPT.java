@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_REPT extends Function_2 {
+public final class Function_REPT extends Function_2 {
 
     public Function_REPT(FunctionBase[] funcs) {
         super(funcs);

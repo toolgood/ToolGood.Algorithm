@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_WORKDAY extends Function_N {
+public final class Function_WORKDAY extends Function_N {
     public Function_WORKDAY(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {

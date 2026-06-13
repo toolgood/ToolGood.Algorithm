@@ -13,9 +13,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_RANK extends Function_N {
+public final class Function_RANK extends Function_N {
 
-    Function_RANK(FunctionBase[] funcs) {
+    public Function_RANK(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires 2 to 3 parameters.");

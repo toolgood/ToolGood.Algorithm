@@ -112,22 +112,15 @@ public class AlgorithmEngineHelper {
     }
 
     private static BigDecimal TryConvert(BigDecimal src, String srcUnit, String tarUnit) {
-        if (DistanceConverter.Exists(srcUnit, tarUnit)) {
-            DistanceConverter c = new DistanceConverter(srcUnit, tarUnit);
-            return c.LeftToRight(src);
-        }
-        if (MassConverter.Exists(srcUnit, tarUnit)) {
-            MassConverter c = new MassConverter(srcUnit, tarUnit);
-            return c.LeftToRight(src);
-        }
-        if (AreaConverter.Exists(srcUnit, tarUnit)) {
-            AreaConverter c = new AreaConverter(srcUnit, tarUnit);
-            return c.LeftToRight(src);
-        }
-        if (VolumeConverter.Exists(srcUnit, tarUnit)) {
-            VolumeConverter c = new VolumeConverter(srcUnit, tarUnit);
-            return c.LeftToRight(src);
-        }
+        BigDecimal result;
+        result = DistanceConverter.TryConvert(srcUnit, tarUnit, src);
+        if (result != null) return result;
+        result = MassConverter.TryConvert(srcUnit, tarUnit, src);
+        if (result != null) return result;
+        result = AreaConverter.TryConvert(srcUnit, tarUnit, src);
+        if (result != null) return result;
+        result = VolumeConverter.TryConvert(srcUnit, tarUnit, src);
+        if (result != null) return result;
         return null;
     }
 

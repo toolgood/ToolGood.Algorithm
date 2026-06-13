@@ -15,9 +15,9 @@ import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-final class Function_PERCENTRANK extends Function_3 {
+public final class Function_PERCENTRANK extends Function_3 {
 
-    Function_PERCENTRANK(FunctionBase[] funcs) {
+    public Function_PERCENTRANK(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires 2 to 3 parameters.");
@@ -38,7 +38,7 @@ final class Function_PERCENTRANK extends Function_3 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args1, list);
+        boolean o = FunctionUtil.FlattenToNumberList(args1, list);
         if (o == false) { return ParameterError(1); }
         if (list.size() == 0) { return ParameterError(1); }
 

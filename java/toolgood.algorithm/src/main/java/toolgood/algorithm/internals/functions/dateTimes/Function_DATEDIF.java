@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 
-final class Function_DATEDIF extends Function_3 {
+public final class Function_DATEDIF extends Function_3 {
     public Function_DATEDIF(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 3) {

@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_4;
 
-final class Function_REPLACE extends Function_4 {
+public final class Function_REPLACE extends Function_4 {
     public Function_REPLACE(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 3 || funcs.length > 4) {
@@ -49,7 +49,7 @@ final class Function_REPLACE extends Function_4 {
         Operand args4 = GetText_4(engine, tempParameter);
         if (args4.IsErrorOrNone()) { return args4; }
 
-        int excelIndex = engine.UseExcelIndex ? 1 : 0;
+        int excelIndex = engine.ExcelIndex;
         int start = args2.IntValue() - excelIndex;
         int length = args3.IntValue();
         String newtext = args4.TextValue();

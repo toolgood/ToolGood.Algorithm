@@ -858,6 +858,15 @@ public abstract class Operand {
             TextList.add(keyValue);
         }
 
+        public Operand GetValue(String key) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals(key)) {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
         public boolean TryGetValue(String key, Operand[] outValue) {
             for (KeyValue item : TextList) {
                 if (item.Key.equals(key)) {

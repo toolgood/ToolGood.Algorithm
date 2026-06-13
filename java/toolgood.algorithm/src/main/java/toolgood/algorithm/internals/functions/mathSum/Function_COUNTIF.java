@@ -14,9 +14,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
-final class Function_COUNTIF extends Function_2 {
+public final class Function_COUNTIF extends Function_2 {
 
-    Function_COUNTIF(FunctionBase[] funcs) {
+    public Function_COUNTIF(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 2 parameters.");
@@ -37,7 +37,7 @@ final class Function_COUNTIF extends Function_2 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args1, list);
+        boolean o = FunctionUtil.FlattenToNumberList(args1, list);
         if (o == false) { return ParameterError(1); }
         int count;
         if (args2.IsNumber()) {

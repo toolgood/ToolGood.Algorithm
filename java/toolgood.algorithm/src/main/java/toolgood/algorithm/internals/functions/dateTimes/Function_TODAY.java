@@ -8,7 +8,7 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.functions.Function_0;
 
-final class Function_TODAY extends Function_0 {
+public final class Function_TODAY extends Function_0 {
     @Override
     public String Name() {
         return "Today";

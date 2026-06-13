@@ -12,9 +12,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-final class Function_POISSON extends Function_3 {
+public final class Function_POISSON extends Function_3 {
 
-    Function_POISSON(FunctionBase[] funcs) {
+    public Function_POISSON(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 3 parameters.");

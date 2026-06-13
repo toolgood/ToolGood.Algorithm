@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_4;
 
-final class Function_WEIBULL extends Function_4 {
+public final class Function_WEIBULL extends Function_4 {
 
     public Function_WEIBULL(FunctionBase[] funcs) {
         super(funcs);

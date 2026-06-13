@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_4;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_LASTINDEXOF extends Function_4 {
+public final class Function_LASTINDEXOF extends Function_4 {
 
     public Function_LASTINDEXOF(FunctionBase[] funcs) {
         super(funcs);
@@ -37,7 +37,7 @@ final class Function_LASTINDEXOF extends Function_4 {
         }
 
         String text = args1.TextValue();
-        int excelIndex = engine.UseExcelIndex ? 1 : 0;
+        int excelIndex = engine.ExcelIndex;
 
         if (func3 == null) {
             return Operand.Create(text.lastIndexOf(args2.TextValue()) + excelIndex);

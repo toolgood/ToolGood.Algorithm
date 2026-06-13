@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 
-final class Function_EXACT extends Function_2 {
+public final class Function_EXACT extends Function_2 {
     public Function_EXACT(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
@@ -42,14 +42,14 @@ final class Function_EXACT extends Function_2 {
         OperandType t1 = func1.GetResultType();
         OperandType t2 = func2.GetResultType();
         if (t1 == OperandType.NONE) {
-            Operand p = noneEngine.Evaluate(func2).ToText();
+            Operand p = noneEngine.Evaluate(func2).ToText(null);
             if (t2 != OperandType.ERROR && p.IsErrorOrNone() == false) {
                 func1.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue());
                 func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
                 return;
             }
         } else if (t2 == OperandType.NONE) {
-            Operand p = noneEngine.Evaluate(func1).ToText();
+            Operand p = noneEngine.Evaluate(func1).ToText(null);
             if (t1 != OperandType.ERROR && p.IsErrorOrNone() == false) {
                 func2.GetParameterTypes(noneEngine, result, OperandType.TEXT, "==", p.TextValue());
                 func1.GetParameterTypes(noneEngine, result, OperandType.TEXT);

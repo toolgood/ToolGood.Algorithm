@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-final class Function_GAMMALN extends Function_1 {
+public final class Function_GAMMALN extends Function_1 {
     public Function_GAMMALN(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 1) {

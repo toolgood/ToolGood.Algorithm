@@ -14,7 +14,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_VARP extends Function_N {
+public final class Function_VARP extends Function_N {
     public Function_VARP(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1) {
@@ -32,7 +32,7 @@ final class Function_VARP extends Function_N {
         if (error != null) { return error; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args, list);
+        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
         if (!o) { return FunctionError(); }
         if (list.size() == 0) { return FunctionError(); }
         if (list.size() == 1) { return Operand.Zero; }

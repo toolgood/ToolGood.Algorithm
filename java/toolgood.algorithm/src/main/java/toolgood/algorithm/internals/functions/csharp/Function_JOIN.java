@@ -12,9 +12,9 @@ import toolgood.algorithm.internals.functions.Function_N;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_JOIN extends Function_N {
+public final class Function_JOIN extends Function_N {
 
-    Function_JOIN(FunctionBase[] funcs) {
+    public Function_JOIN(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2) {
             throw new IllegalArgumentException("Function 'Join' requires at least 2 parameters.");

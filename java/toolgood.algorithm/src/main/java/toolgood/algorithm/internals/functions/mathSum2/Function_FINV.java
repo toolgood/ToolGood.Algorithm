@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-final class Function_FINV extends Function_3 {
+public final class Function_FINV extends Function_3 {
     public Function_FINV(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 3) {

@@ -26,12 +26,13 @@ import toolgood.algorithm.math.mathParser.*;
 import toolgood.algorithm.math.mathVisitor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> implements mathVisitor<FunctionBase> {
-    private FunctionBase[] VisitExprs(ExprContext[] exprs) {
-        FunctionBase[] list = new FunctionBase[exprs.length];
-        for (int i = 0; i < exprs.length; i++) {
-            list[i] = visit(exprs[i]);
+    private FunctionBase[] VisitExprs(List<ExprContext> exprs) {
+        FunctionBase[] list = new FunctionBase[exprs.size()];
+        for (int i = 0; i < exprs.size(); i++) {
+            list[i] = visit(exprs.get(i));
         }
         return list;
     }
@@ -226,10 +227,10 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
 
     @Override
     public FunctionBase visitArrayJson_fun(ArrayJson_funContext context) {
-        ArrayJsonContext[] exprs = context.arrayJson();
-        FunctionBase[] args = new FunctionBase[exprs.length];
-        for (int i = 0; i < exprs.length; i++) {
-            args[i] = visit(exprs[i]);
+        List<ArrayJsonContext> exprs = context.arrayJson();
+        FunctionBase[] args = new FunctionBase[exprs.size()];
+        for (int i = 0; i < exprs.size(); i++) {
+            args[i] = visit(exprs.get(i));
         }
         return new Function_ArrayJson(args);
     }

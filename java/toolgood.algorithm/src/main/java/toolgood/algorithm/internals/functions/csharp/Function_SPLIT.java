@@ -1,5 +1,6 @@
 package toolgood.algorithm.internals.functions.csharp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.regex.Pattern;
@@ -11,9 +12,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_SPLIT extends Function_2 {
+public final class Function_SPLIT extends Function_2 {
 
-    Function_SPLIT(FunctionBase[] funcs) {
+    public Function_SPLIT(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
             throw new IllegalArgumentException("Function 'Split' requires exactly 2 parameters.");
@@ -38,7 +39,11 @@ final class Function_SPLIT extends Function_2 {
         }
 
         String[] parts = args1.TextValue().split(Pattern.quote(args2.TextValue()), -1);
-        return Operand.Create(List.of(parts));
+        List<Operand> result = new ArrayList<>();
+        for (String s : parts) {
+            result.add(Operand.Create(s));
+        }
+        return Operand.Create(result);
     }
 
     @Override

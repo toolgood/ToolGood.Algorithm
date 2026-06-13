@@ -10,9 +10,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_TRIMSTART extends Function_2 {
+public final class Function_TRIMSTART extends Function_2 {
 
-    Function_TRIMSTART(FunctionBase[] funcs) {
+    public Function_TRIMSTART(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1 || funcs.length > 2) {
             throw new IllegalArgumentException("Function 'TrimStart' requires 1 to 2 parameters.");

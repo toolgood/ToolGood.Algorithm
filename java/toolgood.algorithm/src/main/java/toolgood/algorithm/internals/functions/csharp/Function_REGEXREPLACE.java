@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_REGEXREPLACE extends Function_3 {
+public final class Function_REGEXREPLACE extends Function_3 {
 
     public Function_REGEXREPLACE(FunctionBase[] funcs) {
         super(funcs);

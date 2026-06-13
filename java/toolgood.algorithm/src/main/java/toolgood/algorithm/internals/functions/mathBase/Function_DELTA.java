@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 
-final class Function_DELTA extends Function_2 {
+public final class Function_DELTA extends Function_2 {
     public Function_DELTA(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1 || funcs.length > 2) {

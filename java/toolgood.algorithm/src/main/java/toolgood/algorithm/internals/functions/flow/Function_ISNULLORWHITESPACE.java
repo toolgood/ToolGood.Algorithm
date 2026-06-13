@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_ISNULLORWHITESPACE extends Function_1 {
+public final class Function_ISNULLORWHITESPACE extends Function_1 {
 
     public Function_ISNULLORWHITESPACE(FunctionBase[] funcs) {
         super(funcs);

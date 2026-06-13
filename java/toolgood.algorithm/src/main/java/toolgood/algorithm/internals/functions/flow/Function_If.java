@@ -10,9 +10,9 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 
-final class Function_IF extends Function_3 {
+public final class Function_If extends Function_3 {
 
-    public Function_IF(FunctionBase[] funcs) {
+    public Function_If(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires 2 to 3 parameters.");

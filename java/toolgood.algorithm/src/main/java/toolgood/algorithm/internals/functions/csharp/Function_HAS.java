@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.litJson.JsonData;
 
-final class Function_HAS extends Function_2 {
+public final class Function_HAS extends Function_2 {
 
     public Function_HAS(FunctionBase[] funcs) {
         super(funcs);

@@ -6,14 +6,14 @@ import org.antlr.v4.runtime.tree.RuleNode;
 
 import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.internals.ConditionTree;
+import toolgood.algorithm.math.mathBaseVisitor;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.*;
-import toolgood.algorithm.math.mathVisitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> implements mathVisitor<ConditionTree> {
+public class MathSplitVisitor extends mathBaseVisitor<ConditionTree> {
     private boolean hasBracket = false;
 
     @Override
@@ -56,6 +56,16 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     public ConditionTree visitBracket_fun(Bracket_funContext context) {
         hasBracket = true;
         return visit(context.expr());
+    }
+
+    @Override
+    public ConditionTree visitParameter2(mathParser.Parameter2Context ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public ConditionTree visitArrayJson(mathParser.ArrayJsonContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override

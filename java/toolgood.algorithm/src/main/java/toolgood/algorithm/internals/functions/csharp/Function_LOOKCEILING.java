@@ -14,7 +14,7 @@ import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_LOOKCEILING extends Function_2 {
+public final class Function_LOOKCEILING extends Function_2 {
 
     public Function_LOOKCEILING(FunctionBase[] funcs) {
         super(funcs);

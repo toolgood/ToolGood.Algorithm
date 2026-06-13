@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_STARTSWITH extends Function_3 {
+public final class Function_STARTSWITH extends Function_3 {
 
     public Function_STARTSWITH(FunctionBase[] funcs) {
         super(funcs);

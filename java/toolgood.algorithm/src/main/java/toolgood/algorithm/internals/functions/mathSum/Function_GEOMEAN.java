@@ -13,9 +13,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_GEOMEAN extends Function_N {
+public final class Function_GEOMEAN extends Function_N {
 
-    Function_GEOMEAN(FunctionBase[] funcs) {
+    public Function_GEOMEAN(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires at least 1 parameter.");
@@ -34,7 +34,7 @@ final class Function_GEOMEAN extends Function_N {
         if (error != null) { return error; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args, list);
+        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
         if (o == false) { return ParameterError(1); }
         if (list.size() == 0) { return ParameterError(1); }
         double product = 1.0;

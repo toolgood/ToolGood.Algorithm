@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_FIND extends Function_3 {
+public final class Function_FIND extends Function_3 {
 
     public Function_FIND(FunctionBase[] funcs) {
         super(funcs);
@@ -31,12 +31,12 @@ final class Function_FIND extends Function_3 {
         Operand args2 = GetText_2(engine, tempParameter);
         if (args2.IsErrorOrNone()) { return args2; }
         if (func3 == null) {
-            int p = args2.TextValue().indexOf(args1.TextValue()) + (engine.UseExcelIndex ? 1 : 0);
+            int p = args2.TextValue().indexOf(args1.TextValue()) + (engine.ExcelIndex);
             return Operand.Create(p);
         }
         Operand count = GetNumber_3(engine, tempParameter);
         if (count.IsErrorOrNone()) { return count; }
-        int excelIndex = engine.UseExcelIndex ? 1 : 0;
+        int excelIndex = engine.ExcelIndex;
         int startIndex = count.IntValue() - excelIndex;
         if (startIndex < 0 || startIndex >= args2.TextValue().length()) {
             return ParameterError(3);

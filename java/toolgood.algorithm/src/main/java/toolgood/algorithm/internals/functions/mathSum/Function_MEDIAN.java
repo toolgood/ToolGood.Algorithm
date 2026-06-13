@@ -13,9 +13,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_MEDIAN extends Function_N {
+public final class Function_MEDIAN extends Function_N {
 
-    Function_MEDIAN(FunctionBase[] funcs) {
+    public Function_MEDIAN(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires at least 1 parameter.");
@@ -34,7 +34,7 @@ final class Function_MEDIAN extends Function_N {
         if (error != null) { return error; }
 
         List<BigDecimal> list = new ArrayList<>();
-        if (FunctionUtil.FlattenToList(args, list) == false) { return FunctionError(); }
+        if (FunctionUtil.FlattenToBigDecimalList(args, list) == false) { return FunctionError(); }
         if (list.size() == 0) { return FunctionError(); }
 
         int n = list.size();

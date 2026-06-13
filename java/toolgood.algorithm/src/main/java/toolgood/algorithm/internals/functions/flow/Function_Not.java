@@ -10,16 +10,16 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 
-final class Function_NOT extends Function_1 {
+public final class Function_Not extends Function_1 {
 
-    public Function_NOT(FunctionBase[] funcs) {
+    public Function_Not(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 1) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 1 parameter.");
         }
     }
 
-    public Function_NOT(FunctionBase func1) {
+    public Function_Not(FunctionBase func1) {
         super(func1);
     }
 

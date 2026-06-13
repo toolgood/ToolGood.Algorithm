@@ -33,7 +33,7 @@ public final class Function_GetJsonValue extends Function_2 {
         if (obj.IsArray()) {
             op = ConvertToNumber(op, 2);
             if (op.IsErrorOrNone()) { return op; }
-            int excelIndex = engine.UseExcelIndex ? 1 : 0;
+            int excelIndex = engine.ExcelIndex;
             int index = op.IntValue() - excelIndex;
             if (index < obj.ArrayValue().size() && index >= 0)
                 return obj.ArrayValue().get(index);
@@ -61,7 +61,7 @@ public final class Function_GetJsonValue extends Function_2 {
             if (json.IsArray()) {
                 op = ConvertToNumber(op, 2);
                 if (op.IsErrorOrNone()) { return op; }
-                int excelIndex = engine.UseExcelIndex ? 1 : 0;
+                int excelIndex = engine.ExcelIndex;
                 int index = op.IntValue() - excelIndex;
                 if (index < json.Count() && index >= 0) {
                     return ConvertJsonDataToOperand(json.GetChild(index));

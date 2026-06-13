@@ -10,9 +10,9 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_SWITCH extends Function_N {
+public final class Function_Switch extends Function_N {
 
-    public Function_SWITCH(FunctionBase[] funcs) {
+    public Function_Switch(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires at least 3 parameters.");

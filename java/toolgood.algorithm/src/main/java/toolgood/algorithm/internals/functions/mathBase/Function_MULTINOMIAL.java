@@ -13,7 +13,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_MULTINOMIAL extends Function_N {
+public final class Function_MULTINOMIAL extends Function_N {
     public Function_MULTINOMIAL(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1) {
@@ -34,7 +34,7 @@ final class Function_MULTINOMIAL extends Function_N {
             return error;
         }
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args, list);
+        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
         if (o == false) {
             return FunctionError();
         }

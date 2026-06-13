@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 
-final class Function_ERF extends Function_1 {
+public final class Function_ERF extends Function_1 {
 
     public Function_ERF(FunctionBase[] funcs) {
         super(funcs);

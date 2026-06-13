@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 
-final class Function_BESSELI extends Function_2 {
+public final class Function_BESSELI extends Function_2 {
 
     public Function_BESSELI(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);

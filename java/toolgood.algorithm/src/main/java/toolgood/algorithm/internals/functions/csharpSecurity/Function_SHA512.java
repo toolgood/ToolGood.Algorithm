@@ -13,7 +13,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 
-final class Function_SHA512 extends Function_1 {
+public final class Function_SHA512 extends Function_1 {
 	public Function_SHA512(FunctionBase[] funcs) {
 		super(funcs);
 		if (funcs.length != 1) {

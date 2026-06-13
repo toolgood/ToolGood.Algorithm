@@ -34,7 +34,6 @@ public class FunctionUtil {
     }
 
     public static boolean FlattenToList(List<Operand> args, List<Operand> list) {
-        list.ensureCapacity(Math.max(list.size(), EstimateCount(args)));
         List<Operand> stack = new ArrayList<>(args);
         while (stack.size() > 0) {
             Operand item = stack.remove(stack.size() - 1);
@@ -57,7 +56,6 @@ public class FunctionUtil {
     }
 
     public static boolean FlattenToBigDecimalList(List<Operand> args, List<BigDecimal> list) {
-        list.ensureCapacity(Math.max(list.size(), EstimateCount(args)));
         List<Operand> stack = new ArrayList<>(args);
         while (stack.size() > 0) {
             Operand item = stack.remove(stack.size() - 1);
@@ -114,7 +112,6 @@ public class FunctionUtil {
         }
         if (args.Type() == OperandType.ARRAY) {
             List<Operand> array = args.ArrayValue();
-            list.ensureCapacity(Math.max(list.size(), array.size()));
             for (int i = 0; i < array.size(); i++) {
                 Operand item = array.get(i);
                 if (item.Type() == OperandType.ARRAY || item.Type() == OperandType.JSON) {

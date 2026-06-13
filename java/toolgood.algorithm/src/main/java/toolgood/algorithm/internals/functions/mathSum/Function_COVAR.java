@@ -13,7 +13,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_2;
 
-final class Function_COVAR extends Function_2 {
+public final class Function_COVAR extends Function_2 {
     public Function_COVAR(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {

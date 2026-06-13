@@ -11,9 +11,9 @@ import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_REMOVESTART extends Function_3 {
+public final class Function_REMOVESTART extends Function_3 {
 
-    Function_REMOVESTART(FunctionBase[] funcs) {
+    public Function_REMOVESTART(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1 || funcs.length > 3) {
             throw new IllegalArgumentException("Function 'RemoveStart' requires 1 to 3 parameters.");

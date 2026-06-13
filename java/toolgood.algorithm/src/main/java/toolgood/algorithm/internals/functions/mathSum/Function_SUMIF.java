@@ -14,9 +14,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
-final class Function_SUMIF extends Function_3 {
+public final class Function_SUMIF extends Function_3 {
 
-    Function_SUMIF(FunctionBase[] funcs) {
+    public Function_SUMIF(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires 2 to 3 parameters.");
@@ -34,14 +34,14 @@ final class Function_SUMIF extends Function_3 {
         Operand args2 = func2.Evaluate(engine, tempParameter); if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args1, list);
+        boolean o = FunctionUtil.FlattenToNumberList(args1, list);
         if (o == false) { return ParameterError(1); }
 
         List<BigDecimal> sumdbs;
         if (func3 != null) {
             Operand args3 = GetArray_3(engine, tempParameter); if (args3.IsErrorOrNone()) { return args3; }
             sumdbs = new ArrayList<>();
-            boolean o2 = FunctionUtil.FlattenToList(args3, sumdbs);
+            boolean o2 = FunctionUtil.FlattenToNumberList(args3, sumdbs);
             if (o2 == false) { return ParameterError(3); }
         } else {
             sumdbs = list;

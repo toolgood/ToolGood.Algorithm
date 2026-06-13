@@ -26,7 +26,7 @@ public final class Function_ArrayJson extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        OperandKeyValueList result = new OperandKeyValueList(null);
+        OperandKeyValueList result = new OperandKeyValueList();
         for (FunctionBase item : funcs) {
             Operand o = item.Evaluate(engine, tempParameter);
             if (o.IsErrorOrNone()) { return o; }

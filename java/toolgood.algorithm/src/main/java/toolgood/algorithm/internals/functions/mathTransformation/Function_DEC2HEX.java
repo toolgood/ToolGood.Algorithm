@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 
-final class Function_DEC2HEX extends Function_2 {
+public final class Function_DEC2HEX extends Function_2 {
 	public Function_DEC2HEX(FunctionBase[] funcs) {
 		super(funcs);
 		if (funcs.length < 1 || funcs.length > 2) {

@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_SEARCH extends Function_3 {
+public final class Function_SEARCH extends Function_3 {
 
     public Function_SEARCH(FunctionBase[] funcs) {
         super(funcs);
@@ -31,7 +31,7 @@ final class Function_SEARCH extends Function_3 {
         Operand args2 = GetText_2(engine, tempParameter);
         if (args2.IsErrorOrNone()) { return args2; }
 
-        int excelIndex = engine.UseExcelIndex ? 1 : 0;
+        int excelIndex = engine.ExcelIndex;
 
         if (func3 == null) {
             int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + excelIndex;

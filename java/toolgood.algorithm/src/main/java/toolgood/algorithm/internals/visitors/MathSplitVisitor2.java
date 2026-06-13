@@ -6,14 +6,14 @@ import org.antlr.v4.runtime.tree.RuleNode;
 
 import toolgood.algorithm.enums.CalculateTreeType;
 import toolgood.algorithm.internals.CalculateTree;
+import toolgood.algorithm.math.mathBaseVisitor;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.*;
-import toolgood.algorithm.math.mathVisitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> implements mathVisitor<CalculateTree> {
+public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
     private boolean hasBracket = false;
 
     @Override
@@ -128,6 +128,16 @@ public class MathSplitVisitor2 extends AbstractParseTreeVisitor<CalculateTree> i
         tree.End = context.stop.getStopIndex();
         tree.Text = context.getText();
         return tree;
+    }
+
+    @Override
+    public CalculateTree visitParameter2(mathParser.Parameter2Context ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public CalculateTree visitArrayJson(mathParser.ArrayJsonContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override

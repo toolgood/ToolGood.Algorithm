@@ -10,9 +10,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_SUBSTRING extends Function_3 {
+public final class Function_SUBSTRING extends Function_3 {
 
-    Function_SUBSTRING(FunctionBase[] funcs) {
+    public Function_SUBSTRING(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 2 || funcs.length > 3) {
             throw new IllegalArgumentException("Function 'Substring' requires 2 to 3 parameters.");
@@ -33,7 +33,7 @@ final class Function_SUBSTRING extends Function_3 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         String text = args1.TextValue();
-        int startIndex = args2.IntValue() - (engine.UseExcelIndex ? 1 : 0);
+        int startIndex = args2.IntValue() - (engine.ExcelIndex);
 
         if (startIndex < 0) {
             return ParameterError(2);

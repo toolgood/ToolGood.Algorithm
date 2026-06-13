@@ -14,7 +14,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_VAR extends Function_N {
+public final class Function_VAR extends Function_N {
     public Function_VAR(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1) {
@@ -49,7 +49,7 @@ final class Function_VAR extends Function_N {
                         m2 = m2.add(delta.multiply(delta2));
                     } else if (elem.IsArray() || elem.IsJson()) {
                         List<BigDecimal> list = new ArrayList<>();
-                        if (!FunctionUtil.FlattenToList(elem, list)) { return FunctionError(); }
+                        if (!FunctionUtil.FlattenToNumberList(elem, list)) { return FunctionError(); }
                         for (int k = 0; k < list.size(); k++) {
                             count++;
                             BigDecimal delta = list.get(k).subtract(mean);
@@ -75,7 +75,7 @@ final class Function_VAR extends Function_N {
                 m2 = m2.add(delta.multiply(delta2));
             } else if (item.IsJson()) {
                 List<BigDecimal> list = new ArrayList<>();
-                if (!FunctionUtil.FlattenToList(item, list)) { return FunctionError(); }
+                if (!FunctionUtil.FlattenToNumberList(item, list)) { return FunctionError(); }
                 for (int k = 0; k < list.size(); k++) {
                     count++;
                     BigDecimal delta = list.get(k).subtract(mean);

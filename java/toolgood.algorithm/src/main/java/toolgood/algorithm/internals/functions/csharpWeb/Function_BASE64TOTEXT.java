@@ -13,7 +13,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 
-final class Function_BASE64TOTEXT extends Function_1 {
+public final class Function_BASE64TOTEXT extends Function_1 {
 	public Function_BASE64TOTEXT(FunctionBase[] funcs) {
 		super(funcs);
 		if (funcs.length != 1) {

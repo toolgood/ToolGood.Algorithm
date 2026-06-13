@@ -27,7 +27,7 @@ import toolgood.algorithm.math.mathParser;
  * 算法引擎类。
  */
 public class AlgorithmEngine {
-    protected int ExcelIndex = 1;
+    public int ExcelIndex = 1;
 
     /**
      * 是否忽略大小写

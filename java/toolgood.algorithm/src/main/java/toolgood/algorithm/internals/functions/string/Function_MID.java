@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_MID extends Function_3 {
+public final class Function_MID extends Function_3 {
 
     public Function_MID(FunctionBase[] funcs) {
         super(funcs);
@@ -34,7 +34,7 @@ final class Function_MID extends Function_3 {
         if (args3.IsErrorOrNone()) { return args3; }
 
         String text = args1.TextValue();
-        int excelIndex = engine.UseExcelIndex ? 1 : 0;
+        int excelIndex = engine.ExcelIndex;
         int startIndex = args2.IntValue() - excelIndex;
         int length = args3.IntValue();
 

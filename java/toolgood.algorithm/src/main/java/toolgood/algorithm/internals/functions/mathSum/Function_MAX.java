@@ -13,7 +13,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_MAX extends Function_N {
+public final class Function_MAX extends Function_N {
     public Function_MAX(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1) {
@@ -46,7 +46,7 @@ final class Function_MAX extends Function_N {
                         }
                     } else if (elem.IsArray() || elem.IsJson()) {
                         List<BigDecimal> list = new ArrayList<>();
-                        if (FunctionUtil.FlattenToList(elem, list)) {
+                        if (FunctionUtil.FlattenToNumberList(elem, list)) {
                             for (int k = 0; k < list.size(); k++) {
                                 if (!found || list.get(k).compareTo(max) > 0) {
                                     max = list.get(k);
@@ -72,7 +72,7 @@ final class Function_MAX extends Function_N {
                 }
             } else if (item.IsJson()) {
                 List<BigDecimal> list = new ArrayList<>();
-                if (!FunctionUtil.FlattenToList(item, list)) { return FunctionError(); }
+                if (!FunctionUtil.FlattenToNumberList(item, list)) { return FunctionError(); }
                 for (int k = 0; k < list.size(); k++) {
                     if (!found || list.get(k).compareTo(max) > 0) {
                         max = list.get(k);

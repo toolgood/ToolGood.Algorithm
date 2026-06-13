@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_SERIESSUM extends Function_N {
+public final class Function_SERIESSUM extends Function_N {
     public Function_SERIESSUM(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 4) {

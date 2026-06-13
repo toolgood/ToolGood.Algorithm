@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 
-final class Function_DAYS extends Function_2 {
+public final class Function_DAYS extends Function_2 {
     public Function_DAYS(FunctionBase func1, FunctionBase func2) {
         super(func1, func2);
     }

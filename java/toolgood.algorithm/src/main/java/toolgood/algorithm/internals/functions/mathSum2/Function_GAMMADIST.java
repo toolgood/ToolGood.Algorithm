@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_4;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-final class Function_GAMMADIST extends Function_4 {
+public final class Function_GAMMADIST extends Function_4 {
     public Function_GAMMADIST(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 4) {

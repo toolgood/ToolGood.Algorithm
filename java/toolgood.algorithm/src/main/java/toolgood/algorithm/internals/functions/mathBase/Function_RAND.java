@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_0;
 
-final class Function_RAND extends Function_0 {
+public final class Function_RAND extends Function_0 {
     private static final Random _random = new Random();
     private static final Object _randomLock = new Object();
 

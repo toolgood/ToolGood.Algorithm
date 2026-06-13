@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_N;
 
-final class Function_INTERCEPT extends Function_N {
+public final class Function_INTERCEPT extends Function_N {
     public Function_INTERCEPT(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {

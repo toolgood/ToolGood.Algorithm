@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_6;
 
-final class Function_RATE extends Function_6 {
+public final class Function_RATE extends Function_6 {
     public Function_RATE(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 3 || funcs.length > 6) {

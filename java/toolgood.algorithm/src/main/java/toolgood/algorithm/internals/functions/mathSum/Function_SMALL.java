@@ -13,9 +13,9 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
-final class Function_SMALL extends Function_2 {
+public final class Function_SMALL extends Function_2 {
 
-    Function_SMALL(FunctionBase[] funcs) {
+    public Function_SMALL(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 2 parameters.");
@@ -38,11 +38,11 @@ final class Function_SMALL extends Function_2 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args1, list);
+        boolean o = FunctionUtil.FlattenToNumberList(args1, list);
         if (o == false) { return ParameterError(1); }
         if (list.size() == 0) { return ParameterError(1); }
 
-        int excelIndex = engine.UseExcelIndex ? 1 : 0;
+        int excelIndex = engine.ExcelIndex;
         int k = args2.IntValue() - excelIndex;
         if (k < 0 || k >= list.size()) {
             return ParameterError(2);

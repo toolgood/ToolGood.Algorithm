@@ -3,15 +3,15 @@ package toolgood.algorithm.internals.visitors;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import toolgood.algorithm.math.mathBaseVisitor;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.*;
-import toolgood.algorithm.math.mathVisitor;
 import toolgood.algorithm.internals.DiyNameKeyInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements mathVisitor<Object> {
+public class DiyNameVisitor extends mathBaseVisitor<Object> {
     public List<DiyNameKeyInfo> Parameters = new ArrayList<>();
     public List<DiyNameKeyInfo> Functions = new ArrayList<>();
 
@@ -23,6 +23,16 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
             info.End = node.getSymbol().getStopIndex();
             Parameters.add(info);
         }
+    }
+
+    @Override
+    public Object visitParameter2(mathParser.Parameter2Context ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Object visitArrayJson(mathParser.ArrayJsonContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override

@@ -14,7 +14,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_5;
 
-final class Function_DB extends Function_5 {
+public final class Function_DB extends Function_5 {
 	public Function_DB(FunctionBase[] funcs) {
 		super(funcs);
 		if (funcs.length < 4 || funcs.length > 5) {

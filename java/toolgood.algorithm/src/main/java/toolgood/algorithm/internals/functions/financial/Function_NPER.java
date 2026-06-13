@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_5;
 
-final class Function_NPER extends Function_5 {
+public final class Function_NPER extends Function_5 {
     public Function_NPER(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 3 || funcs.length > 5) {
@@ -66,10 +66,10 @@ final class Function_NPER extends Function_5 {
             factor = pmt.multiply(BigDecimal.ONE.add(rate));
         }
 
-        BigDecimal nper = BigDecimal.valueOf(Math.log(
-                fv.multiply(rate).negate().add(factor).divide(pv.multiply(rate).add(factor), MathContext.DECIMAL128).doubleValue()))
+        double nper = Math.log(
+                fv.multiply(rate).negate().add(factor).divide(pv.multiply(rate).add(factor), MathContext.DECIMAL128).doubleValue())
                 / Math.log(BigDecimal.ONE.add(rate).doubleValue());
-        return Operand.Create(nper);
+        return Operand.Create(BigDecimal.valueOf(nper));
     }
 
     @Override

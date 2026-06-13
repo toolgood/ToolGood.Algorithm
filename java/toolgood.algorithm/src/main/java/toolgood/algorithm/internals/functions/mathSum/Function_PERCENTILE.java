@@ -14,9 +14,9 @@ import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
-final class Function_PERCENTILE extends Function_2 {
+public final class Function_PERCENTILE extends Function_2 {
 
-    Function_PERCENTILE(FunctionBase[] funcs) {
+    public Function_PERCENTILE(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
             throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 2 parameters.");
@@ -37,7 +37,7 @@ final class Function_PERCENTILE extends Function_2 {
         if (args2.IsErrorOrNone()) { return args2; }
 
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args1, list);
+        boolean o = FunctionUtil.FlattenToNumberList(args1, list);
         if (o == false) { return ParameterError(1); }
         if (list.size() == 0) { return ParameterError(1); }
         BigDecimal k = args2.NumberValue();

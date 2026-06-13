@@ -13,7 +13,7 @@ import toolgood.algorithm.internals.functions.FunctionUtil;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_DATEVALUE extends Function_2 {
+public final class Function_DATEVALUE extends Function_2 {
     public Function_DATEVALUE(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length < 1 || funcs.length > 2) {
@@ -48,7 +48,7 @@ final class Function_DATEVALUE extends Function_2 {
             Operand arg1 = ConvertToNumber(args1, 1);
             if (arg1.IsErrorOrNone()) { return arg1; }
             if (arg1.LongValue() <= 2958465L) {
-                return arg1.ToDate(null);
+                return arg1.ToMyDate(null);
             }
             if (arg1.LongValue() <= 253402232399L) {
                 DateTime time = new DateTime(FunctionUtil.StartDateUtc.getMillis() + arg1.LongValue() * 1000, DateTimeZone.UTC);
@@ -72,7 +72,7 @@ final class Function_DATEVALUE extends Function_2 {
         } else if (type == 2) {
             Operand arg1 = ConvertToNumber(args1, 1);
             if (arg1.IsErrorOrNone()) { return arg1; }
-            return arg1.ToDate(null);
+            return arg1.ToMyDate(null);
         } else if (type == 3) {
             Operand arg1 = ConvertToNumber(args1, 1);
             if (arg1.IsErrorOrNone()) { return arg1; }

@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_GT extends Function_2 {
+public final class Function_GT extends Function_2 {
 
     public Function_GT(FunctionBase[] funcs) {
         super(funcs);
@@ -45,8 +45,8 @@ final class Function_GT extends Function_2 {
             } else if (args1.IsDate()) {
                 return Operand.Create(args1.DateValue().ToLong() > args2.DateValue().ToLong());
             } else if (args1.IsBoolean()) {
-                args1 = args1.ToNumber();
-                args2 = args2.ToNumber();
+                args1 = args1.ToNumber(null);
+                args2 = args2.ToNumber(null);
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) > 0);
             } else if (args1.IsNull()) {
                 return Operand.True;
@@ -90,14 +90,14 @@ final class Function_GT extends Function_2 {
         OperandType t1 = func1.GetResultType();
         OperandType t2 = func2.GetResultType();
         if (t1 == OperandType.NONE) {
-            Operand p = func2.Evaluate(noneEngine, null).ToText();
+            Operand p = func2.Evaluate(noneEngine, null).ToText(null);
             if (t2 != OperandType.ERROR && !p.IsErrorOrNone()) {
                 func1.GetParameterTypes(noneEngine, result, t2, Name(), p.TextValue());
                 func2.GetParameterTypes(noneEngine, result, t2);
                 return;
             }
         } else if (t2 == OperandType.NONE) {
-            Operand p = func1.Evaluate(noneEngine, null).ToText();
+            Operand p = func1.Evaluate(noneEngine, null).ToText(null);
             if (t1 != OperandType.ERROR && !p.IsErrorOrNone()) {
                 func2.GetParameterTypes(noneEngine, result, t1, Name(), p.TextValue());
                 func1.GetParameterTypes(noneEngine, result, t1);

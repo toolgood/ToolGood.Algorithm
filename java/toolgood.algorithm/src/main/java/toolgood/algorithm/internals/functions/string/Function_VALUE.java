@@ -11,7 +11,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
 import toolgood.algorithm.internals.functions.NoneEngine;
 
-final class Function_VALUE extends Function_1 {
+public final class Function_VALUE extends Function_1 {
 
     public Function_VALUE(FunctionBase[] funcs) {
         super(funcs);
