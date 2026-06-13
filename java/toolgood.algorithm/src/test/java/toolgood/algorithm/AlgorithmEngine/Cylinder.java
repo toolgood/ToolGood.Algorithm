@@ -1,4 +1,4 @@
-package toolgood.algorithm.AlgorithmEngine;
+package toolgood.algorithm.algorithmengine;
 
 import java.util.List;
 import toolgood.algorithm.AlgorithmEngineEx;

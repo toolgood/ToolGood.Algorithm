@@ -1,7 +1,9 @@
-﻿package toolgood.algorithm.AlgorithmEngine;
+package toolgood.algorithm.algorithmengine;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.AlgorithmEngineEx;
 

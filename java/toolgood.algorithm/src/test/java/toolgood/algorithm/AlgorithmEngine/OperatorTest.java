@@ -1,7 +1,9 @@
-package toolgood.algorithm.AlgorithmEngine;
+package toolgood.algorithm.algorithmengine;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.AlgorithmEngine;
 
 public class OperatorTest {
@@ -51,30 +53,30 @@ public class OperatorTest {
     public void conditional_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         int t1 = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
         t1 = engine.TryEvaluate("-7 < -2 ?1 ： 2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
 
         t1 = engine.TryEvaluate("-7 < -2 ?1 ： (7>1?3:2)", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
 
         t1 = engine.TryEvaluate("-7 < -2 ?1 ：2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
         t1 = engine.TryEvaluate("-7 < -2 ？ 1 : 2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
         t1 = engine.TryEvaluate("-7 < -2 ？1 : 2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
 
         t1 = engine.TryEvaluate("-7 < -2 ？1 ： 2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
 
         t1 = engine.TryEvaluate("(!(-7 < -2))？1：2", 0);
-        assertEquals(t1, 2);
+        assertEquals(2, t1);
         t1 = engine.TryEvaluate("1>2？1：2", 0);
-        assertEquals(t1, 2);
+        assertEquals(2, t1);
 
         t1 = engine.TryEvaluate("1！=2？1：2", 0);
-        assertEquals(t1, 1);
+        assertEquals(1, t1);
     }
 
     @Test
@@ -100,6 +102,6 @@ public class OperatorTest {
     public void null_operation_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         int tbb2 = engine.TryEvaluate("'111'*null", 0);
-        assertEquals(tbb2, 0);
+        assertEquals(0, tbb2);
     }
 }

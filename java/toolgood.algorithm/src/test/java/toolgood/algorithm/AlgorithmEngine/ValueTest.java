@@ -1,14 +1,15 @@
-package toolgood.algorithm.AlgorithmEngine;
+package toolgood.algorithm.algorithmengine;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import toolgood.algorithm.AlgorithmEngine;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.enums.AreaUnitType;
 import toolgood.algorithm.enums.DistanceUnitType;
 import toolgood.algorithm.enums.MassUnitType;
 import toolgood.algorithm.enums.VolumeUnitType;
-import toolgood.algorithm.Operand;
 
 public class ValueTest {
     @Test

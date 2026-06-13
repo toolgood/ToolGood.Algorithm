@@ -1,9 +1,15 @@
-package toolgood.algorithm.AlgorithmEngine;
+package toolgood.algorithm.algorithmengine;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.AlgorithmEngineEx;
+import toolgood.algorithm.Operand;
 
 public class FinancialTest {
     @Test
@@ -80,7 +86,7 @@ public class FinancialTest {
     public void SLN_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("SLN(30000, 7500, 10)", 0.0);
-        assertEquals(t, 2250.0, 1e-10);
+        assertEquals(2250.0, t, 1e-10);
     }
 
     @Test
@@ -107,8 +113,10 @@ public class FinancialTest {
     @Test
     public void XNPV_test() {
         AlgorithmEngineEx engine = new AlgorithmEngineEx();
-        engine.AddParameter("values", new double[] { -10000, 2750, 4250, 3250, 2750 });
-        engine.AddParameter("dates2", new String[] { "2008-1-1", "2008-3-1", "2008-10-30", "2009-2-15", "2009-4-1" });
+        engine.AddParameter("values", Arrays.asList(
+            Operand.Create(-10000.0), Operand.Create(2750.0), Operand.Create(4250.0), Operand.Create(3250.0), Operand.Create(2750.0)));
+        engine.AddParameter("dates2", Arrays.asList(
+            Operand.Create("2008-1-1"), Operand.Create("2008-3-1"), Operand.Create("2008-10-30"), Operand.Create("2009-2-15"), Operand.Create("2009-4-1")));
         double t = engine.TryEvaluate("XNPV(0.09, values, dates2)", 0.0);
         assertEquals(2086.65, t, 1e-2);
     }
@@ -116,8 +124,10 @@ public class FinancialTest {
     @Test
     public void XIRR_test() {
         AlgorithmEngineEx engine = new AlgorithmEngineEx();
-        engine.AddParameter("values", new double[] { -10000, 2750, 4250, 3250, 2750 });
-        engine.AddParameter("dates2", new String[] { "2008-1-1", "2008-3-1", "2008-10-30", "2009-2-15", "2009-4-1" });
+        engine.AddParameter("values", Arrays.asList(
+            Operand.Create(-10000.0), Operand.Create(2750.0), Operand.Create(4250.0), Operand.Create(3250.0), Operand.Create(2750.0)));
+        engine.AddParameter("dates2", Arrays.asList(
+            Operand.Create("2008-1-1"), Operand.Create("2008-3-1"), Operand.Create("2008-10-30"), Operand.Create("2009-2-15"), Operand.Create("2009-4-1")));
         double t = engine.TryEvaluate("XIRR(values, dates2)", 0.0);
         assertEquals(0.3734, t, 1e-4);
     }
