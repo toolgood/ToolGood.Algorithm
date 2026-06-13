@@ -188,7 +188,7 @@ public class AlgorithmEngineExTest {
     // region AddParameterFromJson 测试
 
     @Test
-    public void AddParameterFromJson_Test() {
+    public void AddParameterFromJson_Test() throws Exception {
         AlgorithmEngineEx engine = new AlgorithmEngineEx();
         engine.AddParameterFromJson("{\"name\":\"test\",\"age\":25,\"active\":true}");
 
@@ -203,7 +203,7 @@ public class AlgorithmEngineExTest {
     }
 
     @Test
-    public void AddParameterFromJson_Complex_Test() {
+    public void AddParameterFromJson_Complex_Test() throws Exception {
         AlgorithmEngineEx engine = new AlgorithmEngineEx();
         engine.AddParameterFromJson("{\"灰色\":\"L\",\"canBookCount\":905,\"saleCount\":91}");
 
@@ -320,7 +320,7 @@ public class AlgorithmEngineExTest {
     }
 
     @Test
-    public void Nested_Json_Test() {
+    public void Nested_Json_Test() throws Exception {
         AlgorithmEngineEx engine = new AlgorithmEngineEx();
         engine.AddParameterFromJson("{\"data\":{\"name\":\"test\",\"value\":123}}");
 

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import toolgood.algorithm.AlgorithmEngineHelper;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.enums.OperandType;
-import toolgood.algorithm.internals.FunctionBase;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.ParameterType;
 
 import java.util.List;

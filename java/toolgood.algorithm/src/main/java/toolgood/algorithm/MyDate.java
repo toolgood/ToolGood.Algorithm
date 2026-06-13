@@ -30,7 +30,16 @@ public class MyDate {
     private MyDate() {
     }
 
-    public MyDate(int year, int month, int day, int hour, int minute, int second) {
+    public MyDate(MyDate dt) {
+        Year = dt.Year;
+        Month = dt.Month;
+        Day = dt.Day;
+        Hour = dt.Hour;
+        Minute = dt.Minute;
+        Second = dt.Second;
+    }
+
+    public MyDate(Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer second) {
         Year = year;
         Month = month;
         Day = day;

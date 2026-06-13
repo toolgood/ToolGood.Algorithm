@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class AlgorithmEngineHelperTest {
 
     @Test
-    public void GetDiyNames_test() {
+    public void GetDiyNames_test() throws Exception {
         DiyNameInfo p = AlgorithmEngineHelper.GetDiyNames("dd");
         assertEquals("dd", p.Parameters.get(0).toString());
 
