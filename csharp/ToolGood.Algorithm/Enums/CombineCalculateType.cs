@@ -1,14 +1,10 @@
 ﻿namespace ToolGood.Algorithm.Enums
 {
 	/// <summary>
-	/// 计算树类型
+	/// 合并类型
 	/// </summary>
-	public enum CalculateTreeType : byte
+	public enum CombineCalculateType : byte
 	{
-		/// <summary>
-		/// 文本
-		/// </summary>
-		String = 0,
 		/// <summary>
 		/// 加
 		/// </summary>
@@ -66,9 +62,5 @@
 		/// 不等于
 		/// </summary>
 		OpNe,
-		/// <summary>
-		/// 错误
-		/// </summary>
-		Error
 	}
 }
