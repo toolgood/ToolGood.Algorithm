@@ -15,8 +15,8 @@
     </description>
     <licenses>
         <license>
-            <name>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</name>
-            <url>https://github.com/toolgood/ToolGood.Algorithm/blob/master/LICENSE</url>
+            <name>ToolGood Noncommercial License 1.0.0</name>
+            <url>https://github.com/toolgood/ToolGood.Algorithm/blob/master/license.md</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
