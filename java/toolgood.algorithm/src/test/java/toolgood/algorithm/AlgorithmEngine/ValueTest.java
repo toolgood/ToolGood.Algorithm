@@ -4,8 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import toolgood.algorithm.AlgorithmEngine;
-
-import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.enums.AreaUnitType;
 import toolgood.algorithm.enums.DistanceUnitType;
 import toolgood.algorithm.enums.MassUnitType;
@@ -60,7 +59,7 @@ public class ValueTest {
     @Test
     public void Test_Json() {
         AlgorithmEngine engine = new AlgorithmEngine();
-        Object t = engine.Parse("{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}");
+        FunctionBase t = engine.Parse("{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}");
         String c = engine.Evaluate(t).toString();
         assertEquals("{\"灰色\":\"L\",\"canBookCount\":905,\"saleCount\":91,\"specId\":\"43b0e72e98731aed69e1f0cc7d64bf4d\"}", c);
     }
