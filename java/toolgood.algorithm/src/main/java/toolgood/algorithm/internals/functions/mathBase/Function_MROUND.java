@@ -43,8 +43,8 @@ public final class Function_MROUND extends Function_2 {
                 || (number.compareTo(BigDecimal.ZERO) < 0 && multiple.compareTo(BigDecimal.ZERO) > 0)) {
             return ParameterError(2);
         }
-        double r = Math.round(number.doubleValue() / multiple.doubleValue()) * multiple.doubleValue();
-        return Operand.Create(BigDecimal.valueOf(r));
+        BigDecimal r = number.divide(multiple, java.math.RoundingMode.HALF_UP).setScale(0, java.math.RoundingMode.HALF_UP).multiply(multiple);
+        return Operand.Create(r);
     }
 
     @Override

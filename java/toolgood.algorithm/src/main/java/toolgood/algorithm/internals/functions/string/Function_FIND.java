@@ -45,7 +45,7 @@ public final class Function_FIND extends Function_3 {
         if (p2 < 0) {
             return FunctionError();
         }
-        return Operand.Create(p2 + startIndex + excelIndex);
+        return Operand.Create(p2 + excelIndex);
     }
 
     @Override

@@ -33,7 +33,7 @@ public final class Function_URLENCODE extends Function_1 {
 			return args1;
 		}
 		String s = args1.TextValue();
-		String r = URLEncoder.encode(s, StandardCharsets.UTF_8);
+		String r = URLEncoder.encode(s, StandardCharsets.UTF_8).toLowerCase();
 		return Operand.Create(r);
 	}
 

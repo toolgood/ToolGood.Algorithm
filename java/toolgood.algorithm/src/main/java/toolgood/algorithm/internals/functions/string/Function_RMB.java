@@ -81,10 +81,10 @@ public final class Function_RMB extends Function_1 {
 
         fs.append(intFormatted);
         fs.append('.');
-        // Decimal: .0B0A
-        fs.append('0').append(decPart.charAt(0));
+        // 十进制格式: ".数字B数字A" (不是 ".0数字B0数字A")
+        fs.append(decPart.charAt(0));
         fs.append('B');
-        fs.append('0').append(decPart.charAt(1));
+        fs.append(decPart.charAt(1));
         fs.append('A');
 
         String s = fs.toString();
