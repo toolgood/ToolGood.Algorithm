@@ -305,15 +305,55 @@ public class MyDate {
     }
 
     public MyDate AddHours(int d) {
-        return new MyDate(ToDateTime().plusHours(d));
+        int t = this.Hour + d;
+        if (Year != null && t >= 0 && t < 24) {
+            return new MyDate(Year, Month, Day, t, Minute, Second);
+        }
+        if (Year != null && Year > 1900) {
+            return new MyDate(ToDateTime().plusHours(d));
+        }
+        return addTimeSpan(d * 3600);
     }
 
     public MyDate AddMinutes(int d) {
-        return new MyDate(ToDateTime().plusMinutes(d));
+        int t = this.Minute + d;
+        if (Year != null && t >= 0 && t <= 59) {
+            return new MyDate(Year, Month, Day, Hour, t, Second);
+        }
+        if (Year != null && Year > 1900) {
+            return new MyDate(ToDateTime().plusMinutes(d));
+        }
+        return addTimeSpan(d * 60);
     }
 
     public MyDate AddSeconds(int d) {
-        return new MyDate(ToDateTime().plusSeconds(d));
+        int t = this.Second + d;
+        if (Year != null && t >= 0 && t <= 59) {
+            return new MyDate(Year, Month, Day, Hour, Minute, t);
+        }
+        if (Year != null && Year > 1900) {
+            return new MyDate(ToDateTime().plusSeconds(d));
+        }
+        return addTimeSpan(d);
+    }
+
+    private MyDate addTimeSpan(int totalSeconds) {
+        int total = Hour * 3600 + Minute * 60 + Second + totalSeconds;
+        int newSecond = total % 60;
+        if (newSecond < 0) { newSecond += 60; }
+        int totalMinutes = (total - newSecond) / 60;
+        int newMinute = totalMinutes % 60;
+        if (newMinute < 0) { newMinute += 60; }
+        int totalHours = (totalMinutes - newMinute) / 60;
+        int newHour = totalHours % 24;
+        if (newHour < 0) { newHour += 24; }
+        int newDay = (totalHours - newHour) / 24;
+        MyDate result = new MyDate();
+        result.Day = newDay;
+        result.Hour = newHour;
+        result.Minute = newMinute;
+        result.Second = newSecond;
+        return result;
     }
 
     public BigDecimal ToNumber() {
