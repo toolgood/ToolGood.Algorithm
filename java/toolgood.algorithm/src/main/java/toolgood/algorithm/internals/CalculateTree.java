@@ -43,5 +43,6 @@ public final class CalculateTree {
     public String ErrorMessage;
 
     public CalculateTree() {
+        Type = CalculateTreeType.String;
     }
 }

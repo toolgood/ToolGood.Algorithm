@@ -52,9 +52,17 @@ public class AlgorithmEngineEx extends AlgorithmEngine {
      */
     @Override
     public Operand GetParameter(String parameter) {
-        Operand operand = _tempdict.get(parameter);
-        if (operand != null) {
-            return operand;
+        if (IgnoreCase) {
+            for (java.util.Map.Entry<String, Operand> entry : _tempdict.entrySet()) {
+                if (entry.getKey().equalsIgnoreCase(parameter)) {
+                    return entry.getValue();
+                }
+            }
+        } else {
+            Operand operand = _tempdict.get(parameter);
+            if (operand != null) {
+                return operand;
+            }
         }
         Operand result = GetParameterEx(parameter);
         if (UseTempDict) {

@@ -43,5 +43,6 @@ public final class ConditionTree {
     public String ErrorMessage;
 
     public ConditionTree() {
+        Type = ConditionTreeType.String;
     }
 }

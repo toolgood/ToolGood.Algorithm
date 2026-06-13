@@ -508,7 +508,7 @@ public abstract class Operand {
             if (_args == null || _args.length == 0) {
                 _formattedMsg = _errorMsg;
             } else {
-                _formattedMsg = String.format(_errorMsg, _args);
+                _formattedMsg = java.text.MessageFormat.format(_errorMsg, _args);
             }
             return _formattedMsg;
         }
