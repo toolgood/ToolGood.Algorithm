@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals;
+package toolgood.algorithm.internals.visitors;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.misc.Interval;
