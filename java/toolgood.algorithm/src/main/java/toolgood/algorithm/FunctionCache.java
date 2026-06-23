@@ -13,10 +13,10 @@ public class FunctionCache {
     private final ConcurrentHashMap<String, FunctionBase> functionCache = new ConcurrentHashMap<>();
 
     public FunctionBase ParseWithCache(String funExp) {
-        return functionCache.computeIfAbsent(funExp, key -> {
-            CalculateTree tree = AlgorithmEngineHelper.ParseCalculate(key);
-            return CreateCalculate(tree);
-        });
+        FunctionBase result = functionCache.get(funExp);
+        if (result != null) return result;
+        CalculateTree tree = AlgorithmEngineHelper.ParseCalculate(funExp);
+        return CreateCalculate(tree);
     }
 
     private FunctionBase CreateCalculate(CalculateTree tree) {
@@ -25,7 +25,9 @@ public class FunctionCache {
         }
         if (tree.Type == CalculateTreeType.String) {
             try {
-                return AlgorithmEngineHelper.ParseFormula(tree.Text);
+                FunctionBase fun = AlgorithmEngineHelper.ParseFormula(tree.Text);
+                functionCache.put(tree.Text, fun);
+                return fun;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -43,10 +45,10 @@ public class FunctionCache {
     }
 
     public FunctionBase ParseConditionWithCache(String funExp) {
-        return functionCache.computeIfAbsent(funExp, key -> {
-            ConditionTree tree = AlgorithmEngineHelper.ParseCondition(key);
-            return CreateCondition(tree);
-        });
+        FunctionBase result = functionCache.get(funExp);
+        if (result != null) return result;
+        ConditionTree tree = AlgorithmEngineHelper.ParseCondition(funExp);
+        return CreateCondition(tree);
     }
 
     private FunctionBase CreateCondition(ConditionTree tree) {
