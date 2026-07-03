@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -21,21 +20,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if(engine.UseStrictMode) {
-				var args1 = GetBoolean_1(engine, tempParameter);
-				if(args1.IsErrorOrNone) { return args1; }
-				if(args1.BooleanValue == false) {
+			var args1 = GetBoolean_1(engine, tempParameter);
+			if(args1.IsErrorOrNone) { return args1; }
+			if(args1.BooleanValue == false) {
+				if(engine.UseStrictMode) {
 					var args2 = GetBoolean_2(engine, tempParameter);
 					if(args2.IsErrorOrNone) { return args2; }
-					return Operand.False;
 				}
-				return GetBoolean_2(engine, tempParameter);
-			} else {
-				var args1 = GetBoolean_1(engine, tempParameter);
-				if(args1.IsErrorOrNone) { return args1; }
-				if(args1.BooleanValue == false) { return args1; }
-				return GetBoolean_2(engine, tempParameter);
+				return Operand.False;
 			}
+			return GetBoolean_2(engine, tempParameter);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{

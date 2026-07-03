@@ -54,6 +54,14 @@ public class AlgorithmEngine {
     public boolean UseLocalTime = true;
 
     /**
+     * 是否使用严格模式，影响 逻辑运算符的短路行为，
+     * 严格模式下， 条件公式 '(2&gt;1) || ERROR("")' 会报错，
+     * 非严格模式下，条件公式 '(2&gt;1) || ERROR("")' 会返回 true，
+     * 非严格模式下，条件公式  'ERROR("") || (2&gt;1)' 会报错。
+     */
+    public boolean UseStrictMode = true;
+
+    /**
      * 长度单位
      */
     public DistanceUnitType DistanceUnit = DistanceUnitType.M;

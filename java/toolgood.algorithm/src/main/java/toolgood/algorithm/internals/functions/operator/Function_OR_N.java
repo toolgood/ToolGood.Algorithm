@@ -27,7 +27,10 @@ public final class Function_OR_N extends Function_N {
         for (int i = 0; i < funcs.length; i++) {
             Operand a = GetBoolean(engine, tempParameter, i);
             if (a.IsErrorOrNone()) { return a; }
-            if (a.BooleanValue()) b = true;
+            if (a.BooleanValue()) {
+                b = true;
+                if (!engine.UseStrictMode) { break; }
+            }
         }
         return b ? Operand.True : Operand.False;
     }

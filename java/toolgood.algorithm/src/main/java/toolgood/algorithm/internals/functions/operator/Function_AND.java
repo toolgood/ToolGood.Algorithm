@@ -30,8 +30,10 @@ public final class Function_AND extends Function_2 {
         Operand args1 = GetBoolean_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
         if (!args1.BooleanValue()) {
-            Operand args2 = GetBoolean_2(engine, tempParameter);
-            if (args2.IsErrorOrNone()) { return args2; }
+            if (engine.UseStrictMode) {
+                Operand args2 = GetBoolean_2(engine, tempParameter);
+                if (args2.IsErrorOrNone()) { return args2; }
+            }
             return Operand.False;
         }
         return GetBoolean_2(engine, tempParameter);

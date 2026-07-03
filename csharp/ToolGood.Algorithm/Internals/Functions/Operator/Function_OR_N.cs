@@ -16,20 +16,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			bool b = false;
-			if(engine.UseStrictMode) {
-				for(int i = 0; i < funcs.Length; i++) {
-					var a = GetBoolean(engine, tempParameter, i);
-					if(a.IsErrorOrNone) { return a; }
-					if(a.BooleanValue) b = true;
-				}
-			} else {
-				for(int i = 0; i < funcs.Length; i++) {
-					var a = GetBoolean(engine, tempParameter, i);
-					if(a.IsErrorOrNone) { return a; }
-					if(a.BooleanValue) { 
-						b = true;
-						break;
-					}
+			for(int i = 0; i < funcs.Length; i++) {
+				var a = GetBoolean(engine, tempParameter, i);
+				if(a.IsErrorOrNone) { return a; }
+				if(a.BooleanValue) {
+					b = true;
+					if(engine.UseStrictMode == false) { break; }
 				}
 			}
 			return b ? Operand.True : Operand.False;
