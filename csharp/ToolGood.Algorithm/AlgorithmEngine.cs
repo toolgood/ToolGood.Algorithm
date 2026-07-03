@@ -52,6 +52,15 @@ namespace ToolGood.Algorithm
 		/// 使用EXCEL索引
 		/// </summary>
 		public bool UseExcelIndex { set { ExcelIndex = value ? 1 : 0; } }
+
+		/// <summary>
+		/// 是否使用严格模式，影响 逻辑运算符的短路行为，
+		/// 严格模式下， 条件公式 '(2>1) || ERROR("")' 会报错，
+		/// 非严格模式下，条件公式 '(2>1) || ERROR("")' 会返回 true，
+		/// 非严格模式下，条件公式  'ERROR("") || (2>1)' 会报错。
+		/// </summary>
+		public bool UseStrictMode { get; set; } = true;
+
 		/// <summary>
 		/// 使用缓存，不要在并发环境下运行
 		/// </summary>
