@@ -67,8 +67,13 @@ public final class Function_RATE extends Function_6 {
             guess = guessArg.NumberValue();
         }
 
-        BigDecimal rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
-        return Operand.Create(rate);
+        try {
+            // 牛顿迭代中 rate=0 除零、Math.pow 产生 NaN 会抛异常,捕获并返回错误
+            BigDecimal rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
+            return Operand.Create(rate);
+        } catch (ArithmeticException | IllegalArgumentException ex) {
+            return FunctionError();
+        }
     }
 
     private BigDecimal NewtonRaphson(BigDecimal n, BigDecimal p, BigDecimal v, BigDecimal f, int type, BigDecimal rate) {

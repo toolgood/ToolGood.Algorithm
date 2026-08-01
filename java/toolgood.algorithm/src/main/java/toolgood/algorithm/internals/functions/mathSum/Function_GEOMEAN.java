@@ -45,7 +45,14 @@ public final class Function_GEOMEAN extends Function_N {
             }
             product *= val;
         }
+        // 连乘溢出为 Infinity/NaN 时返回错误
+        if (Double.isNaN(product) || Double.isInfinite(product)) {
+            return FunctionError();
+        }
         double geoMean = Math.pow(product, 1.0 / list.size());
+        if (Double.isNaN(geoMean) || Double.isInfinite(geoMean)) {
+            return FunctionError();
+        }
         return Operand.Create(BigDecimal.valueOf(geoMean));
     }
 

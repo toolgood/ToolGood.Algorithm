@@ -37,7 +37,12 @@ public final class Function_QUOTIENT extends Function_2 {
         if (args2.NumberValue().compareTo(BigDecimal.ZERO) == 0) {
             return Div0Error();
         }
-        return Operand.Create(BigDecimal.valueOf((int)(args1.NumberValue().doubleValue() / args2.NumberValue().doubleValue())));
+        double result = args1.NumberValue().doubleValue() / args2.NumberValue().doubleValue();
+        // 结果非有限数或超出 int 范围时返回错误,避免静默截断
+        if (Double.isNaN(result) || Double.isInfinite(result) || result < Integer.MIN_VALUE || result > Integer.MAX_VALUE) {
+            return FunctionError();
+        }
+        return Operand.Create(BigDecimal.valueOf((int) result));
     }
 
     @Override

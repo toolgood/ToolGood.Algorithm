@@ -43,7 +43,12 @@ public final class Function_BESSELI extends Function_2 {
         double x = args1.NumberValue().doubleValue();
         int n = (int) args2.NumberValue().doubleValue();
 
-        return Operand.Create(BigDecimal.valueOf(BesselI(n, x)));
+        double result = BesselI(n, x);
+        // x 过大时 Math.exp 溢出为 Infinity/NaN,返回错误
+        if (Double.isNaN(result) || Double.isInfinite(result)) {
+            return FunctionError();
+        }
+        return Operand.Create(BigDecimal.valueOf(result));
     }
 
     private static double BesselI(int n, double x) {

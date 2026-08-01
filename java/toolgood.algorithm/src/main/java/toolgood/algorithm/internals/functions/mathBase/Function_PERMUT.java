@@ -34,8 +34,17 @@ public final class Function_PERMUT extends Function_2 {
         if (args2.IsErrorOrNone()) {
             return args2;
         }
-        int total = args1.IntValue();
-        int count = args2.IntValue();
+        // 先检查数值范围,避免 BigDecimal.intValue 大数静默截断导致结果错误
+        BigDecimal num1 = args1.NumberValue();
+        BigDecimal num2 = args2.NumberValue();
+        if (num1.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0 || num1.compareTo(BigDecimal.valueOf(Integer.MIN_VALUE)) < 0) {
+            return ParameterError(1);
+        }
+        if (num2.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0 || num2.compareTo(BigDecimal.valueOf(Integer.MIN_VALUE)) < 0) {
+            return ParameterError(2);
+        }
+        int total = num1.intValue();
+        int count = num2.intValue();
         if (total < 0) {
             return ParameterError(1);
         }

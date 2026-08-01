@@ -28,7 +28,12 @@ public final class Function_FACTDOUBLE extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
-        int z = args1.IntValue();
+        // 先检查数值范围,避免 BigDecimal.intValue 大数静默截断导致结果错误
+        BigDecimal number = args1.NumberValue();
+        if (number.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0 || number.compareTo(BigDecimal.valueOf(Integer.MIN_VALUE)) < 0) {
+            return ParameterError(1);
+        }
+        int z = number.intValue();
         if (z < 0) { return ParameterError(1); }
         if (z > 28) { return ParameterError(1); }
 

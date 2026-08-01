@@ -189,13 +189,7 @@ public class AlgorithmEngine {
      * 执行函数
      */
     public Operand Evaluate(FunctionBase function) {
-        try {
-            return function.Evaluate(this, (engine, name) -> engine.GetParameter(name));
-        } catch (ArithmeticException | IllegalArgumentException ex) {
-            // 数值运算溢出等异常统一兜底,转为错误操作数,避免异常穿透到调用方
-            LastError = ex.getMessage();
-            return Operand.Error(String.format("Function '%s' evaluate error: %s", function.Name(), ex.getMessage()));
-        }
+        return function.Evaluate(this, (engine, name) -> engine.GetParameter(name));
     }
 
     // #endregion Parse Evaluate

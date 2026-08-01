@@ -42,7 +42,12 @@ public final class Function_POWER extends Function_2 {
         if (baseValue.compareTo(BigDecimal.ZERO) < 0 && exponent.remainder(BigDecimal.ONE).compareTo(BigDecimal.ZERO) != 0) {
             return ParameterError(1);
         }
-        return Operand.Create(BigDecimal.valueOf(Math.pow(baseValue.doubleValue(), exponent.doubleValue())));
+        double result = Math.pow(baseValue.doubleValue(), exponent.doubleValue());
+        // 结果非有限数(溢出/负底非整数)时返回错误
+        if (Double.isNaN(result) || Double.isInfinite(result)) {
+            return FunctionError();
+        }
+        return Operand.Create(BigDecimal.valueOf(result));
     }
 
     @Override

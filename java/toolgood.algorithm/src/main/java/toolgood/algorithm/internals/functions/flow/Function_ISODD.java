@@ -28,7 +28,8 @@ public final class Function_ISODD extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = func1.Evaluate(engine, tempParameter);
         if (args1.IsNumber()) {
-            if (Math.abs(args1.IntValue()) % 2 == 1) {
+            // 用 toBigInteger 取整(截断),避免 BigDecimal.intValue 大数静默截断导致奇偶错误
+            if (args1.NumberValue().toBigInteger().mod(java.math.BigInteger.TWO).equals(java.math.BigInteger.ONE)) {
                 return Operand.True;
             }
         }
