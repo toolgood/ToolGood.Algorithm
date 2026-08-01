@@ -32,18 +32,56 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				list.Add(ar.DateValue.ToDateTime());
 			}
             if (days > 0) {
+                // 先逐天对齐到周一（最多 6 天），期间消耗工作日
+                while (startMyDate.DayOfWeek != DayOfWeek.Monday && days > 0) {
+                    startMyDate = startMyDate.AddDays(1);
+                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday || startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                    if (list.Contains(startMyDate)) continue;
+                    days--;
+                }
+                if (days == 0) return Operand.Create(startMyDate);
+
+                // 整周粗跳：起点已是周一，每 5 个工作日 = 7 天
+                var afterJump = startMyDate.AddDays((days / 5) * 7);
+                var extra = 0;
+                foreach (var h in list) {
+                    if (h.Date > startMyDate.Date && h.Date <= afterJump.Date
+                        && h.DayOfWeek != DayOfWeek.Saturday && h.DayOfWeek != DayOfWeek.Sunday) {
+                        extra++;
+                    }
+                }
+                startMyDate = afterJump;
+                days = days % 5 + extra;
                 while (days > 0) {
                     startMyDate = startMyDate.AddDays(1);
-                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
-                    if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday || startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
                     if (list.Contains(startMyDate)) continue;
                     days--;
                 }
             } else if (days < 0) {
+                // 先逐天对齐到周五（最多 6 天），期间消耗工作日
+                while (startMyDate.DayOfWeek != DayOfWeek.Friday && days < 0) {
+                    startMyDate = startMyDate.AddDays(-1);
+                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday || startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                    if (list.Contains(startMyDate)) continue;
+                    days++;
+                }
+                if (days == 0) return Operand.Create(startMyDate);
+
+                // 整周粗跳：起点已是周五，每 5 个工作日 = 7 天
+                var afterJump = startMyDate.AddDays((-days / 5) * -7);
+                var extra = 0;
+                foreach (var h in list) {
+                    if (h.Date >= afterJump.Date && h.Date < startMyDate.Date
+                        && h.DayOfWeek != DayOfWeek.Saturday && h.DayOfWeek != DayOfWeek.Sunday) {
+                        extra++;
+                    }
+                }
+                startMyDate = afterJump;
+                days = -((-days) % 5) - extra;
                 while (days < 0) {
                     startMyDate = startMyDate.AddDays(-1);
-                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
-                    if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                    if (startMyDate.DayOfWeek == DayOfWeek.Saturday || startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
                     if (list.Contains(startMyDate)) continue;
                     days++;
                 }

@@ -50,13 +50,25 @@ public final class Function_NETWORKDAYS extends Function_N {
             endMyDate = tmp;
             negative = true;
         }
-        while (!startMyDate.isAfter(endMyDate)) {
-            if (startMyDate.getDayOfWeek() != 7 && startMyDate.getDayOfWeek() != 6) {
-                if (list.contains(startMyDate) == false) {
-                    days++;
-                }
+        // 数学统计工作日:完整周数 × 5 + 余数逐天,再减去落在工作日的节假日
+        DateTime startDay = startMyDate.withTimeAtStartOfDay();
+        DateTime endDay = endMyDate.withTimeAtStartOfDay();
+        int totalDays = org.joda.time.Days.daysBetween(startDay, endDay).getDays() + 1;
+        int fullWeeks = totalDays / 7;
+        int remainder = totalDays % 7;
+        days = fullWeeks * 5;
+        for (int i = 0; i < remainder; i++) {
+            DateTime d = startDay.plusDays(i);
+            if (d.getDayOfWeek() != 7 && d.getDayOfWeek() != 6) {
+                days++;
             }
-            startMyDate = startMyDate.plusDays(1);
+        }
+        for (DateTime h : list) {
+            DateTime hd = h.withTimeAtStartOfDay();
+            if (!hd.isBefore(startDay) && !hd.isAfter(endDay)
+                    && hd.getDayOfWeek() != 7 && hd.getDayOfWeek() != 6) {
+                days--;
+            }
         }
         return Operand.Create(negative ? -days : days);
     }

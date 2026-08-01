@@ -42,18 +42,56 @@ public final class Function_WORKDAY extends Function_N {
             list.add(ar.DateValue().ToDateTime());
         }
         if (days > 0) {
+            // 先逐天对齐到周一（最多 6 天），期间消耗工作日
+            while (startMyDate.getDayOfWeek() != 1 && days > 0) {
+                startMyDate = startMyDate.plusDays(1);
+                if (startMyDate.getDayOfWeek() == 6 || startMyDate.getDayOfWeek() == 7) continue;
+                if (list.contains(startMyDate)) continue;
+                days--;
+            }
+            if (days == 0) return Operand.Create(startMyDate);
+
+            // 整周粗跳：起点已是周一，每 5 个工作日 = 7 天
+            DateTime afterJump = startMyDate.plusDays((days / 5) * 7);
+            int extra = 0;
+            for (DateTime h : list) {
+                if (h.isAfter(startMyDate) && !h.isAfter(afterJump)
+                        && h.getDayOfWeek() != 6 && h.getDayOfWeek() != 7) {
+                    extra++;
+                }
+            }
+            startMyDate = afterJump;
+            days = days % 5 + extra;
             while (days > 0) {
                 startMyDate = startMyDate.plusDays(1);
-                if (startMyDate.getDayOfWeek() == 6) continue;
-                if (startMyDate.getDayOfWeek() == 7) continue;
+                if (startMyDate.getDayOfWeek() == 6 || startMyDate.getDayOfWeek() == 7) continue;
                 if (list.contains(startMyDate)) continue;
                 days--;
             }
         } else if (days < 0) {
+            // 先逐天对齐到周五（最多 6 天），期间消耗工作日
+            while (startMyDate.getDayOfWeek() != 5 && days < 0) {
+                startMyDate = startMyDate.plusDays(-1);
+                if (startMyDate.getDayOfWeek() == 6 || startMyDate.getDayOfWeek() == 7) continue;
+                if (list.contains(startMyDate)) continue;
+                days++;
+            }
+            if (days == 0) return Operand.Create(startMyDate);
+
+            // 整周粗跳：起点已是周五，每 5 个工作日 = 7 天
+            DateTime afterJump = startMyDate.plusDays((-days / 5) * -7);
+            int extra = 0;
+            for (DateTime h : list) {
+                if (!h.isBefore(afterJump) && h.isBefore(startMyDate)
+                        && h.getDayOfWeek() != 6 && h.getDayOfWeek() != 7) {
+                    extra++;
+                }
+            }
+            startMyDate = afterJump;
+            days = -((-days) % 5) - extra;
             while (days < 0) {
                 startMyDate = startMyDate.plusDays(-1);
-                if (startMyDate.getDayOfWeek() == 6) continue;
-                if (startMyDate.getDayOfWeek() == 7) continue;
+                if (startMyDate.getDayOfWeek() == 6 || startMyDate.getDayOfWeek() == 7) continue;
                 if (list.contains(startMyDate)) continue;
                 days++;
             }

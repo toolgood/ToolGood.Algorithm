@@ -40,13 +40,25 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 endMyDate = tmp;
                 negative = true;
             }
-            while (startMyDate <= endMyDate) {
-                if (startMyDate.DayOfWeek != DayOfWeek.Sunday && startMyDate.DayOfWeek != DayOfWeek.Saturday) {
-                    if (list.Contains(startMyDate) == false) {
-                        days++;
-                    }
+            // 数学统计工作日:完整周数 × 5 + 余数逐天,再减去落在工作日的节假日
+            var startDay = startMyDate.Date;
+            var endDay = endMyDate.Date;
+            var totalDays = (endDay - startDay).Days + 1;
+            var fullWeeks = totalDays / 7;
+            var remainder = totalDays % 7;
+            days = fullWeeks * 5;
+            for (int i = 0; i < remainder; i++) {
+                var d = startDay.AddDays(i);
+                if (d.DayOfWeek != DayOfWeek.Sunday && d.DayOfWeek != DayOfWeek.Saturday) {
+                    days++;
                 }
-                startMyDate = startMyDate.AddDays(1);
+            }
+            foreach (var h in list) {
+                var hd = h.Date;
+                if (hd >= startDay && hd <= endDay
+                    && hd.DayOfWeek != DayOfWeek.Sunday && hd.DayOfWeek != DayOfWeek.Saturday) {
+                    days--;
+                }
             }
             return Operand.Create(negative ? -days : days);
         }
