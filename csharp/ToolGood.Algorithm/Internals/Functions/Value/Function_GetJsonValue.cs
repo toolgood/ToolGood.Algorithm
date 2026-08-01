@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					if(((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
 						return operand;
 					}
-					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue);
+					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.NumberValue);
 				} else if(op.IsText) {
 					if(((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
 						return operand;

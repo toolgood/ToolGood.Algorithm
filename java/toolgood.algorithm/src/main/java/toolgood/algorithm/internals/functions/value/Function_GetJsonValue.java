@@ -45,7 +45,7 @@ public final class Function_GetJsonValue extends Function_2 {
                 if (operand != null) {
                     return operand;
                 }
-                return Operand.Error(String.format("Function '%s' Parameter name '%s' is missing!", "GetJsonValue", op.TextValue()));
+                return Operand.Error(String.format("Function '%s' Parameter name '%s' is missing!", "GetJsonValue", op.NumberValue().toPlainString()));
             } else if (op.IsText()) {
                 Operand operand = ((OperandKeyValueList)obj).GetValue(op.TextValue());
                 if (operand != null) {
