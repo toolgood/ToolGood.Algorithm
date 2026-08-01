@@ -27,9 +27,19 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			} else if(args1.IsBoolean) {
 				return Operand.Create(args1.BooleanValue ? "TRUE" : "FALSE");
 			} else if(args1.IsNumber) {
-				return Operand.Create(args1.NumberValue.ToString(args2.TextValue, CultureInfo.InvariantCulture));
+				// 非法格式串会抛 FormatException,需捕获并返回错误操作数
+				try {
+					return Operand.Create(args1.NumberValue.ToString(args2.TextValue, CultureInfo.InvariantCulture));
+				} catch(FormatException) {
+					return ParameterError(2);
+				}
 			} else if(args1.IsDate) {
-				return Operand.Create(args1.DateValue.ToString(args2.TextValue));
+				// 非法格式串会抛 FormatException,需捕获并返回错误操作数
+				try {
+					return Operand.Create(args1.DateValue.ToString(args2.TextValue));
+				} catch(FormatException) {
+					return ParameterError(2);
+				}
 			}
 			args1 = ConvertToText(args1, 1);
 			if(args1.IsErrorOrNone) { return args1; }

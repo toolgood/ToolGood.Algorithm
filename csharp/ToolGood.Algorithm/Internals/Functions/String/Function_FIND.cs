@@ -22,8 +22,12 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
 			if(func3 == null) {
-				var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + engine.ExcelIndex;
-				return Operand.Create(p);
+				var index = args2.TextValue.AsSpan().IndexOf(args1.TextValue);
+				if(index < 0) {
+					// 未找到:Excel 模式(索引从1开始)返回错误,C# 模式(索引从0开始)返回 -1
+					return engine.ExcelIndex == 1 ? FunctionError() : Operand.Create(-1);
+				}
+				return Operand.Create(index + engine.ExcelIndex);
 			}
 			var count = GetNumber_3(engine, tempParameter);
 			if(count.IsErrorOrNone) { return count; }
@@ -33,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var p2 = args2.TextValue.AsSpan(startIndex).IndexOf(args1.TextValue);
 			if(p2 < 0) {
-				return FunctionError();
+				return engine.ExcelIndex == 1 ? FunctionError() : Operand.Create(-1);
 			}
 			return Operand.Create(p2 + startIndex + engine.ExcelIndex);
 		}

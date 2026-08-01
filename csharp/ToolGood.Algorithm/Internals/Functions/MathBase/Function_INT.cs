@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -19,7 +19,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
-			return Operand.Create((args1.IntValue));
+			// Excel INT 语义:向下取整(Floor),且避免 (int)decimal 强转的溢出风险
+			return Operand.Create(Math.Floor(args1.NumberValue));
 		}
 		public override OperandType GetResultType()
 		{

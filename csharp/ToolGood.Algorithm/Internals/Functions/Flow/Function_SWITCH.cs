@@ -52,6 +52,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 			if(a.IsBoolean && b.IsBoolean) {
 				return a.BooleanValue == b.BooleanValue;
 			}
+			if(a.IsDate && b.IsDate) {
+				return a.DateValue.ToLong() == b.DateValue.ToLong();
+			}
 			if(a.IsNull && b.IsNull) {
 				return true;
 			}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -22,18 +22,22 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			stringBuilder.Append('"');
-			var stringValue = _value.TextValue;
-			stringValue = stringValue.Replace("\\", "\\\\");
-			stringValue = stringValue.Replace("\r", "\\r");
-			stringValue = stringValue.Replace("\n", "\\n");
-			stringValue = stringValue.Replace("\t", "\\t");
-			stringValue = stringValue.Replace("\0", "\\0");
-			stringValue = stringValue.Replace("\v", "\\v");
-			stringValue = stringValue.Replace("\a", "\\a");
-			stringValue = stringValue.Replace("\b", "\\b");
-			stringValue = stringValue.Replace("\f", "\\f");
-			stringValue = stringValue.Replace("\"", "\\\"");
-			stringBuilder.Append(stringValue);
+			// 单遍转义,避免链式 Replace 多次创建中间字符串
+			foreach(var c in _value.TextValue) {
+				switch(c) {
+					case '\\': stringBuilder.Append("\\\\"); break;
+					case '"': stringBuilder.Append("\\\""); break;
+					case '\r': stringBuilder.Append("\\r"); break;
+					case '\n': stringBuilder.Append("\\n"); break;
+					case '\t': stringBuilder.Append("\\t"); break;
+					case '\0': stringBuilder.Append("\\0"); break;
+					case '\v': stringBuilder.Append("\\v"); break;
+					case '\a': stringBuilder.Append("\\a"); break;
+					case '\b': stringBuilder.Append("\\b"); break;
+					case '\f': stringBuilder.Append("\\f"); break;
+					default: stringBuilder.Append(c); break;
+				}
+			}
 			stringBuilder.Append('"');
 		}
 		public override OperandType GetResultType()

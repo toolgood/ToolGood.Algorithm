@@ -24,7 +24,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 	 
 			if(args2.NumberValue == 0m) { return Div0Error(); }
 
-			return Operand.Create(args1.NumberValue % args2.NumberValue);
+			var number1 = args1.NumberValue;
+			var number2 = args2.NumberValue;
+			// Excel MOD 语义:结果符号随除数,即 n - d*INT(n/d);C# % 符号随被除数,需修正
+			var r = number1 % number2;
+			if(r != 0 && (r < 0 != number2 < 0)) {
+				r += number2;
+			}
+			return Operand.Create(r);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
