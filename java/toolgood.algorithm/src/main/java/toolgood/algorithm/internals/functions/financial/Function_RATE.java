@@ -78,21 +78,21 @@ public final class Function_RATE extends Function_6 {
 
     private BigDecimal NewtonRaphson(BigDecimal n, BigDecimal p, BigDecimal v, BigDecimal f, int type, BigDecimal rate) {
         for (int i = 0; i < 100; i++) {
-            BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), n.doubleValue()));
+            BigDecimal onePlusRate = BigDecimal.ONE.add(rate);
+            BigDecimal factor = BigDecimal.valueOf(Math.pow(onePlusRate.doubleValue(), n.doubleValue()));
+            BigDecimal pow_n_minus_1 = BigDecimal.valueOf(Math.pow(onePlusRate.doubleValue(),
+                    n.subtract(BigDecimal.ONE).doubleValue()));
             BigDecimal fn;
 
             if (type == 1) {
                 fn = v.multiply(factor)
-                        .add(p.multiply(BigDecimal.ONE.add(rate)).multiply(factor.subtract(BigDecimal.ONE)).divide(rate, MathContext.DECIMAL128))
+                        .add(p.multiply(onePlusRate).multiply(factor.subtract(BigDecimal.ONE)).divide(rate, MathContext.DECIMAL128))
                         .add(f);
             } else {
                 fn = v.multiply(factor)
                         .add(p.multiply(factor.subtract(BigDecimal.ONE)).divide(rate, MathContext.DECIMAL128))
                         .add(f);
             }
-
-            BigDecimal pow_n_minus_1 = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(),
-                    n.subtract(BigDecimal.ONE).doubleValue()));
 
             BigDecimal dfn;
             // term1 = v * n * pow_n_minus_1
@@ -102,7 +102,7 @@ public final class Function_RATE extends Function_6 {
 
             if (type == 1) {
                 // term2 = p * (1 + rate) * inner / (rate * rate)
-                BigDecimal term2 = p.multiply(BigDecimal.ONE.add(rate)).multiply(inner)
+                BigDecimal term2 = p.multiply(onePlusRate).multiply(inner)
                         .divide(rate.multiply(rate), MathContext.DECIMAL128);
                 // term3 = p * (factor - 1) / rate
                 BigDecimal term3 = p.multiply(factor.subtract(BigDecimal.ONE)).divide(rate, MathContext.DECIMAL128);

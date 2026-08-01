@@ -74,19 +74,24 @@ public final class Function_XIRR extends Function_3 {
 
     private BigDecimal NewtonRaphsonXIRR(List<BigDecimal> values, List<DateTime> dates, BigDecimal rate) {
         DateTime baseDate = dates.get(0);
+        BigDecimal[] exps = new BigDecimal[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            int days = Days.daysBetween(baseDate, dates.get(i)).getDays();
+            exps[i] = BigDecimal.valueOf(days).divide(new BigDecimal("365.0"), MathContext.DECIMAL128);
+        }
 
         for (int iter = 0; iter < 100; iter++) {
             BigDecimal npv = BigDecimal.ZERO;
             BigDecimal dnpv = BigDecimal.ZERO;
+            BigDecimal onePlusRate = BigDecimal.ONE.add(rate);
+            double logBase = Math.log(onePlusRate.doubleValue());
 
             for (int i = 0; i < values.size(); i++) {
-                int days = Days.daysBetween(baseDate, dates.get(i)).getDays();
-                BigDecimal exp = BigDecimal.valueOf(days).divide(new BigDecimal("365.0"), MathContext.DECIMAL128);
-                BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), exp.doubleValue()));
+                BigDecimal factor = BigDecimal.valueOf(Math.exp(exps[i].doubleValue() * logBase));
                 npv = npv.add(values.get(i).divide(factor, MathContext.DECIMAL128));
                 dnpv = dnpv.subtract(
-                        values.get(i).multiply(exp)
-                                .divide(factor.multiply(BigDecimal.ONE.add(rate)), MathContext.DECIMAL128));
+                        values.get(i).multiply(exps[i])
+                                .divide(factor.multiply(onePlusRate), MathContext.DECIMAL128));
             }
 
             if (dnpv.abs().compareTo(new BigDecimal("1e-12")) < 0) break;

@@ -76,13 +76,15 @@ public final class Function_IRR extends Function_2 {
         for (int iter = 0; iter < 100; iter++) {
             BigDecimal npv = BigDecimal.ZERO;
             BigDecimal dnpv = BigDecimal.ZERO;
+            BigDecimal onePlusRate = BigDecimal.ONE.add(rate);
+            BigDecimal factor = BigDecimal.ONE;
 
             for (int i = 0; i < values.size(); i++) {
-                BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), i));
                 npv = npv.add(values.get(i).divide(factor, MathContext.DECIMAL128));
                 dnpv = dnpv.subtract(
                         BigDecimal.valueOf(i).multiply(values.get(i))
-                                .divide(factor.multiply(BigDecimal.ONE.add(rate)), MathContext.DECIMAL128));
+                                .divide(factor.multiply(onePlusRate), MathContext.DECIMAL128));
+                factor = factor.multiply(onePlusRate);
             }
 
             if (dnpv.abs().compareTo(new BigDecimal("1e-12")) < 0) break;

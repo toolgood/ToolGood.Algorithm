@@ -68,23 +68,25 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 		private decimal NewtonRaphson(decimal n, decimal p, decimal v, decimal f, decimal type, decimal rate)
 		{
 			for (int i = 0; i < 100; i++) {
-				decimal factor = MathEx.Pow(1 + rate, n);
+				decimal onePlusRate = 1 + rate;
+				decimal factor = MathEx.Pow(onePlusRate, n);
+				decimal powNMinus1 = MathEx.Pow(onePlusRate, n - 1);
 				decimal fn;
 				
 				if (type == 1) {
-					fn = v * factor + p * (1 + rate) * (factor - 1) / rate + f;
+					fn = v * factor + p * onePlusRate * (factor - 1) / rate + f;
 				} else {
 					fn = v * factor + p * (factor - 1) / rate + f;
 				}
 
 				decimal dfn;
 				if (type == 1) {
-					dfn = v * n * MathEx.Pow(1 + rate, n - 1) + 
-						  p * (1 + rate) * (n * rate * MathEx.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate) +
+					dfn = v * n * powNMinus1 + 
+						  p * onePlusRate * (n * rate * powNMinus1 - (factor - 1)) / (rate * rate) +
 						  p * (factor - 1) / rate;
 				} else {
-					dfn = v * n * MathEx.Pow(1 + rate, n - 1) + 
-						  p * (n * rate * MathEx.Pow(1 + rate, n - 1) - (factor - 1)) / (rate * rate);
+					dfn = v * n * powNMinus1 + 
+						  p * (n * rate * powNMinus1 - (factor - 1)) / (rate * rate);
 				}
 
 				if (Math.Abs(dfn) < 1e-12m) break;

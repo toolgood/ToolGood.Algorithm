@@ -59,17 +59,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal rate)
 		{
 			var baseDate = dates[0];
+			var exps = new decimal[values.Count];
+			for (int i = 0; i < values.Count; i++) {
+				exps[i] = (decimal)(dates[i] - baseDate).TotalDays / 365.0m;
+			}
 
 			for (int iter = 0; iter < 100; iter++) {
 				decimal npv = 0;
 				decimal dnpv = 0;
+				var onePlusRate = 1 + rate;
+				var logBase = MathEx.Log(onePlusRate);
 
 				for (int i = 0; i < values.Count; i++) {
-					var days = (decimal)(dates[i] - baseDate).TotalDays;
-					var exp = days / 365.0m;
-					var factor = MathEx.Pow(1 + rate, exp);
+					var factor = MathEx.Exp(exps[i] * logBase);
 					npv += values[i] / factor;
-					dnpv -= values[i] * exp / (factor * (1 + rate));
+					dnpv -= values[i] * exps[i] / (factor * onePlusRate);
 				}
 
 				if (Math.Abs(dnpv) < 1e-12m) break;

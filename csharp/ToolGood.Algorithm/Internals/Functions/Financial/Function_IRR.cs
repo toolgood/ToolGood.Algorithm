@@ -64,11 +64,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			for(int iter = 0; iter < 100; iter++) {
 				decimal npv = 0;
 				decimal dnpv = 0;
+				decimal onePlusRate = 1 + rate;
+				decimal factor = 1m;
 
 				for(int i = 0; i < values.Count; i++) {
-					var factor = (decimal)MathEx.Pow((1 + rate), i);
 					npv += values[i] / factor;
-					dnpv -= i * values[i] / (factor * (1 + rate));
+					dnpv -= i * values[i] / (factor * onePlusRate);
+					factor *= onePlusRate;
 				}
 
 				if(Math.Abs(dnpv) < 1e-12m) break;
