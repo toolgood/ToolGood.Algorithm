@@ -34,8 +34,12 @@ public final class Function_SEARCH extends Function_3 {
         int excelIndex = engine.ExcelIndex;
 
         if (func3 == null) {
-            int p = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase()) + excelIndex;
-            return Operand.Create(p);
+            int index = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase());
+            if (index < 0) {
+                // 未找到:Excel 模式(索引从1开始)返回错误,C# 模式(索引从0开始)返回 -1
+                return engine.ExcelIndex == 1 ? FunctionError() : Operand.Create(-1);
+            }
+            return Operand.Create(index + excelIndex);
         }
         Operand args3 = GetNumber_3(engine, tempParameter);
         if (args3.IsErrorOrNone()) { return args3; }
@@ -45,7 +49,7 @@ public final class Function_SEARCH extends Function_3 {
         }
         int p2 = args2.TextValue().toLowerCase().indexOf(args1.TextValue().toLowerCase(), startIndex);
         if (p2 < 0) {
-            return FunctionError();
+            return engine.ExcelIndex == 1 ? FunctionError() : Operand.Create(-1);
         }
         return Operand.Create(p2 + startIndex + excelIndex);
     }

@@ -109,7 +109,7 @@ public class MathBaseTest {
         double t = engine.TryEvaluate("int(9.222)", 0.0);
         assertEquals(9.0, t, 0.0);
         t = engine.TryEvaluate("int(-9.222)", 0.0);
-        assertEquals(-9.0, t, 0.0);
+        assertEquals(-10.0, t, 0.0);
     }
 
     @Test

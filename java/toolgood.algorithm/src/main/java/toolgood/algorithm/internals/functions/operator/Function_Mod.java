@@ -33,7 +33,14 @@ public final class Function_Mod extends Function_2 {
 
         if (args2.NumberValue().compareTo(BigDecimal.ZERO) == 0) { return Div0Error(); }
 
-        return Operand.Create(args1.NumberValue().remainder(args2.NumberValue()));
+        BigDecimal number1 = args1.NumberValue();
+        BigDecimal number2 = args2.NumberValue();
+        // Excel MOD 语义:结果符号随除数,即 n - d*INT(n/d);Java remainder 符号随被除数,需修正
+        BigDecimal r = number1.remainder(number2);
+        if (r.signum() != 0 && (r.signum() < 0) != (number2.signum() < 0)) {
+            r = r.add(number2);
+        }
+        return Operand.Create(r);
     }
 
     @Override

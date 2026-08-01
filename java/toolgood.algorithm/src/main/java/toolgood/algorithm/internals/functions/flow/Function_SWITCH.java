@@ -62,6 +62,9 @@ public final class Function_SWITCH extends Function_N {
         if (a.IsBoolean() && b.IsBoolean()) {
             return a.BooleanValue() == b.BooleanValue();
         }
+        if (a.IsDate() && b.IsDate()) {
+            return a.DateValue().ToLong() == b.DateValue().ToLong();
+        }
         if (a.IsNull() && b.IsNull()) {
             return true;
         }

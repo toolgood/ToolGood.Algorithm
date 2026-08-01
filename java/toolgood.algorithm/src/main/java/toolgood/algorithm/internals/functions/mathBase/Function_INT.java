@@ -1,5 +1,7 @@
 package toolgood.algorithm.internals.functions.mathBase;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.function.BiFunction;
 import toolgood.algorithm.AlgorithmEngine;
@@ -27,7 +29,8 @@ public final class Function_INT extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
-        return Operand.Create(args1.IntValue());
+        // Excel INT 语义:向下取整(Floor)
+        return Operand.Create(args1.NumberValue().setScale(0, RoundingMode.FLOOR));
     }
 
     @Override

@@ -31,8 +31,12 @@ public final class Function_FIND extends Function_3 {
         Operand args2 = GetText_2(engine, tempParameter);
         if (args2.IsErrorOrNone()) { return args2; }
         if (func3 == null) {
-            int p = args2.TextValue().indexOf(args1.TextValue()) + (engine.ExcelIndex);
-            return Operand.Create(p);
+            int index = args2.TextValue().indexOf(args1.TextValue());
+            if (index < 0) {
+                // 未找到:Excel 模式(索引从1开始)返回错误,C# 模式(索引从0开始)返回 -1
+                return engine.ExcelIndex == 1 ? FunctionError() : Operand.Create(-1);
+            }
+            return Operand.Create(index + engine.ExcelIndex);
         }
         Operand count = GetNumber_3(engine, tempParameter);
         if (count.IsErrorOrNone()) { return count; }
@@ -43,7 +47,7 @@ public final class Function_FIND extends Function_3 {
         }
         int p2 = args2.TextValue().indexOf(args1.TextValue(), startIndex);
         if (p2 < 0) {
-            return FunctionError();
+            return engine.ExcelIndex == 1 ? FunctionError() : Operand.Create(-1);
         }
         return Operand.Create(p2 + excelIndex);
     }

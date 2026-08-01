@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using System;
 using System.Collections.Generic;
@@ -170,7 +170,13 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public virtual Operand Evaluate(FunctionBase function)
 		{
-			return function.Evaluate(this);
+			try {
+				return function.Evaluate(this);
+			} catch(Exception ex) when(ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException) {
+				// 数值运算溢出等异常统一兜底,转为错误操作数,避免异常穿透到调用方
+				LastError = ex.Message;
+				return Operand.Error("Function '{0}' evaluate error: {1}", function.Name, ex.Message);
+			}
 		}
 
 		#endregion Parse Evaluate

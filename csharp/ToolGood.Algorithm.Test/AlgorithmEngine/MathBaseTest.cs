@@ -116,7 +116,7 @@ namespace ToolGood.Algorithm.Test.MathBase
             var t = engine.TryEvaluate("int(9.222)", 0.0);
             Assert.AreEqual(9.0, t);
             t = engine.TryEvaluate("int(-9.222)", 0.0);
-            Assert.AreEqual(-9.0, t);
+            Assert.AreEqual(-10.0, t);
         }
 
         [Test]

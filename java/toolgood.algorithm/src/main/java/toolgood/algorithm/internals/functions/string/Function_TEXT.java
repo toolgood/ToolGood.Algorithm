@@ -40,11 +40,21 @@ public final class Function_TEXT extends Function_2 {
         } else if (args1.IsBoolean()) {
             return Operand.Create(args1.BooleanValue() ? "TRUE" : "FALSE");
         } else if (args1.IsNumber()) {
-            DecimalFormatSymbols syms = new DecimalFormatSymbols(Locale.US);
-            DecimalFormat df = new DecimalFormat(args2.TextValue(), syms);
-            return Operand.Create(df.format(args1.NumberValue()));
+            // 非法格式串会抛 IllegalArgumentException,需捕获并返回错误操作数
+            try {
+                DecimalFormatSymbols syms = new DecimalFormatSymbols(Locale.US);
+                DecimalFormat df = new DecimalFormat(args2.TextValue(), syms);
+                return Operand.Create(df.format(args1.NumberValue()));
+            } catch (IllegalArgumentException ex) {
+                return ParameterError(2);
+            }
         } else if (args1.IsDate()) {
-            return Operand.Create(args1.DateValue().toString(args2.TextValue()));
+            // 非法格式串会抛 IllegalArgumentException,需捕获并返回错误操作数
+            try {
+                return Operand.Create(args1.DateValue().toString(args2.TextValue()));
+            } catch (IllegalArgumentException ex) {
+                return ParameterError(2);
+            }
         }
         args1 = ConvertToText(args1, 1);
         if (args1.IsErrorOrNone()) { return args1; }
