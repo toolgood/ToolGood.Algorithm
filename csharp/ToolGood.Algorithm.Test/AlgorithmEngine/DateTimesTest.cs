@@ -399,17 +399,17 @@ namespace ToolGood.Algorithm.Test.DateTimes
             Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),1)", 0), 2);  // type 1: 周日在第1周
             Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),2)", 0), 2);  // type 2: 周一在第2周
             Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),11)", 0), 2); // type 11: 同type 2
-            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 0); // type 21: ISO 8601，周一是第1周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 1); // type 21: ISO 8601，周一是第1周
 
             // 测试 ISO 8601 (type 21)
             // 2016年1月4日是ISO 8601标准的第1周第一天
-            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 0);
-            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),21)", 0), 0); // 2016-1-3是2015年的第53周
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 1);
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),21)", 0), 53); // 2016-1-3是2015年的第53周
 
             // 2021年1月1日是周五，ISO 8601第53周
-            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,1),21)", 0), 0);
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,1),21)", 0), 53);
             // 2021年1月4日是周一，ISO 8601第1周
-            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,4),21)", 0), 0);
+            Assert.AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,4),21)", 0), 1);
         }
 
         [Test]

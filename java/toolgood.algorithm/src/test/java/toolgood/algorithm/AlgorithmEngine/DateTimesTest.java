@@ -458,17 +458,17 @@ public class DateTimesTest {
         assertEquals(2, engine.TryEvaluate("WEEKNUM(date(2016,1,4),1)", 0));  // type 1
         assertEquals(2, engine.TryEvaluate("WEEKNUM(date(2016,1,4),2)", 0));  // type 2: 周一在第2周
         assertEquals(2, engine.TryEvaluate("WEEKNUM(date(2016,1,4),11)", 0)); // type 11: 同type 2
-        assertEquals(0, engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0)); // type 21: ISO 8601
+        assertEquals(1, engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0)); // type 21: ISO 8601
 
         // 测试 ISO 8601 (type 21)
         // 2016年1月4日是ISO 8601标准的第1周第一天
-        assertEquals(0, engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0));
-        assertEquals(0, engine.TryEvaluate("WEEKNUM(date(2016,1,3),21)", 0)); // 2016-1-3是2015年的第53周
+        assertEquals(1, engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0));
+        assertEquals(53, engine.TryEvaluate("WEEKNUM(date(2016,1,3),21)", 0)); // 2016-1-3是2015年的第53周
 
         // 2021年1月1日是周五，ISO 8601第53周
-        assertEquals(0, engine.TryEvaluate("WEEKNUM(date(2021,1,1),21)", 0));
+        assertEquals(53, engine.TryEvaluate("WEEKNUM(date(2021,1,1),21)", 0));
         // 2021年1月4日是周一，ISO 8601第1周
-        assertEquals(0, engine.TryEvaluate("WEEKNUM(date(2021,1,4),21)", 0));
+        assertEquals(1, engine.TryEvaluate("WEEKNUM(date(2021,1,4),21)", 0));
     }
 
     @Test

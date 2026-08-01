@@ -33,6 +33,13 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				list.Add(ar.DateValue.ToDateTime());
 			}
             var days = 0;
+            var negative = false;
+            if (startMyDate > endMyDate) {
+                var tmp = startMyDate;
+                startMyDate = endMyDate;
+                endMyDate = tmp;
+                negative = true;
+            }
             while (startMyDate <= endMyDate) {
                 if (startMyDate.DayOfWeek != DayOfWeek.Sunday && startMyDate.DayOfWeek != DayOfWeek.Saturday) {
                     if (list.Contains(startMyDate) == false) {
@@ -41,7 +48,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 }
                 startMyDate = startMyDate.AddDays(1);
             }
-            return Operand.Create(days);
+            return Operand.Create(negative ? -days : days);
         }
 		public override OperandType GetResultType()
 		{

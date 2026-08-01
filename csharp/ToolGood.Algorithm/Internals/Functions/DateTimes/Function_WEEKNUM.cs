@@ -28,18 +28,17 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				if (args2.IsErrorOrNone) { return args2; }
 				returnType = args2.IntValue;
 				if (returnType != 1 && returnType != 2 && returnType != 11 && returnType != 12 && returnType != 13
-					&& returnType != 14 && returnType != 15 && returnType != 16 && returnType != 17 ) {
+				&& returnType != 14 && returnType != 15 && returnType != 16 && returnType != 17 && returnType != 21) {
 					return ParameterError(2);
 				}
 			}
 
 			if (returnType == 21) {
-				var jan4 = new DateTime(startMyDate.Year, 1, 4);
-				var daysSinceJan4 = (startMyDate - jan4).Days;
-				var dayOfWeekJan4 = (int)jan4.DayOfWeek;
-				var mondayOffset = dayOfWeekJan4 == 0 ? 6 : dayOfWeekJan4 - 1;
-				var weekStart = jan4.AddDays(-mondayOffset);
-				var weekNumber = (daysSinceJan4 + mondayOffset) / 7 + 1;
+				// ISO 8601: 第1周是包含当年第一个周四的周
+				var isoDow = (int)startMyDate.DayOfWeek; // 0=周日...6=周六
+				isoDow = isoDow == 0 ? 7 : isoDow;       // 转为 1=周一...7=周日
+				var thursday = startMyDate.AddDays(4 - isoDow); // 本周的周四（与目标周同属一个 ISO 年）
+				var weekNumber = (thursday.DayOfYear - 1) / 7 + 1;
 				return Operand.Create(weekNumber);
 			}
 

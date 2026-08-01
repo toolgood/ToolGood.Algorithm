@@ -43,6 +43,13 @@ public final class Function_NETWORKDAYS extends Function_N {
             list.add(ar.DateValue().ToDateTime());
         }
         int days = 0;
+        boolean negative = false;
+        if (startMyDate.isAfter(endMyDate)) {
+            DateTime tmp = startMyDate;
+            startMyDate = endMyDate;
+            endMyDate = tmp;
+            negative = true;
+        }
         while (!startMyDate.isAfter(endMyDate)) {
             if (startMyDate.getDayOfWeek() != 7 && startMyDate.getDayOfWeek() != 6) {
                 if (list.contains(startMyDate) == false) {
@@ -51,7 +58,7 @@ public final class Function_NETWORKDAYS extends Function_N {
             }
             startMyDate = startMyDate.plusDays(1);
         }
-        return Operand.Create(days);
+        return Operand.Create(negative ? -days : days);
     }
 
     @Override

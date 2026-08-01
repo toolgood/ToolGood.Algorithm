@@ -39,18 +39,16 @@ public final class Function_WEEKNUM extends Function_2 {
             if (args2.IsErrorOrNone()) { return args2; }
             returnType = args2.IntValue();
             if (returnType != 1 && returnType != 2 && returnType != 11 && returnType != 12 && returnType != 13
-                    && returnType != 14 && returnType != 15 && returnType != 16 && returnType != 17) {
+                    && returnType != 14 && returnType != 15 && returnType != 16 && returnType != 17 && returnType != 21) {
                 return ParameterError(2);
             }
         }
 
         if (returnType == 21) {
-            DateTime jan4 = new DateTime(startMyDate.getYear(), 1, 4, 0, 0, 0, DateTimeZone.UTC);
-            int daysSinceJan4 = org.joda.time.Days.daysBetween(jan4, startMyDate).getDays();
-            int dayOfWeekJan4 = jan4.getDayOfWeek() % 7;
-            int mondayOffset = dayOfWeekJan4 == 0 ? 6 : dayOfWeekJan4 - 1;
-            DateTime weekStart = jan4.minusDays(mondayOffset);
-            int weekNumber = (daysSinceJan4 + mondayOffset) / 7 + 1;
+            // ISO 8601: 第1周是包含当年第一个周四的周
+            int isoDow = startMyDate.getDayOfWeek(); // Joda-Time: 1=周一...7=周日
+            DateTime thursday = startMyDate.plusDays(4 - isoDow); // 本周的周四（与目标周同属一个 ISO 年）
+            int weekNumber = (thursday.getDayOfYear() - 1) / 7 + 1;
             return Operand.Create(weekNumber);
         }
 
