@@ -19,7 +19,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         {
             var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-            var z = args1.IntValue;
+			// 先检查数值范围,避免 (int)decimal 强转超范围抛 OverflowException
+			var number = args1.NumberValue;
+			if (number < int.MinValue || number > int.MaxValue) {
+				return ParameterError(1);
+			}
+            var z = (int)number;
             if (z < 0) { return ParameterError(1); }
             if (z > 28) { return ParameterError(1); }
 

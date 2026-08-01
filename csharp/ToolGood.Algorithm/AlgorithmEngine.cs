@@ -170,13 +170,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public virtual Operand Evaluate(FunctionBase function)
 		{
-			try {
-				return function.Evaluate(this);
-			} catch(Exception ex) when(ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException) {
-				// 数值运算溢出等异常统一兜底,转为错误操作数,避免异常穿透到调用方
-				LastError = ex.Message;
-				return Operand.Error("Function '{0}' evaluate error: {1}", function.Name, ex.Message);
-			}
+			return function.Evaluate(this);
 		}
 
 		#endregion Parse Evaluate

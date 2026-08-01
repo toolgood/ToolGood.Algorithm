@@ -26,7 +26,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (args2.NumberValue == 0) {
                 return Div0Error();
             }
-            return Operand.Create((int)(args1.NumberValue / args2.NumberValue));
+            try {
+                // 商超 int 范围或 decimal 除法溢出时返回错误,避免异常穿透
+                var result = args1.NumberValue / args2.NumberValue;
+                if (result < int.MinValue || result > int.MaxValue) {
+                    return FunctionError();
+                }
+                return Operand.Create((int)result);
+            } catch (OverflowException) {
+                return FunctionError();
+            }
         }
 		public override OperandType GetResultType()
 		{

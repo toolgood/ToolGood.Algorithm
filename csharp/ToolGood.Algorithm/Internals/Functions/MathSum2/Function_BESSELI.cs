@@ -29,7 +29,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			var x = args1.NumberValue;
 			var n = (int)Math.Truncate(args2.NumberValue);
 
-			return Operand.Create(BesselI(n, x));
+			try {
+				// x 过大时 MathEx.Exp 结果超出 decimal 范围,捕获并返回错误
+				return Operand.Create(BesselI(n, x));
+			} catch (OverflowException) {
+				return FunctionError();
+			}
 		}
 
 		private static decimal BesselI(int n, decimal x)

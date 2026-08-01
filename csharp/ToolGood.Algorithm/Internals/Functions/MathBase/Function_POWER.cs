@@ -33,7 +33,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				return ParameterError(1);
 			}
 
-			return Operand.Create(MathEx.Pow(baseValue, exponent));
+			try {
+				// MathEx.Pow 对超大结果会抛 OverflowException,捕获并返回错误
+				return Operand.Create(MathEx.Pow(baseValue, exponent));
+			} catch (OverflowException) {
+				return FunctionError();
+			} catch (InvalidOperationException) {
+				return ParameterError(1);
+			}
         }
 		public override OperandType GetResultType()
 		{

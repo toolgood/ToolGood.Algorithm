@@ -23,8 +23,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone) { return args2; }
 
-            var total = args1.IntValue;
-            var count = args2.IntValue;
+			// 先检查数值范围,避免 (int)decimal 强转超范围抛 OverflowException
+			var num1 = args1.NumberValue;
+			var num2 = args2.NumberValue;
+			if (num1 < int.MinValue || num1 > int.MaxValue) {
+				return ParameterError(1);
+			}
+			if (num2 < int.MinValue || num2 > int.MaxValue) {
+				return ParameterError(2);
+			}
+            var total = (int)num1;
+            var count = (int)num2;
 
             if (total < 0) {
                 return ParameterError(1);

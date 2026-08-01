@@ -26,14 +26,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return ParameterError(1); }
             if (list.Count == 0) { return ParameterError(1); }
             decimal product = 1.0m;
-            for(int i = 0; i < list.Count; i++) {
-                if (list[i] <= 0) {
-                    return ParameterError(1);
+            try {
+                // 连乘可能溢出 decimal 范围,捕获并返回错误
+                for(int i = 0; i < list.Count; i++) {
+                    if (list[i] <= 0) {
+                        return ParameterError(1);
+                    }
+                    product *= list[i];
                 }
-                product *= list[i];
+                decimal geoMean = MathEx.Pow(product, 1.0m / list.Count);
+                return Operand.Create(geoMean);
+            } catch (OverflowException) {
+                return FunctionError();
             }
-			decimal geoMean = MathEx.Pow(product, 1.0m / list.Count);
-            return Operand.Create(geoMean);
         }
 		public override OperandType GetResultType()
 		{

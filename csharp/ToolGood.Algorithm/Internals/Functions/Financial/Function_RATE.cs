@@ -56,8 +56,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				guess = guessArg.NumberValue;
 			}
 
-			var rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
-			return Operand.Create(rate);
+			try {
+				// 牛顿迭代中 rate=0 除零、MathEx.Pow 负底/溢出会抛异常,捕获并返回错误
+				var rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
+				return Operand.Create(rate);
+			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException) {
+				return FunctionError();
+			}
 		}
 
 		private decimal NewtonRaphson(decimal n, decimal p, decimal v, decimal f, decimal type, decimal rate)

@@ -19,7 +19,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         {
             var args1 = func1.Evaluate(engine, tempParameter);
             if (args1.IsNumber) {
-                if (Math.Abs(args1.IntValue) % 2 == 0) { return Operand.True; }
+                // 用 decimal.Truncate 取整,避免 (int)decimal 强转超范围抛 OverflowException
+                var number = decimal.Truncate(args1.NumberValue);
+                if (number % 2 == 0) { return Operand.True; }
             }
             return Operand.False;
         }
