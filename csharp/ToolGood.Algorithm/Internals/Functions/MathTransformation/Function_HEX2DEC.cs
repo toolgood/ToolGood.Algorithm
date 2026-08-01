@@ -21,7 +21,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (args1.IsErrorOrNone) { return args1; }
 
             if(RegexHelper.IsHex(args1.TextValue) == false) { return ParameterError(1); }
-            var num = Convert.ToInt32(args1.TextValue, 16);
+            var text = args1.TextValue;
+            if (text.Length > 10) { return ParameterError(1); }
+            // 10 位十六进制补码解析:最高位(bit39)为 1 时表示负数
+            var num = Convert.ToInt64(text, 16);
+            if (num >= 0x8000000000L) { num -= 0x10000000000L; }
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsErrorOrNone) { return args2; }
@@ -34,7 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 				}
 				return ParameterError(2);
 			}
-			return Operand.Create(num);
+			return Operand.Create((decimal)num);
         }
 		public override OperandType GetResultType()
 		{

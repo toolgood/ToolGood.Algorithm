@@ -21,7 +21,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 			if(args1.IsErrorOrNone) { return args1; }
 
 			if(RegexHelper.IsBin(args1.TextValue) == false) { return ParameterError(1); }
-			var num = Convert.ToInt32(args1.TextValue, 2);
+			var text = args1.TextValue;
+			if (text.Length > 10) { return ParameterError(1); }
+			// 10 位二进制补码解析:最高位为 1 时表示负数
+			var num = Convert.ToInt32(text, 2);
+			if (num >= 512) { num -= 1024; }
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsErrorOrNone) { return args2; }

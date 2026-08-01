@@ -21,19 +21,34 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (args1.IsErrorOrNone) { return args1; }
 
             if(RegexHelper.IsOct(args1.TextValue) == false) { return ParameterError(1); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 2);
+            var text = args1.TextValue;
+            if (text.Length > 10) { return ParameterError(1); }
+            // 10 位八进制补码解析
+            var num = Convert.ToInt32(text, 8);
+            if (num >= 536870912) { num -= 1073741824; }
+            // Excel OCT2BIN 结果范围为 -512~511
+            if (num < -512 || num > 511) {
+                return ParameterError(1);
+            }
+            string bin;
+            if (num < 0) {
+                // 负数:10 位二进制补码
+                bin = Convert.ToString(num & 1023, 2).PadLeft(10, '0');
+            } else {
+                bin = Convert.ToString(num, 2);
+            }
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
                 if (args2.IntValue < 0) {
                     return ParameterError(2);
                 }
-                if (num.Length <= args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                if (bin.Length > args2.IntValue) {
+                    return ParameterError(2);
                 }
-                return ParameterError(2);
+                return Operand.Create(bin.PadLeft(args2.IntValue, '0'));
             }
-            return Operand.Create(num);
+            return Operand.Create(bin);
         }
 		public override OperandType GetResultType()
 		{

@@ -27,19 +27,34 @@ public final class Function_HEX2OCT extends Function_2 {
 		Operand args1 = GetText_1(engine, tempParameter);
 		if (args1.IsErrorOrNone()) { return args1; }
 		if (!RegexHelper.IsHex(args1.TextValue())) { return ParameterError(1); }
-		String num = Integer.toString(Integer.parseInt(args1.TextValue(), 16), 8);
+		String text = args1.TextValue();
+		if (text.length() > 10) { return ParameterError(1); }
+		// 10 位十六进制补码解析
+		long num = Long.parseLong(text, 16);
+		if (num >= 0x8000000000L) { num -= 0x10000000000L; }
+		// Excel HEX2OCT 结果范围为 -536870912~536870911
+		if (num < -536870912L || num > 536870911L) {
+			return ParameterError(1);
+		}
+		String oct;
+		if (num < 0) {
+			// 负数:10 位八进制补码
+			oct = String.format("%10s", Long.toOctalString(num & 0x3FFFFFFF)).replace(' ', '0');
+		} else {
+			oct = Long.toOctalString(num);
+		}
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone()) { return args2; }
 			if (args2.IntValue() < 0) {
 				return ParameterError(2);
 			}
-			if (num.length() <= args2.IntValue()) {
-				return Operand.Create(String.format("%" + args2.IntValue() + "s", num).replace(' ', '0'));
+			if (oct.length() > args2.IntValue()) {
+				return ParameterError(2);
 			}
-			return ParameterError(2);
+			return Operand.Create(String.format("%" + args2.IntValue() + "s", oct).replace(' ', '0'));
 		}
-		return Operand.Create(num);
+		return Operand.Create(oct);
 	}
 
 	@Override

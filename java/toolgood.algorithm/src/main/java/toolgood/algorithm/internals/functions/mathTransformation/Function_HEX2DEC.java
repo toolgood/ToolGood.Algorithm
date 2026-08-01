@@ -28,14 +28,18 @@ public final class Function_HEX2DEC extends Function_2 {
 		Operand args1 = GetText_1(engine, tempParameter);
 		if (args1.IsErrorOrNone()) { return args1; }
 		if (!RegexHelper.IsHex(args1.TextValue())) { return ParameterError(1); }
-		int num = Integer.parseInt(args1.TextValue(), 16);
+		String text = args1.TextValue();
+		if (text.length() > 10) { return ParameterError(1); }
+		// 10 位十六进制补码解析:最高位(bit39)为 1 时表示负数
+		long num = Long.parseLong(text, 16);
+		if (num >= 0x8000000000L) { num -= 0x10000000000L; }
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone()) { return args2; }
 			if (args2.IntValue() < 0) {
 				return ParameterError(2);
 			}
-			String n = Integer.toString(num);
+			String n = Long.toString(num);
 			if (n.length() <= args2.IntValue()) {
 				return Operand.Create(String.format("%" + args2.IntValue() + "s", n).replace(' ', '0'));
 			}

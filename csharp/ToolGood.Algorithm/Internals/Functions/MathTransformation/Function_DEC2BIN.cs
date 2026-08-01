@@ -23,6 +23,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (num < -512 || num > 511) {
                 return ParameterError(1);
             }
+            if (num < 0) {
+                // 负数:返回 10 位二进制补码,按 Excel 语义忽略 places
+                return Operand.Create(Convert.ToString(num & 1023, 2).PadLeft(10, '0'));
+            }
             var binaryStr = Convert.ToString(num, 2);
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
@@ -33,10 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
                 if (binaryStr.Length > args2.IntValue) {
                     return ParameterError(2);
                 }
-                if (binaryStr.Length <= args2.IntValue) {
-                    return Operand.Create(binaryStr.PadLeft(args2.IntValue, '0'));
-                }
-                return ParameterError(2);
+                return Operand.Create(binaryStr.PadLeft(args2.IntValue, '0'));
             }
             return Operand.Create(binaryStr);
         }

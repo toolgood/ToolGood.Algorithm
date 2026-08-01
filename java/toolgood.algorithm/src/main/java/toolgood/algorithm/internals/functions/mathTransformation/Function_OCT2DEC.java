@@ -28,7 +28,11 @@ public final class Function_OCT2DEC extends Function_2 {
 		Operand args1 = GetText_1(engine, tempParameter);
 		if (args1.IsErrorOrNone()) { return args1; }
 		if (!RegexHelper.IsOct(args1.TextValue())) { return ParameterError(1); }
-		int num = Integer.parseInt(args1.TextValue(), 8);
+		String text = args1.TextValue();
+		if (text.length() > 10) { return ParameterError(1); }
+		// 10 位八进制补码解析:最高位(bit29)为 1 时表示负数
+		int num = Integer.parseInt(text, 8);
+		if (num >= 536870912) { num -= 1073741824; }
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone()) { return args2; }

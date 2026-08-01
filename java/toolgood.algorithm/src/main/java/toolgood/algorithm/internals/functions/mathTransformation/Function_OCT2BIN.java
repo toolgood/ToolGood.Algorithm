@@ -27,19 +27,34 @@ public final class Function_OCT2BIN extends Function_2 {
 		Operand args1 = GetText_1(engine, tempParameter);
 		if (args1.IsErrorOrNone()) { return args1; }
 		if (!RegexHelper.IsOct(args1.TextValue())) { return ParameterError(1); }
-		String num = Integer.toString(Integer.parseInt(args1.TextValue(), 8), 2);
+		String text = args1.TextValue();
+		if (text.length() > 10) { return ParameterError(1); }
+		// 10 位八进制补码解析
+		int num = Integer.parseInt(text, 8);
+		if (num >= 536870912) { num -= 1073741824; }
+		// Excel OCT2BIN 结果范围为 -512~511
+		if (num < -512 || num > 511) {
+			return ParameterError(1);
+		}
+		String bin;
+		if (num < 0) {
+			// 负数:10 位二进制补码
+			bin = String.format("%10s", Integer.toBinaryString(num & 1023)).replace(' ', '0');
+		} else {
+			bin = Integer.toBinaryString(num);
+		}
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone()) { return args2; }
 			if (args2.IntValue() < 0) {
 				return ParameterError(2);
 			}
-			if (num.length() <= args2.IntValue()) {
-				return Operand.Create(String.format("%" + args2.IntValue() + "s", num).replace(' ', '0'));
+			if (bin.length() > args2.IntValue()) {
+				return ParameterError(2);
 			}
-			return ParameterError(2);
+			return Operand.Create(String.format("%" + args2.IntValue() + "s", bin).replace(' ', '0'));
 		}
-		return Operand.Create(num);
+		return Operand.Create(bin);
 	}
 
 	@Override

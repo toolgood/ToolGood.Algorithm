@@ -29,6 +29,10 @@ public final class Function_DEC2BIN extends Function_2 {
 		if (num < -512 || num > 511) {
 			return ParameterError(1);
 		}
+		if (num < 0) {
+			// 负数:返回 10 位二进制补码,按 Excel 语义忽略 places
+			return Operand.Create(String.format("%10s", Integer.toBinaryString(num & 1023)).replace(' ', '0'));
+		}
 		String binaryStr = Integer.toString(num, 2);
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
@@ -39,10 +43,7 @@ public final class Function_DEC2BIN extends Function_2 {
 			if (binaryStr.length() > args2.IntValue()) {
 				return ParameterError(2);
 			}
-			if (binaryStr.length() <= args2.IntValue()) {
-				return Operand.Create(String.format("%" + args2.IntValue() + "s", binaryStr).replace(' ', '0'));
-			}
-			return ParameterError(2);
+			return Operand.Create(String.format("%" + args2.IntValue() + "s", binaryStr).replace(' ', '0'));
 		}
 		return Operand.Create(binaryStr);
 	}

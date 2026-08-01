@@ -21,19 +21,30 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (args1.IsErrorOrNone) { return args1; }
 
             if(RegexHelper.IsBin(args1.TextValue) == false) { return ParameterError(1); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
+            var text = args1.TextValue;
+            if (text.Length > 10) { return ParameterError(1); }
+            // 10 位二进制补码解析
+            var bin = Convert.ToInt32(text, 2);
+            if (bin >= 512) { bin -= 1024; }
+            string oct;
+            if (bin < 0) {
+                // 负数:10 位八进制补码
+                oct = Convert.ToString(bin & 0x3FFFFFFF, 8).PadLeft(10, '0');
+            } else {
+                oct = Convert.ToString(bin, 8);
+            }
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
                 if (args2.IntValue < 0) {
                     return ParameterError(2);
                 }
-                if (num.Length <= args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                if (oct.Length > args2.IntValue) {
+                    return ParameterError(2);
                 }
-                return ParameterError(2);
+                return Operand.Create(oct.PadLeft(args2.IntValue, '0'));
             }
-            return Operand.Create(num);
+            return Operand.Create(oct);
         }
 		public override OperandType GetResultType()
 		{

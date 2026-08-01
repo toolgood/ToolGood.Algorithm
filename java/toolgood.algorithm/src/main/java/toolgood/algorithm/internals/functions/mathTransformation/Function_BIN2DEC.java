@@ -28,7 +28,11 @@ public final class Function_BIN2DEC extends Function_2 {
 		Operand args1 = GetText_1(engine, tempParameter);
 		if (args1.IsErrorOrNone()) { return args1; }
 		if (!RegexHelper.IsBin(args1.TextValue())) { return ParameterError(1); }
-		int num = Integer.parseInt(args1.TextValue(), 2);
+		String text = args1.TextValue();
+		if (text.length() > 10) { return ParameterError(1); }
+		// 10 位二进制补码解析:最高位为 1 时表示负数
+		int num = Integer.parseInt(text, 2);
+		if (num >= 512) { num -= 1024; }
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone()) { return args2; }
