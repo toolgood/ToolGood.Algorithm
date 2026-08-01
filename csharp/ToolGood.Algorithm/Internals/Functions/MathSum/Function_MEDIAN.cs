@@ -30,56 +30,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			int mid = n / 2;
 			if(n % 2 == 0) {
-				return Operand.Create((QuickSelect(list, mid - 1) + QuickSelect(list, mid)) / 2);
+				return Operand.Create((FunctionUtil.QuickSelect(list, mid - 1, false) + FunctionUtil.QuickSelect(list, mid, false)) / 2);
 			}
-			return Operand.Create(QuickSelect(list, mid));
-		}
-
-		private static decimal QuickSelect(List<decimal> arr, int k)
-		{
-			int left = 0, right = arr.Count - 1;
-			while(left < right) {
-				int pivot = SelectPivot(arr, left, right);
-				int partition = Partition(arr, left, right, pivot);
-				if(partition == k) {
-					return arr[k];
-				}
-				if(k < partition) {
-					right = partition - 1;
-				} else {
-					left = partition + 1;
-				}
-			}
-			return arr[left];
-		}
-
-		private static int SelectPivot(List<decimal> arr, int left, int right)
-		{
-			int mid = left + (right - left) / 2;
-			decimal a = arr[left], b = arr[mid], c = arr[right];
-			if(a < b) {
-				if(b < c) return mid;
-				if(a < c) return right;
-				return left;
-			}
-			if(a < c) return left;
-			if(b < c) return right;
-			return mid;
-		}
-
-		private static int Partition(List<decimal> arr, int left, int right, int pivotIndex)
-		{
-			decimal pivot = arr[pivotIndex];
-			(arr[pivotIndex], arr[right]) = (arr[right], arr[pivotIndex]);
-			int storeIndex = left;
-			for(int i = left; i < right; i++) {
-				if(arr[i] < pivot) {
-					(arr[storeIndex], arr[i]) = (arr[i], arr[storeIndex]);
-					storeIndex++;
-				}
-			}
-			(arr[storeIndex], arr[right]) = (arr[right], arr[storeIndex]);
-			return storeIndex;
+			return Operand.Create(FunctionUtil.QuickSelect(list, mid, false));
 		}
 
 		public override OperandType GetResultType()

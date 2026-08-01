@@ -374,15 +374,13 @@ public class FunctionUtil {
             return list.get(0);
 
         int targetIndex = largest ? list.size() - 1 - k : k;
-        return QuickSelectCore(list, 0, list.size() - 1, targetIndex);
-    }
-
-    private static BigDecimal QuickSelectCore(List<BigDecimal> list, int left, int right, int k) {
+        int left = 0, right = list.size() - 1;
         while (left < right) {
-            int pivotIndex = Partition(list, left, right);
-            if (k == pivotIndex) {
-                return list.get(k);
-            } else if (k < pivotIndex) {
+            int pivotIndex = SelectPivot(list, left, right);
+            pivotIndex = Partition(list, left, right, pivotIndex);
+            if (targetIndex == pivotIndex) {
+                return list.get(targetIndex);
+            } else if (targetIndex < pivotIndex) {
                 right = pivotIndex - 1;
             } else {
                 left = pivotIndex + 1;
@@ -391,17 +389,33 @@ public class FunctionUtil {
         return list.get(left);
     }
 
-    private static int Partition(List<BigDecimal> list, int left, int right) {
-        BigDecimal pivot = list.get(right);
-        int i = left;
-        for (int j = left; j < right; j++) {
-            if (list.get(j).compareTo(pivot) <= 0) {
-                Swap(list, i, j);
-                i++;
+    private static int SelectPivot(List<BigDecimal> list, int left, int right) {
+        int mid = left + (right - left) / 2;
+        BigDecimal a = list.get(left), b = list.get(mid), c = list.get(right);
+        if (a.compareTo(b) < 0) {
+            if (b.compareTo(c) < 0) return mid;
+            if (a.compareTo(c) < 0) return right;
+            return left;
+        }
+        if (a.compareTo(c) < 0) return left;
+        if (b.compareTo(c) < 0) return right;
+        return mid;
+    }
+
+    private static int Partition(List<BigDecimal> list, int left, int right, int pivotIndex) {
+        BigDecimal pivot = list.get(pivotIndex);
+        list.set(pivotIndex, list.get(right));
+        list.set(right, pivot);
+        int storeIndex = left;
+        for (int i = left; i < right; i++) {
+            if (list.get(i).compareTo(pivot) < 0) {
+                Swap(list, storeIndex, i);
+                storeIndex++;
             }
         }
-        Swap(list, i, right);
-        return i;
+        list.set(right, list.get(storeIndex));
+        list.set(storeIndex, pivot);
+        return storeIndex;
     }
 
     private static void Swap(List<BigDecimal> list, int i, int j) {

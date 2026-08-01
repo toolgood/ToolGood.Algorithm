@@ -42,62 +42,11 @@ public final class Function_MEDIAN extends Function_N {
 
         int mid = n / 2;
         if (n % 2 == 0) {
-            return Operand.Create(BigDecimal.valueOf(
-                    (QuickSelect(list, mid - 1) + QuickSelect(list, mid)) / 2));
+            BigDecimal a = FunctionUtil.QuickSelect(list, mid - 1, false);
+            BigDecimal b = FunctionUtil.QuickSelect(list, mid, false);
+            return Operand.Create(a.add(b).divide(BigDecimal.valueOf(2)));
         }
-        return Operand.Create(BigDecimal.valueOf(QuickSelect(list, mid)));
-    }
-
-    private static double QuickSelect(List<BigDecimal> arr, int k) {
-        int left = 0, right = arr.size() - 1;
-        while (left < right) {
-            int pivot = SelectPivot(arr, left, right);
-            int partition = Partition(arr, left, right, pivot);
-            if (partition == k) {
-                return arr.get(k).doubleValue();
-            }
-            if (k < partition) {
-                right = partition - 1;
-            } else {
-                left = partition + 1;
-            }
-        }
-        return arr.get(left).doubleValue();
-    }
-
-    private static int SelectPivot(List<BigDecimal> arr, int left, int right) {
-        int mid = left + (right - left) / 2;
-        double a = arr.get(left).doubleValue();
-        double b = arr.get(mid).doubleValue();
-        double c = arr.get(right).doubleValue();
-        if (a < b) {
-            if (b < c) return mid;
-            if (a < c) return right;
-            return left;
-        }
-        if (a < c) return left;
-        if (b < c) return right;
-        return mid;
-    }
-
-    private static int Partition(List<BigDecimal> arr, int left, int right, int pivotIndex) {
-        double pivot = arr.get(pivotIndex).doubleValue();
-        BigDecimal temp = arr.get(pivotIndex);
-        arr.set(pivotIndex, arr.get(right));
-        arr.set(right, temp);
-        int storeIndex = left;
-        for (int i = left; i < right; i++) {
-            if (arr.get(i).doubleValue() < pivot) {
-                temp = arr.get(storeIndex);
-                arr.set(storeIndex, arr.get(i));
-                arr.set(i, temp);
-                storeIndex++;
-            }
-        }
-        temp = arr.get(storeIndex);
-        arr.set(storeIndex, arr.get(right));
-        arr.set(right, temp);
-        return storeIndex;
+        return Operand.Create(FunctionUtil.QuickSelect(list, mid, false));
     }
 
     @Override

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Globalization;
@@ -336,18 +336,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static decimal QuickSelect(List<decimal> list, int k, bool largest)
 		{
 			if(list.Count == 1) return list[0];
-			
-			int targetIndex = largest ? list.Count - 1 - k : k;
-			return QuickSelectCore(list, 0, list.Count - 1, targetIndex);
-		}
 
-		private static decimal QuickSelectCore(List<decimal> list, int left, int right, int k)
-		{
+			int targetIndex = largest ? list.Count - 1 - k : k;
+			int left = 0, right = list.Count - 1;
 			while(left < right) {
-				int pivotIndex = Partition(list, left, right);
-				if(k == pivotIndex) {
-					return list[k];
-				} else if(k < pivotIndex) {
+				int pivotIndex = SelectPivot(list, left, right);
+				pivotIndex = Partition(list, left, right, pivotIndex);
+				if(targetIndex == pivotIndex) {
+					return list[targetIndex];
+				} else if(targetIndex < pivotIndex) {
 					right = pivotIndex - 1;
 				} else {
 					left = pivotIndex + 1;
@@ -356,27 +353,33 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return list[left];
 		}
 
-		private static int Partition(List<decimal> list, int left, int right)
+		private static int SelectPivot(List<decimal> list, int left, int right)
 		{
-			decimal pivot = list[right];
-			int i = left;
-			for(int j = left; j < right; j++) {
-				if(list[j] <= pivot) {
-					Swap(list, i, j);
-					i++;
-				}
+			int mid = left + (right - left) / 2;
+			decimal a = list[left], b = list[mid], c = list[right];
+			if(a < b) {
+				if(b < c) return mid;
+				if(a < c) return right;
+				return left;
 			}
-			Swap(list, i, right);
-			return i;
+			if(a < c) return left;
+			if(b < c) return right;
+			return mid;
 		}
 
-		private static void Swap(List<decimal> list, int i, int j)
+		private static int Partition(List<decimal> list, int left, int right, int pivotIndex)
 		{
-			if(i != j) {
-				decimal temp = list[i];
-				list[i] = list[j];
-				list[j] = temp;
+			decimal pivot = list[pivotIndex];
+			(list[pivotIndex], list[right]) = (list[right], list[pivotIndex]);
+			int storeIndex = left;
+			for(int i = left; i < right; i++) {
+				if(list[i] < pivot) {
+					(list[storeIndex], list[i]) = (list[i], list[storeIndex]);
+					storeIndex++;
+				}
 			}
+			(list[storeIndex], list[right]) = (list[right], list[storeIndex]);
+			return storeIndex;
 		}
 
 		public static int GetRank(List<decimal> values, decimal num, bool descending)
