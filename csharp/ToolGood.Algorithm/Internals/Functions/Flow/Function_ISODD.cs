@@ -21,7 +21,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             if (args1.IsNumber) {
                 // 用 decimal.Truncate 取整,避免 (int)decimal 强转超范围抛 OverflowException
                 var number = decimal.Truncate(args1.NumberValue);
-                if (number % 2 == 1) { return Operand.True; }
+                // C# 取模符号跟随被除数,负数奇数取模结果为 -1,需取绝对值判断
+                if (Math.Abs(number) % 2 == 1) { return Operand.True; }
             }
             return Operand.False;
         }
