@@ -51,7 +51,8 @@ public final class Function_PERCENTRANK extends Function_3 {
             Operand args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone()) { return args3; }
             d = args3.IntValue();
-            if (d < 0) {
+            // 与 C# Math.Round(decimal,int) 对齐,超过 28 位小数直接报参数错误
+            if (d < 0 || d > 28) {
                 return ParameterError(3);
             }
         }

@@ -36,7 +36,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                 var args3 = GetNumber_3(engine, tempParameter);
                 if (args3.IsErrorOrNone) { return args3; }
                 d = args3.IntValue;
-                if (d < 0) {
+                // Math.Round(decimal,int) 最多支持 28 位小数,超过会抛 ArgumentOutOfRangeException,直接报参数错误
+                if (d < 0 || d > 28) {
                     return ParameterError(3);
                 }
             }
