@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.UnitConversion
@@ -12,14 +12,14 @@ namespace ToolGood.Algorithm.UnitConversion
 			{"km³",0.001m* 0.001m* 0.001m* 0.001m }, {"km3",0.001m* 0.001m* 0.001m* 0.001m }, {"cubic kilometre",0.001m* 0.001m* 0.001m* 0.001m },{"cubic kilometer",0.001m* 0.001m* 0.001m* 0.001m },{"立方千米",0.001m* 0.001m* 0.001m* 0.001m },
 			{"cm³",1000 }, {"cm3",1000 }, {"cubic centimetre",1000 },{"cubic centimeter",1000 },{"立方厘米",1000 },{"毫升",1000 },{"ml",1000 },
 			{"mm³",1000000 }, {"mm3",1000000 }, {"cubic millimetre",1000000 },{"cubic millimeter",1000000 },{"立方毫米",1000000 },
-			{"ft³",0.0353147m }, {"ft3",0.0353147m }, {"cubic foot",0.0353147m },{"cubic feet",0.0353147m },{"立方英尺",0.0353147m },{"cu ft",0.0353147m },
-			{"in³",61.0237m }, {"in3",61.0237m }, {"cubic in",61.0237m },{"cubic inch",61.0237m },{"立方英寸",61.0237m },
+			{"ft³",1m / 28.316846592m }, {"ft3",1m / 28.316846592m }, {"cubic foot",1m / 28.316846592m },{"cubic feet",1m / 28.316846592m },{"立方英尺",1m / 28.316846592m },{"cu ft",1m / 28.316846592m },
+			{"in³",125000000m / 2048383 }, {"in3",125000000m / 2048383 }, {"cubic in",125000000m / 2048383 },{"cubic inch",125000000m / 2048383 },{"立方英寸",125000000m / 2048383 },
 
-			{"imperial pint",1.75975m }, {"imperial pt",1.75975m }, {"imperial p",1.75975m },
-			{"imperial gallon",0.219969m }, {"imperial gal",0.219969m },
-			{"imperial quart",0.879877m }, {"imperial qt",0.879877m },
-			{"US pint",2.11337643513819m }, {"US pt",2.11337643513819m },{"US p",2.11337643513819m },
-			{"US gallon",0.264172m }, {"US gal",0.264172m },
+			{"imperial pint",800000m / 454609 }, {"imperial pt",800000m / 454609 }, {"imperial p",800000m / 454609 },
+			{"imperial gallon",100000m / 454609 }, {"imperial gal",100000m / 454609 },
+			{"imperial quart",400000m / 454609 }, {"imperial qt",400000m / 454609 },
+			{"US pint",1000000000m / 473176473 }, {"US pt",1000000000m / 473176473 },{"US p",1000000000m / 473176473 },
+			{"US gallon",125000000m / 473176473 }, {"US gal",125000000m / 473176473 },
 			{"US quart",1000000000m / 946352946 }, {"US qt",1000000000m / 946352946 },
 		};
 

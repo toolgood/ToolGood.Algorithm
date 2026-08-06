@@ -50,35 +50,42 @@ public final class VolumeConverter {
         map.put("cubic millimeter", new BigDecimal("1000000"));
         map.put("立方毫米", new BigDecimal("1000000"));
 
-        map.put("ft³", new BigDecimal("0.0353147"));
-        map.put("ft3", new BigDecimal("0.0353147"));
-        map.put("cubic foot", new BigDecimal("0.0353147"));
-        map.put("cubic feet", new BigDecimal("0.0353147"));
-        map.put("立方英尺", new BigDecimal("0.0353147"));
-        map.put("cu ft", new BigDecimal("0.0353147"));
+        BigDecimal ft3 = BigDecimal.ONE.divide(new BigDecimal("28.316846592"), 30, RoundingMode.HALF_UP);
+        map.put("ft³", ft3);
+        map.put("ft3", ft3);
+        map.put("cubic foot", ft3);
+        map.put("cubic feet", ft3);
+        map.put("立方英尺", ft3);
+        map.put("cu ft", ft3);
 
-        map.put("in³", new BigDecimal("61.0237"));
-        map.put("in3", new BigDecimal("61.0237"));
-        map.put("cubic in", new BigDecimal("61.0237"));
-        map.put("cubic inch", new BigDecimal("61.0237"));
-        map.put("立方英寸", new BigDecimal("61.0237"));
+        BigDecimal in3 = new BigDecimal("125000000").divide(new BigDecimal("2048383"), 30, RoundingMode.HALF_UP);
+        map.put("in³", in3);
+        map.put("in3", in3);
+        map.put("cubic in", in3);
+        map.put("cubic inch", in3);
+        map.put("立方英寸", in3);
 
-        map.put("imperial pint", new BigDecimal("1.75975"));
-        map.put("imperial pt", new BigDecimal("1.75975"));
-        map.put("imperial p", new BigDecimal("1.75975"));
+        BigDecimal impPt = new BigDecimal("800000").divide(new BigDecimal("454609"), 30, RoundingMode.HALF_UP);
+        map.put("imperial pint", impPt);
+        map.put("imperial pt", impPt);
+        map.put("imperial p", impPt);
 
-        map.put("imperial gallon", new BigDecimal("0.219969"));
-        map.put("imperial gal", new BigDecimal("0.219969"));
+        BigDecimal impGal = new BigDecimal("100000").divide(new BigDecimal("454609"), 30, RoundingMode.HALF_UP);
+        map.put("imperial gallon", impGal);
+        map.put("imperial gal", impGal);
 
-        map.put("imperial quart", new BigDecimal("0.879877"));
-        map.put("imperial qt", new BigDecimal("0.879877"));
+        BigDecimal impQt = new BigDecimal("400000").divide(new BigDecimal("454609"), 30, RoundingMode.HALF_UP);
+        map.put("imperial quart", impQt);
+        map.put("imperial qt", impQt);
 
-        map.put("US pint", new BigDecimal("2.11337643513819"));
-        map.put("US pt", new BigDecimal("2.11337643513819"));
-        map.put("US p", new BigDecimal("2.11337643513819"));
+        BigDecimal usPt = new BigDecimal("1000000000").divide(new BigDecimal("473176473"), 30, RoundingMode.HALF_UP);
+        map.put("US pint", usPt);
+        map.put("US pt", usPt);
+        map.put("US p", usPt);
 
-        map.put("US gallon", new BigDecimal("0.264172"));
-        map.put("US gal", new BigDecimal("0.264172"));
+        BigDecimal usGal = new BigDecimal("125000000").divide(new BigDecimal("473176473"), 30, RoundingMode.HALF_UP);
+        map.put("US gallon", usGal);
+        map.put("US gal", usGal);
 
         BigDecimal usqt = new BigDecimal("1000000000").divide(new BigDecimal("946352946"), 30, RoundingMode.HALF_UP);
         map.put("US quart", usqt);

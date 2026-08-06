@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.UnitConversion
@@ -13,8 +13,8 @@ namespace ToolGood.Algorithm.UnitConversion
 			{"st",50000000m / 317514659 }, {"stone",50000000m / 317514659 }, {"石",50000000m / 317514659 },
 			{"oz",1600000000m / 45359237  }, {"ounce",1600000000m / 45359237  }, {"盎司",1600000000m / 45359237  },
 			{"quintal",0.01m  }, {"英担",0.01m  },
-			{"short ton",0.00110231m }, {"net ton",0.00110231m }, {"us ton",0.00110231m },{"短吨",0.00110231m },{"美吨",0.00110231m },
-			{"long ton",0.000984207m }, {"weight ton",0.000984207m }, {"gross ton",0.000984207m},{"imperial ton",0.000984207m},{"长吨",0.000984207m },{"英吨",0.000984207m},
+			{"short ton",50000m / 45359237 }, {"net ton",50000m / 45359237 }, {"us ton",50000m / 45359237 },{"短吨",50000m / 45359237 },{"美吨",50000m / 45359237 },
+			{"long ton",312500m / 317514659 }, {"weight ton",312500m / 317514659 }, {"gross ton",312500m / 317514659},{"imperial ton",312500m / 317514659},{"长吨",312500m / 317514659 },{"英吨",312500m / 317514659},
 		};
 
 		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)

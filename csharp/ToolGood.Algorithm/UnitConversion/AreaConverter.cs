@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.UnitConversion
@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.UnitConversion
 			{"ha",0.0001m }, {"hectare",0.0001m }, {"公顷",0.0001m },
 			{"in²",1m / 0.00064516m }, {"in2",1m / 0.00064516m }, {"sq in",1m / 0.00064516m },{"square inch",1m / 0.00064516m },{"平方英寸",1m / 0.00064516m },
 			{"mi²",1m / 2589988.110336m }, {"mi2",1m / 2589988.110336m }, {"sq mi",1m / 2589988.110336m },{"square mile",1m / 2589988.110336m },{"平方英里",1m / 2589988.110336m },
-			{"亩",1m / 666.667m  },
+			{"亩",3m / 2000m  },
 		};
 
 		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)

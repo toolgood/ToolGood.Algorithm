@@ -80,7 +80,7 @@ public final class AreaConverter {
         map.put("square mile", sqmi);
         map.put("平方英里", sqmi);
 
-        BigDecimal mu = BigDecimal.ONE.divide(new BigDecimal("666.667"), 30, RoundingMode.HALF_UP);
+        BigDecimal mu = new BigDecimal("3").divide(new BigDecimal("2000"), 30, RoundingMode.HALF_UP);
         map.put("亩", mu);
 
         units2 = map;

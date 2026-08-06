@@ -43,18 +43,20 @@ public final class MassConverter {
         map.put("quintal", new BigDecimal("0.01"));
         map.put("英担", new BigDecimal("0.01"));
 
-        map.put("short ton", new BigDecimal("0.00110231"));
-        map.put("net ton", new BigDecimal("0.00110231"));
-        map.put("us ton", new BigDecimal("0.00110231"));
-        map.put("短吨", new BigDecimal("0.00110231"));
-        map.put("美吨", new BigDecimal("0.00110231"));
+        BigDecimal shortTon = new BigDecimal("50000").divide(new BigDecimal("45359237"), 30, RoundingMode.HALF_UP);
+        map.put("short ton", shortTon);
+        map.put("net ton", shortTon);
+        map.put("us ton", shortTon);
+        map.put("短吨", shortTon);
+        map.put("美吨", shortTon);
 
-        map.put("long ton", new BigDecimal("0.000984207"));
-        map.put("weight ton", new BigDecimal("0.000984207"));
-        map.put("gross ton", new BigDecimal("0.000984207"));
-        map.put("imperial ton", new BigDecimal("0.000984207"));
-        map.put("长吨", new BigDecimal("0.000984207"));
-        map.put("英吨", new BigDecimal("0.000984207"));
+        BigDecimal longTon = new BigDecimal("312500").divide(new BigDecimal("317514659"), 30, RoundingMode.HALF_UP);
+        map.put("long ton", longTon);
+        map.put("weight ton", longTon);
+        map.put("gross ton", longTon);
+        map.put("imperial ton", longTon);
+        map.put("长吨", longTon);
+        map.put("英吨", longTon);
 
         units2 = map;
     }
