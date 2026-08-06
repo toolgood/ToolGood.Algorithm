@@ -35,7 +35,8 @@ public final class Function_FACTDOUBLE extends Function_1 {
         }
         int z = number.intValue();
         if (z < 0) { return ParameterError(1); }
-        if (z > 28) { return ParameterError(1); }
+        // 与 C# decimal 版保持一致:decimal 最大可容纳 45!!(≈2.537e28),46!! 溢出
+        if (z > 45) { return ParameterError(1); }
 
         BigDecimal d = BigDecimal.ONE;
         for (int i = z; i > 0; i -= 2) {

@@ -25,10 +25,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			}
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone) { return args2; }
-			if (args2.IntValue < -15 || args2.IntValue > 15) {
+			var digits = args2.IntValue;
+			if (digits < -15 || digits > 15) {
 				return ParameterError(2);
 			}
-            return Operand.Create(Math.Round(args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
+			var num = args1.NumberValue;
+			if (digits >= 0) {
+				return Operand.Create(Math.Round(num, digits, MidpointRounding.AwayFromZero));
+			}
+			// Math.Round(decimal, int) 只支持非负位数,负数位数(向左取整)改用先除后乘
+			var factor = MathEx.Pow(10, -digits);
+			return Operand.Create(Math.Round(num / factor, 0, MidpointRounding.AwayFromZero) * factor);
         }
 		public override OperandType GetResultType()
 		{

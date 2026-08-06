@@ -26,7 +26,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			}
             var z = (int)number;
             if (z < 0) { return ParameterError(1); }
-            if (z > 28) { return ParameterError(1); }
+            // decimal 最大可容纳 45!!(≈2.537e28),46!! 溢出;与 FACT 的 28 限制不同
+            if (z > 45) { return ParameterError(1); }
 
             decimal d = 1;
             for (int i = z; i > 0; i -= 2) {

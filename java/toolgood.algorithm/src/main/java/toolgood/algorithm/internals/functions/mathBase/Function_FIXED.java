@@ -35,7 +35,8 @@ public final class Function_FIXED extends Function_3 {
                 return args2;
             }
             num = args2.IntValue();
-            if (num < 0 || num > 15) {
+            // Excel 支持负数 decimals(向左取整),如 FIXED(1234.567,-1)="1,230",范围与 ROUND 一致
+            if (num < -15 || num > 15) {
                 return ParameterError(2);
             }
         }
@@ -53,6 +54,10 @@ public final class Function_FIXED extends Function_3 {
             no = args3.BooleanValue();
         }
         if (no == false) {
+            if (num < 0) {
+                // 负数位数取整后无小数位,precision 不能为负,用 0 位保持千分位
+                return Operand.Create(String.format(Locale.US, "%,.0f", s));
+            }
             return Operand.Create(String.format(Locale.US, "%,." + num + "f", s));
         }
         return Operand.Create(s.toPlainString());

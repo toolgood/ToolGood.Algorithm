@@ -23,14 +23,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsErrorOrNone) { return args2; }
 				num = args2.IntValue;
-				if (num < 0 || num > 15) {
+				// Excel 支持负数 decimals(向左取整),如 FIXED(1234.567,-1)="1,230",范围与 ROUND 一致
+				if (num < -15 || num > 15) {
 					return ParameterError(2);
 				}
 			}
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
 
-			var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
+			var s = args1.NumberValue;
+			if (num >= 0) {
+				s = Math.Round(s, num, MidpointRounding.AwayFromZero);
+			} else {
+				// Math.Round(decimal, int) 只支持非负位数,负数位数(向左取整)改用先除后乘
+				var factor = MathEx.Pow(10, -num);
+				s = Math.Round(s / factor, 0, MidpointRounding.AwayFromZero) * factor;
+			}
 			var no = false;
 			if (func3 != null) {
 				var args3 = GetBoolean_3(engine, tempParameter);
@@ -38,6 +46,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				no = args3.BooleanValue;
 			}
             if (no == false) {
+                if (num < 0) {
+                    // 负数位数取整后无小数位,用 N0 保持千分位
+                    return Operand.Create(s.ToString("N0", CultureInfo.InvariantCulture));
+                }
                 return Operand.Create(s.ToString('N' + num.ToString(), CultureInfo.InvariantCulture));
             }
             return Operand.Create(s.ToString(CultureInfo.InvariantCulture));

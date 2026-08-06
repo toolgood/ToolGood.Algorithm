@@ -1,6 +1,5 @@
 package toolgood.algorithm.internals.functions.csharpWeb;
 
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -33,9 +32,28 @@ public final class Function_URLENCODE extends Function_1 {
 			return args1;
 		}
 		String s = args1.TextValue();
-		String r = URLEncoder.encode(s, StandardCharsets.UTF_8).toLowerCase();
+		String r = UrlEncode(s);
 		return Operand.Create(r);
 	}
+
+	private static String UrlEncode(String s) {
+		byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
+		StringBuilder sb = new StringBuilder(bytes.length);
+		for (byte b : bytes) {
+			int v = b & 0xFF;
+			if ((v >= 'a' && v <= 'z') || (v >= 'A' && v <= 'Z') || (v >= '0' && v <= '9')
+					|| v == '-' || v == '_' || v == '.' || v == '~') {
+				sb.append((char) v);
+			} else if (v == ' ') {
+				sb.append('+');
+			} else {
+				sb.append('%').append(HEX[v >>> 4]).append(HEX[v & 0x0F]);
+			}
+		}
+		return sb.toString();
+	}
+
+	private static final char[] HEX = "0123456789abcdef".toCharArray();
 
 	@Override
 	public OperandType GetResultType() {
