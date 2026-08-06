@@ -43,7 +43,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			if (life == 0 || cost == 0) return Div0Error();
-			if (period < 1 || period > life) {
+
+			// Excel: month<12 时折旧跨越 life+1 个期间(第1年部分月 + life-1 个整年 + 最后部分月),
+			// 最后一期乘 (12-month)/12 修正系数, 其余期间(含第 life 期)为完整年折旧
+			var totalPeriods = (month == 12) ? (int)life : (int)life + 1;
+			if (period < 1 || period > totalPeriods) {
 				return ParameterError(4);
 			}
 			if (life < 1) {
@@ -53,31 +57,17 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			decimal rate = 1 - MathEx.Pow((salvage / cost), 1.0m / life);
 			rate = Math.Round(rate, 3);
 
+			decimal remainingCost = cost;
 			decimal depreciation = 0;
-			if (period == 1) {
-				depreciation = cost * rate * month / 12;
-			} else if ((int)period == (int)life) {
-				var remainingCost = cost;
-				for (int i = 1; i < life; i++) {
-					remainingCost -= depreciation;
-					if (i == 1) {
-						depreciation = cost * rate * month / 12;
-					} else if (i < life) {
-						depreciation = remainingCost * rate;
-					}
+			for (int i = 1; i <= period; i++) {
+				if (i == 1) {
+					depreciation = cost * rate * month / 12;
+				} else if (i == totalPeriods && month != 12) {
+					depreciation = remainingCost * rate * (12 - month) / 12;
+				} else {
+					depreciation = remainingCost * rate;
 				}
 				remainingCost -= depreciation;
-				depreciation = remainingCost * rate * (12 - month) / 12;
-			} else {
-				var remainingCost = cost;
-				for (int i = 1; i <= period; i++) {
-					if (i == 1) {
-						depreciation = cost * rate * month / 12;
-					} else {
-						remainingCost -= depreciation;
-						depreciation = remainingCost * rate;
-					}
-				}
 			}
 
 			return Operand.Create(depreciation);
