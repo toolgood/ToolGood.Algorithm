@@ -299,6 +299,33 @@ public class DateTimesTest {
     }
 
     @Test
+    public void DATEDIF_YD_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // Excel 官方例子: DATEDIF("6/15/2015","9/15/2016","YD") = 92
+        int dt = engine.TryEvaluate("DATEDIF('2015-6-15','2016-9-15','yd')", 0);
+        assertEquals(92, dt);
+
+        // 跨闰年: 同月日天数差应为 0
+        // 旧实现按 DayOfYear 相减(2016 闰年 3/1 为第 61 天,2015 为第 60 天)会得到 1
+        dt = engine.TryEvaluate("DATEDIF('2015-3-1','2016-3-1','yd')", 0);
+        assertEquals(0, dt);
+
+        dt = engine.TryEvaluate("DATEDIF('2015-3-1','2016-3-2','yd')", 0);
+        assertEquals(1, dt);
+    }
+
+    @Test
+    public void DAYS360_us_method_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // US(NASD) 方法: start 为 2 月最后一天按 30 日调整, end 月末按调整后的 startDay 决定 30/31
+        int dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31')", 0);
+        assertEquals(30, dt);
+
+        dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31',false)", 0);
+        assertEquals(30, dt);
+    }
+
+    @Test
     public void EDATE_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         MyDate dt = engine.TryEvaluate_MyDate("EDATE(\"2012-1-31\",32)", new MyDate(1900, 1, 1, 0, 0, 0));
@@ -494,6 +521,27 @@ public class DateTimesTest {
 
         t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 4)", 0.0);
         assertEquals(0.5, t, 1e-3);
+    }
+
+    @Test
+    public void YEARFRAC_basis0_30_360_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // basis 0 (US NASD 30/360) 规则链(Java 实现保留 10 位小数, 容差取 1e-6):
+        // 2012-2-29 为 2 月最后一天 → d1=30, end 3-31 非 30 规则, 保持 31 → (31-30)/360
+        double t = engine.TryEvaluate("YEARFRAC('2012-2-29','2012-3-31',0)", 0.0);
+        assertEquals(31.0 / 360.0, t, 1e-6);
+
+        // 两月均按 30 日: (60-30)/360
+        t = engine.TryEvaluate("YEARFRAC('2012-1-31','2012-3-31',0)", 0.0);
+        assertEquals(60.0 / 360.0, t, 1e-6);
+
+        // 修复前 2/29→2/28 会得到 (30-30)+360 天误差, 现为整年
+        t = engine.TryEvaluate("YEARFRAC('2012-2-29','2013-2-28',0)", 0.0);
+        assertEquals(1.0, t, 1e-6);
+
+        // 整半年
+        t = engine.TryEvaluate("YEARFRAC('2012-1-1','2012-7-1',0)", 0.0);
+        assertEquals(0.5, t, 1e-6);
     }
 
     @Test

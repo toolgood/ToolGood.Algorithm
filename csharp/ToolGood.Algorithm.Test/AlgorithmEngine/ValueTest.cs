@@ -64,6 +64,43 @@ namespace ToolGood.Algorithm.Test.Value
             Assert.AreEqual("{\"灰色\":\"L\",\"canBookCount\":905,\"saleCount\":91,\"specId\":\"43b0e72e98731aed69e1f0cc7d64bf4d\"}", c);
         }
 
+        [Test]
+        public void Json_large_number_error_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Bug A 回归: 超出 decimal 范围的超大数解析应报错(修复前静默返回 0)
+            var t = engine.TryEvaluate("json('{\"a\":99999999999999999999999999999999999}')['a']", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void Json_string_indexer_no_exception_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Bug B 回归: 非对象 JSON 值被字符串索引不应抛 NullReferenceException
+            var t = engine.TryEvaluate("json('123')['a']", "");
+            Assert.IsTrue(engine.LastError != null);
+
+            // 不存在的键返回错误而非异常
+            t = engine.TryEvaluate("json('{\"a\":1}')['b']", "");
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void Json_backslash_escape_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Bug C 回归: 序列化字符串应转义反斜杠(修复前漏转义, 输出为 C:\temp)
+            var t = engine.Parse(@"{'a':'C:\\temp'}");
+            var c = engine.Evaluate(t).ToString();
+            Assert.AreEqual("{\"a\":\"C:\\\\temp\"}", c);
+
+            // 反斜杠与引号同时转义
+            t = engine.Parse("{'a':'a\\\"b\\\\c'}");
+            c = engine.Evaluate(t).ToString();
+            Assert.AreEqual("{\"a\":\"a\\\"b\\\\c\"}", c);
+        }
+
            [Test]
         public void PARAM_test()
         {

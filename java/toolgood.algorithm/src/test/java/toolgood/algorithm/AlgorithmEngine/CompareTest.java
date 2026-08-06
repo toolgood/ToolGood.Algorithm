@@ -133,4 +133,21 @@ public class CompareTest {
         value3 = engine.TryEvaluate("-7*No > -2", false);
         assertEquals(value3, true);
     }
+
+    @Test
+    public void null_same_type_compare_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 同类型 null 与 null 比较, 修复前误返回 true
+        boolean b = engine.TryEvaluate("null>null", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("null>=null", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("null<=null", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("null<null", true);
+        assertEquals(false, b);
+    }
 }

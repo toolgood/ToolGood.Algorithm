@@ -136,6 +136,32 @@ namespace ToolGood.Algorithm.Test.String
         }
 
         [Test]
+        public void FIXED_negative_digits_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Excel 支持负数 decimals(向左取整),如 FIXED(1234.567,-1)="1,230"
+            var t = engine.TryEvaluate("FIXED(1234.567,-1)", "");
+            Assert.AreEqual(t, "1,230");
+
+            t = engine.TryEvaluate("FIXED(1234.567,-2)", "");
+            Assert.AreEqual(t, "1,200");
+
+            t = engine.TryEvaluate("FIXED(1234.567,-3)", "");
+            Assert.AreEqual(t, "1,000");
+
+            t = engine.TryEvaluate("FIXED(1234.567,-4)", "");
+            Assert.AreEqual(t, "0");
+
+            // 负数取整后保留千分位
+            t = engine.TryEvaluate("FIXED(-1234.567,-1)", "");
+            Assert.AreEqual(t, "-1,230");
+
+            // 超出 -15 报错
+            t = engine.TryEvaluate("FIXED(1234.567,-16)", "");
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
         public void LEFT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -222,6 +248,27 @@ namespace ToolGood.Algorithm.Test.String
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", 0);
             Assert.AreEqual(t, 4);
+        }
+
+        [Test]
+        public void SEARCH_param_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Excel SEARCH 要求 2~3 个参数(find_text, within_text, [start_num])
+            var t = engine.TryEvaluate("SEARCH('a','banana')", 0);
+            Assert.AreEqual(t, 2);
+
+            t = engine.TryEvaluate("SEARCH('a','banana',3)", 0);
+            Assert.AreEqual(t, 4);
+
+            // 单参数解析阶段即报错(修复前误允许 1~2 个参数)
+            bool thrown = false;
+            try {
+                t = engine.TryEvaluate("SEARCH('a')", 0);
+            } catch {
+                thrown = true;
+            }
+            Assert.IsTrue(thrown || engine.LastError != null);
         }
 
         [Test]

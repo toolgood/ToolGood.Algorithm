@@ -178,6 +178,58 @@ namespace ToolGood.Algorithm.Test.MathBase
         }
 
         [Test]
+        public void ROUND_negative_digits_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 负数位数向左取整(Math.Round(decimal,int) 不支持负数位数,修复前抛 ArgumentOutOfRangeException)
+            var t = engine.TryEvaluate("ROUND(1234.567,-1)", 0.0);
+            Assert.AreEqual(1230.0, t, 1e-6);
+
+            t = engine.TryEvaluate("ROUND(1234.567,-2)", 0.0);
+            Assert.AreEqual(1200.0, t, 1e-6);
+
+            t = engine.TryEvaluate("ROUND(1234.567,-3)", 0.0);
+            Assert.AreEqual(1000.0, t, 1e-6);
+
+            t = engine.TryEvaluate("ROUND(1234.567,-4)", 0.0);
+            Assert.AreEqual(0.0, t, 1e-6);
+
+            // AwayFromZero 舍入
+            t = engine.TryEvaluate("ROUND(15,-1)", 0.0);
+            Assert.AreEqual(20.0, t, 1e-6);
+
+            // 超出 -15 报错
+            t = engine.TryEvaluate("ROUND(1234.567,-16)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void FACTDOUBLE_limit_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 基础值
+            var t = engine.TryEvaluate("FACTDOUBLE(6)", 0.0);
+            Assert.AreEqual(48.0, t, 1e-9);
+            t = engine.TryEvaluate("FACTDOUBLE(7)", 0.0);
+            Assert.AreEqual(105.0, t, 1e-9);
+
+            // 修复前 29~45 被误判溢出,现在 decimal 范围内正常(45!!≈2.537e28)
+            t = engine.TryEvaluate("FACTDOUBLE(29)", 0.0);
+            Assert.IsTrue(engine.LastError == null && t > 0);
+
+            t = engine.TryEvaluate("FACTDOUBLE(45)", 0.0);
+            Assert.IsTrue(engine.LastError == null && t > 0);
+
+            // 46!! 超出 decimal 溢出,报错
+            t = engine.TryEvaluate("FACTDOUBLE(46)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            // 负数报错
+            t = engine.TryEvaluate("FACTDOUBLE(-1)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
         public void ROUNDDOWN_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();

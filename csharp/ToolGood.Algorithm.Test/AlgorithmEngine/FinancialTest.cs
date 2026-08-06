@@ -119,6 +119,28 @@ namespace ToolGood.Algorithm.Test.Financial
         }
 
         [Test]
+        public void DB_month_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Excel: month<12 时折旧跨越 life+1 个期间(第 1 年部分月 + life-1 个整年 + 最后部分月)
+            // 修复前 period>life 直接报错, 现在允许 period=life+1
+            var t = engine.TryEvaluate("DB(1000000, 100000, 6, 7, 7)", 0.0);
+            Assert.IsTrue(engine.LastError == null && t > 0);
+
+            // 超过总期间数仍报错
+            t = engine.TryEvaluate("DB(1000000, 100000, 6, 8, 7)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            // month=12 时总期间数等于 life, 最后一年折旧为整年
+            t = engine.TryEvaluate("DB(1000000, 100000, 6, 6, 12)", 0.0);
+            Assert.IsTrue(engine.LastError == null && t > 0);
+
+            // period=1 首期按部分月折旧
+            t = engine.TryEvaluate("DB(1000000, 100000, 6, 1, 7)", 0.0);
+            Assert.IsTrue(engine.LastError == null && t > 0);
+        }
+
+        [Test]
         public void XNPV_test()
         {
             AlgorithmEngineEx engine = new AlgorithmEngineEx();

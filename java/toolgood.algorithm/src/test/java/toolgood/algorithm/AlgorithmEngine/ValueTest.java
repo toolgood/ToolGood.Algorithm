@@ -123,6 +123,19 @@ public class ValueTest {
     }
 
     @Test
+    public void Json_backslash_escape_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // Bug C 回归: 序列化字符串应转义反斜杠(修复前漏转义, 输出为 {"a":"C:\temp"})
+        // Java 源码 "{\"a\":\"C:\\\\temp\"}" → 引擎字面量 {"a":"C:\\temp"} → 值 C:\temp
+        String dt = engine.TryEvaluate("{\"a\":\"C:\\\\temp\"}", "");
+        assertEquals("{\"a\":\"C:\\\\temp\"}", dt);
+
+        // 反斜杠与引号同时转义
+        dt = engine.TryEvaluate("{\"a\":\"a\\\"b\\\\c\"}", "");
+        assertEquals("{\"a\":\"a\\\"b\\\\c\"}", dt);
+    }
+
+    @Test
     public void array_test2() {
         AlgorithmEngine engine = new AlgorithmEngine();
         engine.SetUseExcelIndex(true);

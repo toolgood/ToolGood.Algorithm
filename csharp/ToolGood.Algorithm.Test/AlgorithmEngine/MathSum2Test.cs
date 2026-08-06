@@ -208,6 +208,23 @@ namespace ToolGood.Algorithm.Test.MathSum2
             Assert.AreEqual(Math.Round(t, 6), Math.Round(0.537049567, 6));
         }
 
+        [Test]
+        public void FISHERINV_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 2x 超出 decimal 的 e 指数范围(约 ±66)时,修复前抛 OverflowException
+            // 修复后 tanh 趋近于 ±1,与 Java 版 double 计算一致
+            var t = engine.TryEvaluate("FISHERINV(40)", 0.0);
+            Assert.AreEqual(1.0, t, 1e-9);
+
+            t = engine.TryEvaluate("FISHERINV(-40)", 0.0);
+            Assert.AreEqual(-1.0, t, 1e-9);
+
+            // 边界内仍正常计算
+            t = engine.TryEvaluate("FISHERINV(0.6)", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(0.537049567, 6));
+        }
+
         #region Bessel函数
 
         [Test]

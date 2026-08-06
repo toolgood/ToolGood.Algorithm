@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 
 namespace ToolGood.Algorithm.Test.Compare
 {
@@ -108,6 +108,24 @@ namespace ToolGood.Algorithm.Test.Compare
 
             bb2 = engine.TryEvaluate("'111'!=null", false);
             Assert.AreEqual(bb2, true);
+        }
+
+        [Test]
+        public void null_same_type_compare_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 修复点: 两侧同为 null 时, 大小比较应返回 False(修复前误返回 True)
+            var bb2 = engine.TryEvaluate("null>null", true);
+            Assert.AreEqual(bb2, false);
+
+            bb2 = engine.TryEvaluate("null>=null", true);
+            Assert.AreEqual(bb2, false);
+
+            bb2 = engine.TryEvaluate("null<=null", true);
+            Assert.AreEqual(bb2, false);
+
+            bb2 = engine.TryEvaluate("null<null", true);
+            Assert.AreEqual(bb2, false);
         }
 
         [Test]

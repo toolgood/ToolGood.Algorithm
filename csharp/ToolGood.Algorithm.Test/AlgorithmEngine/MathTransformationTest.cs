@@ -190,5 +190,53 @@ namespace ToolGood.Algorithm.Test.MathTransformation
             t = engine.TryEvaluate("ROMAN(2023)", "");
             Assert.AreEqual(t, "MMXXIII");
         }
+
+        [Test]
+        public void ARABIC_error_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 空文本报错(Excel 返回 #VALUE!)
+            var t = engine.TryEvaluate("ARABIC('')", 0);
+            Assert.IsTrue(engine.LastError != null);
+
+            // 非法字符报错
+            t = engine.TryEvaluate("ARABIC('ABC')", 0);
+            Assert.IsTrue(engine.LastError != null);
+
+            // 支持小写
+            t = engine.TryEvaluate("ARABIC('mcm')", 0);
+            Assert.AreEqual(t, 1900);
+
+            // Excel 官方例子: ARABIC("MCMLXXII") = 1972
+            t = engine.TryEvaluate("ARABIC('MCMLXXII')", 0);
+            Assert.AreEqual(t, 1972);
+        }
+
+        [Test]
+        public void ROMAN_form_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // form 0~4 使用不同的简化规则
+            Assert.AreEqual("CDXCIX", engine.TryEvaluate("ROMAN(499)", ""));
+            Assert.AreEqual("LDVLIV", engine.TryEvaluate("ROMAN(499,1)", ""));
+            Assert.AreEqual("XDIX", engine.TryEvaluate("ROMAN(499,2)", ""));
+            Assert.AreEqual("VDIV", engine.TryEvaluate("ROMAN(499,3)", ""));
+            Assert.AreEqual("ID", engine.TryEvaluate("ROMAN(499,4)", ""));
+
+            // 0 返回空文本
+            Assert.AreEqual("", engine.TryEvaluate("ROMAN(0)", "x"));
+
+            // 负数与大于 3999 报错
+            var t = engine.TryEvaluate("ROMAN(-1)", "");
+            Assert.IsTrue(engine.LastError != null);
+            t = engine.TryEvaluate("ROMAN(4000)", "");
+            Assert.IsTrue(engine.LastError != null);
+
+            // form 超出 0~4 报错
+            t = engine.TryEvaluate("ROMAN(499,5)", "");
+            Assert.IsTrue(engine.LastError != null);
+            t = engine.TryEvaluate("ROMAN(499,-1)", "");
+            Assert.IsTrue(engine.LastError != null);
+        }
     }
 }

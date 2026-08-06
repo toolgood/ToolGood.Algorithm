@@ -620,4 +620,25 @@ public class MathBaseTest {
         t = engine.TryEvaluate("ROUNDDOWN(-76.9, -1)", 0.0);
         assertEquals(-70.0, t, 0.0);
     }
+
+    @Test
+    public void FACTDOUBLE_limit_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 29 正常(修复前误报溢出)
+        double t = engine.TryEvaluate("FACTDOUBLE(29)", 0.0);
+        assertNull(engine.LastError);
+
+        // 45 为最大允许值: 45!!≈2.537e28 仍在 decimal 范围
+        t = engine.TryEvaluate("FACTDOUBLE(45)", 0.0);
+        assertNull(engine.LastError);
+
+        // 46!! 超出 decimal 范围, 报参数错误
+        t = engine.TryEvaluate("FACTDOUBLE(46)", 0.0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        // 负数报错
+        t = engine.TryEvaluate("FACTDOUBLE(-1)", 0.0);
+        assertNotNull(engine.LastError);
+    }
 }

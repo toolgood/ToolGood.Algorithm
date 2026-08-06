@@ -81,4 +81,35 @@ public class CsharpWebTest {
         String dt = engine.TryEvaluate("'%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c'.URLDECODE()", (String)null);
         assertEquals("&=我中国人 >||", dt);
     }
+
+    @Test
+    public void HtmlDecode_Entities_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 新增实体表: &copy; ©, &nbsp; 为不换行空格(修复前 nbsp 被替换为普通空格)
+        String dt = engine.TryEvaluate("HtmlDecode('&copy;&reg;&trade;')", (String)null);
+        assertEquals("\u00A9\u00AE\u2122", dt);
+
+        dt = engine.TryEvaluate("HtmlDecode('a&nbsp;b')", (String)null);
+        assertEquals("a\u00A0b", dt);
+
+        // 数字实体(修复前不支持)
+        dt = engine.TryEvaluate("HtmlDecode('&#65;&#x42;')", (String)null);
+        assertEquals("AB", dt);
+
+        // 基础实体行为保持
+        dt = engine.TryEvaluate("HtmlDecode('&amp;&lt;&gt;&quot;&apos;')", (String)null);
+        assertEquals("&<>\"'", dt);
+    }
+
+    @Test
+    public void UrlEncode_Space_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 空格编码为 +(修复前 URLEncoder.encode 同样为 +, 但保留字符集不同)
+        String dt = engine.TryEvaluate("UrlEncode('a b')", (String)null);
+        assertEquals("a+b", dt);
+
+        // 保留字符 ~(RFC 3986 unreserved)
+        dt = engine.TryEvaluate("UrlEncode('a~b')", (String)null);
+        assertEquals("a~b", dt);
+    }
 }

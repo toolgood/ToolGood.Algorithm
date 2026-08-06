@@ -164,6 +164,25 @@ namespace ToolGood.Algorithm.Test.Flow
         }
 
         [Test]
+        public void ISODD_negative_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // C# 取模符号跟随被除数,-1%2==-1,修复前负数奇数被误判为偶数
+            var t = engine.TryEvaluate("ISODD(-1)", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("ISODD(-2)", false);
+            Assert.AreEqual(false, t);
+
+            // 先截断再判断
+            t = engine.TryEvaluate("ISODD(-1.5)", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("ISODD(-0.5)", false);
+            Assert.AreEqual(false, t);
+        }
+
+        [Test]
         public void And_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();

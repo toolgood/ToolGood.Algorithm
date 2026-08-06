@@ -285,6 +285,32 @@ public class CsharpTest {
     }
 
     @Test
+    public void TrimStart_UnicodeWhitespace_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // U+00A0 不换行空格: isSpaceChar=true, 但 String.stripLeading() 只去除 <= U+0020 的空白
+        // 修复前 '\u00A0abc'.TRIMSTART() 无法去除开头的不换行空格
+        String dt = engine.TryEvaluate("'\u00A0abc'.TRIMSTART()", (String)null);
+        assertEquals("abc", dt);
+
+        dt = engine.TryEvaluate("' \u00A0abc'.TRIMSTART()", (String)null);
+        assertEquals("abc", dt);
+    }
+
+    @Test
+    public void TrimEnd_UnicodeWhitespace_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 同上, 修复前 '\u2003'(EM SPACE, isWhitespace=true) 无法从末尾去除
+        String dt = engine.TryEvaluate("'abc\u00A0'.TRIMEND()", (String)null);
+        assertEquals("abc", dt);
+
+        dt = engine.TryEvaluate("'abc\u00A0 '.TRIMEND()", (String)null);
+        assertEquals("abc", dt);
+
+        dt = engine.TryEvaluate("'abc\u2003'.TRIMEND()", (String)null);
+        assertEquals("abc", dt);
+    }
+
+    @Test
     public void MethodStyle_INDEXOF_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         engine.SetUseExcelIndex(false);

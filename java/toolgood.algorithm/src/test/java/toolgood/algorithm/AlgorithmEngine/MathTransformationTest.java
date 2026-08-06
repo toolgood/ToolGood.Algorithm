@@ -180,4 +180,66 @@ public class MathTransformationTest {
         t = engine.TryEvaluate("ROMAN(2023)", "");
         assertEquals("MMXXIII", t);
     }
+
+    @Test
+    public void ARABIC_error_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 空文本报错(修复前返回 0)
+        int t = engine.TryEvaluate("ARABIC('')", 0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        // 非法字符报错(修复前静默忽略非法字符)
+        t = engine.TryEvaluate("ARABIC('ABC')", 0);
+        assertNotNull(engine.LastError);
+
+        // 小写输入支持(内部转大写)
+        t = engine.TryEvaluate("ARABIC('mcm')", 0);
+        assertEquals(1900, t);
+
+        // Excel 官方例子
+        t = engine.TryEvaluate("ARABIC('MCMLXXII')", 0);
+        assertEquals(1972, t);
+    }
+
+    @Test
+    public void ROMAN_form_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // Excel 官方 form 0~4 对 499 的不同精简形式
+        String t = engine.TryEvaluate("ROMAN(499,0)", "");
+        assertEquals("CDXCIX", t);
+
+        t = engine.TryEvaluate("ROMAN(499,1)", "");
+        assertEquals("LDVLIV", t);
+
+        t = engine.TryEvaluate("ROMAN(499,2)", "");
+        assertEquals("XDIX", t);
+
+        t = engine.TryEvaluate("ROMAN(499,3)", "");
+        assertEquals("VDIV", t);
+
+        t = engine.TryEvaluate("ROMAN(499,4)", "");
+        assertEquals("ID", t);
+
+        // ROMAN(0) 返回空文本
+        t = engine.TryEvaluate("ROMAN(0)", "");
+        assertEquals("", t);
+
+        // number 超出 0~3999 报错(修复前返回空文本)
+        t = engine.TryEvaluate("ROMAN(-1)", "");
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        t = engine.TryEvaluate("ROMAN(4000)", "");
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        // form 超出 0~4 报错
+        t = engine.TryEvaluate("ROMAN(499,5)", "");
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        t = engine.TryEvaluate("ROMAN(499,-1)", "");
+        assertNotNull(engine.LastError);
+    }
 }

@@ -267,6 +267,39 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         [Test]
+        public void DATEDIF_YD_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Excel 官方例子: DATEDIF("6/15/2015","9/15/2016","YD") = 92
+            var dt = engine.TryEvaluate("DATEDIF('2015-6-15','2016-9-15','yd')", 0);
+            Assert.AreEqual(dt, 92);
+
+            // 跨闰年: 同月日天数差应为 0
+            // 旧实现按 DayOfYear 相减(2016 闰年 3/1 为第 61 天,2015 为第 60 天)会得到 1
+            dt = engine.TryEvaluate("DATEDIF('2015-3-1','2016-3-1','yd')", 0);
+            Assert.AreEqual(dt, 0);
+
+            dt = engine.TryEvaluate("DATEDIF('2015-3-1','2016-3-2','yd')", 0);
+            Assert.AreEqual(dt, 1);
+        }
+
+        [Test]
+        public void DAYS360_us_method_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // US(NASD) 方法: start 为 2 月最后一天按 30 日调整, end 月末按调整后的 startDay 决定 30/31
+            var dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31')", 0);
+            Assert.AreEqual(dt, 30);
+
+            dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31',false)", 0);
+            Assert.AreEqual(dt, 30);
+
+            // startDay 调整为 30 后, end 月末按 30 计算
+            dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31',false)", 0);
+            Assert.AreEqual(dt, 30);
+        }
+
+        [Test]
         public void EDATE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -436,6 +469,28 @@ namespace ToolGood.Algorithm.Test.DateTimes
 
             t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 4)", 0.0);
             Assert.AreEqual(Math.Round(t, 3), Math.Round(0.5, 3));
+        }
+
+        [Test]
+        public void YEARFRAC_basis0_30_360_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // basis 0(US NASD 30/360) MS-OI29500 规则链:
+            // date1 为 2 月最后一天 → d1=30; d2=31 但 date1 原始非 30, d2 保持 31 → (30+1)/360
+            var t = engine.TryEvaluate("YEARFRAC('2012-2-29','2012-3-31',0)", 0.0);
+            Assert.AreEqual(31.0 / 360.0, t, 1e-9);
+
+            // 规则链: date1=31 且 date2=31 → 都改为 30, 结果为 30*(3-1)/360
+            t = engine.TryEvaluate("YEARFRAC('2012-1-31','2012-3-31',0)", 0.0);
+            Assert.AreEqual(60.0 / 360.0, t, 1e-9);
+
+            // 两日期均为各自年份 2 月最后一天 → 都改为 30
+            t = engine.TryEvaluate("YEARFRAC('2012-2-29','2013-2-28',0)", 0.0);
+            Assert.AreEqual(360.0 / 360.0, t, 1e-9);
+
+            // 非月末正常 30/360
+            t = engine.TryEvaluate("YEARFRAC('2012-1-1','2012-7-1',0)", 0.0);
+            Assert.AreEqual(0.5, t, 1e-9);
         }
 
         [Test]

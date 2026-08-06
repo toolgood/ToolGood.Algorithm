@@ -307,4 +307,24 @@ public class MathSumTest {
         double t = engine.TryEvaluate("SUMXMY2(array(1, 2, 3), array(4, 5, 6))", 0.0);
         assertEquals(27.0, t, 0.0);
     }
+
+    @Test
+    public void PERCENTRANK_significance_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // significance 指定保留小数位数(原始值 5/7≈0.7142857)
+        double t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,4)", 0.0);
+        assertEquals(0.7143, t, 1e-9);
+
+        // 28 为允许的最大位数
+        t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,28)", 0.0);
+        assertEquals(5.0 / 7.0, t, 1e-12);
+
+        // 超过 28 报错(修复前抛 ArgumentOutOfRangeException)
+        t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,29)", 0.0);
+        assertNotNull(engine.LastError);
+
+        // 负数位数报错
+        t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,-1)", 0.0);
+        assertNotNull(engine.LastError);
+    }
 }

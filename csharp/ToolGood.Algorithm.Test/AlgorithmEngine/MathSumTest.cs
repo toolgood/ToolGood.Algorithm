@@ -76,6 +76,27 @@ namespace ToolGood.Algorithm.Test.MathSum
         }
 
         [Test]
+        public void PERCENTRANK_significance_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // significance 指定保留小数位数(原始值 5/7≈0.7142857)
+            var t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,4)", 0.0);
+            Assert.AreEqual(0.7143, t, 1e-9);
+
+            // 28 为允许的最大位数
+            t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,28)", 0.0);
+            Assert.AreEqual(5.0 / 7.0, t, 1e-12);
+
+            // 超过 28 报错(Math.Round(decimal,int) 上限,修复前会抛 ArgumentOutOfRangeException)
+            t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,29)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            // 负数位数报错
+            t = engine.TryEvaluate("PERCENTRANK(array(1,2,3,4,2,2,1,4),3,-1)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
         public void AVERAGE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();

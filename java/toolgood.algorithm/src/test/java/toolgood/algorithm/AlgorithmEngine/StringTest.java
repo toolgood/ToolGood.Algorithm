@@ -128,6 +128,31 @@ public class StringTest {
     }
 
     @Test
+    public void FIXED_negative_digits_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // Excel 支持负数 decimals(向左取整),如 FIXED(1234.567,-1)="1,230"
+        String t = engine.TryEvaluate("FIXED(1234.567,-1)", "");
+        assertEquals("1,230", t);
+
+        t = engine.TryEvaluate("FIXED(1234.567,-2)", "");
+        assertEquals("1,200", t);
+
+        t = engine.TryEvaluate("FIXED(1234.567,-3)", "");
+        assertEquals("1,000", t);
+
+        t = engine.TryEvaluate("FIXED(1234.567,-4)", "");
+        assertEquals("0", t);
+
+        // 负数取整后保留千分位
+        t = engine.TryEvaluate("FIXED(-1234.567,-1)", "");
+        assertEquals("-1,230", t);
+
+        // 超出 -15 报错
+        t = engine.TryEvaluate("FIXED(1234.567,-16)", "");
+        assertNotNull(engine.LastError);
+    }
+
+    @Test
     public void LEFT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("LEFT('123222',3)", "");
