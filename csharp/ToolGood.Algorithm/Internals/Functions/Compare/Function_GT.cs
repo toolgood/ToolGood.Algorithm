@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 					args2 = args2.ToNumber();
 					return Operand.Create(args1.NumberValue > args2.NumberValue);
 				} else if(args1.IsNull) {
-					return Operand.True;
+					return Operand.False;
 				}
 				return CompareError();
 			} else if(args1.IsNull || args2.IsNull) {

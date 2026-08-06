@@ -30,7 +30,7 @@ public final class Function_TRIMEND extends Function_2 {
         if (args1.IsErrorOrNone()) { return args1; }
 
         if (func2 == null) {
-            return Operand.Create(args1.TextValue().stripTrailing());
+            return Operand.Create(TrimEnd(args1.TextValue()));
         }
 
         Operand args2 = GetText_2(engine, tempParameter);
@@ -65,5 +65,17 @@ public final class Function_TRIMEND extends Function_2 {
         if (func2 != null) {
             func2.GetParameterTypes(noneEngine, result, OperandType.TEXT);
         }
+    }
+
+    private static String TrimEnd(String text) {
+        int end = text.length();
+        while (end > 0 && IsWhitespace(text.charAt(end - 1))) {
+            end--;
+        }
+        return text.substring(0, end);
+    }
+
+    private static boolean IsWhitespace(char c) {
+        return Character.isWhitespace(c) || Character.isSpaceChar(c);
     }
 }

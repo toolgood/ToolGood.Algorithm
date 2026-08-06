@@ -49,7 +49,7 @@ public final class Function_LT extends Function_2 {
                 args2 = args2.ToNumber(null);
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) < 0);
             } else if (args1.IsNull()) {
-                return Operand.True;
+                return Operand.False;
             }
             return CompareError();
         } else if (args1.IsNull() || args2.IsNull()) {
