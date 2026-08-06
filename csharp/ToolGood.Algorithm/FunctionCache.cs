@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
@@ -29,7 +29,11 @@ namespace ToolGood.Algorithm
 		private FunctionBase CreateCalculate(CalculateTree tree)
 		{
 			if(functionCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
-			if(tree.Type == Algorithm.Enums.CalculateTreeType.String) { return AlgorithmEngineHelper.ParseFormula(tree.Text); }
+			if(tree.Type == Algorithm.Enums.CalculateTreeType.String) {
+				var leafFun = AlgorithmEngineHelper.ParseFormula(tree.Text);
+				functionCache[tree.Text] = leafFun;
+				return leafFun;
+			}
 			if(tree.Type == Algorithm.Enums.CalculateTreeType.Error) { throw new Exception(tree.ErrorMessage); }
 
 			var leftFunc = CreateCalculate(tree.Nodes[0]);
@@ -54,7 +58,12 @@ namespace ToolGood.Algorithm
 		private FunctionBase CreateCondition(ConditionTree tree)
 		{
 			if(functionCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
-			if(tree.Type == Algorithm.Enums.ConditionTreeType.String) { return ParseWithCache(tree.Text); }
+			if(tree.Type == Algorithm.Enums.ConditionTreeType.String) {
+				// 直接走计算树路径(CreateCalculate 内部用 TryGetValue+索引器赋值),
+				// 避免对同一 key 重入 GetOrAdd(ConcurrentDictionary 文档禁止 valueFactory 递归调用)
+				var calcTree = AlgorithmEngineHelper.ParseCalculate(tree.Text);
+				return CreateCalculate(calcTree);
+			}
 
 			var leftFunc = CreateCondition(tree.Nodes[0]);
 			var rightFunc = CreateCondition(tree.Nodes[1]);
