@@ -20,8 +20,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
             var x = args1.NumberValue;
-            var n = (MathEx.Exp((2 * x)) - 1) / (MathEx.Exp((2 * x)) + 1);
-            return Operand.Create(n);
+            try {
+                var n = (MathEx.Exp((2 * x)) - 1) / (MathEx.Exp((2 * x)) + 1);
+                return Operand.Create(n);
+            } catch (OverflowException) {
+                // 2x 超出 decimal 可表示范围(约 ±66)时,tanh 趋近于 ±1,与 Java 版 double 计算结果一致
+                return Operand.Create(x >= 0 ? 1.0m : -1.0m);
+            }
         }
 		public override OperandType GetResultType()
 		{
