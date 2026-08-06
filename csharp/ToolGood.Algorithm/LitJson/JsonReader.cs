@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -153,7 +153,7 @@ namespace ToolGood.Algorithm.LitJson
                 token_value = (decimal)n_uint64;
                 return;
             }
-            token_value = 0;
+            throw new JsonException("Number is too large or invalid: " + number);
         }
 
         private void ProcessSymbol()

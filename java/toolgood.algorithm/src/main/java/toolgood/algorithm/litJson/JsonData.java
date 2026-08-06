@@ -164,4 +164,64 @@ public class JsonData implements IJsonWrapper {
         return inst_string;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        write(sb);
+        return sb.toString();
+    }
+
+    private void write(StringBuilder sb) {
+        if (type == JsonType.Null) {
+            sb.append("null");
+        } else if (type == JsonType.Boolean) {
+            sb.append(inst_boolean ? "true" : "false");
+        } else if (type == JsonType.Array) {
+            sb.append("[");
+            for (int i = 0; i < inst_array.size(); i++) {
+                if (i > 0) sb.append(",");
+                inst_array.get(i).write(sb);
+            }
+            sb.append("]");
+        } else if (type == JsonType.Object) {
+            sb.append("{");
+            boolean first = true;
+            for (Map.Entry<String, JsonData> kv : inst_object.entrySet()) {
+                if (!first) sb.append(",");
+                first = false;
+                sb.append("\"").append(escapeJson(kv.getKey())).append("\":");
+                kv.getValue().write(sb);
+            }
+            sb.append("}");
+        } else if (type == JsonType.String) {
+            sb.append("\"").append(escapeJson(inst_string)).append("\"");
+        } else if (type == JsonType.Double) {
+            sb.append(inst_double.toPlainString());
+        }
+    }
+
+    private static String escapeJson(String s) {
+        StringBuilder sb = new StringBuilder(s.length() + 8);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            switch (c) {
+                case '"': sb.append("\\\""); break;
+                case '\\': sb.append("\\\\"); break;
+                case '\n': sb.append("\\n"); break;
+                case '\r': sb.append("\\r"); break;
+                case '\t': sb.append("\\t"); break;
+                case '\b': sb.append("\\b"); break;
+                case '\f': sb.append("\\f"); break;
+                default:
+                    if (c < 0x20) {
+                        sb.append("\\u").append(String.format("%04x", (int) c));
+                    } else {
+                        sb.append(c);
+                    }
+                    break;
+            }
+        }
+        return sb.toString();
+    }
+
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.LitJson
 
 		public JsonData this[string prop_name] {
 			get {
-				//EnsureDictionary();
+				EnsureDictionary();
 				if(inst_object.TryGetValue(prop_name, out JsonData data)) {
 					return data;
 				}
@@ -202,22 +202,42 @@ namespace ToolGood.Algorithm.LitJson
 					}
 					first = false;
 					stringBuilder.Append("\"");
-					stringBuilder.Append(kv.Key.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r")
-						.Replace("\t", "\\t").Replace("\0", "\\0").Replace("\v", "\\v")
-						.Replace("\a", "\\a").Replace("\b", "\\b").Replace("\f", "\\f"));
+					stringBuilder.Append(EscapeJson(kv.Key));
 					stringBuilder.Append("\":");
 					kv.Value.ToString(stringBuilder);
 				}
 				stringBuilder.Append("}");
 			} else if(IsString) {
 				stringBuilder.Append("\"");
-				stringBuilder.Append(inst_string.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r")
-						.Replace("\t", "\\t").Replace("\0", "\\0").Replace("\v", "\\v")
-						.Replace("\a", "\\a").Replace("\b", "\\b").Replace("\f", "\\f"));
+				stringBuilder.Append(EscapeJson(inst_string));
 				stringBuilder.Append("\"");
 			} else if(IsDouble) {
 				stringBuilder.Append(inst_double.ToString(CultureInfo.InvariantCulture));
 			}
+		}
+
+		private static string EscapeJson(string s)
+		{
+			var sb = new StringBuilder(s.Length + 8);
+			foreach(var c in s) {
+				switch(c) {
+					case '"': sb.Append("\\\""); break;
+					case '\\': sb.Append("\\\\"); break;
+					case '\n': sb.Append("\\n"); break;
+					case '\r': sb.Append("\\r"); break;
+					case '\t': sb.Append("\\t"); break;
+					case '\b': sb.Append("\\b"); break;
+					case '\f': sb.Append("\\f"); break;
+					default:
+						if(c < 0x20) {
+							sb.Append("\\u").Append(((int)c).ToString("x4"));
+						} else {
+							sb.Append(c);
+						}
+						break;
+				}
+			}
+			return sb.ToString();
 		}
 
 	}
