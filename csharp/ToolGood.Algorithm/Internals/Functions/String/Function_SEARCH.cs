@@ -8,8 +8,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 	{
 		public Function_SEARCH(FunctionBase[] funcs) : base(funcs)
 		{
-			if (funcs.Length < 1 || funcs.Length > 2) {
-				throw new ArgumentException($"Function '{Name}' requires 1 to 2 parameters.");
+			// 与 Java 版一致:要求 2~3 个参数(find_text, within_text, [start_num])
+			if (funcs.Length < 2 || funcs.Length > 3) {
+				throw new ArgumentException($"Function '{Name}' requires 2 to 3 parameters.");
 			}
 		}
 
