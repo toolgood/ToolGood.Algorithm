@@ -20,7 +20,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 			var arg = GetText_1(engine, tempParameter);
 			if (arg.IsErrorOrNone) return arg;
 			var text = arg.TextValue.ToUpperInvariant();
-			return Operand.Create(RomanToArabic(text));
+			// Excel: 空文本或含非法字符(非 I/V/X/L/C/D/M)时返回 #VALUE!
+			if (text.Length == 0) return ParameterError(1);
+			var result = RomanToArabic(text);
+			if (result < 0) return ParameterError(1);
+			return Operand.Create(result);
 		}
 
 		private int RomanToArabic(string roman)
@@ -30,6 +34,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 
 			for (int i = roman.Length - 1; i >= 0; i--) {
 				int value = GetRomanValue(roman[i]);
+				if (value < 0) return -1;
 				if (value < prevValue) {
 					result -= value;
 				} else {
@@ -51,7 +56,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 				case 'C': return 100;
 				case 'D': return 500;
 				case 'M': return 1000;
-				default: return 0;
+				default: return -1;
 			}
 		}
 		public override OperandType GetResultType()
