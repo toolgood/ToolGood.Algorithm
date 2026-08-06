@@ -64,10 +64,30 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 		private decimal Calculate30_360(DateTime startDate, DateTime endDate)
 		{
-			int d1 = Math.Min(30, startDate.Day);
+			// Excel basis 0 (US NASD 30/360), 微软 OpenSpecs (MS-OI29500) 规则链:
+			// 1. 两日期日号均为 31 时, 都改为 30
+			// 2. 否则 date1 为 31, 改为 30
+			// 3. 否则 date1 为 30 且 date2 为 31, date2 改为 30 (date1 小于 30 时 date2 保持 31)
+			// 4. 否则两日期均为各自年份 2 月最后一天, 都改为 30
+			// 5. 否则 date1 为 2 月最后一天, 改为 30
+			int d1 = startDate.Day;
 			int d2 = endDate.Day;
+			bool d1FebLast = startDate.Month == 2 && startDate.Day == DateTime.DaysInMonth(startDate.Year, 2);
+			bool d2FebLast = endDate.Month == 2 && endDate.Day == DateTime.DaysInMonth(endDate.Year, 2);
 
-			if (d1 == 30) d2 = Math.Min(30, d2);
+			if (d1 == 31 && d2 == 31) {
+				d1 = 30;
+				d2 = 30;
+			} else if (d1 == 31) {
+				d1 = 30;
+			} else if (d1 == 30 && d2 == 31) {
+				d2 = 30;
+			} else if (d1FebLast && d2FebLast) {
+				d1 = 30;
+				d2 = 30;
+			} else if (d1FebLast) {
+				d1 = 30;
+			}
 
 			return (360 * (endDate.Year - startDate.Year) + 30 * (endDate.Month - startDate.Month) + (d2 - d1)) / 360.0m;
 		}

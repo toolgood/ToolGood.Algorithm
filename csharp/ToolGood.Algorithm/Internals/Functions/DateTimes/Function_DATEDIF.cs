@@ -65,12 +65,13 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
                 #region yd
 
-                var day = endMyDate.DayOfYear - startMyDate.DayOfYear;
-                if (endMyDate.Year > startMyDate.Year && day < 0) {
-                    var days = new DateTime(startMyDate.Year, 12, 31).DayOfYear;
-                    day = days + day;
+                // Excel: 将 end 的月日置于 start 年构造候选日期, 若候选早于 start 则加一年, 再求天数差
+                var cand = new DateTime(startMyDate.Year, endMyDate.Month, endMyDate.Day);
+                if (cand < startMyDate) {
+                    cand = cand.AddYears(1);
                 }
-                return Operand.Create((day));
+                var day = (cand - startMyDate).Days;
+                return Operand.Create(day);
 
                 #endregion yd
             } else if (t.Equals("MD", StringComparison.OrdinalIgnoreCase)) {

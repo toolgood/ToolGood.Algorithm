@@ -47,40 +47,29 @@ public final class Function_DAYS360 extends Function_3 {
             if (endMyDate.getDayOfMonth() == 31) days += 30;
             if (startMyDate.getDayOfMonth() == 31) days -= 30;
         } else {
+            // US (NASD) 方法: start 若为月末(含 2 月最后一天)则调整为 30 日,
+            // end 若为月末, 依据调整后的 startDay 决定按 31 日(下月1日)或 30 日计算
+            int startDay = startMyDate.getDayOfMonth();
+            int endDay = endMyDate.getDayOfMonth();
             if (startMyDate.getMonthOfYear() == 12) {
-                if (startMyDate.getDayOfMonth() == new DateTime(startMyDate.getYear() + 1, 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
-                    days -= 30;
-                } else {
-                    days -= startMyDate.getDayOfMonth();
+                if (startDay == new DateTime(startMyDate.getYear() + 1, 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
+                    startDay = 30;
                 }
             } else {
-                if (startMyDate.getDayOfMonth() == new DateTime(startMyDate.getYear(), startMyDate.getMonthOfYear() + 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
-                    days -= 30;
-                } else {
-                    days -= startMyDate.getDayOfMonth();
+                if (startDay == new DateTime(startMyDate.getYear(), startMyDate.getMonthOfYear() + 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
+                    startDay = 30;
                 }
             }
             if (endMyDate.getMonthOfYear() == 12) {
-                if (endMyDate.getDayOfMonth() == new DateTime(endMyDate.getYear() + 1, 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
-                    if (startMyDate.getDayOfMonth() < 30) {
-                        days += 31;
-                    } else {
-                        days += 30;
-                    }
-                } else {
-                    days += endMyDate.getDayOfMonth();
+                if (endDay == new DateTime(endMyDate.getYear() + 1, 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
+                    endDay = startDay < 30 ? 31 : 30;
                 }
             } else {
-                if (endMyDate.getDayOfMonth() == new DateTime(endMyDate.getYear(), endMyDate.getMonthOfYear() + 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
-                    if (startMyDate.getDayOfMonth() < 30) {
-                        days += 31;
-                    } else {
-                        days += 30;
-                    }
-                } else {
-                    days += endMyDate.getDayOfMonth();
+                if (endDay == new DateTime(endMyDate.getYear(), endMyDate.getMonthOfYear() + 1, 1, 0, 0, 0, DateTimeZone.UTC).minusDays(1).getDayOfMonth()) {
+                    endDay = startDay < 30 ? 31 : 30;
                 }
             }
+            days += endDay - startDay;
         }
         return Operand.Create(days);
     }

@@ -77,10 +77,32 @@ public final class Function_YEARFRAC extends Function_3 {
     }
 
     private BigDecimal Calculate30_360(DateTime startDate, DateTime endDate) {
-        int d1 = Math.min(30, startDate.getDayOfMonth());
+        // Excel basis 0 (US NASD 30/360), 微软 OpenSpecs (MS-OI29500) 规则链:
+        // 1. 两日期日号均为 31 时, 都改为 30
+        // 2. 否则 date1 为 31, 改为 30
+        // 3. 否则 date1 为 30 且 date2 为 31, date2 改为 30 (date1 小于 30 时 date2 保持 31)
+        // 4. 否则两日期均为各自年份 2 月最后一天, 都改为 30
+        // 5. 否则 date1 为 2 月最后一天, 改为 30
+        int d1 = startDate.getDayOfMonth();
         int d2 = endDate.getDayOfMonth();
+        boolean d1FebLast = startDate.getMonthOfYear() == 2
+                && startDate.getDayOfMonth() == startDate.dayOfMonth().getMaximumValue();
+        boolean d2FebLast = endDate.getMonthOfYear() == 2
+                && endDate.getDayOfMonth() == endDate.dayOfMonth().getMaximumValue();
 
-        if (d1 == 30) d2 = Math.min(30, d2);
+        if (d1 == 31 && d2 == 31) {
+            d1 = 30;
+            d2 = 30;
+        } else if (d1 == 31) {
+            d1 = 30;
+        } else if (d1 == 30 && d2 == 31) {
+            d2 = 30;
+        } else if (d1FebLast && d2FebLast) {
+            d1 = 30;
+            d2 = 30;
+        } else if (d1FebLast) {
+            d1 = 30;
+        }
 
         return BigDecimal.valueOf(360 * (endDate.getYear() - startDate.getYear())
                 + 30 * (endDate.getMonthOfYear() - startDate.getMonthOfYear()) + (d2 - d1))

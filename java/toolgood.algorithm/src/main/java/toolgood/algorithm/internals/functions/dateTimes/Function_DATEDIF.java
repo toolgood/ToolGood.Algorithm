@@ -62,12 +62,13 @@ public final class Function_DATEDIF extends Function_3 {
         } else if (t.equalsIgnoreCase("D")) {
             return Operand.Create(Days.daysBetween(startMyDate, endMyDate).getDays());
         } else if (t.equalsIgnoreCase("YD")) {
-            int day = endMyDate.getDayOfYear() - startMyDate.getDayOfYear();
-            if (endMyDate.getYear() > startMyDate.getYear() && day < 0) {
-                int daysInYear = new DateTime(startMyDate.getYear(), 12, 31, 0, 0, 0, DateTimeZone.UTC).getDayOfYear();
-                day = daysInYear + day;
+            // Excel: 将 end 的月日置于 start 年构造候选日期, 若候选早于 start 则加一年, 再求天数差
+            DateTime cand = new DateTime(startMyDate.getYear(), endMyDate.getMonthOfYear(), endMyDate.getDayOfMonth(), 0, 0, 0, DateTimeZone.UTC);
+            if (cand.isBefore(startMyDate)) {
+                cand = cand.plusYears(1);
             }
-            return Operand.Create((day));
+            int day = Days.daysBetween(startMyDate, cand).getDays();
+            return Operand.Create(day);
         } else if (t.equalsIgnoreCase("MD")) {
             int mo = endMyDate.getDayOfMonth() - startMyDate.getDayOfMonth();
             if (mo < 0) {

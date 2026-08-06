@@ -38,40 +38,29 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 if (endMyDate.Day == 31) days += 30;
                 if (startMyDate.Day == 31) days -= 30;
             } else {
+                // US (NASD) 方法: start 若为月末(含 2 月最后一天)则调整为 30 日,
+                // end 若为月末, 依据调整后的 startDay 决定按 31 日(下月1日)或 30 日计算
+                var startDay = startMyDate.Day;
+                var endDay = endMyDate.Day;
                 if (startMyDate.Month == 12) {
-                    if (startMyDate.Day == new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
-                        days -= 30;
-                    } else {
-                        days -= startMyDate.Day;
+                    if (startDay == new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
+                        startDay = 30;
                     }
                 } else {
-                    if (startMyDate.Day == new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day) {
-                        days -= 30;
-                    } else {
-                        days -= startMyDate.Day;
+                    if (startDay == new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day) {
+                        startDay = 30;
                     }
                 }
                 if (endMyDate.Month == 12) {
-                    if (endMyDate.Day == new DateTime(endMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
-                        if (startMyDate.Day < 30) {
-                            days += 31;
-                        } else {
-                            days += 30;
-                        }
-                    } else {
-                        days += endMyDate.Day;
+                    if (endDay == new DateTime(endMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
+                        endDay = startDay < 30 ? 31 : 30;
                     }
                 } else {
-                    if (endMyDate.Day == new DateTime(endMyDate.Year, endMyDate.Month + 1, 1).AddDays(-1).Day) {
-                        if (startMyDate.Day < 30) {
-                            days += 31;
-                        } else {
-                            days += 30;
-                        }
-                    } else {
-                        days += endMyDate.Day;
+                    if (endDay == new DateTime(endMyDate.Year, endMyDate.Month + 1, 1).AddDays(-1).Day) {
+                        endDay = startDay < 30 ? 31 : 30;
                     }
                 }
+                days += endDay - startDay;
             }
             return Operand.Create(days);
         }
