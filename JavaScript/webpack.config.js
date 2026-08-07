@@ -40,14 +40,15 @@ export default {
                   targets: {
                     browsers: ['defaults']
                   },
-                  modules: false,
-                  useBuiltIns: 'usage',
-                  corejs: 3
+                  modules: false
                 }
               ]
             ],
             plugins: [
-              '@babel/plugin-transform-runtime'
+              '@babel/plugin-transform-runtime',
+              // Babel 8 移除了 preset-env 的 useBuiltIns 选项，改用独立的 corejs3 polyfill 插件
+              // usage-global：按需注入 core-js 全局 polyfill，等价于原 useBuiltIns: 'usage'
+              ['babel-plugin-polyfill-corejs3', { method: 'usage-global' }]
             ]
           }
         }
