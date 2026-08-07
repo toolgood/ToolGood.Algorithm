@@ -18,9 +18,8 @@ class Function_ADDDAYS extends Function_2 {
 
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
-        let date = new Date(args1.DateValue.ToDateTime().getTime());
-        date.setDate(date.getDate() + args2.NumberValue);
-        return Operand.Create(new MyDate(date));
+        // 与 C# AddDays(args2.IntValue) 一致：整数天，且复用 MyDate.AddDays 以正确处理纯时间
+        return Operand.Create(args1.DateValue.AddDays(args2.IntValue));
     }
 }
 

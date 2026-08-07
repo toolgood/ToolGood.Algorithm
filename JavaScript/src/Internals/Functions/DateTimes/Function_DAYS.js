@@ -18,10 +18,14 @@ class Function_DAYS extends Function_2 {
         
         let endDate = args1.DateValue.ToDateTime();
         let startDate = args2.DateValue.ToDateTime();
-        
-        let diffTime = endDate.getTime() - startDate.getTime();
+
+        // 与 C# (end.Date - start.Date).Days 一致：先截断到日期部分
+        let e = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+        let s = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+        let diffTime = e.getTime() - s.getTime();
         let diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
-        
+
         return Operand.Create(diffDays);
     }
 }

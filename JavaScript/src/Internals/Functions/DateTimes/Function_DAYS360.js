@@ -37,40 +37,29 @@ class Function_DAYS360 extends Function_3 {
             if (endDate.getDate() == 31) days += 30;
             if (startDate.getDate() == 31) days -= 30;
         } else {
+            // US (NASD) 方法: start 若为月末(含 2 月最后一天)则调整为 30 日,
+            // end 若为月末, 依据调整后的 startDay 决定按 31 日(下月1日)或 30 日计算
+            let startDay = startDate.getDate();
+            let endDay = endDate.getDate();
             if (startDate.getMonth() == 11) {
-                if (startDate.getDate() == new Date(startDate.getFullYear() + 1, 0, 0).getDate()) {
-                    days -= 30;
-                } else {
-                    days -= startDate.getDate();
+                if (startDay == new Date(startDate.getFullYear() + 1, 0, 0).getDate()) {
+                    startDay = 30;
                 }
             } else {
-                if (startDate.getDate() == new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0).getDate()) {
-                    days -= 30;
-                } else {
-                    days -= startDate.getDate();
+                if (startDay == new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0).getDate()) {
+                    startDay = 30;
                 }
             }
             if (endDate.getMonth() == 11) {
-                if (endDate.getDate() == new Date(endDate.getFullYear() + 1, 0, 0).getDate()) {
-                    if (startDate.getDate() < 30) {
-                        days += 31;
-                    } else {
-                        days += 30;
-                    }
-                } else {
-                    days += endDate.getDate();
+                if (endDay == new Date(endDate.getFullYear() + 1, 0, 0).getDate()) {
+                    endDay = startDay < 30 ? 31 : 30;
                 }
             } else {
-                if (endDate.getDate() == new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0).getDate()) {
-                    if (startDate.getDate() < 30) {
-                        days += 31;
-                    } else {
-                        days += 30;
-                    }
-                } else {
-                    days += endDate.getDate();
+                if (endDay == new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0).getDate()) {
+                    endDay = startDay < 30 ? 31 : 30;
                 }
             }
+            days += endDay - startDay;
         }
         return Operand.Create(days);
     }

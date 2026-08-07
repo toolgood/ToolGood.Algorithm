@@ -17,7 +17,8 @@ class Function_URLENCODE extends Function_1 {
         let s = args1.TextValue;
         let r = encodeURIComponent(s)
             .replace(/%20/g, '+')
-            .toLowerCase();
+            // 与 C# HttpUtility.UrlEncode 一致：hex 输出小写，且保留未编码字母的大小写
+            .replace(/%[A-F0-9]{2}/g, (m) => m.toLowerCase());
         return Operand.Create(r);
     }
 }

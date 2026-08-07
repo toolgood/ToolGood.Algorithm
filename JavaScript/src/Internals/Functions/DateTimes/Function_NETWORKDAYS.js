@@ -36,9 +36,19 @@ class Function_NETWORKDAYS extends Function_N {
         }
 
         let days = 0;
+        let negative = false;
+        if (startMyDate > endMyDate) {
+            let tmp = startMyDate;
+            startMyDate = endMyDate;
+            endMyDate = tmp;
+            negative = true;
+        }
+        // 与 C# Date 截断一致：都归位到当天 00:00
+        startMyDate.setHours(0, 0, 0, 0);
+        endMyDate.setHours(0, 0, 0, 0);
         while (startMyDate <= endMyDate) {
             let dayOfWeek = startMyDate.getDay();
-            if (dayOfWeek !== 0 && dayOfWeek !== 6) { // 0是周日，6是周�?
+            if (dayOfWeek !== 0 && dayOfWeek !== 6) { // 0是周日，6是周六
                 // 将当前日期转换为YYYY-MM-DD格式以确保Set能够正确比较
                 let currentDateStr = startMyDate.toISOString().split('T')[0];
                 if (!list.has(currentDateStr)) {
@@ -47,7 +57,7 @@ class Function_NETWORKDAYS extends Function_N {
             }
             startMyDate.setDate(startMyDate.getDate() + 1);
         }
-        return Operand.Create(days);
+        return Operand.Create(negative ? -days : days);
     }
 }
 

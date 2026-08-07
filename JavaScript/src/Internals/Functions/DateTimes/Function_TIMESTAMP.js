@@ -21,12 +21,17 @@ class Function_TIMESTAMP extends Function_2 {
         let args0 = this.getDate_1(work, tempParameter);
         if(args0.IsError) { return args0; }
       
-        let ms=args0.DateValue.ToDateTime().valueOf()
-        if(work.UseLocalTime) {
-            ms=ms+new Date(1970, 0, 1, 0, 0, 0, 0).valueOf()
-        } 
-        if(type === 0) return Operand.Create(ms);
-        return Operand.Create(ms/1000);
+        let ms;
+        if (work.UseLocalTime) {
+            // 日期按本地时间解释后转 UTC 纪元毫秒（Date.valueOf() 即 UTC 毫秒）
+            ms = args0.DateValue.ToDateTime().valueOf();
+        } else {
+            // 日期直接按 UTC 解释
+            ms = args0.DateValue.ToDateTime(0).valueOf();
+        }
+        if (type === 0) return Operand.Create(ms);
+        if (type === 1) return Operand.Create(ms / 1000);
+        return this.parameterError(2);
     }
 }
 

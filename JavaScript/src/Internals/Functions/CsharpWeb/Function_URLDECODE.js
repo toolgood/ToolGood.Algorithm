@@ -15,9 +15,14 @@ class Function_URLDECODE extends Function_1 {
         let args1 = this.getText_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         let s = args1.TextValue;
-        let r = decodeURIComponent(s)
-            .replace(/\+/g, ' ');
-        return Operand.Create(r);
+        let s2 = s.replace(/\+/g, ' ');
+        try {
+            let r = decodeURIComponent(s2);
+            return Operand.Create(r);
+        } catch (e) {
+            // C# HttpUtility.UrlDecode 对无效编码不抛异常，原样返回
+            return Operand.Create(s2);
+        }
     }
 }
 

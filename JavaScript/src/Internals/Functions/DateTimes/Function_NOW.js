@@ -8,10 +8,13 @@ class Function_NOW extends FunctionBase {
     }
 
     evaluate(engine, tempParameter) {
+        let now = new Date();
         if (engine.UseLocalTime) {
-            return Operand.Create(new MyDate(new Date()));
+            return Operand.Create(new MyDate(now));
         } else {
-            return Operand.Create(new MyDate(new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), new Date().getHours(), new Date().getMinutes(), new Date().getSeconds()))));
+            // C# DateTime.UtcNow：取 UTC 时间分量
+            let utc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()));
+            return Operand.Create(new MyDate(utc));
         }
     }
 

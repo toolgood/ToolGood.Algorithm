@@ -20,8 +20,7 @@ class Function_GT extends Function_2 {
       if (args1.IsNumber) {
         return Operand.Create(args1.NumberValue > args2.NumberValue);
       } else if (args1.IsText) {
-        let r = args1.TextValue.localeCompare(args2.TextValue, undefined, { numeric: true, sensitivity: 'base' });
-        return r > 0 ? Operand.True : Operand.False;
+        return args1.TextValue > args2.TextValue ? Operand.True : Operand.False;
       } else if (args1.IsDate) {
         return Operand.Create(args1.DateValue.ToLong() > args2.DateValue.ToLong());
       } else if (args1.IsBoolean) {
@@ -29,7 +28,7 @@ class Function_GT extends Function_2 {
         args2 = args2.ToNumber();
         return Operand.Create(args1.NumberValue > args2.NumberValue);
       } else if (args1.IsNull) {
-        return Operand.True;
+        return Operand.False;
       } else {
         return this.compareError();
       }

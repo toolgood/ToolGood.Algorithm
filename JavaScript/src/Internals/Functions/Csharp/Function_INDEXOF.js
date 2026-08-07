@@ -36,19 +36,25 @@ export class Function_INDEXOF extends Function_4 {
         let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) { return args3; }
 
+        let startIndex = args3.IntValue - engine.ExcelIndex;
+        if (startIndex < 0 || startIndex > text.length) {
+            return this.parameterError(3);
+        }
+
         if (this.d == null) {
-            let startIndex = args3.IntValue;
-            let index = text.indexOf(args2.TextValue, startIndex);
-            return Operand.Create(index + engine.ExcelIndex);
+            let index = text.substring(startIndex).indexOf(args2.TextValue);
+            return Operand.Create(index + startIndex + engine.ExcelIndex);
         }
 
         let args4 = this.getNumber_4(engine, tempParameter);
         if (args4.IsError) { return args4; }
 
-        let startIndex = args3.IntValue;
         let count = args4.IntValue;
-        let endIndex = startIndex + count;
-        let substring = text.substring(startIndex, endIndex);
+        if (count < 0 || startIndex + count > text.length) {
+            return this.parameterError(4);
+        }
+
+        let substring = text.substring(startIndex, startIndex + count);
         let index = substring.indexOf(args2.TextValue);
         if (index === -1) {
             return Operand.Create(-1 + engine.ExcelIndex);

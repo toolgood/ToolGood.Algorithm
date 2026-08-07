@@ -396,8 +396,13 @@ class OperandString extends Operand {
 
     ToMyDate(errorMessage) {
         try {
-            let date = new Date(this.TextValue.replaceAll("/","-"));
+            let text = this.TextValue.replaceAll("/","-");
+            let date = new Date(text);
             if (!isNaN(date.getTime())) {
+                // ISO 格式（YYYY-MM-DD...）在 JS 中按 UTC 解析，用 UTC 分量还原，避免本地时区偏移
+                if (/^\d{4}-\d{2}-\d{2}/.test(text.trim())) {
+                    return Operand.Create(new MyDate(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()));
+                }
                 return Operand.Create(new MyDate(date));
             }
         } catch (e) { }
@@ -408,8 +413,13 @@ class OperandString extends Operand {
     }
     ToMyDate(errorMessage, ...args) {
         try {
-            let date = new Date(this.TextValue.replaceAll("/","-"));
+            let text = this.TextValue.replaceAll("/","-");
+            let date = new Date(text);
             if (!isNaN(date.getTime())) {
+                // ISO 格式（YYYY-MM-DD...）在 JS 中按 UTC 解析，用 UTC 分量还原，避免本地时区偏移
+                if (/^\d{4}-\d{2}-\d{2}/.test(text.trim())) {
+                    return Operand.Create(new MyDate(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()));
+                }
                 return Operand.Create(new MyDate(date));
             }
         } catch (e) { }
@@ -685,7 +695,7 @@ class OperandKeyValueList extends Operand {
 
     ContainsKey(value) {
         for (let item of this.TextList) {
-            if (value.TextValue === item.value) {
+            if (item.key === value.TextValue) {
                 return true;
             }
         }
@@ -694,7 +704,7 @@ class OperandKeyValueList extends Operand {
 
     ContainsValue(value) {
         for (let item of this.TextList) {
-            let op = item.Value;
+            let op = item.value;
             if (value.Type !== op.Type) { continue; }
             if (value.IsText) {
                 if (value.TextValue === op.TextValue) {

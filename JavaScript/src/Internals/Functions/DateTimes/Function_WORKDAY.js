@@ -30,15 +30,74 @@ class Function_WORKDAY extends Function_N {
             list.add(dateStr);
         }
 
-        while (days > 0) {
-            startMyDate.setDate(startMyDate.getDate() + 1);
-            let dayOfWeek = startMyDate.getDay();
-            if (dayOfWeek === 6) continue; // 星期�?
-            if (dayOfWeek === 0) continue; // 星期�?
-            // 将当前日期转换为YYYY-MM-DD格式以确保Set能够正确比较
-            let currentDateStr = startMyDate.toISOString().split('T')[0];
-            if (list.has(currentDateStr)) continue;
-            days--;
+        // 判断是否周末
+        let isWeekend = (d) => {
+            let dow = d.getDay();
+            return dow === 0 || dow === 6;
+        };
+        // 仅取日期部分（当天00:00）用于比较
+        let dateOnly = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+        if (days > 0) {
+            // 先逐天对齐到周一（最多 6 天），期间消耗工作日
+            while (startMyDate.getDay() !== 1 && days > 0) {
+                startMyDate.setDate(startMyDate.getDate() + 1);
+                if (isWeekend(startMyDate)) continue;
+                if (list.has(startMyDate.toISOString().split('T')[0])) continue;
+                days--;
+            }
+            if (days === 0) return Operand.Create(new MyDate(startMyDate));
+
+            // 整周粗跳：起点已是周一，每 5 个工作日 = 7 天
+            let afterJump = new Date(startMyDate.getTime());
+            afterJump.setDate(afterJump.getDate() + Math.floor(days / 5) * 7);
+            let extra = 0;
+            let s0 = dateOnly(startMyDate);
+            let j0 = dateOnly(afterJump);
+            for (let h of list) {
+                let hDate = new Date(h + 'T00:00:00');
+                if (dateOnly(hDate) > s0 && dateOnly(hDate) <= j0 && !isWeekend(hDate)) {
+                    extra++;
+                }
+            }
+            startMyDate = afterJump;
+            days = (days % 5) + extra;
+            while (days > 0) {
+                startMyDate.setDate(startMyDate.getDate() + 1);
+                if (isWeekend(startMyDate)) continue;
+                if (list.has(startMyDate.toISOString().split('T')[0])) continue;
+                days--;
+            }
+        } else if (days < 0) {
+            // 先逐天对齐到周五（最多 6 天），期间消耗工作日
+            while (startMyDate.getDay() !== 5 && days < 0) {
+                startMyDate.setDate(startMyDate.getDate() - 1);
+                if (isWeekend(startMyDate)) continue;
+                if (list.has(startMyDate.toISOString().split('T')[0])) continue;
+                days++;
+            }
+            if (days === 0) return Operand.Create(new MyDate(startMyDate));
+
+            // 整周粗跳：起点已是周五，每 5 个工作日 = 7 天
+            let afterJump = new Date(startMyDate.getTime());
+            afterJump.setDate(afterJump.getDate() + Math.floor(-days / 5) * -7);
+            let extra = 0;
+            let s0 = dateOnly(startMyDate);
+            let j0 = dateOnly(afterJump);
+            for (let h of list) {
+                let hDate = new Date(h + 'T00:00:00');
+                if (dateOnly(hDate) >= j0 && dateOnly(hDate) < s0 && !isWeekend(hDate)) {
+                    extra++;
+                }
+            }
+            startMyDate = afterJump;
+            days = -((-days) % 5) - extra;
+            while (days < 0) {
+                startMyDate.setDate(startMyDate.getDate() - 1);
+                if (isWeekend(startMyDate)) continue;
+                if (list.has(startMyDate.toISOString().split('T')[0])) continue;
+                days++;
+            }
         }
         return Operand.Create(new MyDate(startMyDate));
     }

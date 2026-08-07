@@ -50,8 +50,8 @@ class Function_DATEDIF extends Function_3 {
             }
         } else if (t === 'd') {
             // d: Days
-            let diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            let diffTime = endDate.getTime() - startDate.getTime();
+            let diffDays = Math.trunc(diffTime / (1000 * 60 * 60 * 24)); // 有符号、向零截断，与 C# TimeSpan.Days 一致
             return Operand.Create(diffDays);
         } else if (t === 'yd') {
             // yd: Days of Year

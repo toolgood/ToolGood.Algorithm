@@ -28,7 +28,7 @@ export class Function_HAS extends Function_2 {
         if (args2.IsError) { return args2; }
 
         if (args1.IsArrayJson) {
-            return Operand.Create(args1.containsKey(args2));
+            return Operand.Create(args1.ContainsKey(args2));
         } else if (args1.IsJson) {
             let json = args1.JsonValue;
             if (Array.isArray(json)) {

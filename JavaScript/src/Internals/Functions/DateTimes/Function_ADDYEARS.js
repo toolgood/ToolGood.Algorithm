@@ -18,8 +18,12 @@ class Function_ADDYEARS extends Function_2 {
 
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
-        let date = new Date(args1.DateValue.ToDateTime().getTime());
-        date.setFullYear(date.getFullYear() + args2.IntValue);
+        let startDate = args1.DateValue.ToDateTime();
+        // 与 C# AddYears 一致：闰日 2-29 在平年保留日号会超限，取月末（2-28）
+        let date = new Date(startDate.getFullYear() + args2.IntValue, startDate.getMonth(), 1);
+        let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+        let day = Math.min(startDate.getDate(), daysInMonth);
+        date.setDate(day);
         return Operand.Create(new MyDate(date));
     }
 }
