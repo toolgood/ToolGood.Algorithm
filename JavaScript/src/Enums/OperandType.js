@@ -7,5 +7,6 @@ export const OperandType = {
   BOOLEAN: 5,
   TEXT: 6,
   JSON: 7,
-  ARRAYJSON: 8
+  ARRAYJSON: 8,
+  NONE: 9
 };

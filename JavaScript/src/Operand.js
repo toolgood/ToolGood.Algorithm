@@ -39,6 +39,16 @@ export class Operand {
     get IsNull() { return false; }
 
     /**
+     * 是否未指定值(对齐 C# OperandNone)
+     */
+    get IsNone() { return false; }
+
+    /**
+     * 是否错误或空值(对齐 C# IsErrorOrNone)
+     */
+    get IsErrorOrNone() { return this.IsError || this.IsNone; }
+
+    /**
      * 是否数字
      */
     get IsNumber() { return false; }
@@ -273,9 +283,9 @@ class OperandDouble extends Operand {
     }
     get IsNumber() { return true; }
     get Type() { return OperandType.NUMBER; }
-    get IntValue() { return Math.floor(this._value); }
+    get IntValue() { return Math.trunc(this._value); }
     get NumberValue() { return this._value; }
-    get LongValue() { return Math.floor(this._value); }
+    get LongValue() { return Math.trunc(this._value); }
     get DoubleValue() { return this._value; }
 
     ToNumber(errorMessage) { return this; }
@@ -338,36 +348,78 @@ class OperandString extends Operand {
     get TextValue() { return this._value; }
 
     ToNumber(errorMessage) {
-        if (this.TextValue.indexOf('.') === -1) {
-            let num = parseInt(this.TextValue);
-            if (!isNaN(num)) {
-                return Operand.Create(num);
-            }
-        }
-        let d = parseFloat(this.TextValue);
-        if (!isNaN(d)) {
-            return Operand.Create(d);
-        }
-        if (errorMessage == null) {
-            return Operand.Error("Convert to number error!");
-        }
-        return Operand.Error(errorMessage);
+        return this.toNumberInternal(errorMessage);
     }
     ToNumber(errorMessage, ...args) {
-        if (this.TextValue.indexOf('.') === -1) {
-            let num = parseInt(this.TextValue);
-            if (!isNaN(num)) {
-                return Operand.Create(num);
+        return this.toNumberInternal(this.replaceErrorMessage(errorMessage, args));
+    }
+
+    // 与 C# decimal.TryParse(NumberStyles.Any, InvariantCulture) 对齐的严格解析
+    toNumberInternal(errorMessage) {
+        let parsed = this.tryParseNumber(this.TextValue);
+        if (parsed === null) {
+            if (errorMessage == null) {
+                return Operand.Error("Convert to number error!");
             }
+            return Operand.Error(errorMessage);
         }
-        let d = parseFloat(this.TextValue);
-        if (!isNaN(d)) {
-            return Operand.Create(d);
+        return Operand.Create(parsed);
+    }
+
+    // 严格数字解析:失败返回 null,杜绝 parseInt/parseFloat 的部分解析
+    tryParseNumber(text) {
+        // AllowLeadingWhite | AllowTrailingWhite
+        let t = text.trim();
+        if (t.length === 0) {
+            return null;
         }
-        if (errorMessage == null) {
-            return Operand.Error("Convert to number error!");
+        let negative = false;
+        // AllowParentheses:括号表示负数
+        if (t.startsWith('(') && t.endsWith(')')) {
+            negative = true;
+            t = t.substring(1, t.length - 1).trim();
         }
-        return Operand.Error(errorMessage);
+        // AllowCurrencySymbol(InvariantCulture 货币符号 ¤)
+        if (t.startsWith('¤')) {
+            t = t.substring(1).trim();
+        }
+        // AllowLeadingSign
+        if (t.startsWith('+')) {
+            t = t.substring(1);
+        } else if (t.startsWith('-')) {
+            negative = !negative;
+            t = t.substring(1);
+        }
+        t = t.trim();
+        // AllowTrailingSign
+        if (t.endsWith('-')) {
+            negative = !negative;
+            t = t.substring(0, t.length - 1).trim();
+        } else if (t.endsWith('+')) {
+            t = t.substring(0, t.length - 1).trim();
+        }
+        // AllowThousands:千分位逗号直接忽略
+        t = t.replace(/,/g, '');
+        // 严格校验数字格式(AllowDecimalPoint | AllowExponent),避免部分解析
+        if (!/^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(t)) {
+            return null;
+        }
+        let num = parseFloat(t);
+        if (isNaN(num)) {
+            return null;
+        }
+        return negative ? -num : num;
+    }
+
+    // 替换 {0} {1} 占位符,对齐 C# string.Format
+    replaceErrorMessage(errorMessage, args) {
+        if (args.length === 0) {
+            return errorMessage;
+        }
+        return errorMessage.replace(/\{\d+\}/g, (match) => {
+            let i = parseInt(match.substring(1, match.length - 1));
+            return args[i] !== undefined ? args[i] : match;
+        });
     }
 
     ToText(errorMessage) { return this; }
@@ -395,8 +447,20 @@ class OperandString extends Operand {
     }
 
     ToMyDate(errorMessage) {
+        return this.toMyDateInternal(errorMessage);
+    }
+    ToMyDate(errorMessage, ...args) {
+        return this.toMyDateInternal(this.replaceErrorMessage(errorMessage, args));
+    }
+
+    toMyDateInternal(errorMessage) {
+        // 对齐 C# TimeSpan.TryParse:纯时间或"天.时间"格式 → MyDate(TimeSpan)
+        let timeSpan = this.tryParseTimeSpan(this.TextValue);
+        if (timeSpan !== null) {
+            return Operand.Create(timeSpan);
+        }
         try {
-            let text = this.TextValue.replaceAll("/","-");
+            let text = this.TextValue.replaceAll("/", "-");
             let date = new Date(text);
             if (!isNaN(date.getTime())) {
                 // ISO 格式（YYYY-MM-DD...）在 JS 中按 UTC 解析，用 UTC 分量还原，避免本地时区偏移
@@ -411,22 +475,39 @@ class OperandString extends Operand {
         }
         return Operand.Error(errorMessage);
     }
-    ToMyDate(errorMessage, ...args) {
-        try {
-            let text = this.TextValue.replaceAll("/","-");
-            let date = new Date(text);
-            if (!isNaN(date.getTime())) {
-                // ISO 格式（YYYY-MM-DD...）在 JS 中按 UTC 解析，用 UTC 分量还原，避免本地时区偏移
-                if (/^\d{4}-\d{2}-\d{2}/.test(text.trim())) {
-                    return Operand.Create(new MyDate(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()));
-                }
-                return Operand.Create(new MyDate(date));
-            }
-        } catch (e) { }
-        if (errorMessage == null) {
-            return Operand.Error("Convert to date error!");
+
+    // 对齐 C# TimeSpan.TryParse 的时间跨度解析:失败返回 null
+    tryParseTimeSpan(text) {
+        let t = text.trim();
+        // 天.时分秒 / 天.时分
+        let dayMatch = t.match(/^(-?\d+)\.(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+        if (dayMatch) {
+            return new MyDate({
+                days: parseInt(dayMatch[1]),
+                hours: parseInt(dayMatch[2]),
+                minutes: parseInt(dayMatch[3]),
+                seconds: dayMatch[4] ? parseInt(dayMatch[4]) : 0
+            });
         }
-        return Operand.Error(errorMessage);
+        // 纯天数
+        if (/^-?\d+$/.test(t)) {
+            return new MyDate({ days: parseInt(t), hours: 0, minutes: 0, seconds: 0 });
+        }
+        // 时分秒 / 时分
+        let timeMatch = t.match(/^(-?)(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+        if (timeMatch) {
+            let negative = timeMatch[1] === '-';
+            let hours = parseInt(timeMatch[2]);
+            let minutes = parseInt(timeMatch[3]);
+            let seconds = timeMatch[4] ? parseInt(timeMatch[4]) : 0;
+            if (negative) {
+                hours = -hours;
+                minutes = -minutes;
+                seconds = -seconds;
+            }
+            return new MyDate({ days: 0, hours: hours, minutes: minutes, seconds: seconds });
+        }
+        return null;
     }
 
     ToArray(errorMessage) {
@@ -448,6 +529,7 @@ class OperandString extends Operand {
         for (let c of this._value) {
             switch (c) {
                 case '"': result += '\\"'; break;
+                case '\\': result += '\\\\'; break;
                 case '\n': result += '\\n'; break;
                 case '\r': result += '\\r'; break;
                 case '\t': result += '\\t'; break;
@@ -456,7 +538,10 @@ class OperandString extends Operand {
                 case '\a': result += '\\a'; break;
                 case '\b': result += '\\b'; break;
                 case '\f': result += '\\f'; break;
-                default: result += c; break;
+                default:
+                    // 对齐 C#:其他控制字符输出 \uXXXX
+                    result += c < ' ' ? '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0') : c;
+                    break;
             }
         }
         result += '"';
@@ -640,6 +725,13 @@ class OperandNull extends Operand {
     toString() { return "null"; }
 }
 
+class OperandNone extends Operand {
+    get IsNone() { return true; }
+    get IsErrorOrNone() { return true; }
+    get Type() { return OperandType.NONE; }
+    toString() { return "none"; }
+}
+
 class KeyValue {
     constructor(key, value) {
         this.Key = key;
@@ -716,7 +808,7 @@ class OperandKeyValueList extends Operand {
     }
 
     toString() {
-        let elements = this.TextList.map(item => '"' + item.Key + '":' + item.Value.toString());
+        let elements = this.TextList.map(item => '"' + item.key + '":' + item.value.toString());
         return '{' + elements.join(',') + '}';
     }
 }
@@ -732,7 +824,7 @@ class OperandKeyValue extends Operand {
 }
 
 // 导出所有类
-export {  OperandDouble,   OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, KeyValue, OperandKeyValueList, OperandKeyValue };
+export {  OperandDouble,   OperandBoolean, OperandString, OperandMyDate, OperandJson, OperandArray, OperandError, OperandNull, OperandNone, KeyValue, OperandKeyValueList, OperandKeyValue };
 
 // 初始化静态属性
 Operand.Version = new OperandString("ToolGood.Algorithm 6.2");
@@ -740,6 +832,7 @@ Operand.True = new OperandBoolean(true);
 Operand.False = new OperandBoolean(false);
 Operand.One = Operand.Create(1);
 Operand.Zero = Operand.Create(0);
+Operand.None = new OperandNone();
 
 // 浏览器支持
 if (typeof window !== 'undefined') {
@@ -752,6 +845,7 @@ if (typeof window !== 'undefined') {
     window.OperandArray = OperandArray;
     window.OperandError = OperandError;
     window.OperandNull = OperandNull;
+    window.OperandNone = OperandNone;
     window.KeyValue = KeyValue;
     window.OperandKeyValueList = OperandKeyValueList;
     window.OperandKeyValue = OperandKeyValue;

@@ -14,8 +14,12 @@ class Function_OR_N extends Function_N {
     let b = false;
     for (let i = 0; i < this.z.length; i++) {
       let a = this.getBoolean(work, tempParameter, i);
-      if (a.IsError) { return a; }
-      if (a.BooleanValue) b = true;
+      if (a.IsErrorOrNone) { return a; }
+      if (a.BooleanValue) {
+        b = true;
+        // 非严格模式短路,严格模式继续求值以检查后续错误
+        if (work.UseStrictMode === false) { break; }
+      }
     }
     return b ? Operand.True : Operand.False;
   }

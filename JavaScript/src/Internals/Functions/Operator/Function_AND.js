@@ -16,10 +16,13 @@ class Function_AND extends Function_2 {
     // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
     // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
     let args1 = this.getBoolean_1(work, tempParameter);
-    if (args1.IsError) { return args1; }
+    if (args1.IsErrorOrNone) { return args1; }
     if (args1.BooleanValue === false) {
-      let args2 = this.getBoolean_2(work, tempParameter);
-      if (args2.IsError) { return args2; }
+      // 严格模式仍需求值第二个参数以检查错误,非严格模式短路
+      if (work.UseStrictMode) {
+        let args2 = this.getBoolean_2(work, tempParameter);
+        if (args2.IsErrorOrNone) { return args2; }
+      }
       return Operand.False;
     }
     return this.getBoolean_2(work, tempParameter);

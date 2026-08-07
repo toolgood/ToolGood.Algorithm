@@ -18,6 +18,13 @@ export class AlgorithmEngineEx extends AlgorithmEngine {
      * 自定义参数 请重写此方法
      */
     GetParameter(parameter) {
+        return this.GetParameterEx(parameter);
+    }
+
+    /**
+     * 自定义参数扩展点,对齐 C# GetParameterEx(可重写)
+     */
+    GetParameterEx(parameter) {
         let key = this.IgnoreCase ? parameter.toLowerCase() : parameter;
         if (this._tempdict[key] !== undefined) {
             return this._tempdict[key];
