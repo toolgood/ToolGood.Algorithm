@@ -27,8 +27,8 @@ export class Function_JOIN extends Function_N {
             } else if(item.IsJson) {
                 var array = item.ToArray(null);
                 if(array.IsError) { return false; }
-                for (let i = 0; i < item.ArrayValue.length; i++) {
-                    let o = this.F_base_GetList(item.ArrayValue[i], list);
+                for (let i = 0; i < array.ArrayValue.length; i++) {
+                    let o = this.F_base_GetList(array.ArrayValue[i], list);
                     if (!o) { return false }
                 }
             } else if(item.IsNull) {

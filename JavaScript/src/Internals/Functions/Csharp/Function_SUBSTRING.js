@@ -28,15 +28,27 @@ export class Function_SUBSTRING extends Function_3 {
         
         let text = args1.TextValue;
         let startIndex = args2.IntValue - engine.ExcelIndex;
-        
+
+        if (startIndex < 0) {
+            return this.parameterError(2);
+        }
+
+        if (startIndex >= text.length) {
+            return Operand.Create("");
+        }
+
         if (this.c === null) {
             return Operand.Create(text.substring(startIndex));
         }
-        
+
         let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) { return args3; }
-        
+
         let length = args3.IntValue;
+        if (length < 0) {
+            return this.parameterError(3);
+        }
+
         let endIndex = startIndex + length;
         return Operand.Create(text.substring(startIndex, endIndex));
     }

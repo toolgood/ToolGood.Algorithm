@@ -32,7 +32,7 @@ export class Function_ISREGEX extends Function_2 {
             let b = regex.test(args1.TextValue);
             return Operand.Create(b);
         } catch (e) {
-            return Operand.Create(false);
+            return this.parameterError(2);
         }
     }
     

@@ -35,7 +35,7 @@ export class Function_REGEX extends Function_2 {
             }
             return Operand.Create(b[0]);
         } catch (e) {
-            return this.functionError();
+            return this.parameterError(2);
         }
     }
     

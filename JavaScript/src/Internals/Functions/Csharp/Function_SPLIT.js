@@ -28,6 +28,9 @@ export class Function_SPLIT extends Function_2 {
         
         let text = args1.TextValue;
         let separator = args2.TextValue;
+        if (separator === '') {
+            return this.parameterError(2);
+        }
         let result = text.split(separator);
         return Operand.Create(result);
     }

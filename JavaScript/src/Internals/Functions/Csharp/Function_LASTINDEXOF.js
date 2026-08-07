@@ -36,24 +36,28 @@ export class Function_LASTINDEXOF extends Function_4 {
         let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) { return args3; }
 
+        let startIndex = args3.IntValue - engine.ExcelIndex;
+        if (startIndex < 0 || startIndex > text.length) {
+            return this.parameterError(3);
+        }
+
         if (this.d == null) {
-            let substring = text.substring(0, args3.IntValue);
-            let index = substring.lastIndexOf(args2.TextValue);
+            let index = text.substring(0, startIndex).lastIndexOf(args2.TextValue);
             return Operand.Create(index + engine.ExcelIndex);
         }
 
         let args4 = this.getNumber_4(engine, tempParameter);
         if (args4.IsError) { return args4; }
 
-        let startIndex = args3.IntValue;
         let count = args4.IntValue;
-        let endIndex = startIndex + count;
-        let substring = text.substring(startIndex, endIndex);
-        let index = substring.lastIndexOf(args2.TextValue);
-        if (index === -1) {
-            return Operand.Create(-1 + engine.ExcelIndex);
+        if (count < 0 || count > startIndex + 1) {
+            return this.parameterError(4);
         }
-        return Operand.Create(index + startIndex + engine.ExcelIndex);
+
+        let offset = startIndex - count + 1;
+        let localIndex = text.substring(offset, startIndex + 1).lastIndexOf(args2.TextValue);
+        let index = localIndex === -1 ? -1 : localIndex + offset;
+        return Operand.Create(index + engine.ExcelIndex);
     }
     
 

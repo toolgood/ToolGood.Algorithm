@@ -31,36 +31,36 @@ export class Function_HASVALUE extends Function_2 {
             return Operand.Create(args1.ContainsValue(args2));
         } else if (args1.IsJson) {
             let json = args1.JsonValue;
-            if (Array.isArray(json)) {
-                for (let i = 0; i < json.length; i++) {
-                    let v = json[i];
-                    if (typeof v === 'string') {
-                        if (v === args2.TextValue) {
+            if (json.IsArray) {
+                for (let i = 0; i < json.Count; i++) {
+                    let v = json.inst_array[i];
+                    if (v.IsString) {
+                        if (v.StringValue === args2.TextValue) {
                             return Operand.True;
                         }
-                    } else if (typeof v === 'number') {
-                        if (v.toString() === args2.TextValue) {
+                    } else if (v.IsDouble) {
+                        if (v.NumberValue.toString() === args2.TextValue) {
                             return Operand.True;
                         }
-                    } else if (typeof v === 'boolean') {
-                        if (v.toString().toLowerCase() === args2.TextValue.toLowerCase()) {
+                    } else if (v.IsBoolean) {
+                        if (v.BooleanValue.toString().toLowerCase() === args2.TextValue.toLowerCase()) {
                             return Operand.True;
                         }
                     }
                 }
             } else {
-                for (let key in json) {
-                    let v = json[key];
-                    if (typeof v === 'string') {
-                        if (v === args2.TextValue) {
+                for (let key in json.inst_object) {
+                    let v = json.inst_object[key];
+                    if (v.IsString) {
+                        if (v.StringValue === args2.TextValue) {
                             return Operand.True;
                         }
-                    } else if (typeof v === 'number') {
-                        if (v.toString() === args2.TextValue) {
+                    } else if (v.IsDouble) {
+                        if (v.NumberValue.toString() === args2.TextValue) {
                             return Operand.True;
                         }
-                    } else if (typeof v === 'boolean') {
-                        if (v.toString().toLowerCase() === args2.TextValue.toLowerCase()) {
+                    } else if (v.IsBoolean) {
+                        if (v.BooleanValue.toString().toLowerCase() === args2.TextValue.toLowerCase()) {
                             return Operand.True;
                         }
                     }
@@ -71,7 +71,7 @@ export class Function_HASVALUE extends Function_2 {
             let ar = args1.ArrayValue;
             for (let item of ar) {
                 let t = item.ToText();
-                if (t.IsError) {
+                if (t.IsError || t.IsNone) {
                     continue;
                 }
                 if (t.TextValue === args2.TextValue) {
