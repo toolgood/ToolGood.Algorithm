@@ -11,6 +11,9 @@ class Function_GESTEP extends Function_N {
     }
 
     evaluate(engine, tempParameter) {
+        if (this.z.length < 1 || this.z.length > 2) {
+            return this.functionError();
+        }
         let args1 = this.getNumber(engine, tempParameter, 0);
         if (args1.IsError) { return args1; }
         let number = args1.NumberValue;

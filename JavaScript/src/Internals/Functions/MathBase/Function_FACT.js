@@ -15,8 +15,8 @@ class Function_FACT extends Function_1 {
         if (args1.IsError) { return args1; }
 
         let z = args1.IntValue;
-        if (z < 0) {
-            return this.functionError();
+        if (z < 0 || z > 28) {
+            return this.parameterError(1);
         }
         let d = 1;
         for (let i = 1; i <= z; i++) {

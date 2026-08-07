@@ -130,7 +130,7 @@ function testInt() {
   assert.strictEqual(intValue, 9.0, "int(9.222) 应该是 9.0");
   
   intValue = engine.TryEvaluate_Double("int(-9.222)", 0.0);
-  assert.strictEqual(intValue, -9.0, "int(-9.222) 应该是 -9.0");
+  assert.strictEqual(intValue, -10.0, "int(-9.222) 应该是 -10.0");
   
   console.log('int 测试通过！');
 }

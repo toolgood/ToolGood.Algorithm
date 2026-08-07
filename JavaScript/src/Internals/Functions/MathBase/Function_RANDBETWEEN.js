@@ -7,8 +7,8 @@ class Function_RANDBETWEEN extends Function_2 {
     }
 
     constructor(z) {
-    super(z);
-  }
+        super(z);
+    }
 
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
@@ -16,9 +16,14 @@ class Function_RANDBETWEEN extends Function_2 {
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
-        return Operand.Create(Math.random() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
+        let bottom = args1.NumberValue;
+        let top = args2.NumberValue;
+        if (bottom > top) {
+            return this.parameterError(1);
+        }
+        // 返回含两端在内的随机整数
+        return Operand.Create(Math.floor(Math.random() * (top - bottom + 1) + bottom));
     }
 }
 
 export { Function_RANDBETWEEN };
-

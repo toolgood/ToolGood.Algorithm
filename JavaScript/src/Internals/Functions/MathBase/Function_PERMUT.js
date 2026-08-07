@@ -19,10 +19,10 @@ class Function_PERMUT extends Function_2 {
         let n = args1.NumberValue;
         let k = args2.NumberValue;
 
-        if (n < 0 || k < 0) {
+        if (n < 0) {
             return this.parameterError(1);
         }
-        if (n < k) {
+        if (k < 0 || n < k) {
             return this.parameterError(2);
         }
 

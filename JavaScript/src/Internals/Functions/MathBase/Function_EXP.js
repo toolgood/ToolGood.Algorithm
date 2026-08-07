@@ -13,6 +13,9 @@ class Function_EXP extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
+        if (args1.NumberValue > 700) {
+            return this.parameterError(1);
+        }
         return Operand.Create(Math.exp(args1.NumberValue));
     }
 }

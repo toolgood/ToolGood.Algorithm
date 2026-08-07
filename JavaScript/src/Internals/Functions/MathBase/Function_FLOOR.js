@@ -26,6 +26,9 @@ class Function_FLOOR extends Function_2 {
         }
 
         let a = args1.NumberValue;
+        if (b < 0 && a > 0) {
+            return this.parameterError(1);
+        }
         let d = Math.floor(a / b) * b;
         return Operand.Create(d);
     }

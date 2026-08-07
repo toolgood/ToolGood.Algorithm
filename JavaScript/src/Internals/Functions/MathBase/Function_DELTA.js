@@ -11,7 +11,7 @@ class Function_DELTA extends Function_N {
     }
 
     evaluate(engine, tempParameter) {
-        if (this.z.length < 1) {
+        if (this.z.length < 1 || this.z.length > 2) {
             return this.functionError();
         }
 

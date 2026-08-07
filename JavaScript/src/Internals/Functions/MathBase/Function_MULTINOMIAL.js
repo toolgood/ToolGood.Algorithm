@@ -12,8 +12,8 @@ class Function_MULTINOMIAL extends Function_N {
 
     evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.z) {
-            let aa = item.evaluate(engine, tempParameter);
+        for (let i = 0; i < this.z.length; i++) {
+            let aa = this.getNumber(engine, tempParameter, i);
             if (aa.IsError) { return aa; }
             args.push(aa);
         }
@@ -29,7 +29,10 @@ class Function_MULTINOMIAL extends Function_N {
         let sum = 0;
         let n = 1;
         for (let i = 0; i < list.length; i++) {
-            let a = Math.floor(list[i]); // 小于等于0 时，按0处理
+            let a = Math.trunc(list[i]); // (int) 向零截断,对齐 C#
+            if (a < 0) {
+                return this.parameterError(i + 1);
+            }
             n *= this.calculateFactorial(a);
             sum += a;
         }

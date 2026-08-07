@@ -13,7 +13,11 @@ class Function_LOG10 extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
-        return Operand.Create(Math.log10(args1.NumberValue));
+        let z = args1.NumberValue;
+        if (z <= 0) {
+            return this.parameterError(1);
+        }
+        return Operand.Create(Math.log10(z));
     }
 }
 

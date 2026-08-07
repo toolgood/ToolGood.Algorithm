@@ -16,10 +16,20 @@ class Function_POWER extends Function_2 {
         let args2 = this.getNumber_2(engine, tempParameter);
         if (args2.IsError) { return args2; }
 
-        let number = args1.NumberValue;
-        let power = args2.NumberValue;
+        let baseValue = args1.NumberValue;
+        let exponent = args2.NumberValue;
 
-        return Operand.Create(Math.pow(number, power));
+        if (baseValue == 0 && exponent < 0) {
+            return this.div0Error();
+        }
+        if (baseValue < 0 && exponent % 1 != 0) {
+            return this.parameterError(1);
+        }
+        let result = Math.pow(baseValue, exponent);
+        if (!isFinite(result)) {
+            return this.functionError();
+        }
+        return Operand.Create(result);
     }
 }
 

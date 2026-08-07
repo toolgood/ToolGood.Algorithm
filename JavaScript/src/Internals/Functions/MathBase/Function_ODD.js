@@ -13,14 +13,24 @@ class Function_ODD extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
-        let n = args1.NumberValue;
-        if (n == 0) {
+        let z = args1.NumberValue;
+        if (z == 0) {
             return Operand.Create(1);
         }
-        if (n > 0) {
-            return Operand.Create(Math.ceil(n / 2) * 2 - 1);
+
+        if (z > 0) {
+            if (z % 2 == 1 || z % 2 == -1) { return args1; }
+            z = Math.ceil(z);
+            if (z % 2 != 0) { return Operand.Create(z); }
+            z++;
+            return Operand.Create(z);
+        } else {
+            if (z % 2 == 1 || z % 2 == -1) { return args1; }
+            z = Math.floor(z);
+            if (z % 2 != 0) { return Operand.Create(z); }
+            z--;
+            return Operand.Create(z);
         }
-        return Operand.Create(Math.floor(n / 2) * 2 + 1);
     }
 }
 

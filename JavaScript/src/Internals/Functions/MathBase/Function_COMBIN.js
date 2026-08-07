@@ -18,8 +18,11 @@ class Function_COMBIN extends Function_2 {
 
         let total = args1.IntValue;
         let count = args2.IntValue;
-        if (total < 0 || count < 0 || total < count) {
+        if (total < 0) {
             return this.parameterError(1);
+        }
+        if (count < 0 || total < count) {
+            return this.parameterError(2);
         }
         let sum = 1;
         let sum2 = 1;

@@ -20,7 +20,12 @@ class Function_QUOTIENT extends Function_2 {
         if (args2.NumberValue == 0) {
             return this.div0Error();
         }
-        return Operand.Create(Math.trunc(args1.NumberValue / args2.NumberValue));
+        // 商超 int 范围时返回错误,避免异常穿透
+        let result = args1.NumberValue / args2.NumberValue;
+        if (result < -2147483648 || result > 2147483647) {
+            return this.functionError();
+        }
+        return Operand.Create(Math.trunc(result));
     }
 }
 

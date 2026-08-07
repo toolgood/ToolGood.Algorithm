@@ -25,6 +25,11 @@ class Function_GCD extends Function_N {
             }
             list.push(arg.NumberValue);
         }
+        for (let i = 0; i < list.length; i++) {
+            if (list[i] < 0) {
+                return this.parameterError(i + 1);
+            }
+        }
 
         return Operand.Create(this.calculateGCD(list));
     }

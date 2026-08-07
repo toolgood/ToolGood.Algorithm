@@ -25,6 +25,7 @@ import { Function_QUOTIENT } from '../Functions/MathBase/Function_QUOTIENT.js';
 import { Function_SIGN } from '../Functions/MathBase/Function_SIGN.js';
 import { Function_SQRT } from '../Functions/MathBase/Function_SQRT.js';
 import { Function_TRUNC } from '../Functions/MathBase/Function_TRUNC.js';
+import { Function_INT } from '../Functions/MathBase/Function_INT.js';
 import { Function_GCD } from '../Functions/MathBase/Function_GCD.js';
 import { Function_LCM } from '../Functions/MathBase/Function_LCM.js';
 import { Function_COMBIN } from '../Functions/MathBase/Function_COMBIN.js';
@@ -325,7 +326,7 @@ const funcDict = {
     "SIGN": (args) => new Function_SIGN(args),
     "SQRT": (args) => new Function_SQRT(args),
     "TRUNC": (args) => new Function_TRUNC(args),
-    "INT": (args) => new Function_TRUNC(args),
+    "INT": (args) => new Function_INT(args),
     "GCD": (args) => new Function_GCD(args),
     "LCM": (args) => new Function_LCM(args),
     "COMBIN": (args) => new Function_COMBIN(args),
