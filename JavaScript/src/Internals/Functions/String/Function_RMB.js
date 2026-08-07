@@ -21,12 +21,15 @@ class Function_RMB extends Function_1 {
         
         let digits = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
         let units = ["", "拾", "佰", "仟"];
-        let bigUnits = ["", "万", "亿", "兆"];
+        // 与 C# 一致:大单位支持到 穰(10^28)
+        let bigUnits = ["", "万", "亿", "兆", "京", "垓", "秭", "穰"];
         let decimalUnits = ["角", "分"];
         
         let result = "";
-        let integerPart = Math.floor(x);
-        let decimalPart = Math.round((x - integerPart) * 100);
+        // 与 C# decimal 一致:向零截断(C# ToString 对负数按整数部分截断)
+        let integerPart = Math.trunc(x);
+        // 加微小量修正二进制浮点误差(小数部分取绝对值)
+        let decimalPart = Math.round(Math.abs(x - integerPart) * 100 + 1e-9);
         
         // 处理整数部分
         if (integerPart < 0) {

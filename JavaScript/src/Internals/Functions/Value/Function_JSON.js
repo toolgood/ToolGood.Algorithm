@@ -13,7 +13,8 @@ class Function_JSON extends Function_1 {
 
     evaluate(work, tempParameter) {
         let args1 = this.a.evaluate(work, tempParameter);
-        if (args1.IsError) {
+        // 与 C# 一致:错误或空值直接传播
+        if (args1.IsError || args1.IsNull) {
             return args1;
         }
         if (args1.IsJson) {
@@ -23,7 +24,7 @@ class Function_JSON extends Function_1 {
             args1 = args1.ToText();
         }
         if (args1.IsNotText) {
-            return this.functionError();
+            return this.parameterError(1);
         }
         let txt = args1.TextValue;
         if ((txt.startsWith('{') && txt.endsWith('}')) || (txt.startsWith('[') && txt.endsWith(']'))) {
@@ -33,7 +34,7 @@ class Function_JSON extends Function_1 {
             } catch (e) {
             }
         }
-        return this.functionError();
+        return this.parameterError(1);
     }
 
 

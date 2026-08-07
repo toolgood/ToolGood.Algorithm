@@ -20,10 +20,20 @@ class Function_REPT extends Function_2 {
         let newtext = args1.TextValue;
         let length = args2.IntValue;
         if (length < 0) {
-            return Operand.Error(this.functionError, 'Rept', 2);
+            return this.parameterError(2);
         }
         if (length === 0) {
             return Operand.Create('');
+        }
+        if (newtext.length === 0) {
+            return args1;
+        }
+        // 与 C# 一致:结果总长度超过 32767 时参数错误
+        if (newtext.length > 0 && length > Math.floor(32767 / newtext.length)) {
+            return this.parameterError(2);
+        }
+        if (length === 1) {
+            return args1;
         }
         let result = '';
         for (let i = 0; i < length; i++) {

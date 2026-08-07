@@ -14,7 +14,7 @@ class Function_UNICODE extends Function_1 {
         let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         if (!args1.TextValue || args1.TextValue.length === 0) {
-            return Operand.Error(this.functionError, 'UNICODE');
+            return this.parameterError(1);
         }
         return Operand.Create(args1.TextValue.codePointAt(0));
     }

@@ -14,7 +14,7 @@ class Function_CODE extends Function_1 {
         let args1 = this.getText_1(work, tempParameter);
         if (args1.IsError) { return args1; }
         if (!args1.TextValue) {
-            return Operand.Error(this.functionError, 'CODE');
+            return this.parameterError(1);
         }
         let c = args1.TextValue[0];
         return Operand.Create(c.charCodeAt(0));

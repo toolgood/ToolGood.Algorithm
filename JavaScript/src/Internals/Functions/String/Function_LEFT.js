@@ -21,6 +21,10 @@ class Function_LEFT extends Function_2 {
         }
         let args2 = this.getNumber_2(work, tempParameter);
         if (args2.IsError) { return args2; }
+        // 与 C# 一致:负数长度时报参数错误
+        if (args2.IntValue < 0) {
+            return this.parameterError(2);
+        }
         let length = Math.min(args2.IntValue, args1.TextValue.length);
         return Operand.Create(args1.TextValue.substring(0, length));
     }

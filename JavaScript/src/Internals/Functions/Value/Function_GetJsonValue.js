@@ -12,11 +12,12 @@ class Function_GetJsonValue extends Function_2 {
 
     evaluate(work, tempParameter) {
         let obj = this.a.evaluate(work, tempParameter);
-        if (obj.IsError) {
+        // 与 C# 一致:错误或空值直接传播
+        if (obj.IsError || obj.IsNull) {
             return obj;
         }
         let op = this.b.evaluate(work, tempParameter);
-        if (op.IsError) {
+        if (op.IsError || op.IsNull) {
             return op;
         }
 
@@ -26,7 +27,8 @@ class Function_GetJsonValue extends Function_2 {
                 return op;
             }
             let index = op.IntValue - work.ExcelIndex;
-            if (index < obj.ArrayValue.length) {
+            // 与 C# 一致:负索引视为越界,返回错误而非 undefined
+            if (index < obj.ArrayValue.length && index >= 0) {
                 return obj.ArrayValue[index];
             }
             return Operand.Error('Function \'{0}\'' + ' ARRAY index {1} greater than maximum length!', 'GetJsonValue', index);
@@ -37,7 +39,7 @@ class Function_GetJsonValue extends Function_2 {
                 if (operand !== null) {
                     return operand;
                 }
-                return Operand.Error('Function \'{0}\'' + ' Parameter name \'{1}\'' + ' is missing!', 'GetJsonValue', op.TextValue);
+                return Operand.Error('Function \'{0}\'' + ' Parameter name \'{1}\'' + ' is missing!', 'GetJsonValue', op.NumberValue);
             } else if (op.IsText) {
                 let operand = obj.TryGetValue(op.TextValue);
                 if (operand !== null) {

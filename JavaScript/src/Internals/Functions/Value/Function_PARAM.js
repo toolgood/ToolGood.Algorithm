@@ -20,7 +20,8 @@ class Function_PARAM extends Function_2 {
             }
         }
         let result = work.GetParameter(args1.TextValue);
-        if (result.IsError) {
+        // 与 C# 一致:参数为空值(None)时也走默认值分支
+        if (result.IsError || result.IsNull) {
             if (this.b !== null) {
                 return this.b.evaluate(work, tempParameter);
             }
