@@ -10,6 +10,7 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_1;
+import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public final class Function_ERF extends Function_1 {
 
@@ -32,28 +33,8 @@ public final class Function_ERF extends Function_1 {
             return args1;
         }
         double x = args1.NumberValue().doubleValue();
-        return Operand.Create(BigDecimal.valueOf(Erf(x)));
-    }
-
-    private static double Erf(double x) {
-        final double a1 = 0.254829592;
-        final double a2 = -0.284496736;
-        final double a3 = 1.421413741;
-        final double a4 = -1.453152027;
-        final double a5 = 1.061405429;
-        final double p = 0.3275911;
-
-        int sign = x < 0 ? -1 : 1;
-        x = Math.abs(x);
-
-        if (x > 6.0) {
-            return sign * 1.0;
-        }
-
-        double t = 1.0 / (1.0 + p * x);
-        double y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
-
-        return sign * y;
+        // 复用 SpecialFunctions 中基于极小极大有理逼近的实现(Boost 算法), 精度约 1e-16
+        return Operand.Create(BigDecimal.valueOf(SpecialFunctions.Erf(x)));
     }
 
     @Override
