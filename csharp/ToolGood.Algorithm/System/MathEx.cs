@@ -447,6 +447,10 @@
 						// Picks up the relevant power.
 						prod = current * prod;
 						q--;
+						if(q == 0) {
+							// 防止最后一次无谓平方导致溢出(如 E^64 完成后再算 E^128)
+							break;
+						}
 					}
 
 					// value^i -> value^(2*i)
