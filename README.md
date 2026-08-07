@@ -30,11 +30,11 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
     var c = engine.TryEvaluate("2+3", 0);
     var q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
     var e = engine.TryEvaluate("count(array(1, 2, 3, 4))", 0);//{} represents array, return: 4 {}代表数组, 返回:4
-    var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: AABB 字符串连接, 返回:aabb
+    var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: aabb 字符串连接, 返回:aabb
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //Return: 11 返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //Return date: 2016-1-2 返回日期:2016-1-2
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
-    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
+    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);//Return "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null);//Return "ill"  返回"ill"
     var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
     var m = engine.TryEvaluate("[1,2,3,4,5,6].has(13)", true);//Return false 返回false
@@ -91,7 +91,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     //Call method  调用方法
     Cylinder c = new Cylinder(3, 10);
     c.TryEvaluate("半径*半径*pi()", 0.0);      //Round bottom area  圆底面积
-    c.TryEvaluate("直径*pi()", 0.0);            //The length of the circle  圆的长
+    c.TryEvaluate("直径*pi()", 0.0);            //The length of the circle  圆的周长
     c.TryEvaluate("半径*半径*pi()*高", 0.0); //Volume of circle 圆的体积
     c.EvaluateFormula("'圆'-半径-高", '-'); // Return: 圆-3-10
     c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
@@ -424,7 +424,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>EVEN(3) <br>>>4</td>
     </tr>
     <tr>
-        <td>ODD</td><td>odd(数值)<br>将数值向上舍入为最接近的奇型整数</td>
+        <td>ODD</td><td>odd(数值)<br>将数值向上舍入为最接近的奇数整数</td>
         <td>ODD(3.1) <br>>>5</td>
     </tr>
     <tr>
@@ -466,7 +466,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>LOG(100, 10) <br>>>2</td>
     </tr>
     <tr>
-        <td>LOG10</td><td>log10(数值)<br>返回数值的10对数</td>
+        <td>LOG10</td><td>log10(数值)<br>返回数值以10为底的对数</td>
         <td>LOG10(100) <br>>>2</td>
     </tr>
     <tr>
@@ -665,7 +665,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>RIGHT("123q", 3) <br>>>23q</td>
     </tr>
     <tr>
-        <td>RMB ★</td><td>RMB(数值)<br>将数值转换为大写数值文本</td>
+        <td>RMB ★</td><td>RMB(数值)<br>将数值转换为大写金额文本</td>
         <td>RMB(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
@@ -766,7 +766,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>WEEKDAY(date(2017, 1, 7)) <br>>>7</td>
     </tr>
     <tr>
-        <td>dateDIF</td><td>dateDif(开始日期, 结束日期, 类型Y/M/D/YD/MD/YM)<br>返回两个日期之间的相隔天数</td>
+        <td>dateDIF</td><td>dateDif(开始日期, 结束日期, 类型Y/M/D/YD/MD/YM)<br>返回两个日期的相隔天数</td>
         <td>dateDIF("1975-1-30", "2017-1-7", "Y") <br>>>41</td>
     </tr>
     <tr>
@@ -826,11 +826,11 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
     <tr>
         <td>DateValue ★</td><td>DateValue(值, 数值)<br>转成时间<br>
-        DateValue(文本/数值, 0) <br>解析，自动匹配到当前日期相近的日期<br>
+        DateValue(文本/数值, 0) <br>解析，自动匹配与当前日期相近的日期<br>
         DateValue(文本, 1) <br>解析年月日文本<br>
         DateValue(数值, 2) <br>转成日期，Excel数值<br>
         DateValue(数值, 3) <br>转成日期，时间戳（毫秒）<br>
-        DateValue(值数值, 4) <br>转成日期，时间戳（秒）<br>
+        DateValue(数值, 4) <br>转成日期，时间戳（秒）<br>
         </td> <td></td>
     </tr>
     <tr>
@@ -1084,19 +1084,19 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>hypgeomDist(23, 45, 45, 100) <br>>>0.08715016</td>
     </tr>
     <tr>
-        <td>logInv<br>LOGNORM.INV</td><td>logInv(分布概率, 算法平均数, 标准偏差)<br>返回 x 的对数累积分布函数的反函数</td>
+        <td>logInv<br>LOGNORM.INV</td><td>logInv(分布概率, 算术平均数, 标准偏差)<br>返回 x 的对数累积分布函数的反函数</td>
         <td>logInv(0.1, 45, 33) <br>>>15.01122624</td>
     </tr>
     <tr>
-        <td>LognormDist<br>LOGNORM.DIST</td><td>lognormDist(数值, 算法平均数, 标准偏差)<br>返回反对数正态分布</td>
+        <td>LognormDist<br>LOGNORM.DIST</td><td>lognormDist(数值, 算术平均数, 标准偏差)<br>返回对数正态分布</td>
         <td>lognormDist(15, 23, 45) <br>>>0.326019201</td>
     </tr>
     <tr>
-        <td>negbinomDist<br>NEGBINOM.DIST</td><td>negbinomDist(失败次数, 成功极限次数, 成功概率)<br>返回负二项式分布</td>
+        <td>negbinomDist<br>NEGBINOM.DIST</td><td>negbinomDist(失败次数, 成功次数, 成功概率)<br>返回负二项式分布</td>
         <td>negbinomDist(23, 45, 0.7) <br>>>0.053463314</td>
     </tr>
     <tr>
-        <td>POISSON<br>POISSON.DIST</td><td>poisson(数值, 算法平均数, 返回类型：0/1)<br>返回 Poisson 分布</td>
+        <td>POISSON<br>POISSON.DIST</td><td>poisson(数值, 算术平均数, 返回类型：0/1)<br>返回 Poisson 分布</td>
         <td>POISSON(23, 23, 0) <br>>>0.082884384</td>
     </tr>
     <tr>
@@ -1158,7 +1158,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>HtmlEncode ★</td><td>HtmlEncode(文本)<br> 将字符串转换为 HTML 编码的字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HtmlDecode ★</td><td>HtmlDecode(文本)<br>  将HTML 编码的字符串转解码。</td> <td></td>
+        <td>HtmlDecode ★</td><td>HtmlDecode(文本)<br>  将HTML编码的字符串转换为已解码的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>Base64ToText ★</td><td>Base64ToText(文本)<br>   将Base64转换为字符串。</td> <td></td>
@@ -1173,7 +1173,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>TextToBase64Url ★</td><td>TextToBase64Url(文本)<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex ★</td><td>Regex(文本, 匹配文本)<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex ★</td><td>Regex(文本, 匹配文本)<br>   返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>REGEXREPLACE ★</td><td>REGEXREPLACE(文本, 匹配文本, 替换文本)<br>  匹配替换字符串。</td> <td></td>
@@ -1209,10 +1209,10 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>HmacSha512 ★</td><td>HmacSha512(文本, secret)<br> 返回HmacSha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimStart ★<br>LTrim ★</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本[, 字符集])<br>   消空字符串左边。</td> <td></td>
+        <td>TrimStart ★<br>LTrim ★</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本[, 字符集])<br>   去除字符串左边的字符。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimEnd ★<br>RTrim ★</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本, 字符集)<br>   消空字符串右边。</td> <td></td>
+        <td>TrimEnd ★<br>RTrim ★</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本, 字符集)<br>   去除字符串右边的字符。</td> <td></td>
     </tr>
 	<tr>
         <td>IndexOf ★ ▲</td><td>IndexOf(文本, 查找文本[, 开始位置[, 索引]])<br>   查找字符串位置。</td> <td></td>
@@ -1233,7 +1233,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>StartsWith ★</td><td>StartsWith(文本, 开始文本[, 是否忽略大小写:1/0])<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
     </tr>
 	<tr>
-        <td>EndsWith ★</td><td>EndsWith(文本, 开始文本[, 是否忽略大小写:1/0])<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
+        <td>EndsWith ★</td><td>EndsWith(文本, 结束文本[, 是否忽略大小写:1/0])<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
     </tr>
 	<tr>
         <td>IsNullOrEmpty ★</td><td>IsNullOrEmpty(文本)<br>  指示指定的字符串是 null 还是 空字符串。</td> <td></td>

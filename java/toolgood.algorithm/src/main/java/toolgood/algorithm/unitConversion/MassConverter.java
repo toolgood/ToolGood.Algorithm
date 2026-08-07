@@ -28,7 +28,8 @@ public final class MassConverter {
         map.put("lbs", lb);
         map.put("pound", lb);
         map.put("pounds", lb);
-        map.put("英镑", lb);
+        map.put("磅", lb);
+        map.put("英磅", lb);
 
         BigDecimal st = new BigDecimal("50000000").divide(new BigDecimal("317514659"), 30, RoundingMode.HALF_UP);
         map.put("st", st);

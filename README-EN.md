@@ -29,7 +29,7 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 	var r = engine.TryEvaluate("(1=1)*9+2", 0); //Return: 11 返回:11
 	var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //Return date: 2016-1-2 返回日期:2016-1-2
 	var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
-	var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
+	var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'].Trim()", null);//Return "William Shakespeare"  返回"William Shakespeare" (不带空格)
 	var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null); ;//Return "ill"  返回"ill"
 	var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
 	var m = engine.TryEvaluate("[1,2,3,4,5,6].has(13)", true);//Return false 返回false
@@ -49,7 +49,7 @@ Chinese symbols are automatically converted into English symbols: `brackets`, `c
 
 Note: Use `&` for string concatenation.
 
-Note: `find` is an Excel formula , find (the string to be searched, the string to be searched \[, start position])
+Note: `find` is an Excel formula , find (the string to be searched, the string in which to search \[, start position])
 
 Note: Starting from version 6.0, the `[X,X]` array code replaces `{X,X}`.
 
@@ -89,7 +89,7 @@ Note: Starting from version 6.2, converting datetime to numbers, numbers to date
 	//Call method  调用方法
 	Cylinder c = new Cylinder(3, 10);
 	c.TryEvaluate("半径*半径*pi()", 0.0);	  //Round bottom area  圆底面积
-	c.TryEvaluate("直径*pi()", 0.0);			//The length of the circle  圆的长
+	c.TryEvaluate("直径*pi()", 0.0);			//The length of the circle  圆的周长
 	c.TryEvaluate("半径*半径*pi()*高", 0.0); //Volume of circle 圆的体积
 	c.EvaluateFormula("'圆'-半径-高", '-'); // Return: 圆-3-10
 	c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
@@ -105,7 +105,7 @@ Note: You can override the `GetParameter` and `ExecuteDiyFunction` methods to cu
 
 Note: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
 
-## Custom parameters
+## AlgorithmEngineHelper
 
 ```csharp
 	var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
@@ -287,7 +287,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>int(9.222) <br>>>9</td>
 	</tr>
 	<tr>
-		<td>gcd</td><td>gcd(number, ...)<br>Returns the maximum common divisor</td>
+		<td>gcd</td><td>gcd(number, ...)<br>Returns the greatest common divisor</td>
 		<td>GCD(3, 5, 7) <br>>>1</td>
 	</tr>
 	<tr>
@@ -307,7 +307,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>FIXED(4567.89, 1) <br>>>4, 567.9</td>
 	</tr>
 	<tr>
-	<td rowspan="15">Triangulation function</td>
+	<td rowspan="15">Trigonometric function</td>
 		<td>degrees</td><td>degrees(radian)<br>Convert radians to degrees</td>
 		<td>degrees(pi()) <br>>>180</td>
 	</tr>
@@ -364,7 +364,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>atanh(1) <br>>>0.549306144334</td>
 	</tr>
 	<tr>
-		<td>atan2</td><td>atan2(number, number)<br>Return anti-tangent from X and Y coordinates</td>
+		<td>atan2</td><td>atan2(number, number)<br>Return the arc tangent from X and Y coordinates</td>
 		<td>atan2(1, 2) <br>>>1.10714871779</td>
 	</tr>
 	<tr>
@@ -652,7 +652,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 	<tr>
 		<td>REPLACE ★  ▲</td>
 		<td>replace(srcText, startIndex, count, newText)<br>
-		replace(srcText, repalceText, newText)<br>
+		replace(srcText, replaceText, newText)<br>
 		Replace characters in text</td>
 		<td>REPLACE("abccd", 2, 3, "2") <br>>>a2d<br>
 		REPLACE("abccd", "bc", "2") <br>>>a2cd
@@ -773,7 +773,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>dateDIF("1975-1-30", "2017-1-7", "Y") <br>>>41</td>
 	</tr>
 	<tr>
-		<td>DAYS360</td><td>days360(startDate, endDate[, type:0/1])<br>Calculate the number of days in a two-day period on the basis of 360 days a year</td>
+		<td>DAYS360</td><td>days360(startDate, endDate[, type:0/1])<br>Calculate the number of days between two dates on the basis of 360 days a year</td>
 		<td>DAYS360('1975-1-30', '2017-1-7') <br>>>15097</td>
 	</tr>
 	<tr>
@@ -946,7 +946,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>LARGE({1, 2, 3, 4, 2, 2, 1, 4}, 3) <br>>>3</td>
 	</tr>
 	<tr>
-		<td>SMALL ▲</td><td>small(number, K)<br>Returns the k-th minimum of the data set</td>
+		<td>SMALL ▲</td><td>small(array, K)<br>Returns the k-th minimum of the data set</td>
 		<td>SMALL({1, 2, 3, 4, 2, 2, 1, 4}, 3) <br>>>2</td>
 	</tr>
 	<tr>
@@ -1058,11 +1058,11 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>exponDist(3, 1, 0) <br>>>0.049787068</td>
 	</tr>
 	<tr>
-		<td>FDist<br>F.DIST</td><td>fDist(numberX, molecularFreedom, denominatorFreedom)<br>Return F probability distribution</td>
+		<td>FDist<br>F.DIST</td><td>fDist(numberX, numeratorFreedom, denominatorFreedom)<br>Return F probability distribution</td>
 		<td>FDist(0.4, 2, 3) <br>>>0.701465776</td>
 	</tr>
 	<tr>
-		<td>FInv<br>F.INV</td><td>fInv(distributionProbability, molecularFreedom, denominatorFreedom)<br>Returns the inverse function of F probability distribution</td>
+		<td>FInv<br>F.INV</td><td>fInv(distributionProbability, numeratorFreedom, denominatorFreedom)<br>Returns the inverse function of F probability distribution</td>
 		<td>FInv(0.7, 2, 3) <br>>>0.402651432</td>
 	</tr>
 	<tr>
@@ -1094,7 +1094,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>logInv(0.1, 45, 33) <br>>>15.01122624</td>
 	</tr>
 	<tr>
-		<td>LognormDist<br>LOGNORM.DIST</td><td>lognormDist(number, average, StDev)<br>Returns the inverse normal distribution</td>
+		<td>LognormDist<br>LOGNORM.DIST</td><td>lognormDist(number, average, StDev)<br>Returns the log-normal cumulative distribution</td>
 		<td>lognormDist(15, 23, 45) <br>>>0.326019201</td>
 	</tr>
 	<tr>
@@ -1165,7 +1165,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>HtmlEncode ★</td><td>HtmlEncode(text)<br> Converts a string to a HTML-encoded string.</td> <td></td>
 	</tr>
 	<tr>
-		<td>HtmlDecode ★</td><td>HtmlDecode(text)<br>  Transdecode the HTML-encoded string.</td> <td></td>
+		<td>HtmlDecode ★</td><td>HtmlDecode(text)<br>  Decode the HTML-encoded string.</td> <td></td>
 	</tr>
 	<tr>
 		<td>Base64ToText ★</td><td>Base64ToText(text)<br>   Converts Base64 to a string.</td> <td></td>
@@ -1240,7 +1240,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
 		<td>StartsWith ★</td><td>StartsWith(text, startText[, ignoreCase:1/0])<br>  Determines whether the beginning of this string instance matches the specified string.</td> <td></td>
 	</tr>
 	<tr>
-		<td>EndsWith ★</td><td>EndsWith(text, startText[, ignoreCase:1/0])<br>  Determines whether the end of this string instance matches the specified string when comparing using the specified comparison option.</td> <td></td>
+		<td>EndsWith ★</td><td>EndsWith(text, endText[, ignoreCase:1/0])<br>  Determines whether the end of this string instance matches the specified string when comparing using the specified comparison option.</td> <td></td>
 	</tr>
 	<tr>
 		<td>IsNullOrEmpty ★</td><td>IsNullOrEmpty(text)<br>  Indicates whether the specified string is null or an empty string.</td> <td></td>

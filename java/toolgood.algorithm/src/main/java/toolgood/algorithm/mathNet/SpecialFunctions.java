@@ -181,7 +181,7 @@ public class SpecialFunctions {
 
         if (Precision.AlmostEqual(a, 0.0)) {
             if (Precision.AlmostEqual(x, 0.0)) {
-                // use right hand limit value because so that regularized upper/lower gamma
+                // use right hand limit value so that regularized upper/lower gamma
                 // definition holds.
                 return 1d;
             }

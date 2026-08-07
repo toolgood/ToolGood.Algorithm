@@ -125,7 +125,7 @@ public class ExcelFunctions {
 
     // public static double ChiDist(double x, double freedom)
     // {
-    // return Chi.PDF(x, freedom);//Is Error
+    // return Chi.PDF(x, freedom);// Is an error
     // }
 
     public static double ExponDist(double x, double rate, boolean state) {

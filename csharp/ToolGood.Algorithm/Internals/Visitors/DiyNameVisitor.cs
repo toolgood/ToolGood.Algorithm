@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Internals.Functions;
@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 	internal sealed class DiyNameVisitor : mathBaseVisitor<Object>
 	{
 		internal List<DiyNameKeyInfo> Parameters = new List<DiyNameKeyInfo>();	
-		internal List<DiyNameKeyInfo> Functions =new List<DiyNameKeyInfo>();
+		internal List<DiyNameKeyInfo> Functions = new List<DiyNameKeyInfo>();
 
 		private void AddParameter(ITerminalNode node)
 		{

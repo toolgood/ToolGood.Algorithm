@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals
@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals
 		/// <summary>
 		/// 外面是否有括号
 		/// </summary>
-		public bool HasBracket {  get; internal set; }
+		public bool HasBracket { get; internal set; }
 
 		/// <summary>
 		/// 出错信息

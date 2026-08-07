@@ -190,7 +190,7 @@ public abstract class Operand {
 
     // ============== Inner classes ==============
 
-    // region OperandInt (缓存的整�?
+    // region OperandInt (缓存的整数)
     static final class OperandInt extends Operand {
         private final int _value;
 

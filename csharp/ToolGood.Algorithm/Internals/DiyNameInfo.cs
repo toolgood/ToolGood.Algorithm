@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.Internals
 {
@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm.Internals
     public struct DiyNameInfo
     {
         /// <summary>
-        /// 自定义 参数
+        /// 自定义参数
         /// </summary>
         public List<DiyNameKeyInfo> Parameters { get; private set; }
 
@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals
 		/// <summary>
 		/// 自定义类型
 		/// </summary>
-		public DiyNameInfo(List<DiyNameKeyInfo> p, List<DiyNameKeyInfo>f)
+		public DiyNameInfo(List<DiyNameKeyInfo> p, List<DiyNameKeyInfo> f)
         {
             Parameters = p;
             Functions = f;

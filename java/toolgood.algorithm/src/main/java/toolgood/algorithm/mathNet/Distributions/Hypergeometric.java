@@ -8,7 +8,7 @@ public class Hypergeometric {
         /// </summary>
         /// <param name="k">The location in the domain where we want to evaluate the probability mass function.</param>
         /// <param name="population">The size of the population (N).</param>
-        /// <param name="success">The number successes within the population (K, M).</param>
+        /// <param name="success">The number of successes within the population (K, M).</param>
         /// <param name="draws">The number of draws without replacement (n).</param>
         /// <returns>the probability mass at location <paramref name="k"/>.</returns>
         public static double PMF(int population, int success, int draws, int k)

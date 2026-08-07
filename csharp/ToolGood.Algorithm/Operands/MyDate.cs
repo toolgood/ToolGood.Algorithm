@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals;
@@ -99,7 +99,7 @@ namespace ToolGood.Algorithm.Operands
         {
             var cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
             var t = txt.Trim();
-            var m = RegexHelper. dateTimeRegex.Match(t); // 年月日 时分秒
+            var m = RegexHelper.dateTimeRegex.Match(t); // 年月日 时分秒
             if (m.Success == false) { m = RegexHelper.dateTimeRegex2.Match(t); }
             if (m.Success) {
                 var date = new MyDate {

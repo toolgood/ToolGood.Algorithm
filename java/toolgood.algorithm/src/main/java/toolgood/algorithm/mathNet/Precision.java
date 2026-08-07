@@ -33,7 +33,7 @@ public class Precision {
     /// <param name="count">How many times the number should be incremented.</param>
     /// <remarks>
     /// The incrementation step length depends on the provided value.
-    /// Increment(double.MaxValue) will return positive infinity.
+    /// Increment(Double.MAX_VALUE) will return positive infinity.
     /// </remarks>
     /// <returns>The next larger floating point value.</returns>
     public static double Increment(double value, int count) {
@@ -46,7 +46,7 @@ public class Precision {
         // double > 0 --> long > 0, growing as the double value grows
         // double < 0 --> long < 0, increasing in absolute magnitude as the double
         // gets closer to zero!
-        // i.e. 0 - double.epsilon will give the largest long value!
+        // i.e. 0 - Double.MIN_VALUE will give the largest long value!
         long intValue = (long)value;
         // long intValue = BitConverter.DoubleToInt64Bits(value);
         if (intValue < 0) {
