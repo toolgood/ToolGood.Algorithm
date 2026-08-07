@@ -17,6 +17,7 @@ class Function_XNPV extends Function_N {
         const rateArg = this.getNumber(engine, tempParameter, 0);
         if (rateArg.IsError) return rateArg;
         const rate = rateArg.NumberValue;
+        if (rate === -1) return this.div0Error();
 
         const valuesArg = this.getArray(engine, tempParameter, 1);
         if (valuesArg.IsError) return valuesArg;
@@ -27,7 +28,7 @@ class Function_XNPV extends Function_N {
         const dates = datesArg.ArrayValue;
 
         if (values.length !== dates.length) return this.functionError();
-        if (values.length === 0) return this.functionError();
+        if (values.length === 0) return this.parameterError(1);
 
         const dateList = [];
         for (const d of dates) {
@@ -35,10 +36,10 @@ class Function_XNPV extends Function_N {
                 dateList.push(d.DateValue.ToDateTime(0));
             } else if (d.IsText) {
                 const myDate = MyDate.Parse(d.TextValue);
-                if (myDate == null) return this.functionError();
+                if (myDate == null) return this.parameterError(3);
                 dateList.push(myDate.ToDateTime(0));
             } else {
-                return this.functionError();
+                return this.parameterError(3);
             }
         }
 

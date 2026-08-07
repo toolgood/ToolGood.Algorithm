@@ -29,10 +29,10 @@ class Function_XIRR extends Function_N {
                 dates.push(d.DateValue.ToDateTime(0));
             } else if (d.IsText) {
                 const myDate = MyDate.Parse(d.TextValue);
-                if (myDate == null) return this.functionError();
+                if (myDate == null) return this.parameterError(2);
                 dates.push(myDate.ToDateTime(0));
             } else {
-                return this.functionError();
+                return this.parameterError(2);
             }
         }
 

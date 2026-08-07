@@ -11,7 +11,7 @@ class Function_NPV extends Function_N {
     }
 
     evaluate(engine, tempParameter) {
-        if (this.z.length < 2) return this.parameterError(1);
+        if (this.z.length < 1) return this.parameterError(1);
 
         const rateArg = this.getNumber(engine, tempParameter, 0);
         if (rateArg.IsError) return rateArg;

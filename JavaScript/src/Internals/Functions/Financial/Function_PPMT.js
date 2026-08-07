@@ -40,7 +40,8 @@ class Function_PPMT extends Function_N {
         if (this.z.length > 5) {
             const typeArg = this.getNumber(engine, tempParameter, 5);
             if (typeArg.IsError) return typeArg;
-            type = Math.floor(typeArg.NumberValue);
+            type = typeArg.IntValue;
+            if (type !== 0 && type !== 1) return this.parameterError(6);
         }
 
         const pmt = this.calculatePMT(rate, nper, pv, fv, type);

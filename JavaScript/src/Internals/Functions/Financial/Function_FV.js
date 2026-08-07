@@ -36,7 +36,8 @@ class Function_FV extends Function_N {
         if (this.z.length > 4) {
             const typeArg = this.getNumber(engine, tempParameter, 4);
             if (typeArg.IsError) return typeArg;
-            type = Math.floor(typeArg.NumberValue);
+            type = typeArg.IntValue;
+            if (type !== 0 && type !== 1) return this.parameterError(5);
         }
 
         if (rate === 0) {

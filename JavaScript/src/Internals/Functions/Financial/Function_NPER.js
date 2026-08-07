@@ -36,7 +36,7 @@ class Function_NPER extends Function_N {
         if (this.z.length > 4) {
             const typeArg = this.getNumber(engine, tempParameter, 4);
             if (typeArg.IsError) return typeArg;
-            type = Math.floor(typeArg.NumberValue);
+            type = typeArg.IntValue;
         }
 
         if (rate === 0) {

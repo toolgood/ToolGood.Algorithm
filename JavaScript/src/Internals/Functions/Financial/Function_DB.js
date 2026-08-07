@@ -33,7 +33,7 @@ class Function_DB extends Function_N {
         if (this.z.length > 4) {
             const monthArg = this.getNumber(engine, tempParameter, 4);
             if (monthArg.IsError) return monthArg;
-            month = Math.floor(monthArg.NumberValue);
+            month = monthArg.IntValue;
             if (month < 1 || month > 12) return this.parameterError(5);
         }
 

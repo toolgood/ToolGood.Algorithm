@@ -25,6 +25,8 @@ class Function_PMT extends Function_N {
         if (pvArg.IsError) return pvArg;
         const pv = pvArg.NumberValue;
 
+        if (nper === 0) return this.div0Error();
+
         let fv = 0;
         if (this.z.length > 3) {
             const fvArg = this.getNumber(engine, tempParameter, 3);
