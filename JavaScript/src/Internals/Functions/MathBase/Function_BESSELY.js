@@ -20,7 +20,7 @@ class Function_BESSELY extends Function_2 {
         let n = Math.trunc(args2.NumberValue);
 
         if (x <= 0) {
-            return this.functionError();
+            return this.parameterError(1);
         }
 
         return Operand.Create(this.besselY(n, x));

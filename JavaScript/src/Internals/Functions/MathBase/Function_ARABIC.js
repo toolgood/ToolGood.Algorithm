@@ -14,6 +14,9 @@ class Function_ARABIC extends Function_1 {
         const arg = this.getText_1(engine, tempParameter);
         if (arg.IsError) return arg;
         const text = arg.TextValue.toUpperCase();
+        // Excel ARABIC: 空文本或含非法字符时返回 #VALUE!
+        if (text.length === 0) return this.parameterError(1);
+        if (!/^[IVXLCDM]+$/.test(text)) return this.parameterError(1);
         return Operand.Create(this.romanToArabic(text));
     }
 
@@ -23,6 +26,7 @@ class Function_ARABIC extends Function_1 {
 
         for (let i = roman.length - 1; i >= 0; i--) {
             const value = this.getRomanValue(roman[i]);
+            if (value < 0) return this.parameterError(1);
             if (value < prevValue) {
                 result -= value;
             } else {
@@ -43,7 +47,7 @@ class Function_ARABIC extends Function_1 {
             case 'C': return 100;
             case 'D': return 500;
             case 'M': return 1000;
-            default: return 0;
+            default: return -1;
         }
     }
 }

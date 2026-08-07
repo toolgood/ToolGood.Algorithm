@@ -15,16 +15,26 @@ class Function_OCT2HEX extends Function_2 {
         if (args1.IsError) { return args1; }
 
         if (!/^[0-7]+$/.test(args1.TextValue)) { return this.parameterError(1); }
-        let num = parseInt(args1.TextValue, 8).toString(16).toUpperCase();
+        let text = args1.TextValue;
+        if (text.length > 10) { return this.parameterError(1); }
+        // 10 位八进制补码解析
+        let num = parseInt(text, 8);
+        if (num >= 536870912) { num -= 1073741824; }
+        let hex;
+        if (num < 0) {
+            // 负数:10 位十六进制补码
+            hex = (num + 0x10000000000).toString(16).toUpperCase().padStart(10, '0');
+        } else {
+            hex = num.toString(16).toUpperCase();
+        }
         if (this.b != null) {
             let args2 = this.getNumber_2(work, tempParameter);
             if (args2.IsError) { return args2; }
-            if (num.length < args2.IntValue) {
-                return Operand.Create(num.padStart(args2.IntValue, '0'));
-            }
-            return this.parameterError(2);
+            if (args2.IntValue < 0) { return this.parameterError(2); }
+            if (hex.length > args2.IntValue) { return this.parameterError(2); }
+            return Operand.Create(hex.padStart(args2.IntValue, '0'));
         }
-        return Operand.Create(num);
+        return Operand.Create(hex);
     }
 }
 
