@@ -28,9 +28,9 @@ class Function_GAMMADIST extends Function_4 {
         let alpha = args2.DoubleValue;
         let beta = args3.DoubleValue;
         let cumulative = args4.BooleanValue;
-        if (alpha < 0.0 || beta < 0.0) {
-            return this.functionError();
-        }
+        if (x < 0.0) { return this.parameterError(1); }
+        if (alpha <= 0.0) { return this.parameterError(2); }
+        if (beta <= 0.0) { return this.parameterError(3); }
         return Operand.Create(ExcelFunctions.gammaDist(x, alpha, beta, cumulative));
     }
 }

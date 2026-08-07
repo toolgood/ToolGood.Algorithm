@@ -28,6 +28,9 @@ class Function_NORMDIST extends Function_4 {
         let avg = args2.DoubleValue;
         let STDEV = args3.DoubleValue;
         let b = args4.BooleanValue;
+        if (STDEV <= 0.0) {
+            return this.parameterError(3);
+        }
         return Operand.Create(ExcelFunctions.normDist(num, avg, STDEV, b));
     }
 }

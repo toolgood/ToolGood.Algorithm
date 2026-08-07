@@ -22,10 +22,14 @@ class Function_EXPONDIST extends Function_3 {
         if (args3.IsError) return args3;
 
         let n1 = args1.DoubleValue;
+        let lambda = args2.DoubleValue;
         if (n1 < 0.0) {
-            return this.functionError();
+            return this.parameterError(1);
         }
-        return Operand.Create(ExcelFunctions.exponDist(n1, args2.DoubleValue, args3.BooleanValue));
+        if (!(lambda > 0.0)) {
+            return this.parameterError(2);
+        }
+        return Operand.Create(ExcelFunctions.exponDist(n1, lambda, args3.BooleanValue));
     }
 }
 

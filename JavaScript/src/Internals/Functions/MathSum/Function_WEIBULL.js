@@ -27,9 +27,8 @@ class Function_WEIBULL extends Function_4 {
         let shape = args2.DoubleValue;
         let scale = args3.DoubleValue;
         let state = args4.BooleanValue;
-        if (shape <= 0.0 || scale <= 0.0) {
-            return this.functionError();
-        }
+        if (shape <= 0.0) { return this.parameterError(2); }
+        if (scale <= 0.0) { return this.parameterError(3); }
 
         return Operand.Create(ExcelFunctions.weibull(x, shape, scale, state));
     }

@@ -14,7 +14,12 @@ class Function_FISHERINV extends Function_1 {
         let args1 = this.getNumber_1(engine, tempParameter);
         if (args1.IsError) { return args1; }
         let x = args1.DoubleValue;
-        let n = (Math.exp(2 * x) - 1) / (Math.exp(2 * x) + 1);
+        let exp = Math.exp(2 * x);
+        if (!isFinite(exp)) {
+            // 对齐 C# decimal 溢出处理:大正数返回 1
+            return Operand.Create(1);
+        }
+        let n = (exp - 1) / (exp + 1);
         return Operand.Create(n);
     }
 }

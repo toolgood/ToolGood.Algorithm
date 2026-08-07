@@ -23,6 +23,12 @@ class Function_NORMINV extends Function_3 {
         let p = args1.DoubleValue;
         let avg = args2.DoubleValue;
         let STDEV = args3.DoubleValue;
+        if (p <= 0.0 || p >= 1.0) {
+            return this.parameterError(1);
+        }
+        if (STDEV <= 0.0) {
+            return this.parameterError(3);
+        }
         return Operand.Create(ExcelFunctions.normInv(p, avg, STDEV));
     }
 }

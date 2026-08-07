@@ -24,9 +24,9 @@ class Function_FDIST extends Function_3 {
         let x = args1.DoubleValue;
         let degreesFreedom = args2.IntValue;
         let degreesFreedom2 = args3.IntValue;
-        if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
-            return this.functionError();
-        }
+        if (x <= 0.0) { return this.parameterError(1); }
+        if (degreesFreedom <= 0) { return this.parameterError(2); }
+        if (degreesFreedom2 <= 0) { return this.parameterError(3); }
         return Operand.Create(ExcelFunctions.fDist(x, degreesFreedom, degreesFreedom2));
     }
 }

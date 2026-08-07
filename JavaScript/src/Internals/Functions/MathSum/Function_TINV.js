@@ -19,9 +19,8 @@ class Function_TINV extends Function_2 {
         if (args2.IsError) return args2;
         let p = args1.DoubleValue;
         let degreesFreedom = args2.IntValue;
-        if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
-            return this.functionError();
-        }
+        if (p <= 0.0 || p >= 1.0) { return this.parameterError(1); }
+        if (degreesFreedom <= 0) { return this.parameterError(2); }
         return Operand.Create(ExcelFunctions.tInv(p, degreesFreedom));
     }
 }

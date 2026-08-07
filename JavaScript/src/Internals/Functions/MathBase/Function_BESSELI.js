@@ -19,7 +19,12 @@ class Function_BESSELI extends Function_2 {
         let x = args1.NumberValue;
         let n = Math.trunc(args2.NumberValue);
 
-        return Operand.Create(this.besselI(n, x));
+        let result = this.besselI(n, x);
+        if (!isFinite(result)) {
+            // 对齐 C# OverflowException → FunctionError
+            return this.functionError();
+        }
+        return Operand.Create(result);
     }
 
     besselI(n, x) {

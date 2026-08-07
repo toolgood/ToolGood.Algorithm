@@ -24,9 +24,9 @@ class Function_NEGBINOMDIST extends Function_3 {
         let r = args2.DoubleValue;
         let p = args3.DoubleValue;
 
-        if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
-            return this.functionError();
-        }
+        if (k < 0) { return this.parameterError(1); }
+        if (r <= 0.0) { return this.parameterError(2); }
+        if (p < 0.0 || p > 1.0) { return this.parameterError(3); }
         return Operand.Create(ExcelFunctions.negbinomDist(k, r, p));
     }
 }

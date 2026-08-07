@@ -24,12 +24,13 @@ class Function_BINOMDIST extends Function_4 {
         let args4 = this.getBoolean_4(work, tempParameter);
         if (args4.IsError) return args4;
 
+        let k = args1.IntValue;
         let n2 = args2.IntValue;
         let n3 = args3.DoubleValue;
-        if (!(n3 >= 0.0 && n3 <= 1.0 && n2 >= 0)) {
-            return this.functionError();
-        }
-        return Operand.Create(ExcelFunctions.binomDist(args1.IntValue, n2, n3, args4.BooleanValue));
+        if (n2 < 0) { return this.parameterError(2); }
+        if (k < 0 || k > n2) { return this.parameterError(1); }
+        if (n3 < 0.0 || n3 > 1.0) { return this.parameterError(3); }
+        return Operand.Create(ExcelFunctions.binomDist(k, n2, n3, args4.BooleanValue));
     }
 }
 

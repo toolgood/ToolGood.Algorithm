@@ -21,11 +21,12 @@ class Function_LOGINV extends Function_3 {
         let args3 = this.getNumber_3(engine, tempParameter);
         if (args3.IsError) return args3;
 
+        let probability = args1.DoubleValue;
+        let n2 = args2.DoubleValue;
         let n3 = args3.DoubleValue;
-        if (n3 < 0.0) {
-            return this.functionError();
-        }
-        return Operand.Create(ExcelFunctions.logInv(args1.DoubleValue, args2.DoubleValue, n3));
+        if (probability <= 0.0 || probability >= 1.0) { return this.parameterError(1); }
+        if (n3 <= 0.0) { return this.parameterError(3); }
+        return Operand.Create(ExcelFunctions.logInv(probability, n2, n3));
     }
 }
 
