@@ -5,8 +5,7 @@
 
 import ATN from './ATN.js';
 import ATNDeserializer from './ATNDeserializer.js';
-import LexerATNSimulator from './LexerATNSimulator.js';
 import ParserATNSimulator from './ParserATNSimulator.js';
 import PredictionContextCache from './PredictionContextCache.js';
 
-export default { ATN, ATNDeserializer, LexerATNSimulator, ParserATNSimulator,  PredictionContextCache }
+export default { ATN, ATNDeserializer, ParserATNSimulator,  PredictionContextCache }
