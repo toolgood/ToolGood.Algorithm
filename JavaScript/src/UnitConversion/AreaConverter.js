@@ -29,6 +29,6 @@ AreaConverter.units.set(new UnitFactorSynonyms("a", "are"), 0.01);
 AreaConverter.units.set(new UnitFactorSynonyms("ha", "hectare", "公顷"), 0.0001);
 AreaConverter.units.set(new UnitFactorSynonyms("in²", "in2", "sq in", "square inch", "平方英寸"), 1 / 0.00064516);
 AreaConverter.units.set(new UnitFactorSynonyms("mi²", "mi2", "sq mi", "square mile", "平方英里"), 1 / 2589988.110336);
-AreaConverter.units.set(new UnitFactorSynonyms("亩"), 1 / 666.667);
+AreaConverter.units.set(new UnitFactorSynonyms("亩"), 3 / 2000);
 
 export { AreaConverter };

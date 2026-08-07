@@ -76,7 +76,8 @@ export class AlgorithmEngineHelper {
      * 单位转换
      */
     static UnitConversion(src, oldSrcUnit, oldTarUnit, name = null) {
-        if (!oldSrcUnit || !oldTarUnit) { return src; }
+        // 与 C# 一致:空字符串或纯空白单位直接返回原值
+        if (!oldSrcUnit || !oldTarUnit || !oldSrcUnit.trim() || !oldTarUnit.trim()) { return src; }
         if (!this.unitRegex) {
             this.unitRegex = /[\s \(\)（）\[\]<>]/g;
         }
