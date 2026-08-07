@@ -32,11 +32,11 @@ class Function_XNPV extends Function_N {
         const dateList = [];
         for (const d of dates) {
             if (d.IsDate) {
-                dateList.push(d.DateValue.ToDateTime());
+                dateList.push(d.DateValue.ToDateTime(0));
             } else if (d.IsText) {
                 const myDate = MyDate.Parse(d.TextValue);
                 if (myDate == null) return this.functionError();
-                dateList.push(myDate.ToDateTime());
+                dateList.push(myDate.ToDateTime(0));
             } else {
                 return this.functionError();
             }

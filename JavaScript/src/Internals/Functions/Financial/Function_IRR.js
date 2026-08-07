@@ -17,8 +17,25 @@ class Function_IRR extends Function_N {
         if (valuesArg.IsError) return valuesArg;
         const values = [];
         for (const v of valuesArg.ArrayValue) {
-            values.push(v.NumberValue);
+            if (v.IsNumber) {
+                values.push(v.NumberValue);
+            } else {
+                const v2 = v.ToNumber(`Function '${this.Name}' parameter 1 is error!`);
+                if (v2.IsError) return v2;
+                values.push(v2.NumberValue);
+            }
         }
+
+        if (values.length === 0) return this.parameterError(1);
+
+        // IRR 要求现金流量必须同时包含正负值
+        let hasPositive = false;
+        let hasNegative = false;
+        for (const v of values) {
+            if (v > 0) hasPositive = true;
+            if (v < 0) hasNegative = true;
+        }
+        if (!hasPositive || !hasNegative) return this.parameterError(1);
 
         let guess = 0.1;
         if (this.z.length > 1) {
@@ -28,6 +45,7 @@ class Function_IRR extends Function_N {
         }
 
         const irr = this.newtonRaphsonIRR(values, guess);
+        if (irr === null) return this.functionError();
         return Operand.Create(irr);
     }
 
@@ -36,11 +54,13 @@ class Function_IRR extends Function_N {
         for (let iter = 0; iter < 100; iter++) {
             let npv = 0;
             let dnpv = 0;
+            const onePlusRate = 1 + rate;
+            let factor = 1;
 
             for (let i = 0; i < values.length; i++) {
-                const factor = Math.pow(1 + rate, i);
                 npv += values[i] / factor;
-                dnpv -= i * values[i] / (factor * (1 + rate));
+                dnpv -= i * values[i] / (factor * onePlusRate);
+                factor *= onePlusRate;
             }
 
             if (Math.abs(dnpv) < 1e-12) break;
@@ -51,7 +71,7 @@ class Function_IRR extends Function_N {
             }
             rate = newRate;
         }
-        return rate;
+        return null; // 未收敛
     }
 }
 

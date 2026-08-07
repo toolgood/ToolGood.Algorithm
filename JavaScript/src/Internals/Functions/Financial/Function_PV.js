@@ -44,11 +44,13 @@ class Function_PV extends Function_N {
         }
 
         const factor = Math.pow(1 + rate, nper);
-        let pv = (-fv - pmt * (factor - 1) / rate);
+        let pv;
         if (type === 1) {
-            pv = pv / (1 + rate);
+            // 期初支付：pmt 项乘 (1+rate)，与 C#/Excel 一致
+            pv = -(fv + pmt * (1 + rate) * (factor - 1) / rate) / factor;
+        } else {
+            pv = -(fv + pmt * (factor - 1) / rate) / factor;
         }
-        pv = pv / factor;
 
         return Operand.Create(pv);
     }

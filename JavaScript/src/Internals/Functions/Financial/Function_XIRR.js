@@ -26,11 +26,11 @@ class Function_XIRR extends Function_N {
         const dates = [];
         for (const d of datesArg.ArrayValue) {
             if (d.IsDate) {
-                dates.push(d.DateValue.ToDateTime());
+                dates.push(d.DateValue.ToDateTime(0));
             } else if (d.IsText) {
                 const myDate = MyDate.Parse(d.TextValue);
                 if (myDate == null) return this.functionError();
-                dates.push(myDate.ToDateTime());
+                dates.push(myDate.ToDateTime(0));
             } else {
                 return this.functionError();
             }
@@ -46,6 +46,7 @@ class Function_XIRR extends Function_N {
         }
 
         const xirr = this.newtonRaphsonXIRR(values, dates, guess);
+        if (xirr === null) return this.functionError();
         return Operand.Create(xirr);
     }
 
@@ -73,7 +74,7 @@ class Function_XIRR extends Function_N {
             }
             rate = newRate;
         }
-        return rate;
+        return null; // 未收敛
     }
 }
 

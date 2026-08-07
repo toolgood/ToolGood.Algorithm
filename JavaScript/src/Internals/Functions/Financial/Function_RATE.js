@@ -25,6 +25,8 @@ class Function_RATE extends Function_N {
         if (pvArg.IsError) return pvArg;
         const pv = pvArg.NumberValue;
 
+        if (nper <= 0) return this.parameterError(1);
+
         let fv = 0;
         if (this.z.length > 3) {
             const fvArg = this.getNumber(engine, tempParameter, 3);
@@ -37,6 +39,7 @@ class Function_RATE extends Function_N {
             const typeArg = this.getNumber(engine, tempParameter, 4);
             if (typeArg.IsError) return typeArg;
             type = Math.floor(typeArg.NumberValue);
+            if (type !== 0 && type !== 1) return this.parameterError(5);
         }
 
         let guess = 0.1;
@@ -47,6 +50,8 @@ class Function_RATE extends Function_N {
         }
 
         const rate = this.newtonRaphson(nper, pmt, pv, fv, type, guess);
+        // 迭代中 rate=0 除零、Math.pow 负底/溢出会产生 Infinity/NaN，对应 C# 的捕获返回错误
+        if (rate === null || !isFinite(rate)) return this.functionError();
         return Operand.Create(rate);
     }
 

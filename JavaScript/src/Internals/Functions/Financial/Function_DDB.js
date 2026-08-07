@@ -36,16 +36,32 @@ class Function_DDB extends Function_N {
             factor = factorArg.NumberValue;
         }
 
-        let ddb = 0;
+        if (life === 0 || factor === 0) return this.div0Error();
+        if (per < 1 || per > life) return this.parameterError(4);
+        if (life < 1) return this.parameterError(3);
+
+        let depreciation = 0;
+        let remainingCost = cost;
+
         for (let i = 1; i <= per; i++) {
-            ddb = cost * factor / life;
-            if (cost - ddb < salvage) {
-                ddb = cost - salvage;
+            let ddb = remainingCost * factor / life;
+            const maxDepreciation = remainingCost - salvage;
+            if (ddb > maxDepreciation) {
+                ddb = maxDepreciation;
             }
-            cost -= ddb;
+            if (i === per) {
+                depreciation = ddb;
+            }
+            remainingCost -= ddb;
+            if (remainingCost <= salvage) {
+                if (i === per) {
+                    depreciation = remainingCost + ddb - salvage;
+                }
+                break;
+            }
         }
 
-        return Operand.Create(ddb);
+        return Operand.Create(depreciation);
     }
 }
 

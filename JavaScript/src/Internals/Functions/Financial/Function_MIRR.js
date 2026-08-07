@@ -32,6 +32,9 @@ class Function_MIRR extends Function_N {
         let npvPositive = 0;
         const n = values.length;
 
+        if (n === 0) return this.parameterError(1);
+        if (n === 1) return this.div0Error();
+
         for (let i = 0; i < n; i++) {
             if (values[i] < 0) {
                 npvNegative += values[i] / Math.pow(1 + financeRate, i);
@@ -40,9 +43,7 @@ class Function_MIRR extends Function_N {
             }
         }
 
-        if (npvNegative === 0 || npvPositive === 0) {
-            return this.functionError();
-        }
+        if (npvNegative === 0) return this.div0Error();
 
         const mirr = Math.pow(-npvPositive / npvNegative, 1 / (n - 1)) - 1;
         return Operand.Create(mirr);

@@ -15,8 +15,16 @@ class Hypergeometric {
             return 0;
         }
 
-        // Calculate the probability mass function
-        return SpecialFunctions.binomial(successes, k) * SpecialFunctions.binomial(population - successes, draws - k) / SpecialFunctions.binomial(population, draws);
+        // Check domain of k
+        if (k < 0 || k > draws || k > successes || k < draws + successes - population) {
+            return 0;
+        }
+
+        // 对数域计算，避免大参数下组合数直接乘除溢出为 Infinity
+        let logResult = SpecialFunctions.binomialLn(successes, k)
+                      + SpecialFunctions.binomialLn(population - successes, draws - k)
+                      - SpecialFunctions.binomialLn(population, draws);
+        return Math.exp(logResult);
     }
 }
 

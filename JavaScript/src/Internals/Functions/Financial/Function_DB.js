@@ -34,17 +34,26 @@ class Function_DB extends Function_N {
             const monthArg = this.getNumber(engine, tempParameter, 4);
             if (monthArg.IsError) return monthArg;
             month = Math.floor(monthArg.NumberValue);
+            if (month < 1 || month > 12) return this.parameterError(5);
         }
 
-        const rate = 1 - Math.pow(salvage / cost, 1 / life);
+        if (life === 0 || cost === 0) return this.div0Error();
+
+        // Excel: month<12 时折旧跨越 life+1 个期间(第1年部分月 + life-1 个整年 + 最后部分月)
+        const totalPeriods = (month === 12) ? Math.floor(life) : Math.floor(life) + 1;
+        if (per < 1 || per > totalPeriods) return this.parameterError(4);
+        if (life < 1) return this.parameterError(3);
+
+        // Excel 的 DB 折旧率保留 3 位小数
+        const rate = Math.round((1 - Math.pow(salvage / cost, 1 / life)) * 1000) / 1000;
         let db = 0;
         let remainingValue = cost;
 
         for (let i = 1; i <= per; i++) {
             if (i === 1) {
                 db = cost * rate * month / 12;
-            } else if (i === Math.floor(life) + 1) {
-                db = (cost - db) * rate * (12 - month) / 12;
+            } else if (i === totalPeriods && month !== 12) {
+                db = remainingValue * rate * (12 - month) / 12;
             } else {
                 db = remainingValue * rate;
             }

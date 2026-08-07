@@ -44,9 +44,12 @@ class Function_FV extends Function_N {
         }
 
         const factor = Math.pow(1 + rate, nper);
-        let fv = -pv * factor - pmt * (factor - 1) / rate;
+        let fv;
         if (type === 1) {
-            fv = fv * (1 + rate);
+            // 期初支付：仅 pmt 项乘 (1+rate)，与 C#/Excel 一致
+            fv = -pv * factor - pmt * (1 + rate) * (factor - 1) / rate;
+        } else {
+            fv = -pv * factor - pmt * (factor - 1) / rate;
         }
 
         return Operand.Create(fv);

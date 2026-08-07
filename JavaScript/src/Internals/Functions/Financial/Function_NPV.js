@@ -16,6 +16,7 @@ class Function_NPV extends Function_N {
         const rateArg = this.getNumber(engine, tempParameter, 0);
         if (rateArg.IsError) return rateArg;
         const rate = rateArg.NumberValue;
+        if (rate === -1) return this.div0Error();
 
         const values = [];
         for (let i = 1; i < this.z.length; i++) {

@@ -25,6 +25,8 @@ class Function_SLN extends Function_N {
         if (lifeArg.IsError) return lifeArg;
         const life = lifeArg.NumberValue;
 
+        if (life === 0) return this.div0Error();
+
         const sln = (cost - salvage) / life;
         return Operand.Create(sln);
     }

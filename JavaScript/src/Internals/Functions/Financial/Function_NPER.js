@@ -40,8 +40,10 @@ class Function_NPER extends Function_N {
         }
 
         if (rate === 0) {
+            if (pmt === 0) return this.div0Error();
             return Operand.Create(-(pv + fv) / pmt);
         }
+        if (rate === -1) return this.div0Error();
 
         const factor = (pmt * (1 + rate * type) - fv * rate) / (pv * rate + pmt * (1 + rate * type));
         const nper = Math.log(factor) / Math.log(1 + rate);

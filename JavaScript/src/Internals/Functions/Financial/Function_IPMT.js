@@ -66,8 +66,11 @@ class Function_IPMT extends Function_N {
             return 0;
         }
         const factorPer = Math.pow(1 + rate, per - 1);
-        const pvPer = pv * factorPer + pmt * (factorPer - 1) / rate;
-        return pvPer * rate;
+        const ipmt = -(pv * factorPer + pmt * (factorPer - 1) / rate) * rate;
+        if (type === 1 && per === 1) {
+            return 0;
+        }
+        return ipmt;
     }
 }
 
