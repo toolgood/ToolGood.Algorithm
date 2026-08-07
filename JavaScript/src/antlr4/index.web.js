@@ -17,11 +17,3 @@ import ParserRuleContext from './context/ParserRuleContext.js';
 export default {
     atn, dfa, tree, error, Lexer, Parser, ParserRuleContext, Token
 }
-
-// export {
-//     Token, CommonToken, CharStreams, CharStream, InputStream, CommonTokenStream, Lexer, Parser,
-//     RuleNode, TerminalNode, ParseTreeWalker, RuleContext, ParserRuleContext, Interval, IntervalSet,
-//     PredictionMode, LL1Analyzer, ParseTreeListener, ParseTreeVisitor, ATN, ATNDeserializer, PredictionContextCache, LexerATNSimulator, ParserATNSimulator, DFA,
-//     RecognitionException, NoViableAltException, FailedPredicateException, ErrorListener, DiagnosticErrorListener, BailErrorStrategy, DefaultErrorStrategy,
-//     arrayToString, TokenStreamRewriter, InputMismatchException
-// }
