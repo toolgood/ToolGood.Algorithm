@@ -16,13 +16,24 @@ class Function_FIND extends Function_3 {
         let args2 = this.getText_2(work, tempParameter);
         if (args2.IsError) { return args2; }
         if (this.c === null || this.c === undefined) {
-            let p = args2.TextValue.indexOf(args1.TextValue) + work.ExcelIndex;
-            return Operand.Create(p);
+            let index = args2.TextValue.indexOf(args1.TextValue);
+            if (index < 0) {
+                // 未找到:Excel 模式(索引从1开始)返回错误,C# 模式(索引从0开始)返回 -1
+                return work.ExcelIndex === 1 ? this.functionError() : Operand.Create(-1);
+            }
+            return Operand.Create(index + work.ExcelIndex);
         }
         let count = this.getNumber_3(work, tempParameter);
         if (count.IsError) { return count; }
-      	let p2 = args2.TextValue.indexOf(args1.TextValue, count.IntValue) + count.IntValue + work.ExcelIndex;
-        return Operand.Create(p2);
+        let startIndex = count.IntValue - work.ExcelIndex;
+        if (startIndex < 0 || startIndex >= args2.TextValue.length) {
+            return this.parameterError(3);
+        }
+        let p2 = args2.TextValue.indexOf(args1.TextValue, startIndex);
+        if (p2 < 0) {
+            return work.ExcelIndex === 1 ? this.functionError() : Operand.Create(-1);
+        }
+        return Operand.Create(p2 + startIndex + work.ExcelIndex);
     }
 }
 

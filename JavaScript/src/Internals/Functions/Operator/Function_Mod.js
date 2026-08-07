@@ -16,7 +16,14 @@ class Function_Mod extends Function_2 {
 
     if (args2.NumberValue === 0) { return this.div0Error(); }
 
-    return Operand.Create(args1.NumberValue % args2.NumberValue);
+    let number1 = args1.NumberValue;
+    let number2 = args2.NumberValue;
+    // Excel MOD 语义:结果符号随除数,即 n - d*INT(n/d);JS % 符号随被除数,需修正
+    let r = number1 % number2;
+    if (r != 0 && (r < 0 != number2 < 0)) {
+        r += number2;
+    }
+    return Operand.Create(r);
   }
 
   toString2(stringBuilder, addBrackets) {

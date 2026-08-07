@@ -27,33 +27,25 @@ class Function_SUBSTITUTE extends Function_4 {
         let newtext = args3.TextValue;
         let index = args4.IntValue;
 
-        let index2 = 0;
-        let result = '';
-        for (let i = 0; i < text.length; i++) {
-            let b = true;
-            for (let j = 0; j < oldtext.length; j++) {
-                if (i + j >= text.length) {
-                    b = false;
-                    break;
-                }
-                let t = text[i + j];
-                let t2 = oldtext[j];
-                if (t !== t2) {
-                    b = false;
-                    break;
-                }
-            }
-            if (b) {
-                index2++;
-            }
-            if (b && index2 === index) {
-                result += newtext;
-                i += oldtext.length - 1;
-            } else {
-                result += text[i];
-            }
+        // 与 C# 一致:旧文本为空时返回原文
+        if (oldtext.length === 0) {
+            return Operand.Create(text);
         }
-        return Operand.Create(result);
+
+        let foundCount = 0;
+        let searchPos = 0;
+        while (searchPos <= text.length - oldtext.length) {
+            let foundPos = text.indexOf(oldtext, searchPos);
+            if (foundPos < 0) break;
+            foundCount++;
+            if (foundCount === index) {
+                // 替换第 index 次匹配
+                return Operand.Create(text.substring(0, foundPos) + newtext + text.substring(foundPos + oldtext.length));
+            }
+            searchPos = foundPos + oldtext.length;
+        }
+        // 找不到第 index 次匹配,返回原文
+        return Operand.Create(text);
     }
 }
 

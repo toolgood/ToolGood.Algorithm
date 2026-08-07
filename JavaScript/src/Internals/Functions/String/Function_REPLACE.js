@@ -28,6 +28,10 @@ class Function_REPLACE extends Function_4 {
 
             let oldStr = converted22.TextValue;
             let newstr = converted32.TextValue;
+            // 与 C# 一致:旧文本为空或未找到时返回原文
+            if (oldStr.length === 0 || oldtext.indexOf(oldStr) < 0) {
+                return args1;
+            }
             return Operand.Create(oldtext.replace(new RegExp(oldStr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newstr));
         }
 
@@ -42,15 +46,20 @@ class Function_REPLACE extends Function_4 {
         let length = args3.IntValue;
         let newtext = args4.TextValue;
 
-        let result = '';
-        for (let i = 0; i < oldtext.length; i++) {
-            if (i < start) {
-                result += oldtext[i];
-            } else if (i === start) {
-                result += newtext;
-            } else if (i >= start + length) {
-                result += oldtext[i];
-            }
+        if (start < 0) {
+            return this.parameterError(2);
+        }
+        if (length < 0) {
+            return this.parameterError(3);
+        }
+        if (start >= oldtext.length) {
+            // 起始位置超出文本长度时,直接追加
+            return Operand.Create(oldtext + newtext);
+        }
+        let result = oldtext.substring(0, start) + newtext;
+        let endIndex = start + length;
+        if (endIndex < oldtext.length) {
+            result += oldtext.substring(endIndex);
         }
         return Operand.Create(result);
     }

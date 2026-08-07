@@ -17,14 +17,24 @@ class Function_SEARCH extends Function_3 {
         if (args2.IsError) { return args2; }
 
         if (this.c === null || this.c === undefined) {
-            let p = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase()) + work.ExcelIndex;
-            return Operand.Create(p);
+            let index = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase());
+            if (index < 0) {
+                // 未找到:Excel 模式(索引从1开始)返回错误,C# 模式(索引从0开始)返回 -1
+                return work.ExcelIndex === 1 ? this.functionError() : Operand.Create(-1);
+            }
+            return Operand.Create(index + work.ExcelIndex);
         }
         let args3 = this.getNumber_3(work, tempParameter);
         if (args3.IsError) { return args3; }
         let startIndex = args3.IntValue - work.ExcelIndex;
-        let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex) + work.ExcelIndex;
-        return Operand.Create(p2);
+        if (startIndex < 0 || startIndex >= args2.TextValue.length) {
+            return this.functionError();
+        }
+        let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex);
+        if (p2 < 0) {
+            return work.ExcelIndex === 1 ? this.functionError() : Operand.Create(-1);
+        }
+        return Operand.Create(p2 + startIndex + work.ExcelIndex);
     }
 }
 

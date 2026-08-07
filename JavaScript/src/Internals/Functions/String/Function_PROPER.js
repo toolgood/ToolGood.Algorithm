@@ -22,12 +22,22 @@ class Function_PROPER extends Function_1 {
         let isFirst = true;
         for (let i = 0; i < text.length; i++) {
             let t = text[i];
-            if (t === ' ' || t === '\r' || t === '\n' || t === '\t' || t === '.') {
+            // 与 C# char.IsLetter 一致:Unicode 字母判定,非字母重置为首字母
+            if (!/\p{L}/u.test(t)) {
                 isFirst = true;
-            } else if (isFirst) {
-                if (t === t.toLowerCase() && t !== t.toUpperCase()) {
-                    needModify = true;
-                    break;
+            } else {
+                if (isFirst) {
+                    // 首字母为小写字母时需要修改
+                    if (t === t.toLowerCase() && t !== t.toUpperCase()) {
+                        needModify = true;
+                        break;
+                    }
+                } else {
+                    // 非首字母为大写字母时需要修改
+                    if (t === t.toUpperCase() && t !== t.toLowerCase()) {
+                        needModify = true;
+                        break;
+                    }
                 }
                 isFirst = false;
             }
@@ -39,10 +49,15 @@ class Function_PROPER extends Function_1 {
         isFirst = true;
         for (let i = 0; i < chars.length; i++) {
             let t = chars[i];
-            if (t === ' ' || t === '\r' || t === '\n' || t === '\t' || t === '.') {
+            if (!/\p{L}/u.test(t)) {
                 isFirst = true;
-            } else if (isFirst) {
-                chars[i] = t.toUpperCase();
+            } else {
+                if (isFirst) {
+                    chars[i] = t.toUpperCase();
+                } else {
+                    // 与 C# 一致:非首字母字母转为小写
+                    chars[i] = t.toLowerCase();
+                }
                 isFirst = false;
             }
         }

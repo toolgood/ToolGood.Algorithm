@@ -17,9 +17,27 @@ class Function_MID extends Function_3 {
         if (args2.IsError) { return args2; }
         let args3 = this.getNumber_3(work, tempParameter);
         if (args3.IsError) { return args3; }
+
+        let text = args1.TextValue;
         let startIndex = args2.IntValue - work.ExcelIndex;
         let length = args3.IntValue;
-        return Operand.Create(args1.TextValue.substring(startIndex, startIndex + length));
+
+        if (startIndex < 0) {
+            return this.parameterError(2);
+        }
+        if (length < 0) {
+            return this.parameterError(3);
+        }
+        if (startIndex === 0 && length >= text.length) {
+            return args1;
+        }
+        if (startIndex >= text.length) {
+            return Operand.Create('');
+        }
+        if (startIndex + length > text.length) {
+            length = text.length - startIndex;
+        }
+        return Operand.Create(text.substring(startIndex, startIndex + length));
     }
 }
 
