@@ -15,6 +15,12 @@ import { runAllTests as runAlgorithmEngineHelperTests } from './AlgorithmEngineH
 import { CalculateTreeTest } from './CalculateTreeTest.js';
 import { ConditionTreeTest } from './ConditionTreeTest.js';
 import { testIssues13, testIssues0, runAllTests as runIssuesTests } from './IssuesTest.js';
+import { runAllTests as runFinancialTests } from './AlgorithmEngineTest_financial.js';
+import { runAllTests as runStrictTests } from './AlgorithmEngineTest_strict.js';
+import { runAllTests as runOperatorTests } from './AlgorithmEngineTest_operator.js';
+import { runAllTests as runCacheTests } from './AlgorithmEngineTest_cache.js';
+import { runAllTests as runUnitPrecisionTests } from './AlgorithmEngineTest_unitPrecision.js';
+import { runAllTests as runMyDateTests } from './AlgorithmEngineTest_myDate.js';
 
 // 测试执行函数
 function runTest(testFunction, testName) {
@@ -78,6 +84,24 @@ function runAllTests() {
     
     // 运行 IssuesTest
     runTest(runIssuesTests, 'IssuesTest');
+    
+    // 运行 AlgorithmEngineTest_financial
+    runTest(runFinancialTests, 'AlgorithmEngineTest_financial');
+    
+    // 运行 AlgorithmEngineTest_strict
+    runTest(runStrictTests, 'AlgorithmEngineTest_strict');
+    
+    // 运行 AlgorithmEngineTest_operator
+    runTest(runOperatorTests, 'AlgorithmEngineTest_operator');
+    
+    // 运行 AlgorithmEngineTest_cache
+    runTest(runCacheTests, 'AlgorithmEngineTest_cache');
+    
+    // 运行 AlgorithmEngineTest_unitPrecision
+    runTest(runUnitPrecisionTests, 'AlgorithmEngineTest_unitPrecision');
+    
+    // 运行 AlgorithmEngineTest_myDate
+    runTest(runMyDateTests, 'AlgorithmEngineTest_myDate');
     
     console.log('\n=====================================');
     console.log('🎉 所有测试通过！');

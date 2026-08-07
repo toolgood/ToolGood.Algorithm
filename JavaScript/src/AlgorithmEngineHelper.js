@@ -78,12 +78,29 @@ export class AlgorithmEngineHelper {
     static UnitConversion(src, oldSrcUnit, oldTarUnit, name = null) {
         // 与 C# 一致:空字符串或纯空白单位直接返回原值
         if (!oldSrcUnit || !oldTarUnit || !oldSrcUnit.trim() || !oldTarUnit.trim()) { return src; }
+        if (oldSrcUnit === oldTarUnit) { return src; }
         if (!this.unitRegex) {
             this.unitRegex = /[\s \(\)（）\[\]<>]/g;
         }
-        oldSrcUnit = oldSrcUnit.replace(this.unitRegex, "");
-        if (oldSrcUnit === oldTarUnit) { return src; }
 
+        // 与 C# 一致:先尝试原始单位名(如 "short ton" 含空格也能匹配),失败后再去除空格重试
+        let result = this.tryUnitConvert(src, oldSrcUnit, oldTarUnit);
+        if (result != null) { return result; }
+
+        oldSrcUnit = oldSrcUnit.replace(this.unitRegex, "");
+        result = this.tryUnitConvert(src, oldSrcUnit, oldTarUnit);
+        if (result != null) { return result; }
+
+        if (!name) {
+            throw new Error(`The input item has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
+        }
+        throw new Error(`The input item [${name}] has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
+    }
+
+    /**
+     * 尝试在四种单位体系中转换,失败返回 null
+     */
+    static tryUnitConvert(src, oldSrcUnit, oldTarUnit) {
         if (DistanceConverter.exists(oldSrcUnit, oldTarUnit)) {
             let c = new DistanceConverter(oldSrcUnit, oldTarUnit);
             return c.leftToRight(src);
@@ -100,10 +117,7 @@ export class AlgorithmEngineHelper {
             let c = new VolumeConverter(oldSrcUnit, oldTarUnit);
             return c.leftToRight(src);
         }
-        if (!name) {
-            throw new Error(`The input item has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
-        }
-        throw new Error(`The input item [${name}] has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
+        return null;
     }
 
     /**

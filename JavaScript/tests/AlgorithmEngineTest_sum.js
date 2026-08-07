@@ -650,6 +650,228 @@ function testAVERAGEIF() {
   console.log('AVERAGEIF 测试通过！');
 }
 
+function testRANK() {
+  console.log('开始测试 RANK...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let rank = engine.TryEvaluate("RANK(3, array(1, 2, 3, 4, 5))", 0);
+  assert.strictEqual(rank, 3, "RANK(3, array(1,2,3,4,5)) 应该是 3");
+
+  rank = engine.TryEvaluate("RANK(3, array(1, 2, 3, 4, 5), 0)", 0);
+  assert.strictEqual(rank, 3, "RANK(3, array(1,2,3,4,5),0) 应该是 3");
+
+  rank = engine.TryEvaluate("RANK(3, array(1, 2, 3, 4, 5), 1)", 0);
+  assert.strictEqual(rank, 3, "RANK(3, array(1,2,3,4,5),1) 应该是 3");
+
+  rank = engine.TryEvaluate("RANK(5, array(1, 2, 3, 4, 5))", 0);
+  assert.strictEqual(rank, 1, "RANK(5, array(1,2,3,4,5)) 应该是 1");
+
+  rank = engine.TryEvaluate("RANK(1, array(1, 2, 3, 4, 5))", 0);
+  assert.strictEqual(rank, 5, "RANK(1, array(1,2,3,4,5)) 应该是 5");
+  
+  console.log('RANK 测试通过！');
+}
+
+function testFORECAST() {
+  console.log('开始测试 FORECAST...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let forecast = engine.TryEvaluate("FORECAST(30, array(6, 7, 9, 15, 21), array(20, 28, 31, 38, 40))", 0.1);
+  forecast = Math.round(forecast * 10000) / 10000;
+  assert.strictEqual(forecast, Math.round(10.6073 * 10000) / 10000, "FORECAST(30,...) 应该约等于 10.6073");
+  
+  console.log('FORECAST 测试通过！');
+}
+
+function testINTERCEPT() {
+  console.log('开始测试 INTERCEPT...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let intercept = engine.TryEvaluate("INTERCEPT(array(2, 3, 9, 1, 8), array(6, 5, 11, 7, 5))", 0.1);
+  intercept = Math.round(intercept * 10000) / 10000;
+  assert.strictEqual(intercept, Math.round(0.0484 * 10000) / 10000, "INTERCEPT(...) 应该约等于 0.0484");
+  
+  console.log('INTERCEPT 测试通过！');
+}
+
+function testSLOPE() {
+  console.log('开始测试 SLOPE...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let slope = engine.TryEvaluate("SLOPE(array(2, 3, 9, 1, 8), array(6, 5, 11, 7, 5))", 0.1);
+  slope = Math.round(slope * 10000) / 10000;
+  assert.strictEqual(slope, Math.round(0.6694 * 10000) / 10000, "SLOPE(...) 应该约等于 0.6694");
+  
+  console.log('SLOPE 测试通过！');
+}
+
+function testCORREL() {
+  console.log('开始测试 CORREL...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let correl = engine.TryEvaluate("CORREL(array(3, 2, 4, 5, 6), array(9, 7, 12, 15, 17))", 0.1);
+  correl = Math.round(correl * 10000) / 10000;
+  assert.strictEqual(correl, Math.round(0.9971 * 10000) / 10000, "CORREL(...) 应该约等于 0.9971");
+  
+  console.log('CORREL 测试通过！');
+}
+
+function testPEARSON() {
+  console.log('开始测试 PEARSON...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let pearson = engine.TryEvaluate("PEARSON(array(3, 2, 4, 5, 6), array(9, 7, 12, 15, 17))", 0.1);
+  pearson = Math.round(pearson * 10000) / 10000;
+  assert.strictEqual(pearson, Math.round(0.9971 * 10000) / 10000, "PEARSON(...) 应该约等于 0.9971");
+  
+  console.log('PEARSON 测试通过！');
+}
+
+function testSERIESSUM() {
+  console.log('开始测试 SERIESSUM...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let seriessum = engine.TryEvaluate("SERIESSUM(2, 0, 1, array(1, 1, 1, 1))", 0.1);
+  assert.strictEqual(seriessum, 15.0, "SERIESSUM(2,0,1,array(1,1,1,1)) 应该是 15.0");
+  
+  console.log('SERIESSUM 测试通过！');
+}
+
+function testSUMPRODUCT() {
+  console.log('开始测试 SUMPRODUCT...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let sumproduct = engine.TryEvaluate("SUMPRODUCT(array(1, 2, 3), array(4, 5, 6))", 0.1);
+  assert.strictEqual(sumproduct, 32.0, "SUMPRODUCT(array(1,2,3),array(4,5,6)) 应该是 32.0");
+  
+  console.log('SUMPRODUCT 测试通过！');
+}
+
+function testSUMX2MY2() {
+  console.log('开始测试 SUMX2MY2...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let sumx2my2 = engine.TryEvaluate("SUMX2MY2(array(1, 2, 3), array(4, 5, 6))", 0.1);
+  assert.strictEqual(sumx2my2, -63.0, "SUMX2MY2(array(1,2,3),array(4,5,6)) 应该是 -63.0");
+  
+  console.log('SUMX2MY2 测试通过！');
+}
+
+function testSUMX2PY2() {
+  console.log('开始测试 SUMX2PY2...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let sumx2py2 = engine.TryEvaluate("SUMX2PY2(array(1, 2, 3), array(4, 5, 6))", 0.1);
+  assert.strictEqual(sumx2py2, 91.0, "SUMX2PY2(array(1,2,3),array(4,5,6)) 应该是 91.0");
+  
+  console.log('SUMX2PY2 测试通过！');
+}
+
+function testSUMXMY2() {
+  console.log('开始测试 SUMXMY2...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let sumxmy2 = engine.TryEvaluate("SUMXMY2(array(1, 2, 3), array(4, 5, 6))", 0.1);
+  assert.strictEqual(sumxmy2, 27.0, "SUMXMY2(array(1,2,3),array(4,5,6)) 应该是 27.0");
+  
+  console.log('SUMXMY2 测试通过！');
+}
+
+function testBESSELI() {
+  console.log('开始测试 BESSELI...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let besseli = engine.TryEvaluate("BESSELI(1.5, 1)", 0.1);
+  besseli = Math.round(besseli * 1000000) / 1000000;
+  assert.strictEqual(besseli, 0.981666, "BESSELI(1.5,1) 应该约等于 0.981666");
+
+  besseli = engine.TryEvaluate("BESSELI(1.5, 0)", 0.1);
+  besseli = Math.round(besseli * 1000000) / 1000000;
+  assert.strictEqual(besseli, 1.646723, "BESSELI(1.5,0) 应该约等于 1.646723");
+  
+  console.log('BESSELI 测试通过！');
+}
+
+function testBESSELJ() {
+  console.log('开始测试 BESSELJ...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let besselj = engine.TryEvaluate("BESSELJ(1.5, 1)", 0.1);
+  besselj = Math.round(besselj * 1000000) / 1000000;
+  assert.strictEqual(besselj, 0.557937, "BESSELJ(1.5,1) 应该约等于 0.557937");
+
+  besselj = engine.TryEvaluate("BESSELJ(1.5, 0)", 0.1);
+  besselj = Math.round(besselj * 1000000) / 1000000;
+  assert.strictEqual(besselj, 0.511828, "BESSELJ(1.5,0) 应该约等于 0.511828");
+  
+  console.log('BESSELJ 测试通过！');
+}
+
+function testBESSELK() {
+  console.log('开始测试 BESSELK...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let besselk = engine.TryEvaluate("BESSELK(1.5, 1)", 0.1);
+  besselk = Math.round(besselk * 1000) / 1000;
+  assert.ok(Math.abs(besselk - 0.277) <= 0.01, `BESSELK(1.5,1) 应该约等于 0.277，实际 ${besselk}`);
+
+  besselk = engine.TryEvaluate("BESSELK(1.5, 0)", 0.1);
+  besselk = Math.round(besselk * 1000) / 1000;
+  assert.ok(Math.abs(besselk - 0.214) <= 0.01, `BESSELK(1.5,0) 应该约等于 0.214，实际 ${besselk}`);
+  
+  console.log('BESSELK 测试通过！');
+}
+
+function testBESSELY() {
+  console.log('开始测试 BESSELY...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let bessely = engine.TryEvaluate("BESSELY(1.5, 1)", 0.1);
+  bessely = Math.round(bessely * 1000) / 1000;
+  assert.ok(Math.abs(bessely - (-0.412)) <= 0.01, `BESSELY(1.5,1) 应该约等于 -0.412，实际 ${bessely}`);
+
+  bessely = engine.TryEvaluate("BESSELY(2.5, 0)", 0.1);
+  bessely = Math.round(bessely * 1000) / 1000;
+  assert.ok(Math.abs(bessely - 0.498) <= 0.01, `BESSELY(2.5,0) 应该约等于 0.498，实际 ${bessely}`);
+  
+  console.log('BESSELY 测试通过！');
+}
+
+function testFISHERINVOverflow() {
+  console.log('开始测试 FISHERINV 溢出...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  // 超出 e 指数范围时，tanh 应趋近于 ±1，与 Java 版 double 计算一致
+  let fisherinv = engine.TryEvaluate("FISHERINV(40)", 0.1);
+  assert.ok(Math.abs(fisherinv - 1.0) < 1e-9, `FISHERINV(40) 应该约等于 1.0，实际 ${fisherinv}`);
+
+  fisherinv = engine.TryEvaluate("FISHERINV(-40)", 0.1);
+  assert.ok(Math.abs(fisherinv - (-1.0)) < 1e-9, `FISHERINV(-40) 应该约等于 -1.0，实际 ${fisherinv}`);
+
+  // 边界内仍正常计算
+  fisherinv = engine.TryEvaluate("FISHERINV(0.6)", 0.1);
+  fisherinv = Math.round(fisherinv * 1000000) / 1000000;
+  assert.strictEqual(fisherinv, Math.round(0.537049567 * 1000000) / 1000000, "FISHERINV(0.6) 应该约等于 0.537049567");
+  
+  console.log('FISHERINV 溢出测试通过！');
+}
+
 // 运行所有测试
 function runAllTests() {
   try {
@@ -705,6 +927,26 @@ function runAllTests() {
     testCOUNTIF();
     testSUMIF();
     testAVERAGEIF();
+    
+    // 统计/回归
+    testRANK();
+    testFORECAST();
+    testINTERCEPT();
+    testSLOPE();
+    testCORREL();
+    testPEARSON();
+    testSERIESSUM();
+    testSUMPRODUCT();
+    testSUMX2MY2();
+    testSUMX2PY2();
+    testSUMXMY2();
+    
+    // Bessel 函数与溢出
+    testBESSELI();
+    testBESSELJ();
+    testBESSELK();
+    testBESSELY();
+    testFISHERINVOverflow();
     
     console.log('所有测试通过！');
   } catch (error) {
@@ -772,6 +1014,26 @@ export {
   testCOUNTIF,
   testSUMIF,
   testAVERAGEIF,
+  
+  // 统计/回归
+  testRANK,
+  testFORECAST,
+  testINTERCEPT,
+  testSLOPE,
+  testCORREL,
+  testPEARSON,
+  testSERIESSUM,
+  testSUMPRODUCT,
+  testSUMX2MY2,
+  testSUMX2PY2,
+  testSUMXMY2,
+  
+  // Bessel 函数与溢出
+  testBESSELI,
+  testBESSELJ,
+  testBESSELK,
+  testBESSELY,
+  testFISHERINVOverflow,
   
   runAllTests
 };
