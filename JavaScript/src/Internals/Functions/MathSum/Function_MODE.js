@@ -37,6 +37,10 @@ class Function_MODE extends Function_N {
         }
 
         let sorted = Object.entries(dict).sort((a, b) => b[1] - a[1]);
+        // 所有值都只出现一次时,无众数,返回错误
+        if (sorted[0][1] == 1) {
+            return this.functionError();
+        }
         return Operand.Create(parseFloat(sorted[0][0]));
     }
 }

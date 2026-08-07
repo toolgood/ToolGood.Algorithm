@@ -17,14 +17,22 @@ class Function_CORREL extends Function_N {
         if (array1Arg.IsError) return array1Arg;
         const xValues = [];
         for (const item of array1Arg.ArrayValue) {
-            if (item.IsNumber) xValues.push(item.NumberValue);
+            if (item.IsNumber) {
+                xValues.push(item.NumberValue);
+            } else {
+                return this.parameterError(1);
+            }
         }
 
         const array2Arg = this.getArray(engine, tempParameter, 1);
         if (array2Arg.IsError) return array2Arg;
         const yValues = [];
         for (const item of array2Arg.ArrayValue) {
-            if (item.IsNumber) yValues.push(item.NumberValue);
+            if (item.IsNumber) {
+                yValues.push(item.NumberValue);
+            } else {
+                return this.parameterError(2);
+            }
         }
 
         if (xValues.length !== yValues.length || xValues.length < 2) return this.functionError();

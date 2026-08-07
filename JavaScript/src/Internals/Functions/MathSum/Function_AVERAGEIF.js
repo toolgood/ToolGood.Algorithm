@@ -33,7 +33,7 @@ class Function_AVERAGEIF extends Function_3 {
         let count;
         if (args2.IsNumber) {
             count = FunctionUtil.F_base_countif(list, args2.NumberValue);
-            sum = count * args2.NumberValue;
+            sum = FunctionUtil.F_base_sumif(list, args2.NumberValue, sumdbs);
         } else {
             if (args2.IsText) {
                 let TextValue = args2.TextValue.trim();

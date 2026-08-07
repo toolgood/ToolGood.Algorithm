@@ -23,8 +23,11 @@ class Function_POISSON extends Function_3 {
         let k = args1.IntValue;
         let lambda = args2.DoubleValue;
         let state = args3.BooleanValue;
+        if (k < 0) {
+            return this.parameterError(1);
+        }
         if (!(lambda > 0.0)) {
-            return this.functionError();
+            return this.parameterError(2);
         }
         return Operand.Create(ExcelFunctions.poisson(k, lambda, state));
     }

@@ -39,7 +39,11 @@ class Function_SLOPE extends Function_N {
             sumX2 += xValues[i] * xValues[i];
         }
 
-        const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+        const denominator = n * sumX2 - sumX * sumX;
+        if (denominator === 0) {
+            return this.div0Error();
+        }
+        const slope = (n * sumXY - sumX * sumY) / denominator;
         return Operand.Create(slope);
     }
 }

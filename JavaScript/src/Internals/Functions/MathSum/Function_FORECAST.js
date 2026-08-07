@@ -46,7 +46,11 @@ class Function_FORECAST extends Function_N {
         const meanX = sumX / n;
         const meanY = sumY / n;
 
-        const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+        const denominator = n * sumX2 - sumX * sumX;
+        if (denominator === 0) {
+            return this.div0Error();
+        }
+        const slope = (n * sumXY - sumX * sumY) / denominator;
         const intercept = meanY - slope * meanX;
 
         return Operand.Create(intercept + slope * x);

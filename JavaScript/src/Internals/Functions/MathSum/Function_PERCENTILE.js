@@ -22,7 +22,11 @@ class Function_PERCENTILE extends Function_2 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
         if (o == false) { return this.parameterError(1); }
+        if (list.length == 0) { return this.parameterError(1); }
         let k = args2.DoubleValue;
+        if (k < 0 || k > 1) {
+            return this.parameterError(2);
+        }
         return Operand.Create(ExcelFunctions.percentile(list.map(q => q), k));
     }
 }

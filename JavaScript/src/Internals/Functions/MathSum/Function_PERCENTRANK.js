@@ -21,7 +21,8 @@ class Function_PERCENTRANK extends Function_3 {
 
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1.ArrayValue, list);
-        if (o == false) { return this.functionError(); }
+        if (o == false) { return this.parameterError(1); }
+        if (list.length == 0) { return this.parameterError(1); }
 
         let k = args2.DoubleValue;
         let v = ExcelFunctions.percentRank(list.map(q => q), k);
@@ -30,8 +31,15 @@ class Function_PERCENTRANK extends Function_3 {
             let args3 = this.getNumber_3(engine, tempParameter);
             if (args3.IsError) { return args3; }
             d = args3.IntValue;
+            if (d < 0 || d > 28) {
+                return this.parameterError(3);
+            }
         }
-        return Operand.Create(Math.round(v * Math.pow(10, d)) / Math.pow(10, d));
+        // 模拟 C# Math.Round(v, d, MidpointRounding.AwayFromZero)
+        let factor = Math.pow(10, d);
+        let rounded = v * factor;
+        let awayFromZero = rounded < 0 ? -Math.round(-rounded) : Math.round(rounded);
+        return Operand.Create(awayFromZero / factor);
     }
 }
 

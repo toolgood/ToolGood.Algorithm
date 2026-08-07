@@ -22,7 +22,7 @@ class Function_AVERAGE extends Function_N {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) { return this.functionError(); }
-        if (list.length == 0) { return Operand.Zero; }
+        if (list.length == 0) { return this.div0Error(); }
         return Operand.Create(list.reduce((sum, value) => sum + value, 0) / list.length);
     }
 }

@@ -26,6 +26,9 @@ class Function_MIN extends Function_N {
         if (o == false) {
             return this.functionError();
         }
+        if (list.length == 0) {
+            return this.functionError();
+        }
 
         return Operand.Create(Math.min(...list));
     }

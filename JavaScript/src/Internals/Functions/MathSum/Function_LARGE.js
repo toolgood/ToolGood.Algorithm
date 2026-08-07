@@ -23,6 +23,7 @@ class Function_LARGE extends Function_2 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) { return this.parameterError(1); }
+        if (list.length == 0) { return this.parameterError(1); }
 
         list.sort((a, b) => b - a);
         let k = args2.IntValue;

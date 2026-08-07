@@ -21,10 +21,6 @@ class Function_VAR extends Function_N {
             args.push(aa);
         }
 
-        if (args.length == 1) {
-            return Operand.Error("Function '{0}' parameter only one error!", "Var");
-        }
-
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {

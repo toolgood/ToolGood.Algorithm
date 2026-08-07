@@ -23,6 +23,7 @@ class Function_SMALL extends Function_2 {
         let list = [];
         let o = FunctionUtil.F_base_GetList(args1, list);
         if (o == false) { return this.parameterError(1); }
+        if (list.length == 0) { return this.parameterError(1); }
         list.sort((a, b) => a - b);
         let k = args2.IntValue;
         if (k < 1 - engine.ExcelIndex || k > list.length - engine.ExcelIndex) {

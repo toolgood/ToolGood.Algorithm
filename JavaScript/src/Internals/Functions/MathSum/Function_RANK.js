@@ -34,6 +34,8 @@ class Function_RANK extends Function_N {
             }
         }
 
+        if (values.length == 0) return this.parameterError(2);
+
         values.sort((a, b) => a - b);
         let rank;
         if (order === 0) {
@@ -41,6 +43,9 @@ class Function_RANK extends Function_N {
             rank = values.indexOf(num) + 1;
         } else {
             rank = values.indexOf(num) + 1;
+        }
+        if (rank == 0) {
+            return this.parameterError(1);
         }
 
         return Operand.Create(rank);

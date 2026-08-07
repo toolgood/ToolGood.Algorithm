@@ -21,13 +21,12 @@ class Function_HARMEAN extends Function_N {
             args.push(aa);
         }
 
-        if (args.length === 1) {
-            return args[0];
-        }
-
         let list = [];
         let o = FunctionUtil.F_base_GetList(args, list);
         if (o == false) {
+            return this.functionError();
+        }
+        if (list.length == 0) {
             return this.functionError();
         }
 

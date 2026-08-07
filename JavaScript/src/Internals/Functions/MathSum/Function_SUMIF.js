@@ -31,7 +31,7 @@ class Function_SUMIF extends Function_3 {
 
         let sum;
         if (args2.IsNumber) {
-            sum = FunctionUtil.F_base_countif(list, args2.NumberValue) * args2.NumberValue;
+            sum = FunctionUtil.F_base_sumif(list, args2.NumberValue, sumdbs);
         } else {
             if (args2.IsText) {
                 let trimmedText = args2.TextValue.trim();
