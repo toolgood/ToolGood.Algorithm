@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
@@ -20,33 +21,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			var args1 = GetNumber_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
 			var x = args1.NumberValue;
-			return Operand.Create(Erfc(x));
-		}
-
-		private static decimal Erfc(decimal x)
-		{
-			if(x < 0) {
-				return 2.0m - Erfc(-x);
-			}
-			if(x > 6.0m) {
-				return 0.0m;
-			}
-			return 1.0m - Erf(x);
-		}
-
-		private static decimal Erf(decimal x)
-		{
-			const decimal a1 = 0.254829592m;
-			const decimal a2 = -0.284496736m;
-			const decimal a3 = 1.421413741m;
-			const decimal a4 = -1.453152027m;
-			const decimal a5 = 1.061405429m;
-			const decimal p = 0.3275911m;
-
-			decimal t = 1.0m / (1.0m + p * x);
-			decimal y = 1.0m - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * MathEx.Exp(-x * x);
-
-			return y;
+			// 复用 SpecialFunctions 中基于极小极大有理逼近的实现(Boost 算法), 精度约 1e-16
+			return Operand.Create(SpecialFunctions.Erfc(x));
 		}
 
 		public override OperandType GetResultType()
