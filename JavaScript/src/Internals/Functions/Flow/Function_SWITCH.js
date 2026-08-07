@@ -24,6 +24,10 @@ class Function_SWITCH extends Function_N {
             }
             i += 2;
         }
+        // 参数数量为偶数时，最后一个参数是默认值
+        if (this.z.length % 2 === 0) {
+            return this.z[this.z.length - 1].evaluate(engine, tempParameter);
+        }
         return this.functionError();
     }
 
@@ -36,6 +40,9 @@ class Function_SWITCH extends Function_N {
         }
         if (a.IsBoolean && b.IsBoolean) {
             return a.BooleanValue === b.BooleanValue;
+        }
+        if (a.IsDate && b.IsDate) {
+            return a.DateValue.ToLong() === b.DateValue.ToLong();
         }
         if (a.IsNull && b.IsNull) {
             return true;

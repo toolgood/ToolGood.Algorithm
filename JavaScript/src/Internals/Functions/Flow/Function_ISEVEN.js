@@ -13,7 +13,8 @@ class Function_ISEVEN extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.a.evaluate(engine, tempParameter);
         if (args1.IsNumber) {
-            if (args1.IntValue % 2 == 0) {
+            // 对齐 C# decimal.Truncate（向零截断），负数时与 Math.floor 不同
+            if (Math.trunc(args1.NumberValue) % 2 === 0) {
                 return Operand.True;
             }
         }

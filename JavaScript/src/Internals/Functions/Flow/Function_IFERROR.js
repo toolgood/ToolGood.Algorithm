@@ -12,6 +12,7 @@ class Function_IFERROR extends Function_3 {
     evaluate(engine, tempParameter) {
         let args1 = this.a.evaluate(engine, tempParameter);
         if (args1.IsError) { return this.b.evaluate(engine, tempParameter); }
+        if (this.c === null) { return args1; }
         return this.c.evaluate(engine, tempParameter);
     }
 }

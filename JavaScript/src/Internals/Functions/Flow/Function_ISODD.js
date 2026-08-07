@@ -13,7 +13,8 @@ class Function_ISODD extends Function_1 {
     evaluate(engine, tempParameter) {
         let args1 = this.a.evaluate(engine, tempParameter);
         if (args1.IsNumber) {
-            if (args1.IntValue % 2 == 1) {
+            // 对齐 C# Math.Abs(decimal.Truncate(...)) % 2 == 1
+            if (Math.abs(Math.trunc(args1.NumberValue)) % 2 === 1) {
                 return Operand.True;
             }
         }
