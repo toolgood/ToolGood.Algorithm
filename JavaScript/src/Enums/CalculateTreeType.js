@@ -6,5 +6,13 @@ export const CalculateTreeType = {
   Div: 4,
   Mod: 5,
   Connect: 6,
-  Error: 7
+  And: 7,
+  Or: 8,
+  OpGt: 9,
+  OpLt: 10,
+  OpGe: 11,
+  OpLe: 12,
+  OpEq: 13,
+  OpNe: 14,
+  Error: 15
 };

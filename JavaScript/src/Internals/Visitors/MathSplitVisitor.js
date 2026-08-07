@@ -8,13 +8,16 @@ import { ConditionTreeType } from '../../Enums/ConditionTreeType.js';
 
 class MathSplitVisitor extends mathVisitor  {
     visitProg(context) {
+        this.hasBracket = false;
         return context.expr().accept(this);
     }
 
     visitAndOr_fun(context) {
         let tree = {
+            HasBracket: this.hasBracket,
             nodes: []
         };
+        this.hasBracket = false;
         let t = context.op.text;
         if (CharUtil.equals3(t, "&&", "and")) {
             tree.Type = ConditionTreeType.And;
@@ -32,6 +35,7 @@ class MathSplitVisitor extends mathVisitor  {
     }
 
     visitBracket_fun(context) {
+        this.hasBracket = true;
         return context.expr().accept(this);
     }
 

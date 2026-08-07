@@ -10,24 +10,40 @@ export class CharUtil {
     static standardChar(o) {
         if (typeof o !== 'string' || o.length !== 1) return o;
         let charCode = o.charCodeAt(0);
-        if (charCode >= 65 && charCode <= 90) return o;
-        if (charCode <= 127) return o.toUpperCase();
-        if (charCode <= 65280) {
-            if (o == '×') return '*';//215
-            if (o == '÷') return '/';//247
-            if (o == '‘') return '\'';//8216
-            if (o == '’') return '\'';//8217
-            if (o == '"') return '"';//8220
-            if (o == '"') return '"';//8221
-            if (charCode == 12288) return String.fromCharCode(32);
-            if (o == '【') return '[';//12304
-            if (o == '】') return ']';//12305
-            if (o == '〔') return '(';//12308
-            if (o == '〕') return ')';//12309
-            return o;
-        } else if (charCode < 65375) {
-            o = String.fromCharCode(charCode - 65248);
+        if (charCode === 13) return '\n';                                   // \r
+        if (charCode === 9) return ' ';                                     // \t
+        if (charCode === 12) return ' ';                                    // \f
+        if (charCode < 97) return o;                                        // < 'a'
+        if (charCode <= 122) return String.fromCharCode(charCode - 32);     // a-z -> A-Z
+        if (charCode > 65280 && charCode < 65375) {                         // 全角(65281-65374) -> 半角
+            o = String.fromCharCode(charCode - 65248).toUpperCase();
+            charCode = o.charCodeAt(0);
         }
+        // 对齐 C# StandardChar2: CJK/希腊/西里尔等区段统一映射为 '_'
+        if ((charCode >= 0xc0 && charCode <= 0xd6) ||                       // U+00C0-U+00D6
+            (charCode >= 0xd8 && charCode <= 0xf6) ||                       // U+00D8-U+00F6
+            (charCode >= 0xf8 && charCode <= 0xff) ||                       // U+00F8-U+00FF
+            (charCode >= 0x100 && charCode <= 0x1fff) ||                    // U+0100-U+1FFF
+            (charCode >= 0x2c00 && charCode <= 0x2fff) ||                   // U+2C00-U+2FFF
+            (charCode >= 0x3040 && charCode <= 0x318f) ||                   // U+3040-U+318F
+            (charCode >= 0x3300 && charCode <= 0x337f) ||                   // U+3300-U+337F
+            (charCode >= 0x3400 && charCode <= 0x3fff) ||                   // U+3400-U+3FFF
+            (charCode >= 0x4e00 && charCode <= 0x9fff) ||                   // U+4E00-U+9FFF
+            (charCode >= 0xa000 && charCode <= 0xd7ff) ||                   // U+A000-U+D7FF
+            (charCode >= 0xf900 && charCode <= 0xfaff) ||                   // U+F900-U+FAFF
+            (charCode >= 0xff00 && charCode <= 0xfff0)) {                   // U+FF00-U+FFF0
+            return '_';
+        }
+        if (charCode < 127) return o;
+        if (charCode === 215) return '*';                                   // ×
+        if (charCode === 247) return '/';                                   // ÷
+        if (charCode === 8216 || charCode === 8217) return '\'';            // ‘ ’
+        if (charCode === 8220 || charCode === 8221) return '"';             // “ ”
+        if (charCode === 12288) return ' ';                                 // 全角空格
+        if (charCode === 12304) return '[';                                 // 【
+        if (charCode === 12305) return ']';                                 // 】
+        if (charCode === 12308) return '(';                                 // （
+        if (charCode === 12309) return ')';                                 // ）
         return o.toUpperCase();
     }
 

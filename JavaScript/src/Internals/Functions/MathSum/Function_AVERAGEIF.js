@@ -37,8 +37,8 @@ class Function_AVERAGEIF extends Function_3 {
         } else {
             if (args2.IsText) {
                 let TextValue = args2.TextValue.trim();
-                let parsedValue = parseFloat(TextValue);
-                if (!isNaN(parsedValue)) {
+                let parsedValue = FunctionUtil.tryParseNumber(TextValue);
+                if (parsedValue != null) {
                     count = FunctionUtil.F_base_countif(list, parsedValue);
                     sum = FunctionUtil.F_base_sumif(list, parsedValue, sumdbs);
                 } else {

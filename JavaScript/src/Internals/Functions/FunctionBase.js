@@ -2,6 +2,7 @@
  * Represents the base class for all function implementations that can be calculated by an algorithm engine.
  */
 import { Operand } from '../../Operand.js';
+import { OperandType } from '../../Enums/OperandType.js';
 
 export class FunctionBase {
     /**
@@ -120,6 +121,142 @@ export class FunctionBase {
      */
     div0Error() {
         return Operand.Error("Function '{0}' Div 0 error!", this.Name);
+    }
+
+    /**
+     * 获取结果类型（对齐 C# 抽象方法 GetResultType，子类可覆写）
+     * @returns {number} OperandType
+     */
+    getResultType() {
+        return OperandType.NONE;
+    }
+
+    /**
+     * 尝试执行计算，如果出错返回默认值（对齐 C# 私有泛型方法 TryEvaluate<T>）
+     * @param {AlgorithmEngine} work
+     * @param {*} def 默认值
+     * @param {Function} converter 类型转换函数
+     * @param {Function} resultConverter 结果提取函数
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {*}
+     */
+    _tryEvaluate(work, def, converter, resultConverter, tempParameter = null) {
+        try {
+            const obj = this.evaluate(work, tempParameter);
+            const converted = converter(obj);
+            if (converted.IsError) {
+                work.LastError = converted.ErrorMsg;
+                return def;
+            }
+            return resultConverter(converted);
+        } catch (ex) {
+            work.LastError = ex.message;
+        }
+        return def;
+    }
+
+    /**
+     * 按默认值类型分派（对齐 C# 重载集）。number 无法区分 int/decimal，统一按 decimal 处理。
+     * @param {AlgorithmEngine} work
+     * @param {*} def 默认值
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {*}
+     */
+    tryEvaluate(work, def, tempParameter = null) {
+        const type = typeof def;
+        if (type === 'number') {
+            return this.tryEvaluateDecimal(work, def, tempParameter);
+        }
+        if (type === 'string') {
+            return this.tryEvaluateString(work, def, tempParameter);
+        }
+        if (type === 'boolean') {
+            return this.tryEvaluateBoolean(work, def, tempParameter);
+        }
+        return def;
+    }
+
+    /**
+     * 尝试执行计算，返回 int 类型，如果出错返回默认值
+     * @param {AlgorithmEngine} work
+     * @param {number} def
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {number}
+     */
+    tryEvaluateInt(work, def, tempParameter = null) {
+        return this._tryEvaluate(work, def,
+            obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
+            obj => obj.IntValue, tempParameter);
+    }
+
+    /**
+     * 尝试执行计算，返回 decimal 类型，如果出错返回默认值
+     * @param {AlgorithmEngine} work
+     * @param {number} def
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {number}
+     */
+    tryEvaluateDecimal(work, def, tempParameter = null) {
+        return this._tryEvaluate(work, def,
+            obj => obj.IsNumber ? obj : obj.ToNumber("It can't be converted to number!"),
+            obj => obj.NumberValue, tempParameter);
+    }
+
+    /**
+     * 尝试执行计算，返回 string 类型，如果出错返回默认值
+     * @param {AlgorithmEngine} work
+     * @param {string} def
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {string}
+     */
+    tryEvaluateString(work, def, tempParameter = null) {
+        return this._tryEvaluate(work, def,
+            obj => obj.IsText ? obj : obj.ToText("It can't be converted to string!"),
+            obj => obj.TextValue, tempParameter);
+    }
+
+    /**
+     * 尝试执行计算，返回 bool 类型，如果出错返回默认值
+     * @param {AlgorithmEngine} work
+     * @param {boolean} def
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {boolean}
+     */
+    tryEvaluateBoolean(work, def, tempParameter = null) {
+        return this._tryEvaluate(work, def,
+            obj => obj.IsBoolean ? obj : obj.ToBoolean("It can't be converted to bool!"),
+            obj => obj.BooleanValue, tempParameter);
+    }
+
+    /**
+     * 尝试执行计算，返回 DateTime 类型，如果出错返回默认值
+     * @param {AlgorithmEngine} work
+     * @param {Date} def
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {Date}
+     */
+    tryEvaluateDateTime(work, def, tempParameter = null) {
+        return this._tryEvaluate(work, def,
+            obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
+            obj => {
+                if (work.UseLocalTime) {
+                    return obj.DateValue.ToDateTime(1);
+                }
+                return obj.DateValue.ToDateTime(0);
+            }, tempParameter);
+    }
+
+    /**
+     * 尝试执行计算，返回 TimeSpan 类型，如果出错返回默认值
+     * @param {AlgorithmEngine} work
+     * @param {Object} def
+     * @param {Function} tempParameter 临时参数，未找到返回null
+     * @returns {Object}
+     */
+    tryEvaluateTimeSpan(work, def, tempParameter = null) {
+        return this._tryEvaluate(work, def,
+            obj => obj.IsDate ? obj : obj.ToMyDate("It can't be converted to DateTime!"),
+            obj => obj.DateValue.ToTimeSpan(), tempParameter);
     }
 }
 

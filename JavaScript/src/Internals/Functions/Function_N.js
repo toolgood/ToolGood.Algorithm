@@ -11,6 +11,24 @@ export class Function_N extends FunctionBase {
         super();
         this.z = funcs;
     }
+
+    /**
+     * 逐个求值参数,遇 Error/None 提前返回该 Operand;全部成功返回 null(对齐 C# TryEvaluateAll)
+     * @param {AlgorithmEngine} work
+     * @param {Function} tempParameter
+     * @param {Array} args
+     * @returns {Operand|null}
+     */
+    tryEvaluateAll(work, tempParameter, args) {
+        for (let i = 0; i < this.z.length; i++) {
+            let aa = this.z[i].evaluate(work, tempParameter);
+            if (aa.IsError || aa.IsNone) {
+                return aa;
+            }
+            args.push(aa);
+        }
+        return null;
+    }
     
     /**
      * @param {Array} stringBuilder

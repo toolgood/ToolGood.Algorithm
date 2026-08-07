@@ -13,12 +13,9 @@ class Function_COUNT extends Function_N {
 
     evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.z) {
-            let aa = item.evaluate(engine, tempParameter);
-            if (aa.IsError) {
-                return aa;
-            }
-            args.push(aa);
+        let error = this.tryEvaluateAll(engine, tempParameter, args);
+        if (error != null) {
+            return error;
         }
 
         // 对齐 C# FlattenToList(List<Operand>, List<Operand>):不过滤类型,文本/null 也计数

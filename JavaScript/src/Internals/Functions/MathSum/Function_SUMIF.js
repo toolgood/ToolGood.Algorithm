@@ -35,8 +35,8 @@ class Function_SUMIF extends Function_3 {
         } else {
             if (args2.IsText) {
                 let trimmedText = args2.TextValue.trim();
-                let parsed = parseFloat(trimmedText);
-                if (!isNaN(parsed)) {
+                let parsed = FunctionUtil.tryParseNumber(trimmedText);
+                if (parsed != null) {
                     sum = FunctionUtil.F_base_sumif(list, parsed, sumdbs);
                 } else {
                     let sunif = trimmedText;

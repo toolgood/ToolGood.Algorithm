@@ -695,17 +695,15 @@ class MathFunctionVisitor extends mathVisitor {
         if (func) {
             return func(funcs);
         }
-        return new Function_DiyFunction(t, funcs);
+        // 传入原文(而非标准化的 t),对齐 C# new Function_DiyName(node.GetText(), funcs)
+        return new Function_DiyFunction(context.f.text, funcs);
     }
 
     visitPARAMETER_fun(context) {
         let node = context.PARAMETER();
         let t = CharUtil.standardString(node.getText());
-        if (t === "E") {
-            return new Function_Value(Operand.Create(Math.E), "E");
-        } else if (t === "PI") {
-            return new Function_Value(Operand.Create(Math.PI), "PI");
-        } else if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
+        // 对齐 C# 语法: E/PI 为独立词法 token, 裸用是语法错误(仅 E()/PI() 合法, 走 visitDiyFunction_fun), 故此处不处理 E/PI
+        if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
             return new Function_Value(Operand.True, t);
         } else if (t === "FALSE" || t === "NO" || t === "不是" || t === "否" || t === "没有" || t === "无") {
             return new Function_Value(Operand.False, t);
@@ -736,7 +734,7 @@ class MathFunctionVisitor extends mathVisitor {
                 else if (c2 === 'a') sb.push('\a');
                 else if (c2 === 'b') sb.push('\b');
                 else if (c2 === 'f') sb.push('\f');
-                else sb.push(opd[index++]);
+                else sb.push(c2);
             } else {
                 sb.push(c);
             }

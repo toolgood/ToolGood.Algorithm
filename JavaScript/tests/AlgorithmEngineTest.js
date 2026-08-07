@@ -89,12 +89,12 @@ function test() {
   let d = engine.TryEvaluate("2.1e-3 + 10", 0.0);
   assert.strictEqual(d, 10.0021, "2.1e-3 + 10 应该等于 10.0021");
   
-  // 数学常量测试 - 可能有问题
-  let e = engine.TryEvaluate("e", 0.0);
-  assert.strictEqual(Math.round(e * 1000000000) / 1000000000, Math.round(Math.E * 1000000000) / 1000000000, "e 应该等于 Math.E");
+  // 数学常量测试 - 对齐 C# 语法, E/PI 裸用为语法错误, 需带括号 E()/PI()
+  let e = engine.TryEvaluate("E()", 0.0);
+  assert.strictEqual(Math.round(e * 1000000000) / 1000000000, Math.round(Math.E * 1000000000) / 1000000000, "E() 应该等于 Math.E");
   
-  e = engine.TryEvaluate("pi", 0.0);
-  assert.strictEqual(Math.round(e * 1000000000) / 1000000000, Math.round(Math.PI * 1000000000) / 1000000000, "pi 应该等于 Math.PI");
+  e = engine.TryEvaluate("PI()", 0.0);
+  assert.strictEqual(Math.round(e * 1000000000) / 1000000000, Math.round(Math.PI * 1000000000) / 1000000000, "PI() 应该等于 Math.PI");
   
   let b = engine.TryEvaluate("true", false);
   assert.strictEqual(b, true, "true 应该等于 true");
@@ -108,11 +108,11 @@ function test() {
   b1 = engine.TryEvaluate("if(false,1,2)", 0);
   assert.strictEqual(b1, 2, "if(false,1,2) 应该等于 2");
   
-  let b2 = engine.TryEvaluate("pi*4", 0.0);
-  assert.strictEqual(Math.round(b2 * 1000000000) / 1000000000, Math.round(Math.PI * 4 * 1000000000) / 1000000000, "pi*4 应该等于 Math.PI * 4");
+  let b2 = engine.TryEvaluate("PI()*4", 0.0);
+  assert.strictEqual(Math.round(b2 * 1000000000) / 1000000000, Math.round(Math.PI * 4 * 1000000000) / 1000000000, "PI()*4 应该等于 Math.PI * 4");
   
-  b2 = engine.TryEvaluate("e*4", 0.0);
-  assert.strictEqual(Math.round(b2 * 1000000000) / 1000000000, Math.round(Math.E * 4 * 1000000000) / 1000000000, "e*4 应该等于 Math.E * 4");
+  b2 = engine.TryEvaluate("E()*4", 0.0);
+  assert.strictEqual(Math.round(b2 * 1000000000) / 1000000000, Math.round(Math.E * 4 * 1000000000) / 1000000000, "E()*4 应该等于 Math.E * 4");
   
   let s = engine.TryEvaluate("'aa'&'bb'", "");
   assert.strictEqual(s, "aabb", "'aa'&'bb' 应该等于 'aabb'");

@@ -13,12 +13,9 @@ class Function_VAR extends Function_N {
 
     evaluate(engine, tempParameter) {
         let args = [];
-        for (let item of this.z) {
-            let aa = item.evaluate(engine, tempParameter);
-            if (aa.IsError) {
-                return aa;
-            }
-            args.push(aa);
+        let error = this.tryEvaluateAll(engine, tempParameter, args);
+        if (error != null) {
+            return error;
         }
 
         let list = [];

@@ -78,51 +78,74 @@ export var FunctionUtil = {
         return a;
     },
 
+    /**
+     * 严格数字解析,模拟 C# decimal.TryParse(NumberStyles.Any, InvariantCulture) 的常用子集;
+     * 解析失败返回 null(对齐 C#: "12abc" 解析失败而非 parseFloat 的 12)
+     */
+    tryParseNumber: function(s) {
+        s = s.trim();
+        if (!/^[+-]?(\d+([.]\d*)?|[.]\d+)([eE][+-]?\d+)?$/.test(s)) {
+            return null;
+        }
+        var d = parseFloat(s);
+        return isNaN(d) ? null : d;
+    },
+
     sumifMatch: function(s) {
+        if (s.length === 0) { return null; }
         var c = s[0];
-        if(c === '>' || c === '＞') {
-            if(s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
-                var d = parseFloat(s.substring(2).trim());
-                if(!isNaN(d)) {
+        if (c === '>' || c === '＞') {
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                var d = this.tryParseNumber(s.substring(2));
+                if (d != null) {
                     return { operator: ">=", value: d };
                 }
             } else {
-                var d = parseFloat(s.substring(1).trim());
-                if(!isNaN(d)) {
+                var d = this.tryParseNumber(s.substring(1));
+                if (d != null) {
                     return { operator: ">", value: d };
                 }
             }
-        } else if(c === '<' || c === '＜') {
-            if(s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
-                var d = parseFloat(s.substring(2).trim());
-                if(!isNaN(d)) {
+        } else if (c === '<' || c === '＜') {
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                var d = this.tryParseNumber(s.substring(2));
+                if (d != null) {
                     return { operator: "<=", value: d };
                 }
+            } else if (s.length > 1 && (s[1] === '>' || s[1] === '＞')) {
+                var d = this.tryParseNumber(s.substring(2));
+                if (d != null) {
+                    return { operator: "!=", value: d };
+                }
             } else {
-                var d = parseFloat(s.substring(1).trim());
-                if(!isNaN(d)) {
+                var d = this.tryParseNumber(s.substring(1));
+                if (d != null) {
                     return { operator: "<", value: d };
                 }
             }
-        } else if(c === '=' && s.length > 1 && s[1] === '=') {
-            var d = parseFloat(s.substring(2).trim());
-            if(!isNaN(d)) {
+        } else if (c === '=' || c === '＝') {
+            var index = 1;
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                index = 2;
+                if (s.length > 2 && (s[2] === '=' || s[2] === '＝')) {
+                    index = 3;
+                }
+            }
+            var d = this.tryParseNumber(s.substring(index));
+            if (d != null) {
                 return { operator: "=", value: d };
             }
-        } else if((c === '=' || c === '＝' || c === ' ') && s.length > 1) {
-            var d = parseFloat(s.substring(1).trim());
-            if(!isNaN(d)) {
-                return { operator: "=", value: d };
+        } else if (c === '!' || c === '！') {
+            var index = 1;
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                index = 2;
+                if (s.length > 2 && (s[2] === '=' || s[2] === '＝')) {
+                    index = 3;
+                }
             }
-        } else if(c === '!' && s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
-            var d = parseFloat(s.substring(2).trim());
-            if(!isNaN(d)) {
+            var d = this.tryParseNumber(s.substring(index));
+            if (d != null) {
                 return { operator: "!=", value: d };
-            }
-        } else {
-            var d = parseFloat(s.trim());
-            if(!isNaN(d)) {
-                return { operator: "=", value: d };
             }
         }
         return null;

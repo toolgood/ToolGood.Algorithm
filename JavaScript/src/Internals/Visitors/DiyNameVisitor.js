@@ -21,11 +21,8 @@ class DiyNameVisitor extends mathVisitor {
         let node = context.PARAMETER();
         if (node) {
             let t = CharUtil.standardString(node.getText());
-            if (t === "E") {
-                return this.visitChildren(context);
-            } else if (t === "PI") {
-                return this.visitChildren(context);
-            } else if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
+            // 对齐 C# 语法: E/PI 为独立词法 token 不在 PARAMETER 规则内, 故裸 e/pi 按参数收集
+            if (t === "TRUE" || t === "YES" || t === "是" || t === "有") {
                 return this.visitChildren(context);
             } else if (t === "FALSE" || t === "NO" || t === "不是" || t === "否" || t === "没有" || t === "无") {
                 return this.visitChildren(context);

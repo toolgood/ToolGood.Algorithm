@@ -12,13 +12,9 @@ class Function_Array extends Function_N {
 
     evaluate(work, tempParameter) {
         let args = [];
-        for (let i = 0; i < this.z.length; i++) {
-            let item = this.z[i];
-            let aa = item.evaluate(work, tempParameter);
-            if (aa.IsError) {
-                return aa;
-            }
-            args.push(aa);
+        let error = this.tryEvaluateAll(work, tempParameter, args);
+        if (error != null) {
+            return error;
         }
         let result = Operand.Create(args);
         return result;

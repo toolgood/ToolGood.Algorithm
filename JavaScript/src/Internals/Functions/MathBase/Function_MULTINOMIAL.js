@@ -12,11 +12,8 @@ class Function_MULTINOMIAL extends Function_N {
 
     evaluate(engine, tempParameter) {
         let args = [];
-        for (let i = 0; i < this.z.length; i++) {
-            let aa = this.getNumber(engine, tempParameter, i);
-            if (aa.IsError) { return aa; }
-            args.push(aa);
-        }
+        let error = this.tryEvaluateAll(engine, tempParameter, args);
+        if (error != null) { return error; }
 
         let list = [];
         for (let arg of args) {

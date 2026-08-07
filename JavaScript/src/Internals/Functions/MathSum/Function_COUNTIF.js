@@ -27,8 +27,8 @@ class Function_COUNTIF extends Function_2 {
             count = FunctionUtil.F_base_countif(list, args2.NumberValue);
         } else {
             let trimmedText = args2.TextValue.trim();
-            let parsedValue = parseFloat(trimmedText);
-            if (!isNaN(parsedValue)) {
+            let parsedValue = FunctionUtil.tryParseNumber(trimmedText);
+            if (parsedValue != null) {
                 count = FunctionUtil.F_base_countif(list, parsedValue);
             } else {
                 let sunif = trimmedText;
