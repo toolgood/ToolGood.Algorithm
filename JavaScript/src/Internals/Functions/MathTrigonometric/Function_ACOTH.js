@@ -15,7 +15,7 @@ class Function_ACOTH extends Function_1 {
         if (args1.IsError) { return args1; }
         let d = args1.DoubleValue;
         if (Math.abs(d) <= 1) {
-            return Operand.Error(this.functionError, 'ACOTH');
+            return this.parameterError(1);
         }
         return Operand.Create(0.5 * Math.log((d + 1) / (d - 1)));
     }

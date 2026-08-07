@@ -15,7 +15,7 @@ class Function_ACOS extends Function_1 {
         if (args1.IsError) { return args1; }
         let x = args1.DoubleValue;
         if (x < -1 || x > 1) {
-            return this.functionError();
+            return this.parameterError(1);
         }
         return Operand.Create(Math.acos(x));
     }

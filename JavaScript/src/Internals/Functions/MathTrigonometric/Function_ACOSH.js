@@ -15,7 +15,7 @@ class Function_ACOSH extends Function_1 {
         if (args1.IsError) { return args1; }
         let z = args1.DoubleValue;
         if (z < 1) {
-            return this.functionError();
+            return this.parameterError(1);
         }
         return Operand.Create(Math.acosh(z));
     }
