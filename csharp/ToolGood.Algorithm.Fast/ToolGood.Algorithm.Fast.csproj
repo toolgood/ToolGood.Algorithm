@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。使用非生成的Lexer，速度很快</Description>
@@ -19,7 +19,7 @@
 		<Product>ToolGood.Algorithm.Fast</Product>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<SignAssembly>true</SignAssembly>
-		<Version>6.2.5.56</Version>
+		<Version>6.2.5.57</Version>
 		<AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
