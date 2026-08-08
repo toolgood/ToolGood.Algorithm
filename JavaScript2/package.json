@@ -4,7 +4,7 @@
   "description": "ToolGood Algorithm Engine for JavaScript",
   "type": "module",
   "main": "dist/toolgood.algorithm.js",
-  "browser": "dist/toolgood.algorithm.min.js",
+  "browser": "dist/toolgood.algorithm.js",
   "scripts": {
     "build": "webpack",
     "build:dev": "webpack --mode development",
