@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -176,7 +176,9 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(short obj)
 		{
-			return IntCache[obj + IntCacheOffset];
+			if (obj >= -IntCacheOffset && obj <= IntCacheOffset)
+				return IntCache[obj + IntCacheOffset];
+			return new OperandDecimal(obj);
 		}
 
 		/// <summary>
