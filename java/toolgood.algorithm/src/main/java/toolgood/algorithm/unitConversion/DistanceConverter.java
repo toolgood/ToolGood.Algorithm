@@ -53,6 +53,9 @@ public final class DistanceConverter {
         BigDecimal au = BigDecimal.ONE.divide(new BigDecimal("149600000000"), 30, RoundingMode.HALF_UP);
         map.put("au", au);
 
+        map.put("尺", new BigDecimal("3"));
+        map.put("寸", new BigDecimal("30"));
+
         units2 = map;
     }
 

@@ -66,6 +66,21 @@ public class UnitConversionTest {
     }
 
     @Test
+    public void DistanceConverter_ChiCun_Test() throws Exception {
+        BigDecimal result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "m", "尺", "测试");
+        assertEquals(0, new BigDecimal("3").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "m", "寸", "测试");
+        assertEquals(0, new BigDecimal("30").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("6"), "尺", "m", "测试");
+        assertEquals(0, new BigDecimal("2").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("3"), "尺", "cm", "测试");
+        assertEquals(0, new BigDecimal("100").compareTo(result));
+    }
+
+    @Test
     public void DistanceConverter_FootToMeter_Test() throws Exception {
         BigDecimal result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "ft", "m", "测试");
         assertEquals(0.3048, result.doubleValue(), 0.0001);
@@ -228,6 +243,33 @@ public class UnitConversionTest {
 
         result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "吨", "千克", "测试");
         assertEquals(0, new BigDecimal("1000").compareTo(result));
+    }
+
+    @Test
+    public void MassConverter_Milligram_Test() throws Exception {
+        BigDecimal result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "kg", "mg", "测试");
+        assertEquals(0, new BigDecimal("1000000").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "kg", "毫克", "测试");
+        assertEquals(0, new BigDecimal("1000000").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("500"), "mg", "kg", "测试");
+        assertEquals(0, new BigDecimal("0.0005").compareTo(result));
+    }
+
+    @Test
+    public void MassConverter_JinLiang_Test() throws Exception {
+        BigDecimal result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "kg", "斤", "测试");
+        assertEquals(0, new BigDecimal("2").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("1"), "kg", "两", "测试");
+        assertEquals(0, new BigDecimal("20").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("5"), "斤", "kg", "测试");
+        assertEquals(0, new BigDecimal("2.5").compareTo(result));
+
+        result = AlgorithmEngineHelper.UnitConversion(new BigDecimal("2"), "两", "g", "测试");
+        assertEquals(0, new BigDecimal("100").compareTo(result));
     }
 
     @Test

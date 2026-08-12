@@ -71,6 +71,22 @@ namespace ToolGood.Algorithm.Test.UnitConversion
         }
 
         [Test]
+        public void DistanceConverter_ChiCun_Test()
+        {
+            var result = AlgorithmEngineHelper.UnitConversion(1m, "m", "尺", "测试");
+            Assert.AreEqual(3m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(1m, "m", "寸", "测试");
+            Assert.AreEqual(30m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(6m, "尺", "m", "测试");
+            Assert.AreEqual(2m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(3m, "尺", "cm", "测试");
+            Assert.AreEqual(100m, result);
+        }
+
+        [Test]
         public void DistanceConverter_FootToMeter_Test()
         {
             var result = AlgorithmEngineHelper.UnitConversion(1m, "ft", "m", "测试");
@@ -257,6 +273,35 @@ namespace ToolGood.Algorithm.Test.UnitConversion
 
             result = AlgorithmEngineHelper.UnitConversion(1m, "吨", "千克", "测试");
             Assert.AreEqual(1000m, result);
+        }
+
+        [Test]
+        public void MassConverter_Milligram_Test()
+        {
+            var result = AlgorithmEngineHelper.UnitConversion(1m, "kg", "mg", "测试");
+            Assert.AreEqual(1000000m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(1m, "kg", "毫克", "测试");
+            Assert.AreEqual(1000000m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(500m, "mg", "kg", "测试");
+            Assert.AreEqual(0.0005m, result);
+        }
+
+        [Test]
+        public void MassConverter_JinLiang_Test()
+        {
+            var result = AlgorithmEngineHelper.UnitConversion(1m, "kg", "斤", "测试");
+            Assert.AreEqual(2m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(1m, "kg", "两", "测试");
+            Assert.AreEqual(20m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(5m, "斤", "kg", "测试");
+            Assert.AreEqual(2.5m, result);
+
+            result = AlgorithmEngineHelper.UnitConversion(2m, "两", "g", "测试");
+            Assert.AreEqual(100m, result);
         }
 
         [Test]

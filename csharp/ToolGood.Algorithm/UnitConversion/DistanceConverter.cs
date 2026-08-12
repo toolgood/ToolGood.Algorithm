@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.UnitConversion
@@ -16,6 +16,7 @@ namespace ToolGood.Algorithm.UnitConversion
 			{"mile",125m / 201168  },{"英里",125m / 201168  },
 			{"in",5000m / 127 },{"inch",5000m / 127 },{"英寸",5000m / 127 },
 			{"au", 1m / 149600000000 },
+			{"尺",3 }, {"寸",30 },
 		};
 
 		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)

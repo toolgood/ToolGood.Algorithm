@@ -59,6 +59,11 @@ public final class MassConverter {
         map.put("长吨", longTon);
         map.put("英吨", longTon);
 
+        map.put("mg", new BigDecimal("1000000"));
+        map.put("毫克", new BigDecimal("1000000"));
+        map.put("斤", new BigDecimal("2"));
+        map.put("两", new BigDecimal("20"));
+
         units2 = map;
     }
 

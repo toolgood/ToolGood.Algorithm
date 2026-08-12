@@ -15,6 +15,8 @@ namespace ToolGood.Algorithm.UnitConversion
 			{"quintal",0.01m  }, {"英担",0.01m  },
 			{"short ton",50000m / 45359237 }, {"net ton",50000m / 45359237 }, {"us ton",50000m / 45359237 },{"短吨",50000m / 45359237 },{"美吨",50000m / 45359237 },
 			{"long ton",312500m / 317514659 }, {"weight ton",312500m / 317514659 }, {"gross ton",312500m / 317514659},{"imperial ton",312500m / 317514659},{"长吨",312500m / 317514659 },{"英吨",312500m / 317514659},
+			{"mg",1000000 }, {"毫克",1000000 },
+			{"斤",2 }, {"两",20 },
 		};
 
 		public static bool TryConvert(string leftSynonym, string rightSynonym, decimal left, out decimal right)
