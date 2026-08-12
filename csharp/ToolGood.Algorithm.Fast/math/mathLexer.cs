@@ -399,7 +399,7 @@ namespace ToolGood.Algorithm.math
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool IsWhitespace(int c)
 		{
-			return c == ' ' || c == '\n';
+			return c == ' ' || c == '\n' || c == '\r' || c == '\t';
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
