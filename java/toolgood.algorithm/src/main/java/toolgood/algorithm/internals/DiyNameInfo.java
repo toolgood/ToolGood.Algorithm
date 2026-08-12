@@ -19,8 +19,8 @@ public class DiyNameInfo {
     /**
      * 自定义类型
      */
-    public DiyNameInfo(List<DiyNameKeyInfo> p, List<DiyNameKeyInfo> f) {
-        Parameters = p;
-        Functions = f;
+    public DiyNameInfo(List<DiyNameKeyInfo> parameters, List<DiyNameKeyInfo> functions) {
+        Parameters = parameters;
+        Functions = functions;
     }
 }

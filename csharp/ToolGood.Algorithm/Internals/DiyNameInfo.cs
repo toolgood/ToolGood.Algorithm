@@ -20,10 +20,10 @@ namespace ToolGood.Algorithm.Internals
 		/// <summary>
 		/// 自定义类型
 		/// </summary>
-		public DiyNameInfo(List<DiyNameKeyInfo> p, List<DiyNameKeyInfo> f)
+		public DiyNameInfo(List<DiyNameKeyInfo> parameters, List<DiyNameKeyInfo> functions)
         {
-            Parameters = p;
-            Functions = f;
+            Parameters = parameters;
+            Functions = functions;
         }
 	}
 }
