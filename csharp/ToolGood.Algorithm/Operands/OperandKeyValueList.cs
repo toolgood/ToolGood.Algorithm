@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using ToolGood.Algorithm.Enums;
@@ -71,11 +73,15 @@ namespace ToolGood.Algorithm.Operands
 
 		public bool ContainsValue(Operand value)
 		{
+			var v = value.TextValue;
 			foreach (var item in _keyValueList) {
 				var op = item.Value;
-				if (value.Type != op.Type) continue;
-				if (value.IsText && value.TextValue == op.TextValue) {
-					return true;
+				if (op.IsText) {
+					if (op.TextValue == v) return true;
+				} else if (op.IsNumber) {
+					if (op.NumberValue.ToString(CultureInfo.InvariantCulture) == v) return true;
+				} else if (op.IsBoolean) {
+					if (op.BooleanValue.ToString().Equals(v, StringComparison.CurrentCultureIgnoreCase)) return true;
 				}
 			}
 			return false;

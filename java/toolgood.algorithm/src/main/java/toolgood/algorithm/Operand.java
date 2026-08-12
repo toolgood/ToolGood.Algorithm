@@ -890,11 +890,15 @@ public abstract class Operand {
         }
 
         public boolean ContainsValue(Operand value) {
+            String v = value.TextValue();
             for (KeyValue item : TextList) {
                 Operand op = item.Value;
-                if (value.Type() != op.Type()) continue;
-                if (value.Type() == OperandType.TEXT) {
-                    if (value.TextValue().equals(op.TextValue())) return true;
+                if (op.IsText()) {
+                    if (op.TextValue().equals(v)) return true;
+                } else if (op.IsNumber()) {
+                    if (op.NumberValue().toString().equals(v)) return true;
+                } else if (op.IsBoolean()) {
+                    if (String.valueOf(op.BooleanValue()).equalsIgnoreCase(v)) return true;
                 }
             }
             return false;
