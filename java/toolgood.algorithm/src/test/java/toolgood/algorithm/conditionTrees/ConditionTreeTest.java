@@ -174,4 +174,46 @@ public class ConditionTreeTest {
         assertEquals(ConditionTreeType.Error, tree.Type);
         assertEquals("condition is null", tree.ErrorMessage);
     }
+
+    @Test
+    public void HasBracket_Test() {
+        // 无括号时，二元节点的 HasBracket 均为 false
+        ConditionTree tree = AlgorithmEngineHelper.ParseCondition("a || b && c");
+        assertEquals(ConditionTreeType.Or, tree.Type);
+        assertFalse(tree.HasBracket);
+        assertFalse(tree.Nodes.get(0).HasBracket);
+        assertFalse(tree.Nodes.get(1).HasBracket); // And 节点
+
+        // 括号包裹叶子后，后续兄弟节点不应被误标记为 HasBracket（Bug 修复验证）
+        tree = AlgorithmEngineHelper.ParseCondition("(a) || b && c");
+        assertEquals(ConditionTreeType.Or, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket);  // (a) 叶子
+        assertFalse(tree.Nodes.get(1).HasBracket); // And 节点，无括号
+
+        // 括号包裹二元节点时，该节点 HasBracket = true
+        tree = AlgorithmEngineHelper.ParseCondition("(a || b) && c");
+        assertEquals(ConditionTreeType.And, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket); // (a || b) Or 节点
+
+        tree = AlgorithmEngineHelper.ParseCondition("a && (b || c)");
+        assertEquals(ConditionTreeType.And, tree.Type);
+        assertTrue(tree.Nodes.get(1).HasBracket); // (b || c) Or 节点
+
+        // 括号包裹叶子与二元节点混合
+        tree = AlgorithmEngineHelper.ParseCondition("(a) && (b || c)");
+        assertEquals(ConditionTreeType.And, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket); // (a) 叶子
+        assertTrue(tree.Nodes.get(1).HasBracket); // (b || c) Or 节点
+
+        tree = AlgorithmEngineHelper.ParseCondition("(a) || (b)");
+        assertEquals(ConditionTreeType.Or, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket); // (a) 叶子
+        assertTrue(tree.Nodes.get(1).HasBracket); // (b) 叶子
+
+        // 多重括号
+        tree = AlgorithmEngineHelper.ParseCondition("((a)) && b");
+        assertEquals(ConditionTreeType.And, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket);  // ((a)) 叶子
+        assertFalse(tree.Nodes.get(1).HasBracket); // b 叶子
+    }
 }

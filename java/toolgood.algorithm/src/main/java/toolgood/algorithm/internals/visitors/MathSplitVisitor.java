@@ -75,6 +75,8 @@ public class MathSplitVisitor extends mathBaseVisitor<ConditionTree> {
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
         tree.Text = context.getText();
+        tree.HasBracket = hasBracket;
+        hasBracket = false;
         return tree;
     }
 }

@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 using ToolGood.Algorithm;
 using ToolGood.Algorithm.Enums;
 
@@ -183,6 +183,49 @@ namespace ToolGood.Algorithm.Test.ConditionTrees
             var tree = AlgorithmEngineHelper.ParseCondition(txt);
             Assert.AreEqual(tree.Type, ConditionTreeType.Error);
             Assert.AreEqual("condition is null", tree.ErrorMessage);
+        }
+
+        [Test]
+        public void HasBracket_Test()
+        {
+            // 无括号时，二元节点的 HasBracket 均为 false
+            var tree = AlgorithmEngineHelper.ParseCondition("a || b && c");
+            Assert.AreEqual(tree.Type, ConditionTreeType.Or);
+            Assert.IsFalse(tree.HasBracket);
+            Assert.IsFalse(tree.Nodes[0].HasBracket);
+            Assert.IsFalse(tree.Nodes[1].HasBracket); // And 节点
+
+            // 括号包裹叶子后，后续兄弟节点不应被误标记为 HasBracket（Bug 修复验证）
+            tree = AlgorithmEngineHelper.ParseCondition("(a) || b && c");
+            Assert.AreEqual(tree.Type, ConditionTreeType.Or);
+            Assert.IsTrue(tree.Nodes[0].HasBracket);  // (a) 叶子
+            Assert.IsFalse(tree.Nodes[1].HasBracket); // And 节点，无括号
+
+            // 括号包裹二元节点时，该节点 HasBracket = true
+            tree = AlgorithmEngineHelper.ParseCondition("(a || b) && c");
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
+            Assert.IsTrue(tree.Nodes[0].HasBracket); // (a || b) Or 节点
+
+            tree = AlgorithmEngineHelper.ParseCondition("a && (b || c)");
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
+            Assert.IsTrue(tree.Nodes[1].HasBracket); // (b || c) Or 节点
+
+            // 括号包裹叶子与二元节点混合
+            tree = AlgorithmEngineHelper.ParseCondition("(a) && (b || c)");
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
+            Assert.IsTrue(tree.Nodes[0].HasBracket); // (a) 叶子
+            Assert.IsTrue(tree.Nodes[1].HasBracket); // (b || c) Or 节点
+
+            tree = AlgorithmEngineHelper.ParseCondition("(a) || (b)");
+            Assert.AreEqual(tree.Type, ConditionTreeType.Or);
+            Assert.IsTrue(tree.Nodes[0].HasBracket); // (a) 叶子
+            Assert.IsTrue(tree.Nodes[1].HasBracket); // (b) 叶子
+
+            // 多重括号
+            tree = AlgorithmEngineHelper.ParseCondition("((a)) && b");
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
+            Assert.IsTrue(tree.Nodes[0].HasBracket); // ((a)) 叶子
+            Assert.IsFalse(tree.Nodes[1].HasBracket); // b 叶子
         }
     }
 }

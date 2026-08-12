@@ -130,8 +130,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new CalculateTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				Text = context.GetText()
+				Text = context.GetText(),
+				HasBracket = hasBracket
 			};
+			hasBracket = false;
 			return tree;
 		}
 	}

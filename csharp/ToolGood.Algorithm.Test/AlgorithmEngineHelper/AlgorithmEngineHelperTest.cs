@@ -1,4 +1,5 @@
-﻿using PetaTest;
+using System;
+using PetaTest;
 using ToolGood.Algorithm;
 using ToolGood.Algorithm.Internals;
 
@@ -95,6 +96,23 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
 			b = AlgorithmEngineHelper.CheckFormula("@123+1");
 			Assert.AreEqual(false, b);
+		}
+
+		[Test]
+		public void ParseFormula_NumberOverflow_Test()
+		{
+			// 超出 decimal 范围(约 29 位)的数字应抛 ArgumentException，而不是 OverflowException
+			Assert.Throws<ArgumentException>(() => AlgorithmEngineHelper.ParseFormula("12345678901234567890123456789012345"));
+			Assert.Throws<ArgumentException>(() => AlgorithmEngineHelper.ParseFormula("12345678901234567890123456789012345M"));
+			Assert.Throws<ArgumentException>(() => AlgorithmEngineHelper.ParseFormula("9999999999999999999999999999999"));
+
+			// 正常数字（含单位、科学计数法、负数）不受影响
+			Assert.IsNotNull(AlgorithmEngineHelper.ParseFormula("12CM"));
+			Assert.IsNotNull(AlgorithmEngineHelper.ParseFormula("10M2"));
+			Assert.IsNotNull(AlgorithmEngineHelper.ParseFormula("-5"));
+			Assert.IsNotNull(AlgorithmEngineHelper.ParseFormula("-5M"));
+			Assert.IsNotNull(AlgorithmEngineHelper.ParseFormula("3E5"));
+			Assert.IsNotNull(AlgorithmEngineHelper.ParseFormula("1234567890123456789012345678"));
 		}
 
 	}

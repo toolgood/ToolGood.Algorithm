@@ -147,6 +147,8 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
         tree.Text = context.getText();
+        tree.HasBracket = hasBracket;
+        hasBracket = false;
         return tree;
     }
 }

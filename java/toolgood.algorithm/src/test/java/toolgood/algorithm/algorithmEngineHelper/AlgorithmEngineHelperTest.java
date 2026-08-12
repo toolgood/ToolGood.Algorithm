@@ -91,4 +91,20 @@ public class AlgorithmEngineHelperTest {
         b = AlgorithmEngineHelper.CheckFormula("@123+1");
         assertEquals(false, b);
     }
+
+    @Test
+    public void ParseFormula_LargeNumber_Test() throws Exception {
+        // Java 使用 BigDecimal（任意精度），超大数字不会像 C# decimal 那样溢出
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("12345678901234567890123456789012345"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("12345678901234567890123456789012345M"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("9999999999999999999999999999999"));
+
+        // 正常数字（含单位、科学计数法、负数）不受影响
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("12CM"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("10M2"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("-5"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("-5M"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("3E5"));
+        assertNotNull(AlgorithmEngineHelper.ParseFormula("1234567890123456789012345678"));
+    }
 }

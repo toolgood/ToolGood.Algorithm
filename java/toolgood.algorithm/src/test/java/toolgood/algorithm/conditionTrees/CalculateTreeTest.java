@@ -77,4 +77,33 @@ public class CalculateTreeTest {
         tree = AlgorithmEngineHelper.ParseCalculate(txt);
         assertEquals(CalculateTreeType.Sub, tree.Type);
     }
+
+    @Test
+    public void HasBracket_Test() {
+        // 无括号时，二元节点的 HasBracket 均为 false
+        CalculateTree tree = AlgorithmEngineHelper.ParseCalculate("a + b * c");
+        assertEquals(CalculateTreeType.Add, tree.Type);
+        assertFalse(tree.Nodes.get(1).HasBracket); // Mul 节点
+
+        // 括号包裹叶子后，后续兄弟节点不应被误标记为 HasBracket（Bug 修复验证）
+        tree = AlgorithmEngineHelper.ParseCalculate("(a) + b * c");
+        assertEquals(CalculateTreeType.Add, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket);  // (a) 叶子
+        assertFalse(tree.Nodes.get(1).HasBracket); // Mul 节点，无括号
+
+        // 括号包裹二元节点时，该节点 HasBracket = true
+        tree = AlgorithmEngineHelper.ParseCalculate("a + (b * c)");
+        assertEquals(CalculateTreeType.Add, tree.Type);
+        assertTrue(tree.Nodes.get(1).HasBracket); // (b * c) Mul 节点
+
+        tree = AlgorithmEngineHelper.ParseCalculate("(a + b) * c");
+        assertEquals(CalculateTreeType.Mul, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket); // (a + b) Add 节点
+
+        // 与条件树同样修复了 || && 的泄漏
+        tree = AlgorithmEngineHelper.ParseCalculate("(a) || b && c");
+        assertEquals(CalculateTreeType.Or, tree.Type);
+        assertTrue(tree.Nodes.get(0).HasBracket);  // (a) 叶子
+        assertFalse(tree.Nodes.get(1).HasBracket); // And 节点，无括号
+    }
 }

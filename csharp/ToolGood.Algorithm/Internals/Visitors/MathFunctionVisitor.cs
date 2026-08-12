@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using System;
 using System.Globalization;
 using System.Text;
@@ -156,7 +156,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				txt = text.Substring(0, len - 1);
 				unit = text.Substring(len - 1);
 			}
-			var d2 = decimal.Parse(txt, NumberStyles.Any, CultureInfo.InvariantCulture);
+			var d2 = decimal.TryParse(txt.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
+				? d3
+				: throw new ArgumentException($"Number '{text}' is invalid or out of range.");
 			return new Function_Number2(d2, unit);
 		}
 
