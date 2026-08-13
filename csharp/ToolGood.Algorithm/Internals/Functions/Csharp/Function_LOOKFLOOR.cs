@@ -4,7 +4,7 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
-	class Function_LOOKFLOOR : Function_2
+	internal sealed class Function_LOOKFLOOR : Function_2
 	{
 		public Function_LOOKFLOOR(FunctionBase[] funcs) : base(funcs)
 		{

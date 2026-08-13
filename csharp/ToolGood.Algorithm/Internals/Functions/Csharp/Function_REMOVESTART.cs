@@ -8,8 +8,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 	{
 		public Function_REMOVESTART(FunctionBase[] funcs) : base(funcs)
 		{
-			if (funcs.Length < 1 || funcs.Length > 3) {
-				throw new ArgumentException($"Function '{Name}' requires 1 to 3 parameters.");
+			if (funcs.Length < 2 || funcs.Length > 3) {
+				throw new ArgumentException($"Function '{Name}' requires 2 to 3 parameters.");
 			}
 		}
 

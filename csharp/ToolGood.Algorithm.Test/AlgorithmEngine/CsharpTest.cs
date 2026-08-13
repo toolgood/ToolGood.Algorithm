@@ -500,6 +500,55 @@ namespace ToolGood.Algorithm.Test.Csharp
             num = engine.TryEvaluate("LookCeiling(5,[0,1,2,3,4])", 0);
             Assert.AreEqual(num, 4);
         }
+
+        [Test]
+        public void IndexOf_not_found_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseExcelIndex = false;
+            // 修复点: 指定 startIndex 但未找到时应返回 -1, 而不是 startIndex-1
+            var dt = engine.TryEvaluate("IndexOf('abcd','xyz',2)", -1);
+            Assert.AreEqual(dt, -1);
+
+            dt = engine.TryEvaluate("IndexOf('abcd','cd',2)", -1);
+            Assert.AreEqual(dt, 2);
+        }
+
+        [Test]
+        public void RemoveEnd_RemoveStart_parameter_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 3 参数 ignoreCase=true
+            var dt = engine.TryEvaluate("RemoveEnd('abcABC','abc',true)", null);
+            Assert.AreEqual(dt, "abc");
+
+            dt = engine.TryEvaluate("RemoveStart('abcABC','abc',true)", null);
+            Assert.AreEqual(dt, "ABC");
+
+            // 1 个参数应被参数校验拒绝, 返回默认值而非崩溃
+            dt = engine.TryEvaluate("RemoveEnd('abc')", null);
+            Assert.AreEqual(dt, null);
+
+            dt = engine.TryEvaluate("RemoveStart('abc')", null);
+            Assert.AreEqual(dt, null);
+        }
+
+        [Test]
+        public void HasValue_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("HasValue({\"name\":\"toolgood\",\"age\":\"12\"},'toolgood')", false);
+            Assert.AreEqual(dt, true);
+
+            dt = engine.TryEvaluate("HasValue({\"name\":\"toolgood\",\"age\":\"12\"},'12')", false);
+            Assert.AreEqual(dt, true);
+
+            dt = engine.TryEvaluate("HasValue({\"name\":\"toolgood\",\"age\":\"12\"},'nonexist')", true);
+            Assert.AreEqual(dt, false);
+
+            dt = engine.TryEvaluate("HasValue(json('[1,2,3]'),'2')", false);
+            Assert.AreEqual(dt, true);
+        }
     
     }
 }

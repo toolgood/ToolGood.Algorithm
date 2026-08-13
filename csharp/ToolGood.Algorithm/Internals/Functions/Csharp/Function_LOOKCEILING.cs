@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Enums;
 namespace ToolGood.Algorithm.Internals.Functions.Csharp
 {
 
-	class Function_LOOKCEILING : Function_2
+	internal sealed class Function_LOOKCEILING : Function_2
 	{
 		public Function_LOOKCEILING(FunctionBase[] funcs) : base(funcs)
 		{

@@ -97,11 +97,14 @@ namespace ToolGood.Algorithm.Test.Compare
             bb2 = engine.TryEvaluate("1!=null", false);
             Assert.AreEqual(bb2, true);
 
+            // 两侧同为 null 属于异常数据，返回错误，TryEvaluate 返回默认值
             bb2 = engine.TryEvaluate("null=null", false);
-            Assert.AreEqual(bb2, true);
+            Assert.AreEqual(bb2, false);
+            Assert.IsNotNull(engine.LastError);
 
             bb2 = engine.TryEvaluate("null!=null", true);
-            Assert.AreEqual(bb2, false);
+            Assert.AreEqual(bb2, true);
+            Assert.IsNotNull(engine.LastError);
 
             bb2 = engine.TryEvaluate("'111'=null", true);
             Assert.AreEqual(bb2, false);
@@ -114,18 +117,22 @@ namespace ToolGood.Algorithm.Test.Compare
         public void null_same_type_compare_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            // 修复点: 两侧同为 null 时, 大小比较应返回 False(修复前误返回 True)
+            // 两侧同为 null 属于异常数据，所有比较运算符均返回错误，TryEvaluate 返回默认值
             var bb2 = engine.TryEvaluate("null>null", true);
-            Assert.AreEqual(bb2, false);
+            Assert.AreEqual(bb2, true);
+            Assert.IsNotNull(engine.LastError);
 
             bb2 = engine.TryEvaluate("null>=null", true);
-            Assert.AreEqual(bb2, false);
+            Assert.AreEqual(bb2, true);
+            Assert.IsNotNull(engine.LastError);
 
             bb2 = engine.TryEvaluate("null<=null", true);
-            Assert.AreEqual(bb2, false);
+            Assert.AreEqual(bb2, true);
+            Assert.IsNotNull(engine.LastError);
 
             bb2 = engine.TryEvaluate("null<null", true);
-            Assert.AreEqual(bb2, false);
+            Assert.AreEqual(bb2, true);
+            Assert.IsNotNull(engine.LastError);
         }
 
         [Test]

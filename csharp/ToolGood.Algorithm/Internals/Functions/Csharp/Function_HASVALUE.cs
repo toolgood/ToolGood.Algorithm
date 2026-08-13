@@ -35,18 +35,18 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 						if(v.IsString) {
 							if(v.StringValue == args2.TextValue) { return Operand.True; }
 						} else if(v.IsDouble) {
-						if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
-					} else if(v.IsBoolean) {
-						if(v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
+							if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
+						} else if(v.IsBoolean) {
+							if(v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
+						}
 					}
-				}
-			} else {
-				foreach(var item in json.inst_object) {
-					var v = item.Value;
-					if(v.IsString) {
-						if(v.StringValue == args2.TextValue) { return Operand.True; }
-					} else if(v.IsDouble) {
-						if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
+				} else {
+					foreach(var item in json.inst_object) {
+						var v = item.Value;
+						if(v.IsString) {
+							if(v.StringValue == args2.TextValue) { return Operand.True; }
+						} else if(v.IsDouble) {
+							if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
 						} else if(v.IsBoolean) {
 							if(v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
 						}
