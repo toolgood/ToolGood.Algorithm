@@ -1,32 +1,35 @@
-import { BaseUnitConverter } from './BaseUnitConverter.js';
-import { UnitFactors } from './UnitFactors.js';
-import { UnitFactorSynonyms } from './UnitFactorSynonyms.js';
+const units2 = {
+    "m": 1, "metre": 1, "meter": 1, "米": 1,
+    "km": 0.001, "kilometre": 0.001, "kilometer": 0.001, "千米": 0.001,
+    "dm": 10, "decimetre": 10, "decimeter": 10, "分米": 10,
+    "cm": 100, "centimetre": 100, "centimeter": 100, "厘米": 100,
+    "mm": 1000, "millimetre": 1000, "millimeter": 1000, "毫米": 1000,
+    "ft": 1250 / 381, "foot": 1250 / 381, "feet": 1250 / 381, "英尺": 1250 / 381,
+    "yd": 1250 / 1143, "yard": 1250 / 1143, "码": 1250 / 1143,
+    "mile": 125 / 201168, "英里": 125 / 201168,
+    "in": 5000 / 127, "inch": 5000 / 127, "英寸": 5000 / 127,
+    "au": 1 / 149600000000,
+    "尺": 3, "寸": 30,
+};
 
-class DistanceConverter extends BaseUnitConverter {
-    constructor(leftUnit, rightUnit) {
-        super();
-        this.instantiate(DistanceConverter.units, leftUnit, rightUnit);
+function getValue(key) {
+    return units2[key.toLowerCase()];
+}
+
+class DistanceConverter {
+    constructor(leftSynonym, rightSynonym) {
+        this.leftUnit = getValue(leftSynonym);
+        this.rightUnit = getValue(rightSynonym);
     }
 
     static exists(leftSynonym, rightSynonym) {
-        if (DistanceConverter.units.findUnit(leftSynonym) != null) {
-            return DistanceConverter.units.findUnit(rightSynonym) != null;
-        }
-        return false;
+        if (!leftSynonym || !rightSynonym) { return false; }
+        return getValue(leftSynonym) !== undefined && getValue(rightSynonym) !== undefined;
+    }
+
+    leftToRight(left) {
+        return left / this.leftUnit * this.rightUnit;
     }
 }
-
-// 静态单位因子初始化
-DistanceConverter.units = new UnitFactors();
-DistanceConverter.units.set(new UnitFactorSynonyms("m", "metre", "米"), 1);
-DistanceConverter.units.set(new UnitFactorSynonyms("km", "kilometre", "千米"), 0.001);
-DistanceConverter.units.set(new UnitFactorSynonyms("dm", "decimetre", "分米"), 10);
-DistanceConverter.units.set(new UnitFactorSynonyms("cm", "centimetre", "厘米"), 100);
-DistanceConverter.units.set(new UnitFactorSynonyms("mm", "millimetre", "毫米"), 1000);
-DistanceConverter.units.set(new UnitFactorSynonyms("ft", "foot", "feet", "英尺"), 1250 / 381);
-DistanceConverter.units.set(new UnitFactorSynonyms("yd", "yard", "码"), 1250 / 1143);
-DistanceConverter.units.set(new UnitFactorSynonyms("mile", "英里"), 125 / 201168);
-DistanceConverter.units.set(new UnitFactorSynonyms("in", "inch", "英寸"), 5000 / 127);
-DistanceConverter.units.set(new UnitFactorSynonyms("au"), 1 / 149600000000);
 
 export { DistanceConverter };
