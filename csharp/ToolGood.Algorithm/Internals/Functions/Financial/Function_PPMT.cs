@@ -49,6 +49,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 			}
 
+			if (per < 1 || per > nper) {
+				return ParameterError(2);
+			}
+
 			var pmtResult = CalculatePMT(rate, nper, pv, fv, type);
 			var ipmtResult = CalculateIPMT(rate, per, nper, pv, fv, type);
 			return Operand.Create(pmtResult - ipmtResult);

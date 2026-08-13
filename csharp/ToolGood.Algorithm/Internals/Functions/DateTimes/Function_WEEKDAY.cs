@@ -53,7 +53,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 int[] mapping = { 3, 4, 5, 6, 7, 1, 2 };
                 return Operand.Create(mapping[dayOfWeek]);
             } else if (type == 16) {
-                int[] mapping = { 2, 3, 4, 5, 6, 7, 1, 2 };
+                int[] mapping = { 2, 3, 4, 5, 6, 7, 1 };
                 return Operand.Create(mapping[dayOfWeek]);
             }
 

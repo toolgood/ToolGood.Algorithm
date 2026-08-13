@@ -52,7 +52,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var factor = MathEx.Pow((1 + rate), nper);
 			var pv = -(fv + pmt * (factor - 1) / rate) / factor;
 			if (type == 1) {
-				pv = pv - pmt / (1 + rate) * ((factor - 1) / rate) / factor * (1 + rate);
 				pv = -(fv + pmt * (1 + rate) * (factor - 1) / rate) / factor;
 			}
 

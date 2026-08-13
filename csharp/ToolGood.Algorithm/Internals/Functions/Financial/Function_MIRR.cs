@@ -56,7 +56,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 			}
 
-			if (npvNegative == 0) return Div0Error();
+			if (npvNegative == 0 || npvPositive == 0) return Div0Error();
 
 			var mirr = MathEx.Pow((-npvPositive / npvNegative), 1.0m / (n - 1)) - 1;
 			return Operand.Create(mirr);

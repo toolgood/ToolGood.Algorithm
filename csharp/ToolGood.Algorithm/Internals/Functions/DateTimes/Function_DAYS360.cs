@@ -35,8 +35,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
             var days = endMyDate.Year * 360 + (endMyDate.Month - 1) * 30
                         - startMyDate.Year * 360 - (startMyDate.Month - 1) * 30;
             if (method) {
-                if (endMyDate.Day == 31) days += 30;
-                if (startMyDate.Day == 31) days -= 30;
+                // 欧洲方法: 仅将 31 日按 30 日计算, 日号仍需正常参与天数差
+                days += Math.Min(endMyDate.Day, 30) - Math.Min(startMyDate.Day, 30);
             } else {
                 // US (NASD) 方法: start 若为月末(含 2 月最后一天)则调整为 30 日,
                 // end 若为月末, 依据调整后的 startDay 决定按 31 日(下月1日)或 30 日计算

@@ -21,7 +21,13 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (valuesArg.IsErrorOrNone) return valuesArg;
 			var values = new List<decimal>();
 			foreach (var v in valuesArg.ArrayValue) {
-				values.Add(v.NumberValue);
+				if (v.IsNumber) {
+					values.Add(v.NumberValue);
+				} else {
+					var v2 = v.ToNumber($"Function '{Name}' parameter 1 is error!");
+					if (v2.IsErrorOrNone) return v2;
+					values.Add(v2.NumberValue);
+				}
 			}
 
 			var datesArg = GetArray_2(engine, tempParameter);

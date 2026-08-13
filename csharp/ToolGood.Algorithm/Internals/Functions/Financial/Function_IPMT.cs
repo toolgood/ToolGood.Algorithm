@@ -49,6 +49,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 			}
 
+			if (per < 1 || per > nper) {
+				return ParameterError(2);
+			}
+
 			if (rate == 0) {
 				return Operand.Create(0);
 			}

@@ -159,5 +159,46 @@ namespace ToolGood.Algorithm.Test.Financial
             var t = engine.TryEvaluate("XIRR(values, dates2)", 0.0);
             Assert.AreEqual(Math.Round(t, 4), Math.Round(0.3734, 4));
         }
+
+        [Test]
+        public void IPMT_PPMT_per_out_of_range_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // per < 1 越界, 应报错
+            var t = engine.TryEvaluate("IPMT(0.08/12, 0, 10, 10000)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            // per > nper 越界, 应报错
+            t = engine.TryEvaluate("PPMT(0.08/12, 11, 10, 10000)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void NPV_parameter_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 仅 rate、无 value, 参数校验拒绝
+            var t = engine.TryEvaluate("NPV(0.1)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void MIRR_no_positive_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 全负现金流、无正现金流, 应返回 Div0 错误
+            var t = engine.TryEvaluate("MIRR(array(-70000, -12000, -15000), 0.1, 0.12)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void PV_type_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // type=0(期末) 与 type=1(期初) 的关系: PV(type=1) = PV(type=0) * (1+rate)
+            var pv0 = engine.TryEvaluate("PV(0.08/12, 10, -1000)", 0.0);
+            var pv1 = engine.TryEvaluate("PV(0.08/12, 10, -1000, 0, 1)", 0.0);
+            Assert.AreEqual(Math.Round(pv1, 4), Math.Round(pv0 * (1 + 0.08 / 12), 4));
+        }
     }
 }

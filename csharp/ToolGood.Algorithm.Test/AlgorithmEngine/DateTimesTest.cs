@@ -300,6 +300,24 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         [Test]
+        public void DAYS360_europe_method_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 欧洲方法(method=true): 31 日按 30 日计算, 日号正常参与天数差
+            var dt = engine.TryEvaluate("DAYS360('2016-1-15','2016-1-20',true)", 0);
+            Assert.AreEqual(dt, 5);
+
+            dt = engine.TryEvaluate("DAYS360('2016-1-31','2016-2-1',true)", 0);
+            Assert.AreEqual(dt, 1);
+
+            dt = engine.TryEvaluate("DAYS360('2016-1-31','2016-3-31',true)", 0);
+            Assert.AreEqual(dt, 60);
+
+            dt = engine.TryEvaluate("DAYS360('2016-1-15','2016-1-31',true)", 0);
+            Assert.AreEqual(dt, 15);
+        }
+
+        [Test]
         public void EDATE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -321,6 +339,18 @@ namespace ToolGood.Algorithm.Test.DateTimes
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("NETWORKDAYS(\"2012-1-1\",\"2013-1-1\")", 0);
             Assert.AreEqual(dt, 262);
+        }
+
+        [Test]
+        public void NETWORKDAYS_holidays_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 2024-1-1(周一) 到 2024-1-10(周三) 共 8 个工作日, 扣除落在工作日的节假日
+            var dt = engine.TryEvaluate("NETWORKDAYS('2024-1-1','2024-1-10','2024-1-5')", 0);
+            Assert.AreEqual(dt, 7);
+
+            dt = engine.TryEvaluate("NETWORKDAYS('2024-1-1','2024-1-10','2024-1-5','2024-1-8')", 0);
+            Assert.AreEqual(dt, 6);
         }
 
         [Test]
@@ -349,6 +379,18 @@ namespace ToolGood.Algorithm.Test.DateTimes
 
             dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", -1)", DateTime.MinValue);
             Assert.AreEqual(dt, new DateTime(2024, 1, 12));
+        }
+
+        [Test]
+        public void WORKDAY_holidays_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 从 2024-1-15(周一) 起 5 个工作日, 跳过落在工作日的节假日
+            var dt = engine.TryEvaluate("WORKDAY('2024-1-15', 5, '2024-1-17')", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 23));
+
+            dt = engine.TryEvaluate("WORKDAY('2024-1-15', 5, '2024-1-17', '2024-1-18')", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2024, 1, 24));
         }
 
         [Test]
