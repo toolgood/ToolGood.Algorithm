@@ -27,12 +27,16 @@ public final class Function_ARABIC extends Function_1 {
 		Operand arg = GetText_1(engine, tempParameter);
 		if (arg.IsErrorOrNone()) return arg;
 		String text = arg.TextValue().toUpperCase();
-		// Excel: 空文本或含非法字符(非 I/V/X/L/C/D/M)时返回 #VALUE!
-		if (text.length() == 0) return ParameterError(1);
+		// Excel: 空文本或不符合罗马数字语法(非法字符/非法减法/非法重复)时返回 #VALUE!
+		if (text.length() == 0 || !RomanRegex.matcher(text).matches()) return ParameterError(1);
 		int result = RomanToArabic(text);
 		if (result < 0) return ParameterError(1);
 		return Operand.Create(BigDecimal.valueOf(result));
 	}
+
+	// 标准罗马数字(1~3999)语法:千位 M 最多 3 个,百/十/个位遵循减法规则且不可非法重复
+	private static final java.util.regex.Pattern RomanRegex =
+		java.util.regex.Pattern.compile("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
 
 	private int RomanToArabic(String roman) {
 		int result = 0;

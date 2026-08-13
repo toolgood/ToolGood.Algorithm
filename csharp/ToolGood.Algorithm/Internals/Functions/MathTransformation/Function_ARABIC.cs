@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -20,12 +20,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 			var arg = GetText_1(engine, tempParameter);
 			if (arg.IsErrorOrNone) return arg;
 			var text = arg.TextValue.ToUpperInvariant();
-			// Excel: 空文本或含非法字符(非 I/V/X/L/C/D/M)时返回 #VALUE!
-			if (text.Length == 0) return ParameterError(1);
+			// Excel: 空文本或不符合罗马数字语法(非法字符/非法减法/非法重复)时返回 #VALUE!
+			if (text.Length == 0 || !RomanRegex.IsMatch(text)) return ParameterError(1);
 			var result = RomanToArabic(text);
 			if (result < 0) return ParameterError(1);
 			return Operand.Create(result);
 		}
+
+		// 标准罗马数字(1~3999)语法:千位 M 最多 3 个,百/十/个位遵循减法规则且不可非法重复
+		private static readonly System.Text.RegularExpressions.Regex RomanRegex =
+			new System.Text.RegularExpressions.Regex("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
 
 		private int RomanToArabic(string roman)
 		{

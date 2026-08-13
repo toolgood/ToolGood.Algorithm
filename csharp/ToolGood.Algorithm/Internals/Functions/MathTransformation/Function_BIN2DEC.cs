@@ -34,7 +34,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 				}
 				var n = num.ToString();
 				if(n.Length <= args2.IntValue) {
-					return Operand.Create(n.PadLeft(args2.IntValue, '0'));
+					if(num < 0) {
+						n = "-" + n.Substring(1).PadLeft(args2.IntValue - 1, '0');
+					} else {
+						n = n.PadLeft(args2.IntValue, '0');
+					}
+					return Operand.Create(n);
 				}
 				return ParameterError(2);
 			}

@@ -41,7 +41,12 @@ public final class Function_HEX2DEC extends Function_2 {
 			}
 			String n = Long.toString(num);
 			if (n.length() <= args2.IntValue()) {
-				return Operand.Create(String.format("%" + args2.IntValue() + "s", n).replace(' ', '0'));
+				if (num < 0) {
+					n = "-" + String.format("%" + (args2.IntValue() - 1) + "s", n.substring(1)).replace(' ', '0');
+				} else {
+					n = String.format("%" + args2.IntValue() + "s", n).replace(' ', '0');
+				}
+				return Operand.Create(n);
 			}
 			return ParameterError(2);
 		}

@@ -33,7 +33,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
-                if (args2.IntValue < 0) {
+                if (args2.IntValue < 0 || args2.IntValue > 10) {
                     return ParameterError(2);
                 }
                 if (oct.Length > args2.IntValue) {

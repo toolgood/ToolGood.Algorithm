@@ -57,6 +57,15 @@ namespace ToolGood.Algorithm.Test.MathSum2
         }
 
         [Test]
+        public void BETAINV_param_count_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 参数个数不足时,构造函数抛出异常并被引擎捕获,返回默认值而非空引用
+            var t = engine.TryEvaluate("BETAINV(0.5,23)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
         public void BINOMDIST_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -193,6 +202,16 @@ namespace ToolGood.Algorithm.Test.MathSum2
         }
 
         [Test]
+        public void WEIBULL_tiny_x_cdf_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 极小 x 时 CDF 应趋近于 0 且非负(修复前 ExponentialMinusOne 符号错误导致负值)
+            var t = engine.TryEvaluate("WEIBULL(1E-28,1,1,1)", 0.0);
+            Assert.IsTrue(engine.LastError == null);
+            Assert.IsTrue(t >= 0.0);
+        }
+
+        [Test]
         public void FISHER_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -277,6 +296,33 @@ namespace ToolGood.Algorithm.Test.MathSum2
             t = engine.TryEvaluate("BESSELY(2.5, 0)", 0.0);
             t = Math.Round(t, 3);
             Assert.AreEqual(0.498, t, 0.01);
+        }
+
+        [Test]
+        public void BESSELK_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // x 过小时 K_n(x) 结果超出 decimal 范围,应返回错误而非抛异常
+            var t = engine.TryEvaluate("BESSELK(1E-28,2)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void BESSELY_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // x 过小时 Y_n(x) 结果超出 decimal 范围,应返回错误而非抛异常
+            var t = engine.TryEvaluate("BESSELY(1E-28,2)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
+        public void BESSELJ_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Miller 递推中间值超出 decimal 范围,应返回错误而非抛异常
+            var t = engine.TryEvaluate("BESSELJ(1E-10,100)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
         }
 
         #endregion Bessel函数

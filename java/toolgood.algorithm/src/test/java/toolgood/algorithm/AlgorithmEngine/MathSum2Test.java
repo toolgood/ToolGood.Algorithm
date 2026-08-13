@@ -54,6 +54,14 @@ public class MathSum2Test {
     }
 
     @Test
+    public void BETAINV_param_count_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 参数个数不足时,构造函数抛出异常并被引擎捕获,返回默认值而非空引用
+        double t = engine.TryEvaluate("BETAINV(0.5,23)", 0.0);
+        assertNotNull(engine.LastError);
+    }
+
+    @Test
     public void BINOMDIST_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("BINOMDIST(12,45,0.5,0)", 0.0);
@@ -175,6 +183,15 @@ public class MathSum2Test {
     }
 
     @Test
+    public void WEIBULL_tiny_x_cdf_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 极小 x 时 CDF 应趋近于 0 且非负(修复前 ExponentialMinusOne 符号错误导致负值)
+        double t = engine.TryEvaluate("WEIBULL(1E-28,1,1,1)", 0.0);
+        assertNull(engine.LastError);
+        assertTrue(t >= 0.0);
+    }
+
+    @Test
     public void FISHER_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         double t = engine.TryEvaluate("FISHER(0.68)", 0.0);
@@ -228,5 +245,29 @@ public class MathSum2Test {
 
         t = engine.TryEvaluate("BESSELY(2.5, 0)", 0.0);
         assertEquals(0.498, t, 0.01);
+    }
+
+    @Test
+    public void BESSELK_overflow_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // x 过小时 K_n(x) 溢出为 Infinity,应返回错误而非抛异常
+        double t = engine.TryEvaluate("BESSELK(1E-300,2)", 0.0);
+        assertNotNull(engine.LastError);
+    }
+
+    @Test
+    public void BESSELY_overflow_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // x 过小时 Y_n(x) 溢出为 Infinity,应返回错误而非抛异常
+        double t = engine.TryEvaluate("BESSELY(1E-300,2)", 0.0);
+        assertNotNull(engine.LastError);
+    }
+
+    @Test
+    public void BESSELJ_overflow_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // Miller 递推中间值溢出为 Infinity/NaN,应返回错误而非抛异常
+        double t = engine.TryEvaluate("BESSELJ(1E-10,100)", 0.0);
+        assertNotNull(engine.LastError);
     }
 }

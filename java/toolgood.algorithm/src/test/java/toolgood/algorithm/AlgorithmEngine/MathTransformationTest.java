@@ -242,4 +242,56 @@ public class MathTransformationTest {
         t = engine.TryEvaluate("ROMAN(499,-1)", "");
         assertNotNull(engine.LastError);
     }
+
+    @Test
+    public void ARABIC_invalid_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 非法重复:IIII 不是标准罗马数字
+        int t = engine.TryEvaluate("ARABIC('IIII')", 0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        // 非法减法:IC 不是标准罗马数字
+        t = engine.TryEvaluate("ARABIC('IC')", 0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        // 非法重复:VV 不是标准罗马数字
+        t = engine.TryEvaluate("ARABIC('VV')", 0);
+        assertNotNull(engine.LastError);
+    }
+
+    @Test
+    public void places_out_of_range_test() {
+        // places 超过 10 应返回 #NUM!
+        assertTrue(PlacesError("DEC2BIN(10,20)"));
+        assertTrue(PlacesError("DEC2HEX(952,20)"));
+        assertTrue(PlacesError("DEC2OCT(75,20)"));
+        assertTrue(PlacesError("BIN2OCT(10,20)"));
+        assertTrue(PlacesError("BIN2HEX(101010100,20)"));
+        assertTrue(PlacesError("OCT2BIN(721,20)"));
+        assertTrue(PlacesError("OCT2HEX(75212,20)"));
+        assertTrue(PlacesError("HEX2BIN('fa',20)"));
+        assertTrue(PlacesError("HEX2OCT('f5',20)"));
+    }
+
+    private static boolean PlacesError(String formula) {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        engine.TryEvaluate(formula, "");
+        return engine.LastError != null;
+    }
+
+    @Test
+    public void negative_places_padding_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 10 位补码解析为 -1,places=3 时应输出 "-01" 而非 "0-1"
+        String t = engine.TryEvaluate("BIN2DEC('1111111111',3)", "");
+        assertEquals("-01", t);
+
+        t = engine.TryEvaluate("OCT2DEC('7777777777',3)", "");
+        assertEquals("-01", t);
+
+        t = engine.TryEvaluate("HEX2DEC('FFFFFFFFFF',3)", "");
+        assertEquals("-01", t);
+    }
 }

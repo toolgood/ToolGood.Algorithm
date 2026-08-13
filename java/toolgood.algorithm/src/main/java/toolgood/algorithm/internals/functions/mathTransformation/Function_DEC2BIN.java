@@ -37,7 +37,7 @@ public final class Function_DEC2BIN extends Function_2 {
 		if (func2 != null) {
 			Operand args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone()) { return args2; }
-			if (args2.IntValue() < 0) {
+			if (args2.IntValue() < 0 || args2.IntValue() > 10) {
 				return ParameterError(2);
 			}
 			if (binaryStr.length() > args2.IntValue()) {
