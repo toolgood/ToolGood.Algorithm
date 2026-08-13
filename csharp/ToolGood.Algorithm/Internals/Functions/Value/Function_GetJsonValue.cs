@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -27,11 +28,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				var index = op.IntValue - engine.ExcelIndex;
 				if(index < obj.ArrayValue.Count && index >= 0)
 					return obj.ArrayValue[index];
-				return Operand.Error("Function '{0}' ARRAY index {1} greater than maximum length!", "GetJsonValue", index);
+				return Operand.Error("Function '{0}' ARRAY index {1} out of range!", "GetJsonValue", index);
 			}
 			if(obj.IsArrayJson) {
 				if(op.IsNumber) {
-					if(((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
+					if(((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(CultureInfo.InvariantCulture), out Operand operand)) {
 						return operand;
 					}
 					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.NumberValue);
@@ -53,7 +54,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 					if(index < json.Count && index >= 0) {
 						return ConvertJsonDataToOperand(json[index]);
 					}
-					return Operand.Error("Function '{0}' JSON index {1} greater than maximum length!", "GetJsonValue", index);
+					return Operand.Error("Function '{0}' JSON index {1} out of range!", "GetJsonValue", index);
 				} else {
 					op = ConvertToText(op, 2);
 					if(op.IsErrorOrNone) { return op; }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
@@ -6,11 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 	internal sealed class Function_ERROR : Function_1
 	{
-		public Function_ERROR(FunctionBase[] funcs) : base(funcs)
+		public Function_ERROR(FunctionBase[] funcs)
+			: base(funcs != null && funcs.Length == 1
+				? funcs
+				: throw new ArgumentException($"Function 'Error' requires exactly 1 parameter."))
 		{
-			if (funcs.Length != 1) {
-				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
-			}
 		}
 		public Function_ERROR(FunctionBase func) : base(new FunctionBase[] { func })
 		{

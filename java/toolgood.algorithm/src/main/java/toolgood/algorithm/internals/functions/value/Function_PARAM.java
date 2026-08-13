@@ -13,10 +13,14 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 public final class Function_PARAM extends Function_2 {
 
     public Function_PARAM(FunctionBase[] funcs) {
-        super(funcs);
-        if (funcs.length < 1 || funcs.length > 2) {
-            throw new IllegalArgumentException(String.format("Function '%s' requires 1 to 2 parameters.", Name()));
+        super(Check(funcs));
+    }
+
+    private static FunctionBase[] Check(FunctionBase[] funcs) {
+        if (funcs == null || funcs.length < 1 || funcs.length > 2) {
+            throw new IllegalArgumentException("Function 'Param' requires 1 to 2 parameters.");
         }
+        return funcs;
     }
 
     @Override

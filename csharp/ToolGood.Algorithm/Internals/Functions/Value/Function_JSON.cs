@@ -8,11 +8,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 	internal sealed class Function_JSON : Function_1
 	{
-		public Function_JSON(FunctionBase[] funcs) : base(funcs)
+		public Function_JSON(FunctionBase[] funcs)
+			: base(funcs != null && funcs.Length == 1
+				? funcs
+				: throw new ArgumentException($"Function 'Json' requires exactly 1 parameter."))
 		{
-			if (funcs.Length != 1) {
-				throw new ArgumentException($"Function '{Name}' requires exactly 1 parameter.");
-			}
 		}
 
 		public override string Name => "Json";

@@ -15,10 +15,14 @@ import toolgood.algorithm.litJson.JsonMapper;
 public final class Function_JSON extends Function_1 {
 
     public Function_JSON(FunctionBase[] funcs) {
-        super(funcs);
-        if (funcs.length != 1) {
-            throw new IllegalArgumentException(String.format("Function '%s' requires exactly 1 parameter.", Name()));
+        super(Check(funcs));
+    }
+
+    private static FunctionBase[] Check(FunctionBase[] funcs) {
+        if (funcs == null || funcs.length != 1) {
+            throw new IllegalArgumentException("Function 'Json' requires exactly 1 parameter.");
         }
+        return funcs;
     }
 
     @Override

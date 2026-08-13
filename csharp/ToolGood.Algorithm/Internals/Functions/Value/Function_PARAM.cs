@@ -6,11 +6,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 {
 	internal sealed class Function_PARAM : Function_2
 	{
-		public Function_PARAM(FunctionBase[] funcs) : base(funcs)
+		public Function_PARAM(FunctionBase[] funcs)
+			: base(funcs != null && funcs.Length >= 1 && funcs.Length <= 2
+				? funcs
+				: throw new ArgumentException($"Function 'Param' requires 1 to 2 parameters."))
 		{
-			if (funcs.Length < 1 || funcs.Length > 2) {
-				throw new ArgumentException($"Function '{Name}' requires 1 to 2 parameters.");
-			}
 		}
 
 		

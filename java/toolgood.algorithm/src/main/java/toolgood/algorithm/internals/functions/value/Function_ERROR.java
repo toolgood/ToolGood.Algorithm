@@ -13,10 +13,14 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 public final class Function_ERROR extends Function_1 {
 
     public Function_ERROR(FunctionBase[] funcs) {
-        super(funcs);
-        if (funcs.length != 1) {
-            throw new IllegalArgumentException(String.format("Function '%s' requires exactly 1 parameter.", Name()));
+        super(Check(funcs));
+    }
+
+    private static FunctionBase[] Check(FunctionBase[] funcs) {
+        if (funcs == null || funcs.length != 1) {
+            throw new IllegalArgumentException("Function 'Error' requires exactly 1 parameter.");
         }
+        return funcs;
     }
 
     public Function_ERROR(FunctionBase func) {
