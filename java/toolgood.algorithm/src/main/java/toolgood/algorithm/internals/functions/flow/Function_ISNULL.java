@@ -31,15 +31,9 @@ public final class Function_ISNULL extends Function_2 {
             if (args1.IsNull()) {
                 return func2.Evaluate(engine, tempParameter);
             }
-            if (args1.IsText() && args1.TextValue() == null) {
-                return func2.Evaluate(engine, tempParameter);
-            }
             return args1;
         }
         if (args1.IsNull()) {
-            return Operand.True;
-        }
-        if (args1.IsText() && args1.TextValue() == null) {
             return Operand.True;
         }
         return Operand.False;
@@ -47,7 +41,7 @@ public final class Function_ISNULL extends Function_2 {
 
     @Override
     public OperandType GetResultType() {
-        return OperandType.BOOLEAN;
+        return func2 != null ? func2.GetResultType() : OperandType.BOOLEAN;
     }
 
     @Override

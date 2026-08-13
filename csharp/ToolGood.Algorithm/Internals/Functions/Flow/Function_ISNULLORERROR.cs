@@ -20,16 +20,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
             var args1 = func1.Evaluate(engine, tempParameter);
             if (func2 != null) {
                 if (args1.IsNull || args1.IsErrorOrNone) { return func2.Evaluate(engine, tempParameter); }
-                if (args1.IsText && args1.TextValue == null) { return func2.Evaluate(engine, tempParameter); }
                 return args1;
             }
             if (args1.IsNull || args1.IsErrorOrNone) { return Operand.True; }
-            if (args1.IsText && args1.TextValue == null) { return Operand.True; }
             return Operand.False;
         }
 		public override OperandType GetResultType()
 		{
-			return OperandType.BOOLEAN;
+			return func2 != null ? func2.GetResultType() : OperandType.BOOLEAN;
 		}
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)

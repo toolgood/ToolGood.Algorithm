@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         }
 		public override OperandType GetResultType()
 		{
-			return OperandType.BOOLEAN;
+			return func2 != null ? func2.GetResultType() : OperandType.BOOLEAN;
 		}
 
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)

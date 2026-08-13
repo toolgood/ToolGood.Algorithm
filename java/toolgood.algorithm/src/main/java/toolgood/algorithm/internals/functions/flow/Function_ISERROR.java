@@ -44,7 +44,7 @@ public final class Function_ISERROR extends Function_2 {
 
     @Override
     public OperandType GetResultType() {
-        return OperandType.BOOLEAN;
+        return func2 != null ? func2.GetResultType() : OperandType.BOOLEAN;
     }
 
     @Override
