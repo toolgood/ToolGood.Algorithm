@@ -26,15 +26,25 @@ class Function_MULTINOMIAL extends Function_N {
         let sum = 0;
         let n = 1;
         for (let i = 0; i < list.length; i++) {
-            let a = Math.trunc(list[i]); // (int) 向零截断,对齐 C#
+            let value = list[i];
+            if (value < -2147483648 || value > 2147483647) {
+                return this.parameterError(i + 1);
+            }
+            let a = Math.trunc(value); // (int) 向零截断,对齐 C#
             if (a < 0) {
                 return this.parameterError(i + 1);
             }
             n *= this.calculateFactorial(a);
+            if (!isFinite(n)) {
+                return this.functionError();
+            }
             sum += a;
         }
 
         let r = this.calculateFactorial(sum) / n;
+        if (!isFinite(r)) {
+            return this.functionError();
+        }
         return Operand.Create(r);
     }
 

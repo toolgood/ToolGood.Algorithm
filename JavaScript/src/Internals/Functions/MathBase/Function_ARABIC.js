@@ -14,9 +14,8 @@ class Function_ARABIC extends Function_1 {
         const arg = this.getText_1(engine, tempParameter);
         if (arg.IsError) return arg;
         const text = arg.TextValue.toUpperCase();
-        // Excel ARABIC: 空文本或含非法字符时返回 #VALUE!
-        if (text.length === 0) return this.parameterError(1);
-        if (!/^[IVXLCDM]+$/.test(text)) return this.parameterError(1);
+        // Excel ARABIC: 空文本或不符合罗马数字语法(非法字符/非法减法/非法重复)时返回 #VALUE!
+        if (text.length === 0 || !/^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(text)) return this.parameterError(1);
         return Operand.Create(this.romanToArabic(text));
     }
 

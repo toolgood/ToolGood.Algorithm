@@ -26,7 +26,12 @@ class Function_HEX2DEC extends Function_2 {
             if (args2.IntValue < 0) { return this.parameterError(2); }
             let n = num.toString();
             if (n.length > args2.IntValue) { return this.parameterError(2); }
-            return Operand.Create(n.padStart(args2.IntValue, '0'));
+            if (num < 0) {
+                n = "-" + n.substring(1).padStart(args2.IntValue - 1, '0');
+            } else {
+                n = n.padStart(args2.IntValue, '0');
+            }
+            return Operand.Create(n);
         }
         return Operand.Create(num);
     }

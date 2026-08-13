@@ -26,7 +26,7 @@ class Function_EQ extends Function_2 {
       } else if (args1.IsDate) {
         return Operand.Create(args1.DateValue.ToLong() === args2.DateValue.ToLong());
       } else if (args1.IsNull) {
-        return Operand.True;
+        return this.compareError();
       } else {
         return this.compareError();
       }

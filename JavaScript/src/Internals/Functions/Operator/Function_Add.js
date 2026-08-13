@@ -14,7 +14,9 @@ class Function_Add extends Function_2 {
     let args1 = this.getNumber_1(work, tempParameter); if (args1.IsError) { return args1; }
     let args2 = this.getNumber_2(work, tempParameter); if (args2.IsError) { return args2; }
 
-    return Operand.Create(args1.NumberValue + args2.NumberValue);
+    let result = args1.NumberValue + args2.NumberValue;
+    if (!isFinite(result)) { return this.numError(); }
+    return Operand.Create(result);
   }
 
   toString2(stringBuilder, addBrackets) {

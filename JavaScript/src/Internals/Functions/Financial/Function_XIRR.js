@@ -18,7 +18,13 @@ class Function_XIRR extends Function_N {
         if (valuesArg.IsError) return valuesArg;
         const values = [];
         for (const v of valuesArg.ArrayValue) {
-            values.push(v.NumberValue);
+            if (v.IsNumber) {
+                values.push(v.NumberValue);
+            } else {
+                const v2 = v.ToNumber(`Function '${this.Name}' parameter 1 is error!`);
+                if (v2.IsError || v2.IsNone) return v2;
+                values.push(v2.NumberValue);
+            }
         }
 
         const datesArg = this.getArray(engine, tempParameter, 1);

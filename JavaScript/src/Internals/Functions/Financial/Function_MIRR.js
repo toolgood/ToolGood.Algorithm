@@ -49,7 +49,7 @@ class Function_MIRR extends Function_N {
             }
         }
 
-        if (npvNegative === 0) return this.div0Error();
+        if (npvNegative === 0 || npvPositive === 0) return this.div0Error();
 
         const mirr = Math.pow(-npvPositive / npvNegative, 1 / (n - 1)) - 1;
         return Operand.Create(mirr);

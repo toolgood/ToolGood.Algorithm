@@ -124,6 +124,14 @@ export class FunctionBase {
     }
 
     /**
+     * Creates an error operand indicating a numeric overflow error (对应 Excel #NUM!).
+     * @returns {Operand} An operand representing a numeric overflow error.
+     */
+    numError() {
+        return Operand.Error("Function '{0}' Num error!", this.Name);
+    }
+
+    /**
      * 获取结果类型（对齐 C# 抽象方法 GetResultType，子类可覆写）
      * @returns {number} OperandType
      */

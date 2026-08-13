@@ -77,10 +77,10 @@ function runAllTests() {
     runTest(runV35Tests, 'AlgorithmEngineTest_v3.5');
     
     // 运行 CalculateTreeTest
-    runTest(CalculateTreeTest.RunAllTests, 'CalculateTreeTest');
+    runTest(() => CalculateTreeTest.RunAllTests(), 'CalculateTreeTest');
     
     // 运行 ConditionTreeTest
-    runTest(ConditionTreeTest.RunAllTests, 'ConditionTreeTest');
+    runTest(() => ConditionTreeTest.RunAllTests(), 'ConditionTreeTest');
     
     // 运行 IssuesTest
     runTest(runIssuesTests, 'IssuesTest');

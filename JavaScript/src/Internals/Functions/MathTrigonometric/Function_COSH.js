@@ -13,7 +13,9 @@ class Function_COSH extends Function_1 {
     evaluate(work, tempParameter) {
         let args1 = this.getNumber_1(work, tempParameter);
         if (args1.IsError) { return args1; }
-        return Operand.Create(Math.cosh(args1.DoubleValue));
+        let x = args1.DoubleValue;
+        if (x >= 66 || x <= -66) { return this.parameterError(1); }
+        return Operand.Create(Math.cosh(x));
     }
 }
 

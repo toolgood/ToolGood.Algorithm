@@ -24,7 +24,7 @@ class Function_DEC2OCT extends Function_2 {
         if (this.b != null) {
             let args2 = this.getNumber_2(work, tempParameter);
             if (args2.IsError) { return args2; }
-            if (args2.IntValue < 0) { return this.parameterError(2); }
+            if (args2.IntValue < 0 || args2.IntValue > 10) { return this.parameterError(2); }
             if (oct.length > args2.IntValue) { return this.parameterError(2); }
             return Operand.Create(oct.padStart(args2.IntValue, '0'));
         }

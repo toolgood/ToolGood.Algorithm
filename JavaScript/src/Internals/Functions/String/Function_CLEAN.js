@@ -16,8 +16,7 @@ class Function_CLEAN extends Function_1 {
         let t = args1.TextValue;
         let needClean = false;
         for (let i = 0; i < t.length; i++) {
-            let c = t[i];
-            if (c === '\f' || c === '\n' || c === '\r' || c === '\t' || c === '\v') {
+            if (t.charCodeAt(i) < 32) {
                 needClean = true;
                 break;
             }
@@ -27,9 +26,8 @@ class Function_CLEAN extends Function_1 {
         }
         let result = '';
         for (let i = 0; i < t.length; i++) {
-            let c = t[i];
-            if (c !== '\f' && c !== '\n' && c !== '\r' && c !== '\t' && c !== '\v') {
-                result += c;
+            if (t.charCodeAt(i) >= 32) {
+                result += t[i];
             }
         }
         return Operand.Create(result);

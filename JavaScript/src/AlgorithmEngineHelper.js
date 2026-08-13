@@ -88,6 +88,7 @@ export class AlgorithmEngineHelper {
         if (result != null) { return result; }
 
         oldSrcUnit = oldSrcUnit.replace(this.unitRegex, "");
+        oldTarUnit = oldTarUnit.replace(this.unitRegex, "");
         result = this.tryUnitConvert(src, oldSrcUnit, oldTarUnit);
         if (result != null) { return result; }
 

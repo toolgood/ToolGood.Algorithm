@@ -29,12 +29,12 @@ class Function_SERIESSUM extends Function_N {
         if (coefficientsArg.IsError) return coefficientsArg;
 
         let result = 0;
-        let i = 0;
-        for (const coef of coefficientsArg.ArrayValue) {
+        const coefArray = coefficientsArg.ArrayValue;
+        for (let i = 0; i < coefArray.length; i++) {
+            const coef = coefArray[i];
             if (coef.IsNumber) {
                 const power = n + i * m;
                 result += coef.NumberValue * Math.pow(x, power);
-                i++;
             }
         }
 

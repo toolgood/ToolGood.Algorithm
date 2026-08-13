@@ -31,7 +31,7 @@ class Function_GetJsonValue extends Function_2 {
             if (index < obj.ArrayValue.length && index >= 0) {
                 return obj.ArrayValue[index];
             }
-            return Operand.Error('Function \'{0}\'' + ' ARRAY index {1} greater than maximum length!', 'GetJsonValue', index);
+            return Operand.Error('Function \'{0}\'' + ' ARRAY index {1} out of range!', 'GetJsonValue', index);
         }
         if (obj.IsArrayJson) {
             if (op.IsNumber) {
@@ -80,7 +80,7 @@ class Function_GetJsonValue extends Function_2 {
                     }
                     return Operand.Create(v);
                 }
-                return Operand.Error('Function \'{0}\' JSON index {1} greater than maximum length!', 'GetJsonValue', index);
+                return Operand.Error('Function \'{0}\' JSON index {1} out of range!', 'GetJsonValue', index);
             } else if (json.IsObject) {
                 op = op.ToText('Function \'{0}\' JSON parameter name is error!', 'GetJsonValue');
                 if (op.IsError) {

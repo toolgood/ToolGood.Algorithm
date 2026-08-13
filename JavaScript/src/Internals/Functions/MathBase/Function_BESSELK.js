@@ -23,7 +23,9 @@ class Function_BESSELK extends Function_2 {
             return this.functionError();
         }
 
-        return Operand.Create(this.besselK(n, x));
+        let result = this.besselK(n, x);
+        if (!isFinite(result)) { return this.functionError(); }
+        return Operand.Create(result);
     }
 
     besselK(n, x) {

@@ -19,6 +19,9 @@ class Function_TRUNC extends Function_2 {
             let args2 = this.getNumber_2(engine, tempParameter);
             if (args2.IsError) { return args2; }
             digits = args2.IntValue;
+            if (digits < -15 || digits > 15) {
+                return this.parameterError(2);
+            }
         }
 
         if (args1.NumberValue == 0) {

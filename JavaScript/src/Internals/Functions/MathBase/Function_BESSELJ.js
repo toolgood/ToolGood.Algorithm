@@ -19,7 +19,9 @@ class Function_BESSELJ extends Function_2 {
         let x = args1.NumberValue;
         let n = Math.trunc(args2.NumberValue);
 
-        return Operand.Create(this.besselJ(n, x));
+        let result = this.besselJ(n, x);
+        if (!isFinite(result)) { return this.functionError(); }
+        return Operand.Create(result);
     }
 
     besselJ(n, x) {

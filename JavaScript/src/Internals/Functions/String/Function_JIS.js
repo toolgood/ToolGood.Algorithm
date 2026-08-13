@@ -20,7 +20,7 @@ class Function_JIS extends Function_1 {
         let needModify = false;
         for (let i = 0; i < input.length; i++) {
             let c = input.charCodeAt(i);
-            if (c === 32 || c < 127) {
+            if (c === 32 || (c > 32 && c < 127)) {
                 needModify = true;
                 break;
             }
@@ -33,7 +33,7 @@ class Function_JIS extends Function_1 {
             let c = input.charCodeAt(i);
             if (c === 32) {
                 chars.push(String.fromCharCode(12288));
-            } else if (c < 127) {
+            } else if (c > 32 && c < 127) {
                 chars.push(String.fromCharCode(c + 65248));
             } else {
                 chars.push(input[i]);

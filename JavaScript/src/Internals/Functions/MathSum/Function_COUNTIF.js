@@ -25,7 +25,7 @@ class Function_COUNTIF extends Function_2 {
         let count;
         if (args2.IsNumber) {
             count = FunctionUtil.F_base_countif(list, args2.NumberValue);
-        } else {
+        } else if (args2.IsText) {
             let trimmedText = args2.TextValue.trim();
             let parsedValue = FunctionUtil.tryParseNumber(trimmedText);
             if (parsedValue != null) {
@@ -39,6 +39,8 @@ class Function_COUNTIF extends Function_2 {
                     return this.parameterError(2);
                 }
             }
+        } else {
+            return this.parameterError(2);
         }
         return Operand.Create(count);
     }

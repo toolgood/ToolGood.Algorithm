@@ -44,6 +44,8 @@ class Function_IPMT extends Function_N {
             if (type !== 0 && type !== 1) return this.parameterError(6);
         }
 
+        if (per < 1 || per > nper) return this.parameterError(2);
+
         const pmt = this.calculatePMT(rate, nper, pv, fv, type);
         const ipmt = this.calculateIPMT(rate, per, nper, pv, fv, type, pmt);
 

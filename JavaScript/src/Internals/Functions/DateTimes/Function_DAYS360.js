@@ -34,8 +34,8 @@ class Function_DAYS360 extends Function_3 {
                     - startDate.getFullYear() * 360 - (startDate.getMonth()) * 30;
 
         if (method) {
-            if (endDate.getDate() == 31) days += 30;
-            if (startDate.getDate() == 31) days -= 30;
+            // 欧洲方法: 仅将 31 日按 30 日计算, 日号仍需正常参与天数差
+            days += Math.min(endDate.getDate(), 30) - Math.min(startDate.getDate(), 30);
         } else {
             // US (NASD) 方法: start 若为月末(含 2 月最后一天)则调整为 30 日,
             // end 若为月末, 依据调整后的 startDay 决定按 31 日(下月1日)或 30 日计算

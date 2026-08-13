@@ -17,7 +17,9 @@ class Function_Div extends Function_2 {
     if (args2.NumberValue === 0) { return this.div0Error(); }
     if (args2.NumberValue === 1) { return args1; }
 
-    return Operand.Create(args1.NumberValue / args2.NumberValue);
+    let result = args1.NumberValue / args2.NumberValue;
+    if (!isFinite(result)) { return this.numError(); }
+    return Operand.Create(result);
   }
 
   toString2(stringBuilder, addBrackets) {

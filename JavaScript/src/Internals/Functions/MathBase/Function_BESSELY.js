@@ -23,7 +23,9 @@ class Function_BESSELY extends Function_2 {
             return this.parameterError(1);
         }
 
-        return Operand.Create(this.besselY(n, x));
+        let result = this.besselY(n, x);
+        if (!isFinite(result)) { return this.functionError(); }
+        return Operand.Create(result);
     }
 
     besselY(n, x) {

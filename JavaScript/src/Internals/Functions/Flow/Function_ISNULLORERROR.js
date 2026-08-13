@@ -16,15 +16,9 @@ class Function_ISNULLORERROR extends Function_2 {
             if (args1.IsNull || args1.IsError) {
                 return this.b.evaluate(engine, tempParameter);
             }
-            if (args1.IsText && args1.TextValue === null) {
-                return this.b.evaluate(engine, tempParameter);
-            }
             return args1;
         }
         if (args1.IsNull || args1.IsError) {
-            return Operand.True;
-        }
-        if (args1.IsText && args1.TextValue === null) {
             return Operand.True;
         }
         return Operand.False;

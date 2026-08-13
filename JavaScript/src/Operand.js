@@ -533,9 +533,6 @@ class OperandString extends Operand {
                 case '\n': result += '\\n'; break;
                 case '\r': result += '\\r'; break;
                 case '\t': result += '\\t'; break;
-                case '\0': result += '\\0'; break;
-                case '\v': result += '\\v'; break;
-                case '\a': result += '\\a'; break;
                 case '\b': result += '\\b'; break;
                 case '\f': result += '\\f'; break;
                 default:
@@ -808,7 +805,7 @@ class OperandKeyValueList extends Operand {
     }
 
     toString() {
-        let elements = this.TextList.map(item => '"' + item.key + '":' + item.value.toString());
+        let elements = this.TextList.map(item => new OperandString(item.key).toString() + ':' + item.value.toString());
         return '{' + elements.join(',') + '}';
     }
 }

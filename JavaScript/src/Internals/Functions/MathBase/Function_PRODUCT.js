@@ -28,8 +28,10 @@ class Function_PRODUCT extends Function_N {
 
         let d = 1;
         for (let i = 0; i < list.length; i++) {
-            let a = list[i];
-            d *= a;
+            d *= list[i];
+            if (!isFinite(d)) {
+                return this.functionError();
+            }
         }
         return Operand.Create(d);
     }

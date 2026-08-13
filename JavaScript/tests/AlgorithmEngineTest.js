@@ -210,11 +210,31 @@ function test() {
   bb2 = engine.TryEvaluate("1!=null", false);
   assert.strictEqual(bb2, true, "1!=null 应该等于 true");
   
+  // 两侧同为 null 属于异常数据，返回错误，TryEvaluate 返回默认值
   bb2 = engine.TryEvaluate("null=null", false);
-  assert.strictEqual(bb2, true, "null=null 应该等于 true");
-  
+  assert.strictEqual(bb2, false, "null=null 应该等于 false(错误返回默认值)");
+  assert.ok(engine.LastError != null, "null=null 应该设置 LastError");
+
   bb2 = engine.TryEvaluate("null!=null", true);
-  assert.strictEqual(bb2, false, "null!=null 应该等于 false");
+  assert.strictEqual(bb2, true, "null!=null 应该等于 true(错误返回默认值)");
+  assert.ok(engine.LastError != null, "null!=null 应该设置 LastError");
+
+  // 两侧同为 null 的大小比较同样返回错误
+  bb2 = engine.TryEvaluate("null>null", true);
+  assert.strictEqual(bb2, true, "null>null 应该等于 true(错误返回默认值)");
+  assert.ok(engine.LastError != null, "null>null 应该设置 LastError");
+
+  bb2 = engine.TryEvaluate("null>=null", true);
+  assert.strictEqual(bb2, true, "null>=null 应该等于 true(错误返回默认值)");
+  assert.ok(engine.LastError != null, "null>=null 应该设置 LastError");
+
+  bb2 = engine.TryEvaluate("null<=null", true);
+  assert.strictEqual(bb2, true, "null<=null 应该等于 true(错误返回默认值)");
+  assert.ok(engine.LastError != null, "null<=null 应该设置 LastError");
+
+  bb2 = engine.TryEvaluate("null<null", true);
+  assert.strictEqual(bb2, true, "null<null 应该等于 true(错误返回默认值)");
+  assert.ok(engine.LastError != null, "null<null 应该设置 LastError");
   
   bb2 = engine.TryEvaluate("'111'=null", true);
   assert.strictEqual(bb2, false, "'111'=null 应该等于 false");

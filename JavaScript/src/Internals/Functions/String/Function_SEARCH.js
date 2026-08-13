@@ -17,7 +17,7 @@ class Function_SEARCH extends Function_3 {
         if (args2.IsError) { return args2; }
 
         if (this.c === null || this.c === undefined) {
-            let index = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase());
+            let index = this.wildcardIndexOf(args2.TextValue, args1.TextValue, 0);
             if (index < 0) {
                 // 未找到:Excel 模式(索引从1开始)返回错误,C# 模式(索引从0开始)返回 -1
                 return work.ExcelIndex === 1 ? this.functionError() : Operand.Create(-1);
@@ -28,13 +28,50 @@ class Function_SEARCH extends Function_3 {
         if (args3.IsError) { return args3; }
         let startIndex = args3.IntValue - work.ExcelIndex;
         if (startIndex < 0 || startIndex >= args2.TextValue.length) {
-            return this.functionError();
+            return this.parameterError(3);
         }
-        let p2 = args2.TextValue.toLowerCase().indexOf(args1.TextValue.toLowerCase(), startIndex);
+        let p2 = this.wildcardIndexOf(args2.TextValue, args1.TextValue, startIndex);
         if (p2 < 0) {
             return work.ExcelIndex === 1 ? this.functionError() : Operand.Create(-1);
         }
-        return Operand.Create(p2 + startIndex + work.ExcelIndex);
+        return Operand.Create(p2 + work.ExcelIndex);
+    }
+
+    /**
+     * 在指定起始位置起做大小写不敏感的通配符查找,支持 Excel 的 ? 与 * 及 ~ 转义。
+     */
+    wildcardIndexOf(text, pattern, startIndex) {
+        const regex = new RegExp(this.wildcardToRegex(pattern), 'ig');
+        regex.lastIndex = startIndex;
+        const match = regex.exec(text);
+        if (!match) { return -1; }
+        return match.index;
+    }
+
+    wildcardToRegex(pattern) {
+        const sb = [];
+        for (let i = 0; i < pattern.length; i++) {
+            const c = pattern[i];
+            if (c === '~') {
+                if (i + 1 < pattern.length && (pattern[i + 1] === '?' || pattern[i + 1] === '*' || pattern[i + 1] === '~')) {
+                    sb.push(this.escapeRegExpChar(pattern[i + 1]));
+                    i++;
+                } else {
+                    sb.push(this.escapeRegExpChar('~'));
+                }
+            } else if (c === '*') {
+                sb.push('[\\s\\S]*');
+            } else if (c === '?') {
+                sb.push('[\\s\\S]');
+            } else {
+                sb.push(this.escapeRegExpChar(c));
+            }
+        }
+        return sb.join('');
+    }
+
+    escapeRegExpChar(c) {
+        return /[.*+?^${}()|[\]\\]/.test(c) ? '\\' + c : c;
     }
 }
 

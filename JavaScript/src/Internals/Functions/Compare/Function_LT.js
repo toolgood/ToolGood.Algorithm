@@ -28,7 +28,7 @@ class Function_LT extends Function_2 {
         args2 = args2.ToNumber();
         return Operand.Create(args1.NumberValue < args2.NumberValue);
       } else if (args1.IsNull) {
-        return Operand.False;
+        return this.compareError();
       } else {
         return this.compareError();
       }

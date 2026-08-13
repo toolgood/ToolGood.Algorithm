@@ -42,8 +42,8 @@ export class Function_INDEXOF extends Function_4 {
         }
 
         if (this.d == null) {
-            let index = text.substring(startIndex).indexOf(args2.TextValue);
-            return Operand.Create(index + startIndex + engine.ExcelIndex);
+            let index = text.indexOf(args2.TextValue, startIndex);
+            return Operand.Create(index + engine.ExcelIndex);
         }
 
         let args4 = this.getNumber_4(engine, tempParameter);
