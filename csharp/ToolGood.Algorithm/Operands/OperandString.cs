@@ -133,9 +133,6 @@ namespace ToolGood.Algorithm.Operands
 					case '\n': sb.Append("\\n"); break;
 					case '\r': sb.Append("\\r"); break;
 					case '\t': sb.Append("\\t"); break;
-					case '\0': sb.Append("\\0"); break;
-					case '\v': sb.Append("\\v"); break;
-					case '\a': sb.Append("\\a"); break;
 					case '\b': sb.Append("\\b"); break;
 					case '\f': sb.Append("\\f"); break;
 					default: 

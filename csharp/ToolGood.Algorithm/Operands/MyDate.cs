@@ -213,7 +213,7 @@ namespace ToolGood.Algorithm.Operands
         internal string ToString(string f)
         {
             if (Year == null || Year == 0) {
-                return this.ToString(f);
+                return this.ToString();
             }
             return this.ToDateTime().ToString(f);
         }

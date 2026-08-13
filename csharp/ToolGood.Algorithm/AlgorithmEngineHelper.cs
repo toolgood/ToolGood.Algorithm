@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using System;
 using System.IO;
@@ -100,6 +100,7 @@ namespace ToolGood.Algorithm
 			if(result.HasValue) { return result.Value; }
 
 			oldSrcUnit = unitRegex.Replace(oldSrcUnit, string.Empty);
+			oldTarUnit = unitRegex.Replace(oldTarUnit, string.Empty);
 			result = TryConvert(src, oldSrcUnit, oldTarUnit);
 			if(result.HasValue) { return result.Value; }
 

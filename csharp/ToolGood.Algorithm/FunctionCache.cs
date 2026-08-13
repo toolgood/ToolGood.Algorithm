@@ -12,8 +12,9 @@ namespace ToolGood.Algorithm
 	/// </summary>
 	public sealed class FunctionCache
 	{
-		private readonly ConcurrentDictionary<string, FunctionBase> functionCache = new ConcurrentDictionary<string, FunctionBase>();
-		 
+		private readonly ConcurrentDictionary<string, FunctionBase> calculateCache = new ConcurrentDictionary<string, FunctionBase>();
+		private readonly ConcurrentDictionary<string, FunctionBase> conditionCache = new ConcurrentDictionary<string, FunctionBase>();
+
 		/// <summary>
 		/// 解析函数表达式，并使用缓存来提高性能。对于相同的函数表达式，函数将从缓存中返回之前解析的结果，而不是重新解析。
 		/// </summary>
@@ -21,17 +22,17 @@ namespace ToolGood.Algorithm
 		/// <returns>解析后的函数对象</returns>
 		public FunctionBase ParseWithCache(string funExp)
 		{
-			return functionCache.GetOrAdd(funExp, key => {
+			return calculateCache.GetOrAdd(funExp, key => {
 				var tree = AlgorithmEngineHelper.ParseCalculate(key);
 				return CreateCalculate(tree);
 			});
 		}
 		private FunctionBase CreateCalculate(CalculateTree tree)
 		{
-			if(functionCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
+			if(calculateCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
 			if(tree.Type == Algorithm.Enums.CalculateTreeType.String) {
 				var leafFun = AlgorithmEngineHelper.ParseFormula(tree.Text);
-				functionCache[tree.Text] = leafFun;
+				calculateCache[tree.Text] = leafFun;
 				return leafFun;
 			}
 			if(tree.Type == Algorithm.Enums.CalculateTreeType.Error) { throw new Exception(tree.ErrorMessage); }
@@ -39,7 +40,7 @@ namespace ToolGood.Algorithm
 			var leftFunc = CreateCalculate(tree.Nodes[0]);
 			var rightFunc = CreateCalculate(tree.Nodes[1]);
 			var fun = AlgorithmEngineHelper.CombineCalculate(leftFunc, (Algorithm.Enums.CombineCalculateType)(byte)tree.Type, rightFunc);
-			functionCache[tree.Text] = fun;
+			calculateCache[tree.Text] = fun;
 			return fun;
 		}
 
@@ -50,14 +51,14 @@ namespace ToolGood.Algorithm
 		/// <returns>解析后的函数对象</returns>
 		public FunctionBase ParseConditionWithCache(string funExp)
 		{
-			return functionCache.GetOrAdd(funExp, key => {
+			return conditionCache.GetOrAdd(funExp, key => {
 				var tree = AlgorithmEngineHelper.ParseCondition(key);
 				return CreateCondition(tree);
 			});
 		}
 		private FunctionBase CreateCondition(ConditionTree tree)
 		{
-			if(functionCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
+			if(conditionCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
 			if(tree.Type == Algorithm.Enums.ConditionTreeType.String) {
 				// 直接走计算树路径(CreateCalculate 内部用 TryGetValue+索引器赋值),
 				// 避免对同一 key 重入 GetOrAdd(ConcurrentDictionary 文档禁止 valueFactory 递归调用)
@@ -69,11 +70,11 @@ namespace ToolGood.Algorithm
 			var rightFunc = CreateCondition(tree.Nodes[1]);
 			if(tree.Type == Algorithm.Enums.ConditionTreeType.And) {
 				var fun = AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
-				functionCache[tree.Text] = fun;
+				conditionCache[tree.Text] = fun;
 				return fun;
 			} else if(tree.Type == Algorithm.Enums.ConditionTreeType.Or) {
 				var fun = AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
-				functionCache[tree.Text] = fun;
+				conditionCache[tree.Text] = fun;
 				return fun;
 			}
 			throw new Exception(tree.ErrorMessage);

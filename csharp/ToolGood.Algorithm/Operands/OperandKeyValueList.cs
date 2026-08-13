@@ -93,9 +93,7 @@ namespace ToolGood.Algorithm.Operands
 			stringBuilder.Append('{');
 			for (var i = 0; i < _keyValueList.Count; i++) {
 				if (i > 0) stringBuilder.Append(',');
-				stringBuilder.Append('"');
-				stringBuilder.Append(_keyValueList[i].Key);
-				stringBuilder.Append('"');
+				stringBuilder.Append(new OperandString(_keyValueList[i].Key).ToString());
 				stringBuilder.Append(':');
 				stringBuilder.Append(_keyValueList[i].Value.ToString());
 			}
