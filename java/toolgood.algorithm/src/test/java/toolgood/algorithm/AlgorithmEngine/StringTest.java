@@ -40,6 +40,14 @@ public class StringTest {
     }
 
     @Test
+    public void CLEAN_control_chars_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 应移除所有 0~31 控制字符(修复前仅移除 \f \n \r \t \v)
+        String t = engine.TryEvaluate("clean(char(7)&char(8)&'abc')", "");
+        assertEquals("abc", t);
+    }
+
+    @Test
     public void code_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         int t = engine.TryEvaluate("code('1')", 0);
@@ -201,6 +209,20 @@ public class StringTest {
     }
 
     @Test
+    public void REPLACE_num_chars_overflow_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // num_chars 超出剩余文本长度时,应截断到末尾而非崩溃
+        String t = engine.TryEvaluate("REPLACE(\"hello\",1,6,\"\")", "");
+        assertEquals("", t);
+
+        t = engine.TryEvaluate("REPLACE(\"hello\",1,10,\"X\")", "");
+        assertEquals("X", t);
+
+        t = engine.TryEvaluate("REPLACE(\"hello\",3,100,\"ab\")", "");
+        assertEquals("heab", t);
+    }
+
+    @Test
     public void REPT_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("REPT(\"q\",3)", "");
@@ -229,6 +251,26 @@ public class StringTest {
         AlgorithmEngine engine = new AlgorithmEngine();
         int t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", 0);
         assertEquals(4, t);
+    }
+
+    @Test
+    public void SEARCH_wildcard_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // ? 匹配任意单字符
+        int t = engine.TryEvaluate("SEARCH(\"a?c\",\"aXc\")", 0);
+        assertEquals(1, t);
+
+        // * 匹配任意字符序列
+        t = engine.TryEvaluate("SEARCH(\"a*c\",\"abbc\")", 0);
+        assertEquals(1, t);
+
+        // ~ 转义通配符字面量
+        t = engine.TryEvaluate("SEARCH(\"~?\",\"a?b\")", 0);
+        assertEquals(2, t);
+
+        // 大小写不敏感
+        t = engine.TryEvaluate("SEARCH(\"ABC\",\"xxabc\")", 0);
+        assertEquals(3, t);
     }
 
     @Test

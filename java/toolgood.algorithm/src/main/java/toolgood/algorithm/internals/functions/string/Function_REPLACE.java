@@ -63,6 +63,10 @@ public final class Function_REPLACE extends Function_4 {
         if (start >= oldtext.length()) {
             return Operand.Create(oldtext + newtext);
         }
+        // 截断超出的替换长度,避免 StringBuilder 容量为负数导致异常
+        if (length > oldtext.length() - start) {
+            length = oldtext.length() - start;
+        }
 
         StringBuilder sb = new StringBuilder(oldtext.length() - length + newtext.length());
         sb.append(oldtext, 0, start);

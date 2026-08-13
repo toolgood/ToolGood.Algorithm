@@ -31,7 +31,7 @@ public final class Function_CLEAN extends Function_1 {
         boolean needClean = false;
         for (int i = 0; i < t.length(); i++) {
             char c = t.charAt(i);
-            if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\u000b') {
+            if (c < 32) {
                 needClean = true;
                 break;
             }
@@ -42,7 +42,7 @@ public final class Function_CLEAN extends Function_1 {
         StringBuilder sb = new StringBuilder(t.length());
         for (int i = 0; i < t.length(); i++) {
             char c = t.charAt(i);
-            if (c != '\f' && c != '\n' && c != '\r' && c != '\t' && c != '\u000b') {
+            if (c >= 32) {
                 sb.append(c);
             }
         }

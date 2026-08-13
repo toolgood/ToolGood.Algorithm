@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			bool needModify = false;
 			for (int i = 0; i < input.Length; i++) {
 				var c = input[i];
-				if (c == ' ' || c < 127) {
+				if (c == ' ' || (c > 32 && c < 127)) {
 					needModify = true;
 					break;
 				}
@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				var c = span[i];
 				if (c == ' ') {
 					span[i] = (char)12288;
-				} else if (c < 127) {
+				} else if (c > 32 && c < 127) {
 					span[i] = (char)(c + 65248);
 				}
 			}

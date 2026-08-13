@@ -40,6 +40,15 @@ namespace ToolGood.Algorithm.Test.String
         }
 
         [Test]
+        public void CLEAN_control_chars_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 应移除所有 0~31 控制字符(修复前仅移除 \f \n \r \t \v)
+            var t = engine.TryEvaluate("clean(char(7)&char(8)&'abc')", "");
+            Assert.AreEqual(t, "abc");
+        }
+
+        [Test]
         public void code_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -216,6 +225,21 @@ namespace ToolGood.Algorithm.Test.String
         }
 
         [Test]
+        public void REPLACE_num_chars_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // num_chars 超出剩余文本长度时,应截断到末尾而非崩溃
+            var t = engine.TryEvaluate("REPLACE(\"hello\",1,6,\"\")", "");
+            Assert.AreEqual(t, "");
+
+            t = engine.TryEvaluate("REPLACE(\"hello\",1,10,\"X\")", "");
+            Assert.AreEqual(t, "X");
+
+            t = engine.TryEvaluate("REPLACE(\"hello\",3,100,\"ab\")", "");
+            Assert.AreEqual(t, "heab");
+        }
+
+        [Test]
         public void REPT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -248,6 +272,27 @@ namespace ToolGood.Algorithm.Test.String
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", 0);
             Assert.AreEqual(t, 4);
+        }
+
+        [Test]
+        public void SEARCH_wildcard_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // ? 匹配任意单字符
+            var t = engine.TryEvaluate("SEARCH(\"a?c\",\"aXc\")", 0);
+            Assert.AreEqual(t, 1);
+
+            // * 匹配任意字符序列
+            t = engine.TryEvaluate("SEARCH(\"a*c\",\"abbc\")", 0);
+            Assert.AreEqual(t, 1);
+
+            // ~ 转义通配符字面量
+            t = engine.TryEvaluate("SEARCH(\"~?\",\"a?b\")", 0);
+            Assert.AreEqual(t, 2);
+
+            // 大小写不敏感
+            t = engine.TryEvaluate("SEARCH(\"ABC\",\"xxabc\")", 0);
+            Assert.AreEqual(t, 3);
         }
 
         [Test]

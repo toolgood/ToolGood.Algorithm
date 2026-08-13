@@ -55,6 +55,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (start >= oldtext.Length) {
 				return Operand.Create(oldtext + newtext);
 			}
+			// 截断超出的替换长度,避免 StringBuilder 容量为负数导致异常
+			if (length > oldtext.Length - start) {
+				length = oldtext.Length - start;
+			}
 
 			var sb = new StringBuilder(oldtext.Length - length + newtext.Length);
 			sb.Append(oldtext, 0, start);

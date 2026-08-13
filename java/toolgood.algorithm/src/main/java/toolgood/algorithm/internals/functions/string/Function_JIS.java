@@ -34,7 +34,7 @@ public final class Function_JIS extends Function_1 {
         boolean needModify = false;
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
-            if (c == ' ' || c < 127) {
+            if (c == ' ' || (c > 32 && c < 127)) {
                 needModify = true;
                 break;
             }
@@ -47,7 +47,7 @@ public final class Function_JIS extends Function_1 {
             char c = chars[i];
             if (c == ' ') {
                 chars[i] = (char) 12288;
-            } else if (c < 127) {
+            } else if (c > 32 && c < 127) {
                 chars[i] = (char) (c + 65248);
             }
         }

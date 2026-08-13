@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			bool needClean = false;
 			for (int i = 0; i < t.Length; i++) {
 				var c = t[i];
-				if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v') {
+				if (c < 32) {
 					needClean = true;
 					break;
 				}
@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var sb = new StringBuilder(t.Length);
 			for (int i = 0; i < t.Length; i++) {
 				var c = t[i];
-				if (c != '\f' && c != '\n' && c != '\r' && c != '\t' && c != '\v') {
+				if (c >= 32) {
 					sb.Append(c);
 				}
 			}
