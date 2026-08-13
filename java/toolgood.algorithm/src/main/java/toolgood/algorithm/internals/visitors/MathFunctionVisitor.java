@@ -239,7 +239,13 @@ public class MathFunctionVisitor extends AbstractParseTreeVisitor<FunctionBase> 
     public FunctionBase visitArrayJson(ArrayJsonContext context) {
         String keyName = null;
         if (context.key != null) {
-            keyName = context.key.getText().trim().replace("\"", "").replace("'", "").replace(" ", "").replace("\t", "").replace("\r", "").replace("\n", "").replace("\f", "");
+            String keyText = context.key.getText();
+            String trimChars = "\"' \t\r\n\f";
+            int start = 0;
+            int end = keyText.length();
+            while (start < end && trimChars.indexOf(keyText.charAt(start)) >= 0) start++;
+            while (end > start && trimChars.indexOf(keyText.charAt(end - 1)) >= 0) end--;
+            keyName = keyText.substring(start, end);
         } else if (context.parameter2() != null) {
             keyName = context.parameter2().getText();
         }

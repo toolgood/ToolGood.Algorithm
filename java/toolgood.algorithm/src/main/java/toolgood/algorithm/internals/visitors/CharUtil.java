@@ -7,38 +7,42 @@ public class CharUtil {
     public static char StandardChar(char c) {
         if (c <= 0)
             return c;
-        char o = (char) c;
-        if (o == '‘')
-            return '\'';
-        if (o == '’')
-            return '\'';
-        if (o == '“')
-            return '"';
-        if (o == '”')
-            return '"';
-        if (o == '〔')
-            return '(';
-        if (o == '〕')
-            return ')';
-        if (o == '＝')
-            return '=';
-        if (o == '＋')
-            return '+';
-        if (o == '－')
-            return '-';
-        if (o == '×')
-            return '*';
-        if (o == '÷')
-            return '/';
-        if (o == '／')
-            return '/';
-
-        if (c == 12288) {
-            o = (char) 32;
-        } else if (c > 65280 && c < 65375) {
-            o = (char) (c - 65248);
+        if (c == '\r') return '\n';
+        if (c == '\t') return ' ';
+        if (c == '\f') return ' ';
+        if (c < 'a') return c;
+        if (c <= 'z') return (char) (c - 32);
+        if (c > 65280 && c < 65375) {
+            c = (char) (c - 65248);
+            c = Character.toUpperCase(c);
         }
-        return Character.toUpperCase(o);
+        if ((c >= '\u00c0' && c <= '\u00d6') ||
+            (c >= '\u00d8' && c <= '\u00f6') ||
+            (c >= '\u00f8' && c <= '\u00ff') ||
+            (c >= '\u0100' && c <= '\u1fff') ||
+            (c >= '\u2c00' && c <= '\u2fff') ||
+            (c >= '\u3040' && c <= '\u318f') ||
+            (c >= '\u3300' && c <= '\u337f') ||
+            (c >= '\u3400' && c <= '\u3fff') ||
+            (c >= '\u4e00' && c <= '\u9fff') ||
+            (c >= '\ua000' && c <= '\ud7ff') ||
+            (c >= '\uf900' && c <= '\ufaff') ||
+            (c >= '\uff00' && c <= '\ufff0')) return '_';
+        if (c < 127) return c;
+        switch (c) {
+            case (char) 215: return '*';
+            case (char) 247: return '/';
+            case (char) 8216:
+            case (char) 8217: return '\'';
+            case (char) 8220:
+            case (char) 8221: return '"';
+            case (char) 12288: return ' ';
+            case (char) 12304: return '[';
+            case (char) 12305: return ']';
+            case (char) 12308: return '(';
+            case (char) 12309: return ')';
+        }
+        return Character.toUpperCase(c);
     }
 
     public static String StandardString(String s) {
