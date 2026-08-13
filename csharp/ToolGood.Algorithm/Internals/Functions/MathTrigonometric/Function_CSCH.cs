@@ -19,7 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			var d = MathEx.Sinh(args1.NumberValue);
+			var x = args1.NumberValue;
+			// csch 在 |x| 较大时趋近 0,提前返回避免 e^|x| 溢出
+			if (x >= 66 || x <= -66) { return Operand.Create(0m); }
+			var d = MathEx.Sinh(x);
 			if (d == 0) {
 				return Div0Error();
 			}

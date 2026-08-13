@@ -26,11 +26,15 @@ public final class Function_COTH extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
-        double d = Math.sinh(args1.NumberValue().doubleValue());
+        double x = args1.NumberValue().doubleValue();
+        // coth 在 |x| 较大时趋近 ±1,提前返回避免 Infinity/NaN
+        if (x >= 709) { return Operand.Create(BigDecimal.valueOf(1.0)); }
+        if (x <= -709) { return Operand.Create(BigDecimal.valueOf(-1.0)); }
+        double d = Math.sinh(x);
         if (d == 0) {
             return Div0Error();
         }
-        return Operand.Create(BigDecimal.valueOf(Math.cosh(args1.NumberValue().doubleValue()) / d));
+        return Operand.Create(BigDecimal.valueOf(Math.cosh(x) / d));
     }
 
     @Override

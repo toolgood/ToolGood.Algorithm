@@ -19,7 +19,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            return Operand.Create(MathEx.Tanh(args1.NumberValue));
+            var x = args1.NumberValue;
+            // tanh 在 |x| 较大时趋近 ±1,提前返回避免 e^|x| 溢出
+            if (x >= 66) { return Operand.Create(1m); }
+            if (x <= -66) { return Operand.Create(-1m); }
+            return Operand.Create(MathEx.Tanh(x));
         }
 		public override OperandType GetResultType()
 		{

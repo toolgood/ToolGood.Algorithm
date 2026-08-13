@@ -210,5 +210,29 @@ namespace ToolGood.Algorithm.Test.MathTrigonometric
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.549306144, 6), t);
         }
+
+        [Test]
+        public void hyperbolic_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            // tanh/coth 大参数趋近 ±1
+            Assert.AreEqual(1.0, engine.TryEvaluate("tanh(1000)", 0.0));
+            Assert.AreEqual(-1.0, engine.TryEvaluate("tanh(-1000)", 0.0));
+            Assert.AreEqual(1.0, engine.TryEvaluate("coth(1000)", 0.0));
+            Assert.AreEqual(-1.0, engine.TryEvaluate("coth(-1000)", 0.0));
+
+            // sech/csch 大参数趋近 0
+            Assert.AreEqual(0.0, engine.TryEvaluate("sech(1000)", 1.0));
+            Assert.AreEqual(0.0, engine.TryEvaluate("csch(1000)", 1.0));
+
+            // sinh/cosh 大参数超出 decimal 范围,返回错误
+            engine.TryEvaluate("sinh(1000)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            engine = new AlgorithmEngine();
+            engine.TryEvaluate("cosh(1000)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
     }
 }

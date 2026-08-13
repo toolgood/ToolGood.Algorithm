@@ -26,7 +26,10 @@ public final class Function_SINH extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
-        return Operand.Create(BigDecimal.valueOf(Math.sinh(args1.NumberValue().doubleValue())));
+        double x = args1.NumberValue().doubleValue();
+        // double 上限约 1.8e308,|x|>=709 时 Math.sinh 返回 Infinity
+        if (x >= 709 || x <= -709) { return ParameterError(1); }
+        return Operand.Create(BigDecimal.valueOf(Math.sinh(x)));
     }
 
     @Override

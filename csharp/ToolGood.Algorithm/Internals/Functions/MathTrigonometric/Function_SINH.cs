@@ -19,7 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            return Operand.Create(MathEx.Sinh(args1.NumberValue));
+            var x = args1.NumberValue;
+            // decimal 上限约 7.9e28,|x|>=66 时 e^|x| 溢出,sinh 结果超出可表示范围
+            if (x >= 66 || x <= -66) { return ParameterError(1); }
+            return Operand.Create(MathEx.Sinh(x));
         }
 		public override OperandType GetResultType()
 		{

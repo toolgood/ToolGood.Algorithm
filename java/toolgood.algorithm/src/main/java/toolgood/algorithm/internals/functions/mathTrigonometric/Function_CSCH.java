@@ -26,7 +26,10 @@ public final class Function_CSCH extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
-        double d = Math.sinh(args1.NumberValue().doubleValue());
+        double x = args1.NumberValue().doubleValue();
+        // csch 在 |x| 较大时趋近 0,提前返回避免 Infinity
+        if (x >= 709 || x <= -709) { return Operand.Create(BigDecimal.ZERO); }
+        double d = Math.sinh(x);
         if (d == 0) {
             return Div0Error();
         }

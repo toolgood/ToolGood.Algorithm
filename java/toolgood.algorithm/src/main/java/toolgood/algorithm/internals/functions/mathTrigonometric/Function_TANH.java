@@ -26,7 +26,11 @@ public final class Function_TANH extends Function_1 {
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
         Operand args1 = GetNumber_1(engine, tempParameter);
         if (args1.IsErrorOrNone()) { return args1; }
-        return Operand.Create(BigDecimal.valueOf(Math.tanh(args1.NumberValue().doubleValue())));
+        double x = args1.NumberValue().doubleValue();
+        // tanh 在 |x| 较大时趋近 ±1,提前返回避免 Infinity
+        if (x >= 709) { return Operand.Create(BigDecimal.valueOf(1.0)); }
+        if (x <= -709) { return Operand.Create(BigDecimal.valueOf(-1.0)); }
+        return Operand.Create(BigDecimal.valueOf(Math.tanh(x)));
     }
 
     @Override

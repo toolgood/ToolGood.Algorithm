@@ -169,4 +169,27 @@ public class MathTrigonometricTest {
         double t = engine.TryEvaluate("acoth(2)", 0.0);
         assertEquals(0.549306144, t, 1e-6);
     }
+
+    @Test
+    public void hyperbolic_overflow_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+
+        // tanh/coth 大参数趋近 ±1
+        assertEquals(1.0, engine.TryEvaluate("tanh(1000)", 0.0), 0.0);
+        assertEquals(-1.0, engine.TryEvaluate("tanh(-1000)", 0.0), 0.0);
+        assertEquals(1.0, engine.TryEvaluate("coth(1000)", 0.0), 0.0);
+        assertEquals(-1.0, engine.TryEvaluate("coth(-1000)", 0.0), 0.0);
+
+        // sech/csch 大参数趋近 0
+        assertEquals(0.0, engine.TryEvaluate("sech(1000)", 1.0), 0.0);
+        assertEquals(0.0, engine.TryEvaluate("csch(1000)", 1.0), 0.0);
+
+        // sinh/cosh 大参数超出 double 范围,返回错误
+        engine.TryEvaluate("sinh(1000)", 0.0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        engine.TryEvaluate("cosh(1000)", 0.0);
+        assertNotNull(engine.LastError);
+    }
 }
