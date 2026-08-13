@@ -37,6 +37,9 @@ public final class Function_TRUNC extends Function_2 {
                 return args2;
             }
             digits = args2.IntValue();
+            if (digits < -15 || digits > 15) {
+                return ParameterError(2);
+            }
         }
         if (args1.NumberValue().compareTo(BigDecimal.ZERO) == 0) {
             return args1;

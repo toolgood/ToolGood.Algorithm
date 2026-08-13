@@ -16,8 +16,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 3) return ParameterError(1);
-
 			var xArg = GetNumber(engine, tempParameter, 0);
 			if (xArg.IsErrorOrNone) return xArg;
 			var x = xArg.NumberValue;

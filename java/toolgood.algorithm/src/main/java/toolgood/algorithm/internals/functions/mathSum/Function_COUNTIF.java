@@ -42,7 +42,7 @@ public final class Function_COUNTIF extends Function_2 {
         int count;
         if (args2.IsNumber()) {
             count = FunctionUtil.GetCountIf(list, args2.NumberValue());
-        } else {
+        } else if (args2.IsText()) {
             String span = args2.TextValue().trim();
             BigDecimal d = TryParseDecimal(span);
             if (d != null) {
@@ -55,6 +55,8 @@ public final class Function_COUNTIF extends Function_2 {
                     return ParameterError(2);
                 }
             }
+        } else {
+            return ParameterError(2);
         }
         return Operand.Create(count);
     }

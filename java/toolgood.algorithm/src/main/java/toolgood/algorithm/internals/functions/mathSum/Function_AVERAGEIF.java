@@ -52,7 +52,7 @@ public final class Function_AVERAGEIF extends Function_3 {
         if (args2.IsNumber()) {
             count = FunctionUtil.GetCountIf(list, args2.NumberValue());
             sum = FunctionUtil.GetSumIf(list, args2.NumberValue(), sumdbs);
-        } else {
+        } else if (args2.IsText()) {
             BigDecimal d = TryParseDecimal(args2.TextValue().trim());
             if (d != null) {
                 count = FunctionUtil.GetCountIf(list, d);
@@ -66,6 +66,8 @@ public final class Function_AVERAGEIF extends Function_3 {
                     return ParameterError(2);
                 }
             }
+        } else {
+            return ParameterError(2);
         }
         if (count == 0) {
             return Div0Error();

@@ -16,8 +16,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 4) return ParameterError(1);
-
 			var xArg = GetNumber(engine, tempParameter, 0);
 			if (xArg.IsErrorOrNone) return xArg;
 			var x = xArg.NumberValue;
@@ -34,12 +32,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			if (coefficientsArg.IsErrorOrNone) return coefficientsArg;
 
 			decimal result = 0;
-			int i = 0;
-			foreach (var coef in coefficientsArg.ArrayValue) {
+			var coefArray = coefficientsArg.ArrayValue;
+			for (int i = 0; i < coefArray.Count; i++) {
+				var coef = coefArray[i];
 				if (coef.IsNumber) {
 					var power = n + i * m;
 					result += coef.NumberValue * MathEx.Pow(x, power);
-					i++;
 				}
 			}
 

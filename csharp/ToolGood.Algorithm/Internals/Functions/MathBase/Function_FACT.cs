@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (z < 0) {
                 return ParameterError(1);
             }
-            if (z > 28) {
+            if (z > 27) {
                 return ParameterError(1);
             }
             decimal d = 1;

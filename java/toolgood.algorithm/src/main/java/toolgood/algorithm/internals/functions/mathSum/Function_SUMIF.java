@@ -50,7 +50,7 @@ public final class Function_SUMIF extends Function_3 {
         BigDecimal sum;
         if (args2.IsNumber()) {
             sum = FunctionUtil.GetSumIf(list, args2.NumberValue(), sumdbs);
-        } else {
+        } else if (args2.IsText()) {
             BigDecimal d = TryParseDecimal(args2.TextValue().trim());
             if (d != null) {
                 sum = FunctionUtil.GetSumIf(list, d, sumdbs);
@@ -62,6 +62,8 @@ public final class Function_SUMIF extends Function_3 {
                     return ParameterError(2);
                 }
             }
+        } else {
+            return ParameterError(2);
         }
         return Operand.Create(sum);
     }

@@ -27,9 +27,6 @@ public final class Function_SLOPE extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        if (funcs.length < 2)
-            return ParameterError(1);
-
         Operand yArrayArg = GetArray(engine, tempParameter, 0);
         if (yArrayArg.IsErrorOrNone())
             return yArrayArg;

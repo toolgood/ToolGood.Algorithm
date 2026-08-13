@@ -27,9 +27,6 @@ public final class Function_SUMPRODUCT extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        if (funcs.length < 2)
-            return ParameterError(1);
-
         List<List<BigDecimal>> arrays = new ArrayList<>();
         for (int i = 0; i < funcs.length; i++) {
             Operand arg = GetArray(engine, tempParameter, i);

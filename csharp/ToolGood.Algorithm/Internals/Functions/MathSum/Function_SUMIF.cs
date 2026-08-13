@@ -38,7 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             decimal sum;
             if (args2.IsNumber) {
                 sum = FunctionUtil.GetSumIf(list, args2.NumberValue, sumdbs);
-            } else {
+            } else if (args2.IsText) {
                 var span = args2.TextValue.AsSpan().Trim();
                 if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     sum = FunctionUtil.GetSumIf(list, d, sumdbs);
@@ -50,6 +50,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                         return ParameterError(2);
                     }
                 }
+            } else {
+                return ParameterError(2);
             }
             return Operand.Create(sum);
         }

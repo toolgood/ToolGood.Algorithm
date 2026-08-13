@@ -38,7 +38,7 @@ public final class Function_FACT extends Function_1 {
         if (z < 0) {
             return ParameterError(1);
         }
-        if (z > 28) {
+        if (z > 27) {
             return ParameterError(1);
         }
         BigDecimal d = BigDecimal.ONE;

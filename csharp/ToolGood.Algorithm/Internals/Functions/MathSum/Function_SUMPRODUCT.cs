@@ -16,8 +16,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
-			if (funcs.Length < 2) return ParameterError(1);
-
 			var arrays = new List<List<decimal>>();
 			for (int i = 0; i < funcs.Length; i++) {
 				var arg = GetArray(engine, tempParameter, i);

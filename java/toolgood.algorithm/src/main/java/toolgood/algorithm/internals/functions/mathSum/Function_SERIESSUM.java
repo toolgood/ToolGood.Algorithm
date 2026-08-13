@@ -26,9 +26,6 @@ public final class Function_SERIESSUM extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        if (funcs.length < 4)
-            return ParameterError(1);
-
         Operand xArg = GetNumber(engine, tempParameter, 0);
         if (xArg.IsErrorOrNone())
             return xArg;
@@ -49,15 +46,15 @@ public final class Function_SERIESSUM extends Function_N {
             return coefficientsArg;
 
         double result = 0;
-        int i = 0;
         double xd = x.doubleValue();
         double nd = n.doubleValue();
         double md = m.doubleValue();
-        for (Operand coef : coefficientsArg.ArrayValue()) {
+        List<Operand> coefArray = coefficientsArg.ArrayValue();
+        for (int i = 0; i < coefArray.size(); i++) {
+            Operand coef = coefArray.get(i);
             if (coef.IsNumber()) {
                 double power = nd + i * md;
                 result += coef.NumberValue().doubleValue() * Math.pow(xd, power);
-                i++;
             }
         }
 

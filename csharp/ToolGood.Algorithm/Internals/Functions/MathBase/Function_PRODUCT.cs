@@ -29,9 +29,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (o == false) { return FunctionError(); }
 
             decimal d = 1;
-            for (int i = 0; i < list.Count; i++) {
-                var a = list[i];
-                d *= a;
+            try {
+                for (int i = 0; i < list.Count; i++) {
+                    d *= list[i];
+                }
+            } catch (OverflowException) {
+                return FunctionError();
             }
             return Operand.Create(d);
         }

@@ -297,6 +297,15 @@ namespace ToolGood.Algorithm.Test.MathSum
         }
 
         [Test]
+        public void COUNTIF_boolean_criteria_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 布尔 criteria 既非数字也非文本,应返回参数错误(修复前抛 NotImplementedException)
+            var t = engine.TryEvaluate("COUNTIF(array(1,2,3), true)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
         public void SUMIF_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -313,6 +322,15 @@ namespace ToolGood.Algorithm.Test.MathSum
         }
 
         [Test]
+        public void SUMIF_boolean_criteria_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 布尔 criteria 既非数字也非文本,应返回参数错误(修复前抛 NotImplementedException)
+            var t = engine.TryEvaluate("SUMIF(array(1,2,3), true)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+        }
+
+        [Test]
         public void AVERAGEIF_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -321,6 +339,15 @@ namespace ToolGood.Algorithm.Test.MathSum
 
             t = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.0);
             Assert.AreEqual(t, 1);
+        }
+
+        [Test]
+        public void AVERAGEIF_boolean_criteria_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 布尔 criteria 既非数字也非文本,应返回参数错误(修复前抛 NotImplementedException)
+            var t = engine.TryEvaluate("AVERAGEIF(array(1,2,3), true)", 0.0);
+            Assert.IsTrue(engine.LastError != null);
         }
 
         #endregion 条件统计
@@ -336,11 +363,30 @@ namespace ToolGood.Algorithm.Test.MathSum
         }
 
         [Test]
+        public void SERIESSUM_non_numeric_coefficient_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 系数数组含非数字元素时跳过但保持索引位置,避免后续指数 n + i*m 错位
+            // 2*2^0 + 3*2^2 = 2 + 12 = 14(修复前会算成 2*2^0 + 3*2^1 = 8)
+            var t = engine.TryEvaluate("SERIESSUM(2, 0, 1, array(2, 'x', 3))", 0.0);
+            Assert.AreEqual(14.0, t);
+        }
+
+        [Test]
         public void SUMPRODUCT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("SUMPRODUCT(array(1, 2, 3), array(4, 5, 6))", 0.0);
             Assert.AreEqual(t, 32.0);
+        }
+
+        [Test]
+        public void SUMPRODUCT_single_array_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 单数组参数等价于求和(修复前被误判为参数错误)
+            var t = engine.TryEvaluate("SUMPRODUCT(array(1, 2, 3))", 0.0);
+            Assert.AreEqual(6.0, t);
         }
 
         [Test]

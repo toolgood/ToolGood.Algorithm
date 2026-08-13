@@ -107,14 +107,14 @@ public final class Function_MAX extends Function_N {
             OperandType t2 = funcs[1].GetResultType();
             if (t1 == OperandType.NONE && t2 == OperandType.NUMBER) {
                 Operand p = noneEngine.Evaluate(funcs[1]).ToText(null);
-                if (t2 != OperandType.ERROR && !p.IsErrorOrNone()) {
+                if (!p.IsErrorOrNone()) {
                     funcs[0].GetParameterTypes(noneEngine, result, t2, Name(), p.TextValue());
                     funcs[1].GetParameterTypes(noneEngine, result, t2);
                     return;
                 }
             } else if (t1 == OperandType.NUMBER && t2 == OperandType.NONE) {
                 Operand p = noneEngine.Evaluate(funcs[0]).ToText(null);
-                if (t1 != OperandType.ERROR && !p.IsErrorOrNone()) {
+                if (!p.IsErrorOrNone()) {
                     funcs[1].GetParameterTypes(noneEngine, result, t1, Name(), p.TextValue());
                     funcs[0].GetParameterTypes(noneEngine, result, t1);
                     return;

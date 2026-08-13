@@ -27,9 +27,6 @@ public final class Function_FORECAST extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        if (funcs.length < 3)
-            return ParameterError(1);
-
         Operand xArg = GetNumber(engine, tempParameter, 0);
         if (xArg.IsErrorOrNone())
             return xArg;

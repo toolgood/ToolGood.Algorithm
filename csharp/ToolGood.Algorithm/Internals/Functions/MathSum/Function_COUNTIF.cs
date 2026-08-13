@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using ToolGood.Algorithm.Enums;
@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             int count;
             if (args2.IsNumber) {
                 count = FunctionUtil.GetCountIf(list, args2.NumberValue);
-            } else {
+            } else if (args2.IsText) {
                 var span = args2.TextValue.AsSpan().Trim();
                 if (decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     count = FunctionUtil.GetCountIf(list, d);
@@ -42,6 +42,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
                         return ParameterError(2);
                     }
                 }
+            } else {
+                return ParameterError(2);
             }
             return Operand.Create(count);
         }
