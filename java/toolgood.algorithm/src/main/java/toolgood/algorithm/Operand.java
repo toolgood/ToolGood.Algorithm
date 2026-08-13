@@ -88,6 +88,9 @@ public abstract class Operand {
     }
 
     public static Operand Create(float obj) {
+        if (Float.isNaN(obj) || Float.isInfinite(obj)) {
+            return Error("Number is NaN or Infinity!");
+        }
         if (obj == Math.floor(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
             return IntCache[(int) obj + IntCacheOffset];
         }
@@ -95,6 +98,9 @@ public abstract class Operand {
     }
 
     public static Operand Create(double obj) {
+        if (Double.isNaN(obj) || Double.isInfinite(obj)) {
+            return Error("Number is NaN or Infinity!");
+        }
         if (obj == Math.floor(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
             return IntCache[(int) obj + IntCacheOffset];
         }
@@ -769,9 +775,6 @@ public abstract class Operand {
                     case '\n': sb.append("\\n"); break;
                     case '\r': sb.append("\\r"); break;
                     case '\t': sb.append("\\t"); break;
-                    case '\0': sb.append("\\0"); break;
-                    case '\u000b': sb.append("\\u000b"); break;
-                    case '\u0007': sb.append("\\u0007"); break;
                     case '\b': sb.append("\\b"); break;
                     case '\f': sb.append("\\f"); break;
                     default:
@@ -910,7 +913,7 @@ public abstract class Operand {
             for (int i = 0; i < TextList.size(); i++) {
                 if (i > 0) sb.append(",");
                 KeyValue kv = TextList.get(i);
-                sb.append('"').append(kv.Key).append('"').append(":").append(kv.Value.toString());
+                sb.append(new OperandString(kv.Key).toString()).append(":").append(kv.Value.toString());
             }
             sb.append("}");
             return sb.toString();

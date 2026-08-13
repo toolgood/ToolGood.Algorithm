@@ -95,12 +95,11 @@ public class AlgorithmEngineHelper {
             return result;
         }
 
-        String cleanSrcUnit = oldSrcUnit.replaceAll("[\\s\\(\\)（）\\[\\]<>]", "");
-        if (!cleanSrcUnit.equals(oldSrcUnit)) {
-            result = TryConvert(src, cleanSrcUnit, oldTarUnit);
-            if (result != null) {
-                return result;
-            }
+        oldSrcUnit = oldSrcUnit.replaceAll("[\\s\\(\\)（）\\[\\]<>]", "");
+        oldTarUnit = oldTarUnit.replaceAll("[\\s\\(\\)（）\\[\\]<>]", "");
+        result = TryConvert(src, oldSrcUnit, oldTarUnit);
+        if (result != null) {
+            return result;
         }
 
         if (name == null || name.isEmpty()) {

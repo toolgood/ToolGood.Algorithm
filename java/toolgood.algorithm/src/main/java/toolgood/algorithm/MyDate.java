@@ -5,7 +5,6 @@ import org.joda.time.DateTimeZone;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -273,44 +272,52 @@ public class MyDate {
     }
 
     public String toString(String f) {
-        Date date;
-        if (Year != null && Year > 1900) {
-            date = new Date(Year, Month, Day, Hour, Minute, Second);
-        } else if (Day != null) {
-            date = new Date(1900, 1, Day, Hour, Minute, Second);
-        } else {
-            date = new Date(1900, 1, 0, Hour, Minute, Second);
+        if (Year == null || Year == 0) {
+            return this.toString();
         }
-        SimpleDateFormat sd = new SimpleDateFormat(f);
-        return sd.format(date);
+        return this.ToDateTime().toString(f);
     }
 
     public DateTime ToDateTime() {
-        return new DateTime(Year, Month, Day, Hour, Minute, Second, DateTimeZone.UTC);
+        return new DateTime(Year == null ? 0 : Year, Month == null ? 0 : Month, Day == null ? 0 : Day,
+                Hour, Minute, Second, DateTimeZone.UTC);
     }
 
     public DateTime ToDateTime(DateTimeZone zoo) {
-        return new DateTime(Year, Month, Day, Hour, Minute, Second, zoo);
+        return new DateTime(Year == null ? 0 : Year, Month == null ? 0 : Month, Day == null ? 0 : Day,
+                Hour, Minute, Second, zoo);
     }
 
     public int DayOfWeek() {
-        return new DateTime(Year, Month, Day, 0, 0, 0, DateTimeZone.UTC).dayOfWeek().get();
+        return ToDateTime().dayOfWeek().get();
     }
 
     public int DayOfYear() {
-        return new DateTime(Year, Month, Day, 0, 0, 0, DateTimeZone.UTC).getDayOfYear();
+        return ToDateTime().getDayOfYear();
     }
 
     public MyDate AddYears(int d) {
-        return new MyDate(ToDateTime().plusYears(d));
+        int t = (Year == null ? 0 : Year) + d;
+        return new MyDate(t, Month, Day, Hour, Minute, Second);
     }
 
     public MyDate AddMonths(int d) {
+        int t = (Month == null ? 0 : Month) + d;
+        if (t >= 1 && t <= 12) {
+            return new MyDate(Year, t, Day, Hour, Minute, Second);
+        }
         return new MyDate(ToDateTime().plusMonths(d));
     }
 
     public MyDate AddDays(int d) {
-        return new MyDate(ToDateTime().plusDays(d));
+        if (Year != null && Year > 1900) {
+            int t = (Day == null ? 0 : Day) + d;
+            if (t >= 1 && t <= 28) {
+                return new MyDate(Year, Month, t, Hour, Minute, Second);
+            }
+            return new MyDate(ToDateTime().plusDays(d));
+        }
+        return addTimeSpan(d * 86400);
     }
 
     public MyDate AddHours(int d) {
