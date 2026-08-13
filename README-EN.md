@@ -16,11 +16,11 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
 
 ```csharp
 	AlgorithmEngine engine = new AlgorithmEngine();
-	double a=0.0;
-	if (engine.Parse("1+2")) {
-		var o = engine.Evaluate();
-		a=o.NumberValue;
-	}
+
+	// Compile and evaluate the formula
+	var fn = engine.Parse("1+2");
+	var o = engine.Evaluate(fn);
+	double a = o.DoubleValue; // Return: 3 返回:3
 	var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && ||  
 	var c = engine.TryEvaluate("2+3", 0);
 	var q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
@@ -91,8 +91,7 @@ Note: Starting from version 6.2, converting datetime to numbers, numbers to date
 	c.TryEvaluate("半径*半径*pi()", 0.0);	  //Round bottom area  圆底面积
 	c.TryEvaluate("直径*pi()", 0.0);			//The length of the circle  圆的周长
 	c.TryEvaluate("半径*半径*pi()*高", 0.0); //Volume of circle 圆的体积
-	c.EvaluateFormula("'圆'-半径-高", '-'); // Return: 圆-3-10
-	c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
+	c.TryEvaluate("'圆-'&半径&'-'&高", ""); // Return: 圆-3-10
 ```
 
 Parameter Definition: parameter name
@@ -108,14 +107,10 @@ Note: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom f
 ## AlgorithmEngineHelper
 
 ```csharp
-	var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
-	helper.IsKeywords("false"); // return true
-	helper.IsKeywords("true"); // return true
-	helper.IsKeywords("mysql"); // return false
-
-	DiyNameInfo p5 = helper.GetDiyNames("ddd(d1, 22)");
-	Assert.AreEqual("ddd", p5.Functions[0]);
-	Assert.AreEqual("d1", p5.Parameters[0]);
+	// DiyNameInfo is located in the ToolGood.Algorithm.Internals namespace
+	DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1, 22)");
+	Assert.AreEqual("ddd", p5.Functions[0].Name);
+	Assert.AreEqual("d1", p5.Parameters[0].Name);
 
 ```
 
@@ -304,7 +299,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 	</tr>
 	<tr>
 		<td>FIXED</td><td>fixed(number[, decimalDigit[, hasComma]])<br>Format numeric values to text with fixed decimal places</td>
-		<td>FIXED(4567.89, 1) <br>>>4, 567.9</td>
+		<td>FIXED(4567.89, 1) <br>>>4,567.9</td>
 	</tr>
 	<tr>
 	<td rowspan="15">Trigonometric function</td>
@@ -361,10 +356,10 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 	</tr>
    <tr>
 		<td>atanh</td><td>atanh(number)<br>Returns the inverse hyperbolic tangent of the parameter</td>
-		<td>atanh(1) <br>>>0.549306144334</td>
+		<td>atanh(0.5) <br>>>0.549306144334</td>
 	</tr>
 	<tr>
-		<td>atan2</td><td>atan2(number, number)<br>Return the arc tangent from X and Y coordinates</td>
+		<td>atan2</td><td>atan2(x-coordinate, y-coordinate)<br>Return the arc tangent from X and Y coordinates</td>
 		<td>atan2(1, 2) <br>>>1.10714871779</td>
 	</tr>
 	<tr>
@@ -630,7 +625,7 @@ Note 4: `JSON array index` is also affected by `Excel Index`. For example, `[1,2
 		<td>EXACT("11", "22") <br>>>false</td>
 	</tr>
 	<tr style="color:red">
-		<td>FIND ★ ▲</td><td>find(findText, text[, startIndex])<br>Find another text value within one text value (case sensitive) </td>
+		<td>FIND ★ ▲</td><td>find(find_text, within_text[, start_num])<br>Find another text value within one text value (case sensitive) </td>
 		<td>FIND("11", "12221122") <br>>>5</td>
 	</tr>
 	<tr>

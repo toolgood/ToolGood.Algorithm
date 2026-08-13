@@ -29,15 +29,15 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
 ## 快速上手
 ``` java
     AlgorithmEngine engine = new AlgorithmEngine();
-    double a=0.0;
-    if (engine.Parse("1+2")) {
-        var o = engine.Evaluate();
-        a=o.NumberValue;
-    }
+
+    // 编译并执行公式
+    FunctionBase fn = engine.Parse("1+2");
+    Operand o = engine.Evaluate(fn);
+    double a = o.DoubleValue(); // 返回:3
     double b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0.0);// 支持 && || and or 
     double c = engine.TryEvaluate("2+3", 0);
     double q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
-    double d = engine.TryEvaluate("count(array(1, 2, 3, 4))", 0.0);//{}代表数组, 返回:4
+    double e = engine.TryEvaluate("count(array(1, 2, 3, 4))", 0.0);//{}代表数组, 返回:4
     String s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接, 返回:aabb
     int r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     DateTime d = engine.TryEvaluate("'2016-1-1'+1", DateTime.now()); //返回日期:2016-1-2
@@ -96,8 +96,7 @@ public class Cylinder extends AlgorithmEngine {
     c.TryEvaluate("[直径]*pi()", 0.0);            //圆的周长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
-    c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
-    c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
+    c.TryEvaluate("'圆-'&[半径]&'-'&[高]", ""); // Return: 圆-3-10
 ```
 参数定义，如 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
 
@@ -105,16 +104,12 @@ public class Cylinder extends AlgorithmEngine {
 
 注2：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
 
-## 自定义参数
+## 辅助方法
 ``` java
-    AlgorithmEngineHelper helper = new AlgorithmEngineHelper();
-    helper.IsKeywords("false"); // return true
-    helper.IsKeywords("true"); // return true
-    helper.IsKeywords("mysql"); // return false
-
-    DiyNameInfo p5 = helper.GetDiyNames("ddd(d1, 22)");
-    assertEquals("ddd", p5.Functions.get(0));
-    assertEquals("d1", p5.Parameters.get(0));
+    // DiyNameInfo 位于 toolgood.algorithm.internals 包
+    DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1, 22)");
+    assertEquals("ddd", p5.Functions.get(0).Name);
+    assertEquals("d1", p5.Parameters.get(0).Name);
 ```
 
 ## 支持单位
@@ -245,11 +240,11 @@ public class Cylinder extends AlgorithmEngine {
         <td>abs(-1) <br>>>1</td>
     </tr>
     <tr>
-        <td>QUOTIENT</td><td>quotient(除数, 被除数)<br>返回商的整数部分, 该函数可用于舍掉商的小数部分。</td>
+        <td>QUOTIENT</td><td>quotient(被除数, 除数)<br>返回商的整数部分, 该函数可用于舍掉商的小数部分。</td>
         <td>QUOTIENT(7, 3) <br>>>2</td>
     </tr>
     <tr>
-        <td>mod</td><td>mod(除数, 被除数)<br>返回两数相除的余数</td>
+        <td>mod</td><td>mod(被除数, 除数)<br>返回两数相除的余数</td>
         <td>MOD(7, 3) <br>>>1</td>
     </tr>
     <tr>
@@ -282,11 +277,11 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
     <tr>
         <td>PERMUT</td><td>permut(总数, 排列数)<br>返回从给定数目的对象集合中选取的若干对象的排列数</td>
-        <td>PERMUT(10, 2) <br>>>990</td>
+        <td>PERMUT(10, 2) <br>>>90</td>
     </tr>
     <tr>
         <td>FIXED</td><td>fixed(数值[, 小数位数[, 有无逗号分隔符]])<br>将数值设置为具有固定小数位的文本格式</td>
-        <td>FIXED(4567.89, 1) <br>>>4, 567.9</td>
+        <td>FIXED(4567.89, 1) <br>>>4,567.9</td>
     </tr>
     <tr>
     <td rowspan="15">三<br><br>角<br><br>函<br><br>数</td>
@@ -343,7 +338,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
    <tr>
         <td>atanh</td><td>atanh(数值)<br>返回参数的反双曲正切值</td>
-        <td>atanh(1) <br>>>0.549306144334</td>
+        <td>atanh(0.5) <br>>>0.549306144334</td>
     </tr>
     <tr>
         <td>atan2</td><td>atan2(数值, 数值)<br>从X和Y坐标返回反正切</td>
@@ -433,7 +428,7 @@ public class Cylinder extends AlgorithmEngine {
         <td>SqrtPi(3) <br>>>3.069980124</td>
     </tr>
     <tr>
-        <td>SUMSQ</td><td>sumQq(数值, ...)<br>返回参数的平方和</td>
+        <td>SUMSQ</td><td>sumSq(数值, ...)<br>返回参数的平方和</td>
         <td>SUMSQ(1, 2) <br>>>5</td>
     </tr>
     <tr>
@@ -645,7 +640,7 @@ public class Cylinder extends AlgorithmEngine {
         <td>SECOND(NOW()) <br>>>34</td>
     </tr>
     <tr>
-        <td>WEEKDAY ★</td><td>second(日期)<br>将序列号转换为星期几</td>
+        <td>WEEKDAY ★</td><td>weekday(日期)<br>将序列号转换为星期几</td>
         <td>WEEKDAY(date(2017, 1, 7)) <br>>>7</td>
     </tr>
     <tr>

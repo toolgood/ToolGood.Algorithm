@@ -21,11 +21,12 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
 ## 快速上手
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
-    double a=0.0;
-    if (engine.Parse("1+2")) {
-        var o = engine.Evaluate();
-        a=o.NumberValue;
-    }
+
+    // 编译并执行公式
+    var fn = engine.Parse("1+2");
+    var o = engine.Evaluate(fn);
+    double a = o.DoubleValue; // Return: 3 返回:3
+
     var b = engine.TryEvaluate("1=1 && 1<2 || 7-8>1", 0);// Support(支持) && || 
     var c = engine.TryEvaluate("2+3", 0);
     var q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
@@ -93,8 +94,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     c.TryEvaluate("半径*半径*pi()", 0.0);      //Round bottom area  圆底面积
     c.TryEvaluate("直径*pi()", 0.0);            //The length of the circle  圆的周长
     c.TryEvaluate("半径*半径*pi()*高", 0.0); //Volume of circle 圆的体积
-    c.EvaluateFormula("'圆'-半径-高", '-'); // Return: 圆-3-10
-    c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
+    c.TryEvaluate("'圆-'&半径&'-'&高", ""); // Return: 圆-3-10
 
 ```
 
@@ -109,15 +109,12 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 注：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
  
 
-## 自定义参数
+## 辅助方法
 ``` csharp
-    AlgorithmEngineHelper.IsKeywords("false"); // return true
-    AlgorithmEngineHelper.IsKeywords("true"); // return true
-    AlgorithmEngineHelper.IsKeywords("mysql"); // return false
-
+    // DiyNameInfo 位于 ToolGood.Algorithm.Internals 命名空间
     DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1, 22)");
-    Assert.AreEqual("ddd", p5.Functions[0]);
-    Assert.AreEqual("d1", p5.Parameters[0]);
+    Assert.AreEqual("ddd", p5.Functions[0].Name);
+    Assert.AreEqual("d1", p5.Parameters[0].Name);
 ```
 ## 支持单位
 
@@ -303,7 +300,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
     <tr>
         <td>FIXED</td><td>fixed(数值[, 小数位数[, 有无逗号分隔符]])<br>将数值设置为具有固定小数位的文本格式</td>
-        <td>FIXED(4567.89, 1) <br>>>4, 567.9</td>
+        <td>FIXED(4567.89, 1) <br>>>4,567.9</td>
     </tr>
     <tr>
     <td rowspan="15">三<br><br>角<br><br>函<br><br>数</td>
@@ -360,10 +357,10 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
    <tr>
         <td>atanh</td><td>atanh(数值)<br>返回参数的反双曲正切值</td>
-        <td>atanh(1) <br>>>0.549306144334</td>
+        <td>atanh(0.5) <br>>>0.549306144334</td>
     </tr>
     <tr>
-        <td>atan2</td><td>atan2(数值, 数值)<br>从X和Y坐标返回反正切</td>
+        <td>atan2</td><td>atan2(x坐标, y坐标)<br>从X和Y坐标返回反正切</td>
         <td>atan2(1, 2) <br>>>1.10714871779</td>
     </tr>
     <tr>
