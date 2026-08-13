@@ -1,4 +1,4 @@
-﻿using PetaTest;
+using PetaTest;
 
 namespace ToolGood.Algorithm.Test.Operator
 {
@@ -106,6 +106,26 @@ namespace ToolGood.Algorithm.Test.Operator
             AlgorithmEngine engine = new AlgorithmEngine();
             var tbb2 = engine.TryEvaluate("'111'*null", 0);
             Assert.AreEqual(tbb2, 0);
+        }
+
+        [Test]
+        public void overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.TryEvaluate("79228162514264337593543950335 + 1", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            engine = new AlgorithmEngine();
+            engine.TryEvaluate("-79228162514264337593543950335 - 1", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            engine = new AlgorithmEngine();
+            engine.TryEvaluate("79228162514264337593543950335 * 2", 0.0);
+            Assert.IsTrue(engine.LastError != null);
+
+            engine = new AlgorithmEngine();
+            engine.TryEvaluate("79228162514264337593543950335 / 0.1", 0.0);
+            Assert.IsTrue(engine.LastError != null);
         }
     }
 }

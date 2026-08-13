@@ -39,7 +39,7 @@ public final class Function_Mul extends Function_2 {
 
         BigDecimal result = args1.NumberValue().multiply(args2.NumberValue());
         if (result.abs().compareTo(DECIMAL_MAX) > 0) {
-            return Operand.Error("The number is too large, it cannot be represented as a decimal.");
+            return NumError();
         }
         return Operand.Create(result);
     }

@@ -23,7 +23,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			var args1 = GetNumber_1(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
 			var args2 = GetNumber_2(engine, tempParameter); if(args2.IsErrorOrNone) { return args2; }
 
-			return Operand.Create(args1.NumberValue + args2.NumberValue);
+			try {
+				return Operand.Create(args1.NumberValue + args2.NumberValue);
+			} catch (OverflowException) {
+				return NumError();
+			}
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{

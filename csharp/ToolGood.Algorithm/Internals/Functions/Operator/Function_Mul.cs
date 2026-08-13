@@ -26,7 +26,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 			if(args1.NumberValue == 1m) { return args2; }
 			if(args2.NumberValue == 1m) { return args1; }
 
-			return Operand.Create(args1.NumberValue * args2.NumberValue);
+			try {
+				return Operand.Create(args1.NumberValue * args2.NumberValue);
+			} catch (OverflowException) {
+				return NumError();
+			}
 		}
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

@@ -169,6 +169,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			return Operand.Error("Function '{0}' Div 0 error!", Name);
 		}
+		/// <summary>
+		/// 创建数值溢出错误(对应 Excel #NUM!)
+		/// </summary>
+		/// <returns></returns>
+		protected Operand NumError()
+		{
+			return Operand.Error("Function '{0}' Num error!", Name);
+		}
 		#endregion
 
 		#region TryEvaluate

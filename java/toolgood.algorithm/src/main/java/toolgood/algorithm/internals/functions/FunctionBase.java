@@ -96,6 +96,11 @@ public abstract class FunctionBase {
     protected Operand Div0Error() {
         return Operand.Error(String.format("Function '%s' Div 0 error!", Name()));
     }
+
+    // 创建数值溢出错误(对应 Excel #NUM!)
+    protected Operand NumError() {
+        return Operand.Error(String.format("Function '%s' Num error!", Name()));
+    }
     // endregion
 
     // region TryEvaluate

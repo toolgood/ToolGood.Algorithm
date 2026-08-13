@@ -13,6 +13,9 @@ import toolgood.algorithm.internals.functions.Function_2;
 
 public final class Function_Add extends Function_2 {
 
+    // C# decimal max value: 79,228,162,514,264,337,593,543,950,335
+    private static final BigDecimal DECIMAL_MAX = new BigDecimal("79228162514264337593543950335");
+
     public Function_Add(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -31,7 +34,11 @@ public final class Function_Add extends Function_2 {
         Operand args1 = GetNumber_1(engine, tempParameter); if (args1.IsErrorOrNone()) { return args1; }
         Operand args2 = GetNumber_2(engine, tempParameter); if (args2.IsErrorOrNone()) { return args2; }
 
-        return Operand.Create(args1.NumberValue().add(args2.NumberValue()));
+        BigDecimal result = args1.NumberValue().add(args2.NumberValue());
+        if (result.abs().compareTo(DECIMAL_MAX) > 0) {
+            return NumError();
+        }
+        return Operand.Create(result);
     }
 
     @Override

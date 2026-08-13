@@ -104,4 +104,23 @@ public class OperatorTest {
         int tbb2 = engine.TryEvaluate("'111'*null", 0);
         assertEquals(0, tbb2);
     }
+
+    @Test
+    public void overflow_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        engine.TryEvaluate("79228162514264337593543950335 + 1", 0.0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        engine.TryEvaluate("-79228162514264337593543950335 - 1", 0.0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        engine.TryEvaluate("79228162514264337593543950335 * 2", 0.0);
+        assertNotNull(engine.LastError);
+
+        engine = new AlgorithmEngine();
+        engine.TryEvaluate("79228162514264337593543950335 / 0.1", 0.0);
+        assertNotNull(engine.LastError);
+    }
 }

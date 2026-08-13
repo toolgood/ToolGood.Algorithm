@@ -14,6 +14,9 @@ import toolgood.algorithm.internals.functions.Function_2;
 
 public final class Function_Div extends Function_2 {
 
+    // C# decimal max value: 79,228,162,514,264,337,593,543,950,335
+    private static final BigDecimal DECIMAL_MAX = new BigDecimal("79228162514264337593543950335");
+
     public Function_Div(FunctionBase[] funcs) {
         super(funcs);
     }
@@ -35,7 +38,11 @@ public final class Function_Div extends Function_2 {
         if (args2.NumberValue().compareTo(BigDecimal.ZERO) == 0) { return Div0Error(); }
         if (args2.NumberValue().compareTo(BigDecimal.ONE) == 0) { return args1; }
 
-        return Operand.Create(args1.NumberValue().divide(args2.NumberValue(), MathContext.DECIMAL128));
+        BigDecimal result = args1.NumberValue().divide(args2.NumberValue(), MathContext.DECIMAL128);
+        if (result.abs().compareTo(DECIMAL_MAX) > 0) {
+            return NumError();
+        }
+        return Operand.Create(result);
     }
 
     @Override
