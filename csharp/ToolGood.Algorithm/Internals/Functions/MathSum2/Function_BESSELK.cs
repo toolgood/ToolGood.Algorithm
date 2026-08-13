@@ -7,10 +7,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
 	internal sealed class Function_BESSELK : Function_2
 	{
-		public Function_BESSELK(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
-
 		public Function_BESSELK(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 2) {
@@ -34,8 +30,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				return ParameterError(1);
 			}
 
-			// 复用 SpecialFunctions 中基于 Chebyshev 展开的实现(移植自 MathNet.Numerics)
-			return Operand.Create(SpecialFunctions.BesselK(n, x));
+			try {
+				// 复用 SpecialFunctions 中基于 Chebyshev 展开的实现(移植自 MathNet.Numerics)
+				return Operand.Create(SpecialFunctions.BesselK(n, x));
+			} catch (OverflowException) {
+				// x 过小时结果超出 decimal 范围,捕获并返回错误
+				return FunctionError();
+			}
 		}
 
 		public override OperandType GetResultType()

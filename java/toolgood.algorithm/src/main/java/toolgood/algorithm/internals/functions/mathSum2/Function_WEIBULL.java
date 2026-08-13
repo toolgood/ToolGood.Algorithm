@@ -89,7 +89,7 @@ public final class Function_WEIBULL extends Function_4 {
         }
 
         if (x < PositiveEpsilonOf(x)) {
-            return x;
+            return power;
         }
 
         // Series Expansion to x^k / k! with Kahan summation

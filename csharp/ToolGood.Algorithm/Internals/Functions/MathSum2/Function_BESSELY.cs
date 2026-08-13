@@ -7,10 +7,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
 	internal sealed class Function_BESSELY : Function_2
 	{
-		public Function_BESSELY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
-
 		public Function_BESSELY(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 2) {
@@ -34,7 +30,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				return ParameterError(1);
 			}
 
-			return Operand.Create(SpecialFunctions.BesselY(n, x));
+			try {
+				return Operand.Create(SpecialFunctions.BesselY(n, x));
+			} catch (OverflowException) {
+				// x 过小时结果超出 decimal 范围,捕获并返回错误
+				return FunctionError();
+			}
 		}
 
 		public override OperandType GetResultType()

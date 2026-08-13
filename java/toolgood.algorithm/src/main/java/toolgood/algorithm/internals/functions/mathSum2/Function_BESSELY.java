@@ -14,10 +14,6 @@ import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public final class Function_BESSELY extends Function_2 {
 
-    public Function_BESSELY(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
-    }
-
     public Function_BESSELY(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
@@ -49,7 +45,12 @@ public final class Function_BESSELY extends Function_2 {
         }
 
         // 复用 SpecialFunctions 中的实现
-        return Operand.Create(BigDecimal.valueOf(SpecialFunctions.BesselY(n, x)));
+        double result = SpecialFunctions.BesselY(n, x);
+        // x 过小时结果溢出为 Infinity/NaN,返回错误
+        if (Double.isNaN(result) || Double.isInfinite(result)) {
+            return FunctionError();
+        }
+        return Operand.Create(BigDecimal.valueOf(result));
     }
 
     @Override

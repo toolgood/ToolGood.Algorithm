@@ -7,10 +7,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 {
 	internal sealed class Function_BESSELI : Function_2
 	{
-		public Function_BESSELI(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
-
 		public Function_BESSELI(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 2) {

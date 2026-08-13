@@ -14,10 +14,6 @@ import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public final class Function_BESSELJ extends Function_2 {
 
-    public Function_BESSELJ(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
-    }
-
     public Function_BESSELJ(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {
@@ -45,7 +41,12 @@ public final class Function_BESSELJ extends Function_2 {
         int n = (int) args2.NumberValue().doubleValue();
 
         // 复用 SpecialFunctions 中的实现
-        return Operand.Create(BigDecimal.valueOf(SpecialFunctions.BesselJ(n, x)));
+        double result = SpecialFunctions.BesselJ(n, x);
+        // x 过大时结果溢出为 Infinity/NaN,返回错误
+        if (Double.isNaN(result) || Double.isInfinite(result)) {
+            return FunctionError();
+        }
+        return Operand.Create(BigDecimal.valueOf(result));
     }
 
     @Override

@@ -15,6 +15,9 @@ import toolgood.algorithm.mathNet.ExcelFunctions;
 public final class Function_BETAINV extends Function_3 {
     public Function_BETAINV(FunctionBase[] funcs) {
         super(funcs);
+        if (funcs.length != 3) {
+            throw new IllegalArgumentException("Function '" + Name() + "' requires exactly 3 parameters.");
+        }
     }
 
     @Override

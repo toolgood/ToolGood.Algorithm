@@ -14,10 +14,6 @@ import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public final class Function_BESSELI extends Function_2 {
 
-    public Function_BESSELI(FunctionBase func1, FunctionBase func2) {
-        super(func1, func2);
-    }
-
     public Function_BESSELI(FunctionBase[] funcs) {
         super(funcs);
         if (funcs.length != 2) {

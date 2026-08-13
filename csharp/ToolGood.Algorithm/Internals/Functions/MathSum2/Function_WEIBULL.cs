@@ -90,7 +90,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			}
 
 			if(x < PositiveEpsilonOf(x)) {
-				return x;
+				return power;
 			}
 
 			// Series Expansion to x^k / k!
