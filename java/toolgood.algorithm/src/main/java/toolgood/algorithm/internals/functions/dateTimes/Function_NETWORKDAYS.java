@@ -15,8 +15,8 @@ import toolgood.algorithm.internals.functions.Function_N;
 public final class Function_NETWORKDAYS extends Function_N {
     public Function_NETWORKDAYS(FunctionBase[] funcs) {
         super(funcs);
-        if (funcs.length < 2 || funcs.length > 3) {
-            throw new IllegalArgumentException("Function '" + Name() + "' requires 2 to 3 parameters.");
+        if (funcs.length < 2) {
+            throw new IllegalArgumentException("Function '" + Name() + "' requires at least 2 parameters.");
         }
     }
 

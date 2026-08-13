@@ -37,7 +37,13 @@ public final class Function_XIRR extends Function_3 {
         if (valuesArg.IsErrorOrNone()) return valuesArg;
         List<BigDecimal> values = new ArrayList<>();
         for (Operand v : valuesArg.ArrayValue()) {
-            values.add(v.NumberValue());
+            if (v.IsNumber()) {
+                values.add(v.NumberValue());
+            } else {
+                Operand v2 = v.ToNumber(String.format("Function '%s' parameter 1 is error!", Name()));
+                if (v2.IsErrorOrNone()) return v2;
+                values.add(v2.NumberValue());
+            }
         }
 
         Operand datesArg = GetArray_2(engine, tempParameter);

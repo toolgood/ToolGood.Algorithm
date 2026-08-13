@@ -96,11 +96,14 @@ public class CompareTest {
         bb2 = engine.TryEvaluate("1!=null", false);
         assertEquals(bb2, true);
 
+        // 两侧同为 null 属于异常数据，返回错误，TryEvaluate 返回默认值
         bb2 = engine.TryEvaluate("null=null", false);
-        assertEquals(bb2, true);
+        assertEquals(bb2, false);
+        assertNotNull(engine.LastError);
 
         bb2 = engine.TryEvaluate("null!=null", true);
-        assertEquals(bb2, false);
+        assertEquals(bb2, true);
+        assertNotNull(engine.LastError);
 
         bb2 = engine.TryEvaluate("'111'=null", true);
         assertEquals(bb2, false);
@@ -137,17 +140,21 @@ public class CompareTest {
     @Test
     public void null_same_type_compare_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
-        // 同类型 null 与 null 比较, 修复前误返回 true
+        // 两侧同为 null 属于异常数据，所有比较运算符均返回错误，TryEvaluate 返回默认值
         boolean b = engine.TryEvaluate("null>null", true);
-        assertEquals(false, b);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
 
         b = engine.TryEvaluate("null>=null", true);
-        assertEquals(false, b);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
 
         b = engine.TryEvaluate("null<=null", true);
-        assertEquals(false, b);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
 
         b = engine.TryEvaluate("null<null", true);
-        assertEquals(false, b);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
     }
 }

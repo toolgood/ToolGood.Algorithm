@@ -60,6 +60,10 @@ public final class Function_PPMT extends Function_6 {
 			}
 		}
 
+		if (per.compareTo(BigDecimal.ONE) < 0 || per.compareTo(nper) > 0) {
+			return ParameterError(2);
+		}
+
 		BigDecimal pmtResult = calculatePMT(rate, nper, pv, fv, type);
 		BigDecimal ipmtResult = calculateIPMT(rate, per, nper, pv, fv, type);
 		return Operand.Create(pmtResult.subtract(ipmtResult));

@@ -15,8 +15,8 @@ public final class Function_REMOVESTART extends Function_3 {
 
     public Function_REMOVESTART(FunctionBase[] funcs) {
         super(funcs);
-        if (funcs.length < 1 || funcs.length > 3) {
-            throw new IllegalArgumentException("Function 'RemoveStart' requires 1 to 3 parameters.");
+        if (funcs.length < 2 || funcs.length > 3) {
+            throw new IllegalArgumentException("Function 'RemoveStart' requires 2 to 3 parameters.");
         }
     }
 

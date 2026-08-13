@@ -71,7 +71,7 @@ public final class Function_MIRR extends Function_3 {
             }
         }
 
-        if (npvNegative.compareTo(BigDecimal.ZERO) == 0) return Div0Error();
+        if (npvNegative.compareTo(BigDecimal.ZERO) == 0 || npvPositive.compareTo(BigDecimal.ZERO) == 0) return Div0Error();
 
         BigDecimal base = npvPositive.negate().divide(npvNegative, MathContext.DECIMAL128);
         BigDecimal exponent = BigDecimal.ONE.divide(BigDecimal.valueOf(n - 1), MathContext.DECIMAL128);

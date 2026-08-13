@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -550,6 +550,13 @@ namespace PetaTest
         // marked as active in which case only those will be run
         public int Run(string[] args)
         {
+            // 超过 10 秒仍未退出(如卡在 "View Report?" 等待输入)时强制关闭进程
+            using var killTimer = new System.Threading.Timer(
+                _ => System.Diagnostics.Process.GetCurrentProcess().Kill(),
+                null,
+                TimeSpan.FromSeconds(10),
+                System.Threading.Timeout.InfiniteTimeSpan);
+
             // Parse command line args
             bool? showreport = null;
             bool? htmlreport = null;

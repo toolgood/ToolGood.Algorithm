@@ -46,7 +46,8 @@ public final class Function_NE extends Function_2 {
             } else if (args1.IsDate()) {
                 return Operand.Create(args1.DateValue().ToLong() != args2.DateValue().ToLong());
             } else if (args1.IsNull()) {
-                return Operand.False;
+                // null 属于异常数据，两侧同为 null 时无法判断是否不等，返回错误
+                return CompareError();
             }
             return CompareError();
         } else if (args1.IsNull() || args2.IsNull()) {

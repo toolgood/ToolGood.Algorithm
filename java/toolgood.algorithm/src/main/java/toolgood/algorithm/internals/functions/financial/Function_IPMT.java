@@ -60,6 +60,10 @@ public final class Function_IPMT extends Function_6 {
 			}
 		}
 
+		if (per.compareTo(BigDecimal.ONE) < 0 || per.compareTo(nper) > 0) {
+			return ParameterError(2);
+		}
+
 		if (rate.compareTo(BigDecimal.ZERO) == 0) {
 			return Operand.Create(BigDecimal.ZERO);
 		}

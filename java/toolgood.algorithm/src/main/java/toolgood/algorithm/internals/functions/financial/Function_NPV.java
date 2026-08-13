@@ -17,8 +17,8 @@ import toolgood.algorithm.internals.functions.Function_N;
 public final class Function_NPV extends Function_N {
     public Function_NPV(FunctionBase[] funcs) {
         super(funcs);
-        if (funcs.length < 1) {
-            throw new IllegalArgumentException(String.format("Function '%s' requires at least 1 parameter.", Name()));
+        if (funcs.length < 2) {
+            throw new IllegalArgumentException(String.format("Function '%s' requires at least 2 parameters.", Name()));
         }
     }
 
