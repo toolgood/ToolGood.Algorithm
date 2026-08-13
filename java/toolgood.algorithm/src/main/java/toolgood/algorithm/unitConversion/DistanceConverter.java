@@ -12,22 +12,27 @@ public final class DistanceConverter {
         TreeMap<String, BigDecimal> map = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         map.put("m", BigDecimal.ONE);
         map.put("metre", BigDecimal.ONE);
+        map.put("meter", BigDecimal.ONE);
         map.put("米", BigDecimal.ONE);
 
         map.put("km", new BigDecimal("0.001"));
         map.put("kilometre", new BigDecimal("0.001"));
+        map.put("kilometer", new BigDecimal("0.001"));
         map.put("千米", new BigDecimal("0.001"));
 
         map.put("dm", new BigDecimal("10"));
         map.put("decimetre", new BigDecimal("10"));
+        map.put("decimeter", new BigDecimal("10"));
         map.put("分米", new BigDecimal("10"));
 
         map.put("cm", new BigDecimal("100"));
         map.put("centimetre", new BigDecimal("100"));
+        map.put("centimeter", new BigDecimal("100"));
         map.put("厘米", new BigDecimal("100"));
 
         map.put("mm", new BigDecimal("1000"));
         map.put("millimetre", new BigDecimal("1000"));
+        map.put("millimeter", new BigDecimal("1000"));
         map.put("毫米", new BigDecimal("1000"));
 
         BigDecimal ft = new BigDecimal("1250").divide(new BigDecimal("381"), 30, RoundingMode.HALF_UP);
