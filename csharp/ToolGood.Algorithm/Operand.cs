@@ -178,7 +178,7 @@ namespace ToolGood.Algorithm
 		{
 			if (obj >= -IntCacheOffset && obj <= IntCacheOffset)
 				return IntCache[obj + IntCacheOffset];
-			return new OperandDecimal(obj);
+			return new OperandInt(obj);
 		}
 
 		/// <summary>

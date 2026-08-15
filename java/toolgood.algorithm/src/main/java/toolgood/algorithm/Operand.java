@@ -70,7 +70,7 @@ public abstract class Operand {
         if (obj >= -IntCacheOffset && obj <= IntCacheOffset) {
             return IntCache[obj + IntCacheOffset];
         }
-        return new OperandDecimal(new BigDecimal(obj));
+        return new OperandInt(obj);
     }
 
     public static Operand Create(int obj) {

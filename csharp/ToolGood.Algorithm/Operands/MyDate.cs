@@ -254,7 +254,6 @@ namespace ToolGood.Algorithm.Operands
         {
             var t = (this.Year ?? 0) + year;
             return new MyDate(t, Month, Day, Hour, Minute, Second);
-            //return new MyDate(ToDateTime().AddYears(year));
         }
 
         /// <summary>

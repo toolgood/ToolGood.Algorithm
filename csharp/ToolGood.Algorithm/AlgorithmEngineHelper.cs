@@ -31,12 +31,7 @@ namespace ToolGood.Algorithm
 
 			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
-			//lexer.RemoveErrorListeners();
-			//lexer.AddErrorListener(data);
-			//parser.RemoveErrorListeners();
-			//parser.AddErrorListener(data);
 
-			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
 			return parser.prog();
 		}
 

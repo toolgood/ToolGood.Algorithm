@@ -151,7 +151,6 @@ namespace ToolGood.Algorithm
 			lexer.AddErrorData(data);
 			parser.AddErrorData(data);
 
-			//parser.Interpreter.PredictionMode = PredictionMode.SLL;
 			var context = parser.prog();
 			if(data.IsError) {
 				LastError = data.ErrorMsg;
