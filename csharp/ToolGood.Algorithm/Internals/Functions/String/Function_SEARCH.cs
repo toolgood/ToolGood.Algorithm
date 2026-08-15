@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.String
@@ -48,35 +46,98 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 
 		/// <summary>
 		/// 在指定起始位置起做大小写不敏感的通配符查找,支持 Excel 的 ? 与 * 及 ~ 转义。
+		/// 使用手写匹配器替代正则,避免每次调用都编译正则的开销。
 		/// </summary>
 		private static int WildcardIndexOf(string text, string pattern, int startIndex)
 		{
-			var match = new Regex(WildcardToRegex(pattern), RegexOptions.IgnoreCase).Match(text, startIndex);
-			if (!match.Success) { return -1; }
-			return match.Index;
+			if (startIndex < 0) { startIndex = 0; }
+			if (startIndex > text.Length) { return -1; }
+
+			var tokens = ParseWildcardPattern(pattern);
+			if (tokens.Length == 0) { return startIndex; }
+
+			for (int start = startIndex; start <= text.Length; start++) {
+				if (MatchWildcard(text, tokens, start)) {
+					return start;
+				}
+			}
+			return -1;
 		}
 
-		private static string WildcardToRegex(string pattern)
+		private enum WildcardTokenKind { Literal, AnyOne, AnySeq }
+
+		private struct WildcardToken
 		{
-			var sb = new StringBuilder();
+			public WildcardTokenKind Kind;
+			public char Value;
+		}
+
+		/// <summary>
+		/// 将通配符 pattern 解析为 token 序列,字面字符统一转为大写以忽略大小写。
+		/// </summary>
+		private static WildcardToken[] ParseWildcardPattern(string pattern)
+		{
+			var list = new List<WildcardToken>(pattern.Length);
 			for (int i = 0; i < pattern.Length; i++) {
 				var c = pattern[i];
 				if (c == '~') {
 					if (i + 1 < pattern.Length && (pattern[i + 1] == '?' || pattern[i + 1] == '*' || pattern[i + 1] == '~')) {
-						sb.Append(Regex.Escape(pattern[i + 1].ToString()));
+						list.Add(new WildcardToken { Kind = WildcardTokenKind.Literal, Value = char.ToUpperInvariant(pattern[i + 1]) });
 						i++;
 					} else {
-						sb.Append(Regex.Escape("~"));
+						list.Add(new WildcardToken { Kind = WildcardTokenKind.Literal, Value = '~' });
 					}
 				} else if (c == '*') {
-					sb.Append("[\\s\\S]*");
+					list.Add(new WildcardToken { Kind = WildcardTokenKind.AnySeq });
 				} else if (c == '?') {
-					sb.Append("[\\s\\S]");
+					list.Add(new WildcardToken { Kind = WildcardTokenKind.AnyOne });
 				} else {
-					sb.Append(Regex.Escape(c.ToString()));
+					list.Add(new WildcardToken { Kind = WildcardTokenKind.Literal, Value = char.ToUpperInvariant(c) });
 				}
 			}
-			return sb.ToString();
+			return list.ToArray();
+		}
+
+		/// <summary>
+		/// 判断 pattern 是否从 text 的 start 位置开始完整匹配(贪心 + 回溯)。
+		/// </summary>
+		private static bool MatchWildcard(string text, WildcardToken[] tokens, int start)
+		{
+			int ti = 0;
+			int si = start;
+			int starToken = -1;
+			int starMatch = 0;
+
+			while (ti < tokens.Length) {
+				if (si < text.Length) {
+					var tok = tokens[ti];
+					if (tok.Kind == WildcardTokenKind.Literal) {
+						if (char.ToUpperInvariant(text[si]) == tok.Value) {
+							ti++;
+							si++;
+						} else if (starToken != -1) {
+							ti = starToken + 1;
+							si = ++starMatch;
+						} else {
+							return false;
+						}
+					} else if (tok.Kind == WildcardTokenKind.AnyOne) {
+						ti++;
+						si++;
+					} else {
+						starToken = ti;
+						starMatch = si;
+						ti++;
+					}
+				} else {
+					break;
+				}
+			}
+
+			while (ti < tokens.Length && tokens[ti].Kind == WildcardTokenKind.AnySeq) {
+				ti++;
+			}
+			return ti == tokens.Length;
 		}
 		public override OperandType GetResultType()
 		{
