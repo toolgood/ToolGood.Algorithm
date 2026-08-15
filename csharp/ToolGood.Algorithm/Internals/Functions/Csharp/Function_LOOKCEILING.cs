@@ -30,19 +30,14 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			if(list.Count == 0) { return ParameterError(2); }
 			list.Sort();
 			var value = args1.NumberValue;
-			var result = list[list.Count - 1];
-			if(result == value) { return args1; }
-			for(int i = list.Count - 2; i >= 0; i--) {
-				var val = list[i];
-				if(val > value) {
-					result = val;
-				} else if(val == value) {
-					return args1;
-				} else {
-					break;
-				}
+			int index = list.BinarySearch(value);
+			if(index >= 0) { return args1; }
+			index = ~index; // 第一个大于 value 的索引
+			if(index == list.Count) {
+				// 所有元素都小于 value，返回最大值
+				return Operand.Create(list[list.Count - 1]);
 			}
-			return Operand.Create(result);
+			return Operand.Create(list[index]);
 		}
 
 		public override OperandType GetResultType()

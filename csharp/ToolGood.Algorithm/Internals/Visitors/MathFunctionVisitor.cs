@@ -140,23 +140,24 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
 		{
 			var text = context.GetText();
-			if(decimal.TryParse(text.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+			var span = text.AsSpan();
+			if(decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 				return new Function_Number(Operand.Create(d));
 			}
-			string txt;
+			ReadOnlySpan<char> txt;
 			string unit;
-			var len = text.Length;
-			if(len > 3 && text[len - 3] >= 'A' ) {
-				txt=text.Substring(0, len - 3);
-				unit=text.Substring(len - 3);
-			} else if(len > 2 && text[len - 2] >= 'A') {
-				txt = text.Substring(0, len - 2);
-				unit = text.Substring(len - 2);
+			var len = span.Length;
+			if(len > 3 && span[len - 3] >= 'A') {
+				txt = span.Slice(0, len - 3);
+				unit = span.Slice(len - 3).ToString();
+			} else if(len > 2 && span[len - 2] >= 'A') {
+				txt = span.Slice(0, len - 2);
+				unit = span.Slice(len - 2).ToString();
 			} else {
-				txt = text.Substring(0, len - 1);
-				unit = text.Substring(len - 1);
+				txt = span.Slice(0, len - 1);
+				unit = span.Slice(len - 1).ToString();
 			}
-			var d2 = decimal.TryParse(txt.AsSpan(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
+			var d2 = decimal.TryParse(txt, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
 				? d3
 				: throw new ArgumentException($"Number '{text}' is invalid or out of range.");
 			return new Function_Number2(d2, unit);
