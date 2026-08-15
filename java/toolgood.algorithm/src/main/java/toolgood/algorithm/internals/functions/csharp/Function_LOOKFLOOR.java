@@ -51,21 +51,16 @@ public final class Function_LOOKFLOOR extends Function_2 {
         Collections.sort(list);
 
         BigDecimal value = args1.NumberValue();
-        BigDecimal result = list.get(0);
-        if (result.compareTo(value) == 0) {
+        int index = Collections.binarySearch(list, value);
+        if (index >= 0) {
             return args1;
         }
-        for (int i = 1; i < list.size(); i++) {
-            BigDecimal val = list.get(i);
-            if (val.compareTo(value) < 0) {
-                result = val;
-            } else if (val.compareTo(value) == 0) {
-                return args1;
-            } else /*if (val > value)*/ {
-                break;
-            }
+        index = -index - 1; // 第一个大于 value 的索引
+        if (index == 0) {
+            // 所有元素都大于 value，返回最小值
+            return Operand.Create(list.get(0));
         }
-        return Operand.Create(result);
+        return Operand.Create(list.get(index - 1));
     }
 
     @Override

@@ -39,41 +39,82 @@ class Function_SEARCH extends Function_3 {
 
     /**
      * 在指定起始位置起做大小写不敏感的通配符查找,支持 Excel 的 ? 与 * 及 ~ 转义。
+     * 使用手写匹配器替代正则,避免每次调用都编译正则的开销。
      */
     wildcardIndexOf(text, pattern, startIndex) {
-        const regex = new RegExp(this.wildcardToRegex(pattern), 'ig');
-        regex.lastIndex = startIndex;
-        const match = regex.exec(text);
-        if (!match) { return -1; }
-        return match.index;
+        if (startIndex < 0) { startIndex = 0; }
+        if (startIndex > text.length) { return -1; }
+
+        const tokens = this.parseWildcardPattern(pattern);
+        if (tokens.length === 0) { return startIndex; }
+
+        for (let start = startIndex; start <= text.length; start++) {
+            if (this.matchWildcard(text, tokens, start)) {
+                return start;
+            }
+        }
+        return -1;
     }
 
-    wildcardToRegex(pattern) {
-        const sb = [];
+    parseWildcardPattern(pattern) {
+        const list = [];
         for (let i = 0; i < pattern.length; i++) {
             const c = pattern[i];
             if (c === '~') {
                 if (i + 1 < pattern.length && (pattern[i + 1] === '?' || pattern[i + 1] === '*' || pattern[i + 1] === '~')) {
-                    sb.push(this.escapeRegExpChar(pattern[i + 1]));
+                    list.push({ kind: 'literal', value: pattern[i + 1].toUpperCase() });
                     i++;
                 } else {
-                    sb.push(this.escapeRegExpChar('~'));
+                    list.push({ kind: 'literal', value: '~' });
                 }
             } else if (c === '*') {
-                sb.push('[\\s\\S]*');
+                list.push({ kind: 'anySeq' });
             } else if (c === '?') {
-                sb.push('[\\s\\S]');
+                list.push({ kind: 'anyOne' });
             } else {
-                sb.push(this.escapeRegExpChar(c));
+                list.push({ kind: 'literal', value: c.toUpperCase() });
             }
         }
-        return sb.join('');
+        return list;
     }
 
-    escapeRegExpChar(c) {
-        return /[.*+?^${}()|[\]\\]/.test(c) ? '\\' + c : c;
+    matchWildcard(text, tokens, start) {
+        let ti = 0;
+        let si = start;
+        let starToken = -1;
+        let starMatch = 0;
+
+        while (ti < tokens.length) {
+            if (si < text.length) {
+                const tok = tokens[ti];
+                if (tok.kind === 'literal') {
+                    if (text[si].toUpperCase() === tok.value) {
+                        ti++;
+                        si++;
+                    } else if (starToken !== -1) {
+                        ti = starToken + 1;
+                        si = ++starMatch;
+                    } else {
+                        return false;
+                    }
+                } else if (tok.kind === 'anyOne') {
+                    ti++;
+                    si++;
+                } else {
+                    starToken = ti;
+                    starMatch = si;
+                    ti++;
+                }
+            } else {
+                break;
+            }
+        }
+
+        while (ti < tokens.length && tokens[ti].kind === 'anySeq') {
+            ti++;
+        }
+        return ti === tokens.length;
     }
 }
 
 export { Function_SEARCH };
-

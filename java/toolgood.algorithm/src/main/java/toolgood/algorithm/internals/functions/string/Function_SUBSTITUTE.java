@@ -32,6 +32,9 @@ public final class Function_SUBSTITUTE extends Function_4 {
         Operand args3 = GetText_3(engine, tempParameter);
         if (args3.IsErrorOrNone()) { return args3; }
         if (func4 == null) {
+            if (args2.TextValue().length() == 0) {
+                return Operand.Create(args1.TextValue());
+            }
             return Operand.Create(args1.TextValue().replace(args2.TextValue(), args3.TextValue()));
         }
         Operand args4 = GetNumber_4(engine, tempParameter);
@@ -44,8 +47,11 @@ public final class Function_SUBSTITUTE extends Function_4 {
         if (oldtext.length() == 0) {
             return Operand.Create(text);
         }
+        if (replaceIndex < 1) {
+            return ParameterError(4);
+        }
 
-        int estimatedCapacity = Math.max(text.length(), text.length() + (newtext.length() - oldtext.length()));
+        int estimatedCapacity = Math.max(0, text.length() + newtext.length() - oldtext.length());
         StringBuilder sb = new StringBuilder(estimatedCapacity);
         int currentIndex = 0;
         int foundCount = 0;

@@ -25,6 +25,9 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args3 = GetText_3(engine, tempParameter);
 			if (args3.IsErrorOrNone) { return args3; }
 			if (func4 == null) {
+				if (args2.TextValue.Length == 0) {
+					return Operand.Create(args1.TextValue);
+				}
 				return Operand.Create(args1.TextValue.Replace(args2.TextValue, args3.TextValue));
 			}
 			var args4 = GetNumber_4(engine, tempParameter);
@@ -37,8 +40,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (oldtext.Length == 0) {
 				return Operand.Create(text);
 			}
+			if (replaceIndex < 1) {
+				return ParameterError(4);
+			}
 
-			int estimatedCapacity = Math.Max(text.Length, text.Length + (newtext.Length - oldtext.Length));
+			int estimatedCapacity = Math.Max(0, text.Length + newtext.Length - oldtext.Length);
 			var sb = new StringBuilder(estimatedCapacity);
 			int currentIndex = 0;
 			int foundCount = 0;

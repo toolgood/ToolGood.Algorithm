@@ -1,9 +1,8 @@
 package toolgood.algorithm.internals.functions.string;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
@@ -57,33 +56,90 @@ public final class Function_SEARCH extends Function_3 {
     }
 
     // 在指定起始位置起做大小写不敏感的通配符查找,支持 Excel 的 ? 与 * 及 ~ 转义。
+    // 使用手写匹配器替代正则,避免每次调用都编译正则的开销。
+    private static final int LITERAL = 0;
+    private static final int ANY_ONE = 1;
+    private static final int ANY_SEQ = 2;
+
+    private static final class WildcardToken {
+        final int kind;
+        final char value;
+        WildcardToken(int kind, char value) { this.kind = kind; this.value = value; }
+    }
+
     private static int wildcardIndexOf(String text, String pattern, int startIndex) {
-        Matcher m = Pattern.compile(wildcardToRegex(pattern), Pattern.CASE_INSENSITIVE).matcher(text);
-        m.region(startIndex, text.length());
-        if (m.find()) { return m.start(); }
+        if (startIndex < 0) { startIndex = 0; }
+        if (startIndex > text.length()) { return -1; }
+
+        List<WildcardToken> tokens = parseWildcardPattern(pattern);
+        if (tokens.size() == 0) { return startIndex; }
+
+        for (int start = startIndex; start <= text.length(); start++) {
+            if (matchWildcard(text, tokens, start)) {
+                return start;
+            }
+        }
         return -1;
     }
 
-    private static String wildcardToRegex(String pattern) {
-        StringBuilder sb = new StringBuilder();
+    private static List<WildcardToken> parseWildcardPattern(String pattern) {
+        List<WildcardToken> list = new ArrayList<WildcardToken>();
         for (int i = 0; i < pattern.length(); i++) {
             char c = pattern.charAt(i);
             if (c == '~') {
                 if (i + 1 < pattern.length() && (pattern.charAt(i + 1) == '?' || pattern.charAt(i + 1) == '*' || pattern.charAt(i + 1) == '~')) {
-                    sb.append(Pattern.quote(String.valueOf(pattern.charAt(i + 1))));
+                    list.add(new WildcardToken(LITERAL, Character.toUpperCase(pattern.charAt(i + 1))));
                     i++;
                 } else {
-                    sb.append(Pattern.quote("~"));
+                    list.add(new WildcardToken(LITERAL, '~'));
                 }
             } else if (c == '*') {
-                sb.append("[\\s\\S]*");
+                list.add(new WildcardToken(ANY_SEQ, '\0'));
             } else if (c == '?') {
-                sb.append("[\\s\\S]");
+                list.add(new WildcardToken(ANY_ONE, '\0'));
             } else {
-                sb.append(Pattern.quote(String.valueOf(c)));
+                list.add(new WildcardToken(LITERAL, Character.toUpperCase(c)));
             }
         }
-        return sb.toString();
+        return list;
+    }
+
+    private static boolean matchWildcard(String text, List<WildcardToken> tokens, int start) {
+        int ti = 0;
+        int si = start;
+        int starToken = -1;
+        int starMatch = 0;
+
+        while (ti < tokens.size()) {
+            if (si < text.length()) {
+                WildcardToken tok = tokens.get(ti);
+                if (tok.kind == LITERAL) {
+                    if (Character.toUpperCase(text.charAt(si)) == tok.value) {
+                        ti++;
+                        si++;
+                    } else if (starToken != -1) {
+                        ti = starToken + 1;
+                        si = ++starMatch;
+                    } else {
+                        return false;
+                    }
+                } else if (tok.kind == ANY_ONE) {
+                    ti++;
+                    si++;
+                } else {
+                    starToken = ti;
+                    starMatch = si;
+                    ti++;
+                }
+            } else {
+                break;
+            }
+        }
+
+        while (ti < tokens.size() && tokens.get(ti).kind == ANY_SEQ) {
+            ti++;
+        }
+        return ti == tokens.size();
     }
 
     @Override

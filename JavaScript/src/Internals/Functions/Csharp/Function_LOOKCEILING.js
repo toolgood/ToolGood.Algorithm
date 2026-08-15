@@ -32,22 +32,25 @@ export class Function_LOOKCEILING extends Function_2 {
         FunctionUtil.F_base_GetList(args2.ArrayValue, list);
         if (list.length === 0) { return this.parameterError(2); }
 
-        list.sort((a, b) => b - a);
+        list.sort((a, b) => a - b);
         let value = args1.NumberValue;
-        let result = list[0];
-        if (result === value) { return args1; }
 
-        for (let i = 1; i < list.length; i++) {
-            let val = list[i];
-            if (val > value) {
-                result = val;
-            } else if (val === value) {
-                return args1;
+        // 二分查找第一个 >= value 的位置
+        let lo = 0, hi = list.length;
+        while (lo < hi) {
+            const mid = (lo + hi) >> 1;
+            if (list[mid] < value) {
+                lo = mid + 1;
             } else {
-                break;
+                hi = mid;
             }
         }
-        return Operand.Create(result);
+        if (lo < list.length && list[lo] === value) { return args1; }
+        if (lo === list.length) {
+            // 所有元素都小于 value，返回最大值
+            return Operand.Create(list[list.length - 1]);
+        }
+        return Operand.Create(list[lo]);
     }
     
 

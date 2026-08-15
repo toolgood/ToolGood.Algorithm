@@ -34,20 +34,23 @@ export class Function_LOOKFLOOR extends Function_2 {
 
         list.sort((a, b) => a - b);
         let value = args1.NumberValue;
-        let result = list[0];
-        if (result === value) { return args1; }
 
-        for (let i = 1; i < list.length; i++) {
-            let val = list[i];
-            if (val < value) {
-                result = val;
-            } else if (val === value) {
-                return args1;
+        // 二分查找第一个 >= value 的位置
+        let lo = 0, hi = list.length;
+        while (lo < hi) {
+            const mid = (lo + hi) >> 1;
+            if (list[mid] < value) {
+                lo = mid + 1;
             } else {
-                break;
+                hi = mid;
             }
         }
-        return Operand.Create(result);
+        if (lo < list.length && list[lo] === value) { return args1; }
+        if (lo === 0) {
+            // 所有元素都大于 value，返回最小值
+            return Operand.Create(list[0]);
+        }
+        return Operand.Create(list[lo - 1]);
     }
     
 

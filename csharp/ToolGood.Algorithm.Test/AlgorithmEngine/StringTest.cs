@@ -624,6 +624,15 @@ namespace ToolGood.Algorithm.Test.String
 
             t2 = engine.TryEvaluate("SUBSTITUTE('aabaa', 'a', 'b', 2)", "");
             Assert.AreEqual(t2, "abbaa");
+
+            // old_text 为空字符串时返回原文本
+            t2 = engine.TryEvaluate("SUBSTITUTE('abc', '', 'x')", "");
+            Assert.AreEqual(t2, "abc");
+
+            // instance_num 小于 1 时返回 #VALUE! 错误
+            t2 = engine.TryEvaluate("SUBSTITUTE('abc', 'a', 'x', 0)", "");
+            Assert.AreEqual(t2, "");
+            Assert.IsNotNull(engine.LastError);
         }
 
         #endregion 边界值测试

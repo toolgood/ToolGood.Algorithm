@@ -51,21 +51,16 @@ public final class Function_LOOKCEILING extends Function_2 {
         Collections.sort(list);
 
         BigDecimal value = args1.NumberValue();
-        BigDecimal result = list.get(list.size() - 1);
-        if (result.compareTo(value) == 0) {
+        int index = Collections.binarySearch(list, value);
+        if (index >= 0) {
             return args1;
         }
-        for (int i = list.size() - 2; i >= 0; i--) {
-            BigDecimal val = list.get(i);
-            if (val.compareTo(value) > 0) {
-                result = val;
-            } else if (val.compareTo(value) == 0) {
-                return args1;
-            } else {
-                break;
-            }
+        index = -index - 1; // 第一个大于 value 的索引
+        if (index == list.size()) {
+            // 所有元素都小于 value，返回最大值
+            return Operand.Create(list.get(list.size() - 1));
         }
-        return Operand.Create(result);
+        return Operand.Create(list.get(index));
     }
 
     @Override

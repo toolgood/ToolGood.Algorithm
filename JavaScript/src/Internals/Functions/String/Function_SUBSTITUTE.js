@@ -18,6 +18,9 @@ class Function_SUBSTITUTE extends Function_4 {
         let args3 = this.getText_3(work, tempParameter);
         if (args3.IsError) { return args3; }
         if (this.d === null || this.d === undefined) {
+            if (args2.TextValue.length === 0) {
+                return Operand.Create(args1.TextValue);
+            }
             return Operand.Create(args1.TextValue.replace(new RegExp(args2.TextValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), args3.TextValue));
         }
         let args4 = this.getNumber_4(work, tempParameter);
@@ -30,6 +33,9 @@ class Function_SUBSTITUTE extends Function_4 {
         // 与 C# 一致:旧文本为空时返回原文
         if (oldtext.length === 0) {
             return Operand.Create(text);
+        }
+        if (index < 1) {
+            return this.parameterError(4);
         }
 
         let foundCount = 0;
