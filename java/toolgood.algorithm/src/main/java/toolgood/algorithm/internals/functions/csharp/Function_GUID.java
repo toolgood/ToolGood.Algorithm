@@ -24,7 +24,7 @@ public final class Function_GUID extends Function_0 {
 
     @Override
     public void ToString(StringBuilder stringBuilder, boolean addBrackets) {
-        stringBuilder.append("GUID()");
+        stringBuilder.append("Guid()");
     }
 
     @Override

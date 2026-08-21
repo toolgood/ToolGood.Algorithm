@@ -28,8 +28,9 @@ export class Function_LASTINDEXOF extends Function_4 {
         if (args2.IsError) { return args2; }
 
         let text = args1.TextValue;
+        let searchStr = args2.TextValue;
         if (this.c == null) {
-            let index = text.lastIndexOf(args2.TextValue);
+            let index = text.lastIndexOf(searchStr);
             return Operand.Create(index + engine.ExcelIndex);
         }
 
@@ -42,7 +43,15 @@ export class Function_LASTINDEXOF extends Function_4 {
         }
 
         if (this.d == null) {
-            let index = text.substring(0, startIndex).lastIndexOf(args2.TextValue);
+            // C# LastIndexOf(str, startIndex): 匹配的最后一个字符位置 ≤ startIndex
+            // JS lastIndexOf(str, fromIndex): 匹配的第一个字符位置 ≤ fromIndex
+            // 转换: fromIndex = startIndex - searchStr.length + 1
+            let fromIndex = startIndex - searchStr.length + 1;
+            // JS 对负数 fromIndex 会将其视为 0 搜索整个字符串，需手动返回 -1
+            if (fromIndex < 0 && searchStr.length > 0) {
+                return Operand.Create(-1 + engine.ExcelIndex);
+            }
+            let index = text.lastIndexOf(searchStr, fromIndex);
             return Operand.Create(index + engine.ExcelIndex);
         }
 
@@ -54,8 +63,10 @@ export class Function_LASTINDEXOF extends Function_4 {
             return this.parameterError(4);
         }
 
+        // C# LastIndexOf(str, startIndex, count): 在 [startIndex-count+1, startIndex] 窗口内搜索
+        // 使用 substring 窗口法确保语义一致
         let offset = startIndex - count + 1;
-        let localIndex = text.substring(offset, startIndex + 1).lastIndexOf(args2.TextValue);
+        let localIndex = text.substring(offset, startIndex + 1).lastIndexOf(searchStr);
         let index = localIndex === -1 ? -1 : localIndex + offset;
         return Operand.Create(index + engine.ExcelIndex);
     }

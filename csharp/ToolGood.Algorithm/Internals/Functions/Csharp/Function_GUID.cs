@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			stringBuilder.Append("GUID()");
+			stringBuilder.Append("Guid()");
 		}
 		public override OperandType GetResultType()
 		{

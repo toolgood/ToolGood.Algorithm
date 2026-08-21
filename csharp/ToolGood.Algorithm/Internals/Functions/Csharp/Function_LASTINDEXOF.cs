@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 
 			if(func4 == null) {
-				return Operand.Create(text.AsSpan(0, startIndex).LastIndexOf(args2.TextValue) + engine.ExcelIndex);
+				return Operand.Create(text.LastIndexOf(args2.TextValue, startIndex) + engine.ExcelIndex);
 			}
 
 			var args4 = GetNumber_4(engine, tempParameter);

@@ -37,10 +37,11 @@ public final class Function_LASTINDEXOF extends Function_4 {
         }
 
         String text = args1.TextValue();
+        String searchStr = args2.TextValue();
         int excelIndex = engine.ExcelIndex;
 
         if (func3 == null) {
-            return Operand.Create(text.lastIndexOf(args2.TextValue()) + excelIndex);
+            return Operand.Create(text.lastIndexOf(searchStr) + excelIndex);
         }
 
         Operand args3 = GetNumber_3(engine, tempParameter);
@@ -53,7 +54,11 @@ public final class Function_LASTINDEXOF extends Function_4 {
         }
 
         if (func4 == null) {
-            return Operand.Create(text.substring(0, startIndex).lastIndexOf(args2.TextValue()) + excelIndex);
+            // C# LastIndexOf(str, startIndex): 匹配的最后一个字符位置 ≤ startIndex
+            // Java lastIndexOf(str, fromIndex): 匹配的第一个字符位置 ≤ fromIndex
+            // 转换: fromIndex = startIndex - searchStr.length() + 1
+            int fromIndex = startIndex - searchStr.length() + 1;
+            return Operand.Create(text.lastIndexOf(searchStr, fromIndex) + excelIndex);
         }
 
         Operand args4 = GetNumber_4(engine, tempParameter);
@@ -65,11 +70,13 @@ public final class Function_LASTINDEXOF extends Function_4 {
             return ParameterError(4);
         }
 
-        int idx = text.lastIndexOf(args2.TextValue(), startIndex);
-        if (idx >= 0 && idx >= startIndex - count + 1) {
-            return Operand.Create(idx + excelIndex);
-        }
-        return Operand.Create(-1 + excelIndex);
+        // C# LastIndexOf(str, startIndex, count): 在 [startIndex-count+1, startIndex] 窗口内搜索
+        // 使用 substring 窗口法确保语义一致
+        int offset = startIndex - count + 1;
+        int endPos = Math.min(startIndex + 1, text.length());
+        int localIdx = text.substring(offset, endPos).lastIndexOf(searchStr);
+        int idx = localIdx == -1 ? -1 : localIdx + offset;
+        return Operand.Create(idx + excelIndex);
     }
 
     @Override

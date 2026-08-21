@@ -37,10 +37,11 @@ public final class Function_INDEXOF extends Function_4 {
         }
 
         String text = args1.TextValue();
+        String searchStr = args2.TextValue();
         int excelIndex = engine.ExcelIndex;
 
         if (func3 == null) {
-            return Operand.Create(text.indexOf(args2.TextValue()) + excelIndex);
+            return Operand.Create(text.indexOf(searchStr) + excelIndex);
         }
 
         Operand args3 = GetNumber_3(engine, tempParameter);
@@ -53,7 +54,7 @@ public final class Function_INDEXOF extends Function_4 {
         }
 
         if (func4 == null) {
-            return Operand.Create(text.indexOf(args2.TextValue(), startIndex) + excelIndex);
+            return Operand.Create(text.indexOf(searchStr, startIndex) + excelIndex);
         }
 
         Operand args4 = GetNumber_4(engine, tempParameter);
@@ -65,11 +66,11 @@ public final class Function_INDEXOF extends Function_4 {
             return ParameterError(4);
         }
 
-        int idx = text.indexOf(args2.TextValue(), startIndex);
-        if (idx >= 0 && idx < startIndex + count) {
-            return Operand.Create(idx + excelIndex);
-        }
-        return Operand.Create(-1 + excelIndex);
+        // C# IndexOf(str, startIndex, count): 匹配必须完全在 [startIndex, startIndex+count) 窗口内
+        // 使用 substring 窗口法确保语义一致
+        int localIdx = text.substring(startIndex, startIndex + count).indexOf(searchStr);
+        int idx = localIdx == -1 ? -1 : localIdx + startIndex;
+        return Operand.Create(idx + excelIndex);
     }
 
     @Override

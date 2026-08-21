@@ -549,6 +549,125 @@ namespace ToolGood.Algorithm.Test.Csharp
             dt = engine.TryEvaluate("HasValue(json('[1,2,3]'),'2')", false);
             Assert.AreEqual(dt, true);
         }
+
+        [Test]
+        public void LastIndexOf_with_startIndex_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseExcelIndex = false;
+
+            // 单字符在 startIndex 位置能被找到（修复 AsSpan off-by-one bug：
+            // 原 AsSpan(0,startIndex) 缺少 startIndex 位置的字符）
+            var dt = engine.TryEvaluate("LastIndexOf('abc','c',2)", -1);
+            Assert.AreEqual(dt, 2);
+
+            // 多字符匹配的最后一个字符恰好在 startIndex 位置
+            dt = engine.TryEvaluate("LastIndexOf('abcd','cd',3)", -1);
+            Assert.AreEqual(dt, 2);
+
+            // startIndex 之前有更早的匹配
+            dt = engine.TryEvaluate("LastIndexOf('abcdcd','cd',3)", -1);
+            Assert.AreEqual(dt, 2);
+
+            // startIndex == text.Length 允许（搜索到末尾）
+            dt = engine.TryEvaluate("LastIndexOf('abcdcd','cd',6)", -1);
+            Assert.AreEqual(dt, 4);
+
+            // startIndex 窗口内无匹配（匹配延伸到 startIndex 之外）
+            dt = engine.TryEvaluate("LastIndexOf('ababa','aba',2)", -1);
+            Assert.AreEqual(dt, 0);
+
+            // 完全未找到
+            dt = engine.TryEvaluate("LastIndexOf('abcd','xyz',2)", -1);
+            Assert.AreEqual(dt, -1);
+
+            // 1-based Excel index: 参数 startIndex=3 → 0-based=2
+            engine.UseExcelIndex = true;
+            dt = engine.TryEvaluate("LastIndexOf('abc','c',3)", -1);
+            Assert.AreEqual(dt, 3);
+        }
+
+        [Test]
+        public void LastIndexOf_with_startIndex_and_count_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseExcelIndex = false;
+
+            // 4参数：文本、搜索串、起始位置、count —— 窗口内匹配
+            var dt = engine.TryEvaluate("LastIndexOf('abcabcabc','abc',5,3)", -1);
+            Assert.AreEqual(dt, 3);
+
+            // count 覆盖整个字符串（startIndex=8, count=9 → 窗口[0,8]）
+            dt = engine.TryEvaluate("LastIndexOf('abcabcabc','abc',8,9)", -1);
+            Assert.AreEqual(dt, 6);
+
+            // count 受限，找不到更近的匹配
+            dt = engine.TryEvaluate("LastIndexOf('abcabcabc','abc',5,2)", -1);
+            Assert.AreEqual(dt, -1);
+        }
+
+        [Test]
+        public void LastIndexOf_not_found_with_startIndex_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseExcelIndex = false;
+
+            // startIndex 窗口内没有匹配项
+            var dt = engine.TryEvaluate("LastIndexOf('abcdef','xyz',3)", -1);
+            Assert.AreEqual(dt, -1);
+        }
+
+        [Test]
+        public void Guid_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("Guid()", null);
+            Assert.IsNotNull(dt);
+            Assert.IsTrue(dt is string);
+            // GUID 格式: 8-4-4-4-12
+            Assert.AreEqual(((string)dt).Length, 36);
+        }
+
+        [Test]
+        public void Has_json_array_types_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            // JSON 数组包含 double 类型值
+            var dt = engine.TryEvaluate("Has(json('[1,2,3]'),'2')", false);
+            Assert.AreEqual(dt, true);
+
+            // JSON 数组包含 boolean 类型值
+            dt = engine.TryEvaluate("Has(json('[true,false]'),'true')", false);
+            Assert.AreEqual(dt, true);
+
+            dt = engine.TryEvaluate("Has(json('[true,false]'),'false')", false);
+            Assert.AreEqual(dt, true);
+
+            // JSON 对象按键查找
+            dt = engine.TryEvaluate("Has(json('{\"a\":1,\"b\":2}'),'a')", false);
+            Assert.AreEqual(dt, true);
+
+            dt = engine.TryEvaluate("Has(json('{\"a\":1,\"b\":2}'),'c')", false);
+            Assert.AreEqual(dt, false);
+        }
+
+        [Test]
+        public void HasValue_json_array_types_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            // JSON 数组包含 double 类型值
+            var dt = engine.TryEvaluate("HasValue(json('[1,2,3]'),'2')", false);
+            Assert.AreEqual(dt, true);
+
+            // JSON 对象包含 boolean 类型值
+            dt = engine.TryEvaluate("HasValue(json('{\"a\":true,\"b\":false}'),'true')", false);
+            Assert.AreEqual(dt, true);
+
+            dt = engine.TryEvaluate("HasValue(json('{\"a\":true,\"b\":false}'),'false')", false);
+            Assert.AreEqual(dt, true);
+        }
     
     }
 }
