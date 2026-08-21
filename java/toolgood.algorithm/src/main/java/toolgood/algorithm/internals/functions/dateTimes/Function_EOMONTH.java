@@ -30,8 +30,8 @@ public final class Function_EOMONTH extends Function_2 {
 
         Operand args2 = GetNumber_2(engine, tempParameter);
         if (args2.IsErrorOrNone()) { return args2; }
-        DateTime dt = args1.DateValue().ToDateTime().plusMonths(args2.IntValue());
-        DateTime dt2 = dt.dayOfMonth().withMaximumValue();
+        DateTime dt = args1.DateValue().ToDateTime().plusMonths(args2.IntValue() + 1);
+        DateTime dt2 = new DateTime(dt.getYear(), dt.getMonthOfYear(), 1, 0, 0).minusDays(1);
         return Operand.Create(dt2);
     }
 

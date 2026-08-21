@@ -5,7 +5,6 @@ import java.math.RoundingMode;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Days;
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
@@ -64,10 +63,10 @@ public final class Function_YEARFRAC extends Function_3 {
             case 1:
                 return CalculateActualActual(startDate, endDate);
             case 2:
-                return BigDecimal.valueOf(Days.daysBetween(startDate, endDate).getDays())
+                return daysBetween(startDate, endDate)
                         .divide(BigDecimal.valueOf(360), 10, RoundingMode.HALF_UP);
             case 3:
-                return BigDecimal.valueOf(Days.daysBetween(startDate, endDate).getDays())
+                return daysBetween(startDate, endDate)
                         .divide(BigDecimal.valueOf(365), 10, RoundingMode.HALF_UP);
             case 4:
                 return Calculate30_360E(startDate, endDate);
@@ -124,7 +123,7 @@ public final class Function_YEARFRAC extends Function_3 {
 
         if (startYear == endYear) {
             int daysInYear = startDate.year().isLeap() ? 366 : 365;
-            return BigDecimal.valueOf(Days.daysBetween(startDate, endDate).getDays())
+            return daysBetween(startDate, endDate)
                     .divide(BigDecimal.valueOf(daysInYear), 10, RoundingMode.HALF_UP);
         }
 
@@ -133,14 +132,18 @@ public final class Function_YEARFRAC extends Function_3 {
         int daysInEndYear = endDate.year().isLeap() ? 366 : 365;
 
         DateTime yearEnd = new DateTime(startYear, 12, 31, 0, 0, 0, DateTimeZone.UTC);
-        result = result.add(BigDecimal.valueOf(Days.daysBetween(startDate, yearEnd).getDays())
+        result = result.add(daysBetween(startDate, yearEnd)
                 .divide(BigDecimal.valueOf(daysInStartYear), 10, RoundingMode.HALF_UP));
         DateTime yearStart = new DateTime(endYear, 1, 1, 0, 0, 0, DateTimeZone.UTC);
-        result = result.add(BigDecimal.valueOf(Days.daysBetween(yearStart, endDate).getDays())
+        result = result.add(daysBetween(yearStart, endDate)
                 .divide(BigDecimal.valueOf(daysInEndYear), 10, RoundingMode.HALF_UP));
         result = result.add(BigDecimal.valueOf(endYear - startYear - 1));
 
         return result;
+    }
+
+    private BigDecimal daysBetween(DateTime startDate, DateTime endDate) {
+        return BigDecimal.valueOf((endDate.getMillis() - startDate.getMillis()) / 86400000.0);
     }
 
     @Override
