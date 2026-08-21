@@ -5,29 +5,30 @@ import MD5 from 'crypto-js/md5.js';
 import Utf8 from 'crypto-js/enc-utf8.js';
 
 /**
- * Represents the MD5 encryption function
+ * Function_MD5
  */
 export class Function_MD5 extends Function_1 {
+    /**
+     * @param {FunctionBase[]} funcs
+     */
+    constructor(funcs) {
+        super(funcs);
+    }
+
     get Name() {
         return "MD5";
     }
 
-
-    constructor(a) {
-        super(a);
-    }
-
     /**
-     * @param {AlgorithmEngine} work
+     * @param {AlgorithmEngine} engine
      * @param {Function} tempParameter
+     * @returns {Operand}
      */
-    evaluate(work, tempParameter = null) {
-        let args1 = this.getText_1(work, tempParameter);
-        // 与 C# 一致:错误或空值直接传播
-        if (args1.IsError || args1.IsNull) { return args1; }
+    evaluate(engine, tempParameter) {
+        let args1 = this.getText_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
 
         try {
-            // 与 C# 一致:先按 UTF-8 编码再哈希
             let md5Hash = MD5(Utf8.parse(args1.TextValue));
             let result = md5Hash.toString().toUpperCase();
             return Operand.Create(result);
