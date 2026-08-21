@@ -27,12 +27,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 				} else if(args1.IsText) {
 					var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
 					return r > 0 ? Operand.True : Operand.False;
-				} else if(args1.IsDate) {
-					return Operand.Create(args1.DateValue.ToLong() > args2.DateValue.ToLong());
 				} else if(args1.IsBoolean) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
 					return Operand.Create(args1.NumberValue > args2.NumberValue);
+				} else if(args1.IsDate) {
+					return Operand.Create(args1.DateValue.ToLong() > args2.DateValue.ToLong());
 				} else if(args1.IsNull) {
 					// null 属于异常数据，两侧同为 null 时无法比较大小，返回错误
 					return CompareError();
