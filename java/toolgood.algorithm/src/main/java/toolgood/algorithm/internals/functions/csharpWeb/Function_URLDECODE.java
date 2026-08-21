@@ -33,8 +33,13 @@ public final class Function_URLDECODE extends Function_1 {
 			return args1;
 		}
 		String s = args1.TextValue();
-		String r = URLDecoder.decode(s, StandardCharsets.UTF_8);
-		return Operand.Create(r);
+		try {
+			String r = URLDecoder.decode(s, StandardCharsets.UTF_8);
+			return Operand.Create(r);
+		} catch (Exception e) {
+			// C# HttpUtility.UrlDecode 对无效编码不抛异常，返回部分解码结果
+			return Operand.Create(s.replace("+", " "));
+		}
 	}
 
 	@Override

@@ -28,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 				}
 				var t = Encoding.UTF8.GetString(Convert.FromBase64String(base64Url));
 				return Operand.Create(t);
-			} catch(Exception) {
+			} catch {
 				return ParameterError(1);
 			}
 		}
