@@ -42,12 +42,12 @@ public final class Function_LE extends Function_2 {
             } else if (args1.IsText()) {
                 int r = args1.TextValue().compareTo(args2.TextValue());
                 return r <= 0 ? Operand.True : Operand.False;
-            } else if (args1.IsDate()) {
-                return Operand.Create(args1.DateValue().ToLong() <= args2.DateValue().ToLong());
             } else if (args1.IsBoolean()) {
                 args1 = args1.ToNumber(null);
                 args2 = args2.ToNumber(null);
                 return Operand.Create(args1.NumberValue().compareTo(args2.NumberValue()) <= 0);
+            } else if (args1.IsDate()) {
+                return Operand.Create(args1.DateValue().ToLong() <= args2.DateValue().ToLong());
             } else if (args1.IsNull()) {
                 // null 属于异常数据，两侧同为 null 时无法比较大小，返回错误
                 return CompareError();

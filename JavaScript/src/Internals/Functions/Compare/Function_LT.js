@@ -21,12 +21,12 @@ class Function_LT extends Function_2 {
         return Operand.Create(args1.NumberValue < args2.NumberValue);
       } else if (args1.IsText) {
         return args1.TextValue < args2.TextValue ? Operand.True : Operand.False;
-      } else if (args1.IsDate) {
-        return Operand.Create(args1.DateValue.ToLong() < args2.DateValue.ToLong());
       } else if (args1.IsBoolean) {
         args1 = args1.ToNumber();
         args2 = args2.ToNumber();
         return Operand.Create(args1.NumberValue < args2.NumberValue);
+      } else if (args1.IsDate) {
+        return Operand.Create(args1.DateValue.ToLong() < args2.DateValue.ToLong());
       } else if (args1.IsNull) {
         return this.compareError();
       } else {
