@@ -54,7 +54,12 @@ public final class Function_SERIESSUM extends Function_N {
             Operand coef = coefArray.get(i);
             if (coef.IsNumber()) {
                 double power = nd + i * md;
-                result += coef.NumberValue().doubleValue() * Math.pow(xd, power);
+                double term = coef.NumberValue().doubleValue() * Math.pow(xd, power);
+                // 负底数非整数幂产生 NaN、数值溢出产生 Infinity,与 C# 捕获异常返回错误一致
+                if (Double.isNaN(term) || Double.isInfinite(term)) {
+                    return FunctionError();
+                }
+                result += term;
             }
         }
 

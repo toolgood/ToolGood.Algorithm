@@ -155,7 +155,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static decimal GetSumIf(List<decimal> dbs, decimal d, List<decimal> sumdbs)
 		{
 			decimal sum = 0;
-			for(int i = 0; i < dbs.Count; i++) {
+			int n = Math.Min(dbs.Count, sumdbs.Count);
+			for(int i = 0; i < n; i++) {
 				var item = dbs[i];
 				if(item == d) {
 					sum += sumdbs[i];
@@ -167,7 +168,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static decimal GetSumIf(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
 		{
 			decimal sum = 0;
-			for(int i = 0; i < dbs.Count; i++) {
+			int n = Math.Min(dbs.Count, sumdbs.Count);
+			for(int i = 0; i < n; i++) {
 				if(CompareValues(dbs[i], d, s)) {
 					sum += sumdbs[i];
 				}

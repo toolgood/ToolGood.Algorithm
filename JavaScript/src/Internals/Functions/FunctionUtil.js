@@ -205,19 +205,23 @@ export var FunctionUtil = {
 
     F_base_sumif: function(list, arg1, arg2, arg3) {
         let sum = 0;
-        for (let i = 0; i < list.length; i++) {
-            if (arguments.length === 3) {
-                // 三个参数的情况：list, value, sumdbs
-                let value = arg1;
-                let sumdbs = arg2;
+        if (arguments.length === 3) {
+            // 三个参数的情况：list, value, sumdbs
+            let value = arg1;
+            let sumdbs = arg2;
+            let n = Math.min(list.length, sumdbs.length); // sumdbs 长度可能小于 list,避免越界
+            for (let i = 0; i < n; i++) {
                 if (list[i] === value) {
                     sum += sumdbs[i];
                 }
-            } else {
-                // 四个参数的情况：list, operator, value, sumdbs
-                let operator = arg1;
-                let value = arg2;
-                let sumdbs = arg3;
+            }
+        } else {
+            // 四个参数的情况：list, operator, value, sumdbs
+            let operator = arg1;
+            let value = arg2;
+            let sumdbs = arg3;
+            let n = Math.min(list.length, sumdbs.length);
+            for (let i = 0; i < n; i++) {
                 if (this.F_base_compare(list[i], value, operator)) {
                     sum += sumdbs[i];
                 }

@@ -97,7 +97,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				}
 				rate = newRate;
 			}
-			return rate;
+			throw new InvalidOperationException("RATE calculation did not converge");
 		}
 		public override OperandType GetResultType()
 		{

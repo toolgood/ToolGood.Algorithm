@@ -51,7 +51,7 @@ public final class Function_COVARIANCES extends Function_2 {
         if (list1.size() != list2.size()) {
             return Operand.Error("Function '" + Name() + "' parameter's count error!");
         }
-        if (list1.size() == 1) {
+        if (list1.size() < 2) {
             return Operand.Error("Function '" + Name() + "' parameter's count error!");
         }
 

@@ -121,7 +121,7 @@ public final class Function_RATE extends Function_6 {
             }
             rate = newRate;
         }
-        return rate;
+        throw new IllegalArgumentException("RATE calculation did not converge");
     }
 
     @Override

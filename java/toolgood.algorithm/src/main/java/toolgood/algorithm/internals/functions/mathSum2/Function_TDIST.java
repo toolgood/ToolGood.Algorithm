@@ -42,6 +42,9 @@ public final class Function_TDIST extends Function_3 {
         if (tails < 1 || tails > 2) {
             return ParameterError(3);
         }
+        if (args1.NumberValue().compareTo(BigDecimal.ZERO) <= 0) {
+            return ParameterError(1);
+        }
         try {
             return Operand.Create(BigDecimal.valueOf(ExcelFunctions.TDist(args1.NumberValue().doubleValue(), degreesFreedom, tails)));
         } catch (Exception e) {

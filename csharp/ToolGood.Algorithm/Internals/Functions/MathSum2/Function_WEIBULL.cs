@@ -39,7 +39,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			}
 			var state = args4.BooleanValue;
 
-			return Operand.Create(Weibull(x, shape, scale, state));
+			try {
+				return Operand.Create(Weibull(x, shape, scale, state));
+			} catch (OverflowException) {
+				// x 过大时 Pow/Exp 结果超出 decimal 范围,与 Excel 返回 #NUM! 保持一致
+				return FunctionError();
+			} catch (InvalidOperationException) {
+				// 如 x=0 且 shape<1 时 0 的负次幂,与 Excel 返回 #NUM! 保持一致
+				return FunctionError();
+			}
 		}
 
 		public decimal Weibull(decimal x, decimal shape, decimal scale, bool state)

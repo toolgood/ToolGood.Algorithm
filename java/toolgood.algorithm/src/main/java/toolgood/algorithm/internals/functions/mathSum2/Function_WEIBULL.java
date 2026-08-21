@@ -50,7 +50,12 @@ public final class Function_WEIBULL extends Function_4 {
         }
         boolean state = args4.BooleanValue();
 
-        return Operand.Create(BigDecimal.valueOf(Weibull(x.doubleValue(), shape.doubleValue(), scale.doubleValue(), state)));
+        double result = Weibull(x.doubleValue(), shape.doubleValue(), scale.doubleValue(), state);
+        // x 过大时 Pow/Exp 溢出为 Infinity,或 x=0 且 shape<1 时 0 的负次幂产生 NaN,与 C# 捕获异常返回错误一致
+        if (Double.isNaN(result) || Double.isInfinite(result)) {
+            return FunctionError();
+        }
+        return Operand.Create(BigDecimal.valueOf(result));
     }
 
     private static double Weibull(double x, double shape, double scale, boolean state) {

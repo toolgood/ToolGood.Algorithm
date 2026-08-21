@@ -29,6 +29,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(x <= 0) {
 				return ParameterError(1);
 			}
+			if(n < 0) {
+				return ParameterError(2);
+			}
 
 			try {
 				return Operand.Create(SpecialFunctions.BesselY(n, x));

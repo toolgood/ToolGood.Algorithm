@@ -33,7 +33,8 @@ class Function_HYPGEOMDIST extends Function_4 {
         if (success < 0) { return this.parameterError(3); }
         if (population < 0) { return this.parameterError(4); }
         if (k > draws) { return this.parameterError(1); }
-        if (success > population || draws > population) { return this.functionError(); }
+        if (success > population) { return this.parameterError(3); }
+        if (draws > population) { return this.parameterError(2); }
         return Operand.Create(ExcelFunctions.hypgeomDist(k, draws, success, population));
     }
 }

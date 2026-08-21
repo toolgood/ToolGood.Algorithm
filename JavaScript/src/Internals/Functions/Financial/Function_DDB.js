@@ -37,28 +37,30 @@ class Function_DDB extends Function_N {
         }
 
         if (life === 0 || factor === 0) return this.div0Error();
+        if (life <= 0) return this.parameterError(3);
         if (per < 1 || per > life) return this.parameterError(4);
-        if (life < 1) return this.parameterError(3);
 
         let depreciation = 0;
         let remainingCost = cost;
 
-        for (let i = 1; i <= per; i++) {
+        // 累计 per 之前各期的折旧
+        for (let i = 1; i < per; i++) {
             let ddb = remainingCost * factor / life;
             const maxDepreciation = remainingCost - salvage;
             if (ddb > maxDepreciation) {
                 ddb = maxDepreciation;
             }
-            if (i === per) {
-                depreciation = ddb;
-            }
             remainingCost -= ddb;
             if (remainingCost <= salvage) {
-                if (i === per) {
-                    depreciation = remainingCost + ddb - salvage;
-                }
                 break;
             }
+        }
+
+        // 计算当前期间(per)的折旧, per 可为小数
+        depreciation = remainingCost * factor / life;
+        const maxDep = remainingCost - salvage;
+        if (depreciation > maxDep) {
+            depreciation = maxDep;
         }
 
         return Operand.Create(depreciation);

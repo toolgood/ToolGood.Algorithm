@@ -26,14 +26,23 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			var valuesArg = GetArray_2(engine, tempParameter);
 			if (valuesArg.IsErrorOrNone) return valuesArg;
-			var values = valuesArg.ArrayValue;
+			var values = new List<decimal>();
+			foreach (var v in valuesArg.ArrayValue) {
+				if (v.IsNumber) {
+					values.Add(v.NumberValue);
+				} else {
+					var v2 = v.ToNumber($"Function '{Name}' parameter 2 is error!");
+					if (v2.IsErrorOrNone) return v2;
+					values.Add(v2.NumberValue);
+				}
+			}
 
 			var datesArg = GetArray_3(engine, tempParameter);
 			if (datesArg.IsErrorOrNone) return datesArg;
 			var dates = datesArg.ArrayValue;
 
 			if (values.Count != dates.Count) return FunctionError();
-			if (values.Count == 0) return ParameterError(1);
+			if (values.Count == 0) return ParameterError(2);
 
 			var dateList = new List<DateTime>();
 			foreach (var d in dates) {
@@ -53,7 +62,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			for (int i = 0; i < values.Count; i++) {
 				var days = (decimal)(dateList[i] - baseDate).TotalDays;
-				xnpv += values[i].NumberValue / MathEx.Pow((1 + rate), days / 365.0m);
+				xnpv += values[i] / MathEx.Pow((1 + rate), days / 365.0m);
 			}
 
 			return Operand.Create(xnpv);

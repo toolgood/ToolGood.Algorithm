@@ -21,14 +21,23 @@ class Function_XNPV extends Function_N {
 
         const valuesArg = this.getArray(engine, tempParameter, 1);
         if (valuesArg.IsError) return valuesArg;
-        const values = valuesArg.ArrayValue;
+        const values = [];
+        for (const v of valuesArg.ArrayValue) {
+            if (v.IsNumber) {
+                values.push(v.NumberValue);
+            } else {
+                const v2 = v.ToNumber(`Function '${this.Name}' parameter 2 is error!`);
+                if (v2.IsError || v2.IsNone) return v2;
+                values.push(v2.NumberValue);
+            }
+        }
 
         const datesArg = this.getArray(engine, tempParameter, 2);
         if (datesArg.IsError) return datesArg;
         const dates = datesArg.ArrayValue;
 
         if (values.length !== dates.length) return this.functionError();
-        if (values.length === 0) return this.parameterError(1);
+        if (values.length === 0) return this.parameterError(2);
 
         const dateList = [];
         for (const d of dates) {
@@ -48,7 +57,7 @@ class Function_XNPV extends Function_N {
 
         for (let i = 0; i < values.length; i++) {
             const days = (dateList[i] - baseDate) / (1000 * 60 * 60 * 24);
-            xnpv += values[i].NumberValue / Math.pow(1 + rate, days / 365);
+            xnpv += values[i] / Math.pow(1 + rate, days / 365);
         }
 
         return Operand.Create(xnpv);

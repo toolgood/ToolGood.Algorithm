@@ -84,7 +84,7 @@ class Function_RATE extends Function_N {
             }
             rate = newRate;
         }
-        return rate;
+        return null;
     }
 }
 

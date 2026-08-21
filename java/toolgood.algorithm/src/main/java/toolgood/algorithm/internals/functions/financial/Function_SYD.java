@@ -45,11 +45,11 @@ public final class Function_SYD extends Function_4 {
 		BigDecimal period = periodArg.NumberValue();
 
 		if (life.compareTo(BigDecimal.ZERO) == 0) return Div0Error();
+		if (life.compareTo(BigDecimal.ZERO) <= 0) {
+			return ParameterError(3);
+		}
 		if (period.compareTo(BigDecimal.ONE) < 0 || period.compareTo(life) > 0) {
 			return ParameterError(4);
-		}
-		if (life.compareTo(BigDecimal.ONE) < 0) {
-			return ParameterError(3);
 		}
 
 		BigDecimal numerator = cost.subtract(salvage).multiply(life.subtract(period).add(BigDecimal.ONE)).multiply(BigDecimal.valueOf(2));

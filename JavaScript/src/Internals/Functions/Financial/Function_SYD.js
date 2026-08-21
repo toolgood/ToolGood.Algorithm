@@ -30,8 +30,8 @@ class Function_SYD extends Function_N {
         const per = perArg.NumberValue;
 
         if (life === 0) return this.div0Error();
+        if (life <= 0) return this.parameterError(3);
         if (per < 1 || per > life) return this.parameterError(4);
-        if (life < 1) return this.parameterError(3);
 
         const syd = (cost - salvage) * (life - per + 1) * 2 / (life * (life + 1));
         return Operand.Create(syd);

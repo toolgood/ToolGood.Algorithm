@@ -20,7 +20,10 @@ class Function_BESSELK extends Function_2 {
         let n = Math.trunc(args2.NumberValue);
 
         if (x <= 0) {
-            return this.functionError();
+            return this.parameterError(1);
+        }
+        if (n < 0) {
+            return this.parameterError(2);
         }
 
         let result = this.besselK(n, x);

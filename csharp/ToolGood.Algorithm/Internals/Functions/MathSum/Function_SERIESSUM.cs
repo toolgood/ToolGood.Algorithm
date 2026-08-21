@@ -33,12 +33,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			decimal result = 0;
 			var coefArray = coefficientsArg.ArrayValue;
-			for (int i = 0; i < coefArray.Count; i++) {
-				var coef = coefArray[i];
-				if (coef.IsNumber) {
-					var power = n + i * m;
-					result += coef.NumberValue * MathEx.Pow(x, power);
+			try {
+				for (int i = 0; i < coefArray.Count; i++) {
+					var coef = coefArray[i];
+					if (coef.IsNumber) {
+						var power = n + i * m;
+						result += coef.NumberValue * MathEx.Pow(x, power);
+					}
 				}
+			} catch (OverflowException) {
+				return FunctionError();
+			} catch (InvalidOperationException) {
+				// 负底数非整数幂等非法运算,与 Excel 返回 #NUM! 保持一致
+				return FunctionError();
 			}
 
 			return Operand.Create(result);

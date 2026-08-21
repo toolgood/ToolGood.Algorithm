@@ -42,14 +42,23 @@ public final class Function_XNPV extends Function_3 {
 
         Operand valuesArg = GetArray_2(engine, tempParameter);
         if (valuesArg.IsErrorOrNone()) return valuesArg;
-        List<Operand> values = valuesArg.ArrayValue();
+        List<BigDecimal> values = new ArrayList<>();
+        for (Operand v : valuesArg.ArrayValue()) {
+            if (v.IsNumber()) {
+                values.add(v.NumberValue());
+            } else {
+                Operand v2 = v.ToNumber(String.format("Function '%s' parameter 2 is error!", Name()));
+                if (v2.IsErrorOrNone()) return v2;
+                values.add(v2.NumberValue());
+            }
+        }
 
         Operand datesArg = GetArray_3(engine, tempParameter);
         if (datesArg.IsErrorOrNone()) return datesArg;
         List<Operand> dates = datesArg.ArrayValue();
 
         if (values.size() != dates.size()) return FunctionError();
-        if (values.size() == 0) return ParameterError(1);
+        if (values.size() == 0) return ParameterError(2);
 
         List<DateTime> dateList = new ArrayList<>();
         for (Operand d : dates) {
@@ -72,7 +81,7 @@ public final class Function_XNPV extends Function_3 {
             BigDecimal daysDecimal = BigDecimal.valueOf(days);
             BigDecimal exponent = daysDecimal.divide(new BigDecimal("365.0"), MathContext.DECIMAL128);
             BigDecimal factor = BigDecimal.valueOf(Math.pow(BigDecimal.ONE.add(rate).doubleValue(), exponent.doubleValue()));
-            xnpv = xnpv.add(values.get(i).NumberValue().divide(factor, MathContext.DECIMAL128));
+            xnpv = xnpv.add(values.get(i).divide(factor, MathContext.DECIMAL128));
         }
 
         return Operand.Create(xnpv);

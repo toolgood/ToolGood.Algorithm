@@ -49,8 +49,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (k > draws) {
                 return ParameterError(1);
             }
-            if (success > population || draws > population) {
-                return FunctionError();
+            if (success > population) {
+                return ParameterError(3);
+            }
+            if (draws > population) {
+                return ParameterError(2);
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }

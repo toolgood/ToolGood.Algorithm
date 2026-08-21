@@ -165,7 +165,8 @@ public class FunctionUtil {
 
     public static BigDecimal GetSumIf(List<BigDecimal> dbs, BigDecimal d, List<BigDecimal> sumdbs) {
         BigDecimal sum = BigDecimal.ZERO;
-        for (int i = 0; i < dbs.size(); i++) {
+        int n = Math.min(dbs.size(), sumdbs.size());
+        for (int i = 0; i < n; i++) {
             BigDecimal item = dbs.get(i);
             if (item.compareTo(d) == 0) {
                 sum = sum.add(sumdbs.get(i));
@@ -176,7 +177,8 @@ public class FunctionUtil {
 
     public static BigDecimal GetSumIf(List<BigDecimal> dbs, String s, BigDecimal d, List<BigDecimal> sumdbs) {
         BigDecimal sum = BigDecimal.ZERO;
-        for (int i = 0; i < dbs.size(); i++) {
+        int n = Math.min(dbs.size(), sumdbs.size());
+        for (int i = 0; i < n; i++) {
             if (CompareValues(dbs.get(i), d, s)) {
                 sum = sum.add(sumdbs.get(i));
             }

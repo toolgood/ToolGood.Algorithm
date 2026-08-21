@@ -34,7 +34,10 @@ class Function_SERIESSUM extends Function_N {
             const coef = coefArray[i];
             if (coef.IsNumber) {
                 const power = n + i * m;
-                result += coef.NumberValue * Math.pow(x, power);
+                const term = coef.NumberValue * Math.pow(x, power);
+                // 负底数非整数幂产生 NaN、数值溢出产生 Infinity,对应 C# 捕获异常返回错误
+                if (!isFinite(term)) return this.functionError();
+                result += term;
             }
         }
 

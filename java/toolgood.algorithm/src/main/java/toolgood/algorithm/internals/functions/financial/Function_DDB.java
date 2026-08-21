@@ -52,32 +52,34 @@ public final class Function_DDB extends Function_5 {
 		}
 
 		if (life.compareTo(BigDecimal.ZERO) == 0 || factor.compareTo(BigDecimal.ZERO) == 0) return Div0Error();
+		if (life.compareTo(BigDecimal.ZERO) <= 0) {
+			return ParameterError(3);
+		}
 		if (period.compareTo(BigDecimal.ONE) < 0 || period.compareTo(life) > 0) {
 			return ParameterError(4);
-		}
-		if (life.compareTo(BigDecimal.ONE) < 0) {
-			return ParameterError(3);
 		}
 
 		BigDecimal depreciation = BigDecimal.ZERO;
 		BigDecimal remainingCost = cost;
 
-		for (int i = 1; i <= period.intValue(); i++) {
+		// 累计 period 之前各期的折旧
+		for (int i = 1; BigDecimal.valueOf(i).compareTo(period) < 0; i++) {
 			BigDecimal ddb = remainingCost.multiply(factor).divide(life, MathContext.DECIMAL128);
 			BigDecimal maxDepreciation = remainingCost.subtract(salvage);
 			if (ddb.compareTo(maxDepreciation) > 0) {
 				ddb = maxDepreciation;
 			}
-			if (i == period.intValue()) {
-				depreciation = ddb;
-			}
 			remainingCost = remainingCost.subtract(ddb);
 			if (remainingCost.compareTo(salvage) <= 0) {
-				if (i == period.intValue()) {
-					depreciation = remainingCost.add(ddb).subtract(salvage);
-				}
 				break;
 			}
+		}
+
+		// 计算当前期间(period)的折旧, period 可为小数
+		depreciation = remainingCost.multiply(factor).divide(life, MathContext.DECIMAL128);
+		BigDecimal maxDep = remainingCost.subtract(salvage);
+		if (depreciation.compareTo(maxDep) > 0) {
+			depreciation = maxDep;
 		}
 
 		return Operand.Create(depreciation);

@@ -41,32 +41,34 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			}
 
 			if (life == 0 || factor == 0) return Div0Error();
+			if (life <= 0) {
+				return ParameterError(3);
+			}
 			if (period < 1 || period > life) {
 				return ParameterError(4);
-			}
-			if (life < 1) {
-				return ParameterError(3);
 			}
 
 			decimal depreciation = 0;
 			decimal remainingCost = cost;
 
-			for (int i = 1; i <= period; i++) {
+			// 累计 period 之前各期的折旧
+			for (int i = 1; i < period; i++) {
 				var ddb = remainingCost * factor / life;
 				var maxDepreciation = remainingCost - salvage;
 				if (ddb > maxDepreciation) {
 					ddb = maxDepreciation;
 				}
-				if (i == period) {
-					depreciation = ddb;
-				}
 				remainingCost -= ddb;
 				if (remainingCost <= salvage) {
-					if (i == period) {
-						depreciation = remainingCost + ddb - salvage;
-					}
 					break;
 				}
+			}
+
+			// 计算当前期间(period)的折旧, period 可为小数
+			depreciation = remainingCost * factor / life;
+			var maxDep = remainingCost - salvage;
+			if (depreciation > maxDep) {
+				depreciation = maxDep;
 			}
 
 			return Operand.Create(depreciation);

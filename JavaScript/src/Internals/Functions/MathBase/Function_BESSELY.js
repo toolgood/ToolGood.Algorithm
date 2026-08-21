@@ -22,6 +22,9 @@ class Function_BESSELY extends Function_2 {
         if (x <= 0) {
             return this.parameterError(1);
         }
+        if (n < 0) {
+            return this.parameterError(2);
+        }
 
         let result = this.besselY(n, x);
         if (!isFinite(result)) { return this.functionError(); }

@@ -43,6 +43,9 @@ public final class Function_BESSELY extends Function_2 {
         if (x <= 0) {
             return ParameterError(1);
         }
+        if (n < 0) {
+            return ParameterError(2);
+        }
 
         // 复用 SpecialFunctions 中的实现
         double result = SpecialFunctions.BesselY(n, x);

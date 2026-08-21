@@ -29,6 +29,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(x <= 0) {
 				return ParameterError(1);
 			}
+			if(n < 0) {
+				return ParameterError(2);
+			}
 
 			try {
 				// 复用 SpecialFunctions 中基于 Chebyshev 展开的实现(移植自 MathNet.Numerics)

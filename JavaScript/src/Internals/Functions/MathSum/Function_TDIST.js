@@ -23,6 +23,7 @@ class Function_TDIST extends Function_3 {
         let x = args1.DoubleValue;
         let degreesFreedom = args2.IntValue;
         let tails = args3.IntValue;
+        if (x <= 0) { return this.parameterError(1); }
         if (degreesFreedom <= 0) { return this.parameterError(2); }
         if (tails < 1 || tails > 2) { return this.parameterError(3); }
         return Operand.Create(ExcelFunctions.tDist(x, degreesFreedom, tails));

@@ -56,8 +56,11 @@ public final class Function_HYPGEOMDIST extends Function_4 {
         if (k > draws) {
             return ParameterError(1);
         }
-        if (success > population || draws > population) {
-            return FunctionError();
+        if (success > population) {
+            return ParameterError(3);
+        }
+        if (draws > population) {
+            return ParameterError(2);
         }
         return Operand.Create(BigDecimal.valueOf(
             ExcelFunctions.HypgeomDist(k, draws, success, population)

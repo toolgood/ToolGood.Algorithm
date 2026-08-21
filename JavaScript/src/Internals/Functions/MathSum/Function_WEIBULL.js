@@ -30,7 +30,10 @@ class Function_WEIBULL extends Function_4 {
         if (shape <= 0.0) { return this.parameterError(2); }
         if (scale <= 0.0) { return this.parameterError(3); }
 
-        return Operand.Create(ExcelFunctions.weibull(x, shape, scale, state));
+        let result = ExcelFunctions.weibull(x, shape, scale, state);
+        // x 过大时 Pow/Exp 溢出为 Infinity,或 x=0 且 shape<1 时 0 的负次幂产生 NaN,对应 C# 捕获异常返回错误
+        if (!isFinite(result)) { return this.functionError(); }
+        return Operand.Create(result);
     }
 }
 
