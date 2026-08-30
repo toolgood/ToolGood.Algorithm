@@ -1,8 +1,9 @@
-﻿using PetaTest;
+using PetaTest;
 using System;
 using System.Globalization;
 using ToolGood.Algorithm;
 using ToolGood.Algorithm.CalculationLogic;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Test.CalculationLogic
 {
@@ -277,6 +278,114 @@ namespace ToolGood.Algorithm.Test.CalculationLogic
 			var logic = CreateEngine();
 			logic.SetValue("i", 100, 1, "备注");
 			Assert.AreEqual("[赋值]    i = 100 // 备注\n", NormalizeLine(logic.ToInfoString()));
+		}
+
+		#endregion
+
+		#region GetValue 测试
+
+		[Test]
+		public void GetValue_InitValue_Int_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("a", 1);
+			var operand = logic.GetValue("a");
+			Assert.IsTrue(operand.IsNumber);
+			Assert.AreEqual(OperandType.NUMBER, operand.Type);
+			Assert.AreEqual(1m, operand.NumberValue);
+		}
+
+		[Test]
+		public void GetValue_InitValue_String_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("s", "hello");
+			var operand = logic.GetValue("s");
+			Assert.IsTrue(operand.IsText);
+			Assert.AreEqual(OperandType.TEXT, operand.Type);
+			Assert.AreEqual("hello", operand.TextValue);
+		}
+
+		[Test]
+		public void GetValue_InitValue_Decimal_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("d", 1.5m);
+			var operand = logic.GetValue("d");
+			Assert.IsTrue(operand.IsNumber);
+			Assert.AreEqual(1.5m, operand.NumberValue);
+		}
+
+		[Test]
+		public void GetValue_InitValue_Double_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("dd", 1.5);
+			var operand = logic.GetValue("dd");
+			Assert.IsTrue(operand.IsNumber);
+			Assert.AreEqual(1.5m, operand.NumberValue);
+		}
+
+		[Test]
+		public void GetValue_InitValue_Bool_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("flag", true);
+			var operand = logic.GetValue("flag");
+			Assert.IsTrue(operand.IsBoolean);
+			Assert.AreEqual(OperandType.BOOLEAN, operand.Type);
+			Assert.IsTrue(operand.BooleanValue);
+		}
+
+		[Test]
+		public void GetValue_SetValue_Test()
+		{
+			var logic = CreateEngine();
+			logic.SetValue("v", "text");
+			var operand = logic.GetValue("v");
+			Assert.IsTrue(operand.IsText);
+			Assert.AreEqual("text", operand.TextValue);
+		}
+
+		[Test]
+		public void GetValue_SetFormula_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("a", 1);
+			logic.InitValue("b", 2);
+			logic.SetFormula("x", "a*3+b");
+			var operand = logic.GetValue("x");
+			Assert.IsTrue(operand.IsNumber);
+			Assert.AreEqual(5m, operand.NumberValue);
+		}
+
+		[Test]
+		public void GetValue_AfterSetFormulaOverwrite_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("a", 1);
+			logic.SetFormula("a", "a+10");
+			var operand = logic.GetValue("a");
+			Assert.IsTrue(operand.IsNumber);
+			Assert.AreEqual(11m, operand.NumberValue);
+		}
+
+		[Test]
+		public void GetValue_NotFound_ReturnsError_Test()
+		{
+			var logic = CreateEngine();
+			var operand = logic.GetValue("missing");
+			Assert.IsTrue(operand.IsError);
+			Assert.AreEqual("Parameter [missing] is missing.", operand.ErrorMsg);
+		}
+
+		[Test]
+		public void GetValue_NoInfo_Test()
+		{
+			// 关闭信息记录不影响取值
+			var logic = CreateEngine(false);
+			logic.InitValue("a", 1);
+			Assert.AreEqual(1m, logic.GetValue("a").NumberValue);
 		}
 
 		#endregion
