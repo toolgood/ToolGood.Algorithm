@@ -361,6 +361,11 @@ namespace ToolGood.Algorithm.CalculationLogic
 		{
 			var func = _functionCache.ParseWithCache(exp);
 			var operand = func.Evaluate(_engine);
+			if(operand.IsError) {
+				var expStr = ExpAnalysis(exp);
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetFormula, Name = key, Exp = exp, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+				throw new FormatException(operand.ErrorMsg);
+			}
 			_engine.AddParameter(key, operand);
 
 			if(_useCalculationLogicInfo) {
