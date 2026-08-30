@@ -633,6 +633,18 @@ namespace ToolGood.Algorithm.CalculationLogic
 		}
 		#endregion
 
+		#region GetValue
+		/// <summary>
+		/// 获取值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public Operand GetValue(string key)
+		{
+			return _engine.GetParameter(key);
+		} 
+		#endregion
+
 		#region ToInfoString
 		/// <summary>
 		/// 转换为信息字符串
