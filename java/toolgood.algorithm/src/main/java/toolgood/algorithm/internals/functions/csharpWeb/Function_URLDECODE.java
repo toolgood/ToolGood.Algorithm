@@ -1,7 +1,6 @@
 package toolgood.algorithm.internals.functions.csharpWeb;
 
 import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -34,7 +33,7 @@ public final class Function_URLDECODE extends Function_1 {
 		}
 		String s = args1.TextValue();
 		try {
-			String r = URLDecoder.decode(s, StandardCharsets.UTF_8);
+			String r = URLDecoder.decode(s, "UTF-8");
 			return Operand.Create(r);
 		} catch (Exception e) {
 			// C# HttpUtility.UrlDecode 对无效编码不抛异常，返回部分解码结果
