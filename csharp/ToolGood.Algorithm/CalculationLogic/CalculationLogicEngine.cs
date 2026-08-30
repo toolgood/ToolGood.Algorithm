@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Linq;
 using ToolGood.Algorithm.Enums;
@@ -126,7 +127,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		{
 			_engine.AddParameter(key, value);
 			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
 			}
 		}
 
@@ -170,7 +171,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		{
 			_engine.AddParameter(key, value);
 			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
 			}
 		}
 
@@ -322,7 +323,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 
 		#region SetFormula
 		/// <summary>
-		/// 设置值
+		/// 用公式赋值
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="exp"></param>
@@ -331,7 +332,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 			SetFormula(key, exp, 0, null);
 		}
 		/// <summary>
-		/// 设置值
+		/// 用公式赋值
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="exp"></param>
@@ -341,7 +342,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 			SetFormula(key, exp, layer, null);
 		}
 		/// <summary>
-		/// 设置值
+		/// 用公式赋值
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="exp"></param>
@@ -351,7 +352,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 			SetFormula(key, exp, 0, remark);
 		}
 		/// <summary>
-		/// 设置值
+		/// 用公式赋值
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="exp"></param>
@@ -362,8 +363,10 @@ namespace ToolGood.Algorithm.CalculationLogic
 			var func = _functionCache.ParseWithCache(exp);
 			var operand = func.Evaluate(_engine);
 			if(operand.IsError) {
-				var expStr = ExpAnalysis(exp);
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetFormula, Name = key, Exp = exp, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+				if(_useCalculationLogicInfo) {
+					var expStr = ExpAnalysis(exp);
+					_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetFormula, Name = key, Exp = exp, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+				}
 				throw new FormatException(operand.ErrorMsg);
 			}
 			_engine.AddParameter(key, operand);
@@ -381,44 +384,44 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// 设置值
 		/// </summary>
 		/// <param name="key"></param>
-		/// <param name="exp"></param>
-		public void SetValue(string key, string exp)
+		/// <param name="value"></param>
+		public void SetValue(string key, string value)
 		{
-			SetValue(key, exp, 0, null);
+			SetValue(key, value, 0, null);
 		}
 		/// <summary>
 		/// 设置值
 		/// </summary>
 		/// <param name="key"></param>
-		/// <param name="exp"></param>
+		/// <param name="value"></param>
 		/// <param name="layer"></param>
-		public void SetValue(string key, string exp, int layer)
+		public void SetValue(string key, string value, int layer)
 		{
-			SetValue(key, exp, layer, null);
+			SetValue(key, value, layer, null);
 		}
 		/// <summary>
 		/// 设置值
 		/// </summary>
 		/// <param name="key"></param>
-		/// <param name="exp"></param>
+		/// <param name="value"></param>
 		/// <param name="remark"></param>
-		public void SetValue(string key, string exp, string remark)
+		public void SetValue(string key, string value, string remark)
 		{
-			SetValue(key, exp, 0, remark);
+			SetValue(key, value, 0, remark);
 		}
 		/// <summary>
 		/// 设置值
 		/// </summary>
 		/// <param name="key"></param>
-		/// <param name="exp"></param>
+		/// <param name="value"></param>
 		/// <param name="layer"></param>
 		/// <param name="remark"></param>
-		public void SetValue(string key, string exp, int layer, string remark)
+		public void SetValue(string key, string value, int layer, string remark)
 		{
-			_engine.AddParameter(key, exp);
+			_engine.AddParameter(key, value);
 
 			if(_useCalculationLogicInfo) {
-				var expStr = $"\"{exp.Replace("\"", "\\\"")}\"";
+				var expStr = $"\"{value.Replace("\"", "\\\"")}\"";
 				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = expStr, Layer = layer, Remark = remark });
 			}
 		}
@@ -463,7 +466,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		{
 			_engine.AddParameter(key, exp);
 			if(_useCalculationLogicInfo) {
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
 			}
 		}
 
@@ -507,7 +510,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		{
 			_engine.AddParameter(key, exp);
 			if(_useCalculationLogicInfo) {
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
 			}
 		}
 
@@ -626,9 +629,9 @@ namespace ToolGood.Algorithm.CalculationLogic
 		{
 			Operand operand = engine.GetParameter(name);
 			if(operand.IsError) {
-				return $"error(\"{operand.ErrorMsg}\")";
+				return $"error(\"{operand.ErrorMsg.Replace("\\", "\\\\").Replace("\"", "\\\"")}\")";
 			} else if(operand.Type == OperandType.TEXT) {
-				return $"\"{operand.TextValue}\"";
+				return operand.ToString();
 			}
 			return operand.ToText().TextValue;
 		}
