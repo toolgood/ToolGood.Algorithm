@@ -177,6 +177,94 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
+		public void InitValue(string key, float value)
+		{
+			InitValue(key, value, 0, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		public void InitValue(string key, float value, int layer)
+		{
+			InitValue(key, value, layer, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, float value, string remark)
+		{
+			InitValue(key, value, 0, remark);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, float value, int layer, string remark)
+		{
+			_engine.AddParameter(key, value);
+			if(_useCalculationLogicInfo) {
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		public void InitValue(string key, bool value)
+		{
+			InitValue(key, value, 0, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		public void InitValue(string key, bool value, int layer)
+		{
+			InitValue(key, value, layer, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, bool value, string remark)
+		{
+			InitValue(key, value, 0, remark);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, bool value, int layer, string remark)
+		{
+			_engine.AddParameter(key, value);
+			if(_useCalculationLogicInfo) {
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
 		public void InitValue(string key, int value)
 		{
 			InitValue(key, value, 0, null);
@@ -256,7 +344,21 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <returns></returns>
 		public bool CheckCondition(string condition, int layer, string remark)
 		{
-			return false;
+			var func = _functionCache.ParseWithCache(condition);
+			var operand = func.Evaluate(_engine);
+			operand = operand.ToBoolean("The condition must be a boolean value!");
+			if(operand.IsError) {
+				if(_useCalculationLogicInfo) {
+					var expStr = ExpAnalysis(condition);
+					_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.Condition, Exp = condition, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+				}
+				throw new FormatException(operand.ErrorMsg);
+			}
+			if(_useCalculationLogicInfo) {
+				var expStr = ExpAnalysis(condition);
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.Condition, Exp = condition, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+			}
+			return operand.BooleanValue;
 		}
 		#endregion
 
@@ -299,9 +401,23 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, string exp, int layer, string remark)
 		{
+			var func = _functionCache.ParseWithCache(exp);
+			var operand = func.Evaluate(_engine);
+			_engine.AddParameter(key, operand);
 
+			if(_useCalculationLogicInfo) {
+				var expStr = ExpAnalysis(exp);
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+			}
 		}
 		#endregion
+
+		private string ExpAnalysis(string exp)
+		{
+
+
+			return exp.Replace("\r", "").Replace("\n", "").Replace("\t", "").Trim();
+		}
 
 		#region BlankLine
 		/// <summary>
@@ -315,6 +431,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		}
 		#endregion
 
+		#region ToInfoString
 		/// <summary>
 		/// 转换为信息字符串
 		/// </summary>
@@ -338,6 +455,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 			return String.Empty;
 		}
 
+		#endregion
 
 	}
 }
