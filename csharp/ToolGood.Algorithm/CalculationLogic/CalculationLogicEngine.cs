@@ -10,8 +10,10 @@ namespace ToolGood.Algorithm.CalculationLogic
 	public class CalculationLogicEngine
 	{
 		private readonly FunctionCache _functionCache;
+		private readonly List<CalculationLogicInfo> _initValueInfos = new List<CalculationLogicInfo>();
 		private readonly List<CalculationLogicInfo> _calculationLogicInfos = new List<CalculationLogicInfo>();
-		private readonly bool _UseCalculationLogicInfo;
+		private readonly bool _useCalculationLogicInfo;
+		private readonly AlgorithmEngineEx _engine;
 
 		/// <summary>
 		/// 计算逻辑引擎
@@ -21,7 +23,8 @@ namespace ToolGood.Algorithm.CalculationLogic
 		public CalculationLogicEngine(FunctionCache functionCache, bool useCalculationLogicInfo)
 		{
 			_functionCache = functionCache;
-			_UseCalculationLogicInfo = useCalculationLogicInfo;
+			_useCalculationLogicInfo = useCalculationLogicInfo;
+			_engine = new AlgorithmEngineEx();
 		}
 
 		#region SetScene
@@ -31,7 +34,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="scene"></param>
 		public void SetSceneName(string scene)
 		{
-			if(_UseCalculationLogicInfo) {
+			if(_useCalculationLogicInfo) {
 				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.Scene, Name = scene });
 			}
 		}
@@ -76,6 +79,141 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, string value, int layer, string remark)
 		{
+			_engine.AddParameter(key, value);
+			if(_useCalculationLogicInfo) {
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value, Layer = layer, Remark = remark });
+			}
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		public void InitValue(string key, decimal value)
+		{
+			InitValue(key, value, 0, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		public void InitValue(string key, decimal value, int layer)
+		{
+			InitValue(key, value, layer, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, decimal value, string remark)
+		{
+			InitValue(key, value, 0, remark);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, decimal value, int layer, string remark)
+		{
+			_engine.AddParameter(key, value);
+			if(_useCalculationLogicInfo) {
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		public void InitValue(string key, double value)
+		{
+			InitValue(key, value, 0, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		public void InitValue(string key, double value, int layer)
+		{
+			InitValue(key, value, layer, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, double value, string remark)
+		{
+			InitValue(key, value, 0, remark);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, double value, int layer, string remark)
+		{
+			_engine.AddParameter(key, value);
+			if(_useCalculationLogicInfo) {
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		public void InitValue(string key, int value)
+		{
+			InitValue(key, value, 0, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		public void InitValue(string key, int value, int layer)
+		{
+			InitValue(key, value, layer, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, int value, string remark)
+		{
+			InitValue(key, value, 0, remark);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, int value, int layer, string remark)
+		{
+			_engine.AddParameter(key, value);
+			if(_useCalculationLogicInfo) {
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+			}
 		}
 		#endregion
 
@@ -171,7 +309,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// </summary>
 		public void BlankLine()
 		{
-			if(_UseCalculationLogicInfo) {
+			if(_useCalculationLogicInfo) {
 				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.BlankLine, });
 			}
 		}
@@ -183,11 +321,21 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <returns></returns>
 		public String ToInfoString()
 		{
-			var sb = new StringBuilder();
-			foreach(var item in _calculationLogicInfos) {
-				sb.AppendLine(item.ToInfoString());
+			if(_useCalculationLogicInfo) {
+				var sb = new StringBuilder();
+				if(_initValueInfos.Count > 0) {
+					sb.Append("[初始] ");
+					foreach(var item in _initValueInfos) {
+						sb.Append(item.ToInfoString());
+					}
+					sb.AppendLine();
+				}
+				foreach(var item in _calculationLogicInfos) {
+					sb.AppendLine(item.ToInfoString());
+				}
+				return sb.ToString();
 			}
-			return sb.ToString();
+			return String.Empty;
 		}
 
 

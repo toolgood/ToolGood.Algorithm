@@ -1,4 +1,6 @@
-﻿namespace ToolGood.Algorithm.CalculationLogic
+﻿using System;
+
+namespace ToolGood.Algorithm.CalculationLogic
 {
 	/// <summary>
 	/// 计算逻辑信息
@@ -43,9 +45,9 @@
 			var remark = string.IsNullOrEmpty(Remark) ? "" : $" //{Remark}";
 			var layerStr = new string(' ', Layer * 3);
 			switch(LogicType) {
-				case CalculationLogicType.BlankLine: return "";
+				case CalculationLogicType.BlankLine: return String.Empty;
 				case CalculationLogicType.Scene: return $"===== {Name} =====";
-				case CalculationLogicType.Value: return $"[初始] {layerStr}{Exp}";
+				case CalculationLogicType.InitValue: return $"{Name}={Exp};";
 				case CalculationLogicType.Condition:
 					if(Value.IsError) {
 						return $"[条件][错误] {layerStr}{Exp} = {Exp2} = {Value.ErrorMsg}{remark}";

@@ -12,7 +12,7 @@
 		/// <summary>
 		/// 值
 		/// </summary>
-		Value,
+		InitValue,
 		/// <summary>
 		/// 条件
 		/// </summary>
