@@ -2,6 +2,9 @@ import { AlgorithmEngine } from './AlgorithmEngine.js';
 import { AlgorithmEngineEx } from './AlgorithmEngineEx.js';
 import { AlgorithmEngineHelper } from './AlgorithmEngineHelper.js';
 import { Operand } from './Operand.js';
+import { CalculationLogicEngine } from './CalculationLogic/CalculationLogicEngine.js';
+import { CalculationLogicInfo } from './CalculationLogic/CalculationLogicInfo.js';
+import { CalculationLogicType } from './CalculationLogic/CalculationLogicType.js';
 import * as Enums from './Enums/index.js';
 
 export {
@@ -9,6 +12,9 @@ export {
   AlgorithmEngineEx,
   AlgorithmEngineHelper,
   Operand,
+  CalculationLogicEngine,
+  CalculationLogicInfo,
+  CalculationLogicType,
   Enums
 };
 
@@ -17,6 +23,9 @@ export default {
   AlgorithmEngineEx,
   AlgorithmEngineHelper,
   Operand,
+  CalculationLogicEngine,
+  CalculationLogicInfo,
+  CalculationLogicType,
   Enums
 };
 
@@ -28,6 +37,9 @@ if (typeof window !== 'undefined') {
     AlgorithmEngineEx,
     AlgorithmEngineHelper,
     Operand,
+    CalculationLogicEngine,
+    CalculationLogicInfo,
+    CalculationLogicType,
     Enums
   };
 }
