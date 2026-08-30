@@ -50,9 +50,9 @@ namespace ToolGood.Algorithm.Test.Value
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             string t25 = engine.TryEvaluate("Engineversion", "");
-            Assert.AreEqual("ToolGood.Algorithm 6.2", t25);
+            Assert.AreEqual("ToolGood.Algorithm 6.3", t25);
 			string t26 = engine.TryEvaluate("Algorithmversion", "");
-            Assert.AreEqual("ToolGood.Algorithm 6.2", t26);
+            Assert.AreEqual("ToolGood.Algorithm 6.3", t26);
         }
 
         [Test]

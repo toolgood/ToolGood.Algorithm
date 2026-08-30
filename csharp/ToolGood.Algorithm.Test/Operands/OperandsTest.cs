@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.Test.Operands
         [Test]
         public void Operand_StaticProperties_Test()
         {
-            Assert.AreEqual("ToolGood.Algorithm 6.2", Operand.Version.TextValue);
+            Assert.AreEqual("ToolGood.Algorithm 6.3", Operand.Version.TextValue);
             Assert.AreEqual(true, Operand.True.BooleanValue);
             Assert.AreEqual(false, Operand.False.BooleanValue);
             Assert.AreEqual(1, Operand.One.IntValue);
