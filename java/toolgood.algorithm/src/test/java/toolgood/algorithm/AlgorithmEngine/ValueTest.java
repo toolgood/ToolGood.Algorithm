@@ -51,9 +51,9 @@ public class ValueTest {
     public void TestVersion() {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t25 = engine.TryEvaluate("Engineversion", "");
-        assertEquals("ToolGood.Algorithm 6.2", t25);
+        assertEquals("ToolGood.Algorithm 6.3", t25);
         String t26 = engine.TryEvaluate("Algorithmversion", "");
-        assertEquals("ToolGood.Algorithm 6.2", t26);
+        assertEquals("ToolGood.Algorithm 6.3", t26);
     }
 
     @Test

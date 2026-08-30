@@ -392,8 +392,8 @@ function TestVersion() {
   console.log('Algorithmversion:', t26);
   
   // 断言版本号
-  assert.strictEqual(t25, "ToolGood.Algorithm 6.2", "Engineversion 应该等于 'ToolGood.Algorithm 6.2'");
-  assert.strictEqual(t26, "ToolGood.Algorithm 6.2", "Algorithmversion 应该等于 'ToolGood.Algorithm 6.2'");
+  assert.strictEqual(t25, "ToolGood.Algorithm 6.3", "Engineversion 应该等于 'ToolGood.Algorithm 6.3'");
+  assert.strictEqual(t26, "ToolGood.Algorithm 6.3", "Algorithmversion 应该等于 'ToolGood.Algorithm 6.3'");
   
   console.log('TestVersion 测试通过！');
 }

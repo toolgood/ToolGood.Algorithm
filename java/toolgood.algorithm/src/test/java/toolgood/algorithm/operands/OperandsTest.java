@@ -17,7 +17,7 @@ public class OperandsTest {
 
     @Test
     public void Operand_StaticProperties_Test() {
-        assertEquals("ToolGood.Algorithm 6.2", Operand.Version.TextValue());
+        assertEquals("ToolGood.Algorithm 6.3", Operand.Version.TextValue());
         assertEquals(true, Operand.True.BooleanValue());
         assertEquals(false, Operand.False.BooleanValue());
         assertEquals(1, Operand.One.IntValue());

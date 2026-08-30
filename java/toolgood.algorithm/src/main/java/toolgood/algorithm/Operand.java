@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public abstract class Operand {
-    public static final Operand Version = new OperandString("ToolGood.Algorithm 6.2");
+    public static final Operand Version = new OperandString("ToolGood.Algorithm 6.3");
     public static final Operand True = new OperandBoolean(true);
     public static final Operand False = new OperandBoolean(false);
     public static final Operand One;
