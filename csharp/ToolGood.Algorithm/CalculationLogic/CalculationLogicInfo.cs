@@ -42,7 +42,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <returns></returns>
 		public string ToInfoString()
 		{
-			var remark = string.IsNullOrEmpty(Remark) ? "" : $" //{Remark}";
+			var remark = string.IsNullOrEmpty(Remark) ? "" : $" // {Remark}";
 			var layerStr = new string(' ', Layer * 3);
 			switch(LogicType) {
 				case CalculationLogicType.BlankLine: return String.Empty;
@@ -50,15 +50,15 @@ namespace ToolGood.Algorithm.CalculationLogic
 				case CalculationLogicType.InitValue: return $"{Name}={Exp};";
 				case CalculationLogicType.Condition:
 					if(Value.IsError) {
-						return $"[条件][错误] {layerStr}if {Exp}: //{Exp2} = {Value.ErrorMsg}{remark}";
+						return $"[条件][错误] {layerStr}if {Exp}: // {Exp2} = {Value.ErrorMsg}{remark}";
 					}
 					if(Value.BooleanValue) {
-						return $"[成功] {layerStr}if {Exp}: //{Exp2}{remark}";
+						return $"[成功] {layerStr}if {Exp}: // {Exp2}{remark}";
 					}
-					return $"[失败] {layerStr}if {Exp}: //{Exp2}{remark}";
+					return $"[失败] {layerStr}if {Exp}: // {Exp2}{remark}";
 				case CalculationLogicType.SetFormula:
 					if(Value.IsError) {
-						return $"[赋值][错误] {layerStr}{Name} = {Exp} = {Exp2} = {Value.ErrorMsg}{remark}";
+						return $"[赋值][错误] {layerStr}{Name} = {Exp} = {Exp2} // {Value.ErrorMsg}{remark}";
 					}
 					return $"[赋值] {layerStr}{Name} = {Exp} = {Exp2} = {Value.ToText().TextValue}{remark}";
 				case CalculationLogicType.SetValue:
