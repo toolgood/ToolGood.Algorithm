@@ -82,10 +82,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, string value, int layer, string remark)
 		{
-			_engine.AddParameter(key, value);
-			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value, Layer = layer, Remark = remark });
-			}
+			InitValueCore(key, value, () => value, layer, remark);
 		}
 		/// <summary>
 		/// 初始化值
@@ -125,10 +122,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, decimal value, int layer, string remark)
 		{
-			_engine.AddParameter(key, value);
-			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
-			}
+			InitValueCore(key, value, () => value.ToString(CultureInfo.InvariantCulture), layer, remark);
 		}
 
 		/// <summary>
@@ -169,10 +163,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, double value, int layer, string remark)
 		{
-			_engine.AddParameter(key, value);
-			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
-			}
+			InitValueCore(key, value, () => value.ToString(CultureInfo.InvariantCulture), layer, remark);
 		}
 
 		/// <summary>
@@ -213,10 +204,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, bool value, int layer, string remark)
 		{
-			_engine.AddParameter(key, value);
-			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
-			}
+			InitValueCore(key, value, () => value.ToString(), layer, remark);
 		}
 
 		/// <summary>
@@ -257,9 +245,14 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, int value, int layer, string remark)
 		{
+			InitValueCore(key, value, () => value.ToString(), layer, remark);
+		}
+
+		private void InitValueCore(string key, Operand value, Func<string> expFactory, int layer, string remark)
+		{
 			_engine.AddParameter(key, value);
 			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
+				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = expFactory(), Layer = layer, Remark = remark });
 			}
 		}
 		#endregion
@@ -418,12 +411,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, string value, int layer, string remark)
 		{
-			_engine.AddParameter(key, value);
-
-			if(_useCalculationLogicInfo) {
-				var expStr = $"\"{value.Replace("\"", "\\\"")}\"";
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = expStr, Layer = layer, Remark = remark });
-			}
+			SetValueCore(key, value, () => $"\"{value.Replace("\"", "\\\"")}\"", layer, remark);
 		}
 
 		/// <summary>
@@ -464,10 +452,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, decimal exp, int layer, string remark)
 		{
-			_engine.AddParameter(key, exp);
-			if(_useCalculationLogicInfo) {
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
-			}
+			SetValueCore(key, exp, () => exp.ToString(CultureInfo.InvariantCulture), layer, remark);
 		}
 
 		/// <summary>
@@ -508,10 +493,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, double exp, int layer, string remark)
 		{
-			_engine.AddParameter(key, exp);
-			if(_useCalculationLogicInfo) {
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(CultureInfo.InvariantCulture), Layer = layer, Remark = remark });
-			}
+			SetValueCore(key, exp, () => exp.ToString(CultureInfo.InvariantCulture), layer, remark);
 		}
 
 		/// <summary>
@@ -552,10 +534,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, bool exp, int layer, string remark)
 		{
-			_engine.AddParameter(key, exp);
-			if(_useCalculationLogicInfo) {
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
-			}
+			SetValueCore(key, exp, () => exp.ToString(), layer, remark);
 		}
 
 		/// <summary>
@@ -596,9 +575,14 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, int exp, int layer, string remark)
 		{
-			_engine.AddParameter(key, exp);
+			SetValueCore(key, exp, () => exp.ToString(), layer, remark);
+		}
+
+		private void SetValueCore(string key, Operand value, Func<string> expFactory, int layer, string remark)
+		{
+			_engine.AddParameter(key, value);
 			if(_useCalculationLogicInfo) {
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = expFactory(), Layer = layer, Remark = remark });
 			}
 		}
 		#endregion
