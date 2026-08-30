@@ -136,6 +136,42 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     bool error = engine.TryEvaluate("1m=1m2", false); // return true
 ```
 
+## 计算逻辑引擎
+
+`CalculationLogicEngine` 用于构建可追溯的多步骤计算流程：通过初始化值、检查条件、公式赋值、设置值等步骤逐步计算，并自动输出完整的计算过程信息，便于审计、调试与流程跟踪。
+
+``` csharp
+using ToolGood.Algorithm.CalculationLogic;
+
+var logic = new CalculationLogicEngine(new FunctionCache(), useCalculationLogicInfo: true);
+
+logic.SetSceneName("折扣计算");                      // 设置场景名称
+logic.InitValue("price", 100M);                     // 初始化值
+logic.InitValue("count", 3M);
+
+if (logic.CheckCondition("count>=3", 1)) {          // 检查条件（支持层级）
+    logic.SetFormula("total", "price*count*0.8", 1, "满3件打8折");   // 用公式赋值
+} else {
+    logic.SetFormula("total", "price*count", 1);
+}
+
+Console.WriteLine(logic.ToInfoString());
+// 输出：
+// [初始] price=100;count=3;
+// ===== 折扣计算 =====
+// [成功]    if count>=3: // 3>=3
+// [赋值]    total = price*count*0.8 = 100*3*0.8 = 240 // 满3件打8折
+```
+
+注：
+- `InitValue`：初始化参数值，支持 `string` / `decimal` / `double` / `bool` / `int`；
+- `CheckCondition`：执行条件判断，返回 `bool`，条件必须是布尔值，否则抛出 `FormatException`；
+- `SetFormula`：用公式计算结果并赋值，公式中可引用已定义的参数；
+- `SetValue`：直接设置参数值；
+- `BlankLine`：在输出信息中添加空行；
+- `SetSceneName`：设置场景名称；
+- 构造参数 `useCalculationLogicInfo` 为 `false` 时，关闭过程信息记录，`ToInfoString()` 返回空字符串。
+
 
 ## Excel公式
 

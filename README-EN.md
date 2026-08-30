@@ -134,6 +134,42 @@ Note: When calculating the formula, first convert the quantity with units into s
 	bool error = engine.TryEvaluate("1m=1m2", false); // return true
 ```
 
+## Calculation Logic Engine
+
+The `CalculationLogicEngine` is used to build a traceable multi-step calculation flow: it calculates step by step through initializing values, checking conditions, assigning formulas and setting values, and can automatically output the complete calculation process information for auditing, debugging and flow tracking.
+
+```csharp
+using ToolGood.Algorithm.CalculationLogic;
+
+var logic = new CalculationLogicEngine(new FunctionCache(), useCalculationLogicInfo: true);
+
+logic.SetSceneName("Discount");                       // Set scene name
+logic.InitValue("price", 100M);                       // Initialize value
+logic.InitValue("count", 3M);
+
+if (logic.CheckCondition("count>=3", 1)) {            // Check condition (with layer)
+    logic.SetFormula("total", "price*count*0.8", 1, "20% off for 3+");  // Assign via formula
+} else {
+    logic.SetFormula("total", "price*count", 1);
+}
+
+Console.WriteLine(logic.ToInfoString());
+// Output:
+// [初始] price=100;count=3;
+// ===== Discount =====
+// [成功]    if count>=3: // 3>=3
+// [赋值]    total = price*count*0.8 = 100*3*0.8 = 240 // 20% off for 3+
+```
+
+Notes:
+- `InitValue`: initializes parameter values, supports `string` / `decimal` / `double` / `bool` / `int`;
+- `CheckCondition`: evaluates a condition and returns `bool`; the condition must be a boolean value, otherwise a `FormatException` is thrown;
+- `SetFormula`: calculates the result with a formula and assigns it; formulas can reference previously defined parameters;
+- `SetValue`: directly sets a parameter value;
+- `BlankLine`: adds a blank line to the output;
+- `SetSceneName`: sets the scene name;
+- When the constructor parameter `useCalculationLogicInfo` is `false`, process info recording is disabled and `ToInfoString()` returns an empty string.
+
 ## Excel Formula
 
 Functions: `logical functions`, `mathematics and trigonometric functions`, `text functions`, `statistical functions`, `date and time functions`
