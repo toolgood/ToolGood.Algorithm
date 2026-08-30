@@ -18,6 +18,10 @@
 		/// </summary>
 		Condition,
 		/// <summary>
+		/// 用公式赋值
+		/// </summary>
+		SetFormula,
+		/// <summary>
 		/// 赋值
 		/// </summary>
 		SetValue,

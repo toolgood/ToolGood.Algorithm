@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.CalculationLogic
 {
@@ -177,50 +179,6 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
-		public void InitValue(string key, float value)
-		{
-			InitValue(key, value, 0, null);
-		}
-		/// <summary>
-		/// 初始化值
-		/// </summary>
-		/// <param name="key"></param>
-		/// <param name="value"></param>
-		/// <param name="layer"></param>
-		public void InitValue(string key, float value, int layer)
-		{
-			InitValue(key, value, layer, null);
-		}
-		/// <summary>
-		/// 初始化值
-		/// </summary>
-		/// <param name="key"></param>
-		/// <param name="value"></param>
-		/// <param name="remark"></param>
-		public void InitValue(string key, float value, string remark)
-		{
-			InitValue(key, value, 0, remark);
-		}
-		/// <summary>
-		/// 初始化值
-		/// </summary>
-		/// <param name="key"></param>
-		/// <param name="value"></param>
-		/// <param name="layer"></param>
-		/// <param name="remark"></param>
-		public void InitValue(string key, float value, int layer, string remark)
-		{
-			_engine.AddParameter(key, value);
-			if(_useCalculationLogicInfo) {
-				_initValueInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.InitValue, Name = key, Exp = value.ToString(), Layer = layer, Remark = remark });
-			}
-		}
-
-		/// <summary>
-		/// 初始化值
-		/// </summary>
-		/// <param name="key"></param>
-		/// <param name="value"></param>
 		public void InitValue(string key, bool value)
 		{
 			InitValue(key, value, 0, null);
@@ -362,6 +320,57 @@ namespace ToolGood.Algorithm.CalculationLogic
 		}
 		#endregion
 
+		#region SetFormula
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		public void SetFormula(string key, string exp)
+		{
+			SetFormula(key, exp, 0, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		public void SetFormula(string key, string exp, int layer)
+		{
+			SetFormula(key, exp, layer, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="remark"></param>
+		public void SetFormula(string key, string exp, string remark)
+		{
+			SetFormula(key, exp, 0, remark);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void SetFormula(string key, string exp, int layer, string remark)
+		{
+			var func = _functionCache.ParseWithCache(exp);
+			var operand = func.Evaluate(_engine);
+			_engine.AddParameter(key, operand);
+
+			if(_useCalculationLogicInfo) {
+				var expStr = ExpAnalysis(exp);
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetFormula, Name = key, Exp = exp, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+			}
+		}
+		#endregion
+
+
 		#region SetValue
 		/// <summary>
 		/// 设置值
@@ -401,23 +410,224 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, string exp, int layer, string remark)
 		{
-			var func = _functionCache.ParseWithCache(exp);
-			var operand = func.Evaluate(_engine);
-			_engine.AddParameter(key, operand);
+			_engine.AddParameter(key, exp);
 
 			if(_useCalculationLogicInfo) {
-				var expStr = ExpAnalysis(exp);
-				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp, Exp2 = expStr, Value = operand, Layer = layer, Remark = remark });
+				var expStr = $"\"{exp.Replace("\"", "\\\"")}\"";
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = expStr, Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		public void SetValue(string key, decimal exp)
+		{
+			SetValue(key, exp, 0, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		public void SetValue(string key, decimal exp, int layer)
+		{
+			SetValue(key, exp, layer, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, decimal exp, string remark)
+		{
+			SetValue(key, exp, 0, remark);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, decimal exp, int layer, string remark)
+		{
+			_engine.AddParameter(key, exp);
+			if(_useCalculationLogicInfo) {
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		public void SetValue(string key, double exp)
+		{
+			SetValue(key, exp, 0, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		public void SetValue(string key, double exp, int layer)
+		{
+			SetValue(key, exp, layer, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, double exp, string remark)
+		{
+			SetValue(key, exp, 0, remark);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, double exp, int layer, string remark)
+		{
+			_engine.AddParameter(key, exp);
+			if(_useCalculationLogicInfo) {
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		public void SetValue(string key, bool exp)
+		{
+			SetValue(key, exp, 0, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		public void SetValue(string key, bool exp, int layer)
+		{
+			SetValue(key, exp, layer, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, bool exp, string remark)
+		{
+			SetValue(key, exp, 0, remark);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, bool exp, int layer, string remark)
+		{
+			_engine.AddParameter(key, exp);
+			if(_useCalculationLogicInfo) {
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
+			}
+		}
+
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		public void SetValue(string key, int exp)
+		{
+			SetValue(key, exp, 0, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		public void SetValue(string key, int exp, int layer)
+		{
+			SetValue(key, exp, layer, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, int exp, string remark)
+		{
+			SetValue(key, exp, 0, remark);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, int exp, int layer, string remark)
+		{
+			_engine.AddParameter(key, exp);
+			if(_useCalculationLogicInfo) {
+				_calculationLogicInfos.Add(new CalculationLogicInfo() { LogicType = CalculationLogicType.SetValue, Name = key, Exp = exp.ToString(), Layer = layer, Remark = remark });
 			}
 		}
 		#endregion
 
+		#region ExpAnalysis
 		private string ExpAnalysis(string exp)
 		{
+			var diyNameInfo = AlgorithmEngineHelper.GetDiyNames(exp);
+			var formulaSpan = exp.AsSpan();
+			var index = 0;
+			StringBuilder stringBuilder = new StringBuilder();
+			for(int i = 0; i < diyNameInfo.Parameters.Count; i++) {
+				var parameter = diyNameInfo.Parameters[i];
+				if(index < parameter.Start) {
+					stringBuilder.Append(formulaSpan.Slice(index, parameter.Start - index).ToString());
+				}
+				var formulaItem = GetOperand(_engine, parameter.Name);
+				stringBuilder.Append(formulaItem);
+				index = parameter.End + 1;
+			}
+			if(index < formulaSpan.Length) {
+				stringBuilder.Append(formulaSpan.Slice(index).ToString());
+			}
+			return stringBuilder.ToString();
 
-
-			return exp.Replace("\r", "").Replace("\n", "").Replace("\t", "").Trim();
 		}
+		private string GetOperand(AlgorithmEngineEx engine, string name)
+		{
+			Operand operand = engine.GetParameter(name);
+			if(operand.IsError) {
+				return $"error(\"{operand.ErrorMsg}\")";
+			} else if(operand.Type == OperandType.TEXT) {
+				return $"\"{operand.TextValue}\"";
+			}
+			return operand.ToText().TextValue;
+		}
+		#endregion
 
 		#region BlankLine
 		/// <summary>

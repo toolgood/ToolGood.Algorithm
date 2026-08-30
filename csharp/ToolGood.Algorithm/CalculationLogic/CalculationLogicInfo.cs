@@ -50,17 +50,19 @@ namespace ToolGood.Algorithm.CalculationLogic
 				case CalculationLogicType.InitValue: return $"{Name}={Exp};";
 				case CalculationLogicType.Condition:
 					if(Value.IsError) {
-						return $"[条件][错误] {layerStr}{Exp} = {Exp2} = {Value.ErrorMsg}{remark}";
+						return $"[条件][错误] {layerStr}if {Exp}: //{Exp2} = {Value.ErrorMsg}{remark}";
 					}
 					if(Value.BooleanValue) {
-						return $"[成功] {layerStr}{Exp} = {Exp2}{remark}";
+						return $"[成功] {layerStr}if {Exp}: //{Exp2}{remark}";
 					}
-					return $"[失败] {layerStr}{Exp} = {Exp2}{remark}";
-				case CalculationLogicType.SetValue:
+					return $"[失败] {layerStr}if {Exp}: //{Exp2}{remark}";
+				case CalculationLogicType.SetFormula:
 					if(Value.IsError) {
 						return $"[赋值][错误] {layerStr}{Name} = {Exp} = {Exp2} = {Value.ErrorMsg}{remark}";
 					}
 					return $"[赋值] {layerStr}{Name} = {Exp} = {Exp2} = {Value.ToText().TextValue}{remark}";
+				case CalculationLogicType.SetValue:
+					return $"[赋值] {layerStr}{Name} = {Exp}{remark}";
 				case CalculationLogicType.Error: return $"[错误] {layerStr}{Exp}";
 				default: break;
 			}
