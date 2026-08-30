@@ -21,6 +21,7 @@ import { runAllTests as runOperatorTests } from './AlgorithmEngineTest_operator.
 import { runAllTests as runCacheTests } from './AlgorithmEngineTest_cache.js';
 import { runAllTests as runUnitPrecisionTests } from './AlgorithmEngineTest_unitPrecision.js';
 import { runAllTests as runMyDateTests } from './AlgorithmEngineTest_myDate.js';
+import { runAllTests as runCalculationLogicTests } from './CalculationLogicTest.js';
 
 // 测试执行函数
 function runTest(testFunction, testName) {
@@ -102,6 +103,9 @@ function runAllTests() {
     
     // 运行 AlgorithmEngineTest_myDate
     runTest(runMyDateTests, 'AlgorithmEngineTest_myDate');
+    
+    // 运行 CalculationLogicTest
+    runTest(runCalculationLogicTests, 'CalculationLogicTest');
     
     console.log('\n=====================================');
     console.log('🎉 所有测试通过！');
