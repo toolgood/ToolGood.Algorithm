@@ -13,8 +13,8 @@ namespace ToolGood.Algorithm.CalculationLogic
 	public class CalculationLogicEngine
 	{
 		private readonly IFunctionCache _functionCache;
-		private readonly List<CalculationLogicInfo> _initValueInfos = new List<CalculationLogicInfo>();
-		private readonly List<CalculationLogicInfo> _calculationLogicInfos = new List<CalculationLogicInfo>();
+		private readonly List<CalculationLogicInfo> _initValueInfos;
+		private readonly List<CalculationLogicInfo> _calculationLogicInfos;
 		private readonly bool _useCalculationLogicInfo;
 		private readonly AlgorithmEngineEx _engine;
 
@@ -28,6 +28,10 @@ namespace ToolGood.Algorithm.CalculationLogic
 			_functionCache = functionCache;
 			_useCalculationLogicInfo = useCalculationLogicInfo;
 			_engine = new AlgorithmEngineEx();
+			if(useCalculationLogicInfo) {
+				_initValueInfos = new List<CalculationLogicInfo>();
+				_calculationLogicInfos = new List<CalculationLogicInfo>();
+			}
 		}
 
 		#region SetScene
