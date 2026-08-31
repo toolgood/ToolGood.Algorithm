@@ -43,7 +43,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		public string ToInfoString()
 		{
 			var remark = string.IsNullOrEmpty(Remark) ? "" : $" // {Remark}";
-			var layerStr = new string(' ', Math.Max(0, Layer) * 3);
+			var layerStr = new string(' ', Math.Min(Math.Max(0, Layer), 1000) * 3);
 			switch(LogicType) {
 				case CalculationLogicType.BlankLine: return String.Empty;
 				case CalculationLogicType.Scene: return $"===== {Name} =====";

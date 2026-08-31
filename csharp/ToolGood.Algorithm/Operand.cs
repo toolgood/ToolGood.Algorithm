@@ -248,10 +248,17 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(float obj)
 		{
+			if(float.IsNaN(obj) || float.IsInfinity(obj)) {
+				return Error("Convert to number error!");
+			}
 			if(obj == MathF.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
 				return IntCache[(int)obj + IntCacheOffset];
 			}
-			return new OperandDecimal((decimal)obj);
+			try {
+				return new OperandDecimal((decimal)obj);
+			} catch(OverflowException) {
+				return Error("Convert to number error!");
+			}
 		}
 
 		/// <summary>
@@ -261,10 +268,17 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(double obj)
 		{
+			if(double.IsNaN(obj) || double.IsInfinity(obj)) {
+				return Error("Convert to number error!");
+			}
 			if(obj == Math.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
 				return IntCache[(int)obj + IntCacheOffset];
 			}
-			return new OperandDecimal((decimal)obj);
+			try {
+				return new OperandDecimal((decimal)obj);
+			} catch(OverflowException) {
+				return Error("Convert to number error!");
+			}
 		}
 
 		/// <summary>

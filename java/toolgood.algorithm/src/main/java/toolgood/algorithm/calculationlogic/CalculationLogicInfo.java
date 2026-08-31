@@ -40,7 +40,7 @@ public class CalculationLogicInfo {
      */
     public String ToInfoString() {
         String remark = (Remark == null || Remark.isEmpty()) ? "" : " // " + Remark;
-        String layerStr = Repeat(' ', Math.max(0, Layer) * 3);
+        String layerStr = Repeat(' ', Math.min(Math.max(0, Layer), 1000) * 3);
         switch (LogicType) {
             case BlankLine:
                 return "";

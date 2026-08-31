@@ -149,6 +149,9 @@ export class Operand {
         } else if (typeof obj === 'boolean') {
             return obj ? Operand.True : Operand.False;
         } else if (typeof obj === 'number') {
+            if (Number.isNaN(obj) || !Number.isFinite(obj)) {
+                return Operand.Error("Number is NaN or Infinity!");
+            }
             return new OperandDouble(obj);
         } else if (typeof obj === 'string') {
             if (obj === null) {

@@ -30,7 +30,7 @@ export class CalculationLogicInfo {
      */
     ToInfoString() {
         const remark = (this.Remark === null || this.Remark === '') ? '' : ' // ' + this.Remark;
-        const layerStr = ' '.repeat(Math.max(0, this.Layer) * 3);
+        const layerStr = ' '.repeat(Math.min(Math.max(0, this.Layer), 1000) * 3);
         switch (this.LogicType) {
             case CalculationLogicType.BlankLine:
                 return '';
