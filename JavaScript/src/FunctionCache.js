@@ -50,28 +50,29 @@ export class FunctionCache extends IFunctionCache {
         let result = this.calculateCache.get(funExp);
         if (result != null) return result;
         const tree = AlgorithmEngineHelper.ParseCalculate(funExp);
-        return this.CreateCalculate(tree, funExp);
+        const fun = this.CreateCalculate(tree, funExp);
+        this.calculateCache.set(funExp, fun);
+        return fun;
     }
 
     CreateCalculate(tree, exp) {
-        if (tree.Type === CalculateTreeType.Error) {
-            throw new Error(tree.ErrorMessage);
-        }
-        const key = exp.substring(tree.start, tree.end + 1);
-        if (this.calculateCache.has(key)) {
-            return this.calculateCache.get(key);
-        }
         if (tree.Type === CalculateTreeType.String) {
+            // 仅叶子节点需要字符串内容；中间节点不再以子串作为缓存 key，避免 substring 产生 O(n²) 子串驻留
+            const key = exp.substring(tree.start, tree.end + 1);
+            if (this.calculateCache.has(key)) {
+                return this.calculateCache.get(key);
+            }
             const fun = AlgorithmEngineHelper.ParseFormula(key);
             this.calculateCache.set(key, fun);
             return fun;
         }
+        if (tree.Type === CalculateTreeType.Error) {
+            throw new Error(tree.ErrorMessage);
+        }
 
         const leftFunc = this.CreateCalculate(tree.nodes[0], exp);
         const rightFunc = this.CreateCalculate(tree.nodes[1], exp);
-        const fun = this.CombineCalculate(leftFunc, tree.Type, rightFunc);
-        this.calculateCache.set(key, fun);
-        return fun;
+        return this.CombineCalculate(leftFunc, tree.Type, rightFunc);
     }
 
     CombineCalculate(left, type, right) {
@@ -104,32 +105,26 @@ export class FunctionCache extends IFunctionCache {
         let result = this.conditionCache.get(funExp);
         if (result != null) return result;
         const tree = AlgorithmEngineHelper.ParseCondition(funExp);
-        return this.CreateCondition(tree, funExp);
+        const fun = this.CreateCondition(tree, funExp);
+        this.conditionCache.set(funExp, fun);
+        return fun;
     }
 
     CreateCondition(tree, exp) {
-        if (tree.Type === ConditionTreeType.Error) {
-            throw new Error(tree.ErrorMessage);
-        }
-        const key = exp.substring(tree.start, tree.end + 1);
-        if (this.conditionCache.has(key)) {
-            return this.conditionCache.get(key);
-        }
         if (tree.Type === ConditionTreeType.String) {
             // 直接走计算树路径，避免对同一 key 重入
-            return this.ParseWithCache(key);
+            return this.ParseWithCache(exp.substring(tree.start, tree.end + 1));
+        }
+        if (tree.Type === ConditionTreeType.Error) {
+            throw new Error(tree.ErrorMessage);
         }
 
         const leftFunc = this.CreateCondition(tree.nodes[0], exp);
         const rightFunc = this.CreateCondition(tree.nodes[1], exp);
         if (tree.Type === ConditionTreeType.And) {
-            const fun = AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
-            this.conditionCache.set(key, fun);
-            return fun;
+            return AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
         } else if (tree.Type === ConditionTreeType.Or) {
-            const fun = AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
-            this.conditionCache.set(key, fun);
-            return fun;
+            return AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
         }
         throw new Error(tree.ErrorMessage);
     }

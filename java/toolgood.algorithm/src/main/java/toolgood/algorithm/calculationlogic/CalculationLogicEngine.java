@@ -20,8 +20,8 @@ import java.util.function.Supplier;
  */
 public class CalculationLogicEngine {
     private final IFunctionCache _functionCache;
-    private final List<CalculationLogicInfo> _initValueInfos = new ArrayList<>();
-    private final List<CalculationLogicInfo> _calculationLogicInfos = new ArrayList<>();
+    private final List<CalculationLogicInfo> _initValueInfos;
+    private final List<CalculationLogicInfo> _calculationLogicInfos;
     private final boolean _useCalculationLogicInfo;
     private final AlgorithmEngineEx _engine;
 
@@ -32,6 +32,8 @@ public class CalculationLogicEngine {
         _functionCache = functionCache;
         _useCalculationLogicInfo = useCalculationLogicInfo;
         _engine = new AlgorithmEngineEx();
+        _initValueInfos = useCalculationLogicInfo ? new ArrayList<>() : null;
+        _calculationLogicInfos = useCalculationLogicInfo ? new ArrayList<>() : null;
     }
 
     // #region SetScene

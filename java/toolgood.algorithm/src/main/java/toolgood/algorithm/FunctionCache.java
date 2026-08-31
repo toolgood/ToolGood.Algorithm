@@ -34,18 +34,18 @@ public class FunctionCache implements IFunctionCache {
         FunctionBase result = calculateCache.get(funExp);
         if (result != null) return result;
         CalculateTree tree = AlgorithmEngineHelper.ParseCalculate(funExp);
-        return CreateCalculate(tree, funExp);
+        FunctionBase fun = CreateCalculate(tree, funExp);
+        calculateCache.put(funExp, fun);
+        return fun;
     }
 
     private FunctionBase CreateCalculate(CalculateTree tree, String exp) {
-        if (tree.Type == CalculateTreeType.Error) {
-            throw new RuntimeException(tree.ErrorMessage);
-        }
-        String key = exp.substring(tree.Start, tree.End + 1);
-        if (calculateCache.containsKey(key)) {
-            return calculateCache.get(key);
-        }
         if (tree.Type == CalculateTreeType.String) {
+            // 仅叶子节点需要字符串内容；中间节点不再以子串作为缓存 key，避免 substring 产生 O(n²) 子串驻留
+            String key = exp.substring(tree.Start, tree.End + 1);
+            if (calculateCache.containsKey(key)) {
+                return calculateCache.get(key);
+            }
             try {
                 FunctionBase fun = AlgorithmEngineHelper.ParseFormula(key);
                 calculateCache.put(key, fun);
@@ -54,44 +54,39 @@ public class FunctionCache implements IFunctionCache {
                 throw new RuntimeException(e);
             }
         }
+        if (tree.Type == CalculateTreeType.Error) {
+            throw new RuntimeException(tree.ErrorMessage);
+        }
 
         FunctionBase leftFunc = CreateCalculate(tree.Nodes.get(0), exp);
         FunctionBase rightFunc = CreateCalculate(tree.Nodes.get(1), exp);
         CombineCalculateType combineType = CombineCalculateType.intToEnum(tree.Type.getValue());
-        FunctionBase fun = AlgorithmEngineHelper.CombineCalculate(leftFunc, combineType, rightFunc);
-        calculateCache.put(key, fun);
-        return fun;
+        return AlgorithmEngineHelper.CombineCalculate(leftFunc, combineType, rightFunc);
     }
 
     public FunctionBase ParseConditionWithCache(String funExp) {
         FunctionBase result = conditionCache.get(funExp);
         if (result != null) return result;
         ConditionTree tree = AlgorithmEngineHelper.ParseCondition(funExp);
-        return CreateCondition(tree, funExp);
+        FunctionBase fun = CreateCondition(tree, funExp);
+        conditionCache.put(funExp, fun);
+        return fun;
     }
 
     private FunctionBase CreateCondition(ConditionTree tree, String exp) {
+        if (tree.Type == ConditionTreeType.String) {
+            return ParseWithCache(exp.substring(tree.Start, tree.End + 1));
+        }
         if (tree.Type == ConditionTreeType.Error) {
             throw new RuntimeException(tree.ErrorMessage);
-        }
-        String key = exp.substring(tree.Start, tree.End + 1);
-        if (conditionCache.containsKey(key)) {
-            return conditionCache.get(key);
-        }
-        if (tree.Type == ConditionTreeType.String) {
-            return ParseWithCache(key);
         }
 
         FunctionBase leftFunc = CreateCondition(tree.Nodes.get(0), exp);
         FunctionBase rightFunc = CreateCondition(tree.Nodes.get(1), exp);
         if (tree.Type == ConditionTreeType.And) {
-            FunctionBase fun = AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
-            conditionCache.put(key, fun);
-            return fun;
+            return AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
         } else if (tree.Type == ConditionTreeType.Or) {
-            FunctionBase fun = AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
-            conditionCache.put(key, fun);
-            return fun;
+            return AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
         }
         throw new RuntimeException(tree.ErrorMessage);
     }
