@@ -1,5 +1,5 @@
 import { AlgorithmEngineEx } from '../AlgorithmEngineEx.js';
-import { AlgorithmEngineHelper } from '../AlgorithmEngineHelper.js';
+import { FunctionCache } from '../FunctionCache.js';
 import { OperandType } from '../Enums/OperandType.js';
 import { MyDate } from '../Internals/MyDate.js';
 import { CalculationLogicType } from './CalculationLogicType.js';
@@ -10,9 +10,11 @@ import { CalculationLogicInfo } from './CalculationLogicInfo.js';
  */
 export class CalculationLogicEngine {
     /**
+     * @param {FunctionCache} functionCache
      * @param {boolean} [useCalculationLogicInfo]
      */
-    constructor(useCalculationLogicInfo = true) {
+    constructor(functionCache, useCalculationLogicInfo = true) {
+        this._functionCache = functionCache;
         this._useCalculationLogicInfo = useCalculationLogicInfo;
         this._initValueInfos = [];
         this._calculationLogicInfos = [];
@@ -73,7 +75,7 @@ export class CalculationLogicEngine {
      */
     CheckCondition(condition, layer = 0, remark = null) {
         if (typeof layer === 'string') { remark = layer; layer = 0; }
-        const func = AlgorithmEngineHelper.ParseFormula(condition);
+        const func = this._functionCache.ParseWithCache(condition);
         let operand = this._engine.Evaluate(func);
         operand = operand.ToBoolean("The condition must be a boolean value!");
         if (operand.IsError) {
@@ -117,7 +119,7 @@ export class CalculationLogicEngine {
      */
     SetFormula(key, exp, layer = 0, remark = null) {
         if (typeof layer === 'string') { remark = layer; layer = 0; }
-        const func = AlgorithmEngineHelper.ParseFormula(exp);
+        const func = this._functionCache.ParseWithCache(exp);
         const operand = this._engine.Evaluate(func);
         if (operand.IsError) {
             if (this._useCalculationLogicInfo) {
@@ -181,7 +183,7 @@ export class CalculationLogicEngine {
     // #region ExpAnalysis
 
     _expAnalysis(exp) {
-        const diyNameInfo = AlgorithmEngineHelper.GetDiyNames(exp);
+        const diyNameInfo = this._functionCache.GetDiyNamesWithCache(exp);
         let index = 0;
         let result = '';
         const parameters = diyNameInfo.Parameters || [];

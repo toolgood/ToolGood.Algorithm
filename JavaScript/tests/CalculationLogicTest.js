@@ -1,9 +1,10 @@
 import assert from 'assert';
 import { CalculationLogicEngine } from '../src/CalculationLogic/CalculationLogicEngine.js';
+import { FunctionCache } from '../src/FunctionCache.js';
 import { OperandType } from '../src/Enums/OperandType.js';
 
 function createEngine(useCalculationLogicInfo = true) {
-    return new CalculationLogicEngine(useCalculationLogicInfo);
+    return new CalculationLogicEngine(new FunctionCache(), useCalculationLogicInfo);
 }
 
 // #region SetSceneName 测试

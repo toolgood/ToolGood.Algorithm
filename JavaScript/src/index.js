@@ -1,6 +1,7 @@
 import { AlgorithmEngine } from './AlgorithmEngine.js';
 import { AlgorithmEngineEx } from './AlgorithmEngineEx.js';
 import { AlgorithmEngineHelper } from './AlgorithmEngineHelper.js';
+import { FunctionCache } from './FunctionCache.js';
 import { Operand } from './Operand.js';
 import { CalculationLogicEngine } from './CalculationLogic/CalculationLogicEngine.js';
 import { CalculationLogicInfo } from './CalculationLogic/CalculationLogicInfo.js';
@@ -11,6 +12,7 @@ export {
   AlgorithmEngine,
   AlgorithmEngineEx,
   AlgorithmEngineHelper,
+  FunctionCache,
   Operand,
   CalculationLogicEngine,
   CalculationLogicInfo,
@@ -22,6 +24,7 @@ export default {
   AlgorithmEngine,
   AlgorithmEngineEx,
   AlgorithmEngineHelper,
+  FunctionCache,
   Operand,
   CalculationLogicEngine,
   CalculationLogicInfo,
@@ -36,6 +39,7 @@ if (typeof window !== 'undefined') {
     AlgorithmEngine,
     AlgorithmEngineEx,
     AlgorithmEngineHelper,
+    FunctionCache,
     Operand,
     CalculationLogicEngine,
     CalculationLogicInfo,
