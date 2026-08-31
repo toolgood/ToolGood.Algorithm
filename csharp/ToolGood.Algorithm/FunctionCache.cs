@@ -14,6 +14,17 @@ namespace ToolGood.Algorithm
 	{
 		private readonly ConcurrentDictionary<string, FunctionBase> calculateCache = new ConcurrentDictionary<string, FunctionBase>();
 		private readonly ConcurrentDictionary<string, FunctionBase> conditionCache = new ConcurrentDictionary<string, FunctionBase>();
+		private readonly ConcurrentDictionary<string, DiyNameInfo> diyNameCache = new ConcurrentDictionary<string, DiyNameInfo>();
+
+		/// <summary>
+		/// 获取自定义名称信息，并使用缓存来提高性能。对于相同的表达式，将从缓存中返回之前解析的结果，而不是重新解析。
+		/// </summary>
+		/// <param name="exp">表达式字符串</param>
+		/// <returns>自定义名称信息</returns>
+		public DiyNameInfo GetDiyNamesWithCache(string exp)
+		{
+			return diyNameCache.GetOrAdd(exp, key => AlgorithmEngineHelper.GetDiyNames(key));
+		}
 
 		/// <summary>
 		/// 解析函数表达式，并使用缓存来提高性能。对于相同的函数表达式，函数将从缓存中返回之前解析的结果，而不是重新解析。

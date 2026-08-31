@@ -672,7 +672,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		#region ExpAnalysis
 		private string ExpAnalysis(string exp)
 		{
-			var diyNameInfo = AlgorithmEngineHelper.GetDiyNames(exp);
+			var diyNameInfo = _functionCache.GetDiyNamesWithCache(exp);
 			var formulaSpan = exp.AsSpan();
 			var index = 0;
 			StringBuilder stringBuilder = new StringBuilder();

@@ -2,7 +2,6 @@ package toolgood.algorithm.calculationlogic;
 
 import org.joda.time.DateTime;
 import toolgood.algorithm.AlgorithmEngineEx;
-import toolgood.algorithm.AlgorithmEngineHelper;
 import toolgood.algorithm.FunctionCache;
 import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
@@ -421,7 +420,7 @@ public class CalculationLogicEngine {
 
     private String ExpAnalysis(String exp) {
         try {
-            DiyNameInfo diyNameInfo = AlgorithmEngineHelper.GetDiyNames(exp);
+            DiyNameInfo diyNameInfo = _functionCache.GetDiyNamesWithCache(exp);
             int index = 0;
             StringBuilder stringBuilder = new StringBuilder();
             List<DiyNameKeyInfo> parameters = diyNameInfo.Parameters;

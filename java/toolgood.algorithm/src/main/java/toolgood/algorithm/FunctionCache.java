@@ -5,6 +5,7 @@ import toolgood.algorithm.enums.CombineCalculateType;
 import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.internals.CalculateTree;
 import toolgood.algorithm.internals.ConditionTree;
+import toolgood.algorithm.internals.DiyNameInfo;
 import toolgood.algorithm.internals.functions.FunctionBase;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,6 +13,22 @@ import java.util.concurrent.ConcurrentHashMap;
 public class FunctionCache {
     private final ConcurrentHashMap<String, FunctionBase> calculateCache = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, FunctionBase> conditionCache = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, DiyNameInfo> diyNameCache = new ConcurrentHashMap<>();
+
+    /**
+     * 获取自定义名称信息，并使用缓存来提高性能。对于相同的表达式，将从缓存中返回之前解析的结果，而不是重新解析。
+     */
+    public DiyNameInfo GetDiyNamesWithCache(String exp) {
+        DiyNameInfo result = diyNameCache.get(exp);
+        if (result != null) return result;
+        try {
+            DiyNameInfo diyNameInfo = AlgorithmEngineHelper.GetDiyNames(exp);
+            diyNameCache.put(exp, diyNameInfo);
+            return diyNameInfo;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public FunctionBase ParseWithCache(String funExp) {
         FunctionBase result = calculateCache.get(funExp);
