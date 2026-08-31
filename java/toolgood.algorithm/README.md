@@ -147,9 +147,9 @@ logic.InitValue("price", 100);                      // 初始化值
 logic.InitValue("count", 3);
 
 if (logic.CheckCondition("count>=3", 1)) {          // 检查条件（支持层级）
-    logic.SetFormula("total", "price*count*0.8", 1, "满3件打8折");   // 用公式赋值
+    logic.SetFormula("total", "price*count*0.8", 0, "满3件打8折");   // 用公式赋值
 } else {
-    logic.SetFormula("total", "price*count", 1);
+    logic.SetFormula("total", "price*count", 0);
 }
 
 System.out.println(logic.ToInfoString());
@@ -157,7 +157,7 @@ System.out.println(logic.ToInfoString());
 // [初始] price=100;count=3;
 // ===== 折扣计算 =====
 // [成功]    if count>=3: // 3>=3
-// [赋值]    total = price*count*0.8 = 100*3*0.8 = 240 // 满3件打8折
+// [赋值] total = price*count*0.8 = 100*3*0.8 = 240 // 满3件打8折
 ```
 
 注：
@@ -170,6 +170,7 @@ System.out.println(logic.ToInfoString());
 - `SetSceneName`：设置场景名称；
 - `InitValue`、`CheckCondition`、`SetFormula`、`SetValue` 均提供可选的 `layer`、`remark` 参数：`layer` 控制输出缩进深度，`remark` 在输出中追加 `// 备注`（`InitValue` 的 `layer`、`remark` 不影响输出）；
 - 构造参数 `useCalculationLogicInfo` 为 `false` 时，关闭过程信息记录，`ToInfoString()` 返回空字符串。
+- 推荐赋值方法`SetFormula`、`SetValue`的`layer` 为 `0`，审核时，我们主要看的赋值过程，而不是 `CheckCondition` 的过程。
 
 ## Excel公式
 

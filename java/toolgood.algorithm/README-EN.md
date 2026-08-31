@@ -148,9 +148,9 @@ logic.InitValue("price", 100);                       // Initialize value
 logic.InitValue("count", 3);
 
 if (logic.CheckCondition("count>=3", 1)) {            // Check condition (with layer)
-    logic.SetFormula("total", "price*count*0.8", 1, "20% off for 3+");  // Assign via formula
+    logic.SetFormula("total", "price*count*0.8", 0, "20% off for 3+");  // Assign via formula
 } else {
-    logic.SetFormula("total", "price*count", 1);
+    logic.SetFormula("total", "price*count", 0);
 }
 
 System.out.println(logic.ToInfoString());
@@ -158,7 +158,7 @@ System.out.println(logic.ToInfoString());
 // [初始] price=100;count=3;
 // ===== Discount =====
 // [成功]    if count>=3: // 3>=3
-// [赋值]    total = price*count*0.8 = 100*3*0.8 = 240 // 20% off for 3+
+// [赋值] total = price*count*0.8 = 100*3*0.8 = 240 // 20% off for 3+
 ```
 
 Notes:
@@ -171,6 +171,7 @@ Notes:
 - `SetSceneName`: sets the scene name;
 - `InitValue`, `CheckCondition`, `SetFormula` and `SetValue` all provide optional `layer` and `remark` parameters: `layer` controls the indentation depth of the output, `remark` appends a `// remark` note to the output (the `layer` and `remark` of `InitValue` do not affect the output);
 - When the constructor parameter `useCalculationLogicInfo` is `false`, process info recording is disabled and `ToInfoString()` returns an empty string.
+- It is recommended to set the `layer` of the assignment methods `SetFormula` and `SetValue` to `0`, because during auditing we mainly review the assignment process, not the `CheckCondition` process.
 
 ## Excel Formula
 
