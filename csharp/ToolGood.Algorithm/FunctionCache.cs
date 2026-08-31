@@ -40,19 +40,19 @@ namespace ToolGood.Algorithm
 		}
 		private FunctionBase CreateCalculate(CalculateTree tree)
 		{
-			if(calculateCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
 			if(tree.Type == Algorithm.Enums.CalculateTreeType.String) {
-				var leafFun = AlgorithmEngineHelper.ParseFormula(tree.Text);
-				calculateCache[tree.Text] = leafFun;
+				// 仅叶子节点需要字符串内容；中间节点不再以 Text(子串)作为缓存 key，避免 Substring 产生 O(n²) 子串驻留
+				var text = tree.Text;
+				if(calculateCache.TryGetValue(text, out FunctionBase value)) { return value; }
+				var leafFun = AlgorithmEngineHelper.ParseFormula(text);
+				calculateCache[text] = leafFun;
 				return leafFun;
 			}
 			if(tree.Type == Algorithm.Enums.CalculateTreeType.Error) { throw new Exception(tree.ErrorMessage); }
 
 			var leftFunc = CreateCalculate(tree.Nodes[0]);
 			var rightFunc = CreateCalculate(tree.Nodes[1]);
-			var fun = AlgorithmEngineHelper.CombineCalculate(leftFunc, (Algorithm.Enums.CombineCalculateType)(byte)tree.Type, rightFunc);
-			calculateCache[tree.Text] = fun;
-			return fun;
+			return AlgorithmEngineHelper.CombineCalculate(leftFunc, (Algorithm.Enums.CombineCalculateType)(byte)tree.Type, rightFunc);
 		}
 
 		/// <summary>
@@ -69,7 +69,6 @@ namespace ToolGood.Algorithm
 		}
 		private FunctionBase CreateCondition(ConditionTree tree)
 		{
-			if(conditionCache.TryGetValue(tree.Text, out FunctionBase value)) { return value; }
 			if(tree.Type == Algorithm.Enums.ConditionTreeType.String) {
 				// 直接走计算树路径(CreateCalculate 内部用 TryGetValue+索引器赋值),
 				// 避免对同一 key 重入 GetOrAdd(ConcurrentDictionary 文档禁止 valueFactory 递归调用)
@@ -80,13 +79,9 @@ namespace ToolGood.Algorithm
 			var leftFunc = CreateCondition(tree.Nodes[0]);
 			var rightFunc = CreateCondition(tree.Nodes[1]);
 			if(tree.Type == Algorithm.Enums.ConditionTreeType.And) {
-				var fun = AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
-				conditionCache[tree.Text] = fun;
-				return fun;
+				return AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
 			} else if(tree.Type == Algorithm.Enums.ConditionTreeType.Or) {
-				var fun = AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
-				conditionCache[tree.Text] = fun;
-				return fun;
+				return AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
 			}
 			throw new Exception(tree.ErrorMessage);
 		}
