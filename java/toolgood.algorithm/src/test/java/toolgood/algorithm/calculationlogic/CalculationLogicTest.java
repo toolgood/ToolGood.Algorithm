@@ -1,6 +1,8 @@
 package toolgood.algorithm.calculationlogic;
 
 import org.junit.Test;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.enums.OperandType;
 
 import java.math.BigDecimal;
 
@@ -232,6 +234,104 @@ public class CalculationLogicTest {
         CalculationLogicEngine logic = CreateEngine();
         logic.SetValue("i", 100, 1, "备注");
         assertEquals("[赋值]    i = 100 // 备注\n", logic.ToInfoString());
+    }
+
+    // #endregion
+
+    // #region GetValue 测试
+
+    @Test
+    public void GetValue_InitValue_Int_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("a", 1);
+        Operand operand = logic.GetValue("a");
+        assertTrue(operand.IsNumber());
+        assertEquals(OperandType.NUMBER, operand.Type());
+        assertEquals(0, operand.NumberValue().compareTo(BigDecimal.ONE));
+    }
+
+    @Test
+    public void GetValue_InitValue_String_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("s", "hello");
+        Operand operand = logic.GetValue("s");
+        assertTrue(operand.IsText());
+        assertEquals(OperandType.TEXT, operand.Type());
+        assertEquals("hello", operand.TextValue());
+    }
+
+    @Test
+    public void GetValue_InitValue_Decimal_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("d", new BigDecimal("1.5"));
+        Operand operand = logic.GetValue("d");
+        assertTrue(operand.IsNumber());
+        assertEquals(0, operand.NumberValue().compareTo(new BigDecimal("1.5")));
+    }
+
+    @Test
+    public void GetValue_InitValue_Double_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("dd", 1.5);
+        Operand operand = logic.GetValue("dd");
+        assertTrue(operand.IsNumber());
+        assertEquals(0, operand.NumberValue().compareTo(new BigDecimal("1.5")));
+    }
+
+    @Test
+    public void GetValue_InitValue_Bool_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("flag", true);
+        Operand operand = logic.GetValue("flag");
+        assertTrue(operand.IsBoolean());
+        assertEquals(OperandType.BOOLEAN, operand.Type());
+        assertTrue(operand.BooleanValue());
+    }
+
+    @Test
+    public void GetValue_SetValue_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.SetValue("v", "text");
+        Operand operand = logic.GetValue("v");
+        assertTrue(operand.IsText());
+        assertEquals("text", operand.TextValue());
+    }
+
+    @Test
+    public void GetValue_SetFormula_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("a", 1);
+        logic.InitValue("b", 2);
+        logic.SetFormula("x", "a*3+b");
+        Operand operand = logic.GetValue("x");
+        assertTrue(operand.IsNumber());
+        assertEquals(0, operand.NumberValue().compareTo(new BigDecimal("5")));
+    }
+
+    @Test
+    public void GetValue_AfterSetFormulaOverwrite_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("a", 1);
+        logic.SetFormula("a", "a+10");
+        Operand operand = logic.GetValue("a");
+        assertTrue(operand.IsNumber());
+        assertEquals(0, operand.NumberValue().compareTo(new BigDecimal("11")));
+    }
+
+    @Test
+    public void GetValue_NotFound_ReturnsError_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        Operand operand = logic.GetValue("missing");
+        assertTrue(operand.IsError());
+        assertEquals("Parameter [missing] is missing.", operand.ErrorMsg());
+    }
+
+    @Test
+    public void GetValue_NoInfo_Test() {
+        // 关闭信息记录不影响取值
+        CalculationLogicEngine logic = CreateEngine(false);
+        logic.InitValue("a", 1);
+        assertEquals(0, logic.GetValue("a").NumberValue().compareTo(BigDecimal.ONE));
     }
 
     // #endregion

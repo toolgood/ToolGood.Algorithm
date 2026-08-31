@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { CalculationLogicEngine } from '../src/CalculationLogic/CalculationLogicEngine.js';
+import { OperandType } from '../src/Enums/OperandType.js';
 
 function createEngine(useCalculationLogicInfo = true) {
     return new CalculationLogicEngine(useCalculationLogicInfo);
@@ -220,6 +221,95 @@ function testSetValue_LayerRemark() {
 
 // #endregion
 
+// #region GetValue 测试
+
+function testGetValue_InitValue_Int() {
+    const logic = createEngine();
+    logic.InitValue('a', 1);
+    const operand = logic.GetValue('a');
+    assert.strictEqual(operand.IsNumber, true);
+    assert.strictEqual(operand.Type, OperandType.NUMBER);
+    assert.strictEqual(operand.NumberValue, 1);
+}
+
+function testGetValue_InitValue_String() {
+    const logic = createEngine();
+    logic.InitValue('s', 'hello');
+    const operand = logic.GetValue('s');
+    assert.strictEqual(operand.IsText, true);
+    assert.strictEqual(operand.Type, OperandType.TEXT);
+    assert.strictEqual(operand.TextValue, 'hello');
+}
+
+function testGetValue_InitValue_Decimal() {
+    // JS 无 decimal 类型，使用 number 表示
+    const logic = createEngine();
+    logic.InitValue('d', 1.5);
+    const operand = logic.GetValue('d');
+    assert.strictEqual(operand.IsNumber, true);
+    assert.strictEqual(operand.NumberValue, 1.5);
+}
+
+function testGetValue_InitValue_Double() {
+    const logic = createEngine();
+    logic.InitValue('dd', 1.5);
+    const operand = logic.GetValue('dd');
+    assert.strictEqual(operand.IsNumber, true);
+    assert.strictEqual(operand.NumberValue, 1.5);
+}
+
+function testGetValue_InitValue_Bool() {
+    const logic = createEngine();
+    logic.InitValue('flag', true);
+    const operand = logic.GetValue('flag');
+    assert.strictEqual(operand.IsBoolean, true);
+    assert.strictEqual(operand.Type, OperandType.BOOLEAN);
+    assert.strictEqual(operand.BooleanValue, true);
+}
+
+function testGetValue_SetValue() {
+    const logic = createEngine();
+    logic.SetValue('v', 'text');
+    const operand = logic.GetValue('v');
+    assert.strictEqual(operand.IsText, true);
+    assert.strictEqual(operand.TextValue, 'text');
+}
+
+function testGetValue_SetFormula() {
+    const logic = createEngine();
+    logic.InitValue('a', 1);
+    logic.InitValue('b', 2);
+    logic.SetFormula('x', 'a*3+b');
+    const operand = logic.GetValue('x');
+    assert.strictEqual(operand.IsNumber, true);
+    assert.strictEqual(operand.NumberValue, 5);
+}
+
+function testGetValue_AfterSetFormulaOverwrite() {
+    const logic = createEngine();
+    logic.InitValue('a', 1);
+    logic.SetFormula('a', 'a+10');
+    const operand = logic.GetValue('a');
+    assert.strictEqual(operand.IsNumber, true);
+    assert.strictEqual(operand.NumberValue, 11);
+}
+
+function testGetValue_NotFound_ReturnsError() {
+    const logic = createEngine();
+    const operand = logic.GetValue('missing');
+    assert.strictEqual(operand.IsError, true);
+    assert.strictEqual(operand.ErrorMsg, 'Parameter [missing] is missing.');
+}
+
+function testGetValue_NoInfo() {
+    // 关闭信息记录不影响取值
+    const logic = createEngine(false);
+    logic.InitValue('a', 1);
+    assert.strictEqual(logic.GetValue('a').NumberValue, 1);
+}
+
+// #endregion
+
 // #region BlankLine 测试
 
 function testBlankLine() {
@@ -309,6 +399,16 @@ function runAllTests() {
         testSetValue_Double();
         testSetValue_Bool();
         testSetValue_LayerRemark();
+        testGetValue_InitValue_Int();
+        testGetValue_InitValue_String();
+        testGetValue_InitValue_Decimal();
+        testGetValue_InitValue_Double();
+        testGetValue_InitValue_Bool();
+        testGetValue_SetValue();
+        testGetValue_SetFormula();
+        testGetValue_AfterSetFormulaOverwrite();
+        testGetValue_NotFound_ReturnsError();
+        testGetValue_NoInfo();
         testBlankLine();
         testToInfoString_Empty();
         testToInfoString_Disabled();
@@ -349,6 +449,16 @@ export {
     testSetValue_Double,
     testSetValue_Bool,
     testSetValue_LayerRemark,
+    testGetValue_InitValue_Int,
+    testGetValue_InitValue_String,
+    testGetValue_InitValue_Decimal,
+    testGetValue_InitValue_Double,
+    testGetValue_InitValue_Bool,
+    testGetValue_SetValue,
+    testGetValue_SetFormula,
+    testGetValue_AfterSetFormulaOverwrite,
+    testGetValue_NotFound_ReturnsError,
+    testGetValue_NoInfo,
     testBlankLine,
     testToInfoString_Empty,
     testToInfoString_Disabled,

@@ -220,6 +220,19 @@ export class CalculationLogicEngine {
 
     // #endregion
 
+    // #region GetValue
+
+    /**
+     * 获取值
+     * @param {string} key
+     * @returns {Operand}
+     */
+    GetValue(key) {
+        return this._engine.GetParameter(key);
+    }
+
+    // #endregion
+
     // #region BlankLine
 
     /**

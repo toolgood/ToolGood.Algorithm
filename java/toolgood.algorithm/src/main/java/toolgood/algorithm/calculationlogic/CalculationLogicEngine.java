@@ -415,6 +415,17 @@ public class CalculationLogicEngine {
 
     // #endregion
 
+    // #region GetValue
+
+    /**
+     * 获取值
+     */
+    public Operand GetValue(String key) {
+        return _engine.GetParameter(key);
+    }
+
+    // #endregion
+
     // #region BlankLine
 
     /**
