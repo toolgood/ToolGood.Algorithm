@@ -15,7 +15,7 @@ public class ConditionTreeTest {
         ConditionTree t1 = AlgorithmEngineHelper.ParseCondition(txt);
         assertEquals(ConditionTreeType.String, t1.Type);
         assertEquals("AA.IsText() = bb", txt.substring(t1.Start, t1.End + 1));
-        assertEquals("AA.IsText()=bb", t1.Text);
+        assertEquals("AA.IsText() = bb", t1.getText());
 
         txt = "[bbb]=bb";
         t1 = AlgorithmEngineHelper.ParseCondition(txt);

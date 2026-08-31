@@ -1,6 +1,6 @@
 {
   "name": "toolgood.algorithm",
-  "version": "6.3.0.2",
+  "version": "6.3.0.3",
   "description": "ToolGood Algorithm Engine for JavaScript",
   "type": "module",
   "main": "dist/toolgood.algorithm.js",

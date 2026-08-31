@@ -50,26 +50,27 @@ export class FunctionCache extends IFunctionCache {
         let result = this.calculateCache.get(funExp);
         if (result != null) return result;
         const tree = AlgorithmEngineHelper.ParseCalculate(funExp);
-        return this.CreateCalculate(tree);
+        return this.CreateCalculate(tree, funExp);
     }
 
-    CreateCalculate(tree) {
-        if (this.calculateCache.has(tree.conditionString)) {
-            return this.calculateCache.get(tree.conditionString);
-        }
-        if (tree.Type === CalculateTreeType.String) {
-            const fun = AlgorithmEngineHelper.ParseFormula(tree.conditionString);
-            this.calculateCache.set(tree.conditionString, fun);
-            return fun;
-        }
+    CreateCalculate(tree, exp) {
         if (tree.Type === CalculateTreeType.Error) {
             throw new Error(tree.ErrorMessage);
         }
+        const key = exp.substring(tree.start, tree.end + 1);
+        if (this.calculateCache.has(key)) {
+            return this.calculateCache.get(key);
+        }
+        if (tree.Type === CalculateTreeType.String) {
+            const fun = AlgorithmEngineHelper.ParseFormula(key);
+            this.calculateCache.set(key, fun);
+            return fun;
+        }
 
-        const leftFunc = this.CreateCalculate(tree.nodes[0]);
-        const rightFunc = this.CreateCalculate(tree.nodes[1]);
+        const leftFunc = this.CreateCalculate(tree.nodes[0], exp);
+        const rightFunc = this.CreateCalculate(tree.nodes[1], exp);
         const fun = this.CombineCalculate(leftFunc, tree.Type, rightFunc);
-        this.calculateCache.set(tree.conditionString, fun);
+        this.calculateCache.set(key, fun);
         return fun;
     }
 
@@ -103,27 +104,31 @@ export class FunctionCache extends IFunctionCache {
         let result = this.conditionCache.get(funExp);
         if (result != null) return result;
         const tree = AlgorithmEngineHelper.ParseCondition(funExp);
-        return this.CreateCondition(tree);
+        return this.CreateCondition(tree, funExp);
     }
 
-    CreateCondition(tree) {
-        if (this.conditionCache.has(tree.conditionString)) {
-            return this.conditionCache.get(tree.conditionString);
+    CreateCondition(tree, exp) {
+        if (tree.Type === ConditionTreeType.Error) {
+            throw new Error(tree.ErrorMessage);
+        }
+        const key = exp.substring(tree.start, tree.end + 1);
+        if (this.conditionCache.has(key)) {
+            return this.conditionCache.get(key);
         }
         if (tree.Type === ConditionTreeType.String) {
             // 直接走计算树路径，避免对同一 key 重入
-            return this.ParseWithCache(tree.conditionString);
+            return this.ParseWithCache(key);
         }
 
-        const leftFunc = this.CreateCondition(tree.nodes[0]);
-        const rightFunc = this.CreateCondition(tree.nodes[1]);
+        const leftFunc = this.CreateCondition(tree.nodes[0], exp);
+        const rightFunc = this.CreateCondition(tree.nodes[1], exp);
         if (tree.Type === ConditionTreeType.And) {
             const fun = AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
-            this.conditionCache.set(tree.conditionString, fun);
+            this.conditionCache.set(key, fun);
             return fun;
         } else if (tree.Type === ConditionTreeType.Or) {
             const fun = AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
-            this.conditionCache.set(tree.conditionString, fun);
+            this.conditionCache.set(key, fun);
             return fun;
         }
         throw new Error(tree.ErrorMessage);

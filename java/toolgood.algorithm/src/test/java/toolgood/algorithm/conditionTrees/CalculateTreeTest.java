@@ -15,12 +15,12 @@ public class CalculateTreeTest {
         CalculateTree t1 = AlgorithmEngineHelper.ParseCalculate(txt);
         assertEquals(CalculateTreeType.Add, t1.Type);
         assertEquals("A1+1", txt.substring(t1.Start, t1.End + 1));
-        assertEquals("A1+1", t1.Text);
+        assertEquals("A1+1", t1.getText());
 
         txt = "A1-(1+1)";
         t1 = AlgorithmEngineHelper.ParseCalculate(txt);
         assertEquals(CalculateTreeType.Sub, t1.Type);
-        assertEquals("1+1", t1.Nodes.get(1).Text);
+        assertEquals("1+1", t1.Nodes.get(1).getText());
 
         txt = "A1*(1+1)";
         t1 = AlgorithmEngineHelper.ParseCalculate(txt);

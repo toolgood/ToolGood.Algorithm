@@ -6,7 +6,25 @@ import mathVisitor from '../../math/mathVisitor.js';
 import { CharUtil } from './CharUtil.js';
 import { CalculateTreeType } from '../../Enums/CalculateTreeType.js';
 
+// 共享的懒加载 getter，避免为每个节点创建函数对象
+function conditionStringGetter() {
+    if (this._text == null && this._source != null && this.end >= this.start) {
+        this._text = this._source.substring(this.start, this.end + 1);
+    }
+    return this._text;
+}
+
 export class MathSplitVisitor2 extends mathVisitor  {
+    createTree(base) {
+        base._source = this.Source;
+        Object.defineProperty(base, 'conditionString', {
+            enumerable: true,
+            configurable: true,
+            get: conditionStringGetter
+        });
+        return base;
+    }
+
     visitProg(context) {
         this.hasBracket = false;
         return context.expr().accept(this);
@@ -18,10 +36,10 @@ export class MathSplitVisitor2 extends mathVisitor  {
     }
 
     visitAndOr_fun(context) {
-        let tree = {
+        let tree = this.createTree({
             HasBracket: this.hasBracket,
             nodes: []
-        };
+        });
         this.hasBracket = false;
         let exprs = context.expr();
         let t = context.op.text;
@@ -34,15 +52,14 @@ export class MathSplitVisitor2 extends mathVisitor  {
         tree.nodes.push(exprs[1].accept(this));
         tree.start = context.start ? context.start.start : 0;
         tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
-        tree.conditionString = context.getText();
         return tree;
     }
 
     visitJudge_fun(context) {
-        let tree = {
+        let tree = this.createTree({
             HasBracket: this.hasBracket,
             nodes: []
-        };
+        });
         this.hasBracket = false;
         let exprs = context.expr();
         let t = context.op.text;
@@ -63,15 +80,14 @@ export class MathSplitVisitor2 extends mathVisitor  {
         tree.nodes.push(exprs[1].accept(this));
         tree.start = context.start ? context.start.start : 0;
         tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
-        tree.conditionString = context.getText();
         return tree;
     }
 
     visitMulDiv_fun(context) {
-        let tree = {
+        let tree = this.createTree({
             HasBracket: this.hasBracket,
             nodes: []
-        };
+        });
         this.hasBracket = false;
         let exprs = context.expr();
         let t = context.op.text;
@@ -86,15 +102,14 @@ export class MathSplitVisitor2 extends mathVisitor  {
         tree.nodes.push(exprs[1].accept(this));
         tree.start = context.start ? context.start.start : 0;
         tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
-        tree.conditionString = context.getText();
         return tree;
     }
 
     visitAddSub_fun(context) {
-        let tree = {
+        let tree = this.createTree({
             HasBracket: this.hasBracket,
             nodes: []
-        };
+        });
         this.hasBracket = false;
         let exprs = context.expr();
         let t = context.op.text;
@@ -109,17 +124,14 @@ export class MathSplitVisitor2 extends mathVisitor  {
         tree.nodes.push(exprs[1].accept(this));
         tree.start = context.start ? context.start.start : 0;
         tree.end = context.stop ? context.stop.stop : context.getText().length - 1;
-        tree.conditionString = context.getText();
         return tree;
     }
 
     visitChildren(context) {
-        let tree = {
+        return this.createTree({
             Type: CalculateTreeType.String,
             start: context.start ? context.start.start : 0,
-            end: context.stop ? context.stop.stop : context.getText().length - 1,
-            conditionString: context.getText()
-        };
-        return tree;
+            end: context.stop ? context.stop.stop : context.getText().length - 1
+        });
     }
 }

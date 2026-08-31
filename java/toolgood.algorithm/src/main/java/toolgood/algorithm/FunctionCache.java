@@ -34,31 +34,32 @@ public class FunctionCache implements IFunctionCache {
         FunctionBase result = calculateCache.get(funExp);
         if (result != null) return result;
         CalculateTree tree = AlgorithmEngineHelper.ParseCalculate(funExp);
-        return CreateCalculate(tree);
+        return CreateCalculate(tree, funExp);
     }
 
-    private FunctionBase CreateCalculate(CalculateTree tree) {
-        if (calculateCache.containsKey(tree.Text)) {
-            return calculateCache.get(tree.Text);
+    private FunctionBase CreateCalculate(CalculateTree tree, String exp) {
+        if (tree.Type == CalculateTreeType.Error) {
+            throw new RuntimeException(tree.ErrorMessage);
+        }
+        String key = exp.substring(tree.Start, tree.End + 1);
+        if (calculateCache.containsKey(key)) {
+            return calculateCache.get(key);
         }
         if (tree.Type == CalculateTreeType.String) {
             try {
-                FunctionBase fun = AlgorithmEngineHelper.ParseFormula(tree.Text);
-                calculateCache.put(tree.Text, fun);
+                FunctionBase fun = AlgorithmEngineHelper.ParseFormula(key);
+                calculateCache.put(key, fun);
                 return fun;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        if (tree.Type == CalculateTreeType.Error) {
-            throw new RuntimeException(tree.ErrorMessage);
-        }
 
-        FunctionBase leftFunc = CreateCalculate(tree.Nodes.get(0));
-        FunctionBase rightFunc = CreateCalculate(tree.Nodes.get(1));
+        FunctionBase leftFunc = CreateCalculate(tree.Nodes.get(0), exp);
+        FunctionBase rightFunc = CreateCalculate(tree.Nodes.get(1), exp);
         CombineCalculateType combineType = CombineCalculateType.intToEnum(tree.Type.getValue());
         FunctionBase fun = AlgorithmEngineHelper.CombineCalculate(leftFunc, combineType, rightFunc);
-        calculateCache.put(tree.Text, fun);
+        calculateCache.put(key, fun);
         return fun;
     }
 
@@ -66,26 +67,30 @@ public class FunctionCache implements IFunctionCache {
         FunctionBase result = conditionCache.get(funExp);
         if (result != null) return result;
         ConditionTree tree = AlgorithmEngineHelper.ParseCondition(funExp);
-        return CreateCondition(tree);
+        return CreateCondition(tree, funExp);
     }
 
-    private FunctionBase CreateCondition(ConditionTree tree) {
-        if (conditionCache.containsKey(tree.Text)) {
-            return conditionCache.get(tree.Text);
+    private FunctionBase CreateCondition(ConditionTree tree, String exp) {
+        if (tree.Type == ConditionTreeType.Error) {
+            throw new RuntimeException(tree.ErrorMessage);
+        }
+        String key = exp.substring(tree.Start, tree.End + 1);
+        if (conditionCache.containsKey(key)) {
+            return conditionCache.get(key);
         }
         if (tree.Type == ConditionTreeType.String) {
-            return ParseWithCache(tree.Text);
+            return ParseWithCache(key);
         }
 
-        FunctionBase leftFunc = CreateCondition(tree.Nodes.get(0));
-        FunctionBase rightFunc = CreateCondition(tree.Nodes.get(1));
+        FunctionBase leftFunc = CreateCondition(tree.Nodes.get(0), exp);
+        FunctionBase rightFunc = CreateCondition(tree.Nodes.get(1), exp);
         if (tree.Type == ConditionTreeType.And) {
             FunctionBase fun = AlgorithmEngineHelper.Condition_And(leftFunc, rightFunc);
-            conditionCache.put(tree.Text, fun);
+            conditionCache.put(key, fun);
             return fun;
         } else if (tree.Type == ConditionTreeType.Or) {
             FunctionBase fun = AlgorithmEngineHelper.Condition_Or(leftFunc, rightFunc);
-            conditionCache.put(tree.Text, fun);
+            conditionCache.put(key, fun);
             return fun;
         }
         throw new RuntimeException(tree.ErrorMessage);

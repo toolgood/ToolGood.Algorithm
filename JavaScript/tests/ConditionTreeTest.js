@@ -13,7 +13,7 @@ export class ConditionTreeTest {
         let t1 = AlgorithmEngineHelper.ParseCondition(txt);
         assert.strictEqual(t1.Type, ConditionTreeType.String, `Expected String, got ${t1.Type}`);
         assert.strictEqual(txt.substring(t1.start, t1.end + 1), "AA.IsText() = bb", `Expected "AA.IsText() = bb", got "${txt.substring(t1.start, t1.end + 1)}"`);
-        assert.strictEqual(t1.conditionString, "AA.IsText()=bb", `Expected "AA.IsText()=bb", got "${t1.conditionString}"`);
+        assert.strictEqual(t1.conditionString, "AA.IsText() = bb", `Expected "AA.IsText() = bb", got "${t1.conditionString}"`);
 
         txt = "[bbb]=bb";
         t1 = AlgorithmEngineHelper.ParseCondition(txt);

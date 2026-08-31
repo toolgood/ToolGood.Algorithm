@@ -204,6 +204,7 @@ export class AlgorithmEngineHelper {
                 return tree;
             }
             let visitor = new MathSplitVisitor();
+            visitor.Source = condition;
             return visitor.visit(context);
         } catch (ex) {
             tree.Type = ConditionTreeType.Error;
@@ -257,6 +258,7 @@ export class AlgorithmEngineHelper {
                 return tree;
             }
             let visitor = new MathSplitVisitor2();
+            visitor.Source = exp;
             return visitor.visit(context);
         } catch (ex) {
             tree.Type = CalculateTreeType.Error;

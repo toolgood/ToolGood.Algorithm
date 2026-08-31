@@ -28,11 +28,6 @@ public final class CalculateTree {
     public CalculateTreeType Type;
 
     /**
-     * 文本
-     */
-    public String Text;
-
-    /**
      * 外面是否有括号
      */
     public boolean HasBracket;
@@ -41,6 +36,23 @@ public final class CalculateTree {
      * 出错信息
      */
     public String ErrorMessage;
+
+    private String _source;
+    private String _text;
+
+    /**
+     * 文本（懒加载，返回原始表达式中 [Start, End] 区间的子串）
+     */
+    public String getText() {
+        if (_text == null && _source != null && End >= Start) {
+            _text = _source.substring(Start, End + 1);
+        }
+        return _text;
+    }
+
+    public void setSource(String source) {
+        _source = source;
+    }
 
     public CalculateTree() {
         Type = CalculateTreeType.String;

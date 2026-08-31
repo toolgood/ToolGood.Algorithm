@@ -161,6 +161,7 @@ public class AlgorithmEngineHelper {
                 return tree;
             }
             MathSplitVisitor visitor = new MathSplitVisitor();
+            visitor.Source = condition;
             return visitor.visit(context);
         } catch (Exception ex) {
             tree.Type = ConditionTreeType.Error;
@@ -197,6 +198,7 @@ public class AlgorithmEngineHelper {
                 return tree;
             }
             MathSplitVisitor2 visitor = new MathSplitVisitor2();
+            visitor.Source = exp;
             return visitor.visit(context);
         } catch (Exception ex) {
             tree.Type = CalculateTreeType.Error;

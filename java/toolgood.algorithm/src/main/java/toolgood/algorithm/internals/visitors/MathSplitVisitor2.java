@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
     private boolean hasBracket = false;
+    public String Source;
 
     @Override
     public CalculateTree visitProg(mathParser.ProgContext context) {
@@ -39,7 +40,7 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         tree.Type = CalculateTreeType.Or;
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -54,7 +55,7 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         tree.Type = CalculateTreeType.And;
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -76,7 +77,7 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         }
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -98,7 +99,7 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         }
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -126,7 +127,7 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         }
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -146,7 +147,7 @@ public class MathSplitVisitor2 extends mathBaseVisitor<CalculateTree> {
         CalculateTree tree = new CalculateTree();
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         tree.HasBracket = hasBracket;
         hasBracket = false;
         return tree;

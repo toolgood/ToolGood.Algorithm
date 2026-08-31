@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 public class MathSplitVisitor extends mathBaseVisitor<ConditionTree> {
     private boolean hasBracket = false;
+    public String Source;
 
     @Override
     public ConditionTree visitProg(mathParser.ProgContext context) {
@@ -33,7 +34,7 @@ public class MathSplitVisitor extends mathBaseVisitor<ConditionTree> {
         tree.Type = ConditionTreeType.Or;
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -48,7 +49,7 @@ public class MathSplitVisitor extends mathBaseVisitor<ConditionTree> {
         tree.Type = ConditionTreeType.And;
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         return tree;
     }
 
@@ -74,7 +75,7 @@ public class MathSplitVisitor extends mathBaseVisitor<ConditionTree> {
         ConditionTree tree = new ConditionTree();
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
-        tree.Text = context.getText();
+        tree.setSource(Source);
         tree.HasBracket = hasBracket;
         hasBracket = false;
         return tree;
