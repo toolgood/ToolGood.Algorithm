@@ -164,12 +164,14 @@ Console.WriteLine(logic.ToInfoString());
 ```
 
 注：
-- `InitValue`：初始化参数值，支持 `string` / `decimal` / `double` / `bool` / `int`；
+- `InitValue`：初始化参数值，支持 `string` / `decimal` / `double` / `bool` / `int` / `DateTime`；
 - `CheckCondition`：执行条件判断，返回 `bool`，条件必须是布尔值，否则抛出 `FormatException`；
 - `SetFormula`：用公式计算结果并赋值，公式中可引用已定义的参数；
-- `SetValue`：直接设置参数值；
+- `SetValue`：直接设置参数值，支持 `string` / `decimal` / `double` / `bool` / `int` / `DateTime`；
+- `GetValue`：获取参数值，返回 `Operand`；
 - `BlankLine`：在输出信息中添加空行；
 - `SetSceneName`：设置场景名称；
+- `InitValue`、`CheckCondition`、`SetFormula`、`SetValue` 均提供可选的 `layer`、`remark` 参数：`layer` 控制输出缩进深度，`remark` 在输出中追加 `// 备注`（`InitValue` 的 `layer`、`remark` 不影响输出）；
 - 构造参数 `useCalculationLogicInfo` 为 `false` 时，关闭过程信息记录，`ToInfoString()` 返回空字符串。
 
 

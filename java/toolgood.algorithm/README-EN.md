@@ -162,12 +162,14 @@ System.out.println(logic.ToInfoString());
 ```
 
 Notes:
-- `InitValue`: initializes parameter values, supports `String` / `BigDecimal` / `double` / `boolean` / `int`;
+- `InitValue`: initializes parameter values, supports `String` / `BigDecimal` / `double` / `boolean` / `int` / `DateTime`;
 - `CheckCondition`: evaluates a condition and returns `boolean`; the condition must be a boolean value, otherwise an exception is thrown;
 - `SetFormula`: calculates the result with a formula and assigns it; formulas can reference previously defined parameters;
-- `SetValue`: directly sets a parameter value;
+- `SetValue`: directly sets a parameter value, supports `String` / `BigDecimal` / `double` / `boolean` / `int` / `DateTime`;
+- `GetValue`: gets the value of a parameter and returns an `Operand`;
 - `BlankLine`: adds a blank line to the output;
 - `SetSceneName`: sets the scene name;
+- `InitValue`, `CheckCondition`, `SetFormula` and `SetValue` all provide optional `layer` and `remark` parameters: `layer` controls the indentation depth of the output, `remark` appends a `// remark` note to the output (the `layer` and `remark` of `InitValue` do not affect the output);
 - When the constructor parameter `useCalculationLogicInfo` is `false`, process info recording is disabled and `ToInfoString()` returns an empty string.
 
 ## Excel Formula
