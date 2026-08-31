@@ -1,5 +1,5 @@
 import { AlgorithmEngineEx } from '../AlgorithmEngineEx.js';
-import { FunctionCache } from '../FunctionCache.js';
+import { IFunctionCache } from '../IFunctionCache.js';
 import { OperandType } from '../Enums/OperandType.js';
 import { MyDate } from '../Internals/MyDate.js';
 import { CalculationLogicType } from './CalculationLogicType.js';
@@ -10,7 +10,7 @@ import { CalculationLogicInfo } from './CalculationLogicInfo.js';
  */
 export class CalculationLogicEngine {
     /**
-     * @param {FunctionCache} functionCache
+     * @param {IFunctionCache} functionCache
      * @param {boolean} [useCalculationLogicInfo]
      */
     constructor(functionCache, useCalculationLogicInfo = true) {

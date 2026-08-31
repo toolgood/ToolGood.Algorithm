@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 	/// </summary>
 	public class CalculationLogicEngine
 	{
-		private readonly FunctionCache _functionCache;
+		private readonly IFunctionCache _functionCache;
 		private readonly List<CalculationLogicInfo> _initValueInfos = new List<CalculationLogicInfo>();
 		private readonly List<CalculationLogicInfo> _calculationLogicInfos = new List<CalculationLogicInfo>();
 		private readonly bool _useCalculationLogicInfo;
@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// </summary>
 		/// <param name="functionCache"></param>
 		/// <param name="useCalculationLogicInfo"></param>
-		public CalculationLogicEngine(FunctionCache functionCache, bool useCalculationLogicInfo)
+		public CalculationLogicEngine(IFunctionCache functionCache, bool useCalculationLogicInfo)
 		{
 			_functionCache = functionCache;
 			_useCalculationLogicInfo = useCalculationLogicInfo;

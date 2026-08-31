@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -9,6 +9,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 	internal sealed class MathSplitVisitor2 : mathBaseVisitor<CalculateTree>
 	{
 		private bool hasBracket = false;
+		internal string Source { get; set; }
 
 		public override CalculateTree VisitProg(mathParser.ProgContext context)
 		{
@@ -33,7 +34,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Type = CalculateTreeType.Or;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 			return tree;
 		}
 		public override CalculateTree VisitAnd_fun(mathParser.And_funContext context)
@@ -48,7 +49,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Type = CalculateTreeType.And;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 
 			return tree;
 		}
@@ -71,7 +72,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 			return tree;
 		}
 		public override CalculateTree VisitAddSub_fun(mathParser.AddSub_funContext context)
@@ -93,7 +94,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 			return tree;
 		}
 		public override CalculateTree VisitJudge_fun(mathParser.Judge_funContext context)
@@ -121,7 +122,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			}
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 			return tree;
 		}
 		public override CalculateTree VisitChildren(IRuleNode node)
@@ -130,9 +131,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new CalculateTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				Text = context.GetText(),
 				HasBracket = hasBracket
 			};
+			tree.SetSource(Source);
 			hasBracket = false;
 			return tree;
 		}

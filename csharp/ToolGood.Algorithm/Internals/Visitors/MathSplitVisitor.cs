@@ -9,6 +9,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 	internal sealed class MathSplitVisitor : mathBaseVisitor<ConditionTree>
 	{
 		private bool hasBracket = false;
+		internal string Source { get; set; }
 
 		public override ConditionTree VisitProg(mathParser.ProgContext context)
 		{
@@ -27,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Type = ConditionTreeType.Or;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 
 			return tree;
 		}
@@ -44,7 +45,7 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			tree.Type = ConditionTreeType.And;
 			tree.Start = context.Start.StartIndex;
 			tree.End = context.Stop.StopIndex;
-			tree.Text = context.GetText();
+			tree.SetSource(Source);
 
 			return tree;
 		}
@@ -61,9 +62,9 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			var tree = new ConditionTree {
 				Start = context.Start.StartIndex,
 				End = context.Stop.StopIndex,
-				Text = context.GetText(),
 				HasBracket = hasBracket
 			};
+			tree.SetSource(Source);
 			hasBracket = false;
 			return tree;
 		}

@@ -176,7 +176,7 @@ namespace ToolGood.Algorithm
 					tree.ErrorMessage = errorWriter.ErrorMsg;
 					return tree;
 				}
-				var visitor = new MathSplitVisitor();
+				var visitor = new MathSplitVisitor() { Source = condition };
 				return visitor.Visit(context);
 			} catch(Exception ex) {
 				tree.Type = ConditionTreeType.Error;
@@ -239,7 +239,7 @@ namespace ToolGood.Algorithm
 					tree.ErrorMessage = errorWriter.ErrorMsg;
 					return tree;
 				}
-				var visitor = new MathSplitVisitor2();
+				var visitor = new MathSplitVisitor2() { Source = exp };
 				return visitor.Visit(context);
 			} catch(Exception ex) {
 				tree.Type = CalculateTreeType.Error;

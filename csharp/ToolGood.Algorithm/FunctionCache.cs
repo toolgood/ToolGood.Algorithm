@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm
 	/// <summary>
 	/// 函数缓存类，使用ConcurrentDictionary实现线程安全的函数缓存。
 	/// </summary>
-	public sealed class FunctionCache
+	public sealed class FunctionCache : IFunctionCache
 	{
 		private readonly ConcurrentDictionary<string, FunctionBase> calculateCache = new ConcurrentDictionary<string, FunctionBase>();
 		private readonly ConcurrentDictionary<string, FunctionBase> conditionCache = new ConcurrentDictionary<string, FunctionBase>();
@@ -90,6 +90,6 @@ namespace ToolGood.Algorithm
 			}
 			throw new Exception(tree.ErrorMessage);
 		}
-	 
+
 	}
 }

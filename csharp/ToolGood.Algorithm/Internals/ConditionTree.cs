@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals
@@ -8,6 +8,9 @@ namespace ToolGood.Algorithm.Internals
 	/// </summary>
 	public sealed class ConditionTree
 	{
+		private string _source;
+		private string _text;
+
 		/// <summary>
 		/// 子节点
 		/// </summary>
@@ -29,9 +32,16 @@ namespace ToolGood.Algorithm.Internals
 		public ConditionTreeType Type { get; internal set; }
 
 		/// <summary>
-		/// 文本
+		/// 文本（懒加载，返回原始表达式中 [Start, End] 区间的子串）
 		/// </summary>
-		public string Text { get; internal set; }
+		public string Text {
+			get {
+				if(_text == null && _source != null && End >= Start) {
+					_text = _source.Substring(Start, End - Start + 1);
+				}
+				return _text;
+			}
+		}
 
 		/// <summary>
 		/// 外面是否有括号
@@ -42,6 +52,11 @@ namespace ToolGood.Algorithm.Internals
 		/// 出错信息
 		/// </summary>
 		public string ErrorMessage { get; internal set; }
+
+		internal void SetSource(string source)
+		{
+			_source = source;
+		}
 
 		internal ConditionTree()
 		{

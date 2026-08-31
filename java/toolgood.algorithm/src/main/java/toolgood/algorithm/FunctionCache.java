@@ -10,7 +10,7 @@ import toolgood.algorithm.internals.functions.FunctionBase;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class FunctionCache {
+public class FunctionCache implements IFunctionCache {
     private final ConcurrentHashMap<String, FunctionBase> calculateCache = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, FunctionBase> conditionCache = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, DiyNameInfo> diyNameCache = new ConcurrentHashMap<>();

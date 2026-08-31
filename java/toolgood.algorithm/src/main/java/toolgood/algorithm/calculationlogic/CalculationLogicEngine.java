@@ -2,7 +2,7 @@ package toolgood.algorithm.calculationlogic;
 
 import org.joda.time.DateTime;
 import toolgood.algorithm.AlgorithmEngineEx;
-import toolgood.algorithm.FunctionCache;
+import toolgood.algorithm.IFunctionCache;
 import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
@@ -19,7 +19,7 @@ import java.util.function.Supplier;
  * 计算逻辑引擎
  */
 public class CalculationLogicEngine {
-    private final FunctionCache _functionCache;
+    private final IFunctionCache _functionCache;
     private final List<CalculationLogicInfo> _initValueInfos = new ArrayList<>();
     private final List<CalculationLogicInfo> _calculationLogicInfos = new ArrayList<>();
     private final boolean _useCalculationLogicInfo;
@@ -28,7 +28,7 @@ public class CalculationLogicEngine {
     /**
      * 计算逻辑引擎
      */
-    public CalculationLogicEngine(FunctionCache functionCache, boolean useCalculationLogicInfo) {
+    public CalculationLogicEngine(IFunctionCache functionCache, boolean useCalculationLogicInfo) {
         _functionCache = functionCache;
         _useCalculationLogicInfo = useCalculationLogicInfo;
         _engine = new AlgorithmEngineEx();

@@ -1,4 +1,5 @@
 import { AlgorithmEngineHelper } from './AlgorithmEngineHelper.js';
+import { IFunctionCache } from './IFunctionCache.js';
 import { CalculateTreeType } from './Enums/CalculateTreeType.js';
 import { ConditionTreeType } from './Enums/ConditionTreeType.js';
 import { Function_AND } from './Internals/Functions/Operator/Function_AND.js';
@@ -19,8 +20,9 @@ import { Function_NE } from './Internals/Functions/Compare/Function_NE.js';
 /**
  * 函数缓存类，使用 Map 实现函数缓存。
  */
-export class FunctionCache {
+export class FunctionCache extends IFunctionCache {
     constructor() {
+        super();
         this.calculateCache = new Map();
         this.conditionCache = new Map();
         this.diyNameCache = new Map();
