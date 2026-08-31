@@ -1,6 +1,7 @@
 import { AlgorithmEngineEx } from '../AlgorithmEngineEx.js';
 import { AlgorithmEngineHelper } from '../AlgorithmEngineHelper.js';
 import { OperandType } from '../Enums/OperandType.js';
+import { MyDate } from '../Internals/MyDate.js';
 import { CalculationLogicType } from './CalculationLogicType.js';
 import { CalculationLogicInfo } from './CalculationLogicInfo.js';
 
@@ -46,6 +47,7 @@ export class CalculationLogicEngine {
      */
     InitValue(key, value, layer = 0, remark = null) {
         if (typeof layer === 'string') { remark = layer; layer = 0; }
+        if (value instanceof Date) { value = new MyDate(value); }
         this._engine.AddParameter(key, value);
         if (this._useCalculationLogicInfo) {
             this._initValueInfos.push(new CalculationLogicInfo({
@@ -161,6 +163,7 @@ export class CalculationLogicEngine {
      */
     SetValue(key, value, layer = 0, remark = null) {
         if (typeof layer === 'string') { remark = layer; layer = 0; }
+        if (value instanceof Date) { value = new MyDate(value); }
         this._engine.AddParameter(key, value);
         if (this._useCalculationLogicInfo) {
             this._calculationLogicInfos.push(new CalculationLogicInfo({
@@ -209,12 +212,14 @@ export class CalculationLogicEngine {
     _initExp(value) {
         if (typeof value === 'string') return value;
         if (typeof value === 'boolean') return value ? 'True' : 'False';
+        if (value instanceof MyDate) return '"' + value.toString() + '"';
         return String(value);
     }
 
     _valueExp(value) {
         if (typeof value === 'string') return '"' + value.replace(/"/g, '\\"') + '"';
         if (typeof value === 'boolean') return value ? 'True' : 'False';
+        if (value instanceof MyDate) return '"' + value.toString() + '"';
         return String(value);
     }
 

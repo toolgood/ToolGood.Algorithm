@@ -1,8 +1,10 @@
 package toolgood.algorithm.calculationlogic;
 
+import org.joda.time.DateTime;
 import toolgood.algorithm.AlgorithmEngineEx;
 import toolgood.algorithm.AlgorithmEngineHelper;
 import toolgood.algorithm.FunctionCache;
+import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.internals.DiyNameInfo;
@@ -144,6 +146,25 @@ public class CalculationLogicEngine {
 
     public void InitValue(String key, int value, int layer, String remark) {
         InitValueCore(key, Operand.Create(value), () -> Integer.toString(value), layer, remark);
+    }
+
+    /**
+     * 初始化值
+     */
+    public void InitValue(String key, DateTime value) {
+        InitValue(key, value, 0, null);
+    }
+
+    public void InitValue(String key, DateTime value, int layer) {
+        InitValue(key, value, layer, null);
+    }
+
+    public void InitValue(String key, DateTime value, String remark) {
+        InitValue(key, value, 0, remark);
+    }
+
+    public void InitValue(String key, DateTime value, int layer, String remark) {
+        InitValueCore(key, Operand.Create(value), () -> "\"" + new MyDate(value).toString() + "\"", layer, remark);
     }
 
     private void InitValueCore(String key, Operand value, Supplier<String> expFactory, int layer, String remark) {
@@ -360,6 +381,25 @@ public class CalculationLogicEngine {
 
     public void SetValue(String key, int value, int layer, String remark) {
         SetValueCore(key, Operand.Create(value), () -> Integer.toString(value), layer, remark);
+    }
+
+    /**
+     * 设置值
+     */
+    public void SetValue(String key, DateTime value) {
+        SetValue(key, value, 0, null);
+    }
+
+    public void SetValue(String key, DateTime value, int layer) {
+        SetValue(key, value, layer, null);
+    }
+
+    public void SetValue(String key, DateTime value, String remark) {
+        SetValue(key, value, 0, remark);
+    }
+
+    public void SetValue(String key, DateTime value, int layer, String remark) {
+        SetValueCore(key, Operand.Create(value), () -> "\"" + new MyDate(value).toString() + "\"", layer, remark);
     }
 
     private void SetValueCore(String key, Operand value, Supplier<String> expFactory, int layer, String remark) {

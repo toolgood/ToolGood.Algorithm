@@ -119,6 +119,33 @@ namespace ToolGood.Algorithm.Test.CalculationLogic
 			Assert.IsFalse(logic.CheckCondition("a>b"));
 		}
 
+		[Test]
+		public void InitValue_DateTime_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0));
+			Assert.AreEqual("[初始] dt=\"2026-08-31 12:00:00\";\n", NormalizeLine(logic.ToInfoString()));
+		}
+
+		[Test]
+		public void InitValue_DateTime_LayerRemark_Test()
+		{
+			// InitValue 的层级与备注不参与信息输出
+			var logic = CreateEngine();
+			logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0), 2, "备注");
+			Assert.AreEqual("[初始] dt=\"2026-08-31 12:00:00\";\n", NormalizeLine(logic.ToInfoString()));
+		}
+
+		[Test]
+		public void InitValue_DateTime_CanBeUsedInCondition_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0));
+			Assert.IsTrue(logic.CheckCondition("YEAR(dt)=2026"));
+			Assert.IsTrue(logic.CheckCondition("MONTH(dt)=8"));
+			Assert.IsTrue(logic.CheckCondition("dt>DATEVALUE('2026-08-30')"));
+		}
+
 		#endregion
 
 		#region CheckCondition 测试
@@ -280,6 +307,32 @@ namespace ToolGood.Algorithm.Test.CalculationLogic
 			Assert.AreEqual("[赋值]    i = 100 // 备注\n", NormalizeLine(logic.ToInfoString()));
 		}
 
+		[Test]
+		public void SetValue_DateTime_Test()
+		{
+			var logic = CreateEngine();
+			logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0));
+			Assert.AreEqual("[赋值] dt = \"2026-08-31 12:00:00\"\n", NormalizeLine(logic.ToInfoString()));
+		}
+
+		[Test]
+		public void SetValue_DateTime_LayerRemark_Test()
+		{
+			var logic = CreateEngine();
+			logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0), 1, "备注");
+			Assert.AreEqual("[赋值]    dt = \"2026-08-31 12:00:00\" // 备注\n", NormalizeLine(logic.ToInfoString()));
+		}
+
+		[Test]
+		public void SetValue_DateTime_CanBeUsedInCondition_Test()
+		{
+			var logic = CreateEngine();
+			logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0));
+			Assert.IsTrue(logic.CheckCondition("YEAR(dt)=2026"));
+			Assert.IsTrue(logic.CheckCondition("MONTH(dt)=8"));
+			Assert.IsTrue(logic.CheckCondition("dt>DATEVALUE('2026-08-30')"));
+		}
+
 		#endregion
 
 		#region GetValue 测试
@@ -335,6 +388,28 @@ namespace ToolGood.Algorithm.Test.CalculationLogic
 			Assert.IsTrue(operand.IsBoolean);
 			Assert.AreEqual(OperandType.BOOLEAN, operand.Type);
 			Assert.IsTrue(operand.BooleanValue);
+		}
+
+		[Test]
+		public void GetValue_InitValue_DateTime_Test()
+		{
+			var logic = CreateEngine();
+			logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0));
+			var operand = logic.GetValue("dt");
+			Assert.IsTrue(operand.IsDate);
+			Assert.AreEqual(OperandType.DATE, operand.Type);
+			Assert.AreEqual(new DateTime(2026, 8, 31, 12, 0, 0), operand.DateValue.ToDateTime());
+		}
+
+		[Test]
+		public void GetValue_SetValue_DateTime_Test()
+		{
+			var logic = CreateEngine();
+			logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0));
+			var operand = logic.GetValue("dt");
+			Assert.IsTrue(operand.IsDate);
+			Assert.AreEqual(OperandType.DATE, operand.Type);
+			Assert.AreEqual(new DateTime(2026, 8, 31, 12, 0, 0), operand.DateValue.ToDateTime());
 		}
 
 		[Test]

@@ -71,6 +71,27 @@ function testInitValue_CanBeUsedInCondition() {
     assert.strictEqual(logic.CheckCondition('a>b'), false);
 }
 
+function testInitValue_DateTime() {
+    const logic = createEngine();
+    logic.InitValue('dt', new Date(2026, 7, 31, 12, 0, 0));
+    assert.strictEqual(logic.ToInfoString(), '[初始] dt="2026-08-31 12:00:00";\n');
+}
+
+function testInitValue_DateTime_LayerRemark() {
+    // InitValue 的层级与备注不参与信息输出
+    const logic = createEngine();
+    logic.InitValue('dt', new Date(2026, 7, 31, 12, 0, 0), 2, '备注');
+    assert.strictEqual(logic.ToInfoString(), '[初始] dt="2026-08-31 12:00:00";\n');
+}
+
+function testInitValue_DateTime_CanBeUsedInCondition() {
+    const logic = createEngine();
+    logic.InitValue('dt', new Date(2026, 7, 31, 12, 0, 0));
+    assert.strictEqual(logic.CheckCondition('YEAR(dt)=2026'), true);
+    assert.strictEqual(logic.CheckCondition('MONTH(dt)=8'), true);
+    assert.strictEqual(logic.CheckCondition("dt>DATEVALUE('2026-08-30')"), true);
+}
+
 // #endregion
 
 // #region CheckCondition 测试
@@ -219,6 +240,26 @@ function testSetValue_LayerRemark() {
     assert.strictEqual(logic.ToInfoString(), '[赋值]    i = 100 // 备注\n');
 }
 
+function testSetValue_DateTime() {
+    const logic = createEngine();
+    logic.SetValue('dt', new Date(2026, 7, 31, 12, 0, 0));
+    assert.strictEqual(logic.ToInfoString(), '[赋值] dt = "2026-08-31 12:00:00"\n');
+}
+
+function testSetValue_DateTime_LayerRemark() {
+    const logic = createEngine();
+    logic.SetValue('dt', new Date(2026, 7, 31, 12, 0, 0), 1, '备注');
+    assert.strictEqual(logic.ToInfoString(), '[赋值]    dt = "2026-08-31 12:00:00" // 备注\n');
+}
+
+function testSetValue_DateTime_CanBeUsedInCondition() {
+    const logic = createEngine();
+    logic.SetValue('dt', new Date(2026, 7, 31, 12, 0, 0));
+    assert.strictEqual(logic.CheckCondition('YEAR(dt)=2026'), true);
+    assert.strictEqual(logic.CheckCondition('MONTH(dt)=8'), true);
+    assert.strictEqual(logic.CheckCondition("dt>DATEVALUE('2026-08-30')"), true);
+}
+
 // #endregion
 
 // #region GetValue 测试
@@ -265,6 +306,24 @@ function testGetValue_InitValue_Bool() {
     assert.strictEqual(operand.IsBoolean, true);
     assert.strictEqual(operand.Type, OperandType.BOOLEAN);
     assert.strictEqual(operand.BooleanValue, true);
+}
+
+function testGetValue_InitValue_DateTime() {
+    const logic = createEngine();
+    logic.InitValue('dt', new Date(2026, 7, 31, 12, 0, 0));
+    const operand = logic.GetValue('dt');
+    assert.strictEqual(operand.IsDate, true);
+    assert.strictEqual(operand.Type, OperandType.DATE);
+    assert.strictEqual(operand.DateValue.toString(), '2026-08-31 12:00:00');
+}
+
+function testGetValue_SetValue_DateTime() {
+    const logic = createEngine();
+    logic.SetValue('dt', new Date(2026, 7, 31, 12, 0, 0));
+    const operand = logic.GetValue('dt');
+    assert.strictEqual(operand.IsDate, true);
+    assert.strictEqual(operand.Type, OperandType.DATE);
+    assert.strictEqual(operand.DateValue.toString(), '2026-08-31 12:00:00');
 }
 
 function testGetValue_SetValue() {
@@ -383,6 +442,9 @@ function runAllTests() {
         testInitValue_Bool();
         testInitValue_LayerRemark();
         testInitValue_CanBeUsedInCondition();
+        testInitValue_DateTime();
+        testInitValue_DateTime_LayerRemark();
+        testInitValue_DateTime_CanBeUsedInCondition();
         testCheckCondition_True();
         testCheckCondition_False();
         testCheckCondition_LayerRemark();
@@ -399,11 +461,16 @@ function runAllTests() {
         testSetValue_Double();
         testSetValue_Bool();
         testSetValue_LayerRemark();
+        testSetValue_DateTime();
+        testSetValue_DateTime_LayerRemark();
+        testSetValue_DateTime_CanBeUsedInCondition();
         testGetValue_InitValue_Int();
         testGetValue_InitValue_String();
         testGetValue_InitValue_Decimal();
         testGetValue_InitValue_Double();
         testGetValue_InitValue_Bool();
+        testGetValue_InitValue_DateTime();
+        testGetValue_SetValue_DateTime();
         testGetValue_SetValue();
         testGetValue_SetFormula();
         testGetValue_AfterSetFormulaOverwrite();
@@ -433,6 +500,9 @@ export {
     testInitValue_Bool,
     testInitValue_LayerRemark,
     testInitValue_CanBeUsedInCondition,
+    testInitValue_DateTime,
+    testInitValue_DateTime_LayerRemark,
+    testInitValue_DateTime_CanBeUsedInCondition,
     testCheckCondition_True,
     testCheckCondition_False,
     testCheckCondition_LayerRemark,
@@ -449,11 +519,16 @@ export {
     testSetValue_Double,
     testSetValue_Bool,
     testSetValue_LayerRemark,
+    testSetValue_DateTime,
+    testSetValue_DateTime_LayerRemark,
+    testSetValue_DateTime_CanBeUsedInCondition,
     testGetValue_InitValue_Int,
     testGetValue_InitValue_String,
     testGetValue_InitValue_Decimal,
     testGetValue_InitValue_Double,
     testGetValue_InitValue_Bool,
+    testGetValue_InitValue_DateTime,
+    testGetValue_SetValue_DateTime,
     testGetValue_SetValue,
     testGetValue_SetFormula,
     testGetValue_AfterSetFormulaOverwrite,

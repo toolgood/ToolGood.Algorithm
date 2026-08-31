@@ -1,5 +1,7 @@
 package toolgood.algorithm.calculationlogic;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.enums.OperandType;
@@ -89,6 +91,30 @@ public class CalculationLogicTest {
         logic.InitValue("b", 2);
         assertTrue(logic.CheckCondition("a<b"));
         assertFalse(logic.CheckCondition("a>b"));
+    }
+
+    @Test
+    public void InitValue_DateTime_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC));
+        assertEquals("[初始] dt=\"2026-08-31 12:00:00\";\n", logic.ToInfoString());
+    }
+
+    @Test
+    public void InitValue_DateTime_LayerRemark_Test() {
+        // InitValue 的层级与备注不参与信息输出
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC), 2, "备注");
+        assertEquals("[初始] dt=\"2026-08-31 12:00:00\";\n", logic.ToInfoString());
+    }
+
+    @Test
+    public void InitValue_DateTime_CanBeUsedInCondition_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC));
+        assertTrue(logic.CheckCondition("YEAR(dt)=2026"));
+        assertTrue(logic.CheckCondition("MONTH(dt)=8"));
+        assertTrue(logic.CheckCondition("dt>DATEVALUE('2026-08-30')"));
     }
 
     // #endregion
@@ -236,6 +262,29 @@ public class CalculationLogicTest {
         assertEquals("[赋值]    i = 100 // 备注\n", logic.ToInfoString());
     }
 
+    @Test
+    public void SetValue_DateTime_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC));
+        assertEquals("[赋值] dt = \"2026-08-31 12:00:00\"\n", logic.ToInfoString());
+    }
+
+    @Test
+    public void SetValue_DateTime_LayerRemark_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC), 1, "备注");
+        assertEquals("[赋值]    dt = \"2026-08-31 12:00:00\" // 备注\n", logic.ToInfoString());
+    }
+
+    @Test
+    public void SetValue_DateTime_CanBeUsedInCondition_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC));
+        assertTrue(logic.CheckCondition("YEAR(dt)=2026"));
+        assertTrue(logic.CheckCondition("MONTH(dt)=8"));
+        assertTrue(logic.CheckCondition("dt>DATEVALUE('2026-08-30')"));
+    }
+
     // #endregion
 
     // #region GetValue 测试
@@ -286,6 +335,26 @@ public class CalculationLogicTest {
         assertTrue(operand.IsBoolean());
         assertEquals(OperandType.BOOLEAN, operand.Type());
         assertTrue(operand.BooleanValue());
+    }
+
+    @Test
+    public void GetValue_InitValue_DateTime_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.InitValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC));
+        Operand operand = logic.GetValue("dt");
+        assertTrue(operand.IsDate());
+        assertEquals(OperandType.DATE, operand.Type());
+        assertEquals("2026-08-31 12:00:00", operand.DateValue().toString());
+    }
+
+    @Test
+    public void GetValue_SetValue_DateTime_Test() {
+        CalculationLogicEngine logic = CreateEngine();
+        logic.SetValue("dt", new DateTime(2026, 8, 31, 12, 0, 0, DateTimeZone.UTC));
+        Operand operand = logic.GetValue("dt");
+        assertTrue(operand.IsDate());
+        assertEquals(OperandType.DATE, operand.Type());
+        assertEquals("2026-08-31 12:00:00", operand.DateValue().toString());
     }
 
     @Test

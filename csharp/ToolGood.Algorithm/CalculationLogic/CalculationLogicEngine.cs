@@ -248,6 +248,47 @@ namespace ToolGood.Algorithm.CalculationLogic
 			InitValueCore(key, value, () => value.ToString(), layer, remark);
 		}
 
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		public void InitValue(string key, DateTime value)
+		{
+			InitValue(key, value, 0, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		public void InitValue(string key, DateTime value, int layer)
+		{
+			InitValue(key, value, layer, null);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, DateTime value, string remark)
+		{
+			InitValue(key, value, 0, remark);
+		}
+		/// <summary>
+		/// 初始化值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void InitValue(string key, DateTime value, int layer, string remark)
+		{
+			InitValueCore(key, value, () => $"\"{value.ToString("yyyy-MM-dd HH:mm:ss")}\"", layer, remark);
+		}
+
 		private void InitValueCore(string key, Operand value, Func<string> expFactory, int layer, string remark)
 		{
 			_engine.AddParameter(key, value);
@@ -576,6 +617,47 @@ namespace ToolGood.Algorithm.CalculationLogic
 		public void SetValue(string key, int exp, int layer, string remark)
 		{
 			SetValueCore(key, exp, () => exp.ToString(), layer, remark);
+		}
+
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		public void SetValue(string key, DateTime exp)
+		{
+			SetValue(key, exp, 0, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		public void SetValue(string key, DateTime exp, int layer)
+		{
+			SetValue(key, exp, layer, null);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, DateTime exp, string remark)
+		{
+			SetValue(key, exp, 0, remark);
+		}
+		/// <summary>
+		/// 设置值
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="exp"></param>
+		/// <param name="layer"></param>
+		/// <param name="remark"></param>
+		public void SetValue(string key, DateTime exp, int layer, string remark)
+		{
+			SetValueCore(key, exp, () => $"\"{exp.ToString("yyyy-MM-dd HH:mm:ss")}\"", layer, remark);
 		}
 
 		private void SetValueCore(string key, Operand value, Func<string> expFactory, int layer, string remark)
