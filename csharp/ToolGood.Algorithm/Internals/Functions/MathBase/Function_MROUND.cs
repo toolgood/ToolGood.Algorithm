@@ -31,8 +31,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
                 return ParameterError(2);
             }
 
-            var r = Math.Round(number / multiple, 0, MidpointRounding.AwayFromZero) * multiple;
-            return Operand.Create(r);
+            try {
+                var r = Math.Round(number / multiple, 0, MidpointRounding.AwayFromZero) * multiple;
+                return Operand.Create(r);
+            } catch (OverflowException) {
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{

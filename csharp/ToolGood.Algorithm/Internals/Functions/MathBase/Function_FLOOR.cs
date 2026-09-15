@@ -30,15 +30,19 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
             var a = args1.NumberValue;
 
-            if (b > 0) {
-                var d = Math.Floor(a / b) * b;
-                return Operand.Create(d);
-            } else {
-                if (a > 0) {
-                    return ParameterError(1);
+            try {
+                if (b > 0) {
+                    var d = Math.Floor(a / b) * b;
+                    return Operand.Create(d);
+                } else {
+                    if (a > 0) {
+                        return ParameterError(1);
+                    }
+                    var d = Math.Floor(a / b) * b;
+                    return Operand.Create(d);
                 }
-                var d = Math.Floor(a / b) * b;
-                return Operand.Create(d);
+            } catch (OverflowException) {
+                return NumError();
             }
         }
 		public override OperandType GetResultType()

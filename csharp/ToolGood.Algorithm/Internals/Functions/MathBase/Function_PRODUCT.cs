@@ -18,15 +18,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args = new List<Operand>(funcs.Length);
-            for (int i = 0; i < funcs.Length; i++) { 
-                var aa = GetNumber(engine, tempParameter, i);
-                if (aa.IsErrorOrNone) { return aa; } 
-                args.Add(aa); 
-            }
+            var error = TryEvaluateAll(engine, tempParameter, args);
+            if (error != null) { return error; }
 
+            // 直接求值并展平,避免对数组参数调用 GetNumber 导致报错
             var list = new List<decimal>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return FunctionError(); }
+            if (FunctionUtil.FlattenToList(args, list) == false) { return FunctionError(); }
 
             decimal d = 1;
             try {

@@ -35,15 +35,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             }
 
             var num = args1.NumberValue;
-            var factor = MathEx.Pow(10, digits);
 
-            decimal result;
-            if (num > 0) {
-                result = Math.Floor(num * factor) / factor;
-            } else {
-                result = Math.Ceiling(num * factor) / factor;
+            try {
+                var factor = MathEx.Pow(10, digits);
+
+                if (num > 0) {
+                    return Operand.Create(Math.Floor(num * factor) / factor);
+                }
+                return Operand.Create(Math.Ceiling(num * factor) / factor);
+            } catch (OverflowException) {
+                return NumError();
             }
-            return Operand.Create(result);
         }
 		public override OperandType GetResultType()
 		{

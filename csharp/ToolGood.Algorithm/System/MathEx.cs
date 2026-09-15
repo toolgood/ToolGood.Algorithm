@@ -1,4 +1,4 @@
-﻿namespace System
+namespace System
 {
 	internal class MathEx
 	{
@@ -135,7 +135,8 @@
 				y += result / (2 * i + 1);
 				i++;
 			}
-			while(cachedResult != result && i <= 10000);
+			// 泰勒斯级数在 |x|<=1/sqrt(3)(约0.577)时约60次即收敛,收敛后由 cachedResult == result 退出
+			while(cachedResult != result && i < MaximumIterations);
 
 			return y;
 		}
@@ -261,16 +262,19 @@
 		/// <returns>The exponential function value from the given value.</returns>
 		public static decimal Exp(decimal x)
 		{
-			var count = 0;
-			while(x > One) {
-				x--;
-				count++;
-			}
+			// O(1) 归约:一次取出整数部分,避免原先按 1 逐次递减的线性循环
+			// (入参绝对值很大时,如 Exp(-1e9),线性循环会退化成耗时数秒以上的 DoS)
+			var integral = Math.Floor(x);
+			x -= integral;
 
-			while(x < Zero) {
-				x++;
-				count--;
+			// decimal 的取值范围远大于 int,整数部分超出 int 时 E^count 必然溢出或下溢
+			if(integral > int.MaxValue) {
+				throw new OverflowException();
 			}
+			if(integral < int.MinValue) {
+				return Zero;
+			}
+			var count = (int)integral;
 
 			var iteration = 1;
 			var result = One;
@@ -281,7 +285,8 @@
 				factor *= x / iteration++;
 				result += factor;
 			}
-			while(cachedResult != result && iteration <= 10000);
+			// 归约后 x 属于 [0,1),级数约30次即收敛,收敛后由 cachedResult == result 退出
+			while(cachedResult != result && iteration < MaximumIterations);
 
 			if(count != 0) {
 				result *= PowerN(E, count);

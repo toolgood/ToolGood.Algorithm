@@ -22,21 +22,28 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 			if(error != null) { return error; }
 
 			var list = new List<decimal>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return FunctionError(); }
+			for (int i = 0; i < args.Count; i++) {
+				// 按参数逐个展平：展平后的下标与原始参数位置不再一一对应，
+				// 逐个展平才能让错误消息给出真实的参数序号
+				var item = new List<decimal>();
+				if (FunctionUtil.FlattenToList(args[i], item) == false) { return FunctionError(); }
+				for (int j = 0; j < item.Count; j++) {
+					var value = item[j];
+					if (value < int.MinValue || value > int.MaxValue) {
+						return ParameterError(i + 1);
+					}
+					if ((int)value < 0) {
+						return ParameterError(i + 1);
+					}
+				}
+				list.AddRange(item);
+			}
 
             decimal sum = 0;
             decimal n = 1;
             try {
                 for (int i = 0; i < list.Count; i++) {
-                    var value = list[i];
-                    if (value < int.MinValue || value > int.MaxValue) {
-                        return ParameterError(i + 1);
-                    }
-                    var a = (int)value;
-                    if (a < 0) {
-                        return ParameterError(i + 1);
-                    }
+                    var a = (int)list[i];
                     n *= FunctionUtil.GetFactorial(a);
                     sum += a;
                 }

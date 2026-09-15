@@ -43,17 +43,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (total < count) {
                 return ParameterError(2);
             }
-            decimal sum = 1;
-			decimal sum2 = 1;
+            // C(n,k) 具有对称性 C(n,k)=C(n,n-k)，取较小的 k 计算，避免大 count 时中间乘积溢出
+            var k = Math.Min(count, total - count);
+            decimal result = 1;
             try {
-                for (int i = 0; i < count; i++) {
-                    sum *= (total - i);
-                    sum2 *= (i + 1);
+                for (int i = 1; i <= k; i++) {
+                    // 边乘边除:每步结果都等于某个组合数，不会产生无谓的中间膨胀
+                    result = result * (total - k + i) / i;
                 }
             } catch (OverflowException) {
-                return ParameterError(1);
+                return NumError();
             }
-            return Operand.Create(sum / sum2);
+            return Operand.Create(result);
         }
 		public override OperandType GetResultType()
 		{

@@ -137,7 +137,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <summary>
 		/// Creates an error operand indicating that a specific function parameter is invalid.
 		/// </summary>
-		/// <param name="paramIndex">The zero-based index of the parameter that caused the error.</param>
+		/// <param name="paramIndex">The 1-based index of the parameter that caused the error.</param>
 		/// <returns>An operand representing an error for the specified parameter.</returns>
 		protected Operand ParameterError(int paramIndex)
 		{

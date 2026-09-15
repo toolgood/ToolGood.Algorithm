@@ -18,7 +18,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var num = 2;
+			// 参数按从左到右的顺序求值,保证副作用与错误序号一致
+			var args1 = GetNumber_1(engine, tempParameter);
+			if (args1.IsErrorOrNone) { return args1; }
+
+			var num = 2;
 			if (func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if (args2.IsErrorOrNone) { return args2; }
@@ -28,8 +32,6 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 					return ParameterError(2);
 				}
 			}
-			var args1 = GetNumber_1(engine, tempParameter);
-			if (args1.IsErrorOrNone) { return args1; }
 
 			var s = args1.NumberValue;
 			if (num >= 0) {

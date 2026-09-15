@@ -26,12 +26,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 				return ParameterError(2);
 			}
             if (args1.NumberValue == 0) { return args1; }
-            var a = MathEx.Pow(10, args2.IntValue);
             var b = args1.NumberValue;
 
-            var t = (Math.Ceiling(Math.Abs(b) * a)) / a;
-            if (b > 0) return Operand.Create(t);
-            return Operand.Create(-t);
+            try {
+                var a = MathEx.Pow(10, args2.IntValue);
+                var t = Math.Ceiling(Math.Abs(b) * a) / a;
+                if (b > 0) return Operand.Create(t);
+                return Operand.Create(-t);
+            } catch (OverflowException) {
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{

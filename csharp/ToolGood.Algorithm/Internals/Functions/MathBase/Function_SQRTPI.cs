@@ -22,7 +22,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
             if (args1.NumberValue < 0) {
                 return ParameterError(1);
             }
-            return Operand.Create(MathEx.Sqrt(args1.NumberValue * MathEx.PI));
+            try {
+                return Operand.Create(MathEx.Sqrt(args1.NumberValue * MathEx.PI));
+            } catch (OverflowException) {
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{

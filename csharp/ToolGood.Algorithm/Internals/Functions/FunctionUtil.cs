@@ -80,18 +80,18 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
-			var stack = new List<Operand>(args);
-			while(stack.Count > 0) {
-				var item = stack[stack.Count - 1];
-				stack.RemoveAt(stack.Count - 1);
+			// 使用队列做顺序展开，保证输出顺序与参数从左到右的顺序一致
+			var queue = new Queue<Operand>(args);
+			while(queue.Count > 0) {
+				var item = queue.Dequeue();
 				if(item.IsArray) {
 					var array = item.ArrayValue;
-					for(int i = array.Count - 1; i >= 0; i--) stack.Add(array[i]);
+					for(int i = 0; i < array.Count; i++) queue.Enqueue(array[i]);
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
 					if(i.IsError) return false;
 					var array = i.ArrayValue;
-					for(int j = array.Count - 1; j >= 0; j--) stack.Add(array[j]);
+					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
 				} else {
 					list.Add(item);
 				}
@@ -102,18 +102,18 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
-			var stack = new List<Operand>(args);
-			while(stack.Count > 0) {
-				var item = stack[stack.Count - 1];
-				stack.RemoveAt(stack.Count - 1);
+			// 使用队列做顺序展开，保证输出顺序与参数从左到右的顺序一致
+			var queue = new Queue<Operand>(args);
+			while(queue.Count > 0) {
+				var item = queue.Dequeue();
 				if(item.IsArray) {
 					var array = item.ArrayValue;
-					for(int i = array.Count - 1; i >= 0; i--) stack.Add(array[i]);
+					for(int i = 0; i < array.Count; i++) queue.Enqueue(array[i]);
 				} else if(item.IsJson) {
 					var i = item.ToArray(null);
 					if(i.IsError) return false;
 					var array = i.ArrayValue;
-					for(int j = array.Count - 1; j >= 0; j--) stack.Add(array[j]);
+					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
 				} else {
 					if(item.IsNumber) {
 						list.Add(item.NumberValue);
@@ -264,25 +264,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static decimal GetLcm(List<decimal> list)
 		{
 			if(list.Count == 0) return 1;
-			
-			decimal a = 0;
-			bool foundFirst = false;
-			
-			for(int i = 0; i < list.Count; i++) {
-				decimal val = Math.Truncate(list[i]);
-				if(val <= 1) continue;
-				
-				if(!foundFirst) {
-					a = val;
-					foundFirst = true;
-					continue;
-				}
-				
-				decimal b = val;
-				decimal g = b > a ? GetGcd(b, a) : GetGcd(a, b);
+
+			// 与 GetGcd 保持一致的归约方式：不跳过任何元素，
+			// 含 0 时结果为 0（与 Excel 的 LCM 一致），全部为 1 时结果为 1
+			decimal a = Math.Truncate(list[0]);
+			for(int i = 1; i < list.Count; i++) {
+				decimal b = Math.Truncate(list[i]);
+				if(a == 0 || b == 0) { a = 0; continue; }
+				var g = b > a ? GetGcd(b, a) : GetGcd(a, b);
 				a = a / g * b;
 			}
-			return foundFirst ? a : 1;
+			return a;
 		}
 
 		public static decimal GetFactorial(decimal a)
