@@ -4,6 +4,9 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
+	/// <summary>
+	/// HtmlDecode：将 HTML 实体（如 &amp;amp;、&amp;#39;、&amp;#x27;）还原为对应字符。
+	/// </summary>
 	internal sealed class Function_HTMLDECODE : Function_1
 	{
 		public Function_HTMLDECODE(FunctionBase[] funcs) : base(funcs)

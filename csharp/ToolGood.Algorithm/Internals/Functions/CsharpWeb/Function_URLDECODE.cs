@@ -4,6 +4,9 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
+	/// <summary>
+	/// UrlDecode：对 URL 百分号编码的文本进行解码，'+' 还原为空格。
+	/// </summary>
 	internal sealed class Function_URLDECODE : Function_1
 	{
 		public Function_URLDECODE(FunctionBase[] funcs) : base(funcs)

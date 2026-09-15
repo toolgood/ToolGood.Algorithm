@@ -5,6 +5,9 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
+	/// <summary>
+	/// TextToBase64：将文本按 UTF-8 编码为标准 Base64 字符串。
+	/// </summary>
 	internal sealed class Function_TEXTTOBASE64 : Function_1
 	{
 		public Function_TEXTTOBASE64(FunctionBase[] funcs) : base(funcs)

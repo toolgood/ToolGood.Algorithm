@@ -4,6 +4,9 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
+	/// <summary>
+	/// HtmlEncode：将文本中的 HTML 特殊字符（&amp;、&lt;、&gt;、&quot;、&apos;）转义为对应的 HTML 实体。
+	/// </summary>
 	internal sealed class Function_HTMLENCODE : Function_1
 	{
 		public Function_HTMLENCODE(FunctionBase[] funcs) : base(funcs)

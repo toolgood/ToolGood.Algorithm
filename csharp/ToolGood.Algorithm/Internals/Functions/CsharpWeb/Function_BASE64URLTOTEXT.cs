@@ -5,6 +5,10 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.CsharpWeb
 {
+	/// <summary>
+	/// Base64UrlToText：将 URL 安全型 Base64（RFC 4648 §5，'-'、'_' 分别等价于 '+'、'/'，结尾 '=' 可省略）按 UTF-8 解码为文本。
+	/// 输入不符合 Base64 格式时返回参数错误。
+	/// </summary>
 	internal sealed class Function_BASE64URLTOTEXT : Function_1
 	{
 		public Function_BASE64URLTOTEXT(FunctionBase[] funcs) : base(funcs)
