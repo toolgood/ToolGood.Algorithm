@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 		}
 
-		public override string Name => "YEARFRAC";
+		public override string Name => "YearFrac";
 
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
@@ -128,7 +128,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
 		{
 			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
-			if(func2 != null) func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			func2.GetParameterTypes(noneEngine, result, OperandType.DATE);
+			// func3 为可选参数（2 参重载时不存在），须保留判空
 			if(func3 != null) func3.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
 		}
 	}

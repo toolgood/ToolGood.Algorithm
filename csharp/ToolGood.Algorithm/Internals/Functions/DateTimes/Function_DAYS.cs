@@ -6,10 +6,6 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal sealed class Function_DAYS : Function_2
 	{
-		public Function_DAYS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
-
 		public Function_DAYS(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 2) {

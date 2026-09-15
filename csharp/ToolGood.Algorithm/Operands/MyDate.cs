@@ -252,6 +252,10 @@ namespace ToolGood.Algorithm.Operands
         /// <returns></returns>
         public MyDate AddYears(int year)
         {
+            // 年月日齐全时走 DateTime 路径，2/29 加年自动夹取到 2/28
+            if (Year != null && Month != null && Day != null) {
+                return new MyDate(ToDateTime().AddYears(year));
+            }
             var t = (this.Year ?? 0) + year;
             return new MyDate(t, Month, Day, Hour, Minute, Second);
         }
@@ -263,11 +267,12 @@ namespace ToolGood.Algorithm.Operands
         /// <returns></returns>
         public MyDate AddMonths(int month)
         {
-            var t = (this.Month ?? 0) + month;
-            if (t >= 1 && t <= 12) {
-                return new MyDate(Year, t, Day, Hour, Minute, Second);
+            // 年月日齐全时统一走 DateTime 路径，保证月末夹取（如 1-31 加 1 月 → 2-28/2-29）
+            if (Year != null && Month != null && Day != null) {
+                return new MyDate(ToDateTime().AddMonths(month));
             }
-            return new MyDate(ToDateTime().AddMonths(month));
+            var t = (this.Month ?? 0) + month;
+            return new MyDate(Year, t, Day, Hour, Minute, Second);
         }
 
         /// <summary>

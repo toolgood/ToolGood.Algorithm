@@ -22,8 +22,14 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone) { return args2; }
-            var date = args1.DateValue.AddHours(args2.IntValue);
-            return Operand.Create(date);
+            try {
+                var date = args1.DateValue.AddHours(args2.IntValue);
+                return Operand.Create(date);
+            } catch (ArgumentOutOfRangeException) {
+                return ParameterError(2);
+            } catch (OverflowException) {
+                return ParameterError(2);
+            }
         }
 		public override OperandType GetResultType()
 		{

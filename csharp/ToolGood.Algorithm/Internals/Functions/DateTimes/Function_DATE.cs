@@ -36,7 +36,8 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 				baseDate = new DateTime(year, 1, 1);
 				baseDate = baseDate.AddMonths(month - 1);
 				baseDate = baseDate.AddDays(day - 1);
-			} catch {
+			} catch (ArgumentOutOfRangeException) {
+				// 年/月/日 超出 DateTime 合法范围
 				return ParameterError(1);
 			}
 

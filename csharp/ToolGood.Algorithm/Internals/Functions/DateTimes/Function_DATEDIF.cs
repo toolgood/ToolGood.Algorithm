@@ -66,7 +66,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
                 #region yd
 
                 // Excel: 将 end 的月日置于 start 年构造候选日期, 若候选早于 start 则加一年, 再求天数差
-                var cand = new DateTime(startMyDate.Year, endMyDate.Month, endMyDate.Day);
+                // end 为 2/29 而 start 年为平年时, 需先夹取到该年 2 月的最后一天, 避免构造非法日期
+                var candDay = Math.Min(endMyDate.Day, DateTime.DaysInMonth(startMyDate.Year, endMyDate.Month));
+                var cand = new DateTime(startMyDate.Year, endMyDate.Month, candDay);
                 if (cand < startMyDate) {
                     cand = cand.AddYears(1);
                 }

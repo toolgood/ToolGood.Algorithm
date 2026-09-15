@@ -22,7 +22,13 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
             var args2 = GetNumber_2(engine, tempParameter);
             if (args2.IsErrorOrNone) { return args2; }
-            return Operand.Create(args1.DateValue.AddDays(args2.IntValue));
+            try {
+                return Operand.Create(args1.DateValue.AddDays(args2.IntValue));
+            } catch (ArgumentOutOfRangeException) {
+                return ParameterError(2);
+            } catch (OverflowException) {
+                return ParameterError(2);
+            }
         }
 		public override OperandType GetResultType()
 		{
