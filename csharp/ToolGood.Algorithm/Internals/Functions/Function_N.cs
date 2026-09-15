@@ -43,38 +43,40 @@ namespace ToolGood.Algorithm.Internals.Functions
 		#endregion
 
 		#region Get
+		// 注：idx 为 funcs 的数组下标(0-based)，向上抛错误消息时统一转为 1-based 参数序号，
+		// 与 Function_1/Function_2/Function_3 的编号方式保持一致。
 		protected Operand GetText(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(engine, tempParameter);
 			if(args1.IsText) return args1;
-			return ConvertToText(args1, idx);
+			return ConvertToText(args1, idx + 1);
 		}
 
 		protected Operand GetNumber(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(engine, tempParameter);
 			if(args1.IsNumber) return args1;
-			return ConvertToNumber(args1, idx);
+			return ConvertToNumber(args1, idx + 1);
 		}
 
 		protected Operand GetDate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(engine, tempParameter);
 			if(args1.IsDate) return args1;
-			return ConvertToDate(args1, idx);
+			return ConvertToDate(args1, idx + 1);
 		}
 
 		protected Operand GetBoolean(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(engine, tempParameter);
 			if(args1.IsBoolean) return args1;
-			return ConvertToBoolean(args1, idx);
+			return ConvertToBoolean(args1, idx + 1);
 		}
 		protected Operand GetArray(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, int idx)
 		{
 			var args1 = funcs[idx].Evaluate(engine, tempParameter);
 			if(args1.IsArray) return args1;
-			return ConvertToArray(args1, idx);
+			return ConvertToArray(args1, idx + 1);
 		}
 		#endregion
 

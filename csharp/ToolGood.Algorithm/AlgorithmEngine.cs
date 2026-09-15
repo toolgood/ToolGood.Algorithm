@@ -160,7 +160,16 @@ namespace ToolGood.Algorithm
 				return null;
 			}
 			var visitor = new MathFunctionVisitor();
-			return visitor.Visit(context);
+			try {
+				return visitor.Visit(context);
+			} catch(Exception ex) {
+				// 函数构造阶段的参数个数校验等会抛异常，此处统一转为返回 null
+				LastError = ex.Message;
+				if(throwOnError) {
+					throw;
+				}
+				return null;
+			}
 		}
 
 		/// <summary>
