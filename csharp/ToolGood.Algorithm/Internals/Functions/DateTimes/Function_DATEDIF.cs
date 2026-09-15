@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Enums;
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
 	internal sealed class Function_DATEDIF : Function_3
-    {
+	{
 		public Function_DATEDIF(FunctionBase[] funcs) : base(funcs)
 		{
 			if (funcs.Length != 3) {
@@ -13,11 +13,11 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			}
 		}
 
-        public override string Name => "DateDif";
+		public override string Name => "DateDif";
 
-        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = GetDate_1(engine, tempParameter);
+		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
+		{
+			var args1 = GetDate_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
 
 			var args2 = GetDate_2(engine, tempParameter);
@@ -25,87 +25,84 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 
 			var args3 = GetText_3(engine, tempParameter);
 			if (args3.IsErrorOrNone) { return args3; }
-            var startMyDate = args1.DateValue.ToDateTime();
-            var endMyDate = args2.DateValue.ToDateTime();
-            var t = args3.TextValue;
+			var startMyDate = args1.DateValue.ToDateTime();
+			var endMyDate = args2.DateValue.ToDateTime();
+			var t = args3.TextValue;
 
-            if (t.Equals("Y", StringComparison.OrdinalIgnoreCase)) {
+			if (t.Equals("Y", StringComparison.OrdinalIgnoreCase)) {
 
-                #region y
+				#region y
 
-                bool b = false;
-                if (startMyDate.Month < endMyDate.Month) {
-                    b = true;
-                } else if (startMyDate.Month == endMyDate.Month) {
-                    if (startMyDate.Day <= endMyDate.Day) b = true;
-                }
-                if (b) {
-                    return Operand.Create((endMyDate.Year - startMyDate.Year));
-                } else {
-                    return Operand.Create((endMyDate.Year - startMyDate.Year - 1));
-                }
+				bool b = false;
+				if (startMyDate.Month < endMyDate.Month) {
+					b = true;
+				} else if (startMyDate.Month == endMyDate.Month) {
+					if (startMyDate.Day <= endMyDate.Day) b = true;
+				}
+				if (b) {
+					return Operand.Create((endMyDate.Year - startMyDate.Year));
+				} else {
+					return Operand.Create((endMyDate.Year - startMyDate.Year - 1));
+				}
 
-                #endregion y
-            } else if (t.Equals("M", StringComparison.OrdinalIgnoreCase)) {
+				#endregion y
+			} else if (t.Equals("M", StringComparison.OrdinalIgnoreCase)) {
 
-                #region m
+				#region m
 
-                bool b = false;
-                if (startMyDate.Day <= endMyDate.Day) b = true;
-                if (b) {
-                    return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month));
-                } else {
-                    return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1));
-                }
+				bool b = false;
+				if (startMyDate.Day <= endMyDate.Day) b = true;
+				if (b) {
+					return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month));
+				} else {
+					return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1));
+				}
 
-                #endregion m
-            } else if (t.Equals("D", StringComparison.OrdinalIgnoreCase)) {
-                return Operand.Create((endMyDate - startMyDate).Days);
-            } else if (t.Equals("YD", StringComparison.OrdinalIgnoreCase)) {
+				#endregion m
+			} else if (t.Equals("D", StringComparison.OrdinalIgnoreCase)) {
+				return Operand.Create((endMyDate - startMyDate).Days);
+			} else if (t.Equals("YD", StringComparison.OrdinalIgnoreCase)) {
 
-                #region yd
+				#region yd
 
-                // Excel: 将 end 的月日置于 start 年构造候选日期, 若候选早于 start 则加一年, 再求天数差
-                // end 为 2/29 而 start 年为平年时, 需先夹取到该年 2 月的最后一天, 避免构造非法日期
-                var candDay = Math.Min(endMyDate.Day, DateTime.DaysInMonth(startMyDate.Year, endMyDate.Month));
-                var cand = new DateTime(startMyDate.Year, endMyDate.Month, candDay);
-                if (cand < startMyDate) {
-                    cand = cand.AddYears(1);
-                }
-                var day = (cand - startMyDate).Days;
-                return Operand.Create(day);
+				// Excel: 将 end 的月日置于 start 年构造候选日期, 若候选早于 start 则加一年, 再求天数差
+				// end 为 2/29 而 start 年为平年时, 需先夹取到该年 2 月的最后一天, 避免构造非法日期
+				var candDay = Math.Min(endMyDate.Day, DateTime.DaysInMonth(startMyDate.Year, endMyDate.Month));
+				var cand = new DateTime(startMyDate.Year, endMyDate.Month, candDay);
+				if (cand < startMyDate) {
+					// start 年为 9999 时无法再加一年（超出 DateTime 上限），按超范围处理
+					if (startMyDate.Year == 9999) { return ParameterError(3); }
+					cand = cand.AddYears(1);
+				}
+				var day = (cand - startMyDate).Days;
+				return Operand.Create(day);
 
-                #endregion yd
-            } else if (t.Equals("MD", StringComparison.OrdinalIgnoreCase)) {
+				#endregion yd
+			} else if (t.Equals("MD", StringComparison.OrdinalIgnoreCase)) {
 
-                #region md
+				#region md
 
-                var mo = endMyDate.Day - startMyDate.Day;
-                if (mo < 0) {
-                    int days;
-                    if (startMyDate.Month == 12) {
-                        days = new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day;
-                    } else {
-                        days = new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day;
-                    }
-                    mo += days;
-                }
-                return Operand.Create((mo));
+				var mo = endMyDate.Day - startMyDate.Day;
+				if (mo < 0) {
+					// 取 start 所在月的天数；用 DaysInMonth 避免 9999 年 12 月构造次年被判越界
+					mo += DateTime.DaysInMonth(startMyDate.Year, startMyDate.Month);
+				}
+				return Operand.Create((mo));
 
-                #endregion md
-            } else if (t.Equals("YM", StringComparison.OrdinalIgnoreCase)) {
+				#endregion md
+			} else if (t.Equals("YM", StringComparison.OrdinalIgnoreCase)) {
 
-                #region ym
+				#region ym
 
-                var mo = endMyDate.Month - startMyDate.Month;
-                if (endMyDate.Day < startMyDate.Day) mo--;
-                if (mo < 0) mo += 12;
-                return Operand.Create((mo));
+				var mo = endMyDate.Month - startMyDate.Month;
+				if (endMyDate.Day < startMyDate.Day) mo--;
+				if (mo < 0) mo += 12;
+				return Operand.Create((mo));
 
-                #endregion ym
-            }
-            return ParameterError(3);
-        }
+				#endregion ym
+			}
+			return ParameterError(3);
+		}
 
 		public override OperandType GetResultType()
 		{

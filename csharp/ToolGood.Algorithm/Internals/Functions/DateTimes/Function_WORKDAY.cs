@@ -23,15 +23,36 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			var args2 = GetNumber(engine, tempParameter, 1);
 			if (args2.IsErrorOrNone) { return args2; }
 
+			// IntValue 为 decimal 到 int 的直接转换，超范围抛 OverflowException
+			int days;
+			try {
+				days = args2.IntValue;
+			} catch (OverflowException) {
+				return ParameterError(2);
+			}
 			// 归一到当天零点，避免起点/节假日带时间分量导致比较失配
-			var startMyDate = args1.DateValue.ToDateTime().Date;
-			var days = args2.IntValue;
+			// 时间型操作数（年月日为空）取年月日会抛 ArgumentOutOfRangeException
+			DateTime startMyDate;
+			try {
+				startMyDate = args1.DateValue.ToDateTime().Date;
+			} catch (ArgumentOutOfRangeException) {
+				return ParameterError(1);
+			} catch (OverflowException) {
+				return ParameterError(1);
+			}
 			var list = new HashSet<DateTime>();
 			for (int i = 2; i < funcs.Length; i++) {
 				var ar = GetDate(engine, tempParameter, i);
 				if (ar.IsErrorOrNone) { return ar; }
-				list.Add(ar.DateValue.ToDateTime().Date);
+				try {
+					list.Add(ar.DateValue.ToDateTime().Date);
+				} catch (ArgumentOutOfRangeException) {
+					return ParameterError(i + 1);
+				} catch (OverflowException) {
+					return ParameterError(i + 1);
+				}
 			}
+			// 推移仅由起点与天数参与，越界时按第 2 参报错，与 AddDays 等函数一致
 			try {
 				if (days > 0) {
 					// 先逐天对齐到周一（最多 6 天），期间消耗工作日

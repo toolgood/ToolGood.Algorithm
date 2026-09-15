@@ -183,7 +183,8 @@ namespace ToolGood.Algorithm.Operands
         public override string ToString()
         {
             var stringBuffer = new StringBuilder(20);
-            if (Year != null && Year > 0) {
+            // 仅当年月日齐全时才按日期格式输出，避免 Month/Day 为空时取值抛异常
+            if (Year != null && Year > 0 && Month != null && Day != null) {
                 stringBuffer.Append(Year);
                 stringBuffer.Append('-');
                 stringBuffer.Append(Month.Value.ToString("D2"));
@@ -282,7 +283,8 @@ namespace ToolGood.Algorithm.Operands
         /// <returns></returns>
         public MyDate AddDays(int day)
         {
-            if (Year != null && Year > 1900) {
+            // 年月日齐全时走 DateTime 路径；仅“日 + 时间”型操作数才退化为 TimeSpan 偏移
+            if (Year != null && Month != null && Day != null) {
                 var d = (this.Day ?? 0) + day;
                 if (d >= 1 && d <= 28) {
                     return new MyDate(Year, Month, d, Hour, Minute, Second);
@@ -303,7 +305,7 @@ namespace ToolGood.Algorithm.Operands
             if (t >= 0 && t < 24) {
                 return new MyDate(Year, Month, Day, t, Minute, Second);
             }
-            if (Year != null && Year > 1900) {
+            if (Year != null && Month != null && Day != null) {
                 return new MyDate(ToDateTime().AddHours(hour));
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(hour, 0, 0)));
@@ -320,7 +322,7 @@ namespace ToolGood.Algorithm.Operands
             if (t >= 0 && t <= 59) {
                 return new MyDate(Year, Month, Day, Hour, t, Second);
             }
-            if (Year != null && Year > 1900) {
+            if (Year != null && Month != null && Day != null) {
                 return new MyDate(ToDateTime().AddMinutes(minute));
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(0, minute, 0)));
@@ -337,7 +339,7 @@ namespace ToolGood.Algorithm.Operands
             if (t >= 0 && t <= 59) {
                 return new MyDate(Year, Month, Day, Hour, Minute, t);
             }
-            if (Year != null && Year > 1900) {
+            if (Year != null && Month != null && Day != null) {
                 return new MyDate(ToDateTime().AddSeconds(second));
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(0, 0, second)));
