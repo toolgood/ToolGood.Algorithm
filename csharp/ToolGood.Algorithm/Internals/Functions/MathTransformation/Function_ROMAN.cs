@@ -19,18 +19,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		{
 			var numArg = GetNumber_1(engine, tempParameter);
 			if (numArg.IsErrorOrNone) return numArg;
-			var num = numArg.IntValue;
+			// 数值超出 int 范围时按 #VALUE! 处理，避免 IntValue 抛出 OverflowException
+			if (TryGetInt(numArg, out var num) == false) return ParameterError(1);
 
 			// Excel: number 为负或大于 3999 时返回 #VALUE!,number 为 0 返回空文本
 			if (num < 0 || num > 3999) return ParameterError(1);
 
 			int form = 0;
 			if (func2 != null) {
-				var formArg = GetNumber_2(engine, tempParameter);
+				var formArg = func2.Evaluate(engine, tempParameter);
 				if (formArg.IsErrorOrNone) return formArg;
-				form = formArg.IntValue;
-				// Excel: form 超出 0~4 范围返回 #VALUE!
-				if (form < 0 || form > 4) return ParameterError(2);
+				if (formArg.IsBoolean) {
+					// Excel: form 为 TRUE 时使用古典形式(0),为 FALSE 时使用最简化形式(4)
+					form = formArg.BooleanValue ? 0 : 4;
+				} else {
+					var formNum = ConvertToNumber(formArg, 2);
+					if (formNum.IsErrorOrNone) return formNum;
+					if (TryGetInt(formNum, out form) == false) return ParameterError(2);
+					// Excel: form 超出 0~4 范围返回 #VALUE!
+					if (form < 0 || form > 4) return ParameterError(2);
+				}
 			}
 
 			return Operand.Create(ArabicToRoman(num, form));

@@ -19,27 +19,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            // Excel 范围:-536870912 ~ 536870911
-            var numValue = args1.NumberValue;
-            if (numValue < -536870912m || numValue > 536870911m) {
-                return ParameterError(1);
+            // Excel 会先截去小数部分再校验范围:-536870912 ~ 536870911
+            var numValue = decimal.Truncate(args1.NumberValue);
+            if (numValue < -NumberBaseConverter.OctHalf || numValue > NumberBaseConverter.OctHalf - 1) {
+                return NumError();
             }
             var num = (int)numValue;
-            if (num < 0) {
-                // 负数:返回 10 位八进制补码,按 Excel 语义忽略 places
-                return Operand.Create(Convert.ToString(num & 0x3FFFFFFF, 8).PadLeft(10, '0'));
-            }
-            var oct = Convert.ToString(num, 8);
+            int? places = null;
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
-                if (args2.IntValue < 0 || args2.IntValue > 10) {
-                    return ParameterError(2);
-                }
-                if (oct.Length > args2.IntValue) {
-                    return ParameterError(2);
-                }
-                return Operand.Create(oct.PadLeft(args2.IntValue, '0'));
+                // places 校验先于负数分支:places 非法时即使 number 为负也应返回 #NUM!
+                if (NumberBaseConverter.TryGetPlaces(args2, out var value) == false) { return NumError(); }
+                places = value;
+            }
+            if (num < 0) {
+                // 负数:返回 10 位八进制补码,按 Excel 语义忽略 places
+                return Operand.Create(Convert.ToString(num & NumberBaseConverter.OctMask, 8).PadLeft(NumberBaseConverter.MaxPlaces, '0'));
+            }
+            if (NumberBaseConverter.TryFormat(Convert.ToString(num, 8), false, places, out var oct) == false) {
+                return NumError();
             }
             return Operand.Create(oct);
         }

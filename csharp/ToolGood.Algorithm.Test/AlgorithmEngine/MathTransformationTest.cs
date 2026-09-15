@@ -294,5 +294,94 @@ namespace ToolGood.Algorithm.Test.MathTransformation
             t = engine.TryEvaluate("HEX2DEC('FFFFFFFFFF',3)", "");
             Assert.AreEqual(t, "-01");
         }
+
+        [Test]
+        public void dec_from_base_places_test()
+        {
+            // *2DEC 的 places 超出 0~10 应返回 #NUM!(与 DEC2BIN 等保持一致)
+            Assert.IsTrue(PlacesError("BIN2DEC('1010',20)"));
+            Assert.IsTrue(PlacesError("OCT2DEC('12',20)"));
+            Assert.IsTrue(PlacesError("HEX2DEC('A',20)"));
+            // places 不足以容纳结果时应返回 #NUM!
+            Assert.IsTrue(PlacesError("BIN2DEC('1010',1)"));
+
+            // places 充足时左侧补零
+            Assert.AreEqual("000010", new AlgorithmEngine().TryEvaluate("BIN2DEC('1010',6)", ""));
+        }
+
+        [Test]
+        public void trim_blank_test()
+        {
+            // 首尾空白应先被裁剪(P1-4)
+            Assert.AreEqual(10, new AlgorithmEngine().TryEvaluate("BIN2DEC(' 1010 ')", 0));
+            Assert.AreEqual(255, new AlgorithmEngine().TryEvaluate("HEX2DEC('  FF ')", 0));
+            Assert.AreEqual(4, new AlgorithmEngine().TryEvaluate("ARABIC(' iv ')", 0));
+        }
+
+        [Test]
+        public void int_overflow_no_exception_test()
+        {
+            // number/places 超出 int 范围时应返回错误,而不是抛出 OverflowException
+            Assert.IsTrue(PlacesError("DEC2BIN(5000000000)"));
+            Assert.IsTrue(PlacesError("ROMAN(5000000000)"));
+            Assert.IsTrue(PlacesError("ROMAN(499,5000000000)"));
+
+            Assert.IsTrue(PlacesError("DEC2BIN(10,5000000000)"));
+            Assert.IsTrue(PlacesError("DEC2HEX(952,5000000000)"));
+            Assert.IsTrue(PlacesError("DEC2OCT(75,5000000000)"));
+            Assert.IsTrue(PlacesError("BIN2OCT(10,5000000000)"));
+            Assert.IsTrue(PlacesError("BIN2HEX('101010100',5000000000)"));
+            Assert.IsTrue(PlacesError("OCT2BIN('721',5000000000)"));
+            Assert.IsTrue(PlacesError("OCT2HEX('75212',5000000000)"));
+            Assert.IsTrue(PlacesError("HEX2BIN('fa',5000000000)"));
+            Assert.IsTrue(PlacesError("HEX2OCT('f5',5000000000)"));
+            Assert.IsTrue(PlacesError("BIN2DEC('1010',5000000000)"));
+            Assert.IsTrue(PlacesError("OCT2DEC('12',5000000000)"));
+            Assert.IsTrue(PlacesError("HEX2DEC('A',5000000000)"));
+        }
+
+        [Test]
+        public void negative_ignores_places_test()
+        {
+            // 负数结果固定为 10 位补码,应忽略 places(即使 places 小于结果位数)
+            Assert.AreEqual("1111111111", new AlgorithmEngine().TryEvaluate("DEC2BIN(-1,4)", ""));
+            Assert.AreEqual("FFFFFFFFF7", new AlgorithmEngine().TryEvaluate("DEC2HEX(-9,4)", ""));
+            Assert.AreEqual("7777777777", new AlgorithmEngine().TryEvaluate("DEC2OCT(-1,4)", ""));
+
+            Assert.AreEqual("FFFFFFFFFF", new AlgorithmEngine().TryEvaluate("BIN2HEX('1111111111',4)", ""));
+            Assert.AreEqual("7777777777", new AlgorithmEngine().TryEvaluate("BIN2OCT('1111111111',4)", ""));
+            Assert.AreEqual("1111111111", new AlgorithmEngine().TryEvaluate("OCT2BIN('7777777777',4)", ""));
+            Assert.AreEqual("FFFFFFFFFF", new AlgorithmEngine().TryEvaluate("OCT2HEX('7777777777',4)", ""));
+            Assert.AreEqual("1111111111", new AlgorithmEngine().TryEvaluate("HEX2BIN('FFFFFFFFFF',4)", ""));
+            Assert.AreEqual("7777777777", new AlgorithmEngine().TryEvaluate("HEX2OCT('FFFFFFFFFF',4)", ""));
+
+            // number 为负时 places 非法仍应返回 #NUM!(校验先于负数分支)
+            Assert.IsTrue(PlacesError("DEC2BIN(-1,-1)"));
+            Assert.IsTrue(PlacesError("DEC2HEX(-1,-1)"));
+            Assert.IsTrue(PlacesError("DEC2OCT(-1,-1)"));
+            Assert.IsTrue(PlacesError("BIN2HEX('1111111111',-1)"));
+        }
+
+        [Test]
+        public void dec_truncate_range_test()
+        {
+            // 小数先截断再校验范围:-549755813888.5 截断后仍在范围内
+            Assert.AreEqual("8000000000", new AlgorithmEngine().TryEvaluate("DEC2HEX(-549755813888.5)", ""));
+            Assert.AreEqual("4000000000", new AlgorithmEngine().TryEvaluate("DEC2OCT(-536870912.5)", ""));
+
+            // 截断后越界应返回 #NUM!
+            Assert.IsTrue(PlacesError("DEC2HEX(-549755813889)"));
+            Assert.IsTrue(PlacesError("DEC2OCT(-536870913)"));
+            Assert.IsTrue(PlacesError("DEC2HEX(549755813888)"));
+            Assert.IsTrue(PlacesError("DEC2OCT(536870912)"));
+        }
+
+        [Test]
+        public void roman_boolean_form_test()
+        {
+            // Excel: form 为 TRUE 时使用古典形式(等价于 0),为 FALSE 时使用最简化形式(等价于 4)
+            Assert.AreEqual("CDXCIX", new AlgorithmEngine().TryEvaluate("ROMAN(499,TRUE())", ""));
+            Assert.AreEqual("ID", new AlgorithmEngine().TryEvaluate("ROMAN(499,FALSE())", ""));
+        }
     }
 }

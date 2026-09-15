@@ -20,30 +20,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var args1 = GetText_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
 
-            if(RegexHelper.IsHex(args1.TextValue) == false) { return ParameterError(1); }
-            var text = args1.TextValue;
-            if (text.Length > 10) { return ParameterError(1); }
-            // 10 位十六进制补码解析:最高位(bit39)为 1 时表示负数
-            var num = Convert.ToInt64(text, 16);
-            if (num >= 0x8000000000L) { num -= 0x10000000000L; }
+            // 文本裁剪空白、校验字符与长度(<=10),并解析 10 位十六进制补码
+            var value = NumberBaseConverter.ParseComplement(args1.TextValue, 16);
+            if (value.HasValue == false) { return NumError(); }
+            var num = value.Value;
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsErrorOrNone) { return args2; }
-				if(args2.IntValue < 0) {
-					return ParameterError(2);
-				}
-				var n = num.ToString();
-				if(n.Length <= args2.IntValue) {
-					if(num < 0) {
-						n = "-" + n.Substring(1).PadLeft(args2.IntValue - 1, '0');
-					} else {
-						n = n.PadLeft(args2.IntValue, '0');
-					}
-					return Operand.Create(n);
-				}
-				return ParameterError(2);
+				if(NumberBaseConverter.TryGetPlaces(args2, out var places) == false) { return NumError(); }
+				if(NumberBaseConverter.TryFormatDecimal(num, places, out var n) == false) { return NumError(); }
+				return Operand.Create(n);
 			}
-			return Operand.Create((decimal)num);
+			return Operand.Create(num);
         }
 		public override OperandType GetResultType()
 		{

@@ -20,29 +20,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
             var args1 = GetText_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
 
-            if(RegexHelper.IsBin(args1.TextValue) == false) { return ParameterError(1); }
-            var text = args1.TextValue;
-            if (text.Length > 10) { return ParameterError(1); }
-            // 10 位二进制补码解析
-            var bin = Convert.ToInt32(text, 2);
-            if (bin >= 512) { bin -= 1024; }
-            string oct;
-            if (bin < 0) {
-                // 负数:10 位八进制补码
-                oct = Convert.ToString(bin & 0x3FFFFFFF, 8).PadLeft(10, '0');
-            } else {
-                oct = Convert.ToString(bin, 8);
-            }
+            // 文本裁剪空白、校验字符与长度(<=10),并解析 10 位二进制补码
+            var value = NumberBaseConverter.ParseComplement(args1.TextValue, 2);
+            if (value.HasValue == false) { return NumError(); }
+            var bin = (int)value.Value;
+
+            int? places = null;
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
-                if (args2.IntValue < 0 || args2.IntValue > 10) {
-                    return ParameterError(2);
-                }
-                if (oct.Length > args2.IntValue) {
-                    return ParameterError(2);
-                }
-                return Operand.Create(oct.PadLeft(args2.IntValue, '0'));
+                // places 校验先于结果分支:places 非法时即使 number 为负也应返回 #NUM!
+                if (NumberBaseConverter.TryGetPlaces(args2, out var p) == false) { return NumError(); }
+                places = p;
+            }
+
+            if (bin < 0) {
+                // 负数:10 位八进制补码,按 Excel 语义忽略 places
+                return Operand.Create(Convert.ToString(bin & NumberBaseConverter.OctMask, 8).PadLeft(NumberBaseConverter.MaxPlaces, '0'));
+            }
+            if (NumberBaseConverter.TryFormat(Convert.ToString(bin, 8), false, places, out var oct) == false) {
+                return NumError();
             }
             return Operand.Create(oct);
         }

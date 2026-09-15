@@ -19,27 +19,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if(args1.IsErrorOrNone) { return args1; }
-            // Excel 范围:-549755813888 ~ 549755813887,超出 int 范围,用 decimal 校验后转 long
-            var numValue = args1.NumberValue;
+            // Excel 会先截去小数部分再校验范围:-549755813888 ~ 549755813887
+            var numValue = decimal.Truncate(args1.NumberValue);
             if (numValue < -549755813888m || numValue > 549755813887m) {
-                return ParameterError(1);
+                return NumError();
             }
             var num = (long)numValue;
-            if (num < 0) {
-                // 负数:返回 10 位十六进制补码,按 Excel 语义忽略 places
-                return Operand.Create((num & 0xFFFFFFFFFFL).ToString("X").PadLeft(10, '0'));
-            }
-            var hex = num.ToString("X");
+            int? places = null;
             if(func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if(args2.IsErrorOrNone) { return args2; }
-                if(args2.IntValue < 0 || args2.IntValue > 10) {
-                    return ParameterError(2);
-                }
-                if(hex.Length > args2.IntValue) {
-                    return ParameterError(2);
-                }
-                return Operand.Create(hex.PadLeft(args2.IntValue, '0'));
+                // places 校验先于负数分支:places 非法时即使 number 为负也应返回 #NUM!
+                if(NumberBaseConverter.TryGetPlaces(args2, out var value) == false) { return NumError(); }
+                places = value;
+            }
+            if (num < 0) {
+                // 负数:返回 10 位十六进制补码,按 Excel 语义忽略 places
+                return Operand.Create((num & NumberBaseConverter.HexMask).ToString("X").PadLeft(NumberBaseConverter.MaxPlaces, '0'));
+            }
+            if(NumberBaseConverter.TryFormat(num.ToString("X"), false, places, out var hex) == false) {
+                return NumError();
             }
             return Operand.Create(hex);
         }

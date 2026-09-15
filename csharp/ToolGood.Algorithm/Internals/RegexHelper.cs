@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 
 namespace ToolGood.Algorithm.Internals
@@ -64,6 +64,8 @@ namespace ToolGood.Algorithm.Internals
 
         public static readonly Regex timeRegex = new Regex("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
         public static readonly Regex timeRegex2 = new Regex("^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+
+        public static readonly Regex romanRegex = new Regex("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$", RegexOptions.Compiled);
 #else
 		public static readonly Regex dateTimeRegex = dateTimeRegex_();
 		public static readonly Regex dateTimeRegex2 = dateTimeRegex2_();
@@ -78,6 +80,8 @@ namespace ToolGood.Algorithm.Internals
 
 		public static readonly Regex timeRegex = timeRegex_();
 		public static readonly Regex timeRegex2 = timeRegex2_();
+
+		public static readonly Regex romanRegex = romanRegex_();
 
 		[GeneratedRegex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
 		private static partial Regex dateTimeRegex_();
@@ -100,6 +104,9 @@ namespace ToolGood.Algorithm.Internals
 		private static partial Regex timeRegex_();
 		[GeneratedRegex("^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
 		private static partial Regex timeRegex2_();
+
+		[GeneratedRegex("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$", RegexOptions.Compiled)]
+		private static partial Regex romanRegex_();
 
 #endif
 

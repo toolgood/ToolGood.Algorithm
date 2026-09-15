@@ -19,33 +19,31 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetText_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            if(RegexHelper.IsHex(args1.TextValue) == false) { return ParameterError(1); }
-            var text = args1.TextValue;
-            if (text.Length > 10) { return ParameterError(1); }
-            // 10 位十六进制补码解析
-            var num = Convert.ToInt64(text, 16);
-            if (num >= 0x8000000000L) { num -= 0x10000000000L; }
+
+            // 文本裁剪空白、校验字符与长度(<=10),并解析 10 位十六进制补码
+            var value = NumberBaseConverter.ParseComplement(args1.TextValue, 16);
+            if (value.HasValue == false) { return NumError(); }
+            var num = value.Value;
             // Excel HEX2OCT 结果范围为 -536870912~536870911
-            if (num < -536870912L || num > 536870911L) {
-                return ParameterError(1);
+            if (num < -NumberBaseConverter.OctHalf || num > NumberBaseConverter.OctHalf - 1) {
+                return NumError();
             }
-            string oct;
-            if (num < 0) {
-                // 负数:10 位八进制补码
-                oct = Convert.ToString(num & 0x3FFFFFFF, 8).PadLeft(10, '0');
-            } else {
-                oct = Convert.ToString(num, 8);
-            }
+
+            int? places = null;
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
-                if (args2.IntValue < 0 || args2.IntValue > 10) {
-                    return ParameterError(2);
-                }
-                if (oct.Length > args2.IntValue) {
-                    return ParameterError(2);
-                }
-                return Operand.Create(oct.PadLeft(args2.IntValue, '0'));
+                // places 校验先于结果分支:places 非法时即使 number 为负也应返回 #NUM!
+                if (NumberBaseConverter.TryGetPlaces(args2, out var p) == false) { return NumError(); }
+                places = p;
+            }
+
+            if (num < 0) {
+                // 负数:10 位八进制补码,按 Excel 语义忽略 places
+                return Operand.Create(Convert.ToString(num & NumberBaseConverter.OctMask, 8).PadLeft(NumberBaseConverter.MaxPlaces, '0'));
+            }
+            if (NumberBaseConverter.TryFormat(Convert.ToString(num, 8), false, places, out var oct) == false) {
+                return NumError();
             }
             return Operand.Create(oct);
         }

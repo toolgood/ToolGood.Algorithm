@@ -19,31 +19,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
-
-			if(RegexHelper.IsBin(args1.TextValue) == false) { return ParameterError(1); }
-			var text = args1.TextValue;
-			if (text.Length > 10) { return ParameterError(1); }
-			// 10 位二进制补码解析:最高位为 1 时表示负数
-			var num = Convert.ToInt32(text, 2);
-			if (num >= 512) { num -= 1024; }
+			// 文本裁剪空白、校验字符与长度(<=10),并解析 10 位二进制补码
+			var value = NumberBaseConverter.ParseComplement(args1.TextValue, 2);
+			if (value.HasValue == false) { return NumError(); }
+			var num = value.Value;
 			if(func2 != null) {
 				var args2 = GetNumber_2(engine, tempParameter);
 				if(args2.IsErrorOrNone) { return args2; }
-				if(args2.IntValue < 0) {
-					return ParameterError(2);
-				}
-				var n = num.ToString();
-				if(n.Length <= args2.IntValue) {
-					if(num < 0) {
-						n = "-" + n.Substring(1).PadLeft(args2.IntValue - 1, '0');
-					} else {
-						n = n.PadLeft(args2.IntValue, '0');
-					}
-					return Operand.Create(n);
-				}
-				return ParameterError(2);
+				if(NumberBaseConverter.TryGetPlaces(args2, out var places) == false) { return NumError(); }
+				if(NumberBaseConverter.TryFormatDecimal(num, places, out var n) == false) { return NumError(); }
+				return Operand.Create(n);
 			}
-			return Operand.Create(num);
+			return Operand.Create((int)num);
 		}
 		public override OperandType GetResultType()
 		{

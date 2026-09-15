@@ -19,25 +19,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTransformation
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            var num = args1.IntValue;
-            if (num < -512 || num > 511) {
-                return ParameterError(1);
+            // 数值超出 int 范围时按 #NUM! 处理，避免 IntValue 抛出 OverflowException
+            if (TryGetInt(args1, out var num) == false) { return NumError(); }
+            // Excel 范围:-512 ~ 511
+            if (num < -NumberBaseConverter.BinHalf || num > NumberBaseConverter.BinHalf - 1) {
+                return NumError();
             }
-            if (num < 0) {
-                // 负数:返回 10 位二进制补码,按 Excel 语义忽略 places
-                return Operand.Create(Convert.ToString(num & 1023, 2).PadLeft(10, '0'));
-            }
-            var binaryStr = Convert.ToString(num, 2);
+            int? places = null;
             if (func2 != null) {
                 var args2 = GetNumber_2(engine, tempParameter);
                 if (args2.IsErrorOrNone) { return args2; }
-                if (args2.IntValue < 0 || args2.IntValue > 10) {
-                    return ParameterError(2);
-                }
-                if (binaryStr.Length > args2.IntValue) {
-                    return ParameterError(2);
-                }
-                return Operand.Create(binaryStr.PadLeft(args2.IntValue, '0'));
+                // places 校验先于负数分支:places 非法时即使 number 为负也应返回 #NUM!
+                if (NumberBaseConverter.TryGetPlaces(args2, out var value) == false) { return NumError(); }
+                places = value;
+            }
+            if (num < 0) {
+                // 负数:返回 10 位二进制补码,按 Excel 语义忽略 places
+                return Operand.Create(Convert.ToString(num & (NumberBaseConverter.BinModulus - 1), 2).PadLeft(NumberBaseConverter.MaxPlaces, '0'));
+            }
+            if (NumberBaseConverter.TryFormat(Convert.ToString(num, 2), false, places, out var binaryStr) == false) {
+                return NumError();
             }
             return Operand.Create(binaryStr);
         }
