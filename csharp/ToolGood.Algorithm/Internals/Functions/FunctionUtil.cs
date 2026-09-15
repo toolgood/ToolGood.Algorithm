@@ -1,8 +1,11 @@
 using System;
 using System.Buffers;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Internals.Visitors;
+using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
@@ -10,9 +13,52 @@ namespace ToolGood.Algorithm.Internals.Functions
 	{
 		public static readonly DateTime StartDateUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
+		private static readonly ConcurrentDictionary<string, Regex> _regexCache = new ConcurrentDictionary<string, Regex>();
+		private const int MaxRegexCacheSize = 128;
+		private static readonly TimeSpan RegexTimeout = TimeSpan.FromSeconds(1);
+
 		public static StringComparison GetStringComparison(bool ignoreCase)
 		{
 			return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+		}
+
+		/// <summary>
+		/// 获取（并缓存）指定模式的正则表达式，带 1 秒超时以防御 ReDoS
+		/// </summary>
+		/// <exception cref="ArgumentException">模式串非法</exception>
+		public static Regex GetRegex(string pattern)
+		{
+			if(_regexCache.TryGetValue(pattern, out var regex)) { return regex; }
+			regex = new Regex(pattern, RegexOptions.None, RegexTimeout);
+			if(_regexCache.Count >= MaxRegexCacheSize) {
+				_regexCache.Clear();
+			}
+			_regexCache[pattern] = regex;
+			return regex;
+		}
+
+		/// <summary>
+		/// 将 JsonData 的标量值与文本进行等值比较（全部使用固定区域性/序数比较）
+		/// </summary>
+		public static bool JsonValueEquals(JsonData v, string text)
+		{
+			if(v == null) { return false; }
+			if(v.IsString) { return v.StringValue == text; }
+			if(v.IsDouble) { return v.NumberValue.ToString(CultureInfo.InvariantCulture) == text; }
+			if(v.IsBoolean) { return v.BooleanValue.ToString().Equals(text, StringComparison.OrdinalIgnoreCase); }
+			return false;
+		}
+
+		/// <summary>
+		/// 将 Operand 的标量值与文本进行等值比较（全部使用固定区域性/序数比较）
+		/// </summary>
+		public static bool OperandValueEquals(Operand op, string text)
+		{
+			if(op == null) { return false; }
+			if(op.IsText) { return op.TextValue == text; }
+			if(op.IsNumber) { return op.NumberValue.ToString(CultureInfo.InvariantCulture) == text; }
+			if(op.IsBoolean) { return op.BooleanValue.ToString().Equals(text, StringComparison.OrdinalIgnoreCase); }
+			return false;
 		}
 
 		private static int EstimateCount(List<Operand> args)
@@ -23,7 +69,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(item.IsArray) {
 					count += item.ArrayValue.Count;
 				} else if(item.IsJson) {
-					count += 8;
+					count += item.JsonValue.Count;
 				} else {
 					count++;
 				}

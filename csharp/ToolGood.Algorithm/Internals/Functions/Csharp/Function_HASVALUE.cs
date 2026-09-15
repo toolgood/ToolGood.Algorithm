@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
@@ -25,31 +24,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
 
-			if(args1.IsArrayJson) {
-				return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
+			var text = args2.TextValue;
+			if(args1 is OperandKeyValueList keyValueList) {
+				return Operand.Create(keyValueList.ContainsValue(args2));
+			} else if(args1 is OperandKeyValue keyValue) {
+				return Operand.Create(FunctionUtil.OperandValueEquals(keyValue.Value.Value, text));
 			} else if(args1.IsJson) {
 				var json = args1.JsonValue;
 				if(json.IsArray) {
 					for(int i = 0; i < json.Count; i++) {
-						var v = json[i];
-						if(v.IsString) {
-							if(v.StringValue == args2.TextValue) { return Operand.True; }
-						} else if(v.IsDouble) {
-							if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
-						} else if(v.IsBoolean) {
-							if(v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
-						}
+						if(FunctionUtil.JsonValueEquals(json[i], text)) { return Operand.True; }
 					}
 				} else {
-					foreach(var item in json.inst_object) {
-						var v = item.Value;
-						if(v.IsString) {
-							if(v.StringValue == args2.TextValue) { return Operand.True; }
-						} else if(v.IsDouble) {
-							if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
-						} else if(v.IsBoolean) {
-							if(v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
-						}
+					foreach(var item in json.ObjectItems) {
+						if(FunctionUtil.JsonValueEquals(item.Value, text)) { return Operand.True; }
 					}
 				}
 				return Operand.False;
@@ -58,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				foreach(var item in ar.ArrayValue) {
 					var t = item.ToText();
 					if(t.IsErrorOrNone) { continue; }
-					if(t.TextValue == args2.TextValue) {
+					if(t.TextValue == text) {
 						return Operand.True;
 					}
 				}

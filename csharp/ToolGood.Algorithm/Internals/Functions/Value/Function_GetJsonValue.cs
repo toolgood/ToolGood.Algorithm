@@ -31,13 +31,16 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 				return Operand.Error("Function '{0}' ARRAY index {1} out of range!", "GetJsonValue", index);
 			}
 			if(obj.IsArrayJson) {
+				if(!(obj is OperandKeyValueList keyValueList)) {
+					return Operand.Error("Function '{0}' Operator is error!", "GetJsonValue");
+				}
 				if(op.IsNumber) {
-					if(((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(CultureInfo.InvariantCulture), out Operand operand)) {
+					if(keyValueList.TryGetValue(op.NumberValue.ToString(CultureInfo.InvariantCulture), out Operand operand)) {
 						return operand;
 					}
 					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.NumberValue);
 				} else if(op.IsText) {
-					if(((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
+					if(keyValueList.TryGetValue(op.TextValue, out Operand operand)) {
 						return operand;
 					}
 					return Operand.Error("Function '{0}' Parameter name '{1}' is missing!", "GetJsonValue", op.TextValue);

@@ -307,7 +307,7 @@ namespace ToolGood.Algorithm
             if (json.StartsWith('{') && json.EndsWith('}')) {
                 var jo = JsonMapper.ToObject(json);
                 if (jo.IsObject) {
-                    foreach (var item in jo.inst_object) {
+                    foreach (var item in jo.ObjectItems) {
                         var v = item.Value;
                         _tempdict[item.Key] = v switch
                         {

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions.Csharp

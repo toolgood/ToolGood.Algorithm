@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm.Operands
@@ -18,7 +17,15 @@ namespace ToolGood.Algorithm.Operands
 
 		public override bool IsArrayJson => true;
 		public override OperandType Type => OperandType.ARRAYJSON;
-		public override List<Operand> ArrayValue => _keyValueList.Select(q => q.Value).ToList();
+		public override List<Operand> ArrayValue {
+			get {
+				var list = new List<Operand>(_keyValueList.Count);
+				for(var i = 0; i < _keyValueList.Count; i++) {
+					list.Add(_keyValueList[i].Value);
+				}
+				return list;
+			}
+		}
 
 		public override Operand ToText(string errorMessage = null)
 		{
@@ -68,21 +75,18 @@ namespace ToolGood.Algorithm.Operands
 
 		public bool ContainsKey(Operand value)
 		{
-			return _keyValueList.Any(item => item.Key == value.TextValue);
+			var key = value.TextValue;
+			for(var i = 0; i < _keyValueList.Count; i++) {
+				if(_keyValueList[i].Key == key) { return true; }
+			}
+			return false;
 		}
 
 		public bool ContainsValue(Operand value)
 		{
 			var v = value.TextValue;
-			foreach (var item in _keyValueList) {
-				var op = item.Value;
-				if (op.IsText) {
-					if (op.TextValue == v) return true;
-				} else if (op.IsNumber) {
-					if (op.NumberValue.ToString(CultureInfo.InvariantCulture) == v) return true;
-				} else if (op.IsBoolean) {
-					if (op.BooleanValue.ToString().Equals(v, StringComparison.CurrentCultureIgnoreCase)) return true;
-				}
+			for(var i = 0; i < _keyValueList.Count; i++) {
+				if(FunctionUtil.OperandValueEquals(_keyValueList[i].Value, v)) { return true; }
 			}
 			return false;
 		}

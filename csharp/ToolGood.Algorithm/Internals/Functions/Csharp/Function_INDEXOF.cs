@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			}
 
 			if(func4 == null) {
-				return Operand.Create(text.IndexOf(args2.TextValue, startIndex) + engine.ExcelIndex);
+				return Operand.Create(text.IndexOf(args2.TextValue, startIndex, StringComparison.Ordinal) + engine.ExcelIndex);
 			}
 
 			var args4 = GetNumber_4(engine, tempParameter);
@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				return ParameterError(4);
 			}
 
-			return Operand.Create(text.IndexOf(args2.TextValue, startIndex, count) + engine.ExcelIndex);
+			return Operand.Create(text.IndexOf(args2.TextValue, startIndex, count, StringComparison.Ordinal) + engine.ExcelIndex);
 		}
 
 		public override OperandType GetResultType()

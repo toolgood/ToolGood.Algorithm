@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Operands;
 
@@ -26,26 +25,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 			var args2 = GetText_2(engine, tempParameter);
 			if(args2.IsErrorOrNone) { return args2; }
 
-			if(args1.IsArrayJson) {
-				return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
+			var text = args2.TextValue;
+			if(args1 is OperandKeyValueList keyValueList) {
+				return Operand.Create(keyValueList.ContainsKey(args2));
+			} else if(args1 is OperandKeyValue keyValue) {
+				return Operand.Create(keyValue.Value.Key == text);
 			} else if(args1.IsJson) {
 				var json = args1.JsonValue;
 				if(json.IsArray) {
 					for(int i = 0; i < json.Count; i++) {
-						var v = json[i];
-						if(v.IsString) {
-							if(v.StringValue == args2.TextValue) { return Operand.True; }
-						} else if(v.IsDouble) {
-							if(v.NumberValue.ToString(CultureInfo.InvariantCulture) == args2.TextValue) { return Operand.True; }
-						} else if(v.IsBoolean) {
-							if(v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
-						}
+						if(FunctionUtil.JsonValueEquals(json[i], text)) { return Operand.True; }
 					}
-				} else {
-					var v = json[args2.TextValue];
-					if(v != null) {
-						return Operand.True;
-					}
+				} else if(json[text] != null) {
+					return Operand.True;
 				}
 				return Operand.False;
 			} else if(args1.IsArray) {
@@ -53,7 +45,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Csharp
 				foreach(var item in ar.ArrayValue) {
 					var t = item.ToText();
 					if(t.IsErrorOrNone) { continue; }
-					if(t.TextValue == args2.TextValue) {
+					if(t.TextValue == text) {
 						return Operand.True;
 					}
 				}

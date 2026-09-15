@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm.Internals.Functions.CsharpSecurity
 
 		private string GetHmacMd5String(byte[] buffer, string secret)
 		{
-			var keyByte = Encoding.UTF8.GetBytes(secret ?? string.Empty);
+			var keyByte = Encoding.UTF8.GetBytes(secret);
 			using var hmacMd5 = new HMACMD5(keyByte);
 			var hashMessage = hmacMd5.ComputeHash(buffer);
 #if NETSTANDARD2_1

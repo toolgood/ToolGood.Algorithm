@@ -13,7 +13,7 @@ namespace ToolGood.Algorithm.LitJson
 		private List<JsonData> inst_array;
 		private bool inst_boolean;
 		private decimal inst_double;
-		internal Dictionary<string, JsonData> inst_object;
+		private Dictionary<string, JsonData> inst_object;
 		private string inst_string;
 		private JsonType type;
 		//private IList<KeyValuePair<string, JsonData>> object_list;
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm.LitJson
 
 		public int Count {
 			get {
-				if(type == JsonType.Array) return inst_array.Count;
+				if(type == JsonType.Array) return inst_array?.Count ?? 0;
 				return inst_object?.Count ?? 0;
 			}
 		}
@@ -35,14 +35,25 @@ namespace ToolGood.Algorithm.LitJson
 		public bool IsString { get { return type == JsonType.String; } }
 		public bool IsNull { get { return type == JsonType.Null; } }
 
+		/// <summary>
+		/// 以只读方式枚举对象成员；若非 Object 类型则返回空序列，不产生任何副作用
+		/// </summary>
+		internal IEnumerable<KeyValuePair<string, JsonData>> ObjectItems {
+			get {
+				if(type == JsonType.Object && inst_object != null) {
+					return inst_object;
+				}
+				return Array.Empty<KeyValuePair<string, JsonData>>();
+			}
+		}
+
 		#endregion Properties
 
 		#region Public Indexers
 
 		public JsonData this[string prop_name] {
 			get {
-				EnsureDictionary();
-				if(inst_object.TryGetValue(prop_name, out JsonData data)) {
+				if(type == JsonType.Object && inst_object != null && inst_object.TryGetValue(prop_name, out JsonData data)) {
 					return data;
 				}
 				return null;
@@ -165,7 +176,10 @@ namespace ToolGood.Algorithm.LitJson
 
 		public IEnumerator GetEnumerator()
 		{
-			return EnsureList().GetEnumerator();
+			if(type == JsonType.Array && inst_array != null) {
+				return inst_array.GetEnumerator();
+			}
+			return Array.Empty<JsonData>().GetEnumerator();
 		}
 
 		public bool BooleanValue { get { return inst_boolean; } }
