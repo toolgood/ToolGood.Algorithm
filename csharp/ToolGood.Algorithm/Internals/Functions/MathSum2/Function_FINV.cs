@@ -31,15 +31,18 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (p <= 0m || p >= 1m) {
                 return ParameterError(1);
             }
-            var degreesFreedom = args2.IntValue;
-            if (degreesFreedom <= 0) {
+            if (!TryGetInt(args2, out var degreesFreedom) || degreesFreedom <= 0) {
                 return ParameterError(2);
             }
-            var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom2 <= 0) {
+            if (!TryGetInt(args3, out var degreesFreedom2) || degreesFreedom2 <= 0) {
                 return ParameterError(3);
             }
-            return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
+            try {
+                return Operand.Create(ExcelFunctions.FInv(p, degreesFreedom, degreesFreedom2));
+            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
+                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
+                return FunctionError();
+            }
         }
 
 		public override OperandType GetResultType()

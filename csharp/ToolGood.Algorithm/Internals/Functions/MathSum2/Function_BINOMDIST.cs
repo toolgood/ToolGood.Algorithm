@@ -30,19 +30,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			var args4 = GetBoolean_4(engine, tempParameter);
 			if(args4.IsErrorOrNone) return args4;
 
-			var n2 = args2.IntValue;
-			if(n2 < 0) {
+			if(!TryGetInt(args2, out var n2) || n2 < 0) {
 				return ParameterError(2);
 			}
-			var k = args1.IntValue;
-			if(k < 0 || k > n2) {
+			if(!TryGetInt(args1, out var k) || k < 0 || k > n2) {
 				return ParameterError(1);
 			}
 			var n3 = args3.NumberValue;
 			if(n3 < 0m || n3 > 1m) {
 				return ParameterError(3);
 			}
-			return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, n2, n3, args4.BooleanValue));
+			try {
+				return Operand.Create(ExcelFunctions.BinomDist(k, n2, n3, args4.BooleanValue));
+			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
+				// 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
+				return FunctionError();
+			}
 		}
 		public override OperandType GetResultType()
 		{

@@ -30,23 +30,26 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args4 = GetNumber_4(engine, tempParameter);
             if (args4.IsErrorOrNone) return args4;
 
-            int k = args1.IntValue;
-            if (k < 0) {
+            if (!TryGetInt(args1, out var k) || k < 0) {
                 return ParameterError(1);
             }
-            int draws = args2.IntValue;
-            if (draws < 0) {
+            if (!TryGetInt(args2, out var draws) || draws < 0) {
                 return ParameterError(2);
             }
-            int success = args3.IntValue;
-            if (success < 0) {
+            if (!TryGetInt(args3, out var success) || success < 0) {
                 return ParameterError(3);
             }
-            int population = args4.IntValue;
-            if (population < 0) {
+            if (!TryGetInt(args4, out var population) || population < 0) {
                 return ParameterError(4);
             }
+            // 交叉约束：k 必须落在 [max(0, draws+success-population), min(draws, success)] 区间内
             if (k > draws) {
+                return ParameterError(1);
+            }
+            if (k > success) {
+                return ParameterError(1);
+            }
+            if (k < (long)draws + success - population) {
                 return ParameterError(1);
             }
             if (success > population) {
@@ -55,7 +58,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (draws > population) {
                 return ParameterError(2);
             }
-            return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
+            try {
+                return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
+            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
+                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
+                return FunctionError();
+            }
         }
 		public override OperandType GetResultType()
 		{

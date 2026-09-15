@@ -66,9 +66,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 					return shape / scale;
 				}
 
+				// 使用 Pow(x/scale, shape) 而非 Pow(x,shape)*Pow(scale,-shape), 避免二者分别溢出/下溢导致的精度损失
 				return shape
 					   * MathEx.Pow(x / scale, shape - 1.0m)
-					   * MathEx.Exp(-MathEx.Pow(x, shape) * MathEx.Pow(scale, -shape))
+					   * MathEx.Exp(-MathEx.Pow(x / scale, shape))
 					   / scale;
 			}
 			return 0.0m;
@@ -88,7 +89,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				return 0.0m;
 			}
 
-			return -ExponentialMinusOne(-MathEx.Pow(x, shape) * MathEx.Pow(scale, -shape));
+			// 同上, 使用 Pow(x/scale, shape) 避免中间结果溢出
+			return -ExponentialMinusOne(-MathEx.Pow(x / scale, shape));
 		}
 		public decimal ExponentialMinusOne(decimal power)
 		{

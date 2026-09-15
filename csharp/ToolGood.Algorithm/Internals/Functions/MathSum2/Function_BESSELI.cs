@@ -24,12 +24,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(args2.IsErrorOrNone) { return args2; }
 
 			var x = args1.NumberValue;
-			var n = (int)Math.Truncate(args2.NumberValue);
+			// n 取整数部分，且必须为非负整数(与 Excel BESSELI 一致)
+			if(!TryGetInt(args2, out var n) || n < 0) {
+				return ParameterError(2);
+			}
 
 			try {
 				// 复用 SpecialFunctions 中基于 Chebyshev 展开的实现(移植自 MathNet.Numerics)
 				return Operand.Create(SpecialFunctions.BesselI(n, x));
-			} catch (OverflowException) {
+			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
 				// x 过大时 MathEx.Exp 结果超出 decimal 范围,捕获并返回错误
 				return FunctionError();
 			}

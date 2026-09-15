@@ -31,6 +31,21 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
                 return 1.0m;
             }
 
+            if (p <= 0.0m) {
+                // p=0 时全部概率集中在 k=0
+                return 1.0m;
+            }
+
+            if (p >= 1.0m) {
+                // p=1 时全部概率集中在 k=n
+                return x >= n ? 1.0m : 0.0m;
+            }
+
+            if (x >= n) {
+                // x=n 时 n-k=0, BetaRegularized 内部会出现 0/0
+                return 1.0m;
+            }
+
             decimal k = Math.Floor(x);
             return SpecialFunctions.BetaRegularized(n - k, k + 1, 1 - p);
         }

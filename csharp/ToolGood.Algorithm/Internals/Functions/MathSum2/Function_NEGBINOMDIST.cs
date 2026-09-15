@@ -26,8 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
-            int k = args1.IntValue;
-            if (k < 0) {
+            if (!TryGetInt(args1, out var k) || k < 0) {
                 return ParameterError(1);
             }
             var r = args2.NumberValue;
@@ -35,10 +34,16 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
                 return ParameterError(2);
             }
             var p = args3.NumberValue;
-            if (p < 0m || p > 1m) {
+            // p 必须为开区间 (0,1)：p=0 或 p=1 时底层 MathEx.Log 会抛异常
+            if (p <= 0m || p >= 1m) {
                 return ParameterError(3);
             }
-            return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
+            try {
+                return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
+            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
+                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
+                return FunctionError();
+            }
         }
 		public override OperandType GetResultType()
 		{

@@ -27,18 +27,22 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             var args3 = GetNumber_3(engine, tempParameter);
             if (args3.IsErrorOrNone) return args3;
             var x = args1.NumberValue;
-            if (x <= 0) {
+            // Excel 允许 x=0(TDIST(0,df,1)=0.5, TDIST(0,df,2)=1)，仅当 x<0 时报错
+            if (x < 0) {
                 return ParameterError(1);
             }
-            var degreesFreedom = args2.IntValue;
-            if (degreesFreedom <= 0) {
+            if (!TryGetInt(args2, out var degreesFreedom) || degreesFreedom <= 0) {
                 return ParameterError(2);
             }
-            var tails = args3.IntValue;
-            if (tails < 1 || tails > 2) {
+            if (!TryGetInt(args3, out var tails) || tails < 1 || tails > 2) {
                 return ParameterError(3);
             }
-            return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+            try {
+                return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
+                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
+                return FunctionError();
+            }
         }
 		public override OperandType GetResultType()
 		{

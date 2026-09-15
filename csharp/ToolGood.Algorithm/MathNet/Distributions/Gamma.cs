@@ -23,6 +23,12 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
                 return rate * MathEx.Exp(-rate * x);
             }
 
+            if (x == 0.0m && shape > 1.0m) {
+                // x=0 处 pdf 的极限值为 0；
+                // (shape<1 时该极限发散，仍走下方公式由零底负数次幂异常表示)
+                return 0.0m;
+            }
+
             if (shape > 160.0m) {
                 return MathEx.Exp(PDFLn(shape, rate, x));
             }

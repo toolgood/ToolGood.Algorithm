@@ -31,6 +31,17 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
         public static decimal BetaRegularized(decimal a, decimal b, decimal x)
         {
+            // a 或 b 为 0 属于退化情形, 后续 bt*h/a 会出现 0/0, 这里直接按极限值返回以避免除零异常
+            if (a == 0.0m) {
+                // I_x(0,b) = lim(a→0+) x^a = 0 (x=0) 或 1 (x>0)
+                return x == 0.0m ? 0.0m : 1.0m;
+            }
+
+            if (b == 0.0m) {
+                // I_x(a,0) = lim(b→0+) 1-(1-x)^b = 0 (x<1) 或 1 (x=1)
+                return x == 1.0m ? 1.0m : 0.0m;
+            }
+
             var bt = (x == 0.0m || x == 1.0m)
                 ? 0.0m
                 : MathEx.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + (a * MathEx.Log(x)) + (b * MathEx.Log(1.0m - x)));

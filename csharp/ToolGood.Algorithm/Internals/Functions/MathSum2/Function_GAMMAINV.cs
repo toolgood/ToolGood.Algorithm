@@ -28,7 +28,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
 
             var probability = args1.NumberValue;
-            if (probability < 0 || probability > 1m) {
+            // 概率必须为开区间 (0,1)：p=0 结果恒为 0，p=1 时分布无上界(底层会返回 decimal.MaxValue)
+            if (probability <= 0m || probability >= 1m) {
                 return ParameterError(1);
             }
             var alpha = args2.NumberValue;

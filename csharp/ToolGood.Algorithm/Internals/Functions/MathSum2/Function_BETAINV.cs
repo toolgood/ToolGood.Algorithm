@@ -28,7 +28,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (args3.IsErrorOrNone) return args3;
 
             var p = args1.NumberValue;
-            if (p < 0m || p > 1m) {
+            // 概率必须为开区间 (0,1)，与 Excel BETA.INV 的 #NUM! 判定保持一致
+            if (p <= 0m || p >= 1m) {
                 return ParameterError(1);
             }
             var alpha = args2.NumberValue;

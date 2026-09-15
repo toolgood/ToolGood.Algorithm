@@ -179,6 +179,26 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 		#endregion
 
+		#region TryGetInt
+		/// <summary>
+		/// 安全地将数值操作数转换为 int，数值超出 int 范围时返回 false 而不抛出异常。
+		/// </summary>
+		/// <param name="arg">待转换的操作数(应已确认为数值类型)</param>
+		/// <param name="value">转换结果，转换失败时为 0</param>
+		/// <returns>转换成功返回 true，否则返回 false</returns>
+		protected static bool TryGetInt(Operand arg, out int value)
+		{
+			value = 0;
+			try {
+				value = arg.IntValue;
+				return true;
+			} catch (OverflowException) {
+				// decimal 超出 int 范围，交由调用方按参数错误处理，避免向调用方抛出异常
+				return false;
+			}
+		}
+		#endregion
+
 		#region TryEvaluate
 
 		/// <summary>

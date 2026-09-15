@@ -38,7 +38,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             }
             var b = args4.BooleanValue;
 
-            return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
+            try {
+                return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
+            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
+                // |num-avg|/STDEV 过大时指数运算结果超出 decimal 范围，与 Excel 返回 #NUM! 保持一致
+                return FunctionError();
+            }
         }
 		public override OperandType GetResultType()
 		{
