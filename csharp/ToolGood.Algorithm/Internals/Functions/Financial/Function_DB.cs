@@ -36,13 +36,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (func5 != null) {
 				var monthArg = GetNumber_5(engine, tempParameter);
 				if (monthArg.IsErrorOrNone) return monthArg;
-				month = monthArg.IntValue;
-				if (month < 1 || month > 12) {
+				// 先校验再转换, 避免 monthArg.IntValue 在大数值上溢出
+				var monthValue = monthArg.NumberValue;
+				if (monthValue < 1 || monthValue > 12) {
 					return ParameterError(5);
 				}
+				month = (int)monthValue;
 			}
 
 			if (life == 0 || cost == 0) return Div0Error();
+
+			if (life < 1 || life > int.MaxValue) {
+				return ParameterError(3);
+			}
 
 			// Excel: month<12 时折旧跨越 life+1 个期间(第1年部分月 + life-1 个整年 + 最后部分月),
 			// 最后一期乘 (12-month)/12 修正系数, 其余期间(含第 life 期)为完整年折旧
@@ -50,11 +56,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (period < 1 || period > totalPeriods) {
 				return ParameterError(4);
 			}
-			if (life < 1) {
-				return ParameterError(3);
-			}
 
-			decimal rate = 1 - MathEx.Pow((salvage / cost), 1.0m / life);
+			decimal rate;
+			if (salvage == 0) {
+				// Pow(0, 正指数) = 0, 即残值为 0 时折旧率为 1
+				rate = 1;
+			} else {
+				if (!FinancialMath.TryPowPositiveBase((salvage / cost), 1.0m / life, out var factor)) return NumError();
+				rate = 1 - factor;
+			}
 			rate = Math.Round(rate, 3);
 
 			decimal remainingCost = cost;

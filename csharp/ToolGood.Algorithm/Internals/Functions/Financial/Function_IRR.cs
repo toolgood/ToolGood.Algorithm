@@ -53,7 +53,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			try {
 				var irr = NewtonRaphsonIRR(values, guess);
 				return Operand.Create(irr);
-			} catch {
+			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
 				return FunctionError();
 			}
 		}

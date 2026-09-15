@@ -39,7 +39,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (func5 != null) {
 				var typeArg = GetNumber_5(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
-				type = typeArg.IntValue;
+				// 先校验再转换, 避免 typeArg.IntValue 截断小数或在大数值上溢出
+				var typeValue = typeArg.NumberValue;
+				if (typeValue != 0 && typeValue != 1) {
+					return ParameterError(5);
+				}
+				type = (int)typeValue;
 			}
 
 			if (rate == 0) {
@@ -55,7 +60,21 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				factor = pmt * (1 + rate);
 			}
 
-			var nper = MathEx.Log((-fv * rate + factor) / (pv * rate + factor)) / MathEx.Log((1 + rate));
+			// MathEx.Log 要求参数大于 0, 底数与真数非法时返回错误而非抛异常
+			var logBase = 1 + rate;
+			if (logBase <= 0) {
+				return NumError();
+			}
+			var denominator = pv * rate + factor;
+			if (denominator == 0) {
+				return Div0Error();
+			}
+			var ratio = (-fv * rate + factor) / denominator;
+			if (ratio <= 0) {
+				return NumError();
+			}
+
+			var nper = MathEx.Log(ratio) / MathEx.Log(logBase);
 			return Operand.Create(nper);
 		}
 		public override OperandType GetResultType()

@@ -50,7 +50,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 					dateList.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
 				} else if (d.IsText) {
 					var myDate = MyDate.Parse(d.TextValue);
-					if (myDate == null) return ParameterError(3);
+					// 纯时间串(如 "12:00:00")解析出的对象年月日为空, ToDateTime 会抛 ArgumentOutOfRangeException
+					if (myDate == null || myDate.Year == null || myDate.Month == null || myDate.Day == null) return ParameterError(3);
 					dateList.Add(myDate.ToDateTime(DateTimeKind.Utc));
 				} else {
 					return ParameterError(3);
@@ -62,7 +63,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			for (int i = 0; i < values.Count; i++) {
 				var days = (decimal)(dateList[i] - baseDate).TotalDays;
-				xnpv += values[i] / MathEx.Pow((1 + rate), days / 365.0m);
+				// rate < -1 时底数为负, MathEx.Pow 会抛异常
+				if (!FinancialMath.TryPowPositiveBase((1 + rate), days / 365.0m, out var factor)) return NumError();
+				xnpv += values[i] / factor;
 			}
 
 			return Operand.Create(xnpv);

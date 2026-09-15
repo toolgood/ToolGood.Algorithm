@@ -43,46 +43,51 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (func6 != null) {
 				var typeArg = GetNumber_6(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
-				type = typeArg.IntValue;
-				if (type != 0 && type != 1) {
+				// 先校验再转换, 避免 typeArg.IntValue 截断小数或在大数值上溢出
+				var typeValue = typeArg.NumberValue;
+				if (typeValue != 0 && typeValue != 1) {
 					return ParameterError(6);
 				}
+				type = (int)typeValue;
 			}
 
 			if (per < 1 || per > nper) {
 				return ParameterError(2);
 			}
 
-			var pmtResult = CalculatePMT(rate, nper, pv, fv, type);
-			var ipmtResult = CalculateIPMT(rate, per, nper, pv, fv, type);
+			if (!TryCalculatePMT(rate, nper, pv, fv, type, out var pmtResult)) return NumError();
+			if (!TryCalculateIPMT(rate, per, nper, pv, fv, type, out var ipmtResult)) return NumError();
 			return Operand.Create(pmtResult - ipmtResult);
 		}
 
-		private decimal CalculatePMT(decimal rate, decimal nper, decimal pv, decimal fv, int type)
+		private bool TryCalculatePMT(decimal rate, decimal nper, decimal pv, decimal fv, int type, out decimal pmt)
 		{
+			pmt = 0;
 			if (rate == 0) {
-				return -(pv + fv) / nper;
+				pmt = -(pv + fv) / nper;
+				return true;
 			}
-			var factor = MathEx.Pow((1 + rate), nper);
-			var pmt = -(pv * factor + fv) * rate / (factor - 1);
+			if (!FinancialMath.TryPowPositiveBase((1 + rate), nper, out var factor)) return false;
+			pmt = -(pv * factor + fv) * rate / (factor - 1);
 			if (type == 1) {
 				pmt = pmt / (1 + rate);
 			}
-			return pmt;
+			return true;
 		}
 
-		private decimal CalculateIPMT(decimal rate, decimal per, decimal nper, decimal pv, decimal fv, int type)
+		private bool TryCalculateIPMT(decimal rate, decimal per, decimal nper, decimal pv, decimal fv, int type, out decimal ipmt)
 		{
+			ipmt = 0;
 			if (rate == 0) {
-				return 0;
+				return true;
 			}
-			var pmt = CalculatePMT(rate, nper, pv, fv, type);
-			var factor = MathEx.Pow((1 + rate), (per - 1));
-			var ipmt = -(pv * factor + pmt * (factor - 1) / rate) * rate;
+			if (!TryCalculatePMT(rate, nper, pv, fv, type, out var pmt)) return false;
+			if (!FinancialMath.TryPowPositiveBase((1 + rate), (per - 1), out var factor)) return false;
+			ipmt = -(pv * factor + pmt * (factor - 1) / rate) * rate;
 			if (type == 1 && per == 1) {
 				ipmt = 0;
 			}
-			return ipmt;
+			return true;
 		}
 		public override OperandType GetResultType()
 		{

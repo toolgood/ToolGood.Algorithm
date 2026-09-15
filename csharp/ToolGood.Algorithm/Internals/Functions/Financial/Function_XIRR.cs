@@ -38,7 +38,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 					dates.Add(d.DateValue.ToDateTime(DateTimeKind.Utc));
 				} else if (d.IsText) {
 					var myDate = MyDate.Parse(d.TextValue);
-					if (myDate == null) return ParameterError(2);
+					// 纯时间串(如 "12:00:00")解析出的对象年月日为空, ToDateTime 会抛 ArgumentOutOfRangeException
+					if (myDate == null || myDate.Year == null || myDate.Month == null || myDate.Day == null) return ParameterError(2);
 					dates.Add(myDate.ToDateTime(DateTimeKind.Utc));
 				} else {
 					return ParameterError(2);
@@ -57,7 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			try {
 				var xirr = NewtonRaphsonXIRR(values, dates, guess);
 				return Operand.Create(xirr);
-			} catch {
+			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
 				return FunctionError();
 			}
 		}

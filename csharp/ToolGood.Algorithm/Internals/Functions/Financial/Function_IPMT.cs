@@ -43,10 +43,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (func6 != null) {
 				var typeArg = GetNumber_6(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
-				type = typeArg.IntValue;
-				if (type != 0 && type != 1) {
+				// 先校验再转换, 避免 typeArg.IntValue 截断小数或在大数值上溢出
+				var typeValue = typeArg.NumberValue;
+				if (typeValue != 0 && typeValue != 1) {
 					return ParameterError(6);
 				}
+				type = (int)typeValue;
 			}
 
 			if (per < 1 || per > nper) {
@@ -57,8 +59,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				return Operand.Create(0);
 			}
 
-			var pmt = CalculatePMT(rate, nper, pv, fv, type);
-			var factor = MathEx.Pow((1 + rate), (per - 1));
+			if (!TryCalculatePMT(rate, nper, pv, fv, type, out var pmt)) return NumError();
+			if (!FinancialMath.TryPowPositiveBase((1 + rate), (per - 1), out var factor)) return NumError();
+
 			var ipmt = -(pv * factor + pmt * (factor - 1) / rate) * rate;
 
 			if (type == 1 && per == 1) {
@@ -68,14 +71,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			return Operand.Create(ipmt);
 		}
 
-		private decimal CalculatePMT(decimal rate, decimal nper, decimal pv, decimal fv, int type)
+		private bool TryCalculatePMT(decimal rate, decimal nper, decimal pv, decimal fv, int type, out decimal pmt)
 		{
-			var factor = MathEx.Pow((1 + rate), nper);
-			var pmt = -(pv * factor + fv) * rate / (factor - 1);
+			pmt = 0;
+			if (!FinancialMath.TryPowPositiveBase((1 + rate), nper, out var factor)) return false;
+			pmt = -(pv * factor + fv) * rate / (factor - 1);
 			if (type == 1) {
 				pmt = pmt / (1 + rate);
 			}
-			return pmt;
+			return true;
 		}
 		public override OperandType GetResultType()
 		{

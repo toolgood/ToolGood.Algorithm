@@ -29,6 +29,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			var life = lifeArg.NumberValue;
 
 			if (life == 0) return Div0Error();
+			// 负的使用年限无实际意义, 之前会静默算出负数折旧
+			if (life < 0) return ParameterError(3);
 
 			return Operand.Create((cost - salvage) / life);
 		}

@@ -43,10 +43,12 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (func5 != null) {
 				var typeArg = GetNumber_5(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
-				type = typeArg.IntValue;
-				if (type != 0 && type != 1) {
+				// 先校验再转换, 避免 typeArg.IntValue 截断小数或在大数值上溢出
+				var typeValue = typeArg.NumberValue;
+				if (typeValue != 0 && typeValue != 1) {
 					return ParameterError(5);
 				}
+				type = (int)typeValue;
 			}
 
 			decimal guess = 0.1m;
@@ -60,7 +62,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				// 牛顿迭代中 rate=0 除零、MathEx.Pow 负底/溢出会抛异常,捕获并返回错误
 				var rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
 				return Operand.Create(rate);
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException) {
+			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
 				return FunctionError();
 			}
 		}

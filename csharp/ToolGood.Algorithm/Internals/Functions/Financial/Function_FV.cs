@@ -39,17 +39,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 			if (func5 != null) {
 				var typeArg = GetNumber_5(engine, tempParameter);
 				if (typeArg.IsErrorOrNone) return typeArg;
-				type = typeArg.IntValue;
-				if (type != 0 && type != 1) {
+				// 先校验再转换, 避免 typeArg.IntValue 截断小数或在大数值上溢出
+				var typeValue = typeArg.NumberValue;
+				if (typeValue != 0 && typeValue != 1) {
 					return ParameterError(5);
 				}
+				type = (int)typeValue;
 			}
 
 			if (rate == 0) {
 				return Operand.Create(-pmt * nper - pv);
 			}
 
-			var factor = MathEx.Pow((1 + rate), nper);
+			if (!FinancialMath.TryPowPositiveBase((1 + rate), nper, out var factor)) return NumError();
+
 			var fv = -pv * factor - pmt * (factor - 1) / rate;
 			if (type == 1) {
 				fv = -pv * factor - pmt * (1 + rate) * (factor - 1) / rate;

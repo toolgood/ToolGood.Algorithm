@@ -50,15 +50,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 
 			for (int i = 0; i < n; i++) {
 				if (values[i] < 0) {
-					npvNegative += values[i] / MathEx.Pow((1 + financeRate), i);
+					// financeRate <= -1 时底数非正, MathEx.Pow 会除零或抛异常
+					if (!FinancialMath.TryPowPositiveBase((1 + financeRate), i, out var discountFactor)) return NumError();
+					npvNegative += values[i] / discountFactor;
 				} else {
-					npvPositive += values[i] * MathEx.Pow((1 + reinvestRate), n - 1 - i);
+					// reinvestRate <= -1 时底数非正, 同样需要守卫
+					if (!FinancialMath.TryPowPositiveBase((1 + reinvestRate), n - 1 - i, out var compoundFactor)) return NumError();
+					npvPositive += values[i] * compoundFactor;
 				}
 			}
 
 			if (npvNegative == 0 || npvPositive == 0) return Div0Error();
 
-			var mirr = MathEx.Pow((-npvPositive / npvNegative), 1.0m / (n - 1)) - 1;
+			if (!FinancialMath.TryPowPositiveBase((-npvPositive / npvNegative), 1.0m / (n - 1), out var ratio)) return NumError();
+			var mirr = ratio - 1;
 			return Operand.Create(mirr);
 		}
 		public override OperandType GetResultType()

@@ -40,8 +40,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				factor = factorArg.NumberValue;
 			}
 
-			if (life == 0 || factor == 0) return Div0Error();
-			if (life <= 0) {
+			if (factor <= 0) return ParameterError(5);
+			if (life == 0) return Div0Error();
+			if (life < 0) {
 				return ParameterError(3);
 			}
 			if (period < 1 || period > life) {
