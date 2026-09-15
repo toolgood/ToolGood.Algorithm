@@ -34,12 +34,17 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 				}
 			}
 
-			int minLength = arrayX.Count < arrayY.Count ? arrayX.Count : arrayY.Count;
+			// Excel 在数组长度不等时返回 #N/A,此处无 #N/A 载体,统一用函数错误表示
+			if (arrayX.Count != arrayY.Count) { return FunctionError(); }
 
 			decimal result = 0;
-			for (int i = 0; i < minLength; i++) {
-				var diff = arrayX[i] - arrayY[i];
-				result += diff * diff;
+			try {
+				for (int i = 0; i < arrayX.Count; i++) {
+					var diff = arrayX[i] - arrayY[i];
+					result += diff * diff;
+				}
+			} catch (OverflowException) {
+				return FunctionError();
 			}
 
 			return Operand.Create(result);

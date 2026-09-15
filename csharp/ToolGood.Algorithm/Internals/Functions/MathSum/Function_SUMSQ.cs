@@ -26,9 +26,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             if (o == false) { return FunctionError(); }
 
             decimal d = 0;
-            for (int i = 0; i < list.Count; i++) {
-                var a = list[i];
-                d += a * a;
+            try {
+                for (int i = 0; i < list.Count; i++) {
+                    var a = list[i];
+                    d += a * a;
+                }
+            } catch (OverflowException) {
+                // decimal 溢出时统一转为函数错误,避免向调用方抛出异常
+                return FunctionError();
             }
             return Operand.Create(d);
         }
