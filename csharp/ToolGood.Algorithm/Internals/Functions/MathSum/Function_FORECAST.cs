@@ -38,24 +38,29 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			if (yValues.Count != xValues.Count || yValues.Count < 2) return FunctionError();
 
-			decimal sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
 			int n = yValues.Count;
 
+			decimal sumX = 0, sumY = 0;
 			for (int i = 0; i < n; i++) {
 				sumX += xValues[i];
 				sumY += yValues[i];
-				sumXY += xValues[i] * yValues[i];
-				sumX2 += xValues[i] * xValues[i];
 			}
 
 			var meanX = sumX / n;
 			var meanY = sumY / n;
 
-			var denominator = n * sumX2 - sumX * sumX;
+			// 采用中心化两遍法,避免 n*sumX2 - sumX*sumX 的病态消减与溢出
+			decimal numerator = 0, denominator = 0;
+			for (int i = 0; i < n; i++) {
+				var dx = xValues[i] - meanX;
+				numerator += dx * (yValues[i] - meanY);
+				denominator += dx * dx;
+			}
+
 			if (denominator == 0) {
 				return Div0Error();
 			}
-			var slope = (n * sumXY - sumX * sumY) / denominator;
+			var slope = numerator / denominator;
 			var intercept = meanY - slope * meanX;
 
 			return Operand.Create(intercept + slope * x);

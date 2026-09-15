@@ -28,7 +28,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
             decimal sum = 0;
             for(int i = 0; i < list.Count; i++) {
-                if (list[i] == 0) {
+                // 调和平均数要求所有数据为正数
+                if (list[i] <= 0) {
                     return FunctionError();
                 }
                 sum += 1 / list[i];

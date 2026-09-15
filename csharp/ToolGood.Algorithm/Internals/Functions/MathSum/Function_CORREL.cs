@@ -65,7 +65,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
 			if(denomX == 0 || denomY == 0) return Div0Error();
 
-			return Operand.Create(numerator / MathEx.Sqrt((denomX * denomY)));
+			// 分开开方,避免 denomX * denomY 溢出
+			return Operand.Create(numerator / (MathEx.Sqrt(denomX) * MathEx.Sqrt(denomY)));
 		}
 		public override OperandType GetResultType()
 		{
