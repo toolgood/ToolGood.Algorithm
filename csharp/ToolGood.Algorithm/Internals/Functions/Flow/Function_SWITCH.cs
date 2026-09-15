@@ -58,7 +58,20 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
 			if(a.IsNull && b.IsNull) {
 				return true;
 			}
-			return false;
+			if(a.IsNull || b.IsNull) {
+				return false;
+			}
+			// 跨类型标量比较：与 == 运算符保持一致，统一转数字后再比较。
+			// 日期/数组/Json 不参与跨类型比较（== 对这类组合返回 CompareError，此处视为不匹配）；
+			// 无法转成数字的跨类型组合同样视为不匹配。
+			if(a.IsDate || b.IsDate || a.IsArray || b.IsArray || a.IsJson || b.IsJson || a.IsArrayJson || b.IsArrayJson) {
+				return false;
+			}
+			var numberA = a.ToNumber(null);
+			if(numberA.IsErrorOrNone) { return false; }
+			var numberB = b.ToNumber(null);
+			if(numberB.IsErrorOrNone) { return false; }
+			return numberA.NumberValue == numberB.NumberValue;
 		}
 		public override OperandType GetResultType()
 		{

@@ -18,6 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions.Flow
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(engine, tempParameter);
+            if (args1.IsErrorOrNone) { return args1; }
             if (args1.IsNumber) {
                 // 用 decimal.Truncate 取整,避免 (int)decimal 强转超范围抛 OverflowException
                 var number = decimal.Truncate(args1.NumberValue);
