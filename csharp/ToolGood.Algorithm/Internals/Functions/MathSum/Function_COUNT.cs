@@ -24,7 +24,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
             var list = new List<Operand>();
             var o = FunctionUtil.FlattenToList(args, list);
             if (o == false) { return FunctionError(); }
-            return Operand.Create(list.Count);
+
+            // 与 Excel 一致:只统计可转为数值的项,文本、空值等一律忽略
+            int count = 0;
+            for (int i = 0; i < list.Count; i++) {
+                if (list[i].ToNumber(null).IsErrorOrNone == false) {
+                    count++;
+                }
+            }
+            return Operand.Create(count);
         }
 		public override OperandType GetResultType()
 		{

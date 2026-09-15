@@ -132,8 +132,11 @@ namespace ToolGood.Algorithm.Test.AlgorithmEngineExTests
 		{
 			var engine = new AlgorithmEngineEx();
 			engine.AddParameter("names", Operand.Create(new List<string> { "a", "b", "c" }));
+			// COUNT 只统计可转为数值的项,文本数组计数为 0
 			var result = engine.TryEvaluate("count(names)", 0);
-			Assert.AreEqual(3, result);
+			Assert.AreEqual(0, result);
+			var text = engine.TryEvaluate("names[1]", "");
+			Assert.AreEqual("a", text);
 		}
 
 		[Test]

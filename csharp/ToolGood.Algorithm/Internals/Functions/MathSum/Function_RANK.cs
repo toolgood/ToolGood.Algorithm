@@ -47,7 +47,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			int rank = FunctionUtil.GetRank(values, num, descending);
 
 			if (rank == 0) {
-				return ParameterError(1);
+				// 数值未出现在数组中,Excel 返回 #N/A,此处复用通用函数错误表示
+				return FunctionError();
 			}
 
 			return Operand.Create(rank);

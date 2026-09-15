@@ -20,28 +20,24 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 			for (int i = 0; i < funcs.Length; i++) {
 				var arg = GetArray(engine, tempParameter, i);
 				if (arg.IsErrorOrNone) return arg;
-				var list = new List<decimal>();
+				var list = new List<decimal>(arg.ArrayValue.Count);
 				foreach (var item in arg.ArrayValue) {
-					if (item.IsNumber) {
-						list.Add(item.NumberValue);
-					}
+					// 与 Excel 一致:非数值项按 0 参与运算,保留占位以保证各数组元素位置对齐
+					list.Add(item.IsNumber ? item.NumberValue : 0m);
 				}
 				arrays.Add(list);
 			}
 
-			int minLength = arrays[0].Count;
+			// 与 Excel 一致:各数组长度必须相同,否则返回错误
+			int length = arrays[0].Count;
 			for (int i = 1; i < arrays.Count; i++) {
-				if (arrays[i].Count < minLength) {
-					minLength = arrays[i].Count;
+				if (arrays[i].Count != length) {
+					return FunctionError();
 				}
 			}
 
-			if (minLength == 0) {
-				return Operand.Zero;
-			}
-
 			decimal result = 0;
-			for (int i = 0; i < minLength; i++) {
+			for (int i = 0; i < length; i++) {
 				decimal product = 1;
 				for (int j = 0; j < arrays.Count; j++) {
 					product *= arrays[j][i];
