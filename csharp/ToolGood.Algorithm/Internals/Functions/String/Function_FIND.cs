@@ -31,7 +31,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var count = GetNumber_3(engine, tempParameter);
 			if(count.IsErrorOrNone) { return count; }
-			var startIndex = count.IntValue - engine.ExcelIndex;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(count, out int startValue) == false) {
+				return ParameterError(3);
+			}
+			var startIndex = startValue - engine.ExcelIndex;
 			if(startIndex < 0 || startIndex >= args2.TextValue.Length) {
 				return ParameterError(3);
 			}

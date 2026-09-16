@@ -58,10 +58,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 				if (!char.IsLetter(t)) {
 					isFirst = true;
 				} else {
+					// 使用 Invariant 版本,避免土耳其语等区域性导致 i/I 转换结果不一致
 					if (isFirst) {
-						span[i] = char.ToUpper(t);
+						span[i] = char.ToUpperInvariant(t);
 					} else {
-						span[i] = char.ToLower(t);
+						span[i] = char.ToLowerInvariant(t);
 					}
 					isFirst = false;
 				}

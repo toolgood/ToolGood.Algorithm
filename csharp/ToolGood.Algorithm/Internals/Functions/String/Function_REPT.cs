@@ -24,7 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (args2.IsErrorOrNone) { return args2; }
 
 			var newtext = args1.TextValue;
-			var length = args2.IntValue;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args2, out int length) == false) {
+				return ParameterError(2);
+			}
 			if (length < 0) {
 				return ParameterError(2);
 			}

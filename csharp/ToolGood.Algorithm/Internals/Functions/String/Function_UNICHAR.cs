@@ -19,7 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			var code = args1.IntValue;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args1, out int code) == false) {
+				return ParameterError(1);
+			}
 			if (code < 0 || code > 0x10FFFF || (code >= 0xD800 && code <= 0xDFFF)) {
 				return ParameterError(1);
 			}

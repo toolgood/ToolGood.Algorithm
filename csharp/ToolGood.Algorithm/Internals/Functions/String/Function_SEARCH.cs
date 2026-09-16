@@ -33,7 +33,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var args3 = GetNumber_3(engine, tempParameter);
 			if(args3.IsErrorOrNone) { return args3; }
-			var startIndex = args3.IntValue - engine.ExcelIndex;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args3, out int startValue) == false) {
+				return ParameterError(3);
+			}
+			var startIndex = startValue - engine.ExcelIndex;
 			if(startIndex < 0 || startIndex >= args2.TextValue.Length) {
 				return ParameterError(3);
 			}

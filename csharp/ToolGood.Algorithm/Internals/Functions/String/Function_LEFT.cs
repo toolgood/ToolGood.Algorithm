@@ -27,13 +27,17 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var args2 = GetNumber_2(engine, tempParameter);
 			if (args2.IsErrorOrNone) { return args2; }
-			if (args2.IntValue < 0) {
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args2, out int count) == false) {
 				return ParameterError(2);
 			}
-			if(args2.IntValue>= args1.TextValue.Length) {
+			if (count < 0) {
+				return ParameterError(2);
+			}
+			if(count >= args1.TextValue.Length) {
 				return args1;
 			}
-			return Operand.Create(args1.TextValue.Substring(0, args2.IntValue));
+			return Operand.Create(args1.TextValue.Substring(0, count));
 		}
 		public override OperandType GetResultType()
 		{

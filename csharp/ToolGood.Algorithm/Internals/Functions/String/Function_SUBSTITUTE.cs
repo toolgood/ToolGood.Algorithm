@@ -35,7 +35,10 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			string text = args1.TextValue;
 			string oldtext = args2.TextValue;
 			string newtext = args3.TextValue;
-			int replaceIndex = args4.IntValue;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args4, out int replaceIndex) == false) {
+				return ParameterError(4);
+			}
 
 			if (oldtext.Length == 0) {
 				return Operand.Create(text);

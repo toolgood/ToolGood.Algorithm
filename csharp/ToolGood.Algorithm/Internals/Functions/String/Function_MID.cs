@@ -25,8 +25,15 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if(args3.IsErrorOrNone) { return args3; }
 
 			var text = args1.TextValue;
-			var startIndex = args2.IntValue - engine.ExcelIndex;
-			var length = args3.IntValue;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args2, out int startValue) == false) {
+				return ParameterError(2);
+			}
+			if (TryGetInt(args3, out int length) == false) {
+				return ParameterError(3);
+			}
+			// 用 long 计算,避免 startValue 为 int.MinValue 时相减溢出
+			var startIndex = (long)startValue - engine.ExcelIndex;
 
 			if(startIndex < 0) {
 				return ParameterError(2);
@@ -40,10 +47,11 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if(startIndex >= text.Length) {
 				return Operand.Create(string.Empty);
 			}
-			if(startIndex + length > text.Length) {
-				length = text.Length - startIndex;
+			// 用减法比较,避免 startIndex + length 溢出为负数
+			if(length > text.Length - startIndex) {
+				length = text.Length - (int)startIndex;
 			}
-			return Operand.Create(text.Substring(startIndex, length));
+			return Operand.Create(text.Substring((int)startIndex, length));
 		}
 		public override OperandType GetResultType()
 		{

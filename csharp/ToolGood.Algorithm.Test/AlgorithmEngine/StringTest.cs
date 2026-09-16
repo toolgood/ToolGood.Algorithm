@@ -635,6 +635,90 @@ namespace ToolGood.Algorithm.Test.String
             Assert.IsNotNull(engine.LastError);
         }
 
+        const string DecimalMax = "79228162514264337593543950335";
+
+        [Test]
+        public void IntOverflowBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 参数超出 int 范围时应返回参数错误,而不是抛出 OverflowException
+            string[] expressions = new string[] {
+                "LEFT('abc', " + DecimalMax + ")",
+                "RIGHT('abc', " + DecimalMax + ")",
+                "MID('abc', 1, " + DecimalMax + ")",
+                "MID('abc', " + DecimalMax + ", 1)",
+                "REPT('a', " + DecimalMax + ")",
+                "SUBSTITUTE('abc', 'b', 'x', " + DecimalMax + ")",
+                "REPLACE('abc', 1, " + DecimalMax + ", 'x')",
+                "REPLACE('abc', " + DecimalMax + ", 1, 'x')",
+                "FIND('a', 'abc', " + DecimalMax + ")",
+                "SEARCH('a', 'abc', " + DecimalMax + ")",
+                "CHAR(" + DecimalMax + ")",
+                "UNICHAR(" + DecimalMax + ")",
+            };
+            foreach (var expression in expressions) {
+                Assert.IsTrue(engine.Evaluate(engine.Parse(expression)).IsError);
+            }
+        }
+
+        [Test]
+        public void MidLengthMaxValue_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // length 为 int.MaxValue 时 start_index + length 不得溢出为负数
+            var t = engine.TryEvaluate("MID('ab', 2, 2147483647)", "");
+            Assert.AreEqual(t, "b");
+
+            t = engine.TryEvaluate("MID('abcdef', 6, 2147483647)", "");
+            Assert.AreEqual(t, "f");
+        }
+
+        [Test]
+        public void SurrogateBoundary_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 首字符为孤立代理项时应返回参数错误,而不是抛出 ArgumentException
+            Assert.IsTrue(engine.Evaluate(engine.Parse("UNICODE(CHAR(55296))")).IsError);
+            Assert.IsTrue(engine.Evaluate(engine.Parse("UNICODE(CHAR(56320))")).IsError);
+
+            var t = engine.TryEvaluate("UNICODE(CHAR(65))", 0);
+            Assert.AreEqual(t, 65);
+
+            // 合法代理对应返回完整码点
+            t = engine.TryEvaluate("UNICODE(UNICHAR(128512))", 0);
+            Assert.AreEqual(t, 128512);
+        }
+
+        [Test]
+        public void TrimWhitespace_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Excel 的 TRIM 只处理半角空格,Tab 等空白字符保留
+            var t = engine.TryEvaluate("LEN(TRIM(CHAR(9) & 'a' & CHAR(9)))", 0);
+            Assert.AreEqual(t, 3);
+
+            t = engine.TryEvaluate("LEN(TRIM('  a  b  '))", 0);
+            Assert.AreEqual(t, 3);
+
+            t = engine.TryEvaluate("LEN(TRIM(CHAR(13) & 'a' & CHAR(10)))", 0);
+            Assert.AreEqual(t, 3);
+        }
+
+        [Test]
+        public void ProperCulture_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var old = System.Globalization.CultureInfo.CurrentCulture;
+            try {
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("tr-TR");
+                // PROPER 使用 Invariant 转换,不受当前区域性影响
+                var t = engine.TryEvaluate("PROPER('istanbul')", "");
+                Assert.AreEqual(t, "Istanbul");
+            } finally {
+                System.Globalization.CultureInfo.CurrentCulture = old;
+            }
+        }
+
         #endregion 边界值测试
     }
 }

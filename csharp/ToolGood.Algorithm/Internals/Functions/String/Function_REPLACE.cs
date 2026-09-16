@@ -42,23 +42,31 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			var args4 = GetText_4(engine, tempParameter);
 			if (args4.IsErrorOrNone) { return args4; }
 
-			var start = args2.IntValue - engine.ExcelIndex;
-			var length = args3.IntValue;
+			// 数值超出 int 范围时按参数错误处理,避免 OverflowException 外泄
+			if (TryGetInt(args2, out int startValue) == false) {
+				return ParameterError(2);
+			}
+			if (TryGetInt(args3, out int length) == false) {
+				return ParameterError(3);
+			}
 			var newtext = args4.TextValue;
 
-			if (start < 0) {
+			// 用 long 计算,避免 startValue 为 int.MinValue 时相减溢出
+			var startIndex = (long)startValue - engine.ExcelIndex;
+			if (startIndex < 0) {
 				return ParameterError(2);
 			}
 			if (length < 0) {
 				return ParameterError(3);
 			}
-			if (start >= oldtext.Length) {
+			if (startIndex >= oldtext.Length) {
 				return Operand.Create(oldtext + newtext);
 			}
 			// 截断超出的替换长度,避免 StringBuilder 容量为负数导致异常
-			if (length > oldtext.Length - start) {
-				length = oldtext.Length - start;
+			if (length > oldtext.Length - startIndex) {
+				length = oldtext.Length - (int)startIndex;
 			}
+			var start = (int)startIndex;
 
 			var sb = new StringBuilder(oldtext.Length - length + newtext.Length);
 			sb.Append(oldtext, 0, start);

@@ -19,10 +19,22 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			if (string.IsNullOrEmpty(args1.TextValue)) {
+			var text = args1.TextValue;
+			if (string.IsNullOrEmpty(text)) {
 				return ParameterError(1);
 			}
-			return Operand.Create(char.ConvertToUtf32(args1.TextValue, 0));
+			// 首字符为孤立代理项时 char.ConvertToUtf32 会抛出 ArgumentException,此处按参数错误处理
+			var first = text[0];
+			if (char.IsHighSurrogate(first)) {
+				if (text.Length == 1 || char.IsLowSurrogate(text[1]) == false) {
+					return ParameterError(1);
+				}
+				return Operand.Create(char.ConvertToUtf32(first, text[1]));
+			}
+			if (char.IsLowSurrogate(first)) {
+				return ParameterError(1);
+			}
+			return Operand.Create((int)first);
 		}
 		public override OperandType GetResultType()
 		{

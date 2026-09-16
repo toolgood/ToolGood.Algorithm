@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
@@ -22,7 +22,8 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 		{
 			var args1 = GetText_1(engine, tempParameter);
 			if (args1.IsErrorOrNone) { return args1; }
-			var text = args1.TextValue.Trim();
+			// Excel 的 TRIM 只处理半角空格(0x20),不处理 Tab/换行/不换行空格等其他空白字符
+			var text = args1.TextValue.Trim(' ');
 			text = s_multipleSpaces.Replace(text, " ");
 			if(text.Equals(args1.TextValue)) {
 				return args1;
