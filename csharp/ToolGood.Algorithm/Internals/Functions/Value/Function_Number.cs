@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -27,7 +28,8 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			stringBuilder.Append(_value.NumberValue);
+			// 必须使用 InvariantCulture, 否则在 de-DE 等区域下小数点会输出为逗号, 导致 ToString 结果无法被本引擎重新解析
+			stringBuilder.Append(_value.NumberValue.ToString(CultureInfo.InvariantCulture));
 		}
 	}
 }

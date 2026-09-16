@@ -153,9 +153,13 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			} else if(len > 2 && span[len - 2] >= 'A') {
 				txt = span.Slice(0, len - 2);
 				unit = span.Slice(len - 2).ToString();
-			} else {
+			} else if(len > 1 && IsUnitLetter(span[len - 1])) {
+				// 单字符单位(如 M/L/G/T): 仅当末位确实为字母时才作为单位切分
+				// 否则像 28 位以上的纯数字因超出 decimal 范围导致 TryParse 失败时, 会把末位数字误当作单位
 				txt = span.Slice(0, len - 1);
 				unit = span.Slice(len - 1).ToString();
+			} else {
+				throw new ArgumentException($"Number '{text}' is invalid or out of range.");
 			}
 			var d2 = decimal.TryParse(txt, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
 				? d3
@@ -163,29 +167,61 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			return new Function_Number2(d2, unit);
 		}
 
+		/// <summary>
+		/// 判断字符是否为 ASCII 字母。
+		/// 注意 context.GetText() 返回的是原始文本(保留大小写), 不能只判断大写区间,
+		/// 否则小写的单字符单位(如 m/g/t/l) 会被误判为非法数字。
+		/// </summary>
+		private static bool IsUnitLetter(char c)
+		{
+			return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+		}
+
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
 		{
-			var opd = context.GetText();
-			var sb = new StringBuilder(opd.Length);
+			return new Function_ValueText(Operand.Create(UnescapeString(context.GetText())));
+		}
+
+		/// <summary>
+		/// 将字符串字面量(含首尾引号)转为实际文本值。
+		/// 必须与 OperandString.ToString / Function_ValueText.ToString 的转义输出保持对称,
+		/// 否则字面量往返会静默失真(例如 "\u000b" 曾被解析成 "u000b")。
+		/// </summary>
+		private static string UnescapeString(string text)
+		{
+			var sb = new StringBuilder(text.Length);
 			int index = 1;
-			while(index < opd.Length - 1) {
-				var c = opd[index++];
-				if(c == '\\') {
-					var c2 = opd[index++];
-					if(c2 == 'n') sb.Append('\n');
-					else if(c2 == 'r') sb.Append('\r');
-					else if(c2 == 't') sb.Append('\t');
-					else if(c2 == '0') sb.Append('\0');
-					else if(c2 == 'v') sb.Append('\v');
-					else if(c2 == 'a') sb.Append('\a');
-					else if(c2 == 'b') sb.Append('\b');
-					else if(c2 == 'f') sb.Append('\f');
-					else sb.Append(c2);
-				} else {
+			var end = text.Length - 1;
+			while(index < end) {
+				var c = text[index++];
+				if(c != '\\') {
 					sb.Append(c);
+					continue;
+				}
+				var c2 = text[index++];
+				switch(c2) {
+					case 'n': sb.Append('\n'); break;
+					case 'r': sb.Append('\r'); break;
+					case 't': sb.Append('\t'); break;
+					case '0': sb.Append('\0'); break;
+					case 'v': sb.Append('\v'); break;
+					case 'a': sb.Append('\a'); break;
+					case 'b': sb.Append('\b'); break;
+					case 'f': sb.Append('\f'); break;
+					case 'u':
+						// \uXXXX 十六进制转义
+						if(index + 4 <= end
+							&& int.TryParse(text.AsSpan(index, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var code)) {
+							sb.Append((char)code);
+							index += 4;
+						} else {
+							sb.Append(c2);
+						}
+						break;
+					default: sb.Append(c2); break;
 				}
 			}
-			return new Function_ValueText(Operand.Create(sb.ToString()));
+			return sb.ToString();
 		}
 		public FunctionBase VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
 		{
@@ -222,7 +258,12 @@ namespace ToolGood.Algorithm.Internals.Visitors
 		{
 			string keyName = null;
 			if(context.key != null) {
-				keyName = context.key.Text.Trim(new char[] { '"', '\'', ' ', '\t', '\r', '\n', '\f' });
+				var keyText = context.key.Text;
+				// 字符串字面量需去掉首尾引号并解转义, 与 VisitSTRING_fun 保持一致;
+				// NUM 或 parameter2 等非引号形式直接使用原文
+				keyName = (keyText.Length > 1 && (keyText[0] == '"' || keyText[0] == '\'' || keyText[0] == '`'))
+					? UnescapeString(keyText)
+					: keyText;
 			} else if(context.parameter2() != null) {
 				keyName = context.parameter2().GetText();
 			}

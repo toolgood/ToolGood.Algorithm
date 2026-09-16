@@ -19,7 +19,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(funcs.Length);
-			foreach (var item in funcs) { var aa = item.Evaluate(engine, tempParameter); args.Add(aa); }
+			// 必须先拦截参数错误: 直接把错误操作数交给 ExecuteDiyFunction,
+			// 自定义函数一旦访问 NumberValue/TextValue 等属性就会抛 NotImplementedException 逃逸出引擎
+			var error = TryEvaluateAll(engine, tempParameter, args);
+			if(error != null) { return error; }
 			return engine.ExecuteDiyFunction(funName, args);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)

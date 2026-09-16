@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -21,13 +22,23 @@ namespace ToolGood.Algorithm.Internals.Functions.Value
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var dict = GetUnitTypedict();
-			var d2 = TransformationUnit(d, dict[unit], engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
-			return Operand.Create(d2);
+			// 使用 TryGetValue 而非索引器, 避免非法单位抛出 KeyNotFoundException 并逃逸出 AlgorithmEngine.Evaluate
+			if(dict.TryGetValue(unit, out var unitType) == false) {
+				return Operand.Error("Number unit '{0}' is invalid!", unit);
+			}
+			try {
+				var d2 = TransformationUnit(d, unitType, engine.DistanceUnit, engine.AreaUnit, engine.VolumeUnit, engine.MassUnit);
+				return Operand.Create(d2);
+			} catch(OverflowException) {
+				// 单位换算放大后可能超出 decimal 范围, 对应 Excel 的 #NUM!
+				return NumError();
+			}
 		}
 
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
-			stringBuilder.Append(d);
+			// 必须使用 InvariantCulture, 否则在 de-DE 等区域下小数点会输出为逗号, 导致 ToString 结果无法被本引擎重新解析
+			stringBuilder.Append(d.ToString(CultureInfo.InvariantCulture));
 			stringBuilder.Append(unit);
 		}
 

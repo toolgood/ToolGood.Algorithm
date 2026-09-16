@@ -608,5 +608,185 @@ namespace ToolGood.Algorithm.Test.Value
             b = engine.TryEvaluate("1m=1m3", false);
             Assert.AreEqual(b, true);
         }
+
+        /// <summary>
+        /// 往返一致性校验：Parse(exp) -> ToString 还原 -> 重新 Parse 求值，
+        /// 要求还原前后语义完全一致(结果值 + 是否错误)。
+        /// </summary>
+        private static void AssertRoundTrip(string exp)
+        {
+            var engine1 = new AlgorithmEngine();
+            var function = engine1.Parse(exp);
+            var text = function.ToString();
+            var result1 = engine1.Evaluate(function);
+
+            var engine2 = new AlgorithmEngine();
+            Operand result2;
+            try {
+                result2 = engine2.Evaluate(engine2.Parse(text));
+            } catch (Exception ex) {
+                throw new Exception($"往返测试失败: [{exp}] 还原为 [{text}] 后重新求值抛出 {ex.GetType().Name}: {ex.Message}");
+            }
+
+            if(result1.IsError != result2.IsError || result1.ToString() != result2.ToString()) {
+                throw new Exception($"往返测试失败: [{exp}] 还原为 [{text}]，原结果=[{result1}](IsError={result1.IsError})，往返结果=[{result2}](IsError={result2.IsError})");
+            }
+        }
+
+        [Test]
+        public void P0_1_number_tostring_invariant_culture_test()
+        {
+            // P0-1 回归: ToString 必须使用 InvariantCulture，
+            // 否则在 de-DE/fr-FR 等区域下小数点会输出为 ','，导致结果无法被本引擎重新解析
+            var oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            try {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("de-DE");
+
+                var engine = new AlgorithmEngine();
+                Assert.AreEqual("1.5", engine.Parse("1.5").ToString());
+                Assert.AreEqual("1.5M", engine.Parse("1.5M").ToString());
+                Assert.AreEqual("1234.5 + 0", engine.Parse("1234.5 + 0").ToString());
+
+                var e2 = new AlgorithmEngine();
+                var r = e2.TryEvaluate(engine.Parse("1.5").ToString(), 0.0);
+                Assert.AreEqual(1.5, r, 10);
+
+                AssertRoundTrip("1.5");
+                AssertRoundTrip("1.5 + 1");
+                AssertRoundTrip("1.5M");
+                AssertRoundTrip("1.5M + 1M");
+                AssertRoundTrip("1234.5 + 0");
+            } finally {
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
+        }
+
+        [Test]
+        public void P0_2_arrayjson_error_propagation_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // P0-2 回归: JSON 项内的错误必须向上传播，
+            // 修复前错误操作数被静默包裹成 KeyValue，导致 IsError 为 false
+            var r = engine.Evaluate(engine.Parse("{\"a\":1, \"b\":1/0}"));
+            Assert.IsTrue(r.IsError);
+            Assert.AreEqual("Function '/' Div 0 error!", r.ErrorMsg);
+
+            r = engine.Evaluate(engine.Parse("{\"a\":1/0}"));
+            Assert.IsTrue(r.IsError);
+
+            // 正常 JSON 不受影响
+            r = engine.Evaluate(engine.Parse("{\"a\":1,\"b\":2}"));
+            Assert.IsFalse(r.IsError);
+            Assert.AreEqual("{\"a\":1,\"b\":2}", r.ToString());
+
+            AssertRoundTrip("{\"a\":1,\"b\":2}");
+            AssertRoundTrip("{\"a\":1, \"b\":1/0}");
+        }
+
+        [Test]
+        public void P0_3_number_out_of_range_parse_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // P0-3 回归: 超出 decimal 范围的纯数字必须在 Parse 阶段抛出明确异常，
+            // 而不是在 Evaluate 时抛 KeyNotFoundException(修复前末位数字被误当作单位)
+            try {
+                engine.Parse("99999999999999999999999999999");
+                throw new Exception("P0-3 回归失败: 29 位纯数字应在 Parse 阶段抛出 ArgumentException");
+            } catch (ArgumentException ex) {
+                Assert.IsTrue(ex.Message.Contains("is invalid or out of range"));
+            }
+
+            // ParseWithoutError 不抛异常，仅返回 null
+            Assert.IsNull(engine.ParseWithoutError("99999999999999999999999999999"));
+
+            // 边界内数值仍可正常解析求值
+            var r = engine.Evaluate(engine.Parse("9999999999999999999999999999"));
+            Assert.IsFalse(r.IsError);
+            Assert.AreEqual(9999999999999999999999999999m, r.NumberValue);
+        }
+
+        [Test]
+        public void P0_4_number_unit_overflow_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // P0-4 回归: 单位换算放大溢出应返回 #NUM! 错误操作数，而不是抛出 OverflowException
+            var r = engine.Evaluate(engine.Parse("9999999999999999999999999999KM3"));
+            Assert.IsTrue(r.IsError);
+            Assert.AreEqual("Function 'Num' Num error!", r.ErrorMsg);
+
+            // 溢出后 TryEvaluate 返回默认值，并填充 LastError
+            var d = engine.TryEvaluate("9999999999999999999999999999KM3", -1.0);
+            Assert.AreEqual(-1.0, d, 10);
+            Assert.IsNotNull(engine.LastError);
+
+            // 未溢出的单位换算不受影响
+            r = engine.Evaluate(engine.Parse("1KM"));
+            Assert.IsFalse(r.IsError);
+            Assert.AreEqual(1000m, r.NumberValue);
+
+            // 单位数值同样支持往返
+            AssertRoundTrip("1KM");
+            AssertRoundTrip("1.5M");
+        }
+
+        [Test]
+        public void P1_1_arrayjson_key_escape_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // P1-1 回归: 含引号/空格的 key 必须按字符串字面量转义输出。
+            // 修复前 ToString 输出 [{a\"b:1}]，再次 Parse 会抛 InvalidCastException
+            var f = engine.Parse("{\"a\\\"b\":1}");
+            Assert.AreEqual("{\"a\\\"b\":1}", f.ToString());
+            AssertRoundTrip("{\"a\\\"b\":1}");
+
+            f = engine.Parse("{\"a b\":1}");
+            Assert.AreEqual("{\"a b\":1}", f.ToString());
+            AssertRoundTrip("{\"a b\":1}");
+
+            // 含换行转义的 key
+            AssertRoundTrip("{\"a\\nb\":1}");
+
+            // 单引号字面量同样解转义，输出统一规范化为双引号
+            Assert.AreEqual("{\"a'b\":1}", engine.Parse("{\'a\\\'b\':1}").ToString());
+        }
+
+        [Test]
+        public void P1_2_diyfunction_error_propagation_test()
+        {
+            // P1-2 回归: 自定义函数的参数为错误操作数时必须在引擎内被拦截。
+            // 修复前错误操作数被直接传入 ExecuteDiyFunction，访问 NumberValue 会抛 NotImplementedException
+            Cylinder engine = new Cylinder(10, 15);
+            var r = engine.Evaluate(engine.Parse("求面积(1/0)"));
+            Assert.IsTrue(r.IsError);
+            Assert.AreEqual("Function '/' Div 0 error!", r.ErrorMsg);
+
+            // 溢出后 TryEvaluate 返回默认值，并填充 LastError
+            var d = engine.TryEvaluate("求面积(1/0)", -1.0);
+            Assert.AreEqual(-1.0, d, 10);
+            Assert.IsNotNull(engine.LastError);
+
+            // 正常参数不受影响
+            r = engine.Evaluate(engine.Parse("求面积(2)"));
+            Assert.IsFalse(r.IsError);
+            Assert.IsTrue(Math.Abs((double)r.NumberValue - 4 * Math.PI) < 1e-9);
+        }
+
+        [Test]
+        public void P1_3_string_unicode_escape_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // P1-3 回归: \uXXXX 十六进制转义必须被解析。
+            // 修复前 "\u000b" 被解析成 "u000b"(丢弃 \u 标记与后 4 位)
+            var r = engine.Evaluate(engine.Parse("\"a\\u0041b\""));
+            Assert.AreEqual("aAb", r.TextValue);
+
+            // 控制字符往返: 0x0B(\v) / 0x07(\a) 由 Function_ValueText 转义输出，重新解析必须还原
+            AssertRoundTrip("\"a\\u000bb\"");
+            AssertRoundTrip("\"a\\u0007b\"");
+
+            // 不完整转义按原样保留，不吞字符
+            r = engine.Evaluate(engine.Parse("\"a\\ub\""));
+            Assert.AreEqual("aub", r.TextValue);
+        }
     }
 }
