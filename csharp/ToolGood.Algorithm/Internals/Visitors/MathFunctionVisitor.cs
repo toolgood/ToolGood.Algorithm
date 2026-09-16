@@ -144,37 +144,38 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			if(decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
 				return new Function_Number(Operand.Create(d));
 			}
-			ReadOnlySpan<char> txt;
-			string unit;
-			var len = span.Length;
-			if(len > 3 && span[len - 3] >= 'A') {
-				txt = span.Slice(0, len - 3);
-				unit = span.Slice(len - 3).ToString();
-			} else if(len > 2 && span[len - 2] >= 'A') {
-				txt = span.Slice(0, len - 2);
-				unit = span.Slice(len - 2).ToString();
-			} else if(len > 1 && IsUnitLetter(span[len - 1])) {
-				// 单字符单位(如 M/L/G/T): 仅当末位确实为字母时才作为单位切分
-				// 否则像 28 位以上的纯数字因超出 decimal 范围导致 TryParse 失败时, 会把末位数字误当作单位
-				txt = span.Slice(0, len - 1);
-				unit = span.Slice(len - 1).ToString();
-			} else {
-				throw new ArgumentException($"Number '{text}' is invalid or out of range.");
+			// 解析失败只可能是: 数值超出 decimal 范围, 或数值后带单位。
+			// 仅当后缀确实命中单位字典时才按单位切分, 否则一律视为非法数值,
+			// 避免把指数记法的 'E' 或超长数字的末位误当作单位。
+			if(TrySplitUnit(span, out var txt, out var unit)) {
+				var d2 = decimal.TryParse(txt, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
+					? d3
+					: throw new ArgumentException($"Number '{text}' is invalid or out of range.");
+				return new Function_Number2(d2, unit);
 			}
-			var d2 = decimal.TryParse(txt, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
-				? d3
-				: throw new ArgumentException($"Number '{text}' is invalid or out of range.");
-			return new Function_Number2(d2, unit);
+			throw new ArgumentException($"Number '{text}' is invalid or out of range.");
 		}
 
 		/// <summary>
-		/// 判断字符是否为 ASCII 字母。
-		/// 注意 context.GetText() 返回的是原始文本(保留大小写), 不能只判断大写区间,
-		/// 否则小写的单字符单位(如 m/g/t/l) 会被误判为非法数字。
+		/// 按 Function_Number2 实际支持的单位字典切分数值后缀。
+		/// 必须校验完整后缀(而非仅首字母): 否则 "1E29" 这类超出 decimal 范围的指数记法
+		/// 会被切成数值 1 + 单位 "E29", 报出"单位非法"这种与 "1E+30" 不一致的误导性错误。
 		/// </summary>
-		private static bool IsUnitLetter(char c)
+		private static bool TrySplitUnit(ReadOnlySpan<char> span, out ReadOnlySpan<char> txt, out string unit)
 		{
-			return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+			var dict = Function_Number2.GetUnitTypedict();
+			for(int n = 3; n >= 1; n--) {
+				if(span.Length <= n) continue;
+				var candidate = span.Slice(span.Length - n).ToString();
+				if(dict.ContainsKey(candidate)) {
+					txt = span.Slice(0, span.Length - n);
+					unit = candidate;
+					return true;
+				}
+			}
+			txt = span;
+			unit = null;
+			return false;
 		}
 
 		public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
@@ -541,9 +542,12 @@ namespace ToolGood.Algorithm.Internals.Visitors
 				case mathLexer.YEAR: return new Function_YEAR(funcs);
 				case mathLexer.YEARFRAC: return new Function_YEARFRAC(funcs);
 				case mathLexer.PARAMETER:
+					// 自定义函数: 函数名由 PARAMETER 词法单元承载
+					return new Function_DiyFunction(context.PARAMETER().GetText(), funcs);
 				default:
-					var funName = context.PARAMETER().GetText();
-					return new Function_DiyFunction(funName, funcs);
+					// 语法新增内建函数却未在此补充分支时必须显式失败,
+					// 否则会被静默降级为自定义函数, 把错误推迟到运行期执行阶段
+					throw new ArgumentException($"Function '{context.f?.Text}' is not implemented.");
 			}
 		}
 

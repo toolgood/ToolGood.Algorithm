@@ -788,5 +788,78 @@ namespace ToolGood.Algorithm.Test.Value
             r = engine.Evaluate(engine.Parse("\"a\\ub\""));
             Assert.AreEqual("aub", r.TextValue);
         }
+
+        [Test]
+        public void Visitors_P1_1_num_unit_split_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // Visitors P1-1 回归: 超出 decimal 范围的指数记法必须与 "1E+30" 一致地在 Parse 阶段失败。
+            // 修复前单位切分只判断后缀首字母是否为字母，把 'E' 当作单位首字母切出
+            // 数值 1 + 单位 "E29"，报出误导性的"Number unit 'E29' is invalid!"。
+            foreach(var exp in new[] { "1E29", "12E29", "1e29", "1E+30", "1E300" }) {
+                try {
+                    engine.Parse(exp);
+                    throw new Exception($"Visitors P1-1 回归失败: [{exp}] 应在 Parse 阶段抛出 ArgumentException");
+                } catch(ArgumentException ex) {
+                    if(ex.Message.Contains("unit") == true) {
+                        throw new Exception($"Visitors P1-1 回归失败: [{exp}] 报出单位错误而非数值越界: {ex.Message}");
+                    }
+                }
+                Assert.IsNull(engine.ParseWithoutError(exp));
+            }
+
+            // 范围内的指数记法走数值分支，不受单位切分影响
+            var r = engine.Evaluate(engine.Parse("1E2"));
+            Assert.IsFalse(r.IsError);
+            Assert.AreEqual(100m, r.NumberValue);
+            r = engine.Evaluate(engine.Parse("1.5e2"));
+            Assert.IsFalse(r.IsError);
+            Assert.AreEqual(150m, r.NumberValue);
+
+            // 长度 1/2/3 的单位后缀都必须按完整后缀切分(不能只按末 2/3 位)
+            Assert.AreEqual("1KM2", engine.Parse("1KM2").ToString());
+            Assert.AreEqual("1M2", engine.Parse("1M2").ToString());
+            Assert.AreEqual("1ML", engine.Parse("1ML").ToString());
+            Assert.AreEqual("1KG", engine.Parse("1KG").ToString());
+            Assert.AreEqual("1T", engine.Parse("1T").ToString());
+            Assert.AreEqual("1L", engine.Parse("1L").ToString());
+
+            // 单位数值语义不变，大小写单位等价(token 文本保留原样，需按不区分大小写匹配)
+            Assert.AreEqual(1000m, engine.Evaluate(engine.Parse("1KM")).NumberValue);
+            Assert.AreEqual(1000m, engine.Evaluate(engine.Parse("1km")).NumberValue);
+            Assert.AreEqual(1234m, engine.Evaluate(engine.Parse("1234M")).NumberValue);
+            Assert.AreEqual(12m, engine.Evaluate(engine.Parse("12M")).NumberValue);
+            Assert.AreEqual(1m, engine.Evaluate(engine.Parse("1m")).NumberValue);
+
+            AssertRoundTrip("1KM2");
+            AssertRoundTrip("1ML");
+            AssertRoundTrip("12M");
+            AssertRoundTrip("1E2");
+        }
+
+        [Test]
+        public void Visitors_P1_2_function_branch_split_test()
+        {
+            // Visitors P1-2 回归: VisitFunction_fun 的 PARAMETER(自定义函数) 分支拆分后行为必须不变，
+            // 未实现的内建函数 token 不再与 PARAMETER 共用分支而静默降级为自定义函数。
+            Cylinder engine = new Cylinder(10, 15);
+            var r = engine.Evaluate(engine.Parse("求面积(2)"));
+            Assert.IsFalse(r.IsError);
+            Assert.IsTrue(Math.Abs((double)r.NumberValue - 4 * Math.PI) < 1e-9);
+
+            // 自定义函数与内建函数混用时各走各的分支
+            r = engine.Evaluate(engine.Parse("求面积(2) + ABS(-1)"));
+            Assert.IsFalse(r.IsError);
+            Assert.IsTrue(Math.Abs((double)r.NumberValue - (4 * Math.PI + 1)) < 1e-9);
+
+            // 未注册的自定义函数在调用时给出明确错误，而不是静默返回结果
+            var engine2 = new AlgorithmEngine();
+            r = engine2.Evaluate(engine2.Parse("求面积(2)"));
+            Assert.IsTrue(r.IsError);
+            Assert.AreEqual("DiyFunction [求面积] is missing.", r.ErrorMsg);
+
+            // 自定义函数名参与往返
+            AssertRoundTrip("求面积(2)");
+        }
     }
 }
