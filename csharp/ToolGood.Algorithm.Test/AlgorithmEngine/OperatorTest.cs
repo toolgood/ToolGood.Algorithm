@@ -1,3 +1,4 @@
+using System;
 using PetaTest;
 
 namespace ToolGood.Algorithm.Test.Operator
@@ -126,6 +127,70 @@ namespace ToolGood.Algorithm.Test.Operator
             engine = new AlgorithmEngine();
             engine.TryEvaluate("79228162514264337593543950335 / 0.1", 0.0);
             Assert.IsTrue(engine.LastError != null);
+        }
+
+        /// <summary>
+        /// 往返一致性校验：Parse(exp) -> ToString 还原 -> 重新 Parse 求值，
+        /// 要求还原前后语义完全一致(结果值 + 是否错误)。
+        /// 用于防止 ToString 丢失子表达式括号导致的语义漂移。
+        /// </summary>
+        private static void AssertRoundTrip(string exp)
+        {
+            var engine1 = new AlgorithmEngine();
+            var function = engine1.Parse(exp);
+            var text = function.ToString();
+            var result1 = engine1.Evaluate(function);
+
+            var engine2 = new AlgorithmEngine();
+            Operand result2;
+            try {
+                result2 = engine2.Evaluate(engine2.Parse(text));
+            } catch (Exception ex) {
+                throw new Exception($"往返测试失败: [{exp}] 还原为 [{text}] 后重新求值抛出 {ex.GetType().Name}: {ex.Message}");
+            }
+
+            if(result1.IsError != result2.IsError || result1.ToString() != result2.ToString()) {
+                throw new Exception($"往返测试失败: [{exp}] 还原为 [{text}]，原结果=[{result1}](IsError={result1.IsError})，往返结果=[{result2}](IsError={result2.IsError})");
+            }
+        }
+
+        [Test]
+        public void tostring_roundtrip_test()
+        {
+            // Sub 减法非结合：右操作数为同优先级或更低优先级表达式时必须保留括号
+            AssertRoundTrip("1 - (2 - 3)");
+            AssertRoundTrip("10 - (2 + 3)");
+            AssertRoundTrip("2 - (3 + 4)");
+            AssertRoundTrip("(1 + 2) - (3 - 4)");
+            AssertRoundTrip("1 - (2 - (3 - 4))");
+
+            // Add / Connect：与连接运算符 & 及比较运算符混用
+            AssertRoundTrip("1 + (2 & 3)");
+            AssertRoundTrip("10 - (2 & 3)");
+            AssertRoundTrip("(1 & 2) + 3");
+            AssertRoundTrip("'a' & (1 - 2)");
+            AssertRoundTrip("1 & (2 - 3)");
+            AssertRoundTrip("(1 > 0) + 1");
+            AssertRoundTrip("(1 > 0) & 'a'");
+
+            // AND / OR：与低优先级逻辑运算符混用
+            AssertRoundTrip("false() && (true() || true())");
+            AssertRoundTrip("true() || (false() && true())");
+
+            // 回归：乘除模与算术混合(修复前已正确，防止修复引入退化)
+            AssertRoundTrip("(2 + 3) * 4");
+            AssertRoundTrip("8 / (2 * 2)");
+            AssertRoundTrip("2 * (3 * 4)");
+            AssertRoundTrip("1 + 2 * 3");
+            AssertRoundTrip("(1 + 2) * 3");
+            AssertRoundTrip("(1 - 2) * (3 - 4)");
+
+            // 回归：字符串连接链
+            AssertRoundTrip("'a' & 'b' & 'c'");
+            AssertRoundTrip("'a' & ('b' & 'c')");
+
+            // 回归：IF 嵌套
+            AssertRoundTrip("true() && (1 > 0 ? true() : false())");
         }
     }
 }

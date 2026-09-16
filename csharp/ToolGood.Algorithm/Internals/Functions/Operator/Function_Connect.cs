@@ -27,9 +27,9 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
 			if(addBrackets) stringBuilder.Append('(');
-			func1.ToString(stringBuilder, false);
+			func1.ToString(stringBuilder, true);
 			stringBuilder.Append(" & ");
-			func2.ToString(stringBuilder, false);
+			func2.ToString(stringBuilder, true);
 			if(addBrackets) stringBuilder.Append(')');
 		}
 		public override OperandType GetResultType()
