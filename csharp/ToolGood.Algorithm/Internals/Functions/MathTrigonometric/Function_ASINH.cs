@@ -19,7 +19,11 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
         {
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
-            return Operand.Create(MathEx.Asinh(args1.NumberValue));
+            try {
+                return Operand.Create(MathEx.Asinh(args1.NumberValue));
+            } catch (OverflowException) {
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{

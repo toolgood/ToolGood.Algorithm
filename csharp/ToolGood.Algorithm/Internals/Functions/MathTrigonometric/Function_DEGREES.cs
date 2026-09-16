@@ -20,8 +20,13 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
             var z = args1.NumberValue;
-            var r = (z / MathEx.PI * 180);
-            return Operand.Create(r);
+            try {
+                var r = (z / MathEx.PI * 180);
+                return Operand.Create(r);
+            } catch (OverflowException) {
+                // 弧度值超过约 1.38e26 时换算结果超出 decimal 可表示范围
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{

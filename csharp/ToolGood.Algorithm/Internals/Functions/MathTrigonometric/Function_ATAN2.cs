@@ -24,7 +24,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             if (args1.NumberValue == 0 && args2.NumberValue == 0) {
                 return Div0Error();
             }
-            return Operand.Create(MathEx.Atan2(args2.NumberValue, args1.NumberValue));
+            try {
+                return Operand.Create(MathEx.Atan2(args2.NumberValue, args1.NumberValue));
+            } catch (OverflowException) {
+                // 两参数量级相差过大时 y/x 本身会溢出 decimal
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{

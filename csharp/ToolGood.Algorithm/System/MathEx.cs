@@ -63,6 +63,23 @@ namespace System
 		private const decimal TwoPi = 6.28318530717958647692528676655900576839433879875021M;
 
 		/// <summary>
+		///     Represents ln(2).
+		/// </summary>
+		private const decimal Ln2 = 0.6931471805599453094172321215M;
+
+		/// <summary>
+		///     x*x 仍然安全(不溢出)的上限。
+		///     超过该值时需用等价变形代替直接平方,避免中间量溢出 decimal。
+		/// </summary>
+		private const decimal SquareSafeMax = 100000000000000.0M;
+
+		/// <summary>
+		///     |x| 超过该值后 e^-|x| 小到可忽略(相对误差远小于 decimal 精度),
+		///     双曲函数可改用 e^(|x|-ln2) 计算,避免 Exp(x) 提前上溢/下溢。
+		/// </summary>
+		private const decimal HyperbolicSafeMax = 60.0M;
+
+		/// <summary>
 		///     Analogy of Math.Acos.
 		/// </summary>
 		/// <param name="x">The value to get the arcus cosinus value from.</param>
@@ -87,6 +104,12 @@ namespace System
 		{
 			if(x < 1) {
 				throw new ArgumentOutOfRangeException(nameof(x), "x must be >= 1");
+			}
+			// |x| 很大时 x*x 会溢出 decimal,改用等价变形:
+			// acosh(x)=ln(x+sqrt(x²-1))=ln(x)+ln(1+sqrt(1-1/x²))
+			if(x > SquareSafeMax) {
+				var inverted = One / x;
+				return Log(x) + Log(One + Sqrt(One - inverted * inverted));
 			}
 			return Log(x + Sqrt(x * x - 1));
 		}
@@ -143,6 +166,16 @@ namespace System
 
 		public static decimal Asinh(decimal x)
 		{
+			// 奇函数,先归一到非负,便于用等价变形规避 x*x 溢出
+			if(x < Zero) {
+				return -Asinh(-x);
+			}
+			// x 很大时 x*x 会溢出 decimal,改用等价变形:
+			// asinh(x)=ln(x+sqrt(x²+1))=ln(x)+ln(1+sqrt(1+1/x²))
+			if(x > SquareSafeMax) {
+				var inverted = One / x;
+				return Log(x) + Log(One + Sqrt(One + inverted * inverted));
+			}
 			return Log(x + Sqrt(x * x + 1));
 		}
 		/// <summary>
@@ -157,9 +190,18 @@ namespace System
 					return Zero;
 				case One:
 					return QuarterPi;
-				default:
-					return Asin(x / Sqrt(One + x * x));
 			}
+
+			// |x|>1 时用 atan(x)=±π/2-atan(1/x) 归约到 [-1,1],
+			// 既避免 1+x*x 溢出 decimal,又保证级数收敛速度
+			if(x > One) {
+				return HalfPi - Atan(One / x);
+			}
+			if(x < -One) {
+				return -Atan(-x);
+			}
+
+			return Asin(x / Sqrt(One + x * x));
 		}
 
 		/// <summary>
@@ -194,9 +236,32 @@ namespace System
 
 		public static decimal Atanh(decimal x)
 		{
-			if(Math.Abs(x) >= 1) {
+			// 不用 Math.Abs:它会因 decimal.MinValue 取绝对值溢出而抛异常
+			if(x >= One || x <= -One) {
 				throw new ArgumentOutOfRangeException(nameof(x), "x must be |x|<1");
 			}
+
+			// |x| 较小时改用级数 atanh(x)=x+x³/3+x⁵/5+...
+			// 0.5*ln((1+x)/(1-x)) 在 x→0 时算式趋近 ln(1),会被 Log 在近 1 处的
+			// 收敛下限(约 1e-22)吞掉有效位,例如 atanh(1e-15) 只能得到 8 位有效数字
+			if(x <= Half && x >= -Half) {
+				var xx = x * x;
+				var result = x;
+				var term = x;
+				var k = 3;
+				decimal cachedResult;
+				do {
+					cachedResult = result;
+					term *= xx;
+					result += term / k;
+					k += 2;
+				}
+				// |x|<=0.5 时每项按 x² 递减,约 50 项即收敛,收敛后由 cachedResult == result 退出
+				while(cachedResult != result && k < 2 * MaximumIterations);
+
+				return result;
+			}
+
 			return 0.5m * Log((1 + x) / (1 - x));
 		}
 
@@ -207,12 +272,10 @@ namespace System
 		/// <returns>The cosinus value from the given value.</returns>
 		public static decimal Cos(decimal x)
 		{
-			while(x > TwoPi) {
-				x -= TwoPi;
-			}
-
-			while(x < -TwoPi) {
-				x += TwoPi;
+			// O(1) 归约:一次性取模,避免原先按 2π 逐次递减的线性循环
+			// (Cos(1e9) 需迭代约 1.6e8 次、耗时数秒;Cos(1e12) 更久,构成计算型 DoS)
+			if(x > TwoPi || x < -TwoPi) {
+				x -= Math.Floor(x / TwoPi) * TwoPi;
 			}
 
 			// Now x is in (-2pi,2pi)
@@ -250,6 +313,12 @@ namespace System
 		/// <returns>The cosinus h value from the given value.</returns>
 		public static decimal Cosh(decimal x)
 		{
+			var absolute = x < Zero ? -x : x;
+			if(absolute > HyperbolicSafeMax) {
+				// cosh(x)=(e^|x|+e^-|x|)/2≈e^(|x|-ln2),
+				// 把可表示上界由 ln(decimal.MaxValue)≈66.542 提升到 ln(2*decimal.MaxValue)≈67.235
+				return Exp(absolute - Ln2);
+			}
 			var y = Exp(x);
 			var yy = One / y;
 			return (y + yy) * Half;
@@ -306,7 +375,21 @@ namespace System
 				throw new ArgumentException("x must be greater than zero");
 			}
 
-			var count = 0;
+			// ln(1)=0。必须短路:归约中 EInverted*E 的舍入误差会把 x 变成 1-1e-28,
+			// 最终把 ln(1) 算成 1e-28 而不是 0
+			if(x == One) {
+				return Zero;
+			}
+
+			// O(1) 归约:先用 double 对数估算数量级并一次性缩放,再用下面的循环做微调,
+			// 避免原先按 EInverted/E 逐次乘除的线性循环(最大约 66 次)
+			var count = (int)Math.Floor(Math.Log((double)x));
+			if(count > 0) {
+				x /= PowerN(E, count);
+			} else if(count < 0) {
+				x *= PowerN(E, -count);
+			}
+
 			while(x >= One) {
 				x *= EInverted;
 				count++;
@@ -474,14 +557,36 @@ namespace System
 		/// <returns>The sinus function value from the given value.</returns>
 		public static decimal Sin(decimal x)
 		{
-			var cos = Cos(x);
-			var moduleOfSin = Sqrt(One - cos * cos);
-			var sineIsPositive = IsSignOfSinusPositive(x);
-			if(sineIsPositive) {
-				return moduleOfSin;
+			// O(1) 归约到 [-π,π],避免按 2π 逐次递减的线性循环
+			if(x > PI || x < -PI) {
+				x -= Math.Floor((x + PI) / TwoPi) * TwoPi;
 			}
 
-			return -moduleOfSin;
+			// 利用 sin(π-x)=sin(x) 把参数压到 [-π/2,π/2]:
+			// 一方面级数在此区间收敛最快,另一方面避免原先 1-cos²x 的灾难性抵消
+			// (小角度时 cos≈1,1-cos² 相减后有效位全部丢失,sin(1e-15) 会被算成 0)
+			if(x > HalfPi) {
+				x = PI - x;
+			} else if(x < -HalfPi) {
+				x = -PI - x;
+			}
+
+			// sin(x)=x-x³/3!+x⁵/5!-...
+			var xx = x * x;
+			var result = x;
+			var term = x;
+			var i = 1;
+			decimal cachedResult;
+			do {
+				cachedResult = result;
+				term *= -xx / (2 * i * (2 * i + 1));
+				result += term;
+				i++;
+			}
+			// 归约后 x 属于 [-π/2,π/2],级数约13次即收敛,收敛后由 cachedResult == result 退出
+			while(cachedResult != result && i < MaximumIterations);
+
+			return result;
 		}
 
 		/// <summary>
@@ -491,6 +596,15 @@ namespace System
 		/// <returns>The sinus h function value from the given value.</returns>
 		public static decimal Sinh(decimal x)
 		{
+			// 奇函数,先归一到非负,避免 Exp(x) 下溢为 0 后 1/y 除零
+			if(x < Zero) {
+				return -Sinh(-x);
+			}
+			if(x > HyperbolicSafeMax) {
+				// sinh(x)=(e^x-e^-x)/2≈e^(x-ln2),
+				// 把可表示上界由 ln(decimal.MaxValue)≈66.542 提升到 ln(2*decimal.MaxValue)≈67.235
+				return Exp(x - Ln2);
+			}
 			var y = Exp(x);
 			var yy = One / y;
 			return (y - yy) * Half;
@@ -562,41 +676,5 @@ namespace System
 			return Math.Abs(x - longValue) <= Epsilon;
 		}
 
-		/// <summary>
-		/// Checks whether the sign of the sinus value is positive.
-		/// </summary>
-		/// <param name="x">The value to check.</param>
-		/// <returns>A <c>bool</c> value indicating whether the sign of the sinus value is positive or not.</returns>
-		private static bool IsSignOfSinusPositive(decimal x)
-		{
-			// Truncating to [-2*PI;2*PI]
-			while(x >= TwoPi) {
-				x -= TwoPi;
-			}
-
-			while(x <= -TwoPi) {
-				x += TwoPi;
-			}
-
-			// Now x is in [-2*PI;2*PI]
-			if(x >= -TwoPi && x <= -PI) {
-				return true;
-			}
-
-			if(x >= -PI && x <= Zero) {
-				return false;
-			}
-
-			if(x >= Zero && x <= PI) {
-				return true;
-			}
-
-			if(x >= PI && x <= TwoPi) {
-				return false;
-			}
-
-			// Will not be reached.
-			throw new ArgumentException(nameof(x));
-		}
 	}
 }

@@ -20,10 +20,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 			var args1 = GetNumber_1(engine, tempParameter);
 			if(args1.IsErrorOrNone) { return args1; }
 			var d = args1.NumberValue;
-			if(Math.Abs(d) <= 1) {
-				return ParameterError(1);
+			// 不能写成 Math.Abs(d) <= 1:decimal.MinValue 取绝对值会溢出抛异常
+			if(d >= -1 && d <= 1) {
+				return NumError();
 			}
-			return Operand.Create(0.5m * MathEx.Log((d + 1) / (d - 1)));
+			// acoth(d)=atanh(1/d),用倒数形式可避免大 d 时 (d+1)/(d-1) 饱和为 1 导致结果恒为 0
+			return Operand.Create(MathEx.Atanh(1m / d));
 		}
 		public override OperandType GetResultType()
 		{

@@ -18,8 +18,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
 		public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
 		{
 			var args1 = GetNumber_1(engine, tempParameter);
-			if (args1.IsErrorOrNone) { return args1; }
-			return Operand.Create(MathEx.PI / 2 - MathEx.Atan(args1.NumberValue));
+            if (args1.IsErrorOrNone) { return args1; }
+            try {
+                return Operand.Create(MathEx.PI / 2 - MathEx.Atan(args1.NumberValue));
+            } catch (OverflowException) {
+                return NumError();
+            }
 		}
 		public override OperandType GetResultType()
 		{

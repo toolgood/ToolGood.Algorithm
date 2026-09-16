@@ -20,9 +20,12 @@ namespace ToolGood.Algorithm.Internals.Functions.MathTrigonometric
             var args1 = GetNumber_1(engine, tempParameter);
             if (args1.IsErrorOrNone) { return args1; }
             var x = args1.NumberValue;
-            // decimal 上限约 7.9e28,|x|>=66 时 e^|x| 溢出,cosh 结果超出可表示范围
-            if (x >= 66 || x <= -66) { return ParameterError(1); }
-            return Operand.Create(MathEx.Cosh(x));
+            try {
+                return Operand.Create(MathEx.Cosh(x));
+            } catch (OverflowException) {
+                // |x| 超过约 67.235(即 ln(2*decimal.MaxValue))时结果本身超出 decimal 可表示范围
+                return NumError();
+            }
         }
 		public override OperandType GetResultType()
 		{
