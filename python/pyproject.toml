@@ -19,24 +19,8 @@ classifiers = [
 [project.optional-dependencies]
 test = ["pytest>=7"]
 
-[tool.setuptools]
-packages = [
-    "toolgood_algorithm",
-    "toolgood_algorithm.calculation_logic",
-    "toolgood_algorithm.enums",
-    "toolgood_algorithm.internals",
-    "toolgood_algorithm.internals.functions",
-    "toolgood_algorithm.internals.visitors",
-    "toolgood_algorithm.lit_json",
-    "toolgood_algorithm.math",
-    "toolgood_algorithm.math_net",
-    "toolgood_algorithm.math_net.distributions",
-    "toolgood_algorithm.math_net.root_finding",
-    "toolgood_algorithm.math_net.special_functions",
-    "toolgood_algorithm.math_net.statistics",
-    "toolgood_algorithm.operands",
-    "toolgood_algorithm.unit_conversion",
-]
+[tool.setuptools.packages.find]
+include = ["toolgood_algorithm*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

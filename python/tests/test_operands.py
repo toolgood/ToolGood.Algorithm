@@ -74,7 +74,7 @@ def test_lenient_json_parser():
 
 
 def test_key_value_list():
-    from toolgood_algorithm.operands.operand import KeyValue, OperandKeyValueList
+    from toolgood_algorithm.operands import KeyValue, OperandKeyValueList
 
     values = OperandKeyValueList()
     values.add_value(KeyValue("a", Operand.create(1)))

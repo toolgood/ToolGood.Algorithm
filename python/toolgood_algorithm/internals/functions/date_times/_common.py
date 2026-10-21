@@ -1,48 +1,22 @@
-"""date_times: shared helpers and base classes (kept out of the per-class files)."""
+"""date_times: shared helpers (the private base classes live next to this file).
+
+* ``_datetime1.py`` -> :class:`_DateTime1`
+* ``_datetime2.py`` -> :class:`_DateTime2`
+
+The classes are re-exported here so the function modules can keep importing
+them from ``_common``.
+"""
 from __future__ import annotations
+
 import calendar
 import datetime as _dt
 from decimal import ROUND_HALF_UP, Decimal
-from toolgood_algorithm.enums import OperandType
-from toolgood_algorithm.internals.functions.function_base import _require_args
-from toolgood_algorithm.internals.functions.function_1 import Function_1
-from toolgood_algorithm.internals.functions.function_2 import Function_2
-from toolgood_algorithm.operands.my_date import MyDate
+
+from toolgood_algorithm.internals.functions.date_times._datetime1 import _DateTime1
+from toolgood_algorithm.internals.functions.date_times._datetime2 import _DateTime2
 from toolgood_algorithm.internals.numeric import DECIMAL128, divide
+from toolgood_algorithm.operands.my_date import MyDate
 from toolgood_algorithm.operands.operand import Operand
-
-
-class _DateTime2(Function_2):
-    """Two parameter shell whose first argument is a date."""
-
-    def __init__(self, funcs, display_name: str):
-        if not isinstance(funcs, (list, tuple)):
-            funcs = [funcs]
-        _require_args(funcs, display_name, 2, 2)
-        super().__init__(funcs)
-
-    def get_result_type(self) -> OperandType:
-        return OperandType.DATE
-
-    def _get_parameter_types(self, none_engine, result, operand_type, op=None, val=None) -> None:
-        self.func1._get_parameter_types(none_engine, result, OperandType.DATE)
-        self.func2._get_parameter_types(none_engine, result, OperandType.NUMBER)
-
-
-class _DateTime1(Function_1):
-    """One parameter shell whose argument is a date."""
-
-    def __init__(self, funcs, display_name: str):
-        if not isinstance(funcs, (list, tuple)):
-            funcs = [funcs]
-        _require_args(funcs, display_name, 1, 1)
-        super().__init__(funcs)
-
-    def get_result_type(self) -> OperandType:
-        return OperandType.NUMBER
-
-    def _get_parameter_types(self, none_engine, result, operand_type, op=None, val=None) -> None:
-        self.func1._get_parameter_types(none_engine, result, OperandType.DATE)
 
 _EPOCH = _dt.datetime(1970, 1, 1)
 
@@ -107,3 +81,23 @@ def _ratio(days: Decimal, denominator: int) -> Decimal:
     return divide(days, Decimal(denominator), DECIMAL128).quantize(
         Decimal("1e-10"), rounding=ROUND_HALF_UP
     )
+
+
+__all__ = [
+    "_DateTime1",
+    "_DateTime2",
+    "_EPOCH",
+    "_UTC",
+    "_START_DATE_UTC_MS",
+    "_MAX_SERIAL_DAY",
+    "_MAX_SECONDS",
+    "_whole_days",
+    "_start_of_day",
+    "_month_days",
+    "_add_months",
+    "_add_years",
+    "_from_ms",
+    "_local_wall_clock",
+    "_create_utc",
+    "_ratio",
+]

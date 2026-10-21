@@ -1,60 +1,21 @@
-"""math_sum: shared helpers and base classes (kept out of the per-class files)."""
+"""math_sum: shared helpers (the private base classes live next to this file).
+
+* ``_sum_function_n.py`` -> :class:`_SumFunctionN`
+* ``_sum_xy.py``         -> :class:`_SumXY`
+
+The classes are re-exported here so the function modules can keep importing
+them from ``_common``.
+"""
 from __future__ import annotations
+
 import math
 from decimal import Decimal
+
 from toolgood_algorithm.enums import OperandType
-from toolgood_algorithm.internals.functions.function_base import _require_args
-from toolgood_algorithm.internals.functions.function_n import Function_N
 from toolgood_algorithm.internals.functions.function_util import flatten_to_number_list
+from toolgood_algorithm.internals.functions.math_sum._sum_function_n import _SumFunctionN
+from toolgood_algorithm.internals.functions.math_sum._sum_xy import _SumXY
 from toolgood_algorithm.internals.numeric import ZERO, divide
-from toolgood_algorithm.operands.operand import Operand
-
-
-class _SumFunctionN(Function_N):
-    """`Function_N` shell that validates arity and evaluates every argument."""
-
-    def __init__(self, funcs, name: str, minimum=1, maximum=None):
-        _require_args(funcs, name, minimum, maximum)
-        super().__init__(funcs)
-
-    def _collect(self, engine, tp):
-        args: list[Operand] = []
-        error = self.try_evaluate_all(engine, tp, args)
-        if error is not None:
-            return error, None
-        return None, args
-
-    def get_result_type(self) -> OperandType:
-        return OperandType.NUMBER
-
-
-class _SumXY(_SumFunctionN):
-    """Shared shell for the SUMX2MY2/SUMX2PY2/SUMXMY2 pairwise sums."""
-
-    def __init__(self, funcs, name: str):
-        super().__init__(funcs, name, 2, 2)
-
-    def _pair_values(self, engine, tp):
-        x_arg = self._get_array(engine, tp, 0)
-        if x_arg.is_error_or_none():
-            return x_arg, None, None
-        x_values: list[Decimal] = []
-        for item in x_arg.array_value():
-            if item.is_number():
-                x_values.append(item.number_value())
-
-        y_arg = self._get_array(engine, tp, 1)
-        if y_arg.is_error_or_none():
-            return y_arg, None, None
-        y_values: list[Decimal] = []
-        for item in y_arg.array_value():
-            if item.is_number():
-                y_values.append(item.number_value())
-        return None, x_values, y_values
-
-    def _get_parameter_types(self, none_engine, result, operand_type, op=None, val=None) -> None:
-        self.funcs[0]._get_parameter_types(none_engine, result, OperandType.ARRAY)
-        self.funcs[1]._get_parameter_types(none_engine, result, OperandType.ARRAY)
 
 _TWO = Decimal(2)
 
@@ -81,14 +42,14 @@ def _welford(values):
 
 def _flatten_numeric_args(args):
     """Collect numbers from the mixed argument shapes; ``None`` on error."""
-    values: list[Decimal] = []
+    values = []
     for item in args:
         if item.is_array():
             for elem in item.array_value():
                 if elem.is_number():
                     values.append(elem.number_value())
                 elif elem.is_array() or elem.is_json():
-                    sub: list[Decimal] = []
+                    sub = []
                     if not flatten_to_number_list(elem, sub):
                         return None
                     values.extend(sub)
@@ -127,7 +88,7 @@ def _try_parse_decimal(text: str):
     return value if value.is_finite() else None
 
 
-def _arg_array(self, engine, tp, index: int) -> Operand:
+def _arg_array(self, engine, tp, index: int):
     """``GetArray_<i>`` for arities the framework base classes don't expose."""
     value = getattr(self, f"func{index}").evaluate(engine, tp)
     return value if value.is_array() else self._convert_to_array(value, index)
@@ -168,3 +129,18 @@ def _extreme_parameter_types(func, none_engine, result) -> None:
     else:
         for item in funcs:
             item._get_parameter_types(none_engine, result, OperandType.NUMBER)
+
+
+__all__ = [
+    "_SumFunctionN",
+    "_SumXY",
+    "_TWO",
+    "_sum_values",
+    "_welford",
+    "_flatten_numeric_args",
+    "_extreme_value",
+    "_try_parse_decimal",
+    "_arg_array",
+    "_pow",
+    "_extreme_parameter_types",
+]

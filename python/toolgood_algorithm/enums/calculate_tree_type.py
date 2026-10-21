@@ -1,7 +1,6 @@
 """CalculateTreeType (C#: Enums/CalculateTreeType.cs)."""
 from __future__ import annotations
 
-from __future__ import annotations
 from enum import IntEnum
 
 
