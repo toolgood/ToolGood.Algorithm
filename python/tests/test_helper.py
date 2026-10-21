@@ -121,3 +121,101 @@ def test_condition_helpers():
     result = engine.evaluate(error)
     assert result.is_error()
     assert result.error_msg() == "boom"
+
+
+# ---------------------------------------------------------------------------
+# Ported from ``algorithmEngineHelper/AlgorithmEngineHelperTest.java``
+# ---------------------------------------------------------------------------
+def test_get_diy_names_test():
+    p = AlgorithmEngineHelper.get_diy_names("dd")
+    assert str(p.parameters[0]) == "dd"
+
+    p3 = AlgorithmEngineHelper.get_diy_names("dd")
+    assert str(p3.parameters[0]) == "dd"
+
+    p5 = AlgorithmEngineHelper.get_diy_names("ddd(d1,22)")
+    assert p5.functions[0].name == "ddd"
+    assert str(p5.parameters[0]) == "d1"
+
+    p6 = AlgorithmEngineHelper.get_diy_names("长")
+    assert str(p6.parameters[0]) == "长"
+
+    p7 = AlgorithmEngineHelper.get_diy_names("ddd+2")
+    assert str(p7.parameters[0]) == "ddd"
+
+    p8 = AlgorithmEngineHelper.get_diy_names(
+        "{\"A\": 0.6,\"B\": 0.4,\"C\": 0.6,\"E\": 0.33,\"F\": 0.29,\"Z\": 0.15\n"
+        ",\"EB\": 0.7,\"EE\": 0.65,\"EA\": 0.85,\"AB\": 1.0,\"BC\": 1.0,\"AA\":1.0\n"
+        ",\"EBC\": 1.15,\"BAB\": 1.25,\"BCB\": 1.25,\"BBC\": 1.25,\"CBB\": 1.25,\"EBA\": 1.2,\"AAA\": 1.4}[瓦楞]"
+    )
+    assert str(p8.parameters[0]) == "瓦楞"
+
+
+def test_is_parameter_test():
+    b = AlgorithmEngineHelper.is_parameter("false")
+    assert b is False
+
+    b = AlgorithmEngineHelper.is_parameter("f11")
+    assert b is True
+
+    b = AlgorithmEngineHelper.is_parameter("f11+1")
+    assert b is False
+
+    b = AlgorithmEngineHelper.is_parameter("f11++")
+    assert b is False
+
+
+def test_unit_conversion_test():
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "米", "千米", "测试")
+    assert b == Decimal("0.001")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "米", "分米", "测试")
+    assert b == Decimal("10")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "米", "厘米", "测试")
+    assert b == Decimal("100")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "米", "mm", "测试")
+    assert b == Decimal("1000")
+
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "m2", "dm2", "测试")
+    assert b == Decimal("100")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "m2", "cm2", "测试")
+    assert b == Decimal("10000")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "m2", "mm2", "测试")
+    assert b == Decimal("1000000")
+
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "m3", "dm3", "测试")
+    assert b == Decimal("1000")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "m3", "cm3", "测试")
+    assert b == Decimal("1000000")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "m3", "mm3", "测试")
+    assert b == Decimal("1000000000")
+
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "t", "kg", "测试")
+    assert b == Decimal("1000")
+    b = AlgorithmEngineHelper.unit_conversion(Decimal("1"), "t", "g", "测试")
+    assert b == Decimal("1000000")
+
+
+def test_check_formula_test():
+    b = AlgorithmEngineHelper.check_formula("1+1")
+    assert b is True
+
+    b = AlgorithmEngineHelper.check_formula("1+")
+    assert b is False
+
+    b = AlgorithmEngineHelper.check_formula("@123+1")
+    assert b is False
+
+
+def test_parse_formula_large_number_test():
+    # Java 使用 BigDecimal（任意精度），超大数字不会像 C# decimal 那样溢出
+    assert AlgorithmEngineHelper.parse_formula("12345678901234567890123456789012345") is not None
+    assert AlgorithmEngineHelper.parse_formula("12345678901234567890123456789012345M") is not None
+    assert AlgorithmEngineHelper.parse_formula("9999999999999999999999999999999") is not None
+
+    # 正常数字（含单位、科学计数法、负数）不受影响
+    assert AlgorithmEngineHelper.parse_formula("12CM") is not None
+    assert AlgorithmEngineHelper.parse_formula("10M2") is not None
+    assert AlgorithmEngineHelper.parse_formula("-5") is not None
+    assert AlgorithmEngineHelper.parse_formula("-5M") is not None
+    assert AlgorithmEngineHelper.parse_formula("3E5") is not None
+    assert AlgorithmEngineHelper.parse_formula("1234567890123456789012345678") is not None

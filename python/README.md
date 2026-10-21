@@ -90,15 +90,58 @@ engine.try_evaluate("json('{\"a\":1}')['a']", 0)   # 1
 
 ## 测试
 
-```bash
-# pytest（45 个用例，覆盖引擎/操作数/日期/helper/缓存/计算逻辑）
-python -m pytest tests -q
+Java 的 29 个 JUnit 测试类（802 个 `@Test`）已**逐用例移植**为 pytest：
 
-# 回放 java/ 下的 JUnit 断言（941 条断言，0 失败）
-python tests/java_conformance.py
+```
+tests/
+  test_compare.py              ← AlgorithmEngine/CompareTest
+  test_csharp.py               ← AlgorithmEngine/CsharpTest
+  test_csharp_security.py      ← AlgorithmEngine/CsharpSecurityTest
+  test_csharp_web.py           ← AlgorithmEngine/CsharpWebTest
+  test_date_times.py           ← AlgorithmEngine/DateTimesTest
+  test_engine_basic.py         ← AlgorithmEngine/EngineTest + Cylinder
+  test_financial.py            ← AlgorithmEngine/FinancialTest
+  test_flow.py                 ← AlgorithmEngine/FlowTest
+  test_math_base.py            ← AlgorithmEngine/MathBaseTest
+  test_math_sum.py             ← AlgorithmEngine/MathSumTest
+  test_math_sum2.py            ← AlgorithmEngine/MathSum2Test
+  test_math_transformation.py  ← AlgorithmEngine/MathTransformationTest
+  test_math_trigonometric.py   ← AlgorithmEngine/MathTrigonometricTest
+  test_operator.py             ← AlgorithmEngine/OperatorTest
+  test_strict_mode.py          ← AlgorithmEngine/StrictModeTest
+  test_string.py               ← AlgorithmEngine/StringTest
+  test_value.py                ← AlgorithmEngine/ValueTest
+  test_engine_ex.py            ← algorithmEngineEx/AlgorithmEngineExTest
+  test_helper.py               ← algorithmEngineHelper/AlgorithmEngineHelperTest
+  test_calculation_logic.py    ← calculationlogic/CalculationLogicTest
+  test_calculate_tree.py       ← conditionTrees/CalculateTreeTest
+  test_condition_tree.py       ← conditionTrees/ConditionTreeTest
+  test_my_date.py              ← helpers/MyDateTest
+  test_operands.py             ← operands/OperandsTest
+  test_parameter_types.py      ← parameterTypes/ParameterTypeTest
+  test_issues.py               ← tests/IssuesTest
+  test_unit_conversion.py      ← unitConversion/UnitConversionTest + UnitConversionPrecisionTest
+  test_function_cache.py       ← FunctionCacheTest
+  # 另有若干面向公共 API 的补充用例
+  test_engine.py、test_cache_and_logic.py
 ```
 
-`tests/java_conformance.py` 直接读取 `java/toolgood.algorithm/src/test/java`
-里的 `TryEvaluate(...) / assertEquals(...)` 语句并在 Python 引擎上重放，
-用于保证两个实现的输出一致；使用循环、自定义引擎子类的用例会被跳过
-（这些由 pytest 用例覆盖）。
+运行：
+
+```bash
+python -m pytest tests -q        # 845 passed, 1 skipped
+```
+
+唯一 skip 是 `MyDateTest.ToDateTime_Kind_Test`：Java 版可指定 `DateTimeZone`，
+Python 的 `MyDate.to_datetime()` 返回 naive `datetime`，无时区参数，无法等价表达。
+
+跨实现校验（可选）：
+
+```bash
+python tests/java_conformance.py
+# 直接读取 java/ 下的 JUnit 源码并回放 TryEvaluate/assertEquals
+# 941 条断言通过，0 失败
+```
+
+> 说明：`java_conformance.py` 是「回放器」，用于防止两份实现漂移；
+> 常规回归仍以 `pytest` 为准。两者当前均全绿。

@@ -336,6 +336,9 @@ class Function_ISEVEN(_IsBase):
             return Operand.TRUE if args1.number_value().to_integral_value() % 2 == 0 else Operand.FALSE
         return Operand.FALSE
 
+    def _get_parameter_types(self, none_engine, result, operand_type, op=None, val=None) -> None:
+        self.func1._get_parameter_types(none_engine, result, OperandType.NUMBER)
+
 
 @register("ISODD")
 class Function_ISODD(_IsBase):
@@ -347,6 +350,9 @@ class Function_ISODD(_IsBase):
         if args1.is_number():
             return Operand.TRUE if args1.number_value().to_integral_value() % 2 != 0 else Operand.FALSE
         return Operand.FALSE
+
+    def _get_parameter_types(self, none_engine, result, operand_type, op=None, val=None) -> None:
+        self.func1._get_parameter_types(none_engine, result, OperandType.NUMBER)
 
 
 @register("NOT")

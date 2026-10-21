@@ -100,3 +100,533 @@ def test_numeric_precision():
     big = Operand.create(10 ** 20)
     assert big.is_number()
     assert big.number_value() == Decimal(10 ** 20)
+
+
+# ---------------------------------------------------------------------------
+# Ported from java/.../operands/OperandsTest.java
+# ---------------------------------------------------------------------------
+
+def test_operand_static_properties():
+    assert Operand.VERSION.text_value() == "ToolGood.Algorithm 6.3"
+    assert Operand.TRUE.boolean_value() is True
+    assert Operand.FALSE.boolean_value() is False
+    assert Operand.ONE.int_value() == 1
+    assert Operand.ZERO.int_value() == 0
+    assert Operand.NULL.is_null()
+
+
+def test_operand_create_bool():
+    op = Operand.create(True)
+    assert op.is_boolean()
+    assert op.boolean_value() is True
+
+    op = Operand.create(False)
+    assert op.is_boolean()
+    assert op.boolean_value() is False
+
+
+def test_operand_create_int():
+    op = Operand.create(100)
+    assert op.is_number()
+    assert op.int_value() == 100
+    assert op.number_value() == Decimal("100")
+
+    op = Operand.create(-100)
+    assert op.is_number()
+    assert op.int_value() == -100
+
+    op = Operand.create(0)
+    assert op.is_number()
+    assert op.int_value() == 0
+
+    op = Operand.create(1000)
+    assert op.is_number()
+    assert op.int_value() == 1000
+
+    op = Operand.create(-1000)
+    assert op.is_number()
+    assert op.int_value() == -1000
+
+
+def test_operand_create_long():
+    op = Operand.create(100000)
+    assert op.is_number()
+    assert op.long_value() == 100000
+
+
+def test_operand_create_double():
+    op = Operand.create(3.14159)
+    assert op.is_number()
+    assert op.double_value() == pytest.approx(3.14159, abs=0.00001)
+
+
+def test_operand_create_decimal():
+    op = Operand.create(Decimal("3.14159"))
+    assert op.is_number()
+    assert op.number_value() == Decimal("3.14159")
+
+
+def test_operand_create_string():
+    op = Operand.create("hello")
+    assert op.is_text()
+    assert op.text_value() == "hello"
+
+    op = Operand.create("")
+    assert op.is_text()
+    assert op.text_value() == ""
+
+    op = Operand.create(None)
+    assert op.is_null()
+
+
+def test_operand_create_date_time():
+    dt = MyDate(2024, 1, 15, 10, 30, 45)
+    op = Operand.create(dt)
+    assert op.is_date()
+    assert op.date_value().Year == 2024
+    assert op.date_value().Month == 1
+    assert op.date_value().Day == 15
+    assert op.date_value().Hour == 10
+    assert op.date_value().Minute == 30
+    assert op.date_value().Second == 45
+
+
+def test_operand_create_time_span():
+    ts = MyDate(None, None, 1, 2, 3, 4)
+    op = Operand.create(ts)
+    assert op.is_date()
+    assert op.date_value().Day == 1
+    assert op.date_value().Hour == 2
+    assert op.date_value().Minute == 3
+    assert op.date_value().Second == 4
+
+
+def test_operand_create_list():
+    op = Operand.create([Operand.create(1), Operand.create(2), Operand.create(3)])
+    assert op.is_array()
+    assert len(op.array_value()) == 3
+    assert op.array_value()[0].int_value() == 1
+    assert op.array_value()[1].int_value() == 2
+    assert op.array_value()[2].int_value() == 3
+
+
+def test_operand_create_collection_string():
+    op = Operand.create([Operand.create("a"), Operand.create("b"), Operand.create("c")])
+    assert op.is_array()
+    assert len(op.array_value()) == 3
+    assert op.array_value()[0].text_value() == "a"
+    assert op.array_value()[1].text_value() == "b"
+    assert op.array_value()[2].text_value() == "c"
+
+
+def test_operand_create_collection_int():
+    op = Operand.create([Operand.create(1), Operand.create(2), Operand.create(3)])
+    assert op.is_array()
+    assert len(op.array_value()) == 3
+    assert op.array_value()[0].int_value() == 1
+    assert op.array_value()[1].int_value() == 2
+    assert op.array_value()[2].int_value() == 3
+
+
+def test_operand_create_collection_double():
+    op = Operand.create([Operand.create(1.1), Operand.create(2.2), Operand.create(3.3)])
+    assert op.is_array()
+    assert len(op.array_value()) == 3
+    assert op.array_value()[0].double_value() == pytest.approx(1.1, abs=0.001)
+    assert op.array_value()[1].double_value() == pytest.approx(2.2, abs=0.001)
+    assert op.array_value()[2].double_value() == pytest.approx(3.3, abs=0.001)
+
+
+def test_operand_create_collection_bool():
+    op = Operand.create([Operand.create(True), Operand.create(False), Operand.create(True)])
+    assert op.is_array()
+    assert len(op.array_value()) == 3
+    assert op.array_value()[0].boolean_value() is True
+    assert op.array_value()[1].boolean_value() is False
+    assert op.array_value()[2].boolean_value() is True
+
+
+def test_operand_create_json():
+    op = Operand.create_json('{"name":"test","value":123}')
+    assert op.is_json()
+
+    op = Operand.create_json("[1,2,3]")
+    assert op.is_json()
+
+    op = Operand.create_json("invalid json")
+    assert op.is_error()
+
+
+def test_operand_error():
+    op = Operand.error("test error")
+    assert op.is_error()
+    assert op.error_msg() == "test error"
+
+    op = Operand.error("error {0}", "param")
+    assert op.is_error()
+    assert op.error_msg() == "error param"
+
+
+def test_operand_create_null():
+    op = Operand.NULL
+    assert op.is_null()
+
+
+def test_operand_int_properties():
+    op = Operand.create(42)
+    assert op.type() == OperandType.NUMBER
+    assert op.is_number()
+    assert not op.is_null()
+    assert not op.is_text()
+    assert not op.is_boolean()
+    assert not op.is_array()
+    assert not op.is_date()
+    assert not op.is_json()
+    assert not op.is_error()
+
+
+def test_operand_int_to_number():
+    op = Operand.create(42)
+    result = op.to_number(None)
+    assert result.is_number()
+    assert result.int_value() == 42
+
+
+def test_operand_int_to_boolean():
+    op = Operand.create(0)
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is False
+
+    op = Operand.create(1)
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is True
+
+    op = Operand.create(2)
+    result = op.to_boolean(None)
+    assert result.is_error()
+
+
+def test_operand_int_to_text():
+    op = Operand.create(42)
+    result = op.to_text(None)
+    assert result.is_text()
+    assert result.text_value() == "42"
+
+
+def test_operand_int_to_string():
+    op = Operand.create(42)
+    assert str(op) == "42"
+
+
+def test_operand_double_properties():
+    op = Operand.create(3.14)
+    assert op.type() == OperandType.NUMBER
+    assert op.is_number()
+    assert op.double_value() == pytest.approx(3.14, abs=0.001)
+    assert op.number_value() == Decimal("3.14")
+    assert op.int_value() == 3
+    assert op.long_value() == 3
+
+
+def test_operand_double_to_boolean():
+    op = Operand.create(0.0)
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is False
+
+    op = Operand.create(1.0)
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is True
+
+    op = Operand.create(2.5)
+    result = op.to_boolean(None)
+    assert result.is_error()
+
+
+def test_operand_double_to_text():
+    op = Operand.create(3.14)
+    result = op.to_text(None)
+    assert result.is_text()
+    assert result.text_value() == "3.14"
+
+
+def test_operand_decimal_properties():
+    op = Operand.create(Decimal("123.456"))
+    assert op.type() == OperandType.NUMBER
+    assert op.is_number()
+    assert op.number_value() == Decimal("123.456")
+    assert op.double_value() == pytest.approx(123.456, abs=0.001)
+    assert op.int_value() == 123
+
+
+def test_operand_decimal_to_boolean():
+    op = Operand.create(Decimal("0"))
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is False
+
+    op = Operand.create(Decimal("1"))
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is True
+
+
+def test_operand_decimal_to_text():
+    op = Operand.create(Decimal("123.45"))
+    result = op.to_text(None)
+    assert result.is_text()
+    assert result.text_value() == "123.45"
+
+
+def test_operand_boolean_properties():
+    op = Operand.create(True)
+    assert op.type() == OperandType.BOOLEAN
+    assert op.is_boolean()
+    assert not op.is_number()
+    assert op.boolean_value() is True
+
+    op = Operand.create(False)
+    assert op.type() == OperandType.BOOLEAN
+    assert op.is_boolean()
+    assert op.boolean_value() is False
+
+
+def test_operand_boolean_to_number():
+    op = Operand.create(True)
+    result = op.to_number(None)
+    assert result.is_number()
+    assert result.int_value() == 1
+
+    op = Operand.create(False)
+    result = op.to_number(None)
+    assert result.is_number()
+    assert result.int_value() == 0
+
+
+def test_operand_boolean_to_text():
+    op = Operand.create(True)
+    result = op.to_text(None)
+    assert result.is_text()
+    assert result.text_value() == "TRUE"
+
+    op = Operand.create(False)
+    result = op.to_text(None)
+    assert result.is_text()
+    assert result.text_value() == "FALSE"
+
+
+def test_operand_boolean_to_string():
+    op = Operand.create(True)
+    assert str(op) == "true"
+
+    op = Operand.create(False)
+    assert str(op) == "false"
+
+
+def test_operand_string_properties():
+    op = Operand.create("hello world")
+    assert op.type() == OperandType.TEXT
+    assert op.is_text()
+    assert not op.is_number()
+    assert not op.is_boolean()
+    assert op.text_value() == "hello world"
+
+
+def test_operand_string_to_number():
+    op = Operand.create("42")
+    result = op.to_number(None)
+    assert result.is_number()
+    assert result.int_value() == 42
+
+    op = Operand.create("3.14")
+    result = op.to_number(None)
+    assert result.is_number()
+    assert result.double_value() == pytest.approx(3.14, abs=0.001)
+
+    op = Operand.create("not a number")
+    result = op.to_number(None)
+    assert result.is_error()
+
+
+def test_operand_string_to_boolean():
+    op = Operand.create("true")
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is True
+
+    op = Operand.create("false")
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is False
+
+    op = Operand.create("TRUE")
+    result = op.to_boolean(None)
+    assert result.is_boolean()
+    assert result.boolean_value() is True
+
+    op = Operand.create("not bool")
+    result = op.to_boolean(None)
+    assert result.is_error()
+
+
+def test_operand_string_to_my_date():
+    op = Operand.create("2024-01-15")
+    result = op.to_my_date(None)
+    assert result.is_date()
+    assert result.date_value().Year == 2024
+    assert result.date_value().Month == 1
+    assert result.date_value().Day == 15
+
+    op = Operand.create("10:30:45")
+    result = op.to_my_date(None)
+    assert result.is_date()
+    assert result.date_value().Hour == 10
+    assert result.date_value().Minute == 30
+    assert result.date_value().Second == 45
+
+    op = Operand.create("not a date")
+    result = op.to_my_date(None)
+    assert result.is_error()
+
+
+def test_operand_string_to_json():
+    op = Operand.create('{"name":"test"}')
+    result = op.to_json(None)
+    assert result.is_json()
+
+    op = Operand.create("[1,2,3]")
+    result = op.to_json(None)
+    assert result.is_json()
+
+    op = Operand.create("not json")
+    result = op.to_json(None)
+    assert result.is_error()
+
+
+def test_operand_string_to_array():
+    op = Operand.create("test")
+    result = op.to_array(None)
+    assert result.is_error()
+
+
+def test_operand_string_to_string():
+    op = Operand.create("hello")
+    assert str(op) == '"hello"'
+
+    op = Operand.create('hello"world')
+    assert str(op) == '"hello\\"world"'
+
+    op = Operand.create("hello\nworld")
+    assert str(op) == '"hello\\nworld"'
+
+    op = Operand.create("hello\tworld")
+    assert str(op) == '"hello\\tworld"'
+
+
+def test_operand_null_properties():
+    op = Operand.NULL
+    assert op.type() == OperandType.NULL
+    assert op.is_null()
+    assert not op.is_number()
+    assert not op.is_text()
+    assert not op.is_boolean()
+    assert not op.is_error()
+
+
+def test_operand_null_to_string():
+    op = Operand.NULL
+    assert str(op) == "null"
+
+
+def test_operand_error_properties():
+    op = Operand.error("test error message")
+    assert op.type() == OperandType.ERROR
+    assert op.is_error()
+    assert not op.is_null()
+    assert not op.is_number()
+    assert not op.is_text()
+    assert op.error_msg() == "test error message"
+
+
+def test_operand_error_conversions():
+    op = Operand.error("error")
+
+    assert op.to_number(None).is_error()
+    assert op.to_boolean(None).is_error()
+    assert op.to_text(None).is_error()
+    assert op.to_array(None).is_error()
+    assert op.to_my_date(None).is_error()
+    assert op.to_json(None).is_error()
+
+
+def test_operand_array_properties():
+    op = Operand.create([Operand.create(1), Operand.create(2), Operand.create(3)])
+    assert op.type() == OperandType.ARRAY
+    assert op.is_array()
+    assert not op.is_number()
+    assert not op.is_text()
+    assert len(op.array_value()) == 3
+
+
+def test_operand_array_to_text():
+    op = Operand.create([Operand.create(1), Operand.create(2), Operand.create(3)])
+    result = op.to_text(None)
+    assert result.is_text()
+    assert result.text_value() == "[1,2,3]"
+
+
+def test_operand_array_to_array():
+    op = Operand.create([Operand.create(1), Operand.create(2)])
+    result = op.to_array("")
+    assert result.is_array()
+    assert len(result.array_value()) == 2
+
+
+def test_operand_array_to_json():
+    op = Operand.create([Operand.create(1), Operand.create(2)])
+    result = op.to_json(None)
+    assert result.is_json()
+
+
+def test_operand_array_to_string():
+    op = Operand.create([Operand.create(1), Operand.create("test"), Operand.create(True)])
+    assert str(op) == '[1,"test",true]'
+
+
+def test_operand_my_date_properties():
+    dt = MyDate(2024, 6, 15, 10, 30, 45)
+    op = Operand.create(dt)
+    assert op.type() == OperandType.DATE
+    assert op.is_date()
+    assert not op.is_number()
+    assert not op.is_text()
+    assert op.date_value().Year == 2024
+    assert op.date_value().Month == 6
+    assert op.date_value().Day == 15
+    assert op.date_value().Hour == 10
+    assert op.date_value().Minute == 30
+    assert op.date_value().Second == 45
+
+
+def test_operand_my_date_to_text():
+    dt = MyDate(2024, 6, 15, 10, 30, 45)
+    op = Operand.create(dt)
+    result = op.to_text(None)
+    assert result.is_text()
+
+
+def test_operand_my_date_to_my_date():
+    dt = MyDate(2024, 6, 15, 10, 30, 45)
+    op = Operand.create(dt)
+    result = op.to_my_date(None)
+    assert result.is_date()
+    assert result.date_value().Year == 2024
+
+
+def test_operand_my_date_to_string():
+    dt = MyDate(2024, 6, 15, 10, 30, 45)
+    op = Operand.create(dt)
+    assert str(op).startswith('"2024-06-15')
