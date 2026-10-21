@@ -1,0 +1,30 @@
+package string
+
+// init 声明各函数的参数期望类型（对应 C# Function_XXX.GetParameterTypes 重写）。
+func init() {
+	RegisterParameterTypes("Left", OperandTypeText, OperandTypeNumber)
+	RegisterParameterTypes("Right", OperandTypeText, OperandTypeNumber)
+	RegisterParameterTypes("Mid", OperandTypeText, OperandTypeNumber, OperandTypeNumber)
+	RegisterParameterTypes("Len", OperandTypeText)
+	RegisterParameterTypes("Upper", OperandTypeText)
+	RegisterParameterTypes("Lower", OperandTypeText)
+	RegisterParameterTypes("Trim", OperandTypeText)
+	RegisterParameterTypes("Proper", OperandTypeText)
+	RegisterParameterTypes("Clean", OperandTypeText)
+	RegisterParameterTypes("Replace", OperandTypeText, OperandTypeNumber, OperandTypeNumber, OperandTypeText)
+	RegisterParameterTypes("Substitute", OperandTypeText, OperandTypeText, OperandTypeText, OperandTypeNumber)
+	RegisterParameterTypes("Find", OperandTypeText, OperandTypeText, OperandTypeNumber)
+	RegisterParameterTypes("Search", OperandTypeText, OperandTypeText, OperandTypeNumber)
+	RegisterParameterTypes("Concatenate", OperandTypeText)
+	RegisterParameterTypes("Rept", OperandTypeText, OperandTypeNumber)
+	RegisterParameterTypes("Exact", OperandTypeText, OperandTypeText)
+	RegisterParameterTypes("Value", OperandTypeText)
+	RegisterParameterTypes("T", OperandTypeNone)
+	RegisterParameterTypes("Rmb", OperandTypeNumber)
+	RegisterParameterTypes("UniChar", OperandTypeNumber)
+	RegisterParameterTypes("Unicode", OperandTypeText)
+	RegisterParameterTypes("Char", OperandTypeNumber)
+	RegisterParameterTypes("Code", OperandTypeText)
+	RegisterParameterTypes("Asc", OperandTypeText)
+	RegisterParameterTypes("Jis", OperandTypeText)
+}

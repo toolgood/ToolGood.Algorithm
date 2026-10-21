@@ -1,0 +1,32 @@
+package datetimes
+
+// init 声明各函数的参数期望类型（对应 C# Function_XXX.GetParameterTypes 重写）。
+func init() {
+	RegisterParameterTypes("DATE", OperandTypeNumber)
+	RegisterParameterTypes("DATEVALUE", OperandTypeText)
+	RegisterParameterTypes("TIME", OperandTypeNumber)
+	RegisterParameterTypes("TIMEVALUE", OperandTypeText)
+	RegisterParameterTypes("TIMESTAMP", OperandTypeDate)
+	RegisterParameterTypes("YEAR", OperandTypeDate)
+	RegisterParameterTypes("MONTH", OperandTypeDate)
+	RegisterParameterTypes("DAY", OperandTypeDate)
+	RegisterParameterTypes("HOUR", OperandTypeDate)
+	RegisterParameterTypes("MINUTE", OperandTypeDate)
+	RegisterParameterTypes("SECOND", OperandTypeDate)
+	RegisterParameterTypes("ADDYEARS", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("ADDMONTHS", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("ADDDAYS", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("ADDHOURS", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("ADDMINUTES", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("ADDSECONDS", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("DATEDIF", OperandTypeDate, OperandTypeDate, OperandTypeText)
+	RegisterParameterTypes("DAYS", OperandTypeDate, OperandTypeDate)
+	RegisterParameterTypes("DAYS360", OperandTypeDate, OperandTypeDate, OperandTypeBoolean)
+	RegisterParameterTypes("YEARFRAC", OperandTypeDate, OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("WEEKDAY", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("WEEKNUM", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("EDATE", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("EOMONTH", OperandTypeDate, OperandTypeNumber)
+	RegisterParameterTypes("NETWORKDAYS", OperandTypeDate, OperandTypeDate, OperandTypeArray)
+	RegisterParameterTypes("WORKDAY", OperandTypeDate, OperandTypeNumber, OperandTypeArray)
+}
