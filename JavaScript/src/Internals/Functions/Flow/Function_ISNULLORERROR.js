@@ -13,12 +13,12 @@ class Function_ISNULLORERROR extends Function_2 {
     evaluate(engine, tempParameter) {
         let args1 = this.a.evaluate(engine, tempParameter);
         if (this.b !== null) {
-            if (args1.IsNull || args1.IsError) {
+            if (args1.IsNull || args1.IsErrorOrNone) {
                 return this.b.evaluate(engine, tempParameter);
             }
             return args1;
         }
-        if (args1.IsNull || args1.IsError) {
+        if (args1.IsNull || args1.IsErrorOrNone) {
             return Operand.True;
         }
         return Operand.False;

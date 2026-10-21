@@ -12,6 +12,7 @@ class Function_ISNULL extends Function_2 {
 
     evaluate(engine, tempParameter) {
         let args1 = this.a.evaluate(engine, tempParameter);
+        if (args1.IsErrorOrNone) { return args1; }
         if (this.b != null) {
             if (args1.IsNull) { return this.b.evaluate(engine, tempParameter); }
             return args1;
