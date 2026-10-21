@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toolgood-algorithm"
+version = "6.3.0"
+description = "Python port of the ToolGood.Algorithm expression engine (C# / Java)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "../license.md" }
+keywords = ["expression", "formula", "excel", "algorithm", "calculator"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools]
+packages = [
+    "toolgood_algorithm",
+    "toolgood_algorithm.calculation_logic",
+    "toolgood_algorithm.enums",
+    "toolgood_algorithm.internals",
+    "toolgood_algorithm.internals.functions",
+    "toolgood_algorithm.internals.visitors",
+    "toolgood_algorithm.lit_json",
+    "toolgood_algorithm.math",
+    "toolgood_algorithm.math_net",
+    "toolgood_algorithm.math_net.distributions",
+    "toolgood_algorithm.math_net.root_finding",
+    "toolgood_algorithm.math_net.special_functions",
+    "toolgood_algorithm.math_net.statistics",
+    "toolgood_algorithm.operands",
+    "toolgood_algorithm.unit_conversion",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
