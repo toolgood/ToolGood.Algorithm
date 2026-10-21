@@ -1,36 +1,9 @@
-"""``DiyNameInfo`` / ``DiyNameKeyInfo`` (C#: Internals/DiyNameInfo.cs)."""
+"""DiyNameInfo (C#: Internals/DiyNameInfo.cs)."""
 from __future__ import annotations
 
 from typing import List
 
-
-class DiyNameKeyInfo:
-    """A user supplied parameter or function name (``DiyNameKeyInfo.cs``)."""
-
-    __slots__ = ("name", "start", "end")
-
-    def __init__(self, name: str = None, start: int = 0, end: int = 0):
-        self.name = name
-        self.start = start
-        self.end = end
-
-    def __str__(self) -> str:
-        return str(self.name)
-
-    def __repr__(self) -> str:  # pragma: no cover
-        return f"DiyNameKeyInfo({self.name!r}, {self.start}, {self.end})"
-
-    @property
-    def Name(self):  # noqa: N802
-        return self.name
-
-    @property
-    def Start(self):  # noqa: N802
-        return self.start
-
-    @property
-    def End(self):  # noqa: N802
-        return self.end
+from toolgood_algorithm.internals.diy_name_key_info import DiyNameKeyInfo
 
 
 class DiyNameInfo:

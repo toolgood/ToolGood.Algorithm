@@ -5,23 +5,10 @@ Only the surface used by the algorithm engine is implemented: type predicates,
 """
 from __future__ import annotations
 
-import json
 from decimal import Decimal
-from enum import IntEnum
 
-
-class JsonType(IntEnum):
-    NONE = 0
-    OBJECT = 1
-    ARRAY = 2
-    STRING = 3
-    DOUBLE = 4
-    BOOLEAN = 5
-    NULL = 6
-
-
-class JsonException(ValueError):
-    pass
+from toolgood_algorithm.lit_json.json_exception import JsonException
+from toolgood_algorithm.lit_json.json_type import JsonType
 
 
 class JsonData:

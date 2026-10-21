@@ -266,22 +266,3 @@ class AlgorithmEngine:
 
     def SetUseExcelIndex(self, value):
         return self.set_use_excel_index(value)
-
-
-class NoneEngine(AlgorithmEngine):
-    """Engine used while inspecting parameter types (all values are ``NULL``)."""
-
-    def __init__(self, engine: AlgorithmEngine):
-        super().__init__(engine.IgnoreCase)
-        self.AreaUnit = engine.AreaUnit
-        self.DistanceUnit = engine.DistanceUnit
-        self.LastError = engine.LastError
-        self.MassUnit = engine.MassUnit
-        self.UseLocalTime = engine.UseLocalTime
-        self.ExcelIndex = engine.ExcelIndex
-
-    def get_parameter(self, parameter: str) -> Operand:
-        return Operand.NULL
-
-    def execute_diy_function(self, parameter: str, args) -> Operand:
-        return Operand.NULL

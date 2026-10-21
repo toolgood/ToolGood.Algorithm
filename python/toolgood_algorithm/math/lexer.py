@@ -1,4 +1,4 @@
-"""Tokenizer for the formula language (``mathLexer`` equivalent).
+"""Tokenizer + keyword table for the formula language (``mathLexer``).
 
 Characters are normalised with
 :func:`toolgood_algorithm.internals.visitors.char_util.standard_char` so the
@@ -15,9 +15,6 @@ from typing import List
 from toolgood_algorithm.internals.visitors.char_util import standard_char, standard_string
 
 
-# ---------------------------------------------------------------------------
-# Keyword table (spellings accepted by the ANTLR lexer)
-# ---------------------------------------------------------------------------
 _KEYWORD_SPELLINGS = {
     # constants
     "ALGORITHMVERSION": ("ALGORITHMVERSION", "ENGINEVERSION"),
@@ -71,9 +68,10 @@ _KEYWORD_SPELLINGS = {
     "VAR": ("VAR", "VAR.S"),
     "VARP": ("VARP", "VAR.P"),
 }
-
 #: upper-case spelling -> canonical token name
 KEYWORDS: dict[str, str] = {}
+
+# spelling variants first (HAS / HASKEY / CONTAINS ...), canonical name wins on ties
 for _canonical, _spellings in _KEYWORD_SPELLINGS.items():
     for _spelling in _spellings:
         KEYWORDS[_spelling] = _canonical
@@ -102,11 +100,8 @@ for _line in (
 ).split():
     KEYWORDS.setdefault(_line, _line)
     _KEYWORD_SPELLINGS.setdefault(_line, (_line,))
-
-#: keywords that can act as a JSON property name (``expr '.' parameter2``)
-_PARAMETER2_KEYWORDS = set(KEYWORDS)
-
 _MAX_KEYWORD_LEN = max(len(k) for k in KEYWORDS)
+_PARAMETER2_KEYWORDS = set(KEYWORDS)
 
 
 class ParseError(ValueError):
@@ -120,6 +115,8 @@ class Token:
     start: int
     end: int
 
+
+"""Tokenizer for the formula language (equivalent of ``mathLexer``)."""
 
 _PUNCT = {
     "(": "LPAREN",
@@ -140,12 +137,9 @@ _PUNCT = {
     "&": "OPCAT",
 }
 
-#: optional suffix of a numeric literal (unit or exponent), see ``NUM`` in math.g4.
-#: ANTLR picks the longest match, so each alternative is tried separately.
 _NUM_SUFFIXES = tuple(
     re.compile(pattern) for pattern in (r"E[+-]?\d+", r"[KDCM]?M[23]?", r"M?L", r"K?G", r"T")
 )
-
 
 def _match_num_suffix(text: str, position: int) -> str:
     best = ""
@@ -155,14 +149,11 @@ def _match_num_suffix(text: str, position: int) -> str:
             best = match.group(0)
     return best
 
-
 def _is_ident_start(c: str) -> bool:
     return ("A" <= c <= "Z") or c == "_"
 
-
 def _is_ident_part(c: str) -> bool:
     return ("A" <= c <= "Z") or ("0" <= c <= "9") or c == "_"
-
 
 class Tokenizer:
     def __init__(self, text: str):

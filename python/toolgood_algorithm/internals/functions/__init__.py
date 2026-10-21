@@ -6,6 +6,7 @@ Importing this package registers every implementation in
 from __future__ import annotations
 
 # --- node types used by the parser -------------------------------------------------
+from . import _aliases  # noqa: F401  (CamelCase helpers, must run after the bases)
 from . import value  # noqa: F401  (literals / parameters / JSON / constants)
 from . import operator  # noqa: F401
 from . import compare  # noqa: F401

@@ -9,15 +9,11 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
-from typing import List, Optional
+from typing import List
 
 from toolgood_algorithm.enums import OperandType
 from toolgood_algorithm.math.lexer import KEYWORDS, ParseError, Token, Tokenizer
 
-
-# ---------------------------------------------------------------------------
-# AST
-# ---------------------------------------------------------------------------
 @dataclass
 class AstNode:
     kind: str
@@ -186,9 +182,12 @@ class AstNode:
             yield from child.walk()
 
 
-# ---------------------------------------------------------------------------
-# Parser
-# ---------------------------------------------------------------------------
+"""Recursive descent parser (equivalent of ``mathParser``).
+
+Produces :class:`toolgood_algorithm.math.ast_node.AstNode` trees which are
+converted to executable ``FunctionBase`` nodes by ``AstNode.to_function``.
+"""
+
 _PRECEDENCE = {
     "OPOR": 2,
     "OPAND": 3,
@@ -207,7 +206,6 @@ _PRECEDENCE = {
 }
 
 _TERMINATORS = {"EOF", "RPAREN", "RBRACKET", "RBRACE", "COMMA", "COLON"}
-
 
 class Parser:
     def __init__(self, text: str):
@@ -470,7 +468,6 @@ class Parser:
         value = self.parse_expr(0)
         return AstNode("arrayjsonitem", value.start, value.end, text=None, children=[value])
 
-
 def _split_number_unit(text: str):
     n = len(text)
     if n > 3 and text[n - 3] >= "A":
@@ -479,7 +476,7 @@ def _split_number_unit(text: str):
         return text[:n - 2], text[n - 2:]
     return text[:n - 1], text[n - 1:]
 
-
+#: escape sequences accepted inside string literals (see ``visitSTRING_fun``)
 _ESCAPES = {
     "n": "\n",
     "r": "\r",
@@ -510,10 +507,8 @@ def _unescape(text: str) -> str:
         i += 1
     return "".join(out)
 
-
 def parse_ast(text: str) -> AstNode:
     return Parser(text).parse()
-
 
 def parse_function(text: str):
     return parse_ast(text).to_function()

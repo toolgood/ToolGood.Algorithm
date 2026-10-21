@@ -28,7 +28,8 @@ Quick start::
 from __future__ import annotations
 
 from .internals import functions  # noqa: F401  (registers all functions)
-from .algorithm_engine import AlgorithmEngine, NoneEngine
+from .algorithm_engine import AlgorithmEngine
+from .internals.functions.none_engine import NoneEngine
 from .algorithm_engine_ex import AlgorithmEngineEx
 from .calculation_logic import CalculationLogicEngine, CalculationLogicInfo, CalculationLogicType
 from .algorithm_engine_helper import (

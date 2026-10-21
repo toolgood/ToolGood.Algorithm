@@ -8,7 +8,8 @@ from __future__ import annotations
 
 from decimal import Decimal, InvalidOperation
 
-from toolgood_algorithm.lit_json.json_data import JsonData, JsonException
+from toolgood_algorithm.lit_json.json_data import JsonData
+from toolgood_algorithm.lit_json.json_exception import JsonException
 
 _WHITESPACE = " \t\r\n\f"
 _NUMBER_CHARS = "0123456789+-.eE"
