@@ -52,15 +52,13 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new ArgumentException("Parameter exp invalid !", nameof(exp));
 			}
-			FastNode node;
+			var parameters = new List<DiyNameKeyInfo>();
+			var functions = new List<DiyNameKeyInfo>();
 			try {
-				node = FastParser.Parse(exp);
+				FastParser.ParseDiyNames(exp, parameters, functions);
 			} catch(Exception ex) {
 				throw new ArgumentException(ex.Message, nameof(exp));
 			}
-			var parameters = new List<DiyNameKeyInfo>();
-			var functions = new List<DiyNameKeyInfo>();
-			FastTreeBuilder.CollectDiyNames(node, parameters, functions);
 			return new DiyNameInfo(parameters, functions);
 		}
 
@@ -120,13 +118,11 @@ namespace ToolGood.Algorithm
 			if(string.IsNullOrWhiteSpace(exp)) {
 				throw new ArgumentException("Parameter exp invalid !", nameof(exp));
 			}
-			FastNode node;
 			try {
-				node = FastParser.Parse(exp);
+				return FastParser.ParseFunction(exp);
 			} catch(FormatException ex) {
 				throw new ArgumentException(ex.Message, nameof(exp));
 			}
-			return FastAstBuilder.Build(exp, node);
 		}
 
 		/// <summary>
@@ -138,7 +134,7 @@ namespace ToolGood.Algorithm
 		{
 			if(string.IsNullOrWhiteSpace(exp)) { return false; }
 			try {
-				FastParser.Parse(exp);
+				FastParser.CheckSyntax(exp);
 				return true;
 			} catch(Exception) {
 				return false;
@@ -159,8 +155,7 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				var node = FastParser.Parse(condition);
-				return FastTreeBuilder.ToConditionTree(condition, node);
+				return FastParser.ParseConditionTree(condition);
 			} catch(Exception ex) {
 				tree.Type = ConditionTreeType.Error;
 				tree.ErrorMessage = ex.Message;
@@ -213,8 +208,7 @@ namespace ToolGood.Algorithm
 				return tree;
 			}
 			try {
-				var node = FastParser.Parse(exp);
-				return FastTreeBuilder.ToCalculateTree(exp, node);
+				return FastParser.ParseCalculateTree(exp);
 			} catch(Exception ex) {
 				tree.Type = CalculateTreeType.Error;
 				tree.ErrorMessage = ex.Message;

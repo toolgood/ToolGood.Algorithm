@@ -19,9 +19,10 @@ namespace ToolGood.Algorithm.math
 	/// <para>
 	/// 直接扫描 string，不做字符流包装、不产生 IToken 对象；大小写/全角归一化通过
 	/// <see cref="CharUtil.StandardChar"/> 的查表完成，行为与原 Antlr 词法一致。
+	/// 值类型实现，解析一条公式不产生额外对象分配。
 	/// </para>
 	/// </summary>
-	internal sealed class FastLexer
+	internal struct FastLexer
 	{
 		private readonly string _text;
 		private int _pos;
@@ -30,6 +31,8 @@ namespace ToolGood.Algorithm.math
 		internal FastLexer(string text)
 		{
 			_text = text ?? string.Empty;
+			_pos = 0;
+			_error = null;
 		}
 
 		/// <summary>词法错误信息，null 表示无错误</summary>

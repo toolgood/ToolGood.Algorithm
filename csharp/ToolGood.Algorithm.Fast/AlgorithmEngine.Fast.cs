@@ -141,8 +141,7 @@ namespace ToolGood.Algorithm
 		{
 			try {
 				// 手写词法 + 递归下降语法分析，直接生成 FunctionBase 树
-				var node = FastParser.Parse(exp);
-				return FastAstBuilder.Build(exp, node);
+				return FastParser.ParseFunction(exp);
 			} catch(Exception ex) {
 				// 语法错误与函数构造阶段的参数个数校验等异常，统一记录错误信息
 				LastError = ex.Message;

@@ -1,5 +1,8 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Internals.Functions;
 
 namespace ToolGood.Algorithm.math
 {
@@ -12,8 +15,12 @@ namespace ToolGood.Algorithm.math
 	/// <para>优先级由高到低：<c>函数调用/下标访问</c> &gt; <c>!</c> &gt; <c>%</c> &gt; <c>* / %</c>
 	/// &gt; <c>+ - &amp;</c> &gt; <c>&gt; &gt;= &lt; &lt;=</c> &gt; <c>!= =</c> &gt; <c>&amp;&amp;</c>
 	/// &gt; <c>||</c> &gt; <c>? :</c></para>
+	/// <para>
+	/// 内存策略：词法单元数组、语法树节点数组、参数暂存数组全部向 <see cref="ArrayPool{T}"/> 租用，
+	/// 单次解析的托管堆分配只剩「<see cref="FunctionBase"/> 树本身」与参数名字符串。
+	/// </para>
 	/// </summary>
-	internal sealed class FastParser
+	internal struct FastParser
 	{
 		private const int PrecedenceUnary = 14;
 		private const int PrecedencePercentage = 13;
@@ -25,36 +32,138 @@ namespace ToolGood.Algorithm.math
 		private const int PrecedenceOr = 7;
 		private const int PrecedenceConditional = 6;
 
+		/// <summary>嵌套深度上限，防止异常公式把线程栈打爆（StackOverflow 无法被捕获，会直接杀进程）</summary>
+		private const int MaxDepth = 400;
+
+		private const int MinCapacity = 16;
+
 		private readonly string _text;
 		private FastLexeme[] _tokens;
-		private int _count;
+		private int _tokenCount;
 		private int _index;
 		private int _lastEnd;
 
-		private FastParser(string text)
+		private FastNode[] _nodes;
+		private int _nodeCount;
+
+		private int[] _scratch;
+		private int _scratchCount;
+
+		private int _depth;
+		private int _root;
+
+		internal FastParser(string text)
 		{
 			_text = text;
+			_tokenCount = 0;
+			_index = 0;
+			_lastEnd = 0;
+			_nodeCount = 0;
+			_scratchCount = 0;
+			_depth = 0;
+			_root = -1;
+
+			var capacity = text.Length / 4 + MinCapacity;
+			_tokens = ArrayPool<FastLexeme>.Shared.Rent(capacity);
+			_nodes = ArrayPool<FastNode>.Shared.Rent(capacity);
+			_scratch = ArrayPool<int>.Shared.Rent(MinCapacity);
 		}
 
-		#region 入口
+		/// <summary>语法树节点数组（仅 [0, NodeCount) 有效）</summary>
+		internal FastNode[] Nodes => _nodes;
 
-		/// <summary>解析公式表达式，失败抛出 <see cref="FormatException"/></summary>
-		internal static FastNode Parse(string text)
+		/// <summary>根节点下标</summary>
+		internal int Root => _root;
+
+		/// <summary>实际使用的节点数量</summary>
+		internal int NodeCount => _nodeCount;
+
+		/// <summary>把租用的缓冲区归还池，必须与构造成对出现</summary>
+		internal void Release()
+		{
+			var tokens = _tokens;
+			if(tokens != null) {
+				_tokens = null;
+				ArrayPool<FastLexeme>.Shared.Return(tokens);   // 纯值类型，无需清空
+			}
+			var nodes = _nodes;
+			if(nodes != null) {
+				_nodes = null;
+				// 节点里可能残留字符串引用（参数名 / json key），必须清空，避免池中长期持有
+				ArrayPool<FastNode>.Shared.Return(nodes, true);
+			}
+			var scratch = _scratch;
+			if(scratch != null) {
+				_scratch = null;
+				ArrayPool<int>.Shared.Return(scratch);
+			}
+		}
+
+		/// <summary>执行词法 + 语法分析，失败抛 <see cref="FormatException"/></summary>
+		internal void Run()
+		{
+			Tokenize();
+			_root = ParseProgram();
+		}
+
+		#region 对外入口（自动管理缓冲区生命周期）
+
+		/// <summary>解析为可执行的函数树</summary>
+		internal static FunctionBase ParseFunction(string text)
 		{
 			var parser = new FastParser(text);
-			parser.Tokenize();
-			return parser.ParseProgram();
+			try {
+				parser.Run();
+				return FastAstBuilder.Build(text, parser._nodes, parser._nodeCount, parser._root);
+			} finally {
+				parser.Release();
+			}
 		}
 
-		/// <summary>解析公式表达式，失败返回 null 并通过 <paramref name="error"/> 返回原因</summary>
-		internal static FastNode TryParse(string text, out string error)
+		/// <summary>仅检查语法（不构造函数树），语法错误抛 <see cref="FormatException"/></summary>
+		internal static void CheckSyntax(string text)
 		{
+			var parser = new FastParser(text);
 			try {
-				error = null;
-				return Parse(text);
-			} catch(Exception ex) {
-				error = ex.Message;
-				return null;
+				parser.Run();
+			} finally {
+				parser.Release();
+			}
+		}
+
+		/// <summary>解析为条件树</summary>
+		internal static ConditionTree ParseConditionTree(string text)
+		{
+			var parser = new FastParser(text);
+			try {
+				parser.Run();
+				return FastTreeBuilder.ToConditionTree(text, parser._nodes, parser._root);
+			} finally {
+				parser.Release();
+			}
+		}
+
+		/// <summary>解析为计算树</summary>
+		internal static CalculateTree ParseCalculateTree(string text)
+		{
+			var parser = new FastParser(text);
+			try {
+				parser.Run();
+				return FastTreeBuilder.ToCalculateTree(text, parser._nodes, parser._root);
+			} finally {
+				parser.Release();
+			}
+		}
+
+		/// <summary>解析并收集自定义参数 / 自定义函数</summary>
+		internal static void ParseDiyNames(string text, List<DiyNameKeyInfo> parameters, List<DiyNameKeyInfo> functions)
+		{
+			var parser = new FastParser(text);
+			try {
+				parser.Run();
+				FastTreeBuilder.CollectDiyNames(parser._nodes, parser._root, parameters, functions);
+			} finally {
+				parser.Release();
 			}
 		}
 
@@ -65,27 +174,59 @@ namespace ToolGood.Algorithm.math
 		private void Tokenize()
 		{
 			var lexer = new FastLexer(_text);
-			var capacity = _text.Length / 3 + 8;
-			_tokens = new FastLexeme[capacity < 8 ? 8 : capacity];
-			_count = 0;
 			var token = new FastLexeme();
 			while(true) {
 				if(!lexer.Next(ref token)) {
 					throw new FormatException(lexer.ErrorMessage);
 				}
-				if(_count == _tokens.Length) {
-					Array.Resize(ref _tokens, _tokens.Length * 2);
-				}
-				_tokens[_count++] = token;
+				if(_tokenCount == _tokens.Length) { GrowTokens(); }
+				_tokens[_tokenCount++] = token;
 				if(token.Type == FastToken.EOF) { return; }
 			}
+		}
+
+		private void GrowTokens()
+		{
+			var next = ArrayPool<FastLexeme>.Shared.Rent(_tokens.Length * 2);
+			Array.Copy(_tokens, next, _tokenCount);
+			ArrayPool<FastLexeme>.Shared.Return(_tokens);
+			_tokens = next;
+		}
+
+		private void GrowNodes()
+		{
+			var next = ArrayPool<FastNode>.Shared.Rent(_nodes.Length * 2);
+			Array.Copy(_nodes, next, _nodeCount);
+			ArrayPool<FastNode>.Shared.Return(_nodes, true);
+			_nodes = next;
+		}
+
+		private void GrowScratch()
+		{
+			var next = ArrayPool<int>.Shared.Rent(_scratch.Length * 2);
+			Array.Copy(_scratch, next, _scratchCount);
+			ArrayPool<int>.Shared.Return(_scratch);
+			_scratch = next;
+		}
+
+		private int AddNode(FastNode node)
+		{
+			if(_nodeCount == _nodes.Length) { GrowNodes(); }
+			_nodes[_nodeCount] = node;
+			return _nodeCount++;
+		}
+
+		private void PushScratch(int node)
+		{
+			if(_scratchCount == _scratch.Length) { GrowScratch(); }
+			_scratch[_scratchCount++] = node;
 		}
 
 		#endregion
 
 		#region 语法
 
-		private FastNode ParseProgram()
+		private int ParseProgram()
 		{
 			var node = ParseExpr(0);
 			if(Current.Type != FastToken.EOF) {
@@ -95,8 +236,11 @@ namespace ToolGood.Algorithm.math
 		}
 
 		/// <summary>优先级爬升主循环</summary>
-		private FastNode ParseExpr(int minPrecedence)
+		private int ParseExpr(int minPrecedence)
 		{
+			if(++_depth > MaxDepth) {
+				throw new FormatException($"Expression is nested too deeply (more than {MaxDepth} levels).");
+			}
 			var left = ParseUnary();
 			while(true) {
 				var token = Current;
@@ -111,7 +255,7 @@ namespace ToolGood.Algorithm.math
 
 				Next();
 				if(postfixPercentage) {
-					left = FastNode.Unary(FastNodeKind.Percentage, left, left.Start);
+					left = AddNode(FastNode.Unary(FastNodeKind.Percentage, left, _nodes[left].Start, _lastEnd));
 					continue;
 				}
 				if(type == FastToken.QUESTION) {
@@ -121,28 +265,29 @@ namespace ToolGood.Algorithm.math
 					var whenTrue = ParseExpr(0);
 					Expect(FastToken.COLON);
 					var whenFalse = ParseExpr(precedence + 1);
-					left = FastNode.Nary(FastNodeKind.If, new[] { left, whenTrue, whenFalse }, left.Start, whenFalse.End);
+					left = AddNode(FastNode.Three(FastNodeKind.If, left, whenTrue, whenFalse, _nodes[left].Start, _nodes[whenFalse].End));
 					continue;
 				}
 				var right = ParseExpr(precedence + 1);
-				left = FastNode.Binary(GetBinaryKind(type), left, right);
+				left = AddNode(FastNode.Binary(GetBinaryKind(type), left, right, _nodes[left].Start, _nodes[right].End));
 			}
+			_depth--;
 			return left;
 		}
 
-		private FastNode ParseUnary()
+		private int ParseUnary()
 		{
 			if(Current.Type == FastToken.BANG) {
 				var token = Current;
 				Next();
 				var operand = ParseExpr(PrecedenceUnary);
-				return FastNode.Unary(FastNodeKind.Not, operand, token.Start);
+				return AddNode(FastNode.Unary(FastNodeKind.Not, operand, token.Start, _nodes[operand].End));
 			}
 			return ParsePostfix();
 		}
 
 		/// <summary>基础表达式 + 后缀（函数调用风格的 .name(...) 与下标/属性访问）</summary>
-		private FastNode ParsePostfix()
+		private int ParsePostfix()
 		{
 			var left = ParsePrimary();
 			while(true) {
@@ -152,14 +297,14 @@ namespace ToolGood.Algorithm.math
 					Next();
 					var index = ParseExpr(0);
 					Expect(FastToken.RBRACKET);
-					left = FastNode.Nary(FastNodeKind.GetJson, new[] { left, index }, left.Start, _lastEnd);
+					left = AddNode(FastNode.Binary(FastNodeKind.GetJson, left, index, _nodes[left].Start, _lastEnd));
 				} else {
 					return left;
 				}
 			}
 		}
 
-		private FastNode ParsePrimary()
+		private int ParsePrimary()
 		{
 			var token = Current;
 			switch(token.Type) {
@@ -167,11 +312,12 @@ namespace ToolGood.Algorithm.math
 					Next();
 					var inner = ParseExpr(0);
 					Expect(FastToken.RPAREN);
-					return FastNode.Unary(FastNodeKind.Bracket, inner, inner.Start);
+					var innerNode = _nodes[inner];
+					return AddNode(FastNode.Unary(FastNodeKind.Bracket, inner, innerNode.Start, innerNode.End));
 				}
 				case FastToken.NUM:
 					Next();
-					return FastNode.Leaf(FastNodeKind.Number, token.Start, token.End);
+					return AddNode(FastNode.Leaf(FastNodeKind.Number, token.Start, token.End));
 
 				case FastToken.OPSUB: {
 					// 文法只允许 OPSUB? NUM 形式的负数字面量
@@ -179,18 +325,18 @@ namespace ToolGood.Algorithm.math
 					if(Current.Type != FastToken.NUM) { throw Unexpected(); }
 					var num = Current;
 					Next();
-					return FastNode.Leaf(FastNodeKind.Number, token.Start, num.End);
+					return AddNode(FastNode.Leaf(FastNodeKind.Number, token.Start, num.End));
 				}
 				case FastToken.STRING:
 					Next();
-					return FastNode.Leaf(FastNodeKind.Text, token.Start, token.End);
+					return AddNode(FastNode.Leaf(FastNodeKind.Text, token.Start, token.End));
 
 				case FastToken.PARAMETER: {
 					Next();
 					if(Current.Type == FastToken.LPAREN) {
-						return ParseCall(token, null, false);
+						return ParseCall(token, -1, false);
 					}
-					return FastNode.Leaf(FastNodeKind.Parameter, token.Start, token.End, Slice(token));
+					return AddNode(FastNode.Leaf(FastNodeKind.Parameter, token.Start, token.End, Slice(token)));
 				}
 				case FastToken.TRUE:
 				case FastToken.FALSE:
@@ -202,7 +348,7 @@ namespace ToolGood.Algorithm.math
 						Next();
 						Next();
 					}
-					return FastNode.Call(token.Type, null, token.Start, token.End, FastNode.Empty, token.Start, _lastEnd);
+					return NewCall(token.Type, token.Start, _lastEnd, null, 0, 0);
 				}
 				case FastToken.RAND:
 				case FastToken.NOW:
@@ -213,7 +359,7 @@ namespace ToolGood.Algorithm.math
 					Next();
 					Expect(FastToken.LPAREN);
 					Expect(FastToken.RPAREN);
-					return FastNode.Call(token.Type, null, token.Start, token.End, FastNode.Empty, token.Start, _lastEnd);
+					return NewCall(token.Type, token.Start, _lastEnd, null, 0, 0);
 				}
 				case FastToken.LBRACE:
 					return ParseArrayJson();
@@ -222,18 +368,27 @@ namespace ToolGood.Algorithm.math
 				default:
 					if(token.Type > 0 && token.Type <= FastToken.PARAMETER && FastToken.IsFunctionHead[token.Type]) {
 						Next();
-						return ParseCall(token, null, false);
+						return ParseCall(token, -1, false);
 					}
 					throw Unexpected();
 			}
 		}
 
-		/// <summary>解析 <c>(a, b, ...)</c>；<paramref name="receiver"/> 非空时为 <c>expr.name(...)</c> 形式</summary>
-		private FastNode ParseCall(FastLexeme name, FastNode receiver, bool isMemberStyle)
+		/// <summary>构造一个函数调用节点，参数来自暂存区 [offset, offset+count)</summary>
+		private int NewCall(int type, int start, int end, string name, int offset, int count, int nameStart = 0)
+		{
+			var node = FastNode.Nary(FastNodeKind.Call, _scratch, offset, count, start, end, name);
+			node.Type = type;
+			node.NameStart = nameStart;
+			return AddNode(node);
+		}
+
+		/// <summary>解析 <c>(a, b, ...)</c>；<paramref name="receiver"/> 非 -1 时为 <c>expr.name(...)</c> 形式</summary>
+		private int ParseCall(FastLexeme name, int receiver, bool isMemberStyle)
 		{
 			Expect(FastToken.LPAREN);
-			var args = new List<FastNode>(4);
-			if(receiver != null) { args.Add(receiver); }
+			var mark = _scratchCount;
+			if(receiver >= 0) { PushScratch(receiver); }
 
 			if(Current.Type == FastToken.RPAREN) {
 				// 文法中 NAME '(' expr (',' expr)* ')' 至少需要一个参数；
@@ -242,21 +397,23 @@ namespace ToolGood.Algorithm.math
 					throw new FormatException($"Function '{Slice(name)}' requires at least one argument.");
 				}
 			} else {
-				args.Add(ParseExpr(0));
+				PushScratch(ParseExpr(0));
 				while(Current.Type == FastToken.COMMA) {
 					Next();
-					args.Add(ParseExpr(0));
+					PushScratch(ParseExpr(0));
 				}
 			}
 			Expect(FastToken.RPAREN);
 
-			var nameText = name.Type == FastToken.PARAMETER ? Slice(name) : null;
-			return FastNode.Call(name.Type, nameText, name.Start, name.End, args.ToArray(),
-				receiver == null ? name.Start : receiver.Start, _lastEnd);
+			var start = receiver >= 0 ? _nodes[receiver].Start : name.Start;
+			var isDiy = name.Type == FastToken.PARAMETER;
+			var node = NewCall(name.Type, start, _lastEnd, isDiy ? Slice(name) : null, mark, _scratchCount - mark, name.Start);
+			_scratchCount = mark;
+			return node;
 		}
 
 		/// <summary>解析 <c>expr.name</c> / <c>expr.name(...)</c></summary>
-		private FastNode ParseMemberAccess(FastNode receiver)
+		private int ParseMemberAccess(int receiver)
 		{
 			Next();  // '.'
 			var name = Current;
@@ -265,7 +422,7 @@ namespace ToolGood.Algorithm.math
 				if(Current.Type == FastToken.LPAREN) {
 					return ParseCall(name, receiver, true);
 				}
-				return FastNode.WithText(FastNodeKind.GetJsonProperty, new[] { receiver }, receiver.Start, name.End, Slice(name));
+				return AddNode(FastNode.Unary(FastNodeKind.GetJsonProperty, receiver, _nodes[receiver].Start, name.End).WithText(Slice(name)));
 			}
 			if(name.Type > 0 && name.Type <= FastToken.PARAMETER) {
 				if(FastToken.IsMethodHead[name.Type] && Peek(1).Type == FastToken.LPAREN) {
@@ -274,61 +431,60 @@ namespace ToolGood.Algorithm.math
 				}
 				if(FastToken.IsParameter2[name.Type]) {
 					Next();
-					return FastNode.WithText(FastNodeKind.GetJsonProperty, new[] { receiver }, receiver.Start, name.End, Slice(name));
+					return AddNode(FastNode.Unary(FastNodeKind.GetJsonProperty, receiver, _nodes[receiver].Start, name.End).WithText(Slice(name)));
 				}
 			}
 			throw Unexpected();
 		}
 
-		private FastNode ParseArray()
+		private int ParseArray()
 		{
 			var token = Current;
 			Next();  // '['
-			var items = new List<FastNode>(4);
-			items.Add(ParseExpr(0));
+			var mark = _scratchCount;
+			PushScratch(ParseExpr(0));
 			while(Current.Type == FastToken.COMMA) {
 				Next();
 				if(Current.Type == FastToken.RBRACKET) { break; }  // 允许尾逗号
-				items.Add(ParseExpr(0));
+				PushScratch(ParseExpr(0));
 			}
 			Expect(FastToken.RBRACKET);
-			return FastNode.Nary(FastNodeKind.Array, items.ToArray(), token.Start, _lastEnd);
+			var node = AddNode(FastNode.Nary(FastNodeKind.Array, _scratch, mark, _scratchCount - mark, token.Start, _lastEnd));
+			_scratchCount = mark;
+			return node;
 		}
 
-		private FastNode ParseArrayJson()
+		private int ParseArrayJson()
 		{
 			var token = Current;
 			Next();  // '{'
-			var items = new List<FastNode>(4);
+			var mark = _scratchCount;
 			while(true) {
-				items.Add(ParseArrayJsonItem());
+				PushScratch(ParseArrayJsonItem());
 				if(Current.Type != FastToken.COMMA) { break; }
 				Next();
 				if(Current.Type == FastToken.RBRACE) { break; }  // 允许尾逗号
 			}
 			Expect(FastToken.RBRACE);
-			return FastNode.Nary(FastNodeKind.ArrayJson, items.ToArray(), token.Start, _lastEnd);
+			var node = AddNode(FastNode.Nary(FastNodeKind.ArrayJson, _scratch, mark, _scratchCount - mark, token.Start, _lastEnd));
+			_scratchCount = mark;
+			return node;
 		}
 
-		private FastNode ParseArrayJsonItem()
+		private int ParseArrayJsonItem()
 		{
 			var key = Current;
 			string keyText;
-			if(key.Type == FastToken.STRING) {
+			if(key.Type == FastToken.STRING || key.Type == FastToken.NUM
+				|| (key.Type > 0 && key.Type <= FastToken.PARAMETER && FastToken.IsParameter2[key.Type])) {
 				Next();
-				keyText = Slice(key);  // 保留引号，由调用方统一反转义
-			} else if(key.Type == FastToken.NUM) {
-				Next();
-				keyText = Slice(key);
-			} else if(key.Type > 0 && key.Type <= FastToken.PARAMETER && FastToken.IsParameter2[key.Type]) {
-				Next();
-				keyText = Slice(key);
+				keyText = Slice(key);  // STRING 保留引号，由 builder 统一反转义
 			} else {
 				throw Unexpected();
 			}
 			Expect(FastToken.COLON);
 			var value = ParseExpr(0);
-			return FastNode.WithText(FastNodeKind.ArrayJsonItem, new[] { value }, key.Start, value.End, keyText);
+			return AddNode(FastNode.Unary(FastNodeKind.ArrayJsonItem, value, key.Start, _nodes[value].End).WithText(keyText));
 		}
 
 		#endregion
@@ -342,13 +498,13 @@ namespace ToolGood.Algorithm.math
 		private FastLexeme Peek(int offset)
 		{
 			var i = _index + offset;
-			return i < _count ? _tokens[i] : _tokens[_count - 1];
+			return i < _tokenCount ? _tokens[i] : _tokens[_tokenCount - 1];
 		}
 
 		private void Next()
 		{
 			_lastEnd = Current.End;
-			if(_index + 1 < _count) { _index++; }
+			if(_index + 1 < _tokenCount) { _index++; }
 		}
 
 		private void Expect(int type)
@@ -375,7 +531,7 @@ namespace ToolGood.Algorithm.math
 		/// <summary>判断从 tokenIndex 开始的词法单元能否作为一个表达式的开头</summary>
 		private bool CanStartExpression(int tokenIndex)
 		{
-			if(tokenIndex >= _count) { return false; }
+			if(tokenIndex >= _tokenCount) { return false; }
 			int type = _tokens[tokenIndex].Type;
 			switch(type) {
 				case FastToken.LPAREN:
@@ -398,7 +554,7 @@ namespace ToolGood.Algorithm.math
 					return true;
 				case FastToken.OPSUB:
 					// 负号只能引导数字字面量
-					return tokenIndex + 1 < _count && _tokens[tokenIndex + 1].Type == FastToken.NUM;
+					return tokenIndex + 1 < _tokenCount && _tokens[tokenIndex + 1].Type == FastToken.NUM;
 				default:
 					return type > 0 && type <= FastToken.PARAMETER && FastToken.IsFunctionHead[type];
 			}

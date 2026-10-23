@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Buffers;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
@@ -15,52 +15,90 @@ namespace ToolGood.Algorithm.math
 	/// <summary>
 	/// 把手写语法树转换为可执行的 <see cref="FunctionBase"/> 树。
 	/// 等价于原来的 <c>MathFunctionVisitor</c>，但省去了 Antlr 访问者分发。
+	/// <para>
+	/// 采用**显式栈的后序遍历**而不是递归：<c>1+1+1+...</c> 这类左深链会让递归版本的栈帧
+	/// 达到数千层，直接 StackOverflow 杀掉进程（无法 catch）；显式栈的深度受堆限制，不会崩。
+	/// </para>
 	/// </summary>
 	internal static class FastAstBuilder
 	{
-		internal static FunctionBase Build(string text, FastNode node)
+		private struct BuildFrame
+		{
+			internal int Node;
+			internal int Child;
+		}
+
+		internal static FunctionBase Build(string text, FastNode[] nodes, int nodeCount, int root)
+		{
+			var built = ArrayPool<FunctionBase>.Shared.Rent(nodeCount);
+			var frames = ArrayPool<BuildFrame>.Shared.Rent(nodeCount);
+			try {
+				var top = 0;
+				frames[top++] = new BuildFrame { Node = root };
+				FunctionBase result = null;
+				while(top > 0) {
+					var frame = frames[top - 1];
+					var node = nodes[frame.Node];
+					if(frame.Child < node.ChildCount) {
+						frames[top - 1].Child = frame.Child + 1;
+						frames[top++] = new BuildFrame { Node = node.GetChild(frame.Child) };
+						continue;
+					}
+					result = Create(text, nodes, built, node);
+					built[frame.Node] = result;
+					top--;
+				}
+				return result;
+			} finally {
+				ArrayPool<BuildFrame>.Shared.Return(frames);
+				// 清空，避免池中长期持有整棵 FunctionBase 树
+				ArrayPool<FunctionBase>.Shared.Return(built, true);
+			}
+		}
+
+		private static FunctionBase Create(string text, FastNode[] nodes, FunctionBase[] built, FastNode node)
 		{
 			switch(node.Kind) {
 				case FastNodeKind.Number: return BuildNumber(text, node);
 				case FastNodeKind.Text: return new Function_ValueText(Operand.Create(UnescapeString(Slice(text, node))));
 				case FastNodeKind.Parameter: return new Function_Parameter(node.Text);
-				case FastNodeKind.Bracket: return Build(text, node.Children[0]);
-				case FastNodeKind.Not: return new Function_NOT(Build(text, node.Children[0]));
-				case FastNodeKind.Percentage: return new Function_Percentage(Build(text, node.Children[0]));
+				case FastNodeKind.Bracket: return built[node.GetChild(0)];
+				case FastNodeKind.Not: return new Function_NOT(built[node.GetChild(0)]);
+				case FastNodeKind.Percentage: return new Function_Percentage(built[node.GetChild(0)]);
 
-				case FastNodeKind.Mul: return new Function_Mul(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Div: return new Function_Div(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Mod: return new Function_Mod(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Add: return new Function_Add(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Sub: return new Function_Sub(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Concat: return new Function_Connect(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.GreaterThan: return new Function_GT(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.GreaterOrEqual: return new Function_GE(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.LessThan: return new Function_LT(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.LessOrEqual: return new Function_LE(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Equal: return new Function_EQ(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.NotEqual: return new Function_NE(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.And: return new Function_AND(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.Or: return new Function_OR(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.If: return new Function_IF(BuildArguments(text, node));
+				case FastNodeKind.Mul: return new Function_Mul(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Div: return new Function_Div(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Mod: return new Function_Mod(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Add: return new Function_Add(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Sub: return new Function_Sub(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Concat: return new Function_Connect(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.GreaterThan: return new Function_GT(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.GreaterOrEqual: return new Function_GE(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.LessThan: return new Function_LT(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.LessOrEqual: return new Function_LE(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Equal: return new Function_EQ(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.NotEqual: return new Function_NE(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.And: return new Function_AND(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.Or: return new Function_OR(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.If: return new Function_IF(BuildArguments(nodes, built, node));
 
-				case FastNodeKind.Call: return FastFunctionFactory.Create(node.Type, BuildArguments(text, node), node.Text);
-				case FastNodeKind.Array: return new Function_ARRAY(BuildArguments(text, node));
-				case FastNodeKind.ArrayJson: return new Function_ArrayJson(BuildArguments(text, node));
-				case FastNodeKind.ArrayJsonItem: return new Function_ArrayJsonItem(UnescapeKey(node.Text), Build(text, node.Children[0]));
-				case FastNodeKind.GetJson: return new Function_GetJsonValue(Build(text, node.Children[0]), Build(text, node.Children[1]));
-				case FastNodeKind.GetJsonProperty: return new Function_GetJsonValue(Build(text, node.Children[0]), new Function_ValueText(Operand.Create(node.Text)));
+				case FastNodeKind.Call: return FastFunctionFactory.Create(node.Type, BuildArguments(nodes, built, node), node.Text);
+				case FastNodeKind.Array: return new Function_ARRAY(BuildArguments(nodes, built, node));
+				case FastNodeKind.ArrayJson: return new Function_ArrayJson(BuildArguments(nodes, built, node));
+				case FastNodeKind.ArrayJsonItem: return new Function_ArrayJsonItem(UnescapeKey(node.Text), built[node.GetChild(0)]);
+				case FastNodeKind.GetJson: return new Function_GetJsonValue(built[node.GetChild(0)], built[node.GetChild(1)]);
+				case FastNodeKind.GetJsonProperty: return new Function_GetJsonValue(built[node.GetChild(0)], new Function_ValueText(Operand.Create(node.Text)));
 				default: throw new ArgumentException($"Node '{node.Kind}' is not implemented.");
 			}
 		}
 
-		private static FunctionBase[] BuildArguments(string text, FastNode node)
+		private static FunctionBase[] BuildArguments(FastNode[] nodes, FunctionBase[] built, FastNode node)
 		{
-			var children = node.Children;
-			if(children.Length == 0) { return FunctionBase_Empty; }
-			var list = new FunctionBase[children.Length];
-			for(int i = 0; i < children.Length; i++) {
-				list[i] = Build(text, children[i]);
+			var count = node.ChildCount;
+			if(count == 0) { return FunctionBase_Empty; }
+			var list = new FunctionBase[count];
+			for(int i = 0; i < count; i++) {
+				list[i] = built[node.GetChild(i)];
 			}
 			return list;
 		}
