@@ -1,6 +1,7 @@
 using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 
@@ -12,8 +13,11 @@ namespace ToolGood.Algorithm.math
 	/// </summary>
 	internal static class FastTreeBuilder
 	{
-		/// <summary>条件树/计算树允许的最大嵌套层数，超过则返回错误而不是 StackOverflow</summary>
-		private const int MaxTreeDepth = 500;
+		/// <summary>条件树/计算树允许的最大嵌套层数（逻辑上限）</summary>
+		private const int MaxTreeDepth = 2000;
+
+		/// <summary>每隔多少层做一次剩余栈探测</summary>
+		private const int StackProbeInterval = 16;
 
 		#region ConditionTree
 
@@ -30,6 +34,9 @@ namespace ToolGood.Algorithm.math
 		{
 			if(++depth > MaxTreeDepth) {
 				throw new FormatException($"Condition is nested too deeply (more than {MaxTreeDepth} levels).");
+			}
+			if((depth & (StackProbeInterval - 1)) == 0 && !RuntimeHelpers.TryEnsureSufficientExecutionStack()) {
+				throw new FormatException($"Condition is nested too deeply for the current thread stack (stopped at level {depth}).");
 			}
 			ConditionTreeType type;
 			switch(node.Kind) {
@@ -69,6 +76,9 @@ namespace ToolGood.Algorithm.math
 		{
 			if(++depth > MaxTreeDepth) {
 				throw new FormatException($"Expression is nested too deeply (more than {MaxTreeDepth} levels).");
+			}
+			if((depth & (StackProbeInterval - 1)) == 0 && !RuntimeHelpers.TryEnsureSufficientExecutionStack()) {
+				throw new FormatException($"Expression is nested too deeply for the current thread stack (stopped at level {depth}).");
 			}
 			switch(node.Kind) {
 				case FastNodeKind.Bracket: {

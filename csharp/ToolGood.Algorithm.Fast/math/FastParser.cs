@@ -1,6 +1,7 @@
 using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 
@@ -32,8 +33,15 @@ namespace ToolGood.Algorithm.math
 		private const int PrecedenceOr = 7;
 		private const int PrecedenceConditional = 6;
 
-		/// <summary>嵌套深度上限，防止异常公式把线程栈打爆（StackOverflow 无法被捕获，会直接杀进程）</summary>
-		private const int MaxDepth = 400;
+		/// <summary>
+		/// 逻辑嵌套上限（兜底，防止异常公式构造超大语法树）。
+		/// 实际能到多深由 <see cref="RuntimeHelpers.TryEnsureSufficientExecutionStack"/> 按线程栈自适应决定：
+		/// 默认 1 MB 线程栈约 2000 层，把公式放到更大栈的线程上还能更深。
+		/// </summary>
+		private const int MaxDepth = 5000;
+
+		/// <summary>每隔多少层做一次剩余栈探测</summary>
+		private const int StackProbeInterval = 16;
 
 		private const int MinCapacity = 16;
 
@@ -235,13 +243,51 @@ namespace ToolGood.Algorithm.math
 			return node;
 		}
 
-		/// <summary>优先级爬升主循环</summary>
+		/// <summary>
+		/// 优先级爬升主循环。
+		/// <para>
+		/// 为了在有限的线程栈上支持尽可能深的嵌套，这里刻意把「括号/前缀/后缀」直接内联，
+		/// 并把二元运算循环挪到 <see cref="ParseBinaryRest"/>，于是每层括号嵌套只压 1 个栈帧
+		/// （ParseExpr），而不是 4 个（旧的 ParseExpr+ParseUnary+ParsePostfix+ParsePrimary）。
+		/// </para>
+		/// </summary>
 		private int ParseExpr(int minPrecedence)
 		{
 			if(++_depth > MaxDepth) {
 				throw new FormatException($"Expression is nested too deeply (more than {MaxDepth} levels).");
 			}
-			var left = ParseUnary();
+			// 逻辑上限之外，还要探测当前线程的实际剩余栈：
+			// StackOverflow 无法 try/catch，会直接杀进程，必须提前失败。
+			if((_depth & (StackProbeInterval - 1)) == 0 && !RuntimeHelpers.TryEnsureSufficientExecutionStack()) {
+				throw new FormatException($"Expression is nested too deeply for the current thread stack (stopped at level {_depth}).");
+			}
+
+			int left;
+			var token = Current;
+			if(token.Type == FastToken.BANG) {
+				Next();
+				var operand = ParseExpr(PrecedenceUnary);
+				left = AddNode(FastNode.Unary(FastNodeKind.Not, operand, token.Start, _nodes[operand].End));
+			} else if(token.Type == FastToken.LPAREN) {
+				// 括号在这里直接递归，少一个 ParsePrimary 栈帧
+				Next();
+				var inner = ParseExpr(0);
+				Expect(FastToken.RPAREN);
+				var innerNode = _nodes[inner];
+				left = AddNode(FastNode.Unary(FastNodeKind.Bracket, inner, innerNode.Start, innerNode.End));
+			} else {
+				left = ParsePrimary();
+				left = ParsePostfix(left);
+			}
+
+			left = ParseBinaryRest(left, minPrecedence);
+			_depth--;
+			return left;
+		}
+
+		/// <summary>二元/三目运算循环（优先级爬升）</summary>
+		private int ParseBinaryRest(int left, int minPrecedence)
+		{
 			while(true) {
 				var token = Current;
 				int type = token.Type;
@@ -251,7 +297,7 @@ namespace ToolGood.Algorithm.math
 					precedence = PrecedencePercentage;
 					postfixPercentage = true;
 				}
-				if(precedence == 0 || precedence < minPrecedence) { break; }
+				if(precedence == 0 || precedence < minPrecedence) { return left; }
 
 				Next();
 				if(postfixPercentage) {
@@ -271,25 +317,11 @@ namespace ToolGood.Algorithm.math
 				var right = ParseExpr(precedence + 1);
 				left = AddNode(FastNode.Binary(GetBinaryKind(type), left, right, _nodes[left].Start, _nodes[right].End));
 			}
-			_depth--;
-			return left;
 		}
 
-		private int ParseUnary()
+		/// <summary>后缀链：函数调用风格的 .name(...) 与下标/属性访问</summary>
+		private int ParsePostfix(int left)
 		{
-			if(Current.Type == FastToken.BANG) {
-				var token = Current;
-				Next();
-				var operand = ParseExpr(PrecedenceUnary);
-				return AddNode(FastNode.Unary(FastNodeKind.Not, operand, token.Start, _nodes[operand].End));
-			}
-			return ParsePostfix();
-		}
-
-		/// <summary>基础表达式 + 后缀（函数调用风格的 .name(...) 与下标/属性访问）</summary>
-		private int ParsePostfix()
-		{
-			var left = ParsePrimary();
 			while(true) {
 				if(Current.Type == FastToken.DOT) {
 					left = ParseMemberAccess(left);
@@ -308,13 +340,6 @@ namespace ToolGood.Algorithm.math
 		{
 			var token = Current;
 			switch(token.Type) {
-				case FastToken.LPAREN: {
-					Next();
-					var inner = ParseExpr(0);
-					Expect(FastToken.RPAREN);
-					var innerNode = _nodes[inner];
-					return AddNode(FastNode.Unary(FastNodeKind.Bracket, inner, innerNode.Start, innerNode.End));
-				}
 				case FastToken.NUM:
 					Next();
 					return AddNode(FastNode.Leaf(FastNodeKind.Number, token.Start, token.End));
