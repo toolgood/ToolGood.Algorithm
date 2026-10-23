@@ -1,0 +1,160 @@
+package toolgood.algorithm.algorithmengine;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.AlgorithmEngine;
+
+public class CompareTest {
+    @Test
+    public void base_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        boolean b = engine.TryEvaluate("1=1", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1=2", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("1<>2", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1!=2", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1>2", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("1<2", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1<=2", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1>=2", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("'1'='1'", false);
+        assertEquals(true, b);
+        b = engine.TryEvaluate("'e'='e'", false);
+        assertEquals(true, b);
+        b = engine.TryEvaluate("'1'='2'", true);
+        assertEquals(false, b);
+        b = engine.TryEvaluate("'我'='你'", true);
+        assertEquals(false, b);
+        b = engine.TryEvaluate("'1'!='2'", false);
+        assertEquals(true, b);
+    }
+
+    @Test
+    public void strict_equality_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        boolean b = engine.TryEvaluate("1===1", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1===2", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("'1'==='1'", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("'1'==='2'", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("1!==2", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("1!==1", true);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("'1'!=='2'", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("'1'!=='1'", true);
+        assertEquals(false, b);
+    }
+
+    @Test
+    public void null_compare_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+
+        boolean bb2 = engine.TryEvaluate("1>null", true);
+        assertEquals(bb2, false);
+
+        bb2 = engine.TryEvaluate("1>=null", true);
+        assertEquals(bb2, false);
+
+        bb2 = engine.TryEvaluate("1<=null", true);
+        assertEquals(bb2, false);
+
+        bb2 = engine.TryEvaluate("1<null", true);
+        assertEquals(bb2, false);
+
+        bb2 = engine.TryEvaluate("1==null", true);
+        assertEquals(bb2, false);
+
+        bb2 = engine.TryEvaluate("1!=null", false);
+        assertEquals(bb2, true);
+
+        // 两侧同为 null 属于异常数据，返回错误，TryEvaluate 返回默认值
+        bb2 = engine.TryEvaluate("null=null", false);
+        assertEquals(bb2, false);
+        assertNotNull(engine.LastError);
+
+        bb2 = engine.TryEvaluate("null!=null", true);
+        assertEquals(bb2, true);
+        assertNotNull(engine.LastError);
+
+        bb2 = engine.TryEvaluate("'111'=null", true);
+        assertEquals(bb2, false);
+
+        bb2 = engine.TryEvaluate("'111'!=null", false);
+        assertEquals(bb2, true);
+    }
+
+    @Test
+    public void negative_compare_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        boolean value = engine.TryEvaluate("1 > (-2)", false);
+        assertEquals(value, true);
+
+        value = engine.TryEvaluate("(-1) > (-2）", false);
+        assertEquals(value, true);
+
+        value = engine.TryEvaluate("-1 > (-2)", false);
+        assertEquals(value, true);
+
+        value = engine.TryEvaluate("-1 > -2", false);
+        assertEquals(value, true);
+
+        boolean value3 = engine.TryEvaluate("-7 < -2", false);
+        assertEquals(value3, true);
+
+        value3 = engine.TryEvaluate("-7*Yes < -2", false);
+        assertEquals(value3, true);
+
+        value3 = engine.TryEvaluate("-7*No > -2", false);
+        assertEquals(value3, true);
+    }
+
+    @Test
+    public void null_same_type_compare_test() {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        // 两侧同为 null 属于异常数据，所有比较运算符均返回错误，TryEvaluate 返回默认值
+        boolean b = engine.TryEvaluate("null>null", true);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
+
+        b = engine.TryEvaluate("null>=null", true);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
+
+        b = engine.TryEvaluate("null<=null", true);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
+
+        b = engine.TryEvaluate("null<null", true);
+        assertEquals(true, b);
+        assertNotNull(engine.LastError);
+    }
+}

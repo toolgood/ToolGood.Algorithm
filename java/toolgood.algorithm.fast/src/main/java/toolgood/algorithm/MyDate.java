@@ -1,0 +1,459 @@
+package toolgood.algorithm;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class MyDate {
+    public Integer Year;
+    public Integer Month;
+    public Integer Day;
+    public int Hour;
+    public int Minute;
+    public int Second;
+
+    // public MyDate(TimeSpan dt) {
+    // Day = dt.Days;
+    // Hour = dt.Hours;
+    // Minute = dt.Minutes;
+    // Second = dt.Seconds;
+    // }
+
+    private MyDate() {
+    }
+
+    public MyDate(MyDate dt) {
+        Year = dt.Year;
+        Month = dt.Month;
+        Day = dt.Day;
+        Hour = dt.Hour;
+        Minute = dt.Minute;
+        Second = dt.Second;
+    }
+
+    public MyDate(Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer second) {
+        Year = year;
+        Month = month;
+        Day = day;
+        Hour = hour;
+        Minute = minute;
+        Second = second;
+    }
+
+    public MyDate(Date dt) {
+        DateTime dTime = new DateTime(dt);
+        Year = dTime.getYear();
+        Month = dTime.getMonthOfYear();
+        Day = dTime.getDayOfMonth();
+        Hour = dTime.getHourOfDay();
+        Minute = dTime.getMinuteOfHour();
+        Second = dTime.getSecondOfMinute();
+    }
+
+    public MyDate(DateTime dTime) {
+        Year = dTime.getYear();
+        Month = dTime.getMonthOfYear();
+        Day = dTime.getDayOfMonth();
+        Hour = dTime.getHourOfDay();
+        Minute = dTime.getMinuteOfHour();
+        Second = dTime.getSecondOfMinute();
+    }
+
+    public MyDate(BigDecimal num) {
+        int days = num.intValue();
+        if (days > 365) {
+            LocalDate start = LocalDate.of(1900, 1, 1);
+            start = start.plusDays(days - 2);
+            Year = start.getYear();
+            Month = start.getMonthValue();
+            Day = start.getDayOfMonth();
+        } else {
+            Day = days;
+        }
+        BigDecimal d = num.subtract(new BigDecimal(days));
+        Hour = d.multiply(new BigDecimal(24)).intValue();
+        Minute = d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60)).intValue();
+        Second = d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60))
+                .subtract(new BigDecimal(Minute)).multiply(new BigDecimal(60)).intValue();
+        // 防止秒数出错
+        if (Second == 60) {
+            Second = 0;
+            Minute = Minute + 1;
+            if (Minute == 60) {
+                Minute = 0;
+                Hour = Hour + 1;
+            }
+        }
+    }
+
+    public MyDate(double num) {
+        int days = (int) num;
+        if (days > 365) {
+            LocalDate start = LocalDate.of(1900, 1, 1);
+            start = start.plusDays(days - 2);
+            Year = start.getYear();
+            Month = start.getMonthValue();
+            Day = start.getDayOfMonth();
+        } else {
+            Day = days;
+        }
+        double d = num - days;
+        Hour = (int) (d * 24);
+        Minute = (int) ((d * 24 - Hour) * 60.0);
+        Second = (int) Math.round(((d * 24 - Hour) * 60.0 - Minute) * 60.0);
+        // 防止秒数出错
+        if (Second == 60) {
+            Second = 0;
+            Minute = Minute + 1;
+            if (Minute == 60) {
+                Minute = 0;
+                Hour = Hour + 1;
+            }
+        }
+    }
+
+    public static MyDate parse(String txt) {
+        String t = txt.trim();
+        Matcher m = Pattern
+                .compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$")
+                .matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            date.Hour = Integer.parseInt(m.group(4));
+            date.Minute = Integer.parseInt(m.group(5));
+            date.Second = Integer.parseInt(m.group(6));
+            return date;
+        }
+        m = Pattern
+                .compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$")
+                .matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            date.Hour = Integer.parseInt(m.group(4));
+            date.Minute = Integer.parseInt(m.group(5));
+            date.Second = Integer.parseInt(m.group(6));
+            return date;
+        }
+
+        m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            date.Hour = Integer.parseInt(m.group(4));
+            date.Minute = Integer.parseInt(m.group(5));
+            return date;
+        }
+        m = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            date.Hour = Integer.parseInt(m.group(4));
+            date.Minute = Integer.parseInt(m.group(5));
+            return date;
+        }
+
+        m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            return date;
+        }
+        m = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            return date;
+        }
+        m = Pattern.compile("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Day = Integer.parseInt(m.group(1));
+            date.Hour = Integer.parseInt(m.group(2));
+            date.Minute = Integer.parseInt(m.group(3));
+            date.Second = Integer.parseInt(m.group(4));
+            return date;
+        }
+        m = Pattern.compile("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Hour = Integer.parseInt(m.group(1));
+            date.Minute = Integer.parseInt(m.group(2));
+            date.Second = Integer.parseInt(m.group(3));
+            return date;
+        }
+        m = Pattern.compile("^(2[0123]|[01]?\\d):([012345]?\\d)$").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Hour = Integer.parseInt(m.group(1));
+            date.Minute = Integer.parseInt(m.group(2));
+            return date;
+        }
+        return null;
+    }
+
+    public static MyDate now() {
+        return new MyDate(DateTime.now());
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (Year != null && Year > 0) {
+            stringBuffer.append(Year);
+            stringBuffer.append("-");
+            if (Month < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Month);
+            stringBuffer.append("-");
+            if (Day < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Day);
+
+            stringBuffer.append(" ");
+            if (Hour < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Hour);
+            stringBuffer.append(":");
+            if (Minute < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Minute);
+            stringBuffer.append(":");
+            if (Second < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Second);
+        } else {
+            if (Day != null && Day > 0) {
+                stringBuffer.append(Day);
+                stringBuffer.append(" ");
+            }
+            if (Hour < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Hour);
+            stringBuffer.append(":");
+            if (Minute < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Minute);
+            stringBuffer.append(":");
+            if (Second < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Second);
+        }
+
+        return stringBuffer.toString();
+    }
+
+    public String toString(String f) {
+        if (Year == null || Year == 0) {
+            return this.toString();
+        }
+        return this.ToDateTime().toString(f);
+    }
+
+    public DateTime ToDateTime() {
+        return new DateTime(Year == null ? 0 : Year, Month == null ? 0 : Month, Day == null ? 0 : Day,
+                Hour, Minute, Second, DateTimeZone.UTC);
+    }
+
+    public DateTime ToDateTime(DateTimeZone zoo) {
+        return new DateTime(Year == null ? 0 : Year, Month == null ? 0 : Month, Day == null ? 0 : Day,
+                Hour, Minute, Second, zoo);
+    }
+
+    public int DayOfWeek() {
+        return ToDateTime().dayOfWeek().get();
+    }
+
+    public int DayOfYear() {
+        return ToDateTime().getDayOfYear();
+    }
+
+    public MyDate AddYears(int d) {
+        int t = (Year == null ? 0 : Year) + d;
+        return new MyDate(t, Month, Day, Hour, Minute, Second);
+    }
+
+    public MyDate AddMonths(int d) {
+        int t = (Month == null ? 0 : Month) + d;
+        if (t >= 1 && t <= 12) {
+            return new MyDate(Year, t, Day, Hour, Minute, Second);
+        }
+        return new MyDate(ToDateTime().plusMonths(d));
+    }
+
+    public MyDate AddDays(int d) {
+        if (Year != null && Year > 1900) {
+            int t = (Day == null ? 0 : Day) + d;
+            if (t >= 1 && t <= 28) {
+                return new MyDate(Year, Month, t, Hour, Minute, Second);
+            }
+            return new MyDate(ToDateTime().plusDays(d));
+        }
+        return addTimeSpan(d * 86400);
+    }
+
+    public MyDate AddHours(int d) {
+        int t = this.Hour + d;
+        if (Year != null && t >= 0 && t < 24) {
+            return new MyDate(Year, Month, Day, t, Minute, Second);
+        }
+        if (Year != null && Year > 1900) {
+            return new MyDate(ToDateTime().plusHours(d));
+        }
+        return addTimeSpan(d * 3600);
+    }
+
+    public MyDate AddMinutes(int d) {
+        int t = this.Minute + d;
+        if (Year != null && t >= 0 && t <= 59) {
+            return new MyDate(Year, Month, Day, Hour, t, Second);
+        }
+        if (Year != null && Year > 1900) {
+            return new MyDate(ToDateTime().plusMinutes(d));
+        }
+        return addTimeSpan(d * 60);
+    }
+
+    public MyDate AddSeconds(int d) {
+        int t = this.Second + d;
+        if (Year != null && t >= 0 && t <= 59) {
+            return new MyDate(Year, Month, Day, Hour, Minute, t);
+        }
+        if (Year != null && Year > 1900) {
+            return new MyDate(ToDateTime().plusSeconds(d));
+        }
+        return addTimeSpan(d);
+    }
+
+    private MyDate addTimeSpan(int totalSeconds) {
+        int total = Hour * 3600 + Minute * 60 + Second + totalSeconds;
+        int newSecond = total % 60;
+        if (newSecond < 0) { newSecond += 60; }
+        int totalMinutes = (total - newSecond) / 60;
+        int newMinute = totalMinutes % 60;
+        if (newMinute < 0) { newMinute += 60; }
+        int totalHours = (totalMinutes - newMinute) / 60;
+        int newHour = totalHours % 24;
+        if (newHour < 0) { newHour += 24; }
+        int newDay = (totalHours - newHour) / 24;
+        MyDate result = new MyDate();
+        result.Day = newDay;
+        result.Hour = newHour;
+        result.Minute = newMinute;
+        result.Second = newSecond;
+        return result;
+    }
+
+    public BigDecimal ToNumber() {
+        BigDecimal result = new BigDecimal(Second).divide(new BigDecimal(60), MathContext.DECIMAL32);
+        result = result.add(new BigDecimal(Minute)).divide(new BigDecimal(60), MathContext.DECIMAL32);
+        result = result.add(new BigDecimal(Hour)).divide(new BigDecimal(24), MathContext.DECIMAL32);
+
+        if (Year != null && Year > 1900) {
+            LocalDate start = LocalDate.of(Year, Month, Day);
+            LocalDate end = LocalDate.of(1900, 1, 1);
+            long days = ChronoUnit.DAYS.between(end, start) + 2;
+            return result.add(new BigDecimal(days));
+        }
+        if (Day != null) {
+            return result.add(new BigDecimal(Day));
+        }
+        return result;
+    }
+
+    public MyDate ADD(MyDate num) {
+        DateTime dt = this.ToDateTime();
+        if (num.Year != null) {
+            dt = dt.plusYears(num.Year);
+        }
+        if (num.Month != null) {
+            dt = dt.plusMonths(num.Month);
+        }
+        if (num.Day != null) {
+            dt = dt.plusDays(num.Day);
+        }
+        dt = dt.plusHours(num.Hour);
+        dt = dt.plusMinutes(num.Minute);
+        dt = dt.plusSeconds(num.Second);
+        return new MyDate(dt);
+    }
+
+    public MyDate SUB(MyDate num) {
+        DateTime dt = this.ToDateTime();
+        if (num.Year != null) {
+            dt = dt.plusYears(-num.Year);
+        }
+        if (num.Month != null) {
+            dt = dt.plusMonths(-num.Month);
+        }
+        if (num.Day != null) {
+            dt = dt.plusDays(-num.Day);
+        }
+        dt = dt.plusHours(-num.Hour);
+        dt = dt.plusMinutes(-num.Minute);
+        dt = dt.plusSeconds(-num.Second);
+        return new MyDate(dt);
+    }
+
+    public MyDate ADD(BigDecimal num) {
+        return new MyDate(this.ToNumber().add(num));
+    }
+
+    public MyDate SUB(BigDecimal num) {
+        return new MyDate(this.ToNumber().subtract(num));
+    }
+
+    public MyDate MUL(BigDecimal num) {
+        return new MyDate(this.ToNumber().multiply(num));
+    }
+
+    public MyDate DIV(BigDecimal num) {
+        return new MyDate(this.ToNumber().divide(num, MathContext.DECIMAL32));
+    }
+
+    public long ToLong() {
+        long d = 0;
+        if (Year != null) {
+            d += Year * 10000000000L;
+        }
+        if (Month != null) {
+            d += Month * 100000000L;
+        }
+        if (Day != null) {
+            d += Day * 1000000L;
+        }
+        d += Hour * 10000L;
+        d += Minute * 100L;
+        d += Second;
+        return d;
+    }
+
+}
