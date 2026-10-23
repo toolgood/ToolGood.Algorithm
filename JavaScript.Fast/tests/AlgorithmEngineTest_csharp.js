@@ -1,0 +1,473 @@
+import assert from 'assert';
+import { AlgorithmEngine } from '../src/AlgorithmEngine.js';
+import { AlgorithmEngineEx } from '../src/AlgorithmEngineEx.js';
+
+// 扩展 AlgorithmEngine 类以添加 TryEvaluate 方法
+class AlgorithmEngineWithTryEvaluate extends AlgorithmEngine {
+  TryEvaluate(exp, def) {
+    const type = typeof def;
+    switch (type) {
+      case 'number':
+        if (Number.isInteger(def)) {
+          return this.TryEvaluate_Int(exp, def);
+        } else {
+          return this.TryEvaluate_Double(exp, def);
+        }
+      case 'string':
+        return this.TryEvaluate_String(exp, def);
+      case 'boolean':
+        return this.TryEvaluate_Boolean(exp, def);
+      default:
+        return def;
+    }
+  }
+}
+
+// 测试用例
+function testUrlDecode() {
+  console.log('开始测试 UrlDecode...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let urlDecode = engine.TryEvaluate("UrlDecode('%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c')", "");
+  assert.strictEqual(urlDecode, "&=我中国人 >||", "UrlDecode('%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c') 应该是 '&=我中国人 >||'");
+  
+  console.log('UrlDecode 测试通过！');
+}
+
+function testUrlEncode() {
+  console.log('开始测试 UrlEncode...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let urlEncode = engine.TryEvaluate("UrlEncode('&=我中国人 >||')", "");
+  assert.strictEqual(urlEncode, "%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c", "UrlEncode('&=我中国人 >||') 应该是 '%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c'");
+  
+  console.log('UrlEncode 测试通过！');
+}
+
+function testHtmlEncode() {
+  console.log('开始测试 HtmlEncode...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let htmlEncode = engine.TryEvaluate("HtmlEncode('&=我中国人 >||')", "");
+  assert.strictEqual(htmlEncode, "&amp;=我中国人 &gt;||", "HtmlEncode('&=我中国人 >||') 应该是 '&amp;=我中国人 &gt;||'");
+  
+  console.log('HtmlEncode 测试通过！');
+}
+
+function testHtmlDecode() {
+  console.log('开始测试 HtmlDecode...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let htmlDecode = engine.TryEvaluate("HtmlDecode('&amp;=我中国人 &gt;||')", "");
+  assert.strictEqual(htmlDecode, "&=我中国人 >||", "HtmlDecode('&amp;=我中国人 &gt;||') 应该是 '&=我中国人 >||'");
+  
+  console.log('HtmlDecode 测试通过！');
+}
+
+function testTextToBase64() {
+  console.log('开始测试 TextToBase64...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let textToBase64 = engine.TryEvaluate("TextToBase64('&=我中国人 >||')", "");
+  assert.strictEqual(textToBase64, "Jj3miJHkuK3lm73kurogPnx8", "TextToBase64('&=我中国人 >||') 应该是 'Jj3miJHkuK3lm73kurogPnx8'");
+  
+  
+  console.log('TextToBase64 测试通过！');
+}
+
+function testTextToBase64Url() {
+  console.log('开始测试 TextToBase64Url...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let textToBase64Url = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||')", "");
+  assert.strictEqual(textToBase64Url, "Jj3miJHkuK3lm73kurogPnx8", "TextToBase64Url('&=我中国人 >||') 应该是 'Jj3miJHkuK3lm73kurogPnx8'");
+  
+  console.log('TextToBase64Url 测试通过！');
+}
+
+function testBase64ToText() {
+  console.log('开始测试 Base64ToText...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let base64ToText = engine.TryEvaluate("Base64ToText('Jj3miJHkuK3lm73kurogPnx8')", "");
+  assert.strictEqual(base64ToText, "&=我中国人 >||", "Base64ToText('Jj3miJHkuK3lm73kurogPnx8') 应该是 '&=我中国人 >||'");
+  
+  console.log('Base64ToText 测试通过！');
+}
+
+function testBase64UrlToText() {
+  console.log('开始测试 Base64UrlToText...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let base64UrlToText = engine.TryEvaluate("Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8')", "");
+  assert.strictEqual(base64UrlToText, "&=我中国人 >||", "Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8') 应该是 '&=我中国人 >||'");
+  
+  console.log('Base64UrlToText 测试通过！');
+}
+
+function testRegex() {
+  console.log('开始测试 Regex...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  engine.UseExcelIndex = false;
+  
+  let regex = engine.TryEvaluate("Regex('abcd','a.*c')", "");
+  assert.strictEqual(regex, "abc", "Regex('abcd','a.*c') 应该是 'abc'");
+  
+  console.log('Regex 测试通过！');
+}
+
+function testIsRegex() {
+  console.log('开始测试 IsRegex...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let isRegex = engine.TryEvaluate("IsRegex('abcd','a.*c')", false);
+  assert.strictEqual(isRegex, true, "IsRegex('abcd','a.*c') 应该是 true");
+  
+  isRegex = engine.TryEvaluate("IsRegex('abcd','da.*c')", true);
+  assert.strictEqual(isRegex, false, "IsRegex('abcd','da.*c') 应该是 false");
+  
+  console.log('IsRegex 测试通过！');
+}
+
+function testGuid() {
+  console.log('开始测试 Guid...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let guid = engine.TryEvaluate("Guid()", "");
+  assert.ok(typeof guid === 'string', "Guid() 应该返回一个字符串");
+  
+  console.log('Guid 测试通过！');
+}
+
+function testHash() {
+  console.log('开始测试 Hash...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let md5 = engine.TryEvaluate("Md5('&=我中国人 >||')", "");
+  assert.strictEqual(md5, "2E1CEFBDFA3677725B7856E02D225819", "Md5('&=我中国人 >||') 应该是 '2E1CEFBDFA3677725B7856E02D225819'");
+  
+  let sha1 = engine.TryEvaluate("Sha1('&=我中国人 >||')", "");
+  assert.strictEqual(sha1, "F2C250C58F3A40DC54B5A47F0F6B1187AD5AC2EE", "Sha1('&=我中国人 >||') 应该是 'F2C250C58F3A40DC54B5A47F0F6B1187AD5AC2EE'");
+  
+  let sha256 = engine.TryEvaluate("Sha256('&=我中国人 >||')", "");
+  assert.strictEqual(sha256, "FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A", "Sha256('&=我中国人 >||') 应该是 'FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A'");
+  
+  // let crc32 = engine.TryEvaluate("Crc32('&=我中国人 >||')", "");
+  // assert.strictEqual(crc32, "60649EFF", "Crc32('&=我中国人 >||') 应该是 '60649EFF'");
+  let dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "CF3923196E21B1E270FD72B089B092BB");
+
+  dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "EB4D4FC2AA5637060FD12004DF845801D8902105");
+
+  dt = engine.TryEvaluate("HmacSha256('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "3E25E0D14039E8258BBBBD15F7E3B91BB497A8966C12E1DEA3D651BF03CB4B97");
+
+  dt = engine.TryEvaluate("HmacSha512('&=我中国人 >||','12')", "");
+  assert.strictEqual(dt, "4E9CE785C46569965C7C712A841EC7382C64D918D49F992EDB3504BED9C3A5EFBB1C8F712968F6B904417E07F9D72E707FCF148D55A4D3EDF1A9866B7BAC2049");
+
+  // 补充 '123' 系列
+  dt = engine.TryEvaluate("Md5('123')", "");
+  assert.strictEqual(dt, "202CB962AC59075B964B07152D234B70", "Md5('123') 应该是 '202CB962AC59075B964B07152D234B70'");
+
+  dt = engine.TryEvaluate("Sha1('123')", "");
+  assert.strictEqual(dt, "40BD001563085FC35165329EA1FF5C5ECBDBBEEF", "Sha1('123') 应该是 '40BD001563085FC35165329EA1FF5C5ECBDBBEEF'");
+
+  dt = engine.TryEvaluate("Sha256('123')", "");
+  assert.strictEqual(dt, "A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3", "Sha256('123') 应该是 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3'");
+
+  dt = engine.TryEvaluate("Sha512('&=我中国人 >||')", "");
+  assert.strictEqual(dt, "FFEAC98C39D76CD86A3AB8ECEF16BE23166F68E1A3C5C9809A8AD2CE417170465286E4CF6FFA17924613CD7477533B9109A5DD504A2462F9DB693D56AD365C14", "Sha512('&=我中国人 >||') 应该有正确的 Sha512 值");
+
+  dt = engine.TryEvaluate("Sha512('123')", "");
+  assert.strictEqual(dt, "3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2", "Sha512('123') 应该是 '3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2'");
+
+  dt = engine.TryEvaluate("HmacMd5('123','123')", "");
+  assert.strictEqual(dt, "B2A1EC0F3E0607099D7F39791C04E9A4", "HmacMd5('123','123') 应该是 'B2A1EC0F3E0607099D7F39791C04E9A4'");
+
+  dt = engine.TryEvaluate("HmacSha1('123','123')", "");
+  assert.strictEqual(dt, "A3C024F01CCCB3B63457D848B0D2F89C1F744A3D", "HmacSha1('123','123') 应该是 'A3C024F01CCCB3B63457D848B0D2F89C1F744A3D'");
+
+  dt = engine.TryEvaluate("HmacSha256('123','123')", "");
+  assert.strictEqual(dt, "3CAFE40F92BE6AC77D2792B4B267C2DA11E3F3087B93BB19C6C5133786984B44", "HmacSha256('123','123') 应该是 '3CAFE40F92BE6AC77D2792B4B267C2DA11E3F3087B93BB19C6C5133786984B44'");
+
+  dt = engine.TryEvaluate("HmacSha512('123','123')", "");
+  assert.strictEqual(dt, "0634FD04380BBAF5069C8C46A74C7D21DF7414888D980C27A16D5E262CB8C9059139C212D0926000FAF026E483904CEFAE2F5E9D9BD5F51FBC2AC4C4DE518115", "HmacSha512('123','123') 应该是 '0634FD04380BBAF5069C8C46A74C7D21DF7414888D980C27A16D5E262CB8C9059139C212D0926000FAF026E483904CEFAE2F5E9D9BD5F51FBC2AC4C4DE518115'");
+
+  // 方法式调用
+  dt = engine.TryEvaluate("'123'.MD5()", "");
+  assert.strictEqual(dt, "202CB962AC59075B964B07152D234B70", "'123'.MD5() 应该是 '202CB962AC59075B964B07152D234B70'");
+
+  dt = engine.TryEvaluate("'123'.SHA1()", "");
+  assert.strictEqual(dt, "40BD001563085FC35165329EA1FF5C5ECBDBBEEF", "'123'.SHA1() 应该是 '40BD001563085FC35165329EA1FF5C5ECBDBBEEF'");
+
+  dt = engine.TryEvaluate("'123'.SHA256()", "");
+  assert.strictEqual(dt, "A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3", "'123'.SHA256() 应该是 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3'");
+
+  dt = engine.TryEvaluate("'123'.SHA512()", "");
+  assert.strictEqual(dt, "3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2", "'123'.SHA512() 应该是 '3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2'");
+
+  console.log('Hash 测试通过！');
+}
+
+function testIndexOf() {
+  console.log('开始测试 IndexOf...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  engine.UseExcelIndex = false;
+  
+  let indexOf = engine.TryEvaluate("IndexOf('abcd','cd')", -1);
+  assert.strictEqual(indexOf, 2, "IndexOf('abcd','cd') 应该是 2");
+  
+  let lastIndexOf = engine.TryEvaluate("LastIndexOf('abcd','cd')", -1);
+  assert.strictEqual(lastIndexOf, 2, "LastIndexOf('abcd','cd') 应该是 2");
+  
+  console.log('IndexOf 测试通过！');
+}
+
+function testSplit() {
+  console.log('开始测试 Split...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let split = engine.TryEvaluate("Split('1,2,3,4',',')[3]", "");
+  assert.strictEqual(split, "3", "Split('1,2,3,4',',')[3] 应该是 '3'");
+  
+  console.log('Split 测试通过！');
+}
+
+function testTrimStart() {
+  console.log('开始测试 TrimStart...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let trimStart = engine.TryEvaluate("TrimStart(' 123 ')", "");
+  assert.strictEqual(trimStart, "123 ", "TrimStart(' 123 ') 应该是 '123 '");
+  
+  trimStart = engine.TryEvaluate("TrimStart(' 123 ',' 1')", "");
+  assert.strictEqual(trimStart, "23 ", "TrimStart(' 123 ',' 1') 应该是 '23 '");
+  
+  console.log('TrimStart 测试通过！');
+}
+
+function testTrimEnd() {
+  console.log('开始测试 TrimEnd...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let trimEnd = engine.TryEvaluate("TrimEnd(' 123 ')", "");
+  assert.strictEqual(trimEnd, " 123", "TrimEnd(' 123 ') 应该是 ' 123'");
+  
+  trimEnd = engine.TryEvaluate("TrimEnd(' 123 ','3 ')", "");
+  assert.strictEqual(trimEnd, " 12", "TrimEnd(' 123 ','3 ') 应该是 ' 12'");
+  
+  console.log('TrimEnd 测试通过！');
+}
+
+function testJoin() {
+  console.log('开始测试 Join...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let join = engine.TryEvaluate("Join(',',1,2,5,6)", "");
+  assert.strictEqual(join, "1,2,5,6", "Join(',',1,2,5,6) 应该是 '1,2,5,6'");
+  
+  join = engine.TryEvaluate("Join(',',1,2,5,6,split('7,8,9',','))", "");
+  assert.strictEqual(join, "1,2,5,6,7,8,9", "Join(',',1,2,5,6,split('7,8,9',',')) 应该是 '1,2,5,6,7,8,9'");
+  
+  console.log('Join 测试通过！');
+}
+
+function testSubstring() {
+  console.log('开始测试 Substring...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let substring = engine.TryEvaluate("Substring('123456789',1,2)", "");
+  assert.strictEqual(substring, "12", "Substring('123456789',1,2) 应该是 '12'");
+  
+  console.log('Substring 测试通过！');
+}
+
+function testStartsWith() {
+  console.log('开始测试 StartsWith...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let startsWith = engine.TryEvaluate("StartsWith('123456789','12')", false);
+  assert.strictEqual(startsWith, true, "StartsWith('123456789','12') 应该是 true");
+  
+  startsWith = engine.TryEvaluate("StartsWith('123456789','127')", true);
+  assert.strictEqual(startsWith, false, "StartsWith('123456789','127') 应该是 false");
+  
+  console.log('StartsWith 测试通过！');
+}
+
+function testEndsWith() {
+  console.log('开始测试 EndsWith...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let endsWith = engine.TryEvaluate("EndsWith('123456789','89')", false);
+  assert.strictEqual(endsWith, true, "EndsWith('123456789','89') 应该是 true");
+  
+  endsWith = engine.TryEvaluate("EndsWith('123456789','127')", true);
+  assert.strictEqual(endsWith, false, "EndsWith('123456789','127') 应该是 false");
+  
+  console.log('EndsWith 测试通过！');
+}
+
+function testIsNullOrEmpty() {
+  console.log('开始测试 IsNullOrEmpty...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let isNullOrEmpty = engine.TryEvaluate("IsNullOrEmpty('')", false);
+  assert.strictEqual(isNullOrEmpty, true, "IsNullOrEmpty('') 应该是 true");
+  
+  isNullOrEmpty = engine.TryEvaluate("IsNullOrEmpty(' ')", true);
+  assert.strictEqual(isNullOrEmpty, false, "IsNullOrEmpty(' ') 应该是 false");
+  
+  console.log('IsNullOrEmpty 测试通过！');
+}
+
+function testIsNullOrWhiteSpace() {
+  console.log('开始测试 IsNullOrWhiteSpace...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let isNullOrWhiteSpace = engine.TryEvaluate("IsNullOrWhiteSpace('')", false);
+  assert.strictEqual(isNullOrWhiteSpace, true, "IsNullOrWhiteSpace('') 应该是 true");
+  
+  isNullOrWhiteSpace = engine.TryEvaluate("IsNullOrWhiteSpace('   ')", false);
+  assert.strictEqual(isNullOrWhiteSpace, true, "IsNullOrWhiteSpace('   ') 应该是 true");
+  
+  isNullOrWhiteSpace = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", true);
+  assert.strictEqual(isNullOrWhiteSpace, false, "IsNullOrWhiteSpace(' f ') 应该是 false");
+  
+  console.log('IsNullOrWhiteSpace 测试通过！');
+}
+
+function testRemoveStart() {
+  console.log('开始测试 RemoveStart...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let removeStart = engine.TryEvaluate("RemoveStart('123456789','12')", "");
+  assert.strictEqual(removeStart, "3456789", "RemoveStart('123456789','12') 应该是 '3456789'");
+  
+  removeStart = engine.TryEvaluate("RemoveStart('123456789','127')", "");
+  assert.strictEqual(removeStart, "123456789", "RemoveStart('123456789','127') 应该是 '123456789'");
+  
+  console.log('RemoveStart 测试通过！');
+}
+
+function testRemoveEnd() {
+  console.log('开始测试 RemoveEnd...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let removeEnd = engine.TryEvaluate("RemoveEnd('123456789','89')", "");
+  assert.strictEqual(removeEnd, "1234567", "RemoveEnd('123456789','89') 应该是 '1234567'");
+  
+  removeEnd = engine.TryEvaluate("RemoveEnd('123456789','127')", "");
+  assert.strictEqual(removeEnd, "123456789", "RemoveEnd('123456789','127') 应该是 '123456789'");
+  
+  console.log('RemoveEnd 测试通过！');
+}
+
+function testJson() {
+  console.log('开始测试 Json...');
+  
+  const engine = new AlgorithmEngineWithTryEvaluate();
+  
+  let json = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", "");
+  assert.strictEqual(json, "51", "json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age 应该是 '51'");
+  
+  json = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Birthday']", "");
+  assert.strictEqual(json, "04/26/1564 00:00:00", "json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Birthday'] 应该是 '04/26/1564 00:00:00'");
+  
+  json = engine.TryEvaluate("json('[1,2,3]')[1]", "");
+  assert.strictEqual(json, "1", "json('[1,2,3]')[1] 应该是 '1'");
+  
+  console.log('Json 测试通过！');
+}
+
+// 运行所有测试
+function runAllTests() {
+  try {
+    testUrlDecode();
+    testUrlEncode();
+    testHtmlEncode();
+    testHtmlDecode();
+    testTextToBase64();
+    testTextToBase64Url();
+    testBase64ToText();
+    testBase64UrlToText();
+    testRegex();
+    testIsRegex();
+    testGuid();
+    testHash();
+    testIndexOf();
+    testSplit();
+    testTrimStart();
+    testTrimEnd();
+    testJoin();
+    testSubstring();
+    testStartsWith();
+    testEndsWith();
+    testIsNullOrEmpty();
+    testIsNullOrWhiteSpace();
+    testRemoveStart();
+    testRemoveEnd();
+    testJson();
+    console.log('所有测试通过！');
+  } catch (error) {
+    console.error('测试失败:', error.message);
+    process.exit(1);
+  }
+}
+
+// 执行测试
+runAllTests();
+
+export {
+  testUrlDecode,
+  testUrlEncode,
+  testHtmlEncode,
+  testHtmlDecode,
+  testTextToBase64,
+  testTextToBase64Url,
+  testBase64ToText,
+  testBase64UrlToText,
+  testRegex,
+  testIsRegex,
+  testGuid,
+  testHash,
+  testIndexOf,
+  testSplit,
+  testTrimStart,
+  testTrimEnd,
+  testJoin,
+  testSubstring,
+  testStartsWith,
+  testEndsWith,
+  testIsNullOrEmpty,
+  testIsNullOrWhiteSpace,
+  testRemoveStart,
+  testRemoveEnd,
+  testJson,
+  runAllTests
+};

@@ -1,0 +1,245 @@
+import { CharUtil } from './Internals/Visitors/CharUtil.js';
+import { FastParser } from './fast/FastParser.js';
+import { FastAstBuilder } from './fast/FastAstBuilder.js';
+import { FastTreeBuilder } from './fast/FastTreeBuilder.js';
+import { Function_AND } from './Internals/Functions/Operator/Function_AND.js';
+import { Function_OR } from './Internals/Functions/Operator/Function_OR.js';
+import { Function_Add } from './Internals/Functions/Operator/Function_Add.js';
+import { Function_Sub } from './Internals/Functions/Operator/Function_Sub.js';
+import { Function_Mul } from './Internals/Functions/Operator/Function_Mul.js';
+import { Function_Div } from './Internals/Functions/Operator/Function_Div.js';
+import { Function_Mod } from './Internals/Functions/Operator/Function_Mod.js';
+import { Function_Connect } from './Internals/Functions/Operator/Function_Connect.js';
+import { DistanceConverter } from './UnitConversion/DistanceConverter.js';
+import { MassConverter } from './UnitConversion/MassConverter.js';
+import { AreaConverter } from './UnitConversion/AreaConverter.js';
+import { VolumeConverter } from './UnitConversion/VolumeConverter.js';
+import { ConditionTreeType } from './Enums/ConditionTreeType.js';
+import { CalculateTreeType } from './Enums/CalculateTreeType.js';
+
+
+
+/**
+ * 算法引擎助手
+ */
+export class AlgorithmEngineHelper {
+    static unitRegex = null;
+    /**
+     * 是不是参数
+     */
+    static IsParameter(parameter) {
+        if (!parameter || parameter.trim() === '') { return false; }
+        try {
+            let diy = this.GetDiyNames(parameter);
+            if (diy.Functions && diy.Functions.length > 0) { return false; }
+            if (diy.Parameters && diy.Parameters.length === 1) {
+                let p = diy.Parameters[0];
+                return p.Name === parameter;
+            }
+        } catch (ex) { }
+        return false;
+    }
+
+    /**
+     * 获取 DIY 名称
+     */
+    static GetDiyNames(exp) {
+        if (!exp || exp.trim() === '') {
+            throw new Error("Parameter exp invalid !");
+        }
+        let ast;
+        try {
+            ast = FastParser.parse(exp);
+        } catch (ex) {
+            throw new Error(ex.message);
+        }
+        return FastTreeBuilder.collectDiyNames(exp, ast);
+    }
+
+    /**
+     * 单位转换
+     */
+    static UnitConversion(src, oldSrcUnit, oldTarUnit, name = null) {
+        // 与 C# 一致:空字符串或纯空白单位直接返回原值
+        if (!oldSrcUnit || !oldTarUnit || !oldSrcUnit.trim() || !oldTarUnit.trim()) { return src; }
+        if (oldSrcUnit === oldTarUnit) { return src; }
+        if (!this.unitRegex) {
+            this.unitRegex = /[\s \(\)（）\[\]<>]/g;
+        }
+
+        // 与 C# 一致:先尝试原始单位名(如 "short ton" 含空格也能匹配),失败后再去除空格重试
+        let result = this.tryUnitConvert(src, oldSrcUnit, oldTarUnit);
+        if (result != null) { return result; }
+
+        oldSrcUnit = oldSrcUnit.replace(this.unitRegex, "");
+        oldTarUnit = oldTarUnit.replace(this.unitRegex, "");
+        result = this.tryUnitConvert(src, oldSrcUnit, oldTarUnit);
+        if (result != null) { return result; }
+
+        if (!name) {
+            throw new Error(`The input item has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
+        }
+        throw new Error(`The input item [${name}] has different units and cannot be converted from [${oldSrcUnit}] to [${oldTarUnit}]`);
+    }
+
+    /**
+     * 尝试在四种单位体系中转换,失败返回 null
+     */
+    static tryUnitConvert(src, oldSrcUnit, oldTarUnit) {
+        if (DistanceConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
+        }
+        if (MassConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new MassConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
+        }
+        if (AreaConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new AreaConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
+        }
+        if (VolumeConverter.exists(oldSrcUnit, oldTarUnit)) {
+            let c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+            return c.leftToRight(src);
+        }
+        return null;
+    }
+
+    /**
+     * 编译公式
+     */
+    static ParseFormula(exp, errorListener) {
+        if (!exp || exp.trim() === '') {
+            throw new Error("Parameter exp invalid !");
+        }
+        let ast;
+        try {
+            ast = FastParser.parse(exp);
+        } catch (ex) {
+            if (errorListener) { throw ex; }
+            throw new Error(ex.message);
+        }
+        return FastAstBuilder.build(exp, ast);
+    }
+
+    /**
+     * 检查公式是否正确
+     */
+    static CheckFormula(exp) {
+        if (!exp || exp.trim() === '') { return false; }
+        try {
+            FastParser.parse(exp);
+            return true;
+        } catch (ex) {
+            return false;
+        }
+    }
+
+    /**
+     * 解析条件
+     */
+    static ParseCondition(condition) {
+        let tree = {
+            Type: null,
+            ErrorMessage: null
+        };
+        if (!condition || condition.trim() === '') {
+            tree.Type = ConditionTreeType.Error;
+            tree.ErrorMessage = "condition is null";
+            return tree;
+        }
+        try {
+            const ast = FastParser.parse(condition);
+            return FastTreeBuilder.toConditionTree(condition, ast);
+        } catch (ex) {
+            tree.Type = ConditionTreeType.Error;
+            tree.ErrorMessage = ex.message;
+        }
+        return tree;
+    }
+
+    /**
+     * Creates a logical AND function that combines two specified functions.
+     */
+    static Condition_And(left, right) {
+        return new Function_AND(left, right);
+    }
+
+    /**
+     * Creates a logical OR function that combines two specified functions.
+     */
+    static Condition_Or(left, right) {
+        return new Function_OR(left, right);
+    }
+
+    /**
+     * 解析计算表达式
+     */
+    static ParseCalculate(exp) {
+        let tree = {
+            Type: null,
+            ErrorMessage: null
+        };
+        if (!exp || exp.trim() === '') {
+            tree.Type = CalculateTreeType.Error;
+            tree.ErrorMessage = "exp is null";
+            return tree;
+        }
+        try {
+            const ast = FastParser.parse(exp);
+            return FastTreeBuilder.toCalculateTree(exp, ast);
+        } catch (ex) {
+            tree.Type = CalculateTreeType.Error;
+            tree.ErrorMessage = ex.message;
+        }
+        return tree;
+    }
+
+    /**
+     * Creates a function that represents the sum of two specified functions.
+     */
+    static Calculate_Add(left, right) {
+        return new Function_Add(left, right);
+    }
+
+    /**
+     * Creates a function that represents the subtraction of two functions.
+     */
+    static Calculate_Subtract(left, right) {
+        return new Function_Sub(left, right);
+    }
+
+    /**
+     * Creates a function that represents the multiplication of two functions.
+     */
+    static Calculate_Multiply(left, right) {
+        return new Function_Mul(left, right);
+    }
+
+    /**
+     * Creates a function that represents the division of two functions.
+     */
+    static Calculate_Divide(left, right) {
+        return new Function_Div(left, right);
+    }
+
+    /**
+     * Creates a function that computes the remainder after dividing the result of the left function by the result of the
+     * right function.
+     */
+    static Calculate_Mod(left, right) {
+        return new Function_Mod(left, right);
+    }
+
+    /**
+     * Creates a new function that represents the connection of two functions.
+     */
+    static Calculate_Connect(left, right) {
+        return new Function_Connect(left, right);
+    }
+}
+
+// 浏览器支持
+if (typeof window !== 'undefined') {
+    window.AlgorithmEngineHelper = AlgorithmEngineHelper;
+}

@@ -1,0 +1,29 @@
+import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
+
+class Function_ISNULLORERROR extends Function_2 {
+    get Name() {
+        return "IsNullorError";
+    }
+
+    constructor(z) {
+    super(z);
+  }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
+        if (this.b !== null) {
+            if (args1.IsNull || args1.IsErrorOrNone) {
+                return this.b.evaluate(engine, tempParameter);
+            }
+            return args1;
+        }
+        if (args1.IsNull || args1.IsErrorOrNone) {
+            return Operand.True;
+        }
+        return Operand.False;
+    }
+}
+
+export { Function_ISNULLORERROR };
+

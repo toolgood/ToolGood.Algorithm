@@ -1,0 +1,20 @@
+{
+  "name": "toolgood.algorithm.fast",
+  "version": "6.3.1",
+  "description": "ToolGood Algorithm Engine for JavaScript - Fast (hand-written lexer & recursive-descent parser, no antlr4 runtime)",
+  "type": "module",
+  "main": "dist/toolgood.algorithm.fast.js",
+  "browser": "dist/toolgood.algorithm.fast.min.js",
+  "scripts": {
+    "build": "webpack",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production",
+    "test": "node tests/TestAll.js"
+  },
+  "keywords": ["algorithm", "calculator", "expression", "formula"],
+  "author": "ToolGood",
+  "license": "ToolGood Noncommercial License 1.0.0",
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}

@@ -1,0 +1,232 @@
+/**
+ * Function utility class
+ */
+export var FunctionUtil = {
+    StartDateUtc: new Date(Date.UTC(1970, 0, 1, 0, 0, 0, 0)),
+
+    F_base_GetList: function(args, list) {
+        // 检查 args 是否是 OperandArray 对象
+        if (args.IsArray) {
+            args = args.ArrayValue;
+        }
+        
+        for(var i = 0; i < args.length; i++) {
+            var item = args[i];
+            if(item.IsNumber) {
+                list.push(item.NumberValue);
+            } else if(item.IsArray) {
+                var o = this.F_base_GetList(item.ArrayValue, list);
+                if(!o) { return false; }
+            } else if(item.IsJson) {
+                var array = item.ToArray(null);
+                if(array.IsError) { return false; }
+                var o = this.F_base_GetList(array.ArrayValue, list);
+                if(!o) { return false; }
+            } else if(item.IsNull) {
+                // 跳过空值
+                continue;
+            } else {
+                var o = item.ToNumber(null);
+                if(o.IsError) { return false; }
+                list.push(o.NumberValue);
+            }
+        }
+        return true;
+    },
+
+    F_base_compare: function(a, b) {
+        if(a.IsNumber && b.IsNumber) {
+            return a.NumberValue - b.NumberValue;
+        } else if(a.IsText && b.IsText) {
+            return a.TextValue.localeCompare(b.TextValue);
+        } else if(a.IsBoolean && b.IsBoolean) {
+            return a.BooleanValue === b.BooleanValue ? 0 : (a.BooleanValue ? 1 : -1);
+        } else if(a.IsDate && b.IsDate) {
+            return a.DateValue - b.DateValue;
+        }
+        return 0;
+    },
+
+    F_base_gcd: function(a, b) {
+        while(b !== 0) {
+            var temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    },
+
+    F_base_gcd_List: function(list) {
+        list.sort(function(a, b) { return a - b; });
+        var g = this.F_base_gcd(Math.floor(list[1]), Math.floor(list[0]));
+        for(var i = 2; i < list.length; i++) {
+            g = this.F_base_gcd(Math.floor(list[i]), g);
+        }
+        return g;
+    },
+
+    F_base_lgm: function(list) {
+        list.sort(function(a, b) { return a - b; });
+        list = list.filter(function(q) { return q > 1; });
+
+        var a = Math.floor(list[0]);
+        for(var i = 1; i < list.length; i++) {
+            var b = Math.floor(list[i]);
+            var g = b > a ? this.F_base_gcd(b, a) : this.F_base_gcd(a, b);
+            a = a / g * b;
+        }
+        return a;
+    },
+
+    /**
+     * 严格数字解析,模拟 C# decimal.TryParse(NumberStyles.Any, InvariantCulture) 的常用子集;
+     * 解析失败返回 null(对齐 C#: "12abc" 解析失败而非 parseFloat 的 12)
+     */
+    tryParseNumber: function(s) {
+        s = s.trim();
+        if (!/^[+-]?(\d+([.]\d*)?|[.]\d+)([eE][+-]?\d+)?$/.test(s)) {
+            return null;
+        }
+        var d = parseFloat(s);
+        return isNaN(d) ? null : d;
+    },
+
+    sumifMatch: function(s) {
+        if (s.length === 0) { return null; }
+        var c = s[0];
+        if (c === '>' || c === '＞') {
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                var d = this.tryParseNumber(s.substring(2));
+                if (d != null) {
+                    return { operator: ">=", value: d };
+                }
+            } else {
+                var d = this.tryParseNumber(s.substring(1));
+                if (d != null) {
+                    return { operator: ">", value: d };
+                }
+            }
+        } else if (c === '<' || c === '＜') {
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                var d = this.tryParseNumber(s.substring(2));
+                if (d != null) {
+                    return { operator: "<=", value: d };
+                }
+            } else if (s.length > 1 && (s[1] === '>' || s[1] === '＞')) {
+                var d = this.tryParseNumber(s.substring(2));
+                if (d != null) {
+                    return { operator: "!=", value: d };
+                }
+            } else {
+                var d = this.tryParseNumber(s.substring(1));
+                if (d != null) {
+                    return { operator: "<", value: d };
+                }
+            }
+        } else if (c === '=' || c === '＝') {
+            var index = 1;
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                index = 2;
+                if (s.length > 2 && (s[2] === '=' || s[2] === '＝')) {
+                    index = 3;
+                }
+            }
+            var d = this.tryParseNumber(s.substring(index));
+            if (d != null) {
+                return { operator: "=", value: d };
+            }
+        } else if (c === '!' || c === '！') {
+            var index = 1;
+            if (s.length > 1 && (s[1] === '=' || s[1] === '＝')) {
+                index = 2;
+                if (s.length > 2 && (s[2] === '=' || s[2] === '＝')) {
+                    index = 3;
+                }
+            }
+            var d = this.tryParseNumber(s.substring(index));
+            if (d != null) {
+                return { operator: "!=", value: d };
+            }
+        }
+        return null;
+    },
+
+    TryParseBoolean: function(TextValue) {
+        if(TextValue.toLowerCase() === "true" || TextValue.toLowerCase() === "yes") {
+            return true;
+        }
+        if(TextValue.toLowerCase() === "false" || TextValue.toLowerCase() === "no") {
+            return false;
+        }
+        if(TextValue === "1" || TextValue === "是" || TextValue === "有") {
+            return true;
+        }
+        if(TextValue === "0" || TextValue === "否" || TextValue === "不是" || TextValue === "无" || TextValue === "没有") {
+            return false;
+        }
+        return null;
+    },
+
+    F_base_countif: function(dbs, s, d) {
+        let count = 0;
+        for (let i = 0; i < dbs.length; i++) {
+            let item = dbs[i];
+            if (arguments.length === 2) {
+                // 两个参数的情况：dbs 和 d
+                if (item === s) {
+                    count++;
+                }
+            } else {
+                // 三个参数的情况：dbs, s, d
+                if (this.F_base_compare(item, d, s)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    },
+
+    F_base_compare: function(a, b, ss) {
+        if (ss === '<') {
+            return a < b;
+        } else if (ss === '<=') {
+            return a <= b;
+        } else if (ss === '>') {
+            return a > b;
+        } else if (ss === '>=') {
+            return a >= b;
+        } else if (ss === '=') {
+            return a === b;
+        } else if (ss === '!=') {
+            return a !== b;
+        }
+        return a !== b;
+    },
+
+    F_base_sumif: function(list, arg1, arg2, arg3) {
+        let sum = 0;
+        if (arguments.length === 3) {
+            // 三个参数的情况：list, value, sumdbs
+            let value = arg1;
+            let sumdbs = arg2;
+            let n = Math.min(list.length, sumdbs.length); // sumdbs 长度可能小于 list,避免越界
+            for (let i = 0; i < n; i++) {
+                if (list[i] === value) {
+                    sum += sumdbs[i];
+                }
+            }
+        } else {
+            // 四个参数的情况：list, operator, value, sumdbs
+            let operator = arg1;
+            let value = arg2;
+            let sumdbs = arg3;
+            let n = Math.min(list.length, sumdbs.length);
+            for (let i = 0; i < n; i++) {
+                if (this.F_base_compare(list[i], value, operator)) {
+                    sum += sumdbs[i];
+                }
+            }
+        }
+        return sum;
+    }
+};

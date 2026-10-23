@@ -1,0 +1,27 @@
+import { Function_1 } from '../Function_1.js';
+import { Operand } from '../../../Operand.js';
+
+class Function_ISODD extends Function_1 {
+    get Name() {
+        return "IsOdd";
+    }
+
+    constructor(a) {
+        super(a);
+    }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.a.evaluate(engine, tempParameter);
+        if (args1.IsErrorOrNone) { return args1; }
+        if (args1.IsNumber) {
+            // 对齐 C# Math.Abs(decimal.Truncate(...)) % 2 == 1
+            if (Math.abs(Math.trunc(args1.NumberValue)) % 2 === 1) {
+                return Operand.True;
+            }
+        }
+        return Operand.False;
+    }
+}
+
+export { Function_ISODD };
+

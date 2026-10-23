@@ -1,0 +1,47 @@
+import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
+
+class Function_REPT extends Function_2 {
+    get Name() {
+        return "Rept";
+    }
+
+    constructor(z) {
+        super(z);
+    }
+
+    evaluate(work, tempParameter) {
+        let args1 = this.getText_1(work, tempParameter);
+        if (args1.IsError) { return args1; }
+
+        let args2 = this.getNumber_2(work, tempParameter);
+        if (args2.IsError) { return args2; }
+
+        let newtext = args1.TextValue;
+        let length = args2.IntValue;
+        if (length < 0) {
+            return this.parameterError(2);
+        }
+        if (length === 0) {
+            return Operand.Create('');
+        }
+        if (newtext.length === 0) {
+            return args1;
+        }
+        // 与 C# 一致:结果总长度超过 32767 时参数错误
+        if (newtext.length > 0 && length > Math.floor(32767 / newtext.length)) {
+            return this.parameterError(2);
+        }
+        if (length === 1) {
+            return args1;
+        }
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += newtext;
+        }
+        return Operand.Create(result);
+    }
+}
+
+export { Function_REPT };
+

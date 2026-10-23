@@ -1,0 +1,33 @@
+import { Function_2 } from '../Function_2.js';
+import { Operand } from '../../../Operand.js';
+
+class Function_ROUNDDOWN extends Function_2 {
+    get Name() {
+        return "RoundDown";
+    }
+
+    constructor(z) {
+    super(z);
+  }
+
+    evaluate(engine, tempParameter) {
+        let args1 = this.getNumber_1(engine, tempParameter);
+        if (args1.IsError) { return args1; }
+        let args2 = this.getNumber_2(engine, tempParameter);
+        if (args2.IsError) { return args2; }
+        if (args2.IntValue < -15 || args2.IntValue > 15) {
+            return this.parameterError(2);
+        }
+        if (args1.NumberValue == 0.0) {
+            return args1;
+        }
+        let a = Math.pow(10, args2.IntValue);
+        let b = args1.NumberValue;
+
+        let result = b >= 0 ? Math.floor(b * a) / a : Math.ceil(b * a) / a;
+        return Operand.Create(result);
+    }
+}
+
+export { Function_ROUNDDOWN };
+
