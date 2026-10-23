@@ -97,10 +97,9 @@ export default {
           mangle: {
             toplevel: true,
             safari10: false,
-            properties: {
-              regex: /^[a-z_][a-zA-Z0-9—_]*$|^(Get|Set|Next|F_|State)[a-zA-Z0-9—_]*$|^[A-Z]+_[A-Z0-9_]+$/,// 小写字母开头都替换
-              keep_quoted: false,
-            }
+            // 关闭属性名混淆：errorListener.syntaxError / 返回的语法树字段（type/start/end/children 等）
+            // 都是对外契约，混淆后打包产物里的回调与取字段都会失效
+            properties: false
           },
           compress: {
             drop_console: true,
