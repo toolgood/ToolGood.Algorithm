@@ -42,10 +42,23 @@ const value = engine.Evaluate(engine.Parse("sum(1,2,3) * 2 + 1cm")); // 13.01
 ## 构建 / 测试
 
 ```bash
-npm install        # 只需 crypto-js
+npm install        # 运行时只有 crypto-js，devDependencies 用于 webpack/babel 打包
 npm test           # node tests/TestAll.js
 npm run build      # webpack 打包到 dist/toolgood.algorithm.fast.js
 ```
+
+## 产物（dist）
+
+| | toolgood.algorithm.js（ANTLR 版） | toolgood.algorithm.fast.js |
+|---|---|---|
+| 原始大小 | 346,521 B | **250,805 B**（-27.6%） |
+| gzip 后 | 87,224 B | **60,101 B**（-31.1%） |
+
+打包方式与 ANTLR 版完全相同（webpack 5 + babel preset-env + Terser，UMD）：
+- CommonJS：`const { AlgorithmEngine } = require('toolgood.algorithm.fast');`
+- 浏览器 `<script>`：全局变量 `ToolGood.Algorithm`
+- 导出项与 ANTLR 版**逐一对齐**（`AlgorithmEngine`、`AlgorithmEngineEx`、`AlgorithmEngineHelper`、
+  `CalculationLogicEngine`、`Operand`、`Enums` 等 10 项），无缺失、无多余
 
 ## 已知限制
 
