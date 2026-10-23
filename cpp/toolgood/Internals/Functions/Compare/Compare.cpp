@@ -53,7 +53,20 @@ class CompareFunction : public FunctionN {
 public:
     CompareFunction(std::vector<Function> args, CmpKind kind)
         : FunctionN(std::move(args)), kind_(kind) {
-        RequireArgs(args_, Name(), 2, 2);
+        // 构造期不能调用虚函数 Name()，用符号表取名字
+        RequireArgs(args_, SymbolOf(kind), 2, 2);
+    }
+
+    static const char* SymbolOf(CmpKind kind) {
+        switch (kind) {
+            case CmpKind::EQ: return "==";
+            case CmpKind::NE: return "!=";
+            case CmpKind::GT: return ">";
+            case CmpKind::GE: return ">=";
+            case CmpKind::LT: return "<";
+            case CmpKind::LE: return "<=";
+        }
+        return "==";
     }
 
     std::string Name() const override {
@@ -105,7 +118,10 @@ public:
             return CompareError();
         }
 
-        if (a1.IsNull() || a2.IsNull()) return Operand::False();
+        if (a1.IsNull() || a2.IsNull()) {
+            // C# 的 != 在「一侧为 null」时返回 true，其余比较运算符返回 false
+            return kind_ == CmpKind::NE ? Operand::True() : Operand::False();
+        }
         if (a1.IsDate() || a2.IsDate() || a1.IsJson() || a2.IsJson() || a1.IsArray() ||
             a2.IsArray() || a1.IsArrayJson() || a2.IsArrayJson()) {
             return CompareError();

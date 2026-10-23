@@ -337,6 +337,29 @@ Function Parser::ParsePrimary() {
     if (token.kind == "IDENT") {
         Advance();
         const std::string upper = ToUpperAscii(token.text);
+        // 常量名优先于函数调用：C# 文法里 TRUE/FALSE/NULL/ALGORITHMVERSION 的 '()' 可选，
+        // RAND/NOW/TODAY/GUID/E/PI 必须带 '()'。两者都要按常量处理，
+        // 否则 TRUE() / Guid() 会掉进 DiyFunction 分支。
+        ConstKind ck0 = ClassifyConst(upper);
+        if (ck0 != ConstKind::None) {
+            if (Current().kind == "LPAREN" && Peek(1).kind == "RPAREN") {
+                Advance();
+                Advance();
+            }
+            switch (ck0) {
+                case ConstKind::True: return NewFunction_ValueBoolean(true);
+                case ConstKind::False: return NewFunction_ValueBoolean(false);
+                case ConstKind::Null: return NewFunction_NULL();
+                case ConstKind::Version: return NewFunction_Version();
+                case ConstKind::E: return NewFunction_Number_E();
+                case ConstKind::PI: return NewFunction_Number_PI();
+                case ConstKind::Rand: return NewFunction_RAND({});
+                case ConstKind::Guid: return NewFunction_GUID({});
+                case ConstKind::Now: return NewFunction_NOW({});
+                case ConstKind::Today: return NewFunction_TODAY({});
+                default: break;
+            }
+        }
         if (Current().kind == "LPAREN") {
             std::vector<Function> args = ParseArguments();
             return MakeCall(upper, token.text, std::move(args));

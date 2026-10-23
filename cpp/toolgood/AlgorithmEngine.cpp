@@ -156,6 +156,10 @@ std::string AlgorithmEngine::TryEvaluate(const std::string& exp, const std::stri
     return o.TextValue();
 }
 
+std::string AlgorithmEngine::TryEvaluate(const std::string& exp, const char* def) {
+    return TryEvaluate(exp, def != nullptr ? std::string(def) : std::string());
+}
+
 bool AlgorithmEngine::TryEvaluate(const std::string& exp, bool def) {
     Function f = ParseWithoutError(exp);
     if (!f) return def;

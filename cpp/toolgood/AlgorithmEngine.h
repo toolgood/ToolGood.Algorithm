@@ -56,6 +56,9 @@ public:
     double TryEvaluate(const std::string& exp, double def);
     Decimal TryEvaluate(const std::string& exp, const Decimal& def);
     std::string TryEvaluate(const std::string& exp, const std::string& def);
+    /// 重载存在的原因：`TryEvaluate(exp, "")` 若只有 std::string 版本，
+    /// 编译器会优先把 `const char*` 转成 bool（标准转换优于用户定义转换）。
+    std::string TryEvaluate(const std::string& exp, const char* def);
     bool TryEvaluate(const std::string& exp, bool def);
     MyDate TryEvaluate(const std::string& exp, const MyDate& def);
     /// 解析并求值的便捷入口（等价于 Evaluate(Parse(exp))）。
