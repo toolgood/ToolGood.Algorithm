@@ -25,6 +25,16 @@ public:
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
 
+    // 对应 C# 各单参数三角函数的 GetParameterTypes（func1 -> NUMBER）
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
+
 private:
     std::string name_;
 };
@@ -174,6 +184,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_ATAN2.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_ATANH ----------------

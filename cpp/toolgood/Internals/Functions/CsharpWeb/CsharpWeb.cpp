@@ -432,6 +432,10 @@ std::string FromBase64Url(const std::string& base64Url) {
 
 class Function_URLENCODE : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_URLENCODE(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "UrlEncode", 1, 1);
     }
@@ -449,6 +453,10 @@ public:
 
 class Function_URLDECODE : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_URLDECODE(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "UrlDecode", 1, 1);
     }
@@ -466,6 +474,10 @@ public:
 
 class Function_HTMLENCODE : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HTMLENCODE(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HtmlEncode", 1, 1);
     }
@@ -483,6 +495,10 @@ public:
 
 class Function_HTMLDECODE : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HTMLDECODE(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HtmlDecode", 1, 1);
     }
@@ -500,6 +516,10 @@ public:
 
 class Function_TEXTTOBASE64 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_TEXTTOBASE64(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "TextToBase64", 1, 1);
     }
@@ -517,6 +537,10 @@ public:
 
 class Function_TEXTTOBASE64URL : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_TEXTTOBASE64URL(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "TextToBase64Url", 1, 1);
     }
@@ -534,6 +558,10 @@ public:
 
 class Function_BASE64TOTEXT : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_BASE64TOTEXT(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Base64ToText", 1, 1);
     }
@@ -553,6 +581,10 @@ public:
 
 class Function_BASE64URLTOTEXT : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_BASE64URLTOTEXT(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Base64UrlToText", 1, 1);
     }

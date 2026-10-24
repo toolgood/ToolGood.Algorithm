@@ -106,7 +106,9 @@ public:
         if (a2.IsErrorOrNone()) return a2;
         if (a2.NumberValue().IsZero()) return Div0Error();
         if (a2.NumberValue().Equal(Decimal::One)) return a1;
-        return Operand::Create(a1.NumberValue().Div(a2.NumberValue()));
+        Decimal r = a1.NumberValue().Div(a2.NumberValue());
+        if (r.Abs().Greater(Decimal::Max)) return NumError();
+        return Operand::Create(r);
     }
     OperandType GetResultType() const override { return OperandType::NUMBER; }
 };

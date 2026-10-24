@@ -407,6 +407,10 @@ std::string HmacHex(HashFunc hash, size_t blockSize, const std::string& message,
 
 class Function_MD5 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_MD5(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "MD5", 1, 1);
     }
@@ -424,6 +428,10 @@ public:
 
 class Function_SHA1 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_SHA1(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "SHA1", 1, 1);
     }
@@ -441,6 +449,10 @@ public:
 
 class Function_SHA256 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_SHA256(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "SHA256", 1, 1);
     }
@@ -458,6 +470,10 @@ public:
 
 class Function_SHA512 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_SHA512(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "SHA512", 1, 1);
     }
@@ -475,6 +491,11 @@ public:
 
 class Function_HMACMD5 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HMACMD5(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HmacMD5", 2, 2);
     }
@@ -496,6 +517,11 @@ public:
 
 class Function_HMACSHA1 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HMACSHA1(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HmacSHA1", 2, 2);
     }
@@ -517,6 +543,11 @@ public:
 
 class Function_HMACSHA256 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HMACSHA256(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HmacSHA256", 2, 2);
     }
@@ -538,6 +569,11 @@ public:
 
 class Function_HMACSHA512 : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HMACSHA512(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HmacSHA512", 2, 2);
     }

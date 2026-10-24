@@ -250,6 +250,10 @@ int RomanToArabic(const std::string& roman) {
 
 class Function_ARABIC : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_ARABIC(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "ARABIC", 1, 1);
     }
@@ -279,6 +283,11 @@ public:
 
 class Function_ROMAN : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_ROMAN(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "ROMAN", 1, 2);
     }
@@ -321,6 +330,11 @@ public:
 
 class Function_BIN2DEC : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_BIN2DEC(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Bin2Dec", 1, 2);
     }
@@ -355,6 +369,11 @@ public:
 
 class Function_BIN2HEX : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_BIN2HEX(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Bin2Hex", 1, 2);
     }
@@ -394,6 +413,11 @@ public:
 
 class Function_BIN2OCT : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_BIN2OCT(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Bin2Oct", 1, 2);
     }
@@ -434,6 +458,11 @@ public:
 
 class Function_DEC2BIN : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_DEC2BIN(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Dec2Bin", 1, 2);
     }
@@ -475,6 +504,11 @@ public:
 
 class Function_DEC2HEX : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_DEC2HEX(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Dec2Hex", 1, 2);
     }
@@ -517,6 +551,11 @@ public:
 
 class Function_DEC2OCT : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_DEC2OCT(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Dec2Oct", 1, 2);
     }
@@ -559,6 +598,11 @@ public:
 
 class Function_HEX2BIN : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_HEX2BIN(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Hex2Bin", 1, 2);
     }
@@ -599,6 +643,11 @@ public:
 
 class Function_HEX2DEC : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_HEX2DEC(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Hex2Dec", 1, 2);
     }
@@ -633,6 +682,11 @@ public:
 
 class Function_HEX2OCT : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_HEX2OCT(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Hex2Oct", 1, 2);
     }
@@ -673,6 +727,11 @@ public:
 
 class Function_OCT2BIN : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_OCT2BIN(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Oct2Bin", 1, 2);
     }
@@ -715,6 +774,11 @@ public:
 
 class Function_OCT2DEC : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_OCT2DEC(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Oct2Dec", 1, 2);
     }
@@ -749,6 +813,11 @@ public:
 
 class Function_OCT2HEX : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_OCT2HEX(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Oct2Hex", 1, 2);
     }

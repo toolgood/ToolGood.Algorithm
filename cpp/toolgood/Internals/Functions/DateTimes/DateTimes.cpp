@@ -300,6 +300,16 @@ class FunctionAddBase : public FunctionN {
 public:
     explicit FunctionAddBase(std::vector<Function> args) : FunctionN(std::move(args)) {}
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
+
     OperandType GetResultType() const override { return OperandType::DATE; }
 };
 
@@ -427,6 +437,26 @@ public:
 
     std::string Name() const override { return "Date"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 4) {
+            args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+        if (args_.size() >= 5) {
+            args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+        if (args_.size() >= 6) {
+            args_[5]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetNumber(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -483,6 +513,17 @@ public:
     }
 
     std::string Name() const override { return "DateDif"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -559,6 +600,18 @@ public:
     }
 
     std::string Name() const override { return "DateValue"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NONE);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = EvalArg(1, engine, tp);
@@ -651,6 +704,15 @@ public:
 
     std::string Name() const override { return "Day"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -669,6 +731,15 @@ public:
     }
 
     std::string Name() const override { return "Month"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -689,6 +760,15 @@ public:
 
     std::string Name() const override { return "Year"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -708,6 +788,15 @@ public:
 
     std::string Name() const override { return "Hour"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -725,6 +814,15 @@ public:
 
     std::string Name() const override { return "Minute"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -741,6 +839,15 @@ public:
     }
 
     std::string Name() const override { return "Second"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -760,6 +867,16 @@ public:
     }
 
     std::string Name() const override { return "Days"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -788,6 +905,19 @@ public:
     }
 
     std::string Name() const override { return "Days360"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        if (args_.size() >= 3) {
+            args_[2]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -841,6 +971,16 @@ public:
 
     std::string Name() const override { return "EDate"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -861,6 +1001,16 @@ public:
     }
 
     std::string Name() const override { return "EOMonth"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -890,6 +1040,18 @@ public:
     }
 
     std::string Name() const override { return "NetworkDays"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        // C# 对 funcs 全部按 DATE 处理（含可选节假日）
+        for (auto& f : args_) {
+            f->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -986,6 +1148,19 @@ public:
 
     std::string Name() const override { return "Time"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 3) {
+            args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetNumber(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -1020,6 +1195,18 @@ public:
     }
 
     std::string Name() const override { return "Timestamp"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         int type = 0;
@@ -1056,6 +1243,15 @@ public:
 
     std::string Name() const override { return "TimeValue"; }
 
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
+
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetText(1, engine, tp);
         if (args1.IsErrorOrNone()) return args1;
@@ -1076,6 +1272,18 @@ public:
     }
 
     std::string Name() const override { return "Weekday"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -1134,6 +1342,18 @@ public:
     }
 
     std::string Name() const override { return "Weeknum"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -1203,6 +1423,19 @@ public:
     }
 
     std::string Name() const override { return "Workday"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        for (size_t i = 2; i < args_.size(); i++) {
+            args_[i]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto args1 = GetDate(1, engine, tp);
@@ -1397,6 +1630,19 @@ public:
     }
 
     std::string Name() const override { return "YearFrac"; }
+
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::DATE);
+        if (args_.size() >= 3) {
+            args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 
     Operand Evaluate(AlgorithmEngine& engine, const TempParameter* tp) override {
         auto startArg = GetDate(1, engine, tp);

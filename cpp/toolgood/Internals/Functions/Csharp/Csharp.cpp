@@ -172,6 +172,12 @@ std::string NewGuid() {
 
 class Function_ENDSWITH : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+    }
     explicit Function_ENDSWITH(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "EndsWith", 2, 3);
     }
@@ -212,6 +218,11 @@ public:
 
 class Function_HAS : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::JSON);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HAS(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Has", 2, 2);
     }
@@ -260,6 +271,11 @@ public:
 
 class Function_HASVALUE : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::JSON);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_HASVALUE(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "HasValue", 2, 2);
     }
@@ -310,6 +326,13 @@ public:
 
 class Function_INDEXOF : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_INDEXOF(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "IndexOf", 2, 4);
     }
@@ -355,6 +378,11 @@ public:
 
 class Function_ISREGEX : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_ISREGEX(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "IsRegex", 2, 2);
     }
@@ -432,6 +460,13 @@ private:
 
 class Function_LASTINDEXOF : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_LASTINDEXOF(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "LastIndexOf", 2, 4);
     }
@@ -476,6 +511,11 @@ public:
 
 class Function_LOOKCEILING : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+    }
     explicit Function_LOOKCEILING(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "LookCeiling", 2, 2);
     }
@@ -512,6 +552,11 @@ public:
 
 class Function_LOOKFLOOR : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+    }
     explicit Function_LOOKFLOOR(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "LookFloor", 2, 2);
     }
@@ -548,6 +593,11 @@ public:
 
 class Function_REGEX : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_REGEX(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Regex", 2, 2);
     }
@@ -577,6 +627,12 @@ public:
 
 class Function_REGEXREPLACE : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_REGEXREPLACE(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "RegexReplace", 3, 3);
     }
@@ -605,6 +661,12 @@ public:
 
 class Function_REMOVEEND : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+    }
     explicit Function_REMOVEEND(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "RemoveEnd", 2, 3);
     }
@@ -637,6 +699,12 @@ public:
 
 class Function_REMOVESTART : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+    }
     explicit Function_REMOVESTART(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "RemoveStart", 2, 3);
     }
@@ -669,6 +737,11 @@ public:
 
 class Function_SPLIT : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_SPLIT(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Split", 2, 2);
     }
@@ -704,6 +777,12 @@ public:
 
 class Function_STARTSWITH : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+    }
     explicit Function_STARTSWITH(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "StartsWith", 2, 3);
     }
@@ -729,6 +808,12 @@ public:
 
 class Function_SUBSTRING : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
     explicit Function_SUBSTRING(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "Substring", 2, 3);
     }
@@ -768,6 +853,11 @@ public:
 
 class Function_TRIMEND : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_TRIMEND(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "TrimEnd", 1, 2);
     }
@@ -801,6 +891,11 @@ public:
 
 class Function_TRIMSTART : public FunctionN {
 public:
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::TEXT);
+    }
     explicit Function_TRIMSTART(std::vector<Function> args) : FunctionN(std::move(args)) {
         RequireArgs(args_, "TrimStart", 1, 2);
     }

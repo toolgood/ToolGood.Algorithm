@@ -136,12 +136,44 @@ public:
 
     OperandType GetResultType() const override { return OperandType::BOOLEAN; }
 
-    void ToString(std::string& sb, bool) override {
+    // 对应 C# Function_EQ/NE/GT/GE/LT/LE 的 GetParameterTypes（六个实现完全相同）
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        OperandType t1 = args_[0]->GetResultType();
+        OperandType t2 = args_[1]->GetResultType();
+        if (t1 == OperandType::NONE) {
+            Operand p = noneEngine.Evaluate(args_[1]).ToText();
+            if (t2 != OperandType::ERROR && !p.IsErrorOrNone()) {
+                args_[0]->GetParameterTypes(noneEngine, result, t2, Name(), p.TextValue());
+                args_[1]->GetParameterTypes(noneEngine, result, t2);
+                return;
+            }
+        } else if (t2 == OperandType::NONE) {
+            Operand p = noneEngine.Evaluate(args_[0]).ToText();
+            if (t1 != OperandType::ERROR && !p.IsErrorOrNone()) {
+                args_[1]->GetParameterTypes(noneEngine, result, t1, Name(), p.TextValue());
+                args_[0]->GetParameterTypes(noneEngine, result, t1);
+                return;
+            }
+        }
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NONE);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NONE);
+    }
+
+    void ToString(std::string& sb, bool addBrackets) override {
+        // 比较表达式的优先级低于算术运算，被当作子表达式时必须加括号，
+        // 否则 (1 > 0) + 1 会被还原成 1 > 0 + 1，往返求值语义改变。
+        if (addBrackets) sb += '(';
         args_[0]->ToString(sb, true);
         sb += ' ';
         sb += Name();
         sb += ' ';
         args_[1]->ToString(sb, true);
+        if (addBrackets) sb += ')';
     }
 
 private:

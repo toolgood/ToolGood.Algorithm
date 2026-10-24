@@ -351,6 +351,14 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_DDB : public FunctionN {
@@ -410,6 +418,14 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_SLN : public FunctionN {
@@ -441,6 +457,12 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_SYD : public FunctionN {
@@ -480,6 +502,13 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------------------------------------------------------------------
@@ -541,6 +570,14 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_PV : public FunctionN {
@@ -599,6 +636,14 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_PMT : public FunctionN {
@@ -657,6 +702,14 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_NPER : public FunctionN {
@@ -725,6 +778,14 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_IPMT : public FunctionN {
@@ -790,6 +851,15 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 5) args_[5]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_PPMT : public FunctionN {
@@ -844,6 +914,15 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 5) args_[5]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_RATE : public FunctionN {
@@ -902,6 +981,15 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 3) args_[3]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 4) args_[4]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() > 5) args_[5]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------------------------------------------------------------------
@@ -944,6 +1032,10 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        for (auto& f : args_) f->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_IRR : public FunctionN {
@@ -984,6 +1076,11 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+        if (args_.size() > 1) args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_MIRR : public FunctionN {
@@ -1047,6 +1144,12 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_XIRR : public FunctionN {
@@ -1084,6 +1187,12 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+        if (args_.size() > 2) args_[2]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_XNPV : public FunctionN {
@@ -1132,6 +1241,12 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType, const std::string&, const std::string&) override {
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+        args_[2]->GetParameterTypes(noneEngine, result, OperandType::ARRAY);
+    }
 };
 
 }  // namespace

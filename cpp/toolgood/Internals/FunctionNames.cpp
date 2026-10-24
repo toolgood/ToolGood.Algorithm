@@ -52,6 +52,7 @@ const std::unordered_map<std::string, std::string>& AliasMap() {
         {"LTRIM", "TRIMSTART"},
         {"RTRIM", "TRIMEND"},
         {"GETPARAMETER", "PARAM"},
+        {"PARAMETER", "PARAM"},
     };
     return m;
 }

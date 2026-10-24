@@ -100,6 +100,21 @@ MathNet 统计分布（Normal/StudentT/F/Beta/Gamma/ChiSquare/Binomial/…）、
 单位换算、计算逻辑引擎（`CalculationLogicEngine`）、
 `AlgorithmEngineEx`、`AlgorithmEngineHelper`。
 
+## 单元测试
+
+C# 测试工程的 854 个用例已全部移植为 C++（`../temp/cpp-test/tests/`，28 个文件），
+**854/854 通过**：
+
+```bash
+bash temp/cpp-test/build_tests.sh              # 全部
+bash temp/cpp-test/build_tests.sh --suite=MathBase
+bash temp/cpp-test/build_tests.sh --filter=round
+```
+
+测试框架 `../temp/cpp-test/cpptest.h` 是 PetaTest 的 C++ 等价物
+（`TEST(套件, 用例)` + `Assert::AreEqual/IsTrue/Throws/...`）。
+详见 `../temp/cpp-test/README.md`。
+
 ## 与 C# 的已知差异
 
 差分测试（313 条表达式，见 `../temp/cpp-test/exprs.txt`）当前 **290 条与 C# 完全一致**。

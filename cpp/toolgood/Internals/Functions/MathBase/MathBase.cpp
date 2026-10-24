@@ -109,6 +109,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_ABS.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_CEILING ----------------
@@ -145,6 +155,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_CEILING.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 // ---------------- Function_COMBIN ----------------
@@ -187,6 +210,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_COMBIN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_DELTA ----------------
@@ -215,6 +249,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_DELTA.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 // ---------------- Function_EVEN ----------------
@@ -249,6 +296,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_EVEN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_EXP ----------------
@@ -270,6 +327,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_EXP.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_FACT ----------------
@@ -301,6 +368,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_FACT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_FACTDOUBLE ----------------
@@ -333,6 +410,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_FACTDOUBLE.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_FIXED ----------------
@@ -387,6 +474,22 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::TEXT; }
+
+    // 对应 C# Function_FIXED.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+        if (args_.size() >= 3) {
+            args_[2]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+        }
+    }
 };
 
 // ---------------- Function_FLOOR ----------------
@@ -423,6 +526,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_FLOOR.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 // ---------------- Function_GCD ----------------
@@ -457,6 +573,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_GCD.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        for (auto& f : args_) f->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_GESTEP ----------------
@@ -485,6 +611,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_GESTEP.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 // ---------------- Function_INT ----------------
@@ -505,6 +644,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_INT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_LCM ----------------
@@ -539,6 +688,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_LCM.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        for (auto& f : args_) f->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_LN ----------------
@@ -560,6 +719,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_LN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_LOG ----------------
@@ -591,6 +760,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_LOG.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 // ---------------- Function_LOG10 ----------------
@@ -613,6 +795,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_LOG10.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_MROUND ----------------
@@ -646,6 +838,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_MROUND.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_MULTINOMIAL ----------------
@@ -694,6 +897,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_MULTINOMIAL.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        for (auto& f : args_) f->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_ODD ----------------
@@ -728,6 +941,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_ODD.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_PERMUT ----------------
@@ -768,6 +991,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_PERMUT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_POWER ----------------
@@ -804,6 +1038,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_POWER.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_PRODUCT ----------------
@@ -833,6 +1078,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_PRODUCT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        for (auto& f : args_) f->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_Percentage ----------------
@@ -858,6 +1113,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_Percentage.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_QUOTIENT ----------------
@@ -886,6 +1151,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_QUOTIENT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_RAND ----------------
@@ -939,6 +1215,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_RANDBETWEEN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_ROUND ----------------
@@ -975,6 +1262,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_ROUND.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 // ---------------- Function_ROUNDDOWN ----------------
@@ -1009,6 +1309,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_ROUNDDOWN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_ROUNDUP ----------------
@@ -1041,6 +1352,17 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_ROUNDUP.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_SIGN ----------------
@@ -1060,6 +1382,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_SIGN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_SQRT ----------------
@@ -1080,6 +1412,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_SQRT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_SQRTPI ----------------
@@ -1105,6 +1447,16 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_SQRTPI.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 // ---------------- Function_TRUNC ----------------
@@ -1142,6 +1494,19 @@ public:
     }
 
     OperandType GetResultType() const override { return OperandType::NUMBER; }
+
+    // 对应 C# Function_TRUNC.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        if (args_.size() >= 2) {
+            args_[1]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+        }
+    }
 };
 
 }  // namespace

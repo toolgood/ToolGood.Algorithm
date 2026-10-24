@@ -34,6 +34,20 @@ public:
         return args_[2]->Evaluate(engine, tp);
     }
     OperandType GetResultType() const override { return OperandType::NONE; }
+
+    // 对应 C# Function_IF.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
+        args_[1]->GetParameterTypes(noneEngine, result, OperandType::NONE);
+        if (args_.size() >= 3) {
+            args_[2]->GetParameterTypes(noneEngine, result, OperandType::NONE);
+        }
+    }
 };
 
 class Function_IFERROR : public FunctionN {
@@ -199,6 +213,16 @@ public:
         }
         return Operand::False();
     }
+
+    // 对应 C# Function_ISEVEN.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
+    }
 };
 
 class Function_ISODD : public BoolUnary {
@@ -213,6 +237,16 @@ public:
             if (m.Equal(Decimal::One)) return Operand::True();
         }
         return Operand::False();
+    }
+
+    // 对应 C# Function_ISODD.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::NUMBER);
     }
 };
 
@@ -266,6 +300,16 @@ public:
         Operand a1 = GetBoolean(1, engine, tp);
         if (a1.IsErrorOrNone()) return a1;
         return a1.BooleanValue() ? Operand::False() : Operand::True();
+    }
+
+    // 对应 C# Function_NOT.GetParameterTypes
+    void GetParameterTypes(NoneEngine& noneEngine, std::vector<ParameterType>& result,
+                           OperandType operandType, const std::string& op,
+                           const std::string& val) override {
+        (void)operandType;
+        (void)op;
+        (void)val;
+        args_[0]->GetParameterTypes(noneEngine, result, OperandType::BOOLEAN);
     }
 };
 

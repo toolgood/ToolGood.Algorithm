@@ -216,7 +216,7 @@ private:
         char c = s_[i_];
         if (c == '{') return ParseObject(out);
         if (c == '[') return ParseArray(out);
-        if (c == '"') {
+        if (c == '"' || c == '\'') {
             std::string v;
             if (!ParseString(v)) return false;
             out = JsonData::NewString(v);
@@ -272,6 +272,8 @@ private:
         }
         Decimal d;
         if (!Decimal::TryParse(s_.substr(start, i_ - start), d)) return false;
+        // JsonData 的数字在 C# 里是 decimal，超出范围时反序列化失败
+        if (d.Abs().Greater(Decimal::Max)) return false;
         out = JsonData::NewNumber(d);
         return true;
     }
@@ -295,11 +297,16 @@ private:
     }
 
     bool ParseString(std::string& out) {
-        if (!Expect('"')) return false;
+        // LitJson 允许单引号字符串（C# 侧 JsonMapper 同样支持）
+        SkipWs();
+        if (i_ >= s_.size()) return false;
+        const char quote = s_[i_];
+        if (quote != '"' && quote != '\'') return false;
+        i_++;
         out.clear();
         while (i_ < s_.size()) {
             char c = s_[i_++];
-            if (c == '"') return true;
+            if (c == quote) return true;
             if (c == '\\') {
                 if (i_ >= s_.size()) return false;
                 char e = s_[i_++];
@@ -370,7 +377,7 @@ private:
         for (;;) {
             std::string key;
             SkipWs();
-            if (i_ < s_.size() && s_[i_] != '"') return false;
+            if (i_ < s_.size() && s_[i_] != '"' && s_[i_] != '\'') return false;
             if (!ParseString(key)) return false;
             if (!Expect(':')) return false;
             JsonData v;

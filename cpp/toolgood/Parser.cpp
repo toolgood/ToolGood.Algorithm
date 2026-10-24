@@ -34,14 +34,20 @@ const std::unordered_map<std::string, std::string>& UnitDict() {
         {"MM2", "MM2"}, {"CM2", "CM2"}, {"DM2", "DM2"}, {"M2", "M2"},   {"KM2", "KM2"},
         {"MM3", "MM3"}, {"CM3", "CM3"}, {"DM3", "DM3"}, {"M3", "M3"},   {"KM3", "KM3"},
         {"G", "G"},     {"KG", "KG"},   {"T", "T"},
+        // 与 Function_Number2 的单位表保持一致（升 / 毫升）
+        {"L", "L"},     {"ML", "ML"},
     };
     return dict;
 }
 
 bool TrySplitUnit(const std::string& text, std::string& body, std::string& unit) {
+    // C# 的 unitTypedict 用 StringComparer.OrdinalIgnoreCase，这里同样按大写比较
     for (int n = 3; n >= 1; n--) {
         if (static_cast<int>(text.size()) <= n) continue;
         std::string cand = text.substr(text.size() - static_cast<size_t>(n));
+        for (auto& c : cand) {
+            if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 32);
+        }
         if (UnitDict().find(cand) != UnitDict().end()) {
             body = text.substr(0, text.size() - static_cast<size_t>(n));
             unit = cand;
