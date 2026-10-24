@@ -1,0 +1,604 @@
+// 移植自 csharp/ToolGood.Algorithm.Test/AlgorithmEngine/StringTest.cs
+//
+// 说明：C# 的 `Thread.CurrentThread.CurrentCulture = new CultureInfo(...)`
+// 与区域设置相关，C++ 移植版无对应概念（PROPER 使用 Invariant 逻辑），已删除。
+#include <string>
+#include <vector>
+
+#include "cpptest.h"
+
+#include "toolgood/AlgorithmEngine.h"
+
+using namespace toolgood;
+
+namespace {
+
+TEST(String, ASC_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("asc('ａｂｃＡＢＣ１２３')", "");
+    Assert::AreEqual(t, "abcABC123");
+}
+
+TEST(String, Jis_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("jis('abcABC123')", "");
+    Assert::AreEqual(t, "ａｂｃＡＢＣ１２３");
+    t = engine.TryEvaluate("WIDECHAR('abcABC123')", "");
+    Assert::AreEqual(t, "ａｂｃＡＢＣ１２３");
+}
+
+TEST(String, CHAR_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("char(49)", "");
+    Assert::AreEqual(t, "1");
+}
+
+TEST(String, CLEAN_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("clean('\\r112\\t')", "");
+    Assert::AreEqual(t, "112");
+}
+
+TEST(String, CLEAN_control_chars_test) {
+    AlgorithmEngine engine;
+    // 应移除所有 0~31 控制字符(修复前仅移除 \f \n \r \t \v)
+    auto t = engine.TryEvaluate("clean(char(7)&char(8)&'abc')", "");
+    Assert::AreEqual(t, "abc");
+}
+
+TEST(String, code_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("code('1')", 0);
+    Assert::AreEqual(t, 49);
+}
+
+TEST(String, unichar_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("unichar(65)", "");
+    Assert::AreEqual(t, "A");
+    t = engine.TryEvaluate("unichar(20013)", "");
+    Assert::AreEqual(t, "中");
+    t = engine.TryEvaluate("unichar(128512)", "");
+    Assert::AreEqual(t, "😀");
+}
+
+TEST(String, unicode_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("unicode('A')", 0);
+    Assert::AreEqual(t, 65);
+    t = engine.TryEvaluate("unicode('中')", 0);
+    Assert::AreEqual(t, 20013);
+    t = engine.TryEvaluate("unicode('😀')", 0);
+    Assert::AreEqual(t, 128512);
+}
+
+TEST(String, CONCATENATE_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("CONCATENATE('tt','33')", "");
+    Assert::AreEqual(t, "tt33");
+}
+
+TEST(String, CONCATENATE_ALIAS_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("CONCAT('tt','33')", "");
+    Assert::AreEqual(t, "tt33");
+}
+
+TEST(String, EXACT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("EXACT('tt','33')", true);
+    Assert::AreEqual(t, false);
+    t = engine.TryEvaluate("EXACT('tt','tt')", false);
+    Assert::AreEqual(t, true);
+
+    t = engine.TryEvaluate("EXACT('33',33)", false);
+    Assert::AreEqual(t, true);
+    t = engine.TryEvaluate("EXACT('331.1',331.1)", false);
+    Assert::AreEqual(t, true);
+    t = engine.TryEvaluate("EXACT('TRUE',TRUE())", false);
+    Assert::AreEqual(t, true);
+    t = engine.TryEvaluate("EXACT('1',TRUE())", true);
+    Assert::AreEqual(t, false);
+}
+
+TEST(String, FIND_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("FIND(\"11\",\"12221122\")", 0);
+    Assert::AreEqual(t, 5);
+
+    t = engine.TryEvaluate("FIND(\"12\",\"123456789123456789\",6)", 0);
+    Assert::AreEqual(t, 10);
+
+    t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",5)", -1);
+    Assert::AreEqual(t, -1);
+
+    t = engine.TryEvaluate("FIND(\"bc\",\"aaabc\",4)", -1);
+    Assert::AreEqual(t, 4);
+}
+
+TEST(String, FIXED_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("FIXED(4567.89,1)", "");
+    Assert::AreEqual(t, "4,567.9");
+    t = engine.TryEvaluate("FIXED(-4567.89, 1, TRUE())", "");
+    Assert::AreEqual(t, "-4567.9");
+    t = engine.TryEvaluate("FIXED(77.888)", "");
+    Assert::AreEqual(t, "77.89");
+}
+
+TEST(String, FIXED_negative_digits_test) {
+    AlgorithmEngine engine;
+    // Excel 支持负数 decimals(向左取整),如 FIXED(1234.567,-1)="1,230"
+    auto t = engine.TryEvaluate("FIXED(1234.567,-1)", "");
+    Assert::AreEqual(t, "1,230");
+
+    t = engine.TryEvaluate("FIXED(1234.567,-2)", "");
+    Assert::AreEqual(t, "1,200");
+
+    t = engine.TryEvaluate("FIXED(1234.567,-3)", "");
+    Assert::AreEqual(t, "1,000");
+
+    t = engine.TryEvaluate("FIXED(1234.567,-4)", "");
+    Assert::AreEqual(t, "0");
+
+    // 负数取整后保留千分位
+    t = engine.TryEvaluate("FIXED(-1234.567,-1)", "");
+    Assert::AreEqual(t, "-1,230");
+
+    // 超出 -15 报错
+    t = engine.TryEvaluate("FIXED(1234.567,-16)", "");
+    Assert::IsNotNull(engine.LastError);
+}
+
+TEST(String, LEFT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("LEFT('123222',3)", "");
+    Assert::AreEqual(t, "123");
+
+    t = engine.TryEvaluate("LEFT('123222',30)", "");
+    Assert::AreEqual(t, "123222");
+}
+
+TEST(String, LEN_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("LEN('123222')", 0);
+    Assert::AreEqual(t, 6);
+}
+
+TEST(String, LOWER_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("LOWER('ABC')", "");
+    Assert::AreEqual(t, "abc");
+}
+
+TEST(String, LOWER_ALIAS_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("TOLOWER('ABC')", "");
+    Assert::AreEqual(t, "abc");
+}
+
+TEST(String, MID_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("MID('ABCDEF',2,3)", "");
+    Assert::AreEqual(t, "BCD");
+}
+
+TEST(String, REPLACE_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("REPLACE(\"abccd\",2,3,\"2\")", "");
+    Assert::AreEqual(t, "a2d");
+
+    auto t1 = engine.TryEvaluate("REPLACE(\"abccd\",'bc',\"2\")", "");
+    Assert::AreEqual(t1, "a2cd");
+}
+
+TEST(String, REPLACE_num_chars_overflow_test) {
+    AlgorithmEngine engine;
+    // num_chars 超出剩余文本长度时,应截断到末尾而非崩溃
+    auto t = engine.TryEvaluate("REPLACE(\"hello\",1,6,\"\")", "");
+    Assert::AreEqual(t, "");
+
+    t = engine.TryEvaluate("REPLACE(\"hello\",1,10,\"X\")", "");
+    Assert::AreEqual(t, "X");
+
+    t = engine.TryEvaluate("REPLACE(\"hello\",3,100,\"ab\")", "");
+    Assert::AreEqual(t, "heab");
+}
+
+TEST(String, REPT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("REPT(\"q\",3)", "");
+    Assert::AreEqual(t, "qqq");
+}
+
+TEST(String, RIGHT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("RIGHT(\"123q\",3)", "");
+    Assert::AreEqual(t, "23q");
+
+    t = engine.TryEvaluate("RIGHT(\"123q\",30)", "");
+    Assert::AreEqual(t, "123q");
+}
+
+TEST(String, RMB_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("rmb(12.3)", "");
+    Assert::AreEqual(t, "壹拾贰元叁角");
+}
+
+TEST(String, SEARCH_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", 0);
+    Assert::AreEqual(t, 4);
+}
+
+TEST(String, SEARCH_wildcard_test) {
+    AlgorithmEngine engine;
+    // ? 匹配任意单字符
+    auto t = engine.TryEvaluate("SEARCH(\"a?c\",\"aXc\")", 0);
+    Assert::AreEqual(t, 1);
+
+    // * 匹配任意字符序列
+    t = engine.TryEvaluate("SEARCH(\"a*c\",\"abbc\")", 0);
+    Assert::AreEqual(t, 1);
+
+    // ~ 转义通配符字面量
+    t = engine.TryEvaluate("SEARCH(\"~?\",\"a?b\")", 0);
+    Assert::AreEqual(t, 2);
+
+    // 大小写不敏感
+    t = engine.TryEvaluate("SEARCH(\"ABC\",\"xxabc\")", 0);
+    Assert::AreEqual(t, 3);
+}
+
+TEST(String, SEARCH_param_test) {
+    AlgorithmEngine engine;
+    // Excel SEARCH 要求 2~3 个参数(find_text, within_text, [start_num])
+    auto t = engine.TryEvaluate("SEARCH('a','banana')", 0);
+    Assert::AreEqual(t, 2);
+
+    t = engine.TryEvaluate("SEARCH('a','banana',3)", 0);
+    Assert::AreEqual(t, 4);
+
+    // 单参数解析阶段即报错(修复前误允许 1~2 个参数)
+    bool thrown = false;
+    try {
+        t = engine.TryEvaluate("SEARCH('a')", 0);
+    } catch (...) {
+        thrown = true;
+    }
+    Assert::IsTrue(thrown || !engine.LastError.empty());
+}
+
+TEST(String, SUBSTITUTE_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\")", "");
+    Assert::AreEqual(t, "1212cc");
+    t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\",2)", "");
+    Assert::AreEqual(t, "ab12cc");
+
+    t = engine.TryEvaluate("SUBSTITUTE(\"123456789\",\"123\",\"1111111111111111111111\")", "");
+    Assert::AreEqual(t, "1111111111111111111111456789");
+
+    t = engine.TryEvaluate("SUBSTITUTE(\"123456789\",\"1239\",\"1111111111111111111111\")", "");
+    Assert::AreEqual(t, "123456789");
+
+    t = engine.TryEvaluate("SUBSTITUTE(\"123456789\",\"9\",\"1111111111111111111111\")", "");
+    Assert::AreEqual(t, "123456781111111111111111111111");
+}
+
+TEST(String, T_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("T(12)", "");
+    Assert::AreEqual(t, "");
+    t = engine.TryEvaluate("T('123')", "");
+    Assert::AreEqual(t, "123");
+}
+
+TEST(String, TEXT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("TEXT(123,\"0.00\")", "");
+    Assert::AreEqual(t, "123.00");
+}
+
+TEST(String, TRIM_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("TRIM(\" 123 123 \")", "");
+    Assert::AreEqual(t, "123 123");
+}
+
+TEST(String, TRIM_ExcelCompatible_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("TRIM(\"  abc  \")", "");
+    Assert::AreEqual(t, "abc");
+
+    t = engine.TryEvaluate("TRIM(\"a   b   c\")", "");
+    Assert::AreEqual(t, "a b c");
+
+    t = engine.TryEvaluate("TRIM(\"  hello   world  \")", "");
+    Assert::AreEqual(t, "hello world");
+
+    t = engine.TryEvaluate("TRIM(\"no_spaces\")", "");
+    Assert::AreEqual(t, "no_spaces");
+
+    t = engine.TryEvaluate("TRIM(\"   \")", "");
+    Assert::AreEqual(t, "");
+}
+
+TEST(String, PROPER_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("PROPER('abc abc')", "");
+    Assert::AreEqual(t, "Abc Abc");
+}
+
+TEST(String, PROPER_ExcelCompatible_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("PROPER('hello world')", "");
+    Assert::AreEqual(t, "Hello World");
+
+    t = engine.TryEvaluate("PROPER('HELLO WORLD')", "");
+    Assert::AreEqual(t, "Hello World");
+
+    t = engine.TryEvaluate("PROPER('hELLO wORLD')", "");
+    Assert::AreEqual(t, "Hello World");
+
+    t = engine.TryEvaluate("PROPER('mICROSOFT eXCEL')", "");
+    Assert::AreEqual(t, "Microsoft Excel");
+
+    t = engine.TryEvaluate("PROPER('aPpLe')", "");
+    Assert::AreEqual(t, "Apple");
+
+    t = engine.TryEvaluate("PROPER('test123test')", "");
+    Assert::AreEqual(t, "Test123Test");
+}
+
+TEST(String, UPPER_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("UPPER(\"abc\")", "");
+    Assert::AreEqual(t, "ABC");
+}
+
+TEST(String, UPPER_ALIAS_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("TOUPPER('abc')", "");
+    Assert::AreEqual(t, "ABC");
+}
+
+TEST(String, VALUE_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("VALUE(\"123\")", 0);
+    Assert::AreEqual(t, 123);
+}
+
+// ---------------- 方法式调用测试 ----------------
+
+TEST(String, MethodStyle_LEN_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abcdef'.LEN()", 0);
+    Assert::AreEqual(t, 6);
+}
+
+TEST(String, MethodStyle_LEFT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abcdef'.LEFT(3)", "");
+    Assert::AreEqual(t, "abc");
+
+    t = engine.TryEvaluate("'abcdef'.LEFT()", "");
+    Assert::AreEqual(t, "a");
+}
+
+TEST(String, MethodStyle_RIGHT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abcdef'.RIGHT(3)", "");
+    Assert::AreEqual(t, "def");
+
+    t = engine.TryEvaluate("'abcdef'.RIGHT()", "");
+    Assert::AreEqual(t, "f");
+}
+
+TEST(String, MethodStyle_MID_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abcdef'.MID(2,3)", "");
+    Assert::AreEqual(t, "bcd");
+}
+
+TEST(String, MethodStyle_LOWER_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'ABC'.LOWER()", "");
+    Assert::AreEqual(t, "abc");
+}
+
+TEST(String, MethodStyle_UPPER_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abc'.UPPER()", "");
+    Assert::AreEqual(t, "ABC");
+}
+
+TEST(String, MethodStyle_TRIM_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'  abc  '.TRIM()", "");
+    Assert::AreEqual(t, "abc");
+}
+
+TEST(String, MethodStyle_REPLACE_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abcdef'.REPLACE(2,3,'x')", "");
+    Assert::AreEqual(t, "axef");
+
+    t = engine.TryEvaluate("'abcdef'.REPLACE('bc','x')", "");
+    Assert::AreEqual(t, "axdef");
+}
+
+TEST(String, MethodStyle_EXACT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abc'.EXACT('abc')", false);
+    Assert::AreEqual(t, true);
+
+    t = engine.TryEvaluate("'abc'.EXACT('ABC')", true);
+    Assert::AreEqual(t, false);
+}
+
+TEST(String, MethodStyle_T_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'abc'.T()", "");
+    Assert::AreEqual(t, "abc");
+
+    t = engine.TryEvaluate("123.T()", "default");
+    Assert::AreEqual(t, "");
+}
+
+TEST(String, MethodStyle_TEXT_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("123.456.TEXT('0.00')", "");
+    Assert::AreEqual(t, "123.46");
+}
+
+TEST(String, MethodStyle_VALUE_test2) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("'123'.VALUE()", 0);
+    Assert::AreEqual(t, 123);
+}
+
+TEST(String, MethodStyle_RMB_test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("123.45.RMB()", "");
+    Assert::AreEqual(t, "壹佰贰拾叁元肆角伍分");
+}
+
+// ---------------- 边界值测试 ----------------
+
+TEST(String, EmptyString_Test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("LEN('')", 0);
+    Assert::AreEqual(t, 0);
+
+    auto t2 = engine.TryEvaluate("LEFT('', 1)", "");
+    Assert::AreEqual(t2, "");
+
+    t2 = engine.TryEvaluate("RIGHT('', 1)", "");
+    Assert::AreEqual(t2, "");
+
+    t2 = engine.TryEvaluate("MID('', 1, 1)", "");
+    Assert::AreEqual(t2, "");
+}
+
+TEST(String, UnicodeBoundary_Test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("LEN('中文')", 0);
+    Assert::AreEqual(t, 2);
+
+    auto t2 = engine.TryEvaluate("LEFT('中文测试', 2)", "");
+    Assert::AreEqual(t2, "中文");
+
+    t2 = engine.TryEvaluate("MID('中文测试', 1, 2)", "");
+    Assert::AreEqual(t2, "中文");
+}
+
+TEST(String, SubstringBoundary_Test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("LEFT('ABC', 100)", "");
+    Assert::AreEqual(t, "ABC");
+
+    auto t2 = engine.TryEvaluate("RIGHT('ABC', 100)", "");
+    Assert::AreEqual(t2, "ABC");
+
+    t2 = engine.TryEvaluate("MID('ABC', 1, 100)", "");
+    Assert::AreEqual(t2, "ABC");
+
+    t2 = engine.TryEvaluate("MID('ABC', 5, 2)", "");
+    Assert::AreEqual(t2, "");
+}
+
+TEST(String, SubstituteBoundary_Test) {
+    AlgorithmEngine engine;
+    auto t = engine.TryEvaluate("SUBSTITUTE('aaa', 'a', 'b')", "");
+    Assert::AreEqual(t, "bbb");
+
+    auto t2 = engine.TryEvaluate("SUBSTITUTE('aaa', 'x', 'b')", "");
+    Assert::AreEqual(t2, "aaa");
+
+    t2 = engine.TryEvaluate("SUBSTITUTE('aabaa', 'a', 'b', 1)", "");
+    Assert::AreEqual(t2, "babaa");
+
+    t2 = engine.TryEvaluate("SUBSTITUTE('aabaa', 'a', 'b', 2)", "");
+    Assert::AreEqual(t2, "abbaa");
+
+    // old_text 为空字符串时返回原文本
+    t2 = engine.TryEvaluate("SUBSTITUTE('abc', '', 'x')", "");
+    Assert::AreEqual(t2, "abc");
+
+    // instance_num 小于 1 时返回 #VALUE! 错误
+    t2 = engine.TryEvaluate("SUBSTITUTE('abc', 'a', 'x', 0)", "");
+    Assert::AreEqual(t2, "");
+    Assert::IsNotNull(engine.LastError);
+}
+
+TEST(String, IntOverflowBoundary_Test) {
+    AlgorithmEngine engine;
+    const std::string DecimalMax = "79228162514264337593543950335";
+    // 参数超出 int 范围时应返回参数错误,而不是抛出 OverflowException
+    std::vector<std::string> expressions = {
+        "LEFT('abc', " + DecimalMax + ")",
+        "RIGHT('abc', " + DecimalMax + ")",
+        "MID('abc', 1, " + DecimalMax + ")",
+        "MID('abc', " + DecimalMax + ", 1)",
+        "REPT('a', " + DecimalMax + ")",
+        "SUBSTITUTE('abc', 'b', 'x', " + DecimalMax + ")",
+        "REPLACE('abc', 1, " + DecimalMax + ", 'x')",
+        "REPLACE('abc', " + DecimalMax + ", 1, 'x')",
+        "FIND('a', 'abc', " + DecimalMax + ")",
+        "SEARCH('a', 'abc', " + DecimalMax + ")",
+        "CHAR(" + DecimalMax + ")",
+        "UNICHAR(" + DecimalMax + ")",
+    };
+    for (const auto& expression : expressions) {
+        Assert::IsTrue(engine.Evaluate(engine.Parse(expression)).IsError());
+    }
+}
+
+TEST(String, MidLengthMaxValue_Test) {
+    AlgorithmEngine engine;
+    // length 为 int.MaxValue 时 start_index + length 不得溢出为负数
+    auto t = engine.TryEvaluate("MID('ab', 2, 2147483647)", "");
+    Assert::AreEqual(t, "b");
+
+    t = engine.TryEvaluate("MID('abcdef', 6, 2147483647)", "");
+    Assert::AreEqual(t, "f");
+}
+
+TEST(String, SurrogateBoundary_Test) {
+    AlgorithmEngine engine;
+    // 首字符为孤立代理项时应返回参数错误,而不是抛出 ArgumentException
+    Assert::IsTrue(engine.Evaluate(engine.Parse("UNICODE(CHAR(55296))")).IsError());
+    Assert::IsTrue(engine.Evaluate(engine.Parse("UNICODE(CHAR(56320))")).IsError());
+
+    auto t = engine.TryEvaluate("UNICODE(CHAR(65))", 0);
+    Assert::AreEqual(t, 65);
+
+    // 合法代理对应返回完整码点
+    t = engine.TryEvaluate("UNICODE(UNICHAR(128512))", 0);
+    Assert::AreEqual(t, 128512);
+}
+
+TEST(String, TrimWhitespace_Test) {
+    AlgorithmEngine engine;
+    // Excel 的 TRIM 只处理半角空格,Tab 等空白字符保留
+    auto t = engine.TryEvaluate("LEN(TRIM(CHAR(9) & 'a' & CHAR(9)))", 0);
+    Assert::AreEqual(t, 3);
+
+    t = engine.TryEvaluate("LEN(TRIM('  a  b  '))", 0);
+    Assert::AreEqual(t, 3);
+
+    t = engine.TryEvaluate("LEN(TRIM(CHAR(13) & 'a' & CHAR(10)))", 0);
+    Assert::AreEqual(t, 3);
+}
+
+TEST(String, ProperCulture_Test) {
+    AlgorithmEngine engine;
+    // C# 原用例切换 CurrentCulture=tr-TR 验证 PROPER 不受区域性影响；
+    // C++ 移植版无 CultureInfo，直接验证 Invariant 行为。
+    auto t = engine.TryEvaluate("PROPER('istanbul')", "");
+    Assert::AreEqual(t, "Istanbul");
+}
+
+}  // namespace

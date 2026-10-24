@@ -1,0 +1,341 @@
+// 移植自 csharp/ToolGood.Algorithm.Test/AlgorithmEngine/MathTransformationTest.cs
+#include "cpptest.h"
+
+#include <string>
+
+#include "toolgood/AlgorithmEngine.h"
+
+using namespace toolgood;
+
+namespace {
+
+/// 对应 C# 私有辅助方法 PlacesError：求值后判断是否产生了错误。
+bool places_error(const std::string& formula) {
+    AlgorithmEngine engine;
+    engine.TryEvaluate(formula, "");
+    return !engine.LastError.empty();
+}
+
+TEST(MathTrans, BIN2DEC_test) {
+    AlgorithmEngine engine;
+    int num = engine.TryEvaluate("BIN2DEC(10101)", 0);
+    Assert::AreEqual(num, 21);
+}
+
+TEST(MathTrans, OCT2DEC_test) {
+    AlgorithmEngine engine;
+    int num = engine.TryEvaluate("OCT2DEC(12456)", 0);
+    Assert::AreEqual(num, 5422);
+}
+
+TEST(MathTrans, HEX2DEC_test) {
+    AlgorithmEngine engine;
+    int num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
+    Assert::AreEqual(num, 2177759);
+}
+
+TEST(MathTrans, DEC2BIN_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("DEC2BIN(10)", "");
+    Assert::AreEqual(t, "1010");
+    t = engine.TryEvaluate("DEC2BIN(10,8)", "");
+    Assert::AreEqual(t, "00001010");
+}
+
+TEST(MathTrans, OCT2BIN_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("OCT2BIN('721')", "");
+    Assert::AreEqual(t, "111010001");
+}
+
+TEST(MathTrans, HEX2BIN_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("HEX2BIN('fa')", "");
+    Assert::AreEqual(t, "11111010");
+}
+
+TEST(MathTrans, BIN2OCT_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("BIN2OCT(10)", "");
+    Assert::AreEqual(t, "2");
+}
+
+TEST(MathTrans, DEC2OCT_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("DEC2OCT('75')", "");
+    Assert::AreEqual(t, "113");
+}
+
+TEST(MathTrans, HEX2OCT_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("HEX2OCT('f5')", "");
+    Assert::AreEqual(t, "365");
+}
+
+TEST(MathTrans, BIN2HEX_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("BIN2HEX(101010100)", "");
+    Assert::AreEqual(t, "154");
+}
+
+TEST(MathTrans, OCT2HEX_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("OCT2HEX(75212)", "");
+    Assert::AreEqual(t, "7A8A");
+}
+
+TEST(MathTrans, DEC2HEX_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("DEC2HEX(952)", "");
+    Assert::AreEqual(t, "3B8");
+}
+
+TEST(MathTrans, ARABIC_test) {
+    AlgorithmEngine engine;
+    int t = engine.TryEvaluate("ARABIC('I')", 0);
+    Assert::AreEqual(t, 1);
+
+    t = engine.TryEvaluate("ARABIC('IV')", 0);
+    Assert::AreEqual(t, 4);
+
+    t = engine.TryEvaluate("ARABIC('IX')", 0);
+    Assert::AreEqual(t, 9);
+
+    t = engine.TryEvaluate("ARABIC('X')", 0);
+    Assert::AreEqual(t, 10);
+
+    t = engine.TryEvaluate("ARABIC('XL')", 0);
+    Assert::AreEqual(t, 40);
+
+    t = engine.TryEvaluate("ARABIC('L')", 0);
+    Assert::AreEqual(t, 50);
+
+    t = engine.TryEvaluate("ARABIC('XC')", 0);
+    Assert::AreEqual(t, 90);
+
+    t = engine.TryEvaluate("ARABIC('C')", 0);
+    Assert::AreEqual(t, 100);
+
+    t = engine.TryEvaluate("ARABIC('CD')", 0);
+    Assert::AreEqual(t, 400);
+
+    t = engine.TryEvaluate("ARABIC('D')", 0);
+    Assert::AreEqual(t, 500);
+
+    t = engine.TryEvaluate("ARABIC('CM')", 0);
+    Assert::AreEqual(t, 900);
+
+    t = engine.TryEvaluate("ARABIC('M')", 0);
+    Assert::AreEqual(t, 1000);
+
+    t = engine.TryEvaluate("ARABIC('MMXXIII')", 0);
+    Assert::AreEqual(t, 2023);
+}
+
+TEST(MathTrans, ROMAN_test) {
+    AlgorithmEngine engine;
+    std::string t = engine.TryEvaluate("ROMAN(1)", "");
+    Assert::AreEqual(t, "I");
+
+    t = engine.TryEvaluate("ROMAN(4)", "");
+    Assert::AreEqual(t, "IV");
+
+    t = engine.TryEvaluate("ROMAN(9)", "");
+    Assert::AreEqual(t, "IX");
+
+    t = engine.TryEvaluate("ROMAN(10)", "");
+    Assert::AreEqual(t, "X");
+
+    t = engine.TryEvaluate("ROMAN(40)", "");
+    Assert::AreEqual(t, "XL");
+
+    t = engine.TryEvaluate("ROMAN(50)", "");
+    Assert::AreEqual(t, "L");
+
+    t = engine.TryEvaluate("ROMAN(90)", "");
+    Assert::AreEqual(t, "XC");
+
+    t = engine.TryEvaluate("ROMAN(100)", "");
+    Assert::AreEqual(t, "C");
+
+    t = engine.TryEvaluate("ROMAN(400)", "");
+    Assert::AreEqual(t, "CD");
+
+    t = engine.TryEvaluate("ROMAN(500)", "");
+    Assert::AreEqual(t, "D");
+
+    t = engine.TryEvaluate("ROMAN(900)", "");
+    Assert::AreEqual(t, "CM");
+
+    t = engine.TryEvaluate("ROMAN(1000)", "");
+    Assert::AreEqual(t, "M");
+
+    t = engine.TryEvaluate("ROMAN(2023)", "");
+    Assert::AreEqual(t, "MMXXIII");
+}
+
+TEST(MathTrans, ARABIC_error_test) {
+    AlgorithmEngine engine;
+    // 空文本报错(Excel 返回 #VALUE!)
+    engine.TryEvaluate("ARABIC('')", 0);
+    Assert::IsTrue(!engine.LastError.empty());
+
+    // 非法字符报错
+    engine.TryEvaluate("ARABIC('ABC')", 0);
+    Assert::IsTrue(!engine.LastError.empty());
+
+    // 支持小写
+    int t = engine.TryEvaluate("ARABIC('mcm')", 0);
+    Assert::AreEqual(t, 1900);
+
+    // Excel 官方例子: ARABIC("MCMLXXII") = 1972
+    t = engine.TryEvaluate("ARABIC('MCMLXXII')", 0);
+    Assert::AreEqual(t, 1972);
+}
+
+TEST(MathTrans, ROMAN_form_test) {
+    AlgorithmEngine engine;
+    // form 0~4 使用不同的简化规则
+    Assert::AreEqual(std::string("CDXCIX"), engine.TryEvaluate("ROMAN(499)", ""));
+    Assert::AreEqual(std::string("LDVLIV"), engine.TryEvaluate("ROMAN(499,1)", ""));
+    Assert::AreEqual(std::string("XDIX"), engine.TryEvaluate("ROMAN(499,2)", ""));
+    Assert::AreEqual(std::string("VDIV"), engine.TryEvaluate("ROMAN(499,3)", ""));
+    Assert::AreEqual(std::string("ID"), engine.TryEvaluate("ROMAN(499,4)", ""));
+
+    // 0 返回空文本
+    Assert::AreEqual(std::string(""), engine.TryEvaluate("ROMAN(0)", "x"));
+
+    // 负数与大于 3999 报错
+    engine.TryEvaluate("ROMAN(-1)", "");
+    Assert::IsTrue(!engine.LastError.empty());
+    engine.TryEvaluate("ROMAN(4000)", "");
+    Assert::IsTrue(!engine.LastError.empty());
+
+    // form 超出 0~4 报错
+    engine.TryEvaluate("ROMAN(499,5)", "");
+    Assert::IsTrue(!engine.LastError.empty());
+    engine.TryEvaluate("ROMAN(499,-1)", "");
+    Assert::IsTrue(!engine.LastError.empty());
+}
+
+TEST(MathTrans, ARABIC_invalid_test) {
+    AlgorithmEngine engine;
+    // 非法重复:IIII 不是标准罗马数字
+    engine.TryEvaluate("ARABIC('IIII')", 0);
+    Assert::IsTrue(!engine.LastError.empty());
+
+    AlgorithmEngine engine2;
+    // 非法减法:IC 不是标准罗马数字
+    engine2.TryEvaluate("ARABIC('IC')", 0);
+    Assert::IsTrue(!engine2.LastError.empty());
+
+    AlgorithmEngine engine3;
+    // 非法重复:VV 不是标准罗马数字
+    engine3.TryEvaluate("ARABIC('VV')", 0);
+    Assert::IsTrue(!engine3.LastError.empty());
+}
+
+TEST(MathTrans, places_out_of_range_test) {
+    // places 超过 10 应返回 #NUM!
+    Assert::IsTrue(places_error("DEC2BIN(10,20)"));
+    Assert::IsTrue(places_error("DEC2HEX(952,20)"));
+    Assert::IsTrue(places_error("DEC2OCT(75,20)"));
+    Assert::IsTrue(places_error("BIN2OCT(10,20)"));
+    Assert::IsTrue(places_error("BIN2HEX(101010100,20)"));
+    Assert::IsTrue(places_error("OCT2BIN(721,20)"));
+    Assert::IsTrue(places_error("OCT2HEX(75212,20)"));
+    Assert::IsTrue(places_error("HEX2BIN('fa',20)"));
+    Assert::IsTrue(places_error("HEX2OCT('f5',20)"));
+}
+
+TEST(MathTrans, negative_places_padding_test) {
+    AlgorithmEngine engine;
+    // 10 位补码解析为 -1,places=3 时应输出 "-01" 而非 "0-1"
+    std::string t = engine.TryEvaluate("BIN2DEC('1111111111',3)", "");
+    Assert::AreEqual(t, "-01");
+
+    t = engine.TryEvaluate("OCT2DEC('7777777777',3)", "");
+    Assert::AreEqual(t, "-01");
+
+    t = engine.TryEvaluate("HEX2DEC('FFFFFFFFFF',3)", "");
+    Assert::AreEqual(t, "-01");
+}
+
+TEST(MathTrans, dec_from_base_places_test) {
+    // *2DEC 的 places 超出 0~10 应返回 #NUM!(与 DEC2BIN 等保持一致)
+    Assert::IsTrue(places_error("BIN2DEC('1010',20)"));
+    Assert::IsTrue(places_error("OCT2DEC('12',20)"));
+    Assert::IsTrue(places_error("HEX2DEC('A',20)"));
+    // places 不足以容纳结果时应返回 #NUM!
+    Assert::IsTrue(places_error("BIN2DEC('1010',1)"));
+
+    // places 充足时左侧补零
+    Assert::AreEqual(std::string("000010"), AlgorithmEngine().TryEvaluate("BIN2DEC('1010',6)", ""));
+}
+
+TEST(MathTrans, trim_blank_test) {
+    // 首尾空白应先被裁剪(P1-4)
+    Assert::AreEqual(10, AlgorithmEngine().TryEvaluate("BIN2DEC(' 1010 ')", 0));
+    Assert::AreEqual(255, AlgorithmEngine().TryEvaluate("HEX2DEC('  FF ')", 0));
+    Assert::AreEqual(4, AlgorithmEngine().TryEvaluate("ARABIC(' iv ')", 0));
+}
+
+TEST(MathTrans, int_overflow_no_exception_test) {
+    // number/places 超出 int 范围时应返回错误,而不是抛出 OverflowException
+    Assert::IsTrue(places_error("DEC2BIN(5000000000)"));
+    Assert::IsTrue(places_error("ROMAN(5000000000)"));
+    Assert::IsTrue(places_error("ROMAN(499,5000000000)"));
+
+    Assert::IsTrue(places_error("DEC2BIN(10,5000000000)"));
+    Assert::IsTrue(places_error("DEC2HEX(952,5000000000)"));
+    Assert::IsTrue(places_error("DEC2OCT(75,5000000000)"));
+    Assert::IsTrue(places_error("BIN2OCT(10,5000000000)"));
+    Assert::IsTrue(places_error("BIN2HEX('101010100',5000000000)"));
+    Assert::IsTrue(places_error("OCT2BIN('721',5000000000)"));
+    Assert::IsTrue(places_error("OCT2HEX('75212',5000000000)"));
+    Assert::IsTrue(places_error("HEX2BIN('fa',5000000000)"));
+    Assert::IsTrue(places_error("HEX2OCT('f5',5000000000)"));
+    Assert::IsTrue(places_error("BIN2DEC('1010',5000000000)"));
+    Assert::IsTrue(places_error("OCT2DEC('12',5000000000)"));
+    Assert::IsTrue(places_error("HEX2DEC('A',5000000000)"));
+}
+
+TEST(MathTrans, negative_ignores_places_test) {
+    // 负数结果固定为 10 位补码,应忽略 places(即使 places 小于结果位数)
+    Assert::AreEqual(std::string("1111111111"), AlgorithmEngine().TryEvaluate("DEC2BIN(-1,4)", ""));
+    Assert::AreEqual(std::string("FFFFFFFFF7"), AlgorithmEngine().TryEvaluate("DEC2HEX(-9,4)", ""));
+    Assert::AreEqual(std::string("7777777777"), AlgorithmEngine().TryEvaluate("DEC2OCT(-1,4)", ""));
+
+    Assert::AreEqual(std::string("FFFFFFFFFF"), AlgorithmEngine().TryEvaluate("BIN2HEX('1111111111',4)", ""));
+    Assert::AreEqual(std::string("7777777777"), AlgorithmEngine().TryEvaluate("BIN2OCT('1111111111',4)", ""));
+    Assert::AreEqual(std::string("1111111111"), AlgorithmEngine().TryEvaluate("OCT2BIN('7777777777',4)", ""));
+    Assert::AreEqual(std::string("FFFFFFFFFF"), AlgorithmEngine().TryEvaluate("OCT2HEX('7777777777',4)", ""));
+    Assert::AreEqual(std::string("1111111111"), AlgorithmEngine().TryEvaluate("HEX2BIN('FFFFFFFFFF',4)", ""));
+    Assert::AreEqual(std::string("7777777777"), AlgorithmEngine().TryEvaluate("HEX2OCT('FFFFFFFFFF',4)", ""));
+
+    // number 为负时 places 非法仍应返回 #NUM!(校验先于负数分支)
+    Assert::IsTrue(places_error("DEC2BIN(-1,-1)"));
+    Assert::IsTrue(places_error("DEC2HEX(-1,-1)"));
+    Assert::IsTrue(places_error("DEC2OCT(-1,-1)"));
+    Assert::IsTrue(places_error("BIN2HEX('1111111111',-1)"));
+}
+
+TEST(MathTrans, dec_truncate_range_test) {
+    // 小数先截断再校验范围:-549755813888.5 截断后仍在范围内
+    Assert::AreEqual(std::string("8000000000"), AlgorithmEngine().TryEvaluate("DEC2HEX(-549755813888.5)", ""));
+    Assert::AreEqual(std::string("4000000000"), AlgorithmEngine().TryEvaluate("DEC2OCT(-536870912.5)", ""));
+
+    // 截断后越界应返回 #NUM!
+    Assert::IsTrue(places_error("DEC2HEX(-549755813889)"));
+    Assert::IsTrue(places_error("DEC2OCT(-536870913)"));
+    Assert::IsTrue(places_error("DEC2HEX(549755813888)"));
+    Assert::IsTrue(places_error("DEC2OCT(536870912)"));
+}
+
+TEST(MathTrans, roman_boolean_form_test) {
+    // Excel: form 为 TRUE 时使用古典形式(等价于 0),为 FALSE 时使用最简化形式(等价于 4)
+    Assert::AreEqual(std::string("CDXCIX"), AlgorithmEngine().TryEvaluate("ROMAN(499,TRUE())", ""));
+    Assert::AreEqual(std::string("ID"), AlgorithmEngine().TryEvaluate("ROMAN(499,FALSE())", ""));
+}
+
+}  // namespace

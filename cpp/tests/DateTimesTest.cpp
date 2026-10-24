@@ -1,0 +1,718 @@
+// 移植自 csharp/ToolGood.Algorithm.Test/AlgorithmEngine/DateTimesTest.cs
+//
+// 类型对应：
+//   C# DateTime        -> toolgood::MyDate
+//   DateTime.MinValue  -> MyDate()
+//   DateTime.Now       -> MyDate::Now(true)（引擎 UseLocalTime 默认为 true）
+//   DateTime.Today     -> MyDate::Today(true)
+//   DateTime.Parse(s)  -> MyDate::Parse(s)
+//   C# TimeSpan        -> C++ 无对应类型，改用 Calculate + IsDate +
+//                         DateValue().ToTimeSpanSeconds() 断言秒数
+#include "cpptest.h"
+
+#include <cmath>
+
+#include "toolgood/AlgorithmEngine.h"
+
+using namespace toolgood;
+
+namespace {
+
+/// 对应 C# Math.Round(double, int)：先 scale，再银行家舍入，再 scale 回来。
+double cs_round(double value, int digits) {
+    if (digits >= 0) {
+        double p = 1.0;
+        for (int i = 0; i < digits; i++) p *= 10.0;
+        return std::nearbyint(value * p) / p;
+    }
+    double p = 1.0;
+    for (int i = 0; i < -digits; i++) p *= 10.0;
+    return std::nearbyint(value / p) * p;
+}
+
+TEST(DateTimes, DATEVALUE_Test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("DATEVALUE('2016-01-01')", MyDate());
+    Assert::AreEqual(dt, MyDate(2016, 1, 1, 0, 0, 0));
+    dt = engine.TryEvaluate("DATEVALUE（'2016-01-01'）", MyDate());
+    Assert::AreEqual(dt, MyDate(2016, 1, 1, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATEVALUE('2016/01/01')", MyDate());
+    Assert::AreEqual(dt, MyDate(2016, 1, 1, 0, 0, 0));
+
+    // C# 用 dt.ToLocalTime() 与本地时间比较；C++ 引擎 UseLocalTime 默认为 true
+    // （与 C# 一致），返回值已经是本地时间，故直接比较。
+    dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 8, 5, 19, 28, 19));
+
+    dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 8, 5, 19, 28, 19));
+
+    engine.UseLocalTime = true;
+    dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 8, 5, 19, 28, 19));
+
+    dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 8, 5, 19, 28, 19));
+
+    dt = engine.TryEvaluate("DATEVALUE('1691234899000')", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 8, 5, 19, 28, 19));
+
+    dt = engine.TryEvaluate("DATEVALUE('1691234899')", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 8, 5, 19, 28, 19));
+}
+
+TEST(DateTimes, TIMESTAMP_Test) {
+    AlgorithmEngine engine;
+    engine.UseLocalTime = true;
+
+    int64_t dt = engine.TryEvaluate("TIMESTAMP('2016-01-01')", (int64_t)0);
+    Assert::AreEqual(dt, (int64_t)1451577600000LL);
+
+    dt = engine.TryEvaluate("TIMESTAMP('2016/01/01')", (int64_t)0);
+    Assert::AreEqual(dt, (int64_t)1451577600000LL);
+
+    dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',0)", (int64_t)0);
+    Assert::AreEqual(dt, (int64_t)1451577600000LL);
+
+    dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',1)", (int64_t)0);
+    Assert::AreEqual(dt, (int64_t)1451577600LL);
+}
+
+TEST(DateTimes, TIMEVALUE_test) {
+    AlgorithmEngine engine;
+    // C#: TryEvaluate(exp, TimeSpan.MinValue) == new DateTime(2016,1,1,12,12,12).TimeOfDay
+    // C++ 无 TimeSpan：断言结果为时间类型，且秒数等于 12:12:12。
+    Operand o = engine.Calculate("TIMEVALUE('12:12:12')");
+    Assert::IsTrue(o.IsDate());
+    Assert::AreEqual((int64_t)(12 * 3600 + 12 * 60 + 12), o.DateValue().ToTimeSpanSeconds());
+}
+
+TEST(DateTimes, DATE_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("DATE(2016,1,1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2016, 1, 1, 0, 0, 0));
+}
+
+TEST(DateTimes, time_test) {
+    AlgorithmEngine engine;
+    // C#: TryEvaluate(exp, TimeSpan.MinValue) == new DateTime(2016,1,1,11,12,13).TimeOfDay
+    Operand o = engine.Calculate("time(11,12,13)");
+    Assert::IsTrue(o.IsDate());
+    Assert::AreEqual((int64_t)(11 * 3600 + 12 * 60 + 13), o.DateValue().ToTimeSpanSeconds());
+}
+
+TEST(DateTimes, Now_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("now()", MyDate());
+    Assert::AreEqual(dt.ToString(), MyDate::Now(true).ToString());
+}
+
+TEST(DateTimes, Today_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("Today()", MyDate());
+    Assert::AreEqual(dt.ToString(), MyDate::Today(true).ToString());
+}
+
+TEST(DateTimes, Year_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("year(now())", 0);
+    Assert::AreEqual(dt, MyDate::Now(true).Year);
+}
+
+TEST(DateTimes, Month_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("Month(now())", 0);
+    Assert::AreEqual(dt, MyDate::Now(true).Month);
+}
+
+TEST(DateTimes, Day_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("Day(now())", 0);
+    Assert::AreEqual(dt, MyDate::Now(true).Day);
+}
+
+TEST(DateTimes, Hour_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("Hour(now())", 0);
+    Assert::AreEqual(dt, MyDate::Now(true).Hour);
+}
+
+TEST(DateTimes, Minute_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("Minute(now())", 0);
+    Assert::AreEqual(dt, MyDate::Now(true).Minute);
+}
+
+TEST(DateTimes, Second_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("Second(now())", 0);
+    Assert::AreEqual(dt, MyDate::Now(true).Second);
+}
+
+TEST(DateTimes, WEEKDAY_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7))", 0);
+    Assert::AreEqual(dt, 7);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7),1)", 0);
+    Assert::AreEqual(dt, 7);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7),2)", 0);
+    Assert::AreEqual(dt, 6);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7),3)", 0);
+    Assert::AreEqual(dt, 5);
+
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,8),1)", 0);
+    Assert::AreEqual(dt, 1);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,8),2)", 0);
+    Assert::AreEqual(dt, 7);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,8),3)", 0);
+    Assert::AreEqual(dt, 6);
+
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,2),1)", 0);
+    Assert::AreEqual(dt, 2);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,2),2)", 0);
+    Assert::AreEqual(dt, 1);
+    dt = engine.TryEvaluate("WEEKDAY(date(2017,1,2),3)", 0);
+    Assert::AreEqual(dt, 0);
+}
+
+TEST(DateTimes, WEEKDAY_ExcelCompatible_Test) {
+    AlgorithmEngine engine;
+
+    // 2017年1月1日是周日，1月7日是周六，1月2日是周一
+    // type 1: 周日=1, 周六=7
+    // type 2: 周一=1, 周日=7
+    // type 3: 周一=0, 周日=6
+
+    // 测试所有 type (1-3, 11-17)
+    // 2017-1-2 (周一)
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),1)", 0), 2);   // type 1: 周一=2
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),2)", 0), 1);   // type 2: 周一=1
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),3)", 0), 0);   // type 3: 周一=0
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),11)", 0), 1);  // type 11: 周一=1
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),12)", 0), 7);  // type 12: 周二=1, 周一=7
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),13)", 0), 6);  // type 13: 周三=1, 周一=6
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),14)", 0), 5);  // type 14: 周四=1, 周一=5
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),15)", 0), 4);  // type 15: 周五=1, 周一=4
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),16)", 0), 3);  // type 16: 周六=1, 周一=3
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,2),17)", 0), 2);  // type 17: 周日=1, 周一=2
+
+    // 2017-1-7 (周六)
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),1)", 0), 7);   // type 1: 周六=7
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),2)", 0), 6);   // type 2: 周六=6
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),3)", 0), 5);   // type 3: 周六=5
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),11)", 0), 6);  // type 11: 周六=6
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),12)", 0), 5);  // type 12: 周六=5
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),13)", 0), 4);  // type 13: 周六=4
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),14)", 0), 3);  // type 14: 周六=3
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),15)", 0), 2);  // type 15: 周六=2
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),16)", 0), 1);  // type 16: 周六=1
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,7),17)", 0), 7);  // type 17: 周六=7
+
+    // 2017-1-8 (周日)
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),1)", 0), 1);   // type 1: 周日=1
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),2)", 0), 7);   // type 2: 周日=7
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),3)", 0), 6);   // type 3: 周日=6
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),11)", 0), 7);  // type 11: 周日=7
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),12)", 0), 6);  // type 12: 周日=6
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),13)", 0), 5);  // type 13: 周日=5
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),14)", 0), 4);  // type 14: 周日=4
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),15)", 0), 3);  // type 15: 周日=3
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),16)", 0), 2);  // type 16: 周日=2
+    Assert::AreEqual(engine.TryEvaluate("WEEKDAY(date(2017,1,8),17)", 0), 1);  // type 17: 周日=1
+}
+
+TEST(DateTimes, DATEDIF_Test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','y')", 0);
+    Assert::AreEqual(dt, 41);
+
+    dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','m')", 0);
+    Assert::AreEqual(dt, 503);
+
+    dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','d')", 0);
+    Assert::AreEqual(dt, 15318);
+
+    dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','yd')", 0);
+    Assert::AreEqual(dt, 342);
+
+    dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','ym')", 0);
+    Assert::AreEqual(dt, 11);
+
+    dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','md')", 0);
+    Assert::AreEqual(dt, 8);
+}
+
+TEST(DateTimes, DAYS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("DAYS('2017-1-7','1975-1-30')", 0);
+    Assert::AreEqual(dt, 15318);
+
+    dt = engine.TryEvaluate("DAYS('2016-3-1','2016-2-28')", 0);
+    Assert::AreEqual(dt, 2);
+
+    dt = engine.TryEvaluate("DAYS('2016-2-28','2016-3-1')", 0);
+    Assert::AreEqual(dt, -2);
+}
+
+TEST(DateTimes, DAYS360_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("DAYS360('1975-1-30','2017-1-7')", 0);
+    Assert::AreEqual(dt, 15097);
+}
+
+TEST(DateTimes, DATEDIF_YD_test) {
+    AlgorithmEngine engine;
+    // Excel 官方例子: DATEDIF("6/15/2015","9/15/2016","YD") = 92
+    int dt = engine.TryEvaluate("DATEDIF('2015-6-15','2016-9-15','yd')", 0);
+    Assert::AreEqual(dt, 92);
+
+    // 跨闰年: 同月日天数差应为 0
+    // 旧实现按 DayOfYear 相减(2016 闰年 3/1 为第 61 天,2015 为第 60 天)会得到 1
+    dt = engine.TryEvaluate("DATEDIF('2015-3-1','2016-3-1','yd')", 0);
+    Assert::AreEqual(dt, 0);
+
+    dt = engine.TryEvaluate("DATEDIF('2015-3-1','2016-3-2','yd')", 0);
+    Assert::AreEqual(dt, 1);
+}
+
+TEST(DateTimes, DAYS360_us_method_test) {
+    AlgorithmEngine engine;
+    // US(NASD) 方法: start 为 2 月最后一天按 30 日调整, end 月末按调整后的 startDay 决定 30/31
+    int dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31')", 0);
+    Assert::AreEqual(dt, 30);
+
+    dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31',false)", 0);
+    Assert::AreEqual(dt, 30);
+
+    // startDay 调整为 30 后, end 月末按 30 计算
+    dt = engine.TryEvaluate("DAYS360('2016-2-29','2016-3-31',false)", 0);
+    Assert::AreEqual(dt, 30);
+}
+
+TEST(DateTimes, DAYS360_europe_method_test) {
+    AlgorithmEngine engine;
+    // 欧洲方法(method=true): 31 日按 30 日计算, 日号正常参与天数差
+    int dt = engine.TryEvaluate("DAYS360('2016-1-15','2016-1-20',true)", 0);
+    Assert::AreEqual(dt, 5);
+
+    dt = engine.TryEvaluate("DAYS360('2016-1-31','2016-2-1',true)", 0);
+    Assert::AreEqual(dt, 1);
+
+    dt = engine.TryEvaluate("DAYS360('2016-1-31','2016-3-31',true)", 0);
+    Assert::AreEqual(dt, 60);
+
+    dt = engine.TryEvaluate("DAYS360('2016-1-15','2016-1-31',true)", 0);
+    Assert::AreEqual(dt, 15);
+}
+
+TEST(DateTimes, EDATE_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("EDATE(\"2012-1-31\",32)", MyDate());
+    Assert::AreEqual(dt, MyDate::Parse("2014-09-30"));
+}
+
+TEST(DateTimes, EOMONTH_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("EOMONTH(\"2012-2-1\",32)", MyDate());
+    Assert::AreEqual(dt, MyDate::Parse("2014-10-31"));
+}
+
+TEST(DateTimes, NETWORKDAYS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("NETWORKDAYS(\"2012-1-1\",\"2013-1-1\")", 0);
+    Assert::AreEqual(dt, 262);
+}
+
+TEST(DateTimes, NETWORKDAYS_holidays_test) {
+    AlgorithmEngine engine;
+    // 2024-1-1(周一) 到 2024-1-10(周三) 共 8 个工作日, 扣除落在工作日的节假日
+    int dt = engine.TryEvaluate("NETWORKDAYS('2024-1-1','2024-1-10','2024-1-5')", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("NETWORKDAYS('2024-1-1','2024-1-10','2024-1-5','2024-1-8')", 0);
+    Assert::AreEqual(dt, 6);
+}
+
+TEST(DateTimes, WORKDAY_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("WORKDAY(\"2012-1-2\",145)", MyDate());
+    Assert::AreEqual(dt, MyDate::Parse("2012-07-23"));
+}
+
+TEST(DateTimes, WORKDAY_ExcelCompatible_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", 5)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 22, 0, 0, 0));
+
+    dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", -5)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 8, 0, 0, 0));
+
+    dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", 0)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 15, 0, 0, 0));
+
+    dt = engine.TryEvaluate("WORKDAY(\"2024-01-12\", 1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 15, 0, 0, 0));
+
+    dt = engine.TryEvaluate("WORKDAY(\"2024-01-15\", -1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 12, 0, 0, 0));
+}
+
+TEST(DateTimes, WORKDAY_holidays_test) {
+    AlgorithmEngine engine;
+    // 从 2024-1-15(周一) 起 5 个工作日, 跳过落在工作日的节假日
+    MyDate dt = engine.TryEvaluate("WORKDAY('2024-1-15', 5, '2024-1-17')", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 23, 0, 0, 0));
+
+    dt = engine.TryEvaluate("WORKDAY('2024-1-15', 5, '2024-1-17', '2024-1-18')", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 24, 0, 0, 0));
+}
+
+TEST(DateTimes, DATE_ExcelCompatible_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("DATE(2024, 1, 15)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 1, 15, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, 13, 1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2025, 1, 1, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, 1, 32)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 2, 1, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, 0, 1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 12, 1, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, 2, 30)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 3, 1, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, -1, 1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 11, 1, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, 12, 0)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 11, 30, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024, 1, -1)", MyDate());
+    Assert::AreEqual(dt, MyDate(2023, 12, 30, 0, 0, 0));
+}
+
+TEST(DateTimes, WEEKNUM_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("WEEKNUM(\"2016-1-3\")", 0);
+    Assert::AreEqual(dt, 2);
+    dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\")", 0);
+    Assert::AreEqual(dt, 1);
+
+    dt = engine.TryEvaluate("WEEKNUM(\"2016-1-4\",2)", 0);
+    Assert::AreEqual(dt, 2);
+    dt = engine.TryEvaluate("WEEKNUM(\"2016-1-3\",2)", 0);
+    Assert::AreEqual(dt, 1);
+    dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\",2)", 0);
+    Assert::AreEqual(dt, 1);
+}
+
+TEST(DateTimes, WEEKNUM_ExcelCompatible_Test) {
+    AlgorithmEngine engine;
+
+    // 2016年1月1日是周五
+    // type 1: 周日作为第一天
+    // type 2: 周一作为第一天
+    // type 11: 周一作为第一天 (同type 2)
+    // type 12-16: 不同起始日
+    // type 17: 周日作为第一天 (同type 1)
+    // type 21: ISO 8601，周一作为第一天
+
+    // 2016-1-1 (周五)
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),1)", 0), 1);   // type 1: 周五在第1周
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),2)", 0), 1);   // type 2: 周一为起始日
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),11)", 0), 1);  // type 11: 同type 2
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),12)", 0), 1);  // type 12: 周二为起始日
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),13)", 0), 1);  // type 13: 周三为起始日
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),14)", 0), 1);  // type 14: 周四为起始日
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),15)", 0), 1);  // type 15: 周五为起始日
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),16)", 0), 1);  // type 16: 周六为起始日
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,1),17)", 0), 1);  // type 17: 同type 1
+
+    // 2016-1-3 (周日)
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),1)", 0), 2);   // type 1: 周日为新一周开始
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),2)", 0), 1);   // type 2: 周一为新一周开始
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),11)", 0), 1);  // type 11: 同type 2
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),16)", 0), 2);  // type 16: 周日是下一周第一天
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),17)", 0), 2);  // type 17: 同type 1
+
+    // 2016-1-4 (周一)
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),1)", 0), 2);   // type 1: 周日在第1周
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),2)", 0), 2);   // type 2: 周一在第2周
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),11)", 0), 2);  // type 11: 同type 2
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 1);  // type 21: ISO 8601，周一是第1周
+
+    // 测试 ISO 8601 (type 21)
+    // 2016年1月4日是ISO 8601标准的第1周第一天
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,4),21)", 0), 1);
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2016,1,3),21)", 0), 53);  // 2016-1-3是2015年的第53周
+
+    // 2021年1月1日是周五，ISO 8601第53周
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,1),21)", 0), 53);
+    // 2021年1月4日是周一，ISO 8601第1周
+    Assert::AreEqual(engine.TryEvaluate("WEEKNUM(date(2021,1,4),21)", 0), 1);
+}
+
+TEST(DateTimes, YEARFRAC_test) {
+    AlgorithmEngine engine;
+    double t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1')", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(0.5, 3));
+
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2013-1-1')", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(1.0, 3));
+
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 0)", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(0.5, 3));
+
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 1)", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(0.49726776, 3));
+
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 2)", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(0.505555556, 3));
+
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 3)", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(0.498630137, 3));
+
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1', '2012-7-1', 4)", 0.0);
+    Assert::AreEqual(cs_round(t, 3), cs_round(0.5, 3));
+}
+
+TEST(DateTimes, YEARFRAC_basis0_30_360_test) {
+    AlgorithmEngine engine;
+    // basis 0(US NASD 30/360) MS-OI29500 规则链:
+    // date1 为 2 月最后一天 → d1=30; d2=31 但 date1 原始非 30, d2 保持 31 → (30+1)/360
+    double t = engine.TryEvaluate("YEARFRAC('2012-2-29','2012-3-31',0)", 0.0);
+    Assert::AreEqual(31.0 / 360.0, t, 1e-9);
+
+    // 规则链: date1=31 且 date2=31 → 都改为 30, 结果为 30*(3-1)/360
+    t = engine.TryEvaluate("YEARFRAC('2012-1-31','2012-3-31',0)", 0.0);
+    Assert::AreEqual(60.0 / 360.0, t, 1e-9);
+
+    // 两日期均为各自年份 2 月最后一天 → 都改为 30
+    t = engine.TryEvaluate("YEARFRAC('2012-2-29','2013-2-28',0)", 0.0);
+    Assert::AreEqual(360.0 / 360.0, t, 1e-9);
+
+    // 非月末正常 30/360
+    t = engine.TryEvaluate("YEARFRAC('2012-1-1','2012-7-1',0)", 0.0);
+    Assert::AreEqual(0.5, t, 1e-9);
+}
+
+TEST(DateTimes, AddYears_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
+    Assert::AreEqual(dt, 2001);
+
+    dt = engine.TryEvaluate("'2000/02/01'.addYears(1).year()", 0);
+    Assert::AreEqual(dt, 2001);
+}
+
+TEST(DateTimes, AddMonths_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-02-01'.AddMonths(1).Month()", 0);
+    Assert::AreEqual(dt, 3);
+}
+
+TEST(DateTimes, AddDays_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-02-01'.AddDays(1).Day()", 0);
+    Assert::AreEqual(dt, 2);
+}
+
+TEST(DateTimes, AddHours_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddHours(1).Hour()", 0);
+    Assert::AreEqual(dt, 13);
+}
+
+TEST(DateTimes, AddMinutes_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddMinutes(1).Minute()", 0);
+    Assert::AreEqual(dt, 6);
+}
+
+TEST(DateTimes, AddSeconds_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'2000-02-01 10:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'2000-02-01 20:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'2000-02-01 9:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'7:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'10:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'20:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 7);
+
+    dt = engine.TryEvaluate("'2000-02-01 24:05:06'.AddSeconds(1).Second()", 0);
+    Assert::AreEqual(dt, 0);
+}
+
+// ---------------- 方法式调用测试 ----------------
+
+TEST(DateTimes, MethodStyle_DATEVALUE_test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("'2016-01-01'.DATEVALUE()", MyDate());
+    Assert::AreEqual(dt, MyDate(2016, 1, 1, 0, 0, 0));
+}
+
+TEST(DateTimes, MethodStyle_TIMEVALUE_test) {
+    AlgorithmEngine engine;
+    // C#: TryEvaluate(exp, TimeSpan.MinValue) == new DateTime(2016,1,1,12,12,12).TimeOfDay
+    // C++ 无 TimeSpan：断言结果为时间类型，且秒数等于 12:12:12。
+    Operand o = engine.Calculate("'12:12:12'.TIMEVALUE()");
+    Assert::IsTrue(o.IsDate());
+    Assert::AreEqual((int64_t)(12 * 3600 + 12 * 60 + 12), o.DateValue().ToTimeSpanSeconds());
+}
+
+TEST(DateTimes, MethodStyle_YEAR_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2016-05-15'.YEAR()", 0);
+    Assert::AreEqual(dt, 2016);
+}
+
+TEST(DateTimes, MethodStyle_MONTH_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2016-05-15'.MONTH()", 0);
+    Assert::AreEqual(dt, 5);
+}
+
+TEST(DateTimes, MethodStyle_DAY_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2016-05-15'.DAY()", 0);
+    Assert::AreEqual(dt, 15);
+}
+
+TEST(DateTimes, MethodStyle_HOUR_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'12:30:45'.HOUR()", 0);
+    Assert::AreEqual(dt, 12);
+}
+
+TEST(DateTimes, MethodStyle_MINUTE_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'12:30:45'.MINUTE()", 0);
+    Assert::AreEqual(dt, 30);
+}
+
+TEST(DateTimes, MethodStyle_SECOND_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'12:30:45'.SECOND()", 0);
+    Assert::AreEqual(dt, 45);
+}
+
+TEST(DateTimes, MethodStyle_ADDYEARS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-01-01'.ADDYEARS(1).YEAR()", 0);
+    Assert::AreEqual(dt, 2001);
+}
+
+TEST(DateTimes, MethodStyle_ADDMONTHS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-01-15'.ADDMONTHS(2).MONTH()", 0);
+    Assert::AreEqual(dt, 3);
+}
+
+TEST(DateTimes, MethodStyle_ADDDAYS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-01-01'.ADDDAYS(10).DAY()", 0);
+    Assert::AreEqual(dt, 11);
+}
+
+TEST(DateTimes, MethodStyle_ADDHOURS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-01-01 10:00:00'.ADDHOURS(5).HOUR()", 0);
+    Assert::AreEqual(dt, 15);
+}
+
+TEST(DateTimes, MethodStyle_ADDMINUTES_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-01-01 10:30:00'.ADDMINUTES(45).MINUTE()", 0);
+    Assert::AreEqual(dt, 15);
+}
+
+TEST(DateTimes, MethodStyle_ADDSECONDS_test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2000-01-01 10:00:30'.ADDSECONDS(45).SECOND()", 0);
+    Assert::AreEqual(dt, 15);
+}
+
+TEST(DateTimes, MethodStyle_TIMESTAMP_test) {
+    AlgorithmEngine engine;
+    engine.UseLocalTime = true;
+    int64_t dt = engine.TryEvaluate("'2016-01-01'.TIMESTAMP()", (int64_t)0);
+    Assert::AreEqual(dt, (int64_t)1451577600000LL);
+
+    dt = engine.TryEvaluate("'2016-01-01'.TIMESTAMP(1)", (int64_t)0);
+    Assert::AreEqual(dt, (int64_t)1451577600LL);
+}
+
+// ---------------- 边界值测试 ----------------
+
+TEST(DateTimes, LeapYear_Test) {
+    AlgorithmEngine engine;
+    MyDate dt = engine.TryEvaluate("DATE(2020,2,29)", MyDate());
+    Assert::AreEqual(dt, MyDate(2020, 2, 29, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2024,2,29)", MyDate());
+    Assert::AreEqual(dt, MyDate(2024, 2, 29, 0, 0, 0));
+
+    dt = engine.TryEvaluate("DATE(2019,2,28)", MyDate());
+    Assert::AreEqual(dt, MyDate(2019, 2, 28, 0, 0, 0));
+
+    int year = engine.TryEvaluate("'2020-02-29'.YEAR()", 0);
+    Assert::AreEqual(year, 2020);
+    int month = engine.TryEvaluate("'2020-02-29'.MONTH()", 0);
+    Assert::AreEqual(month, 2);
+    int day = engine.TryEvaluate("'2020-02-29'.DAY()", 0);
+    Assert::AreEqual(day, 29);
+}
+
+TEST(DateTimes, LeapYear_AddDays_Test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("'2020-02-28'.ADDDAYS(1).DAY()", 0);
+    Assert::AreEqual(dt, 29);
+
+    dt = engine.TryEvaluate("'2020-03-01'.ADDDAYS(-1).DAY()", 0);
+    Assert::AreEqual(dt, 29);
+}
+
+TEST(DateTimes, MonthBoundary_Test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("DATE(2020,1,31).ADDMONTHS(1).MONTH()", 0);
+    Assert::AreEqual(dt, 2);
+
+    dt = engine.TryEvaluate("DATE(2020,3,31).ADDMONTHS(-1).MONTH()", 0);
+    Assert::AreEqual(dt, 2);
+}
+
+TEST(DateTimes, YearBoundary_Test) {
+    AlgorithmEngine engine;
+    int dt = engine.TryEvaluate("DATE(2020,12,31).ADDDAYS(1).YEAR()", 0);
+    Assert::AreEqual(dt, 2021);
+    dt = engine.TryEvaluate("DATE(2020,12,31).ADDDAYS(1).MONTH()", 0);
+    Assert::AreEqual(dt, 1);
+    dt = engine.TryEvaluate("DATE(2020,12,31).ADDDAYS(1).DAY()", 0);
+    Assert::AreEqual(dt, 1);
+
+    dt = engine.TryEvaluate("DATE(2021,1,1).ADDDAYS(-1).YEAR()", 0);
+    Assert::AreEqual(dt, 2020);
+    dt = engine.TryEvaluate("DATE(2021,1,1).ADDDAYS(-1).MONTH()", 0);
+    Assert::AreEqual(dt, 12);
+    dt = engine.TryEvaluate("DATE(2021,1,1).ADDDAYS(-1).DAY()", 0);
+    Assert::AreEqual(dt, 31);
+}
+
+}  // namespace

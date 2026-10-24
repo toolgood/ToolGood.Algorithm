@@ -89,8 +89,8 @@ g++ -std=c++17 -O2 -Icpp -c cpp/toolgood/*.cpp ...
 cmake -S cpp -B build && cmake --build build
 ```
 
-完整构建与测试脚本见 `../temp/cpp-test/build.sh`（测试产物放在 `temp/`，
-避免安全软件对仓库目录频繁告警）。
+完整构建脚本见 `tests/build.sh`：库与测试源码都在 `cpp/`，编译产物统一写入
+`temp/cpp-test/`（`temp/` 已在 `.gitignore` 中），避免安全软件反复扫描仓库内的 exe。
 
 ## 已实现的函数
 
@@ -102,22 +102,22 @@ MathNet 统计分布（Normal/StudentT/F/Beta/Gamma/ChiSquare/Binomial/…）、
 
 ## 单元测试
 
-C# 测试工程的 854 个用例已全部移植为 C++（`../temp/cpp-test/tests/`，28 个文件），
-**854/854 通过**：
+C# 测试工程的 854 个用例已全部移植为 C++（`tests/` 下 28 个文件），**854/854 通过**：
 
 ```bash
-bash temp/cpp-test/build_tests.sh              # 全部
-bash temp/cpp-test/build_tests.sh --suite=MathBase
-bash temp/cpp-test/build_tests.sh --filter=round
+bash cpp/tests/build.sh                  # 全部
+bash cpp/tests/build.sh --suite=MathBase
+bash cpp/tests/build.sh --filter=round
 ```
 
-测试框架 `../temp/cpp-test/cpptest.h` 是 PetaTest 的 C++ 等价物
+测试框架 `tests/cpptest.h` 是 PetaTest 的 C++ 等价物
 （`TEST(套件, 用例)` + `Assert::AreEqual/IsTrue/Throws/...`）。
-详见 `../temp/cpp-test/README.md`。
+`tests/tools/` 另有差分执行器（`ccdiff.cpp` + `exprs.txt`）与冒烟程序。
+详见 `tests/README.md`。
 
 ## 与 C# 的已知差异
 
-差分测试（313 条表达式，见 `../temp/cpp-test/exprs.txt`）当前 **290 条与 C# 完全一致**。
+差分测试（313 条表达式，见 `tests/tools/exprs.txt`）当前 **290 条与 C# 完全一致**。
 
 剩余差异集中在两类：
 
