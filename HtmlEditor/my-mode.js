@@ -60,7 +60,11 @@
         (function () {
             this.$id = "ace/mode/my-mode";
             var WorkerClient = require("ace/worker/worker_client").WorkerClient;
+            // file:// 下浏览器会以 CORS 拦截 worker 脚本，Worker 起不来，改由 createEditor.js 在主线程校验
+            var useWorker = (typeof Worker !== 'undefined') && location.protocol !== 'file:';
+            this.$useWorker = useWorker;
             this.createWorker = function (session) {
+                if (!useWorker) { return; }
                 this.$worker = new WorkerClient(["ace"], "ace/worker/my-worker", "MyWorker");
                 this.$worker.attachToDocument(session.getDocument());
                 this.$worker.on("errors", function (e) { session.setAnnotations(e.data); });

@@ -35,7 +35,22 @@ if (!importScripts) {
 importScripts("/ace-ext/worker.js");
 importScripts("/ace/ace.js");
 importScripts("/ace-ext/mirror.js");
-importScripts("/toolgood.algorithm.js");
+
+// 加载公式校验器：路径容错，避免 importScripts 抛错直接打死 worker（那样编辑器会静默不报错）
+(function () {
+    var candidates = ["/toolgood.algorithm.js", "toolgood.algorithm.js", "../toolgood.algorithm.js"];
+    for (var i = 0; i < candidates.length; i++) {
+        try {
+            importScripts(candidates[i]);
+            if ((typeof self !== 'undefined' && self['ToolGood.Algorithm'])
+                || typeof algorithm !== 'undefined') {
+                return;
+            }
+        } catch (e) {
+            // 换下一个路径再试
+        }
+    }
+})();
 
 ace.define('ace/worker/my-worker', ["require", "exports", "module", "ace/lib/oop", "ace/worker/mirror"], function (require, exports, module) {
     "use strict";
@@ -49,69 +64,55 @@ ace.define('ace/worker/my-worker', ["require", "exports", "module", "ace/lib/oop
 
     oop.inherits(MyWorker, Mirror);
 
-    antlr4 = algorithm.antlr4;
-    // class for gathering errors and posting them to ACE editor
-    var AnnotatingErrorListener = function (annotations) {
-        // antlr4.error.ErrorListener.call(this);
-        this.annotations = annotations;
-        return this;
-    };
-    AnnotatingErrorListener.prototype = Object.create(antlr4.error.ErrorListener.prototype);
-    AnnotatingErrorListener.prototype.constructor = AnnotatingErrorListener;
+    // 取校验器：UMD 会挂到 self["ToolGood.Algorithm"]，构造函数里还会建 self.ToolGood.Algorithm；
+    // 同时兼容旧包的 algorithm 全局
+    function getAlgorithm() {
+        if (typeof self !== 'undefined') {
+            if (self['ToolGood.Algorithm']) { return self['ToolGood.Algorithm']; }
+            if (self.ToolGood && self.ToolGood.Algorithm) { return self.ToolGood.Algorithm; }
+        }
+        if (typeof algorithm !== 'undefined' && algorithm) {
+            return algorithm;
+        }
+        return null;
+    }
 
-    AnnotatingErrorListener.prototype.syntaxError = function (recognizer, offendingSymbol, line, column, msg, e) {
-        this.annotations.push({
-            row: line - 1,
-            column: column,
-            text: msg,
-            type: "error"
-        });
-    };
+    // 收集错误并转成 ACE 的 annotation
+    function createListener(annotations) {
+        return {
+            syntaxError: function (recognizer, offendingSymbol, line, column, msg, e) {
+                annotations.push({
+                    row: line - 1,
+                    column: column,
+                    text: msg,
+                    type: "error"
+                });
+            },
+            reportAmbiguity: function () { },
+            reportAttemptingFullContext: function () { },
+            reportContextSensitivity: function () { }
+        };
+    }
 
     function validate(input) {
-        function StandardChar(o) {
-            if (o == '‘') return '\'';
-            if (o == '’') return '\'';
-            if (o == '“') return '"';
-            if (o == '”') return '"';
-            if (o == '〔') return '(';
-            if (o == '〕') return ')';
-            if (o == '＝') return '=';
-            if (o == '＋') return '+';
-            if (o == '－') return '-';
-            if (o == '×') return '*';
-            if (o == '÷') return '/';
-            if (o == '／') return '/';
-            if (o == '，') return ',';
-            let c = o.charAt(0);
-            if (c == 12288) {
-                o = String.fromCharCode(32)
-            } else if (c > 65280 && c < 65375) {
-                o = String.fromCharCode(c - 65248)
-            }
-            return o.toUpperCase();
+        var annotations = [];
+        var api = getAlgorithm();
+        if (!api || !api.AlgorithmEngineHelper) {
+            // 校验器没加载时明确提示，避免"静默不报错"让人以为公式没问题
+            annotations.push({
+                row: 0, column: 0,
+                text: 'Formula validator is not loaded (toolgood.algorithm.js).',
+                type: "error"
+            });
+            return annotations;
         }
         try {
-            var str = "";
-            for (let i = 0; i < input.length; i++) {
-                let char = input.charAt(i);
-                let normalized_char = StandardChar(char);
-                str += normalized_char;
-            }
-
-            var stream = new antlr4.InputStream(str);
-            var lexer = new algorithm.mathLexer(stream);
-            var tokens = new antlr4.CommonTokenStream(lexer);
-            var parser = new algorithm.mathParser(tokens);
-            var annotations = [];
-            var listener = new AnnotatingErrorListener(annotations);
-            parser.removeErrorListeners();
-            parser.addErrorListener(listener);
-            parser.prog();
-            return annotations;
+            // 词法内部已做大小写/全角归一化，这里不再预处理原文
+            api.AlgorithmEngineHelper.ParseFormula(input, createListener(annotations));
         } catch (e) {
-            return [{ column: 0, row: 0, text: e.message, type: "error" }];
+            annotations.push({ column: 0, row: 0, text: e.message, type: "error" });
         }
+        return annotations;
     }
 
     (function () {
