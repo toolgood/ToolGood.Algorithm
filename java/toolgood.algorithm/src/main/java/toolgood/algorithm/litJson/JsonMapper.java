@@ -60,7 +60,7 @@ public class JsonMapper {
 
     public static JsonData ToObject(String json) throws JsonException
     {
-        JsonReader reader = new JsonReader(json);
-        return (JsonData)ReadValue(reader) ;
+        // 手写递归下降解析：替代 Lexer(FSM 委托状态机) + JsonReader(自动机) + 逐 token 组装的三层结构
+        return JsonFastParser.Parse(json);
     }
 }
