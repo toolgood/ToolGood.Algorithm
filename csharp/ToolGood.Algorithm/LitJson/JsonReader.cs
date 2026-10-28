@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 
 namespace ToolGood.Algorithm.LitJson
 {
@@ -43,8 +42,6 @@ namespace ToolGood.Algorithm.LitJson
 
         public JsonReader(string json_text)
         {
-            var reader = new StringReader(json_text);
-
             parser_in_string = false;
             parser_return = false;
 
@@ -53,7 +50,7 @@ namespace ToolGood.Algorithm.LitJson
             automaton_stack.Push((int)ParserToken.End);
             automaton_stack.Push((int)ParserToken.Text);
 
-            lexer = new Lexer(reader);
+            lexer = new Lexer(json_text);
 
             end_of_input = false;
             end_of_json = false;

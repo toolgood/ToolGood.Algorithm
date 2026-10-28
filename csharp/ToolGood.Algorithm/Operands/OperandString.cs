@@ -53,6 +53,7 @@ namespace ToolGood.Algorithm.Operands
 
 		public override Operand ToText(string errorMessage) { return this; }
 		public override Operand ToText(string errorMessage, params object[] args) { return this; }
+		internal override bool TryGetText(out Operand value) { value = this; return true; }
 
 		#region ToBoolean
 
@@ -92,9 +93,32 @@ namespace ToolGood.Algorithm.Operands
 			return Error(string.Format(errorMessage, args));
 		}
 
+		// 常用日期格式的精确匹配快路径：DateTime.TryParse 无格式约束，内部要按多种模式逐个尝试；
+		// "M"/"d"/"H"/"m"/"s" 自定义格式符接受 1~2 位数字，可同时覆盖 "2026-1-1" 与 "2026-01-01" 两种写法。
+		// 先用 s[4]=='-'/'/' 预判形状再进 TryParseExact，其它形状（如 "1/1/2026"）直接走原路径，
+		// 避免非命中格式白付多次 TryParseExact 失败的代价
+		private static readonly string[] s_dateDashFormats = {
+			"yyyy-M-d H:m:s", "yyyy-M-d H:m", "yyyy-M-dTH:m:s", "yyyy-M-dTH:m", "yyyy-M-d",
+		};
+		private static readonly string[] s_dateSlashFormats = {
+			"yyyy/M/d H:m:s", "yyyy/M/d H:m", "yyyy/M/d",
+		};
+
 		internal override bool TryGetDate(out Operand value)
 		{
 			var span = _value.AsSpan();
+			if(span.Length >= 8 && span[4] == '-') {
+				if(DateTime.TryParseExact(_value, s_dateDashFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var exact)) {
+					value = Create(new MyDate(exact));
+					return true;
+				}
+			}
+			else if(span.Length >= 8 && span[4] == '/') {
+				if(DateTime.TryParseExact(_value, s_dateSlashFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var exact)) {
+					value = Create(new MyDate(exact));
+					return true;
+				}
+			}
 			if(TimeSpan.TryParse(span, CultureInfo.InvariantCulture, out var t)) {
 				value = Create(new MyDate(t));
 				return true;

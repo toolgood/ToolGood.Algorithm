@@ -558,6 +558,16 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		internal virtual bool TryGetDate(out Operand value) { value = null; return false; }
 
+		/// <summary>
+		/// 尝试直接取文本值（不产生错误消息）；成功时 <paramref name="value"/> 与 ToText 的返回值一致
+		/// </summary>
+		internal virtual bool TryGetText(out Operand value) { value = null; return false; }
+
+		/// <summary>
+		/// 尝试直接取数组值（不产生错误消息）；成功时 <paramref name="value"/> 与 ToArray 的返回值一致
+		/// </summary>
+		internal virtual bool TryGetArray(out Operand value) { value = null; return false; }
+
 		#endregion
 
 		#region Operand

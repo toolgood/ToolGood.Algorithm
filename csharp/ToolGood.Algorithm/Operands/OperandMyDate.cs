@@ -15,6 +15,7 @@ namespace ToolGood.Algorithm.Operands
 
 		public override Operand ToText(string errorMessage) { return Create(DateValue.ToString()); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(DateValue.ToString()); }
+		internal override bool TryGetText(out Operand value) { value = Create(DateValue.ToString()); return true; }
 
 		public override Operand ToMyDate(string errorMessage) { return this; }
 		public override Operand ToMyDate(string errorMessage, params object[] args) { return this; }

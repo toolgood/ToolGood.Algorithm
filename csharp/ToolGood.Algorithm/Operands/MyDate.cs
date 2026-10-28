@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text;
 
 namespace ToolGood.Algorithm.Operands
@@ -194,7 +195,7 @@ namespace ToolGood.Algorithm.Operands
             var stringBuffer = new StringBuilder(20);
             // 仅当年月日齐全时才按日期格式输出，避免 Month/Day 为空时取值抛异常
             if (Year != null && Year > 0 && Month != null && Day != null) {
-                stringBuffer.Append(Year);
+                stringBuffer.Append(Year.Value);
                 stringBuffer.Append('-');
                 stringBuffer.Append(Month.Value.ToString("D2"));
                 stringBuffer.Append('-');
@@ -208,7 +209,7 @@ namespace ToolGood.Algorithm.Operands
                 stringBuffer.Append(Second.ToString("D2"));
             } else {
                 if (Day != null && Day > 0) {
-                    stringBuffer.Append(Day);
+                    stringBuffer.Append(Day.Value);
                     stringBuffer.Append(' ');
                 }
                 stringBuffer.Append(Hour.ToString("D2"));
@@ -225,7 +226,8 @@ namespace ToolGood.Algorithm.Operands
             if (Year == null || Year == 0) {
                 return this.ToString();
             }
-            return this.ToDateTime().ToString(f);
+            // 与全库约定一致用 InvariantCulture，避免服务器区域差异影响 TEXT 函数输出
+            return this.ToDateTime().ToString(f, CultureInfo.InvariantCulture);
         }
 
         /// <summary>

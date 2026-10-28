@@ -39,9 +39,11 @@ namespace ToolGood.Algorithm.Operands
 
 		public override Operand ToText(string errorMessage) { return this; }
 		public override Operand ToText(string errorMessage, params object[] args) { return this; }
+		internal override bool TryGetText(out Operand value) { value = this; return true; }
 
 		public override Operand ToArray(string errorMessage) { return this; }
 		public override Operand ToArray(string errorMessage, params object[] args) { return this; }
+		internal override bool TryGetArray(out Operand value) { value = this; return true; }
 
 		public override Operand ToMyDate(string errorMessage) { return this; }
 		public override Operand ToMyDate(string errorMessage, params object[] args) { return this; }

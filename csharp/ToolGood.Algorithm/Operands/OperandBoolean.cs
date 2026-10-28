@@ -25,6 +25,7 @@ namespace ToolGood.Algorithm.Operands
 
 		public override Operand ToText(string errorMessage) { return Create(_value ? "TRUE" : "FALSE"); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(_value ? "TRUE" : "FALSE"); }
+		internal override bool TryGetText(out Operand value) { value = Create(_value ? "TRUE" : "FALSE"); return true; }
 
 		public override string ToString() { return _value ? "true" : "false"; }
 	}

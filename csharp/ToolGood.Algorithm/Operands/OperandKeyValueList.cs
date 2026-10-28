@@ -35,6 +35,7 @@ namespace ToolGood.Algorithm.Operands
 		{
 			return Create(ToString());
 		}
+		internal override bool TryGetText(out Operand value) { value = Create(ToString()); return true; }
 
 		public override Operand ToArray(string errorMessage)
 		{
@@ -44,16 +45,26 @@ namespace ToolGood.Algorithm.Operands
 		{
 			return Create(ArrayValue);
 		}
+		internal override bool TryGetArray(out Operand value) { value = Create(ArrayValue); return true; }
 
 		public override Operand ToJson(string errorMessage = null)
 		{
-			var txt = ToString();
-			try {
-				var json = JsonMapper.ToObject(txt);
-				return Operand.Create(json);
-			} catch { 
-				return Error(errorMessage ?? "Convert to json error!");
+			// 直接构造成 JsonData，免去 ToString 序列化再 JsonMapper 解析的完整往返
+			var json = ToJsonData();
+			if (json == null) return Error(errorMessage ?? "Convert to json error!");
+			return Operand.Create(json);
+		}
+
+		internal JsonData ToJsonData()
+		{
+			var json = new JsonData();
+			json.SetJsonType(JsonType.Object);
+			for (var i = 0; i < _keyValueList.Count; i++) {
+				var data = OperandArray.OperandToJsonData(_keyValueList[i].Value);
+				if (data == null) return null;
+				json.Set(_keyValueList[i].Key, data);
 			}
+			return json;
 		}
 
 		public void AddValue(KeyValue keyValue)

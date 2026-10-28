@@ -84,6 +84,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		protected Operand ConvertToText(Operand arg, int paramIndex)
 		{
+			// 先走无消息的快路径：只有确实转换不了时才构造 "Function 'x' parameter n is error!"，
+			// 避免每次成功转换都白分配 params object[]（+ 装箱 paramIndex）
+			if(arg.TryGetText(out var value)) { return value; }
 			return arg.ToText("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
@@ -121,6 +124,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		protected Operand ConvertToArray(Operand arg, int paramIndex)
 		{
+			// 先走无消息的快路径：只有确实转换不了时才构造 "Function 'x' parameter n is error!"，
+			// 避免每次成功转换都白分配 params object[]（+ 装箱 paramIndex）
+			if(arg.TryGetArray(out var value)) { return value; }
 			return arg.ToArray("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 

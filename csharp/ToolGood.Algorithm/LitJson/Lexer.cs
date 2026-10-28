@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 namespace ToolGood.Algorithm.LitJson
@@ -17,9 +16,11 @@ namespace ToolGood.Algorithm.LitJson
         private bool allow_single_quoted_strings;
         private bool end_of_input;
         private readonly FsmContext fsm_context;
-        private int input_buffer;
         private int input_char;
-        private readonly TextReader reader;
+        // 输入恒为 string（JsonReader 仅从 string 构造），直接用下标读取，
+        // 免去 TextReader 每字符一次虚调用与单字符 unget 缓冲
+        private readonly string json;
+        private int pos;
         private int state;
         private readonly StringBuilder string_buffer;
         private string string_value;
@@ -43,16 +44,16 @@ namespace ToolGood.Algorithm.LitJson
             PopulateFsmTables(out fsm_handler_table, out fsm_return_table);
         }
 
-        public Lexer(TextReader reader)
+        public Lexer(string json)
         {
             allow_comments = true;
             allow_single_quoted_strings = true;
 
-            input_buffer = 0;
             string_buffer = new StringBuilder(128);
             state = 1;
             end_of_input = false;
-            this.reader = reader;
+            this.json = json;
+            pos = 0;
 
             fsm_context = new FsmContext();
             fsm_context.L = this;
@@ -790,22 +791,14 @@ namespace ToolGood.Algorithm.LitJson
 
         private bool GetChar()
         {
-            if ((input_char = NextChar()) != -1) return true;
-
-            end_of_input = true;
-            return false;
-        }
-
-        private int NextChar()
-        {
-            if (input_buffer != 0) {
-                int tmp = input_buffer;
-                input_buffer = 0;
-
-                return tmp;
+            if (pos < json.Length) {
+                input_char = json[pos++];
+                return true;
             }
 
-            return reader.Read();
+            input_char = -1;
+            end_of_input = true;
+            return false;
         }
 
         public bool NextToken()
@@ -838,7 +831,8 @@ namespace ToolGood.Algorithm.LitJson
 
         private void UngetChar()
         {
-            input_buffer = input_char;
+            // 仅在成功读入一个字符后调用（各调用点均如此），回退一个下标即可
+            pos--;
         }
     }
 }

@@ -51,6 +51,7 @@ namespace ToolGood.Algorithm.Operands
 
 		public override Operand ToText(string errorMessage) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
+		internal override bool TryGetText(out Operand value) { value = Create(NumberValue.ToString(CultureInfo.InvariantCulture)); return true; }
 
 		public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
 	}
