@@ -60,6 +60,10 @@ public abstract class FunctionBase {
 
     // region ConvertToText
     protected Operand ConvertToText(Operand arg, int paramIndex) {
+        // 先走无消息的快路径：只有确实转换不了时才构造 "Function 'x' parameter n is error!"，
+        // 避免每次成功转换都白付一次 String.format（格式串解析）
+        Operand value = arg.TryGetText();
+        if (value != null) { return value; }
         return arg.ToText(String.format("Function '%s' parameter %d is error!", Name(), paramIndex));
     }
 
@@ -72,6 +76,9 @@ public abstract class FunctionBase {
     }
 
     protected Operand ConvertToArray(Operand arg, int paramIndex) {
+        // 先走无消息的快路径，理由同 ConvertToText
+        Operand value = arg.TryGetArray();
+        if (value != null) { return value; }
         return arg.ToArray(String.format("Function '%s' parameter %d is error!", Name(), paramIndex));
     }
 

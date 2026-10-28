@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
+import toolgood.algorithm.litJson.JsonType;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public abstract class Operand {
     private static final int IntCacheOffset = 1000;
     private static final int IntCacheSize = 2001;
     private static final Operand[] IntCache = new Operand[IntCacheSize];
+    private static final BigDecimal IntCacheMin = BigDecimal.valueOf(-IntCacheOffset);
+    private static final BigDecimal IntCacheMax = BigDecimal.valueOf(IntCacheOffset);
 
     static {
         for (int i = 0; i < IntCacheSize; i++) {
@@ -108,13 +111,13 @@ public abstract class Operand {
     }
 
     public static Operand Create(BigDecimal obj) {
-        try {
-            int v = obj.intValueExact();
-            if (v >= -IntCacheOffset && v <= IntCacheOffset) {
-                return IntCache[v + IntCacheOffset];
-            }
-        } catch (ArithmeticException e) {
-            // 有小数部分，继续
+        // 用 scale + 范围判断替代 intValueExact 抛异常做控制流：
+        // intValueExact 对带小数或超出 int 范围的值抛 ArithmeticException，
+        // 而带小数的数值在公式计算里是常态，异常构造+栈填充远贵于两次 scale 判断。
+        // 语义与原先完全一致：只有「整数值且落在缓存区间内」才复用缓存，其余走 OperandDecimal。
+        BigDecimal s = obj.scale() <= 0 ? obj : obj.stripTrailingZeros();
+        if (s.scale() <= 0 && s.compareTo(IntCacheMin) >= 0 && s.compareTo(IntCacheMax) <= 0) {
+            return IntCache[s.intValue() + IntCacheOffset];
         }
         return new OperandDecimal(obj);
     }
@@ -168,6 +171,17 @@ public abstract class Operand {
     // endregion Create
 
     // region 类型转换
+    /**
+     * 尝试直接取文本值（不构造错误消息）；成功时返回与 ToText 一致的操作数，不可转换返回 null。
+     * 供 FunctionBase.ConvertToText 走快路径，避免每次成功转换都白付错误消息格式化。
+     */
+    public Operand TryGetText() { return null; }
+
+    /**
+     * 尝试直接取数组值（不构造错误消息）；成功时返回与 ToArray 一致的操作数，不可转换返回 null。
+     */
+    public Operand TryGetArray() { return null; }
+
     public Operand ToNumber(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to number error!");
     }
@@ -194,6 +208,51 @@ public abstract class Operand {
 
     public Operand ToJson(String errorMessage) {
         return Error(errorMessage != null ? errorMessage : "Convert to json error!");
+    }
+    // endregion
+
+    // region ToJsonData
+    /**
+     * 按元素原 toString() → JsonMapper 往返的等价结果直接构造 JsonData，免去序列化再解析；
+     * 无法等价转换的类型（OperandError/OperandNone，其 toString 非法 JSON，原往返必然失败）返回 null
+     */
+    static JsonData OperandToJsonData(Operand o) {
+        JsonData d;
+        if (o instanceof OperandString) {
+            d = new JsonData();
+            d.SetString(o.TextValue());
+            return d;
+        }
+        if (o instanceof OperandInt || o instanceof OperandDecimal) {
+            d = new JsonData();
+            d.SetDouble(o.NumberValue());
+            return d;
+        }
+        if (o instanceof OperandBoolean) {
+            d = new JsonData();
+            d.SetBoolean(o.BooleanValue());
+            return d;
+        }
+        if (o instanceof OperandMyDate) {
+            d = new JsonData();
+            d.SetString(((OperandMyDate) o).DateValue().toString());
+            return d;
+        }
+        if (o instanceof OperandNull) {
+            d = new JsonData();
+            d.SetNull();
+            return d;
+        }
+        if (o instanceof OperandJson) {
+            return o.JsonValue();
+        }
+        if (o instanceof OperandArray) {
+            return ((OperandArray) o).ToJsonData();
+        }
+        if (o instanceof OperandKeyValueList) {
+            return ((OperandKeyValueList) o).ToJsonData();
+        }
+        return null;
     }
     // endregion
 
@@ -243,6 +302,8 @@ public abstract class Operand {
         public Operand ToText(String errorMessage, Object... args) {
             return Create(String.valueOf(_value));
         }
+        @Override
+        public Operand TryGetText() { return Create(String.valueOf(_value)); }
 
         @Override
         public Operand ToMyDate(String errorMessage) {
@@ -306,6 +367,18 @@ public abstract class Operand {
             }
             return Create(str);
         }
+        @Override
+        public Operand TryGetText() { return Create(TrimTrailingZeros(_value)); }
+
+        /** 等价于 toPlainString() 后按正则 (\\.)?0+$ 去掉尾部零与紧邻小数点，避免每次转换都走正则 */
+        private static String TrimTrailingZeros(BigDecimal value) {
+            String str = value.toPlainString();
+            if (str.indexOf('.') < 0) return str;
+            int end = str.length();
+            while (end > 0 && str.charAt(end - 1) == '0') end--;
+            if (end > 0 && str.charAt(end - 1) == '.') end--;
+            return str.substring(0, end);
+        }
 
         @Override
         public Operand ToMyDate(String errorMessage) {
@@ -353,22 +426,28 @@ public abstract class Operand {
         @Override
         public Operand ToArray(String errorMessage) { return this; }
         public Operand ToArray(String errorMessage, Object... args) { return this; }
+        @Override
+        public Operand TryGetText() { return Create(toString()); }
+        @Override
+        public Operand TryGetArray() { return this; }
 
         @Override
         public Operand ToJson(String errorMessage) {
-            try {
-                StringBuilder sb = new StringBuilder();
-                sb.append("[");
-                for (int i = 0; i < _value.size(); i++) {
-                    if (i > 0) sb.append(",");
-                    sb.append(_value.get(i).toString());
-                }
-                sb.append("]");
-                return Operand.CreateJson(sb.toString());
-            } catch (Exception e) {
-                if (errorMessage == null) errorMessage = "Convert array to json error!";
-                return Error(errorMessage);
+            // 直接构造成 JsonData，免去 toString 序列化再 JsonMapper 解析的完整往返
+            JsonData json = ToJsonData();
+            if (json == null) return Error(errorMessage != null ? errorMessage : "Convert to json error!");
+            return Operand.Create(json);
+        }
+
+        JsonData ToJsonData() {
+            JsonData json = new JsonData();
+            json.SetJsonType(JsonType.Array);
+            for (int i = 0; i < _value.size(); i++) {
+                JsonData data = OperandToJsonData(_value.get(i));
+                if (data == null) return null;
+                json.Add(data);
             }
+            return json;
         }
 
         @Override
@@ -417,6 +496,8 @@ public abstract class Operand {
         public Operand ToText(String errorMessage, Object... args) {
             return Create(_value ? "TRUE" : "FALSE");
         }
+        @Override
+        public Operand TryGetText() { return Create(_value ? "TRUE" : "FALSE"); }
 
         @Override
         public Operand ToMyDate(String errorMessage) {
@@ -471,6 +552,8 @@ public abstract class Operand {
         public Operand ToText(String errorMessage, Object... args) {
             return Create(DateValue().toString());
         }
+        @Override
+        public Operand TryGetText() { return Create(DateValue().toString()); }
 
         @Override
         public Operand ToMyDate(String errorMessage) { return this; }
@@ -533,6 +616,8 @@ public abstract class Operand {
         public Operand ToText(String errorMessage) { return this; }
         public Operand ToText(String errorMessage, Object... args) { return this; }
         @Override
+        public Operand TryGetText() { return this; }
+        @Override
         public Operand ToArray(String errorMessage) { return this; }
         public Operand ToArray(String errorMessage, Object... args) { return this; }
         @Override
@@ -565,6 +650,14 @@ public abstract class Operand {
         }
         public Operand ToText(String errorMessage, Object... args) {
             return Create(_value.toString());
+        }
+        @Override
+        public Operand TryGetText() { return Create(_value.toString()); }
+        @Override
+        public Operand TryGetArray() {
+            // IsArray 时不会触到错误分支，传 null 即可；非数组回落原路径构造错误消息
+            if (JsonValue().IsArray()) return ToArray(null);
+            return null;
         }
 
         @Override
@@ -693,6 +786,8 @@ public abstract class Operand {
         @Override
         public Operand ToText(String errorMessage) { return this; }
         public Operand ToText(String errorMessage, Object... args) { return this; }
+        @Override
+        public Operand TryGetText() { return this; }
 
         @Override
         public Operand ToBoolean(String errorMessage) {
@@ -849,15 +944,29 @@ public abstract class Operand {
         public Operand ToArray(String errorMessage, Object... args) {
             return Create(ArrayValue());
         }
+        @Override
+        public Operand TryGetText() { return Create(toString()); }
+        @Override
+        public Operand TryGetArray() { return Create(ArrayValue()); }
 
         @Override
         public Operand ToJson(String errorMessage) {
-            try {
-                return Operand.CreateJson(toString());
-            } catch (Exception e) {
-                if (errorMessage == null) errorMessage = "Convert to json error!";
-                return Error(errorMessage);
+            // 直接构造成 JsonData，免去 toString 序列化再 JsonMapper 解析的完整往返
+            JsonData json = ToJsonData();
+            if (json == null) return Error(errorMessage != null ? errorMessage : "Convert to json error!");
+            return Operand.Create(json);
+        }
+
+        JsonData ToJsonData() {
+            JsonData json = new JsonData();
+            json.SetJsonType(JsonType.Object);
+            for (int i = 0; i < TextList.size(); i++) {
+                KeyValue kv = TextList.get(i);
+                JsonData data = OperandToJsonData(kv.Value);
+                if (data == null) return null;
+                json.Set(kv.Key, data);
             }
+            return json;
         }
 
         public void AddValue(KeyValue keyValue) {
