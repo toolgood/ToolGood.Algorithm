@@ -8,8 +8,6 @@ import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MyDate {
     public Integer Year;
@@ -119,97 +117,150 @@ public class MyDate {
         }
     }
 
+    /**
+     * 解析日期文本，失败返回 null。支持以下形状：
+     * <pre>
+     *   YYYY[-]M[-]D HH:MM:SS / YYYY[/]M[/]D HH:MM:SS
+     *   YYYY[-]M[-]D HH:MM    / YYYY[/]M[/]D HH:MM
+     *   YYYY[-]M[-]D          / YYYY[/]M[/]D
+     *   D HH:MM:SS、HH:MM:SS、HH:MM
+     * </pre>
+     * 原先每次调用都要 Pattern.compile 9 条正则（编译状态机的开销是匹配本身的十倍以上），
+     * 改为手写扫描：年恰 4 位、两个日期分隔符必须相同、月 0-12、日 0-31、时 0-23、分/秒 0-59、
+     * 除年以外各段不超过 2 位。纯数字“日”只接受带秒的 D HH:MM:SS。
+     */
     public static MyDate parse(String txt) {
         String t = txt.trim();
-        Matcher m = Pattern
-                .compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$")
-                .matcher(t);
-        if (m.find()) {
+        int len = t.length();
+        if (len == 0) {
+            return null;
+        }
+        int space = t.indexOf(' ');
+        if (space >= 0) {
+            int[] hms = new int[3];
+            if (!parseTime(t, space + 1, len, hms)) {
+                return null;
+            }
+            int[] ymd = new int[3];
+            if (parseDate(t, 0, space, ymd)) {
+                return new MyDate(ymd[0], ymd[1], ymd[2], hms[0], hms[1], hms[2] < 0 ? 0 : hms[2]);
+            }
+            // 纯数字“日”只接受 D HH:MM:SS（不带秒的写法不在支持范围）
+            if (hms[2] < 0) {
+                return null;
+            }
+            int day = parseNumber(t, 0, space, 9);
+            if (day < 0) {
+                return null;
+            }
             MyDate date = new MyDate();
-            date.Year = Integer.parseInt(m.group(1));
-            date.Month = Integer.parseInt(m.group(2));
-            date.Day = Integer.parseInt(m.group(3));
-            date.Hour = Integer.parseInt(m.group(4));
-            date.Minute = Integer.parseInt(m.group(5));
-            date.Second = Integer.parseInt(m.group(6));
+            date.Day = day;
+            date.Hour = hms[0];
+            date.Minute = hms[1];
+            date.Second = hms[2];
             return date;
         }
-        m = Pattern
-                .compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$")
-                .matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Year = Integer.parseInt(m.group(1));
-            date.Month = Integer.parseInt(m.group(2));
-            date.Day = Integer.parseInt(m.group(3));
-            date.Hour = Integer.parseInt(m.group(4));
-            date.Minute = Integer.parseInt(m.group(5));
-            date.Second = Integer.parseInt(m.group(6));
-            return date;
+        int[] ymd = new int[3];
+        if (parseDate(t, 0, len, ymd)) {
+            return new MyDate(ymd[0], ymd[1], ymd[2], 0, 0, 0);
         }
-
-        m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$").matcher(t);
-        if (m.find()) {
+        int[] hms = new int[3];
+        if (parseTime(t, 0, len, hms)) {
             MyDate date = new MyDate();
-            date.Year = Integer.parseInt(m.group(1));
-            date.Month = Integer.parseInt(m.group(2));
-            date.Day = Integer.parseInt(m.group(3));
-            date.Hour = Integer.parseInt(m.group(4));
-            date.Minute = Integer.parseInt(m.group(5));
-            return date;
-        }
-        m = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$").matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Year = Integer.parseInt(m.group(1));
-            date.Month = Integer.parseInt(m.group(2));
-            date.Day = Integer.parseInt(m.group(3));
-            date.Hour = Integer.parseInt(m.group(4));
-            date.Minute = Integer.parseInt(m.group(5));
-            return date;
-        }
-
-        m = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$").matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Year = Integer.parseInt(m.group(1));
-            date.Month = Integer.parseInt(m.group(2));
-            date.Day = Integer.parseInt(m.group(3));
-            return date;
-        }
-        m = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$").matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Year = Integer.parseInt(m.group(1));
-            date.Month = Integer.parseInt(m.group(2));
-            date.Day = Integer.parseInt(m.group(3));
-            return date;
-        }
-        m = Pattern.compile("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$").matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Day = Integer.parseInt(m.group(1));
-            date.Hour = Integer.parseInt(m.group(2));
-            date.Minute = Integer.parseInt(m.group(3));
-            date.Second = Integer.parseInt(m.group(4));
-            return date;
-        }
-        m = Pattern.compile("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$").matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Hour = Integer.parseInt(m.group(1));
-            date.Minute = Integer.parseInt(m.group(2));
-            date.Second = Integer.parseInt(m.group(3));
-            return date;
-        }
-        m = Pattern.compile("^(2[0123]|[01]?\\d):([012345]?\\d)$").matcher(t);
-        if (m.find()) {
-            MyDate date = new MyDate();
-            date.Hour = Integer.parseInt(m.group(1));
-            date.Minute = Integer.parseInt(m.group(2));
+            date.Hour = hms[0];
+            date.Minute = hms[1];
+            date.Second = hms[2] < 0 ? 0 : hms[2];
             return date;
         }
         return null;
+    }
+
+    /**
+     * 解析 [from,to) 内的 YYYY-M-D 或 YYYY/M/D，年份必须 4 位、两个分隔符必须相同。
+     */
+    private static boolean parseDate(String t, int from, int to, int[] ymd) {
+        int first = indexOfDateSeparator(t, from, to);
+        if (first != from + 4) {
+            return false;
+        }
+        char sep = t.charAt(first);
+        int second = indexOfDateSeparator(t, first + 1, to);
+        if (second < 0 || t.charAt(second) != sep) {
+            return false;
+        }
+        int year = parseNumber(t, from, first, 4);
+        int month = parseNumber(t, first + 1, second, 2);
+        int day = parseNumber(t, second + 1, to, 2);
+        if (year < 0 || month < 0 || day < 0 || month > 12 || day > 31) {
+            return false;
+        }
+        ymd[0] = year;
+        ymd[1] = month;
+        ymd[2] = day;
+        return true;
+    }
+
+    private static int indexOfDateSeparator(String t, int from, int to) {
+        for (int i = from; i < to; i++) {
+            char c = t.charAt(i);
+            if (c == '-' || c == '/') {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 解析 [from,to) 内的 H:M 或 H:M:S。hms[2] 为 -1 表示没有秒段。
+     */
+    private static boolean parseTime(String t, int from, int to, int[] hms) {
+        int first = t.indexOf(':', from);
+        if (first < 0 || first >= to) {
+            return false;
+        }
+        int hour = parseNumber(t, from, first, 2);
+        if (hour < 0 || hour > 23) {
+            return false;
+        }
+        int second = t.indexOf(':', first + 1);
+        if (second < 0 || second >= to) {
+            int minute = parseNumber(t, first + 1, to, 2);
+            if (minute < 0 || minute > 59) {
+                return false;
+            }
+            hms[0] = hour;
+            hms[1] = minute;
+            hms[2] = -1;
+            return true;
+        }
+        int minute = parseNumber(t, first + 1, second, 2);
+        int sec = parseNumber(t, second + 1, to, 2);
+        if (minute < 0 || minute > 59 || sec < 0 || sec > 59) {
+            return false;
+        }
+        hms[0] = hour;
+        hms[1] = minute;
+        hms[2] = sec;
+        return true;
+    }
+
+    /**
+     * 解析 [from,to) 内的纯 ASCII 数字，长度超过 maxLen 或含非数字字符返回 -1。
+     */
+    private static int parseNumber(String t, int from, int to, int maxLen) {
+        int len = to - from;
+        if (len <= 0 || len > maxLen) {
+            return -1;
+        }
+        int value = 0;
+        for (int i = from; i < to; i++) {
+            char c = t.charAt(i);
+            if (c < '0' || c > '9') {
+                return -1;
+            }
+            value = value * 10 + (c - '0');
+        }
+        return value;
     }
 
     public static MyDate now() {
@@ -218,6 +269,78 @@ public class MyDate {
 
     @Override
     public String toString() {
+        // 快路径：一次 char[] 直构，避免 StringBuffer 的同步与多次 append。
+        // 字段超出常规范围（年份 > 9999、月/日/时超出两位数等）时退回慢路径，输出与旧实现逐字一致。
+        if (Year != null && Year > 0 && Month != null && Day != null) {
+            int y = Year;
+            int mo = Month;
+            int d = Day;
+            if (y >= 1000 && y <= 9999 && mo <= 99 && d <= 99
+                    && Hour <= 23 && Minute <= 59 && Second <= 59
+                    && Hour >= 0 && Minute >= 0 && Second >= 0) {
+                char[] buffer = new char[19];
+                Write4(buffer, 0, y);
+                buffer[4] = '-';
+                Write2(buffer, 5, mo);
+                buffer[7] = '-';
+                Write2(buffer, 8, d);
+                buffer[10] = ' ';
+                Write2(buffer, 11, Hour);
+                buffer[13] = ':';
+                Write2(buffer, 14, Minute);
+                buffer[16] = ':';
+                Write2(buffer, 17, Second);
+                return new String(buffer);
+            }
+            return ToStringSlow();
+        }
+        if (Day != null && Day > 0) {
+            if (Day <= 99
+                    && Hour >= 0 && Hour <= 23 && Minute >= 0 && Minute <= 59 && Second >= 0 && Second <= 59) {
+                int d = Day;
+                int offset = d < 10 ? 1 : 2;
+                char[] buffer = new char[offset + 9];   // "D HH:mm:ss"
+                if (d >= 10) { buffer[0] = (char) ('0' + d / 10); }
+                buffer[offset - 1] = (char) ('0' + d % 10);
+                buffer[offset] = ' ';
+                Write2(buffer, offset + 1, Hour);
+                buffer[offset + 3] = ':';
+                Write2(buffer, offset + 4, Minute);
+                buffer[offset + 6] = ':';
+                Write2(buffer, offset + 7, Second);
+                return new String(buffer);
+            }
+            // 日超出两位 → 慢路径（慢路径按原格式输出整数值）
+            return ToStringSlow();
+        }
+        if (Hour >= 0 && Hour <= 23 && Minute >= 0 && Minute <= 59 && Second >= 0 && Second <= 59) {
+            char[] buffer = new char[8];
+            Write2(buffer, 0, Hour);
+            buffer[2] = ':';
+            Write2(buffer, 3, Minute);
+            buffer[5] = ':';
+            Write2(buffer, 6, Second);
+            return new String(buffer);
+        }
+        return ToStringSlow();
+    }
+
+    private static void Write2(char[] buffer, int offset, int value) {
+        buffer[offset] = (char) ('0' + value / 10);
+        buffer[offset + 1] = (char) ('0' + value % 10);
+    }
+
+    private static void Write4(char[] buffer, int offset, int value) {
+        buffer[offset] = (char) ('0' + value / 1000);
+        buffer[offset + 1] = (char) ('0' + value / 100 % 10);
+        buffer[offset + 2] = (char) ('0' + value / 10 % 10);
+        buffer[offset + 3] = (char) ('0' + value % 10);
+    }
+
+    /**
+     * 慢路径：字段超出常规范围（年份 &gt; 9999、月/日/时超出两位数等）时按原格式输出
+     */
+    private String ToStringSlow() {
         StringBuffer stringBuffer = new StringBuffer();
         if (Year != null && Year > 0) {
             stringBuffer.append(Year);

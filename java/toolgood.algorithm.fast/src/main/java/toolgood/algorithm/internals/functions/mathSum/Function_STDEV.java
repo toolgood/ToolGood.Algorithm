@@ -27,16 +27,13 @@ public final class Function_STDEV extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
-        Operand error = TryEvaluateAll(engine, tempParameter, args);
-        if (error != null) { return error; }
-
         BigDecimal mean = BigDecimal.ZERO;
         BigDecimal m2 = BigDecimal.ZERO;
         int count = 0;
 
-        for (int i = 0; i < args.size(); i++) {
-            Operand item = args.get(i);
+        for (int i = 0; i < funcs.length; i++) {
+            Operand item = funcs[i].Evaluate(engine, tempParameter);
+            if (item.IsErrorOrNone()) { return item; }
             if (item.IsArray()) {
                 List<Operand> array = item.ArrayValue();
                 for (int j = 0; j < array.size(); j++) {

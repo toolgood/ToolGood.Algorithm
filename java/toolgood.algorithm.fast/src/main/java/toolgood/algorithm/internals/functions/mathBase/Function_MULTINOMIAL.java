@@ -28,27 +28,30 @@ public final class Function_MULTINOMIAL extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
-        Operand error = TryEvaluateAll(engine, tempParameter, args);
-        if (error != null) {
-            return error;
-        }
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
-        if (o == false) {
-            return FunctionError();
+        for (int i = 0; i < funcs.length; i++) {
+            // 按参数逐个求值并展平：展平后的下标与原始参数位置不再一一对应，
+            // 逐个展平才能让错误消息给出真实的参数序号
+            Operand aa = funcs[i].Evaluate(engine, tempParameter);
+            if (aa.IsErrorOrNone()) { return aa; }
+            List<BigDecimal> item = new ArrayList<>();
+            if (FunctionUtil.FlattenToNumberList(aa, item) == false) { return FunctionError(); }
+            for (int j = 0; j < item.size(); j++) {
+                BigDecimal value = item.get(j);
+                if (value.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0 || value.compareTo(BigDecimal.valueOf(Integer.MIN_VALUE)) < 0) {
+                    return ParameterError(i + 1);
+                }
+                if (value.intValue() < 0) {
+                    return ParameterError(i + 1);
+                }
+            }
+            list.addAll(item);
         }
         BigDecimal sum = BigDecimal.ZERO;
         BigDecimal n = BigDecimal.ONE;
         for (int i = 0; i < list.size(); i++) {
             BigDecimal value = list.get(i);
-            if (value.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0 || value.compareTo(BigDecimal.valueOf(Integer.MIN_VALUE)) < 0) {
-                return ParameterError(i + 1);
-            }
             int a = value.intValue();
-            if (a < 0) {
-                return ParameterError(i + 1);
-            }
             n = n.multiply(FunctionUtil.GetFactorial(BigDecimal.valueOf(a)));
             sum = sum.add(BigDecimal.valueOf(a));
         }

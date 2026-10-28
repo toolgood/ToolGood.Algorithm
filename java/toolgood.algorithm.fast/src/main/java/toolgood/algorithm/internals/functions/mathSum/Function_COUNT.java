@@ -25,13 +25,14 @@ public final class Function_COUNT extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
-        Operand error = TryEvaluateAll(engine, tempParameter, args);
-        if (error != null) { return error; }
-
+        // 逐个求值并直接展平，免去中间的 List<Operand> 参数中转；
+        // 此处必须展平为 Operand 列表——COUNT 需要保留每项原始操作数
         List<Operand> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToList(args, list);
-        if (!o) { return FunctionError(); }
+        for (int i = 0; i < funcs.length; i++) {
+            Operand aa = funcs[i].Evaluate(engine, tempParameter);
+            if (aa.IsErrorOrNone()) { return aa; }
+            if (FunctionUtil.FlattenToList(aa, list) == false) { return FunctionError(); }
+        }
         return Operand.Create(list.size());
     }
 

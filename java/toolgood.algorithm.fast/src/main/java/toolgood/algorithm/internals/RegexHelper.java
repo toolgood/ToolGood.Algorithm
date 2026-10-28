@@ -1,7 +1,5 @@
 package toolgood.algorithm.internals;
 
-import java.util.regex.Pattern;
-
 public final class RegexHelper {
     public static boolean IsHex(String value) {
         if (value == null || value.isEmpty()) return false;
@@ -39,17 +37,5 @@ public final class RegexHelper {
         return c == '0' || c == '1';
     }
 
-    public static final Pattern dateTimeRegex = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$");
-    public static final Pattern dateTimeRegex2 = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$");
-    public static final Pattern dateTimeRegex3 = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$");
-    public static final Pattern dateTimeRegex4 = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$");
-
-    public static final Pattern dateRegex = Pattern.compile("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$");
-    public static final Pattern dateRegex2 = Pattern.compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$");
-
-    public static final Pattern dayTimeRegex = Pattern.compile("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$");
-    public static final Pattern dayTimeRegex2 = Pattern.compile("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d)$");
-
-    public static final Pattern timeRegex = Pattern.compile("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$");
-    public static final Pattern timeRegex2 = Pattern.compile("^(2[0123]|[01]?\\d):([012345]?\\d)$");
+    // 日期/时间解析已改为 MyDate.parse 的字符扫描，原先 10 条日期正则已删除。
 }
