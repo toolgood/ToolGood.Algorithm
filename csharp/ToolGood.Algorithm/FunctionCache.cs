@@ -16,6 +16,20 @@ namespace ToolGood.Algorithm
 		private readonly ConcurrentDictionary<string, FunctionBase> conditionCache = new ConcurrentDictionary<string, FunctionBase>();
 		private readonly ConcurrentDictionary<string, DiyNameInfo> diyNameCache = new ConcurrentDictionary<string, DiyNameInfo>();
 
+		// 缓存条目软上限：动态拼接的公式串会让缓存无限增长（内存泄漏），超限淘汰一半。
+		// 缓存仅用于免重复解析，被淘汰的条目下次命中时重新解析，不影响正确性
+		private const int MaxCacheSize = 100_000;
+
+		private static void TrimCache<TValue>(ConcurrentDictionary<string, TValue> cache)
+		{
+			if(cache.Count < MaxCacheSize) { return; }
+			// 淘汰一半而不是全部清空：全清会让高频 key 与长尾 key 一起被踢掉，命中率塌缩
+			foreach(var key in cache.Keys) {
+				if(cache.Count < MaxCacheSize / 2) { break; }
+				cache.TryRemove(key, out _);
+			}
+		}
+
 		/// <summary>
 		/// 获取自定义名称信息，并使用缓存来提高性能。对于相同的表达式，将从缓存中返回之前解析的结果，而不是重新解析。
 		/// </summary>
@@ -23,6 +37,7 @@ namespace ToolGood.Algorithm
 		/// <returns>自定义名称信息</returns>
 		public DiyNameInfo GetDiyNamesWithCache(string exp)
 		{
+			TrimCache(diyNameCache);
 			return diyNameCache.GetOrAdd(exp, key => AlgorithmEngineHelper.GetDiyNames(key));
 		}
 
@@ -33,6 +48,7 @@ namespace ToolGood.Algorithm
 		/// <returns>解析后的函数对象</returns>
 		public FunctionBase ParseWithCache(string funExp)
 		{
+			TrimCache(calculateCache);
 			return calculateCache.GetOrAdd(funExp, key => {
 				var tree = AlgorithmEngineHelper.ParseCalculate(key);
 				return CreateCalculate(tree);
@@ -45,6 +61,7 @@ namespace ToolGood.Algorithm
 				var text = tree.Text;
 				if(calculateCache.TryGetValue(text, out FunctionBase value)) { return value; }
 				var leafFun = AlgorithmEngineHelper.ParseFormula(text);
+				TrimCache(calculateCache);
 				calculateCache[text] = leafFun;
 				return leafFun;
 			}
@@ -62,6 +79,7 @@ namespace ToolGood.Algorithm
 		/// <returns>解析后的函数对象</returns>
 		public FunctionBase ParseConditionWithCache(string funExp)
 		{
+			TrimCache(conditionCache);
 			return conditionCache.GetOrAdd(funExp, key => {
 				var tree = AlgorithmEngineHelper.ParseCondition(key);
 				return CreateCondition(tree);

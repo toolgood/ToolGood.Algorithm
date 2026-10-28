@@ -32,6 +32,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 		private const int MaxRegexCacheSize = 128;
 		private static readonly TimeSpan RegexTimeout = TimeSpan.FromSeconds(1);
 
+#if NET8_0_OR_GREATER
+		// net8+ 使用编译版正则，热路径匹配显著更快；缓存有淘汰上限，编译成本可控
+		private const RegexOptions DefaultRegexOptions = RegexOptions.Compiled;
+#else
+		private const RegexOptions DefaultRegexOptions = RegexOptions.None;
+#endif
+
 		public static StringComparison GetStringComparison(bool ignoreCase)
 		{
 			return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
@@ -44,9 +51,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static Regex GetRegex(string pattern)
 		{
 			if(_regexCache.TryGetValue(pattern, out var regex)) { return regex; }
-			regex = new Regex(pattern, RegexOptions.None, RegexTimeout);
+			regex = new Regex(pattern, DefaultRegexOptions, RegexTimeout);
 			if(_regexCache.Count >= MaxRegexCacheSize) {
-				_regexCache.Clear();
+				// 淘汰一半而不是全部清空：pattern 基数稍大时全清会让命中率反复塌缩
+				foreach(var key in _regexCache.Keys) {
+					if(_regexCache.Count < MaxRegexCacheSize / 2) { break; }
+					_regexCache.TryRemove(key, out _);
+				}
 			}
 			_regexCache[pattern] = regex;
 			return regex;

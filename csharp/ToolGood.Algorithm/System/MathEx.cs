@@ -660,6 +660,14 @@ namespace System
 		/// <returns>The tangens h function value from the given value.</returns>
 		public static decimal Tanh(decimal x)
 		{
+			// 奇函数，先归一到非负，避免大负数时 Exp(x) 下溢为 0 后 1/y 除零
+			if(x < Zero) {
+				return -Tanh(-x);
+			}
+			if(x > HyperbolicSafeMax) {
+				// tanh(x)=(e^2x-1)/(e^2x+1)，x 超过 Exp 可表示上界后与 1 相差远小于 decimal 精度，直接取 1
+				return One;
+			}
 			var y = Exp(x);
 			var yy = One / y;
 			return (y - yy) / (y + yy);

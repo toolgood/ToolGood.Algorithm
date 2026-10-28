@@ -41,6 +41,17 @@ namespace ToolGood.Algorithm.Test.MathTrigonometric
         }
 
         [Test]
+        public void tanh_large_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            // 大参数原实现 Exp(x) 上溢抛 OverflowException / 下溢后 1/y 除零，修复后返回 ±1
+            Assert.AreEqual(1.0, engine.TryEvaluate("tanh(100)", 0.0));
+            Assert.AreEqual(-1.0, engine.TryEvaluate("tanh(-100)", 0.0));
+            Assert.AreEqual(0.0, engine.TryEvaluate("tanh(0)", 0.0));
+            Assert.AreEqual(-1.0, engine.TryEvaluate("tanh(-1000000)", 0.0));
+        }
+
+        [Test]
         public void sin_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
