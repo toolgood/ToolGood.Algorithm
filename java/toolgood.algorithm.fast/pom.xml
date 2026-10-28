@@ -6,7 +6,7 @@
 
     <groupId>io.github.toolgood</groupId>
     <artifactId>toolgood-algorithm-fast</artifactId>
-    <version>6.3.2</version>
+    <version>6.3.3</version>
     <packaging>jar</packaging>
 
     <name>toolgood.algorithm.fast</name>
