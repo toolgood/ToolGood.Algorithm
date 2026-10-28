@@ -266,6 +266,18 @@ namespace ToolGood.Algorithm.Test.Operands
             Assert.IsTrue(result.IsError);
         }
 
+        /// <summary>
+        /// params 重载必须把 args 透传给基类，否则错误消息里的 {0}{1} 不会被格式化
+        /// </summary>
+        [Test]
+        public void OperandInt_ToBoolean_WithArgs_Test()
+        {
+            var op = Operand.Create(2);
+            var result = op.ToBoolean("Function '{0}' parameter {1} is error!", "NOT", 1);
+            Assert.IsTrue(result.IsError);
+            Assert.AreEqual("Function 'NOT' parameter 1 is error!", result.ErrorMsg);
+        }
+
         [Test]
         public void OperandInt_ToText_Test()
         {
@@ -352,6 +364,18 @@ namespace ToolGood.Algorithm.Test.Operands
             result = op.ToBoolean();
             Assert.IsTrue(result.IsBoolean);
             Assert.AreEqual(true, result.BooleanValue);
+        }
+
+        /// <summary>
+        /// params 重载必须把 args 透传给基类，否则错误消息里的 {0}{1} 不会被格式化
+        /// </summary>
+        [Test]
+        public void OperandDecimal_ToBoolean_WithArgs_Test()
+        {
+            var op = Operand.Create(2.5m);
+            var result = op.ToBoolean("Function '{0}' parameter {1} is error!", "NOT", 1);
+            Assert.IsTrue(result.IsError);
+            Assert.AreEqual("Function 'NOT' parameter 1 is error!", result.ErrorMsg);
         }
 
         [Test]

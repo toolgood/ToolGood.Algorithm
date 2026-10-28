@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -21,12 +22,19 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		{
 			var args1 = GetNumber_1(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
 			var args2 = GetNumber_2(engine, tempParameter); if(args2.IsErrorOrNone) { return args2; }
+			// 整数快路径：x/0、x/1 直接返回，其余整数除法直接转 decimal，省两次 NumberValue 虚调用
+			if(args1 is OperandInt n1 && args2 is OperandInt n2) {
+				if(n2.RawInt == 0) { return Div0Error(); }
+				if(n2.RawInt == 1) { return args1; }
+				return Operand.CreateArithmetic((decimal)n1.RawInt / n2.RawInt);
+			}
 
-			if(args2.NumberValue == 0) { return Div0Error(); }
-			if(args2.NumberValue == 1) { return args1; }
+			var number2 = args2.NumberValue;
+			if(number2 == 0) { return Div0Error(); }
+			if(number2 == 1) { return args1; }
 
 			try {
-				return Operand.Create(args1.NumberValue / args2.NumberValue);
+				return Operand.CreateArithmetic(args1.NumberValue / number2);
 			} catch (OverflowException) {
 				return NumError();
 			}

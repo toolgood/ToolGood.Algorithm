@@ -12,6 +12,8 @@ namespace ToolGood.Algorithm.Operands
 		}
 		public override bool IsNumber => true;
 		public override OperandType Type => OperandType.NUMBER;
+		/// <summary>整数原值，供四则运算/比较的整数快路径直接取用，避免一次 int→decimal 转换</summary>
+		internal int RawInt => _value;
 		public override int IntValue => _value;
 		public override decimal NumberValue => _value;
 		public override long LongValue => _value;
@@ -38,7 +40,7 @@ namespace ToolGood.Algorithm.Operands
 			} else if(_value == 1) {
 				return True;
 			}
-			return base.ToBoolean(errorMessage);
+			return base.ToBoolean(errorMessage, args);
 		}
 
 		internal override bool TryGetBoolean(out Operand value)

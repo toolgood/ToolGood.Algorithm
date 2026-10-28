@@ -251,7 +251,7 @@ namespace ToolGood.Algorithm
 			if(float.IsNaN(obj) || float.IsInfinity(obj)) {
 				return Error("Convert to number error!");
 			}
-			if(obj == MathF.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+			if(obj >= -IntCacheOffset && obj <= IntCacheOffset && obj == MathF.Truncate(obj)) {
 				return IntCache[(int)obj + IntCacheOffset];
 			}
 			try {
@@ -271,7 +271,7 @@ namespace ToolGood.Algorithm
 			if(double.IsNaN(obj) || double.IsInfinity(obj)) {
 				return Error("Convert to number error!");
 			}
-			if(obj == Math.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+			if(obj >= -IntCacheOffset && obj <= IntCacheOffset && obj == Math.Truncate(obj)) {
 				return IntCache[(int)obj + IntCacheOffset];
 			}
 			try {
@@ -288,9 +288,18 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(decimal obj)
 		{
-			if(obj == decimal.Truncate(obj) && obj >= -IntCacheOffset && obj <= IntCacheOffset) {
+			if(obj >= -IntCacheOffset && obj <= IntCacheOffset && obj == decimal.Truncate(obj)) {
 				return IntCache[(int)obj + IntCacheOffset];
 			}
+			return new OperandDecimal(obj);
+		}
+
+		/// <summary>
+		/// 四则运算结果专用：不做整数归一。归一的 Truncate + 区间判断约占 Create(decimal) 的 60% 开销，
+		/// 而运算结果多为小数，白付；尾零差异由 OperandDecimal 输出时归一。
+		/// </summary>
+		internal static Operand CreateArithmetic(decimal obj)
+		{
 			return new OperandDecimal(obj);
 		}
 

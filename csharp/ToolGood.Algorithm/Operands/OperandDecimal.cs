@@ -14,6 +14,8 @@ namespace ToolGood.Algorithm.Operands
 		public override OperandType Type => OperandType.NUMBER;
 		public override int IntValue => (int)_value;
 		public override decimal NumberValue => _value;
+		/// <summary>decimal 原值，供非整数快路径直接取用</summary>
+		internal decimal RawDecimal => _value;
 		public override long LongValue => (long)_value;
 		public override double DoubleValue => (double)_value;
 
@@ -37,7 +39,7 @@ namespace ToolGood.Algorithm.Operands
 			} else if(_value == 1) {
 				return True;
 			}
-			return base.ToBoolean(errorMessage);
+			return base.ToBoolean(errorMessage, args);
 		}
 
 		internal override bool TryGetBoolean(out Operand value)
@@ -49,10 +51,27 @@ namespace ToolGood.Algorithm.Operands
 			return false;
 		}
 
-		public override Operand ToText(string errorMessage) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
-		public override Operand ToText(string errorMessage, params object[] args) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
-		internal override bool TryGetText(out Operand value) { value = Create(NumberValue.ToString(CultureInfo.InvariantCulture)); return true; }
+		public override Operand ToText(string errorMessage) { return Create(Format(_value)); }
+		public override Operand ToText(string errorMessage, params object[] args) { return Create(Format(_value)); }
+		internal override bool TryGetText(out Operand value) { value = Create(Format(_value)); return true; }
 
-		public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
+		public override string ToString() { return Format(_value); }
+
+		/// <summary>
+		/// 尾零归一：运算结果不再做整数归一（如 1.5*2 得到 3.0m），输出时统一成 "3"，保持原有可见行为
+		/// </summary>
+		private static string Format(decimal v)
+		{
+			return Normalize(v).ToString(CultureInfo.InvariantCulture);
+		}
+
+		/// <summary>
+		/// 去掉 decimal 的尾零（3.0m → 3m），保证运算结果与整数归一后的输出一致
+		/// </summary>
+		internal static decimal Normalize(decimal v)
+		{
+			var truncate = decimal.Truncate(v);
+			return truncate == v ? truncate : v;
+		}
 	}
 }

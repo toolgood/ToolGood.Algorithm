@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Operator
 {
@@ -22,9 +23,15 @@ namespace ToolGood.Algorithm.Internals.Functions.Operator
 		{
 			var args1 = GetNumber_1(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
 			var args2 = GetNumber_2(engine, tempParameter); if(args2.IsErrorOrNone) { return args2; }
+			// 整数快路径：跳过两次 int→decimal 转换、decimal 加法与 Create 的整数归一
+			if(args1 is OperandInt n1 && args2 is OperandInt n2) {
+				long r = (long)n1.RawInt + n2.RawInt;
+				if(r >= int.MinValue && r <= int.MaxValue) { return Operand.Create((int)r); }
+				return new OperandDecimal(r);
+			}
 
 			try {
-				return Operand.Create(args1.NumberValue + args2.NumberValue);
+				return Operand.CreateArithmetic(args1.NumberValue + args2.NumberValue);
 			} catch (OverflowException) {
 				return NumError();
 			}

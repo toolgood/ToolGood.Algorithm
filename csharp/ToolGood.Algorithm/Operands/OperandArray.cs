@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
@@ -59,7 +59,7 @@ namespace ToolGood.Algorithm.Operands
 			switch (o) {
 				case OperandString s: { var d = new JsonData(); d.SetString(s.TextValue); return d; }
 				case OperandInt i: { var d = new JsonData(); d.SetDouble(i.NumberValue); return d; }
-				case OperandDecimal dec: { var d = new JsonData(); d.SetDouble(dec.NumberValue); return d; }
+				case OperandDecimal dec: { var d = new JsonData(); d.SetDouble(OperandDecimal.Normalize(dec.NumberValue)); return d; }
 				case OperandBoolean b: { var d = new JsonData(); d.SetBoolean(b.BooleanValue); return d; }
 				case OperandMyDate md: { var d = new JsonData(); d.SetString(md.DateValue.ToString()); return d; }
 				case OperandNull _: { var d = new JsonData(); d.SetNull(); return d; }
