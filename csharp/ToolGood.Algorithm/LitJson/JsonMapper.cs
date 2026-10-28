@@ -2,65 +2,14 @@
 {
     internal sealed class JsonMapper
     {
-        #region Private Methods
-
-        private static JsonData ReadValue(JsonReader reader)
-        {
-            reader.Read();
-
-            if (reader.Token == JsonToken.ArrayEnd) return null;
-
-            JsonData instance = new JsonData();
-
-            if (reader.Token == JsonToken.String) {
-                instance.SetString((string)reader.Value);
-                return instance;
-            }
-
-            if (reader.Token == JsonToken.Double) {
-                instance.SetDouble((decimal)reader.Value);
-                return instance;
-            }
-
-            if (reader.Token == JsonToken.Boolean) {
-                instance.SetBoolean((bool)reader.Value);
-                return instance;
-            }
-            if (reader.Token == JsonToken.Null) {
-                instance.SetNull();
-                return instance;
-            }
-
-            if (reader.Token == JsonToken.ArrayStart) {
-                instance.SetJsonType(JsonType.Array);
-
-                while (true) {
-                    JsonData item = ReadValue(reader);
-                    if (item == null && reader.Token == JsonToken.ArrayEnd) break;
-                    instance.Add(item);
-                }
-            } else if (reader.Token == JsonToken.ObjectStart) {
-                instance.SetJsonType(JsonType.Object);
-
-                while (true) {
-                    reader.Read();
-
-                    if (reader.Token == JsonToken.ObjectEnd) break;
-
-                    string property = (string)reader.Value;
-                    instance.Set(property, ReadValue(reader));
-                }
-            }
-
-            return instance;
-        }
-
-        #endregion Private Methods
-
+        /// <summary>
+        /// 解析 JSON 文本为 <see cref="JsonData"/>。
+        /// 实现在 <see cref="JsonFastParser"/>：对 string 直接下标扫描的递归下降解析，
+        /// 替代原来的 Lexer(字符流状态机) + JsonReader(LL 自动机) + 本类递归组装三层结构。
+        /// </summary>
         public static JsonData ToObject(string json)
         {
-            JsonReader reader = new JsonReader(json);
-            return ReadValue(reader) as JsonData;
+            return JsonFastParser.Parse(json);
         }
     }
 }
