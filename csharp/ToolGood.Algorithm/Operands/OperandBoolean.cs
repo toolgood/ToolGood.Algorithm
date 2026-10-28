@@ -19,6 +19,10 @@ namespace ToolGood.Algorithm.Operands
 		public override Operand ToBoolean(string errorMessage) { return this; }
 		public override Operand ToBoolean(string errorMessage, params object[] args) { return this; }
 
+		internal override bool TryGetNumber(out Operand value) { value = _value ? One : Zero; return true; }
+
+		internal override bool TryGetBoolean(out Operand value) { value = this; return true; }
+
 		public override Operand ToText(string errorMessage) { return Create(_value ? "TRUE" : "FALSE"); }
 		public override Operand ToText(string errorMessage, params object[] args) { return Create(_value ? "TRUE" : "FALSE"); }
 

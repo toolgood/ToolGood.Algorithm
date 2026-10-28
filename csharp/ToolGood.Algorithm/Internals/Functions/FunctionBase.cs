@@ -95,6 +95,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		protected Operand ConvertToBoolean(Operand arg, int paramIndex)
 		{
+			// 先走无消息的快路径：只有确实转换不了时才构造 "Function 'x' parameter n is error!"，
+			// 避免每次成功转换都白分配 params object[]（+ 装箱 paramIndex）
+			if(arg.TryGetBoolean(out var value)) { return value; }
 			return arg.ToBoolean("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
@@ -106,6 +109,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		protected Operand ConvertToNumber(Operand arg, int paramIndex)
 		{
+			if(arg.TryGetNumber(out var value)) { return value; }
 			return arg.ToNumber("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 
@@ -128,6 +132,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns></returns>
 		protected Operand ConvertToDate(Operand arg, int paramIndex)
 		{
+			if(arg.TryGetDate(out var value)) { return value; }
 			return arg.ToMyDate("Function '{0}' parameter {1} is error!", Name, paramIndex);
 		}
 

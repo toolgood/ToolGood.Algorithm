@@ -533,6 +533,33 @@ namespace ToolGood.Algorithm
 
 		#endregion
 
+		#region TryGet
+
+		// 以下 TryGet* 供 FunctionBase.ConvertTo* 在"参数类型不匹配、准备转换"时先尝试，
+		// 目的是把"构造错误消息"推迟到确实失败之后：
+		// ConvertTo*(arg, idx) 原本要传 (模板, Name, paramIndex) 走 params object[] 重载，
+		// 而 OperandString 的 To* 会在解析前就 string.Format 一条消息，
+		// 于是每次成功的字符串→数字/布尔/日期转换都要白付一次装箱 + 数组 + 格式化（实测 63ns / 120B）。
+		// 默认返回 false 表示"该类型没有直接可用的转换"，调用方仍回落到原 To* 路径，
+		// 因此错误消息与错误类型完全保持原语义。
+
+		/// <summary>
+		/// 尝试直接取数值（不产生错误消息）；成功时 <paramref name="value"/> 与 ToNumber 的返回值一致
+		/// </summary>
+		internal virtual bool TryGetNumber(out Operand value) { value = null; return false; }
+
+		/// <summary>
+		/// 尝试直接取布尔值（不产生错误消息）；成功时 <paramref name="value"/> 与 ToBoolean 的返回值一致
+		/// </summary>
+		internal virtual bool TryGetBoolean(out Operand value) { value = null; return false; }
+
+		/// <summary>
+		/// 尝试直接取日期值（不产生错误消息）；成功时 <paramref name="value"/> 与 ToMyDate 的返回值一致
+		/// </summary>
+		internal virtual bool TryGetDate(out Operand value) { value = null; return false; }
+
+		#endregion
+
 		#region Operand
 
 		#region number

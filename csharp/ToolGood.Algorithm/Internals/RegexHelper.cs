@@ -50,60 +50,11 @@ namespace ToolGood.Algorithm.Internals
 			return c == '0' || c == '1';
 		}
 
+		// 日期/时间解析已改为 MyDate.Parse 的 span 手写扫描，原先 10 条 dateTime/date/dayTime/time 正则已删除。
 #if NETSTANDARD2_1
-        public static readonly Regex dateTimeRegex = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        public static readonly Regex dateTimeRegex2 = new Regex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        public static readonly Regex dateTimeRegex3 = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
-        public static readonly Regex dateTimeRegex4 = new Regex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
-
-        public static readonly Regex dateRegex = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$", RegexOptions.Compiled);
-        public static readonly Regex dateRegex2 = new Regex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$", RegexOptions.Compiled);
-
-        public static readonly Regex dayTimeRegex = new Regex("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        public static readonly Regex dayTimeRegex2 = new Regex("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-
-        public static readonly Regex timeRegex = new Regex("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        public static readonly Regex timeRegex2 = new Regex("^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-
         public static readonly Regex romanRegex = new Regex("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$", RegexOptions.Compiled);
 #else
-		public static readonly Regex dateTimeRegex = dateTimeRegex_();
-		public static readonly Regex dateTimeRegex2 = dateTimeRegex2_();
-		public static readonly Regex dateTimeRegex3 = dateTimeRegex3_();
-		public static readonly Regex dateTimeRegex4 = dateTimeRegex4_();
-
-		public static readonly Regex dateRegex = dateRegex_();
-		public static readonly Regex dateRegex2 = dateRegex2_();
-
-		public static readonly Regex dayTimeRegex = dayTimeRegex_();
-		public static readonly Regex dayTimeRegex2 = dayTimeRegex2_();
-
-		public static readonly Regex timeRegex = timeRegex_();
-		public static readonly Regex timeRegex2 = timeRegex2_();
-
 		public static readonly Regex romanRegex = romanRegex_();
-
-		[GeneratedRegex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dateTimeRegex_();
-		[GeneratedRegex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dateTimeRegex2_();
-		[GeneratedRegex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dateTimeRegex3_();
-		[GeneratedRegex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dateTimeRegex4_();
-		[GeneratedRegex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dateRegex_();
-
-		[GeneratedRegex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dateRegex2_();
-		[GeneratedRegex("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dayTimeRegex_();
-		[GeneratedRegex("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex dayTimeRegex2_();
-		[GeneratedRegex("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex timeRegex_();
-		[GeneratedRegex("^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled)]
-		private static partial Regex timeRegex2_();
 
 		[GeneratedRegex("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$", RegexOptions.Compiled)]
 		private static partial Regex romanRegex_();

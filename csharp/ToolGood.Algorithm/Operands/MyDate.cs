@@ -1,7 +1,5 @@
 using System;
-using System.Globalization;
 using System.Text;
-using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm.Operands
 {
@@ -93,87 +91,98 @@ namespace ToolGood.Algorithm.Operands
         /// <summary>
         /// 字符串转MyDate
         /// </summary>
-        /// <param name="txt"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// 原先由 8 条日期正则链（RegexHelper.dateTimeRegex 等）逐个尝试，改为 span 手写扫描。
+        /// 支持并等价于以下形状：
+        ///   YYYY[-]M[-]D HH:MM:SS / YYYY[/]M[/]D HH:MM:SS
+        ///   YYYY[-]M[-]D HH:MM    / YYYY[/]M[/]D HH:MM
+        ///   YYYY[-]M[-]D          / YYYY[/]M[/]D
+        ///   D HH:MM:SS、D HH:MM、HH:MM:SS、HH:MM
+        /// 约束与原正则一致：年月日之间两个分隔符必须相同（不能混用 - 和 /），
+        /// 年恰好 4 位，月 0-12，日 0-31，时 0-23，分/秒 0-59，各段不允许超过 2 位（年/日前缀除外）。
+        /// 与正则版的差异只有两处，都是正则版本身的坑：
+        ///   1. 只认 ASCII 数字（\d 会匹配全角/其它 Nd 数字，随后 int.Parse 多半失败）；
+        ///   2. 超长数字段直接视为解析失败（正则版会走到 int.Parse 抛 OverflowException）。
+        /// </remarks>
         public static MyDate Parse(string txt)
         {
-            var cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
-            var t = txt.Trim();
-            var m = RegexHelper.dateTimeRegex.Match(t); // 年月日 时分秒
-            if (m.Success == false) { m = RegexHelper.dateTimeRegex2.Match(t); }
-            if (m.Success) {
-                var date = new MyDate {
-                    Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
-                    Day = int.Parse(m.Groups[(3)].Value, cultureInfo),
-                    Hour = int.Parse(m.Groups[(4)].Value, cultureInfo),
-                    Minute = int.Parse(m.Groups[(5)].Value, cultureInfo),
-                    Second = int.Parse(m.Groups[(6)].Value, cultureInfo)
-                };
-                return date;
-            }
+            var span = txt.AsSpan().Trim();
+            if (span.IsEmpty) { return null; }
 
-            m = RegexHelper.dateTimeRegex3.Match(t);// 年月日 时分
-            if (m.Success == false) { m = RegexHelper.dateTimeRegex4.Match(t); }
-            if (m.Success) {
-                var date = new MyDate {
-                    Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
-                    Day = int.Parse(m.Groups[(3)].Value, cultureInfo),
-                    Hour = int.Parse(m.Groups[(4)].Value, cultureInfo),
-                    Minute = int.Parse(m.Groups[(5)].Value, cultureInfo)
-                };
-                return date;
+            // 含空格：日期/日 + 时间
+            var space = span.IndexOf(' ');
+            if (space >= 0) {
+                if (TryParseTime(span.Slice(space + 1), out var hour, out var minute, out var second) == false) {
+                    return null;
+                }
+                if (TryParseDate(span.Slice(0, space), out var year, out var month, out var day)) {
+                    return new MyDate(year, month, day, hour, minute, second);
+                }
+                if (TryParseNumber(span.Slice(0, space), 9, out var onlyDay)) {
+                    return new MyDate(null, null, onlyDay, hour, minute, second);
+                }
+                return null;
             }
-            m = RegexHelper.dateRegex.Match(t);// 年月日
-            if (m.Success == false) { m = RegexHelper.dateRegex2.Match(t); }
-            if (m.Success) {
-                var date = new MyDate {
-                    Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
-                    Day = int.Parse(m.Groups[(3)].Value, cultureInfo)
-                };
-                return date;
+            // 无空格：日期 或 时间
+            if (TryParseDate(span, out var y, out var m, out var d)) {
+                return new MyDate(y, m, d, 0, 0, 0);
             }
-
-            m = RegexHelper.dayTimeRegex.Match(t);// 日 时分秒
-            if (m.Success) {
-                var date = new MyDate {
-                    Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Hour = int.Parse(m.Groups[(2)].Value, cultureInfo),
-                    Minute = int.Parse(m.Groups[(3)].Value, cultureInfo),
-                    Second = int.Parse(m.Groups[(4)].Value, cultureInfo)
-                };
-                return date;
-            }
-            m = RegexHelper.dayTimeRegex2.Match(t);// 日 时分
-            if (m.Success) {
-                var date = new MyDate {
-                    Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Hour = int.Parse(m.Groups[(2)].Value, cultureInfo),
-                    Minute = int.Parse(m.Groups[(3)].Value, cultureInfo),
-                };
-                return date;
-            }
-
-            m = RegexHelper.timeRegex.Match(t);// 时分秒
-            if (m.Success) {
-                var date = new MyDate {
-                    Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Minute = int.Parse(m.Groups[(2)].Value, cultureInfo),
-                    Second = int.Parse(m.Groups[(3)].Value, cultureInfo)
-                };
-                return date;
-            }
-            m = RegexHelper.timeRegex2.Match(t);// 时分
-            if (m.Success) {
-                var date = new MyDate {
-                    Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
-                    Minute = int.Parse(m.Groups[(2)].Value, cultureInfo)
-                };
-                return date;
+            if (TryParseTime(span, out var h, out var mi, out var se)) {
+                return new MyDate(null, null, null, h, mi, se);
             }
             return null;
+        }
+
+        /// <summary>
+        /// 解析 YYYY M D：年份恰好 4 位，两个分隔符必须同为 '-' 或同为 '/'，月 0-12、日 0-31
+        /// </summary>
+        private static bool TryParseDate(ReadOnlySpan<char> span, out int year, out int month, out int day)
+        {
+            year = 0; month = 0; day = 0;
+            var first = span.IndexOfAny('-', '/');
+            if (first != 4) { return false; }
+            var sep = span[first];
+            var second = span.Slice(5).IndexOfAny('-', '/');
+            if (second < 0) { return false; }
+            second += 5;
+            if (span[second] != sep) { return false; }
+            return TryParseNumber(span.Slice(0, 4), 4, out year)
+                && TryParseNumber(span.Slice(5, second - 5), 2, out month) && month <= 12
+                && TryParseNumber(span.Slice(second + 1), 2, out day) && day <= 31;
+        }
+
+        /// <summary>
+        /// 解析 HH:MM[:SS]：时 0-23，分/秒 0-59
+        /// </summary>
+        private static bool TryParseTime(ReadOnlySpan<char> span, out int hour, out int minute, out int second)
+        {
+            hour = 0; minute = 0; second = 0;
+            var first = span.IndexOf(':');
+            if (first < 0) { return false; }
+            if (TryParseNumber(span.Slice(0, first), 2, out hour) == false || hour > 23) { return false; }
+
+            var rest = span.Slice(first + 1);
+            var next = rest.IndexOf(':');
+            if (next < 0) {
+                return TryParseNumber(rest, 2, out minute) && minute <= 59;
+            }
+            if (TryParseNumber(rest.Slice(0, next), 2, out minute) == false || minute > 59) { return false; }
+            return TryParseNumber(rest.Slice(next + 1), 2, out second) && second <= 59;
+        }
+
+        /// <summary>
+        /// 纯 ASCII 数字段转 int；段长超过 maxLen 或含非数字字符即失败（maxLen ≤ 9，不会溢出）
+        /// </summary>
+        private static bool TryParseNumber(ReadOnlySpan<char> span, int maxLen, out int value)
+        {
+            value = 0;
+            if (span.Length == 0 || span.Length > maxLen) { return false; }
+            for (int i = 0; i < span.Length; i++) {
+                var c = span[i];
+                if (c < '0' || c > '9') { return false; }
+                value = value * 10 + (c - '0');
+            }
+            return true;
         }
 
         /// <summary>

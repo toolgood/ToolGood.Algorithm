@@ -19,6 +19,8 @@ namespace ToolGood.Algorithm.Operands
 		public override Operand ToMyDate(string errorMessage) { return this; }
 		public override Operand ToMyDate(string errorMessage, params object[] args) { return this; }
 
+		internal override bool TryGetDate(out Operand value) { value = this; return true; }
+
 		public override string ToString() { return $"\"{DateValue}\""; }
 	}
 }
