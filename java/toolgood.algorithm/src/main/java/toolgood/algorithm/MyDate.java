@@ -269,6 +269,78 @@ public class MyDate {
 
     @Override
     public String toString() {
+        // 快路径：一次 char[] 直构，避免 StringBuffer 的同步与多次 append。
+        // 字段超出常规范围（年份 > 9999、月/日/时超出两位数等）时退回慢路径，输出与旧实现逐字一致。
+        if (Year != null && Year > 0 && Month != null && Day != null) {
+            int y = Year;
+            int mo = Month;
+            int d = Day;
+            if (y >= 1000 && y <= 9999 && mo <= 99 && d <= 99
+                    && Hour <= 23 && Minute <= 59 && Second <= 59
+                    && Hour >= 0 && Minute >= 0 && Second >= 0) {
+                char[] buffer = new char[19];
+                Write4(buffer, 0, y);
+                buffer[4] = '-';
+                Write2(buffer, 5, mo);
+                buffer[7] = '-';
+                Write2(buffer, 8, d);
+                buffer[10] = ' ';
+                Write2(buffer, 11, Hour);
+                buffer[13] = ':';
+                Write2(buffer, 14, Minute);
+                buffer[16] = ':';
+                Write2(buffer, 17, Second);
+                return new String(buffer);
+            }
+            return ToStringSlow();
+        }
+        if (Day != null && Day > 0) {
+            if (Day <= 99
+                    && Hour >= 0 && Hour <= 23 && Minute >= 0 && Minute <= 59 && Second >= 0 && Second <= 59) {
+                int d = Day;
+                int offset = d < 10 ? 1 : 2;
+                char[] buffer = new char[offset + 9];   // "D HH:mm:ss"
+                if (d >= 10) { buffer[0] = (char) ('0' + d / 10); }
+                buffer[offset - 1] = (char) ('0' + d % 10);
+                buffer[offset] = ' ';
+                Write2(buffer, offset + 1, Hour);
+                buffer[offset + 3] = ':';
+                Write2(buffer, offset + 4, Minute);
+                buffer[offset + 6] = ':';
+                Write2(buffer, offset + 7, Second);
+                return new String(buffer);
+            }
+            // 日超出两位 → 慢路径（慢路径按原格式输出整数值）
+            return ToStringSlow();
+        }
+        if (Hour >= 0 && Hour <= 23 && Minute >= 0 && Minute <= 59 && Second >= 0 && Second <= 59) {
+            char[] buffer = new char[8];
+            Write2(buffer, 0, Hour);
+            buffer[2] = ':';
+            Write2(buffer, 3, Minute);
+            buffer[5] = ':';
+            Write2(buffer, 6, Second);
+            return new String(buffer);
+        }
+        return ToStringSlow();
+    }
+
+    private static void Write2(char[] buffer, int offset, int value) {
+        buffer[offset] = (char) ('0' + value / 10);
+        buffer[offset + 1] = (char) ('0' + value % 10);
+    }
+
+    private static void Write4(char[] buffer, int offset, int value) {
+        buffer[offset] = (char) ('0' + value / 1000);
+        buffer[offset + 1] = (char) ('0' + value / 100 % 10);
+        buffer[offset + 2] = (char) ('0' + value / 10 % 10);
+        buffer[offset + 3] = (char) ('0' + value % 10);
+    }
+
+    /**
+     * 慢路径：字段超出常规范围（年份 &gt; 9999、月/日/时超出两位数等）时按原格式输出
+     */
+    private String ToStringSlow() {
         StringBuffer stringBuffer = new StringBuffer();
         if (Year != null && Year > 0) {
             stringBuffer.append(Year);

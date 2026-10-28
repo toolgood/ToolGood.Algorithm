@@ -15,6 +15,19 @@ public class FunctionCache implements IFunctionCache {
     private final ConcurrentHashMap<String, FunctionBase> conditionCache = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, DiyNameInfo> diyNameCache = new ConcurrentHashMap<>();
 
+    // 缓存条目软上限：动态拼接的公式串会让缓存无限增长（内存泄漏），超限淘汰一半。
+    // 缓存仅用于免重复解析，被淘汰的条目下次命中时重新解析，不影响正确性
+    private static final int MaxCacheSize = 100_000;
+
+    private static <TValue> void TrimCache(ConcurrentHashMap<String, TValue> cache) {
+        if (cache.size() < MaxCacheSize) return;
+        // 淘汰一半而不是全部清空：全清会让高频 key 与长尾 key 一起被踢掉，命中率塌缩
+        for (String key : cache.keySet()) {
+            if (cache.size() < MaxCacheSize / 2) break;
+            cache.remove(key);
+        }
+    }
+
     /**
      * 获取自定义名称信息，并使用缓存来提高性能。对于相同的表达式，将从缓存中返回之前解析的结果，而不是重新解析。
      */
@@ -23,6 +36,7 @@ public class FunctionCache implements IFunctionCache {
         if (result != null) return result;
         try {
             DiyNameInfo diyNameInfo = AlgorithmEngineHelper.GetDiyNames(exp);
+            TrimCache(diyNameCache);
             diyNameCache.put(exp, diyNameInfo);
             return diyNameInfo;
         } catch (Exception e) {
@@ -35,6 +49,7 @@ public class FunctionCache implements IFunctionCache {
         if (result != null) return result;
         CalculateTree tree = AlgorithmEngineHelper.ParseCalculate(funExp);
         FunctionBase fun = CreateCalculate(tree, funExp);
+        TrimCache(calculateCache);
         calculateCache.put(funExp, fun);
         return fun;
     }
@@ -48,6 +63,7 @@ public class FunctionCache implements IFunctionCache {
             }
             try {
                 FunctionBase fun = AlgorithmEngineHelper.ParseFormula(key);
+                TrimCache(calculateCache);
                 calculateCache.put(key, fun);
                 return fun;
             } catch (Exception e) {
@@ -69,6 +85,7 @@ public class FunctionCache implements IFunctionCache {
         if (result != null) return result;
         ConditionTree tree = AlgorithmEngineHelper.ParseCondition(funExp);
         FunctionBase fun = CreateCondition(tree, funExp);
+        TrimCache(conditionCache);
         conditionCache.put(funExp, fun);
         return fun;
     }
