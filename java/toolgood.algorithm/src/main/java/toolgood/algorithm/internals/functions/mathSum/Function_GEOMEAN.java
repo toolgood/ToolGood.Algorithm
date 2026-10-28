@@ -29,13 +29,13 @@ public final class Function_GEOMEAN extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
-        Operand error = TryEvaluateAll(engine, tempParameter, args);
-        if (error != null) { return error; }
-
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
-        if (o == false) { return ParameterError(1); }
+        // 逐个求值并直接展平，免去中间的 List<Operand> 中转；展平失败保持原有的 ParameterError(1) 语义
+        for (int i = 0; i < funcs.length; i++) {
+            Operand aa = funcs[i].Evaluate(engine, tempParameter);
+            if (aa.IsErrorOrNone()) { return aa; }
+            if (FunctionUtil.FlattenToNumberList(aa, list) == false) { return ParameterError(1); }
+        }
         if (list.size() == 0) { return ParameterError(1); }
         double product = 1.0;
         for (int i = 0; i < list.size(); i++) {

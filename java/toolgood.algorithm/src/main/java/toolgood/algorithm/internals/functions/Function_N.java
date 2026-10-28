@@ -41,6 +41,24 @@ public abstract class Function_N extends FunctionBase {
         return null;
     }
 
+    /**
+     * 依次求值全部参数并直接展平入 list，免去中间的 List&lt;Operand&gt; 中转。
+     * 错误语义与「TryEvaluateAll + FlattenToBigDecimalList」一致：
+     * 参数求值出错时原样上抛该错误操作数，展平失败时返回 FunctionError()。
+     */
+    protected Operand TryFlattenAll(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter, List<java.math.BigDecimal> list) {
+        for (int i = 0; i < funcs.length; i++) {
+            Operand aa = funcs[i].Evaluate(engine, tempParameter);
+            if (aa.IsErrorOrNone()) {
+                return aa;
+            }
+            if (FunctionUtil.FlattenToNumberList(aa, list) == false) {
+                return FunctionError();
+            }
+        }
+        return null;
+    }
+
     protected Operand GetText(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter, int idx) {
         Operand args1 = funcs[idx].Evaluate(engine, tempParameter);
         if (args1.IsText())

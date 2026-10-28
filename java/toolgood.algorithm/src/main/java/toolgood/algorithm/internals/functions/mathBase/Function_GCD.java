@@ -28,18 +28,11 @@ public final class Function_GCD extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
+        List<BigDecimal> list = new ArrayList<>();
         for (int i = 0; i < funcs.length; i++) {
             Operand aa = GetNumber(engine, tempParameter, i);
-            if (aa.IsErrorOrNone()) {
-                return aa;
-            }
-            args.add(aa);
-        }
-        List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
-        if (o == false) {
-            return FunctionError();
+            if (aa.IsErrorOrNone()) { return aa; }
+            if (FunctionUtil.FlattenToNumberList(aa, list) == false) { return FunctionError(); }
         }
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).compareTo(BigDecimal.ZERO) < 0) {

@@ -27,13 +27,9 @@ public final class Function_VARP extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
-        Operand error = TryEvaluateAll(engine, tempParameter, args);
-        if (error != null) { return error; }
-
         List<BigDecimal> list = new ArrayList<>();
-        boolean o = FunctionUtil.FlattenToBigDecimalList(args, list);
-        if (!o) { return FunctionError(); }
+        Operand error = TryFlattenAll(engine, tempParameter, list);
+        if (error != null) { return error; }
         if (list.size() == 0) { return FunctionError(); }
         if (list.size() == 1) { return Operand.Zero; }
 

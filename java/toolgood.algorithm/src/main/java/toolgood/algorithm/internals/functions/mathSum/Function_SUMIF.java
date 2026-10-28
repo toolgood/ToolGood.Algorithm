@@ -12,6 +12,7 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_3;
+import toolgood.algorithm.internals.functions.CompareOperator;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
 public final class Function_SUMIF extends Function_3 {
@@ -55,7 +56,7 @@ public final class Function_SUMIF extends Function_3 {
             if (d != null) {
                 sum = FunctionUtil.GetSumIf(list, d, sumdbs);
             } else {
-                SimpleEntry<String, BigDecimal> m2 = FunctionUtil.ParseSumIfMatch(args2.TextValue().trim());
+                SimpleEntry<CompareOperator, BigDecimal> m2 = FunctionUtil.ParseSumIfMatch(args2.TextValue().trim());
                 if (m2 != null) {
                     sum = FunctionUtil.GetSumIf(list, m2.getKey(), m2.getValue(), sumdbs);
                 } else {

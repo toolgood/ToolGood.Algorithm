@@ -12,6 +12,7 @@ import toolgood.algorithm.internals.functions.NoneEngine;
 import toolgood.algorithm.internals.ParameterType;
 import toolgood.algorithm.internals.functions.FunctionBase;
 import toolgood.algorithm.internals.functions.Function_2;
+import toolgood.algorithm.internals.functions.CompareOperator;
 import toolgood.algorithm.internals.functions.FunctionUtil;
 
 public final class Function_COUNTIF extends Function_2 {
@@ -48,7 +49,7 @@ public final class Function_COUNTIF extends Function_2 {
             if (d != null) {
                 count = FunctionUtil.GetCountIf(list, d);
             } else {
-                SimpleEntry<String, BigDecimal> m2 = FunctionUtil.ParseSumIfMatch(args2.TextValue().trim());
+                SimpleEntry<CompareOperator, BigDecimal> m2 = FunctionUtil.ParseSumIfMatch(args2.TextValue().trim());
                 if (m2 != null) {
                     count = FunctionUtil.GetCountIf(list, m2.getKey(), m2.getValue());
                 } else {

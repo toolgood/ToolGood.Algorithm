@@ -29,12 +29,9 @@ public final class Function_MEDIAN extends Function_N {
 
     @Override
     public Operand Evaluate(AlgorithmEngine engine, BiFunction<AlgorithmEngine, String, Operand> tempParameter) {
-        List<Operand> args = new ArrayList<>(funcs.length);
-        Operand error = TryEvaluateAll(engine, tempParameter, args);
-        if (error != null) { return error; }
-
         List<BigDecimal> list = new ArrayList<>();
-        if (FunctionUtil.FlattenToBigDecimalList(args, list) == false) { return FunctionError(); }
+        Operand error = TryFlattenAll(engine, tempParameter, list);
+        if (error != null) { return error; }
         if (list.size() == 0) { return FunctionError(); }
 
         int n = list.size();
