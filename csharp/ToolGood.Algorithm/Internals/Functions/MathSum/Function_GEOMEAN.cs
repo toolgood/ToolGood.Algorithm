@@ -17,13 +17,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-			var args = new List<Operand>(funcs.Length);
-			var error = TryEvaluateAll(engine, tempParameter, args);
-			if(error != null) { return error; }
-
 			var list = new List<decimal>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return ParameterError(1); }
+			// 逐个求值并直接展平，免去中间的 List<Operand> 中转；
+			// 展平失败保持原有的 ParameterError(1) 语义
+			for(int i = 0; i < funcs.Length; i++) {
+				var aa = funcs[i].Evaluate(engine, tempParameter);
+				if(aa.IsErrorOrNone) { return aa; }
+				if(FunctionUtil.FlattenToList(aa, list) == false) { return ParameterError(1); }
+			}
             if (list.Count == 0) { return ParameterError(1); }
             decimal product = 1.0m;
             try {

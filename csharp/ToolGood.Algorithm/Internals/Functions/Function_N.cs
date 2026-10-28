@@ -40,6 +40,21 @@ namespace ToolGood.Algorithm.Internals.Functions
 			}
 			return null;
 		}
+
+		/// <summary>
+		/// 依次求值全部参数并直接展平入 list，免去中间的 List&lt;Operand&gt; 中转。
+		/// 错误语义与 “TryEvaluateAll + FlattenToList(args, list)” 完全一致：
+		/// 参数求值出错时原样上抛该错误操作数，展平失败时返回 FunctionError()。
+		/// </summary>
+		protected Operand TryFlattenAll(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter, List<decimal> list)
+		{
+			for(int i = 0; i < funcs.Length; i++) {
+				var aa = funcs[i].Evaluate(engine, tempParameter);
+				if(aa.IsErrorOrNone) { return aa; }
+				if(FunctionUtil.FlattenToList(aa, list) == false) { return FunctionError(); }
+			}
+			return null;
+		}
 		#endregion
 
 		#region Get

@@ -17,13 +17,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length);
-            var error = TryEvaluateAll(engine, tempParameter, args);
-            if (error != null) { return error; }
-
             // 直接求值并展平,避免对数组参数调用 GetNumber 导致报错
             var list = new List<decimal>();
-            if (FunctionUtil.FlattenToList(args, list) == false) { return FunctionError(); }
+            var error = TryFlattenAll(engine, tempParameter, list);
+            if (error != null) { return error; }
 
             decimal d = 1;
             try {

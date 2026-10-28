@@ -17,13 +17,10 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length);
-            var error = TryEvaluateAll(engine, tempParameter, args);
-            if(error != null) { return error; }
-
             decimal sum = 0;
-            for(int i = 0; i < args.Count; i++) {
-                var item = args[i];
+            for(int i = 0; i < funcs.Length; i++) {
+                var item = funcs[i].Evaluate(engine, tempParameter);
+                if(item.IsErrorOrNone) { return item; }
                 if(item.IsArray) {
                     var array = item.ArrayValue;
                     for(int j = 0; j < array.Count; j++) {

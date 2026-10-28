@@ -17,13 +17,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length);
-            var error = TryEvaluateAll(engine, tempParameter, args);
-            if(error != null) { return error; }
-
             var list = new List<decimal>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return FunctionError(); }
+            var error = TryFlattenAll(engine, tempParameter, list);
+            if(error != null) { return error; }
             if (list.Count == 0) { return FunctionError(); }
 
             var dict = new Dictionary<decimal, int>();

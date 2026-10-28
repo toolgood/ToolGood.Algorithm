@@ -17,16 +17,14 @@ namespace ToolGood.Algorithm.Internals.Functions.MathBase
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-			var args = new List<Operand>(funcs.Length);
-			var error = TryEvaluateAll(engine, tempParameter, args);
-			if(error != null) { return error; }
-
 			var list = new List<decimal>();
-			for (int i = 0; i < args.Count; i++) {
-				// 按参数逐个展平：展平后的下标与原始参数位置不再一一对应，
+			for (int i = 0; i < funcs.Length; i++) {
+				// 按参数逐个求值并展平：展平后的下标与原始参数位置不再一一对应，
 				// 逐个展平才能让错误消息给出真实的参数序号
+				var aa = funcs[i].Evaluate(engine, tempParameter);
+				if (aa.IsErrorOrNone) { return aa; }
 				var item = new List<decimal>();
-				if (FunctionUtil.FlattenToList(args[i], item) == false) { return FunctionError(); }
+				if (FunctionUtil.FlattenToList(aa, item) == false) { return FunctionError(); }
 				for (int j = 0; j < item.Count; j++) {
 					var value = item[j];
 					if (value < int.MinValue || value > int.MaxValue) {

@@ -17,13 +17,15 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum
 
         public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
         {
-            var args = new List<Operand>(funcs.Length);
-            var error = TryEvaluateAll(engine, tempParameter, args);
-            if(error != null) { return error; }
-
+            // 逐个求值并直接展平，免去中间的 List<Operand> 参数中转；
+            // 注意：此处必须展平为 Operand 列表——COUNT 的语义是逐项判断
+            // “能否转为数值”，不可转换的项跳过而不报错，与 decimal 展平不同
             var list = new List<Operand>();
-            var o = FunctionUtil.FlattenToList(args, list);
-            if (o == false) { return FunctionError(); }
+            for(int i = 0; i < funcs.Length; i++) {
+                var aa = funcs[i].Evaluate(engine, tempParameter);
+                if(aa.IsErrorOrNone) { return aa; }
+                if(FunctionUtil.FlattenToList(aa, list) == false) { return FunctionError(); }
+            }
 
             // 与 Excel 一致:只统计可转为数值的项,文本、空值等一律忽略
             int count = 0;

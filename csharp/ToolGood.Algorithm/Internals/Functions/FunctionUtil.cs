@@ -92,9 +92,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return count;
 		}
 
-		public static bool FlattenToList(List<Operand> args, List<Operand> list)
+		/// <summary>
+		/// 展平参数列表为 Operand 列表。countHint 为调用方已知的元素总数
+		/// （如单数组参数的 ArrayValue.Count），传入后可跳过 EstimateCount 扫描；
+		/// 传 -1 时自行估算。
+		/// </summary>
+		public static bool FlattenToList(List<Operand> args, List<Operand> list, int countHint = -1)
 		{
-			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
+			list.Capacity = Math.Max(list.Capacity, countHint >= 0 ? countHint : EstimateCount(args));
 			// 快速路径 1：遇数组/Json 之前的顶层标量直接入 list，不分配 Queue
 			int i = 0;
 			for(; i < args.Count; i++) {
@@ -123,9 +128,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return FlattenQueue(queue, list);
 		}
 
-		public static bool FlattenToList(List<Operand> args, List<decimal> list)
+		/// <summary>
+		/// 展平参数列表为 decimal 列表。countHint 见 <see cref="FlattenToList(List{Operand}, List{Operand}, int)"/>。
+		/// </summary>
+		public static bool FlattenToList(List<Operand> args, List<decimal> list, int countHint = -1)
 		{
-			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
+			list.Capacity = Math.Max(list.Capacity, countHint >= 0 ? countHint : EstimateCount(args));
 			// 快速路径 1：顶层标量直接转换入 list。
 			// SUMIF/COUNTIF/AVERAGEIF 的热点场景 args 为纯标量列表，此处零额外分配。
 			// 顺序语义与原实现一致——原实现以全部参数初始化队列做 BFS 展开，
@@ -226,7 +234,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static bool FlattenToList(Operand args, List<decimal> list)
 		{
 			if(args.IsError) return false;
-			if(args.IsArray) return FlattenToList(args.ArrayValue, list);
+			if(args.IsArray) return FlattenToList(args.ArrayValue, list, args.ArrayValue.Count);
 			if(args.IsJson) {
 				var i = args.ToArray(null);
 				if(i.IsError) return false;
@@ -239,6 +247,25 @@ namespace ToolGood.Algorithm.Internals.Functions
 				if(converted.IsError) return false;
 				list.Add(converted.NumberValue);
 			}
+			return true;
+		}
+
+		/// <summary>
+		/// 单操作数展平成 Operand 列表。与 “FlattenToList(new[]{ args }, list)” 等价，
+		/// 供 COUNT 等需要逐项保留 Operand（判断能否转数值）的函数免去参数中转列表。
+		/// </summary>
+		public static bool FlattenToList(Operand args, List<Operand> list)
+		{
+			if(args.IsError) { return false; }
+			if(args.IsArray) {
+				return FlattenToList(args.ArrayValue, list, args.ArrayValue.Count);
+			}
+			if(args.IsJson) {
+				var i = args.ToArray(null);
+				if(i.IsError) return false;
+				return FlattenToList(i.ArrayValue, list);
+			}
+			list.Add(args);
 			return true;
 		}
 
