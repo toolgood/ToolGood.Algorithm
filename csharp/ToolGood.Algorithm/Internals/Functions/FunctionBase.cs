@@ -199,14 +199,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 		/// <returns>转换成功返回 true，否则返回 false</returns>
 		protected static bool TryGetInt(Operand arg, out int value)
 		{
-			value = 0;
-			try {
-				value = arg.IntValue;
-				return true;
-			} catch (OverflowException) {
-				// decimal 超出 int 范围，交由调用方按参数错误处理，避免向调用方抛出异常
+			// 用范围判断替代 try/catch(OverflowException)：异常路径（栈展开）远贵于两次 decimal 比较，
+			// 成功路径也不再需要布置 EH 表
+			var number = arg.NumberValue;
+			if(number < int.MinValue || number > int.MaxValue) {
+				value = 0;
 				return false;
 			}
+			value = (int)number;
+			return true;
 		}
 		#endregion
 
