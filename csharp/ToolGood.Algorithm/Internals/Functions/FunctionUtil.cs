@@ -3,6 +3,7 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.LitJson;
 
@@ -94,48 +95,129 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public static bool FlattenToList(List<Operand> args, List<Operand> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
-			// 使用队列做顺序展开，保证输出顺序与参数从左到右的顺序一致
-			var queue = new Queue<Operand>(args);
-			while(queue.Count > 0) {
-				var item = queue.Dequeue();
-				if(item.IsArray) {
-					var array = item.ArrayValue;
-					for(int i = 0; i < array.Count; i++) queue.Enqueue(array[i]);
-				} else if(item.IsJson) {
-					var i = item.ToArray(null);
-					if(i.IsError) return false;
-					var array = i.ArrayValue;
-					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
-				} else {
-					list.Add(item);
-				}
+			// 快速路径 1：遇数组/Json 之前的顶层标量直接入 list，不分配 Queue
+			int i = 0;
+			for(; i < args.Count; i++) {
+				var item = args[i];
+				if(item.IsArray || item.IsJson) break;
+				list.Add(item);
 			}
-			return true;
+			if(i >= args.Count) { return true; }
+			// 快速路径 2：首个嵌套项恰为最后一个参数时，直接展开该数组的标量元素，仍不分配 Queue
+			if(i == args.Count - 1 && args[i].IsArray) {
+				var array = args[i].ArrayValue;
+				int j = 0;
+				for(; j < array.Count; j++) {
+					var el = array[j];
+					if(el.IsArray || el.IsJson) break;
+					list.Add(el);
+				}
+				if(j >= array.Count) { return true; }
+				var q2 = new Queue<Operand>(array.Count - j);
+				for(; j < array.Count; j++) { q2.Enqueue(array[j]); }
+				return FlattenQueue(q2, list);
+			}
+			// 通用路径：从首个嵌套项起入队做 BFS 展开，输出顺序与从左到右的参数顺序一致
+			var queue = new Queue<Operand>(args.Count - i);
+			for(; i < args.Count; i++) { queue.Enqueue(args[i]); }
+			return FlattenQueue(queue, list);
 		}
 
 		public static bool FlattenToList(List<Operand> args, List<decimal> list)
 		{
 			list.Capacity = Math.Max(list.Capacity, EstimateCount(args));
-			// 使用队列做顺序展开，保证输出顺序与参数从左到右的顺序一致
-			var queue = new Queue<Operand>(args);
+			// 快速路径 1：顶层标量直接转换入 list。
+			// SUMIF/COUNTIF/AVERAGEIF 的热点场景 args 为纯标量列表，此处零额外分配。
+			// 顺序语义与原实现一致——原实现以全部参数初始化队列做 BFS 展开，
+			// 先直填首个嵌套项之前的标量，剩余部分入队后展开次序不变。
+			int i = 0;
+			for(; i < args.Count; i++) {
+				var item = args[i];
+				if(item.IsArray || item.IsJson) break;
+				if(item.IsNumber) {
+					list.Add(item.NumberValue);
+				} else {
+					var converted = item.ToNumber(null);
+					if(converted.IsError) return false;
+					list.Add(converted.NumberValue);
+				}
+			}
+			if(i >= args.Count) { return true; }
+			// 快速路径 2：首个嵌套项恰为最后一个参数（COUNT/MEDIAN/PRODUCT 的 sum(arr) 形态），
+			// 直接展开该数组的标量元素，仍不分配 Queue
+			if(i == args.Count - 1 && args[i].IsArray) {
+				var array = args[i].ArrayValue;
+				int j = 0;
+				for(; j < array.Count; j++) {
+					var el = array[j];
+					if(el.IsArray || el.IsJson) break;
+					if(el.IsNumber) {
+						list.Add(el.NumberValue);
+					} else {
+						var converted = el.ToNumber(null);
+						if(converted.IsError) return false;
+						list.Add(converted.NumberValue);
+					}
+				}
+				if(j >= array.Count) { return true; }
+				// 数组内仍有嵌套：剩余元素入队。BFS 会先排完该数组顶层剩余元素再展开嵌套子元素，
+				// 此处入队次序（嵌套项在前、剩余标量在后）经队列展开后与之一致。
+				var q2 = new Queue<Operand>(array.Count - j);
+				for(; j < array.Count; j++) { q2.Enqueue(array[j]); }
+				return FlattenQueue(q2, list);
+			}
+			// 通用路径：从首个嵌套项起入队做 BFS 展开，输出顺序与从左到右的参数顺序一致
+			var queue = new Queue<Operand>(args.Count - i);
+			for(; i < args.Count; i++) { queue.Enqueue(args[i]); }
+			return FlattenQueue(queue, list);
+		}
+
+		/// <summary>
+		/// 队列 BFS 展开（FlattenToList 的通用路径）。单独拆出并禁止内联：
+		/// 快速路径保持小巧，本方法的代码生成则与原队列实现一致。
+		/// </summary>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private static bool FlattenQueue(Queue<Operand> queue, List<decimal> list)
+		{
 			while(queue.Count > 0) {
 				var item = queue.Dequeue();
 				if(item.IsArray) {
 					var array = item.ArrayValue;
-					for(int i = 0; i < array.Count; i++) queue.Enqueue(array[i]);
+					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
 				} else if(item.IsJson) {
-					var i = item.ToArray(null);
-					if(i.IsError) return false;
-					var array = i.ArrayValue;
+					var arr = item.ToArray(null);
+					if(arr.IsError) return false;
+					var array = arr.ArrayValue;
+					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
+				} else if(item.IsNumber) {
+					list.Add(item.NumberValue);
+				} else {
+					var converted = item.ToNumber(null);
+					if(converted.IsError) return false;
+					list.Add(converted.NumberValue);
+				}
+			}
+			return true;
+		}
+
+		/// <summary>
+		/// 队列 BFS 展开（List&lt;Operand&gt; 重载的通用路径）。见 <see cref="FlattenQueue(Queue{Operand}, List{decimal})"/>。
+		/// </summary>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		private static bool FlattenQueue(Queue<Operand> queue, List<Operand> list)
+		{
+			while(queue.Count > 0) {
+				var item = queue.Dequeue();
+				if(item.IsArray) {
+					var array = item.ArrayValue;
+					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
+				} else if(item.IsJson) {
+					var arr = item.ToArray(null);
+					if(arr.IsError) return false;
+					var array = arr.ArrayValue;
 					for(int j = 0; j < array.Count; j++) queue.Enqueue(array[j]);
 				} else {
-					if(item.IsNumber) {
-						list.Add(item.NumberValue);
-					} else {
-						var converted = item.ToNumber(null);
-						if(converted.IsError) return false;
-						list.Add(converted.NumberValue);
-					}
+					list.Add(item);
 				}
 			}
 			return true;
