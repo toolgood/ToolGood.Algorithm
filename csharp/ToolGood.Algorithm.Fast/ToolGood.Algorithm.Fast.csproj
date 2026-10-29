@@ -6,6 +6,9 @@
 		<AssemblyTitle>ToolGood.Algorithm.Fast</AssemblyTitle>
 		<Authors>ToolGood</Authors>
 		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
+		<!-- netstandard2.1 默认 C# 8.0，而统计/金融函数使用静态匿名函数（C# 9）以获得零闭包；
+		     其它目标保持 SDK 默认语言版本，避免降级 -->
+		<LangVersion Condition="'$(TargetFramework)' == 'netstandard2.1'">9.0</LangVersion>
 		<AssemblyName>ToolGood.Algorithm.Fast</AssemblyName>
 		<PublicSign>true</PublicSign>
 		<PackageId>ToolGood.Algorithm.Fast</PackageId>
@@ -19,7 +22,7 @@
 		<Product>ToolGood.Algorithm.Fast</Product>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<SignAssembly>true</SignAssembly>
-		<Version>6.3.5</Version>
+		<Version>6.3.6</Version>
 		<AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
