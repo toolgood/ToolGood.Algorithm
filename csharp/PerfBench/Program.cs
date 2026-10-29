@@ -36,7 +36,24 @@ namespace PerfBench
             Engine.Parse("\"1\"+2+3+4+5");
         private static readonly BenchEngine SumEngine = new BenchEngine();
         private static readonly FunctionBase SumFunc = SumEngine.Parse("SUM(a)");
+        private static readonly FunctionBase AvgFunc = SumEngine.Parse("ROUND(SUM(a)/COUNT(a),2)");
         private static readonly Operand ArrayInt100 = BuildIntArray100();
+        private static readonly Operand ArrayDec100 = BuildDecArray100();
+        private static readonly Operand ArrayMix100 = BuildMixArray100();
+
+        // 非整数场景：小数/混合类型/日期，用于检验「整数类型被削弱」时对常规公式的影响
+        private static readonly FunctionBase DecChainFunc =
+            Engine.Parse("1.5+2.25+3.125+4.5+5.75+6.5+7.25+8.5+9.125+10.5");
+        private static readonly FunctionBase MixChainFunc =
+            Engine.Parse("1+2.5+3+4.75+5+6.5+7+8.25+9+10.5");
+        private static readonly FunctionBase MulDivFunc =
+            Engine.Parse("1.5*2.25*3.5*4.125/1.75");
+        private static readonly FunctionBase IntDivFunc =
+            Engine.Parse("1000/7/3");
+        private static readonly FunctionBase RoundFunc =
+            Engine.Parse("ROUND(12.3456*3+2.25,2)");
+        private static readonly FunctionBase DatedifFunc =
+            Engine.Parse("DATEDIF(DATE(2026,1,1),DATE(2026,12,31),\"D\")");
 
         private sealed class BenchEngine : AlgorithmEngine
         {
@@ -51,6 +68,21 @@ namespace PerfBench
         {
             var list = new List<Operand>(100);
             for (int i = 0; i < 100; i++) list.Add(Operand.Create(i));
+            return Operand.Create(list);
+        }
+
+        private static Operand BuildDecArray100()
+        {
+            var list = new List<Operand>(100);
+            for (int i = 0; i < 100; i++) list.Add(Operand.Create(0.5m + i));
+            return Operand.Create(list);
+        }
+
+        private static Operand BuildMixArray100()
+        {
+            var list = new List<Operand>(100);
+            for (int i = 0; i < 50; i++) list.Add(Operand.Create(i));
+            for (int i = 0; i < 50; i++) list.Add(Operand.Create(0.25m + i));
             return Operand.Create(list);
         }
 
@@ -119,6 +151,55 @@ namespace PerfBench
                 SumEngine.A = ArrayInt100;
                 var r = SumFunc.TryEvaluate(SumEngine, 0m);
                 if (r != 4950m) throw new Exception("eval failed: " + r);
+            });
+
+            // ---- 非整数场景 ----
+            Run("Eval_DecChain10", 200000, () => {
+                var r = DecChainFunc.Evaluate(Engine);
+                if (r.IsError) throw new Exception(r.ErrorMsg);
+            });
+
+            Run("Eval_MixChain10", 200000, () => {
+                var r = MixChainFunc.Evaluate(Engine);
+                if (r.IsError) throw new Exception(r.ErrorMsg);
+            });
+
+            Run("Eval_MulDiv4", 200000, () => {
+                var r = MulDivFunc.Evaluate(Engine);
+                if (r.IsError) throw new Exception(r.ErrorMsg);
+            });
+
+            Run("Eval_IntDiv3", 200000, () => {
+                var r = IntDivFunc.Evaluate(Engine);
+                if (r.IsError) throw new Exception(r.ErrorMsg);
+            });
+
+            Run("Eval_RoundExpr", 200000, () => {
+                var r = RoundFunc.Evaluate(Engine);
+                if (r.IsError) throw new Exception(r.ErrorMsg);
+            });
+
+            Run("Eval_Datedif", 100000, () => {
+                var r = DatedifFunc.Evaluate(Engine);
+                if (r.IsError) throw new Exception(r.ErrorMsg);
+            });
+
+            Run("Eval_SumArrayDec100", 50000, () => {
+                SumEngine.A = ArrayDec100;
+                var r = SumFunc.TryEvaluate(SumEngine, 0m);
+                if (r <= 0m) throw new Exception("eval failed: " + r);
+            });
+
+            Run("Eval_SumArrayMix100", 50000, () => {
+                SumEngine.A = ArrayMix100;
+                var r = SumFunc.TryEvaluate(SumEngine, 0m);
+                if (r <= 0m) throw new Exception("eval failed: " + r);
+            });
+
+            Run("Eval_AvgArrayMix100", 50000, () => {
+                SumEngine.A = ArrayMix100;
+                var r = AvgFunc.TryEvaluate(SumEngine, 0m);
+                if (r <= 0m) throw new Exception("eval failed: " + r);
             });
         }
 
