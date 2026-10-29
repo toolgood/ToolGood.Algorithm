@@ -23,14 +23,12 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			if (TryGetInt(args1, out int code) == false) {
 				return ParameterError(1);
 			}
+			// 已排除负数、超出 Unicode 上限、以及代理区(0xD800~0xDFFF)，
+			// ConvertFromUtf32 在其余取值上不会抛异常，无需再包 try
 			if (code < 0 || code > 0x10FFFF || (code >= 0xD800 && code <= 0xDFFF)) {
 				return ParameterError(1);
 			}
-			try {
-				return Operand.Create(char.ConvertFromUtf32(code));
-			} catch {
-				return ParameterError(1);
-			}
+			return Operand.Create(char.ConvertFromUtf32(code));
 		}
 		public override OperandType GetResultType()
 		{
