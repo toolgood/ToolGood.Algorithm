@@ -261,8 +261,17 @@ public abstract class Operand {
     // region OperandInt (缓存的整数)
     static final class OperandInt extends Operand {
         private final int _value;
+        /**
+         * 构造时算好的 BigDecimal 形式。NumberValue 是 SUM/AVERAGE/MEDIAN 等聚合函数的逐元素热点，
+         * 原先每次调用都要 new BigDecimal(int)（一次堆分配约 40 字节）；直接返字段可省掉这笔分配。
+         * 用 valueOf 而非 new：0~10 会命中 BigDecimal 的内部共享常量。
+         */
+        private final BigDecimal _asDecimal;
 
-        OperandInt(int obj) { _value = obj; }
+        OperandInt(int obj) {
+            _value = obj;
+            _asDecimal = BigDecimal.valueOf(obj);
+        }
 
         @Override
         public boolean IsNumber() { return true; }
@@ -271,7 +280,7 @@ public abstract class Operand {
         @Override
         public int IntValue() { return _value; }
         @Override
-        public BigDecimal NumberValue() { return new BigDecimal(_value); }
+        public BigDecimal NumberValue() { return _asDecimal; }
         @Override
         public long LongValue() { return _value; }
         @Override
