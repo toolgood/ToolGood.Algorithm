@@ -14,8 +14,6 @@ namespace ToolGood.Algorithm.Operands
 		public override OperandType Type => OperandType.NUMBER;
 		public override int IntValue => (int)_value;
 		public override decimal NumberValue => _value;
-		/// <summary>decimal 原值，供非整数快路径直接取用</summary>
-		internal decimal RawDecimal => _value;
 		public override long LongValue => (long)_value;
 		public override double DoubleValue => (double)_value;
 

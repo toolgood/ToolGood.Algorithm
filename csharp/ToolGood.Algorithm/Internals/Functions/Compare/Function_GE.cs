@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.Compare
 {
@@ -20,15 +19,6 @@ namespace ToolGood.Algorithm.Internals.Functions.Compare
 		{
 			var args1 = func1.Evaluate(engine, tempParameter); if(args1.IsErrorOrNone) { return args1; }
 			var args2 = func2.Evaluate(engine, tempParameter); if(args2.IsErrorOrNone) { return args2; }
-			// 整数快路径：跳过 Type 判等 + 两次 NumberValue（int→decimal 转换）
-			if(args1 is OperandInt n1 && args2 is OperandInt n2) {
-				return Operand.Create(n1.RawInt >= n2.RawInt);
-			}
-
-			if(args1 is OperandDecimal d1 && args2 is OperandDecimal d2) {
-				return Operand.Create(d1.RawDecimal >= d2.RawDecimal);
-			}
-
 			if(args1.Type == args2.Type) {
 				if(args1.IsNumber) {
 					return Operand.Create(args1.NumberValue >= args2.NumberValue);
