@@ -1,45 +1,22 @@
-using System;
-using System.Collections.Generic;
-using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_EDATE : Function_2
-    {
+	/// <summary>
+	/// EDATE(start_date, months)：返回与 start_date 相隔指定月数的日期。
+	/// 求值与 ADDMONTHS 完全相同，差异仅在函数名。
+	/// </summary>
+	internal sealed class Function_EDATE : Function_DateAdd
+	{
 		public Function_EDATE(FunctionBase[] funcs) : base(funcs)
 		{
-			if (funcs.Length != 2) {
-				throw new ArgumentException($"Function '{Name}' requires exactly 2 parameters.");
-			}
 		}
 
-        public override string Name => "EDate";
+		public override string Name => "EDate";
 
-        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = GetDate_1(engine, tempParameter);
-            if (args1.IsErrorOrNone) { return args1; }
-
-            var args2 = GetNumber_2(engine, tempParameter);
-            if (args2.IsErrorOrNone) { return args2; }
-            try {
-                return Operand.Create(args1.DateValue.AddMonths(args2.IntValue));
-            } catch (ArgumentOutOfRangeException) {
-                return ParameterError(2);
-            } catch (OverflowException) {
-                return ParameterError(2);
-            }
-        }
-		public override OperandType GetResultType()
+		protected override MyDate Add(MyDate date, int offset)
 		{
-			return OperandType.DATE;
-		}
-
-		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
-		{
-			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
-			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			return date.AddMonths(offset);
 		}
 	}
-
 }

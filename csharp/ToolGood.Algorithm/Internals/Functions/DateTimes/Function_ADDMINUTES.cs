@@ -1,46 +1,18 @@
-using System;
-using System.Collections.Generic;
-using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.Operands;
 
 namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 {
-	internal sealed class Function_ADDMINUTES : Function_2
-    {
+	internal sealed class Function_ADDMINUTES : Function_DateAdd
+	{
 		public Function_ADDMINUTES(FunctionBase[] funcs) : base(funcs)
 		{
-			if (funcs.Length != 2) {
-				throw new ArgumentException($"Function '{Name}' requires exactly 2 parameters.");
-			}
 		}
 
-        public override string Name => "AddMinutes";
+		public override string Name => "AddMinutes";
 
-        public override Operand Evaluate(AlgorithmEngine engine, Func<AlgorithmEngine, string, Operand> tempParameter)
-        {
-            var args1 = GetDate_1(engine, tempParameter);
-            if (args1.IsErrorOrNone) { return args1; }
-
-            var args2 = GetNumber_2(engine, tempParameter);
-            if (args2.IsErrorOrNone) { return args2; }
-            try {
-                var date = args1.DateValue.AddMinutes(args2.IntValue);
-                return Operand.Create(date);
-            } catch (ArgumentOutOfRangeException) {
-                return ParameterError(2);
-            } catch (OverflowException) {
-                return ParameterError(2);
-            }
-        }
-		public override OperandType GetResultType()
+		protected override MyDate Add(MyDate date, int offset)
 		{
-			return OperandType.DATE;
-		}
-
-		internal override void GetParameterTypes(NoneEngine noneEngine, List<ParameterType> result, OperandType operandType, string op = null, string val = null)
-		{
-			func1.GetParameterTypes(noneEngine, result, OperandType.DATE);
-			func2.GetParameterTypes(noneEngine, result, OperandType.NUMBER);
+			return date.AddMinutes(offset);
 		}
 	}
-
 }
