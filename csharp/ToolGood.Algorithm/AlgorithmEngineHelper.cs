@@ -162,27 +162,13 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static ConditionTree ParseCondition(string condition)
 		{
-			var tree = new ConditionTree();
-			if(string.IsNullOrWhiteSpace(condition)) {
-				tree.Type = ConditionTreeType.Error;
-				tree.ErrorMessage = "condition is null";
-				return tree;
-			}
-			try {
-				var errorWriter = new AntlrErrorData();
-				var context = CreateParserContext(condition, errorWriter);
-				if(errorWriter.IsError) {
+			return ParseTree(condition, "condition is null",
+				() => new ConditionTree(),
+				(tree, message) => {
 					tree.Type = ConditionTreeType.Error;
-					tree.ErrorMessage = errorWriter.ErrorMsg;
-					return tree;
-				}
-				var visitor = new MathSplitVisitor() { Source = condition };
-				return visitor.Visit(context);
-			} catch(Exception ex) {
-				tree.Type = ConditionTreeType.Error;
-				tree.ErrorMessage = ex.Message;
-			}
-			return tree;
+					tree.ErrorMessage = message;
+				},
+				context => new MathSplitVisitor() { Source = condition }.Visit(context));
 		}
 
 
@@ -225,27 +211,46 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static CalculateTree ParseCalculate(string exp)
 		{
-			var tree = new CalculateTree();
+			return ParseTree(exp, "exp is null",
+				() => new CalculateTree(),
+				(tree, message) => {
+					tree.Type = CalculateTreeType.Error;
+					tree.ErrorMessage = message;
+				},
+				context => new MathSplitVisitor2() { Source = exp }.Visit(context));
+		}
+
+		/// <summary>
+		/// 条件表达式与计算表达式的解析流程完全相同：空串判错 → 建 Antlr 解析上下文 → 语法错误转树错误
+		/// → 交给对应 Visitor 建树 → 兜住 Visitor 抛出的异常。差异只有树类型、错误文案与 Visitor，
+		/// 因此收敛为一个泛型方法，避免两份 25 行的同步维护。
+		/// </summary>
+		private static TTree ParseTree<TTree>(
+			string exp,
+			string nullMessage,
+			Func<TTree> createTree,
+			Action<TTree, string> setError,
+			Func<mathParser.ProgContext, TTree> visit) where TTree : class
+		{
 			if(string.IsNullOrWhiteSpace(exp)) {
-				tree.Type = CalculateTreeType.Error;
-				tree.ErrorMessage = "exp is null";
-				return tree;
+				var empty = createTree();
+				setError(empty, nullMessage);
+				return empty;
 			}
 			try {
 				var errorWriter = new AntlrErrorData();
 				var context = CreateParserContext(exp, errorWriter);
 				if(errorWriter.IsError) {
-					tree.Type = CalculateTreeType.Error;
-					tree.ErrorMessage = errorWriter.ErrorMsg;
-					return tree;
+					var bad = createTree();
+					setError(bad, errorWriter.ErrorMsg);
+					return bad;
 				}
-				var visitor = new MathSplitVisitor2() { Source = exp };
-				return visitor.Visit(context);
+				return visit(context);
 			} catch(Exception ex) {
-				tree.Type = CalculateTreeType.Error;
-				tree.ErrorMessage = ex.Message;
+				var bad = createTree();
+				setError(bad, ex.Message);
+				return bad;
 			}
-			return tree;
 		}
 
 
