@@ -27,24 +27,8 @@ namespace ToolGood.Algorithm.Operands
 			}
 		}
 
-		public override Operand ToText(string errorMessage = null)
-		{
-			return Create(ToString());
-		}
-		public override Operand ToText(string errorMessage, params object[] args)
-		{
-			return Create(ToString());
-		}
 		internal override bool TryGetText(out Operand value) { value = Create(ToString()); return true; }
 
-		public override Operand ToArray(string errorMessage)
-		{
-			return Create(ArrayValue);
-		}
-		public override Operand ToArray(string errorMessage, params object[] args)
-		{
-			return Create(ArrayValue);
-		}
 		internal override bool TryGetArray(out Operand value) { value = Create(ArrayValue); return true; }
 
 		public override Operand ToJson(string errorMessage = null)

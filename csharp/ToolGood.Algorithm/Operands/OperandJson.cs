@@ -15,24 +15,8 @@ namespace ToolGood.Algorithm.Operands
 		public override OperandType Type => OperandType.JSON;
 		internal override JsonData JsonValue => _value;
 
-		public override Operand ToText(string errorMessage = null)
-		{
-			return Create(_value.ToString());
-		}
-		public override Operand ToText(string errorMessage, params object[] args)
-		{
-			return Create(_value.ToString());
-		}
 		internal override bool TryGetText(out Operand value) { value = Create(_value.ToString()); return true; }
 
-		public override Operand ToArray(string errorMessage)
-		{
-			return ToArrayInternal(errorMessage);
-		}
-		public override Operand ToArray(string errorMessage, params object[] args)
-		{
-			return ToArrayInternal(string.Format(errorMessage, args));
-		}
 		internal override bool TryGetArray(out Operand value)
 		{
 			// IsArray 时 ToArrayInternal 不会触到错误分支，传 null 即可；非数组回落原路径构造错误消息

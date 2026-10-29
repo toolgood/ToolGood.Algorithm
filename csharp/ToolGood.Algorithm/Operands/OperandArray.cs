@@ -16,18 +16,8 @@ namespace ToolGood.Algorithm.Operands
 		public override OperandType Type => OperandType.ARRAY;
 		public override List<Operand> ArrayValue => _value;
 
-		public override Operand ToText(string errorMessage = null)
-		{
-			return Create(ToString());
-		}
-		public override Operand ToText(string errorMessage, params object[] args)
-		{
-			return Create(ToString());
-		}
 		internal override bool TryGetText(out Operand value) { value = Create(ToString()); return true; }
 
-		public override Operand ToArray(string errorMessage) { return this; }
-		public override Operand ToArray(string errorMessage, params object[] args) { return this; }
 		internal override bool TryGetArray(out Operand value) { value = this; return true; }
 
 		public override Operand ToJson(string errorMessage = null)

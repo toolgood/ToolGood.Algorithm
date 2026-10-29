@@ -17,28 +17,7 @@ namespace ToolGood.Algorithm.Operands
 		public override long LongValue => (long)_value;
 		public override double DoubleValue => (double)_value;
 
-		public override Operand ToNumber(string errorMessage) { return this; }
-		public override Operand ToNumber(string errorMessage, params object[] args) { return this; }
-
 		internal override bool TryGetNumber(out Operand value) { value = this; return true; }
-
-		public override Operand ToBoolean(string errorMessage) {
-			if(_value == 0) {
-				return False;
-			} else if(_value == 1) {
-				return True;
-			}
-			return base.ToBoolean(errorMessage);
-		}
-		public override Operand ToBoolean(string errorMessage, params object[] args)
-		{
-			if(_value == 0) {
-				return False;
-			} else if(_value == 1) {
-				return True;
-			}
-			return base.ToBoolean(errorMessage, args);
-		}
 
 		internal override bool TryGetBoolean(out Operand value)
 		{
@@ -49,9 +28,8 @@ namespace ToolGood.Algorithm.Operands
 			return false;
 		}
 
-		public override Operand ToText(string errorMessage) { return Create(Format(_value)); }
-		public override Operand ToText(string errorMessage, params object[] args) { return Create(Format(_value)); }
 		internal override bool TryGetText(out Operand value) { value = Create(Format(_value)); return true; }
+		internal override bool TryAppendText(System.Text.StringBuilder sb) { sb.Append(Normalize(_value)); return true; }
 
 		public override string ToString() { return Format(_value); }
 

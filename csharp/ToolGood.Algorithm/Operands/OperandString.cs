@@ -19,20 +19,10 @@ namespace ToolGood.Algorithm.Operands
 		public override OperandType Type => OperandType.TEXT;
 		public override string TextValue => _value;
 
-		#region ToNumber
+		internal override bool TryGetText(out Operand value) { value = this; return true; }
+		internal override bool TryAppendText(System.Text.StringBuilder sb) { sb.Append(_value); return true; }
 
-		public override Operand ToNumber(string errorMessage)
-		{
-			if(TryGetNumber(out var value)) { return value; }
-			return Error(errorMessage ?? "Convert to number error!");
-		}
-		public override Operand ToNumber(string errorMessage, params object[] args)
-		{
-			// 先解析、失败才格式化：字符串→数字是热路径（每次公式里的 '文本'+数字 都会走这里），
-			// 若在解析前 string.Format，成功的转换也要白造一条用不上的错误消息（63ns + 120B）。
-			if(TryGetNumber(out var value)) { return value; }
-			return Error(string.Format(errorMessage, args));
-		}
+		#region ToNumber
 
 		internal override bool TryGetNumber(out Operand value)
 		{
@@ -51,22 +41,7 @@ namespace ToolGood.Algorithm.Operands
 
 		#endregion
 
-		public override Operand ToText(string errorMessage) { return this; }
-		public override Operand ToText(string errorMessage, params object[] args) { return this; }
-		internal override bool TryGetText(out Operand value) { value = this; return true; }
-
 		#region ToBoolean
-
-		public override Operand ToBoolean(string errorMessage)
-		{
-			if(TryGetBoolean(out var value)) { return value; }
-			return Error(errorMessage ?? "Convert to bool error!");
-		}
-		public override Operand ToBoolean(string errorMessage, params object[] args)
-		{
-			if(TryGetBoolean(out var value)) { return value; }
-			return Error(string.Format(errorMessage, args));
-		}
 
 		internal override bool TryGetBoolean(out Operand value)
 		{
@@ -81,17 +56,6 @@ namespace ToolGood.Algorithm.Operands
 		#endregion
 
 		#region ToMyDate
-
-		public override Operand ToMyDate(string errorMessage)
-		{
-			if(TryGetDate(out var value)) { return value; }
-			return Error(errorMessage ?? "Convert to date error!");
-		}
-		public override Operand ToMyDate(string errorMessage, params object[] args)
-		{
-			if(TryGetDate(out var value)) { return value; }
-			return Error(string.Format(errorMessage, args));
-		}
 
 		// 常用日期格式的精确匹配快路径：DateTime.TryParse 无格式约束，内部要按多种模式逐个尝试；
 		// "M"/"d"/"H"/"m"/"s" 自定义格式符接受 1~2 位数字，可同时覆盖 "2026-1-1" 与 "2026-01-01" 两种写法。
@@ -133,10 +97,6 @@ namespace ToolGood.Algorithm.Operands
 
 		#endregion
 
-		public override Operand ToArray(string errorMessage)
-		{
-			return Error(errorMessage ?? "Convert to array error!");
-		}
 		public override Operand ToJson(string errorMessage = null)
 		{
 			var span = TextValue.Trim();

@@ -13,19 +13,12 @@ namespace ToolGood.Algorithm.Operands
 		public override OperandType Type => OperandType.BOOLEAN;
 		public override bool BooleanValue => _value;
 
-		public override Operand ToNumber(string errorMessage) { return _value ? One : Zero; }
-		public override Operand ToNumber(string errorMessage, params object[] args) { return _value ? One : Zero; }
-
-		public override Operand ToBoolean(string errorMessage) { return this; }
-		public override Operand ToBoolean(string errorMessage, params object[] args) { return this; }
-
 		internal override bool TryGetNumber(out Operand value) { value = _value ? One : Zero; return true; }
 
 		internal override bool TryGetBoolean(out Operand value) { value = this; return true; }
 
-		public override Operand ToText(string errorMessage) { return Create(_value ? "TRUE" : "FALSE"); }
-		public override Operand ToText(string errorMessage, params object[] args) { return Create(_value ? "TRUE" : "FALSE"); }
 		internal override bool TryGetText(out Operand value) { value = Create(_value ? "TRUE" : "FALSE"); return true; }
+		internal override bool TryAppendText(System.Text.StringBuilder sb) { sb.Append(_value ? "TRUE" : "FALSE"); return true; }
 
 		public override string ToString() { return _value ? "true" : "false"; }
 	}

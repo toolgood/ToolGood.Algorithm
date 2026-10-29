@@ -28,9 +28,14 @@ namespace ToolGood.Algorithm.Internals.Functions.String
 			}
 			var sb = new StringBuilder(funcs.Length * 16);
 			for (int i = 0; i < funcs.Length; i++) {
-				var a = GetText(engine, tempParameter, i);
+				// 快路径：直接写入 StringBuilder，免去「Create(string) 造 OperandString → 再取 TextValue」
+				// 每个参数省一次 Operand 装箱与一次中间 string；失败时回落原路径，错误消息与参数序号不变
+				var a = funcs[i].Evaluate(engine, tempParameter);
 				if (a.IsErrorOrNone) { return a; }
-				sb.Append(a.TextValue);
+				if (a.TryAppendText(sb)) { continue; }
+				var t = ConvertToText(a, i + 1);
+				if (t.IsErrorOrNone) { return t; }
+				sb.Append(t.TextValue);
 			}
 			return Operand.Create(sb.ToString());
 		}

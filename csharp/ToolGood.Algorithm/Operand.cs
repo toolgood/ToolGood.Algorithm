@@ -463,75 +463,64 @@ namespace ToolGood.Algorithm
 
 		#region 转化类型
 
-		/// <summary>
-		/// 转数值类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <returns></returns>
-		public virtual Operand ToNumber(string errorMessage = null) { return Error(errorMessage ?? "Convert to number error!"); }
-		/// <summary>
-		/// 转数值类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public virtual Operand ToNumber(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
+		// 统一实现：子类只需提供 TryGetXxx(out Operand)（成功路径不构造错误消息），
+		// 失败时由这里按统一模板报错。原先是每个子类各自 override 两个重载 ——
+		// 8 个类型共 32 处几乎相同的样板，新增类型时还容易只改其中一个重载。
 
-		/// <summary>
-		/// 转bool类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <returns></returns>
-		public virtual Operand ToBoolean(string errorMessage = null) { return Error(errorMessage ?? "Convert to bool error!"); }
-		/// <summary>
-		/// 转bool类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public virtual Operand ToBoolean(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
-		/// <summary>
-		/// 转string类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <returns></returns>
-		public virtual Operand ToText(string errorMessage = null) { return Error(errorMessage ?? "Convert to string error!"); }
-		/// <summary>
-		/// 转string类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public virtual Operand ToText(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
+		public virtual Operand ToNumber(string errorMessage = null)
+		{
+			if(TryGetNumber(out var value)) { return value; }
+			return Error(errorMessage ?? "Convert to number error!");
+		}
+		public virtual Operand ToNumber(string errorMessage, params object[] args)
+		{
+			if(TryGetNumber(out var value)) { return value; }
+			return new OperandError(errorMessage, args);
+		}
 
-		/// <summary>
-		/// 转MyDate类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <returns></returns>
-		public virtual Operand ToMyDate(string errorMessage = null) { return Error(errorMessage ?? "Convert to date error!"); }
-		/// <summary>
-		/// 转MyDate类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public virtual Operand ToMyDate(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
+		public virtual Operand ToBoolean(string errorMessage = null)
+		{
+			if(TryGetBoolean(out var value)) { return value; }
+			return Error(errorMessage ?? "Convert to bool error!");
+		}
+		public virtual Operand ToBoolean(string errorMessage, params object[] args)
+		{
+			if(TryGetBoolean(out var value)) { return value; }
+			return new OperandError(errorMessage, args);
+		}
 
-		/// <summary>
-		/// 转Array类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <returns></returns>
-		public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert to array error!"); }
+		public virtual Operand ToText(string errorMessage = null)
+		{
+			if(TryGetText(out var value)) { return value; }
+			return Error(errorMessage ?? "Convert to string error!");
+		}
+		public virtual Operand ToText(string errorMessage, params object[] args)
+		{
+			if(TryGetText(out var value)) { return value; }
+			return new OperandError(errorMessage, args);
+		}
 
-		/// <summary>
-		/// 转Array类型
-		/// </summary>
-		/// <param name="errorMessage"></param>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public virtual Operand ToArray(string errorMessage, params object[] args) { return new OperandError(errorMessage, args); }
+		public virtual Operand ToMyDate(string errorMessage = null)
+		{
+			if(TryGetDate(out var value)) { return value; }
+			return Error(errorMessage ?? "Convert to date error!");
+		}
+		public virtual Operand ToMyDate(string errorMessage, params object[] args)
+		{
+			if(TryGetDate(out var value)) { return value; }
+			return new OperandError(errorMessage, args);
+		}
+
+		public virtual Operand ToArray(string errorMessage = null)
+		{
+			if(TryGetArray(out var value)) { return value; }
+			return Error(errorMessage ?? "Convert to array error!");
+		}
+		public virtual Operand ToArray(string errorMessage, params object[] args)
+		{
+			if(TryGetArray(out var value)) { return value; }
+			return new OperandError(errorMessage, args);
+		}
 
 		/// <summary>
 		/// 转Json类型
@@ -576,6 +565,12 @@ namespace ToolGood.Algorithm
 		/// 尝试直接取数组值（不产生错误消息）；成功时 <paramref name="value"/> 与 ToArray 的返回值一致
 		/// </summary>
 		internal virtual bool TryGetArray(out Operand value) { value = null; return false; }
+
+		/// <summary>
+		/// 尝试把文本形式直接写入 StringBuilder（不产生中间 Operand 与中间 string）；
+		/// 返回 false 表示该类型没有免分配写法，由调用方回落到 ToText 路径
+		/// </summary>
+		internal virtual bool TryAppendText(System.Text.StringBuilder sb) { return false; }
 
 		#endregion
 

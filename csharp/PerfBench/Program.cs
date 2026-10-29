@@ -28,6 +28,31 @@ namespace PerfBench
         private static readonly AlgorithmEngine Engine = new AlgorithmEngine();
         private static readonly FunctionBase ConcatFunc =
             Engine.Parse("CONCATENATE(1,2,3.5,TRUE,FALSE,\"x\",\"y\",10,DATE(2026,1,1),\"z\")");
+        private static readonly FunctionBase ConcatTextFunc =
+            Engine.Parse("CONCATENATE(\"a\",\"b\",\"c\",\"d\",\"e\",\"f\",\"g\",\"h\",\"i\",\"j\")");
+        private static readonly FunctionBase AddChainFunc =
+            Engine.Parse("1+2+3+4+5+6+7+8+9+10");
+        private static readonly FunctionBase StrAddFunc =
+            Engine.Parse("\"1\"+2+3+4+5");
+        private static readonly BenchEngine SumEngine = new BenchEngine();
+        private static readonly FunctionBase SumFunc = SumEngine.Parse("SUM(a)");
+        private static readonly Operand ArrayInt100 = BuildIntArray100();
+
+        private sealed class BenchEngine : AlgorithmEngine
+        {
+            public Operand A;
+            public override Operand GetParameter(string parameter)
+            {
+                return parameter == "a" ? A : base.GetParameter(parameter);
+            }
+        }
+
+        private static Operand BuildIntArray100()
+        {
+            var list = new List<Operand>(100);
+            for (int i = 0; i < 100; i++) list.Add(Operand.Create(i));
+            return Operand.Create(list);
+        }
 
         private static Operand BuildArray100()
         {
@@ -73,6 +98,27 @@ namespace PerfBench
             Run("Eval_Concat10", 200000, () => {
                 var r = ConcatFunc.TryEvaluate(Engine, "");
                 if (string.IsNullOrEmpty(r)) throw new Exception("eval failed");
+            });
+
+            Run("Eval_Concat10Text", 200000, () => {
+                var r = ConcatTextFunc.TryEvaluate(Engine, "");
+                if (string.IsNullOrEmpty(r)) throw new Exception("eval failed");
+            });
+
+            Run("Eval_AddChain10", 200000, () => {
+                var r = AddChainFunc.TryEvaluate(Engine, 0m);
+                if (r != 55m) throw new Exception("eval failed: " + r);
+            });
+
+            Run("Eval_StrAdd5", 200000, () => {
+                var r = StrAddFunc.TryEvaluate(Engine, 0m);
+                if (r != 15m) throw new Exception("eval failed: " + r);
+            });
+
+            Run("Eval_SumArray100", 50000, () => {
+                SumEngine.A = ArrayInt100;
+                var r = SumFunc.TryEvaluate(SumEngine, 0m);
+                if (r != 4950m) throw new Exception("eval failed: " + r);
             });
         }
 
