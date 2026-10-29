@@ -37,12 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (!TryGetInt(args3, out var tails) || tails < 1 || tails > 2) {
                 return ParameterError(3);
             }
-            try {
-                return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
-            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
-                return FunctionError();
-            }
+            return TryMath((x: x, d: degreesFreedom, tails: tails), static s => ExcelFunctions.TDist(s.x, s.d, s.tails));
         }
 		public override OperandType GetResultType()
 		{

@@ -40,12 +40,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 			if(n3 < 0m || n3 > 1m) {
 				return ParameterError(3);
 			}
-			try {
-				return Operand.Create(ExcelFunctions.BinomDist(k, n2, n3, args4.BooleanValue));
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-				// 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
-				return FunctionError();
-			}
+			return TryMath((k: k, n: n2, p: n3, cumulative: args4.BooleanValue), static s => ExcelFunctions.BinomDist(s.k, s.n, s.p, s.cumulative));
 		}
 		public override OperandType GetResultType()
 		{

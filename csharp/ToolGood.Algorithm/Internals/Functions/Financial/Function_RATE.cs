@@ -58,16 +58,11 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				guess = guessArg.NumberValue;
 			}
 
-			try {
-				// 牛顿迭代中 rate=0 除零、MathEx.Pow 负底/溢出会抛异常,捕获并返回错误
-				var rate = NewtonRaphson(nper, pmt, pv, fv, type, guess);
-				return Operand.Create(rate);
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-				return FunctionError();
-			}
+			// 牛顿迭代中 rate=0 除零、MathEx.Pow 负底/溢出会抛异常,统一转成函数错误
+			return TryMath((nper: nper, pmt: pmt, pv: pv, fv: fv, type: type, guess: guess), static s => NewtonRaphson(s.nper, s.pmt, s.pv, s.fv, s.type, s.guess));
 		}
 
-		private decimal NewtonRaphson(decimal n, decimal p, decimal v, decimal f, decimal type, decimal rate)
+		private static decimal NewtonRaphson(decimal n, decimal p, decimal v, decimal f, decimal type, decimal rate)
 		{
 			for (int i = 0; i < 100; i++) {
 				decimal onePlusRate = 1 + rate;

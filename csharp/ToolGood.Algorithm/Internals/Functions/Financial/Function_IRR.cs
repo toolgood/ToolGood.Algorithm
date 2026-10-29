@@ -50,15 +50,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				guess = guessArg.NumberValue;
 			}
 
-			try {
-				var irr = NewtonRaphsonIRR(values, guess);
-				return Operand.Create(irr);
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-				return FunctionError();
-			}
+			return TryMath((values: values, guess: guess), static s => NewtonRaphsonIRR(s.values, s.guess));
 		}
 
-		private decimal NewtonRaphsonIRR(List<decimal> values, decimal guess)
+		private static decimal NewtonRaphsonIRR(List<decimal> values, decimal guess)
 		{
 			var rate = guess;
 			for(int iter = 0; iter < 100; iter++) {

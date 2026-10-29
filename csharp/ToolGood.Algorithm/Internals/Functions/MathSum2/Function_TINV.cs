@@ -31,12 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (!TryGetInt(args2, out var degreesFreedom) || degreesFreedom <= 0) {
                 return ParameterError(2);
             }
-            try {
-                return Operand.Create(ExcelFunctions.TInv(p, degreesFreedom));
-            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
-                return FunctionError();
-            }
+            return TryMath((p: p, d: degreesFreedom), static s => ExcelFunctions.TInv(s.p, s.d));
         }
 		public override OperandType GetResultType()
 		{

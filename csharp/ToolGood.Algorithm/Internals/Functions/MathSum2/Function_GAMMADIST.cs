@@ -43,12 +43,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
                 return ParameterError(3);
             }
             var cumulative = args4.BooleanValue;
-            try {
-                return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
-            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-                // 如 x=0 且 alpha<1 时零底负数次幂会失败，与 Excel 返回 #NUM! 保持一致
-                return FunctionError();
-            }
+            // 如 x=0 且 alpha<1 时零底负数次幂会失败
+            return TryMath((x: x, alpha: alpha, beta: beta, cumulative: cumulative), static s => ExcelFunctions.GammaDist(s.x, s.alpha, s.beta, s.cumulative));
         }
 		public override OperandType GetResultType()
 		{

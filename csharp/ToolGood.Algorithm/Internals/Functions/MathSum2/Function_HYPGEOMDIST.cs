@@ -58,12 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (draws > population) {
                 return ParameterError(2);
             }
-            try {
-                return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
-            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
-                return FunctionError();
-            }
+            return TryMath((k: k, draws: draws, success: success, population: population), static s => ExcelFunctions.HypgeomDist(s.k, s.draws, s.success, s.population));
         }
 		public override OperandType GetResultType()
 		{

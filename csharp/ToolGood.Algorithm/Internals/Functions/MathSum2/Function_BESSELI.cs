@@ -29,13 +29,9 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				return ParameterError(2);
 			}
 
-			try {
-				// 复用 SpecialFunctions 中基于 Chebyshev 展开的实现(移植自 MathNet.Numerics)
-				return Operand.Create(SpecialFunctions.BesselI(n, x));
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-				// x 过大时 MathEx.Exp 结果超出 decimal 范围,捕获并返回错误
-				return FunctionError();
-			}
+			// 复用 SpecialFunctions 中基于 Chebyshev 展开的实现(移植自 MathNet.Numerics)
+			// x 过大时 MathEx.Exp 结果超出 decimal 范围
+			return TryMath((x: x, n: n), static s => SpecialFunctions.BesselI(s.n, s.x));
 		}
 
 		public override OperandType GetResultType()

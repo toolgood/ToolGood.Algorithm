@@ -38,12 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
             if (p <= 0m || p >= 1m) {
                 return ParameterError(3);
             }
-            try {
-                return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
-            } catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-                // 极端输入导致底层数值计算失败时，与 Excel 返回 #NUM! 保持一致
-                return FunctionError();
-            }
+            return TryMath((k: k, r: r, p: p), static s => ExcelFunctions.NegbinomDist(s.k, s.r, s.p));
         }
 		public override OperandType GetResultType()
 		{

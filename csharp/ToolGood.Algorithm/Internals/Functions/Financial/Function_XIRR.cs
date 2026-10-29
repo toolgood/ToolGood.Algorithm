@@ -55,15 +55,10 @@ namespace ToolGood.Algorithm.Internals.Functions.Financial
 				guess = guessArg.NumberValue;
 			}
 
-			try {
-				var xirr = NewtonRaphsonXIRR(values, dates, guess);
-				return Operand.Create(xirr);
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-				return FunctionError();
-			}
+			return TryMath((values: values, dates: dates, guess: guess), static s => NewtonRaphsonXIRR(s.values, s.dates, s.guess));
 		}
 
-		private decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal rate)
+		private static decimal NewtonRaphsonXIRR(List<decimal> values, List<DateTime> dates, decimal rate)
 		{
 			var baseDate = dates[0];
 			var exps = new decimal[values.Count];

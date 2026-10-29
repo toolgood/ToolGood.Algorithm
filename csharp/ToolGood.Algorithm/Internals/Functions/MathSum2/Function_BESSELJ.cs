@@ -29,12 +29,8 @@ namespace ToolGood.Algorithm.Internals.Functions.MathSum2
 				return ParameterError(2);
 			}
 
-			try {
-				return Operand.Create(SpecialFunctions.BesselJ(n, x));
-			} catch (Exception ex) when (ex is OverflowException || ex is DivideByZeroException || ex is InvalidOperationException || ex is ArgumentException) {
-				// x 过大时结果超出 decimal 范围,捕获并返回错误
-				return FunctionError();
-			}
+			// x 过大时结果超出 decimal 范围
+			return TryMath((x: x, n: n), static s => SpecialFunctions.BesselJ(s.n, s.x));
 		}
 
 		public override OperandType GetResultType()
