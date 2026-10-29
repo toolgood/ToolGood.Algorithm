@@ -467,55 +467,110 @@ namespace ToolGood.Algorithm
 		// 失败时由这里按统一模板报错。原先是每个子类各自 override 两个重载 ——
 		// 8 个类型共 32 处几乎相同的样板，新增类型时还容易只改其中一个重载。
 
+		/// <summary>
+		/// 转换为数值操作数；转换失败时返回错误操作数，<paramref name="errorMessage"/> 为 null 时使用默认文案
+		/// </summary>
+		/// <param name="errorMessage">转换失败时使用的错误消息</param>
+		/// <returns>数值操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToNumber(string errorMessage = null)
 		{
 			if(TryGetNumber(out var value)) { return value; }
 			return Error(errorMessage ?? "Convert to number error!");
 		}
+		/// <summary>
+		/// 转换为数值操作数；转换失败时用 <paramref name="args"/> 格式化 <paramref name="errorMessage"/> 生成错误操作数
+		/// </summary>
+		/// <param name="errorMessage">错误消息模板</param>
+		/// <param name="args">模板参数</param>
+		/// <returns>数值操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToNumber(string errorMessage, params object[] args)
 		{
 			if(TryGetNumber(out var value)) { return value; }
 			return new OperandError(errorMessage, args);
 		}
 
+		/// <summary>
+		/// 转换为布尔操作数；转换失败时返回错误操作数，<paramref name="errorMessage"/> 为 null 时使用默认文案
+		/// </summary>
+		/// <param name="errorMessage">转换失败时使用的错误消息</param>
+		/// <returns>布尔操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToBoolean(string errorMessage = null)
 		{
 			if(TryGetBoolean(out var value)) { return value; }
 			return Error(errorMessage ?? "Convert to bool error!");
 		}
+		/// <summary>
+		/// 转换为布尔操作数；转换失败时用 <paramref name="args"/> 格式化 <paramref name="errorMessage"/> 生成错误操作数
+		/// </summary>
+		/// <param name="errorMessage">错误消息模板</param>
+		/// <param name="args">模板参数</param>
+		/// <returns>布尔操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToBoolean(string errorMessage, params object[] args)
 		{
 			if(TryGetBoolean(out var value)) { return value; }
 			return new OperandError(errorMessage, args);
 		}
 
+		/// <summary>
+		/// 转换为文本操作数；转换失败时返回错误操作数，<paramref name="errorMessage"/> 为 null 时使用默认文案
+		/// </summary>
+		/// <param name="errorMessage">转换失败时使用的错误消息</param>
+		/// <returns>文本操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToText(string errorMessage = null)
 		{
 			if(TryGetText(out var value)) { return value; }
 			return Error(errorMessage ?? "Convert to string error!");
 		}
+		/// <summary>
+		/// 转换为文本操作数；转换失败时用 <paramref name="args"/> 格式化 <paramref name="errorMessage"/> 生成错误操作数
+		/// </summary>
+		/// <param name="errorMessage">错误消息模板</param>
+		/// <param name="args">模板参数</param>
+		/// <returns>文本操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToText(string errorMessage, params object[] args)
 		{
 			if(TryGetText(out var value)) { return value; }
 			return new OperandError(errorMessage, args);
 		}
 
+		/// <summary>
+		/// 转换为日期操作数；转换失败时返回错误操作数，<paramref name="errorMessage"/> 为 null 时使用默认文案
+		/// </summary>
+		/// <param name="errorMessage">转换失败时使用的错误消息</param>
+		/// <returns>日期操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToMyDate(string errorMessage = null)
 		{
 			if(TryGetDate(out var value)) { return value; }
 			return Error(errorMessage ?? "Convert to date error!");
 		}
+		/// <summary>
+		/// 转换为日期操作数；转换失败时用 <paramref name="args"/> 格式化 <paramref name="errorMessage"/> 生成错误操作数
+		/// </summary>
+		/// <param name="errorMessage">错误消息模板</param>
+		/// <param name="args">模板参数</param>
+		/// <returns>日期操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToMyDate(string errorMessage, params object[] args)
 		{
 			if(TryGetDate(out var value)) { return value; }
 			return new OperandError(errorMessage, args);
 		}
 
+		/// <summary>
+		/// 转换为数组操作数；转换失败时返回错误操作数，<paramref name="errorMessage"/> 为 null 时使用默认文案
+		/// </summary>
+		/// <param name="errorMessage">转换失败时使用的错误消息</param>
+		/// <returns>数组操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToArray(string errorMessage = null)
 		{
 			if(TryGetArray(out var value)) { return value; }
 			return Error(errorMessage ?? "Convert to array error!");
 		}
+		/// <summary>
+		/// 转换为数组操作数；转换失败时用 <paramref name="args"/> 格式化 <paramref name="errorMessage"/> 生成错误操作数
+		/// </summary>
+		/// <param name="errorMessage">错误消息模板</param>
+		/// <param name="args">模板参数</param>
+		/// <returns>数组操作数，或带错误消息的错误操作数</returns>
 		public virtual Operand ToArray(string errorMessage, params object[] args)
 		{
 			if(TryGetArray(out var value)) { return value; }
