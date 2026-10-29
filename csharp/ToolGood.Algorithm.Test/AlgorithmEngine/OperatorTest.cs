@@ -16,7 +16,13 @@ namespace ToolGood.Algorithm.Test.Operator
             t = engine.TryEvaluate("(8-3)*(3+2)", 0);
             Assert.AreEqual(25, t);
 
-            t = engine.TryEvaluate("(8-3)*(3+2) % 7", 0);
+			t = engine.TryEvaluate("8/3*6", 0);
+			Assert.AreEqual(16, t);
+
+			var t2 = engine.TryEvaluate("8/3", 0.0);
+			Assert.AreEqual(8/3.0, t2,6);
+
+			t = engine.TryEvaluate("(8-3)*(3+2) % 7", 0);
             Assert.AreEqual(4, t);
 
             var c = engine.TryEvaluate("2+3", 0);
