@@ -16,43 +16,25 @@ namespace ToolGood.Algorithm.math
 	/// 把手写语法树转换为可执行的 <see cref="FunctionBase"/> 树。
 	/// 等价于原来的 <c>MathFunctionVisitor</c>，但省去了 Antlr 访问者分发。
 	/// <para>
-	/// 采用**显式栈的后序遍历**而不是递归：<c>1+1+1+...</c> 这类左深链会让递归版本的栈帧
-	/// 达到数千层，直接 StackOverflow 杀掉进程（无法 catch）；显式栈的深度受堆限制，不会崩。
+	/// 节点数组由 <see cref="FastParser"/> 按后序添加：任何节点的子节点下标都小于它自己，
+	/// 所以这里只需从 0 到 NodeCount 顺序扫一遍就能自底向上构建 ——
+	/// 既不递归、也不用显式栈，<c>1+1+1+...</c> 这类左深链再长也不会 StackOverflow。
 	/// </para>
 	/// </summary>
 	internal static class FastAstBuilder
 	{
-		private struct BuildFrame
-		{
-			internal int Node;
-			internal int Child;
-		}
-
 		internal static FunctionBase Build(string text, FastNode[] nodes, int nodeCount, int root)
 		{
 			var built = ArrayPool<FunctionBase>.Shared.Rent(nodeCount);
-			var frames = ArrayPool<BuildFrame>.Shared.Rent(nodeCount);
 			try {
-				var top = 0;
-				frames[top++] = new BuildFrame { Node = root };
-				FunctionBase result = null;
-				while(top > 0) {
-					var frame = frames[top - 1];
-					var node = nodes[frame.Node];
-					if(frame.Child < node.ChildCount) {
-						frames[top - 1].Child = frame.Child + 1;
-						frames[top++] = new BuildFrame { Node = node.GetChild(frame.Child) };
-						continue;
-					}
-					result = Create(text, nodes, built, node);
-					built[frame.Node] = result;
-					top--;
+				for(int i = 0; i < nodeCount; i++) {
+					built[i] = Create(text, nodes, built, nodes[i]);
 				}
-				return result;
+				return built[root];
 			} finally {
-				ArrayPool<BuildFrame>.Shared.Return(frames);
-				// 清空，避免池中长期持有整棵 FunctionBase 树
-				ArrayPool<FunctionBase>.Shared.Return(built, true);
+				// 清空，避免池中长期持有整棵 FunctionBase 树；只清实际用到的区间
+				Array.Clear(built, 0, nodeCount);
+				ArrayPool<FunctionBase>.Shared.Return(built);
 			}
 		}
 

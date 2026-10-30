@@ -65,6 +65,28 @@ namespace ToolGood.Algorithm
 		private readonly Dictionary<string, FunctionBase> _parseCache = new Dictionary<string, FunctionBase>();
 
 		/// <summary>
+		/// 解析缓存条目上限。公式串可能来自用户输入，无上限的字典就是内存泄漏；
+		/// 超限时淘汰一半，被淘汰的下次命中会重新解析，不影响正确性。
+		/// </summary>
+		private const int MaxParseCacheSize = 4096;
+
+		private void TrimParseCache()
+		{
+			if(_parseCache.Count < MaxParseCacheSize) { return; }
+			// 淘汰一半而不是全清：全清会让高频公式与长尾公式一起被踢掉，命中率塌缩
+			var needRemove = _parseCache.Count / 2;
+			var keys = new string[needRemove];
+			var count = 0;
+			foreach(var key in _parseCache.Keys) {
+				if(count == needRemove) { break; }
+				keys[count++] = key;
+			}
+			for(var i = 0; i < count; i++) {
+				_parseCache.Remove(keys[i]);
+			}
+		}
+
+		/// <summary>
 		/// 自定义参数 请重写此方法
 		/// </summary>
 		/// <param name="parameter"></param>
@@ -106,6 +128,7 @@ namespace ToolGood.Algorithm
 				}
 				r = ParseInternal(exp, true);
 				_parseCache[exp] = r;
+				TrimParseCache();
 				return r;
 			}
 			return ParseInternal(exp, true);
@@ -131,6 +154,7 @@ namespace ToolGood.Algorithm
 				r = ParseInternal(exp, false);
 				if(r != null) {
 					_parseCache[exp] = r;
+					TrimParseCache();
 				}
 				return r;
 			}

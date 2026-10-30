@@ -71,7 +71,10 @@ namespace ToolGood.Algorithm.math
 			_depth = 0;
 			_root = -1;
 
-			var capacity = text.Length / 4 + MinCapacity;
+			// 词法单元最多「每字符一个」再加 EOF：一次租够就不必在扫描途中扩容
+			// （扩容要 Copy 整个数组，还要把旧数组清零才能还给池）。
+			// 超长公式退化为估算，避免为极端输入租下过大的数组。
+			var capacity = text.Length <= 4096 ? text.Length + 1 : Math.Max(text.Length / 2, MinCapacity);
 			_tokens = ArrayPool<FastLexeme>.Shared.Rent(capacity);
 			_nodes = ArrayPool<FastNode>.Shared.Rent(capacity);
 			_scratch = ArrayPool<int>.Shared.Rent(MinCapacity);
@@ -97,8 +100,11 @@ namespace ToolGood.Algorithm.math
 			var nodes = _nodes;
 			if(nodes != null) {
 				_nodes = null;
-				// 节点里可能残留字符串引用（参数名 / json key），必须清空，避免池中长期持有
-				ArrayPool<FastNode>.Shared.Return(nodes, true);
+				// 节点里可能残留字符串引用（参数名 / json key），必须清空，避免池中长期持有。
+				// 只清实际用到的区间：租来的数组通常比 _nodeCount 大（池按 2 的幂给），
+				// 整段清空会白白抹掉大量未使用的槽位。
+				Array.Clear(nodes, 0, _nodeCount);
+				ArrayPool<FastNode>.Shared.Return(nodes);
 			}
 			var scratch = _scratch;
 			if(scratch != null) {
@@ -205,7 +211,8 @@ namespace ToolGood.Algorithm.math
 		{
 			var next = ArrayPool<FastNode>.Shared.Rent(_nodes.Length * 2);
 			Array.Copy(_nodes, next, _nodeCount);
-			ArrayPool<FastNode>.Shared.Return(_nodes, true);
+			Array.Clear(_nodes, 0, _nodeCount);   // 只清有效区间，见 Release
+			ArrayPool<FastNode>.Shared.Return(_nodes);
 			_nodes = next;
 		}
 
