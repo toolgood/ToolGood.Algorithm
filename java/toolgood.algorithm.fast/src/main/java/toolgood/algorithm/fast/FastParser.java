@@ -56,6 +56,9 @@ public final class FastParser {
 
     private FastParser(String text) {
         this.text = text;
+        // 注意：这里不能像 C# 那样按 len+1 给足容量。C# 从 ArrayPool 租数组，多租不额外分配；
+        // Java 每次 new int[]，按上限预估会让「长但 token 少」的公式（如单个长字符串字面量）
+        // 白白多分配好几个数组。所以按经验密度估，不够时由 growTokens 一次性补到上限。
         int capacity = text.length() / 4 + MIN_CAPACITY;
         this.tokenTypes = new int[capacity];
         this.tokenStarts = new int[capacity];
@@ -134,7 +137,10 @@ public final class FastParser {
     }
 
     private void growTokens() {
-        int size = tokenTypes.length * 2;
+        // 一次补到上限（每字符一个 token，再加 EOF）：len/4 的密度估算对深括号、长加法链
+        // 必然不够，翻倍要连扩多次、每次拷贝三个数组；直接给到上限只拷一次。
+        // 能走到这里说明公式确实 token 密集，补足不会浪费。
+        int size = Math.max(tokenTypes.length * 2, text.length() + 1);
         int[] types = new int[size];
         int[] starts = new int[size];
         int[] ends = new int[size];

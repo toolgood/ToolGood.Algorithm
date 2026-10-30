@@ -35,8 +35,9 @@ import toolgood.algorithm.internals.functions.value.Function_ValueText;
 /**
  * 把手写语法树转换为可执行的 {@link FunctionBase} 树，等价于原来的 {@code MathFunctionVisitor}。
  * <p>
- * 采用<b>显式栈的后序遍历</b>而不是递归：{@code 1+1+1+...} 这类左深链会让递归版本的栈帧
- * 达到数千层，直接 StackOverflow 杀掉线程；显式栈的深度受堆限制，不会崩。
+ * 节点表由 {@link FastParser} 按后序添加：任何节点的子节点下标都小于它自己，
+ * 所以只需从头到尾扫一遍就能自底向上构建 —— 不递归、也不用显式栈，
+ * {@code 1+1+1+...} 这类左深链再长也不会 StackOverflow。
  * </p>
  */
 final class FastAstBuilder {
@@ -48,28 +49,10 @@ final class FastAstBuilder {
     static FunctionBase build(String text, List<FastNode> nodes, int root) {
         int size = nodes.size();
         FunctionBase[] built = new FunctionBase[size];
-        int[] stackNode = new int[size + 1];
-        int[] stackChild = new int[size + 1];
-
-        int top = 0;
-        stackNode[top++] = root;
-        FunctionBase result = null;
-        while (top > 0) {
-            int nodeIndex = stackNode[top - 1];
-            FastNode node = nodes.get(nodeIndex);
-            int child = stackChild[top - 1];
-            if (child < node.childCount()) {
-                stackChild[top - 1] = child + 1;
-                stackNode[top] = node.child(child);
-                stackChild[top] = 0;
-                top++;
-                continue;
-            }
-            result = create(text, nodes, built, node);
-            built[nodeIndex] = result;
-            top--;
+        for (int i = 0; i < size; i++) {
+            built[i] = create(text, nodes, built, nodes.get(i));
         }
-        return result;
+        return built[root];
     }
 
     private static FunctionBase create(String text, List<FastNode> nodes, FunctionBase[] built, FastNode node) {
@@ -77,7 +60,7 @@ final class FastAstBuilder {
             case Number:
                 return buildNumber(text, node);
             case Text:
-                return new Function_ValueText(Operand.Create(unescapeString(slice(text, node))));
+                return new Function_ValueText(Operand.Create(readStringLiteral(text, node)));
             case Parameter:
                 return new Function_PARAMETER(node.text);
             case Bracket:
@@ -188,20 +171,33 @@ final class FastAstBuilder {
     private static String unescapeKey(String keyText) {
         if (keyText != null && keyText.length() > 1
                 && (keyText.charAt(0) == '"' || keyText.charAt(0) == '\'' || keyText.charAt(0) == '`')) {
-            return unescapeString(keyText);
+            return unescapeString(keyText, 1, keyText.length() - 1);
         }
         return keyText;
     }
 
+    /** 取字符串字面量(含首尾引号)的实际值：引号之间的内容反转义 */
+    private static String readStringLiteral(String text, FastNode node) {
+        return unescapeString(text, node.start + 1, node.end);
+    }
+
     /**
-     * 将字符串字面量(含首尾引号)转为实际文本值。
+     * 把 {@code text} 的 [from, to) 区间反转义为实际文本值（区间不含首尾引号）。
+     * 没有反斜杠时直接 substring 返回，省掉 StringBuilder 的 char[] 与 toString 两次分配；
+     * 有反斜杠时先把第一处之前的内容整段 append，不必先 substring 再整段重扫。
+     * <p>
      * 必须与 Operand / Function_ValueText 的转义输出保持对称，否则字面量往返会静默失真。
+     * </p>
      */
-    static String unescapeString(String text) {
-        StringBuilder sb = new StringBuilder(text.length());
-        int index = 1;
-        int end = text.length() - 1;
-        while (index < end) {
+    static String unescapeString(String text, int from, int to) {
+        int first = text.indexOf('\\', from);
+        if (first < 0 || first >= to) {
+            return text.substring(from, to);
+        }
+        StringBuilder sb = new StringBuilder(to - from);
+        sb.append(text, from, first);
+        int index = first;
+        while (index < to) {
             char c = text.charAt(index++);
             if (c != '\\') {
                 sb.append(c);
