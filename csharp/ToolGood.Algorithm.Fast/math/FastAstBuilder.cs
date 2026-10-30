@@ -42,7 +42,7 @@ namespace ToolGood.Algorithm.math
 		{
 			switch(node.Kind) {
 				case FastNodeKind.Number: return BuildNumber(text, node);
-				case FastNodeKind.Text: return new Function_ValueText(Operand.Create(UnescapeString(Slice(text, node))));
+				case FastNodeKind.Text: return new Function_ValueText(Operand.Create(ReadStringLiteral(text, node)));
 				case FastNodeKind.Parameter: return new Function_Parameter(node.Text);
 				case FastNodeKind.Bracket: return built[node.GetChild(0)];
 				case FastNodeKind.Not: return new Function_NOT(built[node.GetChild(0)]);
@@ -87,11 +87,6 @@ namespace ToolGood.Algorithm.math
 
 		private static readonly FunctionBase[] FunctionBase_Empty = new FunctionBase[0];
 
-		private static string Slice(string text, FastNode node)
-		{
-			return text.Substring(node.Start, node.End - node.Start + 1);
-		}
-
 		private static FunctionBase BuildNumber(string text, FastNode node)
 		{
 			var span = text.AsSpan(node.Start, node.End - node.Start + 1);
@@ -132,32 +127,45 @@ namespace ToolGood.Algorithm.math
 			return false;
 		}
 
+		/// <summary>
+		/// 取字符串字面量(含首尾引号)的实际值：去掉引号并反转义。
+		/// </summary>
+		private static string ReadStringLiteral(string text, FastNode node)
+		{
+			return UnescapeString(text.AsSpan(node.Start + 1, node.End - node.Start - 1));
+		}
+
 		/// <summary>json 的 key：字符串字面量需去掉首尾引号并反转义，其余形式直接用原文</summary>
 		private static string UnescapeKey(string keyText)
 		{
 			if(keyText != null && keyText.Length > 1 && (keyText[0] == '"' || keyText[0] == '\'' || keyText[0] == '`')) {
-				return UnescapeString(keyText);
+				return UnescapeString(keyText.AsSpan(1, keyText.Length - 2));
 			}
 			return keyText;
 		}
 
 		/// <summary>
-		/// 将字符串字面量(含首尾引号)转为实际文本值。
+		/// 把引号之间的内容(不含引号)反转义为实际文本值。
+		/// 没有反斜杠时直接切片返回，不建 StringBuilder；有反斜杠时先把第一处之前的内容整段 Append，
+		/// 不做「先 Substring 再整段重扫」。
 		/// 必须与 OperandString.ToString / Function_ValueText.ToString 的转义输出保持对称,
 		/// 否则字面量往返会静默失真(例如 "\u000b" 曾被解析成 "u000b")。
 		/// </summary>
-		internal static string UnescapeString(string text)
+		internal static string UnescapeString(ReadOnlySpan<char> content)
 		{
-			var sb = new StringBuilder(text.Length);
-			int index = 1;
-			var end = text.Length - 1;
-			while(index < end) {
-				var c = text[index++];
+			var first = content.IndexOf('\\');
+			if(first < 0) { return content.ToString(); }
+
+			var sb = new StringBuilder(content.Length);
+			sb.Append(content.Slice(0, first));
+			var index = first;
+			while(index < content.Length) {
+				var c = content[index++];
 				if(c != '\\') {
 					sb.Append(c);
 					continue;
 				}
-				var c2 = text[index++];
+				var c2 = content[index++];
 				switch(c2) {
 					case 'n': sb.Append('\n'); break;
 					case 'r': sb.Append('\r'); break;
@@ -169,8 +177,8 @@ namespace ToolGood.Algorithm.math
 					case 'f': sb.Append('\f'); break;
 					case 'u':
 						// \uXXXX 十六进制转义
-						if(index + 4 <= end
-							&& int.TryParse(text.AsSpan(index, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var code)) {
+						if(index + 4 <= content.Length
+							&& int.TryParse(content.Slice(index, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var code)) {
 							sb.Append((char)code);
 							index += 4;
 						} else {
