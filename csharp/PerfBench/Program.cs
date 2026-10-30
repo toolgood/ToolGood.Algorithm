@@ -55,6 +55,15 @@ namespace PerfBench
         private static readonly FunctionBase DatedifFunc =
             Engine.Parse("DATEDIF(DATE(2026,1,1),DATE(2026,12,31),\"D\")");
 
+        // 解析（词法+Parsing）基准用表达式
+        private const string ParseSimpleExp = "1+2+3+4+5+6+7+8+9+10";
+        private const string ParseFuncExp = "CONCATENATE(\"a\",\"b\",\"c\",\"d\",\"e\",\"f\",\"g\",\"h\",\"i\",\"j\")";
+        private const string ParseNestedExp = "ROUND(SUM(1,2,3,4,5)*2/3+IF(1>0,MAX(10,20),MIN(5,6)),2)";
+        private const string ParseLongExp =
+            "IF(AND(1<2,3>2,OR(4=4,5=6)),CONCATENATE(SUM(1,2,3),\"-\",ROUND(3.14159*2,2),\"-\",DATE(2026,1,1))," +
+            "IF(NOT(FALSE),LEFT(\"abcdefgh\",3),RIGHT(\"abcdefgh\",3)))";
+        private static FunctionBase _parseSink;
+
         private sealed class BenchEngine : AlgorithmEngine
         {
             public Operand A;
@@ -102,6 +111,27 @@ namespace PerfBench
         private static void Main()
         {
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+
+            // ---- 解析（Lexer + Parser）基准：每次都是全新解析，不走 UseParseCache ----
+            Run("Parse_Simple", 5000, () => {
+                _parseSink = Engine.Parse(ParseSimpleExp);
+                if (_parseSink == null) throw new Exception("parse failed");
+            });
+
+            Run("Parse_Func10", 5000, () => {
+                _parseSink = Engine.Parse(ParseFuncExp);
+                if (_parseSink == null) throw new Exception("parse failed");
+            });
+
+            Run("Parse_Nested", 5000, () => {
+                _parseSink = Engine.Parse(ParseNestedExp);
+                if (_parseSink == null) throw new Exception("parse failed");
+            });
+
+            Run("Parse_Long", 5000, () => {
+                _parseSink = Engine.Parse(ParseLongExp);
+                if (_parseSink == null) throw new Exception("parse failed");
+            });
 
             Run("CreateJson_1KB(Lexer)", 2000, () => {
                 var r = Operand.CreateJson(Json1Kb);
