@@ -27,10 +27,10 @@ namespace ToolGood.Algorithm.math
 		/// </summary>
 		internal static ConditionTree ToConditionTree(string source, FastNode[] nodes, int root)
 		{
-			return BuildCondition(source, nodes, nodes[root], 0);
+			return BuildCondition(source, nodes, in nodes[root], 0);
 		}
 
-		private static ConditionTree BuildCondition(string source, FastNode[] nodes, FastNode node, int depth)
+		private static ConditionTree BuildCondition(string source, FastNode[] nodes, in FastNode node, int depth)
 		{
 			if(++depth > MaxTreeDepth) {
 				throw new FormatException($"Condition is nested too deeply (more than {MaxTreeDepth} levels).");
@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.math
 			ConditionTreeType type;
 			switch(node.Kind) {
 				case FastNodeKind.Bracket: {
-					var inner = BuildCondition(source, nodes, nodes[node.GetChild(0)], depth);
+					var inner = BuildCondition(source, nodes, in nodes[node.GetChild(0)], depth);
 					inner.HasBracket = true;
 					return inner;
 				}
@@ -57,8 +57,8 @@ namespace ToolGood.Algorithm.math
 			var tree = new ConditionTree { Start = node.Start, End = node.End, Type = type };
 			tree.SetSource(source);
 			tree.Nodes = new List<ConditionTree>(2) {
-				BuildCondition(source, nodes, nodes[node.GetChild(0)], depth),
-				BuildCondition(source, nodes, nodes[node.GetChild(1)], depth),
+				BuildCondition(source, nodes, in nodes[node.GetChild(0)], depth),
+				BuildCondition(source, nodes, in nodes[node.GetChild(1)], depth),
 			};
 			return tree;
 		}
@@ -69,10 +69,10 @@ namespace ToolGood.Algorithm.math
 
 		internal static CalculateTree ToCalculateTree(string source, FastNode[] nodes, int root)
 		{
-			return BuildCalculate(source, nodes, nodes[root], 0);
+			return BuildCalculate(source, nodes, in nodes[root], 0);
 		}
 
-		private static CalculateTree BuildCalculate(string source, FastNode[] nodes, FastNode node, int depth)
+		private static CalculateTree BuildCalculate(string source, FastNode[] nodes, in FastNode node, int depth)
 		{
 			if(++depth > MaxTreeDepth) {
 				throw new FormatException($"Expression is nested too deeply (more than {MaxTreeDepth} levels).");
@@ -82,7 +82,7 @@ namespace ToolGood.Algorithm.math
 			}
 			switch(node.Kind) {
 				case FastNodeKind.Bracket: {
-					var inner = BuildCalculate(source, nodes, nodes[node.GetChild(0)], depth);
+					var inner = BuildCalculate(source, nodes, in nodes[node.GetChild(0)], depth);
 					inner.HasBracket = true;
 					return inner;
 				}
@@ -107,8 +107,8 @@ namespace ToolGood.Algorithm.math
 					};
 					tree.SetSource(source);
 					tree.Nodes = new List<CalculateTree>(2) {
-						BuildCalculate(source, nodes, nodes[node.GetChild(0)], depth),
-						BuildCalculate(source, nodes, nodes[node.GetChild(1)], depth),
+						BuildCalculate(source, nodes, in nodes[node.GetChild(0)], depth),
+						BuildCalculate(source, nodes, in nodes[node.GetChild(1)], depth),
 					};
 					return tree;
 				}
@@ -157,7 +157,7 @@ namespace ToolGood.Algorithm.math
 				var top = 0;
 				stack[top++] = root;
 				while(top > 0) {
-					var node = nodes[stack[--top]];
+					ref readonly FastNode node = ref nodes[stack[--top]];
 					if(node.Kind == FastNodeKind.Parameter) {
 						parameters.Add(new DiyNameKeyInfo { Name = node.Text, Start = node.Start, End = node.End });
 					} else if(node.Kind == FastNodeKind.Call && node.Type == FastToken.PARAMETER) {

@@ -8,6 +8,75 @@ using ToolGood.Algorithm.Internals.Functions;
 namespace ToolGood.Algorithm.math
 {
 	/// <summary>
+	/// 解析期缓冲区：按线程常驻，避免每条公式都向 <see cref="ArrayPool{T}"/> 借还。
+	/// <para>
+	/// 拆解实测：一条 20 字符公式的解析约 1.2 µs，其中约 100 ns 花在「三个数组的 Rent/Return」上
+	/// （单次 Rent/Return 约 25~40 ns），占固定开销六成左右。绝大多数公式都在 1 KB 以内，
+	/// 用线程本地数组可以把这部分省掉。
+	/// </para>
+	/// <para>
+	/// 容量上限 <see cref="MaxThreadLocalCapacity"/> 之外的公式仍走 <see cref="ArrayPool{T}"/>，
+	/// 避免为超长公式在每个线程上常驻大数组；同一线程上的重入解析也回落到池。
+	/// </para>
+	/// <para>
+	/// 归还时清空「实际写过」的区间：<see cref="FastNode"/> 里有字符串、
+	/// <see cref="FastHandle"/> 里有整棵函数树，不清会让线程本地长期持有这些引用。
+	/// </para>
+	/// </summary>
+	internal static class FastBuffers
+	{
+		/// <summary>首次分配的容量</summary>
+		private const int MinCapacity = 64;
+
+		/// <summary>线程本地缓冲的最大容量，超出的公式改用共享池</summary>
+		private const int MaxThreadLocalCapacity = 1024;
+
+		[ThreadStatic] private static FastLexeme[] _tokens;
+		[ThreadStatic] private static FastNode[] _nodes;
+		[ThreadStatic] private static FastHandle[] _children;
+		[ThreadStatic] private static bool _busy;
+
+		/// <summary>
+		/// 尝试取本线程的缓冲。返回 false 表示本次解析应改用 <see cref="ArrayPool{T}"/>
+		/// （容量过大或同线程已有解析在进行）。
+		/// </summary>
+		internal static bool TryAcquire(int capacity, bool needNodes, out FastLexeme[] tokens, out FastNode[] nodes, out FastHandle[] children)
+		{
+			if(_busy || capacity > MaxThreadLocalCapacity) {
+				tokens = null;
+				nodes = null;
+				children = null;
+				return false;
+			}
+			if(_tokens == null || _tokens.Length < capacity) {
+				var size = MinCapacity;
+				while(size < capacity) { size <<= 1; }
+				_tokens = new FastLexeme[size];
+				_children = new FastHandle[size];
+				// 容量变了，节点数组的旧尺寸作废，按需重建
+				_nodes = needNodes ? new FastNode[size] : null;
+			} else if(needNodes && (_nodes == null || _nodes.Length < _tokens.Length)) {
+				_nodes = new FastNode[_tokens.Length];
+			}
+			_busy = true;
+			tokens = _tokens;
+			nodes = needNodes ? _nodes : null;
+			children = _children;
+			return true;
+		}
+
+		/// <summary>归还本线程的缓冲，并清掉写过的槽位上的引用</summary>
+		internal static void Release(int nodeCount, int childCount)
+		{
+			var nodes = _nodes;
+			if(nodes != null && nodeCount > 0) { Array.Clear(nodes, 0, nodeCount); }
+			var children = _children;
+			if(children != null && childCount > 0) { Array.Clear(children, 0, childCount); }
+			_busy = false;
+		}
+	}
+
+	/// <summary>
 	/// 手写递归下降语法分析器，等价替代 Antlr4 生成的 <c>mathParser</c>。
 	/// <para>
 	/// <c>math.g4</c> 中 <c>expr</c> 是左递归规则，Antlr 会把它改写成带优先级循环的实现；
@@ -17,8 +86,9 @@ namespace ToolGood.Algorithm.math
 	/// &gt; <c>+ - &amp;</c> &gt; <c>&gt; &gt;= &lt; &lt;=</c> &gt; <c>!= =</c> &gt; <c>&amp;&amp;</c>
 	/// &gt; <c>||</c> &gt; <c>? :</c></para>
 	/// <para>
-	/// 内存策略：词法单元数组、语法树节点数组、参数暂存数组全部向 <see cref="ArrayPool{T}"/> 租用，
-	/// 单次解析的托管堆分配只剩「<see cref="FunctionBase"/> 树本身」与参数名字符串。
+	/// 解析途中就地构造 <see cref="FunctionBase"/> 树，不再先落一份语法树节点数组再回扫一遍：
+	/// 常量子树的折叠判断跟着句柄上的「是否常量」标记走，节点数组只在条件树 / 计算树 /
+	/// DIY 名称收集这些需要原文位置信息的旁路上才记录。
 	/// </para>
 	/// </summary>
 	internal struct FastParser
@@ -46,6 +116,11 @@ namespace ToolGood.Algorithm.math
 		private const int MinCapacity = 16;
 
 		private readonly string _text;
+		/// <summary>是否构建 <see cref="FunctionBase"/> 树</summary>
+		private readonly bool _build;
+		/// <summary>是否记录 <see cref="FastNode"/> 节点表（旁路需要原文位置信息）</summary>
+		private readonly bool _record;
+
 		private FastLexeme[] _tokens;
 		private int _tokenCount;
 		private int _index;
@@ -54,44 +129,64 @@ namespace ToolGood.Algorithm.math
 		private FastNode[] _nodes;
 		private int _nodeCount;
 
-		private int[] _scratch;
-		private int _scratchCount;
+		private FastHandle[] _children;
+		private int _childCount;
+		/// <summary>暂存区达到过的最大深度，归还缓冲时据此清引用</summary>
+		private int _childHighWater;
+
+		private FunctionBase _rootFn;
+		private int _rootNode;
 
 		private int _depth;
-		private int _root;
+		private bool _fromThreadLocal;
 
-		internal FastParser(string text)
+		private FastParser(string text, bool build, bool record)
 		{
 			_text = text;
+			_build = build;
+			_record = record;
 			_tokenCount = 0;
 			_index = 0;
 			_lastEnd = 0;
 			_nodeCount = 0;
-			_scratchCount = 0;
+			_childCount = 0;
+			_childHighWater = 0;
+			_rootFn = null;
+			_rootNode = -1;
 			_depth = 0;
-			_root = -1;
+			_fromThreadLocal = false;
 
-			// 词法单元最多「每字符一个」再加 EOF：一次租够就不必在扫描途中扩容
-			// （扩容要 Copy 整个数组，还要把旧数组清零才能还给池）。
+			// 词法单元最多「每字符一个」再加 EOF，节点数与暂存深度都不会超过它。
 			// 超长公式退化为估算，避免为极端输入租下过大的数组。
-			var capacity = text.Length <= 4096 ? text.Length + 1 : Math.Max(text.Length / 2, MinCapacity);
-			_tokens = ArrayPool<FastLexeme>.Shared.Rent(capacity);
-			_nodes = ArrayPool<FastNode>.Shared.Rent(capacity);
-			_scratch = ArrayPool<int>.Shared.Rent(MinCapacity);
+			var capacity = EstimateCapacity(text.Length);
+			if(FastBuffers.TryAcquire(capacity, record, out var tokens, out var nodes, out var children)) {
+				_tokens = tokens;
+				_nodes = nodes;
+				_children = children;
+				_fromThreadLocal = true;
+			} else {
+				_tokens = ArrayPool<FastLexeme>.Shared.Rent(capacity);
+				_children = ArrayPool<FastHandle>.Shared.Rent(capacity);
+				_nodes = record ? ArrayPool<FastNode>.Shared.Rent(capacity) : null;
+			}
 		}
 
-		/// <summary>语法树节点数组（仅 [0, NodeCount) 有效）</summary>
-		internal FastNode[] Nodes => _nodes;
+		private static int EstimateCapacity(int length)
+		{
+			if(length <= 4096) { return Math.Max(length + 1, MinCapacity); }
+			return Math.Max(length / 2, MinCapacity);
+		}
 
-		/// <summary>根节点下标</summary>
-		internal int Root => _root;
-
-		/// <summary>实际使用的节点数量</summary>
-		internal int NodeCount => _nodeCount;
-
-		/// <summary>把租用的缓冲区归还池，必须与构造成对出现</summary>
+		/// <summary>把缓冲区归还，必须与构造成对出现</summary>
 		internal void Release()
 		{
+			if(_fromThreadLocal) {
+				FastBuffers.Release(_nodeCount, _childHighWater);
+				_tokens = null;
+				_nodes = null;
+				_children = null;
+				return;
+			}
 			var tokens = _tokens;
 			if(tokens != null) {
 				_tokens = null;
@@ -106,10 +201,12 @@ namespace ToolGood.Algorithm.math
 				Array.Clear(nodes, 0, _nodeCount);
 				ArrayPool<FastNode>.Shared.Return(nodes);
 			}
-			var scratch = _scratch;
-			if(scratch != null) {
-				_scratch = null;
-				ArrayPool<int>.Shared.Return(scratch);
+			var children = _children;
+			if(children != null) {
+				_children = null;
+				// 句柄里是整棵函数树，同样要清
+				Array.Clear(children, 0, _childHighWater);
+				ArrayPool<FastHandle>.Shared.Return(children);
 			}
 		}
 
@@ -117,7 +214,12 @@ namespace ToolGood.Algorithm.math
 		internal void Run()
 		{
 			Tokenize();
-			_root = ParseProgram();
+			var root = ParseExpr(0);
+			if(Current.Type != FastToken.EOF) {
+				throw Unexpected();
+			}
+			_rootFn = root.Fn;
+			_rootNode = root.NodeIdx;
 		}
 
 		#region 对外入口（自动管理缓冲区生命周期）
@@ -125,10 +227,10 @@ namespace ToolGood.Algorithm.math
 		/// <summary>解析为可执行的函数树</summary>
 		internal static FunctionBase ParseFunction(string text)
 		{
-			var parser = new FastParser(text);
+			var parser = new FastParser(text, true, false);
 			try {
 				parser.Run();
-				return FastAstBuilder.Build(text, parser._nodes, parser._nodeCount, parser._root);
+				return parser._rootFn;
 			} finally {
 				parser.Release();
 			}
@@ -137,7 +239,7 @@ namespace ToolGood.Algorithm.math
 		/// <summary>仅检查语法（不构造函数树），语法错误抛 <see cref="FormatException"/></summary>
 		internal static void CheckSyntax(string text)
 		{
-			var parser = new FastParser(text);
+			var parser = new FastParser(text, false, false);
 			try {
 				parser.Run();
 			} finally {
@@ -148,10 +250,10 @@ namespace ToolGood.Algorithm.math
 		/// <summary>解析为条件树</summary>
 		internal static ConditionTree ParseConditionTree(string text)
 		{
-			var parser = new FastParser(text);
+			var parser = new FastParser(text, false, true);
 			try {
 				parser.Run();
-				return FastTreeBuilder.ToConditionTree(text, parser._nodes, parser._root);
+				return FastTreeBuilder.ToConditionTree(text, parser._nodes, parser._rootNode);
 			} finally {
 				parser.Release();
 			}
@@ -160,10 +262,10 @@ namespace ToolGood.Algorithm.math
 		/// <summary>解析为计算树</summary>
 		internal static CalculateTree ParseCalculateTree(string text)
 		{
-			var parser = new FastParser(text);
+			var parser = new FastParser(text, false, true);
 			try {
 				parser.Run();
-				return FastTreeBuilder.ToCalculateTree(text, parser._nodes, parser._root);
+				return FastTreeBuilder.ToCalculateTree(text, parser._nodes, parser._rootNode);
 			} finally {
 				parser.Release();
 			}
@@ -172,10 +274,10 @@ namespace ToolGood.Algorithm.math
 		/// <summary>解析并收集自定义参数 / 自定义函数</summary>
 		internal static void ParseDiyNames(string text, List<DiyNameKeyInfo> parameters, List<DiyNameKeyInfo> functions)
 		{
-			var parser = new FastParser(text);
+			var parser = new FastParser(text, false, true);
 			try {
 				parser.Run();
-				FastTreeBuilder.CollectDiyNames(parser._nodes, parser._root, parameters, functions);
+				FastTreeBuilder.CollectDiyNames(parser._nodes, parser._rootNode, parameters, functions);
 			} finally {
 				parser.Release();
 			}
@@ -216,12 +318,13 @@ namespace ToolGood.Algorithm.math
 			_nodes = next;
 		}
 
-		private void GrowScratch()
+		private void GrowChildren()
 		{
-			var next = ArrayPool<int>.Shared.Rent(_scratch.Length * 2);
-			Array.Copy(_scratch, next, _scratchCount);
-			ArrayPool<int>.Shared.Return(_scratch);
-			_scratch = next;
+			var next = ArrayPool<FastHandle>.Shared.Rent(_children.Length * 2);
+			Array.Copy(_children, next, _childCount);
+			Array.Clear(_children, 0, _childCount);
+			ArrayPool<FastHandle>.Shared.Return(_children);
+			_children = next;
 		}
 
 		private int AddNode(FastNode node)
@@ -231,34 +334,110 @@ namespace ToolGood.Algorithm.math
 			return _nodeCount++;
 		}
 
-		private void PushScratch(int node)
+		private void PushChild(FastHandle handle)
 		{
-			if(_scratchCount == _scratch.Length) { GrowScratch(); }
-			_scratch[_scratchCount++] = node;
+			if(_childCount == _children.Length) { GrowChildren(); }
+			_children[_childCount++] = handle;
+			if(_childCount > _childHighWater) { _childHighWater = _childCount; }
+		}
+
+		#endregion
+
+		#region 节点构造
+
+		/// <summary>子节点的原文起点（仅记录模式有效）</summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private int NodeStart(FastHandle handle)
+		{
+			return _record ? _nodes[handle.NodeIdx].Start : 0;
+		}
+
+		/// <summary>子节点的原文终点（仅记录模式有效）</summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private int NodeEnd(FastHandle handle)
+		{
+			return _record ? _nodes[handle.NodeIdx].End : 0;
+		}
+
+		/// <summary>叶子节点：数值 / 字符串 / 参数名</summary>
+		private FastHandle MakeLeaf(FastNodeKind kind, int start, int end, string text)
+		{
+			FastHandle handle = default;
+			handle.NodeIdx = -1;
+			if(_build) {
+				if(kind == FastNodeKind.Number) {
+					handle.Fn = FastAstBuilder.CreateNumber(_text, start, end);
+				} else if(kind == FastNodeKind.Text) {
+					handle.Fn = FastAstBuilder.CreateText(_text, start, end);
+				} else {
+					handle.Fn = FastAstBuilder.CreateParameter(text);
+				}
+				handle.Const = FastAstBuilder.IsConstant(kind, 0, handle.Fn, _children, 0);
+			}
+			if(_record) {
+				handle.NodeIdx = AddNode(FastNode.Leaf(kind, start, end, text));
+			}
+			return handle;
+		}
+
+		/// <summary>
+		/// 组合节点：子节点已压入暂存区 [<paramref name="mark"/>, <see cref="_childCount"/>) 区间。
+		/// 直接构建模式下就地构造函数树并尝试常量折叠；记录模式下同时写语法树节点。
+		/// </summary>
+		private FastHandle MakeNode(FastNodeKind kind, int type, int mark, int start, int end, string text, int nameStart)
+		{
+			var count = _childCount - mark;
+			FastHandle handle = default;
+			handle.NodeIdx = -1;
+			if(_build) {
+				var fn = FastAstBuilder.Create(kind, type, _children, mark, count, text);
+				var isConst = FastAstBuilder.IsConstant(kind, type, fn, _children, mark);
+				if(!isConst && FastAstBuilder.CanFold(kind, type, _children, mark, count)) {
+					// 纯常量子树在编译期先算好；算出错误/异常值则保持原节点，
+					// 让错误仍发生在求值期，与折叠前行为一致
+					var result = fn.Evaluate(FastAstBuilder.FoldEngine, null);
+					if(!result.IsErrorOrNone) {
+						var folded = FastAstBuilder.WrapConstant(result);
+						if(folded != null) {
+							fn = folded;
+							isConst = true;
+						}
+					}
+				}
+				handle.Fn = fn;
+				handle.Const = isConst;
+			}
+			if(_record) {
+				var node = FastNode.Nary(kind, _children, mark, count, start, end, text);
+				node.Type = type;
+				node.NameStart = nameStart;
+				handle.NodeIdx = AddNode(node);
+			}
+			return handle;
+		}
+
+		/// <summary>压入一个子节点后构造组合节点，并恢复暂存区</summary>
+		private FastHandle MakeUnary(FastNodeKind kind, FastHandle child, int start, int end, string text = null)
+		{
+			var mark = _childCount;
+			PushChild(child);
+			var handle = MakeNode(kind, 0, mark, start, end, text, 0);
+			_childCount = mark;
+			return handle;
 		}
 
 		#endregion
 
 		#region 语法
 
-		private int ParseProgram()
-		{
-			var node = ParseExpr(0);
-			if(Current.Type != FastToken.EOF) {
-				throw Unexpected();
-			}
-			return node;
-		}
-
 		/// <summary>
 		/// 优先级爬升主循环。
 		/// <para>
 		/// 为了在有限的线程栈上支持尽可能深的嵌套，这里刻意把「括号/前缀/后缀」直接内联，
-		/// 并把二元运算循环挪到 <see cref="ParseBinaryRest"/>，于是每层括号嵌套只压 1 个栈帧
-		/// （ParseExpr），而不是 4 个（旧的 ParseExpr+ParseUnary+ParsePostfix+ParsePrimary）。
+		/// 并把二元运算循环挪到 <see cref="ParseBinaryRest"/>，于是每层括号嵌套只压 1 个栈帧。
 		/// </para>
 		/// </summary>
-		private int ParseExpr(int minPrecedence)
+		private FastHandle ParseExpr(int minPrecedence)
 		{
 			if(++_depth > MaxDepth) {
 				throw new FormatException($"Expression is nested too deeply (more than {MaxDepth} levels).");
@@ -269,19 +448,18 @@ namespace ToolGood.Algorithm.math
 				throw new FormatException($"Expression is nested too deeply for the current thread stack (stopped at level {_depth}).");
 			}
 
-			int left;
+			FastHandle left;
 			var token = Current;
 			if(token.Type == FastToken.BANG) {
 				Next();
 				var operand = ParseExpr(PrecedenceUnary);
-				left = AddNode(FastNode.Unary(FastNodeKind.Not, operand, token.Start, _nodes[operand].End));
+				left = MakeUnary(FastNodeKind.Not, operand, token.Start, NodeEnd(operand));
 			} else if(token.Type == FastToken.LPAREN) {
 				// 括号在这里直接递归，少一个 ParsePrimary 栈帧
 				Next();
 				var inner = ParseExpr(0);
 				Expect(FastToken.RPAREN);
-				var innerNode = _nodes[inner];
-				left = AddNode(FastNode.Unary(FastNodeKind.Bracket, inner, innerNode.Start, innerNode.End));
+				left = MakeUnary(FastNodeKind.Bracket, inner, NodeStart(inner), NodeEnd(inner));
 			} else {
 				left = ParsePrimary();
 				left = ParsePostfix(left);
@@ -293,7 +471,7 @@ namespace ToolGood.Algorithm.math
 		}
 
 		/// <summary>二元/三目运算循环（优先级爬升）</summary>
-		private int ParseBinaryRest(int left, int minPrecedence)
+		private FastHandle ParseBinaryRest(FastHandle left, int minPrecedence)
 		{
 			while(true) {
 				var token = Current;
@@ -308,7 +486,7 @@ namespace ToolGood.Algorithm.math
 
 				Next();
 				if(postfixPercentage) {
-					left = AddNode(FastNode.Unary(FastNodeKind.Percentage, left, _nodes[left].Start, _lastEnd));
+					left = MakeUnary(FastNodeKind.Percentage, left, NodeStart(left), _lastEnd);
 					continue;
 				}
 				if(type == FastToken.QUESTION) {
@@ -318,16 +496,25 @@ namespace ToolGood.Algorithm.math
 					var whenTrue = ParseExpr(0);
 					Expect(FastToken.COLON);
 					var whenFalse = ParseExpr(precedence + 1);
-					left = AddNode(FastNode.Three(FastNodeKind.If, left, whenTrue, whenFalse, _nodes[left].Start, _nodes[whenFalse].End));
+					var mark = _childCount;
+					PushChild(left);
+					PushChild(whenTrue);
+					PushChild(whenFalse);
+					left = MakeNode(FastNodeKind.If, 0, mark, NodeStart(left), NodeEnd(whenFalse), null, 0);
+					_childCount = mark;
 					continue;
 				}
 				var right = ParseExpr(precedence + 1);
-				left = AddNode(FastNode.Binary(GetBinaryKind(type), left, right, _nodes[left].Start, _nodes[right].End));
+				var m = _childCount;
+				PushChild(left);
+				PushChild(right);
+				left = MakeNode(GetBinaryKind(type), 0, m, NodeStart(left), NodeEnd(right), null, 0);
+				_childCount = m;
 			}
 		}
 
 		/// <summary>后缀链：函数调用风格的 .name(...) 与下标/属性访问</summary>
-		private int ParsePostfix(int left)
+		private FastHandle ParsePostfix(FastHandle left)
 		{
 			while(true) {
 				if(Current.Type == FastToken.DOT) {
@@ -336,20 +523,24 @@ namespace ToolGood.Algorithm.math
 					Next();
 					var index = ParseExpr(0);
 					Expect(FastToken.RBRACKET);
-					left = AddNode(FastNode.Binary(FastNodeKind.GetJson, left, index, _nodes[left].Start, _lastEnd));
+					var mark = _childCount;
+					PushChild(left);
+					PushChild(index);
+					left = MakeNode(FastNodeKind.GetJson, 0, mark, NodeStart(left), _lastEnd, null, 0);
+					_childCount = mark;
 				} else {
 					return left;
 				}
 			}
 		}
 
-		private int ParsePrimary()
+		private FastHandle ParsePrimary()
 		{
 			var token = Current;
 			switch(token.Type) {
 				case FastToken.NUM:
 					Next();
-					return AddNode(FastNode.Leaf(FastNodeKind.Number, token.Start, token.End));
+					return MakeLeaf(FastNodeKind.Number, token.Start, token.End, null);
 
 				case FastToken.OPSUB: {
 					// 文法只允许 OPSUB? NUM 形式的负数字面量
@@ -357,18 +548,18 @@ namespace ToolGood.Algorithm.math
 					if(Current.Type != FastToken.NUM) { throw Unexpected(); }
 					var num = Current;
 					Next();
-					return AddNode(FastNode.Leaf(FastNodeKind.Number, token.Start, num.End));
+					return MakeLeaf(FastNodeKind.Number, token.Start, num.End, null);
 				}
 				case FastToken.STRING:
 					Next();
-					return AddNode(FastNode.Leaf(FastNodeKind.Text, token.Start, token.End));
+					return MakeLeaf(FastNodeKind.Text, token.Start, token.End, null);
 
 				case FastToken.PARAMETER: {
 					Next();
 					if(Current.Type == FastToken.LPAREN) {
-						return ParseCall(token, -1, false);
+						return ParseCall(token, false, default, false);
 					}
-					return AddNode(FastNode.Leaf(FastNodeKind.Parameter, token.Start, token.End, Slice(token)));
+					return MakeLeaf(FastNodeKind.Parameter, token.Start, token.End, Slice(token));
 				}
 				case FastToken.TRUE:
 				case FastToken.FALSE:
@@ -380,7 +571,7 @@ namespace ToolGood.Algorithm.math
 						Next();
 						Next();
 					}
-					return NewCall(token.Type, token.Start, _lastEnd, null, 0, 0);
+					return MakeNode(FastNodeKind.Call, token.Type, _childCount, token.Start, _lastEnd, null, 0);
 				}
 				case FastToken.RAND:
 				case FastToken.NOW:
@@ -391,7 +582,7 @@ namespace ToolGood.Algorithm.math
 					Next();
 					Expect(FastToken.LPAREN);
 					Expect(FastToken.RPAREN);
-					return NewCall(token.Type, token.Start, _lastEnd, null, 0, 0);
+					return MakeNode(FastNodeKind.Call, token.Type, _childCount, token.Start, _lastEnd, null, 0);
 				}
 				case FastToken.LBRACE:
 					return ParseArrayJson();
@@ -400,27 +591,18 @@ namespace ToolGood.Algorithm.math
 				default:
 					if(token.Type > 0 && token.Type <= FastToken.PARAMETER && FastToken.IsFunctionHead[token.Type]) {
 						Next();
-						return ParseCall(token, -1, false);
+						return ParseCall(token, false, default, false);
 					}
 					throw Unexpected();
 			}
 		}
 
-		/// <summary>构造一个函数调用节点，参数来自暂存区 [offset, offset+count)</summary>
-		private int NewCall(int type, int start, int end, string name, int offset, int count, int nameStart = 0)
-		{
-			var node = FastNode.Nary(FastNodeKind.Call, _scratch, offset, count, start, end, name);
-			node.Type = type;
-			node.NameStart = nameStart;
-			return AddNode(node);
-		}
-
-		/// <summary>解析 <c>(a, b, ...)</c>；<paramref name="receiver"/> 非 -1 时为 <c>expr.name(...)</c> 形式</summary>
-		private int ParseCall(FastLexeme name, int receiver, bool isMemberStyle)
+		/// <summary>解析 <c>(a, b, ...)</c>；<paramref name="hasReceiver"/> 为 true 时是 <c>expr.name(...)</c> 形式</summary>
+		private FastHandle ParseCall(FastLexeme name, bool hasReceiver, FastHandle receiver, bool isMemberStyle)
 		{
 			Expect(FastToken.LPAREN);
-			var mark = _scratchCount;
-			if(receiver >= 0) { PushScratch(receiver); }
+			var mark = _childCount;
+			if(hasReceiver) { PushChild(receiver); }
 
 			if(Current.Type == FastToken.RPAREN) {
 				// 文法中 NAME '(' expr (',' expr)* ')' 至少需要一个参数；
@@ -429,81 +611,81 @@ namespace ToolGood.Algorithm.math
 					throw new FormatException($"Function '{Slice(name)}' requires at least one argument.");
 				}
 			} else {
-				PushScratch(ParseExpr(0));
+				PushChild(ParseExpr(0));
 				while(Current.Type == FastToken.COMMA) {
 					Next();
-					PushScratch(ParseExpr(0));
+					PushChild(ParseExpr(0));
 				}
 			}
 			Expect(FastToken.RPAREN);
 
-			var start = receiver >= 0 ? _nodes[receiver].Start : name.Start;
+			var start = hasReceiver ? NodeStart(receiver) : name.Start;
 			var isDiy = name.Type == FastToken.PARAMETER;
-			var node = NewCall(name.Type, start, _lastEnd, isDiy ? Slice(name) : null, mark, _scratchCount - mark, name.Start);
-			_scratchCount = mark;
-			return node;
+			var handle = MakeNode(FastNodeKind.Call, name.Type, mark, start, _lastEnd, isDiy ? Slice(name) : null, name.Start);
+			_childCount = mark;
+			return handle;
 		}
 
 		/// <summary>解析 <c>expr.name</c> / <c>expr.name(...)</c></summary>
-		private int ParseMemberAccess(int receiver)
+		private FastHandle ParseMemberAccess(FastHandle receiver)
 		{
 			Next();  // '.'
 			var name = Current;
 			if(name.Type == FastToken.PARAMETER) {
 				Next();
 				if(Current.Type == FastToken.LPAREN) {
-					return ParseCall(name, receiver, true);
+					return ParseCall(name, true, receiver, true);
 				}
-				return AddNode(FastNode.Unary(FastNodeKind.GetJsonProperty, receiver, _nodes[receiver].Start, name.End).WithText(Slice(name)));
+				return MakeUnary(FastNodeKind.GetJsonProperty, receiver, NodeStart(receiver), name.End, Slice(name));
 			}
 			if(name.Type > 0 && name.Type <= FastToken.PARAMETER) {
 				if(FastToken.IsMethodHead[name.Type] && Peek(1).Type == FastToken.LPAREN) {
 					Next();
-					return ParseCall(name, receiver, true);
+					return ParseCall(name, true, receiver, true);
 				}
 				if(FastToken.IsParameter2[name.Type]) {
 					Next();
-					return AddNode(FastNode.Unary(FastNodeKind.GetJsonProperty, receiver, _nodes[receiver].Start, name.End).WithText(Slice(name)));
+					return MakeUnary(FastNodeKind.GetJsonProperty, receiver, NodeStart(receiver), name.End, Slice(name));
 				}
 			}
 			throw Unexpected();
 		}
 
-		private int ParseArray()
+		private FastHandle ParseArray()
 		{
 			var token = Current;
 			Next();  // '['
-			var mark = _scratchCount;
-			PushScratch(ParseExpr(0));
+			var mark = _childCount;
+			PushChild(ParseExpr(0));
 			while(Current.Type == FastToken.COMMA) {
 				Next();
 				if(Current.Type == FastToken.RBRACKET) { break; }  // 允许尾逗号
-				PushScratch(ParseExpr(0));
+				PushChild(ParseExpr(0));
 			}
 			Expect(FastToken.RBRACKET);
-			var node = AddNode(FastNode.Nary(FastNodeKind.Array, _scratch, mark, _scratchCount - mark, token.Start, _lastEnd));
-			_scratchCount = mark;
-			return node;
+			var handle = MakeNode(FastNodeKind.Array, 0, mark, token.Start, _lastEnd, null, 0);
+			_childCount = mark;
+			return handle;
 		}
 
-		private int ParseArrayJson()
+		private FastHandle ParseArrayJson()
 		{
 			var token = Current;
 			Next();  // '{'
-			var mark = _scratchCount;
+			var mark = _childCount;
 			while(true) {
-				PushScratch(ParseArrayJsonItem());
+				PushChild(ParseArrayJsonItem());
 				if(Current.Type != FastToken.COMMA) { break; }
 				Next();
 				if(Current.Type == FastToken.RBRACE) { break; }  // 允许尾逗号
 			}
 			Expect(FastToken.RBRACE);
-			var node = AddNode(FastNode.Nary(FastNodeKind.ArrayJson, _scratch, mark, _scratchCount - mark, token.Start, _lastEnd));
-			_scratchCount = mark;
-			return node;
+			var handle = MakeNode(FastNodeKind.ArrayJson, 0, mark, token.Start, _lastEnd, null, 0);
+			_childCount = mark;
+			return handle;
 		}
 
-		private int ParseArrayJsonItem()
+		private FastHandle ParseArrayJsonItem()
 		{
 			var key = Current;
 			string keyText;
@@ -516,7 +698,7 @@ namespace ToolGood.Algorithm.math
 			}
 			Expect(FastToken.COLON);
 			var value = ParseExpr(0);
-			return AddNode(FastNode.Unary(FastNodeKind.ArrayJsonItem, value, key.Start, _nodes[value].End).WithText(keyText));
+			return MakeUnary(FastNodeKind.ArrayJsonItem, value, key.Start, NodeEnd(value), keyText);
 		}
 
 		#endregion

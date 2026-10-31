@@ -1,5 +1,4 @@
 using System;
-using System.Buffers;
 using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Internals.Functions;
@@ -13,70 +12,44 @@ using ToolGood.Algorithm.Operands;
 namespace ToolGood.Algorithm.math
 {
 	/// <summary>
-	/// 把手写语法树转换为可执行的 <see cref="FunctionBase"/> 树。
-	/// 等价于原来的 <c>MathFunctionVisitor</c>，但省去了 Antlr 访问者分发。
+	/// 解析途中把语法结构就地转换为可执行的 <see cref="FunctionBase"/> 节点。
 	/// <para>
-	/// 节点数组由 <see cref="FastParser"/> 按后序添加：任何节点的子节点下标都小于它自己，
-	/// 所以这里只需从 0 到 NodeCount 顺序扫一遍就能自底向上构建 ——
-	/// 既不递归、也不用显式栈，<c>1+1+1+...</c> 这类左深链再长也不会 StackOverflow。
+	/// 原实现先把语法树写成 <see cref="FastNode"/> 数组，再顺序扫一遍数组自底向上构建函数树
+	/// （两次遍历、两套表示）。现在递归下降在返回时就地构造节点，构造阶段与解析阶段合并，
+	/// 节点数组只在条件树 / 计算树 / DIY 名称收集时才需要，主路径完全不产生。
+	/// </para>
+	/// <para>
+	/// 常量折叠也随构造就地完成：子节点返回时已带上「是否常量」标记，父节点据此决定是否折叠，
+	/// 不再依赖节点数组的常量数组。
 	/// </para>
 	/// </summary>
 	internal static class FastAstBuilder
 	{
+		/// <summary>无参调用的共享空参数表，避免每次为无参函数分配数组</summary>
+		private static readonly FunctionBase[] EmptyArgs = new FunctionBase[0];
+
 		/// <summary>
 		/// 常量折叠探测用的共享引擎。
 		/// 只用来求值「全部子节点均为字面量常量」的纯子树，这类子树不读参数、不改引擎状态
 		/// （已核实：运算符与白名单函数的求值路径不写 engine.LastError、不调 GetParameter），
 		/// 因此多线程并发解析共用一个实例是安全的。
 		/// </summary>
-		private static readonly AlgorithmEngine FoldEngine = new AlgorithmEngine();
+		internal static readonly AlgorithmEngine FoldEngine = new AlgorithmEngine();
 
-		internal static FunctionBase Build(string text, FastNode[] nodes, int nodeCount, int root)
-		{
-			var built = ArrayPool<FunctionBase>.Shared.Rent(nodeCount);
-			var constant = ArrayPool<bool>.Shared.Rent(nodeCount);
-			try {
-				for(int i = 0; i < nodeCount; i++) {
-					var node = nodes[i];
-					var fn = Create(text, nodes, built, node);
-
-					var isConst = IsConstantNode(node, fn, constant);
-					if(!isConst && CanFold(node, constant)) {
-						// 纯常量子树在编译期先算好；算出错误/异常值则保持原节点，
-						// 让错误仍发生在求值期，与折叠前行为一致
-						var result = fn.Evaluate(FoldEngine, null);
-						if(!result.IsErrorOrNone) {
-							var folded = WrapConstant(result);
-							if(folded != null) {
-								fn = folded;
-								isConst = true;
-							}
-						}
-					}
-					built[i] = fn;
-					constant[i] = isConst;
-				}
-				return built[root];
-			} finally {
-				// 清空，避免池中长期持有整棵 FunctionBase 树；只清实际用到的区间
-				Array.Clear(built, 0, nodeCount);
-				ArrayPool<bool>.Shared.Return(constant);
-				ArrayPool<FunctionBase>.Shared.Return(built);
-			}
-		}
+		#region 常量折叠
 
 		/// <summary>
 		/// 判断刚构建的节点是否本身就是常量（无需折叠）。
 		/// 带单位数字（Function_Number2）的换算依赖引擎单位设置，不算常量。
 		/// </summary>
-		private static bool IsConstantNode(FastNode node, FunctionBase fn, bool[] constant)
+		internal static bool IsConstant(FastNodeKind kind, int type, FunctionBase fn, FastHandle[] children, int offset)
 		{
-			switch(node.Kind) {
+			switch(kind) {
 				case FastNodeKind.Number: return fn is not Function_Number2;
 				case FastNodeKind.Text: return true;
-				case FastNodeKind.Bracket: return constant[node.GetChild(0)];
+				case FastNodeKind.Bracket: return children[offset].Const;
 				case FastNodeKind.Call:
-					switch(node.Type) {
+					switch(type) {
 						case FastToken.TRUE:
 						case FastToken.FALSE:
 						case FastToken.NULL:
@@ -94,9 +67,9 @@ namespace ToolGood.Algorithm.math
 		/// 白名单只收「求值确定、无副作用、不依赖引擎状态」的函数；
 		/// 参数求值异常（Div 0 等）返回错误 Operand 而不是抛异常，由调用方据结果决定是否折叠。
 		/// </summary>
-		private static bool CanFold(FastNode node, bool[] constant)
+		internal static bool CanFold(FastNodeKind kind, int type, FastHandle[] children, int offset, int count)
 		{
-			switch(node.Kind) {
+			switch(kind) {
 				case FastNodeKind.Mul:
 				case FastNodeKind.Div:
 				case FastNodeKind.Mod:
@@ -119,7 +92,7 @@ namespace ToolGood.Algorithm.math
 					// 注意：SUM/MAX/MIN 这类在求值时循环调用 funcs[i].Evaluate 的聚合函数
 					// 不能进白名单——编译期探测会让 JIT 的分层 PGO 按「子节点全是常量节点」
 					// 去虚化该调用点，生产路径传参数节点时守卫全部失配，实测求值慢 2 倍。
-					switch(node.Type) {
+					switch(type) {
 						case FastToken.CONCATENATE:
 						case FastToken.ABS:
 						case FastToken.ROUND:
@@ -132,15 +105,14 @@ namespace ToolGood.Algorithm.math
 					break;
 				default: return false;
 			}
-			var count = node.ChildCount;
 			for(int i = 0; i < count; i++) {
-				if(!constant[node.GetChild(i)]) { return false; }
+				if(!children[offset + i].Const) { return false; }
 			}
 			return true;
 		}
 
 		/// <summary>把求值结果包装回常量函数节点；数组/json 等复杂结果不折叠</summary>
-		private static FunctionBase WrapConstant(Operand result)
+		internal static FunctionBase WrapConstant(Operand result)
 		{
 			if(result.IsNumber) { return new Function_Number(result); }
 			if(result.IsText) { return new Function_ValueText(result); }
@@ -150,58 +122,13 @@ namespace ToolGood.Algorithm.math
 			return null;
 		}
 
-		private static FunctionBase Create(string text, FastNode[] nodes, FunctionBase[] built, FastNode node)
+		#endregion
+
+		#region 叶子
+
+		internal static FunctionBase CreateNumber(string text, int start, int end)
 		{
-			switch(node.Kind) {
-				case FastNodeKind.Number: return BuildNumber(text, node);
-				case FastNodeKind.Text: return new Function_ValueText(Operand.Create(ReadStringLiteral(text, node)));
-				case FastNodeKind.Parameter: return new Function_Parameter(node.Text);
-				case FastNodeKind.Bracket: return built[node.GetChild(0)];
-				case FastNodeKind.Not: return new Function_NOT(built[node.GetChild(0)]);
-				case FastNodeKind.Percentage: return new Function_Percentage(built[node.GetChild(0)]);
-
-				case FastNodeKind.Mul: return new Function_Mul(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Div: return new Function_Div(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Mod: return new Function_Mod(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Add: return new Function_Add(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Sub: return new Function_Sub(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Concat: return new Function_Connect(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.GreaterThan: return new Function_GT(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.GreaterOrEqual: return new Function_GE(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.LessThan: return new Function_LT(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.LessOrEqual: return new Function_LE(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Equal: return new Function_EQ(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.NotEqual: return new Function_NE(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.And: return new Function_AND(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.Or: return new Function_OR(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.If: return new Function_IF(BuildArguments(nodes, built, node));
-
-				case FastNodeKind.Call: return FastFunctionFactory.Create(node.Type, BuildArguments(nodes, built, node), node.Text);
-				case FastNodeKind.Array: return new Function_ARRAY(BuildArguments(nodes, built, node));
-				case FastNodeKind.ArrayJson: return new Function_ArrayJson(BuildArguments(nodes, built, node));
-				case FastNodeKind.ArrayJsonItem: return new Function_ArrayJsonItem(UnescapeKey(node.Text), built[node.GetChild(0)]);
-				case FastNodeKind.GetJson: return new Function_GetJsonValue(built[node.GetChild(0)], built[node.GetChild(1)]);
-				case FastNodeKind.GetJsonProperty: return new Function_GetJsonValue(built[node.GetChild(0)], new Function_ValueText(Operand.Create(node.Text)));
-				default: throw new ArgumentException($"Node '{node.Kind}' is not implemented.");
-			}
-		}
-
-		private static FunctionBase[] BuildArguments(FastNode[] nodes, FunctionBase[] built, FastNode node)
-		{
-			var count = node.ChildCount;
-			if(count == 0) { return FunctionBase_Empty; }
-			var list = new FunctionBase[count];
-			for(int i = 0; i < count; i++) {
-				list[i] = built[node.GetChild(i)];
-			}
-			return list;
-		}
-
-		private static readonly FunctionBase[] FunctionBase_Empty = new FunctionBase[0];
-
-		private static FunctionBase BuildNumber(string text, FastNode node)
-		{
-			var span = text.AsSpan(node.Start, node.End - node.Start + 1);
+			var span = text.AsSpan(start, end - start + 1);
 			// 快路径优先：绝大多数字面量是 [±]整数[.小数]，直接拼 64 位尾数构造 decimal。
 			// 词法已保证 token 内不含空白/千分位/货币符号，NumberStyles.Any 里那些检查全是白付的，
 			// 指数记法等少数形态退回 decimal.TryParse(Number)。
@@ -224,6 +151,72 @@ namespace ToolGood.Algorithm.math
 			}
 			throw new ArgumentException($"Number '{span.ToString()}' is invalid or out of range.");
 		}
+
+		internal static FunctionBase CreateText(string text, int start, int end)
+		{
+			return new Function_ValueText(Operand.Create(UnescapeString(text.AsSpan(start + 1, end - start - 1))));
+		}
+
+		internal static FunctionBase CreateParameter(string name)
+		{
+			return new Function_Parameter(name);
+		}
+
+		#endregion
+
+		#region 组合节点
+
+		/// <summary>
+		/// 按节点种类构造函数节点。子节点已由调用方压入 <paramref name="children"/> 的 [offset, offset+count) 区间。
+		/// 参数个数为 1/2 的结构直接走单参/双参构造，不额外分配参数数组。
+		/// </summary>
+		internal static FunctionBase Create(FastNodeKind kind, int type, FastHandle[] children, int offset, int count, string text)
+		{
+			switch(kind) {
+				case FastNodeKind.Bracket: return children[offset].Fn;
+				case FastNodeKind.Not: return new Function_NOT(children[offset].Fn);
+				case FastNodeKind.Percentage: return new Function_Percentage(children[offset].Fn);
+
+				case FastNodeKind.Mul: return new Function_Mul(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Div: return new Function_Div(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Mod: return new Function_Mod(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Add: return new Function_Add(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Sub: return new Function_Sub(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Concat: return new Function_Connect(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.GreaterThan: return new Function_GT(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.GreaterOrEqual: return new Function_GE(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.LessThan: return new Function_LT(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.LessOrEqual: return new Function_LE(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Equal: return new Function_EQ(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.NotEqual: return new Function_NE(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.And: return new Function_AND(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.Or: return new Function_OR(children[offset].Fn, children[offset + 1].Fn);
+
+				case FastNodeKind.If: return new Function_IF(ToArgs(children, offset, count));
+				case FastNodeKind.Call: return FastFunctionFactory.Create(type, ToArgs(children, offset, count), text);
+				case FastNodeKind.Array: return new Function_ARRAY(ToArgs(children, offset, count));
+				case FastNodeKind.ArrayJson: return new Function_ArrayJson(ToArgs(children, offset, count));
+				case FastNodeKind.ArrayJsonItem: return new Function_ArrayJsonItem(UnescapeKey(text), children[offset].Fn);
+				case FastNodeKind.GetJson: return new Function_GetJsonValue(children[offset].Fn, children[offset + 1].Fn);
+				case FastNodeKind.GetJsonProperty: return new Function_GetJsonValue(children[offset].Fn, new Function_ValueText(Operand.Create(text)));
+
+				default: throw new ArgumentException($"Node '{kind}' can't be built as a composite node.");
+			}
+		}
+
+		private static FunctionBase[] ToArgs(FastHandle[] children, int offset, int count)
+		{
+			if(count == 0) { return EmptyArgs; }
+			var list = new FunctionBase[count];
+			for(int i = 0; i < count; i++) {
+				list[i] = children[offset + i].Fn;
+			}
+			return list;
+		}
+
+		#endregion
+
+		#region 数值解析
 
 		/// <summary>
 		/// 手写 decimal 快速解析：[−]整数[.小数]，尾数与舍入后总位数 ≤ 18（64 位内）、小数位 ≤ 28。
@@ -325,16 +318,12 @@ namespace ToolGood.Algorithm.math
 			}
 		}
 
-		/// <summary>
-		/// 取字符串字面量(含首尾引号)的实际值：去掉引号并反转义。
-		/// </summary>
-		private static string ReadStringLiteral(string text, FastNode node)
-		{
-			return UnescapeString(text.AsSpan(node.Start + 1, node.End - node.Start - 1));
-		}
+		#endregion
+
+		#region 字符串反转义
 
 		/// <summary>json 的 key：字符串字面量需去掉首尾引号并反转义，其余形式直接用原文</summary>
-		private static string UnescapeKey(string keyText)
+		internal static string UnescapeKey(string keyText)
 		{
 			if(keyText != null && keyText.Length > 1 && (keyText[0] == '"' || keyText[0] == '\'' || keyText[0] == '`')) {
 				return UnescapeString(keyText.AsSpan(1, keyText.Length - 2));
@@ -388,5 +377,7 @@ namespace ToolGood.Algorithm.math
 			}
 			return sb.ToString();
 		}
+
+		#endregion
 	}
 }
