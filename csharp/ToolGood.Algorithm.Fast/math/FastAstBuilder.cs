@@ -23,19 +23,131 @@ namespace ToolGood.Algorithm.math
 	/// </summary>
 	internal static class FastAstBuilder
 	{
+		/// <summary>
+		/// 常量折叠探测用的共享引擎。
+		/// 只用来求值「全部子节点均为字面量常量」的纯子树，这类子树不读参数、不改引擎状态
+		/// （已核实：运算符与白名单函数的求值路径不写 engine.LastError、不调 GetParameter），
+		/// 因此多线程并发解析共用一个实例是安全的。
+		/// </summary>
+		private static readonly AlgorithmEngine FoldEngine = new AlgorithmEngine();
+
 		internal static FunctionBase Build(string text, FastNode[] nodes, int nodeCount, int root)
 		{
 			var built = ArrayPool<FunctionBase>.Shared.Rent(nodeCount);
+			var constant = ArrayPool<bool>.Shared.Rent(nodeCount);
 			try {
 				for(int i = 0; i < nodeCount; i++) {
-					built[i] = Create(text, nodes, built, nodes[i]);
+					var node = nodes[i];
+					var fn = Create(text, nodes, built, node);
+
+					var isConst = IsConstantNode(node, fn, constant);
+					if(!isConst && CanFold(node, constant)) {
+						// 纯常量子树在编译期先算好；算出错误/异常值则保持原节点，
+						// 让错误仍发生在求值期，与折叠前行为一致
+						var result = fn.Evaluate(FoldEngine, null);
+						if(!result.IsErrorOrNone) {
+							var folded = WrapConstant(result);
+							if(folded != null) {
+								fn = folded;
+								isConst = true;
+							}
+						}
+					}
+					built[i] = fn;
+					constant[i] = isConst;
 				}
 				return built[root];
 			} finally {
 				// 清空，避免池中长期持有整棵 FunctionBase 树；只清实际用到的区间
 				Array.Clear(built, 0, nodeCount);
+				ArrayPool<bool>.Shared.Return(constant);
 				ArrayPool<FunctionBase>.Shared.Return(built);
 			}
+		}
+
+		/// <summary>
+		/// 判断刚构建的节点是否本身就是常量（无需折叠）。
+		/// 带单位数字（Function_Number2）的换算依赖引擎单位设置，不算常量。
+		/// </summary>
+		private static bool IsConstantNode(FastNode node, FunctionBase fn, bool[] constant)
+		{
+			switch(node.Kind) {
+				case FastNodeKind.Number: return fn is not Function_Number2;
+				case FastNodeKind.Text: return true;
+				case FastNodeKind.Bracket: return constant[node.GetChild(0)];
+				case FastNodeKind.Call:
+					switch(node.Type) {
+						case FastToken.TRUE:
+						case FastToken.FALSE:
+						case FastToken.NULL:
+						case FastToken.E:
+						case FastToken.PI:
+						case FastToken.ALGORITHMVERSION: return true;
+						default: return false;
+					}
+				default: return false;
+			}
+		}
+
+		/// <summary>
+		/// 节点是否可以折叠：属于纯运算/白名单函数，且全部子节点都是常量。
+		/// 白名单只收「求值确定、无副作用、不依赖引擎状态」的函数；
+		/// 参数求值异常（Div 0 等）返回错误 Operand 而不是抛异常，由调用方据结果决定是否折叠。
+		/// </summary>
+		private static bool CanFold(FastNode node, bool[] constant)
+		{
+			switch(node.Kind) {
+				case FastNodeKind.Mul:
+				case FastNodeKind.Div:
+				case FastNodeKind.Mod:
+				case FastNodeKind.Add:
+				case FastNodeKind.Sub:
+				case FastNodeKind.Concat:
+				case FastNodeKind.GreaterThan:
+				case FastNodeKind.GreaterOrEqual:
+				case FastNodeKind.LessThan:
+				case FastNodeKind.LessOrEqual:
+				case FastNodeKind.Equal:
+				case FastNodeKind.NotEqual:
+				case FastNodeKind.And:
+				case FastNodeKind.Or:
+				case FastNodeKind.Not:
+				case FastNodeKind.Percentage:
+				case FastNodeKind.If:
+					break;
+				case FastNodeKind.Call:
+					// 注意：SUM/MAX/MIN 这类在求值时循环调用 funcs[i].Evaluate 的聚合函数
+					// 不能进白名单——编译期探测会让 JIT 的分层 PGO 按「子节点全是常量节点」
+					// 去虚化该调用点，生产路径传参数节点时守卫全部失配，实测求值慢 2 倍。
+					switch(node.Type) {
+						case FastToken.CONCATENATE:
+						case FastToken.ABS:
+						case FastToken.ROUND:
+						case FastToken.INT:
+						case FastToken.IF:
+						case FastToken.DATE:
+							break;
+						default: return false;
+					}
+					break;
+				default: return false;
+			}
+			var count = node.ChildCount;
+			for(int i = 0; i < count; i++) {
+				if(!constant[node.GetChild(i)]) { return false; }
+			}
+			return true;
+		}
+
+		/// <summary>把求值结果包装回常量函数节点；数组/json 等复杂结果不折叠</summary>
+		private static FunctionBase WrapConstant(Operand result)
+		{
+			if(result.IsNumber) { return new Function_Number(result); }
+			if(result.IsText) { return new Function_ValueText(result); }
+			if(result.IsBoolean) { return new Function_ValueBoolean(result.BooleanValue); }
+			if(result.IsDate) { return new Function_Constant(result); }
+			if(result.IsNull) { return new Function_NULL(); }
+			return null;
 		}
 
 		private static FunctionBase Create(string text, FastNode[] nodes, FunctionBase[] built, FastNode node)

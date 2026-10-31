@@ -645,7 +645,8 @@ namespace ToolGood.Algorithm.Test.Value
                 var engine = new AlgorithmEngine();
                 Assert.AreEqual("1.5", engine.Parse("1.5").ToString());
                 Assert.AreEqual("1.5M", engine.Parse("1.5M").ToString());
-                Assert.AreEqual("1234.5 + 0", engine.Parse("1234.5 + 0").ToString());
+                // 常量折叠后 "1234.5 + 0" 整棵子树折叠为常量 1234.5，ToString 输出折叠结果
+                Assert.AreEqual("1234.5", engine.Parse("1234.5 + 0").ToString());
 
                 var e2 = new AlgorithmEngine();
                 var r = e2.TryEvaluate(engine.Parse("1.5").ToString(), 0.0);
