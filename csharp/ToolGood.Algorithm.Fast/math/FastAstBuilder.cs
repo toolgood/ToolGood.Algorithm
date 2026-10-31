@@ -202,41 +202,127 @@ namespace ToolGood.Algorithm.math
 		private static FunctionBase BuildNumber(string text, FastNode node)
 		{
 			var span = text.AsSpan(node.Start, node.End - node.Start + 1);
-			if(decimal.TryParse(span, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+			// 快路径优先：绝大多数字面量是 [±]整数[.小数]，直接拼 64 位尾数构造 decimal。
+			// 词法已保证 token 内不含空白/千分位/货币符号，NumberStyles.Any 里那些检查全是白付的，
+			// 指数记法等少数形态退回 decimal.TryParse(Number)。
+			if(TryParseDecimalFast(span, out decimal d)) {
+				return new Function_Number(Operand.Create(d));
+			}
+			// Float = 空白 + 正负号 + 小数点 + 指数（Number 不含指数，"3E5" 会挂）
+			if(decimal.TryParse(span, NumberStyles.Float, CultureInfo.InvariantCulture, out d)) {
 				return new Function_Number(Operand.Create(d));
 			}
 			// 解析失败只可能是: 数值超出 decimal 范围, 或数值后带单位。
 			// 仅当后缀确实命中单位字典时才按单位切分, 否则一律视为非法数值,
 			// 避免把指数记法的 'E' 或超长数字的末位误当作单位。
 			if(TrySplitUnit(span, out var txt, out var unit)) {
-				var d2 = decimal.TryParse(txt, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
-					? d3
-					: throw new ArgumentException($"Number '{span.ToString()}' is invalid or out of range.");
+				if(!TryParseDecimalFast(txt, out var d2)
+					&& !decimal.TryParse(txt, NumberStyles.Float, CultureInfo.InvariantCulture, out d2)) {
+					throw new ArgumentException($"Number '{span.ToString()}' is invalid or out of range.");
+				}
 				return new Function_Number2(d2, unit);
 			}
 			throw new ArgumentException($"Number '{span.ToString()}' is invalid or out of range.");
 		}
 
 		/// <summary>
+		/// 手写 decimal 快速解析：[−]整数[.小数]，尾数与舍入后总位数 ≤ 18（64 位内）、小数位 ≤ 28。
+		/// 覆盖公式字面量的绝大多数形态；构造 decimal 不走字符串慢路径。
+		/// 返回 false 时由调用方退回 decimal.TryParse，不是错误。
+		/// </summary>
+		private static bool TryParseDecimalFast(ReadOnlySpan<char> s, out decimal value)
+		{
+			var negative = false;
+			int i = 0;
+			if(i < s.Length && s[i] == '-') { negative = true; i++; }
+
+			// 尾数防溢出上限：(2^64-1-9)/10，保证 *10+digit 不越 ulong
+			const ulong MaxMantissa = 1844674407370955161UL;
+			ulong mantissa = 0;
+			int digits = 0;
+			while(i < s.Length) {
+				var c = s[i];
+				if(c < '0' || c > '9') { break; }
+				if(mantissa > MaxMantissa) { value = 0; return false; }
+				mantissa = mantissa * 10 + (uint)(c - '0');
+				digits++;
+				i++;
+			}
+			if(digits == 0) { value = 0; return false; }
+
+			var scale = 0;
+			if(i < s.Length && s[i] == '.') {
+				i++;
+				while(i < s.Length) {
+					var c = s[i];
+					if(c < '0' || c > '9') { break; }
+					if(mantissa > MaxMantissa) { value = 0; return false; }
+					mantissa = mantissa * 10 + (uint)(c - '0');
+					scale++;
+					i++;
+				}
+			}
+			if(i != s.Length || scale > 28) { value = 0; return false; }
+
+			// mantissa < 2^64，低 64 位就是完整尾数，高位给 0
+			value = new decimal((int)mantissa, (int)(mantissa >> 32), 0, negative, (byte)scale);
+			return true;
+		}
+
+		/// <summary>
 		/// 按 Function_Number2 实际支持的单位字典切分数值后缀。
 		/// 必须校验完整后缀(而非仅首字母): 否则 "1E29" 这类超出 decimal 范围的指数记法
 		/// 会被切成数值 1 + 单位 "E29", 报出"单位非法"这种与 "1E+30" 不一致的误导性错误。
+		/// 单位集合固定（19 个、忽略大小写），按后缀长度分组后用 span 直接比对，
+		/// 只有命中的那个候选才 ToString 一次——旧实现每个候选后缀都 ToString 一次（最多 3 次）。
 		/// </summary>
 		private static bool TrySplitUnit(ReadOnlySpan<char> span, out ReadOnlySpan<char> txt, out string unit)
 		{
-			var dict = Function_Number2.GetUnitTypedict();
-			for(int n = 3; n >= 1; n--) {
+			for(int n = 3; n >= 1; n--) {  // 长后缀优先，与旧 Dictionary 版一致
 				if(span.Length <= n) continue;
-				var candidate = span.Slice(span.Length - n).ToString();
-				if(dict.ContainsKey(candidate)) {
+				var candidate = span.Slice(span.Length - n);
+				var matched = MatchUnit(candidate, n);
+				if(matched) {
 					txt = span.Slice(0, span.Length - n);
-					unit = candidate;
+					unit = candidate.ToString();  // 保留原文大小写，与旧行为一致
 					return true;
 				}
 			}
 			txt = span;
 			unit = null;
 			return false;
+		}
+
+		/// <summary>候选集与 Function_Number2.unitTypedict 的键一致（OrdinalIgnoreCase）</summary>
+		private static bool MatchUnit(ReadOnlySpan<char> candidate, int length)
+		{
+			switch(length) {
+				case 3:
+					return candidate.Equals("KM2", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("KM3", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("DM2", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("CM2", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("MM2", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("DM3", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("CM3", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("MM3", StringComparison.OrdinalIgnoreCase);
+				case 2:
+					return candidate.Equals("KM", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("DM", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("CM", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("MM", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("M2", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("M3", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("ML", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("KG", StringComparison.OrdinalIgnoreCase);
+				case 1:
+					return candidate.Equals("M", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("L", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("T", StringComparison.OrdinalIgnoreCase)
+						|| candidate.Equals("G", StringComparison.OrdinalIgnoreCase);
+				default:
+					return false;
+			}
 		}
 
 		/// <summary>

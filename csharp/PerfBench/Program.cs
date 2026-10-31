@@ -62,6 +62,7 @@ namespace PerfBench
         private const string ParseLongExp =
             "IF(AND(1<2,3>2,OR(4=4,5=6)),CONCATENATE(SUM(1,2,3),\"-\",ROUND(3.14159*2,2),\"-\",DATE(2026,1,1))," +
             "IF(NOT(FALSE),LEFT(\"abcdefgh\",3),RIGHT(\"abcdefgh\",3)))";
+        private const string ParseUnitExp = "1.5M+2KM+300mm+0.5L+1.25KG+10m2";
         private static FunctionBase _parseSink;
 
         private sealed class BenchEngine : AlgorithmEngine
@@ -130,6 +131,11 @@ namespace PerfBench
 
             Run("Parse_Long", 5000, () => {
                 _parseSink = Engine.Parse(ParseLongExp);
+                if (_parseSink == null) throw new Exception("parse failed");
+            });
+
+            Run("Parse_UnitMix", 5000, () => {
+                _parseSink = Engine.Parse(ParseUnitExp);
                 if (_parseSink == null) throw new Exception("parse failed");
             });
 
