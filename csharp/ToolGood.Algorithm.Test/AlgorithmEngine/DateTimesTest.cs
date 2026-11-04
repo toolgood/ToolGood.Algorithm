@@ -514,6 +514,24 @@ namespace ToolGood.Algorithm.Test.DateTimes
         }
 
         [Test]
+        public void YEARFRAC_basis1_cross_year_test()
+        {
+            // 回归：basis=1（actual/actual）跨年时，起始年占比必须算到"次年 1 月 1 日"。
+            // 修复前用的是当年 12 月 31 日，比次年 1 月 1 日少一天，于是：
+            //   YEARFRAC(2026-1-1, 2027-1-1, 1) = 364/365 = 0.99726（Excel 为 1）
+            //   跨 n 年的区间少 n/365
+            AlgorithmEngine engine = new AlgorithmEngine();
+            Assert.AreEqual(Math.Round(1.0, 4), Math.Round(engine.TryEvaluate("YEARFRAC(DATE(2026,1,1),DATE(2027,1,1),1)", 0.0), 4));
+            Assert.AreEqual(Math.Round(2.0, 4), Math.Round(engine.TryEvaluate("YEARFRAC(DATE(2026,1,1),DATE(2028,1,1),1)", 0.0), 4));
+            // 起始年是闰年时同样成立（修复前为 365/366）
+            Assert.AreEqual(Math.Round(1.0, 4), Math.Round(engine.TryEvaluate("YEARFRAC(DATE(2012,1,1),DATE(2013,1,1),1)", 0.0), 4));
+            // 整年 + 余数：365 天 + 151 天 = 516/365
+            Assert.AreEqual(Math.Round(516.0 / 365, 4), Math.Round(engine.TryEvaluate("YEARFRAC(DATE(2026,1,1),DATE(2027,6,1),1)", 0.0), 4));
+            // 同年区间不受影响：182/366
+            Assert.AreEqual(Math.Round(182.0 / 366, 4), Math.Round(engine.TryEvaluate("YEARFRAC(DATE(2012,1,1),DATE(2012,7,1),1)", 0.0), 4));
+        }
+
+        [Test]
         public void YEARFRAC_basis0_30_360_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();

@@ -178,6 +178,8 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public virtual Operand Evaluate(FunctionBase function)
 		{
+			// 入参为 null 属调用方错误，明确抛参数异常（原先直接 NRE，堆栈指向 Evaluate 内部，难以定位）
+			if(function is null) { throw new ArgumentNullException(nameof(function)); }
 			return function.Evaluate(this);
 		}
 

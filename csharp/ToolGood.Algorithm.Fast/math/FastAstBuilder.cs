@@ -129,6 +129,13 @@ namespace ToolGood.Algorithm.math
 		internal static FunctionBase CreateNumber(string text, int start, int end)
 		{
 			var span = text.AsSpan(start, end - start + 1);
+			// 负数字面量由解析器按「'-' 起点 .. 数字终点」整体切片，'-' 与数字之间可能有空白（"- 1"）。
+			// Antlr 版取 context.GetText() 时 token 间的空白本就不在文本里，所以主库能算出 -1；
+			// 这里只在「首字符是 '-' 且紧跟空白」时清一遍空白，正常字面量（"-1"、"1.5M"）只多一次字符比较。
+			if(span.Length > 1 && span[0] == '-' && (span[1] == ' ' || span[1] == '\t' || span[1] == '\r' || span[1] == '\n')) {
+				var cleaned = RemoveWhiteSpace(span);
+				return CreateNumber(cleaned, 0, cleaned.Length - 1);
+			}
 			// 快路径优先：绝大多数字面量是 [±]整数[.小数]，直接拼 64 位尾数构造 decimal。
 			// 词法已保证 token 内不含空白/千分位/货币符号，NumberStyles.Any 里那些检查全是白付的，
 			// 指数记法等少数形态退回 decimal.TryParse(Number)。
@@ -145,11 +152,21 @@ namespace ToolGood.Algorithm.math
 			if(TrySplitUnit(span, out var txt, out var unit)) {
 				if(!TryParseDecimalFast(txt, out var d2)
 					&& !decimal.TryParse(txt, NumberStyles.Float, CultureInfo.InvariantCulture, out d2)) {
-					throw new ArgumentException($"Number '{span.ToString()}' is invalid or out of range.");
+					throw new FormatException($"Number '{span.ToString()}' is invalid or out of range.");
 				}
 				return new Function_Number2(d2, unit);
 			}
-			throw new ArgumentException($"Number '{span.ToString()}' is invalid or out of range.");
+			throw new FormatException($"Number '{span.ToString()}' is invalid or out of range.");
+		}
+
+		private static string RemoveWhiteSpace(ReadOnlySpan<char> span)
+		{
+			var sb = new StringBuilder(span.Length);
+			for(int i = 0; i < span.Length; i++) {
+				char c = span[i];
+				if(c != ' ' && c != '\t' && c != '\r' && c != '\n') { sb.Append(c); }
+			}
+			return sb.ToString();
 		}
 
 		internal static FunctionBase CreateText(string text, int start, int end)

@@ -66,5 +66,15 @@ namespace ToolGood.Algorithm.Test
             var tt = c.TryEvaluate("灰色", "");
             Assert.AreEqual("L", tt);
         }
+
+        [Test]
+        public void Evaluate_Null_ThrowsArgumentNullException_Test()
+        {
+            // 回归: 传 null FunctionBase 应得到参数异常（堆栈指向调用点），
+            // 而不是在 Evaluate 内部抛 NullReferenceException
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var ex = Assert.Throws<ArgumentNullException>(() => engine.Evaluate(null));
+            Assert.AreEqual("function", ex.ParamName);
+        }
     }
 }

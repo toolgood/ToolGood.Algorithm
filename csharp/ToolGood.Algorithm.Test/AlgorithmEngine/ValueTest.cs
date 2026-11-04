@@ -663,6 +663,37 @@ namespace ToolGood.Algorithm.Test.Value
         }
 
         [Test]
+        public void P0_1b_datetime_exp_invariant_culture_test()
+        {
+            // 回归: 日历表达式（InitValue/SetValue 的 Exp）必须用 InvariantCulture 生成。
+            // 自定义格式串里的 ':' 是"时间分隔符占位符"，会被替换成当前文化的时间分隔符，
+            // fi-FI 下会生成 "2026-01-01 12.30.45"，本引擎自己都解析不回日期。
+            var oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            try {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fi-FI");
+
+                var logic = new global::ToolGood.Algorithm.CalculationLogic.CalculationLogicEngine(new FunctionCache(), true);
+                logic.InitValue("d1", new DateTime(2026, 1, 1, 12, 30, 45));
+                logic.SetValue("d2", new DateTime(2026, 1, 1, 12, 30, 45));
+                // sv-SE / fi-FI 下负号是 U+2212（−5），整数表达式同样要能回读
+                logic.InitValue("i", -5);
+
+                var info = logic.ToInfoString();
+                Assert.IsTrue(info.Contains("\"2026-01-01 12:30:45\""));
+                Assert.IsFalse(info.Contains("12.30.45"));
+                Assert.IsTrue(info.Contains("i=-5"));
+
+                // 生成的日期字面量能被引擎重新解析（裸字符串字面量求值只会得到文本，故走 DATEVALUE）
+                var engine = new AlgorithmEngine();
+                var parsed = engine.Evaluate(engine.Parse("DATEVALUE(\"2026-01-01 12:30:45\")"));
+                Assert.IsTrue(parsed.IsDate);
+                Assert.AreEqual(2026, parsed.DateValue.Year.Value);
+            } finally {
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
+        }
+
+        [Test]
         public void P0_2_arrayjson_error_propagation_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -689,16 +720,29 @@ namespace ToolGood.Algorithm.Test.Value
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             // P0-3 回归: 超出 decimal 范围的纯数字必须在 Parse 阶段抛出明确异常，
-            // 而不是在 Evaluate 时抛 KeyNotFoundException(修复前末位数字被误当作单位)
+            // 而不是在 Evaluate 时抛 KeyNotFoundException(修复前末位数字被误当作单位)。
+            // 异常类型统一为 FormatException —— 与词法/语法错误一致，调用方按一种类型即可捕获全部"公式编译失败"。
             try {
                 engine.Parse("99999999999999999999999999999");
-                throw new Exception("P0-3 回归失败: 29 位纯数字应在 Parse 阶段抛出 ArgumentException");
-            } catch (ArgumentException ex) {
+                throw new Exception("P0-3 回归失败: 29 位纯数字应在 Parse 阶段抛出 FormatException");
+            } catch (FormatException ex) {
                 Assert.IsTrue(ex.Message.Contains("is invalid or out of range"));
             }
 
-            // ParseWithoutError 不抛异常，仅返回 null
+            // 指数记法超出范围同样是 FormatException
+            Assert.Throws<FormatException>(() => engine.Parse("1E400"));
+            Assert.Throws<FormatException>(() => engine.Parse("- 1E400"));
+            // 带单位的超范围字面量
+            Assert.Throws<FormatException>(() => engine.Parse("99999999999999999999999999999M"));
+
+            // ParseWithoutError 不抛异常，仅返回 null，错误信息进 LastError
             Assert.IsNull(engine.ParseWithoutError("99999999999999999999999999999"));
+            Assert.IsTrue(engine.LastError.Contains("is invalid or out of range"));
+            Assert.IsNull(engine.ParseWithoutError("1E400"));
+
+            // TryEvaluate 走 ParseWithoutError，异常不外泄，返回默认值
+            Assert.AreEqual(0m, engine.TryEvaluate("1E400", 0m));
+            Assert.IsTrue(engine.LastError.Contains("is invalid or out of range"));
 
             // 边界内数值仍可正常解析求值
             var r = engine.Evaluate(engine.Parse("9999999999999999999999999999"));
@@ -800,8 +844,8 @@ namespace ToolGood.Algorithm.Test.Value
             foreach(var exp in new[] { "1E29", "12E29", "1e29", "1E+30", "1E300" }) {
                 try {
                     engine.Parse(exp);
-                    throw new Exception($"Visitors P1-1 回归失败: [{exp}] 应在 Parse 阶段抛出 ArgumentException");
-                } catch(ArgumentException ex) {
+                    throw new Exception($"Visitors P1-1 回归失败: [{exp}] 应在 Parse 阶段抛出 FormatException");
+                } catch(FormatException ex) {
                     if(ex.Message.Contains("unit") == true) {
                         throw new Exception($"Visitors P1-1 回归失败: [{exp}] 报出单位错误而非数值越界: {ex.Message}");
                     }

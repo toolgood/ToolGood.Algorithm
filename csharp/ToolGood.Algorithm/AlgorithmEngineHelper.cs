@@ -139,7 +139,14 @@ namespace ToolGood.Algorithm
 				throw new ArgumentException(errorWriter.ErrorMsg, nameof(exp));
 			}
 			var visitor = new MathFunctionVisitor();
-			return visitor.Visit(context);
+			try {
+				return visitor.Visit(context);
+			} catch(FormatException ex) {
+				// ParseFormula 对外统一用 ArgumentException（与 Fast 版一致）；
+				// 词法/语法错误已在上面的 errorWriter 分支归为 ArgumentException，
+				// 这里补上构造函数树阶段抛出的 FormatException（如字面量超范围）。
+				throw new ArgumentException(ex.Message, nameof(exp));
+			}
 		}
 
 		/// <summary>

@@ -150,10 +150,10 @@ namespace ToolGood.Algorithm.Internals.Visitors
 			if(TrySplitUnit(span, out var txt, out var unit)) {
 				var d2 = decimal.TryParse(txt, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d3)
 					? d3
-					: throw new ArgumentException($"Number '{text}' is invalid or out of range.");
+					: throw new FormatException($"Number '{text}' is invalid or out of range.");
 				return new Function_Number2(d2, unit);
 			}
-			throw new ArgumentException($"Number '{text}' is invalid or out of range.");
+			throw new FormatException($"Number '{text}' is invalid or out of range.");
 		}
 
 		/// <summary>

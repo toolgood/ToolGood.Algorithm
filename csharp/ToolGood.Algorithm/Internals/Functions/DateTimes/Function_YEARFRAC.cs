@@ -114,7 +114,9 @@ namespace ToolGood.Algorithm.Internals.Functions.DateTimes
 			int daysInStartYear = DateTime.IsLeapYear(startYear) ? 366 : 365;
 			int daysInEndYear = DateTime.IsLeapYear(endYear) ? 366 : 365;
 
-			result += (decimal)(new DateTime(startYear, 12, 31) - startDate).TotalDays / daysInStartYear;
+			// 起始年的占比要算到"次年 1 月 1 日"，不是当年 12 月 31 日：
+			// 12-31 比次年 1-1 少一天，会让每个跨年区间都少 1/365（如整年得 364/365 而非 1）。
+			result += (decimal)(new DateTime(startYear + 1, 1, 1) - startDate).TotalDays / daysInStartYear;
 			result += (decimal)(endDate - new DateTime(endYear, 1, 1)).TotalDays / daysInEndYear;
 			result += endYear - startYear - 1;
 

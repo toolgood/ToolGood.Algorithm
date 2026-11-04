@@ -249,7 +249,8 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, int value, int layer, string remark)
 		{
-			InitValueCore(key, value, _useCalculationLogicInfo ? value.ToString() : null, layer, remark);
+			// 整数同样要 InvariantCulture：sv-SE / fi-FI 下负号是 U+2212（−5），生成的表达式引擎解析不回来
+			InitValueCore(key, value, _useCalculationLogicInfo ? value.ToString(CultureInfo.InvariantCulture) : null, layer, remark);
 		}
 
 		/// <summary>
@@ -290,7 +291,9 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void InitValue(string key, DateTime value, int layer, string remark)
 		{
-			InitValueCore(key, value, _useCalculationLogicInfo ? $"\"{value:yyyy-MM-dd HH:mm:ss}\"" : null, layer, remark);
+			// 必须用 InvariantCulture 格式化：自定义格式里的 ':' 会被替换成当前文化的时间分隔符
+			// （fi-FI 下会生成 "2026-01-01 12.30.45"，本引擎自己都解析不回来）
+			InitValueCore(key, value, _useCalculationLogicInfo ? $"\"{value.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)}\"" : null, layer, remark);
 		}
 
 		private void InitValueCore(string key, Operand value, string exp, int layer, string remark)
@@ -620,7 +623,7 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, int exp, int layer, string remark)
 		{
-			SetValueCore(key, exp, _useCalculationLogicInfo ? exp.ToString() : null, layer, remark);
+			SetValueCore(key, exp, _useCalculationLogicInfo ? exp.ToString(CultureInfo.InvariantCulture) : null, layer, remark);
 		}
 
 		/// <summary>
@@ -661,7 +664,8 @@ namespace ToolGood.Algorithm.CalculationLogic
 		/// <param name="remark"></param>
 		public void SetValue(string key, DateTime exp, int layer, string remark)
 		{
-			SetValueCore(key, exp, _useCalculationLogicInfo ? $"\"{exp:yyyy-MM-dd HH:mm:ss}\"" : null, layer, remark);
+			// 同 InitValue：日期表达式必须用 InvariantCulture 生成，否则 ':' 随文化变形
+			SetValueCore(key, exp, _useCalculationLogicInfo ? $"\"{exp.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)}\"" : null, layer, remark);
 		}
 
 		private void SetValueCore(string key, Operand value, string exp, int layer, string remark)

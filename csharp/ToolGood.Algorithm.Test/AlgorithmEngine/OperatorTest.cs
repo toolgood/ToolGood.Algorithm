@@ -198,5 +198,22 @@ namespace ToolGood.Algorithm.Test.Operator
             // 回归：IF 嵌套
             AssertRoundTrip("true() && (1 > 0 ? true() : false())");
         }
+
+        [Test]
+        public void minus_space_number_test()
+        {
+            // 回归：负号与数字之间允许空白。Antlr 版按 GetText() 取 token 文本不含空白，
+            // 手写前端曾把空白一起切进字面量（"- 1"）导致 ArgumentException，两套前端行为必须一致。
+            AlgorithmEngine engine = new AlgorithmEngine();
+            Assert.AreEqual(-1m, engine.TryEvaluate("- 1", 0m));
+            Assert.AreEqual(-1.5m, engine.TryEvaluate("- 1.5", 0m));
+            Assert.AreEqual(-1m, engine.TryEvaluate("-\t1", 0m));
+            Assert.AreEqual(-1m, engine.TryEvaluate("-  1", 0m));
+            Assert.AreEqual(1m, engine.TryEvaluate("- 1 + 2", 0m));
+            Assert.AreEqual(3m, engine.TryEvaluate("1 - - 2", 0m));
+            Assert.AreEqual(-2m, engine.TryEvaluate("2*- 1", 0m));
+            // 字面量解析路径不变：无空白的紧贴写法结果一致
+            Assert.AreEqual(-1m, engine.TryEvaluate("-1", 0m));
+        }
     }
 }
