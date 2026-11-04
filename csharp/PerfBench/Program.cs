@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using ToolGood.Algorithm;
+using ToolGood.Algorithm.CalculationLogic;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.Operands;
 
@@ -236,6 +237,16 @@ namespace PerfBench
                 SumEngine.A = ArrayMix100;
                 var r = AvgFunc.TryEvaluate(SumEngine, 0m);
                 if (r <= 0m) throw new Exception("eval failed: " + r);
+            });
+
+            // ---- 计算逻辑引擎：P1（InitValue/SetValue 去闭包）回归基线 ----
+            // 500 个 InitValue + 500 个 SetValue 模拟表单初始化；useCalculationLogicInfo=false 是常规用法
+            var logicCache = new FunctionCache();
+            Run("Logic_Init500_Set500", 2000, () => {
+                var logic = new CalculationLogicEngine(logicCache, false);
+                for (int i = 0; i < 500; i++) logic.InitValue("k" + i, i * 1.5m);
+                for (int i = 0; i < 500; i++) logic.SetValue("s" + i, i * 2.5m);
+                logic.SetFormula("r", "k1+k2");
             });
         }
 
