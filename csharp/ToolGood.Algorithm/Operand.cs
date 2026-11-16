@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.Operands;
@@ -255,7 +256,9 @@ namespace ToolGood.Algorithm
 				return IntCache[(int)obj + IntCacheOffset];
 			}
 			try {
-				return new OperandDecimal((decimal)obj);
+				// 直接强制转换会把浮点的二进制尾巴全带进来（3.14f → 3.1400001049041748046875），
+				// 走最短往返字符串才能得到 3.14
+				return new OperandDecimal(decimal.Parse(obj.ToString("R", CultureInfo.InvariantCulture), NumberStyles.Float, CultureInfo.InvariantCulture));
 			} catch(OverflowException) {
 				return Error("Convert to number error!");
 			}
@@ -275,7 +278,9 @@ namespace ToolGood.Algorithm
 				return IntCache[(int)obj + IntCacheOffset];
 			}
 			try {
-				return new OperandDecimal((decimal)obj);
+				// 直接强制转换会把浮点的二进制尾巴全带进来（3.14 → 3.1400000000000001243449787580），
+				// 走最短往返字符串才能得到 3.14
+				return new OperandDecimal(decimal.Parse(obj.ToString("R", CultureInfo.InvariantCulture), NumberStyles.Float, CultureInfo.InvariantCulture));
 			} catch(OverflowException) {
 				return Error("Convert to number error!");
 			}

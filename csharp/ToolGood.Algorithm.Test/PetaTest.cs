@@ -1188,7 +1188,7 @@ namespace PetaTest
             }
 
             if (_showreport.Value) {
-                System.Diagnostics.Process.Start(_output_file);
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(_output_file) { UseShellExecute = true });
             }
         }
 
