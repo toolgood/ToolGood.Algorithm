@@ -5,7 +5,7 @@
 		<Copyright>Copyright 2017-2026 ToolGood</Copyright>
 		<AssemblyTitle>ToolGood.Algorithm.Fast</AssemblyTitle>
 		<Authors>ToolGood</Authors>
-		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
 		<!-- netstandard2.1 默认 C# 8.0，而统计/金融函数使用静态匿名函数（C# 9）以获得零闭包；
 		     其它目标保持 SDK 默认语言版本，避免降级 -->
 		<LangVersion Condition="'$(TargetFramework)' == 'netstandard2.1'">9.0</LangVersion>
